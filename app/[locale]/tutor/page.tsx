@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import AuthGuard from '@/components/auth/AuthGuard';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -88,8 +89,9 @@ export default function TutorPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted flex flex-col">
-      <div className="container mx-auto px-4 py-8 flex-1 flex flex-col">
+    <AuthGuard>
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted flex flex-col">
+        <div className="container mx-auto px-4 py-8 flex-1 flex flex-col">
         {/* Header */}
         <div className="max-w-4xl mx-auto text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
@@ -203,11 +205,12 @@ export default function TutorPage() {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-border/40 bg-card/30 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-6 text-center text-muted-foreground text-sm">
-          <p>Креирано од <span className="font-semibold text-foreground">Винсент Баталија</span></p>
-        </div>
-      </footer>
-    </div>
+        <footer className="border-t border-border/40 bg-card/30 backdrop-blur-sm">
+          <div className="container mx-auto px-4 py-6 text-center text-muted-foreground text-sm">
+            <p>Креирано од <span className="font-semibold text-foreground">Винсент Баталија</span></p>
+          </div>
+        </footer>
+      </div>
+    </AuthGuard>
   );
 }
