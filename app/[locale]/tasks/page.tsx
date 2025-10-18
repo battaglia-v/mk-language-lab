@@ -17,6 +17,7 @@ import {
   useSensor,
   useSensors,
   DragEndEvent,
+  useDroppable,
 } from '@dnd-kit/core';
 import {
   SortableContext,
@@ -68,6 +69,57 @@ function TaskCard({ task }: { task: Task }) {
   );
 }
 
+function KanbanColumn({
+  column,
+  totalColumns,
+  onDeleteColumn,
+  emptyHint,
+}: {
+  column: Column;
+  totalColumns: number;
+  onDeleteColumn: (columnId: string) => void;
+  emptyHint: string;
+}) {
+  const { setNodeRef, isOver } = useDroppable({ id: column.id });
+
+  return (
+    <Card className="bg-card/50 backdrop-blur border-border/50">
+      <CardHeader>
+        <div className="flex items-center justify-between">
+          <CardTitle className="text-lg flex items-center gap-2">
+            {column.title}
+            <span className="text-sm font-normal text-muted-foreground">({column.tasks.length})</span>
+          </CardTitle>
+          {totalColumns > 1 && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => onDeleteColumn(column.id)}
+              className="h-8 w-8"
+            >
+              <Trash2 className="h-4 w-4 text-destructive" />
+            </Button>
+          )}
+        </div>
+      </CardHeader>
+      <SortableContext id={column.id} items={column.tasks.map((task) => task.id)} strategy={verticalListSortingStrategy}>
+        <div
+          ref={setNodeRef}
+          className={`p-6 pt-0 min-h-[200px] rounded-lg border border-dashed border-transparent transition-colors ${
+            isOver ? 'border-primary/40 bg-primary/5' : ''
+          }`}
+        >
+          {column.tasks.length > 0 ? (
+            column.tasks.map((task) => <TaskCard key={task.id} task={task} />)
+          ) : (
+            <p className="text-sm text-muted-foreground italic text-center py-6">{emptyHint}</p>
+          )}
+        </div>
+      </SortableContext>
+    </Card>
+  );
+}
+
 export default function TasksPage() {
   const t = useTranslations('tasks');
   const [columns, setColumns] = useState<Column[]>([
@@ -79,6 +131,7 @@ export default function TasksPage() {
   const [newTaskTitle, setNewTaskTitle] = useState('');
   const [newTaskDescription, setNewTaskDescription] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const emptyColumnHint = t('emptyColumnHint');
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -144,6 +197,10 @@ export default function TasksPage() {
     const newColumns = [...columns];
     const sourceColIndex = newColumns.findIndex((c) => c.id === sourceColumn!.id);
     const destColIndex = newColumns.findIndex((c) => c.id === destColumn!.id);
+
+    if (sourceColumn.id === destColumn.id && sourceIndex === destIndex) {
+      return;
+    }
 
     // Remove from source
     const [movedTask] = newColumns[sourceColIndex].tasks.splice(sourceIndex, 1);
@@ -273,35 +330,13 @@ export default function TasksPage() {
         <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {columns.map((column) => (
-              <Card key={column.id} className="bg-card/50 backdrop-blur border-border/50">
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-lg flex items-center gap-2">
-                      {column.title}
-                      <span className="text-sm font-normal text-muted-foreground">
-                        ({column.tasks.length})
-                      </span>
-                    </CardTitle>
-                    {columns.length > 1 && (
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => handleDeleteColumn(column.id)}
-                        className="h-8 w-8"
-                      >
-                        <Trash2 className="h-4 w-4 text-destructive" />
-                      </Button>
-                    )}
-                  </div>
-                </CardHeader>
-                <div className="p-6 pt-0 min-h-[200px]">
-                  <SortableContext items={column.tasks.map((t) => t.id)} strategy={verticalListSortingStrategy}>
-                    {column.tasks.map((task) => (
-                      <TaskCard key={task.id} task={task} />
-                    ))}
-                  </SortableContext>
-                </div>
-              </Card>
+              <KanbanColumn
+                key={column.id}
+                column={column}
+                totalColumns={columns.length}
+                onDeleteColumn={handleDeleteColumn}
+                emptyHint={emptyColumnHint}
+              />
             ))}
           </div>
         </DndContext>

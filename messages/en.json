@@ -89,7 +89,8 @@
     "inProgress": "In Progress",
     "done": "Done",
     "save": "Save",
-    "saving": "Saving..."
+    "saving": "Saving...",
+    "emptyColumnHint": "Drag tasks here"
   },
   "about": {
     "title": "About",

@@ -1,33 +1,75 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
 import { FileText, ExternalLink, Search } from 'lucide-react';
 import AuthGuard from '@/components/auth/AuthGuard';
+import resourcesData from '@/data/resources.json';
+
+type ResourceLink = {
+  title: string;
+  url: string;
+  page: number;
+};
+
+type ResourceSection = {
+  title: string;
+  page: number;
+  resources: ResourceLink[];
+};
+
+type ResourceFile = {
+  source: string;
+  generatedAt: string;
+  sections: ResourceSection[];
+};
 
 export default function ResourcesPage() {
   const t = useTranslations('resources');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const pdfUrl = process.env.NEXT_PUBLIC_DICTIONARY_PDF_URL || 
-    'https://ofs-cdn.italki.com/u/11847001/message/d30vg2pjlt9bmtu5ki9g.pdf';
+  const resourceFile = resourcesData as ResourceFile;
+  const sections = resourceFile.sections;
 
-  const resources = [
-    {
-      title: t('dictionary'),
-      description: t('dictionaryDesc'),
-      type: 'PDF',
-      url: pdfUrl,
-    },
-  ];
+  const filteredSections = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    if (!query) {
+      return sections;
+    }
 
-  const filteredResources = resources.filter((resource) =>
-    resource.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    resource.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+    return sections
+      .map((section) => {
+        const sectionMatches = section.title.toLowerCase().includes(query);
+        const matchingResources = section.resources.filter((resource) => {
+          const titleMatches = resource.title.toLowerCase().includes(query);
+          const urlMatches = resource.url.toLowerCase().includes(query);
+          return titleMatches || urlMatches;
+        });
+
+        if (sectionMatches && matchingResources.length === 0) {
+          return section;
+        }
+
+        if (matchingResources.length > 0) {
+          return {
+            ...section,
+            resources: matchingResources,
+          } satisfies ResourceSection;
+        }
+
+        return sectionMatches ? section : null;
+      })
+      .filter((section): section is ResourceSection => Boolean(section && section.resources.length > 0));
+  }, [sections, searchQuery]);
+
+  const totalMatches = filteredSections.reduce((acc, section) => acc + section.resources.length, 0);
+  const pdfUrl = resourceFile.source;
+  const generatedDate = new Date(resourceFile.generatedAt);
+  const resourceCountLabel = totalMatches === 1 ? 'resource' : 'resources';
 
   return (
     <AuthGuard>
@@ -42,57 +84,95 @@ export default function ResourcesPage() {
 
             {/* Search */}
             <div className="relative max-w-xl mx-auto">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               <Input
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(event) => setSearchQuery(event.target.value)}
                 placeholder={t('search')}
                 className="pl-10 text-lg h-12"
               />
+            </div>
+
+            <div className="mt-6 flex flex-col items-center gap-3 text-sm text-muted-foreground">
+              <Button variant="outline" asChild className="gap-2">
+                <a href={pdfUrl} target="_blank" rel="noopener noreferrer">
+                  <FileText className="h-4 w-4" />
+                  {t('viewPdf')}
+                </a>
+              </Button>
+              <span>
+                Updated{' '}
+                <span className="italic">
+                  {generatedDate.toLocaleDateString(undefined, {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric',
+                  })}
+                </span>
+              </span>
+              <span>
+                {totalMatches} {resourceCountLabel}
+              </span>
             </div>
           </div>
 
           {/* Resources Grid */}
           <div className="max-w-6xl mx-auto">
-            {filteredResources.length === 0 ? (
+            {filteredSections.length === 0 || totalMatches === 0 ? (
               <Card className="bg-card/50 backdrop-blur border-border/50">
                 <CardContent className="py-12 text-center text-muted-foreground">
                   {t('noResults')}
                 </CardContent>
               </Card>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {filteredResources.map((resource, index) => (
-                  <Card
-                    key={index}
-                    className="bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all"
-                  >
-                    <CardHeader>
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-pink-500 to-orange-500 flex items-center justify-center">
-                          <FileText className="h-6 w-6 text-white" />
+              <div className="space-y-6">
+                {filteredSections.map((section) => (
+                  <Card key={section.title} className="bg-card/50 backdrop-blur border-border/50">
+                    <CardHeader className="flex flex-col gap-3">
+                      <div className="flex flex-wrap items-center justify-between gap-3">
+                        <div className="flex items-center gap-3">
+                          <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-primary to-secondary text-primary-foreground flex items-center justify-center">
+                            <FileText className="h-6 w-6" />
+                          </div>
+                          <div className="text-left">
+                            <CardTitle className="text-2xl font-semibold">{section.title}</CardTitle>
+                            <CardDescription>Page {section.page}</CardDescription>
+                          </div>
                         </div>
-                        <span className="text-xs font-semibold px-2 py-1 rounded-full bg-primary/10 text-primary">
-                          {resource.type}
-                        </span>
+                        <Badge variant="secondary" className="text-xs font-semibold">
+                          {section.resources.length}
+                        </Badge>
                       </div>
-                      <CardTitle className="text-xl">{resource.title}</CardTitle>
-                      <CardDescription className="text-base">
-                        {resource.description}
-                      </CardDescription>
                     </CardHeader>
-                    <CardContent className="space-y-2">
-                      <Button className="w-full" asChild>
-                        <a href={resource.url} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4 mr-2" />
-                          {t('viewPdf')}
-                        </a>
-                      </Button>
+                    <CardContent>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {section.resources.map((resource) => (
+                          <Button
+                            key={`${section.title}-${resource.url}`}
+                            variant="outline"
+                            asChild
+                            className="h-auto py-3 px-4 justify-between gap-3"
+                          >
+                            <a href={resource.url} target="_blank" rel="noopener noreferrer" className="flex w-full items-center justify-between gap-3">
+                              <span className="flex items-center gap-2 text-left">
+                                <ExternalLink className="h-4 w-4" />
+                                <span className="truncate" title={resource.title}>
+                                  {resource.title}
+                                </span>
+                              </span>
+                              <Badge variant="outline" className="shrink-0">
+                                p. {resource.page}
+                              </Badge>
+                            </a>
+                          </Button>
+                        ))}
+                      </div>
                     </CardContent>
                   </Card>
                 ))}
               </div>
             )}
+          </div>
 
           {/* PDF Viewer Info */}
           <Card className="mt-8 bg-gradient-to-br from-card/80 to-muted/30 backdrop-blur border-border/50">
@@ -103,13 +183,14 @@ export default function ResourcesPage() {
               </CardDescription>
             </CardHeader>
           </Card>
-          </div>
         </div>
 
         {/* Footer */}
         <footer className="border-t border-border/40 bg-card/30 backdrop-blur-sm mt-20">
           <div className="container mx-auto px-4 py-8 text-center text-muted-foreground">
-            <p>Креирано од <span className="font-semibold text-foreground">Винсент Баталија</span></p>
+            <p>
+              Креирано од <span className="font-semibold text-foreground">Винсент Баталија</span>
+            </p>
           </div>
         </footer>
       </div>
