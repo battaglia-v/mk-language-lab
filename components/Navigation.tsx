@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
-import { Sparkles, BookOpen, MessageSquare, Languages, FolderOpen, Trello, Info, LogOut, Newspaper } from 'lucide-react';
+import { Sparkles, BookOpen, Languages, LogOut, Newspaper } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
@@ -28,13 +28,9 @@ export default function Navigation() {
 
   const navItems = [
     { path: '', label: t('home'), icon: Sparkles },
-    { path: '/learn', label: t('learn'), icon: BookOpen },
-    { path: '/tutor', label: t('tutor'), icon: MessageSquare },
     { path: '/translate', label: t('translate'), icon: Languages },
-    { path: '/resources', label: t('resources'), icon: FolderOpen },
+    { path: '/resources', label: t('resources'), icon: BookOpen },
     { path: '/news', label: t('news'), icon: Newspaper },
-    { path: '/tasks', label: t('tasks'), icon: Trello },
-    { path: '/about', label: t('about'), icon: Info },
   ];
 
   const buildHref = (path: string) => (path === '' ? `/${locale}` : `/${locale}${path}`);
@@ -70,9 +66,12 @@ export default function Navigation() {
   return (
     <header className="border-b border-border/40 backdrop-blur-sm bg-background/50 sticky top-0 z-50">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex h-16 items-center gap-3">
           {/* Logo */}
-          <Link href={buildHref('')} className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+          <Link
+            href={buildHref('')}
+            className="flex flex-shrink-0 items-center gap-2 transition-opacity hover:opacity-80"
+          >
             <Sparkles className="h-6 w-6 text-primary" />
             <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Македонски
@@ -80,7 +79,7 @@ export default function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden lg:flex flex-1 items-center justify-center gap-1">
             {navItems.map((item) => {
               const Icon = item.icon;
               const active = isActive(item.path);
@@ -102,7 +101,7 @@ export default function Navigation() {
             })}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="ml-auto flex items-center gap-2">
             {status === 'loading' && (
               <Button variant="ghost" size="sm" disabled>
                 {tCommon('loading')}
@@ -159,7 +158,7 @@ export default function Navigation() {
         </div>
 
         {/* Mobile Navigation */}
-        <nav className="md:hidden flex gap-1 overflow-x-auto pb-2 scrollbar-hide">
+        <nav className="flex gap-1 overflow-x-auto pb-2 scrollbar-hide lg:hidden">
           {navItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.path);

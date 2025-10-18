@@ -10,7 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { ExternalLink, Loader2, Newspaper, PlayCircle, RefreshCcw, Video } from 'lucide-react';
 
-const SOURCE_IDS = ['all', 'time-mk', 'grid-mk'] as const;
+const SOURCE_IDS = ['all', 'time-mk', 'meta-mk'] as const;
 
 type SourceId = (typeof SOURCE_IDS)[number];
 
@@ -87,7 +87,7 @@ export default function NewsPage() {
     () => [
       { id: 'all' as SourceId, label: t('sourceAll') },
       { id: 'time-mk' as SourceId, label: t('sourceTime') },
-      { id: 'grid-mk' as SourceId, label: t('sourceGrid') },
+      { id: 'meta-mk' as SourceId, label: t('sourceMeta') },
     ],
     [t]
   );

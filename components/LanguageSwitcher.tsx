@@ -44,13 +44,18 @@ export default function LanguageSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="gap-2" disabled={isPending}>
+        <Button
+          variant="outline"
+          size="sm"
+          className="gap-2 px-2 sm:px-3"
+          disabled={isPending}
+        >
           <Languages className="h-4 w-4" />
           <span>{currentLanguage.flag}</span>
-          <span className="hidden sm:inline">{currentLanguage.name}</span>
+          <span className="hidden xl:inline">{currentLanguage.name}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" sideOffset={6} className="min-w-[180px]">
         {languages.map((lang) => (
           <DropdownMenuItem
             key={lang.code}
