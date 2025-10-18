@@ -2,7 +2,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { BookOpen, MessageSquare, Languages, FolderOpen, Trello } from 'lucide-react';
+import { BookOpen, MessageSquare, Languages, FolderOpen, Trello, Newspaper } from 'lucide-react';
 
 export default function HomePage() {
   const t = useTranslations('home');
@@ -39,6 +39,13 @@ export default function HomePage() {
       icon: FolderOpen,
       path: '/resources',
       gradient: 'from-purple-500 to-pink-500',
+    },
+    {
+      title: navT('news'),
+      description: t('newsDesc'),
+      icon: Newspaper,
+      path: '/news',
+      gradient: 'from-amber-500 to-orange-500',
     },
     {
       title: navT('tasks'),

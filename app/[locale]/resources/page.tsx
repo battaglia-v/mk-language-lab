@@ -1,7 +1,8 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -30,13 +31,41 @@ type ResourceFile = {
 
 export default function ResourcesPage() {
   const t = useTranslations('resources');
-  const [searchQuery, setSearchQuery] = useState('');
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+  const initialQuery = searchParams.get('q') ?? '';
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
 
   const resourceFile = resourcesData as ResourceFile;
   const sections = resourceFile.sections;
 
+  useEffect(() => {
+    setSearchQuery(initialQuery);
+  }, [initialQuery]);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      if (typeof window === 'undefined') {
+        return;
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      if (searchQuery.trim()) {
+        params.set('q', searchQuery.trim());
+      } else {
+        params.delete('q');
+      }
+
+      const queryString = params.toString();
+      router.replace(`${pathname}${queryString ? `?${queryString}` : ''}`, { scroll: false });
+    }, 300);
+
+    return () => clearTimeout(handler);
+  }, [pathname, router, searchQuery]);
+
   const filteredSections = useMemo(() => {
-    const query = searchQuery.trim().toLowerCase();
+  const query = searchQuery.trim().toLowerCase();
     if (!query) {
       return sections;
     }

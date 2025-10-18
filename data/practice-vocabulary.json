@@ -1,0 +1,22 @@
+[
+  { "macedonian": "здраво", "english": "hello", "category": "greetings" },
+  { "macedonian": "добро утро", "english": "good morning", "category": "greetings" },
+  { "macedonian": "како си?", "english": "how are you?", "category": "greetings" },
+  { "macedonian": "благодарам", "english": "thank you", "category": "politeness" },
+  { "macedonian": "те молам", "english": "please", "category": "politeness" },
+  { "macedonian": "извинете", "english": "excuse me", "category": "politeness" },
+  { "macedonian": "вода", "english": "water", "category": "food" },
+  { "macedonian": "леб", "english": "bread", "category": "food" },
+  { "macedonian": "кафе", "english": "coffee", "category": "food" },
+  { "macedonian": "колку чини?", "english": "how much does it cost?", "category": "shopping" },
+  { "macedonian": "сметка", "english": "bill", "category": "shopping" },
+  { "macedonian": "автобус", "english": "bus", "category": "transport" },
+  { "macedonian": "станица", "english": "station", "category": "transport" },
+  { "macedonian": "вчера", "english": "yesterday", "category": "time" },
+  { "macedonian": "денес", "english": "today", "category": "time" },
+  { "macedonian": "утре", "english": "tomorrow", "category": "time" },
+  { "macedonian": "училиште", "english": "school", "category": "places" },
+  { "macedonian": "работа", "english": "work", "category": "places" },
+  { "macedonian": "дом", "english": "home", "category": "places" },
+  { "macedonian": "пријател", "english": "friend", "category": "people" }
+]

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
-import { Sparkles, BookOpen, MessageSquare, Languages, FolderOpen, Trello, Info, LogOut } from 'lucide-react';
+import { Sparkles, BookOpen, MessageSquare, Languages, FolderOpen, Trello, Info, LogOut, Newspaper } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
@@ -32,6 +32,7 @@ export default function Navigation() {
     { path: '/tutor', label: t('tutor'), icon: MessageSquare },
     { path: '/translate', label: t('translate'), icon: Languages },
     { path: '/resources', label: t('resources'), icon: FolderOpen },
+    { path: '/news', label: t('news'), icon: Newspaper },
     { path: '/tasks', label: t('tasks'), icon: Trello },
     { path: '/about', label: t('about'), icon: Info },
   ];

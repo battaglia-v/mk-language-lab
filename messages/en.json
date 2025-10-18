@@ -2,6 +2,7 @@
   "nav": {
     "home": "Home",
     "learn": "Learn",
+    "news": "News",
     "tutor": "Tutor",
     "translate": "Translate",
     "resources": "Resources",
@@ -17,11 +18,13 @@
     "tutorDesc": "AI tutor powered by ChatGPT for personalized learning plans and practice",
     "translateDesc": "Translate text between Macedonian and English instantly",
     "resourcesDesc": "Access dictionaries, PDFs, and learning materials",
-    "tasksDesc": "Organize your learning journey with a Kanban board"
+    "tasksDesc": "Organize your learning journey with a Kanban board",
+    "newsDesc": "Stay current with Macedonian headlines and video clips"
   },
   "learn": {
     "title": "Learn Macedonian",
     "subtitle": "Choose a learning module to get started",
+    "modulesIntro": "Build skills across vocabulary, grammar, phrases, and pronunciation with focused modules.",
     "vocabulary": "Vocabulary",
     "vocabularyDesc": "Learn essential Macedonian words and phrases",
     "grammar": "Grammar",
@@ -31,9 +34,334 @@
     "pronunciation": "Pronunciation",
     "pronunciationDesc": "Perfect your Macedonian accent",
     "quickPractice": "Quick Practice",
-    "translateAndPractice": "Translate and Practice",
-    "enterText": "Enter text to translate...",
-    "translate": "Translate"
+    "quickPracticeDescription": "Test yourself with bite-sized translation prompts.",
+    "practicePromptLabel": "Translate to English",
+    "practiceHint": "Everyday vocabulary",
+    "practicePlaceholder": "Type the English translation...",
+    "checkAnswer": "Check",
+    "nextPrompt": "New Prompt",
+    "practiceReset": "Reset",
+    "correctAnswer": "Great job!",
+    "incorrectAnswer": "Not quite. The answer is {answer}.",
+    "practiceCategoryLabel": "Category"
+  },
+  "learnVocabulary": {
+    "back": "Back to Learn Hub",
+    "badge": "Module Overview",
+    "title": "Vocabulary Foundations",
+    "subtitle": "Grow your Macedonian vocabulary through high-frequency themes and intentional review.",
+    "objectivesHeading": "What you'll practice",
+    "objectives": [
+      "Master 120+ high-frequency Macedonian words across daily topics.",
+      "Pair Macedonian words with clear English meanings and sample sentences.",
+      "Build a review habit using spaced repetition and mini quizzes."
+    ],
+    "tracksHeading": "Lesson tracks",
+    "tracks": {
+      "everyday": {
+        "title": "Everyday Essentials",
+        "description": "Core words for greetings, numbers, food, and directions.",
+        "items": [
+          "Greetings, pleasantries, and small talk",
+          "Numbers, time, and calendar vocabulary",
+          "Food, drinks, shopping, and money basics"
+        ]
+      },
+      "situational": {
+        "title": "Situational Sets",
+        "description": "Targeted vocabulary for travel, work, and study scenarios.",
+        "items": [
+          "Transport, lodging, and navigation phrases",
+          "Office, school, and technology terminology",
+          "Health, emergencies, and helpful questions"
+        ]
+      },
+      "expansion": {
+        "title": "Expansion Decks",
+        "description": "Broaden your vocabulary with synonyms, antonyms, and collocations.",
+        "items": [
+          "Topic-based word families with example sentences",
+          "Common collocations and expression bundles",
+          "Mini quizzes that combine new and review words"
+        ]
+      }
+    },
+    "activitiesHeading": "Suggested activities",
+    "activities": [
+      {
+        "title": "Spaced Flashcards",
+        "description": "Review 15 words per day using a spaced repetition deck. Say each word aloud and write a short personal sentence."
+      },
+      {
+        "title": "Category Sprints",
+        "description": "Pick one topic, set a five-minute timer, and list as many Macedonian words as you can. Compare with the answer sheet afterward."
+      },
+      {
+        "title": "Conversation Swap",
+        "description": "Create a short dialogue that uses at least five target words. Practice with a partner or record yourself for playback."
+      }
+    ],
+    "resourcesHeading": "Helpful resources",
+    "resources": [
+      {
+        "title": "Core Vocabulary Deck (PDF)",
+        "description": "Printable flashcards covering the everyday essentials list.",
+        "href": "/resources?q=vocabulary"
+      },
+      {
+        "title": "Sample Dialogues",
+        "description": "Short conversations that highlight how the vocabulary appears in context.",
+        "href": "/resources?q=dialogue"
+      },
+      {
+        "title": "Quick Practice Widget",
+        "description": "Use the learn hub drill for rapid translation checks.",
+        "href": "/learn"
+      }
+    ]
+  },
+  "learnGrammar": {
+    "back": "Back to Learn Hub",
+    "badge": "Module Overview",
+    "title": "Grammar Building Blocks",
+    "subtitle": "Understand how Macedonian sentences work by focusing on structure, cases, and verb aspect.",
+    "objectivesHeading": "What you'll practice",
+    "objectives": [
+      "Review sentence structure and word order for statements and questions.",
+      "Learn case endings for definite nouns and pronouns.",
+      "Contrast imperfective and perfective verbs in everyday contexts."
+    ],
+    "tracksHeading": "Lesson tracks",
+    "tracks": {
+      "structure": {
+        "title": "Sentence Structure",
+        "description": "Create accurate statements, questions, and negations.",
+        "items": [
+          "Word order patterns for subject, verb, and object",
+          "Yes/no vs. information questions",
+          "Negation with 'не' and placement rules"
+        ]
+      },
+      "cases": {
+        "title": "Cases & Articles",
+        "description": "Understand Macedonian definite endings and object pronouns.",
+        "items": [
+          "Definite article endings by gender and number",
+          "Direct and indirect object pronouns",
+          "Common prepositions and the case they require"
+        ]
+      },
+      "verbs": {
+        "title": "Verb Aspect",
+        "description": "Use imperfective vs. perfective verbs to signal progress or completion.",
+        "items": [
+          "Aspect pairs with everyday verbs",
+          "Present, past, and future conjugation review",
+          "Modal verbs and periphrastic constructions"
+        ]
+      }
+    },
+    "activitiesHeading": "Suggested activities",
+    "activities": [
+      {
+        "title": "Sentence Scramble",
+        "description": "Rebuild shuffled word cards into a correct Macedonian sentence. Say it aloud, then convert it into a question."
+      },
+      {
+        "title": "Case Drill",
+        "description": "Write three mini-dialogues that use direct and indirect objects. Highlight the endings and pronouns you choose."
+      },
+      {
+        "title": "Aspect Journal",
+        "description": "Describe yesterday's actions twice: once with imperfective verbs for context, and once with perfective verbs for outcomes."
+      }
+    ],
+    "resourcesHeading": "Helpful resources",
+    "resources": [
+      {
+        "title": "Grammar Reference Sheet",
+        "description": "Concise overview of sentence patterns and case endings.",
+        "href": "/resources?q=grammar"
+      },
+      {
+        "title": "Verb Conjugation Tables",
+        "description": "Printable charts for the most common verbs and aspect pairs.",
+        "href": "/resources?q=verb"
+      },
+      {
+        "title": "Tutor Prompts",
+        "description": "Use the AI tutor to generate examples that contrast verb aspects.",
+        "href": "/tutor"
+      }
+    ]
+  },
+  "learnPhrases": {
+    "back": "Back to Learn Hub",
+    "badge": "Module Overview",
+    "title": "Conversation Phrases",
+    "subtitle": "Practice set phrases and build confidence for real-world interactions.",
+    "objectivesHeading": "What you'll practice",
+    "objectives": [
+      "Deliver natural introductions and polite exchanges.",
+      "Handle travel and logistics scenarios with ready-made phrases.",
+      "Respond to invitations, plans, and social cues."
+    ],
+    "tracksHeading": "Phrase packs",
+    "tracks": {
+      "introductions": {
+        "title": "Introductions",
+        "description": "Start conversations smoothly and share personal details.",
+        "items": [
+          "Greetings, names, and origins",
+          "Talking about family, work, and hobbies",
+          "Inviting people to continue the conversation"
+        ]
+      },
+      "travel": {
+        "title": "Travel Toolkit",
+        "description": "Navigate transport, lodging, and dining situations.",
+        "items": [
+          "Buying tickets and asking for schedules",
+          "Checking in, directions, and wayfinding",
+          "Ordering food and handling the bill"
+        ]
+      },
+      "social": {
+        "title": "Social Flow",
+        "description": "Keep conversations going and respond gracefully.",
+        "items": [
+          "Expressing preferences and opinions",
+          "Agreeing, disagreeing, and softening statements",
+          "Making plans and confirming details"
+        ]
+      }
+    },
+    "activitiesHeading": "Suggested activities",
+    "activities": [
+      {
+        "title": "Role-Play Cards",
+        "description": "Pair up and act out a scenario card. Swap roles and add new phrases each round."
+      },
+      {
+        "title": "Shadowing",
+        "description": "Listen to a native recording and repeat in sync. Focus on rhythm, intonation, and filler phrases."
+      },
+      {
+        "title": "Phrase Builder",
+        "description": "Choose a phrase and extend it in three different directions (formal, friendly, humorous)."
+      }
+    ],
+    "resourcesHeading": "Helpful resources",
+    "resources": [
+      {
+        "title": "Dialogue Audio Pack",
+        "description": "Short recordings with transcripts for each phrase pack.",
+        "href": "/resources?q=audio"
+      },
+      {
+        "title": "Travel Phrase Sheet",
+        "description": "Printable cheat sheet for transit, lodging, and dining.",
+        "href": "/resources?q=travel"
+      },
+      {
+        "title": "Tutor Conversation Starters",
+        "description": "Use the AI tutor to rehearse the dialogues you need most.",
+        "href": "/tutor"
+      }
+    ]
+  },
+  "learnPronunciation": {
+    "back": "Back to Learn Hub",
+    "badge": "Module Overview",
+    "title": "Pronunciation Lab",
+    "subtitle": "Tune your ear and mouth to Macedonian sounds, stress patterns, and connected speech.",
+    "objectivesHeading": "What you'll practice",
+    "objectives": [
+      "Produce Macedonian vowels and consonant clusters clearly.",
+      "Place stress correctly within common word families.",
+      "Improve listening comprehension with minimal pairs and dictations."
+    ],
+    "tracksHeading": "Focus areas",
+    "tracks": {
+      "sounds": {
+        "title": "Sound Inventory",
+        "description": "Map Macedonian vowels, consonants, and tricky clusters.",
+        "items": [
+          "Vowel length and openness drills",
+          "Consonant clusters like 'вт', 'зд', and 'шт'",
+          "Soft vs. hard consonant practice"
+        ]
+      },
+      "stress": {
+        "title": "Stress & Melody",
+        "description": "Hear and reproduce natural stress patterns.",
+        "items": [
+          "Recognize default penultimate stress",
+          "Track stress shifts in conjugations and plurals",
+          "Use intonation to signal questions and emphasis"
+        ]
+      },
+      "listening": {
+        "title": "Listening Lab",
+        "description": "Sharpen your ear with minimal pairs and micro-dictations.",
+        "items": [
+          "Minimal pair discrimination exercises",
+          "Dictation drills with everyday phrases",
+          "Mouth-shape mimicry with mirror or recording"
+        ]
+      }
+    },
+    "activitiesHeading": "Suggested activities",
+    "activities": [
+      {
+        "title": "Mirror Drills",
+        "description": "Record yourself reading a short passage, compare with a native sample, and note mouth shape adjustments."
+      },
+      {
+        "title": "Stress Mapping",
+        "description": "Highlight stressed syllables in five new words each day, then read them aloud in a sentence."
+      },
+      {
+        "title": "Dictation Bursts",
+        "description": "Play a ten-second clip, write down what you hear, and check against the transcript."
+      }
+    ],
+    "resourcesHeading": "Helpful resources",
+    "resources": [
+      {
+        "title": "Phoneme Reference Charts",
+        "description": "Printable vowel and consonant overview with mouth diagrams.",
+        "href": "/resources?q=phoneme"
+      },
+      {
+        "title": "Audio Drills",
+        "description": "Loopable recordings for minimal pairs and stress practice.",
+        "href": "/resources?q=audio"
+      },
+      {
+        "title": "Tutor Pronunciation Checks",
+        "description": "Ask the AI tutor for targeted feedback and IPA hints.",
+        "href": "/tutor"
+      }
+    ]
+  },
+  "news": {
+    "title": "News Feed",
+    "subtitle": "Follow Macedonian headlines and find video clips to support your listening practice.",
+    "sourceLabel": "Sources",
+    "sourceAll": "All",
+    "sourceTime": "Time.mk",
+    "sourceGrid": "Grid.mk",
+    "searchPlaceholder": "Search headlines or keywords...",
+    "videosOnly": "Videos only",
+    "refresh": "Refresh",
+    "lastUpdated": "Last updated {time}",
+    "published": "Published {relative}",
+    "viewArticle": "View article",
+    "watchVideo": "Watch video",
+    "noResults": "No articles found. Try another filter or search.",
+    "error": "Unable to load the news feed right now.",
+    "retry": "Try again"
   },
   "tutor": {
     "title": "AI Tutor",
