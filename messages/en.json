@@ -19,7 +19,30 @@
     "translateDesc": "Translate text between Macedonian and English instantly",
     "resourcesDesc": "Access dictionaries, PDFs, and learning materials",
     "tasksDesc": "Organize your learning journey with a Kanban board",
-    "newsDesc": "Stay current with Macedonian headlines and video clips"
+    "newsDesc": "Stay current with Macedonian headlines and video clips",
+    "badge": "Language lab for curious learners",
+    "ctaLearn": "Start learning",
+    "ctaExplore": "View resources",
+    "heroHighlight1": "Curated modules and drills",
+    "heroHighlight2": "AI tutor and instant translation",
+    "heroHighlight3": "Live Macedonian news and media",
+    "statLessons": "Lesson tracks",
+    "statLessonsValue": "4 modules",
+    "statResources": "Resource links",
+    "statResourcesValue": "30+ sources",
+    "statCommunity": "Daily vocab prompts",
+    "statCommunityValue": "Always fresh",
+    "modulesHeading": "Choose your path",
+    "modulesDescription": "Pick a learning lane and jump into modules built for real-world Macedonian.",
+    "newsCardTitle": "News feed",
+    "newsCardDesc": "Follow Macedonian headlines with video clips for listening practice.",
+    "tutorCardTitle": "AI tutor",
+    "tutorCardDesc": "Chat with a Macedonian coach for grammar breakdowns and drills.",
+    "tasksCardTitle": "Study planner",
+    "tasksCardDesc": "Plan your week with a drag-and-drop Kanban board.",
+    "ctaNews": "Browse news",
+    "ctaTutor": "Chat with tutor",
+    "ctaTasks": "Organize tasks"
   },
   "learn": {
     "title": "Learn Macedonian",
@@ -104,19 +127,19 @@
     "resourcesHeading": "Helpful resources",
     "resources": [
       {
-        "title": "Core Vocabulary Deck (PDF)",
-        "description": "Printable flashcards covering the everyday essentials list.",
-        "href": "/resources?q=vocabulary"
+        "title": "Dictionaries",
+        "description": "Browse bilingual dictionaries and reference tools.",
+        "href": "/resources?section=dictionaries"
       },
       {
-        "title": "Sample Dialogues",
-        "description": "Short conversations that highlight how the vocabulary appears in context.",
-        "href": "/resources?q=dialogue"
+        "title": "For learners",
+        "description": "YouTube channels and podcasts tailored for Macedonian learners.",
+        "href": "/resources?section=for-learners"
       },
       {
-        "title": "Quick Practice Widget",
-        "description": "Use the learn hub drill for rapid translation checks.",
-        "href": "/learn"
+        "title": "Macedonian Language",
+        "description": "Video lessons and cultural clips to reinforce new words.",
+        "href": "/resources?section=macedonian-language"
       }
     ]
   },
@@ -179,19 +202,19 @@
     "resourcesHeading": "Helpful resources",
     "resources": [
       {
-        "title": "Grammar Reference Sheet",
-        "description": "Concise overview of sentence patterns and case endings.",
-        "href": "/resources?q=grammar"
+        "title": "Macedonian dictionary",
+        "description": "Look up declensions and verb forms in the official dictionary.",
+        "href": "/resources?section=macedonian-dictionary"
       },
       {
-        "title": "Verb Conjugation Tables",
-        "description": "Printable charts for the most common verbs and aspect pairs.",
-        "href": "/resources?q=verb"
+        "title": "DW на македонски",
+        "description": "Read clear news prose to see sentence patterns in context.",
+        "href": "/resources?section=dw-на-македонски"
       },
       {
-        "title": "Tutor Prompts",
-        "description": "Use the AI tutor to generate examples that contrast verb aspects.",
-        "href": "/tutor"
+        "title": "Архангел",
+        "description": "Dive into language reference articles and literary archives.",
+        "href": "/resources?section=архангел"
       }
     ]
   },
@@ -254,19 +277,19 @@
     "resourcesHeading": "Helpful resources",
     "resources": [
       {
-        "title": "Dialogue Audio Pack",
-        "description": "Short recordings with transcripts for each phrase pack.",
-        "href": "/resources?q=audio"
+        "title": "Media",
+        "description": "TV and radio clips to practice real conversations.",
+        "href": "/resources?section=media"
       },
       {
-        "title": "Travel Phrase Sheet",
-        "description": "Printable cheat sheet for transit, lodging, and dining.",
-        "href": "/resources?q=travel"
+        "title": "Podcasts",
+        "description": "Long-form discussions ideal for listening and phrasing.",
+        "href": "/resources?section=podcasts"
       },
       {
-        "title": "Tutor Conversation Starters",
-        "description": "Use the AI tutor to rehearse the dialogues you need most.",
-        "href": "/tutor"
+        "title": "Што го врти светот",
+        "description": "Conversational videos with natural pacing and slang.",
+        "href": "/resources?section=што-го-врти-светот"
       }
     ]
   },
@@ -329,19 +352,19 @@
     "resourcesHeading": "Helpful resources",
     "resources": [
       {
-        "title": "Phoneme Reference Charts",
-        "description": "Printable vowel and consonant overview with mouth diagrams.",
-        "href": "/resources?q=phoneme"
+        "title": "Makedonkast",
+        "description": "Audio-first lessons that focus on pronunciation and rhythm.",
+        "href": "/resources?section=makedonkast"
       },
       {
-        "title": "Audio Drills",
-        "description": "Loopable recordings for minimal pairs and stress practice.",
-        "href": "/resources?q=audio"
+        "title": "Media",
+        "description": "Newsroom clips to imitate stress and cadence.",
+        "href": "/resources?section=media"
       },
       {
-        "title": "Tutor Pronunciation Checks",
-        "description": "Ask the AI tutor for targeted feedback and IPA hints.",
-        "href": "/tutor"
+        "title": "Podcasts",
+        "description": "Practice minimal pairs and connected speech with spoken shows.",
+        "href": "/resources?section=podcasts"
       }
     ]
   },
@@ -398,7 +421,9 @@
     "dictionary": "Macedonian-English Dictionary",
     "dictionaryDesc": "Comprehensive dictionary with examples and usage",
     "viewPdf": "View PDF",
+    "showAll": "All sections",
     "searchInDoc": "Search in document",
+    "resultsSummary": "{count} results • {total} total resources",
     "noResults": "No results found",
     "loading": "Loading..."
   },

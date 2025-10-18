@@ -3,11 +3,11 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { FileText, ExternalLink, Search } from 'lucide-react';
+import { FileText, ExternalLink, Search, Sparkles } from 'lucide-react';
 import AuthGuard from '@/components/auth/AuthGuard';
 import resourcesData from '@/data/resources.json';
 
@@ -29,20 +29,56 @@ type ResourceFile = {
   sections: ResourceSection[];
 };
 
+type ExtendedSection = ResourceSection & { slug: string };
+
+function slugify(value: string, fallback: string): string {
+  const slug = value
+    .toLowerCase()
+    .trim()
+    .replace(/[^\p{L}\p{N}]+/gu, '-')
+    .replace(/^-+|-+$/g, '');
+
+  return slug || fallback;
+}
+
 export default function ResourcesPage() {
   const t = useTranslations('resources');
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
-  const initialQuery = searchParams.get('q') ?? '';
-  const [searchQuery, setSearchQuery] = useState(initialQuery);
 
   const resourceFile = resourcesData as ResourceFile;
   const sections = resourceFile.sections;
 
+  const sectionsWithSlug = useMemo<ExtendedSection[]>(
+    () =>
+      sections.map((section, index) => ({
+        ...section,
+        slug: slugify(section.title, `section-${index}`),
+      })),
+    [sections]
+  );
+
+  const sectionParamRaw = searchParams.get('section');
+  const validSectionParam = useMemo(() => {
+    if (sectionParamRaw && sectionsWithSlug.some((section) => section.slug === sectionParamRaw)) {
+      return sectionParamRaw;
+    }
+    return 'all';
+  }, [sectionParamRaw, sectionsWithSlug]);
+
+  const initialQuery = searchParams.get('q') ?? '';
+
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
+  const [activeSection, setActiveSection] = useState(validSectionParam);
+
   useEffect(() => {
     setSearchQuery(initialQuery);
   }, [initialQuery]);
+
+  useEffect(() => {
+    setActiveSection(validSectionParam);
+  }, [validSectionParam]);
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -51,26 +87,56 @@ export default function ResourcesPage() {
       }
 
       const params = new URLSearchParams(window.location.search);
-      if (searchQuery.trim()) {
-        params.set('q', searchQuery.trim());
+      const trimmedQuery = searchQuery.trim();
+
+      if (trimmedQuery) {
+        params.set('q', trimmedQuery);
       } else {
         params.delete('q');
       }
 
-      const queryString = params.toString();
-      router.replace(`${pathname}${queryString ? `?${queryString}` : ''}`, { scroll: false });
-    }, 300);
+      if (activeSection && activeSection !== 'all') {
+        params.set('section', activeSection);
+      } else {
+        params.delete('section');
+      }
+
+      const nextQuery = params.toString();
+      const currentQuery = window.location.search.replace(/^\?/, '');
+
+      if (nextQuery !== currentQuery) {
+        router.replace(`${pathname}${nextQuery ? `?${nextQuery}` : ''}`, { scroll: false });
+      }
+    }, 200);
 
     return () => clearTimeout(handler);
-  }, [pathname, router, searchQuery]);
+  }, [activeSection, pathname, router, searchQuery]);
 
-  const filteredSections = useMemo(() => {
-  const query = searchQuery.trim().toLowerCase();
-    if (!query) {
-      return sections;
+  useEffect(() => {
+    if (activeSection === 'all') {
+      return;
     }
 
-    return sections
+    const element = document.getElementById(`section-${activeSection}`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [activeSection]);
+
+  const filteredSections = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+
+    let workingSections = sectionsWithSlug;
+
+    if (activeSection !== 'all') {
+      workingSections = workingSections.filter((section) => section.slug === activeSection);
+    }
+
+    if (!query) {
+      return workingSections;
+    }
+
+    return workingSections
       .map((section) => {
         const sectionMatches = section.title.toLowerCase().includes(query);
         const matchingResources = section.resources.filter((resource) => {
@@ -79,37 +145,42 @@ export default function ResourcesPage() {
           return titleMatches || urlMatches;
         });
 
-        if (sectionMatches && matchingResources.length === 0) {
-          return section;
-        }
-
         if (matchingResources.length > 0) {
           return {
             ...section,
             resources: matchingResources,
-          } satisfies ResourceSection;
+          } satisfies ExtendedSection;
         }
 
         return sectionMatches ? section : null;
       })
-      .filter((section): section is ResourceSection => Boolean(section && section.resources.length > 0));
-  }, [sections, searchQuery]);
+      .filter((section): section is ExtendedSection => Boolean(section));
+  }, [activeSection, searchQuery, sectionsWithSlug]);
 
   const totalMatches = filteredSections.reduce((acc, section) => acc + section.resources.length, 0);
+  const totalResources = sectionsWithSlug.reduce((acc, section) => acc + section.resources.length, 0);
   const pdfUrl = resourceFile.source;
   const generatedDate = new Date(resourceFile.generatedAt);
-  const resourceCountLabel = totalMatches === 1 ? 'resource' : 'resources';
+  const selectedSection = activeSection !== 'all' ? sectionsWithSlug.find((section) => section.slug === activeSection) : null;
+  const resultsSummary = t('resultsSummary', { count: totalMatches, total: totalResources });
+
+  const handleSectionSelect = (slug: string) => {
+    setActiveSection(slug);
+  };
 
   return (
     <AuthGuard>
       <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
         <div className="container mx-auto px-4 py-12">
           {/* Header */}
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <div className="max-w-4xl mx-auto text-center mb-12 space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1 text-sm font-medium text-primary">
+              <Sparkles className="h-4 w-4" />
               {t('title')}
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              {t('subtitle')}
             </h1>
-            <p className="text-xl text-muted-foreground mb-8">{t('subtitle')}</p>
 
             {/* Search */}
             <div className="relative max-w-xl mx-auto">
@@ -122,7 +193,7 @@ export default function ResourcesPage() {
               />
             </div>
 
-            <div className="mt-6 flex flex-col items-center gap-3 text-sm text-muted-foreground">
+            <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground">
               <Button variant="outline" asChild className="gap-2">
                 <a href={pdfUrl} target="_blank" rel="noopener noreferrer">
                   <FileText className="h-4 w-4" />
@@ -139,9 +210,37 @@ export default function ResourcesPage() {
                   })}
                 </span>
               </span>
-              <span>
-                {totalMatches} {resourceCountLabel}
-              </span>
+              <span>{resultsSummary}</span>
+              {selectedSection && (
+                <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1 text-primary">
+                  <Sparkles className="h-4 w-4" />
+                  {selectedSection.title}
+                </span>
+              )}
+            </div>
+
+            <div className="mx-auto max-w-3xl">
+              <div className="flex flex-wrap justify-center gap-2">
+                <Button
+                  type="button"
+                  size="sm"
+                  variant={activeSection === 'all' ? 'default' : 'outline'}
+                  onClick={() => handleSectionSelect('all')}
+                >
+                  {t('showAll')}
+                </Button>
+                {sectionsWithSlug.map((section) => (
+                  <Button
+                    key={section.slug}
+                    type="button"
+                    size="sm"
+                    variant={activeSection === section.slug ? 'default' : 'outline'}
+                    onClick={() => handleSectionSelect(section.slug)}
+                  >
+                    {section.title}
+                  </Button>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -156,7 +255,7 @@ export default function ResourcesPage() {
             ) : (
               <div className="space-y-6">
                 {filteredSections.map((section) => (
-                  <Card key={section.title} className="bg-card/50 backdrop-blur border-border/50">
+                  <Card key={section.slug} id={`section-${section.slug}`} className="bg-card/50 backdrop-blur border-border/50">
                     <CardHeader className="flex flex-col gap-3">
                       <div className="flex flex-wrap items-center justify-between gap-3">
                         <div className="flex items-center gap-3">
@@ -177,7 +276,7 @@ export default function ResourcesPage() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {section.resources.map((resource) => (
                           <Button
-                            key={`${section.title}-${resource.url}`}
+                            key={`${section.slug}-${resource.url}`}
                             variant="outline"
                             asChild
                             className="h-auto py-3 px-4 justify-between gap-3"

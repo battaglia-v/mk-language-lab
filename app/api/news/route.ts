@@ -89,13 +89,13 @@ function stripTags(value: string): string {
 }
 
 function extractTag(xml: string, tag: string): string | null {
-  const pattern = new RegExp(`<${tag}[^>]*>([\s\S]*?)<\/${tag}>`, 'i');
+  const pattern = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\/${tag}>`, 'i');
   const match = pattern.exec(xml);
   return match ? decodeHtmlEntities(match[1].trim()) : null;
 }
 
 function extractTags(xml: string, tag: string): string[] {
-  const pattern = new RegExp(`<${tag}[^>]*>([\s\S]*?)<\/${tag}>`, 'gi');
+  const pattern = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\/${tag}>`, 'gi');
   const matches: string[] = [];
   let match: RegExpExecArray | null;
 
@@ -146,6 +146,91 @@ function parseFeed(xml: string, source: NewsSource): NewsItem[] {
   }
 
   return items;
+}
+
+const PREVIEW_FETCH_LIMIT = 12;
+const PREVIEW_MAX_LENGTH = 260;
+
+function extractMetaContent(html: string, attribute: 'property' | 'name', value: string): string | null {
+  const pattern = new RegExp(`<meta[^>]+${attribute}=["']${value}["'][^>]+content=["']([^"']+)["'][^>]*>`, 'i');
+  const match = pattern.exec(html);
+  return match ? decodeHtmlEntities(match[1]) : null;
+}
+
+function extractSnippetParagraph(html: string): string | null {
+  const snippetMatch = /<p[^>]*class=["'][^"']*snippet[^"']*["'][^>]*>([\s\S]*?)<\/p>/i.exec(html);
+  if (snippetMatch) {
+    return snippetMatch[1];
+  }
+
+  const firstParagraphMatch = /<p>([\s\S]*?)<\/p>/i.exec(html);
+  return firstParagraphMatch ? firstParagraphMatch[1] : null;
+}
+
+function truncatePreview(text: string, maxLength: number): string {
+  if (text.length <= maxLength) {
+    return text;
+  }
+
+  const slice = text.slice(0, maxLength).replace(/[\s\u00A0]+$/u, '');
+  const lastSpace = slice.lastIndexOf(' ');
+  const trimmed = lastSpace > maxLength * 0.6 ? slice.slice(0, lastSpace) : slice;
+  return `${trimmed}…`;
+}
+
+async function fetchArticlePreview(url: string, signal: AbortSignal): Promise<string | null> {
+  try {
+    const response = await fetch(url, {
+      cache: 'no-store',
+      headers: {
+        'User-Agent': 'mk-language-lab/1.0 (+https://github.com/battaglia-v/mk-language-lab)',
+        Accept: 'text/html,application/xhtml+xml;q=0.9,*/*;q=0.8',
+      },
+      signal,
+    });
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const html = await response.text();
+    const rawPreview =
+      extractMetaContent(html, 'property', 'og:description') ??
+      extractMetaContent(html, 'name', 'description') ??
+      extractSnippetParagraph(html);
+
+    if (!rawPreview) {
+      return null;
+    }
+
+    const clean = stripTags(rawPreview);
+    if (!clean) {
+      return null;
+    }
+
+    return truncatePreview(clean, PREVIEW_MAX_LENGTH);
+  } catch (error) {
+    if ((error as Error).name === 'AbortError') {
+      return null;
+    }
+    return null;
+  }
+}
+
+async function enrichPreviews(items: NewsItem[], signal: AbortSignal): Promise<void> {
+  let fetches = 0;
+
+  for (const item of items) {
+    if (item.description || fetches >= PREVIEW_FETCH_LIMIT) {
+      continue;
+    }
+
+    fetches += 1;
+    const preview = await fetchArticlePreview(item.link, signal);
+    if (preview) {
+      item.description = preview;
+    }
+  }
 }
 
 async function fetchFeed(source: NewsSource, signal: AbortSignal): Promise<NewsItem[]> {
@@ -231,7 +316,9 @@ export async function GET(request: NextRequest) {
 
     const limitedItems = combinedItems.slice(0, limit);
 
-    const payloadItems = limitedItems.length > 0 ? limitedItems : FALLBACK_ITEMS;
+    const payloadItems = (limitedItems.length > 0 ? limitedItems : FALLBACK_ITEMS).map((item) => ({ ...item }));
+
+    await enrichPreviews(payloadItems, abortController.signal);
 
     return NextResponse.json({
       items: payloadItems,

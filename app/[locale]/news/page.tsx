@@ -319,7 +319,7 @@ export default function NewsPage() {
                         {publishedLabel ? ` · ${publishedLabel}` : ''}
                       </CardDescription>
                       {item.description && (
-                        <p className="text-sm text-muted-foreground">{item.description}</p>
+                        <p className="text-sm text-muted-foreground line-clamp-3">{item.description}</p>
                       )}
                       <div className="flex flex-wrap gap-2">
                         {item.categories.slice(0, 4).map((category) => (
