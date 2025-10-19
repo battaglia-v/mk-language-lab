@@ -8,7 +8,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
-import GoogleTranslateWidget from '@/components/GoogleTranslateWidget';
 
 type DirectionOption = {
   id: 'mk-en' | 'en-mk';
@@ -23,6 +22,8 @@ export default function TranslatePage() {
   const locale = useLocale();
   const rawTips = t.raw('tips');
   const tips = Array.isArray(rawTips) ? (rawTips as string[]) : [];
+  const rawFallbackSteps = t.raw('fallbackSteps');
+  const fallbackSteps = Array.isArray(rawFallbackSteps) ? (rawFallbackSteps as string[]) : [];
 
   const directionLabels = useMemo(() => {
     const raw = t.raw('directions');
@@ -281,8 +282,25 @@ export default function TranslatePage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <GoogleTranslateWidget loadingLabel={t('fallbackLoading')} errorLabel={t('fallbackError')} />
-              <p className="text-xs text-muted-foreground">{t('fallbackDisclaimer')}</p>
+              {fallbackSteps.length > 0 ? (
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  {fallbackSteps.map((step) => (
+                    <li key={step} className="rounded-lg border border-border/40 bg-background/50 p-3 text-left">
+                      {step}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+              <Button asChild variant="outline">
+                <Link
+                  href="https://translate.google.com/?sl=mk&tl=en&op=translate"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t('fallbackExternalCta')}
+                </Link>
+              </Button>
+              <p className="text-xs text-muted-foreground">{t('fallbackExternalNote')}</p>
             </CardContent>
           </Card>
 

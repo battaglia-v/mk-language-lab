@@ -407,11 +407,15 @@
       "mk": "Macedonian",
       "en": "English"
     },
-    "fallbackTitle": "Google Translate widget",
-    "fallbackDescription": "Prefer the classic interface? Try the embedded Google Translate card below.",
-    "fallbackLoading": "Loading Google Translate…",
-    "fallbackError": "We couldn't load Google Translate. Please refresh and try again.",
-    "fallbackDisclaimer": "Google Translate works best for short sentences. Double-check technical or formal language.",
+    "fallbackTitle": "Need a backup translator?",
+    "fallbackDescription": "If the instant translator hiccups, try these quick options.",
+    "fallbackSteps": [
+      "Refresh the page and submit the text again.",
+      "Break longer passages into 1-2 sentence chunks for better accuracy.",
+      "Open Google Translate in a new tab for the classic interface."
+    ],
+    "fallbackExternalCta": "Open Google Translate in a new tab",
+    "fallbackExternalNote": "Links to Google Translate with Macedonian and English pre-selected.",
     "tipsTitle": "Helpful translation tips",
     "tips": [
       "Translate short sentences for better accuracy.",
