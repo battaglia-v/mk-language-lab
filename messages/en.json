@@ -393,6 +393,8 @@
       "en_mk": "Type English sentences to translate into Macedonian…"
     },
     "shortcutHint": "Press Ctrl+Enter (Windows) or Cmd+Enter (Mac) to translate.",
+    "swapDirections": "Swap languages",
+    "characterCount": "Characters: {count}/{limit}",
     "translateButton": "Translate",
     "clearButton": "Clear",
     "resultLabel": "Translation",
@@ -407,6 +409,9 @@
       "mk": "Macedonian",
       "en": "English"
     },
+    "historyTitle": "Recent translations",
+    "historyEmpty": "Your latest translations will appear here.",
+    "historyLoad": "Load",
     "fallbackTitle": "Need a backup translator?",
     "fallbackDescription": "If the instant translator hiccups, try these quick options.",
     "fallbackSteps": [

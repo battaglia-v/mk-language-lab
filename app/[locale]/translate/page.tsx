@@ -3,7 +3,7 @@
 import { FormEvent, useCallback, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
-import { Check, Copy, Loader2 } from 'lucide-react';
+import { ArrowLeftRight, Check, Copy, Loader2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -16,6 +16,17 @@ type DirectionOption = {
   label: string;
   placeholder: string;
 };
+
+type TranslationHistoryEntry = {
+  id: string;
+  directionId: DirectionOption['id'];
+  sourceText: string;
+  translatedText: string;
+  timestamp: number;
+};
+
+const HISTORY_LIMIT = 5;
+const MAX_CHARACTERS = 1800;
 
 export default function TranslatePage() {
   const t = useTranslations('translate');
@@ -73,11 +84,26 @@ export default function TranslatePage() {
   const [isTranslating, setIsTranslating] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [copiedState, setCopiedState] = useState<'idle' | 'copied'>('idle');
+  const [history, setHistory] = useState<TranslationHistoryEntry[]>([]);
+
+  const directionLabelMap = useMemo(() => {
+    return directionOptions.reduce<Record<DirectionOption['id'], string>>((acc, option) => {
+      acc[option.id] = option.label;
+      return acc;
+    }, {} as Record<DirectionOption['id'], string>);
+  }, [directionOptions]);
 
   const buildHref = (path: string) => (path === '/' ? `/${locale}` : `/${locale}${path}`);
 
   const handleDirectionChange = useCallback((id: DirectionOption['id']) => {
     setDirectionId(id);
+    setErrorMessage(null);
+    setDetectedLanguage(null);
+    setCopiedState('idle');
+  }, []);
+
+  const handleSwapDirections = useCallback(() => {
+    setDirectionId((current) => (current === 'mk-en' ? 'en-mk' : 'mk-en'));
     setErrorMessage(null);
     setDetectedLanguage(null);
     setCopiedState('idle');
@@ -130,9 +156,25 @@ export default function TranslatePage() {
           throw new Error(data.error ?? 'Translation failed');
         }
 
-        setTranslatedText(data.translatedText.trim());
+        const trimmedTranslation = data.translatedText.trim();
+        setTranslatedText(trimmedTranslation);
         setDetectedLanguage(data.detectedSourceLang ?? null);
         setCopiedState('idle');
+
+        const newEntry: TranslationHistoryEntry = {
+          id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+          directionId,
+          sourceText: text,
+          translatedText: trimmedTranslation,
+          timestamp: Date.now(),
+        };
+
+        setHistory((previous) => {
+          const filtered = previous.filter(
+            (entry) => entry.sourceText !== text || entry.directionId !== directionId
+          );
+          return [newEntry, ...filtered].slice(0, HISTORY_LIMIT);
+        });
       } catch (error) {
         console.error('Translation failed', error);
         setTranslatedText('');
@@ -142,7 +184,7 @@ export default function TranslatePage() {
         setIsTranslating(false);
       }
     },
-    [inputText, selectedDirection.sourceLang, selectedDirection.targetLang, t]
+    [directionId, inputText, selectedDirection.sourceLang, selectedDirection.targetLang, t]
   );
 
   const handleCopy = useCallback(async () => {
@@ -159,6 +201,20 @@ export default function TranslatePage() {
       setErrorMessage(t('copyError'));
     }
   }, [t, translatedText]);
+
+  const handleHistoryLoad = useCallback((entry: TranslationHistoryEntry) => {
+    setDirectionId(entry.directionId);
+    setInputText(entry.sourceText);
+    setTranslatedText(entry.translatedText);
+    setDetectedLanguage(null);
+    setErrorMessage(null);
+    setCopiedState('idle');
+  }, []);
+
+  const characterCountLabel = t('characterCount', {
+    count: inputText.length,
+    limit: MAX_CHARACTERS,
+  });
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
@@ -183,7 +239,7 @@ export default function TranslatePage() {
             </CardHeader>
             <CardContent>
               <form className="space-y-6" onSubmit={handleTranslate}>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   {directionOptions.map((option) => {
                     const isActive = option.id === selectedDirection.id;
                     return (
@@ -198,6 +254,16 @@ export default function TranslatePage() {
                       </Button>
                     );
                   })}
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="outline"
+                    onClick={handleSwapDirections}
+                    aria-label={t('swapDirections')}
+                    className="h-9 w-9 p-0"
+                  >
+                    <ArrowLeftRight className="h-4 w-4" />
+                  </Button>
                 </div>
 
                 <div className="space-y-2">
@@ -209,7 +275,7 @@ export default function TranslatePage() {
                     value={inputText}
                     onChange={(event) => setInputText(event.target.value)}
                     placeholder={selectedDirection.placeholder}
-                    maxLength={1800}
+                    maxLength={MAX_CHARACTERS}
                     onKeyDown={(event) => {
                       if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
                         event.preventDefault();
@@ -217,7 +283,10 @@ export default function TranslatePage() {
                       }
                     }}
                   />
-                  <p className="text-xs text-muted-foreground">{t('shortcutHint')}</p>
+                  <div className="flex items-center justify-between text-xs text-muted-foreground">
+                    <span>{t('shortcutHint')}</span>
+                    <span>{characterCountLabel}</span>
+                  </div>
                 </div>
 
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -270,6 +339,51 @@ export default function TranslatePage() {
                   ) : null}
                   {errorMessage ? <p className="text-sm text-destructive">{errorMessage}</p> : null}
                 </div>
+
+                {history.length > 0 ? (
+                  <div className="space-y-3 rounded-xl border border-border/40 bg-background/40 p-4">
+                    <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                      {t('historyTitle')}
+                    </div>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      {history.map((entry) => (
+                        <li
+                          key={entry.id}
+                          className="rounded-lg border border-border/30 bg-background/60 p-3 text-left"
+                        >
+                          <div className="flex flex-col gap-2">
+                            <div className="flex items-center justify-between gap-3">
+                              <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                                {directionLabelMap[entry.directionId] ?? entry.directionId}
+                              </span>
+                              <Button
+                                type="button"
+                                size="sm"
+                                variant="outline"
+                                className="h-7 px-2 text-xs"
+                                onClick={() => handleHistoryLoad(entry)}
+                              >
+                                {t('historyLoad')}
+                              </Button>
+                            </div>
+                            <div className="space-y-1">
+                              <p className="text-xs text-muted-foreground">
+                                <span className="font-medium text-foreground">{t('inputLabel')}:</span>{' '}
+                                {entry.sourceText}
+                              </p>
+                              <p className="text-xs text-muted-foreground">
+                                <span className="font-medium text-foreground">{t('resultLabel')}:</span>{' '}
+                                {entry.translatedText}
+                              </p>
+                            </div>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <p className="text-xs text-muted-foreground">{t('historyEmpty')}</p>
+                )}
               </form>
             </CardContent>
           </Card>

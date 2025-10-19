@@ -393,6 +393,8 @@
       "en_mk": "Напиши реченици на англиски за превод на македонски…"
     },
     "shortcutHint": "Притисни Ctrl+Enter (Windows) или Cmd+Enter (Mac) за преведување.",
+    "swapDirections": "Смени јазици",
+    "characterCount": "Знаци: {count}/{limit}",
     "translateButton": "Преведи",
     "clearButton": "Исчисти",
     "resultLabel": "Превод",
@@ -407,6 +409,9 @@
       "mk": "Македонски",
       "en": "Англиски"
     },
+    "historyTitle": "Последни преводи",
+    "historyEmpty": "Тука ќе се појават твоите најнови преводи.",
+    "historyLoad": "Вчитај",
     "fallbackTitle": "Ти треба резервен преведувач?",
     "fallbackDescription": "Ако инстант преведувачот заглави, пробај ги овие брзи опции.",
     "fallbackSteps": [
