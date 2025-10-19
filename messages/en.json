@@ -51,6 +51,10 @@
         "library": {
           "label": "Library",
           "description": "Browse saved resources and cultural references."
+        },
+        "news": {
+          "label": "News digest",
+          "description": "Scan Macedonian headlines and video clips for listening practice."
         }
       }
     },
@@ -487,7 +491,12 @@
     "send": "Send",
     "thinking": "Thinking...",
     "error": "Error communicating with tutor. Please try again.",
-  "emptyStateHeading": "How can I help you learn Macedonian?",
+    "comingSoonBadge": "Coming soon",
+    "comingSoonTitle": "AI tutor workspace launches soon",
+    "comingSoonDescription": "We are finishing the conversational tutor experience. In the meantime, keep your streak alive with guided practice and translation decks.",
+    "comingSoonPrimary": "Visit practice hub",
+    "comingSoonSecondary": "Browse translator",
+    "emptyStateHeading": "How can I help you learn Macedonian?",
     "journeyContextTitle": "Active journey",
     "journeyContextReview": "Review journey plan",
     "journeyContextPractice": "Open recommended practice",

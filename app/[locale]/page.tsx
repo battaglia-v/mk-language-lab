@@ -18,9 +18,10 @@ import {
   Library,
   Sparkles,
   ArrowRight,
+  Newspaper,
 } from 'lucide-react';
 
-const QUICK_ACTION_KEYS = ['practice', 'tutor', 'library'] as const;
+const QUICK_ACTION_KEYS = ['practice', 'tutor', 'library', 'news'] as const;
 
 type QuickActionKey = (typeof QUICK_ACTION_KEYS)[number];
 
@@ -41,6 +42,7 @@ const quickActionIcons: Record<QuickActionKey, typeof RefreshCw> = {
   practice: RefreshCw,
   tutor: MessageCircle,
   library: Library,
+  news: Newspaper,
 };
 
 export default function JourneyHomePage() {
@@ -67,10 +69,20 @@ export default function JourneyHomePage() {
     },
   ];
 
-  const quickActions = QUICK_ACTION_KEYS.map((key) => ({
-    key,
-    href: key === 'practice' ? '/practice?section=translation' : key === 'tutor' ? '/tutor' : '/library',
-  }));
+  const quickActions = QUICK_ACTION_KEYS.map((key) => {
+    switch (key) {
+      case 'practice':
+        return { key, href: '/practice?section=translation' };
+      case 'tutor':
+        return { key, href: '/tutor' };
+      case 'library':
+        return { key, href: '/library' };
+      case 'news':
+        return { key, href: '/news' };
+      default:
+        return { key, href: '/' };
+    }
+  });
 
   const goals = JOURNEY_IDS.map((key): { key: JourneyId; href: string; focus: string[] } => ({
     key,
