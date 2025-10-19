@@ -120,14 +120,20 @@ export default function GoogleTranslateWidget({ loadingLabel, errorLabel }: Goog
         #${elementId} .goog-te-gadget-simple {
           border: none !important;
           background: transparent !important;
-          display: inline-flex !important;
+          display: flex !important;
           align-items: center !important;
           gap: 12px !important;
           padding: 0 !important;
+          min-width: 210px;
         }
 
-        #${elementId} .goog-te-gadget-simple span {
+        #${elementId} .goog-te-gadget-simple > span:nth-of-type(1) {
           display: none !important;
+        }
+
+        #${elementId} .goog-te-gadget-simple > span:nth-of-type(2) {
+          display: flex !important;
+          width: 100%;
         }
 
         #${elementId} .goog-te-combo {
@@ -139,9 +145,13 @@ export default function GoogleTranslateWidget({ loadingLabel, errorLabel }: Goog
           font-size: 14px;
           line-height: 1.1;
           outline: none;
+          width: 100%;
+          max-width: 260px;
+          transition: border 0.2s ease, box-shadow 0.2s ease;
         }
 
         #${elementId} .goog-te-combo:focus {
+          border-color: rgba(99, 102, 241, 0.5);
           box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.35);
         }
 
@@ -164,6 +174,27 @@ export default function GoogleTranslateWidget({ loadingLabel, errorLabel }: Goog
       }
     };
   }, [elementId]);
+
+  useEffect(() => {
+    if (!isReady) {
+      return;
+    }
+
+    const select = document.querySelector<HTMLSelectElement>(
+      `#${elementId} select.goog-te-combo`
+    );
+
+    if (!select) {
+      return;
+    }
+
+    select.setAttribute('aria-label', 'Select translation language direction');
+    select.setAttribute('title', 'Select translation language direction');
+
+    if (!select.options[0]?.value) {
+      select.options[0].text = 'Select language / Избери јазик';
+    }
+  }, [elementId, isReady]);
 
   return (
     <div className="rounded-2xl border border-border/40 bg-card/80 p-6 shadow-sm">
