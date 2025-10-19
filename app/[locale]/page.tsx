@@ -156,8 +156,10 @@ export default function JourneyHomePage() {
                 </CardContent>
               </Card>
             </div>
-            <div className="lg:sticky lg:top-24">
-              <QuickPracticeWidget layout="compact" className="h-full" />
+            <div className="lg:sticky lg:top-20 lg:self-start">
+              <div className="lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto lg:pr-1">
+                <QuickPracticeWidget layout="compact" className="h-full" />
+              </div>
             </div>
           </div>
         </div>
