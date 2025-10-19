@@ -216,14 +216,19 @@ export function QuickPracticeWidget({
             <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               {t('practiceModeLabel')}
             </span>
-            <div className={cn('flex rounded-lg border border-border/60 bg-background/60 p-1', isCompact ? 'w-full gap-2' : 'w-full sm:w-max')}>
+            <div
+              className={cn(
+                'flex rounded-lg border border-border/60 bg-background/60 p-1',
+                isCompact ? 'w-full flex-col gap-2' : 'w-full sm:w-max'
+              )}
+            >
               <Button
                 type="button"
                 size="sm"
                 variant={mode === 'mkToEn' ? 'default' : 'outline'}
                 onClick={() => setMode('mkToEn')}
                 aria-pressed={mode === 'mkToEn'}
-                className={cn('px-3', isCompact ? 'flex-1' : 'sm:flex-none')}
+                className={cn('px-3', isCompact ? 'w-full' : 'sm:flex-none')}
               >
                 {t('practiceModeMkToEn')}
               </Button>
@@ -233,7 +238,7 @@ export function QuickPracticeWidget({
                 variant={mode === 'enToMk' ? 'default' : 'outline'}
                 onClick={() => setMode('enToMk')}
                 aria-pressed={mode === 'enToMk'}
-                className={cn('px-3', isCompact ? 'flex-1' : 'sm:flex-none')}
+                className={cn('px-3', isCompact ? 'w-full' : 'sm:flex-none')}
               >
                 {t('practiceModeEnToMk')}
               </Button>
@@ -243,7 +248,7 @@ export function QuickPracticeWidget({
 
         <div className="space-y-2 rounded-xl border border-border/40 bg-muted/30 p-4">
           <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{promptLabel}</p>
-          <p className="text-2xl font-semibold text-foreground">{promptValue}</p>
+          <p className="text-2xl font-semibold text-foreground break-words">{promptValue}</p>
           <Badge variant="secondary" className="mt-3 w-fit">
             {categoryLabel}
           </Badge>

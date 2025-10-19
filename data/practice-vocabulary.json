@@ -1,77 +1,377 @@
 [
-  { "macedonian": "здраво", "english": "hello", "category": "greetings" },
-  { "macедonian": "добро утро", "english": "good morning", "category": "greetings" },
-  { "macедonian": "добра вечер", "english": "good evening", "category": "greetings" },
-  { "macедonian": "како си?", "english": "how are you?", "category": "greetings" },
-  { "macедonian": "се гледаме", "english": "see you", "category": "greetings" },
-  { "macедonian": "благодарам", "english": "thank you", "category": "politeness" },
-  { "macедonian": "фала многу", "english": "thanks a lot", "category": "politeness" },
-  { "macедonian": "те молам", "english": "please", "category": "politeness" },
-  { "macедonian": "извинете", "english": "excuse me", "category": "politeness" },
-  { "macедonian": "без проблем", "english": "no problem", "category": "politeness" },
-  { "macедonian": "мајка", "english": "mother", "category": "family" },
-  { "macедonian": "татко", "english": "father", "category": "family" },
-  { "macедonian": "сестра", "english": "sister", "category": "family" },
-  { "macедonian": "брат", "english": "brother", "category": "family" },
-  { "macедonian": "семејство", "english": "family", "category": "family" },
-  { "macедonian": "пријател", "english": "friend", "category": "people" },
-  { "macедonian": "колега", "english": "colleague", "category": "work" },
-  { "macедonian": "учител", "english": "teacher", "category": "work" },
-  { "macедonian": "работа", "english": "work", "category": "work" },
-  { "macедonian": "вода", "english": "water", "category": "food" },
-  { "macедonian": "леб", "english": "bread", "category": "food" },
-  { "macедonian": "кафе", "english": "coffee", "category": "food" },
-  { "macедonian": "ручек", "english": "lunch", "category": "food" },
-  { "macедonian": "вечера", "english": "dinner", "category": "food" },
-  { "macедonian": "пазар", "english": "market", "category": "shopping" },
-  { "macедonian": "колку чини?", "english": "how much does it cost?", "category": "shopping" },
-  { "macедonian": "попуст", "english": "discount", "category": "shopping" },
-  { "macедonian": "сметка", "english": "bill", "category": "shopping" },
-  { "macедonian": "готовина", "english": "cash", "category": "shopping" },
-  { "macедonian": "автобус", "english": "bus", "category": "transport" },
-  { "macедonian": "воз", "english": "train", "category": "transport" },
-  { "macедonian": "такси", "english": "taxi", "category": "transport" },
-  { "macедonian": "станица", "english": "station", "category": "transport" },
-  { "macедonian": "карта", "english": "ticket", "category": "transport" },
-  { "macедonian": "пасош", "english": "passport", "category": "travel" },
-  { "macедonian": "багаж", "english": "luggage", "category": "travel" },
-  { "macедonian": "резервација", "english": "reservation", "category": "travel" },
-  { "macедonian": "соба", "english": "room", "category": "travel" },
-  { "macедonian": "насока", "english": "direction", "category": "travel" },
-  { "macедonian": "дом", "english": "home", "category": "daily life" },
-  { "macедonian": "улица", "english": "street", "category": "daily life" },
-  { "macедonian": "град", "english": "city", "category": "places" },
-  { "macедonian": "село", "english": "village", "category": "places" },
-  { "macедonian": "училиште", "english": "school", "category": "places" },
-  { "macедonian": "болница", "english": "hospital", "category": "places" },
-  { "macедonian": "денес", "english": "today", "category": "time" },
-  { "macедonian": "вчера", "english": "yesterday", "category": "time" },
-  { "macедonian": "утре", "english": "tomorrow", "category": "time" },
-  { "macедonian": "час", "english": "hour", "category": "time" },
-  { "macедonian": "минут", "english": "minute", "category": "time" },
-  { "macедonian": "сонце", "english": "sun", "category": "weather" },
-  { "macедonian": "дожд", "english": "rain", "category": "weather" },
-  { "macедonian": "снег", "english": "snow", "category": "weather" },
-  { "macедonian": "топло", "english": "warm", "category": "weather" },
-  { "macедonian": "ладно", "english": "cold", "category": "weather" },
-  { "macедonian": "еден", "english": "one", "category": "numbers" },
-  { "macедonian": "два", "english": "two", "category": "numbers" },
-  { "macедonian": "три", "english": "three", "category": "numbers" },
-  { "macедonian": "десет", "english": "ten", "category": "numbers" },
-  { "macедonian": "сто", "english": "one hundred", "category": "numbers" },
-  { "macедonian": "читам", "english": "I read", "category": "activities" },
-  { "macедonian": "пишувам", "english": "I write", "category": "activities" },
-  { "macедonian": "слушам", "english": "I listen", "category": "activities" },
-  { "macедonian": "играм", "english": "I play", "category": "activities" },
-  { "macедonian": "пешачам", "english": "I walk", "category": "activities" },
-  { "macедonian": "култура", "english": "culture", "category": "culture" },
-  { "macедonian": "традиција", "english": "tradition", "category": "culture" },
-  { "macедonian": "празник", "english": "holiday", "category": "culture" },
-  { "macедonian": "музеј", "english": "museum", "category": "culture" },
-  { "macедonian": "историја", "english": "history", "category": "culture" },
-  { "macедonian": "планина", "english": "mountain", "category": "nature" },
-  { "macедonian": "езеро", "english": "lake", "category": "nature" },
-  { "macедonian": "река", "english": "river", "category": "nature" },
-  { "macедonian": "шума", "english": "forest", "category": "nature" },
-  { "macедonian": "цвет", "english": "flower", "category": "nature" }
+  {
+    "macedonian": "здраво",
+    "english": "hello",
+    "category": "greetings"
+  },
+  {
+    "english": "good morning",
+    "category": "greetings",
+    "macedonian": "добро утро"
+  },
+  {
+    "english": "good evening",
+    "category": "greetings",
+    "macedonian": "добра вечер"
+  },
+  {
+    "english": "how are you?",
+    "category": "greetings",
+    "macedonian": "како си?"
+  },
+  {
+    "english": "see you",
+    "category": "greetings",
+    "macedonian": "се гледаме"
+  },
+  {
+    "english": "thank you",
+    "category": "politeness",
+    "macedonian": "благодарам"
+  },
+  {
+    "english": "thanks a lot",
+    "category": "politeness",
+    "macedonian": "фала многу"
+  },
+  {
+    "english": "please",
+    "category": "politeness",
+    "macedonian": "те молам"
+  },
+  {
+    "english": "excuse me",
+    "category": "politeness",
+    "macedonian": "извинете"
+  },
+  {
+    "english": "no problem",
+    "category": "politeness",
+    "macedonian": "без проблем"
+  },
+  {
+    "english": "mother",
+    "category": "family",
+    "macedonian": "мајка"
+  },
+  {
+    "english": "father",
+    "category": "family",
+    "macedonian": "татко"
+  },
+  {
+    "english": "sister",
+    "category": "family",
+    "macedonian": "сестра"
+  },
+  {
+    "english": "brother",
+    "category": "family",
+    "macedonian": "брат"
+  },
+  {
+    "english": "family",
+    "category": "family",
+    "macedonian": "семејство"
+  },
+  {
+    "english": "friend",
+    "category": "people",
+    "macedonian": "пријател"
+  },
+  {
+    "english": "colleague",
+    "category": "work",
+    "macedonian": "колега"
+  },
+  {
+    "english": "teacher",
+    "category": "work",
+    "macedonian": "учител"
+  },
+  {
+    "english": "work",
+    "category": "work",
+    "macedonian": "работа"
+  },
+  {
+    "english": "water",
+    "category": "food",
+    "macedonian": "вода"
+  },
+  {
+    "english": "bread",
+    "category": "food",
+    "macedonian": "леб"
+  },
+  {
+    "english": "coffee",
+    "category": "food",
+    "macedonian": "кафе"
+  },
+  {
+    "english": "lunch",
+    "category": "food",
+    "macedonian": "ручек"
+  },
+  {
+    "english": "dinner",
+    "category": "food",
+    "macedonian": "вечера"
+  },
+  {
+    "english": "market",
+    "category": "shopping",
+    "macedonian": "пазар"
+  },
+  {
+    "english": "how much does it cost?",
+    "category": "shopping",
+    "macedonian": "колку чини?"
+  },
+  {
+    "english": "discount",
+    "category": "shopping",
+    "macedonian": "попуст"
+  },
+  {
+    "english": "bill",
+    "category": "shopping",
+    "macedonian": "сметка"
+  },
+  {
+    "english": "cash",
+    "category": "shopping",
+    "macedonian": "готовина"
+  },
+  {
+    "english": "bus",
+    "category": "transport",
+    "macedonian": "автобус"
+  },
+  {
+    "english": "train",
+    "category": "transport",
+    "macedonian": "воз"
+  },
+  {
+    "english": "taxi",
+    "category": "transport",
+    "macedonian": "такси"
+  },
+  {
+    "english": "station",
+    "category": "transport",
+    "macedonian": "станица"
+  },
+  {
+    "english": "ticket",
+    "category": "transport",
+    "macedonian": "карта"
+  },
+  {
+    "english": "passport",
+    "category": "travel",
+    "macedonian": "пасош"
+  },
+  {
+    "english": "luggage",
+    "category": "travel",
+    "macedonian": "багаж"
+  },
+  {
+    "english": "reservation",
+    "category": "travel",
+    "macedonian": "резервација"
+  },
+  {
+    "english": "room",
+    "category": "travel",
+    "macedonian": "соба"
+  },
+  {
+    "english": "direction",
+    "category": "travel",
+    "macedonian": "насока"
+  },
+  {
+    "english": "home",
+    "category": "daily life",
+    "macedonian": "дом"
+  },
+  {
+    "english": "street",
+    "category": "daily life",
+    "macedonian": "улица"
+  },
+  {
+    "english": "city",
+    "category": "places",
+    "macedonian": "град"
+  },
+  {
+    "english": "village",
+    "category": "places",
+    "macedonian": "село"
+  },
+  {
+    "english": "school",
+    "category": "places",
+    "macedonian": "училиште"
+  },
+  {
+    "english": "hospital",
+    "category": "places",
+    "macedonian": "болница"
+  },
+  {
+    "english": "today",
+    "category": "time",
+    "macedonian": "денес"
+  },
+  {
+    "english": "yesterday",
+    "category": "time",
+    "macedonian": "вчера"
+  },
+  {
+    "english": "tomorrow",
+    "category": "time",
+    "macedonian": "утре"
+  },
+  {
+    "english": "hour",
+    "category": "time",
+    "macedonian": "час"
+  },
+  {
+    "english": "minute",
+    "category": "time",
+    "macedonian": "минут"
+  },
+  {
+    "english": "sun",
+    "category": "weather",
+    "macedonian": "сонце"
+  },
+  {
+    "english": "rain",
+    "category": "weather",
+    "macedonian": "дожд"
+  },
+  {
+    "english": "snow",
+    "category": "weather",
+    "macedonian": "снег"
+  },
+  {
+    "english": "warm",
+    "category": "weather",
+    "macedonian": "топло"
+  },
+  {
+    "english": "cold",
+    "category": "weather",
+    "macedonian": "ладно"
+  },
+  {
+    "english": "one",
+    "category": "numbers",
+    "macedonian": "еден"
+  },
+  {
+    "english": "two",
+    "category": "numbers",
+    "macedonian": "два"
+  },
+  {
+    "english": "three",
+    "category": "numbers",
+    "macedonian": "три"
+  },
+  {
+    "english": "ten",
+    "category": "numbers",
+    "macedonian": "десет"
+  },
+  {
+    "english": "one hundred",
+    "category": "numbers",
+    "macedonian": "сто"
+  },
+  {
+    "english": "I read",
+    "category": "activities",
+    "macedonian": "читам"
+  },
+  {
+    "english": "I write",
+    "category": "activities",
+    "macedonian": "пишувам"
+  },
+  {
+    "english": "I listen",
+    "category": "activities",
+    "macedonian": "слушам"
+  },
+  {
+    "english": "I play",
+    "category": "activities",
+    "macedonian": "играм"
+  },
+  {
+    "english": "I walk",
+    "category": "activities",
+    "macedonian": "пешачам"
+  },
+  {
+    "english": "culture",
+    "category": "culture",
+    "macedonian": "култура"
+  },
+  {
+    "english": "tradition",
+    "category": "culture",
+    "macedonian": "традиција"
+  },
+  {
+    "english": "holiday",
+    "category": "culture",
+    "macedonian": "празник"
+  },
+  {
+    "english": "museum",
+    "category": "culture",
+    "macedonian": "музеј"
+  },
+  {
+    "english": "history",
+    "category": "culture",
+    "macedonian": "историја"
+  },
+  {
+    "english": "mountain",
+    "category": "nature",
+    "macedonian": "планина"
+  },
+  {
+    "english": "lake",
+    "category": "nature",
+    "macedonian": "езеро"
+  },
+  {
+    "english": "river",
+    "category": "nature",
+    "macedonian": "река"
+  },
+  {
+    "english": "forest",
+    "category": "nature",
+    "macedonian": "шума"
+  },
+  {
+    "english": "flower",
+    "category": "nature",
+    "macedonian": "цвет"
+  }
 ]
