@@ -381,11 +381,37 @@
     "title": "Преведи",
     "subtitle": "Брз начин за превод помеѓу македонски и англиски.",
     "badge": "Со Google Translate",
-    "widgetTitle": "Google Translate видџет",
-    "widgetDescription": "Избери македонски или англиски, внеси текст и копирај го преводот за неколку секунди.",
-    "widgetLoading": "Се вчитува Google Translate…",
-    "widgetError": "Не успеавме да го вчитаме видџетот. Освежи ја страницата и провери ја врската.",
-    "widgetDisclaimer": "Google Translate е најдобар за кратки реченици. Провери техничка или формална терминологија.",
+    "assistantTitle": "Инстант преведувач",
+    "assistantDescription": "Внеси текст на македонски или англиски и добиј брз превод.",
+    "directions": {
+      "mk_en": "Македонски → Англиски",
+      "en_mk": "Англиски → Македонски"
+    },
+    "inputLabel": "Внеси текст",
+    "inputPlaceholder": {
+      "mk_en": "Напиши реченици на македонски за превод на англиски…",
+      "en_mk": "Напиши реченици на англиски за превод на македонски…"
+    },
+    "shortcutHint": "Притисни Ctrl+Enter (Windows) или Cmd+Enter (Mac) за преведување.",
+    "translateButton": "Преведи",
+    "clearButton": "Исчисти",
+    "resultLabel": "Превод",
+    "resultPlaceholder": "Тука ќе се прикаже преводот.",
+    "copyButton": "Копирај",
+    "copied": "Копирано!",
+    "copyError": "Не можевме да копираме во привремена меморија. Копирај рачно.",
+    "translatingStatus": "Се преведува…",
+    "errorGeneric": "Не успеавме да преведеме. Обиди се повторно.",
+    "detectedLanguage": "Препознаен извор: {language}",
+    "languageLabels": {
+      "mk": "Македонски",
+      "en": "Англиски"
+    },
+    "fallbackTitle": "Google Translate видџет",
+    "fallbackDescription": "Ако ти треба класичниот интерфејс, користи го вградениот Google Translate подолу.",
+    "fallbackLoading": "Се вчитува Google Translate…",
+    "fallbackError": "Не успеавме да го вчитаме Google Translate. Освежи и обиди се повторно.",
+    "fallbackDisclaimer": "Google Translate е најпрецизен за кратки реченици. Проверувај технички или формален јазик.",
     "tipsTitle": "Совети за подобар превод",
     "tips": [
       "Преведувај кратки реченици за поголема прецизност.",

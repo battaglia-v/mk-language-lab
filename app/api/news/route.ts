@@ -117,32 +117,71 @@ function isValidHttpUrl(value: string | null | undefined): value is string {
 }
 
 function resolveItemLink(itemXml: string, source: NewsSource, descriptionRaw: string): string {
-  const linkTag = extractTag(itemXml, 'link');
-  if (isValidHttpUrl(linkTag)) {
-    return linkTag;
+  const candidates = new Set<string>();
+
+  const addCandidate = (value: string | null | undefined) => {
+    if (isValidHttpUrl(value)) {
+      candidates.add(decodeHtmlEntities(value));
+    }
+  };
+
+  addCandidate(extractTag(itemXml, 'link'));
+  addCandidate(extractAttributeValue(itemXml, 'link', 'href'));
+  addCandidate(extractTag(itemXml, 'guid'));
+  addCandidate(extractTag(itemXml, 'feedburner:origlink'));
+  addCandidate(extractTag(itemXml, 'feedburner:origLink'));
+  addCandidate(extractAttributeValue(itemXml, 'atom:link', 'href'));
+  addCandidate(extractTag(itemXml, 'atom:link'));
+  addCandidate(extractTag(itemXml, 'dc:identifier'));
+  addCandidate(extractTag(itemXml, 'meta:origlink'));
+  addCandidate(extractTag(itemXml, 'ht:news_url'));
+
+  const contentEncoded = extractTag(itemXml, 'content:encoded') ?? '';
+  const combinedDescriptions = [descriptionRaw, contentEncoded].filter(Boolean).join('\n');
+
+  const anchorRegex = /<a[^>]+href=["']([^"']+)["'][^>]*>/gi;
+  let anchorMatch: RegExpExecArray | null;
+  while ((anchorMatch = anchorRegex.exec(combinedDescriptions)) !== null) {
+    addCandidate(anchorMatch[1]);
   }
 
-  const atomLink = extractAttributeValue(itemXml, 'link', 'href');
-  if (isValidHttpUrl(atomLink)) {
-    return atomLink;
+  const rawUrlRegex = /(https?:\/\/[^\s"'<>]+)/gi;
+  let rawMatch: RegExpExecArray | null;
+  while ((rawMatch = rawUrlRegex.exec(combinedDescriptions)) !== null) {
+    addCandidate(rawMatch[1]);
   }
 
-  const guidTag = extractTag(itemXml, 'guid');
-  if (isValidHttpUrl(guidTag)) {
-    return guidTag;
+  if (candidates.size === 0) {
+    return source.homepage;
   }
 
-  const anchorMatch = /<a[^>]+href=["']([^"']+)["'][^>]*>/i.exec(descriptionRaw);
-  if (anchorMatch && isValidHttpUrl(anchorMatch[1])) {
-    return decodeHtmlEntities(anchorMatch[1]);
-  }
+  const homepageUrl = (() => {
+    try {
+      return new URL(source.homepage);
+    } catch {
+      return null;
+    }
+  })();
 
-  const rawUrlMatch = /(https?:\/\/[^\s"'<>]+)/i.exec(descriptionRaw);
-  if (rawUrlMatch && isValidHttpUrl(rawUrlMatch[1])) {
-    return decodeHtmlEntities(rawUrlMatch[1]);
-  }
+  const preferred = [...candidates].find((candidate) => {
+    try {
+      if (!homepageUrl) {
+        return true;
+      }
 
-  return source.homepage;
+      const candidateUrl = new URL(candidate);
+      const sameHost = candidateUrl.host === homepageUrl.host;
+      const normalizedPath = candidateUrl.pathname.replace(/\/+/g, '/').replace(/\/$/, '');
+      if (!sameHost) {
+        return true;
+      }
+      return normalizedPath !== '' && normalizedPath !== '/';
+    } catch {
+      return true;
+    }
+  });
+
+  return preferred ?? [...candidates][0];
 }
 
 function parseFeed(xml: string, source: NewsSource): NewsItem[] {

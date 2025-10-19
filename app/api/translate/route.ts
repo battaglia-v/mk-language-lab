@@ -3,6 +3,9 @@ import { v2 } from '@google-cloud/translate';
 
 let translator: v2.Translate | null | undefined;
 
+const SUPPORTED_LANGUAGES = new Set(['mk', 'en']);
+const MAX_CHARACTERS = 1800;
+
 const parseCredentials = (value: string) => {
   try {
     return JSON.parse(value);
@@ -51,16 +54,30 @@ const getTranslator = () => {
 
 export async function POST(request: NextRequest) {
   try {
-    const { text, sourceLang, targetLang } = await request.json();
+    const body = await request.json();
+    const text = typeof body?.text === 'string' ? body.text.trim() : '';
+    const sourceLangRaw = typeof body?.sourceLang === 'string' ? body.sourceLang.trim().toLowerCase() : '';
+    const targetLangRaw = typeof body?.targetLang === 'string' ? body.targetLang.trim().toLowerCase() : '';
 
-    if (!text || !sourceLang || !targetLang) {
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      );
+    if (!text) {
+      return NextResponse.json({ error: 'Missing text' }, { status: 400 });
     }
 
-    // If Google Translate is configured, use it
+    if (text.length > MAX_CHARACTERS) {
+      return NextResponse.json({ error: 'Text exceeds maximum length' }, { status: 413 });
+    }
+
+    if (!SUPPORTED_LANGUAGES.has(targetLangRaw)) {
+      return NextResponse.json({ error: 'Unsupported target language' }, { status: 400 });
+    }
+
+    const targetLang = targetLangRaw as 'mk' | 'en';
+    const sourceLang = SUPPORTED_LANGUAGES.has(sourceLangRaw) ? (sourceLangRaw as 'mk' | 'en') : undefined;
+
+    if (sourceLang && sourceLang === targetLang) {
+      return NextResponse.json({ error: 'Source and target languages must differ' }, { status: 400 });
+    }
+
     const translateClient = getTranslator();
 
     if (translateClient) {
@@ -69,15 +86,49 @@ export async function POST(request: NextRequest) {
         to: targetLang,
       });
 
-      return NextResponse.json({ translation });
+      return NextResponse.json({
+        translatedText: typeof translation === 'string' ? translation : String(translation),
+        detectedSourceLang: sourceLang ?? null,
+      });
     }
 
-    // Fallback: mock translation for development
-    const mockTranslation = `[Translation ${sourceLang}→${targetLang}]: ${text}`;
-    return NextResponse.json({ 
-      translation: mockTranslation,
-      mock: true,
-      message: 'Using mock translation. Configure Google Cloud credentials for real translations.'
+    const params = new URLSearchParams({
+      client: 'gtx',
+      sl: sourceLang ?? 'auto',
+      tl: targetLang,
+      dt: 't',
+      q: text,
+    });
+
+    const response = await fetch(`https://translate.googleapis.com/translate_a/single?${params.toString()}`, {
+      cache: 'no-store',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+    });
+
+    if (!response.ok) {
+      const message = await response.text();
+      console.error('Translation request failed', response.status, message);
+      return NextResponse.json({ error: 'Translation provider error' }, { status: 502 });
+    }
+
+    const data = await response.json();
+    const segments = Array.isArray(data?.[0]) ? data[0] : [];
+    const translatedText = segments
+      .map((segment: unknown) => (Array.isArray(segment) && typeof segment[0] === 'string' ? segment[0] : ''))
+      .join('')
+      .trim();
+
+    if (!translatedText) {
+      return NextResponse.json({ error: 'No translation returned' }, { status: 502 });
+    }
+
+    const detectedSourceLang = typeof data?.[2] === 'string' && SUPPORTED_LANGUAGES.has(data[2]) ? data[2] : null;
+
+    return NextResponse.json({
+      translatedText,
+      detectedSourceLang,
     });
   } catch (error) {
     console.error('Translation error:', error);

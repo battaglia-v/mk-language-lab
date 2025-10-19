@@ -222,7 +222,7 @@ export default function ResourcesPage() {
   const formatLabel = (format: ResourceFormat) => {
     try {
       return t(`formats.${format}` as const);
-    } catch (error) {
+    } catch {
       return formatFallbackLabel[format];
     }
   };

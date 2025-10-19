@@ -381,11 +381,37 @@
     "title": "Translate",
     "subtitle": "A quick way to translate between Macedonian and English.",
     "badge": "Powered by Google Translate",
-    "widgetTitle": "Google Translate widget",
-    "widgetDescription": "Pick Macedonian or English, paste your text, and copy the translation in seconds.",
-    "widgetLoading": "Loading Google Translate…",
-    "widgetError": "We couldn't load the widget. Please refresh and check your connection.",
-    "widgetDisclaimer": "Google Translate works best for concise sentences. Always double-check technical or formal language.",
+    "assistantTitle": "Instant Translator",
+    "assistantDescription": "Type Macedonian or English text and get a quick translation.",
+    "directions": {
+      "mk_en": "Macedonian → English",
+      "en_mk": "English → Macedonian"
+    },
+    "inputLabel": "Enter text",
+    "inputPlaceholder": {
+      "mk_en": "Type Macedonian sentences to translate into English…",
+      "en_mk": "Type English sentences to translate into Macedonian…"
+    },
+    "shortcutHint": "Press Ctrl+Enter (Windows) or Cmd+Enter (Mac) to translate.",
+    "translateButton": "Translate",
+    "clearButton": "Clear",
+    "resultLabel": "Translation",
+    "resultPlaceholder": "Your translation will appear here.",
+    "copyButton": "Copy",
+    "copied": "Copied!",
+    "copyError": "We couldn't copy to your clipboard. Please copy manually.",
+    "translatingStatus": "Translating…",
+    "errorGeneric": "We couldn't translate that right now. Please try again.",
+    "detectedLanguage": "Detected source: {language}",
+    "languageLabels": {
+      "mk": "Macedonian",
+      "en": "English"
+    },
+    "fallbackTitle": "Google Translate widget",
+    "fallbackDescription": "Prefer the classic interface? Try the embedded Google Translate card below.",
+    "fallbackLoading": "Loading Google Translate…",
+    "fallbackError": "We couldn't load Google Translate. Please refresh and try again.",
+    "fallbackDisclaimer": "Google Translate works best for short sentences. Double-check technical or formal language.",
     "tipsTitle": "Helpful translation tips",
     "tips": [
       "Translate short sentences for better accuracy.",
