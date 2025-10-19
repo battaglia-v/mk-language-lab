@@ -186,9 +186,9 @@ export function QuickPracticeWidget({
           {description ?? t('quickPracticeDescription')}
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-5">
-        <div className="grid gap-4 sm:grid-cols-[minmax(0,1fr)] sm:items-end lg:grid-cols-[minmax(0,1fr)_auto]">
-          <div className="space-y-2">
+      <CardContent className="space-y-6">
+        <div className="flex flex-col gap-4 md:flex-row md:items-end">
+          <div className="flex-1 space-y-2">
             <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               {t('practiceFilterLabel')}
             </span>
@@ -206,18 +206,18 @@ export function QuickPracticeWidget({
               </SelectContent>
             </Select>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-2 md:w-auto">
             <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               {t('practiceModeLabel')}
             </span>
-            <div className="inline-flex rounded-lg border border-border/60 bg-background/60 p-1">
+            <div className="flex w-full rounded-lg border border-border/60 bg-background/60 p-1 md:w-max">
               <Button
                 type="button"
                 size="sm"
                 variant={mode === 'mkToEn' ? 'default' : 'outline'}
                 onClick={() => setMode('mkToEn')}
                 aria-pressed={mode === 'mkToEn'}
-                className="px-3"
+                className="flex-1 px-3 md:flex-none"
               >
                 {t('practiceModeMkToEn')}
               </Button>
@@ -227,7 +227,7 @@ export function QuickPracticeWidget({
                 variant={mode === 'enToMk' ? 'default' : 'outline'}
                 onClick={() => setMode('enToMk')}
                 aria-pressed={mode === 'enToMk'}
-                className="px-3"
+                className="flex-1 px-3 md:flex-none"
               >
                 {t('practiceModeEnToMk')}
               </Button>
@@ -235,9 +235,9 @@ export function QuickPracticeWidget({
           </div>
         </div>
 
-        <div className="rounded-xl border border-border/40 bg-muted/30 p-4">
+        <div className="space-y-2 rounded-xl border border-border/40 bg-muted/30 p-4">
           <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{promptLabel}</p>
-          <p className="mt-2 text-2xl font-semibold text-foreground">{promptValue}</p>
+          <p className="text-2xl font-semibold text-foreground">{promptValue}</p>
           <Badge variant="secondary" className="mt-3 w-fit">
             {categoryLabel}
           </Badge>
