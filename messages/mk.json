@@ -1,5 +1,6 @@
 {
   "nav": {
+    "label": "Главна навигација",
   "journey": "Патека хаб",
     "practice": "Вежбање",
     "library": "Библиотека",
@@ -497,6 +498,7 @@
     "badge": "Со Google Translate",
     "assistantTitle": "Инстант преведувач",
     "assistantDescription": "Внеси текст на македонски или англиски и добиј брз превод.",
+    "directionsGroupLabel": "Насока на превод",
     "directions": {
       "mk_en": "Македонски → Англиски",
       "en_mk": "Англиски → Македонски"
@@ -784,6 +786,7 @@
     "delete": "Избриши",
     "edit": "Уреди",
     "search": "Пребарај",
-    "language": "Јазик"
+    "language": "Јазик",
+    "skipToContent": "Прескокни до главната содржина"
   }
 }

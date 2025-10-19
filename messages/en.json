@@ -1,5 +1,6 @@
 {
   "nav": {
+    "label": "Main navigation",
     "journey": "Journey hub",
     "practice": "Practice",
     "library": "Library",
@@ -499,6 +500,7 @@
     "badge": "Powered by Google Translate",
     "assistantTitle": "Instant Translator",
     "assistantDescription": "Type Macedonian or English text and get a quick translation.",
+    "directionsGroupLabel": "Translation direction",
     "directions": {
       "mk_en": "Macedonian → English",
       "en_mk": "English → Macedonian"
@@ -786,6 +788,7 @@
     "delete": "Delete",
     "edit": "Edit",
     "search": "Search",
-    "language": "Language"
+    "language": "Language",
+    "skipToContent": "Skip to main content"
   }
 }

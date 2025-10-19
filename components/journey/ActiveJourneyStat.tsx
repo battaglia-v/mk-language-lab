@@ -16,5 +16,14 @@ export function ActiveJourneyStat() {
     return t(`goals.cards.${activeJourney}.title`);
   }, [activeJourney, isHydrated, t]);
 
-  return <span className="text-2xl font-semibold text-foreground">{displayValue}</span>;
+  return (
+    <span
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+      className="text-2xl font-semibold text-foreground"
+    >
+      {displayValue}
+    </span>
+  );
 }

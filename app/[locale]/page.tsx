@@ -84,7 +84,7 @@ export default function JourneyHomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
-      <section className="container mx-auto px-4 py-20">
+  <section className="container mx-auto px-4 py-16 sm:py-20">
         <div className="mx-auto flex max-w-5xl flex-col gap-10">
           <div className="space-y-6 text-center md:text-left">
             <Badge variant="outline" className="mx-auto w-fit border-primary/40 bg-primary/5 text-primary md:mx-0">
@@ -126,7 +126,7 @@ export default function JourneyHomePage() {
               </Button>
             </CardHeader>
             <CardContent>
-              <div className="grid gap-4 sm:grid-cols-3">
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {stats.map((stat) => (
                   <div key={stat.key} className="rounded-xl border border-border/50 bg-background/60 p-4 text-center sm:text-left">
                     <p className="text-sm font-medium text-muted-foreground">{stat.label}</p>
@@ -153,7 +153,7 @@ export default function JourneyHomePage() {
             </div>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {quickActions.map((action) => {
               const Icon = quickActionIcons[action.key as QuickActionKey];
               return (
@@ -191,7 +191,7 @@ export default function JourneyHomePage() {
             <p className="text-sm text-muted-foreground md:max-w-3xl">{t('goals.description')}</p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
             {goals.map((goal) => {
               const Icon = goalIcons[goal.key];
               return (

@@ -1,12 +1,13 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Languages } from 'lucide-react';
@@ -19,6 +20,7 @@ const languages = [
 
 export default function LanguageSwitcher() {
   const locale = useLocale();
+  const t = useTranslations('common');
   const router = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
@@ -49,6 +51,7 @@ export default function LanguageSwitcher() {
           size="sm"
           className="gap-2 px-2 sm:px-3"
           disabled={isPending}
+          aria-label={t('language')}
         >
           <Languages className="h-4 w-4" />
           <span>{currentLanguage.flag}</span>
@@ -56,16 +59,20 @@ export default function LanguageSwitcher() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" sideOffset={6} className="min-w-[180px]">
-        {languages.map((lang) => (
-          <DropdownMenuItem
-            key={lang.code}
-            onClick={() => switchLanguage(lang.code)}
-            className={locale === lang.code ? 'bg-accent' : ''}
-          >
-            <span className="mr-2">{lang.flag}</span>
-            {lang.name}
-          </DropdownMenuItem>
-        ))}
+        <DropdownMenuRadioGroup
+          value={locale}
+          onValueChange={(value) => switchLanguage(value)}
+          aria-label={t('language')}
+        >
+          {languages.map((lang) => (
+            <DropdownMenuRadioItem key={lang.code} value={lang.code}>
+              <span className="mr-2" aria-hidden="true">
+                {lang.flag}
+              </span>
+              {lang.name}
+            </DropdownMenuRadioItem>
+          ))}
+        </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   );

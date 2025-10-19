@@ -18,6 +18,7 @@ export default function Navigation() {
   const pathname = usePathname();
   const t = useTranslations('nav');
   const locale = useLocale();
+  const navLabel = t('label');
 
   const navItems: NavItem[] = [
     { path: '', label: t('journey'), icon: Sparkles },
@@ -39,6 +40,7 @@ export default function Navigation() {
           <Link
             href={buildHref('')}
             className="flex flex-shrink-0 items-center gap-2 transition-opacity hover:opacity-80"
+            aria-label={t('journey')}
           >
             <Sparkles className="h-6 w-6 text-primary" />
             <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
@@ -46,12 +48,16 @@ export default function Navigation() {
             </span>
           </Link>
 
-          <nav className="hidden lg:flex flex-1 items-center justify-center gap-1">
+          <nav className="hidden flex-1 flex-wrap items-center justify-center gap-1 lg:flex" aria-label={navLabel}>
             {navItems.map((item) => {
               const Icon = item.icon;
               const active = isActive(item.path);
               return (
-                <Link key={item.path || 'home'} href={buildHref(item.path)}>
+                <Link
+                  key={item.path || 'home'}
+                  href={buildHref(item.path)}
+                  aria-current={active ? 'page' : undefined}
+                >
                   <Button
                     variant={active ? 'default' : 'ghost'}
                     size="sm"
@@ -70,12 +76,19 @@ export default function Navigation() {
           </div>
         </div>
 
-        <nav className="flex gap-1 overflow-x-auto pb-2 scrollbar-hide lg:hidden">
+        <nav
+          className="flex gap-1 overflow-x-auto pb-2 scrollbar-hide lg:hidden"
+          aria-label={navLabel}
+        >
           {navItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.path);
             return (
-              <Link key={`mobile-${item.path || 'home'}`} href={buildHref(item.path)}>
+              <Link
+                key={`mobile-${item.path || 'home'}`}
+                href={buildHref(item.path)}
+                aria-current={active ? 'page' : undefined}
+              >
                 <Button
                   variant={active ? 'default' : 'ghost'}
                   size="sm"

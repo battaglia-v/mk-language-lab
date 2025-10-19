@@ -94,6 +94,8 @@ export default function TranslatePage() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [copiedState, setCopiedState] = useState<'idle' | 'copied'>('idle');
   const [history, setHistory] = useState<TranslationHistoryEntry[]>([]);
+  const shortcutHintId = 'translate-shortcut-hint';
+  const characterCountId = 'translate-character-count';
 
   const journeyParam = searchParams?.get('journey') ?? null;
   const journeyId = journeyParam && isJourneyId(journeyParam) ? journeyParam : null;
@@ -270,21 +272,29 @@ export default function TranslatePage() {
             </CardHeader>
             <CardContent>
               <form className="space-y-6" onSubmit={handleTranslate}>
-                <div className="flex flex-wrap items-center gap-2">
-                  {directionOptions.map((option) => {
-                    const isActive = option.id === selectedDirection.id;
-                    return (
-                      <Button
-                        key={option.id}
-                        type="button"
-                        size="sm"
-                        variant={isActive ? 'default' : 'outline'}
-                        onClick={() => handleDirectionChange(option.id)}
-                      >
-                        {option.label}
-                      </Button>
-                    );
-                  })}
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                  <div
+                    className="flex flex-wrap items-center gap-2"
+                    role="radiogroup"
+                    aria-label={t('directionsGroupLabel')}
+                  >
+                    {directionOptions.map((option) => {
+                      const isActive = option.id === selectedDirection.id;
+                      return (
+                        <Button
+                          key={option.id}
+                          type="button"
+                          size="sm"
+                          variant={isActive ? 'default' : 'outline'}
+                          onClick={() => handleDirectionChange(option.id)}
+                          role="radio"
+                          aria-checked={isActive}
+                        >
+                          {option.label}
+                        </Button>
+                      );
+                    })}
+                  </div>
                   <Button
                     type="button"
                     size="sm"
@@ -307,6 +317,7 @@ export default function TranslatePage() {
                     onChange={(event) => setInputText(event.target.value)}
                     placeholder={selectedDirection.placeholder}
                     maxLength={MAX_CHARACTERS}
+                    aria-describedby={`${shortcutHintId} ${characterCountId}`}
                     onKeyDown={(event) => {
                       if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
                         event.preventDefault();
@@ -315,8 +326,8 @@ export default function TranslatePage() {
                     }}
                   />
                   <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <span>{t('shortcutHint')}</span>
-                    <span>{characterCountLabel}</span>
+                    <span id={shortcutHintId}>{t('shortcutHint')}</span>
+                    <span id={characterCountId}>{characterCountLabel}</span>
                   </div>
                 </div>
 
@@ -349,7 +360,13 @@ export default function TranslatePage() {
                       </Button>
                     ) : null}
                   </div>
-                  <div className="min-h-32 whitespace-pre-wrap rounded-xl border border-border/50 bg-background/60 p-4 text-base text-foreground">
+                  <div
+                    className="min-h-32 whitespace-pre-wrap rounded-xl border border-border/50 bg-background/60 p-4 text-base text-foreground"
+                    role="status"
+                    aria-live="polite"
+                    aria-atomic="true"
+                    aria-busy={isTranslating}
+                  >
                     {isTranslating ? (
                       <span className="inline-flex items-center gap-2 text-muted-foreground">
                         <Loader2 className="h-4 w-4 animate-spin" />
@@ -368,7 +385,11 @@ export default function TranslatePage() {
                       })}
                     </p>
                   ) : null}
-                  {errorMessage ? <p className="text-sm text-destructive">{errorMessage}</p> : null}
+                  {errorMessage ? (
+                    <p className="text-sm text-destructive" role="alert">
+                      {errorMessage}
+                    </p>
+                  ) : null}
                 </div>
 
                 {history.length > 0 ? (

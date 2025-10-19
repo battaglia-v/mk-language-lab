@@ -36,15 +36,25 @@ export default async function LocaleLayout({
   }
 
   const messages = await getMessages();
+  const commonMessages = (messages as Record<string, unknown>)?.common as
+    | Record<string, unknown>
+    | undefined;
+  const skipToContentLabel =
+    (commonMessages?.skipToContent as string | undefined) ?? 'Skip to main content';
 
   return (
     <html lang={locale} className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <a href="#main-content" className="skip-nav-link">
+          {skipToContentLabel}
+        </a>
         <NextIntlClientProvider messages={messages}>
           <Navigation />
-          {children}
+          <main id="main-content" className="outline-none focus-visible:ring-2 focus-visible:ring-primary">
+            {children}
+          </main>
         </NextIntlClientProvider>
         <Analytics />
       </body>
