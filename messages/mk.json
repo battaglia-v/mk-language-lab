@@ -107,17 +107,17 @@
       {
         "title": "Речници",
         "description": "Прелистај двојазични речници и референтни алатки.",
-        "href": "/resources?section=dictionaries"
+        "href": "/resources?section=reference"
       },
       {
         "title": "За изучувачи",
         "description": "YouTube канали и подкасти наменети за изучувачи на македонски.",
-        "href": "/resources?section=for-learners"
+        "href": "/resources?section=learner"
       },
       {
         "title": "Македонски јазик",
         "description": "Видео лекции и културни клипови за зајакнување на зборовите.",
-        "href": "/resources?section=macedonian-language"
+        "href": "/resources?section=video"
       }
     ]
   },
@@ -182,17 +182,17 @@
       {
         "title": "Македонски речник",
         "description": "Пребарувај ги падежите и глаголските облици во официјалниот речник.",
-        "href": "/resources?section=macedonian-dictionary"
+        "href": "/resources?section=reference"
       },
       {
         "title": "DW на македонски",
         "description": "Чиста новинарска проза за да ги видиш речениците во контекст.",
-        "href": "/resources?section=dw-на-македонски"
+        "href": "/resources?section=news"
       },
       {
         "title": "Архангел",
         "description": "Истражи јазични референци и литературни архиви.",
-        "href": "/resources?section=архангел"
+        "href": "/resources?section=reference"
       }
     ]
   },
@@ -257,17 +257,17 @@
       {
         "title": "Медиуми",
         "description": "ТВ и радио клипови за вежбање на вистински разговори.",
-        "href": "/resources?section=media"
+        "href": "/resources?section=video"
       },
       {
         "title": "Подкасти",
         "description": "Долги разговори идеални за слушање и формирање фрази.",
-        "href": "/resources?section=podcasts"
+        "href": "/resources?section=audio"
       },
       {
         "title": "Што го врти светот",
         "description": "Разговорни видеа со природно темпо и жаргон.",
-        "href": "/resources?section=што-го-врти-светот"
+        "href": "/resources?section=audio"
       }
     ]
   },
@@ -332,17 +332,17 @@
       {
         "title": "Makedonkast",
         "description": "Аудио лекции што се фокусираат на изговор и ритам.",
-        "href": "/resources?section=makedonkast"
+        "href": "/resources?section=audio"
       },
       {
         "title": "Медиуми",
         "description": "Новинарски клипови за имитирање на акцент и интонација.",
-        "href": "/resources?section=media"
+        "href": "/resources?section=video"
       },
       {
         "title": "Подкасти",
         "description": "Вежбај минимални парови и поврзан говор со подкасти.",
-        "href": "/resources?section=podcasts"
+        "href": "/resources?section=audio"
       }
     ]
   },
@@ -398,16 +398,25 @@
   },
   "resources": {
     "title": "Ресурси",
-    "subtitle": "Речници, PDF документи и материјали за учење",
+    "subtitle": "Курирани колекции за учење и доверливи македонски извори",
     "search": "Пребарај ресурси...",
-    "dictionary": "Македонско-Англиски Речник",
-    "dictionaryDesc": "Сеопфатен речник со примери и употреба",
     "viewPdf": "Погледни PDF",
-    "showAll": "Сите секции",
+    "showAll": "Сите колекции",
     "searchInDoc": "Пребарај во документот",
     "resultsSummary": "{count} резултати • {total} вкупно ресурси",
     "noResults": "Нема пронајдени резултати",
-    "loading": "Вчитувам..."
+    "loading": "Вчитувам...",
+    "updatedOn": "Ажурирано {date}",
+    "collectionCount": "{count, plural, one {# ресурс} other {# ресурси}}",
+    "pdfHint": "Отвори го PDF документот за целосен преглед. Користи Cmd+F (Mac) или Ctrl+F (Windows) за пребарување во документот.",
+    "formats": {
+      "website": "Веб-страница",
+      "video": "Видео",
+      "audio": "Аудио",
+      "podcast": "Подкаст",
+      "article": "Статија",
+      "document": "Документ"
+    }
   },
   "tasks": {
     "title": "Мои Задачи",
@@ -449,7 +458,16 @@
     "authRequiredTitle": "Потребна е најава",
     "authRequiredDescription": "Најави се за да пристапиш до оваа функција.",
     "goToSignIn": "Оди на најава",
-    "signingIn": "Ве најавувам..."
+    "signingIn": "Ве најавувам...",
+    "googleMissingTitle": "Поврзи Google OAuth за да овозможиш најава",
+    "googleMissingDescription": "Ги нема потребните Google OAuth тајни. Следи ги чекорите за да го довршиш подесувањето:",
+    "googleMissingStep1": "Креирај OAuth 2.0 акредитиви во Google Cloud Console.",
+    "googleMissingStep2": "Додај http://localhost:3000/api/auth/callback/google и продукциската URL адреса како redirect URI.",
+    "googleMissingStep3": "Постави ги GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET и NEXTAUTH_SECRET во датотеката .env.local.",
+    "googleMissingStep4": "Рестартирај го развојниот сервер по ажурирањето на променливите.",
+    "googleMissingButton": "Конфигурирај Google OAuth",
+    "googleMissingDocs": "Прочитај го водичот за NextAuth Google провајдерот",
+    "googleMissingDocsLabel": "Водич за подесување"
   },
   "common": {
     "loading": "Вчитувам...",

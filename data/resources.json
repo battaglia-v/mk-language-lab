@@ -1,264 +1,149 @@
 {
-  "source": "https://ofs-cdn.italki.com/u/11847001/message/d30vg2pjlt9bmtu5ki9g.pdf",
-  "generatedAt": "2025-10-18T20:06:17.655Z",
-  "sectionCount": 18,
-  "resourceCount": 30,
-  "sections": [
+  "updatedAt": "2025-10-18T20:06:17.655Z",
+  "pdf": {
+    "label": "Macedonian Resource Pack (PDF)",
+    "url": "https://ofs-cdn.italki.com/u/11847001/message/d30vg2pjlt9bmtu5ki9g.pdf"
+  },
+  "collections": [
     {
-      "title": "Dictionaries",
-      "page": 1,
-      "resources": [
+      "id": "reference",
+      "title": "Reference & Dictionaries",
+      "description": "Authoritative tools for Macedonian definitions, spelling, and grammar.",
+      "icon": "library",
+      "items": [
         {
-          "title": "https://www.youtube.com/watch?v=r9T8yQYHPzk",
-          "url": "https://www.youtube.com/watch?v=r9T8yQYHPzk",
-          "page": 1
-        }
-      ]
-    },
-    {
-      "title": "DW на македонски",
-      "page": 1,
-      "resources": [
-        {
-          "title": "https://www.youtube.com/watch?v=aZrgLaf_7E4",
-          "url": "https://www.youtube.com/watch?v=aZrgLaf_7E4",
-          "page": 1
-        }
-      ]
-    },
-    {
-      "title": "For learners",
-      "page": 1,
-      "resources": [
-        {
-          "title": "https://www.youtube.com/@utrinskanatelma8027/videos",
-          "url": "https://www.youtube.com/@utrinskanatelma8027/videos",
-          "page": 1
-        },
-        {
-          "title": "https://www.youtube.com/@bajkerot_krosfiterot/videos",
-          "url": "https://www.youtube.com/@bajkerot_krosfiterot/videos",
-          "page": 1
-        },
-        {
-          "title": "https://macedonianlanguagecorner.com/makedonkast/",
-          "url": "https://macedonianlanguagecorner.com/makedonkast/",
-          "page": 1
-        }
-      ]
-    },
-    {
-      "title": "Macedonian - English",
-      "page": 1,
-      "resources": [
-        {
-          "title": "https://www.youtube.com/watch?v=GUCxeKW0EL0",
-          "url": "https://www.youtube.com/watch?v=GUCxeKW0EL0",
-          "page": 1
-        }
-      ]
-    },
-    {
-      "title": "Macedonian dictionary",
-      "page": 1,
-      "resources": [
-        {
-          "title": "https://makedonski.gov.mk/",
+          "title": "Official Macedonian Dictionary",
           "url": "https://makedonski.gov.mk/",
-          "page": 1
-        }
-      ]
-    },
-    {
-      "title": "Macedonian Language",
-      "page": 1,
-      "resources": [
-        {
-          "title": "https://www.youtube.com/@MacedonianLanguageCorner/videos",
-          "url": "https://www.youtube.com/@MacedonianLanguageCorner/videos",
-          "page": 1
-        }
-      ]
-    },
-    {
-      "title": "Makedonkast",
-      "page": 1,
-      "resources": [
-        {
-          "title": "https://www.youtube.com/@Tvkanal5/videos",
-          "url": "https://www.youtube.com/@Tvkanal5/videos",
-          "page": 1
+          "summary": "Multi-volume dictionary from the Krste Misirkov Institute covering standard Macedonian usage.",
+          "format": "website"
         },
         {
-          "title": "https://www.youtube.com/@skalamagazine9561/videos",
-          "url": "https://www.youtube.com/@skalamagazine9561/videos",
-          "page": 1
-        },
-        {
-          "title": "https://www.youtube.com/@MacedonianLanguageCorner/videos",
-          "url": "https://www.youtube.com/@MacedonianLanguageCorner/videos",
-          "page": 1
-        }
-      ]
-    },
-    {
-      "title": "Media",
-      "page": 1,
-      "resources": [
-        {
-          "title": "https://www.youtube.com/@slobodna-evropa-mk",
-          "url": "https://www.youtube.com/@slobodna-evropa-mk",
-          "page": 1
-        }
-      ]
-    },
-    {
-      "title": "News/articles",
-      "page": 1,
-      "resources": [
-        {
-          "title": "https://www.youtube.com/watch?v=84x4Tey3gVs",
-          "url": "https://www.youtube.com/watch?v=84x4Tey3gVs",
-          "page": 1
-        }
-      ]
-    },
-    {
-      "title": "Podcasts",
-      "page": 1,
-      "resources": [
-        {
-          "title": "https://www.youtube.com/@VidiVakaMedia/featured",
-          "url": "https://www.youtube.com/@VidiVakaMedia/featured",
-          "page": 1
-        },
-        {
-          "title": "https://www.youtube.com/@stogovrtisvetot",
-          "url": "https://www.youtube.com/@stogovrtisvetot",
-          "page": 1
-        }
-      ]
-    },
-    {
-      "title": "Архангел",
-      "page": 1,
-      "resources": [
-        {
-          "title": "https://mk.glosbe.com/",
+          "title": "Glosbe Macedonian-English Dictionary",
           "url": "https://mk.glosbe.com/",
-          "page": 1
+          "summary": "Community-driven bilingual dictionary with example sentences for both directions.",
+          "format": "website"
         },
         {
-          "title": "https://trn.mk/",
-          "url": "https://trn.mk/",
-          "page": 1
-        },
-        {
-          "title": "https://www.youtube.com/watch?v=nP3SSqUcKKk",
-          "url": "https://www.youtube.com/watch?v=nP3SSqUcKKk",
-          "page": 1
-        }
-      ]
-    },
-    {
-      "title": "Дупер",
-      "page": 1,
-      "resources": [
-        {
-          "title": "https://zoze.mk/en-mk/",
-          "url": "https://zoze.mk/en-mk/",
-          "page": 1
-        },
-        {
-          "title": "https://www.slobodnaevropa.mk/",
-          "url": "https://www.slobodnaevropa.mk/",
-          "page": 1
-        },
-        {
-          "title": "https://www.youtube.com/watch?v=eyyMU-QGdzY",
-          "url": "https://www.youtube.com/watch?v=eyyMU-QGdzY",
-          "page": 1
-        }
-      ]
-    },
-    {
-      "title": "Калиопи",
-      "page": 1,
-      "resources": [
-        {
-          "title": "https://zoze.mk/en-mk/",
-          "url": "https://zoze.mk/en-mk/",
-          "page": 1
-        },
-        {
-          "title": "https://www.slobodenpecat.mk/",
-          "url": "https://www.slobodenpecat.mk/",
-          "page": 1
-        }
-      ]
-    },
-    {
-      "title": "Каролина Гочева",
-      "page": 1,
-      "resources": [
-        {
-          "title": "https://novamakedonija.com.mk/",
-          "url": "https://novamakedonija.com.mk/",
-          "page": 1
-        }
-      ]
-    },
-    {
-      "title": "Тоше Проески",
-      "page": 1,
-      "resources": [
-        {
-          "title": "https://www.dw.com/mk/%D1%82%D0%B5%D0%BC%D0%B8/s-10339",
-          "url": "https://www.dw.com/mk/%D1%82%D0%B5%D0%BC%D0%B8/s-10339",
-          "page": 1
-        }
-      ]
-    },
-    {
-      "title": "Трн",
-      "page": 1,
-      "resources": [
-        {
-          "title": "https://mk.glosbe.com/",
-          "url": "https://mk.glosbe.com/",
-          "page": 1
-        },
-        {
-          "title": "https://www.youtube.com/watch?v=9lCYWZM6MHs",
-          "url": "https://www.youtube.com/watch?v=9lCYWZM6MHs",
-          "page": 1
-        }
-      ]
-    },
-    {
-      "title": "Фолтин",
-      "page": 1,
-      "resources": [
-        {
-          "title": "http://drmj.eu/",
+          "title": "Digital Repository of Macedonian Language",
           "url": "http://drmj.eu/",
-          "page": 1
+          "summary": "Academic archive of corpora, grammars, and linguistic research in Macedonian.",
+          "format": "website"
         }
       ]
     },
     {
-      "title": "Што го врти светот",
-      "page": 1,
-      "resources": [
+      "id": "learner",
+      "title": "Learner Hubs",
+      "description": "Sites that organize self-study lessons, worksheets, and community tips.",
+      "icon": "graduation",
+      "items": [
         {
-          "title": "https://www.youtube.com/@televizija24vesti58/videos",
-          "url": "https://www.youtube.com/@televizija24vesti58/videos",
-          "page": 1
+          "title": "Macedonian Language Corner",
+          "url": "https://macedonianlanguagecorner.com/",
+          "summary": "Blog-style lessons, worksheets, and cultural explainers for independent learners.",
+          "format": "website"
         },
         {
-          "title": "https://www.youtube.com/@NextGen.Podcast/videos",
+          "title": "Makedonkast",
+          "url": "https://macedonianlanguagecorner.com/makedonkast/",
+          "summary": "Pronunciation-focused mini podcast created by the Macedonian Language Corner team.",
+          "format": "podcast"
+        },
+        {
+          "title": "Zoze Language Exchange",
+          "url": "https://zoze.mk/en-mk/",
+          "summary": "Local learning hub with grammar explainers, exercises, and peer tutoring offers.",
+          "format": "website"
+        }
+      ]
+    },
+    {
+      "id": "video",
+      "title": "Video Lessons & Shows",
+      "description": "YouTube channels and playlists featuring structured lessons and authentic speech.",
+      "icon": "clapperboard",
+      "items": [
+        {
+          "title": "Macedonian Language Corner (YouTube)",
+          "url": "https://www.youtube.com/@MacedonianLanguageCorner/videos",
+          "summary": "Conversational lessons, vocabulary breakdowns, and cultural explainers.",
+          "format": "video"
+        },
+        {
+          "title": "Utrinska na Telma",
+          "url": "https://www.youtube.com/@utrinskanatelma8027/videos",
+          "summary": "Morning show interviews at a relaxed pace—great for intermediate listening.",
+          "format": "video"
+        },
+        {
+          "title": "Television 24 Vesti",
+          "url": "https://www.youtube.com/@televizija24vesti58/videos",
+          "summary": "Daily news bulletins with captions for practicing formal Macedonian.",
+          "format": "video"
+        },
+        {
+          "title": "NextGen Podcast (Video Edition)",
           "url": "https://www.youtube.com/@NextGen.Podcast/videos",
-          "page": 1
+          "summary": "Youth-focused interviews that highlight modern vocabulary and slang.",
+          "format": "video"
+        }
+      ]
+    },
+    {
+      "id": "audio",
+      "title": "Podcasts & Audio Practice",
+      "description": "Long-form Macedonian audio to train listening skills on the go.",
+      "icon": "headphones",
+      "items": [
+        {
+          "title": "Што го врти светот",
+          "url": "https://www.youtube.com/@stogovrtisvetot",
+          "summary": "Pop-culture podcast mixing casual speech with current events.",
+          "format": "audio"
+        },
+        {
+          "title": "Vidi Vaka Audio Stories",
+          "url": "https://www.youtube.com/@VidiVakaMedia/featured",
+          "summary": "Short documentary stories with clear narration and subtitles.",
+          "format": "audio"
+        },
+        {
+          "title": "Radio Slobodna Evropa (MK)",
+          "url": "https://www.youtube.com/@slobodna-evropa-mk",
+          "summary": "News reports and interviews produced in Macedonian for native audiences.",
+          "format": "audio"
+        }
+      ]
+    },
+    {
+      "id": "news",
+      "title": "News & Reading",
+      "description": "Reliable Macedonian outlets for reading practice and vocabulary building.",
+      "icon": "newspaper",
+      "items": [
+        {
+          "title": "DW на македонски",
+          "url": "https://www.dw.com/mk/%D1%82%D0%B5%D0%BC%D0%B8/s-10339",
+          "summary": "International coverage with clear Macedonian prose and glossary popovers.",
+          "format": "article"
+        },
+        {
+          "title": "Нова Македонија",
+          "url": "https://novamakedonija.com.mk/",
+          "summary": "The country's oldest daily newspaper—excellent for formal vocabulary.",
+          "format": "article"
+        },
+        {
+          "title": "Слободен печат",
+          "url": "https://www.slobodenpecat.mk/",
+          "summary": "Balanced coverage of politics and culture with intermediate-friendly writing.",
+          "format": "article"
+        },
+        {
+          "title": "ТРН Magazine",
+          "url": "https://trn.mk/",
+          "summary": "Culture and long-form features that stretch higher-level vocabulary.",
+          "format": "article"
         }
       ]
     }

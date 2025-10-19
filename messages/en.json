@@ -107,17 +107,17 @@
       {
         "title": "Dictionaries",
         "description": "Browse bilingual dictionaries and reference tools.",
-        "href": "/resources?section=dictionaries"
+        "href": "/resources?section=reference"
       },
       {
         "title": "For learners",
         "description": "YouTube channels and podcasts tailored for Macedonian learners.",
-        "href": "/resources?section=for-learners"
+        "href": "/resources?section=learner"
       },
       {
         "title": "Macedonian Language",
         "description": "Video lessons and cultural clips to reinforce new words.",
-        "href": "/resources?section=macedonian-language"
+        "href": "/resources?section=video"
       }
     ]
   },
@@ -182,17 +182,17 @@
       {
         "title": "Macedonian dictionary",
         "description": "Look up declensions and verb forms in the official dictionary.",
-        "href": "/resources?section=macedonian-dictionary"
+        "href": "/resources?section=reference"
       },
       {
         "title": "DW на македонски",
         "description": "Read clear news prose to see sentence patterns in context.",
-        "href": "/resources?section=dw-на-македонски"
+        "href": "/resources?section=news"
       },
       {
         "title": "Архангел",
         "description": "Dive into language reference articles and literary archives.",
-        "href": "/resources?section=архангел"
+        "href": "/resources?section=reference"
       }
     ]
   },
@@ -257,17 +257,17 @@
       {
         "title": "Media",
         "description": "TV and radio clips to practice real conversations.",
-        "href": "/resources?section=media"
+        "href": "/resources?section=video"
       },
       {
         "title": "Podcasts",
         "description": "Long-form discussions ideal for listening and phrasing.",
-        "href": "/resources?section=podcasts"
+        "href": "/resources?section=audio"
       },
       {
         "title": "Што го врти светот",
         "description": "Conversational videos with natural pacing and slang.",
-        "href": "/resources?section=што-го-врти-светот"
+        "href": "/resources?section=audio"
       }
     ]
   },
@@ -332,17 +332,17 @@
       {
         "title": "Makedonkast",
         "description": "Audio-first lessons that focus on pronunciation and rhythm.",
-        "href": "/resources?section=makedonkast"
+        "href": "/resources?section=audio"
       },
       {
         "title": "Media",
         "description": "Newsroom clips to imitate stress and cadence.",
-        "href": "/resources?section=media"
+        "href": "/resources?section=video"
       },
       {
         "title": "Podcasts",
         "description": "Practice minimal pairs and connected speech with spoken shows.",
-        "href": "/resources?section=podcasts"
+        "href": "/resources?section=audio"
       }
     ]
   },
@@ -398,16 +398,25 @@
   },
   "resources": {
     "title": "Resources",
-    "subtitle": "Dictionaries, PDFs, and learning materials",
+    "subtitle": "Curated Macedonian study collections and trusted references",
     "search": "Search resources...",
-    "dictionary": "Macedonian-English Dictionary",
-    "dictionaryDesc": "Comprehensive dictionary with examples and usage",
     "viewPdf": "View PDF",
-    "showAll": "All sections",
+    "showAll": "All collections",
     "searchInDoc": "Search in document",
     "resultsSummary": "{count} results • {total} total resources",
     "noResults": "No results found",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "updatedOn": "Updated {date}",
+    "collectionCount": "{count, plural, one {# resource} other {# resources}}",
+    "pdfHint": "Open the PDF above to browse the full reference. Use Cmd+F (Mac) or Ctrl+F (Windows) to search inside the document.",
+    "formats": {
+      "website": "Website",
+      "video": "Video",
+      "audio": "Audio",
+      "podcast": "Podcast",
+      "article": "Article",
+      "document": "Document"
+    }
   },
   "tasks": {
     "title": "My Tasks",
@@ -449,7 +458,16 @@
     "authRequiredTitle": "Sign in required",
     "authRequiredDescription": "Please sign in to access this feature.",
     "goToSignIn": "Go to sign in",
-    "signingIn": "Signing you in..."
+    "signingIn": "Signing you in...",
+    "googleMissingTitle": "Connect Google OAuth to enable sign-in",
+    "googleMissingDescription": "We couldn't find the Google OAuth secrets. Follow these steps to finish setup:",
+    "googleMissingStep1": "Create OAuth 2.0 credentials in the Google Cloud Console.",
+    "googleMissingStep2": "Add http://localhost:3000/api/auth/callback/google and your production URL as authorised redirect URIs.",
+    "googleMissingStep3": "Set GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, and NEXTAUTH_SECRET in your .env.local file.",
+    "googleMissingStep4": "Restart the dev server after updating environment variables.",
+    "googleMissingButton": "Configure Google OAuth",
+    "googleMissingDocs": "Read the NextAuth Google provider guide",
+    "googleMissingDocsLabel": "Setup guide"
   },
   "common": {
     "loading": "Loading...",

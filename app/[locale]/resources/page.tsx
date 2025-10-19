@@ -3,33 +3,83 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import type { LucideIcon } from 'lucide-react';
+import {
+  Badge,
+} from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
-import { FileText, ExternalLink, Search, Sparkles } from 'lucide-react';
+import {
+  BookMarked,
+  Clapperboard,
+  ExternalLink,
+  FileText,
+  Globe,
+  GraduationCap,
+  Headphones,
+  Mic,
+  Newspaper,
+  Play,
+  Search,
+  Sparkles,
+} from 'lucide-react';
 import AuthGuard from '@/components/auth/AuthGuard';
 import resourcesData from '@/data/resources.json';
 
-type ResourceLink = {
+type ResourceFormat = 'website' | 'video' | 'audio' | 'podcast' | 'article' | 'document';
+
+type ResourceItem = {
   title: string;
   url: string;
-  page: number;
+  summary: string;
+  format: ResourceFormat;
 };
 
-type ResourceSection = {
+type ResourceCollection = {
+  id: string;
   title: string;
-  page: number;
-  resources: ResourceLink[];
+  description: string;
+  icon: string;
+  items: ResourceItem[];
 };
 
-type ResourceFile = {
-  source: string;
-  generatedAt: string;
-  sections: ResourceSection[];
+type ResourceData = {
+  updatedAt: string;
+  pdf?: {
+    label: string;
+    url: string;
+  };
+  collections: ResourceCollection[];
 };
 
-type ExtendedSection = ResourceSection & { slug: string };
+type ExtendedCollection = ResourceCollection & { slug: string };
+
+const collectionIcons: Record<string, LucideIcon> = {
+  library: BookMarked,
+  graduation: GraduationCap,
+  clapperboard: Clapperboard,
+  headphones: Headphones,
+  newspaper: Newspaper,
+};
+
+const formatIcons: Record<ResourceFormat, LucideIcon> = {
+  website: Globe,
+  video: Play,
+  audio: Headphones,
+  podcast: Mic,
+  article: Newspaper,
+  document: FileText,
+};
+
+const formatFallbackLabel: Record<ResourceFormat, string> = {
+  website: 'Website',
+  video: 'Video',
+  audio: 'Audio',
+  podcast: 'Podcast',
+  article: 'Article',
+  document: 'Document',
+};
 
 function slugify(value: string, fallback: string): string {
   const slug = value
@@ -47,38 +97,38 @@ export default function ResourcesPage() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const resourceFile = resourcesData as ResourceFile;
-  const sections = resourceFile.sections;
+  const resourceData = resourcesData as ResourceData;
+  const collections = resourceData.collections;
 
-  const sectionsWithSlug = useMemo<ExtendedSection[]>(
+  const collectionsWithSlug = useMemo<ExtendedCollection[]>(
     () =>
-      sections.map((section, index) => ({
-        ...section,
-        slug: slugify(section.title, `section-${index}`),
+      collections.map((collection, index) => ({
+        ...collection,
+        slug: slugify(collection.id || collection.title, `collection-${index}`),
       })),
-    [sections]
+    [collections]
   );
 
   const sectionParamRaw = searchParams.get('section');
-  const validSectionParam = useMemo(() => {
-    if (sectionParamRaw && sectionsWithSlug.some((section) => section.slug === sectionParamRaw)) {
+  const validCollectionParam = useMemo(() => {
+    if (sectionParamRaw && collectionsWithSlug.some((collection) => collection.slug === sectionParamRaw)) {
       return sectionParamRaw;
     }
     return 'all';
-  }, [sectionParamRaw, sectionsWithSlug]);
+  }, [sectionParamRaw, collectionsWithSlug]);
 
   const initialQuery = searchParams.get('q') ?? '';
 
   const [searchQuery, setSearchQuery] = useState(initialQuery);
-  const [activeSection, setActiveSection] = useState(validSectionParam);
+  const [activeCollection, setActiveCollection] = useState(validCollectionParam);
 
   useEffect(() => {
     setSearchQuery(initialQuery);
   }, [initialQuery]);
 
   useEffect(() => {
-    setActiveSection(validSectionParam);
-  }, [validSectionParam]);
+    setActiveCollection(validCollectionParam);
+  }, [validCollectionParam]);
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -95,8 +145,8 @@ export default function ResourcesPage() {
         params.delete('q');
       }
 
-      if (activeSection && activeSection !== 'all') {
-        params.set('section', activeSection);
+      if (activeCollection && activeCollection !== 'all') {
+        params.set('section', activeCollection);
       } else {
         params.delete('section');
       }
@@ -110,111 +160,119 @@ export default function ResourcesPage() {
     }, 200);
 
     return () => clearTimeout(handler);
-  }, [activeSection, pathname, router, searchQuery]);
+  }, [activeCollection, pathname, router, searchQuery]);
 
   useEffect(() => {
-    if (activeSection === 'all') {
+    if (activeCollection === 'all') {
       return;
     }
 
-    const element = document.getElementById(`section-${activeSection}`);
+    const element = document.getElementById(`collection-${activeCollection}`);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-  }, [activeSection]);
+  }, [activeCollection]);
 
-  const filteredSections = useMemo(() => {
+  const filteredCollections = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
 
-    let workingSections = sectionsWithSlug;
+    let workingCollections = collectionsWithSlug;
 
-    if (activeSection !== 'all') {
-      workingSections = workingSections.filter((section) => section.slug === activeSection);
+    if (activeCollection !== 'all') {
+      workingCollections = workingCollections.filter((collection) => collection.slug === activeCollection);
     }
 
     if (!query) {
-      return workingSections;
+      return workingCollections;
     }
 
-    return workingSections
-      .map((section) => {
-        const sectionMatches = section.title.toLowerCase().includes(query);
-        const matchingResources = section.resources.filter((resource) => {
-          const titleMatches = resource.title.toLowerCase().includes(query);
-          const urlMatches = resource.url.toLowerCase().includes(query);
-          return titleMatches || urlMatches;
+    return workingCollections
+      .map((collection) => {
+        const collectionMatches = collection.title.toLowerCase().includes(query) || collection.description.toLowerCase().includes(query);
+        const matchingItems = collection.items.filter((item) => {
+          const titleMatches = item.title.toLowerCase().includes(query);
+          const summaryMatches = item.summary.toLowerCase().includes(query);
+          const urlMatches = item.url.toLowerCase().includes(query);
+          return titleMatches || summaryMatches || urlMatches;
         });
 
-        if (matchingResources.length > 0) {
+        if (matchingItems.length > 0) {
           return {
-            ...section,
-            resources: matchingResources,
-          } satisfies ExtendedSection;
+            ...collection,
+            items: matchingItems,
+          } satisfies ExtendedCollection;
         }
 
-        return sectionMatches ? section : null;
+        return collectionMatches ? collection : null;
       })
-      .filter((section): section is ExtendedSection => Boolean(section));
-  }, [activeSection, searchQuery, sectionsWithSlug]);
+      .filter((collection): collection is ExtendedCollection => Boolean(collection));
+  }, [activeCollection, collectionsWithSlug, searchQuery]);
 
-  const totalMatches = filteredSections.reduce((acc, section) => acc + section.resources.length, 0);
-  const totalResources = sectionsWithSlug.reduce((acc, section) => acc + section.resources.length, 0);
-  const pdfUrl = resourceFile.source;
-  const generatedDate = new Date(resourceFile.generatedAt);
-  const selectedSection = activeSection !== 'all' ? sectionsWithSlug.find((section) => section.slug === activeSection) : null;
+  const totalMatches = filteredCollections.reduce((acc, collection) => acc + collection.items.length, 0);
+  const totalResources = collectionsWithSlug.reduce((acc, collection) => acc + collection.items.length, 0);
+  const pdfLink = resourceData.pdf;
+  const updatedDate = new Date(resourceData.updatedAt);
+  const selectedCollection = activeCollection !== 'all' ? collectionsWithSlug.find((collection) => collection.slug === activeCollection) : null;
   const resultsSummary = t('resultsSummary', { count: totalMatches, total: totalResources });
 
-  const handleSectionSelect = (slug: string) => {
-    setActiveSection(slug);
+  const handleCollectionSelect = (slug: string) => {
+    setActiveCollection(slug);
+  };
+
+  const formatLabel = (format: ResourceFormat) => {
+    try {
+      return t(`formats.${format}` as const);
+    } catch (error) {
+      return formatFallbackLabel[format];
+    }
   };
 
   return (
     <AuthGuard>
       <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
         <div className="container mx-auto px-4 py-12">
-          {/* Header */}
-          <div className="max-w-4xl mx-auto text-center mb-12 space-y-6">
+          <div className="mx-auto mb-12 max-w-4xl space-y-6 text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1 text-sm font-medium text-primary">
               <Sparkles className="h-4 w-4" />
               {t('title')}
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
               {t('subtitle')}
             </h1>
 
-            {/* Search */}
-            <div className="relative max-w-xl mx-auto">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+            <div className="relative mx-auto max-w-xl">
+              <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
               <Input
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
                 placeholder={t('search')}
-                className="pl-10 text-lg h-12"
+                className="h-12 rounded-xl pl-10 text-lg"
               />
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground">
-              <Button variant="outline" asChild className="gap-2">
-                <a href={pdfUrl} target="_blank" rel="noopener noreferrer">
-                  <FileText className="h-4 w-4" />
-                  {t('viewPdf')}
-                </a>
-              </Button>
+              {pdfLink ? (
+                <Button variant="outline" asChild className="gap-2">
+                  <a href={pdfLink.url} target="_blank" rel="noopener noreferrer">
+                    <FileText className="h-4 w-4" />
+                    {pdfLink.label || t('viewPdf')}
+                  </a>
+                </Button>
+              ) : null}
               <span>
-                Updated{' '}
-                <span className="italic">
-                  {generatedDate.toLocaleDateString(undefined, {
+                {t('updatedOn', {
+                  date: updatedDate.toLocaleDateString(undefined, {
                     month: 'short',
                     day: 'numeric',
                     year: 'numeric',
-                  })}
-                </span>
+                  }),
+                })}
               </span>
               <span>{resultsSummary}</span>
-              {selectedSection && (
+              {selectedCollection && (
                 <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1 text-primary">
                   <Sparkles className="h-4 w-4" />
-                  {selectedSection.title}
+                  {selectedCollection.title}
                 </span>
               )}
             </div>
@@ -224,97 +282,107 @@ export default function ResourcesPage() {
                 <Button
                   type="button"
                   size="sm"
-                  variant={activeSection === 'all' ? 'default' : 'outline'}
-                  onClick={() => handleSectionSelect('all')}
+                  variant={activeCollection === 'all' ? 'default' : 'outline'}
+                  onClick={() => handleCollectionSelect('all')}
                 >
                   {t('showAll')}
                 </Button>
-                {sectionsWithSlug.map((section) => (
+                {collectionsWithSlug.map((collection) => (
                   <Button
-                    key={section.slug}
+                    key={collection.slug}
                     type="button"
                     size="sm"
-                    variant={activeSection === section.slug ? 'default' : 'outline'}
-                    onClick={() => handleSectionSelect(section.slug)}
+                    variant={activeCollection === collection.slug ? 'default' : 'outline'}
+                    onClick={() => handleCollectionSelect(collection.slug)}
                   >
-                    {section.title}
+                    {collection.title}
                   </Button>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Resources Grid */}
-          <div className="max-w-6xl mx-auto">
-            {filteredSections.length === 0 || totalMatches === 0 ? (
-              <Card className="bg-card/50 backdrop-blur border-border/50">
+          <div className="mx-auto max-w-6xl">
+            {filteredCollections.length === 0 || totalMatches === 0 ? (
+              <Card className="border-border/50 bg-card/50 backdrop-blur">
                 <CardContent className="py-12 text-center text-muted-foreground">
                   {t('noResults')}
                 </CardContent>
               </Card>
             ) : (
               <div className="space-y-6">
-                {filteredSections.map((section) => (
-                  <Card key={section.slug} id={`section-${section.slug}`} className="bg-card/50 backdrop-blur border-border/50">
-                    <CardHeader className="flex flex-col gap-3">
-                      <div className="flex flex-wrap items-center justify-between gap-3">
-                        <div className="flex items-center gap-3">
-                          <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-primary to-secondary text-primary-foreground flex items-center justify-center">
-                            <FileText className="h-6 w-6" />
+                {filteredCollections.map((collection) => {
+                  const Icon = collectionIcons[collection.icon] ?? BookMarked;
+                  return (
+                    <Card key={collection.slug} id={`collection-${collection.slug}`} className="border-border/50 bg-card/60 backdrop-blur">
+                      <CardHeader className="flex flex-col gap-4">
+                        <div className="flex flex-wrap items-center justify-between gap-3">
+                          <div className="flex items-center gap-3 text-left">
+                            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-primary-foreground">
+                              <Icon className="h-6 w-6" />
+                            </div>
+                            <div>
+                              <CardTitle className="text-2xl font-semibold text-foreground">{collection.title}</CardTitle>
+                              <CardDescription className="text-sm text-muted-foreground">
+                                {collection.description}
+                              </CardDescription>
+                            </div>
                           </div>
-                          <div className="text-left">
-                            <CardTitle className="text-2xl font-semibold">{section.title}</CardTitle>
-                            <CardDescription>Page {section.page}</CardDescription>
-                          </div>
+                          <Badge variant="secondary" className="text-xs font-semibold uppercase tracking-wide">
+                            {t('collectionCount', { count: collection.items.length })}
+                          </Badge>
                         </div>
-                        <Badge variant="secondary" className="text-xs font-semibold">
-                          {section.resources.length}
-                        </Badge>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        {section.resources.map((resource) => (
-                          <Button
-                            key={`${section.slug}-${resource.url}`}
-                            variant="outline"
-                            asChild
-                            className="h-auto py-3 px-4 justify-between gap-3"
-                          >
-                            <a href={resource.url} target="_blank" rel="noopener noreferrer" className="flex w-full items-center justify-between gap-3">
-                              <span className="flex items-center gap-2 text-left">
-                                <ExternalLink className="h-4 w-4" />
-                                <span className="truncate" title={resource.title}>
-                                  {resource.title}
-                                </span>
-                              </span>
-                              <Badge variant="outline" className="shrink-0">
-                                p. {resource.page}
-                              </Badge>
-                            </a>
-                          </Button>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-3">
+                          {collection.items.map((item) => {
+                            const FormatIcon = formatIcons[item.format] ?? FileText;
+                            return (
+                              <a
+                                key={`${collection.slug}-${item.url}`}
+                                href={item.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group block rounded-xl border border-border/60 bg-card/40 px-4 py-4 transition hover:border-primary/40 hover:bg-primary/5"
+                              >
+                                <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                                  <div className="space-y-1 pr-0 md:pr-6">
+                                    <p className="flex items-center gap-2 text-base font-semibold text-foreground transition group-hover:text-primary">
+                                      {item.title}
+                                      <ExternalLink className="h-4 w-4 opacity-50 group-hover:opacity-100" />
+                                    </p>
+                                    <p className="text-sm text-muted-foreground">{item.summary}</p>
+                                  </div>
+                                  <div className="flex items-center gap-2 self-start md:self-center">
+                                    <Badge variant="outline" className="flex items-center gap-2">
+                                      <FormatIcon className="h-3.5 w-3.5" />
+                                      {formatLabel(item.format)}
+                                    </Badge>
+                                  </div>
+                                </div>
+                              </a>
+                            );
+                          })}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
               </div>
             )}
           </div>
 
-          {/* PDF Viewer Info */}
-          <Card className="mt-8 bg-gradient-to-br from-card/80 to-muted/30 backdrop-blur border-border/50">
+          <Card className="mt-8 border-border/60 bg-gradient-to-br from-card/80 to-muted/30 backdrop-blur">
             <CardHeader>
               <CardTitle>{t('searchInDoc')}</CardTitle>
-              <CardDescription className="text-base pt-2">
-                Click &quot;View PDF&quot; above to open the dictionary. You can use your browser&apos;s built-in PDF viewer to search within the document (Ctrl+F or Cmd+F).
+              <CardDescription className="pt-2 text-base text-muted-foreground">
+                {t('pdfHint')}
               </CardDescription>
             </CardHeader>
           </Card>
         </div>
 
-        {/* Footer */}
-        <footer className="border-t border-border/40 bg-card/30 backdrop-blur-sm mt-20">
+        <footer className="mt-20 border-t border-border/40 bg-card/30 backdrop-blur-sm">
           <div className="container mx-auto px-4 py-8 text-center text-muted-foreground">
             <p>
               Креирано од <span className="font-semibold text-foreground">Винсент Баталија</span>

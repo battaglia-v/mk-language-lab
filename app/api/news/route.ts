@@ -106,6 +106,45 @@ function extractTags(xml: string, tag: string): string[] {
   return matches;
 }
 
+function extractAttributeValue(xml: string, tag: string, attribute: string): string | null {
+  const pattern = new RegExp(`<${tag}[^>]+${attribute}=["']([^"']+)["'][^>]*>`, 'i');
+  const match = pattern.exec(xml);
+  return match ? decodeHtmlEntities(match[1].trim()) : null;
+}
+
+function isValidHttpUrl(value: string | null | undefined): value is string {
+  return Boolean(value && /^https?:\/\//i.test(value));
+}
+
+function resolveItemLink(itemXml: string, source: NewsSource, descriptionRaw: string): string {
+  const linkTag = extractTag(itemXml, 'link');
+  if (isValidHttpUrl(linkTag)) {
+    return linkTag;
+  }
+
+  const atomLink = extractAttributeValue(itemXml, 'link', 'href');
+  if (isValidHttpUrl(atomLink)) {
+    return atomLink;
+  }
+
+  const guidTag = extractTag(itemXml, 'guid');
+  if (isValidHttpUrl(guidTag)) {
+    return guidTag;
+  }
+
+  const anchorMatch = /<a[^>]+href=["']([^"']+)["'][^>]*>/i.exec(descriptionRaw);
+  if (anchorMatch && isValidHttpUrl(anchorMatch[1])) {
+    return decodeHtmlEntities(anchorMatch[1]);
+  }
+
+  const rawUrlMatch = /(https?:\/\/[^\s"'<>]+)/i.exec(descriptionRaw);
+  if (rawUrlMatch && isValidHttpUrl(rawUrlMatch[1])) {
+    return decodeHtmlEntities(rawUrlMatch[1]);
+  }
+
+  return source.homepage;
+}
+
 function parseFeed(xml: string, source: NewsSource): NewsItem[] {
   const items: NewsItem[] = [];
   const itemPattern = /<item[\s\S]*?<\/item>/gi;
@@ -114,8 +153,8 @@ function parseFeed(xml: string, source: NewsSource): NewsItem[] {
   while ((match = itemPattern.exec(xml)) !== null) {
     const itemXml = match[0];
     const title = extractTag(itemXml, 'title') ?? 'Untitled';
-    const link = extractTag(itemXml, 'link') ?? source.homepage;
     const descriptionRaw = extractTag(itemXml, 'description') ?? '';
+    const link = resolveItemLink(itemXml, source, descriptionRaw);
     const pubDate = extractTag(itemXml, 'pubDate') ?? extractTag(itemXml, 'dc:date');
     const publishedAt = pubDate ? new Date(pubDate).toISOString() : new Date().toISOString();
     const categories = extractTags(itemXml, 'category').map((category) => category.replace(/\s+/g, ' ').trim());
@@ -123,10 +162,10 @@ function parseFeed(xml: string, source: NewsSource): NewsItem[] {
     const hashBase = `${source.id}-${link}-${title}-${publishedAt}`;
     const id = crypto.createHash('md5').update(hashBase).digest('hex');
 
-  const combinedText = `${itemXml}\n${link}\n${descriptionRaw}`;
-  const videosSet = new Set<string>();
-  let videoMatch: RegExpExecArray | null;
-  const videoRegex = new RegExp(VIDEO_URL_REGEX.source, VIDEO_URL_REGEX.flags);
+    const combinedText = `${itemXml}\n${link}\n${descriptionRaw}`;
+    const videosSet = new Set<string>();
+    let videoMatch: RegExpExecArray | null;
+    const videoRegex = new RegExp(VIDEO_URL_REGEX.source, VIDEO_URL_REGEX.flags);
     while ((videoMatch = videoRegex.exec(combinedText)) !== null) {
       const url = decodeHtmlEntities(videoMatch[1]);
       videosSet.add(url);
