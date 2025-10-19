@@ -72,6 +72,7 @@ export function QuickPracticeWidget({
   const [answer, setAnswer] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [revealedAnswer, setRevealedAnswer] = useState('');
+  const isCompact = layout === 'compact';
 
   const filteredItems = useMemo(() => {
     if (category === ALL_CATEGORIES) {
@@ -187,13 +188,18 @@ export function QuickPracticeWidget({
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
-        <div className="flex flex-col gap-4 md:flex-row md:items-end">
-          <div className="flex-1 space-y-2">
+        <div
+          className={cn(
+            'flex gap-4',
+            isCompact ? 'flex-col' : 'flex-col sm:flex-row sm:items-end'
+          )}
+        >
+          <div className={cn('space-y-2', isCompact ? 'w-full' : 'flex-1')}>
             <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               {t('practiceFilterLabel')}
             </span>
             <Select value={category} onValueChange={setCategory}>
-              <SelectTrigger aria-label={t('practiceFilterLabel')}>
+              <SelectTrigger aria-label={t('practiceFilterLabel')} className="w-full">
                 <SelectValue placeholder={t('practiceAllCategories')} />
               </SelectTrigger>
               <SelectContent>
@@ -206,18 +212,18 @@ export function QuickPracticeWidget({
               </SelectContent>
             </Select>
           </div>
-          <div className="space-y-2 md:w-auto">
+          <div className={cn('space-y-2', isCompact ? 'w-full' : 'sm:w-auto')}>
             <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               {t('practiceModeLabel')}
             </span>
-            <div className="flex w-full rounded-lg border border-border/60 bg-background/60 p-1 md:w-max">
+            <div className={cn('flex rounded-lg border border-border/60 bg-background/60 p-1', isCompact ? 'w-full gap-2' : 'w-full sm:w-max')}>
               <Button
                 type="button"
                 size="sm"
                 variant={mode === 'mkToEn' ? 'default' : 'outline'}
                 onClick={() => setMode('mkToEn')}
                 aria-pressed={mode === 'mkToEn'}
-                className="flex-1 px-3 md:flex-none"
+                className={cn('px-3', isCompact ? 'flex-1' : 'sm:flex-none')}
               >
                 {t('practiceModeMkToEn')}
               </Button>
@@ -227,7 +233,7 @@ export function QuickPracticeWidget({
                 variant={mode === 'enToMk' ? 'default' : 'outline'}
                 onClick={() => setMode('enToMk')}
                 aria-pressed={mode === 'enToMk'}
-                className="flex-1 px-3 md:flex-none"
+                className={cn('px-3', isCompact ? 'flex-1' : 'sm:flex-none')}
               >
                 {t('practiceModeEnToMk')}
               </Button>

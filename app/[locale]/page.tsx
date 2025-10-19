@@ -119,6 +119,12 @@ export default function JourneyHomePage() {
                   <Button size="lg" variant="outline" className="text-base md:text-lg" asChild>
                     <Link href={buildHref('/practice')}>{t('ctaSecondary')}</Link>
                   </Button>
+                  <Button size="lg" variant="ghost" className="gap-2 text-base md:text-lg" asChild>
+                    <Link href={buildHref('/news')}>
+                      <Newspaper className="h-5 w-5" />
+                      {t('ctaNews')}
+                    </Link>
+                  </Button>
                 </div>
               </div>
 
