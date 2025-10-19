@@ -21,6 +21,12 @@ export type JourneyDefinition = {
   practiceRecommendations: JourneyPracticeRecommendation[];
 };
 
+export type JourneyProgressContext = {
+  stepsThisWeek: number;
+  totalSessions: number;
+  lastSessionIso: string | null;
+};
+
 const definitions: Record<JourneyId, JourneyDefinition> = {
   family: {
     id: 'family',
@@ -135,13 +141,28 @@ export function getPrimaryJourneyPracticeCard(journeyId: JourneyId): PracticeCar
   return first ? first.cardId : null;
 }
 
-export function buildJourneyTutorPrompt(journeyId: JourneyId): string {
+export function buildJourneyTutorPrompt(journeyId: JourneyId, progress?: JourneyProgressContext): string {
   const journey = definitions[journeyId];
 
-  const practiceLines = journey.practiceRecommendations
-    .map((rec) => `- ${rec.label}: ${rec.reason}`)
-    .join('\n');
+  const lines: string[] = [
+    `Journey name: ${journey.title}`,
+    `Summary: ${journey.summary}`,
+    'Focus areas:',
+    ...journey.focusAreas.map((focus) => `- ${focus}`),
+    'Suggested practice:',
+    ...journey.practiceRecommendations.map((rec) => `- ${rec.label}: ${rec.reason}`),
+    `Tutor guidance: ${journey.tutorSupport}`,
+  ];
 
-  return [`Journey name: ${journey.title}`, `Summary: ${journey.summary}`, 'Focus areas:', ...journey.focusAreas.map((focus) => `- ${focus}`), 'Suggested practice:', practiceLines, `Tutor guidance: ${journey.tutorSupport}`]
-    .join('\n');
+  if (progress) {
+    lines.push(
+      '',
+      'Learner progress signals:',
+      `- Steps logged this week: ${progress.stepsThisWeek}`,
+      `- Total sessions logged: ${progress.totalSessions}`,
+      `- Last session recorded (ISO): ${progress.lastSessionIso ?? 'Not recorded'}`
+    );
+  }
+
+  return lines.join('\n');
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useActiveJourney } from '@/hooks/use-active-journey';
+import { useJourneyProgress } from '@/hooks/use-journey-progress';
 import { getPrimaryJourneyPracticeCard } from '@/data/journeys';
 import {
   PRACTICE_SECTIONS,
@@ -18,6 +19,7 @@ import {
   isPracticeSection,
   isPracticeCardId,
   PracticeCardId,
+  type PracticeCard,
 } from '@/data/practice';
 
 export default function PracticeHubPage() {
@@ -25,6 +27,7 @@ export default function PracticeHubPage() {
   const locale = useLocale();
   const searchParams = useSearchParams();
   const { activeJourney } = useActiveJourney();
+  const { logSession } = useJourneyProgress(activeJourney);
 
   const cardParam = searchParams.get('card');
   const sectionParam = searchParams.get('section');
@@ -63,7 +66,29 @@ export default function PracticeHubPage() {
     setActiveSection(initialSection);
   }, [initialSection]);
 
-  const buildHref = (path: string) => (path.startsWith('/') ? `/${locale}${path}` : `/${locale}/${path}`);
+  const buildHref = useCallback(
+    (path: string) => (path.startsWith('/') ? `/${locale}${path}` : `/${locale}/${path}`),
+    [locale]
+  );
+
+  const buildCardHref = useCallback(
+    (card: PracticeCard) => {
+      const baseHref = buildHref(card.href);
+
+      if (!activeJourney) {
+        return baseHref;
+      }
+
+      if (card.href.includes('journey=')) {
+        return baseHref;
+      }
+
+      const hasQuery = card.href.includes('?');
+      const separator = hasQuery ? '&' : '?';
+      return `${baseHref}${separator}journey=${activeJourney}`;
+    },
+    [activeJourney, buildHref]
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
@@ -123,7 +148,9 @@ export default function PracticeHubPage() {
                             </p>
                           ) : null}
                           <Button variant="outline" className="gap-2" asChild>
-                            <Link href={buildHref(card.href)}>{t('openAction')}</Link>
+                            <Link href={buildCardHref(card)} onClick={() => logSession()}>
+                              {t('openAction')}
+                            </Link>
                           </Button>
                         </CardContent>
                       </Card>

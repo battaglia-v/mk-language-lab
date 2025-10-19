@@ -134,7 +134,7 @@ export default function JourneyDetailPage({ params }: PageProps) {
                   <div className="grid gap-3 sm:grid-cols-2">
                     {practiceRecommendations.map(({ card, reason }) => {
                       const Icon = card.icon;
-                      const practiceHref = `/practice?section=${card.section}&card=${card.id}`;
+                      const practiceHref = `/practice?section=${card.section}&card=${card.id}&journey=${journey.id}`;
 
                       return (
                         <div key={card.id} className="space-y-3 rounded-lg border border-border/40 bg-background/70 p-4">

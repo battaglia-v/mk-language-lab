@@ -1,9 +1,12 @@
+import type { ReactNode } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ActiveJourneyStat } from '@/components/journey/ActiveJourneyStat';
+import { JourneyStepsStat } from '@/components/journey/JourneyStepsStat';
+import { JourneyLastSessionStat } from '@/components/journey/JourneyLastSessionStat';
 import { JOURNEY_IDS, JourneyId, JOURNEY_DEFINITIONS } from '@/data/journeys';
 import {
   Compass,
@@ -20,6 +23,13 @@ import {
 const QUICK_ACTION_KEYS = ['practice', 'tutor', 'library'] as const;
 
 type QuickActionKey = (typeof QUICK_ACTION_KEYS)[number];
+
+type StatItem = {
+  key: 'activeGoal' | 'steps' | 'lastSession';
+  label: string;
+  render?: () => ReactNode;
+  value?: string;
+};
 
 const goalIcons: Record<JourneyId, typeof Users> = {
   family: Users,
@@ -39,7 +49,7 @@ export default function JourneyHomePage() {
 
   const buildHref = (path: string) => (path === '/' ? `/${locale}` : `/${locale}${path}`);
 
-  const stats = [
+  const stats: StatItem[] = [
     {
       key: 'activeGoal' as const,
       label: t('progress.stats.activeGoal.label'),
@@ -48,12 +58,12 @@ export default function JourneyHomePage() {
     {
       key: 'steps' as const,
       label: t('progress.stats.steps.label'),
-      value: t('progress.stats.steps.value'),
+      render: () => <JourneyStepsStat />,
     },
     {
       key: 'lastSession' as const,
       label: t('progress.stats.lastSession.label'),
-      value: t('progress.stats.lastSession.value'),
+      render: () => <JourneyLastSessionStat />,
     },
   ];
 

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
-import { Sparkles, BookOpen, Languages, Newspaper } from 'lucide-react';
+import { Sparkles, PenTool, Library } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -20,10 +20,9 @@ export default function Navigation() {
   const locale = useLocale();
 
   const navItems: NavItem[] = [
-    { path: '', label: t('home'), icon: Sparkles },
-    { path: '/translate', label: t('translate'), icon: Languages },
-    { path: '/resources', label: t('resources'), icon: BookOpen },
-    { path: '/news', label: t('news'), icon: Newspaper },
+    { path: '', label: t('journey'), icon: Sparkles },
+    { path: '/practice', label: t('practice'), icon: PenTool },
+    { path: '/library', label: t('library'), icon: Library },
   ];
 
   const buildHref = (path: string) => (path === '' ? `/${locale}` : `/${locale}${path}`);

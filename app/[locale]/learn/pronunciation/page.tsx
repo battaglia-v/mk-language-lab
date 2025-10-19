@@ -3,6 +3,8 @@ import { useLocale, useTranslations } from 'next-intl';
 import { ArrowLeft, AudioLines, Ear, Mic } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { isJourneyId } from '@/data/journeys';
+import { JOURNEY_PRACTICE_CONTENT } from '@/data/journey-practice-content';
 
 const TRACK_ORDER = ['sounds', 'stress', 'listening'] as const;
 
@@ -35,8 +37,13 @@ type ModuleResource = {
   href: string;
 };
 
-export default function PronunciationModulePage() {
+type PageProps = {
+  searchParams?: Record<string, string | string[] | undefined>;
+};
+
+export default function PronunciationModulePage({ searchParams }: PageProps) {
   const t = useTranslations('learnPronunciation');
+  const journeyT = useTranslations('journey');
   const locale = useLocale();
 
   const objectives = t.raw('objectives') as string[];
@@ -46,6 +53,11 @@ export default function PronunciationModulePage() {
     ...resource,
     href: resource.href.startsWith('/') ? `/${locale}${resource.href}` : resource.href,
   }));
+
+  const journeyParam = typeof searchParams?.journey === 'string' ? searchParams.journey : null;
+  const journeyId = journeyParam && isJourneyId(journeyParam) ? journeyParam : null;
+  const journeyTitle = journeyId ? journeyT(`goals.cards.${journeyId}.title`) : null;
+  const journeyDrills = journeyId ? JOURNEY_PRACTICE_CONTENT[journeyId]?.pronunciationDrills ?? [] : [];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
@@ -155,6 +167,36 @@ export default function PronunciationModulePage() {
             </CardContent>
           </Card>
         </section>
+
+        {journeyId && journeyDrills.length ? (
+          <Card className="border-border/40 bg-card/70 backdrop-blur">
+            <CardHeader className="space-y-2">
+              <CardTitle className="text-xl text-foreground">
+                {t('journeyDrillHeading', { journey: journeyTitle ?? '' })}
+              </CardTitle>
+              <CardDescription className="text-sm text-muted-foreground">
+                {t('journeyDrillSubtitle')}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              {journeyDrills.map((drill) => (
+                <div key={drill.id} className="space-y-3 rounded-lg border border-border/30 bg-muted/30 p-4">
+                  <div className="space-y-1">
+                    <p className="text-base font-semibold text-foreground">{drill.title}</p>
+                    <p className="text-sm text-muted-foreground">{drill.instructions}</p>
+                  </div>
+                  <ul className="space-y-2 text-sm text-foreground">
+                    {drill.lines.map((line) => (
+                      <li key={line} className="rounded-md bg-background/60 px-3 py-2">
+                        {line}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        ) : null}
       </div>
 
       <footer className="border-t border-border/40 bg-card/30 backdrop-blur-sm">

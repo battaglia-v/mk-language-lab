@@ -10,6 +10,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Send, Loader2, Plus, BookOpen, MessageSquare, Repeat, Eye, Compass } from 'lucide-react';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { useActiveJourney } from '@/hooks/use-active-journey';
+import { useJourneyProgress } from '@/hooks/use-journey-progress';
 import { JOURNEY_DEFINITIONS } from '@/data/journeys';
 import { practiceCardSectionLookup } from '@/data/practice';
 
@@ -24,6 +25,7 @@ export default function TutorPage() {
   const journeyDetailT = useTranslations('journeyDetail');
   const locale = useLocale();
   const { activeJourney } = useActiveJourney();
+  const { isHydrated: isProgressHydrated, stepsThisWeek, lastSessionIso, totalSessions, logSession } = useJourneyProgress(activeJourney);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -47,10 +49,19 @@ export default function TutorPage() {
     setIsLoading(true);
 
     try {
+      const journeyProgress =
+        activeJourney && isProgressHydrated
+          ? {
+              stepsThisWeek,
+              lastSessionIso,
+              totalSessions,
+            }
+          : null;
+
       const response = await fetch('/api/tutor', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: newMessages, activeJourney }),
+        body: JSON.stringify({ messages: newMessages, activeJourney, journeyProgress }),
       });
 
       const data = await response.json();
@@ -61,6 +72,10 @@ export default function TutorPage() {
       };
 
       setMessages([...newMessages, assistantMessage]);
+
+      if (activeJourney) {
+        logSession();
+      }
     } catch (error) {
       console.error('Tutor error:', error);
       const errorMessage: Message = {

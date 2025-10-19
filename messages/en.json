@@ -1,6 +1,6 @@
 {
   "nav": {
-    "journey": "Journey",
+    "journey": "Journey hub",
     "practice": "Practice",
     "library": "Library",
     "translate": "Translate",
@@ -29,7 +29,8 @@
         },
         "lastSession": {
           "label": "Last session",
-          "value": "Not started"
+          "value": "Not started",
+          "justNow": "Just now"
         }
       }
     },
@@ -215,7 +216,9 @@
         "description": "Video lessons and cultural clips to reinforce new words.",
         "href": "/resources?section=video"
       }
-    ]
+    ],
+    "journeyDrillHeading": "Journey drill: {journey}",
+    "journeyDrillSubtitle": "Shadow these lines to connect your cultural study with pronunciation practice."
   },
   "learnGrammar": {
     "back": "Back to Learn Hub",
@@ -365,7 +368,16 @@
         "description": "Conversational videos with natural pacing and slang.",
         "href": "/resources?section=audio"
       }
-    ]
+    ],
+    "journeyPracticeHeading": "Practice deck: {journey}",
+    "journeyPracticeSubtitle": "Use these prompts to warm up before your next session.",
+    "journeyPracticeNote": "Say each line aloud, then answer in Macedonian to keep the conversation moving.",
+    "journeyPracticeTable": {
+      "situation": "Scenario",
+      "macedonian": "Macedonian",
+      "english": "English",
+      "tip": "Tip"
+    }
   },
   "learnPronunciation": {
     "back": "Back to Learn Hub",
@@ -440,7 +452,9 @@
         "description": "Practice minimal pairs and connected speech with spoken shows.",
         "href": "/resources?section=audio"
       }
-    ]
+    ],
+    "journeyDrillHeading": "Journey drill: {journey}",
+    "journeyDrillSubtitle": "Shadow these lines to connect your cultural study with pronunciation practice."
   },
   "news": {
     "title": "News Feed",
@@ -472,6 +486,7 @@
     "send": "Send",
     "thinking": "Thinking...",
     "error": "Error communicating with tutor. Please try again.",
+  "emptyStateHeading": "How can I help you learn Macedonian?",
     "journeyContextTitle": "Active journey",
     "journeyContextReview": "Review journey plan",
     "journeyContextPractice": "Open recommended practice",
@@ -530,7 +545,12 @@
     ],
     "resourcesTitle": "Need richer explanations?",
     "resourcesDescription": "Explore trusted dictionaries, grammar guides, and curated Macedonian sources.",
-    "resourcesCta": "Browse resources"
+    "resourcesCta": "Browse resources",
+    "journeyPracticeTitle": "Journey practice samples: {journey}",
+    "journeyPracticeDescription": "Load a curated snippet to translate and discuss with your tutor.",
+    "journeyPracticeLoad": "Load into translator",
+    "journeyPracticeSourceLabel": "Source language: {language}",
+    "journeyPracticePrompt": "Discussion prompt"
   },
   "practiceHub": {
     "badge": "Daily practice",
@@ -733,7 +753,9 @@
     "done": "Done",
     "save": "Save",
     "saving": "Saving...",
-    "emptyColumnHint": "Drag tasks here"
+    "emptyColumnHint": "Drag tasks here",
+    "journeyPresetHeading": "Journey sprint loaded: {journey}",
+    "journeyPresetDescription": "We pre-filled travel-focused tasks so you can move cards as you practise each scenario."
   },
   "about": {
     "title": "About",

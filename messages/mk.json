@@ -1,6 +1,6 @@
 {
   "nav": {
-    "journey": "Патека",
+  "journey": "Патека хаб",
     "practice": "Вежбање",
     "library": "Библиотека",
     "translate": "Преведи",
@@ -29,7 +29,8 @@
         },
         "lastSession": {
           "label": "Последна сесија",
-          "value": "Не е започнато"
+          "value": "Не е започнато",
+          "justNow": "Токму сега"
         }
       }
     },
@@ -365,7 +366,16 @@
         "description": "Разговорни видеа со природно темпо и жаргон.",
         "href": "/resources?section=audio"
       }
-    ]
+    ],
+    "journeyPracticeHeading": "Практичен сет: {journey}",
+    "journeyPracticeSubtitle": "Искористи ги овие поттици за загревање пред следната сесија.",
+    "journeyPracticeNote": "Изговори ја секоја реченица наглас, па одговори на македонски за да го продолжиш разговорот.",
+    "journeyPracticeTable": {
+      "situation": "Сценарио",
+      "macedonian": "Македонски",
+      "english": "Англиски",
+      "tip": "Совет"
+    }
   },
   "learnPronunciation": {
     "back": "Назад до центарот за учење",
@@ -440,7 +450,9 @@
         "description": "Вежбај минимални парови и поврзан говор со подкасти.",
         "href": "/resources?section=audio"
       }
-    ]
+    ],
+    "journeyDrillHeading": "Вежба за патека: {journey}",
+    "journeyDrillSubtitle": "Сенчи ги речениците за да ја поврзеш културната содржина со изговорот."
   },
   "news": {
     "title": "Новости",
@@ -472,6 +484,7 @@
     "send": "Испрати",
     "thinking": "Размислувам...",
     "error": "Грешка при комуникација со наставникот. Ве молиме обидете се повторно.",
+  "emptyStateHeading": "Како можам да ти помогнам да учиш македонски?",
     "journeyContextTitle": "Активна патека",
     "journeyContextReview": "Прегледај план за патека",
     "journeyContextPractice": "Отвори препорачана алатка",
@@ -530,7 +543,12 @@
     ],
     "resourcesTitle": "Бараш повеќе објаснувања?",
     "resourcesDescription": "Отвори проверени речници, граматички водичи и курирани македонски извори.",
-    "resourcesCta": "Прегледај ресурси"
+    "resourcesCta": "Прегледај ресурси",
+    "journeyPracticeTitle": "Поттици од патека: {journey}",
+    "journeyPracticeDescription": "Вчитај куриран извадок за превод и дискусија со туторот.",
+    "journeyPracticeLoad": "Вчитај во преведувачот",
+    "journeyPracticeSourceLabel": "Изворен јазик: {language}",
+    "journeyPracticePrompt": "Поттик за разговор"
   },
   "practiceHub": {
     "badge": "Дневна рутина",
@@ -733,7 +751,9 @@
     "done": "Завршено",
     "save": "Зачувај",
     "saving": "Се зачувува...",
-    "emptyColumnHint": "Повлечете задачи овде"
+    "emptyColumnHint": "Повлечете задачи овде",
+    "journeyPresetHeading": "Вчитан сет од патека: {journey}",
+    "journeyPresetDescription": "Предпополнети задачи со патни сценарија за да ги движиш картичките додека вежбаш."
   },
   "about": {
     "title": "За Нас",

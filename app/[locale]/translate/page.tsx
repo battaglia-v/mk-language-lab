@@ -3,11 +3,16 @@
 import { FormEvent, useCallback, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 import { ArrowLeftRight, Check, Copy, Loader2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
+import { useActiveJourney } from '@/hooks/use-active-journey';
+import { useJourneyProgress } from '@/hooks/use-journey-progress';
+import { isJourneyId } from '@/data/journeys';
+import { JOURNEY_PRACTICE_CONTENT, type JourneyTranslationSnippet } from '@/data/journey-practice-content';
 
 type DirectionOption = {
   id: 'mk-en' | 'en-mk';
@@ -30,7 +35,11 @@ const MAX_CHARACTERS = 1800;
 
 export default function TranslatePage() {
   const t = useTranslations('translate');
+  const journeyT = useTranslations('journey');
   const locale = useLocale();
+  const searchParams = useSearchParams();
+  const { activeJourney } = useActiveJourney();
+  const { logSession } = useJourneyProgress(activeJourney);
   const rawTips = t.raw('tips');
   const tips = Array.isArray(rawTips) ? (rawTips as string[]) : [];
   const rawFallbackSteps = t.raw('fallbackSteps');
@@ -85,6 +94,13 @@ export default function TranslatePage() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [copiedState, setCopiedState] = useState<'idle' | 'copied'>('idle');
   const [history, setHistory] = useState<TranslationHistoryEntry[]>([]);
+
+  const journeyParam = searchParams?.get('journey') ?? null;
+  const journeyId = journeyParam && isJourneyId(journeyParam) ? journeyParam : null;
+  const journeyTitle = journeyId ? journeyT(`goals.cards.${journeyId}.title`) : null;
+  const journeySnippets: JourneyTranslationSnippet[] = journeyId
+    ? JOURNEY_PRACTICE_CONTENT[journeyId]?.translatorSnippets ?? []
+    : [];
 
   const directionLabelMap = useMemo(() => {
     return directionOptions.reduce<Record<DirectionOption['id'], string>>((acc, option) => {
@@ -175,6 +191,8 @@ export default function TranslatePage() {
           );
           return [newEntry, ...filtered].slice(0, HISTORY_LIMIT);
         });
+
+        logSession();
       } catch (error) {
         console.error('Translation failed', error);
         setTranslatedText('');
@@ -184,7 +202,7 @@ export default function TranslatePage() {
         setIsTranslating(false);
       }
     },
-    [directionId, inputText, selectedDirection.sourceLang, selectedDirection.targetLang, t]
+    [directionId, inputText, logSession, selectedDirection.sourceLang, selectedDirection.targetLang, t]
   );
 
   const handleCopy = useCallback(async () => {
@@ -210,6 +228,19 @@ export default function TranslatePage() {
     setErrorMessage(null);
     setCopiedState('idle');
   }, []);
+
+  const handleLoadSnippet = useCallback(
+    (snippet: JourneyTranslationSnippet) => {
+      setDirectionId(snippet.sourceLang === 'mk' ? 'mk-en' : 'en-mk');
+      setInputText(snippet.text);
+      setTranslatedText('');
+      setDetectedLanguage(null);
+      setErrorMessage(null);
+      setCopiedState('idle');
+      logSession();
+    },
+    [logSession]
+  );
 
   const characterCountLabel = t('characterCount', {
     count: inputText.length,
@@ -387,6 +418,45 @@ export default function TranslatePage() {
               </form>
             </CardContent>
           </Card>
+
+          {journeyId && journeySnippets.length ? (
+            <Card className="border-border/40 bg-card/60 backdrop-blur">
+              <CardHeader className="space-y-2">
+                <CardTitle className="text-xl text-foreground">
+                  {t('journeyPracticeTitle', { journey: journeyTitle ?? '' })}
+                </CardTitle>
+                <CardDescription className="text-sm text-muted-foreground">
+                  {t('journeyPracticeDescription')}
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {journeySnippets.map((snippet) => {
+                  const languageLabel =
+                    snippet.sourceLang === 'mk' ? t('languageLabels.mk') : t('languageLabels.en');
+                  return (
+                    <div key={snippet.id} className="space-y-3 rounded-lg border border-border/40 bg-background/60 p-4">
+                      <div className="space-y-1">
+                        <p className="text-base font-semibold text-foreground">{snippet.title}</p>
+                        <p className="text-xs uppercase tracking-wide text-muted-foreground">
+                          {t('journeyPracticeSourceLabel', { language: languageLabel })}
+                        </p>
+                      </div>
+                      <p className="whitespace-pre-line text-sm text-foreground">{snippet.text}</p>
+                      <div className="space-y-1">
+                        <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                          {t('journeyPracticePrompt')}
+                        </p>
+                        <p className="text-sm text-muted-foreground">{snippet.prompt}</p>
+                      </div>
+                      <Button size="sm" variant="outline" className="gap-2" onClick={() => handleLoadSnippet(snippet)}>
+                        {t('journeyPracticeLoad')}
+                      </Button>
+                    </div>
+                  );
+                })}
+              </CardContent>
+            </Card>
+          ) : null}
 
           <Card className="border-border/40 bg-card/50 backdrop-blur">
             <CardHeader className="space-y-2 text-center">

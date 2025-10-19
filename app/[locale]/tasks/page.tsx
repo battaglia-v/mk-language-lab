@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -26,6 +27,9 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { useTranslations as useJourneyTranslations } from 'next-intl';
+import { isJourneyId } from '@/data/journeys';
+import { JOURNEY_PRACTICE_CONTENT } from '@/data/journey-practice-content';
 
 interface Task {
   id: string;
@@ -122,6 +126,8 @@ function KanbanColumn({
 
 export default function TasksPage() {
   const t = useTranslations('tasks');
+  const journeyT = useJourneyTranslations('journey');
+  const searchParams = useSearchParams();
   const [columns, setColumns] = useState<Column[]>([
     { id: 'todo', title: t('todo'), tasks: [] },
     { id: 'in-progress', title: t('inProgress'), tasks: [] },
@@ -131,6 +137,9 @@ export default function TasksPage() {
   const [newTaskTitle, setNewTaskTitle] = useState('');
   const [newTaskDescription, setNewTaskDescription] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
+  const [templateApplied, setTemplateApplied] = useState(false);
+  const templateAppliedRef = useRef(false);
   const emptyColumnHint = t('emptyColumnHint');
 
   const sensors = useSensors(
@@ -139,6 +148,11 @@ export default function TasksPage() {
       coordinateGetter: sortableKeyboardCoordinates,
     })
   );
+
+  const journeyParam = searchParams?.get('journey') ?? null;
+  const journeyId = journeyParam && isJourneyId(journeyParam) ? journeyParam : null;
+  const journeyTitle = journeyId ? journeyT(`goals.cards.${journeyId}.title`) : null;
+  const journeyPreset = journeyId ? JOURNEY_PRACTICE_CONTENT[journeyId]?.taskPreset ?? null : null;
 
   // Load from localStorage on mount
   useEffect(() => {
@@ -151,12 +165,54 @@ export default function TasksPage() {
         console.error('Failed to parse saved board:', e);
       }
     }
+    setIsHydrated(true);
   }, []);
 
   // Save to localStorage whenever columns change
   useEffect(() => {
     localStorage.setItem('kanban-board', JSON.stringify(columns));
   }, [columns]);
+
+  useEffect(() => {
+    templateAppliedRef.current = false;
+    setTemplateApplied(false);
+  }, [journeyId]);
+
+  useEffect(() => {
+    if (!isHydrated || templateAppliedRef.current || !journeyPreset) {
+      return;
+    }
+
+    const boardIsEmpty = columns.every((column) => column.tasks.length === 0);
+
+    if (!boardIsEmpty) {
+      return;
+    }
+
+    setColumns((previous) => {
+      const updated = previous.map((column) => {
+        const presetTasks = journeyPreset.columns[column.id as keyof typeof journeyPreset.columns] ?? [];
+
+        if (!presetTasks.length) {
+          return column;
+        }
+
+        return {
+          ...column,
+          tasks: presetTasks.map((task, index) => ({
+            id: `preset-${column.id}-${index}`,
+            title: task.title,
+            description: task.description,
+          })),
+        };
+      });
+
+      return updated;
+    });
+
+    templateAppliedRef.current = true;
+    setTemplateApplied(true);
+  }, [columns, isHydrated, journeyPreset]);
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -325,6 +381,16 @@ export default function TasksPage() {
             </Button>
           </div>
         </div>
+
+        {journeyPreset && templateApplied ? (
+          <div className="mb-8 rounded-lg border border-primary/40 bg-primary/10 p-4">
+            <p className="text-sm font-semibold text-primary">
+              {t('journeyPresetHeading', { journey: journeyTitle ?? '' })}
+            </p>
+            <p className="text-sm text-primary/80">{journeyPreset.note}</p>
+            <p className="mt-2 text-xs text-muted-foreground">{t('journeyPresetDescription')}</p>
+          </div>
+        ) : null}
 
         {/* Kanban Board */}
         <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
