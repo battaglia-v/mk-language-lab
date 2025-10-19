@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
+import { buildJourneyTutorPrompt, getJourneyDefinition, isJourneyId } from '@/data/journeys';
 
 type TutorMessage = {
   role: 'user' | 'assistant';
@@ -32,7 +33,7 @@ Format your responses clearly with examples, and use Cyrillic script for Macedon
 
 export async function POST(request: NextRequest) {
   try {
-    const { messages } = await request.json();
+    const { messages, activeJourney } = await request.json();
 
     if (!messages || !Array.isArray(messages)) {
       return NextResponse.json(
@@ -61,9 +62,22 @@ export async function POST(request: NextRequest) {
       });
     }
 
+    let systemPrompt = MACEDONIAN_TUTOR_SYSTEM_PROMPT;
+
+    if (isJourneyId(activeJourney)) {
+      const journey = getJourneyDefinition(activeJourney);
+      if (journey) {
+        const context = buildJourneyTutorPrompt(journey.id);
+        systemPrompt = `${systemPrompt}
+
+Learner journey context:
+${context}`;
+      }
+    }
+
     // Add system prompt
     const messagesWithSystem: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
-      { role: 'system', content: MACEDONIAN_TUTOR_SYSTEM_PROMPT },
+      { role: 'system', content: systemPrompt },
       ...formattedMessages.map((message) => ({
         role: message.role,
         content: message.content,

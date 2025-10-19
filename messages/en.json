@@ -471,7 +471,12 @@
     "typePlaceholder": "Ask your tutor anything about Macedonian...",
     "send": "Send",
     "thinking": "Thinking...",
-    "error": "Error communicating with tutor. Please try again."
+    "error": "Error communicating with tutor. Please try again.",
+    "journeyContextTitle": "Active journey",
+    "journeyContextReview": "Review journey plan",
+    "journeyContextPractice": "Open recommended practice",
+    "journeyContextEmpty": "Set an active journey to personalize tutor responses.",
+    "journeyContextCta": "Choose a journey"
   },
   "translate": {
     "title": "Translate",
