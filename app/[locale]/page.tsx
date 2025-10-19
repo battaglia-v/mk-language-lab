@@ -8,6 +8,7 @@ import { ActiveJourneyStat } from '@/components/journey/ActiveJourneyStat';
 import { JourneyStepsStat } from '@/components/journey/JourneyStepsStat';
 import { JourneyLastSessionStat } from '@/components/journey/JourneyLastSessionStat';
 import { JOURNEY_IDS, JourneyId, JOURNEY_DEFINITIONS } from '@/data/journeys';
+import { QuickPracticeWidget } from '@/components/learn/QuickPracticeWidget';
 import {
   Compass,
   Users,
@@ -96,62 +97,69 @@ export default function JourneyHomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
-  <section className="container mx-auto px-4 py-16 sm:py-20">
-        <div className="mx-auto flex max-w-5xl flex-col gap-10">
-          <div className="space-y-6 text-center md:text-left">
-            <Badge variant="outline" className="mx-auto w-fit border-primary/40 bg-primary/5 text-primary md:mx-0">
-              {t('badge')}
-            </Badge>
-            <div className="space-y-3">
-              <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-6xl">{t('title')}</h1>
-              <p className="text-lg text-muted-foreground md:max-w-2xl md:text-xl">{t('subtitle')}</p>
+      <section className="container mx-auto px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(320px,380px)]">
+            <div className="flex flex-col gap-10">
+              <div className="space-y-6 text-center md:text-left">
+                <Badge variant="outline" className="mx-auto w-fit border-primary/40 bg-primary/5 text-primary md:mx-0">
+                  {t('badge')}
+                </Badge>
+                <div className="space-y-3">
+                  <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-6xl">{t('title')}</h1>
+                  <p className="text-lg text-muted-foreground md:max-w-2xl md:text-xl">{t('subtitle')}</p>
+                </div>
+                <div className="flex flex-wrap justify-center gap-4 md:justify-start">
+                  <Button size="lg" className="gap-2 text-base md:text-lg" asChild>
+                    <Link href={buildHref('/journey/family')}>
+                      <Compass className="h-5 w-5" />
+                      {t('ctaPrimary')}
+                    </Link>
+                  </Button>
+                  <Button size="lg" variant="outline" className="text-base md:text-lg" asChild>
+                    <Link href={buildHref('/practice')}>{t('ctaSecondary')}</Link>
+                  </Button>
+                </div>
+              </div>
+
+              <Card className="border-border/50 bg-card/60 backdrop-blur">
+                <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="space-y-1 text-center sm:text-left">
+                    <Badge variant="secondary" className="mx-auto w-fit sm:mx-0">
+                      {t('progress.badge')}
+                    </Badge>
+                    <CardTitle className="text-2xl text-foreground">{t('progress.title')}</CardTitle>
+                    <CardDescription className="text-sm text-muted-foreground">
+                      {t('progress.description')}
+                    </CardDescription>
+                  </div>
+                  <Button variant="outline" className="gap-2" asChild>
+                    <Link href={buildHref('/practice')}>
+                      <RefreshCw className="h-4 w-4" />
+                      {t('progress.cta')}
+                    </Link>
+                  </Button>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {stats.map((stat) => (
+                      <div key={stat.key} className="rounded-xl border border-border/50 bg-background/60 p-4 text-center sm:text-left">
+                        <p className="text-sm font-medium text-muted-foreground">{stat.label}</p>
+                        {stat.render ? (
+                          stat.render()
+                        ) : (
+                          <p className="text-2xl font-semibold text-foreground">{stat.value}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
             </div>
-            <div className="flex flex-wrap justify-center gap-4 md:justify-start">
-              <Button size="lg" className="gap-2 text-base md:text-lg" asChild>
-                <Link href={buildHref('/journey/family')}>
-                  <Compass className="h-5 w-5" />
-                  {t('ctaPrimary')}
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" className="text-base md:text-lg" asChild>
-                <Link href={buildHref('/practice')}>{t('ctaSecondary')}</Link>
-              </Button>
+            <div className="lg:sticky lg:top-24">
+              <QuickPracticeWidget layout="compact" className="h-full" />
             </div>
           </div>
-
-          <Card className="border-border/50 bg-card/60 backdrop-blur">
-            <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div className="space-y-1 text-center sm:text-left">
-                <Badge variant="secondary" className="mx-auto w-fit sm:mx-0">
-                  {t('progress.badge')}
-                </Badge>
-                <CardTitle className="text-2xl text-foreground">{t('progress.title')}</CardTitle>
-                <CardDescription className="text-sm text-muted-foreground">
-                  {t('progress.description')}
-                </CardDescription>
-              </div>
-              <Button variant="outline" className="gap-2" asChild>
-                <Link href={buildHref('/practice')}>
-                  <RefreshCw className="h-4 w-4" />
-                  {t('progress.cta')}
-                </Link>
-              </Button>
-            </CardHeader>
-            <CardContent>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {stats.map((stat) => (
-                  <div key={stat.key} className="rounded-xl border border-border/50 bg-background/60 p-4 text-center sm:text-left">
-                    <p className="text-sm font-medium text-muted-foreground">{stat.label}</p>
-                    {stat.render ? (
-                      stat.render()
-                    ) : (
-                      <p className="text-2xl font-semibold text-foreground">{stat.value}</p>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </section>
 
