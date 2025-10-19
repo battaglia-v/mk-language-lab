@@ -173,6 +173,11 @@ export function QuickPracticeWidget({
 
   const isReady = Boolean(currentItem);
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    handleCheck();
+  };
+
   return (
     <Card
       className={cn(
@@ -254,7 +259,7 @@ export function QuickPracticeWidget({
           </Badge>
         </div>
 
-        <div className="space-y-3">
+        <form className="space-y-3" onSubmit={handleSubmit}>
           <Input
             value={answer}
             onChange={(event) => setAnswer(event.target.value)}
@@ -264,7 +269,7 @@ export function QuickPracticeWidget({
             disabled={!isReady}
           />
           <div className="flex flex-wrap gap-2">
-            <Button onClick={handleCheck} disabled={!isReady || !answer.trim()}>
+            <Button type="submit" disabled={!isReady || !answer.trim()}>
               {t('checkAnswer')}
             </Button>
             <Button
@@ -285,7 +290,7 @@ export function QuickPracticeWidget({
               {t('practiceReset')}
             </Button>
           </div>
-        </div>
+        </form>
 
         {feedback && isReady ? (
           <div
