@@ -97,10 +97,10 @@ export default function JourneyHomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
-      <section className="container mx-auto px-4 py-16 sm:py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(320px,380px)]">
-            <div className="flex flex-col gap-10">
+      <section className="w-full border-b border-border/30 bg-card/5">
+        <div className="container mx-auto px-4 py-16 sm:py-20">
+          <div className="mx-auto flex w-full max-w-5xl flex-col gap-12 lg:flex-row lg:items-start">
+            <div className="flex flex-1 flex-col gap-10">
               <div className="space-y-6 text-center md:text-left">
                 <Badge variant="outline" className="mx-auto w-fit border-primary/40 bg-primary/5 text-primary md:mx-0">
                   {t('badge')}
@@ -156,8 +156,9 @@ export default function JourneyHomePage() {
                 </CardContent>
               </Card>
             </div>
-            <div className="lg:sticky lg:top-20 lg:self-start">
-              <div className="lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto lg:pr-1">
+
+            <div className="w-full lg:max-w-sm lg:pl-6">
+              <div className="mx-auto w-full max-w-md lg:mx-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto lg:pr-1">
                 <QuickPracticeWidget layout="compact" className="h-full" />
               </div>
             </div>
@@ -165,127 +166,138 @@ export default function JourneyHomePage() {
         </div>
       </section>
 
-      <section className="container mx-auto px-4 pb-16">
-        <div className="mx-auto max-w-5xl space-y-6">
-          <div className="flex items-center gap-3 text-center md:text-left">
-            <Sparkles className="mx-auto h-5 w-5 text-primary md:mx-0" />
-            <div className="space-y-1">
-              <h2 className="text-2xl font-semibold text-foreground">{t('quickActions.title')}</h2>
-              <p className="text-sm text-muted-foreground">{t('quickActions.description')}</p>
+      <section className="w-full">
+        <div className="container mx-auto px-4 pb-16">
+          <div className="mx-auto max-w-5xl space-y-6">
+            <div className="flex flex-col items-center gap-3 text-center md:flex-row md:items-center md:justify-between md:text-left">
+              <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary md:hidden">
+                <Sparkles className="h-5 w-5" />
+              </div>
+              <div className="flex w-full items-center gap-3 md:w-auto">
+                <Sparkles className="hidden h-5 w-5 text-primary md:block" />
+                <div className="space-y-1">
+                  <h2 className="text-2xl font-semibold text-foreground">{t('quickActions.title')}</h2>
+                  <p className="text-sm text-muted-foreground">{t('quickActions.description')}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+              {quickActions.map((action) => {
+                const Icon = quickActionIcons[action.key as QuickActionKey];
+                return (
+                  <Card key={action.key} className="border-border/50 bg-card/60 backdrop-blur">
+                    <CardHeader className="space-y-3">
+                      <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/80 via-secondary/80 to-primary/40 text-primary-foreground">
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <div className="space-y-1">
+                        <CardTitle className="text-lg text-foreground">{t(`quickActions.items.${action.key}.label`)}</CardTitle>
+                        <CardDescription className="text-sm text-muted-foreground">
+                          {t(`quickActions.items.${action.key}.description`)}
+                        </CardDescription>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <Button variant="ghost" className="gap-2" asChild>
+                        <Link href={buildHref(action.href)}>
+                          <ArrowRight className="h-4 w-4" />
+                          {t('quickActions.open')}
+                        </Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {quickActions.map((action) => {
-              const Icon = quickActionIcons[action.key as QuickActionKey];
-              return (
-                <Card key={action.key} className="border-border/50 bg-card/60 backdrop-blur">
-                  <CardHeader className="space-y-3">
-                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/80 via-secondary/80 to-primary/40 text-primary-foreground">
-                      <Icon className="h-6 w-6" />
-                    </div>
-                    <div className="space-y-1">
-                      <CardTitle className="text-lg text-foreground">{t(`quickActions.items.${action.key}.label`)}</CardTitle>
-                      <CardDescription className="text-sm text-muted-foreground">
-                        {t(`quickActions.items.${action.key}.description`)}
-                      </CardDescription>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <Button variant="ghost" className="gap-2" asChild>
-                      <Link href={buildHref(action.href)}>
-                        <ArrowRight className="h-4 w-4" />
-                        {t('quickActions.open')}
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              );
-            })}
+      <section className="w-full">
+        <div className="container mx-auto px-4 pb-16">
+          <div className="mx-auto max-w-5xl space-y-6">
+            <div className="space-y-1 text-center md:text-left">
+              <h2 className="text-3xl font-semibold text-foreground">{t('goals.title')}</h2>
+              <p className="text-sm text-muted-foreground md:max-w-3xl">{t('goals.description')}</p>
+            </div>
+
+            <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+              {goals.map((goal) => {
+                const Icon = goalIcons[goal.key];
+                return (
+                  <Card key={goal.key} className="flex flex-col justify-between border-border/50 bg-card/70 backdrop-blur">
+                    <CardHeader className="space-y-3">
+                      <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-secondary/80 via-primary/80 to-secondary/40 text-secondary-foreground">
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <div className="space-y-2">
+                        <Badge variant="outline" className="w-fit border-primary/40 bg-primary/5 text-primary">
+                          {t(`goals.cards.${goal.key}.badge`)}
+                        </Badge>
+                        <CardTitle className="text-xl text-foreground">{t(`goals.cards.${goal.key}.title`)}</CardTitle>
+                        <CardDescription className="text-sm text-muted-foreground">
+                          {t(`goals.cards.${goal.key}.description`)}
+                        </CardDescription>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="flex flex-1 flex-col justify-between gap-4">
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        {goal.focus.map((item) => (
+                          <li key={item} className="flex items-start gap-2">
+                            <span className="mt-1 inline-block h-2 w-2 rounded-full bg-primary" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <Button variant="outline" className="gap-2" asChild>
+                        <Link href={buildHref(goal.href)}>
+                          <Compass className="h-4 w-4" />
+                          {t('goals.cta')}
+                        </Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="container mx-auto px-4 pb-16">
-        <div className="mx-auto max-w-5xl space-y-6">
-          <div className="space-y-1 text-center md:text-left">
-            <h2 className="text-3xl font-semibold text-foreground">{t('goals.title')}</h2>
-            <p className="text-sm text-muted-foreground md:max-w-3xl">{t('goals.description')}</p>
+      <section className="w-full">
+        <div className="container mx-auto px-4 pb-24">
+          <div className="mx-auto flex max-w-5xl flex-col gap-6 md:flex-row">
+            <Card className="flex-1 border-border/40 bg-card/60 backdrop-blur">
+              <CardHeader className="space-y-3">
+                <Badge variant="outline" className="w-fit border-secondary/40 bg-secondary/10 text-secondary">
+                  {t('spotlight.badge')}
+                </Badge>
+                <div className="space-y-2">
+                  <CardTitle className="text-2xl text-foreground">{t('spotlight.title')}</CardTitle>
+                  <CardDescription className="text-sm text-muted-foreground">
+                    {t('spotlight.description')}
+                  </CardDescription>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  {spotlightResources.map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <Sparkles className="mt-0.5 h-4 w-4 text-primary" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Button variant="ghost" className="gap-2 self-start" asChild>
+                  <Link href={buildHref('/library')}>
+                    <ArrowRight className="h-4 w-4" />
+                    {t('spotlight.cta')}
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
           </div>
-
-          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-            {goals.map((goal) => {
-              const Icon = goalIcons[goal.key];
-              return (
-                <Card key={goal.key} className="flex flex-col justify-between border-border/50 bg-card/70 backdrop-blur">
-                  <CardHeader className="space-y-3">
-                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-secondary/80 via-primary/80 to-secondary/40 text-secondary-foreground">
-                      <Icon className="h-6 w-6" />
-                    </div>
-                    <div className="space-y-2">
-                      <Badge variant="outline" className="w-fit border-primary/40 bg-primary/5 text-primary">
-                        {t(`goals.cards.${goal.key}.badge`)}
-                      </Badge>
-                      <CardTitle className="text-xl text-foreground">{t(`goals.cards.${goal.key}.title`)}</CardTitle>
-                      <CardDescription className="text-sm text-muted-foreground">
-                        {t(`goals.cards.${goal.key}.description`)}
-                      </CardDescription>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="flex flex-1 flex-col justify-between gap-4">
-                    <ul className="space-y-2 text-sm text-muted-foreground">
-                      {goal.focus.map((item) => (
-                        <li key={item} className="flex items-start gap-2">
-                          <span className="mt-1 inline-block h-2 w-2 rounded-full bg-primary" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Button variant="outline" className="gap-2" asChild>
-                      <Link href={buildHref(goal.href)}>
-                        <Compass className="h-4 w-4" />
-                        {t('goals.cta')}
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="container mx-auto px-4 pb-24">
-        <div className="mx-auto flex max-w-5xl flex-col gap-6 md:flex-row">
-          <Card className="flex-1 border-border/40 bg-card/60 backdrop-blur">
-            <CardHeader className="space-y-3">
-              <Badge variant="outline" className="w-fit border-secondary/40 bg-secondary/10 text-secondary">
-                {t('spotlight.badge')}
-              </Badge>
-              <div className="space-y-2">
-                <CardTitle className="text-2xl text-foreground">{t('spotlight.title')}</CardTitle>
-                <CardDescription className="text-sm text-muted-foreground">
-                  {t('spotlight.description')}
-                </CardDescription>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                {spotlightResources.map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <Sparkles className="mt-0.5 h-4 w-4 text-primary" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <Button variant="ghost" className="gap-2 self-start" asChild>
-                <Link href={buildHref('/library')}>
-                  <ArrowRight className="h-4 w-4" />
-                  {t('spotlight.cta')}
-                </Link>
-              </Button>
-            </CardContent>
-          </Card>
         </div>
       </section>
 
