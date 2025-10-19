@@ -18,6 +18,8 @@ const NEWS_SOURCES = [
 
 const VIDEO_URL_REGEX = /(https?:\/\/(?:www\.)?(?:youtube\.com\/watch\?v=[^"'\s<]+|youtu\.be\/[^"'\s<]+|facebook\.com\/[^"'\s<]+\/(?:videos|watch)[^"'\s<]*|vimeo\.com\/[^"'\s<]+))/gi;
 
+const USER_AGENT = 'mk-language-lab/1.0 (+https://github.com/battaglia-v/mk-language-lab)';
+
 const HTML_ENTITIES: Record<string, string> = {
   amp: '&',
   lt: '<',
@@ -38,6 +40,7 @@ type NewsItem = {
   sourceName: NewsSource['name'];
   categories: string[];
   videos: string[];
+  image: string | null;
 };
 
 const FALLBACK_ITEMS: NewsItem[] = [
@@ -51,6 +54,7 @@ const FALLBACK_ITEMS: NewsItem[] = [
     sourceName: 'Time.mk',
     categories: ['placeholder'],
     videos: [],
+    image: null,
   },
   {
     id: 'fallback-meta-1',
@@ -62,6 +66,7 @@ const FALLBACK_ITEMS: NewsItem[] = [
     sourceName: 'Meta.mk',
     categories: ['placeholder'],
     videos: [],
+    image: null,
   },
 ];
 
@@ -116,7 +121,79 @@ function isValidHttpUrl(value: string | null | undefined): value is string {
   return Boolean(value && /^https?:\/\//i.test(value));
 }
 
-function resolveItemLink(itemXml: string, source: NewsSource, descriptionRaw: string): string {
+function normalizePotentialUrl(value: string | null, base?: string): string | null {
+  if (!value) {
+    return null;
+  }
+
+  const trimmed = value.trim();
+  if (!trimmed || /^data:/i.test(trimmed)) {
+    return null;
+  }
+
+  if (/^https?:\/\//i.test(trimmed)) {
+    return trimmed;
+  }
+
+  if (trimmed.startsWith('//')) {
+    return `https:${trimmed}`;
+  }
+
+  if (base) {
+    try {
+      return new URL(trimmed, base).href;
+    } catch {
+      return null;
+    }
+  }
+
+  return null;
+}
+
+function extractFirstImageSource(html: string): string | null {
+  const match = /<img[^>]+src=["']([^"']+)["'][^>]*>/i.exec(html);
+  return match ? decodeHtmlEntities(match[1]) : null;
+}
+
+function extractItemImage(
+  itemXml: string,
+  descriptionRaw: string,
+  contentEncoded: string,
+  source: NewsSource
+): string | null {
+  const mediaCandidates = [
+    extractAttributeValue(itemXml, 'media:content', 'url'),
+    extractAttributeValue(itemXml, 'media:thumbnail', 'url'),
+    extractAttributeValue(itemXml, 'enclosure', 'url'),
+  ];
+
+  for (const candidate of mediaCandidates) {
+    const normalized = normalizePotentialUrl(candidate, source.homepage);
+    if (normalized) {
+      return normalized;
+    }
+  }
+
+  for (const fragment of [contentEncoded, descriptionRaw]) {
+    if (!fragment) {
+      continue;
+    }
+    const imageCandidate = extractFirstImageSource(fragment);
+    const normalized = normalizePotentialUrl(imageCandidate, source.homepage);
+    if (normalized) {
+      return normalized;
+    }
+  }
+
+  return null;
+}
+
+function resolveItemLink(
+  itemXml: string,
+  source: NewsSource,
+  descriptionRaw: string,
+  contentEncoded: string
+): string {
   const candidates = new Set<string>();
 
   const addCandidate = (value: string | null | undefined) => {
@@ -136,7 +213,6 @@ function resolveItemLink(itemXml: string, source: NewsSource, descriptionRaw: st
   addCandidate(extractTag(itemXml, 'meta:origlink'));
   addCandidate(extractTag(itemXml, 'ht:news_url'));
 
-  const contentEncoded = extractTag(itemXml, 'content:encoded') ?? '';
   const combinedDescriptions = [descriptionRaw, contentEncoded].filter(Boolean).join('\n');
 
   const anchorRegex = /<a[^>]+href=["']([^"']+)["'][^>]*>/gi;
@@ -184,6 +260,98 @@ function resolveItemLink(itemXml: string, source: NewsSource, descriptionRaw: st
   return preferred ?? [...candidates][0];
 }
 
+const TIME_MK_HOSTS = new Set(['time.mk', 'www.time.mk']);
+
+async function resolveTimeMkLink(url: URL, signal: AbortSignal): Promise<string | null> {
+  try {
+    const response = await fetch(url.href, {
+      cache: 'no-store',
+      headers: {
+        'User-Agent': USER_AGENT,
+        Accept: 'text/html,application/xhtml+xml;q=0.9,*/*;q=0.8',
+      },
+      signal,
+    });
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const html = await response.text();
+    const redirectMatch =
+      /href=["']((?:https?:\/\/time\.mk)?\/?r\/[a-z]\/[^"]+?\/?)["']/i.exec(html) ??
+      /href=["'](\/?r\/[a-z]\/[^"]+?\/?)["']/i.exec(html);
+
+    if (!redirectMatch) {
+      return null;
+    }
+
+    const redirectUrl = new URL(redirectMatch[1], url.origin).href;
+    const redirectResponse = await fetch(redirectUrl, {
+      cache: 'no-store',
+      headers: {
+        'User-Agent': USER_AGENT,
+        Accept: 'text/html,application/xhtml+xml;q=0.9,*/*;q=0.8',
+      },
+      redirect: 'manual',
+      signal,
+    });
+
+    if (redirectResponse.status >= 300 && redirectResponse.status < 400) {
+      const location = redirectResponse.headers.get('location');
+      if (location) {
+        try {
+          return new URL(location, redirectUrl).href;
+        } catch {
+          return null;
+        }
+      }
+    }
+
+    return redirectUrl;
+  } catch (error) {
+    if ((error as Error).name === 'AbortError') {
+      throw error;
+    }
+    return null;
+  }
+}
+
+async function resolveExternalLinks(items: NewsItem[], signal: AbortSignal): Promise<void> {
+  const cache = new Map<string, string | null>();
+
+  for (const item of items) {
+    const originalLink = item.link;
+    if (cache.has(originalLink)) {
+      const cached = cache.get(originalLink);
+      if (cached) {
+        item.link = cached;
+      }
+      continue;
+    }
+
+    let resolved: string | null = null;
+
+    try {
+      const parsed = new URL(originalLink);
+      if (TIME_MK_HOSTS.has(parsed.hostname) && parsed.pathname.startsWith('/c/')) {
+        resolved = await resolveTimeMkLink(parsed, signal);
+      }
+    } catch (error) {
+      if ((error as Error).name === 'AbortError') {
+        throw error;
+      }
+      cache.set(originalLink, null);
+      continue;
+    }
+
+    cache.set(originalLink, resolved);
+    if (resolved) {
+      item.link = resolved;
+    }
+  }
+}
+
 function parseFeed(xml: string, source: NewsSource): NewsItem[] {
   const items: NewsItem[] = [];
   const itemPattern = /<item[\s\S]*?<\/item>/gi;
@@ -193,15 +361,17 @@ function parseFeed(xml: string, source: NewsSource): NewsItem[] {
     const itemXml = match[0];
     const title = extractTag(itemXml, 'title') ?? 'Untitled';
     const descriptionRaw = extractTag(itemXml, 'description') ?? '';
-    const link = resolveItemLink(itemXml, source, descriptionRaw);
+    const contentEncoded = extractTag(itemXml, 'content:encoded') ?? '';
+    const link = resolveItemLink(itemXml, source, descriptionRaw, contentEncoded);
     const pubDate = extractTag(itemXml, 'pubDate') ?? extractTag(itemXml, 'dc:date');
     const publishedAt = pubDate ? new Date(pubDate).toISOString() : new Date().toISOString();
     const categories = extractTags(itemXml, 'category').map((category) => category.replace(/\s+/g, ' ').trim());
+    const image = extractItemImage(itemXml, descriptionRaw, contentEncoded, source);
 
     const hashBase = `${source.id}-${link}-${title}-${publishedAt}`;
     const id = crypto.createHash('md5').update(hashBase).digest('hex');
 
-    const combinedText = `${itemXml}\n${link}\n${descriptionRaw}`;
+    const combinedText = `${itemXml}\n${link}\n${descriptionRaw}\n${contentEncoded}`;
     const videosSet = new Set<string>();
     let videoMatch: RegExpExecArray | null;
     const videoRegex = new RegExp(VIDEO_URL_REGEX.source, VIDEO_URL_REGEX.flags);
@@ -220,6 +390,7 @@ function parseFeed(xml: string, source: NewsSource): NewsItem[] {
       sourceName: source.name,
       categories,
       videos: Array.from(videosSet),
+      image,
     });
   }
 
@@ -228,6 +399,11 @@ function parseFeed(xml: string, source: NewsSource): NewsItem[] {
 
 const PREVIEW_FETCH_LIMIT = 12;
 const PREVIEW_MAX_LENGTH = 260;
+
+type ArticlePreviewResult = {
+  preview: string | null;
+  image: string | null;
+};
 
 function extractMetaContent(html: string, attribute: 'property' | 'name', value: string): string | null {
   const pattern = new RegExp(`<meta[^>]+${attribute}=["']${value}["'][^>]+content=["']([^"']+)["'][^>]*>`, 'i');
@@ -256,42 +432,43 @@ function truncatePreview(text: string, maxLength: number): string {
   return `${trimmed}…`;
 }
 
-async function fetchArticlePreview(url: string, signal: AbortSignal): Promise<string | null> {
+async function fetchArticlePreview(url: string, signal: AbortSignal): Promise<ArticlePreviewResult> {
   try {
     const response = await fetch(url, {
       cache: 'no-store',
       headers: {
-        'User-Agent': 'mk-language-lab/1.0 (+https://github.com/battaglia-v/mk-language-lab)',
+        'User-Agent': USER_AGENT,
         Accept: 'text/html,application/xhtml+xml;q=0.9,*/*;q=0.8',
       },
       signal,
     });
 
     if (!response.ok) {
-      return null;
+      return { preview: null, image: null };
     }
 
+    const finalUrl = response.url;
     const html = await response.text();
     const rawPreview =
       extractMetaContent(html, 'property', 'og:description') ??
       extractMetaContent(html, 'name', 'description') ??
       extractSnippetParagraph(html);
 
-    if (!rawPreview) {
-      return null;
-    }
+    const previewText = rawPreview ? stripTags(rawPreview) : null;
+    const preview = previewText ? truncatePreview(previewText, PREVIEW_MAX_LENGTH) : null;
 
-    const clean = stripTags(rawPreview);
-    if (!clean) {
-      return null;
-    }
+    const imageCandidate =
+      extractMetaContent(html, 'property', 'og:image') ??
+      extractMetaContent(html, 'name', 'twitter:image') ??
+      extractFirstImageSource(html);
+    const image = normalizePotentialUrl(imageCandidate, finalUrl);
 
-    return truncatePreview(clean, PREVIEW_MAX_LENGTH);
+    return { preview, image };
   } catch (error) {
     if ((error as Error).name === 'AbortError') {
-      return null;
+      return { preview: null, image: null };
     }
-    return null;
+    return { preview: null, image: null };
   }
 }
 
@@ -299,14 +476,17 @@ async function enrichPreviews(items: NewsItem[], signal: AbortSignal): Promise<v
   let fetches = 0;
 
   for (const item of items) {
-    if (item.description || fetches >= PREVIEW_FETCH_LIMIT) {
+    if ((item.description && item.image) || fetches >= PREVIEW_FETCH_LIMIT) {
       continue;
     }
 
     fetches += 1;
-    const preview = await fetchArticlePreview(item.link, signal);
-    if (preview) {
+    const { preview, image } = await fetchArticlePreview(item.link, signal);
+    if (!item.description && preview) {
       item.description = preview;
+    }
+    if (!item.image && image) {
+      item.image = image;
     }
   }
 }
@@ -314,10 +494,10 @@ async function enrichPreviews(items: NewsItem[], signal: AbortSignal): Promise<v
 async function fetchFeed(source: NewsSource, signal: AbortSignal): Promise<NewsItem[]> {
   const response = await fetch(source.feedUrl, {
     cache: 'no-store',
-    headers: {
-      'User-Agent': 'mk-language-lab/1.0 (+https://github.com/battaglia-v/mk-language-lab)',
-      Accept: 'application/rss+xml, application/xml;q=0.9, */*;q=0.8',
-    },
+      headers: {
+        'User-Agent': USER_AGENT,
+        Accept: 'application/rss+xml, application/xml;q=0.9, */*;q=0.8',
+      },
     signal,
   });
 
@@ -393,6 +573,10 @@ export async function GET(request: NextRequest) {
     combinedItems.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
 
     const limitedItems = combinedItems.slice(0, limit);
+
+    if (limitedItems.length > 0) {
+      await resolveExternalLinks(limitedItems, abortController.signal);
+    }
 
     const payloadItems = (limitedItems.length > 0 ? limitedItems : FALLBACK_ITEMS).map((item) => ({ ...item }));
 

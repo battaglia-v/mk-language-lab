@@ -476,24 +476,10 @@
     "author": "Created by"
   },
   "auth": {
-    "signIn": "Sign In",
-    "signOut": "Sign Out",
-    "signInWith": "Sign in with {provider}",
-    "signInDescription": "Sign in to save your progress and sync across devices",
-    "signedInAs": "Signed in as {name}",
-    "authRequiredTitle": "Sign in required",
-    "authRequiredDescription": "Please sign in to access this feature.",
-    "goToSignIn": "Go to sign in",
-    "signingIn": "Signing you in...",
-    "googleMissingTitle": "Connect Google OAuth to enable sign-in",
-    "googleMissingDescription": "We couldn't find the Google OAuth secrets. Follow these steps to finish setup:",
-    "googleMissingStep1": "Create OAuth 2.0 credentials in the Google Cloud Console.",
-    "googleMissingStep2": "Add http://localhost:3000/api/auth/callback/google and your production URL as authorised redirect URIs.",
-    "googleMissingStep3": "Set GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, and NEXTAUTH_SECRET in your .env.local file.",
-    "googleMissingStep4": "Restart the dev server after updating environment variables.",
-    "googleMissingButton": "Configure Google OAuth",
-    "googleMissingDocs": "Read the NextAuth Google provider guide",
-    "googleMissingDocsLabel": "Setup guide"
+    "signInRetiredTitle": "No sign-in needed anymore",
+    "signInRetiredDescription": "The Macedonian Learning App now works without accounts.",
+  "signInRetiredBody": "All tools - including news, translation, the tutor, and the task board - are now available instantly. Update any bookmarks pointing to the old sign-in page.",
+    "returnHome": "Back to home"
   },
   "common": {
     "loading": "Loading...",

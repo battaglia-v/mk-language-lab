@@ -476,24 +476,10 @@
     "author": "Креирано од"
   },
   "auth": {
-    "signIn": "Најави Се",
-    "signOut": "Одјави Се",
-    "signInWith": "Најави се со {provider}",
-    "signInDescription": "Најави се за да го зачуваш твојот напредок и да синхронизираш преку уредите",
-    "signedInAs": "Најавен/а како {name}",
-    "authRequiredTitle": "Потребна е најава",
-    "authRequiredDescription": "Најави се за да пристапиш до оваа функција.",
-    "goToSignIn": "Оди на најава",
-    "signingIn": "Ве најавувам...",
-    "googleMissingTitle": "Поврзи Google OAuth за да овозможиш најава",
-    "googleMissingDescription": "Ги нема потребните Google OAuth тајни. Следи ги чекорите за да го довршиш подесувањето:",
-    "googleMissingStep1": "Креирај OAuth 2.0 акредитиви во Google Cloud Console.",
-    "googleMissingStep2": "Додај http://localhost:3000/api/auth/callback/google и продукциската URL адреса како redirect URI.",
-    "googleMissingStep3": "Постави ги GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET и NEXTAUTH_SECRET во датотеката .env.local.",
-    "googleMissingStep4": "Рестартирај го развојниот сервер по ажурирањето на променливите.",
-    "googleMissingButton": "Конфигурирај Google OAuth",
-    "googleMissingDocs": "Прочитај го водичот за NextAuth Google провајдерот",
-    "googleMissingDocsLabel": "Водич за подесување"
+    "signInRetiredTitle": "Најавата повеќе не е потребна",
+    "signInRetiredDescription": "Апликацијата сега функционира без кориснички профили.",
+    "signInRetiredBody": "Сите алатки - вести, превод, наставникот и таблата со задачи - се достапни веднаш. Ажурирај ги зачуваните врски што водат до страницата за најава.",
+    "returnHome": "Назад кон почетна"
   },
   "common": {
     "loading": "Вчитувам...",

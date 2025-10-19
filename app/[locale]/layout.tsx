@@ -4,8 +4,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from 'next/navigation';
 import { locales } from '@/i18n';
 import Navigation from '@/components/Navigation';
-import AuthProvider from '@/components/AuthProvider';
-import { auth } from '@/lib/auth';
 import "../globals.css";
 
 const geistSans = Geist({
@@ -37,19 +35,16 @@ export default async function LocaleLayout({
   }
 
   const messages = await getMessages();
-  const session = await auth();
 
   return (
     <html lang={locale} className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AuthProvider session={session}>
-          <NextIntlClientProvider messages={messages}>
-            <Navigation />
-            {children}
-          </NextIntlClientProvider>
-        </AuthProvider>
+        <NextIntlClientProvider messages={messages}>
+          <Navigation />
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

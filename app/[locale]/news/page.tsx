@@ -24,6 +24,7 @@ type NewsItem = {
   sourceName: string;
   categories: string[];
   videos: string[];
+  image: string | null;
 };
 
 type NewsMeta = {
@@ -37,6 +38,42 @@ type NewsResponse = {
   items: NewsItem[];
   meta: NewsMeta;
 };
+
+function getVideoThumbnailUrl(videoUrl: string): string | null {
+  try {
+    const parsed = new URL(videoUrl);
+    const host = parsed.hostname.toLowerCase();
+
+    if (host.includes('youtube.com')) {
+      const id = parsed.searchParams.get('v');
+      return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : null;
+    }
+
+    if (host === 'youtu.be') {
+      const slug = parsed.pathname.replace(/^\//, '');
+      const id = slug.split('/')[0];
+      return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : null;
+    }
+  } catch {
+    return null;
+  }
+
+  return null;
+}
+
+function resolvePreviewAsset(item: NewsItem): { url: string | null; fromVideo: boolean } {
+  if (item.image) {
+    return { url: item.image, fromVideo: false };
+  }
+
+  const primaryVideo = item.videos[0];
+  if (!primaryVideo) {
+    return { url: null, fromVideo: false };
+  }
+
+  const thumbnail = getVideoThumbnailUrl(primaryVideo);
+  return { url: thumbnail, fromVideo: Boolean(thumbnail) };
+}
 
 export default function NewsPage() {
   const t = useTranslations('news');
@@ -303,24 +340,28 @@ export default function NewsPage() {
           {items.map((item) => {
             const publishedLabel = item.publishedAt ? t('published', { relative: formatRelativeTime(item.publishedAt) }) : '';
             const hasVideos = item.videos.length > 0;
+            const { url: previewImage, fromVideo } = resolvePreviewAsset(item);
 
             return (
               <Card key={item.id} className="border-border/50 bg-card/70 backdrop-blur">
                 <CardHeader>
-                  <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                    <div className="space-y-2">
-                      <CardTitle className="text-2xl leading-tight">
-                        <a href={item.link} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                          {item.title}
-                        </a>
-                      </CardTitle>
-                      <CardDescription className="text-sm text-muted-foreground">
-                        <span className="font-medium text-foreground">{item.sourceName}</span>
-                        {publishedLabel ? ` · ${publishedLabel}` : ''}
-                      </CardDescription>
-                      {item.description && (
-                        <p className="text-sm text-muted-foreground line-clamp-3">{item.description}</p>
-                      )}
+                  <div className="flex flex-col gap-4 md:flex-row md:items-stretch md:justify-between">
+                    <div className="flex-1 space-y-3">
+                      <div className="space-y-2">
+                        <CardTitle className="text-2xl leading-tight">
+                          <a href={item.link} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                            {item.title}
+                          </a>
+                        </CardTitle>
+                        <CardDescription className="text-sm text-muted-foreground">
+                          <span className="font-medium text-foreground">{item.sourceName}</span>
+                          {publishedLabel ? ` · ${publishedLabel}` : ''}
+                        </CardDescription>
+                        {item.description && (
+                          <p className="text-sm text-muted-foreground line-clamp-3">{item.description}</p>
+                        )}
+                      </div>
+
                       <div className="flex flex-wrap gap-2">
                         {item.categories.slice(0, 4).map((category) => (
                           <Badge key={`${item.id}-${category}`} variant="outline" className="text-xs">
@@ -334,23 +375,42 @@ export default function NewsPage() {
                           </Badge>
                         )}
                       </div>
-                    </div>
-                    <div className="flex flex-col gap-2 md:items-end">
-                      <Button asChild size="sm" className="gap-2">
-                        <Link href={item.link} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4" />
-                          {t('viewArticle')}
-                        </Link>
-                      </Button>
-                      {hasVideos && (
-                        <Button asChild size="sm" variant="outline" className="gap-2">
-                          <Link href={item.videos[0]} target="_blank" rel="noopener noreferrer">
-                            <PlayCircle className="h-4 w-4" />
-                            {t('watchVideo')}
+
+                      <div className="flex flex-wrap gap-2 pt-2 md:pt-3">
+                        <Button asChild size="sm" className="gap-2">
+                          <Link href={item.link} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="h-4 w-4" />
+                            {t('viewArticle')}
                           </Link>
                         </Button>
-                      )}
+                        {hasVideos && (
+                          <Button asChild size="sm" variant="outline" className="gap-2">
+                            <Link href={item.videos[0]} target="_blank" rel="noopener noreferrer">
+                              <PlayCircle className="h-4 w-4" />
+                              {t('watchVideo')}
+                            </Link>
+                          </Button>
+                        )}
+                      </div>
                     </div>
+
+                    {previewImage && (
+                      <div className="relative mt-3 aspect-video w-full overflow-hidden rounded-xl border border-border/30 bg-muted/30 shadow-sm md:mt-0 md:ml-6 md:w-64 lg:w-72">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={previewImage}
+                          alt={`Preview for ${item.title}`}
+                          className="h-full w-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        {fromVideo && (
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                            <PlayCircle className="h-10 w-10 text-white drop-shadow" />
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </CardHeader>
               </Card>
