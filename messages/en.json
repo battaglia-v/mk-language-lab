@@ -159,6 +159,12 @@
       "Pair Macedonian words with clear English meanings and sample sentences.",
       "Build a review habit using spaced repetition and mini quizzes."
     ],
+    "howToHeading": "How to use this module",
+    "howTo": [
+      "Skim a track, then pick one deck to review aloud and write in your own context.",
+      "Log the new words in your spaced flashcards and mark any uncertain forms.",
+      "Close with a quick check: quiz yourself, translate a sentence, or ask the tutor for a role-play."
+    ],
     "tracksHeading": "Lesson tracks",
     "tracks": {
       "everyday": {
@@ -222,6 +228,48 @@
         "href": "/resources?section=video"
       }
     ],
+    "starterDecksHeading": "Starter word decks",
+    "starterDecksDescription": "Grab a focused list to warm up quickly.",
+    "starterDecks": [
+      {
+        "title": "Family & friends",
+        "description": "Affectionate greetings, check-ins, and shared memories.",
+        "focus": "Warm reunions",
+        "href": "/practice?section=translation&card=quick-phrases&journey=family"
+      },
+      {
+        "title": "Travel essentials",
+        "description": "Tickets, directions, and polite requests on the go.",
+        "focus": "Before your trip",
+        "href": "/practice?section=translation&card=quick-phrases&journey=travel"
+      },
+      {
+        "title": "Daily routines",
+        "description": "Meals, chores, and personal schedule vocabulary.",
+        "focus": "Habit builder",
+        "href": "/learn/vocabulary#everyday"
+      }
+    ],
+    "nextActionsHeading": "Recommended next steps",
+    "nextActions": [
+      {
+        "title": "Open the phrase refresher",
+        "description": "Load situational decks in the practice hub and follow the warm-up prompts.",
+        "href": "/practice?section=translation&card=quick-phrases"
+      },
+      {
+        "title": "Translate a family update",
+        "description": "Drop a short story into the translator and mark phrases to ask the tutor about.",
+        "href": "/translate"
+      },
+      {
+        "title": "Queue a pronunciation drill",
+        "description": "Shadow a focused clip in the pronunciation lab to cement new words.",
+        "href": "/practice?section=speaking&card=pronunciation"
+      }
+    ],
+    "returnToJourney": "Return to journey",
+    "tryNow": "Jump into practice",
     "journeyDrillHeading": "Journey drill: {journey}",
     "journeyDrillSubtitle": "Shadow these lines to connect your cultural study with pronunciation practice."
   },
@@ -697,12 +745,12 @@
           {
             "title": "Family phrase deck",
             "description": "Jump to the phrase refresh workspace pre-filtered for family topics.",
-            "href": "/practice?section=phrases&journey=family"
+            "href": "/practice?section=translation&card=quick-phrases&journey=family"
           },
           {
             "title": "Kinship vocabulary sheet",
             "description": "Review Macedonian kinship terms and note which ones differ from your everyday usage.",
-            "href": "/resources?section=reference"
+            "href": "/resources?section=reference&q=kinship"
           },
           {
             "title": "Warm check-in prompts",

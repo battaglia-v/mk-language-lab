@@ -159,6 +159,12 @@
       "Поврзи македонски зборови со јасни значења и пример реченици на англиски.",
       "Создај навика за повторување со распоредено повторување и мини квизови."
     ],
+    "howToHeading": "Како да го користиш модулот",
+    "howTo": [
+      "Прелистај патека, па избери еден дек и повторувај гласно додека го применуваш во свој контекст.",
+      "Запиши ги новите зборови во твоите спес реп картици и означи ги формите што ти се нејасни.",
+      "Заврши со брза проверка: испрашај се, преведи реченица или побарај сценарио од туторот."
+    ],
     "tracksHeading": "Наставни патеки",
     "tracks": {
       "everyday": {
@@ -221,7 +227,49 @@
         "description": "Видео лекции и културни клипови за зајакнување на зборовите.",
         "href": "/resources?section=video"
       }
-    ]
+    ],
+    "starterDecksHeading": "Почетни листи на зборови",
+    "starterDecksDescription": "Земи фокусиран сет за брзо загревање.",
+    "starterDecks": [
+      {
+        "title": "Семејство и пријатели",
+        "description": "Топли поздрави, прашања за состојба и споделени сеќавања.",
+        "focus": "За семејни дружби",
+        "href": "/practice?section=translation&card=quick-phrases&journey=family"
+      },
+      {
+        "title": "Патнички основи",
+        "description": "Билети, насоки и учтиви барања во движење.",
+        "focus": "Пред патување",
+        "href": "/practice?section=translation&card=quick-phrases&journey=travel"
+      },
+      {
+        "title": "Дневни рутини",
+        "description": "Јадење, обврски и личен распоред.",
+        "focus": "Навика",
+        "href": "/learn/vocabulary#everyday"
+      }
+    ],
+    "nextActionsHeading": "Препорачани следни чекори",
+    "nextActions": [
+      {
+        "title": "Отвори освежување на фрази",
+        "description": "Вчитај ги ситуациските декови во хабот за вежбање и следи ги поттиците за загревање.",
+        "href": "/practice?section=translation&card=quick-phrases"
+      },
+      {
+        "title": "Преведи семејна новост",
+        "description": "Внеси кратка приказна во преведувачот и означи ги фразите за кои сакаш помош од туторот.",
+        "href": "/translate"
+      },
+      {
+        "title": "Закажи изговорна вежба",
+        "description": "Следи фокусиран клип во лабораторијата за изговор за да ги зацврстиш новите зборови.",
+        "href": "/practice?section=speaking&card=pronunciation"
+      }
+    ],
+    "returnToJourney": "Назад до патеката",
+    "tryNow": "Пробај сега"
   },
   "learnGrammar": {
     "back": "Назад до центарот за учење",
@@ -695,12 +743,12 @@
           {
             "title": "Сет со семејни фрази",
             "description": "Отвори го модулот за фрази однапред филтриран за семејни теми.",
-            "href": "/practice?section=phrases&journey=family"
+            "href": "/practice?section=translation&card=quick-phrases&journey=family"
           },
           {
             "title": "Табела со роднински термини",
             "description": "Прегледај ги македонските роднински називи и забележи кои се разликуваат од твоето секојдневие.",
-            "href": "/resources?section=reference"
+            "href": "/resources?section=reference&q=kinship"
           },
           {
             "title": "Потсетник за топли пораки",
