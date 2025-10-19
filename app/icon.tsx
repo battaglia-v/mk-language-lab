@@ -98,33 +98,42 @@ export default function Icon() {
           >
             <div
               style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(6, 1fr)',
-                gap: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                width: 96,
               }}
             >
-              {Array.from({ length: 36 }, (_, index) => {
-                const row = Math.floor(index / 6);
-                const col = index % 6;
-                const isActive = ACTIVE_PIXELS.has(`${row}-${col}`);
-                const background = isActive
-                  ? 'linear-gradient(135deg, #59ffb0 0%, #34d6ff 100%)'
-                  : 'rgba(255, 255, 255, 0.06)';
+              {Array.from({ length: 6 }, (_, row) => (
+                <div
+                  key={`row-${row}`}
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {Array.from({ length: 6 }, (_, col) => {
+                    const isActive = ACTIVE_PIXELS.has(`${row}-${col}`);
+                    const background = isActive
+                      ? 'linear-gradient(135deg, #59ffb0 0%, #34d6ff 100%)'
+                      : 'rgba(255, 255, 255, 0.06)';
 
-                return (
-                  <div
-                    // eslint-disable-next-line react/no-unknown-property
-                    key={`${row}-${col}`}
-                    style={{
+                    const pixelStyle: Record<string, string | number> = {
                       width: 14,
                       height: 14,
                       borderRadius: 4,
                       background,
-                      boxShadow: isActive ? '0 2px 4px rgba(52, 214, 255, 0.45)' : undefined,
-                    }}
-                  />
-                );
-              })}
+                      margin: 1,
+                    };
+
+                    if (isActive) {
+                      pixelStyle.boxShadow = '0 2px 4px rgba(52, 214, 255, 0.45)';
+                    }
+
+                    return <div key={`${row}-${col}`} style={pixelStyle} />;
+                  })}
+                </div>
+              ))}
             </div>
           </div>
         </div>
