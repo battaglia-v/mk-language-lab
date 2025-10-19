@@ -39,6 +39,8 @@ type NewsResponse = {
   meta: NewsMeta;
 };
 
+const SKELETON_PLACEHOLDERS = Array.from({ length: 6 }, (_, index) => index);
+
 function getVideoThumbnailUrl(videoUrl: string): string | null {
   try {
     const parsed = new URL(videoUrl);
@@ -73,6 +75,31 @@ function resolvePreviewAsset(item: NewsItem): { url: string | null; fromVideo: b
 
   const thumbnail = getVideoThumbnailUrl(primaryVideo);
   return { url: thumbnail, fromVideo: Boolean(thumbnail) };
+}
+
+function getSourceInitials(name: string): string {
+  const initials = name
+    .split(' ')
+    .filter(Boolean)
+    .map((part) => part[0]?.toUpperCase())
+    .join('');
+  return initials.slice(0, 2) || 'MK';
+}
+
+function SkeletonCard() {
+  return (
+    <Card className="border-border/30 bg-card/40">
+      <CardHeader>
+        <div className="animate-pulse space-y-4">
+          <div className="h-6 w-3/4 rounded bg-muted/60" />
+          <div className="h-3 w-2/3 rounded bg-muted/50" />
+          <div className="h-20 w-full rounded-md bg-muted/40" />
+          <div className="h-4 w-1/3 rounded bg-muted/40" />
+          <div className="relative mt-2 aspect-video w-full overflow-hidden rounded-xl border border-border/20 bg-muted/40" />
+        </div>
+      </CardHeader>
+    </Card>
+  );
 }
 
 export default function NewsPage() {
@@ -236,6 +263,7 @@ export default function NewsPage() {
     : '';
 
   const hasResults = items.length > 0;
+  const showSkeleton = isLoading && items.length === 0;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
@@ -328,6 +356,14 @@ export default function NewsPage() {
           </CardContent>
         </Card>
 
+        {showSkeleton && (
+          <div className="grid gap-6">
+            {SKELETON_PLACEHOLDERS.map((index) => (
+              <SkeletonCard key={`news-skeleton-${index}`} />
+            ))}
+          </div>
+        )}
+
         {!hasResults && !isLoading && !error && (
           <Card className="border-border/50 bg-card/60 backdrop-blur">
             <CardContent className="py-16 text-center text-muted-foreground text-lg">
@@ -336,11 +372,13 @@ export default function NewsPage() {
           </Card>
         )}
 
-        <div className="grid gap-6">
-          {items.map((item) => {
+        {hasResults && (
+          <div className="grid gap-6">
+            {items.map((item) => {
             const publishedLabel = item.publishedAt ? t('published', { relative: formatRelativeTime(item.publishedAt) }) : '';
             const hasVideos = item.videos.length > 0;
             const { url: previewImage, fromVideo } = resolvePreviewAsset(item);
+              const sourceInitials = getSourceInitials(item.sourceName);
 
             return (
               <Card key={item.id} className="border-border/50 bg-card/70 backdrop-blur">
@@ -394,29 +432,37 @@ export default function NewsPage() {
                       </div>
                     </div>
 
-                    {previewImage && (
-                      <div className="relative mt-3 aspect-video w-full overflow-hidden rounded-xl border border-border/30 bg-muted/30 shadow-sm md:mt-0 md:ml-6 md:w-64 lg:w-72">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={previewImage}
-                          alt={`Preview for ${item.title}`}
-                          className="h-full w-full object-cover"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                        {fromVideo && (
-                          <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                            <PlayCircle className="h-10 w-10 text-white drop-shadow" />
-                          </div>
-                        )}
-                      </div>
-                    )}
+                    <div className="relative mt-3 aspect-video w-full overflow-hidden rounded-xl border border-border/30 bg-muted/30 shadow-sm md:mt-0 md:ml-6 md:w-64 lg:w-72">
+                      {previewImage ? (
+                        <>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={previewImage}
+                            alt={`Preview for ${item.title}`}
+                            className="h-full w-full object-cover"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </>
+                      ) : (
+                        <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-primary/25 via-secondary/20 to-muted/30 text-foreground">
+                          <span className="text-3xl font-bold uppercase tracking-wide">{sourceInitials}</span>
+                          <span className="text-xs font-medium text-muted-foreground/80">{item.sourceName}</span>
+                        </div>
+                      )}
+                      {fromVideo && (
+                        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/30">
+                          <PlayCircle className="h-10 w-10 text-white drop-shadow" />
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </CardHeader>
               </Card>
             );
           })}
-        </div>
+          </div>
+        )}
       </div>
 
       <footer className="border-t border-border/40 bg-card/30 backdrop-blur-sm mt-20">

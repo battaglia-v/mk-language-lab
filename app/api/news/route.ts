@@ -1,6 +1,8 @@
 import crypto from 'node:crypto';
 import { NextRequest, NextResponse } from 'next/server';
 
+export const revalidate = 180;
+
 const NEWS_SOURCES = [
   {
     id: 'time-mk',
@@ -19,6 +21,8 @@ const NEWS_SOURCES = [
 const VIDEO_URL_REGEX = /(https?:\/\/(?:www\.)?(?:youtube\.com\/watch\?v=[^"'\s<]+|youtu\.be\/[^"'\s<]+|facebook\.com\/[^"'\s<]+\/(?:videos|watch)[^"'\s<]*|vimeo\.com\/[^"'\s<]+))/gi;
 
 const USER_AGENT = 'mk-language-lab/1.0 (+https://github.com/battaglia-v/mk-language-lab)';
+const CACHE_TTL_MS = 5 * 60 * 1000;
+const CONCURRENCY_LIMIT = 4;
 
 const HTML_ENTITIES: Record<string, string> = {
   amp: '&',
@@ -40,6 +44,11 @@ type NewsItem = {
   sourceName: NewsSource['name'];
   categories: string[];
   videos: string[];
+  image: string | null;
+};
+
+type ArticlePreviewResult = {
+  preview: string | null;
   image: string | null;
 };
 
@@ -69,6 +78,60 @@ const FALLBACK_ITEMS: NewsItem[] = [
     image: null,
   },
 ];
+
+type CacheEntry<T> = {
+  value: T;
+  expiresAt: number;
+};
+
+const linkResolutionCache = new Map<string, CacheEntry<string | null>>();
+const previewCache = new Map<string, CacheEntry<ArticlePreviewResult>>();
+
+function getCachedValue<T>(
+  cache: Map<string, CacheEntry<T>>,
+  key: string
+): { hit: true; value: T } | { hit: false } {
+  const entry = cache.get(key);
+  if (!entry) {
+    return { hit: false };
+  }
+
+  if (entry.expiresAt < Date.now()) {
+    cache.delete(key);
+    return { hit: false };
+  }
+
+  return { hit: true, value: entry.value };
+}
+
+function setCachedValue<T>(cache: Map<string, CacheEntry<T>>, key: string, value: T) {
+  cache.set(key, {
+    value,
+    expiresAt: Date.now() + CACHE_TTL_MS,
+  });
+}
+
+async function runWithConcurrency(tasks: Array<() => Promise<void>>, limit: number): Promise<void> {
+  if (tasks.length === 0) {
+    return;
+  }
+
+  const workerCount = Math.max(1, Math.min(limit, tasks.length));
+  let index = 0;
+
+  const workers = Array.from({ length: workerCount }, async () => {
+    while (true) {
+      const currentIndex = index;
+      if (currentIndex >= tasks.length) {
+        break;
+      }
+      index += 1;
+      await tasks[currentIndex]();
+    }
+  });
+
+  await Promise.all(workers);
+}
 
 function decodeHtmlEntities(value: string): string {
   return value
@@ -318,16 +381,26 @@ async function resolveTimeMkLink(url: URL, signal: AbortSignal): Promise<string 
 }
 
 async function resolveExternalLinks(items: NewsItem[], signal: AbortSignal): Promise<void> {
-  const cache = new Map<string, string | null>();
+  const requestCache = new Map<string, string | null>();
 
-  for (const item of items) {
+  const tasks = items.map((item) => async () => {
     const originalLink = item.link;
-    if (cache.has(originalLink)) {
-      const cached = cache.get(originalLink);
-      if (cached) {
-        item.link = cached;
+
+    if (requestCache.has(originalLink)) {
+      const cachedValue = requestCache.get(originalLink);
+      if (cachedValue) {
+        item.link = cachedValue;
       }
-      continue;
+      return;
+    }
+
+    const cachedEntry = getCachedValue(linkResolutionCache, originalLink);
+    if (cachedEntry.hit) {
+      requestCache.set(originalLink, cachedEntry.value);
+      if (cachedEntry.value) {
+        item.link = cachedEntry.value;
+      }
+      return;
     }
 
     let resolved: string | null = null;
@@ -341,15 +414,17 @@ async function resolveExternalLinks(items: NewsItem[], signal: AbortSignal): Pro
       if ((error as Error).name === 'AbortError') {
         throw error;
       }
-      cache.set(originalLink, null);
-      continue;
     }
 
-    cache.set(originalLink, resolved);
+    requestCache.set(originalLink, resolved);
+    setCachedValue(linkResolutionCache, originalLink, resolved);
+
     if (resolved) {
       item.link = resolved;
     }
-  }
+  });
+
+  await runWithConcurrency(tasks, CONCURRENCY_LIMIT);
 }
 
 function parseFeed(xml: string, source: NewsSource): NewsItem[] {
@@ -399,11 +474,6 @@ function parseFeed(xml: string, source: NewsSource): NewsItem[] {
 
 const PREVIEW_FETCH_LIMIT = 12;
 const PREVIEW_MAX_LENGTH = 260;
-
-type ArticlePreviewResult = {
-  preview: string | null;
-  image: string | null;
-};
 
 function extractMetaContent(html: string, attribute: 'property' | 'name', value: string): string | null {
   const pattern = new RegExp(`<meta[^>]+${attribute}=["']${value}["'][^>]+content=["']([^"']+)["'][^>]*>`, 'i');
@@ -473,21 +543,37 @@ async function fetchArticlePreview(url: string, signal: AbortSignal): Promise<Ar
 }
 
 async function enrichPreviews(items: NewsItem[], signal: AbortSignal): Promise<void> {
-  let fetches = 0;
+  const candidates = items.filter((item) => !(item.description && item.image)).slice(0, PREVIEW_FETCH_LIMIT);
+  const requestCache = new Map<string, ArticlePreviewResult>();
 
-  for (const item of items) {
-    if ((item.description && item.image) || fetches >= PREVIEW_FETCH_LIMIT) {
-      continue;
+  const tasks = candidates.map((item) => async () => {
+    const cachedEntry = getCachedValue(previewCache, item.link);
+    if (cachedEntry.hit) {
+      requestCache.set(item.link, cachedEntry.value);
+      applyPreviewResult(item, cachedEntry.value);
+      return;
     }
 
-    fetches += 1;
-    const { preview, image } = await fetchArticlePreview(item.link, signal);
-    if (!item.description && preview) {
-      item.description = preview;
+    if (requestCache.has(item.link)) {
+      applyPreviewResult(item, requestCache.get(item.link)!);
+      return;
     }
-    if (!item.image && image) {
-      item.image = image;
-    }
+
+    const result = await fetchArticlePreview(item.link, signal);
+    requestCache.set(item.link, result);
+    setCachedValue(previewCache, item.link, result);
+    applyPreviewResult(item, result);
+  });
+
+  await runWithConcurrency(tasks, CONCURRENCY_LIMIT);
+}
+
+function applyPreviewResult(item: NewsItem, result: ArticlePreviewResult) {
+  if (!item.description && result.preview) {
+    item.description = result.preview;
+  }
+  if (!item.image && result.image) {
+    item.image = result.image;
   }
 }
 
