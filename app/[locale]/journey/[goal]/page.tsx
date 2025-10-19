@@ -57,6 +57,17 @@ export default function JourneyDetailPage({ params }: PageProps) {
     })
     .filter((item): item is { card: PracticeCard; reason: string } => item !== null);
 
+  const extrasHeader = t.raw('extras.header') as { title?: string; description?: string } | null;
+  const extrasForJourney = t.raw(`extras.${goalKey}`) as
+    | {
+        exercises?: Array<{ title?: string; description?: string; time?: string }>;
+        resources?: Array<{ title?: string; description?: string; href?: string }>;
+      }
+    | null;
+
+  const extraExercises = Array.isArray(extrasForJourney?.exercises) ? extrasForJourney?.exercises ?? [] : [];
+  const extraResources = Array.isArray(extrasForJourney?.resources) ? extrasForJourney?.resources ?? [] : [];
+
   const buildHref = (path: string) => (path === '/' ? `/${locale}` : `/${locale}${path}`);
 
   return (
@@ -160,6 +171,74 @@ export default function JourneyDetailPage({ params }: PageProps) {
                   </div>
                 </section>
               ) : null}
+
+              {(extraExercises.length > 0 || extraResources.length > 0) && (
+                <section className="space-y-5">
+                  <div className="space-y-1">
+                    <h2 className="text-lg font-semibold text-foreground">{extrasHeader?.title ?? ''}</h2>
+                    <p className="text-sm text-muted-foreground">{extrasHeader?.description ?? ''}</p>
+                  </div>
+
+                  {extraExercises.length > 0 ? (
+                    <div className="space-y-3">
+                      <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                        {t('extras.exercisesTitle')}
+                      </h3>
+                      <div className="space-y-3">
+                        {extraExercises.map((exercise, index) => (
+                          <div
+                            key={`${exercise?.title ?? 'exercise'}-${index}`}
+                            className="space-y-2 rounded-lg border border-border/40 bg-background/70 p-4"
+                          >
+                            <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                              <p className="text-sm font-semibold text-foreground">{exercise?.title}</p>
+                              {exercise?.time ? (
+                                <span className="text-xs font-medium text-muted-foreground">
+                                  {t('extras.timeLabel', { minutes: exercise.time })}
+                                </span>
+                              ) : null}
+                            </div>
+                            {exercise?.description ? (
+                              <p className="text-sm text-muted-foreground">{exercise.description}</p>
+                            ) : null}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+
+                  {extraResources.length > 0 ? (
+                    <div className="space-y-3">
+                      <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                        {t('extras.resourcesTitle')}
+                      </h3>
+                      <div className="space-y-3">
+                        {extraResources.map((resource, index) => (
+                          <div
+                            key={`${resource?.title ?? 'resource'}-${index}`}
+                            className="space-y-2 rounded-lg border border-border/40 bg-background/70 p-4"
+                          >
+                            <div className="space-y-1">
+                              <p className="text-sm font-semibold text-foreground">{resource?.title}</p>
+                              {resource?.description ? (
+                                <p className="text-sm text-muted-foreground">{resource.description}</p>
+                              ) : null}
+                            </div>
+                            {resource?.href ? (
+                              <Button variant="ghost" className="gap-2" asChild>
+                                <Link href={buildHref(resource.href)}>
+                                  <ArrowRight className="h-4 w-4" />
+                                  {t('extras.openLink')}
+                                </Link>
+                              </Button>
+                            ) : null}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </section>
+              )}
 
               <section className="space-y-3">
                 <h2 className="text-lg font-semibold text-foreground">{t('previewTitle')}</h2>

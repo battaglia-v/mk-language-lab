@@ -666,6 +666,124 @@
     "practiceTitle": "Recommended practice",
     "practiceDescription": "Jump into these workspaces to support this journey.",
     "practiceCta": "Open practice hub",
+    "extras": {
+      "header": {
+        "title": "Extend your practice",
+        "description": "Add a guided exercise or bookmark a resource to stay on track."
+      },
+      "exercisesTitle": "Guided exercises",
+      "resourcesTitle": "Additional resources",
+      "timeLabel": "{minutes} min",
+  "openLink": "Open link",
+      "family": {
+        "exercises": [
+          {
+            "title": "15-minute greeting rehearsal",
+            "description": "Set a timer and rotate through Macedonian greetings, follow-up questions, and exit phrases. Record yourself once and flag any wording that still feels stiff.",
+            "time": "15"
+          },
+          {
+            "title": "Story swap journaling",
+            "description": "Write a short family story in English, then translate it to Macedonian. Highlight three phrases you want the tutor to review for tone.",
+            "time": "20"
+          },
+          {
+            "title": "Tone ladder drill",
+            "description": "Say the same sentence in informal, neutral, and respectful forms. Jot notes on which endings or particles change.",
+            "time": "10"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Family phrase deck",
+            "description": "Jump to the phrase refresh workspace pre-filtered for family topics.",
+            "href": "/practice?section=phrases&journey=family"
+          },
+          {
+            "title": "Kinship vocabulary sheet",
+            "description": "Review Macedonian kinship terms and note which ones differ from your everyday usage.",
+            "href": "/resources?section=reference"
+          },
+          {
+            "title": "Warm check-in prompts",
+            "description": "Use the translator workspace to polish affectionate check-in lines before your next call.",
+            "href": "/translate?journey=family"
+          }
+        ]
+      },
+      "travel": {
+        "exercises": [
+          {
+            "title": "Transit role-play loop",
+            "description": "Draft three questions for the Skopje bus station, then answer them as a clerk. Swap roles and note vocab gaps.",
+            "time": "18"
+          },
+          {
+            "title": "Check-in checklist",
+            "description": "List every detail you want confirmed at a guesthouse. Translate the list and practise saying it aloud with a polite opener.",
+            "time": "15"
+          },
+          {
+            "title": "Market bargaining drill",
+            "description": "Script a short dialogue for buying produce. Focus on quantities, prices, and courtesies.",
+            "time": "12"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Travel task board preset",
+            "description": "Load the task hub with a travel-focused card set you can drag through the week.",
+            "href": "/tasks?journey=travel"
+          },
+          {
+            "title": "Transport vocabulary playlist",
+            "description": "Open the resource library filter for transport, lodging, and navigation articles.",
+            "href": "/resources?section=travel"
+          },
+          {
+            "title": "Restaurant ready set",
+            "description": "Review ordering phrases and tipping norms in the phrase workspace before dining out.",
+            "href": "/practice?section=phrases&journey=travel"
+          }
+        ]
+      },
+      "culture": {
+        "exercises": [
+          {
+            "title": "Culture capsule summary",
+            "description": "Pick one article from the spotlight section and summarise it in both English and Macedonian paragraphs.",
+            "time": "25"
+          },
+          {
+            "title": "Audio shadowing lab",
+            "description": "Shadow a 2-minute cultural podcast clip, noting pronunciation wins and phrases to ask the tutor about.",
+            "time": "20"
+          },
+          {
+            "title": "Reflection prompt trio",
+            "description": "Answer three journal prompts linking the cultural theme to your experience. Share one answer with the tutor for feedback.",
+            "time": "18"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Library culture shelf",
+            "description": "Jump straight to curated culture and history resources in the library.",
+            "href": "/resources?section=culture"
+          },
+          {
+            "title": "Pronunciation lab",
+            "description": "Use the pronunciation workspace to mimic rhythms from cultural audio clips.",
+            "href": "/practice?section=pronunciation&journey=culture"
+          },
+          {
+            "title": "Tutor culture prompts",
+            "description": "Load the tutor with culture-specific starter prompts once the chat returns.",
+            "href": "/tutor"
+          }
+        ]
+      }
+    },
     "previewTitle": "Full guided plan",
     "comingSoon": "Personalized scheduling and progress tracking are on the way.",
     "previewCta": "Build my path",
