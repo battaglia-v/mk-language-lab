@@ -43,7 +43,10 @@ export default async function LocaleLayout({
     (commonMessages?.skipToContent as string | undefined) ?? 'Skip to main content';
 
   return (
-    <html lang={locale} className="dark">
+    <html lang={locale} className="dark notranslate" translate="no">
+      <head>
+        <meta name="google" content="notranslate" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
