@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
@@ -43,6 +43,12 @@ interface Column {
   title: string;
   tasks: Task[];
 }
+
+const DEFAULT_COLUMN_IDS = ['todo', 'in-progress', 'done'] as const;
+type DefaultColumnId = (typeof DEFAULT_COLUMN_IDS)[number];
+
+const isDefaultColumnId = (id: string): id is DefaultColumnId =>
+  (DEFAULT_COLUMN_IDS as readonly string[]).includes(id);
 
 function TaskCard({ task }: { task: Task }) {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: task.id });
@@ -129,11 +135,50 @@ export default function TasksPage() {
   const t = useTranslations('tasks');
   const journeyT = useJourneyTranslations('journey');
   const searchParams = useSearchParams();
-  const [columns, setColumns] = useState<Column[]>([
-    { id: 'todo', title: t('todo'), tasks: [] },
-    { id: 'in-progress', title: t('inProgress'), tasks: [] },
-    { id: 'done', title: t('done'), tasks: [] },
-  ]);
+
+  const defaultColumnTitles = useMemo(
+    () => ({
+      todo: t('todo'),
+      'in-progress': t('inProgress'),
+      done: t('done'),
+    }),
+    [t]
+  );
+
+  const createDefaultColumns = useCallback(
+    (): Column[] =>
+      DEFAULT_COLUMN_IDS.map((id) => ({
+        id,
+        title: defaultColumnTitles[id],
+        tasks: [],
+      })),
+    [defaultColumnTitles]
+  );
+
+  const mergeWithDefaultColumns = useCallback(
+    (existing: Column[] = []): Column[] => {
+      const defaults = createDefaultColumns();
+
+      const mergedDefaults = defaults.map((defaultColumn) => {
+        const match = existing.find((column) => column.id === defaultColumn.id);
+        if (!match) {
+          return defaultColumn;
+        }
+
+        return {
+          ...defaultColumn,
+          tasks: match.tasks,
+        };
+      });
+
+      const additionalColumns = existing.filter((column) => !isDefaultColumnId(column.id));
+
+      return [...mergedDefaults, ...additionalColumns];
+    },
+    [createDefaultColumns]
+  );
+
+  const [columns, setColumns] = useState<Column[]>(() => mergeWithDefaultColumns());
   const [newTaskColumn, setNewTaskColumn] = useState<string>('');
   const [newTaskTitle, setNewTaskTitle] = useState('');
   const [newTaskDescription, setNewTaskDescription] = useState('');
@@ -170,14 +215,21 @@ export default function TasksPage() {
     const saved = localStorage.getItem('kanban-board');
     if (saved) {
       try {
-        const parsed = JSON.parse(saved);
-        setColumns(parsed);
+        const parsed = JSON.parse(saved) as Column[];
+        setColumns(mergeWithDefaultColumns(parsed));
       } catch (e) {
         console.error('Failed to parse saved board:', e);
+        setColumns(mergeWithDefaultColumns());
       }
+    } else {
+      setColumns(mergeWithDefaultColumns());
     }
     setIsHydrated(true);
-  }, []);
+  }, [mergeWithDefaultColumns]);
+
+  useEffect(() => {
+    setColumns((previous) => mergeWithDefaultColumns(previous));
+  }, [mergeWithDefaultColumns]);
 
   // Save to localStorage whenever columns change
   useEffect(() => {
@@ -317,6 +369,10 @@ export default function TasksPage() {
   };
 
   const handleDeleteColumn = (columnId: string) => {
+    if (isDefaultColumnId(columnId)) {
+      window.alert('Default columns cannot be removed.');
+      return;
+    }
     if (columns.length <= 1) return;
     if (!confirm(t('deleteColumn') + '?')) return;
 
