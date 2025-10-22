@@ -12,7 +12,6 @@ import { Plus, GripVertical, Trash2 } from 'lucide-react';
 import AuthGuard from '@/components/auth/AuthGuard';
 import {
   DndContext,
-  closestCenter,
   KeyboardSensor,
   PointerSensor,
   TouchSensor,
@@ -20,6 +19,7 @@ import {
   useSensors,
   DragEndEvent,
   useDroppable,
+  rectIntersection,
 } from '@dnd-kit/core';
 import {
   SortableContext,
@@ -404,7 +404,7 @@ export default function TasksPage() {
         ) : null}
 
         {/* Kanban Board */}
-        <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+  <DndContext sensors={sensors} collisionDetection={rectIntersection} onDragEnd={handleDragEnd}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {columns.map((column) => (
               <KanbanColumn
