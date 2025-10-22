@@ -15,6 +15,7 @@ import {
   closestCenter,
   KeyboardSensor,
   PointerSensor,
+  TouchSensor,
   useSensor,
   useSensors,
   DragEndEvent,
@@ -56,10 +57,10 @@ function TaskCard({ task }: { task: Task }) {
       ref={setNodeRef}
       style={style}
       {...attributes}
-      className="bg-card border border-border rounded-lg p-4 mb-3 cursor-move hover:border-primary/50 transition-colors"
+      className="bg-card border border-border rounded-lg p-4 mb-3 cursor-move select-none hover:border-primary/50 transition-colors"
     >
       <div className="flex items-start gap-2">
-        <div {...listeners} className="cursor-grab active:cursor-grabbing mt-1">
+        <div {...listeners} className="cursor-grab active:cursor-grabbing mt-1 touch-none">
           <GripVertical className="h-4 w-4 text-muted-foreground" />
         </div>
         <div className="flex-1">
@@ -143,7 +144,17 @@ export default function TasksPage() {
   const emptyColumnHint = t('emptyColumnHint');
 
   const sensors = useSensors(
-    useSensor(PointerSensor),
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 6,
+      },
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 120,
+        tolerance: 8,
+      },
+    }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     })

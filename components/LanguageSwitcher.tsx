@@ -13,6 +13,8 @@ import {
 import { Languages } from 'lucide-react';
 import { useTransition } from 'react';
 
+const supportedLocales = ['en', 'mk'] as const;
+
 const languages = [
   { code: 'en', name: 'English', flag: '🇬🇧' },
   { code: 'mk', name: 'Македонски', flag: '🇲🇰' },
@@ -26,15 +28,37 @@ export default function LanguageSwitcher() {
   const [isPending, startTransition] = useTransition();
 
   const switchLanguage = (newLocale: string) => {
+    if (newLocale === locale) {
+      return;
+    }
+
     // Store preference in localStorage
     if (typeof window !== 'undefined') {
       localStorage.setItem('preferredLocale', newLocale);
     }
 
     // Replace the locale in the pathname
-    const segments = pathname.split('/');
-    segments[1] = newLocale;
-    const newPathname = segments.join('/');
+    const segments = pathname.split('/').filter(Boolean);
+    const hasKnownLocale = supportedLocales.includes(segments[0] as (typeof supportedLocales)[number]);
+    if (hasKnownLocale) {
+      segments[0] = newLocale;
+    } else {
+      segments.unshift(newLocale);
+    }
+    const newPathname = `/${segments.join('/')}`;
+
+    const htmlEl = typeof document !== 'undefined' ? document.documentElement : null;
+    const googleTranslateActive = Boolean(
+      htmlEl?.classList.contains('translated-ltr') ||
+        htmlEl?.classList.contains('translated-rtl') ||
+        htmlEl?.getAttribute('data-translation-state') === 'translated'
+    );
+
+    if (typeof window !== 'undefined' && googleTranslateActive) {
+      // Force a hard navigation when Google Translate mutates the DOM to avoid hydration crashes.
+      window.location.assign(newPathname);
+      return;
+    }
 
     startTransition(() => {
       router.replace(newPathname);

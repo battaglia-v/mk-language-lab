@@ -103,9 +103,9 @@ export default function PracticeHubPage() {
           </div>
 
           <Tabs value={activeSection} onValueChange={(value) => setActiveSection(value as PracticeSection)} className="w-full">
-            <TabsList className="grid w-full grid-cols-1 gap-2 bg-card/50 p-1 sm:grid-cols-3">
+            <TabsList className="grid w-full grid-cols-1 gap-2 bg-card/50 p-1 sm:grid-cols-3 h-auto">
               {PRACTICE_SECTIONS.map((section) => (
-                <TabsTrigger key={section} value={section} className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <TabsTrigger key={section} value={section} className="h-auto min-h-[2.75rem] data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                   {t(`${section}.tabLabel`)}
                 </TabsTrigger>
               ))}
