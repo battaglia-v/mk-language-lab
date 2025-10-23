@@ -19,7 +19,7 @@ import {
   useSensors,
   DragEndEvent,
   useDroppable,
-  rectIntersection,
+  closestCorners,
 } from '@dnd-kit/core';
 import {
   SortableContext,
@@ -285,12 +285,12 @@ export default function TasksPage() {
   }, [columns, isHydrated, journeyPreset]);
 
   const findColumnIdForItem = useCallback(
-    (id: string): string | null => {
-      if (columns.some((column) => column.id === id)) {
+    (id: string, collection: Column[] = columns): string | null => {
+      if (collection.some((column) => column.id === id)) {
         return id;
       }
 
-      const match = columns.find((column) => column.tasks.some((task) => task.id === id));
+      const match = collection.find((column) => column.tasks.some((task) => task.id === id));
       return match?.id ?? null;
     },
     [columns]
@@ -304,86 +304,74 @@ export default function TasksPage() {
 
       const activeId = String(active.id);
       const overId = String(over.id);
+      const overColumnId = (over.data.current as { columnId?: string } | undefined)?.columnId;
 
-      const sourceColumnId = findColumnIdForItem(activeId);
-      const destinationColumnId = findColumnIdForItem(overId);
+      setColumns((previous) => {
+        const sourceColumnId = findColumnIdForItem(activeId, previous);
+        const destinationColumnId = overColumnId ?? findColumnIdForItem(overId, previous);
 
-      if (!sourceColumnId || !destinationColumnId) {
-        return;
-      }
-
-      if (sourceColumnId === destinationColumnId) {
-        const columnIndex = columns.findIndex((column) => column.id === sourceColumnId);
-        if (columnIndex === -1) {
-          return;
+        if (!sourceColumnId || !destinationColumnId) {
+          return previous;
         }
 
-        const column = columns[columnIndex];
-        const oldIndex = column.tasks.findIndex((task) => task.id === activeId);
+        const sourceColumnIndex = previous.findIndex((column) => column.id === sourceColumnId);
+        const destinationColumnIndex = previous.findIndex((column) => column.id === destinationColumnId);
 
-        if (oldIndex === -1) {
-          return;
+        if (sourceColumnIndex === -1 || destinationColumnIndex === -1) {
+          return previous;
         }
 
-        let newIndex = column.tasks.findIndex((task) => task.id === overId);
-        if (newIndex === -1) {
-          newIndex = column.tasks.length - 1;
+        const sourceColumn = previous[sourceColumnIndex];
+        const destinationColumn = previous[destinationColumnIndex];
+        const sourceTaskIndex = sourceColumn.tasks.findIndex((task) => task.id === activeId);
+
+        if (sourceTaskIndex === -1) {
+          return previous;
         }
 
-        if (newIndex === oldIndex || newIndex < 0) {
-          return;
-        }
+        if (sourceColumnId === destinationColumnId) {
+          let targetIndex = destinationColumn.tasks.findIndex((task) => task.id === overId);
 
-        setColumns((previous) =>
-          previous.map((col, index) =>
-            index === columnIndex
-              ? { ...col, tasks: arrayMove(col.tasks, oldIndex, newIndex) }
-              : col
-          )
-        );
-        return;
-      }
-
-      const sourceColumnIndex = columns.findIndex((column) => column.id === sourceColumnId);
-      const destinationColumnIndex = columns.findIndex((column) => column.id === destinationColumnId);
-
-      if (sourceColumnIndex === -1 || destinationColumnIndex === -1) {
-        return;
-      }
-
-      const sourceColumn = columns[sourceColumnIndex];
-      const destinationColumn = columns[destinationColumnIndex];
-
-      const sourceTaskIndex = sourceColumn.tasks.findIndex((task) => task.id === activeId);
-      if (sourceTaskIndex === -1) {
-        return;
-      }
-
-      const [movedTask] = sourceColumn.tasks.slice(sourceTaskIndex, sourceTaskIndex + 1);
-      const destinationTaskIndex = (() => {
-        const index = destinationColumn.tasks.findIndex((task) => task.id === overId);
-        return index === -1 ? destinationColumn.tasks.length : index;
-      })();
-
-      setColumns((previous) =>
-        previous.map((col, index) => {
-          if (index === sourceColumnIndex) {
-            const updatedTasks = [...col.tasks];
-            updatedTasks.splice(sourceTaskIndex, 1);
-            return { ...col, tasks: updatedTasks };
+          if (targetIndex === -1) {
+            const overData = over.data.current as { columnId?: string } | undefined;
+            if (overData?.columnId === destinationColumnId || overId === destinationColumnId) {
+              targetIndex = destinationColumn.tasks.length - 1;
+            }
           }
 
-          if (index === destinationColumnIndex) {
-            const updatedTasks = [...col.tasks];
-            updatedTasks.splice(destinationTaskIndex, 0, movedTask);
-            return { ...col, tasks: updatedTasks };
+          if (targetIndex < 0 || targetIndex === sourceTaskIndex) {
+            return previous;
           }
 
-          return col;
-        })
-      );
+          const reorderedTasks = arrayMove(destinationColumn.tasks, sourceTaskIndex, targetIndex);
+
+          return previous.map((column, index) =>
+            index === destinationColumnIndex ? { ...column, tasks: reorderedTasks } : column
+          );
+        }
+
+        const sourceTasks = [...sourceColumn.tasks];
+        const [movedTask] = sourceTasks.splice(sourceTaskIndex, 1);
+
+        if (!movedTask) {
+          return previous;
+        }
+
+        let destinationTaskIndex = destinationColumn.tasks.findIndex((task) => task.id === overId);
+        if (destinationTaskIndex === -1 || findColumnIdForItem(overId, previous) !== destinationColumnId) {
+          destinationTaskIndex = destinationColumn.tasks.length;
+        }
+
+        const destinationTasks = [...destinationColumn.tasks];
+        destinationTasks.splice(destinationTaskIndex, 0, movedTask);
+
+        const next = [...previous];
+        next[sourceColumnIndex] = { ...sourceColumn, tasks: sourceTasks };
+        next[destinationColumnIndex] = { ...destinationColumn, tasks: destinationTasks };
+        return next;
+      });
     },
-    [columns, findColumnIdForItem]
+    [findColumnIdForItem]
   );
 
   const handleAddTask = () => {
@@ -513,7 +501,7 @@ export default function TasksPage() {
         ) : null}
 
         {/* Kanban Board */}
-  <DndContext sensors={sensors} collisionDetection={rectIntersection} onDragEnd={handleDragEnd}>
+  <DndContext sensors={sensors} collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {columns.map((column) => (
               <KanbanColumn
