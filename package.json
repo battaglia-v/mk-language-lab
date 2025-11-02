@@ -28,7 +28,7 @@
     "clsx": "^2.1.1",
     "lucide-react": "^0.546.0",
     "next": "15.5.6",
-    "next-intl": "^4.3.12",
+    "next-intl": "^4.4.0",
     "openai": "^6.7.0",
     "pdfjs-dist": "^5.4.296",
     "prisma": "^6.17.1",
