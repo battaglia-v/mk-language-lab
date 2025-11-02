@@ -654,7 +654,56 @@ Create GDPR-compliant privacy policy and terms of service for production launch.
 
 ## MILESTONE 4: Android Release Issues
 
-### Issue #16: [Android] Create PWA manifest and service worker
+### Issue #16: [Android] Configure Next.js for PWA deployment
+**Labels:** `android`, `pwa`, `configuration`, `critical`
+
+**Body:**
+```markdown
+## Overview
+Configure Next.js for static export and add PWA meta tags to enable Android installation.
+
+## Next.js Configuration
+- [ ] Add `output: 'export'` to next.config.ts for static build
+- [ ] Configure image optimization for static export
+- [ ] Test static build locally (`npm run build`)
+- [ ] Verify all routes work with static export
+- [ ] Update Vercel deployment settings for static export
+
+## PWA Meta Tags
+- [ ] Add `<meta name="theme-color">` to root layout
+- [ ] Add `<meta name="mobile-web-app-capable" content="yes">` 
+- [ ] Add `<meta name="apple-mobile-web-app-capable" content="yes">`
+- [ ] Add `<meta name="apple-mobile-web-app-status-bar-style" content="default">`
+- [ ] Add `<meta name="viewport">` with proper mobile settings
+- [ ] Add `<link rel="manifest" href="/manifest.json">` reference
+
+## Static Export Considerations
+- [ ] Verify API routes won't break (may need to externalize)
+- [ ] Test translation functionality in static build
+- [ ] Test tutor chat in static build
+- [ ] Test news feed in static build
+- [ ] Confirm all dynamic routes are handled
+
+## Vercel Configuration
+- [ ] Configure proper cache headers for PWA assets
+- [ ] Ensure manifest.json served from root
+- [ ] Configure service worker caching strategy
+- [ ] Test deployment with static export
+
+## Acceptance Criteria
+- ✅ Static build completes successfully
+- ✅ PWA meta tags present in HTML head
+- ✅ Manifest accessible at /manifest.json
+- ✅ App works correctly in static mode
+- ✅ All core features functional after deployment
+- ✅ Lighthouse shows PWA installable
+
+**Note:** This must be completed before Issue #17 (PWA manifest and service worker)
+```
+
+---
+
+### Issue #17: [Android] Create PWA manifest and service worker
 **Labels:** `android`, `pwa`, `mobile`, `critical`
 
 **Body:**
@@ -711,7 +760,7 @@ Convert web app to Progressive Web App (PWA) for Android installation.
 
 ---
 
-### Issue #17: [Android] Create Play Store listing and assets
+### Issue #18: [Android] Create Play Store listing and assets
 **Labels:** `android`, `marketing`, `content`
 
 **Body:**
@@ -765,7 +814,7 @@ Prepare all assets and content for Google Play Store listing.
 
 ---
 
-### Issue #18: [Android] Beta testing and Play Store submission
+### Issue #19: [Android] Beta testing and Play Store submission
 **Labels:** `android`, `testing`, `critical`
 
 **Body:**

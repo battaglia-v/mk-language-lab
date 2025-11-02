@@ -12,7 +12,7 @@
 
 ### ✅ GitHub Infrastructure
 - **Project Created**: https://github.com/users/battaglia-v/projects/2
-- **25 Issues Created**: Issues #10, #14-37
+- **26 Issues Created**: Issues #10, #14-38
 - **All Issues Have**: Full descriptions, task checklists, acceptance criteria
 
 ---
@@ -44,6 +44,7 @@
 - [#37] Security audit and penetration testing
 
 ### Android Release Milestone (Week 7-9, Due: Jan 4, 2026)
+- [#38] Configure Next.js for PWA deployment
 - [#28] Create PWA manifest and service worker
 - [#29] Create Play Store listing and assets
 - [#30] Beta testing and Play Store submission
