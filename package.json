@@ -31,7 +31,7 @@
     "next-intl": "^4.4.0",
     "openai": "^6.7.0",
     "pdfjs-dist": "^5.4.296",
-    "prisma": "^6.17.1",
+    "prisma": "^6.18.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "tailwind-merge": "^3.3.1"
