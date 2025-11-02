@@ -264,7 +264,7 @@ This document outlines the path from current state to production-ready Macedonia
 1. **iOS App Store Approval** - Complex guidelines, unpredictable review process
    - *Mitigation:* Start iOS prep early, hire iOS consultant if needed
 2. **Content Quality** - Need native speaker review for credibility
-   - *Mitigation:* Budget for professional Macedonian translator/reviewer
+   - *Mitigation:* Engage native Macedonian translator/reviewer
 3. **API Costs** - OpenAI + Google Translate usage could spike
    - *Mitigation:* Implement aggressive rate limiting, caching, free tier quotas
 
@@ -331,7 +331,6 @@ This document outlines the path from current state to production-ready Macedonia
 ### Financial Budget
 - **Apple Developer Program:** $99/year (required for iOS)
 - **Google Play Console:** $25 one-time (required for Android)
-- **Professional Translation:** $500-1000 (native speaker review)
 - **Infrastructure:** $0-50/month (Vercel free tier, upgrade as needed)
 - **Monitoring Tools:** $0-30/month (Sentry, Plausible free tiers cover POC)
 

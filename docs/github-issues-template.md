@@ -215,7 +215,7 @@ Practice widget currently has limited vocabulary. Expand to 300+ terms focused o
 - ✅ Native speaker approval rating >4/5
 
 ## Resources Needed
-- Native Macedonian speaker for review (budget: $300-500)
+- Native Macedonian speaker for review
 ```
 
 ---
@@ -263,7 +263,7 @@ Audit messages/en.json and messages/mk.json to ensure 100% translation coverage 
 - ✅ Consistent tone and terminology across all content
 
 ## Resources Needed
-- Native Macedonian speaker for review (budget: $300-500)
+- Native Macedonian speaker for review
 - Translation QA checklist from docs/localization/qa-checklist.md
 ```
 

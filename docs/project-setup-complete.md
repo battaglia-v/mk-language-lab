@@ -32,8 +32,6 @@
 - [#20] Create common phrases library (50+ phrases)
 - [#21] Refine tutor system prompts with cultural context
 
-**Budget Note**: $300-500 for native Macedonian speaker review
-
 ### Production Infrastructure Milestone (Week 5-6, Due: Dec 14, 2025)
 - [#22] Migrate from SQLite to PostgreSQL (Vercel/Neon)
 - [#23] Implement user authentication with NextAuth.js
@@ -129,12 +127,11 @@ Begin with Issue #10: "[MVP POC] Simplify navigation to single learning path"
 
 | Item | Cost | Timing |
 |------|------|--------|
-| Native Macedonian Speaker | $300-500 | Week 3-4 |
 | Google Play Console Fee | $25 (one-time) | Week 7 |
 | Apple Developer Program | $99/year | Week 10 |
 | Hosting (Vercel) | $0-20/month | Week 5+ |
 | Database (Neon/Vercel) | $0-25/month | Week 5+ |
-| **Total First Year** | **~$500-700** | |
+| **Total First Year** | **~$200-300** | |
 
 ---
 
