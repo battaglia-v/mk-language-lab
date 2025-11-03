@@ -22,6 +22,8 @@ import {
   type PracticeCard,
 } from '@/data/practice';
 
+const ESTIMATED_PRACTICE_DURATION_MINUTES = 12;
+
 export default function PracticeHubPage() {
   const t = useTranslations('practiceHub');
   const locale = useLocale();
@@ -148,7 +150,12 @@ export default function PracticeHubPage() {
                             </p>
                           ) : null}
                           <Button variant="outline" className="gap-2" asChild>
-                            <Link href={buildCardHref(card)} onClick={() => logSession()}>
+                            <Link
+                              href={buildCardHref(card)}
+                              onClick={() =>
+                                logSession({ durationMinutes: ESTIMATED_PRACTICE_DURATION_MINUTES })
+                              }
+                            >
                               {t('openAction')}
                             </Link>
                           </Button>

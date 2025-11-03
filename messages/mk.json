@@ -1,8 +1,9 @@
 {
   "nav": {
     "label": "Главна навигација",
-    "journey": "Патека хаб",
+    "journey": "Патување",
     "practice": "Вежбање",
+    "tutor": "Наставник",
     "library": "Библиотека",
     "translate": "Преведи",
     "resources": "Ресурси",
@@ -19,6 +20,12 @@
       "badge": "Почетен импулс",
       "title": "Денешен напредок",
       "description": "Одржи ја навиката решавајќи една фокусирана задача.",
+      "streakLabel": "{count, plural, one {# ден по ред} other {# дена по ред}}",
+  "goalLabel": "Денешна цел - {minutes} мин",
+      "sessionLabel": "Напредок на сесијата",
+  "minutesTodayLabel": "Запишано денес: {minutes} мин",
+  "minutesWeekLabel": "Оваа недела: {minutes} мин",
+  "minutesTotalLabel": "Вкупно забележани минути: {minutes}",
       "cta": "Започни кратка вежба",
       "stats": {
         "activeGoal": {
@@ -39,6 +46,9 @@
     "quickActions": {
       "title": "Продолжи таму каде што застана",
       "description": "Влези директно во алатката што најчесто ја користиш.",
+      "progressLabel": "Напредок",
+      "minutes": "{minutes} мин загревање",
+      "resume": "Продолжи",
       "open": "Отвори алатка",
       "items": {
         "practice": {
@@ -59,10 +69,56 @@
         }
       }
     },
+    "recent": {
+      "title": "Недавно вежбано",
+      "description": "Продолжи со вежбите што ги допре оваа недела со зачуван напредок.",
+      "resume": "Продолжи сесија",
+      "streakLabel": "{count, plural, one {# ден по ред} other {# дена по ред}}",
+      "items": {
+        "familyPhrases": {
+          "tag": "Речников дек",
+          "title": "Семејни фрази",
+          "description": "Топли поздрави, прашања и споделени спомени."
+        },
+        "listeningWarmup": {
+          "tag": "Лабораторија за изговор",
+          "title": "Утринско слушање",
+          "description": "Имитирај краток дијалог за да го ресетираш слухот."
+        },
+        "newsDigest": {
+          "tag": "Преглед на вести",
+          "title": "Преглед на наслови",
+          "description": "Прелистај приказни и забележи прашања за продолжување."
+        }
+      }
+    },
+    "recommended": {
+      "title": "Препорачано за тебе",
+      "description": "Комбинација од слушање, култура и патување за да го одржиш темпото.",
+      "start": "Отвори модул",
+      "items": {
+        "listeningLab": {
+          "tag": "Аудио фокус",
+          "title": "Слушачка лабораторија",
+          "description": "Гради разбирање со водени сетови за сенчење."
+        },
+        "cultureDeepDive": {
+          "tag": "Култура",
+          "title": "Културно истражување",
+          "description": "Спои статии, видеа и прашања за тутор."
+        },
+        "travelToolkit": {
+          "tag": "Патување",
+          "title": "Патнички алатник",
+          "description": "Вежбај реални маршрути и интеракции со услуги."
+        }
+      }
+    },
     "goals": {
       "title": "Одбери патека",
       "description": "Секоја патека комбинира курирани ресурси, вежби и културен контекст според твојата цел.",
-      "cta": "Види патека",
+      "minutes": "Препорачан фокус: {minutes} мин",
+      "start": "Започни",
       "cards": {
         "family": {
           "badge": "Разговор",
@@ -157,7 +213,15 @@
     "practiceReset": "Ресетирај",
     "correctAnswer": "Браво!",
     "incorrectAnswer": "Не е точно. Одговорот е {answer}.",
-    "practiceCategoryLabel": "Категорија"
+    "practiceCategoryLabel": "Категорија",
+    "quickPracticeLaunch": "Започни сесија",
+    "quickPracticeLaunchDescription": "Отвори ја целосната лабораторија за брзи вежби.",
+    "practiceProgressLabel": "Напредок на сесијата",
+    "practiceProgressGoal": "Цел: {target} задачи",
+    "practiceProgressSummary": "Одговорени задачи: {count}",
+    "practiceAccuracy": "Точност: {value}%",
+    "practiceModalTitle": "Лабораторија за вежбање",
+    "practiceClose": "Затвори сесија"
   },
   "learnVocabulary": {
     "back": "Назад до центарот за учење",
@@ -973,6 +1037,25 @@
     "edit": "Уреди",
     "search": "Пребарај",
     "language": "Јазик",
-    "skipToContent": "Прескокни до главната содржина"
+    "skipToContent": "Прескокни до главната содржина",
+    "commandMenu": {
+      "trigger": "Брзо пребарување",
+      "title": "Брза навигација",
+      "subtitle": "Скокни до која било алатка или страница.",
+      "placeholder": "Напиши алатка или страница...",
+      "empty": "Нема совпаѓања. Пробај друг поим.",
+      "continue": "Отвори",
+      "shortcutSearch": "Притисни ⌘K / Ctrl+K",
+      "shortcutHelp": "Притисни ? за кратенки",
+      "items": {
+        "journeyDescription": "Врати се на центарот за патување",
+        "practiceDescription": "Продолжи со дневните вежби",
+        "tutorDescription": "Отвори го чатот со туторот",
+        "translateDescription": "Стартувај го преведувачот",
+        "newsDescription": "Прелистај го информативниот центар",
+        "libraryDescription": "Истражи ја библиотеката со ресурси",
+        "resourcesDescription": "Скенирај курирани референтни колекции"
+      }
+    }
   }
 }

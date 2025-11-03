@@ -32,6 +32,8 @@ type TranslationHistoryEntry = {
 
 const HISTORY_LIMIT = 5;
 const MAX_CHARACTERS = 1800;
+const TRANSLATION_SESSION_MINUTES = 6;
+const SNIPPET_REVIEW_MINUTES = 3;
 
 export default function TranslatePage() {
   const t = useTranslations('translate');
@@ -194,7 +196,7 @@ export default function TranslatePage() {
           return [newEntry, ...filtered].slice(0, HISTORY_LIMIT);
         });
 
-        logSession();
+  logSession({ durationMinutes: TRANSLATION_SESSION_MINUTES });
       } catch (error) {
         console.error('Translation failed', error);
         setTranslatedText('');
@@ -239,7 +241,7 @@ export default function TranslatePage() {
       setDetectedLanguage(null);
       setErrorMessage(null);
       setCopiedState('idle');
-      logSession();
+  logSession({ durationMinutes: SNIPPET_REVIEW_MINUTES });
     },
     [logSession]
   );

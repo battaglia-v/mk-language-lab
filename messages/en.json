@@ -3,6 +3,7 @@
     "label": "Main navigation",
     "journey": "Journey hub",
     "practice": "Practice",
+    "tutor": "Tutor",
     "library": "Library",
     "translate": "Translate",
     "resources": "Resources",
@@ -19,6 +20,12 @@
       "badge": "Getting started",
       "title": "Today's momentum",
       "description": "Keep your streak alive by tackling one focused step.",
+      "streakLabel": "{count, plural, one {# day streak} other {# day streak}}",
+  "goalLabel": "Today's target - {minutes} min",
+      "sessionLabel": "Session progress",
+  "minutesTodayLabel": "Logged today: {minutes} min",
+  "minutesWeekLabel": "This week: {minutes} min",
+  "minutesTotalLabel": "Lifetime minutes logged: {minutes}",
       "cta": "Work on a quick drill",
       "stats": {
         "activeGoal": {
@@ -39,6 +46,9 @@
     "quickActions": {
       "title": "Pick up where you left off",
       "description": "Jump straight into the workspace you use most often.",
+      "progressLabel": "Progress",
+      "minutes": "{minutes} min warm-up",
+      "resume": "Continue",
       "open": "Open workspace",
       "items": {
         "practice": {
@@ -59,10 +69,56 @@
         }
       }
     },
+    "recent": {
+      "title": "Recently practiced",
+      "description": "Pick up the drills you touched this week with progress already saved.",
+      "resume": "Resume session",
+      "streakLabel": "{count, plural, one {# day streak} other {# day streak}}",
+      "items": {
+        "familyPhrases": {
+          "tag": "Vocabulary deck",
+          "title": "Family phrases",
+          "description": "Warm introductions, check-ins, and shared memories."
+        },
+        "listeningWarmup": {
+          "tag": "Pronunciation lab",
+          "title": "Morning listening warm-up",
+          "description": "Shadow a short dialogue to reset your ear."
+        },
+        "newsDigest": {
+          "tag": "News digest",
+          "title": "Headlines review",
+          "description": "Scan recent stories and mark follow-up questions."
+        }
+      }
+    },
+    "recommended": {
+      "title": "Recommended for you",
+      "description": "A mix of listening, culture, and travel modules to keep your momentum.",
+      "start": "Open module",
+      "items": {
+        "listeningLab": {
+          "tag": "Audio focus",
+          "title": "Listening lab",
+          "description": "Build comprehension with guided shadowing sets."
+        },
+        "cultureDeepDive": {
+          "tag": "Culture",
+          "title": "Culture deep-dive",
+          "description": "Pair articles, videos, and tutor prompts for context."
+        },
+        "travelToolkit": {
+          "tag": "Travel",
+          "title": "Travel toolkit",
+          "description": "Practice real itineraries and service interactions."
+        }
+      }
+    },
     "goals": {
       "title": "Choose a journey",
       "description": "Each path combines curated resources, practice prompts, and cultural context tailored to your goal.",
-      "cta": "Preview journey",
+      "minutes": "Suggested focus: {minutes} min",
+      "start": "Start now",
       "cards": {
         "family": {
           "badge": "Conversational",
@@ -157,7 +213,15 @@
     "practiceReset": "Reset",
     "correctAnswer": "Great job!",
     "incorrectAnswer": "Not quite. The answer is {answer}.",
-    "practiceCategoryLabel": "Category"
+    "practiceCategoryLabel": "Category",
+    "quickPracticeLaunch": "Launch session",
+    "quickPracticeLaunchDescription": "Open the full-screen practice lab to run focused drills.",
+    "practiceProgressLabel": "Session progress",
+    "practiceProgressGoal": "Goal: {target} prompts",
+    "practiceProgressSummary": "Prompts answered: {count}",
+    "practiceAccuracy": "Accuracy: {value}%",
+    "practiceModalTitle": "Practice lab",
+    "practiceClose": "Close session"
   },
   "learnVocabulary": {
     "back": "Back to Learn Hub",
@@ -975,6 +1039,25 @@
     "edit": "Edit",
     "search": "Search",
     "language": "Language",
-    "skipToContent": "Skip to main content"
+    "skipToContent": "Skip to main content",
+    "commandMenu": {
+      "trigger": "Quick search",
+      "title": "Quick navigation",
+      "subtitle": "Jump to any workspace or feature.",
+      "placeholder": "Type a feature or page...",
+      "empty": "No matches yet. Try another keyword.",
+      "continue": "Go",
+      "shortcutSearch": "Press ⌘K / Ctrl+K",
+      "shortcutHelp": "Press ? for shortcuts",
+      "items": {
+        "journeyDescription": "Return to the journey hub",
+        "practiceDescription": "Resume daily practice drills",
+        "tutorDescription": "Open the tutor chat for support",
+        "translateDescription": "Launch the translation workspace",
+        "newsDescription": "Browse the Macedonian news digest",
+        "libraryDescription": "Explore the saved resource library",
+        "resourcesDescription": "Scan curated reference collections"
+      }
+    }
   }
 }
