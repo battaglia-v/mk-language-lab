@@ -4,7 +4,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from '@vercel/analytics/react';
 import { notFound } from 'next/navigation';
 import { locales } from '@/i18n';
-import Navigation from '@/components/Navigation';
+import Sidebar from '@/components/Sidebar';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { CommandMenu } from '@/components/CommandMenu';
 import "../globals.css";
 
 const geistSans = Geist({
@@ -54,8 +56,21 @@ export default async function LocaleLayout({
           {skipToContentLabel}
         </a>
         <NextIntlClientProvider messages={messages}>
-          <Navigation />
-          <main id="main-content" className="outline-none focus-visible:ring-2 focus-visible:ring-primary">
+          <Sidebar />
+          
+          {/* Top bar for language switcher and user menu (desktop only) */}
+          <div className="hidden lg:block fixed top-0 right-0 left-0 lg:left-sidebar z-30 h-14 bg-background/80 backdrop-blur-md border-b border-border/40">
+            <div className="flex items-center justify-between h-full px-6 gap-4">
+              <CommandMenu />
+              <LanguageSwitcher />
+            </div>
+          </div>
+          
+          {/* Main content with proper spacing for sidebar and top bar */}
+          <main 
+            id="main-content" 
+            className="outline-none focus-visible:ring-2 focus-visible:ring-primary lg:ml-sidebar lg:pt-14 pb-20 lg:pb-0 min-h-screen"
+          >
             {children}
           </main>
         </NextIntlClientProvider>

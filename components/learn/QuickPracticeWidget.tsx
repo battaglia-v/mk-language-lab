@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { RefreshCcw, Eye } from 'lucide-react';
+import { RefreshCcw, Eye, Sparkles, PlayCircle, X } from 'lucide-react';
 import practicePrompts from '@/data/practice-vocabulary.json';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -10,8 +10,10 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
+import { Dialog, DialogClose, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 
 const ALL_CATEGORIES = 'all';
+const SESSION_TARGET = 5;
 
 type PracticeItem = {
   macedonian: string;
@@ -72,7 +74,11 @@ export function QuickPracticeWidget({
   const [answer, setAnswer] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [revealedAnswer, setRevealedAnswer] = useState('');
-  const isCompact = layout === 'compact';
+  const [attemptCount, setAttemptCount] = useState(0);
+  const [correctCount, setCorrectCount] = useState(0);
+  const [isCelebrating, setIsCelebrating] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const celebrationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const filteredItems = useMemo(() => {
     if (category === ALL_CATEGORIES) {
@@ -87,6 +93,9 @@ export function QuickPracticeWidget({
       setAnswer('');
       setFeedback(null);
       setRevealedAnswer('');
+      setAttemptCount(0);
+      setCorrectCount(0);
+      setIsCelebrating(false);
       return;
     }
 
@@ -94,13 +103,25 @@ export function QuickPracticeWidget({
     setAnswer('');
     setFeedback(null);
     setRevealedAnswer('');
+    setAttemptCount(0);
+    setCorrectCount(0);
+    setIsCelebrating(false);
   }, [filteredItems]);
 
   useEffect(() => {
     setAnswer('');
     setFeedback(null);
     setRevealedAnswer('');
+    setIsCelebrating(false);
   }, [mode]);
+
+  useEffect(() => {
+    return () => {
+      if (celebrationTimeoutRef.current) {
+        clearTimeout(celebrationTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const currentItem =
     currentIndex >= 0 && currentIndex < filteredItems.length ? filteredItems[currentIndex] : undefined;
@@ -125,12 +146,21 @@ export function QuickPracticeWidget({
     const normalizedAnswer = normalizeAnswer(answer);
     const normalizedExpected = normalizeAnswer(expectedAnswer);
 
+    setAttemptCount((prev) => prev + 1);
+
     if (normalizedAnswer === normalizedExpected) {
       setFeedback('correct');
       setRevealedAnswer('');
+      setCorrectCount((prev) => prev + 1);
+      setIsCelebrating(true);
+      if (celebrationTimeoutRef.current) {
+        clearTimeout(celebrationTimeoutRef.current);
+      }
+      celebrationTimeoutRef.current = setTimeout(() => setIsCelebrating(false), 1200);
     } else {
       setFeedback('incorrect');
       setRevealedAnswer(expectedAnswer);
+      setIsCelebrating(false);
     }
   };
 
@@ -154,12 +184,16 @@ export function QuickPracticeWidget({
     setCurrentIndex(nextIndex);
     setAnswer('');
     setFeedback(null);
+    setIsCelebrating(false);
     setRevealedAnswer('');
   };
 
   const handleReset = () => {
     setAnswer('');
     setFeedback(null);
+    setAttemptCount(0);
+    setCorrectCount(0);
+    setIsCelebrating(false);
     setRevealedAnswer('');
   };
 
@@ -168,6 +202,7 @@ export function QuickPracticeWidget({
       return;
     }
     setFeedback(null);
+    setIsCelebrating(false);
     setRevealedAnswer(expectedAnswer);
   };
 
@@ -176,147 +211,285 @@ export function QuickPracticeWidget({
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     handleCheck();
+
   };
 
-  return (
-    <Card
-      className={cn(
-        'bg-gradient-to-br from-card/85 via-card/70 to-muted/40 backdrop-blur border-border/40',
-        layout === 'compact' ? 'shadow-lg' : '',
-        className
-      )}
-    >
-      <CardHeader>
-        <CardTitle className="text-xl md:text-2xl">{title ?? t('quickPractice')}</CardTitle>
-        <CardDescription className="text-sm md:text-base">
-          {description ?? t('quickPracticeDescription')}
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        <div
-          className={cn(
-            'flex gap-4',
-            isCompact ? 'flex-col' : 'flex-col sm:flex-row sm:items-end'
-          )}
-        >
-          <div className={cn('space-y-2', isCompact ? 'w-full' : 'flex-1')}>
-            <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              {t('practiceFilterLabel')}
-            </span>
-            <Select value={category} onValueChange={setCategory}>
-              <SelectTrigger aria-label={t('practiceFilterLabel')} className="w-full">
-                <SelectValue placeholder={t('practiceAllCategories')} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value={ALL_CATEGORIES}>{t('practiceAllCategories')}</SelectItem>
-                {categories.map((cat) => (
-                  <SelectItem key={cat} value={cat}>
-                    {formatCategory(cat)}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          <div className={cn('space-y-2', isCompact ? 'w-full' : 'sm:w-auto')}>
-            <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              {t('practiceModeLabel')}
-            </span>
-            <div
-              className={cn(
-                'flex rounded-lg border border-border/60 bg-background/60 p-1',
-                isCompact ? 'w-full flex-col gap-2' : 'w-full sm:w-max'
-              )}
+  const sessionProgress = Math.min(100, Math.round((attemptCount / SESSION_TARGET) * 100));
+  const accuracy = attemptCount > 0 ? Math.round((correctCount / attemptCount) * 100) : 0;
+  const summarySubtitle = description ?? t('quickPracticeDescription');
+
+  const renderPracticeCard = (variant: 'default' | 'modal', extraClassName?: string) => {
+    const isModalVariant = variant === 'modal';
+
+    return (
+      <Card
+        className={cn(
+          'relative overflow-hidden border border-border/40 bg-gradient-to-br from-card/85 via-card/70 to-muted/40 backdrop-blur supports-[backdrop-filter]:backdrop-blur-xl transition-all duration-500',
+          isModalVariant ? 'h-full border-border/30 shadow-2xl' : 'shadow-lg',
+          extraClassName
+        )}
+      >
+        {isCelebrating && (
+          <div
+            className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 via-secondary/20 to-primary/0 opacity-90 animate-pulse"
+            aria-hidden="true"
+          />
+        )}
+        <CardHeader className={cn('space-y-6', isModalVariant ? 'px-10 py-10 lg:px-12' : '')}>
+          <div className="flex flex-col gap-4 text-center sm:text-left">
+            <Badge
+              variant="outline"
+              className="mx-auto w-fit border-primary/40 bg-primary/10 text-primary sm:mx-0"
             >
-              <Button
-                type="button"
-                size="sm"
-                variant={mode === 'mkToEn' ? 'default' : 'outline'}
-                onClick={() => setMode('mkToEn')}
-                aria-pressed={mode === 'mkToEn'}
-                className={cn('px-3', isCompact ? 'w-full' : 'sm:flex-none')}
-              >
-                {t('practiceModeMkToEn')}
-              </Button>
-              <Button
-                type="button"
-                size="sm"
-                variant={mode === 'enToMk' ? 'default' : 'outline'}
-                onClick={() => setMode('enToMk')}
-                aria-pressed={mode === 'enToMk'}
-                className={cn('px-3', isCompact ? 'w-full' : 'sm:flex-none')}
-              >
-                {t('practiceModeEnToMk')}
-              </Button>
+              {t('quickPractice')}
+            </Badge>
+            <div className="space-y-3">
+              <CardTitle className={cn('text-2xl text-foreground sm:text-3xl', isModalVariant && 'sm:text-4xl')}>
+                {title ?? t('quickPractice')}
+              </CardTitle>
+              <CardDescription className={cn('text-sm text-muted-foreground sm:text-base', isModalVariant && 'sm:text-lg')}>
+                {summarySubtitle}
+              </CardDescription>
             </div>
           </div>
-        </div>
-
-        <div className="space-y-2 rounded-xl border border-border/40 bg-muted/30 p-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{promptLabel}</p>
-          <p className="text-2xl font-semibold text-foreground break-words">{promptValue}</p>
-          <Badge variant="secondary" className="mt-3 w-fit">
-            {categoryLabel}
-          </Badge>
-        </div>
-
-        <form className="space-y-3" onSubmit={handleSubmit}>
-          <Input
-            value={answer}
-            onChange={(event) => setAnswer(event.target.value)}
-            placeholder={placeholder}
-            className="h-12 text-lg"
-            aria-label={placeholder}
-            disabled={!isReady}
-          />
-          <div className="flex flex-wrap gap-2">
-            <Button type="submit" disabled={!isReady || !answer.trim()}>
-              {t('checkAnswer')}
-            </Button>
-            <Button
-              type="button"
-              variant="outline"
-              onClick={handleNext}
-              className="gap-2"
-              disabled={!filteredItems.length}
-            >
-              <RefreshCcw className="h-4 w-4" />
-              {t('nextPrompt')}
-            </Button>
-            <Button type="button" variant="ghost" onClick={handleReveal} disabled={!isReady}>
-              <Eye className="h-4 w-4" />
-              {t('practiceRevealAnswer')}
-            </Button>
-            <Button type="button" variant="ghost" onClick={handleReset} disabled={!isReady && !answer}>
-              {t('practiceReset')}
-            </Button>
+          <div className="rounded-2xl border border-border/30 bg-background/60 p-4 shadow-inner">
+            <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              <span>{t('practiceProgressLabel')}</span>
+              <span>{t('practiceProgressGoal', { target: SESSION_TARGET })}</span>
+            </div>
+            <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-border/40">
+              <div
+                role="progressbar"
+                aria-valuenow={sessionProgress}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                className="h-full rounded-full bg-primary transition-all duration-500"
+                style={{ width: `${sessionProgress}%` }}
+              />
+            </div>
+            <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+              <span>{t('practiceProgressSummary', { count: attemptCount })}</span>
+              <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-primary">
+                <Sparkles className="h-4 w-4" />
+                {t('practiceAccuracy', { value: accuracy })}
+              </span>
+            </div>
           </div>
-        </form>
-
-        {feedback && isReady ? (
+        </CardHeader>
+        <CardContent className={cn('space-y-6', isModalVariant ? 'px-10 pb-10 lg:px-12' : '')}>
           <div
             className={cn(
-              'rounded-lg px-4 py-3 text-sm font-medium',
-              feedback === 'correct'
-                ? 'bg-emerald-500/10 text-emerald-600'
-                : 'bg-destructive/10 text-destructive'
+              'flex gap-4',
+              isModalVariant ? 'flex-col lg:flex-row lg:items-end lg:gap-6' : 'flex-col sm:flex-row sm:items-end'
             )}
           >
-            {feedback === 'correct'
-              ? t('correctAnswer')
-              : t('incorrectAnswer', { answer: revealedAnswer })}
+            <div className={cn('space-y-2', isModalVariant ? 'w-full lg:flex-1' : 'flex-1')}>
+              <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                {t('practiceFilterLabel')}
+              </span>
+              <Select value={category} onValueChange={setCategory}>
+                <SelectTrigger
+                  aria-label={t('practiceFilterLabel')}
+                  className={cn('w-full', isModalVariant && 'h-12 text-base')}
+                >
+                  <SelectValue placeholder={t('practiceAllCategories')} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value={ALL_CATEGORIES}>{t('practiceAllCategories')}</SelectItem>
+                  {categories.map((cat) => (
+                    <SelectItem key={cat} value={cat}>
+                      {formatCategory(cat)}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className={cn('space-y-2', isModalVariant ? 'w-full lg:w-auto' : 'sm:w-auto')}>
+              <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                {t('practiceModeLabel')}
+              </span>
+              <div
+                className={cn(
+                  'flex rounded-xl border border-border/60 bg-background/60 p-1',
+                  isModalVariant ? 'flex-col gap-3 lg:flex-row' : 'w-full sm:w-max'
+                )}
+              >
+                <Button
+                  type="button"
+                  size={isModalVariant ? 'lg' : 'sm'}
+                  variant={mode === 'mkToEn' ? 'default' : 'outline'}
+                  onClick={() => setMode('mkToEn')}
+                  aria-pressed={mode === 'mkToEn'}
+                  className={cn(isModalVariant ? 'justify-center' : 'px-3', !isModalVariant && 'sm:flex-none')}
+                >
+                  {t('practiceModeMkToEn')}
+                </Button>
+                <Button
+                  type="button"
+                  size={isModalVariant ? 'lg' : 'sm'}
+                  variant={mode === 'enToMk' ? 'default' : 'outline'}
+                  onClick={() => setMode('enToMk')}
+                  aria-pressed={mode === 'enToMk'}
+                  className={cn(isModalVariant ? 'justify-center' : 'px-3', !isModalVariant && 'sm:flex-none')}
+                >
+                  {t('practiceModeEnToMk')}
+                </Button>
+              </div>
+            </div>
           </div>
-        ) : null}
 
-        {!feedback && revealedAnswer ? (
-          <div className="rounded-lg border border-border/40 bg-muted/30 px-4 py-3 text-sm text-muted-foreground">
-            {t('practiceAnswerRevealed', { answer: revealedAnswer })}
+          <div className="space-y-2 rounded-2xl border border-border/40 bg-muted/30 p-5">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{promptLabel}</p>
+            <p className={cn('break-words font-semibold text-foreground', isModalVariant ? 'text-3xl' : 'text-2xl')}>
+              {promptValue}
+            </p>
+            <Badge variant="secondary" className="mt-3 w-fit">
+              {categoryLabel}
+            </Badge>
           </div>
-        ) : null}
 
-        {!isReady && (
-          <p className="text-sm text-muted-foreground">{t('practiceEmptyCategory')}</p>
-        )}
-      </CardContent>
-    </Card>
+          <form className="space-y-4" onSubmit={handleSubmit}>
+            <Input
+              value={answer}
+              onChange={(event) => setAnswer(event.target.value)}
+              placeholder={placeholder}
+              className={cn('rounded-xl border-border/40 bg-background/80', isModalVariant ? 'h-14 text-xl' : 'h-12 text-lg')}
+              aria-label={placeholder}
+              disabled={!isReady}
+            />
+            <div className="flex flex-wrap gap-2">
+              <Button type="submit" size={isModalVariant ? 'lg' : 'default'} className="min-w-[148px] gap-2" disabled={!isReady || !answer.trim()}>
+                {t('checkAnswer')}
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                size={isModalVariant ? 'lg' : 'default'}
+                onClick={handleNext}
+                className="min-w-[148px] gap-2"
+                disabled={!filteredItems.length}
+              >
+                <RefreshCcw className="h-4 w-4" />
+                {t('nextPrompt')}
+              </Button>
+              <Button
+                type="button"
+                variant="ghost"
+                size={isModalVariant ? 'lg' : 'default'}
+                onClick={handleReveal}
+                className="gap-2"
+                disabled={!isReady}
+              >
+                <Eye className="h-4 w-4" />
+                {t('practiceRevealAnswer')}
+              </Button>
+              <Button
+                type="button"
+                variant="ghost"
+                size={isModalVariant ? 'lg' : 'default'}
+                onClick={handleReset}
+                className="gap-2"
+                disabled={!isReady && !answer}
+              >
+                {t('practiceReset')}
+              </Button>
+            </div>
+          </form>
+
+          {feedback && isReady ? (
+            <div
+              className={cn(
+                'rounded-xl px-4 py-3 text-sm font-medium',
+                feedback === 'correct'
+                  ? 'bg-emerald-500/10 text-emerald-500'
+                  : 'bg-destructive/10 text-destructive'
+              )}
+            >
+              {feedback === 'correct'
+                ? t('correctAnswer')
+                : t('incorrectAnswer', { answer: revealedAnswer })}
+            </div>
+          ) : null}
+
+          {!feedback && revealedAnswer ? (
+            <div className="rounded-xl border border-border/40 bg-muted/30 px-4 py-3 text-sm text-muted-foreground">
+              {t('practiceAnswerRevealed', { answer: revealedAnswer })}
+            </div>
+          ) : null}
+
+          {!isReady && (
+            <p className="text-sm text-muted-foreground">{t('practiceEmptyCategory')}</p>
+          )}
+        </CardContent>
+      </Card>
+    );
+  };
+
+  if (layout !== 'compact') {
+    return renderPracticeCard('default', className);
+  }
+
+  return (
+    <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+      <DialogTrigger asChild>
+        <Card
+          className={cn(
+            'group relative h-full cursor-pointer overflow-hidden rounded-2xl border border-border/40 bg-gradient-to-br from-primary/10 via-background/40 to-secondary/10 p-8 transition-all duration-300 hover:border-primary/50 hover:shadow-xl',
+            className
+          )}
+        >
+          <div className="space-y-4">
+            <Badge variant="secondary" className="w-fit bg-secondary/20 text-secondary">
+              {t('quickPractice')}
+            </Badge>
+            <h3 className="text-2xl font-semibold text-foreground md:text-3xl">
+              {title ?? t('quickPractice')}
+            </h3>
+            <p className="text-sm text-muted-foreground md:text-base">
+              {t('quickPracticeLaunchDescription')}
+            </p>
+          </div>
+          <div className="mt-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="flex items-center gap-2 text-sm text-primary md:text-base">
+              <Sparkles className="h-5 w-5" />
+              {t('practiceProgressSummary', { count: attemptCount })}
+            </div>
+            <Button type="button" size="lg" className="btn-glow gap-3">
+              <PlayCircle className="h-6 w-6" />
+              {t('quickPracticeLaunch')}
+            </Button>
+          </div>
+        </Card>
+      </DialogTrigger>
+      <DialogContent
+        showCloseButton={false}
+        className="h-[90vh] max-h-[760px] w-[min(96vw,1100px)] max-w-none border border-border/40 bg-background/95 p-0 shadow-2xl"
+      >
+        <div className="flex h-full flex-col overflow-hidden">
+          <div className="flex items-center justify-between border-b border-border/40 px-6 py-4">
+            <div className="space-y-1">
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                {t('practiceModalTitle')}
+              </p>
+              <h3 className="text-lg font-semibold text-foreground">
+                {title ?? t('quickPractice')}
+              </h3>
+            </div>
+            <DialogClose asChild>
+              <button
+                type="button"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-background/60 text-muted-foreground transition hover:border-primary/40 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+                aria-label={t('practiceClose')}
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </DialogClose>
+          </div>
+          <div className="flex-1 overflow-y-auto bg-gradient-to-br from-background via-background to-muted/20 p-4 sm:p-6 lg:p-8">
+            {renderPracticeCard('modal', 'h-full')}
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 }

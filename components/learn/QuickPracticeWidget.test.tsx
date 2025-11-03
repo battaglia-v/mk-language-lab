@@ -27,6 +27,17 @@ vi.mock('next-intl', () => {
     practiceAnswerRevealed: (values?: Record<string, string>) =>
       `Answer: ${values?.answer ?? ''}`,
     practiceEmptyCategory: 'No prompts available for this category.',
+    quickPracticeLaunch: 'Launch session',
+    quickPracticeLaunchDescription: 'Open the full-screen practice lab to run focused drills.',
+    practiceProgressLabel: 'Session progress',
+    practiceProgressGoal: (values?: Record<string, string>) =>
+      `Goal: ${values?.target ?? ''} prompts`,
+    practiceProgressSummary: (values?: Record<string, string>) =>
+      `Prompts answered: ${values?.count ?? ''}`,
+    practiceAccuracy: (values?: Record<string, string>) =>
+      `Accuracy: ${values?.value ?? ''}%`,
+    practiceModalTitle: 'Practice lab',
+    practiceClose: 'Close session',
   };
 
   return {
@@ -66,7 +77,7 @@ describe('QuickPracticeWidget', () => {
   it('renders the initial prompt in Macedonian by default', () => {
     render(<QuickPracticeWidget />);
 
-  expect(screen.getByText('Quick Practice')).toBeInTheDocument();
+  expect(screen.getAllByText('Quick Practice')[0]).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Macedonian → English' })).toHaveAttribute('aria-pressed', 'true');
     expect(screen.getByText('Translate from Macedonian')).toBeInTheDocument();
     expect(screen.getByText('zdravo')).toBeInTheDocument();

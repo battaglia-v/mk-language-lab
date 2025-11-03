@@ -37,10 +37,18 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  /* Spotify-inspired spacing scale (4px increments) */
+  --space-xs: 0.25rem;   /* 4px */
+  --space-sm: 0.5rem;    /* 8px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.5rem;    /* 24px */
+  --space-xl: 2rem;      /* 32px */
+  --space-2xl: 3rem;     /* 48px */
+  /* Updated border radius (more rounded, Spotify-style) */
+  --radius-sm: 0.5rem;   /* 8px */
+  --radius-md: 0.75rem;  /* 12px */
+  --radius-lg: 1rem;     /* 16px */
+  --radius-xl: 1.5rem;   /* 24px */
 }
 
 :root {
@@ -79,37 +87,38 @@
 }
 
 .dark {
-  --background: oklch(0.08 0.01 264);
-  --foreground: oklch(0.98 0.003 247.858);
-  --card: oklch(0.12 0.02 265);
-  --card-foreground: oklch(0.98 0.003 247.858);
-  --popover: oklch(0.12 0.02 265);
-  --popover-foreground: oklch(0.98 0.003 247.858);
-  --primary: oklch(0.65 0.28 340); /* Neon Pink #FE2C55 */
-  --primary-foreground: oklch(0.98 0.003 247.858);
-  --secondary: oklch(0.75 0.25 195); /* Cyan #25F4EE */
-  --secondary-foreground: oklch(0.08 0.01 264);
-  --muted: oklch(0.25 0.03 260);
-  --muted-foreground: oklch(0.65 0.04 256);
-  --accent: oklch(0.75 0.25 195); /* Cyan accent */
-  --accent-foreground: oklch(0.08 0.01 264);
+  /* Spotify-inspired dark mode with better contrast */
+  --background: oklch(0.06 0.01 264); /* Darker background */
+  --foreground: oklch(0.99 0.002 247.858); /* Lighter text for better contrast */
+  --card: oklch(0.10 0.02 265); /* Slightly lighter cards */
+  --card-foreground: oklch(0.99 0.002 247.858);
+  --popover: oklch(0.10 0.02 265);
+  --popover-foreground: oklch(0.99 0.002 247.858);
+  --primary: oklch(0.68 0.30 340); /* Brighter neon pink for CTAs */
+  --primary-foreground: oklch(0.99 0.002 247.858);
+  --secondary: oklch(0.78 0.27 195); /* Brighter cyan */
+  --secondary-foreground: oklch(0.06 0.01 264);
+  --muted: oklch(0.20 0.03 260); /* Lighter muted for better readability */
+  --muted-foreground: oklch(0.70 0.04 256); /* Lighter muted text */
+  --accent: oklch(0.78 0.27 195); /* Brighter cyan accent */
+  --accent-foreground: oklch(0.06 0.01 264);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.65 0.28 340);
-  --chart-1: oklch(0.65 0.28 340);
-  --chart-2: oklch(0.75 0.25 195);
+  --border: oklch(1 0 0 / 10%); /* Slightly more visible borders */
+  --input: oklch(1 0 0 / 14%); /* Slightly more visible inputs */
+  --ring: oklch(0.68 0.30 340);
+  --chart-1: oklch(0.68 0.30 340);
+  --chart-2: oklch(0.78 0.27 195);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.12 0.02 265);
-  --sidebar-foreground: oklch(0.98 0.003 247.858);
-  --sidebar-primary: oklch(0.65 0.28 340);
-  --sidebar-primary-foreground: oklch(0.98 0.003 247.858);
-  --sidebar-accent: oklch(0.25 0.03 260);
-  --sidebar-accent-foreground: oklch(0.98 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 8%);
-  --sidebar-ring: oklch(0.65 0.28 340);
+  --sidebar: oklch(0.08 0.02 265); /* Slightly lighter sidebar */
+  --sidebar-foreground: oklch(0.99 0.002 247.858);
+  --sidebar-primary: oklch(0.68 0.30 340);
+  --sidebar-primary-foreground: oklch(0.99 0.002 247.858);
+  --sidebar-accent: oklch(0.20 0.03 260);
+  --sidebar-accent-foreground: oklch(0.99 0.002 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.68 0.30 340);
 }
 
 @layer base {
@@ -119,13 +128,28 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Spotify-inspired smooth interactions */
+  button, a, [role="button"] {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Smooth hover effects for interactive elements */
+  button:hover, a:hover, [role="button"]:hover {
+    transform: translateY(-1px);
+  }
+  
+  button:active, a:active, [role="button"]:active {
+    transform: translateY(0);
+  }
+  
   .skip-nav-link {
     position: absolute;
     left: 50%;
     top: 0;
     z-index: 50;
     transform: translate(-50%, -100%);
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     background-color: var(--primary);
     color: var(--primary-foreground);
     padding: 0.5rem 1rem;
@@ -138,5 +162,46 @@
   .skip-nav-link:focus-visible {
     transform: translate(-50%, 0.5rem);
     outline: none;
+  }
+}
+
+/* Spotify-inspired glow effect for primary buttons */
+@layer components {
+  .btn-glow {
+    box-shadow: 0 0 20px -5px var(--primary);
+  }
+  
+  .btn-glow:hover {
+    box-shadow: 0 0 30px -5px var(--primary);
+  }
+  
+  /* Card hover effects */
+  .card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@layer utilities {
+  .lg\:ml-sidebar {
+    margin-left: 0;
+  }
+
+  .lg\:left-sidebar {
+    left: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .lg\:ml-sidebar {
+      margin-left: var(--sidebar-current-width, 16rem);
+    }
+
+    .lg\:left-sidebar {
+      left: var(--sidebar-current-width, 16rem);
+    }
   }
 }
