@@ -8,14 +8,18 @@ import type { JourneyId } from '@/data/journeys';
 import { useActiveJourney } from '@/hooks/use-active-journey';
 import { useJourneyProgress } from '@/hooks/use-journey-progress';
 import { Button } from '@/components/ui/button';
+import { ActiveJourneyStat } from '@/components/journey/ActiveJourneyStat';
+import { JourneyStepsStat } from '@/components/journey/JourneyStepsStat';
+import { JourneyLastSessionStat } from '@/components/journey/JourneyLastSessionStat';
 
 export type JourneyGoalMeta = Record<JourneyId, { accent: string; minutes: number }>;
 
+type StatKey = 'activeGoal' | 'steps' | 'lastSession';
+
 type StatDescriptor = {
-  key: string;
+  key: StatKey;
   label: string;
-  render?: () => React.ReactNode;
-  value?: string;
+  fallback?: string;
 };
 
 type HeroProgressSummaryProps = {
@@ -62,6 +66,19 @@ export function HeroProgressSummary({
   const displayMinutesToday = Math.max(0, Math.round(resolvedMinutesToday));
   const displayMinutesThisWeek = Math.max(0, Math.round(resolvedMinutesThisWeek));
   const displayTotalMinutes = Math.max(0, Math.round(resolvedTotalMinutes));
+
+  const renderStatContent = (key: StatKey, fallback?: string) => {
+    switch (key) {
+      case 'activeGoal':
+        return <ActiveJourneyStat />;
+      case 'steps':
+        return <JourneyStepsStat />;
+      case 'lastSession':
+        return <JourneyLastSessionStat />;
+      default:
+        return fallback ?? null;
+    }
+  };
 
   return (
     <div className="w-full max-w-lg space-y-6">
@@ -110,7 +127,7 @@ export function HeroProgressSummary({
               {stat.label}
             </p>
             <div className="pt-3 text-2xl font-semibold text-foreground">
-              {stat.render ? stat.render() : stat.value}
+              {renderStatContent(stat.key, stat.fallback)}
             </div>
           </div>
         ))}

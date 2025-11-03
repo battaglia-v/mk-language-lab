@@ -102,6 +102,80 @@ function SkeletonCard() {
   );
 }
 
+function buildImageCandidates(imageUrl: string | null): string[] {
+  if (!imageUrl) {
+    return [];
+  }
+
+  const candidates = [imageUrl];
+
+  if (/^http:\/\//i.test(imageUrl)) {
+    const httpsVariant = imageUrl.replace(/^http:\/\//i, 'https://');
+    if (httpsVariant !== imageUrl) {
+      candidates.unshift(httpsVariant);
+    }
+  }
+
+  return Array.from(new Set(candidates));
+}
+
+type NewsPreviewMediaProps = {
+  imageUrl: string | null;
+  sourceInitials: string;
+  sourceName: string;
+  alt: string;
+  showVideoOverlay: boolean;
+};
+
+function NewsPreviewMedia({ imageUrl, sourceInitials, sourceName, alt, showVideoOverlay }: NewsPreviewMediaProps) {
+  const candidates = useMemo(() => buildImageCandidates(imageUrl), [imageUrl]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [allFailed, setAllFailed] = useState(false);
+
+  useEffect(() => {
+    setActiveIndex(0);
+    setAllFailed(false);
+  }, [candidates.length, imageUrl]);
+
+  const currentUrl = candidates[activeIndex] ?? null;
+  const hasImage = Boolean(currentUrl) && !allFailed;
+
+  const handleImageError = useCallback(() => {
+    if (activeIndex + 1 < candidates.length) {
+      setActiveIndex((index) => index + 1);
+      return;
+    }
+
+    setAllFailed(true);
+  }, [activeIndex, candidates.length]);
+
+  return (
+    <div className="relative mt-3 aspect-video w-full overflow-hidden rounded-xl border border-border/30 bg-muted/30 shadow-sm md:mt-0 md:ml-6 md:w-64 lg:w-72">
+      {hasImage ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={currentUrl ?? undefined}
+          alt={`Preview for ${alt}`}
+          className="h-full w-full object-cover"
+          loading="lazy"
+          decoding="async"
+          onError={handleImageError}
+        />
+      ) : (
+        <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-primary/25 via-secondary/20 to-muted/30 text-foreground">
+          <span className="text-3xl font-bold uppercase tracking-wide">{sourceInitials}</span>
+          <span className="text-xs font-medium text-muted-foreground/80">{sourceName}</span>
+        </div>
+      )}
+      {showVideoOverlay && hasImage && (
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/30">
+          <PlayCircle className="h-10 w-10 text-white drop-shadow" />
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function NewsPage() {
   const t = useTranslations('news');
   const locale = useLocale();
@@ -432,30 +506,13 @@ export default function NewsPage() {
                       </div>
                     </div>
 
-                    <div className="relative mt-3 aspect-video w-full overflow-hidden rounded-xl border border-border/30 bg-muted/30 shadow-sm md:mt-0 md:ml-6 md:w-64 lg:w-72">
-                      {previewImage ? (
-                        <>
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={previewImage}
-                            alt={`Preview for ${item.title}`}
-                            className="h-full w-full object-cover"
-                            loading="lazy"
-                            decoding="async"
-                          />
-                        </>
-                      ) : (
-                        <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-primary/25 via-secondary/20 to-muted/30 text-foreground">
-                          <span className="text-3xl font-bold uppercase tracking-wide">{sourceInitials}</span>
-                          <span className="text-xs font-medium text-muted-foreground/80">{item.sourceName}</span>
-                        </div>
-                      )}
-                      {fromVideo && (
-                        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/30">
-                          <PlayCircle className="h-10 w-10 text-white drop-shadow" />
-                        </div>
-                      )}
-                    </div>
+                    <NewsPreviewMedia
+                      imageUrl={previewImage}
+                      sourceInitials={sourceInitials}
+                      sourceName={item.sourceName}
+                      alt={item.title}
+                      showVideoOverlay={fromVideo}
+                    />
                   </div>
                 </CardHeader>
               </Card>

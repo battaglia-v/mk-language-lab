@@ -1,12 +1,8 @@
-import type { ReactNode } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ActiveJourneyStat } from '@/components/journey/ActiveJourneyStat';
-import { JourneyStepsStat } from '@/components/journey/JourneyStepsStat';
-import { JourneyLastSessionStat } from '@/components/journey/JourneyLastSessionStat';
 import { HeroProgressSummary, type JourneyGoalMeta } from '@/components/journey/HeroProgressSummary';
 import { JOURNEY_IDS, JourneyId, JOURNEY_DEFINITIONS } from '@/data/journeys';
 import { QuickPracticeWidget } from '@/components/learn/QuickPracticeWidget';
@@ -63,13 +59,10 @@ const QUICK_ACTIONS = [
   },
 ] as const;
 
-type QuickActionKey = (typeof QUICK_ACTIONS)[number]['key'];
-
 type StatItem = {
   key: 'activeGoal' | 'steps' | 'lastSession';
   label: string;
-  render?: () => ReactNode;
-  value?: string;
+  fallback?: string;
 };
 
 const RECENTLY_PRACTICED = [
@@ -102,8 +95,6 @@ const RECENTLY_PRACTICED = [
   },
 ] as const;
 
-type RecentItemKey = (typeof RECENTLY_PRACTICED)[number]['key'];
-
 const RECOMMENDED = [
   {
     key: 'listeningLab',
@@ -124,8 +115,6 @@ const RECOMMENDED = [
     accent: 'from-secondary/70 via-primary/45 to-secondary/15',
   },
 ] as const;
-
-type RecommendedItemKey = (typeof RECOMMENDED)[number]['key'];
 
 const goalIcons: Record<JourneyId, typeof Users> = {
   family: Users,
@@ -149,17 +138,14 @@ export default function JourneyHomePage() {
     {
       key: 'activeGoal',
       label: t('progress.stats.activeGoal.label'),
-      render: () => <ActiveJourneyStat />,
     },
     {
       key: 'steps',
       label: t('progress.stats.steps.label'),
-      render: () => <JourneyStepsStat />,
     },
     {
       key: 'lastSession',
       label: t('progress.stats.lastSession.label'),
-      render: () => <JourneyLastSessionStat />,
     },
   ];
 
