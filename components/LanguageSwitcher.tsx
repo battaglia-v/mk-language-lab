@@ -78,8 +78,8 @@ export default function LanguageSwitcher() {
           aria-label={t('language')}
         >
           <Languages className="h-4 w-4" />
-          <span>{currentLanguage.flag}</span>
-          <span className="hidden xl:inline">{currentLanguage.name}</span>
+          <span className="sm:hidden">{currentLanguage.flag}</span>
+          <span className="hidden sm:inline">{currentLanguage.name}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" sideOffset={6} className="min-w-[180px]">

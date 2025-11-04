@@ -110,10 +110,10 @@ export function HeroProgressSummary({
           />
         </div>
         <div className="mt-3 flex flex-col gap-1 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <span>{t('progress.minutesTodayLabel', { minutes: displayMinutesToday })}</span>
-          <span>{t('progress.minutesWeekLabel', { minutes: displayMinutesThisWeek })}</span>
+          <span className="break-words">{t('progress.minutesTodayLabel', { minutes: displayMinutesToday })}</span>
+          <span className="break-words">{t('progress.minutesWeekLabel', { minutes: displayMinutesThisWeek })}</span>
         </div>
-        <p className="text-xs text-muted-foreground/80">
+        <p className="text-xs text-muted-foreground/80 break-words">
           {t('progress.minutesTotalLabel', { minutes: displayTotalMinutes })}
         </p>
       </div>

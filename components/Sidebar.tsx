@@ -199,7 +199,7 @@ export default function Sidebar() {
                   active && 'text-primary'
                 )} />
                 <span className={cn(
-                  'text-xs font-medium truncate w-full text-center',
+                  'text-xs font-medium w-full text-center line-clamp-1',
                   active && 'text-primary'
                 )}>
                   {item.label}

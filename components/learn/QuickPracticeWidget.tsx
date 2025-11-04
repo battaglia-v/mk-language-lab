@@ -357,8 +357,8 @@ export function QuickPracticeWidget({
               aria-label={placeholder}
               disabled={!isReady}
             />
-            <div className="flex flex-wrap gap-2">
-              <Button type="submit" size={isModalVariant ? 'lg' : 'default'} className="min-w-[148px] gap-2" disabled={!isReady || !answer.trim()}>
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+              <Button type="submit" size={isModalVariant ? 'lg' : 'default'} className="w-full gap-2" disabled={!isReady || !answer.trim()}>
                 {t('checkAnswer')}
               </Button>
               <Button
@@ -366,7 +366,7 @@ export function QuickPracticeWidget({
                 variant="outline"
                 size={isModalVariant ? 'lg' : 'default'}
                 onClick={handleNext}
-                className="min-w-[148px] gap-2"
+                className="w-full gap-2"
                 disabled={!filteredItems.length}
               >
                 <RefreshCcw className="h-4 w-4" />
@@ -377,7 +377,7 @@ export function QuickPracticeWidget({
                 variant="ghost"
                 size={isModalVariant ? 'lg' : 'default'}
                 onClick={handleReveal}
-                className="gap-2"
+                className="w-full gap-2"
                 disabled={!isReady}
               >
                 <Eye className="h-4 w-4" />
@@ -388,7 +388,7 @@ export function QuickPracticeWidget({
                 variant="ghost"
                 size={isModalVariant ? 'lg' : 'default'}
                 onClick={handleReset}
-                className="gap-2"
+                className="w-full gap-2"
                 disabled={!isReady && !answer}
               >
                 {t('practiceReset')}
@@ -463,7 +463,7 @@ export function QuickPracticeWidget({
       </DialogTrigger>
       <DialogContent
         showCloseButton={false}
-        className="h-[90vh] max-h-[760px] w-[min(96vw,1100px)] max-w-none border border-border/40 bg-background/95 p-0 shadow-2xl"
+        className="h-[90vh] max-h-[760px] w-[min(96vw,900px)] max-w-none border border-border/40 bg-background/95 p-0 shadow-2xl"
       >
         <div className="flex h-full flex-col overflow-hidden">
           <div className="flex items-center justify-between border-b border-border/40 px-6 py-4">

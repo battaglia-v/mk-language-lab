@@ -107,8 +107,8 @@ export default function PracticeHubPage() {
           <Tabs value={activeSection} onValueChange={(value) => setActiveSection(value as PracticeSection)} className="w-full">
             <TabsList className="grid w-full grid-cols-1 gap-2 bg-card/50 p-1 sm:grid-cols-3 h-auto">
               {PRACTICE_SECTIONS.map((section) => (
-                <TabsTrigger key={section} value={section} className="h-auto min-h-[2.75rem] data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                  {t(`${section}.tabLabel`)}
+                <TabsTrigger key={section} value={section} className="h-auto min-h-[2.75rem] py-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  <span className="break-words text-center">{t(`${section}.tabLabel`)}</span>
                 </TabsTrigger>
               ))}
             </TabsList>
@@ -132,8 +132,8 @@ export default function PracticeHubPage() {
                             <Icon className="h-6 w-6" />
                           </div>
                           <div className="space-y-1">
-                            <CardTitle className="text-xl text-foreground">{t(card.titleKey)}</CardTitle>
-                            <CardDescription className="text-sm text-muted-foreground">
+                            <CardTitle className="text-xl text-foreground break-words">{t(card.titleKey)}</CardTitle>
+                            <CardDescription className="text-sm text-muted-foreground break-words">
                               {t(card.descriptionKey)}
                             </CardDescription>
                           </div>

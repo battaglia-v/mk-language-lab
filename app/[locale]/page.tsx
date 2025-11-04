@@ -262,10 +262,10 @@ export default function JourneyHomePage() {
                         <Icon className="h-7 w-7" />
                       </div>
                       <div className="space-y-2">
-                        <CardTitle className="text-xl text-foreground">
+                        <CardTitle className="text-xl text-foreground break-words">
                           {t(`quickActions.items.${action.key}.label`)}
                         </CardTitle>
-                        <CardDescription className="text-base text-muted-foreground">
+                        <CardDescription className="text-base text-muted-foreground break-words">
                           {t(`quickActions.items.${action.key}.description`)}
                         </CardDescription>
                       </div>
@@ -326,10 +326,10 @@ export default function JourneyHomePage() {
                         <Icon className="h-6 w-6 text-primary" />
                       </div>
                       <div className="space-y-2">
-                        <h3 className="text-2xl font-semibold text-foreground">
+                        <h3 className="text-2xl font-semibold text-foreground break-words">
                           {t(`recent.items.${item.key}.title`)}
                         </h3>
-                        <p className="text-base text-muted-foreground">
+                        <p className="text-base text-muted-foreground break-words">
                           {t(`recent.items.${item.key}.description`)}
                         </p>
                       </div>
@@ -405,10 +405,10 @@ export default function JourneyHomePage() {
                         <Icon className="h-6 w-6 text-secondary" />
                       </div>
                       <div className="space-y-2">
-                        <h3 className="text-2xl font-semibold text-foreground">
+                        <h3 className="text-2xl font-semibold text-foreground break-words">
                           {t(`recommended.items.${item.key}.title`)}
                         </h3>
-                        <p className="text-base text-muted-foreground">
+                        <p className="text-base text-muted-foreground break-words">
                           {t(`recommended.items.${item.key}.description`)}
                         </p>
                       </div>
@@ -455,13 +455,13 @@ export default function JourneyHomePage() {
                         <Badge variant="outline" className="rounded-full border-primary/30 bg-primary/5 text-primary">
                           {t(`goals.cards.${goal.key}.badge`)}
                         </Badge>
-                        <h3 className="text-2xl font-semibold text-foreground">
+                        <h3 className="text-2xl font-semibold text-foreground break-words">
                           {t(`goals.cards.${goal.key}.title`)}
                         </h3>
-                        <p className="text-base text-muted-foreground leading-relaxed">
+                        <p className="text-base text-muted-foreground leading-relaxed break-words">
                           {t(`goals.cards.${goal.key}.description`)}
                         </p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-muted-foreground break-words">
                           {t('goals.minutes', { minutes: meta.minutes })}
                         </p>
                       </div>
@@ -469,7 +469,7 @@ export default function JourneyHomePage() {
                         {goal.focus.map((item) => (
                           <li key={item} className="flex items-start gap-3">
                             <span className="mt-1.5 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-primary" />
-                            <span>{item}</span>
+                            <span className="break-words">{item}</span>
                           </li>
                         ))}
                       </ul>
@@ -507,8 +507,8 @@ export default function JourneyHomePage() {
                 <ul className="space-y-3 text-base text-muted-foreground">
                   {spotlightResources.map((item) => (
                     <li key={item} className="flex items-start gap-3">
-                      <Sparkles className="mt-0.5 h-5 w-5 text-primary" />
-                      <span>{item}</span>
+                      <Sparkles className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                      <span className="break-words">{item}</span>
                     </li>
                   ))}
                 </ul>
