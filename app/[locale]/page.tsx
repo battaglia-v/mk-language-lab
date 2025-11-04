@@ -29,14 +29,6 @@ const QUICK_ACTIONS = [
     minutes: 15,
   },
   {
-    key: 'tutor',
-    href: '/tutor',
-    icon: MessageCircle,
-    accent: 'from-secondary/70 via-primary/40 to-secondary/20',
-    progress: 48,
-    minutes: 10,
-  },
-  {
     key: 'library',
     href: '/library',
     icon: Library,
