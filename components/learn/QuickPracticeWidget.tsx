@@ -225,7 +225,7 @@ export function QuickPracticeWidget({
       <Card
         className={cn(
           'relative overflow-hidden border border-border/40 bg-gradient-to-br from-card/85 via-card/70 to-muted/40 backdrop-blur supports-[backdrop-filter]:backdrop-blur-xl transition-all duration-500',
-          isModalVariant ? 'h-full border-border/30 shadow-2xl' : 'shadow-lg',
+          isModalVariant ? 'border-border/30 shadow-2xl' : 'shadow-lg',
           extraClassName
         )}
       >
@@ -524,7 +524,7 @@ export function QuickPracticeWidget({
             </DialogClose>
           </div>
           <div className="flex-1 overflow-y-auto bg-gradient-to-br from-background via-background to-muted/20 p-4 sm:p-6 lg:p-8">
-            {renderPracticeCard('modal', 'h-full')}
+            {renderPracticeCard('modal')}
           </div>
         </div>
       </DialogContent>
