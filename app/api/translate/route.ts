@@ -1,5 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { v2 } from '@google-cloud/translate';
+import {
+  ValidationError,
+  ExternalServiceError,
+  fetchWithRetry,
+  createErrorResponse,
+} from '@/lib/errors';
 
 let translator: v2.Translate | null | undefined;
 
@@ -60,38 +66,52 @@ export async function POST(request: NextRequest) {
     const targetLangRaw = typeof body?.targetLang === 'string' ? body.targetLang.trim().toLowerCase() : '';
 
     if (!text) {
-      return NextResponse.json({ error: 'Missing text' }, { status: 400 });
+      throw new ValidationError('Missing text');
     }
 
     if (text.length > MAX_CHARACTERS) {
-      return NextResponse.json({ error: 'Text exceeds maximum length' }, { status: 413 });
+      throw new ValidationError('Text exceeds maximum length');
     }
 
     if (!SUPPORTED_LANGUAGES.has(targetLangRaw)) {
-      return NextResponse.json({ error: 'Unsupported target language' }, { status: 400 });
+      throw new ValidationError('Unsupported target language');
     }
 
     const targetLang = targetLangRaw as 'mk' | 'en';
     const sourceLang = SUPPORTED_LANGUAGES.has(sourceLangRaw) ? (sourceLangRaw as 'mk' | 'en') : undefined;
 
     if (sourceLang && sourceLang === targetLang) {
-      return NextResponse.json({ error: 'Source and target languages must differ' }, { status: 400 });
+      throw new ValidationError('Source and target languages must differ');
     }
 
     const translateClient = getTranslator();
 
     if (translateClient) {
-      const [translation] = await translateClient.translate(text, {
-        from: sourceLang,
-        to: targetLang,
-      });
+      try {
+        // Google Cloud Translate with timeout wrapper
+        const translationPromise = translateClient.translate(text, {
+          from: sourceLang,
+          to: targetLang,
+        });
 
-      return NextResponse.json({
-        translatedText: typeof translation === 'string' ? translation : String(translation),
-        detectedSourceLang: sourceLang ?? null,
-      });
+        // Add timeout to Google Cloud API call
+        const timeoutPromise = new Promise<never>((_, reject) => {
+          setTimeout(() => reject(new ExternalServiceError('Google Translate timeout', 504)), 15000);
+        });
+
+        const [translation] = await Promise.race([translationPromise, timeoutPromise]);
+
+        return NextResponse.json({
+          translatedText: typeof translation === 'string' ? translation : String(translation),
+          detectedSourceLang: sourceLang ?? null,
+        });
+      } catch (error) {
+        console.error('Google Cloud Translate error:', error);
+        throw new ExternalServiceError('Google Cloud Translation failed');
+      }
     }
 
+    // Fallback to public Google Translate endpoint with retry logic
     const params = new URLSearchParams({
       client: 'gtx',
       sl: sourceLang ?? 'auto',
@@ -100,17 +120,24 @@ export async function POST(request: NextRequest) {
       q: text,
     });
 
-    const response = await fetch(`https://translate.googleapis.com/translate_a/single?${params.toString()}`, {
-      cache: 'no-store',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
+    const response = await fetchWithRetry(
+      `https://translate.googleapis.com/translate_a/single?${params.toString()}`,
+      {
+        cache: 'no-store',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
       },
-    });
+      {
+        maxRetries: 3,
+        timeoutMs: 10000,
+      }
+    );
 
     if (!response.ok) {
       const message = await response.text();
       console.error('Translation request failed', response.status, message);
-      return NextResponse.json({ error: 'Translation provider error' }, { status: 502 });
+      throw new ExternalServiceError('Translation provider error', response.status);
     }
 
     const data = await response.json();
@@ -121,7 +148,7 @@ export async function POST(request: NextRequest) {
       .trim();
 
     if (!translatedText) {
-      return NextResponse.json({ error: 'No translation returned' }, { status: 502 });
+      throw new ExternalServiceError('No translation returned');
     }
 
     const detectedSourceLang = typeof data?.[2] === 'string' && SUPPORTED_LANGUAGES.has(data[2]) ? data[2] : null;
@@ -132,9 +159,7 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error('Translation error:', error);
-    return NextResponse.json(
-      { error: 'Translation failed', details: error instanceof Error ? error.message : 'Unknown error' },
-      { status: 500 }
-    );
+    const { response, status } = createErrorResponse(error, 'Translation failed');
+    return NextResponse.json(response, { status });
   }
 }

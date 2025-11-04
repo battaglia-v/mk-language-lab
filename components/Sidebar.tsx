@@ -10,12 +10,12 @@ import {
   Newspaper,
   Library,
   BookOpen,
-  Sparkles,
   ChevronLeft,
   ChevronRight
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useEffect, useState } from 'react';
+import { AjvarLogo } from './AjvarLogo';
 
 type NavItem = {
   path: string;
@@ -91,11 +91,11 @@ export default function Sidebar() {
         )}>
           <Link
             href={buildHref('')}
-            className="flex items-center gap-3 transition-opacity hover:opacity-80"
+            className="flex items-center gap-3 transition-all duration-200 hover:opacity-80 group"
             aria-label={t('journey')}
           >
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-secondary to-primary/50">
-              <Sparkles className="h-6 w-6 text-primary-foreground" />
+            <div className="transform transition-transform duration-200 group-hover:scale-105">
+              <AjvarLogo size={collapsed ? 36 : 40} />
             </div>
             {!collapsed && (
               <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">

@@ -6,6 +6,12 @@ import {
   isJourneyId,
   type JourneyProgressContext,
 } from '@/data/journeys';
+import {
+  ValidationError,
+  ExternalServiceError,
+  RateLimitError,
+  createErrorResponse,
+} from '@/lib/errors';
 
 type TutorMessage = {
   role: 'user' | 'assistant';
@@ -38,13 +44,10 @@ Format your responses clearly with examples, and use Cyrillic script for Macedon
 
 export async function POST(request: NextRequest) {
   try {
-  const { messages, activeJourney, journeyProgress } = await request.json();
+    const { messages, activeJourney, journeyProgress } = await request.json();
 
     if (!messages || !Array.isArray(messages)) {
-      return NextResponse.json(
-        { error: 'Messages array is required' },
-        { status: 400 }
-      );
+      throw new ValidationError('Messages array is required');
     }
 
     const formattedMessages: TutorMessage[] = messages.filter((message: TutorMessage) =>
@@ -53,10 +56,7 @@ export async function POST(request: NextRequest) {
     );
 
     if (formattedMessages.length === 0) {
-      return NextResponse.json(
-        { error: 'No valid messages provided' },
-        { status: 400 }
-      );
+      throw new ValidationError('No valid messages provided');
     }
 
     // If OpenAI is not configured, return mock response
@@ -105,29 +105,47 @@ ${context}`;
       })),
     ];
 
-    // Call OpenAI API
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages: messagesWithSystem,
-      temperature: 0.7,
-      max_tokens: 2000,
-      stream: false,
-    });
+    // Call OpenAI API with timeout
+    try {
+      const completionPromise = openai.chat.completions.create({
+        model: 'gpt-4o-mini',
+        messages: messagesWithSystem,
+        temperature: 0.7,
+        max_tokens: 2000,
+        stream: false,
+      });
 
-    const responseMessage = completion.choices[0]?.message?.content || 'No response generated';
+      // Add 30 second timeout for OpenAI API call (can be slow for longer responses)
+      const timeoutPromise = new Promise<never>((_, reject) => {
+        setTimeout(() => reject(new ExternalServiceError('OpenAI request timeout', 504)), 30000);
+      });
 
-    return NextResponse.json({
-      message: responseMessage,
-      usage: completion.usage,
-    });
+      const completion = await Promise.race([completionPromise, timeoutPromise]);
+
+      const responseMessage = completion.choices[0]?.message?.content || 'No response generated';
+
+      return NextResponse.json({
+        message: responseMessage,
+        usage: completion.usage,
+      });
+    } catch (error) {
+      // Handle OpenAI-specific errors
+      if (error instanceof OpenAI.APIError) {
+        if (error.status === 429) {
+          throw new RateLimitError('OpenAI rate limit exceeded. Please try again in a few moments.');
+        }
+        if (error.status === 401) {
+          throw new ExternalServiceError('OpenAI authentication failed', 401);
+        }
+        if (error.status && error.status >= 500) {
+          throw new ExternalServiceError('OpenAI service error', error.status);
+        }
+      }
+      throw error;
+    }
   } catch (error) {
     console.error('Tutor API error:', error);
-    return NextResponse.json(
-      { 
-        error: 'Failed to get tutor response',
-        details: error instanceof Error ? error.message : 'Unknown error'
-      },
-      { status: 500 }
-    );
+    const { response, status } = createErrorResponse(error, 'Failed to get tutor response');
+    return NextResponse.json(response, { status });
   }
 }
