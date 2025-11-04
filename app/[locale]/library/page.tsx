@@ -6,9 +6,9 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Newspaper, BookOpen, Bookmark, Sparkles } from 'lucide-react';
+import { Newspaper, BookOpen, Sparkles } from 'lucide-react';
 
-const LIBRARY_SECTIONS = ['collections', 'saved', 'culture'] as const;
+const LIBRARY_SECTIONS = ['collections', 'culture'] as const;
 
 type LibrarySection = (typeof LIBRARY_SECTIONS)[number];
 
@@ -47,16 +47,6 @@ export default function LibraryHubPage() {
         href: '/news',
       },
     ],
-    saved: [
-      {
-        id: 'journey-saves',
-        icon: Bookmark,
-        titleKey: 'saved.cards.journeys.title',
-        descriptionKey: 'saved.cards.journeys.description',
-        href: '#',
-        disabled: true,
-      },
-    ],
     culture: [
       {
         id: 'culture-spotlight',
@@ -82,7 +72,7 @@ export default function LibraryHubPage() {
           </div>
 
           <Tabs defaultValue={LIBRARY_SECTIONS[0]} className="w-full">
-            <TabsList className="grid w-full grid-cols-1 gap-2 bg-card/50 p-1 sm:grid-cols-3">
+            <TabsList className="grid w-full grid-cols-1 gap-2 bg-card/50 p-1 sm:grid-cols-2">
               {LIBRARY_SECTIONS.map((section) => (
                 <TabsTrigger key={section} value={section} className="data-[state=active]:bg-secondary data-[state=active]:text-secondary-foreground">
                   {t(`${section}.tabLabel`)}

@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
+import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 import { Dialog, DialogClose, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 
@@ -78,6 +79,7 @@ export function QuickPracticeWidget({
   const [correctCount, setCorrectCount] = useState(0);
   const [isCelebrating, setIsCelebrating] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const celebrationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const filteredItems = useMemo(() => {
@@ -116,6 +118,7 @@ export function QuickPracticeWidget({
   }, [mode]);
 
   useEffect(() => {
+    setIsLoading(false);
     return () => {
       if (celebrationTimeoutRef.current) {
         clearTimeout(celebrationTimeoutRef.current);
@@ -220,6 +223,23 @@ export function QuickPracticeWidget({
 
   const renderPracticeCard = (variant: 'default' | 'modal', extraClassName?: string) => {
     const isModalVariant = variant === 'modal';
+
+    if (isLoading) {
+      return (
+        <Card className={cn('border border-border/40 bg-card/70 backdrop-blur p-6', extraClassName)}>
+          <div className="space-y-6">
+            <Skeleton className="h-6 w-32" />
+            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-24 w-full" />
+            <Skeleton className="h-12 w-full" />
+            <div className="flex gap-2">
+              <Skeleton className="h-10 flex-1" />
+              <Skeleton className="h-10 flex-1" />
+            </div>
+          </div>
+        </Card>
+      );
+    }
 
     return (
       <Card

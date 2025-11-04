@@ -3,12 +3,11 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
-import { 
-  Home, 
-  RefreshCw, 
-  MessageCircle, 
-  Languages, 
-  Newspaper, 
+import {
+  Home,
+  RefreshCw,
+  Languages,
+  Newspaper,
   Library,
   BookOpen,
   Sparkles,
@@ -63,7 +62,6 @@ export default function Sidebar() {
   const navItems: NavItem[] = [
     { path: '', label: t('journey'), icon: Home },
     { path: '/practice', label: t('practice'), icon: RefreshCw },
-    { path: '/tutor', label: t('tutor'), icon: MessageCircle },
     { path: '/translate', label: t('translate'), icon: Languages },
     { path: '/news', label: t('news'), icon: Newspaper },
     { path: '/library', label: t('library'), icon: Library },
@@ -175,12 +173,12 @@ export default function Sidebar() {
       </aside>
 
       {/* Mobile Bottom Navigation */}
-      <nav 
+      <nav
         className="lg:hidden fixed bottom-0 left-0 right-0 bg-sidebar border-t border-sidebar-border z-50 safe-area-inset-bottom"
         aria-label={t('label')}
       >
-        <div className="flex items-center justify-around px-2 py-2">
-          {navItems.slice(0, 5).map((item) => {
+        <div className="grid grid-cols-3 gap-1 px-2 py-2">
+          {navItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.path);
             return (
@@ -189,17 +187,17 @@ export default function Sidebar() {
                 href={buildHref(item.path)}
                 aria-current={active ? 'page' : undefined}
                 className={cn(
-                  'flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all duration-200 flex-1 max-w-[80px]',
+                  'flex flex-col items-center gap-1 px-2 py-2 rounded-xl transition-all duration-200',
                   active && 'text-primary',
                   !active && 'text-sidebar-foreground hover:text-sidebar-accent-foreground'
                 )}
               >
                 <Icon className={cn(
-                  'h-6 w-6',
+                  'h-5 w-5',
                   active && 'text-primary'
                 )} />
                 <span className={cn(
-                  'text-xs font-medium w-full text-center line-clamp-1',
+                  'text-[10px] font-medium w-full text-center line-clamp-1 leading-tight',
                   active && 'text-primary'
                 )}>
                   {item.label}

@@ -8,7 +8,6 @@ import {
   HelpCircle,
   Languages,
   Library,
-  MessageCircle,
   Newspaper,
   RefreshCcw,
   Search,
@@ -39,7 +38,6 @@ type CommandItem = {
 const NAV_COMMANDS: NavCommand[] = [
   { key: "journey", path: "", icon: Sparkles, labelKey: "journey", descriptionKey: "journeyDescription" },
   { key: "practice", path: "/practice", icon: RefreshCcw, labelKey: "practice", descriptionKey: "practiceDescription" },
-  { key: "tutor", path: "/tutor", icon: MessageCircle, labelKey: "tutor", descriptionKey: "tutorDescription" },
   { key: "translate", path: "/translate", icon: Languages, labelKey: "translate", descriptionKey: "translateDescription" },
   { key: "news", path: "/news", icon: Newspaper, labelKey: "news", descriptionKey: "newsDescription" },
   { key: "library", path: "/library", icon: Library, labelKey: "library", descriptionKey: "libraryDescription" },
@@ -111,13 +109,13 @@ export function CommandMenu() {
           type="button"
           variant="outline"
           size="sm"
-          className="hidden md:flex h-10 min-w-[200px] items-center justify-between border-border/40 bg-background/60 text-muted-foreground"
+          className="h-10 border-border/40 bg-background/60 text-muted-foreground md:min-w-[200px]"
         >
           <span className="flex items-center gap-2 text-sm">
             <Search className="h-4 w-4" />
-            {t("trigger")}
+            <span className="hidden md:inline">{t("trigger")}</span>
           </span>
-          <span className="flex items-center gap-2 rounded-md border border-border/40 bg-muted/50 px-2 py-1 text-[0.65rem] font-semibold uppercase tracking-wide">
+          <span className="hidden md:flex items-center gap-2 rounded-md border border-border/40 bg-muted/50 px-2 py-1 text-[0.65rem] font-semibold uppercase tracking-wide">
             <CommandIcon className="h-3 w-3" />K
           </span>
         </Button>

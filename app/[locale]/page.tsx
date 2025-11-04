@@ -12,16 +12,11 @@ import {
   Plane,
   Globe2,
   RefreshCw,
-  MessageCircle,
   Library,
   Sparkles,
   ArrowRight,
   Newspaper,
-  Headphones,
-  PlayCircle,
   TrendingUp,
-  Clock,
-  Flame,
 } from 'lucide-react';
 
 const QUICK_ACTIONS = [
@@ -65,35 +60,6 @@ type StatItem = {
   fallback?: string;
 };
 
-const RECENTLY_PRACTICED = [
-  {
-    key: 'familyPhrases',
-    href: '/practice?section=translation&card=quick-phrases&journey=family',
-    icon: MessageCircle,
-    accent: 'from-primary/80 via-secondary/60 to-primary/20',
-    progress: 68,
-    minutes: 12,
-    streak: 4,
-  },
-  {
-    key: 'listeningWarmup',
-    href: '/practice?section=pronunciation',
-    icon: Headphones,
-    accent: 'from-secondary/70 via-primary/50 to-secondary/20',
-    progress: 45,
-    minutes: 8,
-    streak: 3,
-  },
-  {
-    key: 'newsDigest',
-    href: '/news',
-    icon: Newspaper,
-    accent: 'from-primary/60 via-secondary/40 to-primary/10',
-    progress: 52,
-    minutes: 10,
-    streak: 2,
-  },
-] as const;
 
 const RECOMMENDED = [
   {
@@ -252,14 +218,14 @@ export default function JourneyHomePage() {
                 return (
                   <Card
                     key={action.key}
-                    className="group relative overflow-hidden rounded-[28px] border border-border/40 bg-background/70 p-6 shadow-lg transition hover:-translate-y-1 hover:border-primary/50 hover:shadow-2xl"
+                    className="group relative overflow-hidden rounded-[28px] border border-border/40 bg-background/70 p-6 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 hover:shadow-2xl will-change-transform"
                   >
                     <div
                       className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${action.accent} opacity-0 transition group-hover:opacity-40`}
                     />
                     <div className="relative flex h-full flex-col gap-6">
-                      <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                        <Icon className="h-7 w-7" />
+                      <div className="inline-flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                        <Icon className="h-6 w-6 md:h-7 md:w-7" />
                       </div>
                       <div className="space-y-2">
                         <CardTitle className="text-xl text-foreground break-words">
@@ -299,76 +265,6 @@ export default function JourneyHomePage() {
         </div>
       </section>
 
-      <section className="w-full">
-        <div className="container mx-auto px-6 pb-20">
-          <div className="mx-auto max-w-6xl space-y-8">
-            <div className="space-y-3 text-center md:text-left">
-              <h2 className="text-4xl font-bold text-foreground md:text-5xl">{t('recent.title')}</h2>
-              <p className="text-base text-muted-foreground md:max-w-3xl md:text-lg">{t('recent.description')}</p>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {RECENTLY_PRACTICED.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <Card
-                    key={item.key}
-                    className="group relative overflow-hidden rounded-[32px] border border-border/30 bg-background/70 p-6 shadow-xl transition hover:-translate-y-1 hover:border-primary/50 hover:shadow-2xl"
-                  >
-                    <div
-                      className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${item.accent} opacity-30 transition group-hover:opacity-50`}
-                    />
-                    <div className="relative flex h-full flex-col gap-5">
-                      <div className="flex items-center justify-between">
-                        <Badge variant="outline" className="rounded-full border-primary/30 bg-primary/5 text-xs text-primary">
-                          {t(`recent.items.${item.key}.tag`)}
-                        </Badge>
-                        <Icon className="h-6 w-6 text-primary" />
-                      </div>
-                      <div className="space-y-2">
-                        <h3 className="text-2xl font-semibold text-foreground break-words">
-                          {t(`recent.items.${item.key}.title`)}
-                        </h3>
-                        <p className="text-base text-muted-foreground break-words">
-                          {t(`recent.items.${item.key}.description`)}
-                        </p>
-                      </div>
-                      <div className="space-y-4">
-                        <div className="flex items-center justify-between text-xs uppercase tracking-wide text-muted-foreground">
-                          <span>{t('quickActions.progressLabel')}</span>
-                          <span>{item.progress}%</span>
-                        </div>
-                        <div className="h-2 w-full rounded-full bg-foreground/10">
-                          <div
-                            className="h-full rounded-full bg-primary transition-all"
-                            style={{ width: `${item.progress}%` }}
-                          />
-                        </div>
-                        <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-muted-foreground">
-                          <span className="inline-flex items-center gap-2">
-                            <Clock className="h-4 w-4 text-secondary" />
-                            {t('quickActions.minutes', { minutes: item.minutes })}
-                          </span>
-                          <span className="inline-flex items-center gap-2">
-                            <Flame className="h-4 w-4 text-primary" />
-                            {t('recent.streakLabel', { count: item.streak })}
-                          </span>
-                        </div>
-                      </div>
-                      <Button variant="secondary" className="mt-auto w-full gap-2" asChild>
-                        <Link href={buildHref(item.href)}>
-                          <PlayCircle className="h-5 w-5" />
-                          {t('recent.resume')}
-                        </Link>
-                      </Button>
-                    </div>
-                  </Card>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section className="w-full">
         <div className="container mx-auto px-6 pb-20">
@@ -392,7 +288,7 @@ export default function JourneyHomePage() {
                 return (
                   <Card
                     key={item.key}
-                    className="group relative overflow-hidden rounded-[32px] border border-border/30 bg-background/70 p-6 shadow-xl transition hover:-translate-y-1 hover:border-secondary/50 hover:shadow-2xl"
+                    className="group relative overflow-hidden rounded-[32px] border border-border/30 bg-background/70 p-6 shadow-xl transition-all duration-300 hover:scale-[1.02] hover:border-secondary/50 hover:shadow-2xl will-change-transform"
                   >
                     <div
                       className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${item.accent} opacity-25 transition group-hover:opacity-45`}
@@ -442,14 +338,14 @@ export default function JourneyHomePage() {
                 return (
                   <Card
                     key={goal.key}
-                    className="group relative overflow-hidden rounded-[32px] border border-border/30 bg-background/70 p-8 shadow-xl transition hover:-translate-y-1 hover:border-secondary/50 hover:shadow-2xl"
+                    className="group relative overflow-hidden rounded-[32px] border border-border/30 bg-background/70 p-8 shadow-xl transition-all duration-300 hover:scale-[1.02] hover:border-secondary/50 hover:shadow-2xl will-change-transform"
                   >
                     <div
                       className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${meta.accent} opacity-25 transition group-hover:opacity-45`}
                     />
                     <div className="relative flex h-full flex-col gap-6">
-                      <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                        <Icon className="h-8 w-8" />
+                      <div className="inline-flex h-14 w-14 md:h-16 md:w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                        <Icon className="h-7 w-7 md:h-8 md:w-8" />
                       </div>
                       <div className="space-y-3">
                         <Badge variant="outline" className="rounded-full border-primary/30 bg-primary/5 text-primary">

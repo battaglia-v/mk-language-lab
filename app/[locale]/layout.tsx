@@ -58,18 +58,18 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <Sidebar />
           
-          {/* Top bar for language switcher and user menu (desktop only) */}
-          <div className="hidden lg:block fixed top-0 right-0 left-0 lg:left-sidebar z-30 h-14 bg-background/80 backdrop-blur-md border-b border-border/40">
-            <div className="flex items-center justify-between h-full px-6 gap-4">
+          {/* Top bar for search and language switcher */}
+          <div className="fixed top-0 right-0 left-0 lg:left-sidebar z-30 h-14 bg-background/80 backdrop-blur-md border-b border-border/40">
+            <div className="flex items-center justify-between h-full px-4 lg:px-6 gap-2">
               <CommandMenu />
               <LanguageSwitcher />
             </div>
           </div>
-          
+
           {/* Main content with proper spacing for sidebar and top bar */}
-          <main 
-            id="main-content" 
-            className="outline-none focus-visible:ring-2 focus-visible:ring-primary lg:ml-sidebar lg:pt-14 pb-20 lg:pb-0 min-h-screen"
+          <main
+            id="main-content"
+            className="outline-none focus-visible:ring-2 focus-visible:ring-primary lg:ml-sidebar pt-14 pb-20 lg:pb-0 min-h-screen"
           >
             {children}
           </main>

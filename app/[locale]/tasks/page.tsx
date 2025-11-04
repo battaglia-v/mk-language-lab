@@ -517,13 +517,6 @@ export default function TasksPage() {
         </DndContext>
       </div>
       </div>
-
-      {/* Footer */}
-      <footer className="border-t border-border/40 bg-card/30 backdrop-blur-sm mt-20">
-        <div className="container mx-auto px-4 py-8 text-center text-muted-foreground">
-          <p>Креирано од <span className="font-semibold text-foreground">Винсент Баталија</span></p>
-        </div>
-      </footer>
     </AuthGuard>
   );
 }
