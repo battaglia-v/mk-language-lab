@@ -451,36 +451,74 @@ export function QuickPracticeWidget({
 
   return (
     <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-      <DialogTrigger asChild>
-        <Card
-          className={cn(
-            'group relative h-full cursor-pointer overflow-hidden rounded-2xl border border-border/40 bg-gradient-to-br from-primary/10 via-background/40 to-secondary/10 p-8 transition-all duration-300 hover:border-primary/50 hover:shadow-xl',
-            className
-          )}
-        >
-          <div className="space-y-4">
+      <Card
+        className={cn(
+          'relative h-full overflow-hidden rounded-2xl border border-border/40 bg-gradient-to-br from-primary/10 via-background/40 to-secondary/10 p-6 transition-all duration-300',
+          className
+        )}
+      >
+        <div className="space-y-6">
+          <div className="space-y-3">
             <Badge variant="secondary" className="w-fit bg-secondary/20 text-secondary">
               {t('quickPractice')}
             </Badge>
-            <h3 className="text-2xl font-semibold text-foreground md:text-3xl">
+            <h3 className="text-xl font-semibold text-foreground md:text-2xl">
               {title ?? t('quickPractice')}
             </h3>
-            <p className="text-sm text-muted-foreground md:text-base">
+            <p className="text-sm text-muted-foreground">
               {t('quickPracticeLaunchDescription')}
             </p>
           </div>
-          <div className="mt-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div className="flex items-center gap-2 text-sm text-primary md:text-base">
-              <Sparkles className="h-5 w-5" />
-              {t('practiceProgressSummary', { count: attemptCount })}
+
+          {/* Mode Selector - visible before opening modal */}
+          <div className="space-y-2">
+            <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              {t('practiceModeLabel')}
+            </span>
+            <div className="flex w-full gap-2 rounded-xl border border-border/60 bg-background/60 p-1">
+              <Button
+                type="button"
+                size="sm"
+                variant={mode === 'mkToEn' ? 'default' : 'ghost'}
+                onClick={() => setMode('mkToEn')}
+                className="flex-1"
+              >
+                {t('practiceModeMkToEn')}
+              </Button>
+              <Button
+                type="button"
+                size="sm"
+                variant={mode === 'enToMk' ? 'default' : 'ghost'}
+                onClick={() => setMode('enToMk')}
+                className="flex-1"
+              >
+                {t('practiceModeEnToMk')}
+              </Button>
             </div>
-            <Button type="button" size="lg" className="btn-glow gap-3">
-              <PlayCircle className="h-6 w-6" />
+          </div>
+
+          {/* Progress Stats */}
+          <div className="flex items-center justify-between text-sm">
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Sparkles className="h-4 w-4 text-primary" />
+              <span>{t('practiceProgressSummary', { count: attemptCount })}</span>
+            </div>
+            {attemptCount > 0 && (
+              <span className="text-primary font-medium">
+                {Math.round((correctCount / attemptCount) * 100)}% {t('practiceAccuracy', { value: '' }).split(':')[0]}
+              </span>
+            )}
+          </div>
+
+          {/* Launch Button */}
+          <DialogTrigger asChild>
+            <Button type="button" size="lg" className="w-full btn-glow gap-3">
+              <PlayCircle className="h-5 w-5" />
               {t('quickPracticeLaunch')}
             </Button>
-          </div>
-        </Card>
-      </DialogTrigger>
+          </DialogTrigger>
+        </div>
+      </Card>
       <DialogContent
         showCloseButton={false}
         className="h-[90vh] max-h-[760px] w-[min(96vw,900px)] max-w-none border border-border/40 bg-background/95 p-0 shadow-2xl"

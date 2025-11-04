@@ -17,6 +17,7 @@ import {
   ArrowRight,
   Newspaper,
   TrendingUp,
+  Headphones,
 } from 'lucide-react';
 
 const QUICK_ACTIONS = [
