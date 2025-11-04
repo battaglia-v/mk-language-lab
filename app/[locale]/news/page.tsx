@@ -107,16 +107,23 @@ function buildImageCandidates(imageUrl: string | null): string[] {
     return [];
   }
 
-  const candidates = [imageUrl];
+  const candidates: string[] = [];
 
+  // Try HTTPS first for security
   if (/^http:\/\//i.test(imageUrl)) {
     const httpsVariant = imageUrl.replace(/^http:\/\//i, 'https://');
-    if (httpsVariant !== imageUrl) {
-      candidates.unshift(httpsVariant);
-    }
+    candidates.push(httpsVariant);
+    candidates.push(imageUrl); // Fallback to HTTP if HTTPS fails
+  } else {
+    candidates.push(imageUrl);
   }
 
-  return Array.from(new Set(candidates));
+  // Handle protocol-relative URLs
+  if (imageUrl.startsWith('//')) {
+    candidates.unshift(`https:${imageUrl}`);
+  }
+
+  return Array.from(new Set(candidates.filter(Boolean)));
 }
 
 type NewsPreviewMediaProps = {
@@ -131,10 +138,14 @@ function NewsPreviewMedia({ imageUrl, sourceInitials, sourceName, alt, showVideo
   const candidates = useMemo(() => buildImageCandidates(imageUrl), [imageUrl]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [allFailed, setAllFailed] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [imageSize, setImageSize] = useState<{ width: number; height: number } | null>(null);
 
   useEffect(() => {
     setActiveIndex(0);
     setAllFailed(false);
+    setIsLoading(true);
+    setImageSize(null);
   }, [candidates.length, imageUrl]);
 
   const currentUrl = candidates[activeIndex] ?? null;
@@ -143,23 +154,52 @@ function NewsPreviewMedia({ imageUrl, sourceInitials, sourceName, alt, showVideo
   const handleImageError = useCallback(() => {
     if (activeIndex + 1 < candidates.length) {
       setActiveIndex((index) => index + 1);
+      setIsLoading(true);
       return;
     }
 
     setAllFailed(true);
+    setIsLoading(false);
   }, [activeIndex, candidates.length]);
+
+  const handleImageLoad = useCallback((event: React.SyntheticEvent<HTMLImageElement>) => {
+    setIsLoading(false);
+    const img = event.currentTarget;
+    setImageSize({ width: img.naturalWidth, height: img.naturalHeight });
+  }, []);
+
+  // Determine best fit strategy based on image dimensions
+  const objectFit = useMemo(() => {
+    if (!imageSize) return 'cover';
+    const aspectRatio = imageSize.width / imageSize.height;
+    const isVeryWide = aspectRatio > 2.5;
+    const isVeryTall = aspectRatio < 0.6;
+    const isTooSmall = imageSize.width < 200 || imageSize.height < 150;
+
+    return (isVeryWide || isVeryTall || isTooSmall) ? 'contain' : 'cover';
+  }, [imageSize]);
 
   return (
     <div className="relative mt-3 aspect-video w-full overflow-hidden rounded-xl border border-border/30 bg-muted/30 shadow-sm md:mt-0 md:ml-6 md:w-64 lg:w-72">
+      {isLoading && hasImage && (
+        <div className="absolute inset-0 flex items-center justify-center bg-muted/50">
+          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+        </div>
+      )}
       {hasImage ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={currentUrl ?? undefined}
           alt={`Preview for ${alt}`}
-          className="h-full w-full object-cover"
+          className="h-full w-full transition-opacity duration-200"
+          style={{
+            objectFit,
+            opacity: isLoading ? 0 : 1,
+          }}
           loading="lazy"
           decoding="async"
           onError={handleImageError}
+          onLoad={handleImageLoad}
         />
       ) : (
         <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-primary/25 via-secondary/20 to-muted/30 text-foreground">
@@ -167,9 +207,9 @@ function NewsPreviewMedia({ imageUrl, sourceInitials, sourceName, alt, showVideo
           <span className="text-xs font-medium text-muted-foreground/80">{sourceName}</span>
         </div>
       )}
-      {showVideoOverlay && hasImage && (
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/30">
-          <PlayCircle className="h-10 w-10 text-white drop-shadow" />
+      {showVideoOverlay && hasImage && !isLoading && (
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-[2px]">
+          <PlayCircle className="h-12 w-12 text-white drop-shadow-lg" />
         </div>
       )}
     </div>
