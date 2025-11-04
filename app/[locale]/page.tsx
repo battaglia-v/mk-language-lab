@@ -2,7 +2,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { HeroProgressSummary, type JourneyGoalMeta } from '@/components/journey/HeroProgressSummary';
 import { QuickPracticeWidget } from '@/components/learn/QuickPracticeWidget';
 import {

@@ -9,19 +9,78 @@ export const viewport: Viewport = {
   themeColor: '#ff5a2c',
 };
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mk-language-lab.vercel.app';
+
 export const metadata: Metadata = {
-  title: "MK Language Lab",
-  description: "Learn Macedonian with AI-powered tutoring, translation, and interactive lessons",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "MK Language Lab",
+    template: "%s | MK Language Lab",
+  },
+  description: "Learn Macedonian with AI-powered tutoring, translation, and interactive lessons. Free and open-source language learning app.",
   applicationName: "MK Language Lab",
+  keywords: [
+    "Macedonian",
+    "language learning",
+    "AI tutor",
+    "translation",
+    "Macedonian lessons",
+    "learn Macedonian",
+    "language app",
+    "Cyrillic",
+  ],
+  authors: [{ name: "MK Language Lab" }],
+  creator: "MK Language Lab",
+  publisher: "MK Language Lab",
+  formatDetection: {
+    telephone: false,
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
     title: "MK Language Lab",
   },
-  formatDetection: {
-    telephone: false,
-  },
   manifest: "/manifest.json",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    alternateLocale: ["mk_MK"],
+    url: siteUrl,
+    siteName: "MK Language Lab",
+    title: "MK Language Lab - Learn Macedonian",
+    description: "Learn Macedonian with AI-powered tutoring, translation, and interactive lessons. Free and open-source language learning app.",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "MK Language Lab - Learn Macedonian",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MK Language Lab - Learn Macedonian",
+    description: "Learn Macedonian with AI-powered tutoring, translation, and interactive lessons.",
+    images: ["/opengraph-image"],
+    creator: "@mk_language_lab",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    // Add verification codes when available
+    // google: "verification_code",
+    // yandex: "verification_code",
+  },
 };
 
 export default function RootLayout({

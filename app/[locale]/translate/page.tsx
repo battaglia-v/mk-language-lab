@@ -94,6 +94,7 @@ export default function TranslatePage() {
   const [detectedLanguage, setDetectedLanguage] = useState<string | null>(null);
   const [isTranslating, setIsTranslating] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isRetryable, setIsRetryable] = useState(false);
   const [copiedState, setCopiedState] = useState<'idle' | 'copied'>('idle');
   const [history, setHistory] = useState<TranslationHistoryEntry[]>([]);
   const shortcutHintId = 'translate-shortcut-hint';
@@ -152,6 +153,7 @@ export default function TranslatePage() {
 
       setIsTranslating(true);
       setErrorMessage(null);
+      setIsRetryable(false);
 
       try {
         const response = await fetch('/api/translate', {
@@ -170,10 +172,15 @@ export default function TranslatePage() {
           translatedText?: string;
           detectedSourceLang?: string | null;
           error?: string;
+          message?: string;
+          retryable?: boolean;
         };
 
         if (!response.ok || !data.translatedText) {
-          throw new Error(data.error ?? 'Translation failed');
+          const errorMsg = data.message || data.error || 'Translation failed';
+          const retryable = data.retryable ?? false;
+          setIsRetryable(retryable);
+          throw new Error(errorMsg);
         }
 
         const trimmedTranslation = data.translatedText.trim();
@@ -201,7 +208,9 @@ export default function TranslatePage() {
         console.error('Translation failed', error);
         setTranslatedText('');
         setDetectedLanguage(null);
-        setErrorMessage(t('errorGeneric'));
+        // Use the error message from the API if available, otherwise fallback to generic
+        const message = error instanceof Error ? error.message : t('errorGeneric');
+        setErrorMessage(message);
       } finally {
         setIsTranslating(false);
       }
@@ -388,9 +397,22 @@ export default function TranslatePage() {
                     </p>
                   ) : null}
                   {errorMessage ? (
-                    <p className="text-sm text-destructive" role="alert">
-                      {errorMessage}
-                    </p>
+                    <div className="space-y-2">
+                      <p className="text-sm text-destructive" role="alert">
+                        {errorMessage}
+                      </p>
+                      {isRetryable && (
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleTranslate()}
+                          disabled={isTranslating}
+                        >
+                          {t('retryButton') || 'Retry'}
+                        </Button>
+                      )}
+                    </div>
                   ) : null}
                 </div>
 

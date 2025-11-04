@@ -9,7 +9,6 @@ import { Button } from '@/components/ui/button';
 import { Compass } from 'lucide-react';
 import { useActiveJourney } from '@/hooks/use-active-journey';
 import { JOURNEY_DEFINITIONS } from '@/data/journeys';
-import { practiceCardSectionLookup } from '@/data/practice';
 
 export default function TutorPage() {
   const t = useTranslations('tutor');
@@ -25,9 +24,7 @@ export default function TutorPage() {
 
     const focusRaw = journeyDetailT.raw(`goals.${activeJourney}.focus`);
     const defaultCardId = JOURNEY_DEFINITIONS[activeJourney].practiceRecommendations[0]?.cardId;
-    const defaultSection = defaultCardId ? practiceCardSectionLookup[defaultCardId] : 'translation';
-
-    const queryParams = new URLSearchParams({ section: defaultSection });
+    const queryParams = new URLSearchParams();
     if (defaultCardId) {
       queryParams.set('card', defaultCardId);
     }

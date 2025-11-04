@@ -44,7 +44,7 @@ const definitions: Record<JourneyId, JourneyDefinition> = {
       'Provide sample conversations, key family-themed vocabulary, and tone tips that sound warm yet respectful. Highlight ways to ask about relatives, health, and family news.',
     practiceRecommendations: [
       {
-        cardId: 'quick-phrases',
+        cardId: 'translate',
         label: 'Phrase refresh',
         reasonKey: 'goals.family.practice.phrases',
         reason: 'Review introductions and warm check-ins before your next conversation.',
@@ -108,10 +108,10 @@ const definitions: Record<JourneyId, JourneyDefinition> = {
         reason: 'Translate current headlines to spot grammar and collect phrases.',
       },
       {
-        cardId: 'pronunciation',
-        label: 'Pronunciation lab',
-        reasonKey: 'goals.culture.practice.pronunciation',
-        reason: 'Shadow pronunciation labs to mirror the sounds you discover.',
+        cardId: 'tutor',
+        label: 'Culture Discussion',
+        reasonKey: 'goals.culture.practice.tutor',
+        reason: 'Discuss customs and historical events with your AI tutor.',
       },
     ],
   },
