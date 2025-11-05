@@ -693,6 +693,20 @@
     "openAction": "Open workspace",
     "recommendedBadge": "Journey pick",
     "recommendedHint": "Selected for your current journey",
+    "cards": {
+      "translate": {
+        "title": "Quick Translator",
+        "description": "Use the dedicated translator workspace with shortcuts and history."
+      },
+      "tasks": {
+        "title": "Task Sprints",
+        "description": "Complete bite-sized translation and grammar tasks for spaced review."
+      },
+      "tutor": {
+        "title": "AI Tutor",
+        "description": "Ask the tutor for a role-play, feedback, or tailored speaking plan."
+      }
+    },
     "translation": {
       "tabLabel": "Translation",
       "description": "Move between Macedonian and English with structured prompts and phrase packs.",
