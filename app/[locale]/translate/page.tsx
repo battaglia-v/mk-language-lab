@@ -415,17 +415,37 @@ export default function TranslatePage() {
                     </div>
                   ) : null}
                 </div>
+              </form>
+              </CardContent>
+            </Card>
 
-                {history.length > 0 ? (
-                  <div className="space-y-3 rounded-xl border border-border/40 bg-background/40 p-4">
-                    <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                      {t('historyTitle')}
-                    </div>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
+            {/* Collapsible History */}
+            {history.length > 0 && (
+              <Card className="border-border/40 bg-card/60 backdrop-blur">
+                <button
+                  type="button"
+                  onClick={() => setIsHistoryExpanded(!isHistoryExpanded)}
+                  className="flex w-full items-center justify-between p-4 text-left transition-colors hover:bg-muted/20"
+                >
+                  <div className="space-y-1">
+                    <p className="text-sm font-semibold text-foreground">{t('historyTitle')}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {history.length} {history.length === 1 ? 'translation' : 'translations'}
+                    </p>
+                  </div>
+                  {isHistoryExpanded ? (
+                    <ChevronUp className="h-5 w-5 text-muted-foreground" />
+                  ) : (
+                    <ChevronDown className="h-5 w-5 text-muted-foreground" />
+                  )}
+                </button>
+                {isHistoryExpanded && (
+                  <CardContent className="border-t border-border/40 pt-4">
+                    <ul className="space-y-2">
                       {history.map((entry) => (
                         <li
                           key={entry.id}
-                          className="rounded-lg border border-border/30 bg-background/60 p-3 text-left"
+                          className="rounded-lg border border-border/30 bg-background/60 p-3"
                         >
                           <div className="flex flex-col gap-2">
                             <div className="flex items-center justify-between gap-3">
@@ -456,14 +476,14 @@ export default function TranslatePage() {
                         </li>
                       ))}
                     </ul>
-                  </div>
-                ) : (
-                  <p className="text-xs text-muted-foreground">{t('historyEmpty')}</p>
+                  </CardContent>
                 )}
-              </form>
-            </CardContent>
-          </Card>
+              </Card>
+            )}
+          </div>
 
+          {/* Right Column - Tips & Journey Snippets */}
+          <div className="space-y-6">
           {journeyId && journeySnippets.length ? (
             <Card className="border-border/40 bg-card/60 backdrop-blur">
               <CardHeader className="space-y-2">
@@ -503,66 +523,58 @@ export default function TranslatePage() {
             </Card>
           ) : null}
 
+          {/* Consolidated Help & Tips */}
           <Card className="border-border/40 bg-card/50 backdrop-blur">
-            <CardHeader className="space-y-2 text-center">
-              <CardTitle className="text-xl text-foreground">{t('fallbackTitle')}</CardTitle>
+            <CardHeader>
+              <CardTitle className="text-lg text-foreground">Help & Tips</CardTitle>
               <CardDescription className="text-sm text-muted-foreground">
                 {t('fallbackDescription')}
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
-              {fallbackSteps.length > 0 ? (
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  {fallbackSteps.map((step) => (
-                    <li key={step} className="rounded-lg border border-border/40 bg-background/50 p-3 text-left">
-                      {step}
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
-              <Button asChild variant="outline">
-                <Link
-                  href="https://translate.google.com/?sl=mk&tl=en&op=translate"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {t('fallbackExternalCta')}
-                </Link>
-              </Button>
-              <p className="text-xs text-muted-foreground">{t('fallbackExternalNote')}</p>
-            </CardContent>
-          </Card>
+            <CardContent className="space-y-6">
+              {/* Tips Section */}
+              {tips.length > 0 && (
+                <div className="space-y-3">
+                  <p className="text-sm font-semibold text-foreground">{t('tipsTitle')}</p>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    {tips.map((tip) => (
+                      <li key={tip} className="rounded-md border border-border/40 bg-background/40 p-3">
+                        {tip}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
-          <Card className="border-border/40 bg-card/50 backdrop-blur">
-            <CardHeader>
-              <CardTitle className="text-xl text-foreground">{t('tipsTitle')}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-3 text-sm text-muted-foreground">
-                {tips.map((tip) => (
-                  <li key={tip} className="rounded-md border border-border/40 bg-background/40 p-3">
-                    {tip}
-                  </li>
-                ))}
-              </ul>
+              {/* Fallback Section */}
+              {fallbackSteps.length > 0 && (
+                <div className="space-y-3">
+                  <p className="text-sm font-semibold text-foreground">{t('fallbackTitle')}</p>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    {fallbackSteps.map((step) => (
+                      <li key={step} className="rounded-md border border-border/40 bg-background/50 p-3">
+                        {step}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="pt-2">
+                    <Button asChild variant="outline" size="sm" className="w-full">
+                      <Link
+                        href="https://translate.google.com/?sl=mk&tl=en&op=translate"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {t('fallbackExternalCta')}
+                      </Link>
+                    </Button>
+                    <p className="mt-2 text-xs text-muted-foreground">{t('fallbackExternalNote')}</p>
+                  </div>
+                </div>
+              )}
             </CardContent>
           </Card>
-
-          <Card className="border-border/40 bg-card/40 backdrop-blur">
-            <CardHeader className="space-y-2 text-center md:text-left">
-              <CardTitle className="text-xl text-foreground">{t('resourcesTitle')}</CardTitle>
-              <CardDescription className="text-sm text-muted-foreground">
-                {t('resourcesDescription')}
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="flex justify-center md:justify-start">
-              <Button asChild size="lg">
-                <Link href={buildHref('/resources')}>{t('resourcesCta')}</Link>
-              </Button>
-            </CardContent>
-          </Card>
+          </div>
         </div>
-      </div>
       </div>
 
       <footer className="border-t border-border/40 bg-card/30 backdrop-blur-sm">
