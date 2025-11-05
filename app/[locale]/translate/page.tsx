@@ -1,7 +1,7 @@
 'use client';
 
 import { FormEvent, useCallback, useMemo, useState } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { ArrowLeftRight, Check, Copy, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
@@ -37,7 +37,6 @@ const SNIPPET_REVIEW_MINUTES = 3;
 export default function TranslatePage() {
   const t = useTranslations('translate');
   const journeyT = useTranslations('journey');
-  const locale = useLocale();
   const searchParams = useSearchParams();
   const { activeJourney } = useActiveJourney();
   const { logSession } = useJourneyProgress(activeJourney);
@@ -268,9 +267,9 @@ export default function TranslatePage() {
           <p className="text-base text-muted-foreground md:text-lg">{t('subtitle')}</p>
         </div>
 
-        {/* Main Layout - Two Columns on Desktop */}
-        <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[2fr_1fr]">
-          {/* Left Column - Main Translator */}
+        {/* Main Layout - Conditional Two Columns */}
+        <div className={`mx-auto gap-6 ${journeySnippets.length > 0 ? 'grid max-w-7xl lg:grid-cols-[2fr_1fr]' : 'max-w-4xl'}`}>
+          {/* Main Translator */}
           <div className="space-y-6">
             <Card className="border-border/40 bg-card/70 backdrop-blur shadow-xl">
               <CardContent className="p-6 md:p-8">
