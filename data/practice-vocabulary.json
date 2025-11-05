@@ -25,6 +25,171 @@
     "macedonian": "се гледаме"
   },
   {
+    "english": "good afternoon",
+    "category": "greetings",
+    "macedonian": "добро попладне"
+  },
+  {
+    "english": "good night",
+    "category": "greetings",
+    "macedonian": "добра ноќ"
+  },
+  {
+    "english": "goodbye",
+    "category": "greetings",
+    "macedonian": "довидување"
+  },
+  {
+    "english": "bye (informal)",
+    "category": "greetings",
+    "macedonian": "чао"
+  },
+  {
+    "english": "see you later",
+    "category": "greetings",
+    "macedonian": "се гледаме подоцна"
+  },
+  {
+    "english": "see you tomorrow",
+    "category": "greetings",
+    "macedonian": "се гледаме утре"
+  },
+  {
+    "english": "see you soon",
+    "category": "greetings",
+    "macedonian": "се гледаме наскоро"
+  },
+  {
+    "english": "welcome",
+    "category": "greetings",
+    "macedonian": "добредојдовте"
+  },
+  {
+    "english": "nice to meet you",
+    "category": "greetings",
+    "macedonian": "драго ми е"
+  },
+  {
+    "english": "how's it going?",
+    "category": "greetings",
+    "macedonian": "како оди?"
+  },
+  {
+    "english": "what's new?",
+    "category": "greetings",
+    "macedonian": "што има ново?"
+  },
+  {
+    "english": "I'm fine",
+    "category": "greetings",
+    "macedonian": "добро сум"
+  },
+  {
+    "english": "I'm well, thank you",
+    "category": "greetings",
+    "macedonian": "добро сум, благодарам"
+  },
+  {
+    "english": "not bad",
+    "category": "greetings",
+    "macedonian": "не е лошо"
+  },
+  {
+    "english": "so-so",
+    "category": "greetings",
+    "macedonian": "така-така"
+  },
+  {
+    "english": "great",
+    "category": "greetings",
+    "macedonian": "одлично"
+  },
+  {
+    "english": "excellent",
+    "category": "greetings",
+    "macedonian": "одлично"
+  },
+  {
+    "english": "how are you? (formal)",
+    "category": "greetings",
+    "macedonian": "како сте?"
+  },
+  {
+    "english": "good day (formal)",
+    "category": "greetings",
+    "macedonian": "добар ден"
+  },
+  {
+    "english": "take care",
+    "category": "greetings",
+    "macedonian": "чувај се"
+  },
+  {
+    "english": "stay well",
+    "category": "greetings",
+    "macedonian": "биди здрав"
+  },
+  {
+    "english": "have a safe journey",
+    "category": "greetings",
+    "macedonian": "среќен пат"
+  },
+  {
+    "english": "have a nice weekend",
+    "category": "greetings",
+    "macedonian": "пријатен викенд"
+  },
+  {
+    "english": "good health to you",
+    "category": "greetings",
+    "macedonian": "дај здравје"
+  },
+  {
+    "english": "congratulations",
+    "category": "greetings",
+    "macedonian": "честитки"
+  },
+  {
+    "english": "happy birthday",
+    "category": "greetings",
+    "macedonian": "среќен роденден"
+  },
+  {
+    "english": "best wishes",
+    "category": "greetings",
+    "macedonian": "најдобри желби"
+  },
+  {
+    "english": "happy holidays",
+    "category": "greetings",
+    "macedonian": "среќни празници"
+  },
+  {
+    "english": "let me know",
+    "category": "greetings",
+    "macedonian": "јави ми"
+  },
+  {
+    "english": "call me",
+    "category": "greetings",
+    "macedonian": "јави ми се"
+  },
+  {
+    "english": "text me",
+    "category": "greetings",
+    "macedonian": "испрати ми порака"
+  },
+  {
+    "english": "talk soon",
+    "category": "greetings",
+    "macedonian": "зборуваме наскоро"
+  },
+  {
+    "english": "good to see you",
+    "category": "greetings",
+    "macedonian": "драго ми е да те видам"
+  },
+  {
     "english": "thank you",
     "category": "politeness",
     "macedonian": "благодарам"
@@ -50,6 +215,66 @@
     "macedonian": "без проблем"
   },
   {
+    "english": "you're welcome",
+    "category": "politeness",
+    "macedonian": "нема на што"
+  },
+  {
+    "english": "don't mention it",
+    "category": "politeness",
+    "macedonian": "молам"
+  },
+  {
+    "english": "I'm sorry",
+    "category": "politeness",
+    "macedonian": "жал ми е"
+  },
+  {
+    "english": "forgive me",
+    "category": "politeness",
+    "macedonian": "прости ми"
+  },
+  {
+    "english": "my apologies",
+    "category": "politeness",
+    "macedonian": "се извинувам"
+  },
+  {
+    "english": "may I?",
+    "category": "politeness",
+    "macedonian": "може ли?"
+  },
+  {
+    "english": "can I?",
+    "category": "politeness",
+    "macedonian": "можам ли?"
+  },
+  {
+    "english": "could you?",
+    "category": "politeness",
+    "macedonian": "можеш ли?"
+  },
+  {
+    "english": "after you",
+    "category": "politeness",
+    "macedonian": "по вас"
+  },
+  {
+    "english": "go ahead",
+    "category": "politeness",
+    "macedonian": "заповедајте"
+  },
+  {
+    "english": "pardon me",
+    "category": "politeness",
+    "macedonian": "извинете ме"
+  },
+  {
+    "english": "sorry to bother you",
+    "category": "politeness",
+    "macedonian": "извини што те вознемирувам"
+  },
+  {
     "english": "mother",
     "category": "family",
     "macedonian": "мајка"
@@ -73,6 +298,201 @@
     "english": "family",
     "category": "family",
     "macedonian": "семејство"
+  },
+  {
+    "english": "grandmother",
+    "category": "family",
+    "macedonian": "баба"
+  },
+  {
+    "english": "grandfather",
+    "category": "family",
+    "macedonian": "дедо"
+  },
+  {
+    "english": "grandma (informal)",
+    "category": "family",
+    "macedonian": "баба"
+  },
+  {
+    "english": "grandpa (informal)",
+    "category": "family",
+    "macedonian": "дедо"
+  },
+  {
+    "english": "aunt",
+    "category": "family",
+    "macedonian": "тетка"
+  },
+  {
+    "english": "uncle (mother's brother)",
+    "category": "family",
+    "macedonian": "вујко"
+  },
+  {
+    "english": "uncle (father's brother)",
+    "category": "family",
+    "macedonian": "чичко"
+  },
+  {
+    "english": "cousin (male)",
+    "category": "family",
+    "macedonian": "братучед"
+  },
+  {
+    "english": "cousin (female)",
+    "category": "family",
+    "macedonian": "братучетка"
+  },
+  {
+    "english": "nephew",
+    "category": "family",
+    "macedonian": "внук"
+  },
+  {
+    "english": "niece",
+    "category": "family",
+    "macedonian": "внука"
+  },
+  {
+    "english": "husband",
+    "category": "family",
+    "macedonian": "сопруг"
+  },
+  {
+    "english": "wife",
+    "category": "family",
+    "macedonian": "сопруга"
+  },
+  {
+    "english": "son",
+    "category": "family",
+    "macedonian": "син"
+  },
+  {
+    "english": "daughter",
+    "category": "family",
+    "macedonian": "ќерка"
+  },
+  {
+    "english": "child",
+    "category": "family",
+    "macedonian": "дете"
+  },
+  {
+    "english": "children",
+    "category": "family",
+    "macedonian": "деца"
+  },
+  {
+    "english": "parents",
+    "category": "family",
+    "macedonian": "родители"
+  },
+  {
+    "english": "grandparents",
+    "category": "family",
+    "macedonian": "баба и дедо"
+  },
+  {
+    "english": "grandchildren",
+    "category": "family",
+    "macedonian": "внуци"
+  },
+  {
+    "english": "grandson",
+    "category": "family",
+    "macedonian": "внук"
+  },
+  {
+    "english": "granddaughter",
+    "category": "family",
+    "macedonian": "внука"
+  },
+  {
+    "english": "siblings",
+    "category": "family",
+    "macedonian": "браќа и сестри"
+  },
+  {
+    "english": "older brother",
+    "category": "family",
+    "macedonian": "постар брат"
+  },
+  {
+    "english": "younger brother",
+    "category": "family",
+    "macedonian": "помлад брат"
+  },
+  {
+    "english": "older sister",
+    "category": "family",
+    "macedonian": "постара сестра"
+  },
+  {
+    "english": "younger sister",
+    "category": "family",
+    "macedonian": "помлада сестра"
+  },
+  {
+    "english": "mother-in-law",
+    "category": "family",
+    "macedonian": "свекрва"
+  },
+  {
+    "english": "father-in-law",
+    "category": "family",
+    "macedonian": "свекор"
+  },
+  {
+    "english": "son-in-law",
+    "category": "family",
+    "macedonian": "зет"
+  },
+  {
+    "english": "daughter-in-law",
+    "category": "family",
+    "macedonian": "снаа"
+  },
+  {
+    "english": "brother-in-law",
+    "category": "family",
+    "macedonian": "девер"
+  },
+  {
+    "english": "sister-in-law",
+    "category": "family",
+    "macedonian": "зелва"
+  },
+  {
+    "english": "relatives",
+    "category": "family",
+    "macedonian": "роднини"
+  },
+  {
+    "english": "relative",
+    "category": "family",
+    "macedonian": "роднина"
+  },
+  {
+    "english": "mama (informal)",
+    "category": "family",
+    "macedonian": "мама"
+  },
+  {
+    "english": "papa (informal)",
+    "category": "family",
+    "macedonian": "тато"
+  },
+  {
+    "english": "godfather",
+    "category": "family",
+    "macedonian": "кум"
+  },
+  {
+    "english": "godmother",
+    "category": "family",
+    "macedonian": "кума"
   },
   {
     "english": "friend",
@@ -118,6 +538,206 @@
     "english": "dinner",
     "category": "food",
     "macedonian": "вечера"
+  },
+  {
+    "english": "breakfast",
+    "category": "food",
+    "macedonian": "појадок"
+  },
+  {
+    "english": "snack",
+    "category": "food",
+    "macedonian": "ужинка"
+  },
+  {
+    "english": "dessert",
+    "category": "food",
+    "macedonian": "десерт"
+  },
+  {
+    "english": "meat",
+    "category": "food",
+    "macedonian": "месо"
+  },
+  {
+    "english": "chicken",
+    "category": "food",
+    "macedonian": "пилешко"
+  },
+  {
+    "english": "fish",
+    "category": "food",
+    "macedonian": "риба"
+  },
+  {
+    "english": "vegetables",
+    "category": "food",
+    "macedonian": "зеленчук"
+  },
+  {
+    "english": "fruit",
+    "category": "food",
+    "macedonian": "овошје"
+  },
+  {
+    "english": "cheese",
+    "category": "food",
+    "macedonian": "сирење"
+  },
+  {
+    "english": "milk",
+    "category": "food",
+    "macedonian": "млеко"
+  },
+  {
+    "english": "butter",
+    "category": "food",
+    "macedonian": "путер"
+  },
+  {
+    "english": "eggs",
+    "category": "food",
+    "macedonian": "јајца"
+  },
+  {
+    "english": "rice",
+    "category": "food",
+    "macedonian": "ориз"
+  },
+  {
+    "english": "pasta",
+    "category": "food",
+    "macedonian": "тестенини"
+  },
+  {
+    "english": "soup",
+    "category": "food",
+    "macedonian": "супа"
+  },
+  {
+    "english": "salad",
+    "category": "food",
+    "macedonian": "салата"
+  },
+  {
+    "english": "sauce",
+    "category": "food",
+    "macedonian": "сос"
+  },
+  {
+    "english": "salt",
+    "category": "food",
+    "macedonian": "сол"
+  },
+  {
+    "english": "pepper",
+    "category": "food",
+    "macedonian": "бибер"
+  },
+  {
+    "english": "sugar",
+    "category": "food",
+    "macedonian": "шеќер"
+  },
+  {
+    "english": "oil",
+    "category": "food",
+    "macedonian": "масло"
+  },
+  {
+    "english": "tea",
+    "category": "food",
+    "macedonian": "чај"
+  },
+  {
+    "english": "juice",
+    "category": "food",
+    "macedonian": "сок"
+  },
+  {
+    "english": "wine",
+    "category": "food",
+    "macedonian": "вино"
+  },
+  {
+    "english": "beer",
+    "category": "food",
+    "macedonian": "пиво"
+  },
+  {
+    "english": "tavče gravče (bean dish)",
+    "category": "food",
+    "macedonian": "тавче гравче"
+  },
+  {
+    "english": "ajvar (pepper spread)",
+    "category": "food",
+    "macedonian": "ајвар"
+  },
+  {
+    "english": "sarma (stuffed cabbage)",
+    "category": "food",
+    "macedonian": "сарма"
+  },
+  {
+    "english": "kifla (bread roll)",
+    "category": "food",
+    "macedonian": "кифла"
+  },
+  {
+    "english": "turshija (pickled vegetables)",
+    "category": "food",
+    "macedonian": "туршија"
+  },
+  {
+    "english": "rakija (brandy)",
+    "category": "food",
+    "macedonian": "ракија"
+  },
+  {
+    "english": "delicious",
+    "category": "food",
+    "macedonian": "вкусно"
+  },
+  {
+    "english": "tasty",
+    "category": "food",
+    "macedonian": "вкусно"
+  },
+  {
+    "english": "salty",
+    "category": "food",
+    "macedonian": "солено"
+  },
+  {
+    "english": "sweet",
+    "category": "food",
+    "macedonian": "слатко"
+  },
+  {
+    "english": "sour",
+    "category": "food",
+    "macedonian": "кисело"
+  },
+  {
+    "english": "spicy",
+    "category": "food",
+    "macedonian": "луто"
+  },
+  {
+    "english": "fresh",
+    "category": "food",
+    "macedonian": "свежо"
+  },
+  {
+    "english": "hot (temperature)",
+    "category": "food",
+    "macedonian": "топло"
+  },
+  {
+    "english": "cold (temperature)",
+    "category": "food",
+    "macedonian": "ладно"
   },
   {
     "english": "market",
@@ -225,6 +845,156 @@
     "macedonian": "болница"
   },
   {
+    "english": "head",
+    "category": "health",
+    "macedonian": "глава"
+  },
+  {
+    "english": "eye",
+    "category": "health",
+    "macedonian": "око"
+  },
+  {
+    "english": "ear",
+    "category": "health",
+    "macedonian": "уво"
+  },
+  {
+    "english": "nose",
+    "category": "health",
+    "macedonian": "нос"
+  },
+  {
+    "english": "mouth",
+    "category": "health",
+    "macedonian": "уста"
+  },
+  {
+    "english": "hand",
+    "category": "health",
+    "macedonian": "рака"
+  },
+  {
+    "english": "arm",
+    "category": "health",
+    "macedonian": "рака"
+  },
+  {
+    "english": "leg",
+    "category": "health",
+    "macedonian": "нога"
+  },
+  {
+    "english": "foot",
+    "category": "health",
+    "macedonian": "стапало"
+  },
+  {
+    "english": "back",
+    "category": "health",
+    "macedonian": "грб"
+  },
+  {
+    "english": "stomach",
+    "category": "health",
+    "macedonian": "стомак"
+  },
+  {
+    "english": "heart",
+    "category": "health",
+    "macedonian": "срце"
+  },
+  {
+    "english": "sick",
+    "category": "health",
+    "macedonian": "болен"
+  },
+  {
+    "english": "ill",
+    "category": "health",
+    "macedonian": "болен"
+  },
+  {
+    "english": "healthy",
+    "category": "health",
+    "macedonian": "здрав"
+  },
+  {
+    "english": "pain",
+    "category": "health",
+    "macedonian": "болка"
+  },
+  {
+    "english": "headache",
+    "category": "health",
+    "macedonian": "главоболка"
+  },
+  {
+    "english": "fever",
+    "category": "health",
+    "macedonian": "температура"
+  },
+  {
+    "english": "cough",
+    "category": "health",
+    "macedonian": "кашлица"
+  },
+  {
+    "english": "cold (illness)",
+    "category": "health",
+    "macedonian": "настинка"
+  },
+  {
+    "english": "flu",
+    "category": "health",
+    "macedonian": "грип"
+  },
+  {
+    "english": "doctor",
+    "category": "health",
+    "macedonian": "доктор"
+  },
+  {
+    "english": "medicine",
+    "category": "health",
+    "macedonian": "лек"
+  },
+  {
+    "english": "pharmacy",
+    "category": "health",
+    "macedonian": "аптека"
+  },
+  {
+    "english": "appointment",
+    "category": "health",
+    "macedonian": "закажан термин"
+  },
+  {
+    "english": "feel better",
+    "category": "health",
+    "macedonian": "се чувствувам подобро"
+  },
+  {
+    "english": "get well",
+    "category": "health",
+    "macedonian": "се оздравувам"
+  },
+  {
+    "english": "recover",
+    "category": "health",
+    "macedonian": "се закрепнувам"
+  },
+  {
+    "english": "strong",
+    "category": "health",
+    "macedonian": "силен"
+  },
+  {
+    "english": "weak",
+    "category": "health",
+    "macedonian": "слаб"
+  },
+  {
     "english": "today",
     "category": "time",
     "macedonian": "денес"
@@ -248,6 +1018,181 @@
     "english": "minute",
     "category": "time",
     "macedonian": "минут"
+  },
+  {
+    "english": "Monday",
+    "category": "time",
+    "macedonian": "понеделник"
+  },
+  {
+    "english": "Tuesday",
+    "category": "time",
+    "macedonian": "вторник"
+  },
+  {
+    "english": "Wednesday",
+    "category": "time",
+    "macedonian": "среда"
+  },
+  {
+    "english": "Thursday",
+    "category": "time",
+    "macedonian": "четврток"
+  },
+  {
+    "english": "Friday",
+    "category": "time",
+    "macedonian": "петок"
+  },
+  {
+    "english": "Saturday",
+    "category": "time",
+    "macedonian": "сабота"
+  },
+  {
+    "english": "Sunday",
+    "category": "time",
+    "macedonian": "недела"
+  },
+  {
+    "english": "week",
+    "category": "time",
+    "macedonian": "недела"
+  },
+  {
+    "english": "month",
+    "category": "time",
+    "macedonian": "месец"
+  },
+  {
+    "english": "year",
+    "category": "time",
+    "macedonian": "година"
+  },
+  {
+    "english": "day",
+    "category": "time",
+    "macedonian": "ден"
+  },
+  {
+    "english": "night",
+    "category": "time",
+    "macedonian": "ноќ"
+  },
+  {
+    "english": "morning",
+    "category": "time",
+    "macedonian": "утро"
+  },
+  {
+    "english": "afternoon",
+    "category": "time",
+    "macedonian": "попладне"
+  },
+  {
+    "english": "evening",
+    "category": "time",
+    "macedonian": "вечер"
+  },
+  {
+    "english": "midnight",
+    "category": "time",
+    "macedonian": "полноќ"
+  },
+  {
+    "english": "noon",
+    "category": "time",
+    "macedonian": "пладне"
+  },
+  {
+    "english": "weekend",
+    "category": "time",
+    "macedonian": "викенд"
+  },
+  {
+    "english": "spring",
+    "category": "time",
+    "macedonian": "пролет"
+  },
+  {
+    "english": "summer",
+    "category": "time",
+    "macedonian": "лето"
+  },
+  {
+    "english": "autumn",
+    "category": "time",
+    "macedonian": "есен"
+  },
+  {
+    "english": "winter",
+    "category": "time",
+    "macedonian": "зима"
+  },
+  {
+    "english": "always",
+    "category": "time",
+    "macedonian": "секогаш"
+  },
+  {
+    "english": "never",
+    "category": "time",
+    "macedonian": "никогаш"
+  },
+  {
+    "english": "sometimes",
+    "category": "time",
+    "macedonian": "понекогаш"
+  },
+  {
+    "english": "often",
+    "category": "time",
+    "macedonian": "често"
+  },
+  {
+    "english": "rarely",
+    "category": "time",
+    "macedonian": "ретко"
+  },
+  {
+    "english": "usually",
+    "category": "time",
+    "macedonian": "обично"
+  },
+  {
+    "english": "now",
+    "category": "time",
+    "macedonian": "сега"
+  },
+  {
+    "english": "later",
+    "category": "time",
+    "macedonian": "подоцна"
+  },
+  {
+    "english": "soon",
+    "category": "time",
+    "macedonian": "наскоро"
+  },
+  {
+    "english": "early",
+    "category": "time",
+    "macedonian": "рано"
+  },
+  {
+    "english": "late",
+    "category": "time",
+    "macedonian": "доцна"
+  },
+  {
+    "english": "before",
+    "category": "time",
+    "macedonian": "пред"
+  },
+  {
+    "english": "after",
+    "category": "time",
+    "macedonian": "по"
   },
   {
     "english": "sun",
@@ -323,6 +1268,611 @@
     "english": "I walk",
     "category": "activities",
     "macedonian": "пешачам"
+  },
+  {
+    "english": "I cook",
+    "category": "activities",
+    "macedonian": "готвам"
+  },
+  {
+    "english": "I clean",
+    "category": "activities",
+    "macedonian": "чистам"
+  },
+  {
+    "english": "I wash",
+    "category": "activities",
+    "macedonian": "перам"
+  },
+  {
+    "english": "I work",
+    "category": "activities",
+    "macedonian": "работам"
+  },
+  {
+    "english": "I eat",
+    "category": "activities",
+    "macedonian": "јадам"
+  },
+  {
+    "english": "I drink",
+    "category": "activities",
+    "macedonian": "пијам"
+  },
+  {
+    "english": "I sleep",
+    "category": "activities",
+    "macedonian": "спијам"
+  },
+  {
+    "english": "I wake up",
+    "category": "activities",
+    "macedonian": "се будам"
+  },
+  {
+    "english": "I rest",
+    "category": "activities",
+    "macedonian": "се одморам"
+  },
+  {
+    "english": "I shower",
+    "category": "activities",
+    "macedonian": "се туширам"
+  },
+  {
+    "english": "I speak",
+    "category": "activities",
+    "macedonian": "зборувам"
+  },
+  {
+    "english": "I talk",
+    "category": "activities",
+    "macedonian": "разговарам"
+  },
+  {
+    "english": "I call",
+    "category": "activities",
+    "macedonian": "се јавувам"
+  },
+  {
+    "english": "I ask",
+    "category": "activities",
+    "macedonian": "прашувам"
+  },
+  {
+    "english": "I answer",
+    "category": "activities",
+    "macedonian": "одговарам"
+  },
+  {
+    "english": "I understand",
+    "category": "activities",
+    "macedonian": "разбирам"
+  },
+  {
+    "english": "I come",
+    "category": "activities",
+    "macedonian": "доаѓам"
+  },
+  {
+    "english": "I go",
+    "category": "activities",
+    "macedonian": "одам"
+  },
+  {
+    "english": "I arrive",
+    "category": "activities",
+    "macedonian": "пристигнувам"
+  },
+  {
+    "english": "I leave",
+    "category": "activities",
+    "macedonian": "заминувам"
+  },
+  {
+    "english": "I return",
+    "category": "activities",
+    "macedonian": "се враќам"
+  },
+  {
+    "english": "I visit",
+    "category": "activities",
+    "macedonian": "посетувам"
+  },
+  {
+    "english": "I stay",
+    "category": "activities",
+    "macedonian": "останувам"
+  },
+  {
+    "english": "I sit",
+    "category": "activities",
+    "macedonian": "седам"
+  },
+  {
+    "english": "I stand",
+    "category": "activities",
+    "macedonian": "стојам"
+  },
+  {
+    "english": "I think",
+    "category": "activities",
+    "macedonian": "мислам"
+  },
+  {
+    "english": "I know",
+    "category": "activities",
+    "macedonian": "знам"
+  },
+  {
+    "english": "I remember",
+    "category": "activities",
+    "macedonian": "се сеќавам"
+  },
+  {
+    "english": "I forget",
+    "category": "activities",
+    "macedonian": "заборавам"
+  },
+  {
+    "english": "I learn",
+    "category": "activities",
+    "macedonian": "учам"
+  },
+  {
+    "english": "I teach",
+    "category": "activities",
+    "macedonian": "предавам"
+  },
+  {
+    "english": "I study",
+    "category": "activities",
+    "macedonian": "студирам"
+  },
+  {
+    "english": "I want",
+    "category": "activities",
+    "macedonian": "сакам"
+  },
+  {
+    "english": "I need",
+    "category": "activities",
+    "macedonian": "треба ми"
+  },
+  {
+    "english": "I like",
+    "category": "activities",
+    "macedonian": "ми се допаѓа"
+  },
+  {
+    "english": "I love",
+    "category": "activities",
+    "macedonian": "сакам"
+  },
+  {
+    "english": "I help",
+    "category": "activities",
+    "macedonian": "помагам"
+  },
+  {
+    "english": "I try",
+    "category": "activities",
+    "macedonian": "обидувам се"
+  },
+  {
+    "english": "I start",
+    "category": "activities",
+    "macedonian": "почнувам"
+  },
+  {
+    "english": "I finish",
+    "category": "activities",
+    "macedonian": "завршувам"
+  },
+  {
+    "english": "I make/do",
+    "category": "activities",
+    "macedonian": "правам"
+  },
+  {
+    "english": "who",
+    "category": "questions",
+    "macedonian": "кој"
+  },
+  {
+    "english": "what",
+    "category": "questions",
+    "macedonian": "што"
+  },
+  {
+    "english": "where",
+    "category": "questions",
+    "macedonian": "каде"
+  },
+  {
+    "english": "when",
+    "category": "questions",
+    "macedonian": "кога"
+  },
+  {
+    "english": "why",
+    "category": "questions",
+    "macedonian": "зошто"
+  },
+  {
+    "english": "how",
+    "category": "questions",
+    "macedonian": "како"
+  },
+  {
+    "english": "which",
+    "category": "questions",
+    "macedonian": "кој"
+  },
+  {
+    "english": "whose",
+    "category": "questions",
+    "macedonian": "чиј"
+  },
+  {
+    "english": "how much",
+    "category": "questions",
+    "macedonian": "колку"
+  },
+  {
+    "english": "how many",
+    "category": "questions",
+    "macedonian": "колку"
+  },
+  {
+    "english": "I see",
+    "category": "activities",
+    "macedonian": "гледам"
+  },
+  {
+    "english": "I look",
+    "category": "activities",
+    "macedonian": "гледам"
+  },
+  {
+    "english": "I watch",
+    "category": "activities",
+    "macedonian": "гледам"
+  },
+  {
+    "english": "I hear",
+    "category": "activities",
+    "macedonian": "слушам"
+  },
+  {
+    "english": "I feel",
+    "category": "activities",
+    "macedonian": "чувствувам"
+  },
+  {
+    "english": "I smell",
+    "category": "activities",
+    "macedonian": "мирисам"
+  },
+  {
+    "english": "I taste",
+    "category": "activities",
+    "macedonian": "вкусувам"
+  },
+  {
+    "english": "I can",
+    "category": "activities",
+    "macedonian": "можам"
+  },
+  {
+    "english": "I must",
+    "category": "activities",
+    "macedonian": "мора"
+  },
+  {
+    "english": "I should",
+    "category": "activities",
+    "macedonian": "треба"
+  },
+  {
+    "english": "I am",
+    "category": "activities",
+    "macedonian": "сум"
+  },
+  {
+    "english": "I have",
+    "category": "activities",
+    "macedonian": "имам"
+  },
+  {
+    "english": "I say",
+    "category": "activities",
+    "macedonian": "кажувам"
+  },
+  {
+    "english": "I tell",
+    "category": "activities",
+    "macedonian": "велам"
+  },
+  {
+    "english": "I describe",
+    "category": "activities",
+    "macedonian": "опишувам"
+  },
+  {
+    "english": "I run",
+    "category": "activities",
+    "macedonian": "трчам"
+  },
+  {
+    "english": "I jump",
+    "category": "activities",
+    "macedonian": "скокам"
+  },
+  {
+    "english": "I climb",
+    "category": "activities",
+    "macedonian": "се качувам"
+  },
+  {
+    "english": "I fall",
+    "category": "activities",
+    "macedonian": "паѓам"
+  },
+  {
+    "english": "I swim",
+    "category": "activities",
+    "macedonian": "пливам"
+  },
+  {
+    "english": "I drive",
+    "category": "activities",
+    "macedonian": "возам"
+  },
+  {
+    "english": "I ride",
+    "category": "activities",
+    "macedonian": "возам"
+  },
+  {
+    "english": "I buy",
+    "category": "activities",
+    "macedonian": "купувам"
+  },
+  {
+    "english": "I sell",
+    "category": "activities",
+    "macedonian": "продавам"
+  },
+  {
+    "english": "I pay",
+    "category": "activities",
+    "macedonian": "плаќам"
+  },
+  {
+    "english": "I find",
+    "category": "activities",
+    "macedonian": "наоѓам"
+  },
+  {
+    "english": "I lose",
+    "category": "activities",
+    "macedonian": "губам"
+  },
+  {
+    "english": "I keep",
+    "category": "activities",
+    "macedonian": "чувам"
+  },
+  {
+    "english": "I give",
+    "category": "activities",
+    "macedonian": "давам"
+  },
+  {
+    "english": "I take",
+    "category": "activities",
+    "macedonian": "земам"
+  },
+  {
+    "english": "I bring",
+    "category": "activities",
+    "macedonian": "носам"
+  },
+  {
+    "english": "I send",
+    "category": "activities",
+    "macedonian": "испраќам"
+  },
+  {
+    "english": "I receive",
+    "category": "activities",
+    "macedonian": "добивам"
+  },
+  {
+    "english": "I open",
+    "category": "activities",
+    "macedonian": "отворам"
+  },
+  {
+    "english": "I close",
+    "category": "activities",
+    "macedonian": "затворам"
+  },
+  {
+    "english": "I turn",
+    "category": "activities",
+    "macedonian": "вртам"
+  },
+  {
+    "english": "I break",
+    "category": "activities",
+    "macedonian": "кршам"
+  },
+  {
+    "english": "I fix",
+    "category": "activities",
+    "macedonian": "поправам"
+  },
+  {
+    "english": "I wait",
+    "category": "activities",
+    "macedonian": "чекам"
+  },
+  {
+    "english": "happy",
+    "category": "emotions",
+    "macedonian": "среќен"
+  },
+  {
+    "english": "sad",
+    "category": "emotions",
+    "macedonian": "тажен"
+  },
+  {
+    "english": "worried",
+    "category": "emotions",
+    "macedonian": "загриижен"
+  },
+  {
+    "english": "excited",
+    "category": "emotions",
+    "macedonian": "возбуден"
+  },
+  {
+    "english": "nervous",
+    "category": "emotions",
+    "macedonian": "нервозен"
+  },
+  {
+    "english": "calm",
+    "category": "emotions",
+    "macedonian": "мирен"
+  },
+  {
+    "english": "angry",
+    "category": "emotions",
+    "macedonian": "лут"
+  },
+  {
+    "english": "frustrated",
+    "category": "emotions",
+    "macedonian": "фрустриран"
+  },
+  {
+    "english": "disappointed",
+    "category": "emotions",
+    "macedonian": "разочаран"
+  },
+  {
+    "english": "tired",
+    "category": "emotions",
+    "macedonian": "уморен"
+  },
+  {
+    "english": "energetic",
+    "category": "emotions",
+    "macedonian": "енергичен"
+  },
+  {
+    "english": "bored",
+    "category": "emotions",
+    "macedonian": "здодеан"
+  },
+  {
+    "english": "interested",
+    "category": "emotions",
+    "macedonian": "заинтересиран"
+  },
+  {
+    "english": "curious",
+    "category": "emotions",
+    "macedonian": "љубопитен"
+  },
+  {
+    "english": "surprised",
+    "category": "emotions",
+    "macedonian": "изненаден"
+  },
+  {
+    "english": "shocked",
+    "category": "emotions",
+    "macedonian": "шокиран"
+  },
+  {
+    "english": "proud",
+    "category": "emotions",
+    "macedonian": "горд"
+  },
+  {
+    "english": "grateful",
+    "category": "emotions",
+    "macedonian": "благодарен"
+  },
+  {
+    "english": "thankful",
+    "category": "emotions",
+    "macedonian": "благодарен"
+  },
+  {
+    "english": "ashamed",
+    "category": "emotions",
+    "macedonian": "засрамен"
+  },
+  {
+    "english": "embarrassed",
+    "category": "emotions",
+    "macedonian": "збунет"
+  },
+  {
+    "english": "scared",
+    "category": "emotions",
+    "macedonian": "преплашен"
+  },
+  {
+    "english": "afraid",
+    "category": "emotions",
+    "macedonian": "страв"
+  },
+  {
+    "english": "brave",
+    "category": "emotions",
+    "macedonian": "храбар"
+  },
+  {
+    "english": "confident",
+    "category": "emotions",
+    "macedonian": "самоуверен"
+  },
+  {
+    "english": "shy",
+    "category": "emotions",
+    "macedonian": "срамежлив"
+  },
+  {
+    "english": "comfortable",
+    "category": "emotions",
+    "macedonian": "удобно"
+  },
+  {
+    "english": "uncomfortable",
+    "category": "emotions",
+    "macedonian": "неудобно"
+  },
+  {
+    "english": "I miss (someone)",
+    "category": "emotions",
+    "macedonian": "ми недостигаш"
+  },
+  {
+    "english": "I care about",
+    "category": "emotions",
+    "macedonian": "ми е грижа"
+  },
+  {
+    "english": "I feel good",
+    "category": "emotions",
+    "macedonian": "се чувствувам добро"
   },
   {
     "english": "culture",

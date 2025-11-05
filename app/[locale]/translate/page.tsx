@@ -1,7 +1,6 @@
 'use client';
 
 import { FormEvent, useCallback, useMemo, useState } from 'react';
-import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { ArrowLeftRight, Check, Copy, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
@@ -42,10 +41,6 @@ export default function TranslatePage() {
   const searchParams = useSearchParams();
   const { activeJourney } = useActiveJourney();
   const { logSession } = useJourneyProgress(activeJourney);
-  const rawTips = t.raw('tips');
-  const tips = Array.isArray(rawTips) ? (rawTips as string[]) : [];
-  const rawFallbackSteps = t.raw('fallbackSteps');
-  const fallbackSteps = Array.isArray(rawFallbackSteps) ? (rawFallbackSteps as string[]) : [];
 
   const directionLabels = useMemo(() => {
     const raw = t.raw('directions');
@@ -114,8 +109,6 @@ export default function TranslatePage() {
       return acc;
     }, {} as Record<DirectionOption['id'], string>);
   }, [directionOptions]);
-
-  const buildHref = (path: string) => (path === '/' ? `/${locale}` : `/${locale}${path}`);
 
   const handleDirectionChange = useCallback((id: DirectionOption['id']) => {
     setDirectionId(id);
@@ -522,57 +515,6 @@ export default function TranslatePage() {
               </CardContent>
             </Card>
           ) : null}
-
-          {/* Consolidated Help & Tips */}
-          <Card className="border-border/40 bg-card/50 backdrop-blur">
-            <CardHeader>
-              <CardTitle className="text-lg text-foreground">Help & Tips</CardTitle>
-              <CardDescription className="text-sm text-muted-foreground">
-                {t('fallbackDescription')}
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              {/* Tips Section */}
-              {tips.length > 0 && (
-                <div className="space-y-3">
-                  <p className="text-sm font-semibold text-foreground">{t('tipsTitle')}</p>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    {tips.map((tip) => (
-                      <li key={tip} className="rounded-md border border-border/40 bg-background/40 p-3">
-                        {tip}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Fallback Section */}
-              {fallbackSteps.length > 0 && (
-                <div className="space-y-3">
-                  <p className="text-sm font-semibold text-foreground">{t('fallbackTitle')}</p>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    {fallbackSteps.map((step) => (
-                      <li key={step} className="rounded-md border border-border/40 bg-background/50 p-3">
-                        {step}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="pt-2">
-                    <Button asChild variant="outline" size="sm" className="w-full">
-                      <Link
-                        href="https://translate.google.com/?sl=mk&tl=en&op=translate"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {t('fallbackExternalCta')}
-                      </Link>
-                    </Button>
-                    <p className="mt-2 text-xs text-muted-foreground">{t('fallbackExternalNote')}</p>
-                  </div>
-                </div>
-              )}
-            </CardContent>
-          </Card>
           </div>
         </div>
       </div>
