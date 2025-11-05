@@ -4,7 +4,7 @@ import { FormEvent, useCallback, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
-import { ArrowLeftRight, Check, Copy, Loader2 } from 'lucide-react';
+import { ArrowLeftRight, Check, Copy, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -97,6 +97,7 @@ export default function TranslatePage() {
   const [isRetryable, setIsRetryable] = useState(false);
   const [copiedState, setCopiedState] = useState<'idle' | 'copied'>('idle');
   const [history, setHistory] = useState<TranslationHistoryEntry[]>([]);
+  const [isHistoryExpanded, setIsHistoryExpanded] = useState(false);
   const shortcutHintId = 'translate-shortcut-hint';
   const characterCountId = 'translate-character-count';
 
@@ -262,26 +263,24 @@ export default function TranslatePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
-      <div className="container mx-auto px-4 py-12">
-        <div className="mx-auto flex max-w-3xl flex-col gap-10">
-          <div className="space-y-4 text-center">
-            <Badge variant="outline" className="mx-auto w-fit border-primary/40 bg-primary/5 text-primary">
-              {t('badge')}
-            </Badge>
-            <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-              {t('title')}
-            </h1>
-            <p className="text-lg text-muted-foreground md:text-xl">{t('subtitle')}</p>
-          </div>
+      <div className="container mx-auto px-4 py-8 lg:py-12">
+        {/* Header */}
+        <div className="mb-8 space-y-3 text-center">
+          <Badge variant="outline" className="mx-auto w-fit border-primary/40 bg-primary/10 text-primary">
+            {t('badge')}
+          </Badge>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
+            {t('title')}
+          </h1>
+          <p className="text-base text-muted-foreground md:text-lg">{t('subtitle')}</p>
+        </div>
 
-          <Card className="border-border/50 bg-card/60 backdrop-blur">
-            <CardHeader className="space-y-2 text-center">
-              <CardTitle className="text-2xl text-foreground">{t('assistantTitle')}</CardTitle>
-              <CardDescription className="text-base text-muted-foreground">
-                {t('assistantDescription')}
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
+        {/* Main Layout - Two Columns on Desktop */}
+        <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[2fr_1fr]">
+          {/* Left Column - Main Translator */}
+          <div className="space-y-6">
+            <Card className="border-border/40 bg-card/70 backdrop-blur shadow-xl">
+              <CardContent className="p-6 md:p-8">
               <form className="space-y-6" onSubmit={handleTranslate}>
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                   <div
@@ -318,8 +317,8 @@ export default function TranslatePage() {
                   </Button>
                 </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="translate-input" className="text-sm font-medium text-foreground">
+                <div className="space-y-3">
+                  <label htmlFor="translate-input" className="text-sm font-semibold text-foreground">
                     {t('inputLabel')}
                   </label>
                   <Textarea
@@ -329,6 +328,7 @@ export default function TranslatePage() {
                     placeholder={selectedDirection.placeholder}
                     maxLength={MAX_CHARACTERS}
                     aria-describedby={`${shortcutHintId} ${characterCountId}`}
+                    className="min-h-32 resize-none text-base md:min-h-40"
                     onKeyDown={(event) => {
                       if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
                         event.preventDefault();
@@ -359,9 +359,9 @@ export default function TranslatePage() {
                   </div>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <div className="flex items-center justify-between gap-4">
-                    <span className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                    <span className="text-sm font-semibold text-foreground">
                       {t('resultLabel')}
                     </span>
                     {translatedText ? (
@@ -372,7 +372,7 @@ export default function TranslatePage() {
                     ) : null}
                   </div>
                   <div
-                    className="min-h-32 whitespace-pre-wrap rounded-xl border border-border/50 bg-background/60 p-4 text-base text-foreground"
+                    className="min-h-32 whitespace-pre-wrap rounded-xl border-2 border-border/50 bg-background/80 p-5 text-base leading-relaxed text-foreground md:min-h-40 md:text-lg"
                     role="status"
                     aria-live="polite"
                     aria-atomic="true"
@@ -562,6 +562,7 @@ export default function TranslatePage() {
             </CardContent>
           </Card>
         </div>
+      </div>
       </div>
 
       <footer className="border-t border-border/40 bg-card/30 backdrop-blur-sm">

@@ -150,9 +150,9 @@ export function QuickPracticeWidget({
     const normalizedAnswer = normalizeAnswer(answer);
     const normalizedExpected = normalizeAnswer(expectedAnswer);
 
-    setAttemptCount((prev) => prev + 1);
-
     if (normalizedAnswer === normalizedExpected) {
+      // Only count attempts and progress when answer is correct
+      setAttemptCount((prev) => prev + 1);
       setFeedback('correct');
       setRevealedAnswer('');
       setCorrectCount((prev) => prev + 1);

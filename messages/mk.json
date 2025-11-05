@@ -344,7 +344,9 @@
       }
     ],
     "returnToJourney": "Назад до патеката",
-    "tryNow": "Пробај сега"
+    "tryNow": "Пробај сега",
+    "journeyDrillHeading": "Вежба за патека: {journey}",
+    "journeyDrillSubtitle": "Сенчи ги речениците за да ја поврзеш културната содржина со изговорот."
   },
   "learnGrammar": {
     "back": "Назад до центарот за учење",
