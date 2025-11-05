@@ -26,7 +26,7 @@
   "minutesTodayLabel": "Запишано денес: {minutes} мин",
   "minutesWeekLabel": "Оваа недела: {minutes} мин",
   "minutesTotalLabel": "Вкупно забележани минути: {minutes}",
-      "cta": "Започни кратка вежба",
+      "cta": "Започни вежбање",
       "stats": {
         "activeGoal": {
           "label": "Активна цел",

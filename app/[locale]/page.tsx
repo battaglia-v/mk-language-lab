@@ -123,11 +123,11 @@ export default function JourneyHomePage() {
                   </div>
                   <div className="space-y-2">
                     <h3 className="text-2xl font-semibold text-foreground">Learning Resources</h3>
-                    <p className="text-base text-muted-foreground">Explore curated materials and news</p>
+                    <p className="text-base text-muted-foreground">Explore curated materials</p>
                   </div>
                   <Button size="lg" variant="outline" className="w-full" asChild>
-                    <Link href={buildHref('/library')}>
-                      Browse Library →
+                    <Link href={buildHref('/resources')}>
+                      Browse Resources →
                     </Link>
                   </Button>
                 </div>

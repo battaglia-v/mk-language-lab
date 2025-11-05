@@ -7,7 +7,6 @@ import {
   Command as CommandIcon,
   HelpCircle,
   Languages,
-  Library,
   Newspaper,
   RefreshCcw,
   Search,
@@ -40,7 +39,6 @@ const NAV_COMMANDS: NavCommand[] = [
   { key: "practice", path: "/practice", icon: RefreshCcw, labelKey: "practice", descriptionKey: "practiceDescription" },
   { key: "translate", path: "/translate", icon: Languages, labelKey: "translate", descriptionKey: "translateDescription" },
   { key: "news", path: "/news", icon: Newspaper, labelKey: "news", descriptionKey: "newsDescription" },
-  { key: "library", path: "/library", icon: Library, labelKey: "library", descriptionKey: "libraryDescription" },
   { key: "resources", path: "/resources", icon: BookOpen, labelKey: "resources", descriptionKey: "resourcesDescription" },
 ];
 

@@ -26,7 +26,7 @@
   "minutesTodayLabel": "Logged today: {minutes} min",
   "minutesWeekLabel": "This week: {minutes} min",
   "minutesTotalLabel": "Lifetime minutes logged: {minutes}",
-      "cta": "Work on a quick drill",
+      "cta": "Start Practicing",
       "stats": {
         "activeGoal": {
           "label": "Active goal",
