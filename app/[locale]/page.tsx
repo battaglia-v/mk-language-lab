@@ -1,6 +1,5 @@
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { HeroProgressSummary, type JourneyGoalMeta } from '@/components/journey/HeroProgressSummary';
@@ -63,9 +62,6 @@ export default function JourneyHomePage() {
             {/* Hero Content */}
             <div className="space-y-8 text-center">
               <div className="space-y-6">
-                <Badge variant="outline" className="mx-auto w-fit border-primary/40 bg-primary/10 text-primary">
-                  {t('badge')}
-                </Badge>
                 <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
                   {t('title')}
                 </h1>
@@ -87,9 +83,8 @@ export default function JourneyHomePage() {
       <section className="w-full py-16">
         <div className="container mx-auto px-6">
           <div className="mx-auto max-w-4xl space-y-10">
-            <div className="space-y-2 text-center">
+            <div className="text-center">
               <h2 className="text-3xl font-bold text-foreground">Quick Start</h2>
-              <p className="text-base text-muted-foreground">Choose your learning style</p>
             </div>
 
             <div className="grid gap-6 md:grid-cols-2">
@@ -103,7 +98,7 @@ export default function JourneyHomePage() {
                   </div>
                   <div className="space-y-2">
                     <h3 className="text-2xl font-semibold text-foreground">Vocabulary Practice</h3>
-                    <p className="text-base text-muted-foreground">Test your knowledge with interactive quizzes</p>
+                    <p className="text-base text-muted-foreground">Practice with interactive quizzes</p>
                   </div>
                   <Button size="lg" className="w-full" asChild>
                     <Link href={buildHref('/practice')}>
@@ -144,15 +139,7 @@ export default function JourneyHomePage() {
             <Card className="border border-border/40 bg-card/50 p-8">
               <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                 <div className="space-y-3">
-                  <Badge variant="outline" className="w-fit border-primary/40 bg-primary/10 text-primary">
-                    Your Journey
-                  </Badge>
                   <h3 className="text-2xl font-semibold text-foreground">{t('goals.cards.family.title')}</h3>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">Greetings</Badge>
-                    <Badge variant="secondary">Family Members</Badge>
-                    <Badge variant="outline">Making Plans</Badge>
-                  </div>
                 </div>
                 <Button size="lg" variant="secondary" asChild>
                   <Link href={buildHref('/journey/family')}>

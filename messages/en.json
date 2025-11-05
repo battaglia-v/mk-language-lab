@@ -10,9 +10,9 @@
     "news": "News"
   },
   "journey": {
-    "badge": "Personalized paths",
+    "badge": "",
     "title": "Choose your Macedonian journey",
-    "subtitle": "Pick a real-world goal and we’ll assemble practice, culture, and tutor prompts around it.",
+    "subtitle": "Pick a goal and start learning.",
     "ctaPrimary": "Start with family conversations",
     "ctaSecondary": "Open daily practice",
   "ctaNews": "Browse the news hub",
@@ -194,7 +194,7 @@
     "pronunciation": "Pronunciation",
     "pronunciationDesc": "Perfect your Macedonian accent",
     "quickPractice": "Quick Practice",
-    "quickPracticeDescription": "Pick a topic, flip directions, and test yourself with fast translation drills.",
+    "quickPracticeDescription": "Practice translating vocabulary.",
     "practicePromptLabelMk": "Translate to English",
     "practicePromptLabelEn": "Translate to Macedonian",
     "practiceHint": "Switch topics or directions to keep the warm-up fresh.",
@@ -628,10 +628,10 @@
   },
   "translate": {
     "title": "Translate",
-    "subtitle": "A quick way to translate between Macedonian and English.",
-    "badge": "Powered by Google Translate",
-    "assistantTitle": "Instant Translator",
-    "assistantDescription": "Type Macedonian or English text and get a quick translation.",
+    "subtitle": "Translate between Macedonian and English.",
+    "badge": "",
+    "assistantTitle": "Translator",
+    "assistantDescription": "Translate between Macedonian and English.",
     "directionsGroupLabel": "Translation direction",
     "directions": {
       "mk_en": "Macedonian → English",
@@ -689,22 +689,22 @@
   "practiceHub": {
     "badge": "Daily practice",
     "title": "Train your Macedonian skills",
-    "subtitle": "Pick a focus area for today and jump into a guided activity.",
+    "subtitle": "Choose a practice activity.",
     "openAction": "Open workspace",
     "recommendedBadge": "Journey pick",
     "recommendedHint": "Selected for your current journey",
     "cards": {
       "translate": {
         "title": "Quick Translator",
-        "description": "Use the dedicated translator workspace with shortcuts and history."
+        "description": "Translate text with history."
       },
       "tasks": {
         "title": "Task Sprints",
-        "description": "Complete bite-sized translation and grammar tasks for spaced review."
+        "description": "Practice with quick tasks."
       },
       "tutor": {
         "title": "AI Tutor",
-        "description": "Ask the tutor for a role-play, feedback, or tailored speaking plan."
+        "description": "Chat with AI tutor."
       }
     },
     "translation": {

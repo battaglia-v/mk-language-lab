@@ -253,12 +253,6 @@ export function QuickPracticeWidget({
         )}
         <CardHeader className={cn('space-y-6', isModalVariant ? 'px-10 py-10 lg:px-12' : '')}>
           <div className="flex flex-col gap-4 text-center sm:text-left">
-            <Badge
-              variant="outline"
-              className="mx-auto w-fit border-primary/40 bg-primary/10 text-primary sm:mx-0"
-            >
-              {t('quickPractice')}
-            </Badge>
             <div className="space-y-3">
               <CardTitle className={cn('text-2xl text-foreground sm:text-3xl', isModalVariant && 'sm:text-4xl')}>
                 {title ?? t('quickPractice')}
@@ -455,9 +449,6 @@ export function QuickPracticeWidget({
       >
         <div className="space-y-6">
           <div className="space-y-3">
-            <Badge variant="secondary" className="w-fit bg-secondary/20 text-secondary">
-              {t('quickPractice')}
-            </Badge>
             <h3 className="text-xl font-semibold text-foreground md:text-2xl">
               {title ?? t('quickPractice')}
             </h3>
