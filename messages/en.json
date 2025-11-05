@@ -10,7 +10,7 @@
     "news": "News"
   },
   "journey": {
-    "badge": "",
+    "badge": "Learning Hub",
     "title": "Choose your Macedonian journey",
     "subtitle": "Pick a goal and start learning.",
     "ctaPrimary": "Start with family conversations",
@@ -629,7 +629,7 @@
   "translate": {
     "title": "Translate",
     "subtitle": "Translate between Macedonian and English.",
-    "badge": "",
+    "badge": "Translation Tool",
     "assistantTitle": "Translator",
     "assistantDescription": "Translate between Macedonian and English.",
     "directionsGroupLabel": "Translation direction",
