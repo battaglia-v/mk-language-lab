@@ -8,7 +8,6 @@ import {
   RefreshCw,
   Languages,
   Newspaper,
-  Library,
   BookOpen,
   ChevronLeft,
   ChevronRight
@@ -64,7 +63,6 @@ export default function Sidebar() {
     { path: '/practice', label: t('practice'), icon: RefreshCw },
     { path: '/translate', label: t('translate'), icon: Languages },
     { path: '/news', label: t('news'), icon: Newspaper },
-    { path: '/library', label: t('library'), icon: Library },
     { path: '/resources', label: t('resources'), icon: BookOpen },
   ];
 

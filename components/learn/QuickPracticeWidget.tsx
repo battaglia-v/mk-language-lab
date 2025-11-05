@@ -79,6 +79,7 @@ export function QuickPracticeWidget({
   const [isCelebrating, setIsCelebrating] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const celebrationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const autoAdvanceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const filteredItems = useMemo(() => {
     if (category === ALL_CATEGORIES) {
@@ -120,6 +121,9 @@ export function QuickPracticeWidget({
       if (celebrationTimeoutRef.current) {
         clearTimeout(celebrationTimeoutRef.current);
       }
+      if (autoAdvanceTimeoutRef.current) {
+        clearTimeout(autoAdvanceTimeoutRef.current);
+      }
     };
   }, []);
 
@@ -157,10 +161,22 @@ export function QuickPracticeWidget({
         clearTimeout(celebrationTimeoutRef.current);
       }
       celebrationTimeoutRef.current = setTimeout(() => setIsCelebrating(false), 1200);
+
+      // Auto-advance to next prompt after showing success feedback
+      if (autoAdvanceTimeoutRef.current) {
+        clearTimeout(autoAdvanceTimeoutRef.current);
+      }
+      autoAdvanceTimeoutRef.current = setTimeout(() => {
+        handleNext();
+      }, 1500);
     } else {
       setFeedback('incorrect');
       setRevealedAnswer(expectedAnswer);
       setIsCelebrating(false);
+      // Clear any pending auto-advance if answer was incorrect
+      if (autoAdvanceTimeoutRef.current) {
+        clearTimeout(autoAdvanceTimeoutRef.current);
+      }
     }
   };
 
