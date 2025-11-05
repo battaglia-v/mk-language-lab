@@ -1,8 +1,8 @@
 import type { LucideIcon } from 'lucide-react';
-import { Languages, MessageCircle, CheckSquare } from 'lucide-react';
+import { Languages, CheckSquare } from 'lucide-react';
 
 // MVP: Only include working features
-export const PRACTICE_CARD_IDS = ['translate', 'tasks', 'tutor'] as const;
+export const PRACTICE_CARD_IDS = ['translate', 'tasks'] as const;
 export type PracticeCardId = (typeof PRACTICE_CARD_IDS)[number];
 
 export type PracticeCard = {
@@ -27,13 +27,6 @@ export const practiceCards: PracticeCard[] = [
     titleKey: 'cards.tasks.title',
     descriptionKey: 'cards.tasks.description',
     href: '/tasks',
-  },
-  {
-    id: 'tutor',
-    icon: MessageCircle,
-    titleKey: 'cards.tutor.title',
-    descriptionKey: 'cards.tutor.description',
-    href: '/tutor',
   },
 ];
 

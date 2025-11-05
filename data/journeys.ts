@@ -50,7 +50,7 @@ const definitions: Record<JourneyId, JourneyDefinition> = {
         reason: 'Review introductions and warm check-ins before your next conversation.',
       },
       {
-        cardId: 'tutor',
+        cardId: 'translate',
         label: 'Tutor check-in',
         reasonKey: 'goals.family.practice.tutor',
         reason: 'Ask the tutor to role-play family calls and coach your tone.',
@@ -79,7 +79,7 @@ const definitions: Record<JourneyId, JourneyDefinition> = {
         reason: 'Run a transport drill set to lock in must-know travel vocabulary.',
       },
       {
-        cardId: 'tutor',
+        cardId: 'translate',
         label: 'Tutor check-in',
         reasonKey: 'goals.travel.practice.tutor',
         reason: 'Have the tutor simulate booking and check-in chats before you go.',
@@ -108,7 +108,7 @@ const definitions: Record<JourneyId, JourneyDefinition> = {
         reason: 'Translate current headlines to spot grammar and collect phrases.',
       },
       {
-        cardId: 'tutor',
+        cardId: 'translate',
         label: 'Culture Discussion',
         reasonKey: 'goals.culture.practice.tutor',
         reason: 'Discuss customs and historical events with your AI tutor.',

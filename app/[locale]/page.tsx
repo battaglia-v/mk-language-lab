@@ -166,27 +166,6 @@ export default function JourneyHomePage() {
         </div>
       </section>
 
-      {/* Quick Links */}
-      <section className="w-full py-16">
-        <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-4xl">
-            <div className="flex flex-wrap items-center justify-center gap-6 text-center">
-              <Link href={buildHref('/news')} className="text-lg text-muted-foreground transition hover:text-primary">
-                📰 News
-              </Link>
-              <span className="text-muted-foreground/40">•</span>
-              <Link href={buildHref('/translate')} className="text-lg text-muted-foreground transition hover:text-primary">
-                🔄 Translate
-              </Link>
-              <span className="text-muted-foreground/40">•</span>
-              <Link href={buildHref('/resources')} className="text-lg text-muted-foreground transition hover:text-primary">
-                📚 Resources
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <footer className="border-t border-border/40 bg-card/30 backdrop-blur-sm">
         <div className="container mx-auto px-6 py-10 text-center">
           <p className="text-base text-muted-foreground">
