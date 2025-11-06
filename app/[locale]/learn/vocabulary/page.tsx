@@ -261,13 +261,6 @@ export default function VocabularyModulePage() {
         </div>
       </div>
 
-      <footer className="border-t border-border/40 bg-card/30 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-8 text-center text-muted-foreground">
-          <p>
-            Креирано од <span className="font-semibold text-foreground">Винсент Баталија</span>
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }

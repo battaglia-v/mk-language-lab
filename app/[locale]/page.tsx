@@ -153,13 +153,6 @@ export default function JourneyHomePage() {
         </div>
       </section>
 
-      <footer className="border-t border-border/40 bg-card/30 backdrop-blur-sm">
-        <div className="container mx-auto px-6 py-10 text-center">
-          <p className="text-base text-muted-foreground">
-            Креирано од <span className="font-semibold text-foreground">Винсент Баталија</span>
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }

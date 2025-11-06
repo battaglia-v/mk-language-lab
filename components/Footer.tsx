@@ -13,7 +13,15 @@ export default function Footer() {
         <div className="text-center space-y-3">
           <div className="flex items-center justify-center gap-2 text-sm lg:text-base">
             <span className="text-muted-foreground">{t('createdWith')}</span>
-            <span className="font-semibold text-foreground">{t('vini')}</span>
+            <a
+              href="https://www.linkedin.com/in/vincentvinnybattaglia/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-foreground hover:text-primary transition-colors inline-flex items-center gap-1"
+            >
+              {t('vini')}
+              <ExternalLink className="h-3 w-3" />
+            </a>
             <span className="text-muted-foreground">{t('and')}</span>
             <a
               href="https://macedonianlanguagecorner.com"
