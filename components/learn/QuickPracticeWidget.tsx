@@ -68,9 +68,7 @@ export function QuickPracticeWidget({
 
   const [category, setCategory] = useState<string>(ALL_CATEGORIES);
   const [mode, setMode] = useState<PracticeDirection>('mkToEn');
-  const [currentIndex, setCurrentIndex] = useState(() =>
-    PRACTICE_ITEMS.length ? Math.floor(Math.random() * PRACTICE_ITEMS.length) : -1
-  );
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [answer, setAnswer] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [revealedAnswer, setRevealedAnswer] = useState('');
@@ -78,8 +76,17 @@ export function QuickPracticeWidget({
   const [correctCount, setCorrectCount] = useState(0);
   const [isCelebrating, setIsCelebrating] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
   const celebrationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const autoAdvanceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Initialize with random index after mount to avoid hydration mismatch
+  useEffect(() => {
+    if (PRACTICE_ITEMS.length && !isInitialized) {
+      setCurrentIndex(Math.floor(Math.random() * PRACTICE_ITEMS.length));
+      setIsInitialized(true);
+    }
+  }, [isInitialized]);
 
   const filteredItems = useMemo(() => {
     if (category === ALL_CATEGORIES) {
