@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
+import { InstallPrompt } from "@/components/InstallPrompt";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,11 +27,11 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mk-language-lab.ver
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "MK Language Lab",
-    template: "%s | MK Language Lab",
+    default: "Macedonian Language Lab",
+    template: "%s | Macedonian Language Lab",
   },
   description: "Learn Macedonian with AI-powered tutoring, translation, and interactive lessons. Free and open-source language learning app.",
-  applicationName: "MK Language Lab",
+  applicationName: "Macedonian Language Lab",
   keywords: [
     "Macedonian",
     "language learning",
@@ -49,7 +51,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "MK Language Lab",
+    title: "Macedonian Language Lab",
   },
   manifest: "/manifest.json",
   openGraph: {
@@ -105,6 +107,8 @@ export default function RootLayout({
         <meta name="google" content="notranslate" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <ServiceWorkerRegistration />
+        <InstallPrompt />
         {children}
       </body>
     </html>

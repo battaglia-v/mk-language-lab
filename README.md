@@ -73,7 +73,15 @@ GOOGLE_APPLICATION_CREDENTIALS=<absolute/path/to/service-account.json>
 OPENAI_API_KEY=<openai-api-key>
 GOOGLE_DOCS_ID=<google-docs-id>
 DICTIONARY_PDF_URL=<dictionary-url>
+
+# Sentry Error Tracking (Optional)
+NEXT_PUBLIC_SENTRY_DSN=<sentry-dsn>
+SENTRY_AUTH_TOKEN=<sentry-auth-token>
+SENTRY_ORG=<sentry-org-slug>
+SENTRY_PROJECT=<sentry-project-name>
 ```
+
+> For detailed Sentry setup instructions, see [SENTRY_SETUP.md](SENTRY_SETUP.md)
 
 Run `npx prisma migrate dev --name init` on first setup to create the SQLite database (stored at `prisma/dev.db`).
 
@@ -110,7 +118,15 @@ GOOGLE_APPLICATION_CREDENTIALS_JSON  # paste the service-account JSON or base64
 OPENAI_API_KEY
 GOOGLE_DOCS_ID
 DICTIONARY_PDF_URL
+
+# Sentry Error Tracking (Recommended for production)
+NEXT_PUBLIC_SENTRY_DSN
+SENTRY_AUTH_TOKEN
+SENTRY_ORG
+SENTRY_PROJECT
 ```
+
+> See [SENTRY_SETUP.md](SENTRY_SETUP.md) for complete Sentry configuration guide
 
 ### Deployment Workflow (Vercel)
 1. Push the repository to GitHub/GitLab/Bitbucket.
@@ -139,6 +155,7 @@ npm start
 - **AI/APIs:** OpenAI GPT-4o-mini, Google Cloud Translate
 - **Localization:** next-intl
 - **Testing:** Vitest, React Testing Library
+- **Monitoring:** Sentry
 - **Deployment:** Vercel
 
 ## 🗺️ Roadmap
