@@ -21,14 +21,7 @@ Sentry.init({
   // Server-specific integrations
   integrations: [
     Sentry.prismaIntegration(),
-    Sentry.httpIntegration({
-      tracing: {
-        // Don't trace health check endpoints
-        ignoreIncomingRequests: (url) => {
-          return url.includes("/api/health") || url.includes("/api/ping");
-        },
-      },
-    }),
+    Sentry.httpIntegration(),
   ],
 
   // Filter out certain errors
