@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { ExternalLink, Instagram, Loader2, AlertCircle } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -238,11 +239,13 @@ export function DailyLessons({ limit = 9 }: DailyLessonsProps) {
                   className="group block overflow-hidden rounded-xl border border-border/60 bg-card/40 transition hover:border-primary/40 hover:bg-primary/5"
                 >
                   <div className="relative aspect-square overflow-hidden bg-muted">
-                    <img
+                    <Image
                       src={imageUrl}
                       alt={post.caption.slice(0, 100)}
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                     <div className="absolute right-2 top-2">
                       <Badge variant={mediaTypeBadge.variant} className="text-xs backdrop-blur-sm">

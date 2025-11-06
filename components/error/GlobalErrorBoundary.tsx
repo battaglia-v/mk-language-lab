@@ -1,6 +1,7 @@
 "use client";
 
 import * as Sentry from "@sentry/nextjs";
+import Link from "next/link";
 import { useEffect } from "react";
 
 interface ErrorBoundaryProps {
@@ -45,12 +46,12 @@ export default function GlobalErrorBoundary({ error, reset }: ErrorBoundaryProps
           >
             Try Again
           </button>
-          <a
+          <Link
             href="/"
             className="w-full rounded-md border border-border bg-background px-4 py-2 text-center font-medium transition-colors hover:bg-accent"
           >
             Go to Home
-          </a>
+          </Link>
         </div>
 
         <p className="text-center text-xs text-muted-foreground">

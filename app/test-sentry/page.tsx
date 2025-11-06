@@ -1,6 +1,7 @@
 "use client";
 
 import * as Sentry from "@sentry/nextjs";
+import Link from "next/link";
 import { useState } from "react";
 
 /**
@@ -17,7 +18,7 @@ export default function TestSentryPage() {
   const testClientError = () => {
     try {
       throw new Error("Test Sentry Client Error");
-    } catch (error) {
+    } catch {
       setResult("Error thrown! Check Sentry dashboard.");
     }
   };
@@ -143,7 +144,7 @@ export default function TestSentryPage() {
           <h2 className="text-xl font-semibold">Instructions</h2>
           <ol className="list-inside list-decimal space-y-2 text-muted-foreground">
             <li>Ensure NEXT_PUBLIC_SENTRY_DSN is set in your .env.local file</li>
-            <li>In development, set NEXT_PUBLIC_SENTRY_ENABLED="true" to enable Sentry</li>
+            <li>In development, set NEXT_PUBLIC_SENTRY_ENABLED=&quot;true&quot; to enable Sentry</li>
             <li>Click any button above to trigger a test</li>
             <li>Go to your Sentry dashboard at https://sentry.io</li>
             <li>Navigate to Issues to see the captured errors/messages</li>
@@ -152,12 +153,12 @@ export default function TestSentryPage() {
         </div>
 
         <div className="text-center">
-          <a
+          <Link
             href="/"
             className="inline-block rounded-md border border-border bg-background px-6 py-2 font-medium transition-colors hover:bg-accent"
           >
             Back to Home
-          </a>
+          </Link>
         </div>
       </div>
     </div>
