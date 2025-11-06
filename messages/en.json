@@ -1072,17 +1072,17 @@
         "libraryDescription": "Explore the saved resource library",
         "resourcesDescription": "Scan curated reference collections"
       }
-    },
-    "footer": {
-      "createdWith": "Created with ❤️ by",
-      "vini": "Vinny",
-      "and": "&",
-      "andri": "Andri",
-      "contentBy": "All content curated and validated by Andri, native Macedonian speaker and founder of",
-      "macedonianLanguageCorner": "Macedonian Language Corner",
-      "instagram": "Instagram",
-      "youtube": "YouTube",
-      "allLinks": "All Links"
     }
+  },
+  "footer": {
+    "createdWith": "Created with ❤️ by",
+    "vini": "Vinny",
+    "and": "&",
+    "andri": "Andri",
+    "contentBy": "All content curated and validated by Andri, native Macedonian speaker and founder of",
+    "macedonianLanguageCorner": "Macedonian Language Corner",
+    "instagram": "Instagram",
+    "youtube": "YouTube",
+    "allLinks": "All Links"
   }
 }
