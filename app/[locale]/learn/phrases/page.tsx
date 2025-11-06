@@ -1,3 +1,4 @@
+import { use } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { ArrowLeft, MessageCircle, Plane, Users } from 'lucide-react';
@@ -41,7 +42,7 @@ type PageProps = {
   searchParams?: Promise<Record<string, string | string[] | undefined>>;
 };
 
-export default async function PhrasesModulePage({ searchParams }: PageProps) {
+export default function PhrasesModulePage({ searchParams }: PageProps) {
   const t = useTranslations('learnPhrases');
   const journeyT = useTranslations('journey');
   const locale = useLocale();
@@ -54,7 +55,7 @@ export default async function PhrasesModulePage({ searchParams }: PageProps) {
     href: resource.href.startsWith('/') ? `/${locale}${resource.href}` : resource.href,
   }));
 
-  const resolvedSearchParams = searchParams ? await searchParams : {};
+  const resolvedSearchParams = searchParams ? use(searchParams) : {};
   const journeyParam = typeof resolvedSearchParams?.journey === 'string' ? resolvedSearchParams.journey : null;
   const journeyId = journeyParam && isJourneyId(journeyParam) ? journeyParam : null;
   const journeyTitle = journeyId ? journeyT(`goals.cards.${journeyId}.title`) : null;
