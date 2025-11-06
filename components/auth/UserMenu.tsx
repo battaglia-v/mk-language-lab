@@ -1,6 +1,7 @@
 'use client';
 
 import { useSession } from 'next-auth/react';
+import { useTranslations } from 'next-intl';
 import { SignInButton } from './SignInButton';
 import { SignOutButton } from './SignOutButton';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -12,10 +13,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { User } from 'lucide-react';
+import { User, Instagram, Youtube, ExternalLink } from 'lucide-react';
 
 export function UserMenu() {
   const { data: session, status } = useSession();
+  const t = useTranslations('userMenu');
 
   if (status === 'loading') {
     return (
@@ -58,8 +60,49 @@ export function UserMenu() {
         <DropdownMenuItem asChild>
           <button className="w-full cursor-pointer">
             <User className="mr-2 h-4 w-4" />
-            Profile
+            {t('profile')}
           </button>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuLabel className="font-normal">
+          <p className="text-xs font-medium text-muted-foreground">{t('socialHeader')}</p>
+          <p className="text-[10px] text-muted-foreground/70">{t('socialSubtitle')}</p>
+        </DropdownMenuLabel>
+        <DropdownMenuItem asChild>
+          <a
+            href="https://www.instagram.com/macedonianlanguagecorner/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-full cursor-pointer items-center"
+          >
+            <Instagram className="mr-2 h-4 w-4" />
+            {t('instagram')}
+            <ExternalLink className="ml-auto h-3 w-3 opacity-50" />
+          </a>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <a
+            href="https://www.youtube.com/@macedonianlanguagecorner"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-full cursor-pointer items-center"
+          >
+            <Youtube className="mr-2 h-4 w-4" />
+            {t('youtube')}
+            <ExternalLink className="ml-auto h-3 w-3 opacity-50" />
+          </a>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <a
+            href="https://linktr.ee/macedonianlanguagecorner"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-full cursor-pointer items-center"
+          >
+            <ExternalLink className="mr-2 h-4 w-4" />
+            {t('allLinks')}
+            <ExternalLink className="ml-auto h-3 w-3 opacity-50" />
+          </a>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>

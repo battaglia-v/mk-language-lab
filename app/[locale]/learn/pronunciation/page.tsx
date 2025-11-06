@@ -38,10 +38,10 @@ type ModuleResource = {
 };
 
 type PageProps = {
-  searchParams?: Record<string, string | string[] | undefined>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 };
 
-export default function PronunciationModulePage({ searchParams }: PageProps) {
+export default async function PronunciationModulePage({ searchParams }: PageProps) {
   const t = useTranslations('learnPronunciation');
   const journeyT = useTranslations('journey');
   const locale = useLocale();
@@ -54,7 +54,8 @@ export default function PronunciationModulePage({ searchParams }: PageProps) {
     href: resource.href.startsWith('/') ? `/${locale}${resource.href}` : resource.href,
   }));
 
-  const journeyParam = typeof searchParams?.journey === 'string' ? searchParams.journey : null;
+  const resolvedSearchParams = searchParams ? await searchParams : {};
+  const journeyParam = typeof resolvedSearchParams?.journey === 'string' ? resolvedSearchParams.journey : null;
   const journeyId = journeyParam && isJourneyId(journeyParam) ? journeyParam : null;
   const journeyTitle = journeyId ? journeyT(`goals.cards.${journeyId}.title`) : null;
   const journeyDrills = journeyId ? JOURNEY_PRACTICE_CONTENT[journeyId]?.pronunciationDrills ?? [] : [];

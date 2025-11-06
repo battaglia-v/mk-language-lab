@@ -1084,5 +1084,15 @@
     "instagram": "Instagram",
     "youtube": "YouTube",
     "allLinks": "All Links"
+  },
+  "userMenu": {
+    "signIn": "Sign In",
+    "profile": "Profile",
+    "socialHeader": "Macedonian Language Corner",
+    "socialSubtitle": "Follow Andri, your Macedonian tutor",
+    "instagram": "Instagram",
+    "youtube": "YouTube",
+    "allLinks": "All Links",
+    "signOut": "Sign Out"
   }
 }

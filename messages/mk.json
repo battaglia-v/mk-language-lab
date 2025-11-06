@@ -1084,5 +1084,15 @@
     "instagram": "Инстаграм",
     "youtube": "YouTube",
     "allLinks": "Сите Линкови"
+  },
+  "userMenu": {
+    "signIn": "Најави се",
+    "profile": "Профил",
+    "socialHeader": "Македонски Јазичен Кут",
+    "socialSubtitle": "Следи ја Андри, твојата македонска наставничка",
+    "instagram": "Инстаграм",
+    "youtube": "YouTube",
+    "allLinks": "Сите Линкови",
+    "signOut": "Одјави се"
   }
 }

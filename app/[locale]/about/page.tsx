@@ -45,8 +45,8 @@ export default function AboutPage() {
             </CardHeader>
             <CardContent>
               <ul className="space-y-4">
-                {features.map((feature, index) => (
-                  <li key={index} className="flex items-start gap-3">
+                {features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-3">
                     <CheckCircle2 className="h-6 w-6 text-primary shrink-0 mt-0.5" />
                     <span className="text-lg">{feature}</span>
                   </li>

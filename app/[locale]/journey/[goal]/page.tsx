@@ -1,5 +1,6 @@
 'use client';
 
+import { use } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
@@ -12,13 +13,13 @@ import { useActiveJourney } from '@/hooks/use-active-journey';
 import { ArrowLeft, ArrowRight, Compass, Sparkles } from 'lucide-react';
 
 type PageProps = {
-  params: {
+  params: Promise<{
     goal: string;
-  };
+  }>;
 };
 
 export default function JourneyDetailPage({ params }: PageProps) {
-  const { goal } = params;
+  const { goal } = use(params);
 
   const locale = useLocale();
   const t = useTranslations('journeyDetail');
@@ -143,12 +144,12 @@ export default function JourneyDetailPage({ params }: PageProps) {
                     <p className="text-sm text-muted-foreground">{t('practiceDescription')}</p>
                   </div>
                   <div className="grid gap-3 sm:grid-cols-2">
-                    {practiceRecommendations.map(({ card, reason }) => {
+                    {practiceRecommendations.map(({ card, reason }, index) => {
                       const Icon = card.icon;
                       const practiceHref = `/practice?card=${card.id}&journey=${journey.id}`;
 
                       return (
-                        <div key={card.id} className="space-y-3 rounded-lg border border-border/40 bg-background/70 p-4">
+                        <div key={`${card.id}-${index}`} className="space-y-3 rounded-lg border border-border/40 bg-background/70 p-4">
                           <div className="flex items-start gap-3">
                             <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
                               <Icon className="h-5 w-5" />
