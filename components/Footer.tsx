@@ -36,17 +36,18 @@ export default function Footer() {
 
           {/* Content Attribution */}
           <div className="text-xs lg:text-sm text-muted-foreground max-w-2xl mx-auto">
-            <span className="inline-flex items-center gap-1">
+            <p className="inline">
               🇲🇰 {t('contentBy')}{' '}
               <a
                 href="https://macedonianlanguagecorner.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-foreground hover:text-primary transition-colors underline decoration-dotted"
+                className="font-medium text-foreground hover:text-primary transition-colors underline decoration-dotted inline-flex items-center gap-1"
               >
                 {t('macedonianLanguageCorner')}
+                <ExternalLink className="h-3 w-3" />
               </a>
-            </span>
+            </p>
           </div>
 
           {/* Links */}
