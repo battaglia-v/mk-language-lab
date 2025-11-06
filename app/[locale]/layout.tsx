@@ -60,10 +60,10 @@ export default async function LocaleLayout({
           </div>
 
           {/* Main content with proper spacing for sidebar and top bar */}
-          <div className="lg:ml-sidebar flex flex-col min-h-screen">
+          <div className="lg:ml-sidebar flex flex-col min-h-screen pb-20 lg:pb-0">
             <main
               id="main-content"
-              className="outline-none focus-visible:ring-2 focus-visible:ring-primary pt-14 pb-20 lg:pb-0 flex-1"
+              className="outline-none focus-visible:ring-2 focus-visible:ring-primary pt-14 flex-1"
             >
               {children}
             </main>
