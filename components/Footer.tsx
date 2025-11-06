@@ -12,16 +12,16 @@ export default function Footer() {
         {/* Main Attribution */}
         <div className="text-center space-y-3">
           <div className="flex items-center justify-center gap-2 text-sm lg:text-base">
-            <span className="text-muted-foreground">{t('createdBy')}</span>
-            <span className="font-semibold text-foreground">Vincent Battaglia</span>
-            <span className="text-muted-foreground">&</span>
+            <span className="text-muted-foreground">{t('createdWith')}</span>
+            <span className="font-semibold text-foreground">{t('vini')}</span>
+            <span className="text-muted-foreground">{t('and')}</span>
             <a
               href="https://macedonianlanguagecorner.com"
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-foreground hover:text-primary transition-colors inline-flex items-center gap-1"
             >
-              Andri
+              {t('andri')}
               <ExternalLink className="h-3 w-3" />
             </a>
           </div>
@@ -49,7 +49,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="hover:text-primary transition-colors inline-flex items-center gap-1"
             >
-              Instagram
+              {t('instagram')}
               <ExternalLink className="h-3 w-3" />
             </a>
             <span className="text-border">•</span>
@@ -59,7 +59,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="hover:text-primary transition-colors inline-flex items-center gap-1"
             >
-              YouTube
+              {t('youtube')}
               <ExternalLink className="h-3 w-3" />
             </a>
             <span className="text-border">•</span>

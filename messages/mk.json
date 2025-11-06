@@ -1074,9 +1074,14 @@
       }
     },
     "footer": {
-      "createdBy": "Креирано со ❤️ од",
+      "createdWith": "Креирано со ❤️ од",
+      "vini": "Вини",
+      "and": "&",
+      "andri": "Андри",
       "contentBy": "Сета содржина е курирана и валидирана од Андри, native говорник на македонски и основач на",
       "macedonianLanguageCorner": "Macedonian Language Corner",
+      "instagram": "Инстаграм",
+      "youtube": "YouTube",
       "allLinks": "Сите Линкови"
     }
   }
