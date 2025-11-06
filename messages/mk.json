@@ -1072,6 +1072,12 @@
         "libraryDescription": "Истражи ја библиотеката со ресурси",
         "resourcesDescription": "Скенирај курирани референтни колекции"
       }
+    },
+    "footer": {
+      "createdBy": "Креирано со ❤️ од",
+      "contentBy": "Сета содржина е курирана и валидирана од Андри, native говорник на македонски и основач на",
+      "macedonianLanguageCorner": "Macedonian Language Corner",
+      "allLinks": "Сите Линкови"
     }
   }
 }

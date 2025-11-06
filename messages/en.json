@@ -1072,6 +1072,12 @@
         "libraryDescription": "Explore the saved resource library",
         "resourcesDescription": "Scan curated reference collections"
       }
+    },
+    "footer": {
+      "createdBy": "Created with ❤️ by",
+      "contentBy": "All content curated and validated by Andri, native Macedonian speaker and founder of",
+      "macedonianLanguageCorner": "Macedonian Language Corner",
+      "allLinks": "All Links"
     }
   }
 }

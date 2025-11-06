@@ -7,6 +7,7 @@ import { locales } from '@/i18n';
 import Sidebar from '@/components/Sidebar';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { CommandMenu } from '@/components/CommandMenu';
+import Footer from '@/components/Footer';
 import "../globals.css";
 
 const geistSans = Geist({
@@ -59,12 +60,15 @@ export default async function LocaleLayout({
           </div>
 
           {/* Main content with proper spacing for sidebar and top bar */}
-          <main
-            id="main-content"
-            className="outline-none focus-visible:ring-2 focus-visible:ring-primary lg:ml-sidebar pt-14 pb-20 lg:pb-0 min-h-screen"
-          >
-            {children}
-          </main>
+          <div className="lg:ml-sidebar flex flex-col min-h-screen">
+            <main
+              id="main-content"
+              className="outline-none focus-visible:ring-2 focus-visible:ring-primary pt-14 pb-20 lg:pb-0 flex-1"
+            >
+              {children}
+            </main>
+            <Footer />
+          </div>
         </NextIntlClientProvider>
         <Analytics />
       </body>
