@@ -7,11 +7,11 @@ export default function Footer() {
   const t = useTranslations('footer');
 
   return (
-    <footer className="border-t border-border/40 bg-card/30 backdrop-blur-sm mt-auto">
-      <div className="container mx-auto px-4 py-6 lg:py-8">
+    <footer className="border-t border-border/40 bg-card/30 backdrop-blur-sm mt-auto pb-24 md:pb-20 lg:pb-0">
+      <div className="container mx-auto px-4 py-6 md:py-7 lg:py-8">
         {/* Main Attribution */}
         <div className="text-center space-y-3">
-          <div className="flex items-center justify-center gap-2 text-sm lg:text-base">
+          <div className="flex items-center justify-center gap-2 text-sm md:text-base">
             <span className="text-muted-foreground">{t('createdWith')}</span>
             <a
               href="https://www.linkedin.com/in/vincentvinnybattaglia/"
@@ -35,7 +35,7 @@ export default function Footer() {
           </div>
 
           {/* Content Attribution */}
-          <div className="text-xs lg:text-sm text-muted-foreground max-w-2xl mx-auto">
+          <div className="text-xs md:text-sm text-muted-foreground max-w-2xl mx-auto">
             <p className="inline">
               🇲🇰 {t('contentBy')}{' '}
               <a

@@ -50,7 +50,7 @@ export default async function LocaleLayout({
         <div className="lg:ml-sidebar flex flex-col min-h-screen">
           <main
             id="main-content"
-            className="outline-none focus-visible:ring-2 focus-visible:ring-primary pt-14 flex-1 pb-32 lg:pb-0"
+            className="outline-none focus-visible:ring-2 focus-visible:ring-primary pt-14 flex-1"
           >
             {children}
           </main>
