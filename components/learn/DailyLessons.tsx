@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import Image from 'next/image';
-import { ExternalLink, Instagram, Loader2, AlertCircle } from 'lucide-react';
+import Link from 'next/link';
+import { ExternalLink, Instagram, Loader2, AlertCircle, ArrowRight } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -11,6 +12,7 @@ import type { InstagramPost, InstagramPostsResponse } from '@/types/instagram';
 
 type DailyLessonsProps = {
   limit?: number;
+  showViewAll?: boolean;
 };
 
 /**
@@ -74,8 +76,9 @@ function getMediaTypeBadge(mediaType: InstagramPost['media_type'], t: any): {
   }
 }
 
-export function DailyLessons({ limit = 9 }: DailyLessonsProps) {
+export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsProps) {
   const t = useTranslations('dailyLessons');
+  const locale = useLocale();
   const [posts, setPosts] = useState<InstagramPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -198,6 +201,14 @@ export function DailyLessons({ limit = 9 }: DailyLessonsProps) {
               <Badge variant="outline" className="text-xs">
                 {t('cached')}
               </Badge>
+            )}
+            {showViewAll && (
+              <Button variant="default" size="sm" asChild>
+                <Link href={`/${locale}/daily-lessons`}>
+                  {t('viewAll')}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             )}
             <Button variant="outline" size="sm" asChild>
               <a

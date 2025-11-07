@@ -6,6 +6,7 @@
     "tutor": "Tutor",
     "library": "Library",
     "translate": "Translate",
+    "dailyLessons": "Daily Lessons",
     "resources": "Resources",
     "news": "News"
   },
@@ -1102,6 +1103,7 @@
     "error": "Unable to load Instagram posts right now.",
     "visitInstagram": "Visit on Instagram",
     "follow": "Follow",
+    "viewAll": "View All",
     "noPosts": "No posts available",
     "demoMode": "Demo Mode",
     "cached": "Cached",

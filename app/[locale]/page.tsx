@@ -139,7 +139,7 @@ export default function JourneyHomePage() {
       <section className="w-full py-12">
         <div className="container mx-auto px-6">
           <div className="mx-auto max-w-6xl">
-            <DailyLessons limit={9} />
+            <DailyLessons limit={9} showViewAll />
           </div>
         </div>
       </section>

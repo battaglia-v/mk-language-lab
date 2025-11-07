@@ -9,6 +9,7 @@ import {
   Languages,
   Newspaper,
   BookOpen,
+  Instagram,
   ChevronLeft,
   ChevronRight
 } from 'lucide-react';
@@ -62,6 +63,7 @@ export default function Sidebar() {
     { path: '', label: t('journey'), icon: Home },
     { path: '/practice', label: t('practice'), icon: RefreshCw },
     { path: '/translate', label: t('translate'), icon: Languages },
+    { path: '/daily-lessons', label: t('dailyLessons'), icon: Instagram },
     { path: '/news', label: t('news'), icon: Newspaper },
     { path: '/resources', label: t('resources'), icon: BookOpen },
   ];
