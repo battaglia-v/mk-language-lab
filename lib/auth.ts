@@ -4,8 +4,7 @@ import { PrismaAdapter } from '@auth/prisma-adapter';
 import prisma from '@/lib/prisma';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  // TEMPORARILY DISABLED: Testing without Prisma adapter to isolate issue
-  // adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(prisma),
   trustHost: true,
   providers: [
     Google({
@@ -25,16 +24,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     error: '/auth/error',
   },
   callbacks: {
-    async session({ session, token }) {
-      // With JWT strategy, we get token instead of user
-      if (session.user && token.sub) {
-        session.user.id = token.sub;
+    async session({ session, user }) {
+      // With database sessions, we get user from database
+      if (session.user && user) {
+        session.user.id = user.id;
       }
       return session;
     },
   },
   session: {
-    strategy: 'jwt', // CHANGED: Using JWT instead of database sessions
+    strategy: 'database', // Using database sessions with Prisma adapter
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   debug: true, // Enable debug mode to capture detailed errors
