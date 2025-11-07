@@ -18,7 +18,10 @@ type DailyLessonsProps = {
 /**
  * Format timestamp to relative time or date
  */
-function formatPostDate(timestamp: string, t: any): string {
+function formatPostDate(
+  timestamp: string,
+  t: (key: string, values?: Record<string, string | number>) => string
+): string {
   const date = new Date(timestamp);
   const now = new Date();
   const diffMs = now.getTime() - date.getTime();
@@ -62,7 +65,10 @@ function truncateCaption(caption: string, maxLength: number = 150): string {
 /**
  * Get media type badge variant
  */
-function getMediaTypeBadge(mediaType: InstagramPost['media_type'], t: any): {
+function getMediaTypeBadge(
+  mediaType: InstagramPost['media_type'],
+  t: (key: string, values?: Record<string, string | number>) => string
+): {
   label: string;
   variant: 'default' | 'secondary' | 'outline';
 } {
