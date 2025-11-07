@@ -39,6 +39,13 @@ const sentryWebpackPluginOptions = {
   // Only print logs for uploading source maps in CI
   silent: !process.env.CI,
 
+  // Disable source map upload and release creation if no auth token
+  // This prevents warnings during build when SENTRY_AUTH_TOKEN is not set
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+
+  // Disable telemetry to prevent warnings
+  telemetry: false,
+
   // For all available options, see:
   // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
 
