@@ -24,16 +24,26 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     error: '/auth/error',
   },
   callbacks: {
-    async session({ session, user }) {
-      // With database sessions, we get user from database
-      if (session.user && user) {
-        session.user.id = user.id;
+    async jwt({ token, user, account }) {
+      // On sign-in, user object is available
+      if (user) {
+        token.userId = user.id;
+        token.email = user.email;
+        token.name = user.name;
+        token.picture = user.image;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      // Add user ID from JWT to session
+      if (session.user && token.userId) {
+        session.user.id = token.userId as string;
       }
       return session;
     },
   },
   session: {
-    strategy: 'database', // Using database sessions with Prisma adapter
+    strategy: 'jwt', // JWT sessions for serverless compatibility
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   debug: true, // Enable debug mode to capture detailed errors
