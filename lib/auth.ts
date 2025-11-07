@@ -1,10 +1,8 @@
 import NextAuth from 'next-auth';
 import Google from 'next-auth/providers/google';
-import { PrismaAdapter } from '@auth/prisma-adapter';
 import prisma from '@/lib/prisma';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  adapter: PrismaAdapter(prisma),
   trustHost: true,
   providers: [
     Google({
@@ -24,20 +22,80 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     error: '/auth/error',
   },
   callbacks: {
-    async jwt({ token, user, account }) {
-      // On sign-in, user object is available
-      if (user) {
-        token.userId = user.id;
-        token.email = user.email;
-        token.name = user.name;
-        token.picture = user.image;
+    async jwt({ token, user, account, profile }) {
+      // On initial sign-in, create/update user in database
+      if (user && account && profile) {
+        try {
+          // Find or create user
+          const dbUser = await prisma.user.upsert({
+            where: { email: user.email! },
+            update: {
+              name: user.name,
+              image: user.image,
+            },
+            create: {
+              email: user.email!,
+              name: user.name,
+              image: user.image,
+              emailVerified: profile.email_verified ? new Date() : null,
+            },
+          });
+
+          // Create or update OAuth account link
+          await prisma.account.upsert({
+            where: {
+              provider_providerAccountId: {
+                provider: account.provider,
+                providerAccountId: account.providerAccountId,
+              },
+            },
+            update: {
+              access_token: account.access_token,
+              expires_at: account.expires_at,
+              refresh_token: account.refresh_token,
+              id_token: account.id_token,
+              token_type: account.token_type,
+              scope: account.scope,
+            },
+            create: {
+              userId: dbUser.id,
+              type: account.type,
+              provider: account.provider,
+              providerAccountId: account.providerAccountId,
+              access_token: account.access_token,
+              expires_at: account.expires_at,
+              refresh_token: account.refresh_token,
+              id_token: account.id_token,
+              token_type: account.token_type,
+              scope: account.scope,
+            },
+          });
+
+          // Store database user ID in token
+          token.userId = dbUser.id;
+          token.email = dbUser.email;
+          token.name = dbUser.name;
+          token.picture = dbUser.image;
+
+          console.log('[AUTH] User persisted to database:', { userId: dbUser.id, email: dbUser.email });
+        } catch (error) {
+          console.error('[AUTH] Error persisting user to database:', error);
+          // Continue with sign-in even if database write fails
+          token.userId = user.id;
+          token.email = user.email;
+          token.name = user.name;
+          token.picture = user.image;
+        }
       }
       return token;
     },
     async session({ session, token }) {
-      // Add user ID from JWT to session
+      // Add user info from JWT to session
       if (session.user && token.userId) {
         session.user.id = token.userId as string;
+        session.user.email = token.email as string;
+        session.user.name = token.name as string;
+        session.user.image = token.picture as string;
       }
       return session;
     },
