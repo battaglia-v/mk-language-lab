@@ -37,7 +37,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   debug: true, // Enable debug mode to capture detailed errors
   events: {
-    async signIn({ user, account, profile }) {
+    async signIn({ user, account }) {
       console.log('[AUTH EVENT] Sign in successful:', { userId: user.id, provider: account?.provider });
     },
     async createUser({ user }) {
@@ -48,8 +48,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
   },
   logger: {
-    error(code, metadata) {
-      console.error('[AUTH ERROR]', code, JSON.stringify(metadata, null, 2));
+    error(error) {
+      console.error('[AUTH ERROR]', error.name, error.message);
+      console.error('[AUTH ERROR STACK]', error.stack);
     },
     warn(code) {
       console.warn('[AUTH WARN]', code);
