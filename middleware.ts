@@ -17,7 +17,7 @@ export const config = {
   matcher: [
     '/',
     '/(mk|en)/:path*',
-    // Exclude API routes, auth routes, and static files
-    '/((?!api|auth|_next/static|_next/image|favicon.ico).*)'
+    // Exclude API routes, auth routes, PWA files, and static files
+    '/((?!api|auth|sw.js|manifest.json|icon-.*\\.png|_next/static|_next/image|favicon.ico).*)'
   ]
 };

@@ -70,33 +70,45 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // API requests - Network first, fallback to cache
+  // API requests - Network first, fallback to cache (GET only)
   if (url.pathname.startsWith('/api/')) {
     event.respondWith(
       fetch(request)
         .then((response) => {
-          // Clone the response before caching
-          const responseToCache = response.clone();
-          caches.open(RUNTIME_CACHE).then((cache) => {
-            cache.put(request, responseToCache);
-          });
+          // Only cache GET requests
+          if (request.method === 'GET') {
+            const responseToCache = response.clone();
+            caches.open(RUNTIME_CACHE).then((cache) => {
+              cache.put(request, responseToCache);
+            });
+          }
           return response;
         })
         .catch(() => {
-          // Return cached response if network fails
-          return caches.match(request).then((cachedResponse) => {
-            if (cachedResponse) {
-              return cachedResponse;
-            }
-            // Return a custom offline response for API calls
-            return new Response(
-              JSON.stringify({ error: 'Offline', offline: true }),
-              {
-                headers: { 'Content-Type': 'application/json' },
-                status: 503,
+          // Return cached response if network fails (only for GET)
+          if (request.method === 'GET') {
+            return caches.match(request).then((cachedResponse) => {
+              if (cachedResponse) {
+                return cachedResponse;
               }
-            );
-          });
+              // Return a custom offline response for API calls
+              return new Response(
+                JSON.stringify({ error: 'Offline', offline: true }),
+                {
+                  headers: { 'Content-Type': 'application/json' },
+                  status: 503,
+                }
+              );
+            });
+          }
+          // For non-GET requests, just fail
+          return new Response(
+            JSON.stringify({ error: 'Offline', offline: true }),
+            {
+              headers: { 'Content-Type': 'application/json' },
+              status: 503,
+            }
+          );
         })
     );
     return;
@@ -129,11 +141,13 @@ self.addEventListener('fetch', (event) => {
             return response;
           }
 
-          // Cache successful responses
-          const responseToCache = response.clone();
-          caches.open(RUNTIME_CACHE).then((cache) => {
-            cache.put(request, responseToCache);
-          });
+          // Cache successful responses (GET only)
+          if (request.method === 'GET') {
+            const responseToCache = response.clone();
+            caches.open(RUNTIME_CACHE).then((cache) => {
+              cache.put(request, responseToCache);
+            });
+          }
 
           return response;
         })
