@@ -1094,5 +1094,27 @@
     "youtube": "YouTube",
     "allLinks": "Сите Линкови",
     "signOut": "Одјави се"
+  },
+  "dailyLessons": {
+    "title": "Дневни Лекции",
+    "subtitle": "Од @macedonianlanguagecorner",
+    "loading": "Вчитувам дневни лекции...",
+    "error": "Во моментов не можеме да ги вчитаме објавите од Инстаграм.",
+    "visitInstagram": "Посети на Инстаграм",
+    "follow": "Следи",
+    "noPosts": "Нема достапни објави",
+    "demoMode": "Демо Режим",
+    "cached": "Кеширано",
+    "mediaType": {
+      "video": "Видео",
+      "album": "Албум",
+      "image": "Слика"
+    },
+    "timeAgo": {
+      "justNow": "Токму сега",
+      "hoursAgo": "пред {hours}ч",
+      "yesterday": "Вчера",
+      "daysAgo": "пред {days}д"
+    }
   }
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { ExternalLink, Instagram, Loader2, AlertCircle } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -15,7 +16,7 @@ type DailyLessonsProps = {
 /**
  * Format timestamp to relative time or date
  */
-function formatPostDate(timestamp: string): string {
+function formatPostDate(timestamp: string, t: any): string {
   const date = new Date(timestamp);
   const now = new Date();
   const diffMs = now.getTime() - date.getTime();
@@ -23,16 +24,16 @@ function formatPostDate(timestamp: string): string {
   const diffDays = Math.floor(diffHours / 24);
 
   if (diffHours < 1) {
-    return 'Just now';
+    return t('timeAgo.justNow');
   }
   if (diffHours < 24) {
-    return `${diffHours}h ago`;
+    return t('timeAgo.hoursAgo', { hours: diffHours });
   }
   if (diffDays === 1) {
-    return 'Yesterday';
+    return t('timeAgo.yesterday');
   }
   if (diffDays < 7) {
-    return `${diffDays}d ago`;
+    return t('timeAgo.daysAgo', { days: diffDays });
   }
 
   return date.toLocaleDateString(undefined, {
@@ -59,21 +60,22 @@ function truncateCaption(caption: string, maxLength: number = 150): string {
 /**
  * Get media type badge variant
  */
-function getMediaTypeBadge(mediaType: InstagramPost['media_type']): {
+function getMediaTypeBadge(mediaType: InstagramPost['media_type'], t: any): {
   label: string;
   variant: 'default' | 'secondary' | 'outline';
 } {
   switch (mediaType) {
     case 'VIDEO':
-      return { label: 'Video', variant: 'default' };
+      return { label: t('mediaType.video'), variant: 'default' };
     case 'CAROUSEL_ALBUM':
-      return { label: 'Album', variant: 'secondary' };
+      return { label: t('mediaType.album'), variant: 'secondary' };
     default:
-      return { label: 'Image', variant: 'outline' };
+      return { label: t('mediaType.image'), variant: 'outline' };
   }
 }
 
 export function DailyLessons({ limit = 9 }: DailyLessonsProps) {
+  const t = useTranslations('dailyLessons');
   const [posts, setPosts] = useState<InstagramPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -120,8 +122,8 @@ export function DailyLessons({ limit = 9 }: DailyLessonsProps) {
               <Instagram className="h-6 w-6 text-white" />
             </div>
             <div>
-              <CardTitle className="text-2xl">Daily Lessons</CardTitle>
-              <CardDescription>From @macedonianlanguagecorner</CardDescription>
+              <CardTitle className="text-2xl">{t('title')}</CardTitle>
+              <CardDescription>{t('subtitle')}</CardDescription>
             </div>
           </div>
         </CardHeader>
@@ -143,8 +145,8 @@ export function DailyLessons({ limit = 9 }: DailyLessonsProps) {
               <Instagram className="h-6 w-6 text-white" />
             </div>
             <div>
-              <CardTitle className="text-2xl">Daily Lessons</CardTitle>
-              <CardDescription>From @macedonianlanguagecorner</CardDescription>
+              <CardTitle className="text-2xl">{t('title')}</CardTitle>
+              <CardDescription>{t('subtitle')}</CardDescription>
             </div>
           </div>
         </CardHeader>
@@ -153,7 +155,7 @@ export function DailyLessons({ limit = 9 }: DailyLessonsProps) {
             <AlertCircle className="h-12 w-12 text-muted-foreground" />
             <div className="space-y-2">
               <p className="text-sm text-muted-foreground">
-                Unable to load Instagram posts right now.
+                {t('error')}
               </p>
               <p className="text-xs text-muted-foreground">{error}</p>
             </div>
@@ -164,7 +166,7 @@ export function DailyLessons({ limit = 9 }: DailyLessonsProps) {
                 rel="noopener noreferrer"
               >
                 <Instagram className="mr-2 h-4 w-4" />
-                Visit on Instagram
+                {t('visitInstagram')}
               </a>
             </Button>
           </div>
@@ -182,19 +184,19 @@ export function DailyLessons({ limit = 9 }: DailyLessonsProps) {
               <Instagram className="h-6 w-6 text-white" />
             </div>
             <div>
-              <CardTitle className="text-2xl">Daily Lessons</CardTitle>
-              <CardDescription>From @macedonianlanguagecorner</CardDescription>
+              <CardTitle className="text-2xl">{t('title')}</CardTitle>
+              <CardDescription>{t('subtitle')}</CardDescription>
             </div>
           </div>
           <div className="flex items-center gap-2">
             {source === 'mock' && (
               <Badge variant="secondary" className="text-xs">
-                Demo Mode
+                {t('demoMode')}
               </Badge>
             )}
             {cached && (
               <Badge variant="outline" className="text-xs">
-                Cached
+                {t('cached')}
               </Badge>
             )}
             <Button variant="outline" size="sm" asChild>
@@ -204,7 +206,7 @@ export function DailyLessons({ limit = 9 }: DailyLessonsProps) {
                 rel="noopener noreferrer"
               >
                 <Instagram className="mr-2 h-4 w-4" />
-                Follow
+                {t('follow')}
               </a>
             </Button>
           </div>
@@ -219,12 +221,12 @@ export function DailyLessons({ limit = 9 }: DailyLessonsProps) {
       <CardContent>
         {posts.length === 0 ? (
           <div className="py-12 text-center text-muted-foreground">
-            <p>No posts available</p>
+            <p>{t('noPosts')}</p>
           </div>
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => {
-              const mediaTypeBadge = getMediaTypeBadge(post.media_type);
+              const mediaTypeBadge = getMediaTypeBadge(post.media_type, t);
               const imageUrl =
                 post.media_type === 'VIDEO' && post.thumbnail_url
                   ? post.thumbnail_url
@@ -269,7 +271,7 @@ export function DailyLessons({ limit = 9 }: DailyLessonsProps) {
                   <div className="space-y-2 p-4">
                     <div className="flex items-center justify-between gap-2">
                       <p className="text-xs text-muted-foreground">
-                        {formatPostDate(post.timestamp)}
+                        {formatPostDate(post.timestamp, t)}
                       </p>
                       <ExternalLink className="h-3.5 w-3.5 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
                     </div>

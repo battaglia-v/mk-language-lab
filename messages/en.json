@@ -1094,5 +1094,27 @@
     "youtube": "YouTube",
     "allLinks": "All Links",
     "signOut": "Sign Out"
+  },
+  "dailyLessons": {
+    "title": "Daily Lessons",
+    "subtitle": "From @macedonianlanguagecorner",
+    "loading": "Loading daily lessons...",
+    "error": "Unable to load Instagram posts right now.",
+    "visitInstagram": "Visit on Instagram",
+    "follow": "Follow",
+    "noPosts": "No posts available",
+    "demoMode": "Demo Mode",
+    "cached": "Cached",
+    "mediaType": {
+      "video": "Video",
+      "album": "Album",
+      "image": "Image"
+    },
+    "timeAgo": {
+      "justNow": "Just now",
+      "hoursAgo": "{hours}h ago",
+      "yesterday": "Yesterday",
+      "daysAgo": "{days}d ago"
+    }
   }
 }
