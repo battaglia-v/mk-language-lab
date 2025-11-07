@@ -7,6 +7,7 @@
     "library": "Library",
     "translate": "Translate",
     "dailyLessons": "Daily Lessons",
+    "savedLessons": "Saved Lessons",
     "resources": "Resources",
     "news": "News"
   },
@@ -1118,5 +1119,22 @@
       "yesterday": "Yesterday",
       "daysAgo": "{days}d ago"
     }
+  },
+  "savedLessons": {
+    "title": "Saved Lessons",
+    "description": "Your bookmarked Instagram lessons",
+    "loading": "Loading saved lessons...",
+    "signInRequired": "Sign in to view your saved lessons",
+    "signIn": "Sign In",
+    "error": {
+      "title": "Failed to load saved lessons"
+    },
+    "empty": {
+      "title": "No saved lessons yet",
+      "description": "Start bookmarking Instagram posts from Daily Lessons to save them for later review",
+      "browseButton": "Browse Daily Lessons"
+    },
+    "postCount": "{count, plural, one {# saved lesson} other {# saved lessons}}",
+    "removePost": "Remove from saved"
   }
 }
