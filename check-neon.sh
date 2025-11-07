@@ -1,0 +1,11 @@
+#!/bin/bash
+echo "Checking if we need DIRECT_URL for Prisma with Neon..."
+echo ""
+echo "Current DATABASE_URL uses: -pooler"
+echo "This is a POOLED connection"
+echo ""
+echo "Prisma Adapter needs BOTH:"
+echo "1. DATABASE_URL (pooled) for queries"
+echo "2. DIRECT_URL (non-pooled) for migrations/session management"
+echo ""
+echo "For Neon, direct URL is: remove '-pooler' from host"
