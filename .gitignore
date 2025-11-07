@@ -43,3 +43,8 @@ next-env.d.ts
 # sentry
 .sentryclirc
 sentry.properties
+
+# Capacitor
+android/
+ios/
+out/
