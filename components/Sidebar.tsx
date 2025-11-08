@@ -199,9 +199,13 @@ export default function Sidebar() {
               pathname !== `/${locale}` &&
                 "text-sidebar-foreground hover:text-sidebar-accent-foreground",
             )}
+            style={{ transform: "none", willChange: "auto" }}
           >
-            <div className="flex items-center justify-center h-7 w-7">
-              <AjvarLogo size={28} />
+            <div
+              className="flex items-center justify-center h-8 w-8"
+              style={{ transform: "none" }}
+            >
+              <AjvarLogo size={30} />
             </div>
             <span
               className={cn(

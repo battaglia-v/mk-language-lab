@@ -12,6 +12,15 @@ export function AjvarLogo({ className, size = 40 }: AjvarLogoProps) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={{
+        flexShrink: 0,
+        display: 'block',
+        minWidth: `${size}px`,
+        minHeight: `${size}px`
+      }}
+      preserveAspectRatio="xMidYMid meet"
+      role="img"
+      aria-label="Ajvar Logo"
     >
       {/* Jar Lid - Minimal and sleek */}
       <path
