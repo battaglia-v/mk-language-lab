@@ -90,6 +90,11 @@ export default function JourneyHomePage() {
               <h2 className="text-3xl font-bold text-foreground">Quick Start</h2>
             </div>
 
+            {/* Continue Learning Widget - Temporarily disabled, will add back with proper auth flow */}
+            {/* <Suspense fallback={<div className="h-48 animate-pulse bg-muted/50 rounded-lg" />}>
+              <ContinueLearningServer />
+            </Suspense> */}
+
             <div className="grid gap-6 md:grid-cols-2">
               {/* Practice Card */}
               <Card className="group relative overflow-hidden rounded-2xl border border-border/40 bg-background p-8 transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 hover:shadow-xl">

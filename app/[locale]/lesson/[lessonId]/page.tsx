@@ -14,9 +14,10 @@ interface LessonPageProps {
 
 export default async function LessonPage({ params }: LessonPageProps) {
   const session = await auth();
+  const { lessonId } = await params;
 
   const lesson = await prisma.curriculumLesson.findUnique({
-    where: { id: params.lessonId },
+    where: { id: lessonId },
     include: {
       vocabularyItems: {
         orderBy: { orderIndex: 'asc' },
