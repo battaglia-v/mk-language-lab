@@ -35,19 +35,22 @@ model Session {
 }
 
 model User {
-  id            String         @id @default(cuid())
-  name          String?
-  email         String?        @unique
-  emailVerified DateTime?
-  image         String?
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  accounts      Account[]
-  boards        Board[]
-  lessons       Lesson[]
-  sessions      Session[]
-  tutorSessions TutorSession[]
-  savedPosts    SavedPost[]
+  id                 String                   @id @default(cuid())
+  name               String?
+  email              String?                  @unique
+  emailVerified      DateTime?
+  image              String?
+  createdAt          DateTime                 @default(now())
+  updatedAt          DateTime                 @updatedAt
+  accounts           Account[]
+  boards             Board[]
+  lessons            Lesson[]
+  sessions           Session[]
+  tutorSessions      TutorSession[]
+  savedPosts         SavedPost[]
+  journeyProgress    JourneyProgress[]
+  lessonProgress     UserLessonProgress[]
+  exerciseAttempts   ExerciseAttempt[]
 }
 
 model VerificationToken {
@@ -106,4 +109,29 @@ model SavedPost {
 
   @@unique([userId, instagramId])
   @@index([userId, savedAt])
+}
+
+model Tag {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  slug      String    @unique
+  color     String    @default("#3b82f6")
+  icon      String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  postTags  PostTag[]
+
+  @@index([slug])
+}
+
+model PostTag {
+  id          String   @id @default(cuid())
+  instagramId String
+  tagId       String
+  createdAt   DateTime @default(now())
+  tag         Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([instagramId, tagId])
+  @@index([instagramId])
+  @@index([tagId])
 }
