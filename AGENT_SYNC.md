@@ -133,11 +133,27 @@ These files are actively being modified:
 
 **Change:** When pronunciation is missing from database, show Latinized/Romanized version (e.g., "gledam") instead of repeating Cyrillic (e.g., "гледам")
 
+**Commit:** `9da843e` (included in Quick Practice bug fixes commit)
+
 **For Other Agents:**
 - Use `cyrillicToLatin()` helper when you need to show Latin/Romanized Macedonian text
 - Standard Macedonian transliteration rules are implemented (ж→zh, ч→ch, љ→lj, etc.)
 
 ---
 
-**Last Updated:** 2025-11-08 21:15 UTC
+### 9. Latest Deployment Status
+- **Deployed:** 2025-11-08 ~21:20 UTC
+- **Production URL:** https://mk-language-b6mmsv5tx-vincent-battaglias-projects-e5a4afc9.vercel.app
+- **Latest Commit:** `9da843e` - Fix Quick Practice bugs + transliteration feature
+- **Build Status:** ✅ Passing
+- **Deployment:** ✅ Complete
+
+**Changes in This Deployment:**
+1. Cyrillic to Latin transliteration (fixes redundant Cyrillic in pronunciation)
+2. Quick Practice accuracy calculation fixes
+3. Proper attempt tracking in practice sessions
+
+---
+
+**Last Updated:** 2025-11-08 21:20 UTC
 **Updated By:** Build & Deploy Agent
