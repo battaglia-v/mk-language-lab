@@ -13,11 +13,11 @@ export default createMiddleware({
 });
 
 export const config = {
-  // Match only internationalized pathnames, exclude API and auth routes
+  // Match only internationalized pathnames, exclude API, auth, and admin routes
   matcher: [
     '/',
     '/(mk|en)/:path*',
-    // Exclude API routes, auth routes, PWA files, and static files
-    '/((?!api|auth|sw.js|manifest.json|icon-.*\\.png|_next/static|_next/image|favicon.ico).*)'
+    // Exclude API routes, auth routes, admin routes, PWA files, and static files
+    '/((?!api|auth|admin|sw.js|manifest.json|icon-.*\\.png|_next/static|_next/image|favicon.ico).*)'
   ]
 };
