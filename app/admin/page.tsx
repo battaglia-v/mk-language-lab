@@ -2,19 +2,39 @@ import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Sparkles, ArrowRight, TrendingUp } from 'lucide-react';
+import prisma from '@/lib/prisma';
 
 async function getAdminStats() {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-    const res = await fetch(`${baseUrl}/api/admin/stats`, {
-      next: { revalidate: 60 }, // Cache for 1 minute
-    });
+    // Query database directly (faster than API route)
+    const [
+      wordOfTheDayCount,
+      practiceWordsCount,
+      activeUsersCount,
+      totalExercisesCount,
+    ] = await Promise.all([
+      prisma.wordOfTheDay.count({
+        where: { isActive: true },
+      }),
+      prisma.practiceVocabulary.count({
+        where: { isActive: true },
+      }),
+      prisma.user.count({
+        where: {
+          updatedAt: {
+            gte: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
+          },
+        },
+      }),
+      prisma.exercise.count(),
+    ]);
 
-    if (!res.ok) {
-      throw new Error('Failed to fetch stats');
-    }
-
-    return await res.json();
+    return {
+      wordOfTheDay: wordOfTheDayCount,
+      practiceWords: practiceWordsCount,
+      activeUsers: activeUsersCount,
+      totalExercises: totalExercisesCount,
+    };
   } catch (error) {
     console.error('Error fetching stats:', error);
     return {
