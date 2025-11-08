@@ -17,10 +17,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
-  pages: {
-    signIn: '/auth/signin',
-    error: '/auth/error',
-  },
+  // Temporarily comment out custom pages to debug redirect issue
+  // pages: {
+  //   signIn: '/auth/signin',
+  //   error: '/auth/error',
+  // },
   callbacks: {
     async jwt({ token, user, account, profile }) {
       // On initial sign-in, create/update user in database
