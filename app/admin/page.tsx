@@ -8,17 +8,15 @@ async function getAdminStats() {
   try {
     // Query database directly (faster than API route)
     const [
-      wordOfTheDayCount,
-      practiceWordsCount,
+      totalVocabularyCount,
       activeUsersCount,
-      totalExercisesCount,
+      totalUsersCount,
     ] = await Promise.all([
-      prisma.wordOfTheDay.count({
-        where: { isActive: true },
-      }),
+      // Count all vocabulary (Practice + Word of the Day combined)
       prisma.practiceVocabulary.count({
         where: { isActive: true },
       }),
+      // Users active in last 30 days
       prisma.user.count({
         where: {
           updatedAt: {
@@ -26,22 +24,21 @@ async function getAdminStats() {
           },
         },
       }),
-      prisma.exercise.count(),
+      // Total registered users
+      prisma.user.count(),
     ]);
 
     return {
-      wordOfTheDay: wordOfTheDayCount,
-      practiceWords: practiceWordsCount,
+      totalVocabulary: totalVocabularyCount,
       activeUsers: activeUsersCount,
-      totalExercises: totalExercisesCount,
+      totalUsers: totalUsersCount,
     };
   } catch (error) {
     console.error('Error fetching stats:', error);
     return {
-      wordOfTheDay: 0,
-      practiceWords: 0,
+      totalVocabulary: 0,
       activeUsers: 0,
-      totalExercises: 0,
+      totalUsers: 0,
     };
   }
 }
@@ -65,16 +62,11 @@ export default async function AdminDashboard() {
           <TrendingUp className="h-5 w-5 text-primary" />
           <h2 className="text-lg font-semibold">Quick Stats</h2>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-3">
           <div className="space-y-1">
-            <p className="text-sm text-muted-foreground">Word of the Day</p>
-            <p className="text-2xl font-bold">{stats.wordOfTheDay}</p>
-            <p className="text-xs text-muted-foreground">active entries</p>
-          </div>
-          <div className="space-y-1">
-            <p className="text-sm text-muted-foreground">Practice Words</p>
-            <p className="text-2xl font-bold">{stats.practiceWords}</p>
-            <p className="text-xs text-muted-foreground">in word bank</p>
+            <p className="text-sm text-muted-foreground">Total Vocabulary</p>
+            <p className="text-2xl font-bold">{stats.totalVocabulary}</p>
+            <p className="text-xs text-muted-foreground">active words</p>
           </div>
           <div className="space-y-1">
             <p className="text-sm text-muted-foreground">Active Users</p>
@@ -82,9 +74,9 @@ export default async function AdminDashboard() {
             <p className="text-xs text-muted-foreground">last 30 days</p>
           </div>
           <div className="space-y-1">
-            <p className="text-sm text-muted-foreground">Total Exercises</p>
-            <p className="text-2xl font-bold">{stats.totalExercises}</p>
-            <p className="text-xs text-muted-foreground">across all lessons</p>
+            <p className="text-sm text-muted-foreground">Total Users</p>
+            <p className="text-2xl font-bold">{stats.totalUsers}</p>
+            <p className="text-xs text-muted-foreground">registered</p>
           </div>
         </div>
       </div>

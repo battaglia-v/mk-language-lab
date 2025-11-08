@@ -15,6 +15,12 @@ type PracticeVocabulary = {
   category: string | null;
   difficulty: string;
   isActive: boolean;
+  includeInWOTD: boolean;
+  pronunciation: string | null;
+  partOfSpeech: string | null;
+  exampleMk: string | null;
+  exampleEn: string | null;
+  icon: string | null;
   createdAt: string;
 };
 
@@ -26,6 +32,12 @@ const emptyForm: FormData = {
   category: null,
   difficulty: 'beginner',
   isActive: true,
+  includeInWOTD: false,
+  pronunciation: null,
+  partOfSpeech: null,
+  exampleMk: null,
+  exampleEn: null,
+  icon: null,
 };
 
 export default function PracticeVocabularyAdmin() {
@@ -96,6 +108,12 @@ export default function PracticeVocabularyAdmin() {
       category: word.category,
       difficulty: word.difficulty,
       isActive: word.isActive,
+      includeInWOTD: word.includeInWOTD,
+      pronunciation: word.pronunciation,
+      partOfSpeech: word.partOfSpeech,
+      exampleMk: word.exampleMk,
+      exampleEn: word.exampleEn,
+      icon: word.icon,
     });
     setEditingId(word.id);
     setShowForm(true);

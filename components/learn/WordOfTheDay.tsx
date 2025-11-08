@@ -1,9 +1,10 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Loader2 } from 'lucide-react';
 
 type WordOfTheDayData = {
   macedonian: string;
@@ -15,88 +16,53 @@ type WordOfTheDayData = {
   icon: string;
 };
 
-// Rotating word list - changes based on day of year
-const wordList: WordOfTheDayData[] = [
-  {
-    macedonian: 'здраво',
-    pronunciation: 'zdravo',
-    english: 'hello',
-    partOfSpeech: 'greeting',
-    exampleMk: 'Здраво, како си?',
-    exampleEn: 'Hello, how are you?',
-    icon: '👋',
-  },
-  {
-    macedonian: 'благодарам',
-    pronunciation: 'blagodaram',
-    english: 'thank you',
-    partOfSpeech: 'expression',
-    exampleMk: 'Благодарам за помошта!',
-    exampleEn: 'Thank you for the help!',
-    icon: '🙏',
-  },
-  {
-    macedonian: 'љубов',
-    pronunciation: 'ljubov',
-    english: 'love',
-    partOfSpeech: 'noun',
-    exampleMk: 'Љубовта е важна.',
-    exampleEn: 'Love is important.',
-    icon: '❤️',
-  },
-  {
-    macedonian: 'семејство',
-    pronunciation: 'semejstvo',
-    english: 'family',
-    partOfSpeech: 'noun',
-    exampleMk: 'Семејството е најважно.',
-    exampleEn: 'Family is most important.',
-    icon: '👨‍👩‍👧‍👦',
-  },
-  {
-    macedonian: 'пријател',
-    pronunciation: 'prijatel',
-    english: 'friend',
-    partOfSpeech: 'noun',
-    exampleMk: 'Тој е мој добар пријател.',
-    exampleEn: 'He is my good friend.',
-    icon: '🤝',
-  },
-  {
-    macedonian: 'среќа',
-    pronunciation: 'srekja',
-    english: 'happiness',
-    partOfSpeech: 'noun',
-    exampleMk: 'Среќата е избор.',
-    exampleEn: 'Happiness is a choice.',
-    icon: '😊',
-  },
-  {
-    macedonian: 'учам',
-    pronunciation: 'učam',
-    english: 'I learn',
-    partOfSpeech: 'verb',
-    exampleMk: 'Јас учам македонски јазик.',
-    exampleEn: 'I am learning Macedonian language.',
-    icon: '📚',
-  },
-];
-
-// Get word based on day of year (so it rotates daily)
-function getTodaysWord(): WordOfTheDayData {
-  const now = new Date();
-  const start = new Date(now.getFullYear(), 0, 0);
-  const diff = now.getTime() - start.getTime();
-  const oneDay = 1000 * 60 * 60 * 24;
-  const dayOfYear = Math.floor(diff / oneDay);
-
-  const index = dayOfYear % wordList.length;
-  return wordList[index];
-}
-
 export function WordOfTheDay() {
   const t = useTranslations('wordOfTheDay');
-  const word = getTodaysWord();
+  const [word, setWord] = useState<WordOfTheDayData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchWordOfTheDay() {
+      try {
+        const response = await fetch('/api/word-of-the-day');
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch word of the day');
+        }
+
+        const data = await response.json();
+        setWord(data);
+      } catch (err) {
+        console.error('Error fetching word of the day:', err);
+        setError('Could not load word of the day');
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchWordOfTheDay();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <Card className="relative overflow-hidden border-primary/20 bg-gradient-to-br from-primary/5 via-background to-secondary/5 p-8">
+        <div className="flex items-center justify-center py-12">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      </Card>
+    );
+  }
+
+  if (error || !word) {
+    return (
+      <Card className="relative overflow-hidden border-primary/20 bg-gradient-to-br from-primary/5 via-background to-secondary/5 p-8">
+        <div className="flex items-center justify-center py-12 text-muted-foreground">
+          <p>{error || 'No word available today'}</p>
+        </div>
+      </Card>
+    );
+  }
 
   return (
     <Card className="relative overflow-hidden border-primary/20 bg-gradient-to-br from-primary/5 via-background to-secondary/5 p-8">
