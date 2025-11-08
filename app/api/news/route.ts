@@ -472,7 +472,7 @@ function parseFeed(xml: string, source: NewsSource): NewsItem[] {
   return items;
 }
 
-const PREVIEW_FETCH_LIMIT = 6;
+const PREVIEW_FETCH_LIMIT = 10;
 const PREVIEW_MAX_LENGTH = 260;
 
 function extractMetaContent(html: string, attribute: 'property' | 'name', value: string): string | null {
