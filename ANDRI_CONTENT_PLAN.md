@@ -271,7 +271,10 @@ See ANDRI_ATTRIBUTION_DESIGN.md (creating next)
 
 ### Immediate (This Week)
 - [x] Research Andri's content
-- [ ] Add attribution to footer and pages
+- [x] Add attribution to footer and pages
+  - [x] Footer attribution completed
+  - [x] About page "Meet the Team" section added
+  - [x] Resources page header attribution added
 - [ ] Create issues for content integration
 - [ ] Share plan with Andri for feedback
 

@@ -624,6 +624,8 @@
   "resources": {
     "title": "Resources",
     "subtitle": "Curated Macedonian study collections and trusted references",
+    "attributionText": "All content curated and validated by Andri, native Macedonian speaker and founder of",
+    "macedonianLanguageCorner": "Macedonian Language Corner",
     "search": "Search resources...",
     "viewPdf": "View PDF",
     "showAll": "All collections",
@@ -672,7 +674,18 @@
     "feature4": "PDF dictionary viewer",
     "feature5": "Google Docs integration",
     "feature6": "Kanban task board",
-    "author": "Created by"
+    "author": "Created by",
+    "meetTheTeam": "Meet the Team",
+    "teamDescription": "Bringing together heritage learning and native expertise",
+    "vincent": "Vincent Battaglia",
+    "vincentRole": "Developer & Heritage Learner",
+    "vincentBio": "Building tools to reconnect with Macedonian roots and make language learning accessible to everyone.",
+    "andri": "Andri",
+    "andriRole": "Native Speaker & Linguist",
+    "andriBio": "Creator of Macedonian Language Corner, providing authentic content and cultural insights from a native perspective.",
+    "andriWebsite": "Website",
+    "andriInstagram": "Instagram",
+    "andriYouTube": "YouTube"
   },
   "auth": {
     "signInRetiredTitle": "No sign-in needed anymore",

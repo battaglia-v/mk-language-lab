@@ -240,6 +240,21 @@ export default function ResourcesPage() {
               {t('subtitle')}
             </h1>
 
+            <div className="inline-block px-6 py-3 rounded-lg bg-primary/5 border border-primary/10">
+              <p className="text-sm md:text-base text-muted-foreground">
+                🇲🇰 {t('attributionText')}{' '}
+                <a
+                  href="https://macedonianlanguagecorner.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-foreground hover:text-primary transition-colors underline decoration-dotted inline-flex items-center gap-1"
+                >
+                  {t('macedonianLanguageCorner')}
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              </p>
+            </div>
+
             <div className="relative mx-auto max-w-xl">
               <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
               <Input

@@ -56,16 +56,68 @@ export default function AboutPage() {
           </Card>
         </div>
 
-        {/* Author */}
+        {/* Team */}
         <div className="max-w-4xl mx-auto mt-12">
-          <Card className="bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur border-primary/20">
-            <CardHeader className="text-center">
-              <CardTitle className="text-2xl mb-2">{t('author')}</CardTitle>
-              <div className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Винсент Баталија
-              </div>
-            </CardHeader>
-          </Card>
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold mb-2">{t('meetTheTeam')}</h2>
+            <p className="text-muted-foreground">{t('teamDescription')}</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Vincent */}
+            <Card className="bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur border-primary/20">
+              <CardHeader className="text-center">
+                <CardTitle className="text-2xl mb-2">{t('vincent')}</CardTitle>
+                <div className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-4">
+                  Винсент Баталија
+                </div>
+                <p className="text-muted-foreground text-sm">{t('vincentRole')}</p>
+              </CardHeader>
+              <CardContent className="text-center">
+                <p className="text-sm">{t('vincentBio')}</p>
+              </CardContent>
+            </Card>
+
+            {/* Andri */}
+            <Card className="bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur border-primary/20">
+              <CardHeader className="text-center">
+                <CardTitle className="text-2xl mb-2">{t('andri')}</CardTitle>
+                <div className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-4">
+                  🇲🇰 Andri
+                </div>
+                <p className="text-muted-foreground text-sm">{t('andriRole')}</p>
+              </CardHeader>
+              <CardContent className="text-center space-y-4">
+                <p className="text-sm">{t('andriBio')}</p>
+                <div className="flex flex-wrap justify-center gap-2">
+                  <a
+                    href="https://macedonianlanguagecorner.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs px-3 py-1 rounded-full bg-primary/10 hover:bg-primary/20 border border-primary/20 hover:border-primary/40 transition-colors"
+                  >
+                    {t('andriWebsite')}
+                  </a>
+                  <a
+                    href="https://instagram.com/macedonianlanguagecorner"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs px-3 py-1 rounded-full bg-primary/10 hover:bg-primary/20 border border-primary/20 hover:border-primary/40 transition-colors"
+                  >
+                    {t('andriInstagram')}
+                  </a>
+                  <a
+                    href="https://youtube.com/@macedonianlanguagecorner"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs px-3 py-1 rounded-full bg-primary/10 hover:bg-primary/20 border border-primary/20 hover:border-primary/40 transition-colors"
+                  >
+                    {t('andriYouTube')}
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
 
