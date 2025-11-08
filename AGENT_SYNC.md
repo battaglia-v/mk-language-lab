@@ -4,6 +4,54 @@
 
 This file contains critical information about recent changes, breaking patterns, and coordination guidelines for all agents working in parallel on this codebase.
 
+## 📝 AGENT RESPONSIBILITIES
+
+**ALL AGENTS MUST:**
+
+1. **READ** this file before making any changes to the codebase
+2. **UPDATE** this file when you make critical changes (see criteria below)
+3. **COMMIT** your updates to this file along with your code changes
+
+### What Changes Should Be Documented Here?
+
+**✅ YOU MUST DOCUMENT:**
+- Breaking changes or API modifications
+- New patterns, utilities, or shared components
+- Database schema changes or migrations
+- Changes to build configuration or dependencies
+- Security-related changes
+- Authentication/authorization changes
+- New environment variables or configuration requirements
+- Changes that affect other features or pages
+- Important bug fixes that reveal patterns to avoid
+- Deployment-related changes or infrastructure updates
+
+**📋 RECOMMENDED TO DOCUMENT:**
+- New features that other agents might need to integrate with
+- Performance optimizations or caching strategies
+- Changes to rate limiting or API endpoints
+- New TypeScript types or interfaces that should be reused
+- Accessibility improvements or patterns
+- Mobile responsiveness fixes that should be applied elsewhere
+
+**❌ NO NEED TO DOCUMENT:**
+- Minor copy/text changes
+- Simple styling tweaks to a single component
+- Adding translation strings
+- Minor refactoring that doesn't change behavior
+
+### How to Document Your Changes
+
+Add a new numbered section under "Latest Changes" with:
+- **Date/Time:** When changes were made
+- **Files Modified/Created:** List key files
+- **What Changed:** Brief description of the change
+- **Why It Matters:** Impact on other agents or features
+- **For Other Agents:** Specific guidance or patterns to follow
+- **Commit Hash:** Reference to the commit
+
+---
+
 ## Latest Changes (2025-11-08 ~20:47 UTC)
 
 ### Critical Fixes Applied
@@ -155,5 +203,34 @@ These files are actively being modified:
 
 ---
 
-**Last Updated:** 2025-11-08 21:20 UTC
+---
+
+## 🔮 Future Considerations & Technical Debt
+
+This section tracks things to keep in mind for future work or technical debt that needs addressing.
+
+### Pending Package Updates
+- **React/React-DOM 19.1.0 → 19.2.0** - Has peer dependency conflicts, wait for ecosystem stability
+- **Next.js 15.5.6 → 16.0.1** - Major version upgrade with potential breaking changes
+- **pdfjs-dist** - Depends on React upgrade
+- **Recommendation:** Coordinate before attempting these upgrades
+
+### Known Issues to Address
+- Favicon may need hard refresh for some users (browser caching)
+- Database queries fail during local build (expected, no fix needed)
+
+### Performance Opportunities
+- Consider implementing caching strategy for Word of the Day (currently recalculated per request)
+- Practice vocabulary could benefit from pagination for large datasets
+
+### Future Enhancements to Consider
+- Add more transliteration uses throughout app (not just Word of the Day)
+- Consider adding a "pronunciation guide" page using the transliteration utility
+- Explore batch operations for admin vocabulary management
+
+**Note to Agents:** Feel free to add items here when you identify technical debt or future improvements during your work.
+
+---
+
+**Last Updated:** 2025-11-08 21:25 UTC
 **Updated By:** Build & Deploy Agent
