@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Badge } from '@/components/ui/badge';
@@ -304,19 +305,20 @@ function NewsPreviewMedia({ imageUrl, sourceInitials, sourceName, alt, showVideo
         </div>
       )}
       {hasImage ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={currentUrl ?? undefined}
+        <Image
+          src={currentUrl!}
           alt={`Preview for ${alt}`}
-          className="h-full w-full transition-opacity duration-200"
+          fill
+          className="transition-opacity duration-200"
           style={{
             objectFit,
             opacity: isLoading ? 0 : 1,
           }}
-          loading="lazy"
-          decoding="async"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 288px, 320px"
+          quality={75}
           onError={handleImageError}
           onLoad={handleImageLoad}
+          unoptimized={false}
         />
       ) : (
         <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-primary/25 via-secondary/20 to-muted/30 text-foreground">
