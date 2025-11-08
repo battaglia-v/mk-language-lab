@@ -48,3 +48,15 @@ sentry.properties
 android/
 ios/
 out/
+
+# Test files with potential secrets
+test-*.mjs
+test-*.js
+*-test-*.mjs
+*-test-*.js
+DATABASE_TEST_REPORT.md
+*.test.local.*
+
+# Temporary test files
+temp-*.mjs
+temp-*.js
