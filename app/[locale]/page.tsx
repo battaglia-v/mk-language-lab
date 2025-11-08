@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { HeroProgressSummary, type JourneyGoalMeta } from '@/components/journey/HeroProgressSummary';
 import { QuickPracticeWidget } from '@/components/learn/QuickPracticeWidget';
-import { DailyLessons } from '@/components/learn/DailyLessons';
+// import { DailyLessons } from '@/components/learn/DailyLessons'; // Hidden until Instagram API access available
 import {
   Compass,
   RefreshCw,
@@ -140,7 +140,8 @@ export default function JourneyHomePage() {
         </div>
       </section>
 
-      {/* Daily Lessons from Instagram */}
+      {/* Daily Lessons from Instagram - Hidden until Instagram API access available */}
+      {/*
       <section className="w-full py-12">
         <div className="container mx-auto px-6">
           <div className="mx-auto max-w-6xl">
@@ -148,6 +149,7 @@ export default function JourneyHomePage() {
           </div>
         </div>
       </section>
+      */}
 
       {/* Journey Progress - Compact */}
       <section className="w-full py-12">
