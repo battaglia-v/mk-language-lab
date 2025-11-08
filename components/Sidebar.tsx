@@ -176,7 +176,30 @@ export default function Sidebar() {
         className="lg:hidden fixed bottom-0 left-0 right-0 bg-sidebar border-t border-sidebar-border z-50"
         aria-label={t('label')}
       >
-        <div className="grid grid-cols-3 gap-0.5 px-1 py-1">
+        <div className="grid grid-cols-5 gap-0.5 px-1 py-1">
+          {/* Home button */}
+          <Link
+            href={`/${locale}`}
+            className={cn(
+              'flex flex-col items-center gap-0.5 px-1 py-1.5 rounded-lg transition-all duration-200',
+              pathname === `/${locale}` && 'text-primary',
+              pathname !== `/${locale}` && 'text-sidebar-foreground hover:text-sidebar-accent-foreground'
+            )}
+          >
+            <div className={cn(
+              'h-4 w-4 flex items-center justify-center',
+              pathname === `/${locale}` && 'text-primary'
+            )}>
+              <AjvarLogo size={16} />
+            </div>
+            <span className={cn(
+              'text-[9px] font-medium w-full text-center line-clamp-1 leading-tight',
+              pathname === `/${locale}` && 'text-primary'
+            )}>
+              Home
+            </span>
+          </Link>
+
           {navItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.path);
