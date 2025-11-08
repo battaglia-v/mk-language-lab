@@ -112,39 +112,73 @@ export default function JourneyHomePage() {
             <div className="grid gap-6 md:grid-cols-2">
               {/* Practice Card */}
               <Card className="group relative overflow-hidden rounded-2xl border border-border/40 bg-background p-8 transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 hover:shadow-xl">
-                <div className="space-y-6">
-                  <div className="flex items-center justify-between">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
-                      <RefreshCw className="h-8 w-8 text-primary" />
-                    </div>
+                {/* Decorative gradient */}
+                <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-primary/5 blur-3xl transition-opacity group-hover:opacity-70" />
+
+                <div className="relative space-y-6">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 transition-transform group-hover:scale-110">
+                    <RefreshCw className="h-8 w-8 text-primary" />
                   </div>
-                  <div className="space-y-2">
-                    <h3 className="text-2xl font-semibold text-foreground">Vocabulary Practice</h3>
-                    <p className="text-base text-muted-foreground">Practice with interactive quizzes</p>
+                  <div className="space-y-3">
+                    <h3 className="text-2xl font-semibold text-foreground">Daily Practice</h3>
+                    <p className="text-base leading-relaxed text-muted-foreground">
+                      Test your vocabulary with interactive quizzes. Switch between Macedonian→English and English→Macedonian to strengthen your skills.
+                    </p>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li className="flex items-start gap-2">
+                        <span className="mt-1 text-primary">•</span>
+                        <span>Multiple practice modes</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="mt-1 text-primary">•</span>
+                        <span>Track your progress</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="mt-1 text-primary">•</span>
+                        <span>Learn at your own pace</span>
+                      </li>
+                    </ul>
                   </div>
-                  <Button size="lg" className="w-full" asChild>
+                  <Button size="lg" className="w-full group-hover:shadow-lg transition-shadow" asChild>
                     <Link href={buildHref('/practice')}>
-                      Start Practicing →
+                      Start Practicing
                     </Link>
                   </Button>
                 </div>
               </Card>
 
               {/* Resources Card */}
-              <Card className="group relative overflow-hidden rounded-2xl border border-border/40 bg-background p-8 transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 hover:shadow-xl">
-                <div className="space-y-6">
-                  <div className="flex items-center justify-between">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-secondary/10">
-                      <Library className="h-8 w-8 text-secondary" />
-                    </div>
+              <Card className="group relative overflow-hidden rounded-2xl border border-border/40 bg-background p-8 transition-all duration-300 hover:scale-[1.02] hover:border-secondary/50 hover:shadow-xl">
+                {/* Decorative gradient */}
+                <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-secondary/5 blur-3xl transition-opacity group-hover:opacity-70" />
+
+                <div className="relative space-y-6">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-secondary/10 transition-transform group-hover:scale-110">
+                    <Library className="h-8 w-8 text-secondary" />
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <h3 className="text-2xl font-semibold text-foreground">Learning Resources</h3>
-                    <p className="text-base text-muted-foreground">Explore curated materials</p>
+                    <p className="text-base leading-relaxed text-muted-foreground">
+                      Access curated resources hand-picked by native speakers. Dictionaries, grammar guides, videos, and cultural content.
+                    </p>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li className="flex items-start gap-2">
+                        <span className="mt-1 text-secondary">•</span>
+                        <span>Trusted dictionaries & references</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="mt-1 text-secondary">•</span>
+                        <span>Native speaker content</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="mt-1 text-secondary">•</span>
+                        <span>Cultural insights & media</span>
+                      </li>
+                    </ul>
                   </div>
-                  <Button size="lg" variant="outline" className="w-full" asChild>
+                  <Button size="lg" variant="outline" className="w-full group-hover:shadow-lg transition-shadow" asChild>
                     <Link href={buildHref('/resources')}>
-                      Browse Resources →
+                      Explore Resources
                     </Link>
                   </Button>
                 </div>
