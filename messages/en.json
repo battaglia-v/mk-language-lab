@@ -1162,5 +1162,11 @@
       "adverb": "Adverb"
     },
     "footer": "A new word is featured each day to expand your vocabulary."
+  },
+  "welcomeBanner": {
+    "title": "Welcome to your Macedonian journey!",
+    "description": "Start learning with today's featured word, practice vocabulary, or explore resources curated by native speakers.",
+    "ctaPrimary": "See Today's Word",
+    "ctaSecondary": "Start Practicing"
   }
 }

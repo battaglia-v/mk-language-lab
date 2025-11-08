@@ -7,6 +7,7 @@ import { Card } from '@/components/ui/card';
 import { HeroProgressSummary, type JourneyGoalMeta } from '@/components/journey/HeroProgressSummary';
 import { QuickPracticeWidget } from '@/components/learn/QuickPracticeWidget';
 import { WordOfTheDay } from '@/components/learn/WordOfTheDay';
+import { WelcomeBanner } from '@/components/WelcomeBanner';
 // import { DailyLessons } from '@/components/learn/DailyLessons'; // Hidden until Instagram API access available
 import {
   Compass,
@@ -50,6 +51,9 @@ export default function JourneyHomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
+      {/* Welcome Banner for first-time visitors */}
+      <WelcomeBanner />
+
       {/* Hero Section - Simplified and Focused */}
       <section className="w-full bg-gradient-to-b from-primary/5 via-background to-background">
         <div className="container mx-auto px-6 py-12 lg:py-20">
@@ -84,7 +88,7 @@ export default function JourneyHomePage() {
       </section>
 
       {/* Word of the Day */}
-      <section className="w-full py-12">
+      <section id="word-of-day" className="w-full py-12">
         <div className="container mx-auto px-6">
           <div className="mx-auto max-w-3xl">
             <WordOfTheDay />
