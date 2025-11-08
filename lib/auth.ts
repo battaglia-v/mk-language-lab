@@ -71,11 +71,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             },
           });
 
-          // Store database user ID in token
+          // Store database user ID and role in token
           token.userId = dbUser.id;
           token.email = dbUser.email;
           token.name = dbUser.name;
           token.picture = dbUser.image;
+          token.role = dbUser.role;
 
           console.log('[AUTH] User persisted to database:', { userId: dbUser.id, email: dbUser.email });
         } catch (error) {
@@ -85,6 +86,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           token.email = user.email;
           token.name = user.name;
           token.picture = user.image;
+          token.role = 'user'; // Default to user role if database write fails
         }
       }
       return token;
@@ -96,6 +98,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session.user.email = token.email as string;
         session.user.name = token.name as string;
         session.user.image = token.picture as string;
+        session.user.role = (token.role as string) || 'user';
       }
       return session;
     },
