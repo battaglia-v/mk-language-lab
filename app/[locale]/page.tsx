@@ -4,10 +4,9 @@ import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { QuickPracticeWidget } from '@/components/learn/QuickPracticeWidget';
 import { WordOfTheDay } from '@/components/learn/WordOfTheDay';
 import { WelcomeBanner } from '@/components/WelcomeBanner';
-// import { DailyLessons } from '@/components/learn/DailyLessons'; // Hidden until Instagram API access available
+import { DailyLessons } from '@/components/learn/DailyLessons';
 import {
   RefreshCw,
   Library,
@@ -145,6 +144,15 @@ export default function HomePage() {
                 </div>
               </Card>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Daily Lessons from Instagram */}
+      <section className="w-full py-12">
+        <div className="container mx-auto px-6">
+          <div className="mx-auto max-w-6xl">
+            <DailyLessons limit={9} showViewAll={true} />
           </div>
         </div>
       </section>

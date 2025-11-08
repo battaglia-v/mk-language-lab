@@ -1,8 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
-import { useSearchParams } from 'next/navigation';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -138,7 +137,6 @@ function KanbanColumn({
 
 export default function TasksPage() {
   const t = useTranslations('tasks');
-  const searchParams = useSearchParams();
 
   const defaultColumnTitles = useMemo(
     () => ({
@@ -187,9 +185,6 @@ export default function TasksPage() {
   const [newTaskTitle, setNewTaskTitle] = useState('');
   const [newTaskDescription, setNewTaskDescription] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [isHydrated, setIsHydrated] = useState(false);
-  const [templateApplied, setTemplateApplied] = useState(false);
-  const templateAppliedRef = useRef(false);
   const emptyColumnHint = t('emptyColumnHint');
 
   const sensors = useSensors(
@@ -224,7 +219,6 @@ export default function TasksPage() {
     } else {
       setColumns(mergeWithDefaultColumns());
     }
-    setIsHydrated(true);
   }, [mergeWithDefaultColumns]);
 
   useEffect(() => {

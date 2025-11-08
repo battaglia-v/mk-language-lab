@@ -75,7 +75,6 @@ export function QuickPracticeWidget({
   const [revealedAnswer, setRevealedAnswer] = useState('');
   const [totalAttempts, setTotalAttempts] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
-  const [sessionComplete, setSessionComplete] = useState(false);
   const [isCelebrating, setIsCelebrating] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
@@ -106,7 +105,6 @@ export function QuickPracticeWidget({
       setRevealedAnswer('');
       setTotalAttempts(0);
       setCorrectCount(0);
-      setSessionComplete(false);
       setIsCelebrating(false);
       return;
     }
@@ -117,7 +115,6 @@ export function QuickPracticeWidget({
     setRevealedAnswer('');
     setTotalAttempts(0);
     setCorrectCount(0);
-    setSessionComplete(false);
     setIsCelebrating(false);
   }, [filteredItems]);
 
@@ -186,7 +183,6 @@ export function QuickPracticeWidget({
 
       // Check for session completion (5 correct answers)
       if (newCorrectCount === SESSION_TARGET) {
-        setSessionComplete(true);
         setShowCompletionModal(true);
         trackEvent(AnalyticsEvents.PRACTICE_COMPLETED, {
           mode,
@@ -251,7 +247,6 @@ export function QuickPracticeWidget({
     setFeedback(null);
     setTotalAttempts(0);
     setCorrectCount(0);
-    setSessionComplete(false);
     setIsCelebrating(false);
     setRevealedAnswer('');
     setShowCompletionModal(false);

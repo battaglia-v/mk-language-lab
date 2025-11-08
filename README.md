@@ -20,6 +20,7 @@ See our [POC to Production Roadmap](docs/poc-production-roadmap.md) for the comp
 - **📚 Interactive Practice** - Vocabulary exercises with instant feedback
 - **🔄 Translation Tool** - Macedonian ↔ English translation powered by Google Cloud
 - **📰 News Feed** - Curated Macedonian news articles for immersive learning
+- **📸 Daily Lessons** - Instagram posts from @macedonianlanguagecorner integrated as learning content
 - **🌍 Bilingual Interface** - Full English and Macedonian UI with `next-intl`
 - **📱 Mobile-First Design** - Responsive design optimized for all devices
 - **🎨 Modern UI** - Built with Tailwind CSS and shadcn/ui components
@@ -106,6 +107,11 @@ OPENAI_API_KEY=<openai-api-key>
 GOOGLE_DOCS_ID=<google-docs-id>
 DICTIONARY_PDF_URL=<dictionary-url>
 
+# Instagram Integration (Daily Lessons)
+# Set to "demo" to use mock data without Instagram API credentials
+INSTAGRAM_ACCESS_TOKEN="demo"
+INSTAGRAM_BUSINESS_ACCOUNT_ID=""
+
 # Sentry Error Tracking (Optional)
 NEXT_PUBLIC_SENTRY_DSN=<sentry-dsn>
 SENTRY_AUTH_TOKEN=<sentry-auth-token>
@@ -150,6 +156,10 @@ GOOGLE_APPLICATION_CREDENTIALS_JSON  # paste the service-account JSON or base64
 OPENAI_API_KEY
 GOOGLE_DOCS_ID
 DICTIONARY_PDF_URL
+
+# Instagram Integration (Optional - uses demo data by default)
+INSTAGRAM_ACCESS_TOKEN
+INSTAGRAM_BUSINESS_ACCOUNT_ID
 
 # Sentry Error Tracking (Recommended for production)
 NEXT_PUBLIC_SENTRY_DSN

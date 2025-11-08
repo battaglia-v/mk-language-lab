@@ -246,7 +246,6 @@ describe('QuickPracticeWidget', () => {
   });
 
   it('shows empty state when category has no words', async () => {
-    const user = userEvent.setup();
     render(<QuickPracticeWidget />);
 
     // Note: In our mock data, all categories have words

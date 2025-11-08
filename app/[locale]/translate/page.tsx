@@ -2,11 +2,10 @@
 
 import { FormEvent, useCallback, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { useSearchParams } from 'next/navigation';
 import { ArrowLeftRight, Check, Copy, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
@@ -28,12 +27,9 @@ type TranslationHistoryEntry = {
 
 const HISTORY_LIMIT = 5;
 const MAX_CHARACTERS = 1800;
-const TRANSLATION_SESSION_MINUTES = 6;
-const SNIPPET_REVIEW_MINUTES = 3;
 
 export default function TranslatePage() {
   const t = useTranslations('translate');
-  const searchParams = useSearchParams();
 
   const directionLabels = useMemo(() => {
     const raw = t.raw('directions');

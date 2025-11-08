@@ -1,4 +1,3 @@
-import { use } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { ArrowLeft, MessageCircle, Plane, Users } from 'lucide-react';
@@ -36,11 +35,7 @@ type ModuleResource = {
   href: string;
 };
 
-type PageProps = {
-  searchParams?: Promise<Record<string, string | string[] | undefined>>;
-};
-
-export default function PhrasesModulePage({ searchParams }: PageProps) {
+export default function PhrasesModulePage() {
   const t = useTranslations('learnPhrases');
   const locale = useLocale();
 

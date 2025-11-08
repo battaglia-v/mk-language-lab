@@ -1,4 +1,3 @@
-import { use } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { ArrowLeft, AudioLines, Ear, Mic } from 'lucide-react';
@@ -36,11 +35,7 @@ type ModuleResource = {
   href: string;
 };
 
-type PageProps = {
-  searchParams?: Promise<Record<string, string | string[] | undefined>>;
-};
-
-export default function PronunciationModulePage({ searchParams }: PageProps) {
+export default function PronunciationModulePage() {
   const t = useTranslations('learnPronunciation');
   const locale = useLocale();
 
