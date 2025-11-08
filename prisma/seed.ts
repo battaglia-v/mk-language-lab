@@ -1,4 +1,6 @@
 import { PrismaClient } from '@prisma/client';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
 const prisma = new PrismaClient();
 
@@ -21,6 +23,7 @@ async function main() {
     { name: 'Daily Life', slug: 'daily-life', color: '#a855f7', icon: '🏠' },
   ];
 
+  console.log('Seeding tags...');
   for (const tag of defaultTags) {
     await prisma.tag.upsert({
       where: { slug: tag.slug },
@@ -30,7 +33,34 @@ async function main() {
     console.log(`✓ Created tag: ${tag.name}`);
   }
 
-  console.log('Seeding completed!');
+  // Load and seed practice vocabulary from JSON file
+  console.log('\nSeeding practice vocabulary...');
+  const vocabPath = join(process.cwd(), 'data', 'practice-vocabulary.json');
+  const vocabData = JSON.parse(readFileSync(vocabPath, 'utf-8'));
+
+  // Clear existing practice vocabulary
+  const existingCount = await prisma.practiceVocabulary.count();
+  if (existingCount > 0) {
+    console.log(`Found ${existingCount} existing vocabulary entries. Skipping seed to preserve any edits.`);
+    console.log('To re-seed, delete all entries from PracticeVocabulary table first.');
+  } else {
+    let createdCount = 0;
+    for (const item of vocabData) {
+      await prisma.practiceVocabulary.create({
+        data: {
+          macedonian: item.macedonian,
+          english: item.english,
+          category: item.category || null,
+          difficulty: 'beginner', // Default difficulty for existing words
+          isActive: true,
+        },
+      });
+      createdCount++;
+    }
+    console.log(`✓ Created ${createdCount} practice vocabulary entries`);
+  }
+
+  console.log('\nSeeding completed!');
 }
 
 main()
