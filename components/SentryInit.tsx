@@ -90,7 +90,7 @@ export function SentryInit() {
 
     // Expose Sentry to window for debugging
     if (typeof window !== 'undefined') {
-      (window as any).Sentry = Sentry;
+      (window as typeof window & { Sentry: typeof Sentry }).Sentry = Sentry;
       console.log('Sentry exposed to window.Sentry');
     }
   }, []);
