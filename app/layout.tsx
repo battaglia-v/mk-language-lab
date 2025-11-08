@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
 import { InstallPrompt } from "@/components/InstallPrompt";
+import { SentryInit } from "@/components/SentryInit";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -107,6 +108,7 @@ export default function RootLayout({
         <meta name="google" content="notranslate" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <SentryInit />
         <ServiceWorkerRegistration />
         <InstallPrompt />
         {children}
