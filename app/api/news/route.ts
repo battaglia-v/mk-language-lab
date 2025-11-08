@@ -472,7 +472,7 @@ function parseFeed(xml: string, source: NewsSource): NewsItem[] {
   return items;
 }
 
-const PREVIEW_FETCH_LIMIT = 12;
+const PREVIEW_FETCH_LIMIT = 6;
 const PREVIEW_MAX_LENGTH = 260;
 
 function extractMetaContent(html: string, attribute: 'property' | 'name', value: string): string | null {
@@ -660,24 +660,33 @@ export async function GET(request: NextRequest) {
 
     const limitedItems = combinedItems.slice(0, limit);
 
-    if (limitedItems.length > 0) {
-      await resolveExternalLinks(limitedItems, abortController.signal);
-    }
+    // Skip slow link resolution for faster initial load
+    // Time.mk links will still work, just won't be fully resolved
+    // if (limitedItems.length > 0) {
+    //   await resolveExternalLinks(limitedItems, abortController.signal);
+    // }
 
     const payloadItems = (limitedItems.length > 0 ? limitedItems : FALLBACK_ITEMS).map((item) => ({ ...item }));
 
     await enrichPreviews(payloadItems, abortController.signal);
 
-    return NextResponse.json({
-      items: payloadItems,
-      meta: {
-        count: payloadItems.length,
-        total: combinedItems.length,
-        fetchedAt: new Date().toISOString(),
-        errors,
+    return NextResponse.json(
+      {
+        items: payloadItems,
+        meta: {
+          count: payloadItems.length,
+          total: combinedItems.length,
+          fetchedAt: new Date().toISOString(),
+          errors,
+        },
+        sources: NEWS_SOURCES,
       },
-      sources: NEWS_SOURCES,
-    });
+      {
+        headers: {
+          'Cache-Control': 'public, s-maxage=180, stale-while-revalidate=300',
+        },
+      }
+    );
   } finally {
     clearTimeout(timeout);
   }
