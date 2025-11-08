@@ -61,11 +61,8 @@ const sentryWebpackPluginOptions = {
     enabled: true,
   },
 
-  // Route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
-  // This can increase your server load as well as your hosting bill.
-  // Note: Check that the Sentry DSN in `sentry.client.config.ts` includes a trailing slash.
-  // Disabled for now as it's causing 405 errors - errors will send directly to Sentry
-  // tunnelRoute: "/monitoring",
+  // Tunnel route disabled - sending directly to Sentry
+  // tunnelRoute is commented out to avoid 405 errors
 
   // Hides source maps from generated client bundles
   hideSourceMaps: true,
