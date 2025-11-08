@@ -12,6 +12,14 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import type { InstagramPost, InstagramPostsResponse } from '@/types/instagram';
 
+type Tag = {
+  id: string;
+  name: string;
+  slug: string;
+  color: string;
+  icon: string | null;
+};
+
 type DailyLessonsProps = {
   limit?: number;
   showViewAll?: boolean;
@@ -98,6 +106,9 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
   const [savedPostIds, setSavedPostIds] = useState<Set<string>>(new Set());
   const [savingPostIds, setSavingPostIds] = useState<Set<string>>(new Set());
   const [activeTab, setActiveTab] = useState<string>('all');
+  const [tags, setTags] = useState<Tag[]>([]);
+  const [selectedTagIds, setSelectedTagIds] = useState<Set<string>>(new Set());
+  const [postTags, setPostTags] = useState<Map<string, Tag[]>>(new Map());
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -157,6 +168,78 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
 
     void fetchSavedPosts();
   }, [session]);
+
+  // Fetch available tags
+  useEffect(() => {
+    const fetchTags = async () => {
+      try {
+        const response = await fetch('/api/tags');
+        if (response.ok) {
+          const data = await response.json() as { tags: Tag[] };
+          setTags(data.tags);
+        }
+      } catch (err) {
+        console.error('Error fetching tags:', err);
+      }
+    };
+
+    void fetchTags();
+  }, []);
+
+  // Fetch tags for each post
+  useEffect(() => {
+    const fetchPostTags = async () => {
+      if (posts.length === 0) return;
+
+      const newPostTags = new Map<string, Tag[]>();
+
+      await Promise.all(
+        posts.map(async (post) => {
+          try {
+            const response = await fetch(`/api/instagram/posts/${post.id}/tags`);
+            if (response.ok) {
+              const data = await response.json() as { tags: Tag[] };
+              newPostTags.set(post.id, data.tags);
+            }
+          } catch (err) {
+            console.error(`Error fetching tags for post ${post.id}:`, err);
+          }
+        })
+      );
+
+      setPostTags(newPostTags);
+    };
+
+    void fetchPostTags();
+  }, [posts]);
+
+  // Toggle tag selection
+  const toggleTagFilter = (tagId: string) => {
+    setSelectedTagIds((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(tagId)) {
+        newSet.delete(tagId);
+      } else {
+        newSet.add(tagId);
+      }
+      return newSet;
+    });
+  };
+
+  // Filter posts by selected tags
+  const filterPostsByTags = (postsToFilter: InstagramPost[]) => {
+    if (selectedTagIds.size === 0) {
+      return postsToFilter;
+    }
+
+    return postsToFilter.filter((post) => {
+      const tags = postTags.get(post.id) || [];
+      return tags.some((tag) => selectedTagIds.has(tag.id));
+    });
+  };
+
+  const filteredPosts = filterPostsByTags(posts);
+  const filteredSavedPosts = filterPostsByTags(savedPosts);
 
   // Handle saving/unsaving a post
   const handleToggleSave = async (post: InstagramPost, event: React.MouseEvent) => {
@@ -326,6 +409,47 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
         )}
       </CardHeader>
       <CardContent>
+        {/* Tag Filters */}
+        {tags.length > 0 && (
+          <div className="mb-6 space-y-2">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <span className="font-medium">{t('filterByTag')}:</span>
+              {selectedTagIds.size > 0 && (
+                <button
+                  onClick={() => setSelectedTagIds(new Set())}
+                  className="text-xs text-primary hover:underline"
+                >
+                  {t('clearFilters')}
+                </button>
+              )}
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {tags.map((tag) => {
+                const isSelected = selectedTagIds.has(tag.id);
+                return (
+                  <button
+                    key={tag.id}
+                    onClick={() => toggleTagFilter(tag.id)}
+                    className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-all ${
+                      isSelected
+                        ? 'bg-primary text-primary-foreground shadow-sm'
+                        : 'bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground'
+                    }`}
+                    style={
+                      isSelected
+                        ? { backgroundColor: tag.color, color: 'white' }
+                        : undefined
+                    }
+                  >
+                    {tag.icon && <span>{tag.icon}</span>}
+                    <span>{tag.name}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
         <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-6">
             <TabsTrigger value="all" className="flex items-center gap-2">
@@ -339,13 +463,13 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
           </TabsList>
 
           <TabsContent value="all" className="mt-0">
-            {posts.length === 0 ? (
+            {filteredPosts.length === 0 ? (
               <div className="py-12 text-center text-muted-foreground">
-                <p>{t('noPosts')}</p>
+                <p>{selectedTagIds.size > 0 ? t('noPostsWithTags') : t('noPosts')}</p>
               </div>
             ) : (
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {posts.map((post) => {
+                {filteredPosts.map((post) => {
                   const mediaTypeBadge = getMediaTypeBadge(post.media_type, t);
                   const imageUrl =
                     post.media_type === 'VIDEO' && post.thumbnail_url
@@ -369,10 +493,25 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
                           loading="lazy"
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
-                        <div className="absolute right-2 top-2 flex gap-2">
+                        <div className="absolute right-2 top-2 flex flex-wrap gap-1.5 max-w-[calc(100%-1rem)]">
                           <Badge variant={mediaTypeBadge.variant} className="text-xs backdrop-blur-sm">
                             {mediaTypeBadge.label}
                           </Badge>
+                          {postTags.get(post.id)?.slice(0, 2).map((tag) => (
+                            <Badge
+                              key={tag.id}
+                              variant="secondary"
+                              className="text-xs backdrop-blur-sm"
+                              style={{ backgroundColor: tag.color, color: 'white', borderColor: tag.color }}
+                            >
+                              {tag.icon} {tag.name}
+                            </Badge>
+                          ))}
+                          {(postTags.get(post.id)?.length ?? 0) > 2 && (
+                            <Badge variant="secondary" className="text-xs backdrop-blur-sm">
+                              +{(postTags.get(post.id)?.length ?? 0) - 2}
+                            </Badge>
+                          )}
                         </div>
                         {session?.user && (
                           <button
@@ -435,17 +574,21 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
               <div className="flex items-center justify-center py-12">
                 <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
               </div>
-            ) : savedPosts.length === 0 ? (
+            ) : filteredSavedPosts.length === 0 ? (
               <div className="flex flex-col items-center justify-center gap-4 py-12 text-center">
                 <Bookmark className="h-12 w-12 text-muted-foreground" />
                 <div className="space-y-2">
-                  <p className="text-sm font-medium">{t('saved.noPosts')}</p>
-                  <p className="text-xs text-muted-foreground">{t('saved.noPostsDescription')}</p>
+                  <p className="text-sm font-medium">
+                    {selectedTagIds.size > 0 ? t('noPostsWithTags') : t('saved.noPosts')}
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    {selectedTagIds.size > 0 ? t('tryDifferentTags') : t('saved.noPostsDescription')}
+                  </p>
                 </div>
               </div>
             ) : (
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {savedPosts.map((post) => {
+                {filteredSavedPosts.map((post) => {
                   const mediaTypeBadge = getMediaTypeBadge(post.media_type, t);
                   const imageUrl =
                     post.media_type === 'VIDEO' && post.thumbnail_url
@@ -469,10 +612,25 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
                           loading="lazy"
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
-                        <div className="absolute right-2 top-2 flex gap-2">
+                        <div className="absolute right-2 top-2 flex flex-wrap gap-1.5 max-w-[calc(100%-1rem)]">
                           <Badge variant={mediaTypeBadge.variant} className="text-xs backdrop-blur-sm">
                             {mediaTypeBadge.label}
                           </Badge>
+                          {postTags.get(post.id)?.slice(0, 2).map((tag) => (
+                            <Badge
+                              key={tag.id}
+                              variant="secondary"
+                              className="text-xs backdrop-blur-sm"
+                              style={{ backgroundColor: tag.color, color: 'white', borderColor: tag.color }}
+                            >
+                              {tag.icon} {tag.name}
+                            </Badge>
+                          ))}
+                          {(postTags.get(post.id)?.length ?? 0) > 2 && (
+                            <Badge variant="secondary" className="text-xs backdrop-blur-sm">
+                              +{(postTags.get(post.id)?.length ?? 0) - 2}
+                            </Badge>
+                          )}
                         </div>
                         {session?.user && (
                           <button

@@ -1128,7 +1128,11 @@
       "signInDescription": "Create an account to bookmark your favorite lessons for later review.",
       "noPosts": "No saved lessons yet",
       "noPostsDescription": "Bookmark posts from the All Posts tab to build your personal collection."
-    }
+    },
+    "filterByTag": "Filter by tag",
+    "clearFilters": "Clear filters",
+    "noPostsWithTags": "No posts match the selected tags",
+    "tryDifferentTags": "Try selecting different tags or clear the filters"
   },
   "savedLessons": {
     "title": "Saved Lessons",
