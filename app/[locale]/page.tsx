@@ -41,10 +41,6 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Inline Quick Practice - Main Action */}
-            <div className="mx-auto max-w-2xl">
-              <QuickPracticeWidget layout="default" />
-            </div>
           </div>
         </div>
       </section>
@@ -73,20 +69,20 @@ export default function HomePage() {
 
             <div className="grid gap-6 md:grid-cols-2">
               {/* Practice Card */}
-              <Card className="group relative overflow-hidden rounded-2xl border border-border/40 bg-background p-8 transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 hover:shadow-xl">
+              <Card className="group relative overflow-hidden rounded-2xl border border-border/40 bg-background p-8 transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 hover:shadow-xl flex flex-col">
                 {/* Decorative gradient */}
                 <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-primary/5 blur-3xl transition-opacity group-hover:opacity-70" />
 
-                <div className="relative space-y-6">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 transition-transform group-hover:scale-110">
+                <div className="relative flex flex-col flex-1">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 transition-transform group-hover:scale-110 mb-6">
                     <RefreshCw className="h-8 w-8 text-primary" />
                   </div>
-                  <div className="space-y-3">
+                  <div className="space-y-3 flex-1">
                     <h3 className="text-2xl font-semibold text-foreground">Daily Practice</h3>
                     <p className="text-base leading-relaxed text-muted-foreground">
                       Test your vocabulary with interactive quizzes. Switch between Macedonian→English and English→Macedonian to strengthen your skills.
                     </p>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
+                    <ul className="space-y-2 text-sm text-muted-foreground pb-4">
                       <li className="flex items-start gap-2">
                         <span className="mt-1 text-primary">•</span>
                         <span>Multiple practice modes</span>
@@ -101,7 +97,7 @@ export default function HomePage() {
                       </li>
                     </ul>
                   </div>
-                  <Button size="lg" className="w-full group-hover:shadow-lg transition-shadow" asChild>
+                  <Button size="lg" className="w-full group-hover:shadow-lg transition-shadow mt-auto" asChild>
                     <Link href={buildHref('/practice')}>
                       Start Practicing
                     </Link>
@@ -110,20 +106,20 @@ export default function HomePage() {
               </Card>
 
               {/* Resources Card */}
-              <Card className="group relative overflow-hidden rounded-2xl border border-border/40 bg-background p-8 transition-all duration-300 hover:scale-[1.02] hover:border-secondary/50 hover:shadow-xl">
+              <Card className="group relative overflow-hidden rounded-2xl border border-border/40 bg-background p-8 transition-all duration-300 hover:scale-[1.02] hover:border-secondary/50 hover:shadow-xl flex flex-col">
                 {/* Decorative gradient */}
                 <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-secondary/5 blur-3xl transition-opacity group-hover:opacity-70" />
 
-                <div className="relative space-y-6">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-secondary/10 transition-transform group-hover:scale-110">
+                <div className="relative flex flex-col flex-1">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-secondary/10 transition-transform group-hover:scale-110 mb-6">
                     <Library className="h-8 w-8 text-secondary" />
                   </div>
-                  <div className="space-y-3">
+                  <div className="space-y-3 flex-1">
                     <h3 className="text-2xl font-semibold text-foreground">Learning Resources</h3>
                     <p className="text-base leading-relaxed text-muted-foreground">
                       Access curated resources hand-picked by native speakers. Dictionaries, grammar guides, videos, and cultural content.
                     </p>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
+                    <ul className="space-y-2 text-sm text-muted-foreground pb-4">
                       <li className="flex items-start gap-2">
                         <span className="mt-1 text-secondary">•</span>
                         <span>Trusted dictionaries & references</span>
@@ -138,7 +134,7 @@ export default function HomePage() {
                       </li>
                     </ul>
                   </div>
-                  <Button size="lg" variant="outline" className="w-full group-hover:shadow-lg transition-shadow" asChild>
+                  <Button size="lg" variant="outline" className="w-full group-hover:shadow-lg transition-shadow mt-auto" asChild>
                     <Link href={buildHref('/resources')}>
                       Explore Resources
                     </Link>
