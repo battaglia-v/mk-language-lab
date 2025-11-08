@@ -17,146 +17,109 @@ export default function AppleIcon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(140deg, #080b12 0%, #141b28 55%, #0b101c 100%)',
+          background: 'linear-gradient(135deg, #FF5A2C 0%, #D63616 100%)',
         }}
       >
+        {/* Ajvar jar silhouette */}
         <div
           style={{
-            position: 'relative',
-            width: 103,
-            height: 129,
+            width: 90,
+            height: 108,
             display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
           }}
         >
-          {/* Top speaker */}
+          {/* Jar lid */}
           <div
             style={{
-              position: 'absolute',
-              top: -32,
-              width: 82,
-              height: 27,
-              borderRadius: 14,
-              background: 'linear-gradient(135deg, #f8f9fb 0%, #d9dde7 100%)',
-              border: '2px solid rgba(255, 255, 255, 0.28)',
-              boxShadow: '0 11px 17px rgba(0, 0, 0, 0.35)',
-            }}
-          />
-
-          {/* Top reflection */}
-          <div
-            style={{
-              position: 'absolute',
-              top: -7,
-              width: 103,
+              width: 81,
               height: 18,
-              borderRadius: 9,
-              background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0))',
-              opacity: 0.65,
-            }}
-          />
-
-          {/* Phone body */}
-          <div
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              borderRadius: 23,
-              background: 'linear-gradient(165deg, #ff5a2c 0%, #f03819 60%, #ff8042 100%)',
-              border: '3px solid rgba(255, 255, 255, 0.1)',
-              boxShadow: '0 19px 26px rgba(5, 7, 15, 0.55)',
-              overflow: 'hidden',
+              borderRadius: '4px',
+              background: 'linear-gradient(135deg, #CDD2DB 0%, #A8ADB8 100%)',
               display: 'flex',
-              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: 2,
             }}
           >
-            {/* Top bar */}
+            {/* Lid shine */}
             <div
               style={{
-                position: 'absolute',
-                top: 14,
-                left: 19,
-                right: 19,
+                width: 54,
                 height: 5,
-                borderRadius: 3,
-                background: 'rgba(255, 255, 255, 0.35)',
+                borderRadius: '3px',
+                background: 'rgba(255, 255, 255, 0.4)',
               }}
             />
+          </div>
 
-            {/* Second bar */}
+          {/* Jar body */}
+          <div
+            style={{
+              width: 90,
+              height: 90,
+              borderRadius: '14px',
+              background: '#E63E2A',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              position: 'relative',
+            }}
+          >
+            {/* Glass shine effect */}
             <div
               style={{
                 position: 'absolute',
-                top: 25,
-                left: 22,
-                right: 22,
-                height: 4,
-                borderRadius: 2,
-                background: 'rgba(255, 255, 255, 0.18)',
+                top: 10,
+                left: 10,
+                width: 36,
+                height: 54,
+                borderRadius: '50%',
+                background: 'rgba(255, 255, 255, 0.2)',
               }}
             />
 
-            {/* Content card */}
+            {/* Label */}
             <div
               style={{
-                position: 'absolute',
-                top: 44,
-                left: 16,
-                right: 16,
-                height: 52,
-                borderRadius: 15,
-                background: 'linear-gradient(145deg, #0d111f, #161d2c)',
-                border: '1px solid rgba(255, 255, 255, 0.06)',
-                boxShadow: '0 10px 17px rgba(6, 8, 16, 0.55)',
+                width: 54,
+                height: 45,
+                borderRadius: '7px',
+                background: 'rgba(255, 255, 255, 0.95)',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: 8,
+                gap: 5,
               }}
             >
+              {/* Label text lines */}
               <div
                 style={{
-                  width: '70%',
-                  height: 4,
-                  borderRadius: 2,
-                  background: 'linear-gradient(90deg, #ff753e, #ff9660)',
+                  width: 36,
+                  height: 5,
+                  borderRadius: '3px',
+                  background: 'rgba(44, 62, 80, 0.8)',
                 }}
               />
               <div
                 style={{
-                  width: '54%',
+                  width: 31,
                   height: 4,
-                  borderRadius: 2,
-                  background: 'linear-gradient(90deg, #37fca2, #40d2ff)',
+                  borderRadius: '2px',
+                  background: 'rgba(44, 62, 80, 0.6)',
                 }}
               />
               <div
                 style={{
-                  width: '62%',
+                  width: 27,
                   height: 4,
-                  borderRadius: 2,
-                  background: 'linear-gradient(90deg, #ffd463, #ffe489)',
+                  borderRadius: '2px',
+                  background: 'rgba(44, 62, 80, 0.5)',
                 }}
               />
             </div>
-
-            {/* Bottom shadow */}
-            <div
-              style={{
-                position: 'absolute',
-                bottom: -12,
-                left: 15,
-                right: 15,
-                height: 23,
-                borderRadius: 12,
-                background: 'linear-gradient(180deg, rgba(7, 8, 15, 0.45), rgba(7, 8, 15, 0))',
-              }}
-            />
           </div>
         </div>
       </div>
