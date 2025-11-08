@@ -5,7 +5,7 @@ import { Sparkles, BookOpen, ArrowRight } from 'lucide-react';
 
 export default function AdminDashboard() {
   return (
-    <div className="space-y-8 px-4 md:px-0">
+    <div className="space-y-8 px-6 lg:px-8">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Admin Dashboard</h1>
