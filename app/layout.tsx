@@ -55,6 +55,14 @@ export const metadata: Metadata = {
     title: "Macedonian Language Lab",
   },
   manifest: "/manifest.json",
+  icons: {
+    icon: [
+      { url: '/icon', sizes: '256x256', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-icon', sizes: '180x180', type: 'image/png' },
+    ],
+  },
   openGraph: {
     type: "website",
     locale: "en_US",

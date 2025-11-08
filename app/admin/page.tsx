@@ -15,43 +15,21 @@ export default function AdminDashboard() {
       </div>
 
       {/* Management Cards */}
-      <div className="grid gap-6 md:grid-cols-2">
-        {/* Word of the Day */}
+      <div className="grid gap-6 md:grid-cols-2 max-w-4xl">
+        {/* Vocabulary Management - Word of the Day & Practice */}
         <Card className="relative overflow-hidden transition-all hover:shadow-lg">
           <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-primary/5 blur-2xl" />
           <CardHeader>
             <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
               <Sparkles className="h-6 w-6 text-primary" />
             </div>
-            <CardTitle>Word of the Day</CardTitle>
+            <CardTitle>Vocabulary Management</CardTitle>
             <CardDescription>
-              Manage daily featured vocabulary words that appear on the homepage
+              Manage all vocabulary words for Word of the Day and Practice exercises
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Button className="w-full gap-2" asChild>
-              <Link href="/admin/word-of-the-day">
-                Manage Words
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          </CardContent>
-        </Card>
-
-        {/* Practice Vocabulary */}
-        <Card className="relative overflow-hidden transition-all hover:shadow-lg">
-          <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-secondary/5 blur-2xl" />
-          <CardHeader>
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-secondary/10">
-              <BookOpen className="h-6 w-6 text-secondary" />
-            </div>
-            <CardTitle>Practice Vocabulary</CardTitle>
-            <CardDescription>
-              Manage the word bank used in Quick Practice exercises
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Button className="w-full gap-2" variant="outline" asChild>
               <Link href="/admin/practice-vocabulary">
                 Manage Words
                 <ArrowRight className="h-4 w-4" />

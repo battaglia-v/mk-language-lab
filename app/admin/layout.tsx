@@ -23,16 +23,10 @@ export default async function AdminLayout({
             </Link>
             <nav className="hidden md:flex items-center gap-4 text-sm">
               <Link
-                href="/admin/word-of-the-day"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Word of the Day
-              </Link>
-              <Link
                 href="/admin/practice-vocabulary"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
-                Practice Vocabulary
+                Vocabulary Management
               </Link>
             </nav>
           </div>
