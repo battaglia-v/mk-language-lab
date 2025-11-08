@@ -128,7 +128,29 @@ Run `npx prisma migrate dev --name init` on first setup to create the SQLite dat
 	- `GOOGLE_APPLICATION_CREDENTIALS_JSON`: JSON or base64 JSON string (ideal for Vercel secrets).
 	- `GOOGLE_APPLICATION_CREDENTIALS`: absolute file path to a service-account JSON (works locally).
 	- No credentials → automatic mock mode with explanatory message in the JSON response.
-- Ensure the service account has the “Cloud Translation API User” role and that the API is enabled in your project.
+- Ensure the service account has the "Cloud Translation API User" role and that the API is enabled in your project.
+
+### Instagram Integration (Daily Lessons)
+
+The app displays Instagram posts from [@macedonianlanguagecorner](https://www.instagram.com/macedonianlanguagecorner) as daily learning content.
+
+**Quick Start (Demo Mode):**
+- Works out of the box with mock data
+- Set `INSTAGRAM_ACCESS_TOKEN="demo"` or leave empty
+- No Instagram API setup required
+
+**Production Setup (Real Instagram Posts):**
+- Requires Instagram Business/Creator account
+- Uses Instagram Graph API (free, official)
+- Setup time: 30-60 minutes (one-time)
+- See [INSTAGRAM_INTEGRATION.md](INSTAGRAM_INTEGRATION.md) for complete guide
+
+**Features:**
+- Displays posts in responsive grid (1/2/3 columns)
+- Server-side caching (30-min TTL)
+- Save posts to personal collection (requires auth)
+- Filter by tags (vocabulary, grammar, culture, etc.)
+- Graceful error handling and fallbacks
 
 ## 🛠️ Available Scripts
 

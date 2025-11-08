@@ -130,10 +130,10 @@ export default function TermsOfServicePage() {
             <CardContent>
               <p className="text-muted-foreground leading-relaxed mb-4">{t('contact.content')}</p>
               <a
-                href="mailto:vincent.battaglia@gmail.com"
+                href="mailto:vpbattaglia@gmail.com?subject=Terms%20of%20Service%20Inquiry%20-%20Macedonian%20Learning%20App"
                 className="text-primary hover:underline font-medium"
               >
-                vincent.battaglia@gmail.com
+                Contact Us
               </a>
             </CardContent>
           </Card>

@@ -1,11 +1,22 @@
 'use client';
 
 import { useMemo } from 'react';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { BookOpen, BookOpenCheck, MessageCircle, Volume2 } from 'lucide-react';
-import { QuickPracticeWidget } from '@/components/learn/QuickPracticeWidget';
+
+// Dynamic import for QuickPracticeWidget to reduce initial bundle size
+const QuickPracticeWidget = dynamic(
+  () => import('@/components/learn/QuickPracticeWidget').then(mod => ({ default: mod.QuickPracticeWidget })),
+  {
+    loading: () => (
+      <div className="h-[600px] animate-pulse rounded-xl bg-muted/50" />
+    ),
+    ssr: false
+  }
+);
 
 export default function LearnPage() {
   const t = useTranslations('learn');

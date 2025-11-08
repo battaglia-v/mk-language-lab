@@ -1,13 +1,24 @@
 'use client';
 
 import { useCallback } from 'react';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ArrowRight, Languages } from 'lucide-react';
-import { QuickPracticeWidget } from '@/components/learn/QuickPracticeWidget';
+
+// Dynamic import for QuickPracticeWidget to reduce initial bundle size
+const QuickPracticeWidget = dynamic(
+  () => import('@/components/learn/QuickPracticeWidget').then(mod => ({ default: mod.QuickPracticeWidget })),
+  {
+    loading: () => (
+      <div className="h-[600px] animate-pulse rounded-xl bg-muted/50" />
+    ),
+    ssr: false
+  }
+);
 
 export default function PracticeHubPage() {
   const t = useTranslations('practiceHub');
