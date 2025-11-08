@@ -73,8 +73,9 @@ export function QuickPracticeWidget({
   const [answer, setAnswer] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [revealedAnswer, setRevealedAnswer] = useState('');
-  const [attemptCount, setAttemptCount] = useState(0);
+  const [totalAttempts, setTotalAttempts] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
+  const [sessionComplete, setSessionComplete] = useState(false);
   const [isCelebrating, setIsCelebrating] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
@@ -102,8 +103,9 @@ export function QuickPracticeWidget({
       setAnswer('');
       setFeedback(null);
       setRevealedAnswer('');
-      setAttemptCount(0);
+      setTotalAttempts(0);
       setCorrectCount(0);
+      setSessionComplete(false);
       setIsCelebrating(false);
       return;
     }
@@ -112,8 +114,9 @@ export function QuickPracticeWidget({
     setAnswer('');
     setFeedback(null);
     setRevealedAnswer('');
-    setAttemptCount(0);
+    setTotalAttempts(0);
     setCorrectCount(0);
+    setSessionComplete(false);
     setIsCelebrating(false);
   }, [filteredItems]);
 
@@ -158,14 +161,16 @@ export function QuickPracticeWidget({
     const normalizedAnswer = normalizeAnswer(answer);
     const normalizedExpected = normalizeAnswer(expectedAnswer);
 
+    // ✅ ALWAYS increment total attempts for ALL answer submissions
+    const newTotalAttempts = totalAttempts + 1;
+    setTotalAttempts(newTotalAttempts);
+
     if (normalizedAnswer === normalizedExpected) {
-      // Only count attempts and progress when answer is correct
-      const newAttemptCount = attemptCount + 1;
+      // Increment correct count
       const newCorrectCount = correctCount + 1;
-      setAttemptCount(newAttemptCount);
+      setCorrectCount(newCorrectCount);
       setFeedback('correct');
       setRevealedAnswer('');
-      setCorrectCount(newCorrectCount);
       setIsCelebrating(true);
       if (celebrationTimeoutRef.current) {
         clearTimeout(celebrationTimeoutRef.current);
@@ -178,13 +183,15 @@ export function QuickPracticeWidget({
         category: category === ALL_CATEGORIES ? 'all' : category,
       });
 
-      // Track practice completion when reaching target
-      if (newAttemptCount === SESSION_TARGET) {
+      // Check for session completion (5 correct answers)
+      if (newCorrectCount === SESSION_TARGET) {
+        setSessionComplete(true);
         trackEvent(AnalyticsEvents.PRACTICE_COMPLETED, {
           mode,
           category: category === ALL_CATEGORIES ? 'all' : category,
           correctCount: newCorrectCount,
-          totalAttempts: newAttemptCount,
+          totalAttempts: newTotalAttempts,
+          accuracy: Math.round((newCorrectCount / newTotalAttempts) * 100),
         });
       }
 
@@ -240,8 +247,9 @@ export function QuickPracticeWidget({
   const handleReset = () => {
     setAnswer('');
     setFeedback(null);
-    setAttemptCount(0);
+    setTotalAttempts(0);
     setCorrectCount(0);
+    setSessionComplete(false);
     setIsCelebrating(false);
     setRevealedAnswer('');
   };
@@ -263,8 +271,10 @@ export function QuickPracticeWidget({
 
   };
 
-  const sessionProgress = Math.min(100, Math.round((attemptCount / SESSION_TARGET) * 100));
-  const accuracy = attemptCount > 0 ? Math.round((correctCount / attemptCount) * 100) : 0;
+  // Progress based on correct answers (5 correct = 100%)
+  const sessionProgress = Math.min(100, Math.round((correctCount / SESSION_TARGET) * 100));
+  // ✅ Accuracy now calculated correctly using total attempts
+  const accuracy = totalAttempts > 0 ? Math.round((correctCount / totalAttempts) * 100) : 0;
   const summarySubtitle = description ?? t('quickPracticeDescription');
 
   const renderPracticeCard = (variant: 'default' | 'modal', extraClassName?: string) => {
@@ -311,7 +321,7 @@ export function QuickPracticeWidget({
               />
             </div>
             <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-              <span>{t('practiceProgressSummary', { count: attemptCount })}</span>
+              <span>{t('practiceProgressSummary', { count: correctCount })}</span>
               <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-primary">
                 <Sparkles className="h-4 w-4" />
                 {t('practiceAccuracy', { value: accuracy })}
@@ -531,11 +541,11 @@ export function QuickPracticeWidget({
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center gap-2 text-muted-foreground">
               <Sparkles className="h-4 w-4 text-primary" />
-              <span>{t('practiceProgressSummary', { count: attemptCount })}</span>
+              <span>{t('practiceProgressSummary', { count: correctCount })}</span>
             </div>
-            {attemptCount > 0 && (
+            {totalAttempts > 0 && (
               <span className="text-primary font-medium">
-                {Math.round((correctCount / attemptCount) * 100)}% {t('practiceAccuracy', { value: '' }).split(':')[0]}
+                {Math.round((correctCount / totalAttempts) * 100)}% {t('practiceAccuracy', { value: '' }).split(':')[0]}
               </span>
             )}
           </div>

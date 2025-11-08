@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { wordOfDayRateLimit, checkRateLimit } from '@/lib/rate-limit';
+import { cyrillicToLatin } from '@/lib/transliterate';
 
 export async function GET(request: NextRequest) {
   try {
@@ -60,7 +61,7 @@ export async function GET(request: NextRequest) {
     // Return with sensible defaults for missing fields
     return NextResponse.json({
       macedonian: word.macedonian,
-      pronunciation: word.pronunciation || word.macedonian,
+      pronunciation: word.pronunciation || cyrillicToLatin(word.macedonian),
       english: word.english,
       partOfSpeech: word.partOfSpeech || 'word',
       exampleMk: word.exampleMk || `${word.macedonian}.`,

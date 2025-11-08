@@ -1,9 +1,15 @@
 # Agent Synchronization Log
 
+⚠️ **IMPORTANT: READ THIS FILE BEFORE MAKING CHANGES** ⚠️
+
+This file contains critical information about recent changes, breaking patterns, and coordination guidelines for all agents working in parallel on this codebase.
+
 ## Latest Changes (2025-11-08 ~20:47 UTC)
 
 ### Critical Fixes Applied
 All changes have been committed and pushed to `main` branch.
+
+🚨 **ALL AGENTS:** Before modifying any files, review the "Important Patterns for Parallel Development" section below to avoid breaking changes.
 
 ---
 
@@ -120,5 +126,18 @@ These files are actively being modified:
 
 ---
 
-**Last Updated:** 2025-11-08 20:47 UTC
+### 8. Transliteration Feature Added ✅
+**Files Created/Modified:**
+- `lib/transliterate.ts` - New Cyrillic to Latin conversion utility
+- `app/api/word-of-the-day/route.ts` - Use Latinized version for pronunciation fallback
+
+**Change:** When pronunciation is missing from database, show Latinized/Romanized version (e.g., "gledam") instead of repeating Cyrillic (e.g., "гледам")
+
+**For Other Agents:**
+- Use `cyrillicToLatin()` helper when you need to show Latin/Romanized Macedonian text
+- Standard Macedonian transliteration rules are implemented (ж→zh, ч→ch, љ→lj, etc.)
+
+---
+
+**Last Updated:** 2025-11-08 21:15 UTC
 **Updated By:** Build & Deploy Agent
