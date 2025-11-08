@@ -35,7 +35,6 @@ type CommandItem = {
 };
 
 const NAV_COMMANDS: NavCommand[] = [
-  { key: "journey", path: "", icon: Sparkles, labelKey: "journey", descriptionKey: "journeyDescription" },
   { key: "practice", path: "/practice", icon: RefreshCcw, labelKey: "practice", descriptionKey: "practiceDescription" },
   { key: "translate", path: "/translate", icon: Languages, labelKey: "translate", descriptionKey: "translateDescription" },
   { key: "news", path: "/news", icon: Newspaper, labelKey: "news", descriptionKey: "newsDescription" },

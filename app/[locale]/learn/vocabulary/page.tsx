@@ -1,7 +1,6 @@
 "use client";
 
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { ArrowLeft, BookOpen, MapPin, Sparkles } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
@@ -55,7 +54,6 @@ type NextAction = {
 export default function VocabularyModulePage() {
   const t = useTranslations('learnVocabulary');
   const locale = useLocale();
-  const searchParams = useSearchParams();
 
   const objectives = t.raw('objectives') as string[];
   const howTo = t.raw('howTo') as string[];
@@ -73,8 +71,6 @@ export default function VocabularyModulePage() {
     ...action,
     href: action.href.startsWith('/') ? `/${locale}${action.href}` : action.href,
   }));
-  const journeyKey = searchParams.get('journey');
-  const journeyHref = journeyKey ? `/${locale}/journey/${journeyKey}` : `/${locale}/learn`;
   const primaryActionHref = nextActions[0]?.href ?? `/${locale}/practice`;
 
   return (
@@ -246,12 +242,6 @@ export default function VocabularyModulePage() {
         </section>
 
         <div className="flex flex-wrap gap-3">
-          <Link href={journeyHref}>
-            <Button variant="ghost" className="gap-2">
-              <ArrowLeft className="h-4 w-4" />
-              {t('returnToJourney')}
-            </Button>
-          </Link>
           <Link href={primaryActionHref}>
             <Button className="gap-2">
               {t('tryNow')}
