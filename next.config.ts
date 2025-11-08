@@ -36,8 +36,8 @@ const sentryWebpackPluginOptions = {
   org: process.env.SENTRY_ORG,
   project: process.env.SENTRY_PROJECT,
 
-  // Only print logs for uploading source maps in CI
-  silent: !process.env.CI,
+  // Suppress all Sentry plugin logs and warnings
+  silent: true,
 
   // Disable source map upload and release creation if no auth token
   // This prevents warnings during build when SENTRY_AUTH_TOKEN is not set
