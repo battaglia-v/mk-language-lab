@@ -240,15 +240,6 @@ export default function JourneyDetailPage({ params }: PageProps) {
                   ) : null}
                 </section>
               )}
-
-              <section className="space-y-3">
-                <h2 className="text-lg font-semibold text-foreground">{t('previewTitle')}</h2>
-                <p className="text-sm text-muted-foreground">{t('comingSoon')}</p>
-                <Button className="gap-2" disabled>
-                  <Compass className="h-4 w-4" />
-                  {t('previewCta')}
-                </Button>
-              </section>
             </CardContent>
           </Card>
         </div>
