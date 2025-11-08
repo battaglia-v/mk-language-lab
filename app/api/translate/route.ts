@@ -62,7 +62,7 @@ const getTranslator = () => {
 export async function POST(request: NextRequest) {
   try {
     // Rate limiting - protect expensive Google Cloud API
-    const ip = request.ip ?? request.headers.get('x-forwarded-for') ?? '127.0.0.1';
+    const ip = request.headers.get('x-forwarded-for') ?? request.headers.get('x-real-ip') ?? '127.0.0.1';
     const { success, limit, reset, remaining } = await checkRateLimit(translateRateLimit, ip);
 
     if (!success) {

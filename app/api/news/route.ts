@@ -598,7 +598,7 @@ async function fetchFeed(source: NewsSource, signal: AbortSignal): Promise<NewsI
 
 export async function GET(request: NextRequest) {
   // Rate limiting - prevent scraping abuse
-  const ip = request.ip ?? request.headers.get('x-forwarded-for') ?? '127.0.0.1';
+  const ip = request.headers.get('x-forwarded-for') ?? request.headers.get('x-real-ip') ?? '127.0.0.1';
   const { success, limit: rateLimitMax, reset, remaining } = await checkRateLimit(newsRateLimit, ip);
 
   if (!success) {

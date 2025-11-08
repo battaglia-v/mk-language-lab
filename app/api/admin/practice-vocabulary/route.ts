@@ -8,9 +8,7 @@ const createVocabularySchema = z.object({
   macedonian: z.string().min(1, 'Macedonian word is required').max(200, 'Macedonian word must be 200 characters or less'),
   english: z.string().min(1, 'English translation is required').max(200, 'English translation must be 200 characters or less'),
   category: z.string().nullable().optional(),
-  difficulty: z.enum(['beginner', 'intermediate', 'advanced'], {
-    errorMap: () => ({ message: 'Difficulty must be one of: beginner, intermediate, advanced' }),
-  }).default('beginner'),
+  difficulty: z.enum(['beginner', 'intermediate', 'advanced']).default('beginner'),
   isActive: z.boolean().default(true),
   includeInWOTD: z.boolean().default(false),
   pronunciation: z.string().nullable().optional(),

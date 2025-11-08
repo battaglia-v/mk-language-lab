@@ -14,9 +14,7 @@ const updateVocabularySchema = z.object({
   macedonian: z.string().min(1, 'Macedonian word is required').max(200, 'Macedonian word must be 200 characters or less'),
   english: z.string().min(1, 'English translation is required').max(200, 'English translation must be 200 characters or less'),
   category: z.string().nullable().optional(),
-  difficulty: z.enum(['beginner', 'intermediate', 'advanced'], {
-    errorMap: () => ({ message: 'Difficulty must be one of: beginner, intermediate, advanced' }),
-  }),
+  difficulty: z.enum(['beginner', 'intermediate', 'advanced']),
   isActive: z.boolean(),
   includeInWOTD: z.boolean().optional(),
   pronunciation: z.string().nullable().optional(),
@@ -80,15 +78,15 @@ export async function PUT(request: NextRequest, context: RouteContext) {
       data: {
         macedonian: data.macedonian,
         english: data.english,
-        category: data.category,
+        category: data.category ?? undefined,
         difficulty: data.difficulty,
         isActive: data.isActive,
         includeInWOTD: data.includeInWOTD,
-        pronunciation: data.pronunciation,
-        partOfSpeech: data.partOfSpeech,
-        exampleMk: data.exampleMk,
-        exampleEn: data.exampleEn,
-        icon: data.icon,
+        pronunciation: data.pronunciation ?? undefined,
+        partOfSpeech: data.partOfSpeech ?? undefined,
+        exampleMk: data.exampleMk ?? undefined,
+        exampleEn: data.exampleEn ?? undefined,
+        icon: data.icon ?? undefined,
       },
     });
 
