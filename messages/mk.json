@@ -11,155 +11,6 @@
     "news": "Вести"
   },
   "home": {
-    "progress": {
-      "badge": "Почетен импулс",
-      "title": "Денешен напредок",
-      "description": "Одржи ја навиката решавајќи една фокусирана задача.",
-      "streakLabel": "{count, plural, one {# ден по ред} other {# дена по ред}}",
-  "goalLabel": "Денешна цел - {minutes} мин",
-      "sessionLabel": "Напредок на сесијата",
-  "minutesTodayLabel": "Запишано денес: {minutes} мин",
-  "minutesWeekLabel": "Оваа недела: {minutes} мин",
-  "minutesTotalLabel": "Вкупно забележани минути: {minutes}",
-      "cta": "Започни вежбање",
-      "stats": {
-        "activeGoal": {
-          "label": "Активна цел",
-          "value": "Нема поставено"
-        },
-        "steps": {
-          "label": "Чекори оваа недела",
-          "value": "0"
-        },
-        "lastSession": {
-          "label": "Последна сесија",
-          "value": "Не е започнато",
-          "justNow": "Токму сега"
-        }
-      }
-    },
-    "quickActions": {
-      "title": "Продолжи таму каде што застана",
-      "description": "Влези директно во алатката што најчесто ја користиш.",
-      "progressLabel": "Напредок",
-      "minutes": "{minutes} мин загревање",
-      "resume": "Продолжи",
-      "open": "Отвори алатка",
-      "items": {
-        "practice": {
-          "label": "Дневно вежбање",
-          "description": "Направи 10-минутен превод или речникова вежба."
-        },
-        "tutor": {
-          "label": "Сесија со тутор",
-          "description": "Постави прашање или побарај воден разговор од АИ туторот."
-        },
-        "library": {
-          "label": "Библиотека",
-          "description": "Прегледај сочувани ресурси и културни извори."
-        },
-        "news": {
-          "label": "Вести",
-          "description": "Прелистај македонски наслови и видеа за вежбање на слушање."
-        }
-      }
-    },
-    "recent": {
-      "title": "Недавно вежбано",
-      "description": "Продолжи со вежбите што ги допре оваа недела со зачуван напредок.",
-      "resume": "Продолжи сесија",
-      "streakLabel": "{count, plural, one {# ден по ред} other {# дена по ред}}",
-      "items": {
-        "familyPhrases": {
-          "tag": "Речников дек",
-          "title": "Семејни фрази",
-          "description": "Топли поздрави, прашања и споделени спомени."
-        },
-        "listeningWarmup": {
-          "tag": "Лабораторија за изговор",
-          "title": "Утринско слушање",
-          "description": "Имитирај краток дијалог за да го ресетираш слухот."
-        },
-        "newsDigest": {
-          "tag": "Преглед на вести",
-          "title": "Преглед на наслови",
-          "description": "Прелистај приказни и забележи прашања за продолжување."
-        }
-      }
-    },
-    "recommended": {
-      "title": "Препорачано за тебе",
-      "description": "Комбинација од слушање, култура и патување за да го одржиш темпото.",
-      "start": "Отвори модул",
-      "items": {
-        "listeningLab": {
-          "tag": "Аудио фокус",
-          "title": "Слушачка лабораторија",
-          "description": "Гради разбирање со водени сетови за сенчење."
-        },
-        "cultureDeepDive": {
-          "tag": "Култура",
-          "title": "Културно истражување",
-          "description": "Спои статии, видеа и прашања за тутор."
-        },
-        "travelToolkit": {
-          "tag": "Патување",
-          "title": "Патнички алатник",
-          "description": "Вежбај реални маршрути и интеракции со услуги."
-        }
-      }
-    },
-    "goals": {
-      "title": "Одбери патека",
-      "description": "Секоја патека комбинира курирани ресурси, вежби и културен контекст според твојата цел.",
-      "minutes": "Препорачан фокус: {minutes} мин",
-      "start": "Започни",
-      "cards": {
-        "family": {
-          "badge": "Разговор",
-          "title": "Разговарај со семејство",
-          "description": "Изгради самодоверба за повторно поврзување со роднини и говорители.",
-          "focus": [
-            "Топли поздрави и прашања за состојби",
-            "Приказни и прашања за да го одржиш разговорот",
-            "Совети за префрлање меѓу неформален и формален тон"
-          ]
-        },
-        "travel": {
-          "badge": "Во движење",
-          "title": "Подготви се за патување",
-          "description": "Совладај важни интеракции за превоз, сместување и храна.",
-          "focus": [
-            "Мини дијалози за транспорт и ориентација",
-            "Учтиви барања и вокабулар за услуги",
-            "Културни сигнали за пазари, кафулиња и разгледување"
-          ]
-        },
-        "culture": {
-          "badge": "Потопување",
-          "title": "Културна писменост",
-          "description": "Комбинирај медиуми, литература и историја за подлабоко разбирање.",
-          "focus": [
-            "Курирани листи за читање и слушање",
-            "Граматички забелешки од вистински наслови",
-            "Поттици за дневник и размислување"
-          ]
-        }
-      }
-    },
-    "spotlight": {
-      "badge": "Културен фокус",
-      "title": "Оваа недела во Македонија",
-      "description": "Задржи ја патеката приземјена со навремени статии и приказни.",
-      "highlights": [
-        "Статии што објаснуваат современ македонски живот",
-        "Аудио клипови за имитација на изговор и ритам",
-        "Предлози за прашања до туторот за она што го прочита"
-      ],
-      "cta": "Истражи ја библиотеката"
-    }
-  },
-  "home": {
     "learn": "Учи",
     "title": "Учи македонски",
     "subtitle": "Фокусирана алатка за превод, курирани ресурси и секојдневни македонски вести.",
@@ -189,21 +40,21 @@
     "phrasesDesc": "Вежбај секојдневни разговори",
     "pronunciation": "Изговор",
     "pronunciationDesc": "Усоврши го твојот македонски акцент",
-  "quickPractice": "Брзо Вежбање",
-  "quickPracticeDescription": "Вежбај преведување на зборови.",
-  "practicePromptLabelMk": "Преведи на англиски",
-  "practicePromptLabelEn": "Преведи на македонски",
-  "practiceHint": "Смени тема или насока за да остане свежо загревањето.",
-  "practicePlaceholderMk": "Напиши го преводот на англиски...",
-  "practicePlaceholderEn": "Напиши го преводот на македонски...",
-  "practiceFilterLabel": "Тема",
-  "practiceAllCategories": "Сите теми",
-  "practiceModeLabel": "Насока на вежбање",
-  "practiceModeMkToEn": "Македонски → Англиски",
-  "practiceModeEnToMk": "Англиски → Македонски",
-  "practiceRevealAnswer": "Откриј го одговорот",
-  "practiceAnswerRevealed": "Одговорот е {answer}.",
-  "practiceEmptyCategory": "Нема зборови во оваа тема. Одбери друга!",
+    "quickPractice": "Брзо Вежбање",
+    "quickPracticeDescription": "Вежбај преведување на зборови.",
+    "practicePromptLabelMk": "Преведи на англиски",
+    "practicePromptLabelEn": "Преведи на македонски",
+    "practiceHint": "Смени тема или насока за да остане свежо загревањето.",
+    "practicePlaceholderMk": "Напиши го преводот на англиски...",
+    "practicePlaceholderEn": "Напиши го преводот на македонски...",
+    "practiceFilterLabel": "Тема",
+    "practiceAllCategories": "Сите теми",
+    "practiceModeLabel": "Насока на вежбање",
+    "practiceModeMkToEn": "Македонски → Англиски",
+    "practiceModeEnToMk": "Англиски → Македонски",
+    "practiceRevealAnswer": "Откриј го одговорот",
+    "practiceAnswerRevealed": "Одговорот е {answer}.",
+    "practiceEmptyCategory": "Нема зборови во оваа тема. Одбери друга!",
     "checkAnswer": "Провери",
     "nextPrompt": "Нова задача",
     "practiceReset": "Ресетирај",
@@ -819,7 +670,7 @@
       "exercisesTitle": "Насочени вежби",
       "resourcesTitle": "Дополнителни ресурси",
       "timeLabel": "{minutes} мин",
-  "openLink": "Отвори врска",
+      "openLink": "Отвори врска",
       "family": {
         "exercises": [
           {
@@ -1177,5 +1028,175 @@
     "description": "Започни да учиш со денешниот истакнат збор, вежбај речник или истражувај ресурси курирани од мајчини говорители.",
     "ctaPrimary": "Види го Денешниот Збор",
     "ctaSecondary": "Започни Вежбање"
+  },
+  "privacy": {
+    "badge": "Privacy & Data Protection",
+    "title": "Privacy Policy",
+    "subtitle": "How we protect and handle your personal information",
+    "lastUpdated": "Last updated: November 8, 2024",
+    "introduction": "The Macedonian Learning App is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your personal information when you use our educational web application. We are transparent about our data practices and comply with applicable data protection laws, including the General Data Protection Regulation (GDPR).",
+    "section1": {
+      "title": "Information We Collect",
+      "content": "We collect minimal information necessary to provide and improve our services:",
+      "items": [
+        "Google Account Information: When you sign in with Google OAuth, we receive your email address, name, and profile picture from your Google account.",
+        "Learning Progress: We store your learning activities, quiz results, saved lessons, and progress tracking to personalize your experience.",
+        "Usage Data: We collect anonymous analytics data about how you interact with the app to improve our features and user experience.",
+        "Error Logs: Through Sentry, we collect technical error information to identify and fix bugs in the application."
+      ]
+    },
+    "section2": {
+      "title": "How We Use Your Information",
+      "content": "We use your information for the following purposes:",
+      "items": [
+        "Authentication: To verify your identity and provide secure access to your account.",
+        "Personalization: To remember your learning progress, preferences, and saved content.",
+        "Service Improvement: To analyze usage patterns and enhance the app's features and performance.",
+        "Error Resolution: To diagnose and fix technical issues that affect your experience.",
+        "Communication: To send important service updates (we do not send marketing emails)."
+      ]
+    },
+    "section3": {
+      "title": "Data Storage and Security",
+      "content": "We take data security seriously:",
+      "items": [
+        "Database: User data is securely stored in a PostgreSQL database with encryption at rest.",
+        "Authentication: We use NextAuth.js with industry-standard OAuth 2.0 protocol for secure authentication.",
+        "Rate Limiting: Upstash Redis is used to prevent abuse and protect your account from unauthorized access.",
+        "No Payment Data: We do not collect or store any payment information as our service is completely free.",
+        "Access Control: Only authorized personnel can access user data, and only for support and maintenance purposes."
+      ]
+    },
+    "section4": {
+      "title": "Third-Party Services",
+      "content": "We use carefully selected third-party services to provide our features. These services have their own privacy policies: Google OAuth (authentication), Sentry (error tracking and monitoring), Upstash Redis (rate limiting and caching), Time.mk and Meta.mk (RSS news feeds - we only display publicly available content). We do not share your personal information with third parties for marketing purposes."
+    },
+    "section5": {
+      "title": "Your Data Rights",
+      "content": "You have control over your personal information:",
+      "items": [
+        "Access: You can view all personal data we have stored about you.",
+        "Correction: You can update your profile information at any time.",
+        "Deletion: You can request deletion of your account and all associated data.",
+        "Export: You can request a copy of your data in a machine-readable format.",
+        "Withdraw Consent: You can stop using our services at any time."
+      ]
+    },
+    "section6": {
+      "title": "Cookies and Local Storage",
+      "content": "We use essential cookies and local storage to maintain your session and remember your preferences. These are necessary for the app to function properly. We do not use tracking cookies or third-party advertising cookies."
+    },
+    "gdpr": {
+      "title": "GDPR Compliance",
+      "content": "For users in the European Union, we comply with GDPR requirements. Under GDPR, you have the following rights:",
+      "rights": [
+        "Right to be informed about data collection and use",
+        "Right to access your personal data",
+        "Right to rectification of inaccurate data",
+        "Right to erasure (right to be forgotten)",
+        "Right to restrict processing",
+        "Right to data portability",
+        "Right to object to data processing",
+        "Rights related to automated decision-making and profiling"
+      ]
+    },
+    "contact": {
+      "title": "Contact Us",
+      "content": "If you have any questions about this Privacy Policy or wish to exercise your data rights, please contact us at:"
+    },
+    "viewTerms": "View Terms of Service",
+    "backHome": "Back to Home"
+  },
+  "terms": {
+    "badge": "Legal Terms",
+    "title": "Terms of Service",
+    "subtitle": "Guidelines for using the Macedonian Learning App",
+    "lastUpdated": "Last updated: November 8, 2024",
+    "introduction": "Welcome to the Macedonian Learning App. By accessing or using our application, you agree to be bound by these Terms of Service. Please read them carefully. If you do not agree with these terms, please do not use our service.",
+    "section1": {
+      "title": "Acceptance of Terms",
+      "content": "By creating an account or using the Macedonian Learning App, you agree to:",
+      "items": [
+        "Comply with all terms and conditions outlined in this document",
+        "Use the service only for lawful, educational purposes",
+        "Provide accurate information during registration",
+        "Maintain the security of your account credentials",
+        "Accept updates to these terms as we evolve the service"
+      ]
+    },
+    "section2": {
+      "title": "User Responsibilities",
+      "content": "As a user of our educational platform, you agree to:",
+      "items": [
+        "Use the app respectfully and for its intended educational purpose",
+        "Not attempt to access unauthorized areas of the application",
+        "Not abuse or overload our systems through excessive requests",
+        "Not share your account credentials with others",
+        "Respect intellectual property rights of all content",
+        "Not use the service to harass, harm, or impersonate others"
+      ]
+    },
+    "section3": {
+      "title": "Intellectual Property",
+      "content": "Content ownership and usage rights:",
+      "items": [
+        "Original Content: All original lessons, exercises, and learning materials are created or curated by the Macedonian Learning App team and are protected by copyright.",
+        "Third-Party Content: News articles from Time.mk and Meta.mk remain the property of their respective publishers. We display RSS feed summaries under fair use for educational purposes.",
+        "User-Generated Content: Any content you create while using the app (notes, progress data) remains yours, but you grant us a license to store and display it as necessary to provide the service.",
+        "AI-Generated Content: Content generated through our AI tutor features is provided for educational use and should not be considered as professional advice."
+      ]
+    },
+    "section4": {
+      "title": "Prohibited Activities",
+      "content": "The following activities are strictly prohibited:",
+      "items": [
+        "Attempting to hack, reverse engineer, or compromise the application's security",
+        "Using automated bots or scrapers to extract content",
+        "Violating rate limits or attempting to bypass security measures",
+        "Uploading malicious code, viruses, or harmful content",
+        "Using the service for commercial purposes without authorization",
+        "Impersonating other users or creating fake accounts"
+      ]
+    },
+    "section5": {
+      "title": "Disclaimer of Warranties",
+      "content": "The Macedonian Learning App is provided \"as is\" without warranties of any kind. We strive for accuracy in our educational content, but we cannot guarantee that all information is error-free or complete. We are not responsible for decisions made based on content from our app. Language learning results vary by individual effort and circumstances. We do not guarantee specific learning outcomes."
+    },
+    "section6": {
+      "title": "Changes to Terms",
+      "content": "We may update these Terms of Service periodically to reflect changes in our practices or legal requirements. We will notify users of significant changes through the app or via email. Continued use of the service after changes constitutes acceptance of the updated terms. The \"Last Updated\" date at the top of this document indicates when changes were last made."
+    },
+    "section7": {
+      "title": "Third-Party Services",
+      "content": "Our app integrates with several third-party services. Use of these services is subject to their respective terms:",
+      "services": [
+        {
+          "name": "Google OAuth",
+          "purpose": "Secure authentication and login"
+        },
+        {
+          "name": "Sentry",
+          "purpose": "Error tracking and application monitoring"
+        },
+        {
+          "name": "Upstash Redis",
+          "purpose": "Rate limiting and performance optimization"
+        },
+        {
+          "name": "Time.mk & Meta.mk",
+          "purpose": "Macedonian news RSS feeds"
+        },
+        {
+          "name": "Vercel",
+          "purpose": "Application hosting and analytics"
+        }
+      ]
+    },
+    "contact": {
+      "title": "Questions and Support",
+      "content": "If you have questions about these Terms of Service or need support, please contact us at:"
+    },
+    "viewPrivacy": "View Privacy Policy",
+    "backHome": "Back to Home"
   }
 }
