@@ -23,6 +23,31 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
+      // News feed image sources
+      {
+        protocol: 'https',
+        hostname: 'time.mk',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.time.mk',
+      },
+      {
+        protocol: 'https',
+        hostname: 'meta.mk',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.meta.mk',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
+      },
     ],
   },
   experimental: {

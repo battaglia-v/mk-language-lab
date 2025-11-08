@@ -88,16 +88,133 @@ function getSourceInitials(name: string): string {
 
 function SkeletonCard() {
   return (
-    <Card className="border-border/30 bg-card/40">
+    <Card className="border-border/30 bg-card/40 overflow-hidden">
       <CardHeader>
-        <div className="animate-pulse space-y-4">
-          <div className="h-6 w-3/4 rounded bg-muted/60" />
-          <div className="h-3 w-2/3 rounded bg-muted/50" />
-          <div className="h-20 w-full rounded-md bg-muted/40" />
-          <div className="h-4 w-1/3 rounded bg-muted/40" />
-          <div className="relative mt-2 aspect-video w-full overflow-hidden rounded-xl border border-border/20 bg-muted/40" />
+        <div className="flex flex-col md:flex-row gap-4">
+          {/* Content skeleton */}
+          <div className="flex-1 space-y-3">
+            {/* Source badge */}
+            <div className="relative h-5 w-20 rounded-full overflow-hidden bg-muted/40">
+              <div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-muted/20 to-transparent animate-pulse"
+                style={{
+                  backgroundSize: '200% 100%',
+                  animation: 'shimmer 2s infinite'
+                }}
+              />
+            </div>
+
+            {/* Title skeleton - 2 lines */}
+            <div className="space-y-2">
+              <div className="relative h-6 w-full rounded overflow-hidden bg-muted/50">
+                <div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-muted/30 to-transparent"
+                  style={{
+                    backgroundSize: '200% 100%',
+                    animation: 'shimmer 2s infinite 0.1s'
+                  }}
+                />
+              </div>
+              <div className="relative h-6 w-4/5 rounded overflow-hidden bg-muted/50">
+                <div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-muted/30 to-transparent"
+                  style={{
+                    backgroundSize: '200% 100%',
+                    animation: 'shimmer 2s infinite 0.2s'
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Meta info */}
+            <div className="relative h-4 w-48 rounded overflow-hidden bg-muted/40">
+              <div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-muted/20 to-transparent"
+                style={{
+                  backgroundSize: '200% 100%',
+                  animation: 'shimmer 2s infinite 0.3s'
+                }}
+              />
+            </div>
+
+            {/* Description - 3 lines */}
+            <div className="space-y-2">
+              <div className="relative h-4 w-full rounded overflow-hidden bg-muted/30">
+                <div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-muted/15 to-transparent"
+                  style={{
+                    backgroundSize: '200% 100%',
+                    animation: 'shimmer 2s infinite 0.4s'
+                  }}
+                />
+              </div>
+              <div className="relative h-4 w-full rounded overflow-hidden bg-muted/30">
+                <div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-muted/15 to-transparent"
+                  style={{
+                    backgroundSize: '200% 100%',
+                    animation: 'shimmer 2s infinite 0.5s'
+                  }}
+                />
+              </div>
+              <div className="relative h-4 w-3/4 rounded overflow-hidden bg-muted/30">
+                <div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-muted/15 to-transparent"
+                  style={{
+                    backgroundSize: '200% 100%',
+                    animation: 'shimmer 2s infinite 0.6s'
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Category badges */}
+            <div className="flex gap-2">
+              <div className="relative h-6 w-16 rounded-full overflow-hidden bg-muted/30">
+                <div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-muted/15 to-transparent"
+                  style={{
+                    backgroundSize: '200% 100%',
+                    animation: 'shimmer 2s infinite 0.7s'
+                  }}
+                />
+              </div>
+              <div className="relative h-6 w-20 rounded-full overflow-hidden bg-muted/30">
+                <div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-muted/15 to-transparent"
+                  style={{
+                    backgroundSize: '200% 100%',
+                    animation: 'shimmer 2s infinite 0.8s'
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Image skeleton */}
+          <div className="relative w-full md:w-64 lg:w-72 aspect-video rounded-xl overflow-hidden border border-border/20 bg-muted/30">
+            <div
+              className="absolute inset-0 bg-gradient-to-br from-muted/20 via-muted/10 to-muted/20"
+              style={{
+                backgroundSize: '200% 200%',
+                animation: 'shimmer 2s infinite 0.9s'
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent" />
+          </div>
         </div>
       </CardHeader>
+
+      <style jsx>{`
+        @keyframes shimmer {
+          0% {
+            background-position: 200% 0;
+          }
+          100% {
+            background-position: -200% 0;
+          }
+        }
+      `}</style>
     </Card>
   );
 }
@@ -333,7 +450,7 @@ export default function NewsPage() {
         setIsLoading(true);
         setError(null);
         const response = await fetch(`/api/news?${params.toString()}`, {
-          cache: 'no-store',
+          next: { revalidate: 180 }, // Cache for 3 minutes, matching API route
           signal: options?.signal,
         });
 
