@@ -1118,6 +1118,16 @@
       "hoursAgo": "{hours}h ago",
       "yesterday": "Yesterday",
       "daysAgo": "{days}d ago"
+    },
+    "tabs": {
+      "all": "All Posts",
+      "saved": "Saved"
+    },
+    "saved": {
+      "signInRequired": "Sign in to save lessons",
+      "signInDescription": "Create an account to bookmark your favorite lessons for later review.",
+      "noPosts": "No saved lessons yet",
+      "noPostsDescription": "Bookmark posts from the All Posts tab to build your personal collection."
     }
   },
   "savedLessons": {
