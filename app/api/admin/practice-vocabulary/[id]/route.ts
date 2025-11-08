@@ -45,7 +45,19 @@ export async function PUT(request: NextRequest, context: RouteContext) {
 
     const { id } = await context.params;
     const body = await request.json();
-    const { macedonian, english, category, difficulty, isActive } = body;
+    const {
+      macedonian,
+      english,
+      category,
+      difficulty,
+      isActive,
+      includeInWOTD,
+      pronunciation,
+      partOfSpeech,
+      exampleMk,
+      exampleEn,
+      icon,
+    } = body;
 
     const word = await prisma.practiceVocabulary.update({
       where: { id },
@@ -55,6 +67,12 @@ export async function PUT(request: NextRequest, context: RouteContext) {
         category,
         difficulty,
         isActive,
+        includeInWOTD,
+        pronunciation,
+        partOfSpeech,
+        exampleMk,
+        exampleEn,
+        icon,
       },
     });
 

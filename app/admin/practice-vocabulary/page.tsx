@@ -268,6 +268,87 @@ export default function PracticeVocabularyAdmin() {
                 <Label htmlFor="isActive">Active (include in practice exercises)</Label>
               </div>
 
+              <div className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="includeInWOTD"
+                  checked={formData.includeInWOTD}
+                  onChange={(e) => setFormData({ ...formData, includeInWOTD: e.target.checked })}
+                  className="h-4 w-4"
+                />
+                <Label htmlFor="includeInWOTD">Include in Word of the Day</Label>
+              </div>
+
+              {formData.includeInWOTD && (
+                <div className="space-y-4 p-4 border rounded-lg bg-muted/30">
+                  <h4 className="font-semibold text-sm">Word of the Day Fields (Optional)</h4>
+
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <div className="space-y-2">
+                      <Label htmlFor="pronunciation">Pronunciation</Label>
+                      <Input
+                        id="pronunciation"
+                        value={formData.pronunciation || ''}
+                        onChange={(e) => setFormData({ ...formData, pronunciation: e.target.value || null })}
+                        placeholder="zdravo"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="partOfSpeech">Part of Speech</Label>
+                      <Select
+                        value={formData.partOfSpeech || 'word'}
+                        onValueChange={(value) => setFormData({ ...formData, partOfSpeech: value })}
+                      >
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="noun">Noun</SelectItem>
+                          <SelectItem value="verb">Verb</SelectItem>
+                          <SelectItem value="adjective">Adjective</SelectItem>
+                          <SelectItem value="adverb">Adverb</SelectItem>
+                          <SelectItem value="greeting">Greeting</SelectItem>
+                          <SelectItem value="expression">Expression</SelectItem>
+                          <SelectItem value="word">Word (Generic)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="icon">Icon (emoji)</Label>
+                      <Input
+                        id="icon"
+                        value={formData.icon || ''}
+                        onChange={(e) => setFormData({ ...formData, icon: e.target.value || null })}
+                        placeholder="📝"
+                        maxLength={4}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="exampleMk">Example Sentence (Macedonian)</Label>
+                    <Input
+                      id="exampleMk"
+                      value={formData.exampleMk || ''}
+                      onChange={(e) => setFormData({ ...formData, exampleMk: e.target.value || null })}
+                      placeholder="Здраво, како си?"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="exampleEn">Example Sentence (English)</Label>
+                    <Input
+                      id="exampleEn"
+                      value={formData.exampleEn || ''}
+                      onChange={(e) => setFormData({ ...formData, exampleEn: e.target.value || null })}
+                      placeholder="Hello, how are you?"
+                    />
+                  </div>
+                </div>
+              )}
+
               <div className="flex gap-2 justify-end">
                 <Button type="button" variant="outline" onClick={handleCancel}>
                   <X className="h-4 w-4 mr-2" />

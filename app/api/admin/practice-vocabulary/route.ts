@@ -32,7 +32,19 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { macedonian, english, category, difficulty, isActive } = body;
+    const {
+      macedonian,
+      english,
+      category,
+      difficulty,
+      isActive,
+      includeInWOTD,
+      pronunciation,
+      partOfSpeech,
+      exampleMk,
+      exampleEn,
+      icon,
+    } = body;
 
     // Validate required fields
     if (!macedonian || !english) {
@@ -46,6 +58,12 @@ export async function POST(request: NextRequest) {
         category: category || null,
         difficulty: difficulty || 'beginner',
         isActive: isActive ?? true,
+        includeInWOTD: includeInWOTD ?? false,
+        pronunciation: pronunciation || null,
+        partOfSpeech: partOfSpeech || null,
+        exampleMk: exampleMk || null,
+        exampleEn: exampleEn || null,
+        icon: icon || null,
       },
     });
 
