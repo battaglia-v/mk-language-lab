@@ -1157,6 +1157,7 @@
     "partOfSpeech": {
       "greeting": "Greeting",
       "expression": "Expression",
+      "phrase": "Phrase",
       "noun": "Noun",
       "verb": "Verb",
       "adjective": "Adjective",

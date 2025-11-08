@@ -1157,6 +1157,7 @@
     "partOfSpeech": {
       "greeting": "Поздрав",
       "expression": "Израз",
+      "phrase": "Фраза",
       "noun": "Именка",
       "verb": "Глагол",
       "adjective": "Придавка",
