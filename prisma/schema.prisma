@@ -135,3 +135,162 @@ model PostTag {
   @@index([instagramId])
   @@index([tagId])
 }
+
+// Journey progress tracking (moved from localStorage to DB)
+model JourneyProgress {
+  id               String    @id @default(cuid())
+  userId           String
+  journeyId        String    // 'family' | 'travel' | 'culture'
+  isActive         Boolean   @default(false)
+  currentModuleId  String?
+  currentLessonId  String?
+  dailyGoalMinutes Int       @default(20)
+  streakCount      Int       @default(0)
+  lastSessionDate  DateTime?
+  totalMinutes     Int       @default(0)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  currentModule Module?  @relation("CurrentModule", fields: [currentModuleId], references: [id])
+  currentLesson CurriculumLesson? @relation("CurrentLesson", fields: [currentLessonId], references: [id])
+
+  @@unique([userId, journeyId])
+  @@index([userId, isActive])
+}
+
+// Modules organize lessons into themed collections
+model Module {
+  id          String             @id @default(cuid())
+  journeyId   String             // 'family' | 'travel' | 'culture'
+  title       String
+  description String             @db.Text
+  orderIndex  Int
+  lessons     CurriculumLesson[]
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+
+  activeInJourneys JourneyProgress[] @relation("CurrentModule")
+
+  @@unique([journeyId, orderIndex])
+  @@index([journeyId, orderIndex])
+}
+
+// Curriculum lessons (structured content created by Andri)
+model CurriculumLesson {
+  id               String   @id @default(cuid())
+  moduleId         String
+  title            String
+  summary          String?  @db.Text
+  content          String   @db.Text
+  orderIndex       Int
+  estimatedMinutes Int      @default(15)
+  difficultyLevel  String   @default("beginner") // beginner|intermediate|advanced
+  audioUrl         String?
+  videoUrl         String?
+
+  // Content sections
+  vocabularyItems VocabularyItem[]
+  grammarNotes    GrammarNote[]
+  exercises       Exercise[]
+
+  // Relations
+  module       Module                   @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  userProgress UserLessonProgress[]
+
+  activeInJourneys JourneyProgress[] @relation("CurrentLesson")
+
+  @@unique([moduleId, orderIndex])
+  @@index([moduleId, orderIndex])
+}
+
+// Track user progress per lesson
+model UserLessonProgress {
+  id           String    @id @default(cuid())
+  userId       String
+  lessonId     String
+  status       String    @default("not_started") // not_started|in_progress|completed
+  progress     Float     @default(0) // 0-100
+  timeSpent    Int       @default(0) // minutes
+  lastViewedAt DateTime?
+  completedAt  DateTime?
+
+  user   User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson CurriculumLesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, lessonId])
+  @@index([userId, status])
+}
+
+// Vocabulary items in lessons
+model VocabularyItem {
+  id                 String   @id @default(cuid())
+  lessonId           String
+  macedonianText     String
+  englishText        String
+  pronunciation      String?
+  audioUrl           String?
+  exampleSentenceMk  String?  @db.Text
+  exampleSentenceEn  String?  @db.Text
+  orderIndex         Int
+
+  lesson CurriculumLesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@index([lessonId, orderIndex])
+}
+
+// Grammar explanations
+model GrammarNote {
+  id          String   @id @default(cuid())
+  lessonId    String
+  title       String
+  explanation String   @db.Text
+  examples    String   @db.Text // JSON array of examples
+  orderIndex  Int
+
+  lesson CurriculumLesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@index([lessonId, orderIndex])
+}
+
+// Interactive exercises
+model Exercise {
+  id            String   @id @default(cuid())
+  lessonId      String
+  type          String   // 'multiple_choice' | 'fill_blank' | 'translation' | 'matching'
+  question      String   @db.Text
+  options       String   @db.Text // JSON array
+  correctAnswer String   @db.Text
+  explanation   String?  @db.Text
+  orderIndex    Int
+
+  lesson       CurriculumLesson  @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  userAttempts ExerciseAttempt[]
+
+  createdAt DateTime @default(now())
+
+  @@index([lessonId, orderIndex])
+}
+
+// Track user exercise attempts
+model ExerciseAttempt {
+  id          String   @id @default(cuid())
+  userId      String
+  exerciseId  String
+  userAnswer  String   @db.Text
+  isCorrect   Boolean
+  attemptedAt DateTime @default(now())
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exercise Exercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+
+  @@index([userId, exerciseId])
+  @@index([userId, attemptedAt])
+}

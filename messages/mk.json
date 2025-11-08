@@ -1150,5 +1150,17 @@
     },
     "postCount": "{count, plural, one {# зачувана лекција} other {# зачувани лекции}}",
     "removePost": "Отстрани од зачувани"
+  },
+  "wordOfTheDay": {
+    "title": "Збор на Денот",
+    "partOfSpeech": {
+      "greeting": "Поздрав",
+      "expression": "Израз",
+      "noun": "Именка",
+      "verb": "Глагол",
+      "adjective": "Придавка",
+      "adverb": "Прилог"
+    },
+    "footer": "Секој ден е истакнат нов збор за да го прошириш твојот речник."
   }
 }

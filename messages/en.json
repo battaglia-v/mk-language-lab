@@ -1150,5 +1150,17 @@
     },
     "postCount": "{count, plural, one {# saved lesson} other {# saved lessons}}",
     "removePost": "Remove from saved"
+  },
+  "wordOfTheDay": {
+    "title": "Word of the Day",
+    "partOfSpeech": {
+      "greeting": "Greeting",
+      "expression": "Expression",
+      "noun": "Noun",
+      "verb": "Verb",
+      "adjective": "Adjective",
+      "adverb": "Adverb"
+    },
+    "footer": "A new word is featured each day to expand your vocabulary."
   }
 }
