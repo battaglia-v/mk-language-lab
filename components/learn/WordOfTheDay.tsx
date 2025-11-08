@@ -3,8 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Volume2, Sparkles } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Sparkles } from 'lucide-react';
 
 type WordOfTheDayData = {
   macedonian: string;
@@ -99,16 +98,6 @@ export function WordOfTheDay() {
   const t = useTranslations('wordOfTheDay');
   const word = getTodaysWord();
 
-  const handlePronunciation = () => {
-    // Text-to-speech for pronunciation
-    if ('speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(word.macedonian);
-      utterance.lang = 'mk-MK'; // Macedonian language code
-      utterance.rate = 0.8; // Slower for learning
-      window.speechSynthesis.speak(utterance);
-    }
-  };
-
   return (
     <Card className="relative overflow-hidden border-primary/20 bg-gradient-to-br from-primary/5 via-background to-secondary/5 p-8">
       {/* Decorative elements */}
@@ -134,20 +123,9 @@ export function WordOfTheDay() {
           <div className="flex items-center gap-4">
             <span className="text-5xl">{word.icon}</span>
             <div className="flex-1 space-y-2">
-              <div className="flex items-baseline gap-3">
-                <h4 className="text-4xl font-bold text-foreground">
-                  {word.macedonian}
-                </h4>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handlePronunciation}
-                  className="h-8 w-8 p-0"
-                  aria-label="Pronounce word"
-                >
-                  <Volume2 className="h-4 w-4" />
-                </Button>
-              </div>
+              <h4 className="text-4xl font-bold text-foreground">
+                {word.macedonian}
+              </h4>
               <p className="text-lg text-muted-foreground">
                 [{word.pronunciation}]
               </p>

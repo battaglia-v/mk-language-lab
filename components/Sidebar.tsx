@@ -60,7 +60,6 @@ export default function Sidebar() {
   }, [collapsed]);
 
   const navItems: NavItem[] = [
-    { path: '', label: t('journey'), icon: Home },
     { path: '/practice', label: t('practice'), icon: RefreshCw },
     { path: '/translate', label: t('translate'), icon: Languages },
     // { path: '/daily-lessons', label: t('dailyLessons'), icon: Instagram }, // Hidden until Instagram access is available
@@ -68,11 +67,11 @@ export default function Sidebar() {
     { path: '/resources', label: t('resources'), icon: BookOpen },
   ];
 
-  const buildHref = (path: string) => (path === '' ? `/${locale}` : `/${locale}${path}`);
+  const buildHref = (path: string) => `/${locale}${path}`;
 
   const isActive = (path: string) => {
     const fullPath = buildHref(path);
-    return pathname === fullPath || (path !== '' && pathname.startsWith(`${fullPath}/`));
+    return pathname === fullPath || pathname.startsWith(`${fullPath}/`);
   };
 
   return (
@@ -90,9 +89,9 @@ export default function Sidebar() {
           collapsed && 'justify-center p-4'
         )}>
           <Link
-            href={buildHref('')}
+            href={`/${locale}`}
             className="flex items-center gap-3 transition-all duration-200 hover:opacity-80 group"
-            aria-label={t('journey')}
+            aria-label="Home"
           >
             <div className="transform transition-transform duration-200 group-hover:scale-105">
               <AjvarLogo size={collapsed ? 36 : 40} />
@@ -112,7 +111,7 @@ export default function Sidebar() {
             const active = isActive(item.path);
             return (
               <Link
-                key={item.path || 'home'}
+                key={item.path}
                 href={buildHref(item.path)}
                 aria-current={active ? 'page' : undefined}
                 className={cn(
@@ -183,7 +182,7 @@ export default function Sidebar() {
             const active = isActive(item.path);
             return (
               <Link
-                key={`mobile-${item.path || 'home'}`}
+                key={`mobile-${item.path}`}
                 href={buildHref(item.path)}
                 aria-current={active ? 'page' : undefined}
                 className={cn(
