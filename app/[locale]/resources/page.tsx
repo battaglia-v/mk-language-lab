@@ -241,16 +241,16 @@ export default function ResourcesPage() {
             </h1>
 
             <div className="inline-block px-6 py-3 rounded-lg bg-primary/5 border border-primary/10">
-              <p className="text-sm md:text-base text-muted-foreground">
+              <p className="text-sm md:text-base text-muted-foreground text-center">
                 🇲🇰 {t('attributionText')}{' '}
                 <a
                   href="https://macedonianlanguagecorner.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-foreground hover:text-primary transition-colors underline decoration-dotted inline-flex items-center gap-1"
+                  className="font-medium text-foreground hover:text-primary transition-colors underline decoration-dotted whitespace-nowrap inline-flex items-center gap-1"
                 >
                   {t('macedonianLanguageCorner')}
-                  <ExternalLink className="h-3 w-3" />
+                  <ExternalLink className="h-3 w-3 flex-shrink-0" />
                 </a>
               </p>
             </div>
