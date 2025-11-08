@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { FileText, AlertCircle, Scale, Users, Ban, RefreshCw } from 'lucide-react';
@@ -6,6 +6,7 @@ import Link from 'next/link';
 
 export default function TermsOfServicePage() {
   const t = useTranslations('terms');
+  const locale = useLocale();
 
   const sections = [
     {
@@ -129,10 +130,10 @@ export default function TermsOfServicePage() {
             <CardContent>
               <p className="text-muted-foreground leading-relaxed mb-4">{t('contact.content')}</p>
               <a
-                href="mailto:support@macedonianlearningapp.com"
+                href="mailto:vincent.battaglia@gmail.com"
                 className="text-primary hover:underline font-medium"
               >
-                support@macedonianlearningapp.com
+                vincent.battaglia@gmail.com
               </a>
             </CardContent>
           </Card>
@@ -142,14 +143,14 @@ export default function TermsOfServicePage() {
         <div className="max-w-4xl mx-auto mt-12 text-center">
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
-              href="/privacy"
+              href={`/${locale}/privacy`}
               className="text-primary hover:underline font-medium"
             >
               {t('viewPrivacy')}
             </Link>
             <span className="hidden sm:inline text-muted-foreground">•</span>
             <Link
-              href="/"
+              href={`/${locale}`}
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               {t('backHome')}

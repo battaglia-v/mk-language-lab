@@ -1,10 +1,12 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { ExternalLink } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Footer() {
   const t = useTranslations('footer');
+  const locale = useLocale();
 
   return (
     <footer className="border-t border-border/40 bg-card/30 backdrop-blur-sm mt-auto pb-16 lg:pb-8">
@@ -48,6 +50,23 @@ export default function Footer() {
                 <ExternalLink className="h-3 w-3" />
               </a>
             </p>
+          </div>
+
+          {/* Legal Links */}
+          <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground pt-2">
+            <Link
+              href={`/${locale}/privacy`}
+              className="hover:text-foreground transition-colors underline-offset-4 hover:underline"
+            >
+              {t('privacy')}
+            </Link>
+            <span>•</span>
+            <Link
+              href={`/${locale}/terms`}
+              className="hover:text-foreground transition-colors underline-offset-4 hover:underline"
+            >
+              {t('terms')}
+            </Link>
           </div>
         </div>
       </div>
