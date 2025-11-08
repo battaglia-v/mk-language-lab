@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { Dialog, DialogClose, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
 const ALL_CATEGORIES = 'all';
 const SESSION_TARGET = 5;
@@ -159,15 +160,33 @@ export function QuickPracticeWidget({
 
     if (normalizedAnswer === normalizedExpected) {
       // Only count attempts and progress when answer is correct
-      setAttemptCount((prev) => prev + 1);
+      const newAttemptCount = attemptCount + 1;
+      const newCorrectCount = correctCount + 1;
+      setAttemptCount(newAttemptCount);
       setFeedback('correct');
       setRevealedAnswer('');
-      setCorrectCount((prev) => prev + 1);
+      setCorrectCount(newCorrectCount);
       setIsCelebrating(true);
       if (celebrationTimeoutRef.current) {
         clearTimeout(celebrationTimeoutRef.current);
       }
       celebrationTimeoutRef.current = setTimeout(() => setIsCelebrating(false), 1200);
+
+      // Track correct answer
+      trackEvent(AnalyticsEvents.PRACTICE_ANSWER_CORRECT, {
+        mode,
+        category: category === ALL_CATEGORIES ? 'all' : category,
+      });
+
+      // Track practice completion when reaching target
+      if (newAttemptCount === SESSION_TARGET) {
+        trackEvent(AnalyticsEvents.PRACTICE_COMPLETED, {
+          mode,
+          category: category === ALL_CATEGORIES ? 'all' : category,
+          correctCount: newCorrectCount,
+          totalAttempts: newAttemptCount,
+        });
+      }
 
       // Auto-advance to next prompt after showing success feedback
       if (autoAdvanceTimeoutRef.current) {
@@ -180,6 +199,13 @@ export function QuickPracticeWidget({
       setFeedback('incorrect');
       setRevealedAnswer(expectedAnswer);
       setIsCelebrating(false);
+
+      // Track incorrect answer
+      trackEvent(AnalyticsEvents.PRACTICE_ANSWER_INCORRECT, {
+        mode,
+        category: category === ALL_CATEGORIES ? 'all' : category,
+      });
+
       // Clear any pending auto-advance if answer was incorrect
       if (autoAdvanceTimeoutRef.current) {
         clearTimeout(autoAdvanceTimeoutRef.current);
@@ -441,6 +467,16 @@ export function QuickPracticeWidget({
       </Card>
     );
   };
+
+  // Track when modal is opened (only for compact layout)
+  useEffect(() => {
+    if (layout === 'compact' && isModalOpen) {
+      trackEvent(AnalyticsEvents.PRACTICE_MODAL_OPENED, {
+        mode,
+        category: category === ALL_CATEGORIES ? 'all' : category,
+      });
+    }
+  }, [isModalOpen, mode, category, layout]);
 
   if (layout !== 'compact') {
     return renderPracticeCard('default', className);

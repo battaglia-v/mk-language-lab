@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { ExternalLink, Loader2, Newspaper, PlayCircle, RefreshCcw, Video } from 'lucide-react';
+import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
 const SOURCE_IDS = ['all', 'time-mk', 'meta-mk'] as const;
 
@@ -647,14 +648,33 @@ export default function NewsPage() {
 
                       <div className="flex flex-wrap gap-2 pt-2 md:pt-3">
                         <Button asChild size="sm" className="gap-2">
-                          <Link href={item.link} target="_blank" rel="noopener noreferrer">
+                          <Link
+                            href={item.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => {
+                              trackEvent(AnalyticsEvents.NEWS_ARTICLE_CLICKED, {
+                                source: item.sourceId,
+                                hasCategories: item.categories.length > 0,
+                              });
+                            }}
+                          >
                             <ExternalLink className="h-4 w-4" />
                             {t('viewArticle')}
                           </Link>
                         </Button>
                         {hasVideos && (
                           <Button asChild size="sm" variant="outline" className="gap-2">
-                            <Link href={item.videos[0]} target="_blank" rel="noopener noreferrer">
+                            <Link
+                              href={item.videos[0]}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => {
+                                trackEvent(AnalyticsEvents.NEWS_VIDEO_CLICKED, {
+                                  source: item.sourceId,
+                                });
+                              }}
+                            >
                               <PlayCircle className="h-4 w-4" />
                               {t('watchVideo')}
                             </Link>

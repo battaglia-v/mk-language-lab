@@ -708,7 +708,9 @@
     "macedonianLanguageCorner": "Macedonian Language Corner",
     "instagram": "Instagram",
     "youtube": "YouTube",
-    "allLinks": "All Links"
+    "allLinks": "All Links",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
   },
   "userMenu": {
     "signIn": "Sign In",
@@ -792,5 +794,175 @@
     "description": "Start learning with today's featured word, practice vocabulary, or explore resources curated by native speakers.",
     "ctaPrimary": "See Today's Word",
     "ctaSecondary": "Start Practicing"
+  },
+  "privacy": {
+    "badge": "Privacy & Data Protection",
+    "title": "Privacy Policy",
+    "subtitle": "How we protect and handle your personal information",
+    "lastUpdated": "Last updated: November 8, 2024",
+    "introduction": "The Macedonian Learning App is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your personal information when you use our educational web application. We are transparent about our data practices and comply with applicable data protection laws, including the General Data Protection Regulation (GDPR).",
+    "section1": {
+      "title": "Information We Collect",
+      "content": "We collect minimal information necessary to provide and improve our services:",
+      "items": [
+        "Google Account Information: When you sign in with Google OAuth, we receive your email address, name, and profile picture from your Google account.",
+        "Learning Progress: We store your learning activities, quiz results, saved lessons, and progress tracking to personalize your experience.",
+        "Usage Data: We collect anonymous analytics data about how you interact with the app to improve our features and user experience.",
+        "Error Logs: Through Sentry, we collect technical error information to identify and fix bugs in the application."
+      ]
+    },
+    "section2": {
+      "title": "How We Use Your Information",
+      "content": "We use your information for the following purposes:",
+      "items": [
+        "Authentication: To verify your identity and provide secure access to your account.",
+        "Personalization: To remember your learning progress, preferences, and saved content.",
+        "Service Improvement: To analyze usage patterns and enhance the app's features and performance.",
+        "Error Resolution: To diagnose and fix technical issues that affect your experience.",
+        "Communication: To send important service updates (we do not send marketing emails)."
+      ]
+    },
+    "section3": {
+      "title": "Data Storage and Security",
+      "content": "We take data security seriously:",
+      "items": [
+        "Database: User data is securely stored in a PostgreSQL database with encryption at rest.",
+        "Authentication: We use NextAuth.js with industry-standard OAuth 2.0 protocol for secure authentication.",
+        "Rate Limiting: Upstash Redis is used to prevent abuse and protect your account from unauthorized access.",
+        "No Payment Data: We do not collect or store any payment information as our service is completely free.",
+        "Access Control: Only authorized personnel can access user data, and only for support and maintenance purposes."
+      ]
+    },
+    "section4": {
+      "title": "Third-Party Services",
+      "content": "We use carefully selected third-party services to provide our features. These services have their own privacy policies: Google OAuth (authentication), Sentry (error tracking and monitoring), Upstash Redis (rate limiting and caching), Time.mk and Meta.mk (RSS news feeds - we only display publicly available content). We do not share your personal information with third parties for marketing purposes."
+    },
+    "section5": {
+      "title": "Your Data Rights",
+      "content": "You have control over your personal information:",
+      "items": [
+        "Access: You can view all personal data we have stored about you.",
+        "Correction: You can update your profile information at any time.",
+        "Deletion: You can request deletion of your account and all associated data.",
+        "Export: You can request a copy of your data in a machine-readable format.",
+        "Withdraw Consent: You can stop using our services at any time."
+      ]
+    },
+    "section6": {
+      "title": "Cookies and Local Storage",
+      "content": "We use essential cookies and local storage to maintain your session and remember your preferences. These are necessary for the app to function properly. We do not use tracking cookies or third-party advertising cookies."
+    },
+    "gdpr": {
+      "title": "GDPR Compliance",
+      "content": "For users in the European Union, we comply with GDPR requirements. Under GDPR, you have the following rights:",
+      "rights": [
+        "Right to be informed about data collection and use",
+        "Right to access your personal data",
+        "Right to rectification of inaccurate data",
+        "Right to erasure (right to be forgotten)",
+        "Right to restrict processing",
+        "Right to data portability",
+        "Right to object to data processing",
+        "Rights related to automated decision-making and profiling"
+      ]
+    },
+    "contact": {
+      "title": "Contact Us",
+      "content": "If you have any questions about this Privacy Policy or wish to exercise your data rights, please contact us at:"
+    },
+    "viewTerms": "View Terms of Service",
+    "backHome": "Back to Home"
+  },
+  "terms": {
+    "badge": "Legal Terms",
+    "title": "Terms of Service",
+    "subtitle": "Guidelines for using the Macedonian Learning App",
+    "lastUpdated": "Last updated: November 8, 2024",
+    "introduction": "Welcome to the Macedonian Learning App. By accessing or using our application, you agree to be bound by these Terms of Service. Please read them carefully. If you do not agree with these terms, please do not use our service.",
+    "section1": {
+      "title": "Acceptance of Terms",
+      "content": "By creating an account or using the Macedonian Learning App, you agree to:",
+      "items": [
+        "Comply with all terms and conditions outlined in this document",
+        "Use the service only for lawful, educational purposes",
+        "Provide accurate information during registration",
+        "Maintain the security of your account credentials",
+        "Accept updates to these terms as we evolve the service"
+      ]
+    },
+    "section2": {
+      "title": "User Responsibilities",
+      "content": "As a user of our educational platform, you agree to:",
+      "items": [
+        "Use the app respectfully and for its intended educational purpose",
+        "Not attempt to access unauthorized areas of the application",
+        "Not abuse or overload our systems through excessive requests",
+        "Not share your account credentials with others",
+        "Respect intellectual property rights of all content",
+        "Not use the service to harass, harm, or impersonate others"
+      ]
+    },
+    "section3": {
+      "title": "Intellectual Property",
+      "content": "Content ownership and usage rights:",
+      "items": [
+        "Original Content: All original lessons, exercises, and learning materials are created or curated by the Macedonian Learning App team and are protected by copyright.",
+        "Third-Party Content: News articles from Time.mk and Meta.mk remain the property of their respective publishers. We display RSS feed summaries under fair use for educational purposes.",
+        "User-Generated Content: Any content you create while using the app (notes, progress data) remains yours, but you grant us a license to store and display it as necessary to provide the service.",
+        "AI-Generated Content: Content generated through our AI tutor features is provided for educational use and should not be considered as professional advice."
+      ]
+    },
+    "section4": {
+      "title": "Prohibited Activities",
+      "content": "The following activities are strictly prohibited:",
+      "items": [
+        "Attempting to hack, reverse engineer, or compromise the application's security",
+        "Using automated bots or scrapers to extract content",
+        "Violating rate limits or attempting to bypass security measures",
+        "Uploading malicious code, viruses, or harmful content",
+        "Using the service for commercial purposes without authorization",
+        "Impersonating other users or creating fake accounts"
+      ]
+    },
+    "section5": {
+      "title": "Disclaimer of Warranties",
+      "content": "The Macedonian Learning App is provided \"as is\" without warranties of any kind. We strive for accuracy in our educational content, but we cannot guarantee that all information is error-free or complete. We are not responsible for decisions made based on content from our app. Language learning results vary by individual effort and circumstances. We do not guarantee specific learning outcomes."
+    },
+    "section6": {
+      "title": "Changes to Terms",
+      "content": "We may update these Terms of Service periodically to reflect changes in our practices or legal requirements. We will notify users of significant changes through the app or via email. Continued use of the service after changes constitutes acceptance of the updated terms. The \"Last Updated\" date at the top of this document indicates when changes were last made."
+    },
+    "section7": {
+      "title": "Third-Party Services",
+      "content": "Our app integrates with several third-party services. Use of these services is subject to their respective terms:",
+      "services": [
+        {
+          "name": "Google OAuth",
+          "purpose": "Secure authentication and login"
+        },
+        {
+          "name": "Sentry",
+          "purpose": "Error tracking and application monitoring"
+        },
+        {
+          "name": "Upstash Redis",
+          "purpose": "Rate limiting and performance optimization"
+        },
+        {
+          "name": "Time.mk & Meta.mk",
+          "purpose": "Macedonian news RSS feeds"
+        },
+        {
+          "name": "Vercel",
+          "purpose": "Application hosting and analytics"
+        }
+      ]
+    },
+    "contact": {
+      "title": "Questions and Support",
+      "content": "If you have questions about these Terms of Service or need support, please contact us at:"
+    },
+    "viewPrivacy": "View Privacy Policy",
+    "backHome": "Back to Home"
   }
 }

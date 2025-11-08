@@ -7,12 +7,18 @@ import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Chrome, ArrowLeft } from 'lucide-react';
+import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
 function SignInContent() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams?.get('callbackUrl') || '/';
 
   const handleGoogleSignIn = () => {
+    // Track sign-in initiation
+    trackEvent(AnalyticsEvents.SIGNIN_INITIATED, {
+      provider: 'google',
+    });
+
     signIn('google', { callbackUrl });
   };
 

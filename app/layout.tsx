@@ -4,6 +4,7 @@ import "./globals.css";
 import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
 import { InstallPrompt } from "@/components/InstallPrompt";
 import { SentryInit } from "@/components/SentryInit";
+import { Analytics } from "@vercel/analytics/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -122,6 +123,7 @@ export default function RootLayout({
         <ServiceWorkerRegistration />
         <InstallPrompt />
         {children}
+        <Analytics />
       </body>
     </html>
   );

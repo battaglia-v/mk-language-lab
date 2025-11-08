@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
+import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
 type DirectionOption = {
   id: 'mk-en' | 'en-mk';
@@ -135,6 +136,12 @@ export default function TranslatePage() {
       setErrorMessage(null);
       setIsRetryable(false);
 
+      // Track translation request
+      trackEvent(AnalyticsEvents.TRANSLATION_REQUESTED, {
+        direction: directionId,
+        textLength: text.length,
+      });
+
       try {
         const response = await fetch('/api/translate', {
           method: 'POST',
@@ -160,6 +167,13 @@ export default function TranslatePage() {
           const errorMsg = data.message || data.error || 'Translation failed';
           const retryable = data.retryable ?? false;
           setIsRetryable(retryable);
+
+          // Track translation failure
+          trackEvent(AnalyticsEvents.TRANSLATION_FAILED, {
+            direction: directionId,
+            retryable,
+          });
+
           throw new Error(errorMsg);
         }
 
@@ -167,6 +181,12 @@ export default function TranslatePage() {
         setTranslatedText(trimmedTranslation);
         setDetectedLanguage(data.detectedSourceLang ?? null);
         setCopiedState('idle');
+
+        // Track successful translation
+        trackEvent(AnalyticsEvents.TRANSLATION_SUCCESS, {
+          direction: directionId,
+          textLength: text.length,
+        });
 
         const newEntry: TranslationHistoryEntry = {
           id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
@@ -205,11 +225,16 @@ export default function TranslatePage() {
       await navigator.clipboard.writeText(translatedText);
       setCopiedState('copied');
       window.setTimeout(() => setCopiedState('idle'), 1500);
+
+      // Track translation copy
+      trackEvent(AnalyticsEvents.TRANSLATION_COPIED, {
+        direction: directionId,
+      });
     } catch (error) {
       console.error('Copy failed', error);
       setErrorMessage(t('copyError'));
     }
-  }, [t, translatedText]);
+  }, [directionId, t, translatedText]);
 
   const handleHistoryLoad = useCallback((entry: TranslationHistoryEntry) => {
     setDirectionId(entry.directionId);

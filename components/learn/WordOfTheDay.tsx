@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Sparkles, Loader2 } from 'lucide-react';
+import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
 type WordOfTheDayData = {
   macedonian: string;
@@ -33,6 +34,11 @@ export function WordOfTheDay() {
 
         const data = await response.json();
         setWord(data);
+
+        // Track successful word of the day load
+        trackEvent(AnalyticsEvents.WORD_OF_DAY_LOADED, {
+          partOfSpeech: data.partOfSpeech,
+        });
       } catch (err) {
         console.error('Error fetching word of the day:', err);
         setError('Could not load word of the day');

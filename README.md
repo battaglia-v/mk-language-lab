@@ -24,6 +24,38 @@ See our [POC to Production Roadmap](docs/poc-production-roadmap.md) for the comp
 - **📱 Mobile-First Design** - Responsive design optimized for all devices
 - **🎨 Modern UI** - Built with Tailwind CSS and shadcn/ui components
 
+## 📊 Privacy-Friendly Analytics
+
+The app uses Vercel Analytics to understand user behavior and improve the learning experience:
+
+- **Privacy-First:** No cookies, fully GDPR compliant, anonymous tracking
+- **Lightweight:** Minimal performance impact on the application
+- **No PII:** No personally identifiable information is tracked
+
+### Tracked Events
+
+The app tracks the following key user interactions:
+- Word of the Day views
+- Quick Practice completions and accuracy
+- Translation requests and copies
+- News article and video clicks
+- Sign-in events
+
+### Viewing Analytics
+
+Analytics data is available in the [Vercel Analytics Dashboard](https://vercel.com/docs/analytics):
+1. Go to your Vercel project dashboard
+2. Click on the "Analytics" tab
+3. View page views, custom events, and user behavior
+
+### Development Mode
+
+In development, analytics events are logged to the console instead of being sent to Vercel. To enable analytics in development, set:
+
+```bash
+NEXT_PUBLIC_ANALYTICS_ENABLED=true
+```
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -156,6 +188,7 @@ npm start
 - **Localization:** next-intl
 - **Testing:** Vitest, React Testing Library
 - **Monitoring:** Sentry
+- **Analytics:** Vercel Analytics (privacy-friendly, GDPR compliant)
 - **Deployment:** Vercel
 
 ## 🗺️ Roadmap
