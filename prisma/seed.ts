@@ -60,6 +60,36 @@ async function main() {
     console.log(`✓ Created ${createdCount} practice vocabulary entries`);
   }
 
+  // Load and seed Word of the Day from JSON file
+  console.log('\nSeeding Word of the Day...');
+  const wotdPath = join(process.cwd(), 'data', 'word-of-the-day.json');
+  const wotdData = JSON.parse(readFileSync(wotdPath, 'utf-8'));
+
+  const existingWotdCount = await prisma.wordOfTheDay.count();
+  if (existingWotdCount > 0) {
+    console.log(`Found ${existingWotdCount} existing Word of the Day entries. Skipping seed to preserve any edits.`);
+    console.log('To re-seed, delete all entries from WordOfTheDay table first.');
+  } else {
+    let wotdCreatedCount = 0;
+    for (const item of wotdData) {
+      await prisma.wordOfTheDay.create({
+        data: {
+          macedonian: item.macedonian,
+          pronunciation: item.pronunciation,
+          english: item.english,
+          partOfSpeech: item.partOfSpeech,
+          exampleMk: item.exampleMk,
+          exampleEn: item.exampleEn,
+          icon: item.icon,
+          scheduledDate: new Date(item.scheduledDate),
+          isActive: true,
+        },
+      });
+      wotdCreatedCount++;
+    }
+    console.log(`✓ Created ${wotdCreatedCount} Word of the Day entries`);
+  }
+
   console.log('\nSeeding completed!');
 }
 

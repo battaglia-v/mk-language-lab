@@ -13,7 +13,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { User, Instagram, Youtube, ExternalLink } from 'lucide-react';
+import { User, Instagram, Youtube, ExternalLink, LayoutDashboard } from 'lucide-react';
+import Link from 'next/link';
 
 export function UserMenu() {
   const { data: session, status } = useSession();
@@ -63,6 +64,14 @@ export function UserMenu() {
             {t('profile')}
           </button>
         </DropdownMenuItem>
+        {session.user.role === 'admin' && (
+          <DropdownMenuItem asChild>
+            <Link href="/admin" className="w-full cursor-pointer">
+              <LayoutDashboard className="mr-2 h-4 w-4" />
+              Admin Panel
+            </Link>
+          </DropdownMenuItem>
+        )}
         <DropdownMenuSeparator />
         <DropdownMenuLabel className="font-normal">
           <p className="text-xs font-medium text-muted-foreground">{t('socialHeader')}</p>

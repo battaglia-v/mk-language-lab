@@ -35,6 +35,8 @@ export default function PracticeVocabularyAdmin() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [formData, setFormData] = useState<FormData>(emptyForm);
   const [submitting, setSubmitting] = useState(false);
+  const [difficultyFilter, setDifficultyFilter] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     fetchWords();
@@ -139,6 +141,25 @@ export default function PracticeVocabularyAdmin() {
     acc[key].push(word);
     return acc;
   }, {} as Record<string, PracticeVocabulary[]>);
+
+  // Apply filters
+  const filteredWords = words.filter((word) => {
+    // Difficulty filter
+    if (difficultyFilter !== 'all' && word.difficulty !== difficultyFilter) {
+      return false;
+    }
+
+    // Search filter (searches in macedonian, english, and category)
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      const matchesMacedonian = word.macedonian.toLowerCase().includes(query);
+      const matchesEnglish = word.english.toLowerCase().includes(query);
+      const matchesCategory = word.category?.toLowerCase().includes(query) ?? false;
+      return matchesMacedonian || matchesEnglish || matchesCategory;
+    }
+
+    return true;
+  });
 
   return (
     <div className="space-y-8 px-6 lg:px-8">
@@ -271,21 +292,68 @@ export default function PracticeVocabularyAdmin() {
         </Card>
       </div>
 
+      {/* Filters */}
+      <Card>
+        <CardContent className="pt-6">
+          <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex-1">
+              <Label htmlFor="search" className="text-sm font-medium mb-2 block">
+                Search by word or category
+              </Label>
+              <Input
+                id="search"
+                type="text"
+                placeholder="Type to search..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div className="sm:w-48">
+              <Label htmlFor="difficulty-filter" className="text-sm font-medium mb-2 block">
+                Filter by difficulty
+              </Label>
+              <Select
+                value={difficultyFilter}
+                onValueChange={setDifficultyFilter}
+              >
+                <SelectTrigger id="difficulty-filter">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Levels</SelectItem>
+                  <SelectItem value="beginner">Beginner</SelectItem>
+                  <SelectItem value="intermediate">Intermediate</SelectItem>
+                  <SelectItem value="advanced">Advanced</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          {(searchQuery || difficultyFilter !== 'all') && (
+            <div className="mt-4 text-sm text-muted-foreground">
+              Showing {filteredWords.length} of {words.length} words
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
       <Card>
         <CardHeader>
-          <CardTitle>All Words ({words.length})</CardTitle>
+          <CardTitle>All Words ({filteredWords.length})</CardTitle>
           <CardDescription>
             Sorted by creation date (newest first)
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {words.length === 0 ? (
+          {filteredWords.length === 0 ? (
             <p className="text-center text-muted-foreground py-8">
-              No words yet. Click &quot;Add Word&quot; to create your first entry.
+              {words.length === 0
+                ? 'No words yet. Click "Add Word" to create your first entry.'
+                : 'No words match your search criteria.'}
             </p>
           ) : (
             <div className="space-y-2">
-              {words.map((word) => (
+              {filteredWords.map((word) => (
                 <div
                   key={word.id}
                   className="flex items-center justify-between border rounded-lg p-3 hover:bg-muted/50 transition-colors"

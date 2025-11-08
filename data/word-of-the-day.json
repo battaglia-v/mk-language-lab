@@ -1,0 +1,102 @@
+[
+  {
+    "macedonian": "здраво",
+    "pronunciation": "zdravo",
+    "english": "hello",
+    "partOfSpeech": "greeting",
+    "exampleMk": "Здраво, како си денес?",
+    "exampleEn": "Hello, how are you today?",
+    "icon": "👋",
+    "scheduledDate": "2025-01-15"
+  },
+  {
+    "macedonian": "благодарам",
+    "pronunciation": "blagodaram",
+    "english": "thank you",
+    "partOfSpeech": "expression",
+    "exampleMk": "Благодарам за твојата помош!",
+    "exampleEn": "Thank you for your help!",
+    "icon": "🙏",
+    "scheduledDate": "2025-01-16"
+  },
+  {
+    "macedonian": "љубов",
+    "pronunciation": "ljubov",
+    "english": "love",
+    "partOfSpeech": "noun",
+    "exampleMk": "Љубовта е најголемата сила.",
+    "exampleEn": "Love is the greatest force.",
+    "icon": "❤️",
+    "scheduledDate": "2025-01-17"
+  },
+  {
+    "macedonian": "семејство",
+    "pronunciation": "semejstvo",
+    "english": "family",
+    "partOfSpeech": "noun",
+    "exampleMk": "Моето семејство е многу важно за мене.",
+    "exampleEn": "My family is very important to me.",
+    "icon": "👨‍👩‍👧‍👦",
+    "scheduledDate": "2025-01-18"
+  },
+  {
+    "macedonian": "пријател",
+    "pronunciation": "prijatel",
+    "english": "friend",
+    "partOfSpeech": "noun",
+    "exampleMk": "Тој е мој најдобар пријател.",
+    "exampleEn": "He is my best friend.",
+    "icon": "🤝",
+    "scheduledDate": "2025-01-19"
+  },
+  {
+    "macedonian": "книга",
+    "pronunciation": "kniga",
+    "english": "book",
+    "partOfSpeech": "noun",
+    "exampleMk": "Сакам да читам книги.",
+    "exampleEn": "I love to read books.",
+    "icon": "📚",
+    "scheduledDate": "2025-01-20"
+  },
+  {
+    "macedonian": "храна",
+    "pronunciation": "hrana",
+    "english": "food",
+    "partOfSpeech": "noun",
+    "exampleMk": "Македонската храна е многу вкусна.",
+    "exampleEn": "Macedonian food is very delicious.",
+    "icon": "🍽️",
+    "scheduledDate": "2025-01-21"
+  },
+  {
+    "macedonian": "musika",
+    "pronunciation": "muzika",
+    "english": "music",
+    "partOfSpeech": "noun",
+    "exampleMk": "Ја слушам музиката секој ден.",
+    "exampleEn": "I listen to music every day.",
+    "icon": "🎵",
+    "scheduledDate": "2025-01-22"
+  },
+  {
+    "macedonian": "патување",
+    "pronunciation": "patuvanje",
+    "english": "travel",
+    "partOfSpeech": "noun",
+    "exampleMk": "Сакам да патувам низ светот.",
+    "exampleEn": "I love to travel around the world.",
+    "icon": "✈️",
+    "scheduledDate": "2025-01-23"
+  },
+  {
+    "macedonian": "среќа",
+    "pronunciation": "srekja",
+    "english": "happiness",
+    "partOfSpeech": "noun",
+    "exampleMk": "Среќата е во малите работи.",
+    "exampleEn": "Happiness is in the little things.",
+    "icon": "😊",
+    "scheduledDate": "2025-01-24"
+  }
+]
