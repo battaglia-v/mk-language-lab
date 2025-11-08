@@ -79,7 +79,7 @@ async function auditVocabulary() {
       },
     });
 
-    const macedonianMap = new Map<string, number[]>();
+    const macedonianMap = new Map<string, string[]>();
     allWords.forEach((word) => {
       const normalized = word.macedonian.toLowerCase().trim();
       if (!macedonianMap.has(normalized)) {
