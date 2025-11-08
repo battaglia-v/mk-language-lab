@@ -186,7 +186,9 @@ export default function Sidebar() {
               pathname !== `/${locale}` && 'text-sidebar-foreground hover:text-sidebar-accent-foreground'
             )}
           >
-            <AjvarLogo size={24} />
+            <div className="flex items-center justify-center">
+              <AjvarLogo size={28} />
+            </div>
             <span className={cn(
               'text-[9px] font-medium w-full text-center line-clamp-1 leading-tight',
               pathname === `/${locale}` && 'text-primary'
