@@ -68,7 +68,19 @@
     "practiceProgressSummary": "Prompts answered: {count}",
     "practiceAccuracy": "Accuracy: {value}%",
     "practiceModalTitle": "Practice lab",
-    "practiceClose": "Close session"
+    "practiceClose": "Close session",
+    "practiceSessionCompleteTitle": "Session Complete!",
+    "practiceSessionCompleteMessage": "Great work! You've reached your goal of {target} correct answers.",
+    "practiceSessionCompleteStats": "Session Stats",
+    "practiceSessionCompleteCorrect": "Correct answers",
+    "practiceSessionCompleteTotalAttempts": "Total attempts",
+    "practiceSessionCompleteAccuracy": "Accuracy",
+    "practiceStartNewSession": "Start New Session",
+    "practiceContinuePracticing": "Continue Practicing",
+    "practiceAccuracyExcellent": "Excellent",
+    "practiceAccuracyGood": "Good",
+    "practiceAccuracyNeedsWork": "Keep Practicing",
+    "practiceProgressCount": "{current}/{target} correct"
   },
   "learnVocabulary": {
     "back": "Back to Learn Hub",

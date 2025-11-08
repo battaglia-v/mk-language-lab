@@ -217,7 +217,19 @@
     "practiceProgressSummary": "Одговорени задачи: {count}",
     "practiceAccuracy": "Точност: {value}%",
     "practiceModalTitle": "Лабораторија за вежбање",
-    "practiceClose": "Затвори сесија"
+    "practiceClose": "Затвори сесија",
+    "practiceSessionCompleteTitle": "Сесијата е завршена!",
+    "practiceSessionCompleteMessage": "Одлична работа! Ја постигна целта од {target} точни одговори.",
+    "practiceSessionCompleteStats": "Статистика на сесијата",
+    "practiceSessionCompleteCorrect": "Точни одговори",
+    "practiceSessionCompleteTotalAttempts": "Вкупно обиди",
+    "practiceSessionCompleteAccuracy": "Точност",
+    "practiceStartNewSession": "Започни нова сесија",
+    "practiceContinuePracticing": "Продолжи со вежбање",
+    "practiceAccuracyExcellent": "Одлично",
+    "practiceAccuracyGood": "Добро",
+    "practiceAccuracyNeedsWork": "Продолжи да вежбаш",
+    "practiceProgressCount": "{current}/{target} точни"
   },
   "learnVocabulary": {
     "back": "Назад до центарот за учење",

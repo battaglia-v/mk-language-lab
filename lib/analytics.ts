@@ -22,6 +22,9 @@ export const AnalyticsEvents = {
   PRACTICE_ANSWER_CORRECT: 'practice_answer_correct',
   PRACTICE_ANSWER_INCORRECT: 'practice_answer_incorrect',
   PRACTICE_MODAL_OPENED: 'practice_modal_opened',
+  PRACTICE_SESSION_NEW: 'practice_session_new',
+  PRACTICE_SESSION_CONTINUE: 'practice_session_continue',
+  PRACTICE_COMPLETION_MODAL_VIEWED: 'practice_completion_modal_viewed',
 
   // Translation events
   TRANSLATION_REQUESTED: 'translation_requested',

@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { RefreshCcw, Eye, Sparkles, PlayCircle, X } from 'lucide-react';
+import { RefreshCcw, Eye, Sparkles, PlayCircle, X, Trophy, TrendingUp } from 'lucide-react';
 import practicePrompts from '@/data/practice-vocabulary.json';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
-import { Dialog, DialogClose, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogClose, DialogContent, DialogTrigger, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
 const ALL_CATEGORIES = 'all';
@@ -79,6 +79,7 @@ export function QuickPracticeWidget({
   const [isCelebrating, setIsCelebrating] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
+  const [showCompletionModal, setShowCompletionModal] = useState(false);
   const celebrationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const autoAdvanceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -186,6 +187,7 @@ export function QuickPracticeWidget({
       // Check for session completion (5 correct answers)
       if (newCorrectCount === SESSION_TARGET) {
         setSessionComplete(true);
+        setShowCompletionModal(true);
         trackEvent(AnalyticsEvents.PRACTICE_COMPLETED, {
           mode,
           category: category === ALL_CATEGORIES ? 'all' : category,
@@ -252,6 +254,19 @@ export function QuickPracticeWidget({
     setSessionComplete(false);
     setIsCelebrating(false);
     setRevealedAnswer('');
+    setShowCompletionModal(false);
+    trackEvent(AnalyticsEvents.PRACTICE_SESSION_NEW, {
+      mode,
+      category: category === ALL_CATEGORIES ? 'all' : category,
+    });
+  };
+
+  const handleContinuePracticing = () => {
+    setShowCompletionModal(false);
+    trackEvent(AnalyticsEvents.PRACTICE_SESSION_CONTINUE, {
+      mode,
+      category: category === ALL_CATEGORIES ? 'all' : category,
+    });
   };
 
   const handleReveal = () => {
@@ -269,6 +284,26 @@ export function QuickPracticeWidget({
     event.preventDefault();
     handleCheck();
 
+  };
+
+  // Helper function to get accuracy badge color and label
+  const getAccuracyBadge = (accuracyValue: number) => {
+    if (accuracyValue >= 90) {
+      return {
+        color: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20',
+        label: t('practiceAccuracyExcellent'),
+      };
+    } else if (accuracyValue >= 70) {
+      return {
+        color: 'bg-amber-500/10 text-amber-600 border-amber-500/20',
+        label: t('practiceAccuracyGood'),
+      };
+    } else {
+      return {
+        color: 'bg-blue-500/10 text-blue-600 border-blue-500/20',
+        label: t('practiceAccuracyNeedsWork'),
+      };
+    }
   };
 
   // Progress based on correct answers (5 correct = 100%)
@@ -308,7 +343,9 @@ export function QuickPracticeWidget({
           <div className="rounded-2xl border border-border/30 bg-background/60 p-4 shadow-inner">
             <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               <span>{t('practiceProgressLabel')}</span>
-              <span>{t('practiceProgressGoal', { target: SESSION_TARGET })}</span>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-xs font-bold text-primary">
+                {t('practiceProgressCount', { current: correctCount, target: SESSION_TARGET })}
+              </span>
             </div>
             <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-border/40">
               <div
@@ -320,12 +357,14 @@ export function QuickPracticeWidget({
                 style={{ width: `${sessionProgress}%` }}
               />
             </div>
-            <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-              <span>{t('practiceProgressSummary', { count: correctCount })}</span>
-              <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-primary">
-                <Sparkles className="h-4 w-4" />
-                {t('practiceAccuracy', { value: accuracy })}
-              </span>
+            <div className="mt-3 flex flex-wrap items-center gap-3 text-sm">
+              <span className="text-muted-foreground">{t('practiceProgressSummary', { count: correctCount })}</span>
+              {totalAttempts > 0 && (
+                <span className={cn('inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold', getAccuracyBadge(accuracy).color)}>
+                  <TrendingUp className="h-3.5 w-3.5" />
+                  {t('practiceAccuracy', { value: accuracy })} • {getAccuracyBadge(accuracy).label}
+                </span>
+              )}
             </div>
           </div>
         </CardHeader>
@@ -488,8 +527,123 @@ export function QuickPracticeWidget({
     }
   }, [isModalOpen, mode, category, layout]);
 
+  // Track when completion modal is viewed
+  useEffect(() => {
+    if (showCompletionModal) {
+      trackEvent(AnalyticsEvents.PRACTICE_COMPLETION_MODAL_VIEWED, {
+        mode,
+        category: category === ALL_CATEGORIES ? 'all' : category,
+        correctCount,
+        totalAttempts,
+        accuracy,
+      });
+    }
+  }, [showCompletionModal, mode, category, correctCount, totalAttempts, accuracy]);
+
   if (layout !== 'compact') {
-    return renderPracticeCard('default', className);
+    return (
+      <>
+        {renderPracticeCard('default', className)}
+        {/* Session Completion Modal */}
+        <Dialog open={showCompletionModal} onOpenChange={setShowCompletionModal}>
+          <DialogContent className="max-w-md">
+            {/* Confetti Effect */}
+            <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-lg">
+              <div className="confetti-container">
+                {[...Array(30)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="confetti"
+                    style={{
+                      left: `${Math.random() * 100}%`,
+                      animationDelay: `${Math.random() * 3}s`,
+                      backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6'][Math.floor(Math.random() * 5)],
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <DialogHeader className="relative z-10">
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-secondary/20">
+                <Trophy className="h-8 w-8 text-primary" />
+              </div>
+              <DialogTitle className="text-center text-2xl">
+                {t('practiceSessionCompleteTitle')}
+              </DialogTitle>
+              <DialogDescription className="text-center">
+                {t('practiceSessionCompleteMessage', { target: SESSION_TARGET })}
+              </DialogDescription>
+            </DialogHeader>
+
+            <div className="relative z-10 space-y-4 py-4">
+              <div className="rounded-xl border border-border/40 bg-muted/30 p-4">
+                <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                  {t('practiceSessionCompleteStats')}
+                </h4>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-muted-foreground">{t('practiceSessionCompleteCorrect')}</span>
+                    <span className="text-lg font-bold text-primary">{correctCount}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-muted-foreground">{t('practiceSessionCompleteTotalAttempts')}</span>
+                    <span className="text-lg font-bold">{totalAttempts}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-muted-foreground">{t('practiceSessionCompleteAccuracy')}</span>
+                    <span className={cn('inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-bold', getAccuracyBadge(accuracy).color)}>
+                      {accuracy}% • {getAccuracyBadge(accuracy).label}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <DialogFooter className="relative z-10 flex-col gap-2 sm:flex-col">
+              <Button onClick={handleReset} size="lg" className="w-full gap-2">
+                <RefreshCcw className="h-4 w-4" />
+                {t('practiceStartNewSession')}
+              </Button>
+              <Button onClick={handleContinuePracticing} variant="outline" size="lg" className="w-full">
+                {t('practiceContinuePracticing')}
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
+        {/* Confetti CSS */}
+        <style jsx>{`
+          @keyframes confetti-fall {
+            0% {
+              transform: translateY(-100%) rotate(0deg);
+              opacity: 1;
+            }
+            100% {
+              transform: translateY(100vh) rotate(720deg);
+              opacity: 0;
+            }
+          }
+
+          .confetti-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+          }
+
+          .confetti {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            animation: confetti-fall 3s linear infinite;
+            opacity: 0;
+          }
+        `}</style>
+      </>
+    );
   }
 
   return (
@@ -588,6 +742,105 @@ export function QuickPracticeWidget({
           </div>
         </div>
       </DialogContent>
+
+      {/* Session Completion Modal */}
+      <Dialog open={showCompletionModal} onOpenChange={setShowCompletionModal}>
+        <DialogContent className="max-w-md">
+          {/* Confetti Effect */}
+          <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-lg">
+            <div className="confetti-container">
+              {[...Array(30)].map((_, i) => (
+                <div
+                  key={i}
+                  className="confetti"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    animationDelay: `${Math.random() * 3}s`,
+                    backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6'][Math.floor(Math.random() * 5)],
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+
+          <DialogHeader className="relative z-10">
+            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-secondary/20">
+              <Trophy className="h-8 w-8 text-primary" />
+            </div>
+            <DialogTitle className="text-center text-2xl">
+              {t('practiceSessionCompleteTitle')}
+            </DialogTitle>
+            <DialogDescription className="text-center">
+              {t('practiceSessionCompleteMessage', { target: SESSION_TARGET })}
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="relative z-10 space-y-4 py-4">
+            <div className="rounded-xl border border-border/40 bg-muted/30 p-4">
+              <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                {t('practiceSessionCompleteStats')}
+              </h4>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground">{t('practiceSessionCompleteCorrect')}</span>
+                  <span className="text-lg font-bold text-primary">{correctCount}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground">{t('practiceSessionCompleteTotalAttempts')}</span>
+                  <span className="text-lg font-bold">{totalAttempts}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground">{t('practiceSessionCompleteAccuracy')}</span>
+                  <span className={cn('inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-bold', getAccuracyBadge(accuracy).color)}>
+                    {accuracy}% • {getAccuracyBadge(accuracy).label}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <DialogFooter className="relative z-10 flex-col gap-2 sm:flex-col">
+            <Button onClick={handleReset} size="lg" className="w-full gap-2">
+              <RefreshCcw className="h-4 w-4" />
+              {t('practiceStartNewSession')}
+            </Button>
+            <Button onClick={handleContinuePracticing} variant="outline" size="lg" className="w-full">
+              {t('practiceContinuePracticing')}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Confetti CSS */}
+      <style jsx>{`
+        @keyframes confetti-fall {
+          0% {
+            transform: translateY(-100%) rotate(0deg);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(100vh) rotate(720deg);
+            opacity: 0;
+          }
+        }
+
+        .confetti-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+        }
+
+        .confetti {
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          animation: confetti-fall 3s linear infinite;
+          opacity: 0;
+        }
+      `}</style>
     </Dialog>
   );
 }
