@@ -200,7 +200,7 @@ export default function Sidebar() {
                 "text-sidebar-foreground hover:text-sidebar-accent-foreground",
             )}
           >
-            <AjvarLogo size={16} className="h-4 w-4" />
+            <AjvarLogo size={24} className="h-6 w-6" />
             <span
               className={cn(
                 "text-[9px] font-medium w-full text-center line-clamp-1 leading-tight",
