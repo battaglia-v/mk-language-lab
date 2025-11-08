@@ -9,7 +9,7 @@ import {
   Languages,
   Newspaper,
   BookOpen,
-  Instagram,
+  // Instagram, // Hidden until Instagram access is available
   ChevronLeft,
   ChevronRight
 } from 'lucide-react';
@@ -63,7 +63,7 @@ export default function Sidebar() {
     { path: '', label: t('journey'), icon: Home },
     { path: '/practice', label: t('practice'), icon: RefreshCw },
     { path: '/translate', label: t('translate'), icon: Languages },
-    { path: '/daily-lessons', label: t('dailyLessons'), icon: Instagram },
+    // { path: '/daily-lessons', label: t('dailyLessons'), icon: Instagram }, // Hidden until Instagram access is available
     { path: '/news', label: t('news'), icon: Newspaper },
     { path: '/resources', label: t('resources'), icon: BookOpen },
   ];
@@ -174,10 +174,10 @@ export default function Sidebar() {
 
       {/* Mobile Bottom Navigation */}
       <nav
-        className="lg:hidden fixed bottom-0 left-0 right-0 bg-sidebar border-t border-sidebar-border z-50 safe-area-inset-bottom"
+        className="lg:hidden fixed bottom-0 left-0 right-0 bg-sidebar border-t border-sidebar-border z-50"
         aria-label={t('label')}
       >
-        <div className="grid grid-cols-3 gap-1 px-2 py-2">
+        <div className="grid grid-cols-3 gap-0.5 px-1 py-1">
           {navItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.path);
@@ -187,17 +187,17 @@ export default function Sidebar() {
                 href={buildHref(item.path)}
                 aria-current={active ? 'page' : undefined}
                 className={cn(
-                  'flex flex-col items-center gap-1 px-2 py-2 rounded-xl transition-all duration-200',
+                  'flex flex-col items-center gap-0.5 px-1 py-1.5 rounded-lg transition-all duration-200',
                   active && 'text-primary',
                   !active && 'text-sidebar-foreground hover:text-sidebar-accent-foreground'
                 )}
               >
                 <Icon className={cn(
-                  'h-5 w-5',
+                  'h-4 w-4',
                   active && 'text-primary'
                 )} />
                 <span className={cn(
-                  'text-[10px] font-medium w-full text-center line-clamp-1 leading-tight',
+                  'text-[9px] font-medium w-full text-center line-clamp-1 leading-tight',
                   active && 'text-primary'
                 )}>
                   {item.label}
