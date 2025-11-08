@@ -181,13 +181,13 @@ export default function Sidebar() {
           <Link
             href={`/${locale}`}
             className={cn(
-              'flex flex-col items-center gap-0.5 px-1 py-1.5 rounded-lg transition-all duration-200',
+              'flex flex-col items-center gap-1 px-1 py-1.5 rounded-lg transition-all duration-200',
               pathname === `/${locale}` && 'text-primary',
               pathname !== `/${locale}` && 'text-sidebar-foreground hover:text-sidebar-accent-foreground'
             )}
           >
-            <div className="flex items-center justify-center min-h-[28px] min-w-[28px]">
-              <AjvarLogo size={28} className="shrink-0" />
+            <div className="flex items-center justify-center h-7 w-7">
+              <AjvarLogo size={28} />
             </div>
             <span className={cn(
               'text-[9px] font-medium w-full text-center line-clamp-1 leading-tight',

@@ -5,7 +5,7 @@ import { Sparkles, BookOpen, ArrowRight } from 'lucide-react';
 
 export default function AdminDashboard() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 px-4 md:px-0">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Admin Dashboard</h1>
@@ -15,7 +15,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Management Cards */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-2">
         {/* Word of the Day */}
         <Card className="relative overflow-hidden transition-all hover:shadow-lg">
           <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-primary/5 blur-2xl" />
