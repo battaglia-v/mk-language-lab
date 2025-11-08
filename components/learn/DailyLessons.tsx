@@ -217,8 +217,8 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
       <Card className="border-border/50 bg-card/60 backdrop-blur">
         <CardHeader>
           <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500 to-purple-600">
-              <Instagram className="h-6 w-6 text-white" />
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-primary-foreground">
+              <Instagram className="h-6 w-6" />
             </div>
             <div>
               <CardTitle className="text-2xl">{t('title')}</CardTitle>
@@ -240,8 +240,8 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
       <Card className="border-border/50 bg-card/60 backdrop-blur">
         <CardHeader>
           <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500 to-purple-600">
-              <Instagram className="h-6 w-6 text-white" />
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-primary-foreground">
+              <Instagram className="h-6 w-6" />
             </div>
             <div>
               <CardTitle className="text-2xl">{t('title')}</CardTitle>
@@ -279,8 +279,8 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
       <CardHeader>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500 to-purple-600">
-              <Instagram className="h-6 w-6 text-white" />
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-primary-foreground">
+              <Instagram className="h-6 w-6" />
             </div>
             <div>
               <CardTitle className="text-2xl">{t('title')}</CardTitle>
