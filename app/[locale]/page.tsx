@@ -33,7 +33,10 @@ export default function HomePage() {
             <div className="space-y-8 text-center">
               <div className="space-y-6">
                 <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-                  {t('title')}
+                  {t('learn')}{' '}
+                  <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                    Македонски
+                  </span>
                 </h1>
                 <p className="mx-auto max-w-2xl text-xl text-muted-foreground">
                   {t('subtitle')}
