@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Plus, Edit, Trash2, Save, X } from 'lucide-react';
+import { BulkImportCSV } from '@/components/admin/BulkImportCSV';
 
 type PracticeVocabulary = {
   id: string;
@@ -195,6 +196,9 @@ export default function PracticeVocabularyAdmin() {
           </Button>
         )}
       </div>
+
+      {/* CSV Bulk Import */}
+      <BulkImportCSV />
 
       {showForm && (
         <Card>
