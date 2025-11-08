@@ -1,10 +1,10 @@
 // Service Worker for Macedonian Language Lab PWA
-const CACHE_NAME = 'mk-language-lab-v1';
-const RUNTIME_CACHE = 'mk-language-lab-runtime-v1';
+const CACHE_NAME = 'mk-language-lab-v2'; // Updated version to invalidate old caches
+const RUNTIME_CACHE = 'mk-language-lab-runtime-v2';
 
 // Core assets to cache on install
+// NOTE: '/' is intentionally excluded - next-intl middleware must handle locale redirects
 const CORE_ASSETS = [
-  '/',
   '/manifest.json',
   '/icon-192.png',
   '/icon-512.png',
@@ -13,7 +13,7 @@ const CORE_ASSETS = [
 
 // Install event - cache core assets
 self.addEventListener('install', (event) => {
-  console.log('[SW] Installing service worker...');
+  console.log('[SW] Installing service worker v2...');
 
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -32,7 +32,7 @@ self.addEventListener('install', (event) => {
 
 // Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
-  console.log('[SW] Activating service worker...');
+  console.log('[SW] Activating service worker v2...');
 
   event.waitUntil(
     caches.keys().then((cacheNames) => {
@@ -61,6 +61,18 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  // CRITICAL: Skip root path - let next-intl middleware handle locale redirects
+  // This prevents caching '/' and breaking the locale routing
+  if (url.pathname === '/') {
+    return;
+  }
+
+  // CRITICAL: Skip authentication routes - prevent OAuth flow interference
+  // Service workers must NOT intercept NextAuth callbacks and redirects
+  if (url.pathname.startsWith('/api/auth/')) {
+    return;
+  }
+
   // Skip Next.js internal requests and hot reload in development
   if (
     url.pathname.startsWith('/_next/webpack-hmr') ||
@@ -73,10 +85,14 @@ self.addEventListener('fetch', (event) => {
   // API requests - Network first, fallback to cache (GET only)
   if (url.pathname.startsWith('/api/')) {
     event.respondWith(
-      fetch(request)
+      fetch(request, { redirect: 'follow' }) // Explicitly follow redirects
         .then((response) => {
-          // Only cache GET requests
-          if (request.method === 'GET') {
+          // Only cache successful GET requests that aren't redirects
+          if (
+            request.method === 'GET' &&
+            response.status === 200 &&
+            !response.redirected
+          ) {
             const responseToCache = response.clone();
             caches.open(RUNTIME_CACHE).then((cache) => {
               cache.put(request, responseToCache);
@@ -119,9 +135,10 @@ self.addEventListener('fetch', (event) => {
     caches.match(request).then((cachedResponse) => {
       if (cachedResponse) {
         // Return cached version and update cache in background
-        fetch(request)
+        fetch(request, { redirect: 'follow' })
           .then((response) => {
-            if (response && response.status === 200) {
+            // Only cache successful responses that aren't redirects
+            if (response && response.status === 200 && !response.redirected) {
               caches.open(RUNTIME_CACHE).then((cache) => {
                 cache.put(request, response.clone());
               });
@@ -134,10 +151,15 @@ self.addEventListener('fetch', (event) => {
       }
 
       // Not in cache, fetch from network
-      return fetch(request)
+      return fetch(request, { redirect: 'follow' })
         .then((response) => {
-          // Don't cache non-successful responses
-          if (!response || response.status !== 200 || response.type === 'error') {
+          // Don't cache non-successful responses or redirects
+          if (
+            !response ||
+            response.status !== 200 ||
+            response.type === 'error' ||
+            response.redirected
+          ) {
             return response;
           }
 
@@ -152,11 +174,13 @@ self.addEventListener('fetch', (event) => {
           return response;
         })
         .catch(() => {
-          // Network failed, return offline page for navigation requests
+          // Network failed, return offline fallback for navigation requests
           if (request.mode === 'navigate') {
-            return caches.match('/').then((response) => {
-              return response || new Response('Offline', {
+            // Fallback to default locale page instead of root
+            return caches.match('/mk').then((response) => {
+              return response || new Response('Offline - Please check your internet connection', {
                 headers: { 'Content-Type': 'text/plain' },
+                status: 503,
               });
             });
           }
