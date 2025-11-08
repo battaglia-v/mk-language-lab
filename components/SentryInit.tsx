@@ -20,17 +20,14 @@ export function SentryInit() {
     // Check if Sentry is already initialized
     const client = Sentry.getClient();
     if (client) {
-      console.log('Sentry already initialized');
       return;
     }
-
-    console.log('Initializing Sentry client...');
 
     Sentry.init({
       dsn: SENTRY_DSN,
       environment: ENVIRONMENT,
       tracesSampleRate: ENVIRONMENT === 'production' ? 0.1 : 1.0,
-      debug: true, // Enable debug mode to see what's happening
+      debug: ENVIRONMENT === 'development',
       sampleRate: 1.0,
       replaysOnErrorSampleRate: 1.0,
       replaysSessionSampleRate: ENVIRONMENT === 'production' ? 0.1 : 0.0,
@@ -86,12 +83,9 @@ export function SentryInit() {
       },
     });
 
-    console.log('Sentry initialized successfully');
-
-    // Expose Sentry to window for debugging
-    if (typeof window !== 'undefined') {
+    // Expose Sentry to window for debugging in development
+    if (typeof window !== 'undefined' && ENVIRONMENT === 'development') {
       (window as typeof window & { Sentry: typeof Sentry }).Sentry = Sentry;
-      console.log('Sentry exposed to window.Sentry');
     }
   }, []);
 

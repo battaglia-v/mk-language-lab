@@ -1,7 +1,6 @@
 import { auth } from '@/lib/auth';
 import { PrismaClient } from '@prisma/client';
 import ContinueLearningWidget from './ContinueLearningWidget';
-import { JOURNEY_DEFINITIONS } from '@/data/journeys';
 
 const prisma = new PrismaClient();
 
@@ -39,13 +38,11 @@ export default async function ContinueLearningServer() {
         },
       });
 
-      const journeyDefinition = JOURNEY_DEFINITIONS[activeJourney.journeyId as keyof typeof JOURNEY_DEFINITIONS];
-
       return (
         <ContinueLearningWidget
           lesson={activeJourney.currentLesson}
           progress={userProgress}
-          journeyTitle={journeyDefinition?.title}
+          journeyTitle={undefined}
         />
       );
     }
@@ -62,8 +59,6 @@ export default async function ContinueLearningServer() {
     });
 
     if (firstModule && firstModule.lessons[0]) {
-      const journeyDefinition = JOURNEY_DEFINITIONS[firstModule.journeyId as keyof typeof JOURNEY_DEFINITIONS];
-
       return (
         <ContinueLearningWidget
           lesson={{
@@ -73,7 +68,7 @@ export default async function ContinueLearningServer() {
             },
           }}
           progress={null}
-          journeyTitle={journeyDefinition?.title}
+          journeyTitle={undefined}
         />
       );
     }

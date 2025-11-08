@@ -1,7 +1,6 @@
 {
   "nav": {
     "label": "Main navigation",
-    "journey": "Journey hub",
     "practice": "Practice",
     "tutor": "Tutor",
     "library": "Library",
@@ -10,161 +9,6 @@
     "savedLessons": "Saved Lessons",
     "resources": "Resources",
     "news": "News"
-  },
-  "journey": {
-    "badge": "Learning Hub",
-    "title": "Choose your Macedonian journey",
-    "subtitle": "Pick a goal and start learning.",
-    "ctaPrimary": "Start with family conversations",
-    "ctaSecondary": "Open daily practice",
-  "ctaNews": "Browse the news hub",
-    "progress": {
-      "badge": "Getting started",
-      "title": "Today's momentum",
-      "description": "Keep your streak alive by tackling one focused step.",
-      "streakLabel": "{count, plural, one {# day streak} other {# day streak}}",
-  "goalLabel": "Today's target - {minutes} min",
-      "sessionLabel": "Session progress",
-  "minutesTodayLabel": "Logged today: {minutes} min",
-  "minutesWeekLabel": "This week: {minutes} min",
-  "minutesTotalLabel": "Lifetime minutes logged: {minutes}",
-      "cta": "Start Practicing",
-      "stats": {
-        "activeGoal": {
-          "label": "Active goal",
-          "value": "Not set"
-        },
-        "steps": {
-          "label": "Steps completed this week",
-          "value": "0"
-        },
-        "lastSession": {
-          "label": "Last session",
-          "value": "Not started",
-          "justNow": "Just now"
-        }
-      }
-    },
-    "quickActions": {
-      "title": "Pick up where you left off",
-      "description": "Jump straight into the workspace you use most often.",
-      "progressLabel": "Progress",
-      "minutes": "{minutes} min warm-up",
-      "resume": "Continue",
-      "open": "Open workspace",
-      "items": {
-        "practice": {
-          "label": "Daily practice",
-          "description": "Run a 10-minute translation or vocabulary drill."
-        },
-        "tutor": {
-          "label": "Tutor session",
-          "description": "Ask the AI tutor for help or a guided conversation."
-        },
-        "library": {
-          "label": "Library",
-          "description": "Browse saved resources and cultural references."
-        },
-        "news": {
-          "label": "News digest",
-          "description": "Scan Macedonian headlines and video clips for listening practice."
-        }
-      }
-    },
-    "recent": {
-      "title": "Recently practiced",
-      "description": "Pick up the drills you touched this week with progress already saved.",
-      "resume": "Resume session",
-      "streakLabel": "{count, plural, one {# day streak} other {# day streak}}",
-      "items": {
-        "familyPhrases": {
-          "tag": "Vocabulary deck",
-          "title": "Family phrases",
-          "description": "Warm introductions, check-ins, and shared memories."
-        },
-        "listeningWarmup": {
-          "tag": "Pronunciation lab",
-          "title": "Morning listening warm-up",
-          "description": "Shadow a short dialogue to reset your ear."
-        },
-        "newsDigest": {
-          "tag": "News digest",
-          "title": "Headlines review",
-          "description": "Scan recent stories and mark follow-up questions."
-        }
-      }
-    },
-    "recommended": {
-      "title": "Recommended for you",
-      "description": "A mix of listening, culture, and travel modules to keep your momentum.",
-      "start": "Open module",
-      "items": {
-        "listeningLab": {
-          "tag": "Audio focus",
-          "title": "Listening lab",
-          "description": "Build comprehension with guided shadowing sets."
-        },
-        "cultureDeepDive": {
-          "tag": "Culture",
-          "title": "Culture deep-dive",
-          "description": "Pair articles, videos, and tutor prompts for context."
-        },
-        "travelToolkit": {
-          "tag": "Travel",
-          "title": "Travel toolkit",
-          "description": "Practice real itineraries and service interactions."
-        }
-      }
-    },
-    "goals": {
-      "title": "Choose a journey",
-      "description": "Each path combines curated resources, practice prompts, and cultural context tailored to your goal.",
-      "minutes": "Suggested focus: {minutes} min",
-      "start": "Start now",
-      "cards": {
-        "family": {
-          "badge": "Conversational",
-          "title": "Talk with family",
-          "description": "Build confidence for reconnecting with relatives and heritage speakers.",
-          "focus": [
-            "Warm introductions and check-ins",
-            "Storytelling phrases and follow-up questions",
-            "Tips for switching between informal and formal tones"
-          ]
-        },
-        "travel": {
-          "badge": "On the go",
-          "title": "Prepare for travel",
-          "description": "Master essential interactions for transport, lodging, and dining.",
-          "focus": [
-            "Transport and navigation micro-dialogues",
-            "Polite requests and service vocabulary",
-            "Cultural cues for markets, cafés, and sightseeing"
-          ]
-        },
-        "culture": {
-          "badge": "Immersion",
-          "title": "Cultural fluency",
-          "description": "Blend media, literature, and history to deepen your Macedonian worldview.",
-          "focus": [
-            "Curated reading and listening playlists",
-            "Grammar callouts from real headlines",
-            "Prompts for journaling and reflection"
-          ]
-        }
-      }
-    },
-    "spotlight": {
-      "badge": "Culture spotlight",
-      "title": "This week in Macedonia",
-      "description": "Keep your journey grounded with timely articles and featured stories.",
-      "highlights": [
-        "Feature articles that explain contemporary Macedonian life",
-        "Audio clips to shadow for pronunciation and rhythm",
-        "Suggested tutor prompts to discuss what you read"
-      ],
-      "cta": "Explore the library"
-    }
   },
   "home": {
     "learn": "Learn",
@@ -313,13 +157,13 @@
         "title": "Family & friends",
         "description": "Affectionate greetings, check-ins, and shared memories.",
         "focus": "Warm reunions",
-        "href": "/practice?section=translation&card=quick-phrases&journey=family"
+        "href": "/practice?section=translation&card=quick-phrases"
       },
       {
         "title": "Travel essentials",
         "description": "Tickets, directions, and polite requests on the go.",
         "focus": "Before your trip",
-        "href": "/practice?section=translation&card=quick-phrases&journey=travel"
+        "href": "/practice?section=translation&card=quick-phrases"
       },
       {
         "title": "Daily routines",
@@ -346,10 +190,7 @@
         "href": "/practice?section=speaking&card=pronunciation"
       }
     ],
-    "returnToJourney": "Return to journey",
-    "tryNow": "Jump into practice",
-    "journeyDrillHeading": "Journey drill: {journey}",
-    "journeyDrillSubtitle": "Shadow these lines to connect your cultural study with pronunciation practice."
+    "tryNow": "Jump into practice"
   },
   "learnGrammar": {
     "back": "Back to Learn Hub",
@@ -499,16 +340,7 @@
         "description": "Conversational videos with natural pacing and slang.",
         "href": "/resources?section=audio"
       }
-    ],
-    "journeyPracticeHeading": "Practice deck: {journey}",
-    "journeyPracticeSubtitle": "Use these prompts to warm up before your next session.",
-    "journeyPracticeNote": "Say each line aloud, then answer in Macedonian to keep the conversation moving.",
-    "journeyPracticeTable": {
-      "situation": "Scenario",
-      "macedonian": "Macedonian",
-      "english": "English",
-      "tip": "Tip"
-    }
+    ]
   },
   "learnPronunciation": {
     "back": "Back to Learn Hub",
@@ -583,9 +415,7 @@
         "description": "Practice minimal pairs and connected speech with spoken shows.",
         "href": "/resources?section=audio"
       }
-    ],
-    "journeyDrillHeading": "Journey drill: {journey}",
-    "journeyDrillSubtitle": "Shadow these lines to connect your cultural study with pronunciation practice."
+    ]
   },
   "news": {
     "title": "News Feed",
@@ -622,12 +452,7 @@
     "comingSoonDescription": "We are finishing the conversational tutor experience. In the meantime, keep your streak alive with guided practice and translation decks.",
     "comingSoonPrimary": "Visit practice hub",
     "comingSoonSecondary": "Browse translator",
-    "emptyStateHeading": "How can I help you learn Macedonian?",
-    "journeyContextTitle": "Active journey",
-    "journeyContextReview": "Review journey plan",
-    "journeyContextPractice": "Open recommended practice",
-    "journeyContextEmpty": "Set an active journey to personalize tutor responses.",
-    "journeyContextCta": "Choose a journey"
+    "emptyStateHeading": "How can I help you learn Macedonian?"
   },
   "translate": {
     "title": "Translate",
@@ -682,20 +507,13 @@
     ],
     "resourcesTitle": "Need richer explanations?",
     "resourcesDescription": "Explore trusted dictionaries, grammar guides, and curated Macedonian sources.",
-    "resourcesCta": "Browse resources",
-    "journeyPracticeTitle": "Journey practice samples: {journey}",
-    "journeyPracticeDescription": "Load a curated snippet to translate and discuss with your tutor.",
-    "journeyPracticeLoad": "Load into translator",
-    "journeyPracticeSourceLabel": "Source language: {language}",
-    "journeyPracticePrompt": "Discussion prompt"
+    "resourcesCta": "Browse resources"
   },
   "practiceHub": {
     "badge": "Daily practice",
     "title": "Train your Macedonian skills",
     "subtitle": "Choose a practice activity.",
     "openAction": "Open workspace",
-    "recommendedBadge": "Journey pick",
-    "recommendedHint": "Selected for your current journey",
     "cards": {
       "translate": {
         "title": "Quick Translator",
@@ -776,12 +594,8 @@
     },
     "saved": {
       "tabLabel": "Saved",
-      "description": "Your bookmarked items from journeys and practice sessions will surface here.",
+      "description": "Your bookmarked items from practice sessions will surface here.",
       "cards": {
-        "journeys": {
-          "title": "Saved journeys",
-          "description": "Keep track of the articles and clips you mark for deeper study."
-        }
       }
     },
     "culture": {
@@ -791,195 +605,6 @@
         "spotlight": {
           "title": "Culture spotlight",
           "description": "Read feature stories that add context to your current learning journey."
-        }
-      }
-    }
-  },
-  "journeyDetail": {
-    "badge": "Journey preview",
-    "backLabel": "Back to journeys",
-    "activeBadge": "Active journey",
-    "setActive": "Set as active journey",
-    "clearActive": "Clear active journey",
-    "focusTitle": "What you'll focus on",
-    "stepsTitle": "Suggested first steps",
-    "practiceTitle": "Recommended practice",
-    "practiceDescription": "Jump into these workspaces to support this journey.",
-    "practiceCta": "Open practice hub",
-    "extras": {
-      "header": {
-        "title": "Extend your practice",
-        "description": "Add a guided exercise or bookmark a resource to stay on track."
-      },
-      "exercisesTitle": "Guided exercises",
-      "resourcesTitle": "Additional resources",
-      "timeLabel": "{minutes} min",
-  "openLink": "Open link",
-      "family": {
-        "exercises": [
-          {
-            "title": "15-minute greeting rehearsal",
-            "description": "Set a timer and rotate through Macedonian greetings, follow-up questions, and exit phrases. Record yourself once and flag any wording that still feels stiff.",
-            "time": "15"
-          },
-          {
-            "title": "Story swap journaling",
-            "description": "Write a short family story in English, then translate it to Macedonian. Highlight three phrases you want the tutor to review for tone.",
-            "time": "20"
-          },
-          {
-            "title": "Tone ladder drill",
-            "description": "Say the same sentence in informal, neutral, and respectful forms. Jot notes on which endings or particles change.",
-            "time": "10"
-          }
-        ],
-        "resources": [
-          {
-            "title": "Family phrase deck",
-            "description": "Jump to the phrase refresh workspace pre-filtered for family topics.",
-            "href": "/practice?section=translation&card=quick-phrases&journey=family"
-          },
-          {
-            "title": "Kinship vocabulary sheet",
-            "description": "Review Macedonian kinship terms and note which ones differ from your everyday usage.",
-            "href": "/resources?section=reference&q=kinship"
-          },
-          {
-            "title": "Warm check-in prompts",
-            "description": "Use the translator workspace to polish affectionate check-in lines before your next call.",
-            "href": "/translate?journey=family"
-          }
-        ]
-      },
-      "travel": {
-        "exercises": [
-          {
-            "title": "Transit role-play loop",
-            "description": "Draft three questions for the Skopje bus station, then answer them as a clerk. Swap roles and note vocab gaps.",
-            "time": "18"
-          },
-          {
-            "title": "Check-in checklist",
-            "description": "List every detail you want confirmed at a guesthouse. Translate the list and practise saying it aloud with a polite opener.",
-            "time": "15"
-          },
-          {
-            "title": "Market bargaining drill",
-            "description": "Script a short dialogue for buying produce. Focus on quantities, prices, and courtesies.",
-            "time": "12"
-          }
-        ],
-        "resources": [
-          {
-            "title": "Travel task board preset",
-            "description": "Load the task hub with a travel-focused card set you can drag through the week.",
-            "href": "/tasks?journey=travel"
-          },
-          {
-            "title": "Transport vocabulary playlist",
-            "description": "Open the resource library filter for transport, lodging, and navigation articles.",
-            "href": "/resources?section=travel"
-          },
-          {
-            "title": "Restaurant ready set",
-            "description": "Review ordering phrases and tipping norms in the phrase workspace before dining out.",
-            "href": "/practice?section=phrases&journey=travel"
-          }
-        ]
-      },
-      "culture": {
-        "exercises": [
-          {
-            "title": "Culture capsule summary",
-            "description": "Pick one article from the spotlight section and summarise it in both English and Macedonian paragraphs.",
-            "time": "25"
-          },
-          {
-            "title": "Audio shadowing lab",
-            "description": "Shadow a 2-minute cultural podcast clip, noting pronunciation wins and phrases to ask the tutor about.",
-            "time": "20"
-          },
-          {
-            "title": "Reflection prompt trio",
-            "description": "Answer three journal prompts linking the cultural theme to your experience. Share one answer with the tutor for feedback.",
-            "time": "18"
-          }
-        ],
-        "resources": [
-          {
-            "title": "Library culture shelf",
-            "description": "Jump straight to curated culture and history resources in the library.",
-            "href": "/resources?section=culture"
-          },
-          {
-            "title": "Pronunciation lab",
-            "description": "Use the pronunciation workspace to mimic rhythms from cultural audio clips.",
-            "href": "/practice?section=pronunciation&journey=culture"
-          },
-          {
-            "title": "Tutor culture prompts",
-            "description": "Load the tutor with culture-specific starter prompts once the chat returns.",
-            "href": "/tutor"
-          }
-        ]
-      }
-    },
-    "previewTitle": "Full guided plan",
-    "comingSoon": "Personalized scheduling and progress tracking are on the way.",
-    "previewCta": "Build my path",
-    "goals": {
-      "family": {
-        "title": "Family conversations",
-        "intro": "Reconnect with relatives using warm greetings, everyday stories, and supportive replies.",
-        "focus": [
-          "Crafting authentic greetings and follow-up questions",
-          "Responding to personal stories with empathy",
-          "Switching between informal and respectful tones"
-        ],
-        "steps": [
-          "Review the phrase deck for introductions and family topics.",
-          "Translate three family anecdotes with the practice workspace.",
-          "Ask the tutor for a role-play to rehearse a phone call."
-        ],
-        "practice": {
-          "phrases": "Review introductions and warm check-ins before your next conversation.",
-          "tutor": "Ask the tutor to role-play family calls and coach your tone."
-        }
-      },
-      "travel": {
-        "title": "Travel prep",
-        "intro": "Feel prepared for transit, lodging, and dining in Macedonia with confident phrases.",
-        "focus": [
-          "Essential verbs and nouns for transport and directions",
-          "Key questions for hotels, rentals, and reservations",
-          "Etiquette for cafés, markets, and street interactions"
-        ],
-        "steps": [
-          "Run a translation sprint focused on transport vocabulary.",
-          "Browse the resource library's travel playlists and save favorites.",
-          "Prompt the tutor to simulate ordering at a restaurant."
-        ],
-        "practice": {
-          "tasks": "Run a transport drill set to lock in must-know travel vocabulary.",
-          "tutor": "Have the tutor simulate booking and check-in chats before you go."
-        }
-      },
-      "culture": {
-        "title": "Cultural fluency",
-        "intro": "Pair language study with media, history, and cultural touchstones.",
-        "focus": [
-          "Exploring headlines for grammar-in-context takeaways",
-          "Listening to podcasts to mirror pronunciation and rhythm",
-          "Documenting reflections in Macedonian to build recall"
-        ],
-        "steps": [
-          "Pick a featured article from the library and summarise it in English and Macedonian.",
-          "Shadow a three-minute audio clip and note pronunciation wins.",
-          "Ask the tutor for journaling prompts tied to the article."
-        ],
-        "practice": {
-          "translate": "Translate current headlines to spot grammar and collect phrases.",
-          "pronunciation": "Shadow pronunciation labs to mirror the sounds you discover."
         }
       }
     }
@@ -1022,9 +647,7 @@
     "done": "Done",
     "save": "Save",
     "saving": "Saving...",
-    "emptyColumnHint": "Drag tasks here",
-    "journeyPresetHeading": "Journey sprint loaded: {journey}",
-    "journeyPresetDescription": "We pre-filled travel-focused tasks so you can move cards as you practise each scenario."
+    "emptyColumnHint": "Drag tasks here"
   },
   "about": {
     "title": "About",
@@ -1067,7 +690,6 @@
       "shortcutSearch": "Press ⌘K / Ctrl+K",
       "shortcutHelp": "Press ? for shortcuts",
       "items": {
-        "journeyDescription": "Return to the journey hub",
         "practiceDescription": "Resume daily practice drills",
         "tutorDescription": "Open the tutor chat for support",
         "translateDescription": "Launch the translation workspace",
@@ -1166,7 +788,7 @@
     "footer": "A new word is featured each day to expand your vocabulary."
   },
   "welcomeBanner": {
-    "title": "Welcome to your Macedonian journey!",
+    "title": "Welcome to Macedonian Learning!",
     "description": "Start learning with today's featured word, practice vocabulary, or explore resources curated by native speakers.",
     "ctaPrimary": "See Today's Word",
     "ctaSecondary": "Start Practicing"

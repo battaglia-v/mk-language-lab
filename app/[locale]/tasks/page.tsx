@@ -29,9 +29,6 @@ import {
   arrayMove,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { useTranslations as useJourneyTranslations } from 'next-intl';
-import { isJourneyId } from '@/data/journeys';
-import { JOURNEY_PRACTICE_CONTENT } from '@/data/journey-practice-content';
 
 interface Task {
   id: string;
@@ -141,7 +138,6 @@ function KanbanColumn({
 
 export default function TasksPage() {
   const t = useTranslations('tasks');
-  const journeyT = useJourneyTranslations('journey');
   const searchParams = useSearchParams();
 
   const defaultColumnTitles = useMemo(
@@ -213,10 +209,6 @@ export default function TasksPage() {
     })
   );
 
-  const journeyParam = searchParams?.get('journey') ?? null;
-  const journeyId = journeyParam && isJourneyId(journeyParam) ? journeyParam : null;
-  const journeyTitle = journeyId ? journeyT(`goals.cards.${journeyId}.title`) : null;
-  const journeyPreset = journeyId ? JOURNEY_PRACTICE_CONTENT[journeyId]?.taskPreset ?? null : null;
 
   // Load from localStorage on mount
   useEffect(() => {
@@ -244,46 +236,6 @@ export default function TasksPage() {
     localStorage.setItem('kanban-board', JSON.stringify(columns));
   }, [columns]);
 
-  useEffect(() => {
-    templateAppliedRef.current = false;
-    setTemplateApplied(false);
-  }, [journeyId]);
-
-  useEffect(() => {
-    if (!isHydrated || templateAppliedRef.current || !journeyPreset) {
-      return;
-    }
-
-    const boardIsEmpty = columns.every((column) => column.tasks.length === 0);
-
-    if (!boardIsEmpty) {
-      return;
-    }
-
-    setColumns((previous) => {
-      const updated = previous.map((column) => {
-        const presetTasks = journeyPreset.columns[column.id as keyof typeof journeyPreset.columns] ?? [];
-
-        if (!presetTasks.length) {
-          return column;
-        }
-
-        return {
-          ...column,
-          tasks: presetTasks.map((task, index) => ({
-            id: `preset-${column.id}-${index}`,
-            title: task.title,
-            description: task.description,
-          })),
-        };
-      });
-
-      return updated;
-    });
-
-    templateAppliedRef.current = true;
-    setTemplateApplied(true);
-  }, [columns, isHydrated, journeyPreset]);
 
   const findColumnIdForItem = useCallback(
     (id: string, collection: Column[] = columns): string | null => {
@@ -490,16 +442,6 @@ export default function TasksPage() {
             </Button>
           </div>
         </div>
-
-        {journeyPreset && templateApplied ? (
-          <div className="mb-8 rounded-lg border border-primary/40 bg-primary/10 p-4">
-            <p className="text-sm font-semibold text-primary">
-              {t('journeyPresetHeading', { journey: journeyTitle ?? '' })}
-            </p>
-            <p className="text-sm text-primary/80">{journeyPreset.note}</p>
-            <p className="mt-2 text-xs text-muted-foreground">{t('journeyPresetDescription')}</p>
-          </div>
-        ) : null}
 
         {/* Kanban Board */}
   <DndContext sensors={sensors} collisionDetection={closestCorners} onDragEnd={handleDragEnd}>

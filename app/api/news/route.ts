@@ -1,5 +1,6 @@
 import crypto from 'node:crypto';
 import { NextRequest, NextResponse } from 'next/server';
+import { newsRateLimit, checkRateLimit } from '@/lib/rate-limit';
 
 export const revalidate = 180;
 
@@ -596,6 +597,25 @@ async function fetchFeed(source: NewsSource, signal: AbortSignal): Promise<NewsI
 }
 
 export async function GET(request: NextRequest) {
+  // Rate limiting - prevent scraping abuse
+  const ip = request.ip ?? request.headers.get('x-forwarded-for') ?? '127.0.0.1';
+  const { success, limit: rateLimitMax, reset, remaining } = await checkRateLimit(newsRateLimit, ip);
+
+  if (!success) {
+    return NextResponse.json(
+      { error: 'Rate limit exceeded. Please try again later.' },
+      {
+        status: 429,
+        headers: {
+          'X-RateLimit-Limit': rateLimitMax.toString(),
+          'X-RateLimit-Remaining': remaining.toString(),
+          'X-RateLimit-Reset': reset.toString(),
+          'Retry-After': Math.ceil((reset - Date.now()) / 1000).toString(),
+        }
+      }
+    );
+  }
+
   const { searchParams } = new URL(request.url);
   const sourceParam = (searchParams.get('source') ?? 'all').toLowerCase();
   const query = searchParams.get('q')?.trim().toLowerCase() ?? '';

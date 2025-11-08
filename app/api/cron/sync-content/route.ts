@@ -14,7 +14,9 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    console.log('🚀 Starting content sync from cron job...');
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🚀 Starting content sync from cron job...');
+    }
 
     // Run the sync
     await syncContentFromSheets();

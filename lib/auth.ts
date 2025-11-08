@@ -78,8 +78,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           token.name = dbUser.name;
           token.picture = dbUser.image;
           token.role = dbUser.role;
-
-          console.log('[AUTH] User persisted to database:', { userId: dbUser.id, email: dbUser.email });
         } catch (error) {
           console.error('[AUTH] Error persisting user to database:', error);
           // Continue with sign-in even if database write fails
@@ -108,16 +106,22 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     strategy: 'jwt', // JWT sessions for serverless compatibility
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
-  debug: true, // Enable debug mode to capture detailed errors
+  debug: process.env.NODE_ENV === 'development', // Enable debug mode only in development
   events: {
     async signIn({ user, account }) {
-      console.log('[AUTH EVENT] Sign in successful:', { userId: user.id, provider: account?.provider });
+      if (process.env.NODE_ENV === 'development') {
+        console.log('[AUTH EVENT] Sign in successful:', { userId: user.id, provider: account?.provider });
+      }
     },
     async createUser({ user }) {
-      console.log('[AUTH EVENT] User created:', { userId: user.id });
+      if (process.env.NODE_ENV === 'development') {
+        console.log('[AUTH EVENT] User created:', { userId: user.id });
+      }
     },
     async linkAccount({ user, account }) {
-      console.log('[AUTH EVENT] Account linked:', { userId: user.id, provider: account.provider });
+      if (process.env.NODE_ENV === 'development') {
+        console.log('[AUTH EVENT] Account linked:', { userId: user.id, provider: account.provider });
+      }
     },
   },
   logger: {
@@ -129,7 +133,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       console.warn('[AUTH WARN]', code);
     },
     debug(code, metadata) {
-      console.log('[AUTH DEBUG]', code, metadata);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('[AUTH DEBUG]', code, metadata);
+      }
     },
   },
 });

@@ -6,6 +6,7 @@ import {
   fetchWithRetry,
   createErrorResponse,
 } from '@/lib/errors';
+import { translateRateLimit, checkRateLimit } from '@/lib/rate-limit';
 
 let translator: v2.Translate | null | undefined;
 
@@ -60,6 +61,25 @@ const getTranslator = () => {
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting - protect expensive Google Cloud API
+    const ip = request.ip ?? request.headers.get('x-forwarded-for') ?? '127.0.0.1';
+    const { success, limit, reset, remaining } = await checkRateLimit(translateRateLimit, ip);
+
+    if (!success) {
+      return NextResponse.json(
+        { error: 'Rate limit exceeded. Please try again later.' },
+        {
+          status: 429,
+          headers: {
+            'X-RateLimit-Limit': limit.toString(),
+            'X-RateLimit-Remaining': remaining.toString(),
+            'X-RateLimit-Reset': reset.toString(),
+            'Retry-After': Math.ceil((reset - Date.now()) / 1000).toString(),
+          }
+        }
+      );
+    }
+
     const body = await request.json();
     const text = typeof body?.text === 'string' ? body.text.trim() : '';
     const sourceLangRaw = typeof body?.sourceLang === 'string' ? body.sourceLang.trim().toLowerCase() : '';

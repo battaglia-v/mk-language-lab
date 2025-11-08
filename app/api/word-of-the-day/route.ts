@@ -1,8 +1,28 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
+import { wordOfDayRateLimit, checkRateLimit } from '@/lib/rate-limit';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    // Rate limiting - generous limits for lightweight endpoint
+    const ip = request.ip ?? request.headers.get('x-forwarded-for') ?? '127.0.0.1';
+    const { success, limit, reset, remaining } = await checkRateLimit(wordOfDayRateLimit, ip);
+
+    if (!success) {
+      return NextResponse.json(
+        { error: 'Rate limit exceeded. Please try again later.' },
+        {
+          status: 429,
+          headers: {
+            'X-RateLimit-Limit': limit.toString(),
+            'X-RateLimit-Remaining': remaining.toString(),
+            'X-RateLimit-Reset': reset.toString(),
+            'Retry-After': Math.ceil((reset - Date.now()) / 1000).toString(),
+          }
+        }
+      );
+    }
+
     // Get all words flagged for WOTD
     const words = await prisma.practiceVocabulary.findMany({
       where: {

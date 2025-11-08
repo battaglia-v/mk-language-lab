@@ -1,12 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 import {
-  buildJourneyTutorPrompt,
-  getJourneyDefinition,
-  isJourneyId,
-  type JourneyProgressContext,
-} from '@/data/journeys';
-import {
   ValidationError,
   ExternalServiceError,
   RateLimitError,
@@ -111,7 +105,7 @@ Format your responses clearly with examples, and always use Cyrillic script (not
 
 export async function POST(request: NextRequest) {
   try {
-    const { messages, activeJourney, journeyProgress } = await request.json();
+    const { messages } = await request.json();
 
     if (!messages || !Array.isArray(messages)) {
       throw new ValidationError('Messages array is required');
@@ -134,34 +128,7 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    let systemPrompt = MACEDONIAN_TUTOR_SYSTEM_PROMPT;
-
-    let progressContext: JourneyProgressContext | undefined;
-
-    if (journeyProgress && typeof journeyProgress === 'object') {
-      const stepsThisWeek = Number((journeyProgress as JourneyProgressContext).stepsThisWeek);
-      const totalSessions = Number((journeyProgress as JourneyProgressContext).totalSessions);
-      const lastSessionRaw = (journeyProgress as JourneyProgressContext).lastSessionIso;
-
-      if (!Number.isNaN(stepsThisWeek) && !Number.isNaN(totalSessions)) {
-        progressContext = {
-          stepsThisWeek: Math.max(0, Math.trunc(stepsThisWeek)),
-          totalSessions: Math.max(0, Math.trunc(totalSessions)),
-          lastSessionIso: typeof lastSessionRaw === 'string' ? lastSessionRaw : null,
-        };
-      }
-    }
-
-    if (isJourneyId(activeJourney)) {
-      const journey = getJourneyDefinition(activeJourney);
-      if (journey) {
-        const context = buildJourneyTutorPrompt(journey.id, progressContext);
-        systemPrompt = `${systemPrompt}
-
-Learner journey context:
-${context}`;
-      }
-    }
+    const systemPrompt = MACEDONIAN_TUTOR_SYSTEM_PROMPT;
 
     // Add system prompt
     const messagesWithSystem: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [

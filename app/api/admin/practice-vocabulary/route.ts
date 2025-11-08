@@ -1,6 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import { z } from 'zod';
+
+// Validation schema for creating Practice Vocabulary
+const createVocabularySchema = z.object({
+  macedonian: z.string().min(1, 'Macedonian word is required').max(200, 'Macedonian word must be 200 characters or less'),
+  english: z.string().min(1, 'English translation is required').max(200, 'English translation must be 200 characters or less'),
+  category: z.string().nullable().optional(),
+  difficulty: z.enum(['beginner', 'intermediate', 'advanced'], {
+    errorMap: () => ({ message: 'Difficulty must be one of: beginner, intermediate, advanced' }),
+  }).default('beginner'),
+  isActive: z.boolean().default(true),
+  includeInWOTD: z.boolean().default(false),
+  pronunciation: z.string().nullable().optional(),
+  partOfSpeech: z.string().nullable().optional(),
+  exampleMk: z.string().nullable().optional(),
+  exampleEn: z.string().nullable().optional(),
+  icon: z.string().nullable().optional(),
+});
 
 // GET - List all vocabulary words
 export async function GET() {
@@ -32,38 +50,31 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const {
-      macedonian,
-      english,
-      category,
-      difficulty,
-      isActive,
-      includeInWOTD,
-      pronunciation,
-      partOfSpeech,
-      exampleMk,
-      exampleEn,
-      icon,
-    } = body;
 
-    // Validate required fields
-    if (!macedonian || !english) {
-      return NextResponse.json({ error: 'Macedonian and English translations are required' }, { status: 400 });
+    // Validate input
+    const validationResult = createVocabularySchema.safeParse(body);
+    if (!validationResult.success) {
+      return NextResponse.json(
+        { error: 'Invalid input', details: validationResult.error.format() },
+        { status: 400 }
+      );
     }
+
+    const data = validationResult.data;
 
     const word = await prisma.practiceVocabulary.create({
       data: {
-        macedonian,
-        english,
-        category: category || null,
-        difficulty: difficulty || 'beginner',
-        isActive: isActive ?? true,
-        includeInWOTD: includeInWOTD ?? false,
-        pronunciation: pronunciation || null,
-        partOfSpeech: partOfSpeech || null,
-        exampleMk: exampleMk || null,
-        exampleEn: exampleEn || null,
-        icon: icon || null,
+        macedonian: data.macedonian,
+        english: data.english,
+        category: data.category || null,
+        difficulty: data.difficulty,
+        isActive: data.isActive,
+        includeInWOTD: data.includeInWOTD,
+        pronunciation: data.pronunciation || null,
+        partOfSpeech: data.partOfSpeech || null,
+        exampleMk: data.exampleMk || null,
+        exampleEn: data.exampleEn || null,
+        icon: data.icon || null,
       },
     });
 

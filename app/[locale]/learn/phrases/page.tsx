@@ -4,8 +4,6 @@ import { useLocale, useTranslations } from 'next-intl';
 import { ArrowLeft, MessageCircle, Plane, Users } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { isJourneyId } from '@/data/journeys';
-import { JOURNEY_PRACTICE_CONTENT } from '@/data/journey-practice-content';
 
 const TRACK_ORDER = ['introductions', 'travel', 'social'] as const;
 
@@ -44,7 +42,6 @@ type PageProps = {
 
 export default function PhrasesModulePage({ searchParams }: PageProps) {
   const t = useTranslations('learnPhrases');
-  const journeyT = useTranslations('journey');
   const locale = useLocale();
 
   const objectives = t.raw('objectives') as string[];
@@ -55,11 +52,6 @@ export default function PhrasesModulePage({ searchParams }: PageProps) {
     href: resource.href.startsWith('/') ? `/${locale}${resource.href}` : resource.href,
   }));
 
-  const resolvedSearchParams = searchParams ? use(searchParams) : {};
-  const journeyParam = typeof resolvedSearchParams?.journey === 'string' ? resolvedSearchParams.journey : null;
-  const journeyId = journeyParam && isJourneyId(journeyParam) ? journeyParam : null;
-  const journeyTitle = journeyId ? journeyT(`goals.cards.${journeyId}.title`) : null;
-  const journeyPhrases = journeyId ? JOURNEY_PRACTICE_CONTENT[journeyId]?.phrases ?? [] : [];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
@@ -133,44 +125,6 @@ export default function PhrasesModulePage({ searchParams }: PageProps) {
             })}
           </div>
         </section>
-
-        {journeyId && journeyPhrases.length ? (
-          <Card className="border-border/40 bg-card/70 backdrop-blur">
-            <CardHeader className="space-y-2">
-              <CardTitle className="text-xl text-foreground">
-                {t('journeyPracticeHeading', { journey: journeyTitle ?? '' })}
-              </CardTitle>
-              <CardDescription className="text-muted-foreground text-sm">
-                {t('journeyPracticeSubtitle')}
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-sm text-muted-foreground">{t('journeyPracticeNote')}</p>
-              <div className="overflow-x-auto">
-                <table className="w-full text-left text-sm">
-                  <thead>
-                    <tr className="text-muted-foreground">
-                      <th className="pb-2 pr-4 font-semibold">{t('journeyPracticeTable.situation')}</th>
-                      <th className="pb-2 pr-4 font-semibold">{t('journeyPracticeTable.macedonian')}</th>
-                      <th className="pb-2 pr-4 font-semibold">{t('journeyPracticeTable.english')}</th>
-                      <th className="pb-2 font-semibold">{t('journeyPracticeTable.tip')}</th>
-                    </tr>
-                  </thead>
-                  <tbody className="align-top">
-                    {journeyPhrases.map((phrase) => (
-                      <tr key={phrase.id} className="border-t border-border/40">
-                        <td className="py-3 pr-4 font-medium text-foreground">{phrase.situation}</td>
-                        <td className="py-3 pr-4 text-foreground">{phrase.macedonian}</td>
-                        <td className="py-3 pr-4 text-muted-foreground">{phrase.english}</td>
-                        <td className="py-3 text-muted-foreground">{phrase.tip ?? '\u2014'}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </CardContent>
-          </Card>
-        ) : null}
 
         <section className="grid gap-6 md:grid-cols-2">
           <Card className="border-border/40 bg-card/70 backdrop-blur">
