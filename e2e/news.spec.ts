@@ -23,11 +23,11 @@ test.describe('News Page', () => {
   });
 
   test('should display article titles', async ({ page }) => {
-    // Wait for news to load
-    await page.waitForTimeout(3000);
+    // Wait for news API to load (5 seconds for external RSS feeds)
+    await page.waitForTimeout(5000);
 
-    // Look for article titles (usually h2 or h3)
-    const titles = page.locator('h2, h3, h4').filter({ hasText: /.{10,}/ });
+    // Look for article titles - they're in CardTitle divs with links
+    const titles = page.locator('div.text-2xl a[target="_blank"]').filter({ hasText: /.{10,}/ });
     const count = await titles.count();
 
     // Should have at least one title

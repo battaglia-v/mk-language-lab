@@ -19,5 +19,7 @@
           - text: By signing in, you agree to our
           - link "Terms of Service" [ref=e14] [cursor=pointer]:
             - /url: /about
-  - alert [ref=e15]
+  - button "Open Next.js Dev Tools" [ref=e20] [cursor=pointer]:
+    - img [ref=e21]
+  - alert [ref=e24]
 ```

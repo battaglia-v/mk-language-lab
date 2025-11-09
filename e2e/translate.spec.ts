@@ -3,6 +3,8 @@ import { test, expect } from '@playwright/test';
 test.describe('Translate Page', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/mk/translate');
+    // Wait for client component to hydrate
+    await page.waitForLoadState('networkidle');
   });
 
   test('should load translate page successfully', async ({ page }) => {

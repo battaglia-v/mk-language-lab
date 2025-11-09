@@ -9,8 +9,10 @@ test.describe('Practice Page', () => {
     // Check page heading (actual text is "Train your Macedonian skills" from Macedonian translation)
     await expect(page.getByRole('heading', { name: /Train.*Macedonian.*skills|Вежбај/i })).toBeVisible();
 
-    // Check for Quick Practice widget
-    await expect(page.locator('[class*="QuickPractice"], [data-testid="quick-practice"]').first()).toBeVisible();
+    // Check for Quick Practice widget (wait for dynamic import)
+    await page.waitForTimeout(1500);
+    const practiceWidget = page.locator('input[placeholder*="Type"], input[placeholder*="Внеси"]').first();
+    await expect(practiceWidget).toBeVisible();
   });
 
   test('should display Quick Practice widget', async ({ page }) => {

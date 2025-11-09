@@ -57,20 +57,18 @@ test.describe('Homepage', () => {
     // Wait for navigation
     await page.waitForURL('**/resources');
 
-    // Verify we're on the resources page
-    await expect(page.locator('h1')).toContainText(/Resources|Learning Resources/i);
+    // Verify we're on the resources page (h1 is the subtitle text)
+    await expect(page.locator('h1')).toContainText(/Curated|курирани|study|учење/i);
   });
 
   test('should have working navigation', async ({ page }) => {
     // Check desktop navigation (sidebar)
-    const sidebar = page.locator('nav, aside').first();
-
-    // Check for main navigation links
+    // Tests run on /mk locale, so links are in Macedonian
     const navLinks = [
-      /Practice/i,
-      /Translate/i,
-      /News/i,
-      /Resources/i,
+      /Вежбање|Practice/i,  // Practice in Macedonian or English
+      /Преведувај|Translate/i,  // Translate
+      /Вести|News/i,  // News
+      /Ресурси|Resources/i,  // Resources
     ];
 
     for (const linkPattern of navLinks) {
