@@ -1,48 +1,41 @@
 # Google Play Store Listing Content
 
 ## Short Description (80 characters max)
-Learn Macedonian with AI tutoring, interactive lessons, and daily practice.
+Learn Macedonian with interactive lessons, translation tools, and daily practice.
 
 ## Full Description (4000 characters max)
 
 **Learn Macedonian the Smart Way** 🇲🇰
 
-Macedonian Language Lab is your complete solution for learning Macedonian, whether you're reconnecting with your heritage, planning a trip, or exploring a new language. Powered by AI and created in partnership with native speaker Andri from Macedonian Language Corner, our app makes learning engaging, practical, and culturally authentic.
+Macedonian Language Lab is your complete solution for learning Macedonian, whether you're reconnecting with your heritage, planning a trip, or exploring a new language. Created in partnership with native speaker Andri from Macedonian Language Corner, our app makes learning engaging, practical, and culturally authentic.
 
 **KEY FEATURES**
 
-📚 **Interactive Lessons & Practice**
+📚 **Interactive Vocabulary Practice**
 • 366+ vocabulary words across 20 categories
 • Beginner, intermediate, and advanced difficulty levels
 • Quick Practice mode for on-the-go learning
-• Smart spaced repetition to maximize retention
+• Instant feedback and self-paced learning
 • Cultural context and usage notes for every word
+• Bidirectional translation practice (English ↔ Macedonian)
 
-🤖 **AI-Powered Tutor**
-• Real-time conversation practice
-• Instant feedback on your Macedonian
-• Personalized learning recommendations
-• Practice speaking, reading, and comprehension
-
-🔄 **Smart Translation**
+🔄 **Smart Translation Tool**
 • Instant Macedonian-English translation
 • Context-aware translations
-• Audio pronunciation for every translation
-• Learn from your translation history
+• Audio pronunciation support
+• Learn from real-world usage examples
 
-📰 **Daily Content**
+📰 **Daily Learning Content**
 • Word of the Day with examples and cultural notes
 • Curated Macedonian news articles
 • Fresh content to expand your vocabulary
 • Real-world language exposure
 
-🎯 **Structured Learning Paths**
-• Family conversations journey
-• Greetings and introductions
-• Health and body vocabulary
-• Food and dining phrases
-• Travel and activities
-• Emotions and expressions
+📖 **Comprehensive Learning Modules**
+• Vocabulary: Organized by category and difficulty
+• Grammar: Essential Macedonian grammar rules
+• Phrases: Common expressions for daily conversation
+• Pronunciation: Master Cyrillic letters and sounds
 
 **CREATED BY EXPERTS**
 
@@ -63,18 +56,19 @@ Your learning data stays secure. Optional account creation for progress sync acr
 
 **WHY MACEDONIAN LANGUAGE LAB?**
 ✓ Native speaker-validated content
-✓ AI-powered personalized tutoring
 ✓ Cultural context for authentic communication
 ✓ Regular content updates
-✓ Free core features with optional premium upgrades
+✓ Free to use with no ads
 ✓ Mobile-optimized and works offline
+✓ Privacy-first design - your data stays secure
 
 **COMING SOON**
 • Audio pronunciation recordings from native speakers
-• Expanded vocabulary with images
-• Advanced journeys for intermediate learners
+• Expanded vocabulary with images for visual learning
+• AI-powered conversation practice
+• Structured learning journeys for different proficiency levels
 • Community features to connect with other learners
-• Integration with Macedonian Language Corner content
+• Integration with Macedonian Language Corner video content
 
 Start your Macedonian learning journey today. Whether you're saying your first "Здраво" (Hello) or working toward fluency, Macedonian Language Lab is here to guide you every step of the way.
 
@@ -116,14 +110,14 @@ Visit macedonianlanguagecorner.com for more learning resources!
 
 ## Screenshots Needed (Phone - Portrait)
 
-1. **Homepage** - Show Word of the Day, Quick Practice, and main navigation
-2. **Practice Widget** - Interactive vocabulary practice with Cyrillic text
-3. **AI Tutor** - Conversation interface with sample exchange
-4. **Translation Tool** - Translation interface showing English ↔ Macedonian
-5. **Learning Journey** - Journey selection screen with progress indicators
-6. **Word Details** - Detailed vocabulary card with examples and pronunciation
-7. **News Feed** - Macedonian news articles with translations
-8. **Progress Dashboard** - Learning stats and achievements
+1. **Homepage** - Show Word of the Day widget and Quick Start cards
+2. **Quick Practice** - Interactive vocabulary practice with Cyrillic text and instant feedback
+3. **Translation Tool** - Translation interface showing English ↔ Macedonian with example
+4. **Word of the Day Detail** - Expanded view with pronunciation, example sentences, and cultural notes
+5. **Learn Modules** - Learning module selection (Vocabulary, Grammar, Phrases, Pronunciation)
+6. **Vocabulary Browser** - Browse vocabulary by category and difficulty
+7. **News Feed** - Macedonian news articles feed
+8. **Resources Page** - Curated external learning resources and Andri attribution
 
 **Required Dimensions:**
 - Minimum 320px wide
