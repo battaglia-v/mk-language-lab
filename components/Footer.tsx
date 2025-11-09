@@ -69,7 +69,7 @@ export default function Footer() {
             </Link>
             <span>•</span>
             <a
-              href="mailto:vpbattaglia@gmail.com?subject=Macedonian%20Learning%20App%20-%20Contact%20Inquiry"
+              href="mailto:macedonianlanguagelab@gmail.com?subject=Macedonian%20Learning%20App%20-%20Contact%20Inquiry"
               className="hover:text-foreground transition-colors underline-offset-4 hover:underline"
             >
               {t('contact')}

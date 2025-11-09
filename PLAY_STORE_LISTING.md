@@ -100,7 +100,7 @@ Visit macedonianlanguagecorner.com for more learning resources!
 - language practice
 - macedonian cyrillic
 
-**Contact Email:** macedonian.language.lab@gmail.com
+**Contact Email:** macedonianlanguagelab@gmail.com
 
 **Privacy Policy URL:** https://mk-language-lab.vercel.app/privacy
 
