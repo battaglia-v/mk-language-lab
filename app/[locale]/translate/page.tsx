@@ -263,8 +263,8 @@ export default function TranslatePage() {
 
       {/* Main Content - Full Screen */}
       <div className="flex-1 flex flex-col">
-        <div className="mx-auto w-full max-w-4xl flex-1 flex flex-col px-4 py-4 md:py-6">
-          <form className="flex-1 flex flex-col gap-4 md:gap-6" onSubmit={handleTranslate}>
+        <div className="mx-auto w-full max-w-4xl flex-1 flex flex-col px-4 py-3 md:py-4">
+          <form className="flex-1 flex flex-col gap-3 md:gap-4" onSubmit={handleTranslate}>
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                   <div
                     className="flex flex-wrap items-center gap-2"
@@ -310,8 +310,8 @@ export default function TranslatePage() {
                     onChange={(event) => setInputText(event.target.value)}
                     placeholder={selectedDirection.placeholder}
                     maxLength={MAX_CHARACTERS}
-                    aria-describedby={`${shortcutHintId} ${characterCountId}`}
-                    className="min-h-28 md:min-h-32 resize-none text-base lg:min-h-40"
+                    aria-describedby={characterCountId}
+                    className="min-h-20 md:min-h-24 resize-none text-base"
                     onKeyDown={(event) => {
                       if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
                         event.preventDefault();
@@ -319,8 +319,7 @@ export default function TranslatePage() {
                       }
                     }}
                   />
-                  <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <span id={shortcutHintId}>{t('shortcutHint')}</span>
+                  <div className="flex items-center justify-end text-xs text-muted-foreground">
                     <span id={characterCountId}>{characterCountLabel}</span>
                   </div>
                 </div>
@@ -348,20 +347,20 @@ export default function TranslatePage() {
                   </Button>
                 </div>
 
-                <div className="space-y-5">
+                <div className="space-y-3">
                   <div className="flex items-center justify-between gap-4">
                     <span className="text-sm font-semibold text-foreground">
                       {t('resultLabel')}
                     </span>
                     {translatedText ? (
-                      <Button type="button" variant="outline" size="sm" className="gap-2" onClick={handleCopy}>
+                      <Button type="button" variant="ghost" size="sm" className="gap-1.5 h-8" onClick={handleCopy}>
                         {copiedState === 'copied' ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                        {copiedState === 'copied' ? t('copied') : t('copyButton')}
+                        <span className="text-xs">{copiedState === 'copied' ? t('copied') : t('copyButton')}</span>
                       </Button>
                     ) : null}
                   </div>
                   <div
-                    className="min-h-28 md:min-h-32 whitespace-pre-wrap rounded-xl border-2 border-border/50 bg-background/80 p-4 md:p-5 text-base leading-relaxed text-foreground lg:min-h-40 md:text-lg"
+                    className="min-h-20 md:min-h-24 whitespace-pre-wrap rounded-xl border-2 border-border/50 bg-background/80 p-3 md:p-4 text-base leading-relaxed text-foreground"
                     role="status"
                     aria-live="polite"
                     aria-atomic="true"

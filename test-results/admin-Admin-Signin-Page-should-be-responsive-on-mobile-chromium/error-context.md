@@ -2,24 +2,19 @@
 
 ```yaml
 - generic [active] [ref=e1]:
-  - generic [ref=e3]:
-    - link "Back to Home" [ref=e5] [cursor=pointer]:
-      - /url: /
-      - img
-      - text: Back to Home
-    - generic [ref=e6]:
-      - generic [ref=e7]:
-        - generic [ref=e8]: Sign In
-        - generic [ref=e9]: Sign in to access your learning progress and personalized content
-      - generic [ref=e10]:
-        - button "Continue with Google" [ref=e11]:
-          - img
-          - text: Continue with Google
-        - paragraph [ref=e13]:
-          - text: By signing in, you agree to our
-          - link "Terms of Service" [ref=e14] [cursor=pointer]:
-            - /url: /about
-  - button "Open Next.js Dev Tools" [ref=e20] [cursor=pointer]:
-    - img [ref=e21]
-  - alert [ref=e24]
+  - button "Open Next.js Dev Tools" [ref=e7] [cursor=pointer]:
+    - img [ref=e8]
+  - alert [ref=e11]
+  - generic [ref=e13]:
+    - generic [ref=e14]:
+      - heading "Oops! Something went wrong" [level=1] [ref=e15]
+      - paragraph [ref=e16]: We apologize for the inconvenience. An error occurred while processing your request.
+    - generic [ref=e17]:
+      - heading "Error Details (Development Only)" [level=2] [ref=e18]
+      - generic [ref=e19]: "[next-auth]: `useSession` must be wrapped in a <SessionProvider />"
+    - generic [ref=e20]:
+      - button "Try Again" [ref=e21]
+      - link "Go to Home" [ref=e22] [cursor=pointer]:
+        - /url: /
+    - paragraph [ref=e23]: If this problem persists, please contact support.
 ```
