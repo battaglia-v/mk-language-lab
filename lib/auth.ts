@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth';
 import Google from 'next-auth/providers/google';
+import Facebook from 'next-auth/providers/facebook';
 import prisma from '@/lib/prisma';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
@@ -15,6 +16,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           response_type: 'code',
         },
       },
+    }),
+    Facebook({
+      clientId: process.env.FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
     }),
   ],
   pages: {
