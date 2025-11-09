@@ -1,13 +1,22 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Plus, Edit, Trash2, Save, X } from 'lucide-react';
-import { BulkImportCSV } from '@/components/admin/BulkImportCSV';
+
+// Lazy load the heavy CSV import component
+const BulkImportCSV = dynamic(
+  () => import('@/components/admin/BulkImportCSV').then((mod) => ({ default: mod.BulkImportCSV })),
+  {
+    loading: () => <div className="text-center py-4">Loading CSV import...</div>,
+    ssr: false,
+  }
+);
 
 type PracticeVocabulary = {
   id: string;

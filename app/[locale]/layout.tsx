@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import { locales } from '@/i18n';
 import Sidebar from '@/components/Sidebar';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
-import { CommandMenu } from '@/components/CommandMenu';
+import { CommandMenuLazy } from '@/components/CommandMenuLazy';
 import Footer from '@/components/Footer';
 import { SessionProvider } from '@/components/auth/SessionProvider';
 import { UserMenu } from '@/components/auth/UserMenu';
@@ -38,7 +38,7 @@ export default async function LocaleLayout({
         {/* Top bar for search and language switcher */}
         <div className="fixed top-0 right-0 left-0 lg:left-sidebar z-30 h-14 bg-background/80 backdrop-blur-md border-b border-border/40">
           <div className="flex items-center justify-between h-full px-4 lg:px-6 gap-2">
-            <CommandMenu />
+            <CommandMenuLazy />
             <div className="flex items-center gap-3">
               <LanguageSwitcher />
               <UserMenu />
