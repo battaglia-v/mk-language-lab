@@ -498,7 +498,7 @@ export default function NewsPage() {
   const showSkeleton = isLoading && items.length === 0;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="border-b border-border/40 bg-card/50 backdrop-blur-sm px-4 py-4 md:py-5">
@@ -516,30 +516,41 @@ export default function NewsPage() {
 
         {/* Filters & Search */}
         <div className="border-b border-border/40 px-4 py-3 space-y-3">
-          <div className="flex flex-wrap gap-2">
-            {sourceFilters.map((filter) => {
-              const isActive = source === filter.id;
-              return (
-                <Button
-                  key={filter.id}
-                  variant={isActive ? 'default' : 'outline'}
-                  size="sm"
-                  onClick={() => setSource(filter.id)}
-                  className="h-8 text-xs"
-                >
-                  {filter.label}
-                </Button>
-              );
-            })}
-            <Button
-              variant={videosOnly ? 'default' : 'outline'}
-              size="sm"
-              onClick={() => setVideosOnly((prev) => !prev)}
-              className="gap-1.5 h-8 text-xs"
-            >
-              <Video className="h-3 w-3" />
-              {t('videosOnly')}
-            </Button>
+          <div className="relative -mx-4 px-4">
+            <div className="flex gap-2 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-2">
+              {sourceFilters.map((filter) => {
+                const isActive = source === filter.id;
+                return (
+                  <Button
+                    key={filter.id}
+                    variant={isActive ? 'default' : 'outline'}
+                    size="sm"
+                    onClick={() => setSource(filter.id)}
+                    className="h-8 text-xs flex-shrink-0 snap-start"
+                  >
+                    {filter.label}
+                  </Button>
+                );
+              })}
+              <Button
+                variant={videosOnly ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setVideosOnly((prev) => !prev)}
+                className="gap-1.5 h-8 text-xs flex-shrink-0 snap-start"
+              >
+                <Video className="h-3 w-3" />
+                {t('videosOnly')}
+              </Button>
+            </div>
+            <style jsx>{`
+              .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+              }
+              .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+              }
+            `}</style>
           </div>
 
           <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
@@ -674,14 +685,6 @@ export default function NewsPage() {
           )}
         </div>
       </div>
-
-      <footer className="border-t border-border/40 bg-card/30 backdrop-blur-sm">
-        <div className="mx-auto max-w-4xl px-4 py-4 text-center text-xs text-muted-foreground">
-          <p>
-            Креирано од <span className="font-semibold text-foreground">Винсент Баталија</span>
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }

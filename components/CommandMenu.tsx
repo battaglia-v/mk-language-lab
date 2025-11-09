@@ -112,9 +112,6 @@ export function CommandMenu() {
             <Search className="h-4 w-4 md:h-4 md:w-4" />
             <span className="hidden md:inline">{t("trigger")}</span>
           </span>
-          <span className="hidden md:flex items-center gap-2 rounded-md border border-border/40 bg-muted/50 px-2 py-1 text-[0.65rem] font-semibold uppercase tracking-wide">
-            <CommandIcon className="h-3 w-3" />K
-          </span>
         </Button>
       </DialogTrigger>
       <DialogContent
@@ -166,24 +163,9 @@ export function CommandMenu() {
                       </span>
                     </span>
                   </span>
-                  <span className="flex items-center gap-2 text-[0.65rem] uppercase tracking-wide text-muted-foreground">
-                    {t("continue")}
-                    <CommandIcon className="h-3 w-3" />K
-                  </span>
                 </Link>
               ))
             )}
-          </div>
-
-          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border/30 pt-4 text-xs text-muted-foreground">
-            <div className="inline-flex items-center gap-2 rounded-lg border border-border/30 bg-muted/20 px-3 py-1.5">
-              <CommandIcon className="h-3.5 w-3.5" />
-              <span className="font-medium uppercase tracking-wide">{t("shortcutSearch")}</span>
-            </div>
-            <div className="inline-flex items-center gap-2 rounded-lg border border-border/30 bg-muted/20 px-3 py-1.5">
-              <HelpCircle className="h-3.5 w-3.5" />
-              <span className="font-medium uppercase tracking-wide">{t("shortcutHelp")}</span>
-            </div>
           </div>
         </div>
       </DialogContent>

@@ -19,7 +19,7 @@ export default function HomePage() {
 
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       {/* Welcome Banner for first-time visitors */}
       <WelcomeBanner />
 

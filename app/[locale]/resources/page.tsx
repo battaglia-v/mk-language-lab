@@ -227,7 +227,7 @@ export default function ResourcesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
         <div className="mx-auto max-w-4xl">
           {/* Header */}
           <div className="border-b border-border/40 bg-card/50 backdrop-blur-sm px-4 py-4 md:py-5">
@@ -267,39 +267,42 @@ export default function ResourcesPage() {
               />
             </div>
 
-            <div className="flex flex-wrap gap-2">
-              <Button
-                type="button"
-                size="sm"
-                variant={activeCollection === 'all' ? 'default' : 'outline'}
-                onClick={() => handleCollectionSelect('all')}
-                className="h-8 text-xs"
-              >
-                {t('showAll')}
-              </Button>
-              {collectionsWithSlug.map((collection) => (
+            <div className="relative -mx-4 px-4">
+              <div className="flex gap-2 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-2">
                 <Button
-                  key={collection.slug}
                   type="button"
                   size="sm"
-                  variant={activeCollection === collection.slug ? 'default' : 'outline'}
-                  onClick={() => handleCollectionSelect(collection.slug)}
-                  className="h-8 text-xs"
+                  variant={activeCollection === 'all' ? 'default' : 'outline'}
+                  onClick={() => handleCollectionSelect('all')}
+                  className="h-8 text-xs flex-shrink-0 snap-start"
                 >
-                  {collection.title}
+                  {t('showAll')}
                 </Button>
-              ))}
+                {collectionsWithSlug.map((collection) => (
+                  <Button
+                    key={collection.slug}
+                    type="button"
+                    size="sm"
+                    variant={activeCollection === collection.slug ? 'default' : 'outline'}
+                    onClick={() => handleCollectionSelect(collection.slug)}
+                    className="h-8 text-xs flex-shrink-0 snap-start"
+                  >
+                    {collection.title}
+                  </Button>
+                ))}
+              </div>
+              <style jsx>{`
+                .scrollbar-hide::-webkit-scrollbar {
+                  display: none;
+                }
+                .scrollbar-hide {
+                  -ms-overflow-style: none;
+                  scrollbar-width: none;
+                }
+              `}</style>
             </div>
 
             <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-              {pdfLink ? (
-                <Button variant="ghost" size="sm" asChild className="h-7 gap-1.5 px-2">
-                  <a href={pdfLink.url} target="_blank" rel="noopener noreferrer">
-                    <FileText className="h-3 w-3" />
-                    {pdfLink.label || t('viewPdf')}
-                  </a>
-                </Button>
-              ) : null}
               <span className="hidden md:inline">
                 {t('updatedOn', {
                   date: updatedDate.toLocaleDateString(undefined, {
@@ -377,26 +380,8 @@ export default function ResourcesPage() {
                 })}
               </div>
             )}
-
-            {/* PDF Hint */}
-            <Card className="mt-4 border-border/40 bg-card/50">
-              <CardHeader className="p-4">
-                <CardTitle className="text-sm md:text-base">{t('searchInDoc')}</CardTitle>
-                <CardDescription className="text-xs md:text-sm text-muted-foreground mt-1">
-                  {t('pdfHint')}
-                </CardDescription>
-              </CardHeader>
-            </Card>
           </div>
         </div>
-
-        <footer className="border-t border-border/40 bg-card/30 py-4">
-          <div className="mx-auto max-w-4xl px-4 text-center text-xs text-muted-foreground">
-            <p>
-              Креирано од <span className="font-semibold text-foreground">Винсент Баталија</span>
-            </p>
-          </div>
-        </footer>
       </div>
   );
 }
