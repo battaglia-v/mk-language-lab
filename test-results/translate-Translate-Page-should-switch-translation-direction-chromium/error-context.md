@@ -1,101 +1,83 @@
 # Page snapshot
 
 ```yaml
-- generic [active] [ref=e1]:
-  - complementary [ref=e2]:
-    - link "Home" [ref=e4] [cursor=pointer]:
-      - /url: /mk
-      - img "Ajvar Logo" [ref=e6]
-    - navigation "Главна навигација" [ref=e16]:
-      - link "Вежбање" [ref=e17] [cursor=pointer]:
-        - /url: /mk/practice
-        - img [ref=e18]
-        - generic: Вежбање
-      - link "Преведи" [ref=e23] [cursor=pointer]:
-        - /url: /mk/translate
-        - img [ref=e25]
-        - generic: Преведи
-      - link "Вести" [ref=e29] [cursor=pointer]:
-        - /url: /mk/news
-        - img [ref=e30]
-        - generic: Вести
-      - link "Ресурси" [ref=e33] [cursor=pointer]:
-        - /url: /mk/resources
-        - img [ref=e34]
-        - generic: Ресурси
-    - button "Expand sidebar" [disabled] [ref=e37]:
-      - img [ref=e38]
-  - generic [ref=e41]:
-    - button "Брзо пребарување K" [ref=e42]:
-      - generic [ref=e43]:
-        - img
-        - generic [ref=e44]: Брзо пребарување
-      - generic [ref=e45]:
-        - img
-        - text: K
-    - generic [ref=e46]:
-      - button "Јазик" [ref=e47]:
-        - img
-        - generic [ref=e48]: Македонски
-      - button "Најави се" [ref=e49]:
-        - img
-        - text: Најави се
-  - generic [ref=e50]:
-    - main [ref=e51]:
-      - generic [ref=e53]:
-        - generic [ref=e54]:
-          - generic [ref=e55]: Алатка за преведување
-          - heading "Преведи" [level=1] [ref=e56]
-          - paragraph [ref=e57]: Преведувај помеѓу македонски и англиски.
-        - generic [ref=e62]:
-          - generic [ref=e63]:
-            - radiogroup "Насока на превод" [ref=e64]:
-              - radio "Македонски → Англиски" [ref=e65]
-              - radio "Англиски → Македонски" [checked] [ref=e66]
-            - button "Смени јазици" [ref=e67]:
-              - img
-          - generic [ref=e68]:
-            - text: Внеси текст
-            - textbox "Внеси текст" [ref=e69]:
-              - /placeholder: Напиши реченици на англиски за превод на македонски…
-            - generic [ref=e70]:
-              - generic [ref=e71]: Притисни Ctrl+Enter (Windows) или Cmd+Enter (Mac) за преведување.
-              - generic [ref=e72]: "Знаци: 0/1800"
-          - generic [ref=e74]:
-            - button "Преведи" [ref=e75]
-            - button "Исчисти" [disabled]
-          - generic [ref=e76]:
-            - generic [ref=e78]: Превод
-            - status [ref=e79]: Тука ќе се прикаже преводот.
-    - contentinfo [ref=e80]:
-      - generic [ref=e82]:
-        - generic [ref=e83]:
-          - generic [ref=e84]: Креирано со ❤️ од
-          - link "Вини" [ref=e85] [cursor=pointer]:
-            - /url: https://www.linkedin.com/in/vincentvinnybattaglia/
-            - text: Вини
-            - img [ref=e86]
-          - generic [ref=e90]: "&"
-          - link "Андри" [ref=e91] [cursor=pointer]:
-            - /url: https://macedonianlanguagecorner.com
-            - text: Андри
-            - img [ref=e92]
-        - paragraph [ref=e97]:
-          - text: 🇲🇰 Сета содржина е курирана и валидирана од Андри, роден говорник на македонски и основач на
-          - link "Македонски Јазичен Кут" [ref=e98] [cursor=pointer]:
-            - /url: https://macedonianlanguagecorner.com
-            - text: Македонски Јазичен Кут
-            - img [ref=e99]
-        - generic [ref=e103]:
-          - link "Политика за Приватност" [ref=e104] [cursor=pointer]:
-            - /url: /mk/privacy
-          - generic [ref=e105]: •
-          - link "Услови за Користење" [ref=e106] [cursor=pointer]:
-            - /url: /mk/terms
-          - generic [ref=e107]: •
-          - link "Контактирајте Не" [ref=e108] [cursor=pointer]:
-            - /url: mailto:macedonianlanguagelab@gmail.com?subject=Macedonian%20Learning%20App%20-%20Contact%20Inquiry
-  - button "Open Next.js Dev Tools" [ref=e114] [cursor=pointer]:
-    - img [ref=e115]
-  - alert [ref=e118]
+- generic:
+  - generic [active]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - navigation [ref=e6]:
+            - button "previous" [disabled] [ref=e7]:
+              - img "previous" [ref=e8]
+            - generic [ref=e10]:
+              - generic [ref=e11]: 1/
+              - text: "1"
+            - button "next" [disabled] [ref=e12]:
+              - img "next" [ref=e13]
+          - img
+        - generic [ref=e15]:
+          - link "Next.js 15.5.6 (outdated) Turbopack" [ref=e16] [cursor=pointer]:
+            - /url: https://nextjs.org/docs/messages/version-staleness
+            - img [ref=e17]
+            - generic "An outdated version detected (latest is 16.0.1), upgrade is highly recommended!" [ref=e19]: Next.js 15.5.6 (outdated)
+            - generic [ref=e20]: Turbopack
+          - img
+      - dialog "Build Error" [ref=e22]:
+        - generic [ref=e25]:
+          - generic [ref=e26]:
+            - generic [ref=e27]:
+              - generic [ref=e29]: Build Error
+              - generic [ref=e30]:
+                - button "Copy Error Info" [ref=e31] [cursor=pointer]:
+                  - img [ref=e32]
+                - button "No related documentation found" [disabled] [ref=e34]:
+                  - img [ref=e35]
+                - link "Learn more about enabling Node.js inspector for server code with Chrome DevTools" [ref=e37] [cursor=pointer]:
+                  - /url: https://nextjs.org/docs/app/building-your-application/configuring/debugging#server-side-code
+                  - img [ref=e38]
+            - paragraph [ref=e47]: Parsing ecmascript source code failed
+          - generic [ref=e49]:
+            - generic [ref=e51]:
+              - img [ref=e53]
+              - generic [ref=e56]: ./app/[locale]/translate/page.tsx (402:29)
+              - button "Open in editor" [ref=e57] [cursor=pointer]:
+                - img [ref=e59]
+            - generic [ref=e62]:
+              - generic [ref=e63]: Parsing ecmascript source code failed
+              - generic [ref=e64]: 400 |
+              - text: </div>
+              - generic [ref=e65]: 401 |
+              - text: </form> >
+              - generic [ref=e66]: 402 |
+              - text: </CardContent>
+              - generic [ref=e67]: "|"
+              - text: ^ >
+              - generic [ref=e68]: 403 |
+              - text: </Card>
+              - generic [ref=e69]: "|"
+              - text: ^^^^^^^^^^^^^
+              - generic [ref=e70]: 404 |
+              - generic [ref=e71]: 405 |
+              - generic [ref=e72]: "{"
+              - generic [ref=e73]: /* Collapsible History */
+              - generic [ref=e74]: "}"
+              - generic [ref=e75]: 406 |
+              - generic [ref=e76]: "{history"
+              - text: .
+              - generic [ref=e77]: length
+              - text: "> 0 &&"
+              - generic [ref=e78]: (
+              - generic [ref=e79]: Expected '</', got 'jsx text ( )'
+        - generic [ref=e80]:
+          - generic [ref=e81]: "1"
+          - generic [ref=e82]: "2"
+    - generic [ref=e87] [cursor=pointer]:
+      - button "Open Next.js Dev Tools" [ref=e88]:
+        - img [ref=e89]
+      - button "Open issues overlay" [ref=e93]:
+        - generic [ref=e94]:
+          - generic [ref=e95]: "0"
+          - generic [ref=e96]: "1"
+        - generic [ref=e97]: Issue
+  - alert [ref=e98]
 ```

@@ -3,14 +3,27 @@ import Link from 'next/link';
 import { LayoutDashboard, Home, BookOpen, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ToasterProvider } from '@/components/ui/toast';
+import { headers } from 'next/headers';
 
 export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // Protect admin routes - redirects if not admin
-  await requireAdmin();
+  // Get the current pathname to check if we're on the signin page
+  const headersList = await headers();
+  const pathname = headersList.get('x-pathname') || '';
+  const isSigninPage = pathname.includes('/admin/signin');
+
+  // Only protect admin routes if not on signin page
+  if (!isSigninPage) {
+    await requireAdmin();
+  }
+
+  // If on signin page, render children without admin layout chrome
+  if (isSigninPage) {
+    return <ToasterProvider>{children}</ToasterProvider>;
+  }
 
   return (
     <ToasterProvider>

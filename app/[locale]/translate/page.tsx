@@ -248,26 +248,23 @@ export default function TranslatePage() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
-      <div className="container mx-auto px-4 py-6 md:py-8 lg:py-12">
-        {/* Header */}
-        <div className="mb-6 md:mb-8 space-y-2 md:space-y-3 text-center">
-          <Badge variant="outline" className="mx-auto w-fit border-primary/40 bg-primary/10 text-primary">
-            {t('badge')}
-          </Badge>
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground lg:text-5xl">
+    <div className="min-h-screen flex flex-col bg-background">
+      {/* Compact Header Bar */}
+      <div className="border-b border-border/40 bg-card/50 backdrop-blur-sm px-4 py-3">
+        <div className="mx-auto max-w-4xl flex items-center justify-between gap-4">
+          <h1 className="text-lg md:text-xl font-bold text-foreground">
             {t('title')}
           </h1>
-          <p className="text-sm md:text-base text-muted-foreground lg:text-lg">{t('subtitle')}</p>
+          <Badge variant="outline" className="border-primary/40 bg-primary/10 text-primary text-xs">
+            {t('badge')}
+          </Badge>
         </div>
+      </div>
 
-        {/* Main Layout */}
-        <div className="mx-auto max-w-4xl">
-          {/* Main Translator */}
-          <div className="space-y-5 md:space-y-6">
-            <Card className="border-border/40 bg-card/70 backdrop-blur shadow-xl">
-              <CardContent className="p-5 md:p-6 lg:p-8">
-              <form className="space-y-4 md:space-y-6" onSubmit={handleTranslate}>
+      {/* Main Content - Full Screen */}
+      <div className="flex-1 flex flex-col">
+        <div className="mx-auto w-full max-w-4xl flex-1 flex flex-col px-4 py-4 md:py-6">
+          <form className="flex-1 flex flex-col gap-4 md:gap-6" onSubmit={handleTranslate}>
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                   <div
                     className="flex flex-wrap items-center gap-2"
@@ -328,21 +325,27 @@ export default function TranslatePage() {
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="flex items-center gap-3">
-                    <Button type="submit" disabled={isTranslating} className="gap-2">
-                      {isTranslating ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
-                      {t('translateButton')}
-                    </Button>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      onClick={handleClear}
-                      disabled={!inputText && !translatedText}
-                    >
-                      {t('clearButton')}
-                    </Button>
-                  </div>
+                {/* Primary Action Button - Full width on mobile, Duolingo-style */}
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                  <Button
+                    type="submit"
+                    disabled={isTranslating}
+                    size="lg"
+                    className="w-full sm:w-auto gap-2 h-12 text-base font-semibold"
+                  >
+                    {isTranslating ? <Loader2 className="h-5 w-5 animate-spin" /> : null}
+                    {t('translateButton')}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleClear}
+                    disabled={!inputText && !translatedText}
+                    className="w-full sm:w-auto"
+                  >
+                    {t('clearButton')}
+                  </Button>
                 </div>
 
                 <div className="space-y-5">
@@ -401,72 +404,69 @@ export default function TranslatePage() {
                     </div>
                   ) : null}
                 </div>
-              </form>
-              </CardContent>
-            </Card>
+          </form>
 
-            {/* Collapsible History */}
-            {history.length > 0 && (
-              <Card className="border-border/40 bg-card/60 backdrop-blur">
-                <button
-                  type="button"
-                  onClick={() => setIsHistoryExpanded(!isHistoryExpanded)}
-                  className="flex w-full items-center justify-between p-4 text-left transition-colors hover:bg-muted/20"
-                >
-                  <div className="space-y-1">
-                    <p className="text-sm font-semibold text-foreground">{t('historyTitle')}</p>
-                    <p className="text-xs text-muted-foreground">
-                      {history.length} {history.length === 1 ? 'translation' : 'translations'}
-                    </p>
-                  </div>
-                  {isHistoryExpanded ? (
-                    <ChevronUp className="h-5 w-5 text-muted-foreground" />
-                  ) : (
-                    <ChevronDown className="h-5 w-5 text-muted-foreground" />
-                  )}
-                </button>
-                {isHistoryExpanded && (
-                  <CardContent className="border-t border-border/40 pt-4">
-                    <ul className="space-y-2">
-                      {history.map((entry) => (
-                        <li
-                          key={entry.id}
-                          className="rounded-lg border border-border/30 bg-background/60 p-3"
-                        >
-                          <div className="flex flex-col gap-2">
-                            <div className="flex items-center justify-between gap-3">
-                              <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                                {directionLabelMap[entry.directionId] ?? entry.directionId}
-                              </span>
-                              <Button
-                                type="button"
-                                size="sm"
-                                variant="outline"
-                                className="h-7 px-2 text-xs"
-                                onClick={() => handleHistoryLoad(entry)}
-                              >
-                                {t('historyLoad')}
-                              </Button>
-                            </div>
-                            <div className="space-y-1">
-                              <p className="text-xs text-muted-foreground">
-                                <span className="font-medium text-foreground">{t('inputLabel')}:</span>{' '}
-                                {entry.sourceText}
-                              </p>
-                              <p className="text-xs text-muted-foreground">
-                                <span className="font-medium text-foreground">{t('resultLabel')}:</span>{' '}
-                                {entry.translatedText}
-                              </p>
-                            </div>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
+          {/* Translation History */}
+          {history.length > 0 && (
+            <Card className="border-border/40 bg-card/60 backdrop-blur mt-4">
+              <button
+                type="button"
+                onClick={() => setIsHistoryExpanded(!isHistoryExpanded)}
+                className="flex w-full items-center justify-between p-4 text-left transition-colors hover:bg-muted/20"
+              >
+                <div className="space-y-1">
+                  <p className="text-sm font-semibold text-foreground">{t('historyTitle')}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {history.length} {history.length === 1 ? 'translation' : 'translations'}
+                  </p>
+                </div>
+                {isHistoryExpanded ? (
+                  <ChevronUp className="h-5 w-5 text-muted-foreground" />
+                ) : (
+                  <ChevronDown className="h-5 w-5 text-muted-foreground" />
                 )}
-              </Card>
-            )}
-          </div>
+              </button>
+              {isHistoryExpanded && (
+                <CardContent className="border-t border-border/40 pt-4">
+                  <ul className="space-y-2">
+                    {history.map((entry) => (
+                      <li
+                        key={entry.id}
+                        className="rounded-lg border border-border/30 bg-background/60 p-3"
+                      >
+                        <div className="flex flex-col gap-2">
+                          <div className="flex items-center justify-between gap-3">
+                            <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                              {directionLabelMap[entry.directionId] ?? entry.directionId}
+                            </span>
+                            <Button
+                              type="button"
+                              size="sm"
+                              variant="outline"
+                              className="h-7 px-2 text-xs"
+                              onClick={() => handleHistoryLoad(entry)}
+                            >
+                              {t('historyLoad')}
+                            </Button>
+                          </div>
+                          <div className="space-y-1">
+                            <p className="text-xs text-muted-foreground">
+                              <span className="font-medium text-foreground">{t('inputLabel')}:</span>{' '}
+                              {entry.sourceText}
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                              <span className="font-medium text-foreground">{t('resultLabel')}:</span>{' '}
+                              {entry.translatedText}
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              )}
+            </Card>
+          )}
         </div>
       </div>
     </div>

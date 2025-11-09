@@ -5,23 +5,19 @@
   - generic [active]:
     - generic [ref=e3]:
       - generic [ref=e4]:
-        - generic [ref=e5]:
-          - navigation [ref=e6]:
-            - button "previous" [disabled] [ref=e7]:
-              - img "previous" [ref=e8]
-            - generic [ref=e10]:
-              - generic [ref=e11]: 1/
-              - text: "1"
-            - button "next" [disabled] [ref=e12]:
-              - img "next" [ref=e13]
-          - img
-        - generic [ref=e15]:
-          - link "Next.js 15.5.6 (outdated) Turbopack" [ref=e16] [cursor=pointer]:
-            - /url: https://nextjs.org/docs/messages/version-staleness
-            - img [ref=e17]
-            - generic "An outdated version detected (latest is 16.0.1), upgrade is highly recommended!" [ref=e19]: Next.js 15.5.6 (outdated)
-            - generic [ref=e20]: Turbopack
-          - img
+        - navigation [ref=e6]:
+          - button "previous" [disabled] [ref=e7]:
+            - img "previous" [ref=e8]
+          - generic [ref=e10]:
+            - generic [ref=e11]: 1/
+            - text: "1"
+          - button "next" [disabled] [ref=e12]:
+            - img "next" [ref=e13]
+        - link "Next.js 15.5.6 (outdated) Turbopack" [ref=e16] [cursor=pointer]:
+          - /url: https://nextjs.org/docs/messages/version-staleness
+          - img [ref=e17]
+          - generic "An outdated version detected (latest is 16.0.1), upgrade is highly recommended!" [ref=e19]: Next.js 15.5.6 (outdated)
+          - generic [ref=e20]: Turbopack
       - dialog "Build Error" [ref=e22]:
         - generic [ref=e25]:
           - generic [ref=e26]:

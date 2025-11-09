@@ -101,7 +101,7 @@ function AdminSignInContent() {
             <div className="text-center text-xs text-muted-foreground">
               <p>
                 By signing in, you agree to our{' '}
-                <Link href="/terms" className="underline hover:text-foreground">
+                <Link href="/about" className="underline hover:text-foreground">
                   Terms of Service
                 </Link>
               </p>
