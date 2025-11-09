@@ -17,6 +17,8 @@ type CSVRow = {
   icon?: string;
   category?: string;
   difficulty: 'beginner' | 'intermediate' | 'advanced';
+  formality?: 'formal' | 'neutral' | 'informal';
+  usageContext?: string;
   includeInWOTD?: string;
 };
 
@@ -40,10 +42,10 @@ export function BulkImportCSV() {
   const [dragActive, setDragActive] = useState(false);
 
   const downloadTemplate = () => {
-    const template = `macedonian,english,pronunciation,partOfSpeech,exampleMk,exampleEn,icon,category,difficulty,includeInWOTD
-здраво,hello,zdravo,greeting,Здраво како си?,Hello how are you?,waving hand,greetings,beginner,true
-книга,book,kniga,noun,Јас читам книга.,I am reading a book.,book,objects,beginner,false
-вода,water,voda,noun,Сакам да пијам вода.,I want to drink water.,water drop,food,beginner,false`;
+    const template = `macedonian,english,pronunciation,partOfSpeech,exampleMk,exampleEn,icon,category,difficulty,formality,usageContext,includeInWOTD
+Здраво,Hello,zdravo,greeting,Здраво! Како си?,Hello! How are you?,👋,greetings,beginner,neutral,"Informal greeting with friends and family",false
+Добар ден,Good day,dobar den,greeting,Добар ден! Како сте?,Good day! How are you?,🤵,greetings,beginner,formal,"Formal greeting in professional settings or with elders",false
+Книга,Book,kniga,noun,Јас читам книга.,I am reading a book.,📚,objects,beginner,neutral,,false`;
 
     // Add UTF-8 BOM for proper Cyrillic display in Excel and other apps
     const BOM = '\uFEFF';
