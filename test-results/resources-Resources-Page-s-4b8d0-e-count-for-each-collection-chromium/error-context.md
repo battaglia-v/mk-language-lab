@@ -1,0 +1,208 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - link "Home" [ref=e4] [cursor=pointer]:
+      - /url: /mk
+      - img "Ajvar Logo" [ref=e6]
+    - navigation "Главна навигација" [ref=e16]:
+      - link "Вежбање" [ref=e17] [cursor=pointer]:
+        - /url: /mk/practice
+        - img [ref=e18]
+        - generic: Вежбање
+      - link "Преведи" [ref=e23] [cursor=pointer]:
+        - /url: /mk/translate
+        - img [ref=e24]
+        - generic: Преведи
+      - link "Вести" [ref=e28] [cursor=pointer]:
+        - /url: /mk/news
+        - img [ref=e29]
+        - generic: Вести
+      - link "Ресурси" [ref=e32] [cursor=pointer]:
+        - /url: /mk/resources
+        - img [ref=e34]
+        - generic: Ресурси
+    - button "Expand sidebar" [disabled] [ref=e37]:
+      - img [ref=e38]
+  - generic [ref=e41]:
+    - button "Брзо пребарување" [ref=e42]:
+      - generic [ref=e43]:
+        - img
+        - generic [ref=e44]: Брзо пребарување
+    - generic [ref=e45]:
+      - button "Јазик" [ref=e46]:
+        - img
+        - generic [ref=e47]: Македонски
+      - button "Најави се" [ref=e48]:
+        - img
+        - text: Најави се
+  - generic [ref=e49]:
+    - main [ref=e50]:
+      - generic [ref=e52]:
+        - generic [ref=e54]:
+          - generic [ref=e55]:
+            - heading "Ресурси" [level=1] [ref=e56]
+            - paragraph [ref=e57]: Курирани колекции за учење и доверливи македонски извори
+          - link "Andri · MLC" [ref=e58] [cursor=pointer]:
+            - /url: https://macedonianlanguagecorner.com
+            - img [ref=e59]
+            - generic [ref=e62]: Andri · MLC
+            - img [ref=e63]
+        - generic [ref=e67]:
+          - generic [ref=e68]:
+            - img [ref=e69]
+            - textbox "Пребарај ресурси..." [ref=e72]
+          - generic [ref=e74]:
+            - button "Сите колекции" [ref=e75]
+            - button "Reference & Dictionaries" [ref=e76]
+            - button "Learner Hubs" [ref=e77]
+            - button "Video Lessons & Shows" [ref=e78]
+            - button "Podcasts & Audio Practice" [ref=e79]
+            - button "News & Reading" [ref=e80]
+          - generic [ref=e81]:
+            - generic [ref=e82]: Ажурирано Oct 18, 2025
+            - generic [ref=e83]: 17 резултати • 17 вкупно ресурси
+        - generic [ref=e85]:
+          - generic [ref=e86]:
+            - generic [ref=e87]:
+              - generic [ref=e88]:
+                - img [ref=e89]
+                - heading "Reference & Dictionaries" [level=2] [ref=e92]
+              - generic [ref=e93]: "3"
+            - generic [ref=e94]:
+              - link "Official Macedonian Dictionary" [ref=e95] [cursor=pointer]:
+                - /url: https://makedonski.gov.mk/
+                - img [ref=e98]
+                - paragraph [ref=e102]: Official Macedonian Dictionary
+                - img [ref=e104]
+              - link "Glosbe Macedonian-English Dictionary" [ref=e108] [cursor=pointer]:
+                - /url: https://mk.glosbe.com/
+                - img [ref=e111]
+                - paragraph [ref=e115]: Glosbe Macedonian-English Dictionary
+                - img [ref=e117]
+              - link "Digital Repository of Macedonian Language" [ref=e121] [cursor=pointer]:
+                - /url: http://drmj.eu/
+                - img [ref=e124]
+                - paragraph [ref=e128]: Digital Repository of Macedonian Language
+                - img [ref=e130]
+          - generic [ref=e134]:
+            - generic [ref=e135]:
+              - generic [ref=e136]:
+                - img [ref=e137]
+                - heading "Learner Hubs" [level=2] [ref=e140]
+              - generic [ref=e141]: "3"
+            - generic [ref=e142]:
+              - link "Macedonian Language Corner" [ref=e143] [cursor=pointer]:
+                - /url: https://macedonianlanguagecorner.com/
+                - img [ref=e146]
+                - paragraph [ref=e150]: Macedonian Language Corner
+                - img [ref=e152]
+              - link "Makedonkast" [ref=e156] [cursor=pointer]:
+                - /url: https://macedonianlanguagecorner.com/makedonkast/
+                - img [ref=e159]
+                - paragraph [ref=e163]: Makedonkast
+                - img [ref=e165]
+              - link "Zoze Language Exchange" [ref=e169] [cursor=pointer]:
+                - /url: https://zoze.mk/en-mk/
+                - img [ref=e172]
+                - paragraph [ref=e176]: Zoze Language Exchange
+                - img [ref=e178]
+          - generic [ref=e182]:
+            - generic [ref=e183]:
+              - generic [ref=e184]:
+                - img [ref=e185]
+                - heading "Video Lessons & Shows" [level=2] [ref=e190]
+              - generic [ref=e191]: "4"
+            - generic [ref=e192]:
+              - link "Macedonian Language Corner (YouTube)" [ref=e193] [cursor=pointer]:
+                - /url: https://www.youtube.com/@MacedonianLanguageCorner/videos
+                - img [ref=e196]
+                - paragraph [ref=e199]: Macedonian Language Corner (YouTube)
+                - img [ref=e201]
+              - link "Utrinska na Telma" [ref=e205] [cursor=pointer]:
+                - /url: https://www.youtube.com/@utrinskanatelma8027/videos
+                - img [ref=e208]
+                - paragraph [ref=e211]: Utrinska na Telma
+                - img [ref=e213]
+              - link "Television 24 Vesti" [ref=e217] [cursor=pointer]:
+                - /url: https://www.youtube.com/@televizija24vesti58/videos
+                - img [ref=e220]
+                - paragraph [ref=e223]: Television 24 Vesti
+                - img [ref=e225]
+              - link "NextGen Podcast (Video Edition)" [ref=e229] [cursor=pointer]:
+                - /url: https://www.youtube.com/@NextGen.Podcast/videos
+                - img [ref=e232]
+                - paragraph [ref=e235]: NextGen Podcast (Video Edition)
+                - img [ref=e237]
+          - generic [ref=e241]:
+            - generic [ref=e242]:
+              - generic [ref=e243]:
+                - img [ref=e244]
+                - heading "Podcasts & Audio Practice" [level=2] [ref=e246]
+              - generic [ref=e247]: "3"
+            - generic [ref=e248]:
+              - link "Што го врти светот" [ref=e249] [cursor=pointer]:
+                - /url: https://www.youtube.com/@stogovrtisvetot
+                - img [ref=e252]
+                - paragraph [ref=e255]: Што го врти светот
+                - img [ref=e257]
+              - link "Vidi Vaka Audio Stories" [ref=e261] [cursor=pointer]:
+                - /url: https://www.youtube.com/@VidiVakaMedia/featured
+                - img [ref=e264]
+                - paragraph [ref=e267]: Vidi Vaka Audio Stories
+                - img [ref=e269]
+              - link "Radio Slobodna Evropa (MK)" [ref=e273] [cursor=pointer]:
+                - /url: https://www.youtube.com/@slobodna-evropa-mk
+                - img [ref=e276]
+                - paragraph [ref=e279]: Radio Slobodna Evropa (MK)
+                - img [ref=e281]
+          - generic [ref=e285]:
+            - generic [ref=e286]:
+              - generic [ref=e287]:
+                - img [ref=e288]
+                - heading "News & Reading" [level=2] [ref=e291]
+              - generic [ref=e292]: "4"
+            - generic [ref=e293]:
+              - link "DW на македонски" [ref=e294] [cursor=pointer]:
+                - /url: https://www.dw.com/mk/%D1%82%D0%B5%D0%BC%D0%B8/s-10339
+                - img [ref=e297]
+                - paragraph [ref=e301]: DW на македонски
+                - img [ref=e303]
+              - link "Нова Македонија" [ref=e307] [cursor=pointer]:
+                - /url: https://novamakedonija.com.mk/
+                - img [ref=e310]
+                - paragraph [ref=e314]: Нова Македонија
+                - img [ref=e316]
+              - link "Слободен печат" [ref=e320] [cursor=pointer]:
+                - /url: https://www.slobodenpecat.mk/
+                - img [ref=e323]
+                - paragraph [ref=e327]: Слободен печат
+                - img [ref=e329]
+              - link "ТРН Magazine" [ref=e333] [cursor=pointer]:
+                - /url: https://trn.mk/
+                - img [ref=e336]
+                - paragraph [ref=e340]: ТРН Magazine
+                - img [ref=e342]
+    - contentinfo [ref=e346]:
+      - generic [ref=e347]:
+        - generic [ref=e348]:
+          - link "Приватност" [ref=e349] [cursor=pointer]:
+            - /url: /mk/privacy
+          - generic [ref=e350]: •
+          - link "Услови" [ref=e351] [cursor=pointer]:
+            - /url: /mk/terms
+          - generic [ref=e352]: •
+          - link "Контакт" [ref=e353] [cursor=pointer]:
+            - /url: mailto:macedonianlanguagelab@gmail.com?subject=Macedonian%20Learning%20App%20-%20Contact%20Inquiry
+        - generic [ref=e355]:
+          - text: Креирано со ❤️ од
+          - link "Вини" [ref=e356] [cursor=pointer]:
+            - /url: https://vincebattaglia.com
+          - text: "&"
+          - link "Андри" [ref=e357] [cursor=pointer]:
+            - /url: https://macedonianlanguagecorner.com
+  - button "Open Next.js Dev Tools" [ref=e363] [cursor=pointer]:
+    - img [ref=e364]
+  - alert [ref=e367]
+```

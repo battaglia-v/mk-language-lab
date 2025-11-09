@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { RefreshCcw, Eye, Sparkles, PlayCircle, X, Trophy, TrendingUp, Settings, MoreVertical, Heart, Check, XCircle } from 'lucide-react';
+import { RefreshCcw, Eye, Sparkles, PlayCircle, X, Trophy, TrendingUp, Settings, MoreVertical, Heart, Check, XCircle, Flame, Zap } from 'lucide-react';
 import practicePrompts from '@/data/practice-vocabulary.json';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -32,6 +32,45 @@ type QuickPracticeWidgetProps = {
 };
 
 const PRACTICE_ITEMS = practicePrompts as PracticeItem[];
+
+// Helper functions for streak/XP tracking
+const getStreakData = () => {
+  if (typeof window === 'undefined') return { streak: 0, lastPracticeDate: null, xp: 0 };
+  const data = localStorage.getItem('practice-streak');
+  return data ? JSON.parse(data) : { streak: 0, lastPracticeDate: null, xp: 0 };
+};
+
+const updateStreak = () => {
+  const today = new Date().toDateString();
+  const { streak, lastPracticeDate, xp } = getStreakData();
+
+  if (lastPracticeDate === today) {
+    return { streak, xp }; // Already practiced today
+  }
+
+  const yesterday = new Date(Date.now() - 86400000).toDateString();
+  const newStreak = lastPracticeDate === yesterday ? streak + 1 : 1;
+
+  localStorage.setItem('practice-streak', JSON.stringify({
+    streak: newStreak,
+    lastPracticeDate: today,
+    xp
+  }));
+
+  return { streak: newStreak, xp };
+};
+
+const addXP = (points: number) => {
+  const data = getStreakData();
+  const newXP = data.xp + points;
+
+  localStorage.setItem('practice-streak', JSON.stringify({
+    ...data,
+    xp: newXP
+  }));
+
+  return newXP;
+};
 
 const formatCategory = (category?: string) => {
   if (!category) return '';
@@ -83,6 +122,8 @@ export function QuickPracticeWidget({
   const [hearts, setHearts] = useState(5);
   const [isShaking, setIsShaking] = useState(false);
   const [showGameOverModal, setShowGameOverModal] = useState(false);
+  const [streak, setStreak] = useState(0);
+  const [xp, setXP] = useState(0);
   const celebrationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const autoAdvanceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -93,6 +134,13 @@ export function QuickPracticeWidget({
       setIsInitialized(true);
     }
   }, [isInitialized]);
+
+  // Load streak and XP data from localStorage
+  useEffect(() => {
+    const data = getStreakData();
+    setStreak(data.streak);
+    setXP(data.xp);
+  }, []);
 
   const filteredItems = useMemo(() => {
     if (category === ALL_CATEGORIES) {
@@ -179,6 +227,12 @@ export function QuickPracticeWidget({
       }
       celebrationTimeoutRef.current = setTimeout(() => setIsCelebrating(false), 1200);
 
+      // Award XP and update streak for correct answer
+      const newXP = addXP(10);
+      setXP(newXP);
+      const { streak: newStreak } = updateStreak();
+      setStreak(newStreak);
+
       // Track correct answer
       trackEvent(AnalyticsEvents.PRACTICE_ANSWER_CORRECT, {
         mode,
@@ -208,6 +262,10 @@ export function QuickPracticeWidget({
       setFeedback('incorrect');
       setRevealedAnswer(expectedAnswer);
       setIsCelebrating(false);
+
+      // Award participation XP for incorrect answer
+      const newXP = addXP(5);
+      setXP(newXP);
 
       // Decrease hearts and trigger shake animation
       const newHearts = Math.max(0, hearts - 1);
@@ -358,6 +416,16 @@ export function QuickPracticeWidget({
               </p>
             </div>
             <div className="flex items-center gap-2">
+              {/* Streak Display */}
+              <div className="flex items-center gap-1 rounded-full bg-orange-500/10 px-2 py-1 border border-orange-500/20">
+                <Flame className="h-4 w-4 text-orange-500" />
+                <span className="text-xs font-bold text-orange-600">{streak}</span>
+              </div>
+              {/* XP Display */}
+              <div className="flex items-center gap-1 rounded-full bg-yellow-500/10 px-2 py-1 border border-yellow-500/20">
+                <Zap className="h-4 w-4 text-yellow-500" />
+                <span className="text-xs font-bold text-yellow-600">{xp}</span>
+              </div>
               {/* Hearts Display */}
               <div className="flex items-center gap-1">
                 {Array.from({ length: 5 }, (_, i) => (
