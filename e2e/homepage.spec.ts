@@ -13,8 +13,8 @@ test.describe('Homepage', () => {
     const heading = page.getByRole('heading', { level: 1 });
     await expect(heading).toBeVisible();
 
-    // Verify Macedonian text is present
-    await expect(page.getByText('Македонски')).toBeVisible();
+    // Verify Macedonian text is present (use first() to avoid strict mode violation)
+    await expect(page.getByText('Македонски').first()).toBeVisible();
   });
 
   test('should display Word of the Day section', async ({ page }) => {
@@ -27,8 +27,8 @@ test.describe('Homepage', () => {
   });
 
   test('should display Quick Start cards', async ({ page }) => {
-    // Check for Daily Practice card
-    await expect(page.getByRole('heading', { name: /Daily Practice|Quick Start/i })).toBeVisible();
+    // Check for Daily Practice card (use first() to avoid strict mode violation)
+    await expect(page.getByRole('heading', { name: /Daily Practice|Quick Start/i }).first()).toBeVisible();
 
     // Check for Practice button
     const practiceButton = page.getByRole('link', { name: /Start Practicing/i });

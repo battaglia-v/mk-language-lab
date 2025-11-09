@@ -159,8 +159,8 @@ test.describe('News Page', () => {
     // Wait for news to load
     await page.waitForTimeout(3000);
 
-    // Should show links to Macedonian news sites
-    const macedonianSources = page.locator('a[href*="time.mk"], a[href*="meta.mk"], text=/Time.mk|Meta.mk/i');
+    // Should show links to Macedonian news sites (fixed CSS selector syntax)
+    const macedonianSources = page.locator('a[href*="time.mk"], a[href*="meta.mk"]');
     const count = await macedonianSources.count();
 
     // Should have at least one Macedonian source

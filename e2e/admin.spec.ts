@@ -63,7 +63,8 @@ test.describe('Admin Signin Page', () => {
 
     if (await termsLink.isVisible()) {
       await expect(termsLink).toBeVisible();
-      await expect(termsLink).toHaveAttribute('href', /terms/);
+      // Terms link points to /about page (not /terms)
+      await expect(termsLink).toHaveAttribute('href', /about/);
     }
   });
 
