@@ -244,10 +244,11 @@ export default function ResourcesPage() {
                 href="https://macedonianlanguagecorner.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="self-start md:flex-shrink-0 inline-flex items-center gap-1.5 rounded-full border border-border/40 bg-muted/30 px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
+                className="self-start md:flex-shrink-0 inline-flex items-center gap-2 rounded-lg border border-primary/20 bg-gradient-to-r from-primary/10 to-primary/5 px-3 py-2 text-xs font-medium text-foreground hover:border-primary/40 hover:from-primary/15 hover:to-primary/10 transition-all shadow-sm hover:shadow"
               >
-                <span>{t('curatedBy')} Andri · {t('macedonianLanguageCorner')}</span>
-                <ExternalLink className="h-3 w-3 flex-shrink-0" />
+                <Sparkles className="h-3.5 w-3.5 text-primary flex-shrink-0" />
+                <span className="font-semibold">Andri · MLC</span>
+                <ExternalLink className="h-3 w-3 text-muted-foreground flex-shrink-0" />
               </a>
             </div>
           </div>
