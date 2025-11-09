@@ -325,18 +325,40 @@ export function QuickPracticeWidget({
             aria-hidden="true"
           />
         )}
-        <CardHeader className={cn('space-y-4 md:space-y-6', isModalVariant ? 'px-6 py-6 md:px-10 md:py-10 lg:px-12' : '')}>
-          <div className="flex flex-col gap-3 md:gap-4 text-center sm:text-left">
-            <div className="space-y-3">
-              <CardTitle className={cn('text-2xl text-foreground sm:text-3xl', isModalVariant && 'sm:text-4xl')}>
+        <CardHeader className={cn('space-y-2 md:space-y-4', isModalVariant ? 'px-6 py-4 md:px-10 md:py-8 lg:px-12' : 'px-4 py-3 md:px-6 md:py-4')}>
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex-1 min-w-0">
+              <CardTitle className={cn('text-lg text-foreground md:text-2xl', isModalVariant && 'md:text-3xl')}>
                 {title ?? t('quickPractice')}
               </CardTitle>
-              <CardDescription className={cn('text-sm text-muted-foreground sm:text-base', isModalVariant && 'sm:text-lg')}>
+              <CardDescription className={cn('hidden md:block text-sm text-muted-foreground', isModalVariant && 'md:text-base')}>
                 {summarySubtitle}
               </CardDescription>
             </div>
+            <button
+              type="button"
+              onClick={() => setShowSettings(!showSettings)}
+              className="md:hidden flex h-8 w-8 items-center justify-center rounded-full border border-border/40 bg-background/60 text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
+              aria-label="Toggle settings"
+            >
+              <Settings className="h-4 w-4" />
+            </button>
           </div>
-          <div className="rounded-2xl border border-border/30 bg-background/60 p-3 md:p-4 shadow-inner">
+          {/* Mobile: Compact inline progress */}
+          <div className="flex md:hidden items-center gap-2 text-xs">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 font-bold text-primary">
+              {correctCount}/{SESSION_TARGET}
+            </span>
+            {totalAttempts > 0 && (
+              <span className={cn('inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-semibold', getAccuracyBadge(accuracy).color)}>
+                <TrendingUp className="h-3 w-3" />
+                {accuracy}%
+              </span>
+            )}
+          </div>
+
+          {/* Desktop: Full progress section */}
+          <div className="hidden md:block rounded-2xl border border-border/30 bg-background/60 p-3 md:p-4 shadow-inner">
             <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               <span>{t('practiceProgressLabel')}</span>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-xs font-bold text-primary">
@@ -364,21 +386,23 @@ export function QuickPracticeWidget({
             </div>
           </div>
         </CardHeader>
-        <CardContent className={cn('space-y-4 md:space-y-6', isModalVariant ? 'px-6 pb-6 md:px-10 md:pb-10 lg:px-12' : '')}>
+        <CardContent className={cn('space-y-2 md:space-y-4', isModalVariant ? 'px-6 pb-6 md:px-10 md:pb-10 lg:px-12' : 'px-4 pb-4 md:px-6 md:pb-6')}>
+          {/* Settings panel - hidden on mobile unless showSettings is true */}
           <div
             className={cn(
-              'flex gap-3 md:gap-4',
-              isModalVariant ? 'flex-col lg:flex-row lg:items-end lg:gap-6' : 'flex-col sm:flex-row sm:items-end'
+              'flex gap-2 md:gap-4',
+              isModalVariant ? 'flex-col lg:flex-row lg:items-end lg:gap-6' : 'flex-col sm:flex-row sm:items-end',
+              !showSettings && 'hidden md:flex'
             )}
           >
-            <div className={cn('space-y-2', isModalVariant ? 'w-full lg:flex-1' : 'flex-1')}>
+            <div className={cn('space-y-1.5', isModalVariant ? 'w-full lg:flex-1' : 'flex-1')}>
               <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 {t('practiceFilterLabel')}
               </span>
               <Select value={category} onValueChange={setCategory}>
                 <SelectTrigger
                   aria-label={t('practiceFilterLabel')}
-                  className={cn('w-full', isModalVariant && 'h-12 text-base')}
+                  className={cn('w-full h-9', isModalVariant && 'md:h-12 md:text-base')}
                 >
                   <SelectValue placeholder={t('practiceAllCategories')} />
                 </SelectTrigger>
@@ -392,7 +416,7 @@ export function QuickPracticeWidget({
                 </SelectContent>
               </Select>
             </div>
-            <div className={cn('space-y-2', isModalVariant ? 'w-full lg:w-auto' : 'sm:w-auto')}>
+            <div className={cn('space-y-1.5', isModalVariant ? 'w-full lg:w-auto' : 'sm:w-auto')}>
               <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 {t('practiceModeLabel')}
               </span>
@@ -404,21 +428,21 @@ export function QuickPracticeWidget({
               >
                 <Button
                   type="button"
-                  size={isModalVariant ? 'lg' : 'sm'}
+                  size="sm"
                   variant={mode === 'mkToEn' ? 'default' : 'outline'}
                   onClick={() => setMode('mkToEn')}
                   aria-pressed={mode === 'mkToEn'}
-                  className={cn(isModalVariant ? 'justify-center' : 'px-3', !isModalVariant && 'sm:flex-none')}
+                  className={cn(isModalVariant && 'md:h-10', 'px-2 text-xs')}
                 >
                   {t('practiceModeMkToEn')}
                 </Button>
                 <Button
                   type="button"
-                  size={isModalVariant ? 'lg' : 'sm'}
+                  size="sm"
                   variant={mode === 'enToMk' ? 'default' : 'outline'}
                   onClick={() => setMode('enToMk')}
                   aria-pressed={mode === 'enToMk'}
-                  className={cn(isModalVariant ? 'justify-center' : 'px-3', !isModalVariant && 'sm:flex-none')}
+                  className={cn(isModalVariant && 'md:h-10', 'px-2 text-xs')}
                 >
                   {t('practiceModeEnToMk')}
                 </Button>
@@ -426,26 +450,70 @@ export function QuickPracticeWidget({
             </div>
           </div>
 
-          <div className="space-y-2 rounded-2xl border border-border/40 bg-muted/30 p-4 md:p-5">
+          <div className="space-y-1.5 rounded-xl border border-border/40 bg-muted/30 p-3 md:p-4 md:rounded-2xl">
             <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{promptLabel}</p>
-            <p className={cn('break-words font-semibold text-foreground', isModalVariant ? 'text-3xl' : 'text-2xl')}>
+            <p className={cn('break-words font-semibold text-foreground', isModalVariant ? 'text-3xl' : 'text-xl md:text-2xl')}>
               {promptValue}
             </p>
-            <Badge variant="secondary" className="mt-3 w-fit">
+            <Badge variant="secondary" className="mt-2 w-fit text-xs">
               {categoryLabel}
             </Badge>
           </div>
 
-          <form className="space-y-4" onSubmit={handleSubmit}>
-            <Input
-              value={answer}
-              onChange={(event) => setAnswer(event.target.value)}
-              placeholder={placeholder}
-              className={cn('rounded-xl border-border/40 bg-background/80', isModalVariant ? 'h-14 text-xl' : 'h-12 text-lg')}
-              aria-label={placeholder}
-              disabled={!isReady}
-            />
-            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+          <form className="space-y-2 md:space-y-4" onSubmit={handleSubmit}>
+            <div className="relative">
+              <Input
+                value={answer}
+                onChange={(event) => setAnswer(event.target.value)}
+                placeholder={placeholder}
+                className={cn('rounded-xl border-border/40 bg-background/80', isModalVariant ? 'h-14 text-xl' : 'h-11 text-base md:h-12 md:text-lg', 'pr-10')}
+                aria-label={placeholder}
+                disabled={!isReady}
+              />
+              {/* Mobile: Skip button as icon in input */}
+              <button
+                type="button"
+                onClick={handleNext}
+                className="md:hidden absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full hover:bg-muted transition-colors"
+                disabled={!filteredItems.length}
+                aria-label={t('nextPrompt')}
+              >
+                <RefreshCcw className="h-4 w-4 text-muted-foreground" />
+              </button>
+            </div>
+
+            {/* Mobile: Simplified 2-button layout */}
+            <div className="md:hidden flex flex-col gap-2">
+              <Button type="submit" size="lg" className="w-full h-12 text-base font-semibold" disabled={!isReady || !answer.trim()}>
+                {t('checkAnswer')}
+              </Button>
+              <div className="flex gap-2">
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleReveal}
+                  className="flex-1 gap-1.5 text-xs"
+                  disabled={!isReady}
+                >
+                  <Eye className="h-3.5 w-3.5" />
+                  {t('practiceRevealAnswer')}
+                </Button>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleReset}
+                  className="flex-1 gap-1.5 text-xs"
+                  disabled={!isReady && !answer}
+                >
+                  {t('practiceReset')}
+                </Button>
+              </div>
+            </div>
+
+            {/* Desktop: Full 4-button grid */}
+            <div className="hidden md:grid grid-cols-1 gap-2 sm:grid-cols-2">
               <Button type="submit" size={isModalVariant ? 'lg' : 'default'} className="w-full gap-2" disabled={!isReady || !answer.trim()}>
                 {t('checkAnswer')}
               </Button>
