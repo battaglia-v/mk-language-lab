@@ -21,7 +21,11 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
-  themeColor: '#ff5a2c',
+  viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ff5a2c' },
+    { media: '(prefers-color-scheme: dark)', color: '#ff5a2c' },
+  ],
 };
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mk-language-lab.vercel.app';
@@ -52,8 +56,8 @@ export const metadata: Metadata = {
   },
   appleWebApp: {
     capable: true,
-    statusBarStyle: "default",
-    title: "Macedonian Language Lab",
+    statusBarStyle: "black-translucent",
+    title: "MK Language Lab",
   },
   manifest: "/manifest.json",
   icons: {
@@ -63,7 +67,7 @@ export const metadata: Metadata = {
     ],
     shortcut: ['/icon'],
     apple: [
-      { url: '/apple-icon', sizes: '180x180', type: 'image/png' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
     ],
   },
   openGraph: {

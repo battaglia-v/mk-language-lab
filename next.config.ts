@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from 'next-intl/plugin';
 import { withSentryConfig } from "@sentry/nextjs";
+import withPWA from '@ducanh2912/next-pwa';
 
 const withNextIntl = createNextIntlPlugin('./i18n.ts');
 
@@ -102,5 +103,17 @@ const sentryWebpackPluginOptions = {
   automaticVercelMonitors: true,
 };
 
-// Wrap the config with both Sentry and next-intl
-export default withSentryConfig(withNextIntl(nextConfig), sentryWebpackPluginOptions);
+// PWA configuration
+const pwaConfig = withPWA({
+  dest: 'public',
+  disable: process.env.NODE_ENV === 'development',
+  register: true,
+  skipWaiting: true,
+  cacheOnFrontEndNav: true,
+  fallbacks: {
+    document: '/offline',
+  },
+});
+
+// Wrap the config with PWA, next-intl, and Sentry
+export default withSentryConfig(withNextIntl(pwaConfig(nextConfig)), sentryWebpackPluginOptions);
