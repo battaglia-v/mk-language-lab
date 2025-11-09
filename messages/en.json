@@ -623,9 +623,9 @@
   },
   "resources": {
     "title": "Resources",
-    "subtitle": "Curated Macedonian study collections and trusted references",
-    "attributionText": "All content curated and validated by Andri, native Macedonian speaker and founder of",
-    "macedonianLanguageCorner": "Macedonian Language Corner",
+    "subtitle": "Handpicked by native speakers",
+    "curatedBy": "Curated by",
+    "macedonianLanguageCorner": "MLC",
     "search": "Search resources...",
     "viewPdf": "View PDF",
     "showAll": "All collections",

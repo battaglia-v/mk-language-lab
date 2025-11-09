@@ -231,27 +231,24 @@ export default function ResourcesPage() {
         <div className="mx-auto max-w-4xl">
           {/* Header */}
           <div className="border-b border-border/40 bg-card/50 backdrop-blur-sm px-4 py-4 md:py-5">
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex-1 min-w-0">
                 <h1 className="text-lg md:text-xl font-bold text-foreground">
-                  {t('subtitle')}
-                </h1>
-                <Badge variant="outline" className="border-primary/40 bg-primary/10 text-primary text-xs">
                   {t('title')}
-                </Badge>
+                </h1>
+                <p className="text-xs text-muted-foreground mt-1">
+                  {t('subtitle')}
+                </p>
               </div>
-              <p className="text-xs md:text-sm text-muted-foreground">
-                🇲🇰 {t('attributionText')}{' '}
-                <a
-                  href="https://macedonianlanguagecorner.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium text-foreground hover:text-primary transition-colors underline decoration-dotted inline-flex items-center gap-1"
-                >
-                  {t('macedonianLanguageCorner')}
-                  <ExternalLink className="h-3 w-3 flex-shrink-0" />
-                </a>
-              </p>
+              <a
+                href="https://macedonianlanguagecorner.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-shrink-0 inline-flex items-center gap-1.5 rounded-full border border-border/40 bg-muted/30 px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
+              >
+                <span>{t('curatedBy')} Andri · {t('macedonianLanguageCorner')}</span>
+                <ExternalLink className="h-3 w-3 flex-shrink-0" />
+              </a>
             </div>
           </div>
 
