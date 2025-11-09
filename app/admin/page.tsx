@@ -12,7 +12,6 @@ import {
   Plus,
   Calendar,
   Activity,
-  BarChart3
 } from 'lucide-react';
 import prisma from '@/lib/prisma';
 
