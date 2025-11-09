@@ -5,7 +5,7 @@ import { z } from 'zod';
 
 // Validation schema for CSV row
 const csvRowSchema = z.object({
-  macedonian: z.string().min(1, 'Macedonian word is required').max(200),
+  macedonian: z.string().min(1, 'Macedonian word/phrase is required').max(200),
   english: z.string().min(1, 'English translation is required').max(200),
   pronunciation: z.string().max(200).optional().nullable(),
   partOfSpeech: z.string().max(100).optional().nullable(),
@@ -14,6 +14,8 @@ const csvRowSchema = z.object({
   icon: z.string().max(10).optional().nullable(),
   category: z.string().max(100).optional().nullable(),
   difficulty: z.enum(['beginner', 'intermediate', 'advanced']),
+  formality: z.enum(['formal', 'neutral', 'informal']).optional().default('neutral'),
+  usageContext: z.string().optional().nullable(),
   includeInWOTD: z.string().optional().nullable().transform((val) => {
     if (!val) return false;
     const lower = val.toLowerCase().trim();
@@ -103,6 +105,8 @@ export async function POST(request: NextRequest) {
       icon: item.data.icon || null,
       category: item.data.category || null,
       difficulty: item.data.difficulty,
+      formality: item.data.formality || 'neutral',
+      usageContext: item.data.usageContext || null,
       includeInWOTD: item.data.includeInWOTD || false,
       isActive: true,
       createdAt: new Date(),

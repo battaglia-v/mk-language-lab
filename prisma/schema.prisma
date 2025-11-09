@@ -322,6 +322,7 @@ model PracticeVocabulary {
   english        String
   category       String?   // Optional category (e.g., "food", "family", "greetings")
   difficulty     String    @default("beginner") // beginner | intermediate | advanced
+  formality      String    @default("neutral") // formal | neutral | informal
   isActive       Boolean   @default(true)
 
   // Word of the Day fields (optional - only needed if includeInWOTD is true)
@@ -332,6 +333,7 @@ model PracticeVocabulary {
   exampleEn      String?   @db.Text // Example sentence in English
   icon           String?   // Emoji icon
   scheduledDate  DateTime? @unique // Date this word should appear as WOTD
+  usageContext   String?   @db.Text // Usage context and situational notes
 
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
@@ -339,4 +341,5 @@ model PracticeVocabulary {
   @@index([isActive, difficulty])
   @@index([category])
   @@index([includeInWOTD, scheduledDate])
+  @@index([formality])
 }

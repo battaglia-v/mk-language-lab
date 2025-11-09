@@ -29,10 +29,11 @@ Our `practiceVocabulary` table currently supports these fields:
 Perfect for vocabulary lists without examples:
 
 ```csv
-macedonian,english,category,difficulty,pronunciation,partOfSpeech,icon
-Здраво,Hello,greetings,beginner,zdravo,greeting,👋
-Како си?,How are you?,greetings,beginner,kako si,phrase,💬
-Денес,Today,time,beginner,denes,noun,📅
+macedonian,english,category,difficulty,formality,pronunciation,partOfSpeech,icon
+Здраво,Hello,greetings,beginner,neutral,zdravo,greeting,👋
+Како си?,How are you?,greetings,beginner,informal,kako si,phrase,💬
+Денес,Today,time,beginner,neutral,denes,noun,📅
+Добар ден,Good day,greetings,beginner,formal,dobar den,greeting,🤵
 ```
 
 ### Option B: Extended JSON Format
@@ -45,10 +46,12 @@ Best for phrases with context and examples:
     "english": "Today is Ivan's birthday.",
     "category": "family",
     "difficulty": "beginner",
+    "formality": "neutral",
     "pronunciation": "denes mu e rodenden na Ivan",
     "partOfSpeech": "phrase",
     "exampleMk": "Денес му е роденден на Иван. Ќе одам на прослава.",
     "exampleEn": "Today is Ivan's birthday. I will go to the celebration.",
+    "usageContext": "Used to inform someone about Ivan's birthday, often in casual conversations or greetings.",
     "icon": "🎂"
   },
   {
@@ -56,8 +59,10 @@ Best for phrases with context and examples:
     "english": "Good morning",
     "category": "greetings",
     "difficulty": "beginner",
+    "formality": "neutral",
     "pronunciation": "dobro utro",
     "partOfSpeech": "greeting",
+    "usageContext": "Standard morning greeting, appropriate in most situations.",
     "icon": "🌅"
   }
 ]
@@ -66,10 +71,11 @@ Best for phrases with context and examples:
 ### Option C: Google Sheets Template
 Easiest for collaborative editing:
 
-| macedonian | english | category | difficulty | pronunciation | partOfSpeech | exampleMk | exampleEn | icon |
-|------------|---------|----------|------------|---------------|--------------|-----------|-----------|------|
-| Здраво | Hello | greetings | beginner | zdravo | greeting | Здраво! Како си? | Hello! How are you? | 👋 |
-| Денес | Today | time | beginner | denes | noun | Денес е убав ден. | Today is a beautiful day. | 📅 |
+| macedonian | english | category | difficulty | formality | pronunciation | partOfSpeech | exampleMk | exampleEn | usageContext | icon |
+|------------|---------|----------|------------|-----------|---------------|--------------|-----------|-----------|--------------|------|
+| Здраво | Hello | greetings | beginner | neutral | zdravo | greeting | Здраво! Како си? | Hello! How are you? | Informal greeting with friends and family | 👋 |
+| Денес | Today | time | beginner | neutral | denes | noun | Денес е убав ден. | Today is a beautiful day. | Referring to the current day | 📅 |
+| Добар ден | Good day | greetings | beginner | formal | dobar den | greeting | Добар ден, господине. | Good day, sir. | Formal greeting in professional settings | 🤵 |
 
 ---
 
@@ -77,31 +83,39 @@ Easiest for collaborative editing:
 
 Based on your proposed format, here's how it maps:
 
-| Your Field | Our Field | Notes |
-|------------|-----------|-------|
-| macedonian | macedonian | ✅ Direct match |
-| english | english | ✅ Direct match |
-| context | category + exampleMk/exampleEn | We'll use category for topic, and examples for usage context |
-| formality | ❌ Not yet supported | See "Future Enhancements" below |
-| pronunciation | pronunciation | ✅ Supported (optional) |
-| audio | ❌ Not yet supported | See "Future Enhancements" below |
-| pictures | icon | ✅ Supported (emojis only for now) |
+| Your Field | Our Field | Status | Notes |
+|------------|-----------|--------|-------|
+| macedonian | macedonian | ✅ Ready | Supports both words and phrases (up to 200 chars) |
+| english | english | ✅ Ready | Direct translation |
+| context | usageContext | ✅ Ready | **NEW FIELD!** Situational usage notes |
+| formality | formality | ✅ Ready | **NEW FIELD!** Values: formal, neutral, informal |
+| pronunciation | pronunciation | ✅ Ready | Latin/Romanized text guide |
+| audio | audioUrl | 🔜 Coming | Phase 2 - URL to MP3 file |
+| pictures | icon | ✅ Ready | Emoji icons (imageUrl coming in Phase 2) |
 
-### How to Handle "Context" and "Formality"
-Since you proposed:
-- **context:** "Used to inform someone about Ivan's birthday, often in casual conversations or greetings."
-- **formality:** "neutral"
+### ✨ New Fields Just Added!
 
-We recommend:
-1. **Context** → Use `exampleMk` and `exampleEn` for usage examples
-2. **Formality** → Use `category` with values like "formal-greetings", "informal-greetings", or add notes in examples
+We just implemented the fields you need:
 
-**Example:**
+**1. `formality`** (formal | neutral | informal)
+- **formal**: Добар ден (Good day), Ви (formal you)
+- **neutral**: Здраво (Hello), default for most phrases
+- **informal**: Како си? (How are you - informal)
+
+**2. `usageContext`** (Text field)
+- Your "context" field maps directly here
+- Example: "Used to inform someone about Ivan's birthday, often in casual conversations or greetings."
+- Provides situational guidance for learners
+
+**Example with new fields:**
 ```json
 {
   "macedonian": "Добар ден",
   "english": "Good day",
-  "category": "formal-greetings",
+  "category": "greetings",
+  "formality": "formal",
+  "pronunciation": "dobar den",
+  "usageContext": "Formal greeting used in professional settings, with elders, or with strangers. More polite than 'Здраво'.",
   "exampleMk": "Добар ден, господине. Како можам да ви помогнам?",
   "exampleEn": "Good day, sir. How can I help you?",
   "icon": "🤵"
