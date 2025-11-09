@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { RefreshCcw, Eye, Sparkles, PlayCircle, X, Trophy, TrendingUp, Settings, MoreVertical } from 'lucide-react';
+import { RefreshCcw, Eye, Sparkles, PlayCircle, X, Trophy, TrendingUp, Settings, MoreVertical, Heart, Check, XCircle } from 'lucide-react';
 import practicePrompts from '@/data/practice-vocabulary.json';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -80,6 +80,9 @@ export function QuickPracticeWidget({
   const [isInitialized, setIsInitialized] = useState(false);
   const [showCompletionModal, setShowCompletionModal] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [hearts, setHearts] = useState(5);
+  const [isShaking, setIsShaking] = useState(false);
+  const [showGameOverModal, setShowGameOverModal] = useState(false);
   const celebrationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const autoAdvanceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -206,6 +209,23 @@ export function QuickPracticeWidget({
       setRevealedAnswer(expectedAnswer);
       setIsCelebrating(false);
 
+      // Decrease hearts and trigger shake animation
+      const newHearts = Math.max(0, hearts - 1);
+      setHearts(newHearts);
+      setIsShaking(true);
+      setTimeout(() => setIsShaking(false), 500);
+
+      // Check for game over
+      if (newHearts === 0) {
+        setShowGameOverModal(true);
+        trackEvent(AnalyticsEvents.PRACTICE_GAME_OVER, {
+          mode,
+          category: category === ALL_CATEGORIES ? 'all' : category,
+          correctCount,
+          totalAttempts: newTotalAttempts,
+        });
+      }
+
       // Track incorrect answer
       trackEvent(AnalyticsEvents.PRACTICE_ANSWER_INCORRECT, {
         mode,
@@ -251,6 +271,8 @@ export function QuickPracticeWidget({
     setIsCelebrating(false);
     setRevealedAnswer('');
     setShowCompletionModal(false);
+    setShowGameOverModal(false);
+    setHearts(5);
     trackEvent(AnalyticsEvents.PRACTICE_SESSION_NEW, {
       mode,
       category: category === ALL_CATEGORIES ? 'all' : category,
@@ -335,14 +357,30 @@ export function QuickPracticeWidget({
                 {summarySubtitle}
               </p>
             </div>
-            <button
-              type="button"
-              onClick={() => setShowSettings(!showSettings)}
-              className="md:hidden flex h-8 w-8 items-center justify-center rounded-full border border-border/40 bg-background/60 text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
-              aria-label="Toggle settings"
-            >
-              <Settings className="h-4 w-4" />
-            </button>
+            <div className="flex items-center gap-2">
+              {/* Hearts Display */}
+              <div className="flex items-center gap-1">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <Heart
+                    key={i}
+                    className={cn(
+                      'h-5 w-5 transition-all duration-200',
+                      i < hearts
+                        ? 'fill-[#ef4444] text-[#ef4444]'
+                        : 'fill-muted text-muted'
+                    )}
+                  />
+                ))}
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowSettings(!showSettings)}
+                className="md:hidden flex h-8 w-8 items-center justify-center rounded-full border border-border/40 bg-background/60 text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
+                aria-label="Toggle settings"
+              >
+                <Settings className="h-4 w-4" />
+              </button>
+            </div>
           </div>
           {/* Mobile: Compact inline progress */}
           <div className="flex md:hidden items-center gap-2 text-xs">
@@ -555,15 +593,24 @@ export function QuickPracticeWidget({
           {feedback && isReady ? (
             <div
               className={cn(
-                'rounded-xl px-4 py-3 text-sm font-medium',
+                'rounded-xl px-4 py-3 font-semibold flex items-center gap-2',
                 feedback === 'correct'
-                  ? 'bg-emerald-500/10 text-emerald-500'
-                  : 'bg-destructive/10 text-destructive'
+                  ? 'bg-[#22c55e] text-white'
+                  : 'bg-[#ef4444] text-white',
+                isShaking && feedback === 'incorrect' && 'animate-shake'
               )}
             >
-              {feedback === 'correct'
-                ? t('correctAnswer')
-                : t('incorrectAnswer', { answer: revealedAnswer })}
+              {feedback === 'correct' ? (
+                <>
+                  <Check className="h-5 w-5 flex-shrink-0" />
+                  <span>{t('correctAnswer')}</span>
+                </>
+              ) : (
+                <>
+                  <XCircle className="h-5 w-5 flex-shrink-0" />
+                  <span>{t('incorrectAnswer', { answer: revealedAnswer })}</span>
+                </>
+              )}
             </div>
           ) : null}
 
@@ -676,6 +723,54 @@ export function QuickPracticeWidget({
           </DialogContent>
         </Dialog>
 
+        {/* Game Over Modal */}
+        <Dialog open={showGameOverModal} onOpenChange={setShowGameOverModal}>
+          <DialogContent className="max-w-md">
+            <DialogHeader className="relative z-10">
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#ef4444]/20 to-[#ef4444]/10">
+                <Heart className="h-8 w-8 text-[#ef4444]" />
+              </div>
+              <DialogTitle className="text-center text-2xl">
+                {t('practiceGameOverTitle') || 'Out of Hearts!'}
+              </DialogTitle>
+              <DialogDescription className="text-center">
+                {t('practiceGameOverMessage') || 'You ran out of hearts. Review your mistakes and try again!'}
+              </DialogDescription>
+            </DialogHeader>
+
+            <div className="relative z-10 space-y-4 py-4">
+              <div className="rounded-xl border border-border/40 bg-muted/30 p-4">
+                <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                  {t('practiceSessionCompleteStats') || 'Session Stats'}
+                </h4>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-muted-foreground">{t('practiceSessionCompleteCorrect') || 'Correct'}</span>
+                    <span className="text-lg font-bold text-primary">{correctCount}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-muted-foreground">{t('practiceSessionCompleteTotalAttempts') || 'Total Attempts'}</span>
+                    <span className="text-lg font-bold">{totalAttempts}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-muted-foreground">{t('practiceSessionCompleteAccuracy') || 'Accuracy'}</span>
+                    <span className={cn('inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-bold', getAccuracyBadge(accuracy).color)}>
+                      {accuracy}% • {getAccuracyBadge(accuracy).label}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <DialogFooter className="relative z-10 flex-col gap-2 sm:flex-col">
+              <Button onClick={handleReset} size="lg" className="w-full gap-2">
+                <RefreshCcw className="h-4 w-4" />
+                {t('practiceTryAgain') || 'Try Again'}
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
         {/* Confetti CSS */}
         <style jsx>{`
           @keyframes confetti-fall {
@@ -704,6 +799,16 @@ export function QuickPracticeWidget({
             height: 8px;
             animation: confetti-fall 3s linear infinite;
             opacity: 0;
+          }
+
+          @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+          }
+
+          .animate-shake {
+            animation: shake 0.5s ease-in-out;
           }
         `}</style>
       </>
@@ -875,6 +980,54 @@ export function QuickPracticeWidget({
         </DialogContent>
       </Dialog>
 
+      {/* Game Over Modal */}
+      <Dialog open={showGameOverModal} onOpenChange={setShowGameOverModal}>
+        <DialogContent className="max-w-md">
+          <DialogHeader className="relative z-10">
+            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#ef4444]/20 to-[#ef4444]/10">
+              <Heart className="h-8 w-8 text-[#ef4444]" />
+            </div>
+            <DialogTitle className="text-center text-2xl">
+              {t('practiceGameOverTitle') || 'Out of Hearts!'}
+            </DialogTitle>
+            <DialogDescription className="text-center">
+              {t('practiceGameOverMessage') || 'You ran out of hearts. Review your mistakes and try again!'}
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="relative z-10 space-y-4 py-4">
+            <div className="rounded-xl border border-border/40 bg-muted/30 p-4">
+              <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                {t('practiceSessionCompleteStats') || 'Session Stats'}
+              </h4>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground">{t('practiceSessionCompleteCorrect') || 'Correct'}</span>
+                  <span className="text-lg font-bold text-primary">{correctCount}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground">{t('practiceSessionCompleteTotalAttempts') || 'Total Attempts'}</span>
+                  <span className="text-lg font-bold">{totalAttempts}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground">{t('practiceSessionCompleteAccuracy') || 'Accuracy'}</span>
+                  <span className={cn('inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-bold', getAccuracyBadge(accuracy).color)}>
+                    {accuracy}% • {getAccuracyBadge(accuracy).label}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <DialogFooter className="relative z-10 flex-col gap-2 sm:flex-col">
+            <Button onClick={handleReset} size="lg" className="w-full gap-2">
+              <RefreshCcw className="h-4 w-4" />
+              {t('practiceTryAgain') || 'Try Again'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
       {/* Confetti CSS */}
       <style jsx>{`
         @keyframes confetti-fall {
@@ -903,6 +1056,16 @@ export function QuickPracticeWidget({
           height: 8px;
           animation: confetti-fall 3s linear infinite;
           opacity: 0;
+        }
+
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+          20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        .animate-shake {
+          animation: shake 0.5s ease-in-out;
         }
       `}</style>
     </Dialog>

@@ -25,6 +25,7 @@ export const AnalyticsEvents = {
   PRACTICE_SESSION_NEW: 'practice_session_new',
   PRACTICE_SESSION_CONTINUE: 'practice_session_continue',
   PRACTICE_COMPLETION_MODAL_VIEWED: 'practice_completion_modal_viewed',
+  PRACTICE_GAME_OVER: 'practice_game_over',
 
   // Translation events
   TRANSLATION_REQUESTED: 'translation_requested',
