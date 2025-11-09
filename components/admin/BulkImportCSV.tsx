@@ -43,11 +43,11 @@ export function BulkImportCSV() {
 
   const downloadTemplate = () => {
     const template = `macedonian,english,pronunciation,partOfSpeech,exampleMk,exampleEn,icon,category,difficulty,formality,usageContext,includeInWOTD
-Здраво,Hello,zdravo,greeting,Здраво! Како си?,Hello! How are you?,👋,greetings,beginner,neutral,"Informal greeting with friends and family",false
-Добар ден,Good day,dobar den,greeting,Добар ден! Како сте?,Good day! How are you?,🤵,greetings,beginner,formal,"Formal greeting in professional settings or with elders",false
-Книга,Book,kniga,noun,Јас читам книга.,I am reading a book.,📚,objects,beginner,neutral,,false`;
+zdravo,hello,ZDRAH-voh,greeting,Zdravo! Kako si?,Hello! How are you?,waving hand,greetings,beginner,neutral,Informal greeting with friends and family,false
+dobar den,good day,DOH-bar den,greeting,Dobar den! Kako ste?,Good day! How are you?,person in suit,greetings,beginner,formal,Formal greeting in professional or polite settings,false
+kniga,book,KNEE-gah,noun,Jas chitam kniga.,I am reading a book.,book,objects,beginner,neutral,Common word for physical or digital books,false`;
 
-    // Add UTF-8 BOM for proper Cyrillic display in Excel and other apps
+    // Add UTF-8 BOM for proper encoding
     const BOM = '\uFEFF';
     const blob = new Blob([BOM + template], { type: 'text/csv;charset=utf-8' });
     const url = URL.createObjectURL(blob);
