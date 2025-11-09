@@ -81,20 +81,20 @@ export default function HomePage() {
                   <div className="space-y-3 flex-1">
                     <h3 className="text-2xl font-semibold text-foreground">Daily Practice</h3>
                     <p className="text-base leading-relaxed text-muted-foreground">
-                      Test your vocabulary with interactive quizzes. Switch between Macedonian→English and English→Macedonian to strengthen your skills.
+                      Master vocabulary through interactive quizzes. Practice bidirectional translation and track your progress.
                     </p>
                     <ul className="space-y-2 text-sm text-muted-foreground pb-4">
                       <li className="flex items-start gap-2">
                         <span className="mt-1 text-primary">•</span>
-                        <span>Multiple practice modes</span>
+                        <span>Bidirectional translation</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="mt-1 text-primary">•</span>
-                        <span>Track your progress</span>
+                        <span>Instant feedback</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="mt-1 text-primary">•</span>
-                        <span>Learn at your own pace</span>
+                        <span>Self-paced learning</span>
                       </li>
                     </ul>
                   </div>
@@ -118,20 +118,20 @@ export default function HomePage() {
                   <div className="space-y-3 flex-1">
                     <h3 className="text-2xl font-semibold text-foreground">Learning Resources</h3>
                     <p className="text-base leading-relaxed text-muted-foreground">
-                      Access curated resources hand-picked by native speakers. Dictionaries, grammar guides, videos, and cultural content.
+                      Explore curated materials from native speakers: dictionaries, grammar guides, videos, and cultural insights.
                     </p>
                     <ul className="space-y-2 text-sm text-muted-foreground pb-4">
                       <li className="flex items-start gap-2">
                         <span className="mt-1 text-secondary">•</span>
-                        <span>Trusted dictionaries & references</span>
+                        <span>Verified references</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="mt-1 text-secondary">•</span>
-                        <span>Native speaker content</span>
+                        <span>Authentic content</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="mt-1 text-secondary">•</span>
-                        <span>Cultural insights & media</span>
+                        <span>Cultural context</span>
                       </li>
                     </ul>
                   </div>
