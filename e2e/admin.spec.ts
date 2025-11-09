@@ -6,8 +6,8 @@ test.describe('Admin Signin Page', () => {
   });
 
   test('should load admin signin page successfully', async ({ page }) => {
-    // Check page heading
-    await expect(page.getByRole('heading', { name: /Admin Sign In/i })).toBeVisible();
+    // Check page title text (CardTitle renders as div, not heading)
+    await expect(page.getByText('Admin Sign In', { exact: true })).toBeVisible();
 
     // Check for signin card
     const card = page.locator('[class*="card"]').first();
@@ -73,8 +73,8 @@ test.describe('Admin Signin Page', () => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.reload();
 
-    // Main elements should still be visible
-    await expect(page.getByRole('heading', { name: /Admin Sign In/i })).toBeVisible();
+    // Main elements should still be visible (CardTitle renders as div, not heading)
+    await expect(page.getByText('Admin Sign In', { exact: true })).toBeVisible();
     await expect(page.getByRole('button', { name: /Google/i })).toBeVisible();
   });
 

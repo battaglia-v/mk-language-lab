@@ -1,62 +1,98 @@
 # E2E Test Issues and Fixes
 
-## ✅ Fixed Issues (Test Selectors)
+## ✅ Fixed Issues
 
-### 1. Strict Mode Violations
-**Problem:** Multiple elements matching the same selector caused Playwright strict mode violations.
+### 1. DATABASE_URL Environment Variable
+**Problem:** Playwright tests couldn't access environment variables from `.env.local`, causing Prisma initialization failures.
 
+**Solution:** Added dotenv configuration to `playwright.config.ts` to load environment variables before tests run.
+
+**Files Fixed:**
+- `playwright.config.ts` - Added dotenv import and configuration
+
+### 2. Google Credentials JSON Parsing
+**Problem:** The `GOOGLE_APPLICATION_CREDENTIALS_JSON` environment variable contained literal newlines causing JSON parsing errors.
+
+**Solution:** Base64 encoded the entire credentials JSON string (3096 characters).
+
+**Files Fixed:**
+- `.env.local` - Updated with base64-encoded Google credentials
+- `.env.local.backup` - Created backup before changes
+
+### 3. Test Selector Fixes (Previous)
 **Files Fixed:**
 - `e2e/homepage.spec.ts:17` - Added `.first()` to `getByText('Македонски')`
 - `e2e/homepage.spec.ts:31` - Added `.first()` to `getByRole('heading', { name: /Daily Practice|Quick Start/i })`
-
-### 2. CSS Selector Syntax Error
-**Problem:** Invalid CSS selector mixing attribute selectors with text regex.
-
-**File Fixed:**
 - `e2e/news.spec.ts:163` - Removed invalid `text=/Time.mk|Meta.mk/i` from locator
-
-### 3. Incorrect Test Expectations
-**Problem:** Test expected Terms of Service link to point to `/terms` but it points to `/about`.
-
-**File Fixed:**
 - `e2e/admin.spec.ts:67` - Changed href expectation from `/terms/` to `/about/`
 
 ---
 
-## ⚠️ CRITICAL: Environment Variable Issue
+## 🔴 Remaining Test Failures (23 failures out of 63 tests)
 
-### Problem
-The `GOOGLE_APPLICATION_CREDENTIALS_JSON` environment variable in `.env.local` contains **literal newline characters** (`\n`) which causes JSON parsing errors:
+### Category 1: Missing or Changed Page Headings
 
-```
-SyntaxError: Unexpected non-whitespace character after JSON at position 761 (line 1 column 762)
-```
+**Admin Page (3 failures):**
+- Tests expect heading "Admin Sign In" but page has different heading
+  - `e2e/admin.spec.ts:10` - "should load admin signin page successfully"
+  - `e2e/admin.spec.ts:77` - "should be responsive on mobile"
+- Missing warning message element
+  - `e2e/admin.spec.ts:30` - "should display admin warning message"
 
-This error is causing pages to fail to load during E2E tests:
-- `/mk/resources`
-- `/mk/practice`
-- `/mk/news`
-- `/mk/translate`
-- `/api/word-of-the-day`
-- `/api/auth/session`
+**Practice Page (3 failures):**
+- Tests expect heading "Practice" but page has different or no h1 heading
+  - `e2e/practice.spec.ts:10` - "should load practice page successfully"
+  - `e2e/practice.spec.ts:63` - "should have responsive layout on mobile"
+  - `e2e/practice.spec.ts:43` - Navigate to translate expects "Translate" heading
 
-### Solution Options
+**News Page (3 failures):**
+- Tests expect heading "News" or "Вести" but page has different heading
+  - `e2e/news.spec.ts:10` - "should load news page successfully"
+  - `e2e/news.spec.ts:124` - "should be responsive on mobile"
+- No article titles found
+  - `e2e/news.spec.ts:34` - "should display article titles"
 
-#### Option A: Base64 Encode (Recommended)
-The code already supports base64-encoded credentials (`app/api/translate/route.ts:20-26`).
+**Translate Page (6 failures):**
+- Tests expect heading "Translate" but page has different heading
+  - `e2e/translate.spec.ts:10` - "should load translate page successfully"
+  - `e2e/translate.spec.ts:161` - "should be responsive on mobile"
+- Missing UI elements (buttons not found)
+  - `e2e/translate.spec.ts:23` - "should display direction buttons"
+  - `e2e/translate.spec.ts:54` - "should have translate button"
+  - `e2e/translate.spec.ts:60` - "should have clear button"
+- Test timeouts waiting for buttons that don't exist
+  - `e2e/translate.spec.ts:105, 76, 129, 140, 172` - Various interaction tests
 
-1. Get your Google Cloud credentials JSON file
-2. Base64 encode it:
-   ```bash
-   base64 -i path/to/google-credentials.json | tr -d '\n' > encoded.txt
-   ```
-3. Update `.env.local`:
-   ```
-   GOOGLE_APPLICATION_CREDENTIALS_JSON="<paste base64 string here>"
-   ```
+### Category 2: Navigation Issues
 
-#### Option B: Properly Escape Newlines
-Ensure all newlines in the JSON are escaped as `\\n` (not literal `\n`).
+**Homepage (3 failures):**
+- Strict mode violation - multiple "Македонски" matches
+  - `e2e/homepage.spec.ts:130` - "should have working locale switcher" (4 elements match)
+- Navigation links not found
+  - `e2e/homepage.spec.ts:78` - "should have working navigation" (Practice link not found)
+- Resources page heading mismatch
+  - `e2e/homepage.spec.ts:61` - "should navigate to resources page" (h1 not found)
+
+### Category 3: Missing Page Elements
+
+**Homepage (1 failure):**
+- Missing Practice heading after navigation
+  - `e2e/homepage.spec.ts:50` - "should navigate to practice page"
+
+---
+
+## 📋 Current Test Results Summary
+
+**Total Tests:** 63
+**Passing:** 40 ✅
+**Failing:** 23 ❌
+
+### Tests Passing:
+- Homepage tests: 8/12 passing
+- Practice page tests: 8/11 passing
+- News page tests: 10/13 passing
+- Translate page tests: 3/16 passing
+- Admin panel tests: 11/14 passing
 
 ---
 

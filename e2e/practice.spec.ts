@@ -6,8 +6,8 @@ test.describe('Practice Page', () => {
   });
 
   test('should load practice page successfully', async ({ page }) => {
-    // Check page heading
-    await expect(page.getByRole('heading', { name: /Practice/i })).toBeVisible();
+    // Check page heading (actual text is "Train your Macedonian skills" from Macedonian translation)
+    await expect(page.getByRole('heading', { name: /Train.*Macedonian.*skills|Вежбај/i })).toBeVisible();
 
     // Check for Quick Practice widget
     await expect(page.locator('[class*="QuickPractice"], [data-testid="quick-practice"]').first()).toBeVisible();
@@ -59,8 +59,8 @@ test.describe('Practice Page', () => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.reload();
 
-    // Practice widget should still be visible
-    await expect(page.getByRole('heading', { name: /Practice/i })).toBeVisible();
+    // Practice heading should still be visible (actual text is "Train your Macedonian skills")
+    await expect(page.getByRole('heading', { name: /Train.*Macedonian.*skills|Вежбај/i })).toBeVisible();
 
     // Mobile navigation should be visible
     const mobileNav = page.locator('[class*="fixed bottom-0"]').first();
