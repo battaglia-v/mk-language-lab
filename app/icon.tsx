@@ -22,47 +22,84 @@ export default function Icon() {
           background: 'linear-gradient(135deg, #FF5A2C 0%, #D63616 100%)',
         }}
       >
-        {/* Simple jar silhouette for 32x32 */}
+        {/* Ajvar jar simplified for 32x32 favicon */}
         <div
           style={{
-            width: 20,
-            height: 24,
+            width: 18,
+            height: 22,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
-          {/* Lid */}
+          {/* Jar lid */}
           <div
             style={{
-              width: 18,
-              height: 4,
-              borderRadius: '2px',
-              background: '#FFF',
+              width: 16,
+              height: 3,
+              borderRadius: '1px',
+              background: 'linear-gradient(135deg, #CDD2DB 0%, #A8ADB8 100%)',
+              marginBottom: 1,
             }}
           />
+
           {/* Jar body */}
           <div
             style={{
-              width: 20,
-              height: 20,
-              borderRadius: '6px',
-              background: '#FFF',
+              width: 18,
+              height: 18,
+              borderRadius: '4px',
+              background: '#E63E2A',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              position: 'relative',
             }}
           >
-            {/* "M" letter */}
+            {/* Glass shine effect */}
             <div
               style={{
-                fontSize: 14,
-                fontWeight: 'bold',
-                color: '#FF5A2C',
+                position: 'absolute',
+                top: 2,
+                left: 2,
+                width: 7,
+                height: 10,
+                borderRadius: '50%',
+                background: 'rgba(255, 255, 255, 0.25)',
+              }}
+            />
+
+            {/* Label */}
+            <div
+              style={{
+                width: 10,
+                height: 8,
+                borderRadius: '2px',
+                background: 'rgba(255, 255, 255, 0.95)',
                 display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 1,
               }}
             >
-              M
+              {/* Label lines */}
+              <div
+                style={{
+                  width: 7,
+                  height: 1,
+                  borderRadius: '1px',
+                  background: 'rgba(44, 62, 80, 0.8)',
+                }}
+              />
+              <div
+                style={{
+                  width: 6,
+                  height: 1,
+                  borderRadius: '1px',
+                  background: 'rgba(44, 62, 80, 0.6)',
+                }}
+              />
             </div>
           </div>
         </div>
