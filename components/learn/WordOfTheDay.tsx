@@ -52,9 +52,9 @@ export function WordOfTheDay() {
 
   if (isLoading) {
     return (
-      <Card className="relative overflow-hidden border-primary/20 bg-gradient-to-br from-primary/5 via-background to-secondary/5 p-8">
-        <div className="flex items-center justify-center py-12">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      <Card className="relative overflow-hidden border-primary/20 bg-gradient-to-br from-primary/5 via-background to-secondary/5 p-4 md:p-6 lg:p-8">
+        <div className="flex items-center justify-center py-8 md:py-12">
+          <Loader2 className="h-6 w-6 md:h-8 md:w-8 animate-spin text-primary" />
         </div>
       </Card>
     );
@@ -62,26 +62,26 @@ export function WordOfTheDay() {
 
   if (error || !word) {
     return (
-      <Card className="relative overflow-hidden border-primary/20 bg-gradient-to-br from-primary/5 via-background to-secondary/5 p-8">
-        <div className="flex items-center justify-center py-12 text-muted-foreground">
-          <p>{error || 'No word available today'}</p>
+      <Card className="relative overflow-hidden border-primary/20 bg-gradient-to-br from-primary/5 via-background to-secondary/5 p-4 md:p-6 lg:p-8">
+        <div className="flex items-center justify-center py-8 md:py-12 text-muted-foreground">
+          <p className="text-sm md:text-base">{error || 'No word available today'}</p>
         </div>
       </Card>
     );
   }
 
   return (
-    <Card className="relative overflow-hidden border-primary/20 bg-gradient-to-br from-primary/5 via-background to-secondary/5 p-8">
+    <Card className="relative overflow-hidden border-primary/20 bg-gradient-to-br from-primary/5 via-background to-secondary/5 p-4 md:p-6 lg:p-8">
       {/* Decorative elements */}
       <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-primary/5 blur-3xl" />
       <div className="absolute bottom-0 left-0 h-32 w-32 rounded-full bg-secondary/5 blur-3xl" />
 
-      <div className="relative space-y-6">
+      <div className="relative space-y-3 md:space-y-4 lg:space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-primary" />
-            <h3 className="text-lg font-semibold text-foreground">
+          <div className="flex items-center gap-1.5 md:gap-2">
+            <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-primary" />
+            <h3 className="text-base md:text-lg font-semibold text-foreground">
               {t('title')}
             </h3>
           </div>
@@ -91,18 +91,18 @@ export function WordOfTheDay() {
         </div>
 
         {/* Main Word */}
-        <div className="space-y-4">
-          <div className="flex items-center gap-4">
-            <span className="text-5xl">{word.icon}</span>
-            <div className="flex-1 space-y-3">
-              <h4 className="text-4xl font-bold text-foreground tracking-tight">
+        <div className="space-y-3 md:space-y-4">
+          <div className="flex items-center gap-3 md:gap-4">
+            <span className="text-3xl md:text-4xl lg:text-5xl">{word.icon}</span>
+            <div className="flex-1 space-y-2 md:space-y-3">
+              <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
                 {word.macedonian}
               </h4>
-              <div className="flex items-baseline gap-2">
+              <div className="flex items-baseline gap-1.5 md:gap-2">
                 <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/60">
                   Pronunciation:
                 </span>
-                <span className="font-serif italic text-base text-muted-foreground/80">
+                <span className="font-serif italic text-sm md:text-base text-muted-foreground/80">
                   {word.pronunciation}
                 </span>
               </div>
@@ -110,18 +110,18 @@ export function WordOfTheDay() {
           </div>
 
           <div className="pt-2 border-t border-border/40">
-            <p className="text-2xl font-medium text-primary">
+            <p className="text-lg md:text-xl lg:text-2xl font-medium text-primary">
               {word.english}
             </p>
           </div>
         </div>
 
         {/* Example Sentence */}
-        <div className="space-y-2 rounded-lg bg-muted/50 p-4">
-          <p className="text-base font-medium text-foreground">
+        <div className="space-y-1.5 md:space-y-2 rounded-lg bg-muted/50 p-3 md:p-4">
+          <p className="text-sm md:text-base font-medium text-foreground">
             {word.exampleMk}
           </p>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs md:text-sm text-muted-foreground">
             {word.exampleEn}
           </p>
         </div>
