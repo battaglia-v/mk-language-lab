@@ -22,34 +22,18 @@ async function flagWOTDWords() {
     where: {
       difficulty: 'beginner',
       isActive: true,
-      includeInWOTD: false, // Only unflagged words
       exampleMk: { not: null },
       exampleEn: { not: null },
       icon: { not: null },
     },
     orderBy: { createdAt: 'asc' },
-    take: 60, // Target 60 high-quality words
+    take: 100, // Target 100 high-quality words
   });
 
   console.log(`✅ Found ${candidatesWithExamples.length} high-quality words with examples and icons`);
 
-  // Get additional beginner words without examples but with icons
-  const candidatesWithIcons = await prisma.practiceVocabulary.findMany({
-    where: {
-      difficulty: 'beginner',
-      isActive: true,
-      includeInWOTD: false,
-      icon: { not: null },
-      id: { notIn: candidatesWithExamples.map(w => w.id) }, // Exclude already selected
-    },
-    orderBy: { createdAt: 'asc' },
-    take: 40, // Additional 40 words
-  });
-
-  console.log(`✅ Found ${candidatesWithIcons.length} additional words with icons`);
-
-  // Combine candidates
-  const allCandidates = [...candidatesWithExamples, ...candidatesWithIcons];
+  // Use the high-quality candidates
+  const allCandidates = candidatesWithExamples;
   const candidateIds = allCandidates.map(w => w.id);
 
   console.log(`\n📊 Total candidates for WOTD pool: ${allCandidates.length}\n`);
