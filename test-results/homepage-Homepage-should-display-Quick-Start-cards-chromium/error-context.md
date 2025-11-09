@@ -1,0 +1,102 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - link "Home" [ref=e4] [cursor=pointer]:
+      - /url: /mk
+      - img "Ajvar Logo" [ref=e6]
+    - navigation "Главна навигација" [ref=e16]:
+      - link "Вежбање" [ref=e17] [cursor=pointer]:
+        - /url: /mk/practice
+        - img [ref=e18]
+        - generic: Вежбање
+      - link "Преведи" [ref=e23] [cursor=pointer]:
+        - /url: /mk/translate
+        - img [ref=e24]
+        - generic: Преведи
+      - link "Вести" [ref=e28] [cursor=pointer]:
+        - /url: /mk/news
+        - img [ref=e29]
+        - generic: Вести
+      - link "Ресурси" [ref=e32] [cursor=pointer]:
+        - /url: /mk/resources
+        - img [ref=e33]
+        - generic: Ресурси
+    - button "Expand sidebar" [disabled] [ref=e36]:
+      - img [ref=e37]
+  - generic [ref=e40]:
+    - button "Брзо пребарување" [ref=e41]:
+      - generic [ref=e42]:
+        - img
+        - generic [ref=e43]: Брзо пребарување
+    - generic [ref=e44]:
+      - button "Јазик" [ref=e45]:
+        - img
+        - generic [ref=e46]: Македонски
+      - button "Најави се" [ref=e47]:
+        - img
+        - text: Најави се
+  - generic [ref=e48]:
+    - main [ref=e49]:
+      - generic [ref=e50]:
+        - generic [ref=e53]:
+          - generic [ref=e54]:
+            - img [ref=e56]
+            - heading "Добредојде на твоето македонско патување!" [level=3] [ref=e59]
+          - generic [ref=e60]:
+            - link "Види го Денешниот Збор" [ref=e61] [cursor=pointer]:
+              - /url: "#word-of-day"
+            - button "Dismiss welcome banner" [ref=e62]:
+              - img [ref=e63]
+        - generic [ref=e67]:
+          - heading "Учи Македонски" [level=1] [ref=e68]
+          - paragraph [ref=e69]: Фокусирана алатка за превод, курирани ресурси и секојдневни македонски вести.
+        - generic [ref=e75]:
+          - generic [ref=e76]:
+            - generic [ref=e77]:
+              - img [ref=e78]
+              - heading "Збор на Денот" [level=3] [ref=e81]
+            - generic [ref=e82]: Фраза
+          - generic [ref=e83]:
+            - generic [ref=e84]:
+              - generic [ref=e85]: 📝
+              - generic [ref=e86]:
+                - heading "велам" [level=4] [ref=e87]
+                - generic [ref=e88]:
+                  - generic [ref=e89]: "Pronunciation:"
+                  - generic [ref=e90]: velam
+            - paragraph [ref=e92]: I tell
+          - generic [ref=e93]:
+            - paragraph [ref=e94]: Јас велам.
+            - paragraph [ref=e95]: I tell.
+          - paragraph [ref=e96]: Секој ден е истакнат нов збор за да го прошириш твојот речник.
+        - generic [ref=e99]:
+          - link "Daily Practice Interactive quizzes" [ref=e100] [cursor=pointer]:
+            - /url: /mk/practice
+            - generic [ref=e101]:
+              - img [ref=e103]
+              - generic [ref=e108]:
+                - heading "Daily Practice" [level=3] [ref=e109]
+                - paragraph [ref=e110]: Interactive quizzes
+          - link "Resources Curated materials" [ref=e111] [cursor=pointer]:
+            - /url: /mk/resources
+            - generic [ref=e112]:
+              - img [ref=e114]
+              - generic [ref=e116]:
+                - heading "Resources" [level=3] [ref=e117]
+                - paragraph [ref=e118]: Curated materials
+    - contentinfo [ref=e119]:
+      - generic [ref=e121]:
+        - link "Политика за Приватност" [ref=e122] [cursor=pointer]:
+          - /url: /mk/privacy
+        - generic [ref=e123]: •
+        - link "Услови за Користење" [ref=e124] [cursor=pointer]:
+          - /url: /mk/terms
+        - generic [ref=e125]: •
+        - link "Контактирајте Не" [ref=e126] [cursor=pointer]:
+          - /url: mailto:macedonianlanguagelab@gmail.com?subject=Macedonian%20Learning%20App%20-%20Contact%20Inquiry
+  - button "Open Next.js Dev Tools" [ref=e132] [cursor=pointer]:
+    - img [ref=e133]
+  - alert [ref=e136]
+```
