@@ -58,6 +58,20 @@ function parseRow(row: string[]): ContentRow {
   };
 }
 
+// Helper function to parse Google credentials (handles both raw JSON and base64-encoded)
+function parseCredentials(value: string) {
+  try {
+    return JSON.parse(value);
+  } catch (error) {
+    try {
+      const decoded = Buffer.from(value, 'base64').toString('utf-8');
+      return JSON.parse(decoded);
+    } catch {
+      throw error;
+    }
+  }
+}
+
 async function authenticateGoogleSheets() {
   console.log('📝 Authenticating with Google Sheets API...');
 
@@ -69,7 +83,7 @@ async function authenticateGoogleSheets() {
     throw new Error('GOOGLE_SHEETS_CONTENT_ID environment variable is not set');
   }
 
-  const credentials = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON);
+  const credentials = parseCredentials(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON);
 
   const auth = new google.auth.GoogleAuth({
     credentials,

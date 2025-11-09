@@ -24,7 +24,6 @@ import {
   Search,
   Sparkles,
 } from 'lucide-react';
-import AuthGuard from '@/components/auth/AuthGuard';
 import resourcesData from '@/data/resources.json';
 
 type ResourceFormat = 'website' | 'video' | 'audio' | 'podcast' | 'article' | 'document';
@@ -228,8 +227,7 @@ export default function ResourcesPage() {
   };
 
   return (
-    <AuthGuard>
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
         <div className="container mx-auto px-4 py-12">
           <div className="mx-auto mb-12 max-w-4xl space-y-6 text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1 text-sm font-medium text-primary">
@@ -405,6 +403,5 @@ export default function ResourcesPage() {
           </div>
         </footer>
       </div>
-    </AuthGuard>
   );
 }

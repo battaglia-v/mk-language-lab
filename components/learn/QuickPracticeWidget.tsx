@@ -312,28 +312,28 @@ export function QuickPracticeWidget({
     const isModalVariant = variant === 'modal';
 
     return (
-      <Card
+      <div
         className={cn(
-          'relative overflow-hidden border border-border/40 bg-gradient-to-br from-card/85 via-card/70 to-muted/40 backdrop-blur supports-[backdrop-filter]:backdrop-blur-xl transition-all duration-500',
-          isModalVariant ? 'border-border/30 shadow-2xl' : 'shadow-lg',
+          'relative overflow-hidden transition-all duration-500',
+          isModalVariant ? 'border border-border/40 rounded-2xl bg-gradient-to-br from-card/85 via-card/70 to-muted/40 backdrop-blur supports-[backdrop-filter]:backdrop-blur-xl shadow-2xl' : 'flex-1 flex flex-col',
           extraClassName
         )}
       >
         {isCelebrating && (
           <div
-            className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 via-secondary/20 to-primary/0 opacity-90 animate-pulse"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/20 to-primary/0 opacity-90 animate-pulse"
             aria-hidden="true"
           />
         )}
-        <CardHeader className={cn('space-y-2 md:space-y-4', isModalVariant ? 'px-6 py-4 md:px-10 md:py-8 lg:px-12' : 'px-4 py-3 md:px-6 md:py-4')}>
+        <div className={cn('space-y-2 md:space-y-4', isModalVariant ? 'px-6 py-4 md:px-10 md:py-8 lg:px-12' : 'py-3 md:py-4')}>
           <div className="flex items-center justify-between gap-2">
             <div className="flex-1 min-w-0">
-              <CardTitle className={cn('text-lg text-foreground md:text-2xl', isModalVariant && 'md:text-3xl')}>
+              <h2 className={cn('text-lg font-semibold text-foreground md:text-2xl', isModalVariant && 'md:text-3xl')}>
                 {title ?? t('quickPractice')}
-              </CardTitle>
-              <CardDescription className={cn('hidden md:block text-sm text-muted-foreground', isModalVariant && 'md:text-base')}>
+              </h2>
+              <p className={cn('hidden md:block text-sm text-muted-foreground', isModalVariant && 'md:text-base')}>
                 {summarySubtitle}
-              </CardDescription>
+              </p>
             </div>
             <button
               type="button"
@@ -385,8 +385,8 @@ export function QuickPracticeWidget({
               )}
             </div>
           </div>
-        </CardHeader>
-        <CardContent className={cn('space-y-2 md:space-y-4', isModalVariant ? 'px-6 pb-6 md:px-10 md:pb-10 lg:px-12' : 'px-4 pb-4 md:px-6 md:pb-6')}>
+        </div>
+        <div className={cn('flex-1 flex flex-col space-y-2 md:space-y-4', isModalVariant ? 'px-6 pb-6 md:px-10 md:pb-10 lg:px-12' : 'pb-4 md:pb-6')}>
           {/* Settings panel - hidden on mobile unless showSettings is true */}
           <div
             className={cn(
@@ -576,8 +576,8 @@ export function QuickPracticeWidget({
           {!isReady && (
             <p className="text-sm text-muted-foreground">{t('practiceEmptyCategory')}</p>
           )}
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     );
   };
 

@@ -30,48 +30,50 @@ export default function PracticeHubPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
-      <div className="container mx-auto px-4 py-12 lg:py-20">
-        <div className="mx-auto flex max-w-5xl flex-col gap-12">
-          {/* Header */}
-          <div className="space-y-4 text-center">
-            <Badge variant="outline" className="mx-auto w-fit border-primary/40 bg-primary/10 text-primary">
-              {t('badge')}
-            </Badge>
-            <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
+    <div className="min-h-screen flex flex-col bg-background">
+      {/* Compact Header Bar */}
+      <div className="border-b border-border/40 bg-card/50 backdrop-blur-sm px-4 py-3 md:py-4">
+        <div className="mx-auto max-w-4xl space-y-2">
+          <div className="flex items-center justify-between">
+            <h1 className="text-lg md:text-xl font-bold text-foreground">
               {t('title')}
             </h1>
-            <p className="mx-auto max-w-2xl text-lg text-muted-foreground md:text-xl">
-              {t('subtitle')}
-            </p>
+            <Badge variant="outline" className="border-primary/40 bg-primary/10 text-primary text-xs">
+              {t('badge')}
+            </Badge>
           </div>
+          <p className="hidden md:block text-sm text-muted-foreground">
+            {t('subtitle')}
+          </p>
+        </div>
+      </div>
 
-          {/* Quick Practice Widget - Hero */}
-          <div className="mx-auto w-full max-w-4xl">
-            <QuickPracticeWidget layout="default" />
-          </div>
+      {/* Full-Screen Practice Widget */}
+      <div className="flex-1 flex flex-col">
+        <div className="mx-auto w-full max-w-4xl flex-1 flex flex-col px-4 py-3 md:py-4">
+          <QuickPracticeWidget layout="default" />
+        </div>
+      </div>
 
-          {/* Translator Link Card */}
-          <div className="mx-auto max-w-2xl">
-            <Card className="border border-border/40 bg-card/50 p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-md">
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-secondary/10">
-                    <Languages className="h-6 w-6 text-secondary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground">Need to translate something?</h3>
-                    <p className="text-sm text-muted-foreground">Use our translation tool with helpful tips</p>
-                  </div>
-                </div>
-                <Button variant="outline" className="gap-2" asChild>
-                  <Link href={buildHref('/translate')}>
-                    Open
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </Button>
+      {/* Translator Link - Bottom Fixed or Floating */}
+      <div className="border-t border-border/40 bg-card/50 backdrop-blur-sm px-4 py-3">
+        <div className="mx-auto max-w-4xl">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="hidden sm:flex h-10 w-10 items-center justify-center rounded-lg bg-secondary/10">
+                <Languages className="h-5 w-5 text-secondary" />
               </div>
-            </Card>
+              <div>
+                <h3 className="text-sm font-semibold text-foreground">Need to translate something?</h3>
+                <p className="hidden sm:block text-xs text-muted-foreground">Use our translation tool</p>
+              </div>
+            </div>
+            <Button variant="outline" size="sm" className="gap-2" asChild>
+              <Link href={buildHref('/translate')}>
+                Open
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </Button>
           </div>
         </div>
       </div>
