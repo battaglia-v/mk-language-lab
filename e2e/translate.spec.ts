@@ -10,23 +10,21 @@ test.describe('Translate Page', () => {
 
   test('should load translate page successfully', async ({ page }) => {
     // Check page heading (h1 with translated text: "Translate" or "Преведи")
-    await expect(page.getByRole('heading', { name: /Translate|Преведи/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Translate|Преведи/i, level: 1 })).toBeVisible();
 
-    // Check for main translator card
-    const translatorCard = page.locator('[class*="card"]').first();
-    await expect(translatorCard).toBeVisible();
+    // Check for main translator form (no Card wrapper in native design)
+    const translatorForm = page.locator('form').first();
+    await expect(translatorForm).toBeVisible();
   });
 
   test('should display direction buttons', async ({ page }) => {
-    // Look for MK→EN and EN→MK direction buttons (rendered text is translated)
-    const directionButtons = page.getByRole('button', { name: /Macedonian|English|Македонски|→/i });
-    const count = await directionButtons.count();
+    // Look for compact direction buttons with arrow notation (EN → MK, MK → EN)
+    const enToMkButton = page.getByRole('button', { name: /EN.*→.*MK/i });
+    const mkToEnButton = page.getByRole('button', { name: /MK.*→.*EN/i });
 
-    // Should have at least 2 direction options
-    expect(count).toBeGreaterThanOrEqual(2);
-
-    // First button should be visible
-    await expect(directionButtons.first()).toBeVisible();
+    // Both direction buttons should be visible
+    await expect(enToMkButton).toBeVisible();
+    await expect(mkToEnButton).toBeVisible();
   });
 
   test('should have swap directions button', async ({ page }) => {
@@ -137,21 +135,27 @@ test.describe('Translate Page', () => {
   });
 
   test('should switch translation direction', async ({ page }) => {
-    // Get initial direction button text (including Macedonian translations)
-    const directionButtons = page.getByRole('button', { name: /Macedonian|English|Македонски/i });
-    const firstButton = directionButtons.first();
-    const initialText = await firstButton.textContent();
+    // Get initial active button (should be EN → MK by default)
+    const enToMkButton = page.getByRole('button', { name: /EN.*→.*MK/i });
+    const mkToEnButton = page.getByRole('button', { name: /MK.*→.*EN/i });
+
+    // Click the other direction button
+    await mkToEnButton.click();
+    await page.waitForTimeout(500);
+
+    // Check that the button states changed (aria-checked attribute)
+    const mkToEnChecked = await mkToEnButton.getAttribute('aria-checked');
+    expect(mkToEnChecked).toBe('true');
 
     // Click swap button if exists
     const swapButton = page.getByRole('button', { name: /swap/i });
-
     if (await swapButton.isVisible()) {
       await swapButton.click();
       await page.waitForTimeout(500);
 
-      // Direction should have changed
-      const newText = await firstButton.textContent();
-      expect(newText).not.toBe(initialText);
+      // Direction should have swapped back
+      const enToMkChecked = await enToMkButton.getAttribute('aria-checked');
+      expect(enToMkChecked).toBe('true');
     }
   });
 

@@ -93,7 +93,7 @@ export function InstallPrompt() {
   }
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-sm z-50 animate-slide-up">
+    <div className="fixed left-4 right-4 md:left-auto md:right-4 md:max-w-sm z-50 animate-slide-up" style={{ bottom: 'max(1rem, env(safe-area-inset-bottom, 1rem))' }}>
       <div className="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-lg shadow-2xl p-4 backdrop-blur-sm">
         <button
           onClick={handleDismiss}

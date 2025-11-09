@@ -468,9 +468,10 @@ export default function TranslatePage() {
                       </li>
                     ))}
                   </ul>
+                </CardContent>
               )}
+            </Card>
           )}
-          </form>
         </div>
       </div>
     </div>

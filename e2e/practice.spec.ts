@@ -42,9 +42,10 @@ test.describe('Practice Page', () => {
     // Wait for navigation
     await page.waitForURL('**/translate');
 
-    // Verify we're on translate page (heading includes Macedonian "Преведи")
-    await page.waitForTimeout(500); // Wait for page to load
-    await expect(page.getByRole('heading', { name: /Translate|Преведи/i })).toBeVisible();
+    // Verify we're on translate page by checking for h1 heading
+    // English: "Translate", Macedonian: "Преведи"
+    await page.waitForTimeout(1000); // Wait for page and translations to load
+    await expect(page.getByRole('heading', { name: /Translate|Преведи/i, level: 1 })).toBeVisible();
   });
 
   test('should load vocabulary for practice', async ({ page }) => {

@@ -57,8 +57,10 @@ test.describe('Homepage', () => {
     // Wait for navigation
     await page.waitForURL('**/resources');
 
-    // Verify we're on the resources page (h1 is the subtitle text)
-    await expect(page.locator('h1')).toContainText(/Curated|курирани|study|учење/i);
+    // Verify we're on the resources page by checking for h1 with subtitle text
+    // English: "Curated Macedonian study collections and trusted references"
+    // Macedonian: "Курирани колекции за учење и доверливи македонски извори"
+    await expect(page.locator('h1')).toContainText(/Curated.*study|Курирани.*колекции/i);
   });
 
   test('should have working navigation', async ({ page }) => {
