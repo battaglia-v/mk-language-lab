@@ -3,13 +3,14 @@ import { test, expect } from '@playwright/test';
 test.describe('Translate Page', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/mk/translate');
-    // Wait for client component to hydrate
+    // Wait for client component to hydrate and translations to load
     await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
   });
 
   test('should load translate page successfully', async ({ page }) => {
-    // Check page heading
-    await expect(page.getByRole('heading', { name: /Translate/i })).toBeVisible();
+    // Check page heading (h1 with translated text: "Translate" or "Преведи")
+    await expect(page.getByRole('heading', { name: /Translate|Преведи/i })).toBeVisible();
 
     // Check for main translator card
     const translatorCard = page.locator('[class*="card"]').first();
@@ -17,8 +18,8 @@ test.describe('Translate Page', () => {
   });
 
   test('should display direction buttons', async ({ page }) => {
-    // Look for MK→EN and EN→MK direction buttons
-    const directionButtons = page.getByRole('button', { name: /Macedonian|English|→/i });
+    // Look for MK→EN and EN→MK direction buttons (rendered text is translated)
+    const directionButtons = page.getByRole('button', { name: /Macedonian|English|Македонски|→/i });
     const count = await directionButtons.count();
 
     // Should have at least 2 direction options
@@ -51,14 +52,14 @@ test.describe('Translate Page', () => {
   });
 
   test('should have translate button', async ({ page }) => {
-    // Look for translate/submit button
-    const translateButton = page.getByRole('button', { name: /Translate/i });
+    // Look for translate/submit button (translated text: "Translate" or "Преведи")
+    const translateButton = page.getByRole('button', { name: /Translate|Преведи/i });
     await expect(translateButton).toBeVisible();
   });
 
   test('should have clear button', async ({ page }) => {
-    // Look for clear button
-    const clearButton = page.getByRole('button', { name: /Clear/i });
+    // Look for clear button (translated text: "Clear" or "Исчисти")
+    const clearButton = page.getByRole('button', { name: /Clear|Исчисти/i });
     await expect(clearButton).toBeVisible();
   });
 
@@ -73,8 +74,8 @@ test.describe('Translate Page', () => {
     const textarea = page.getByRole('textbox').first();
     await textarea.fill('Hello');
 
-    // Click translate button
-    const translateButton = page.getByRole('button', { name: /Translate/i });
+    // Click translate button (translated text)
+    const translateButton = page.getByRole('button', { name: /Translate|Преведи/i });
     await translateButton.click();
 
     // Wait for translation (API call)
@@ -103,7 +104,7 @@ test.describe('Translate Page', () => {
     const textarea = page.getByRole('textbox').first();
     await textarea.fill('Book');
 
-    const translateButton = page.getByRole('button', { name: /Translate/i });
+    const translateButton = page.getByRole('button', { name: /Translate|Преведи/i });
     await translateButton.click();
 
     // Wait for result
@@ -126,8 +127,8 @@ test.describe('Translate Page', () => {
     const value = await textarea.inputValue();
     expect(value).toBe('Test content to clear');
 
-    // Click clear
-    const clearButton = page.getByRole('button', { name: /Clear/i });
+    // Click clear (translated text)
+    const clearButton = page.getByRole('button', { name: /Clear|Исчисти/i });
     await clearButton.click();
 
     // Text should be cleared
@@ -136,8 +137,8 @@ test.describe('Translate Page', () => {
   });
 
   test('should switch translation direction', async ({ page }) => {
-    // Get initial direction button text
-    const directionButtons = page.getByRole('button', { name: /Macedonian|English/i });
+    // Get initial direction button text (including Macedonian translations)
+    const directionButtons = page.getByRole('button', { name: /Macedonian|English|Македонски/i });
     const firstButton = directionButtons.first();
     const initialText = await firstButton.textContent();
 
@@ -159,10 +160,10 @@ test.describe('Translate Page', () => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.reload();
 
-    // Main elements should still be visible
-    await expect(page.getByRole('heading', { name: /Translate/i })).toBeVisible();
+    // Main elements should still be visible (translated text)
+    await expect(page.getByRole('heading', { name: /Translate|Преведи/i })).toBeVisible();
     await expect(page.getByRole('textbox').first()).toBeVisible();
-    await expect(page.getByRole('button', { name: /Translate/i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /Translate|Преведи/i })).toBeVisible();
   });
 
   test('should show translation history if available', async ({ page }) => {
@@ -170,7 +171,7 @@ test.describe('Translate Page', () => {
     const textarea = page.getByRole('textbox').first();
     await textarea.fill('Hello');
 
-    const translateButton = page.getByRole('button', { name: /Translate/i });
+    const translateButton = page.getByRole('button', { name: /Translate|Преведи/i });
     await translateButton.click();
 
     // Wait for translation

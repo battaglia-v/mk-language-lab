@@ -66,7 +66,7 @@ test.describe('Homepage', () => {
     // Tests run on /mk locale, so links are in Macedonian
     const navLinks = [
       /Вежбање|Practice/i,  // Practice in Macedonian or English
-      /Преведувај|Translate/i,  // Translate
+      /Преведи|Translate/i,  // Translate (Macedonian: "Преведи" not "Преведувај")
       /Вести|News/i,  // News
       /Ресурси|Resources/i,  // Resources
     ];

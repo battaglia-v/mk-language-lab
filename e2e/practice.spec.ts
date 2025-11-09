@@ -11,7 +11,8 @@ test.describe('Practice Page', () => {
 
     // Check for Quick Practice widget (wait for dynamic import)
     await page.waitForTimeout(1500);
-    const practiceWidget = page.locator('input[placeholder*="Type"], input[placeholder*="Внеси"]').first();
+    // Macedonian placeholder is "Напиши го" not "Внеси"
+    const practiceWidget = page.locator('input[placeholder*="Type"], input[placeholder*="Напиши"]').first();
     await expect(practiceWidget).toBeVisible();
   });
 
@@ -41,8 +42,9 @@ test.describe('Practice Page', () => {
     // Wait for navigation
     await page.waitForURL('**/translate');
 
-    // Verify we're on translate page
-    await expect(page.getByRole('heading', { name: /Translate/i })).toBeVisible();
+    // Verify we're on translate page (heading includes Macedonian "Преведи")
+    await page.waitForTimeout(500); // Wait for page to load
+    await expect(page.getByRole('heading', { name: /Translate|Преведи/i })).toBeVisible();
   });
 
   test('should load vocabulary for practice', async ({ page }) => {
