@@ -41,8 +41,9 @@ export function BulkImportCSV() {
 
   const downloadTemplate = () => {
     const template = `macedonian,english,pronunciation,partOfSpeech,exampleMk,exampleEn,icon,category,difficulty,includeInWOTD
-здраво,hello,zdravo,greeting,Здраво како си?,Hello how are you?,👋,greetings,beginner,true
-книга,book,kniga,noun,Јас читам книга.,I am reading a book.,📚,objects,beginner,false`;
+здраво,hello,zdravo,greeting,Здраво како си?,Hello how are you?,waving hand,greetings,beginner,true
+книга,book,kniga,noun,Јас читам книга.,I am reading a book.,book,objects,beginner,false
+вода,water,voda,noun,Сакам да пијам вода.,I want to drink water.,water drop,food,beginner,false`;
 
     const blob = new Blob([template], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
@@ -167,7 +168,8 @@ export function BulkImportCSV() {
         <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
           <div className="text-sm">
             <p className="font-medium">Need a template?</p>
-            <p className="text-muted-foreground">Download a sample CSV file to see the required format</p>
+            <p className="text-muted-foreground">Download a sample CSV with proper Cyrillic examples</p>
+            <p className="text-muted-foreground text-xs mt-1">Tip: For icons, use English descriptions like "book" or "waving hand" instead of emojis</p>
           </div>
           <Button variant="outline" size="sm" onClick={downloadTemplate}>
             <Download className="h-4 w-4 mr-2" />
