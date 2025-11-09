@@ -91,22 +91,29 @@ export function WordOfTheDay() {
         </div>
 
         {/* Main Word */}
-        <div className="space-y-3">
+        <div className="space-y-4">
           <div className="flex items-center gap-4">
             <span className="text-5xl">{word.icon}</span>
-            <div className="flex-1 space-y-2">
-              <h4 className="text-4xl font-bold text-foreground">
+            <div className="flex-1 space-y-3">
+              <h4 className="text-4xl font-bold text-foreground tracking-tight">
                 {word.macedonian}
               </h4>
-              <p className="text-lg text-muted-foreground">
-                [{word.pronunciation}]
-              </p>
+              <div className="flex items-baseline gap-2">
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/60">
+                  Pronunciation:
+                </span>
+                <span className="font-serif italic text-base text-muted-foreground/80">
+                  {word.pronunciation}
+                </span>
+              </div>
             </div>
           </div>
 
-          <p className="text-2xl font-medium text-primary">
-            {word.english}
-          </p>
+          <div className="pt-2 border-t border-border/40">
+            <p className="text-2xl font-medium text-primary">
+              {word.english}
+            </p>
+          </div>
         </div>
 
         {/* Example Sentence */}
