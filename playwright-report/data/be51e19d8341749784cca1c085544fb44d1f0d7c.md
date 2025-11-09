@@ -1,0 +1,118 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - link "Home" [ref=e4] [cursor=pointer]:
+      - /url: /mk
+      - img "Ajvar Logo" [ref=e6]
+    - navigation "Главна навигација" [ref=e16]:
+      - link "Вежбање" [ref=e17] [cursor=pointer]:
+        - /url: /mk/practice
+        - img [ref=e18]
+        - generic: Вежбање
+      - link "Преведи" [ref=e23] [cursor=pointer]:
+        - /url: /mk/translate
+        - img [ref=e24]
+        - generic: Преведи
+      - link "Вести" [ref=e28] [cursor=pointer]:
+        - /url: /mk/news
+        - img [ref=e29]
+        - generic: Вести
+      - link "Ресурси" [ref=e32] [cursor=pointer]:
+        - /url: /mk/resources
+        - img [ref=e33]
+        - generic: Ресурси
+    - button "Expand sidebar" [disabled] [ref=e36]:
+      - img [ref=e37]
+  - button "Јазик" [ref=e42]:
+    - img
+    - generic [ref=e43]: Македонски
+  - generic [ref=e45]:
+    - main [ref=e46]:
+      - generic [ref=e47]:
+        - generic [ref=e50]:
+          - button "Dismiss welcome banner" [ref=e51]:
+            - img [ref=e52]
+          - generic [ref=e55]:
+            - generic [ref=e56]:
+              - img [ref=e58]
+              - generic [ref=e61]:
+                - heading "Добредојде на твоето македонско патување!" [level=3] [ref=e62]
+                - paragraph [ref=e63]: Започни да учиш со денешниот истакнат збор, вежбај речник или истражувај ресурси курирани од мајчини говорители.
+            - generic [ref=e64]:
+              - link "Види го Денешниот Збор" [ref=e65] [cursor=pointer]:
+                - /url: "#word-of-day"
+              - link "Започни Вежбање" [ref=e66] [cursor=pointer]:
+                - /url: /practice
+        - generic [ref=e71]:
+          - heading "Учи Македонски" [level=1] [ref=e72]
+          - paragraph [ref=e73]: Фокусирана алатка за превод, курирани ресурси и секојдневни македонски вести.
+        - img [ref=e79]
+        - generic [ref=e83]:
+          - heading "Quick Start" [level=2] [ref=e85]
+          - generic [ref=e86]:
+            - generic [ref=e89]:
+              - img [ref=e91]
+              - generic [ref=e96]:
+                - heading "Daily Practice" [level=3] [ref=e97]
+                - paragraph [ref=e98]: Master vocabulary through interactive quizzes. Practice bidirectional translation and track your progress.
+                - list [ref=e99]:
+                  - listitem [ref=e100]:
+                    - generic [ref=e101]: •
+                    - generic [ref=e102]: Bidirectional translation
+                  - listitem [ref=e103]:
+                    - generic [ref=e104]: •
+                    - generic [ref=e105]: Instant feedback
+                  - listitem [ref=e106]:
+                    - generic [ref=e107]: •
+                    - generic [ref=e108]: Self-paced learning
+              - link "Start Practicing" [ref=e109] [cursor=pointer]:
+                - /url: /mk/practice
+            - generic [ref=e112]:
+              - img [ref=e114]
+              - generic [ref=e116]:
+                - heading "Learning Resources" [level=3] [ref=e117]
+                - paragraph [ref=e118]: "Explore curated materials from native speakers: dictionaries, grammar guides, videos, and cultural insights."
+                - list [ref=e119]:
+                  - listitem [ref=e120]:
+                    - generic [ref=e121]: •
+                    - generic [ref=e122]: Verified references
+                  - listitem [ref=e123]:
+                    - generic [ref=e124]: •
+                    - generic [ref=e125]: Authentic content
+                  - listitem [ref=e126]:
+                    - generic [ref=e127]: •
+                    - generic [ref=e128]: Cultural context
+              - link "Explore Resources" [ref=e129] [cursor=pointer]:
+                - /url: /mk/resources
+    - contentinfo [ref=e130]:
+      - generic [ref=e132]:
+        - generic [ref=e133]:
+          - generic [ref=e134]: Креирано со ❤️ од
+          - link "Вини" [ref=e135] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/vincentvinnybattaglia/
+            - text: Вини
+            - img [ref=e136]
+          - generic [ref=e140]: "&"
+          - link "Андри" [ref=e141] [cursor=pointer]:
+            - /url: https://macedonianlanguagecorner.com
+            - text: Андри
+            - img [ref=e142]
+        - paragraph [ref=e147]:
+          - text: 🇲🇰 Сета содржина е курирана и валидирана од Андри, роден говорник на македонски и основач на
+          - link "Македонски Јазичен Кут" [ref=e148] [cursor=pointer]:
+            - /url: https://macedonianlanguagecorner.com
+            - text: Македонски Јазичен Кут
+            - img [ref=e149]
+        - generic [ref=e153]:
+          - link "Политика за Приватност" [ref=e154] [cursor=pointer]:
+            - /url: /mk/privacy
+          - generic [ref=e155]: •
+          - link "Услови за Користење" [ref=e156] [cursor=pointer]:
+            - /url: /mk/terms
+          - generic [ref=e157]: •
+          - link "Контактирајте Не" [ref=e158] [cursor=pointer]:
+            - /url: mailto:macedonianlanguagelab@gmail.com?subject=Macedonian%20Learning%20App%20-%20Contact%20Inquiry
+  - alert [ref=e159]
+```
