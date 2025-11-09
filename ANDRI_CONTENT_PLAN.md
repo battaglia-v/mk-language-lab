@@ -166,7 +166,7 @@ formality: "neutral"
 - Links to original Instagram post
 - Cached for 24 hours
 
-**Implementation:** Issue #55 (new)
+**Implementation:** Issue #58
 
 ### Blog Post Integration
 
@@ -183,7 +183,7 @@ formality: "neutral"
 - Excerpts with "Read more" links
 - Proper attribution with her branding
 
-**Implementation:** Issue #56 (new)
+**Implementation:** Issue #59
 
 ### YouTube Video Integration
 
@@ -199,7 +199,61 @@ formality: "neutral"
 - Cultural immersion videos in journey lessons
 - "Watch Andri explain this" buttons
 
-**Implementation:** Issue #57 (new)
+**Implementation:** Issue #60
+
+### Image Upload for Comprehensible Input
+
+**Concept:** Allow vocabulary entries to include images for visual learning
+
+**Technical approach:**
+1. Add image field to practiceVocabulary schema
+2. Support image uploads in admin panel (CSV + manual)
+3. Use Cloudinary or Vercel Blob for storage
+4. Display images in WOTD, practice exercises, vocabulary browser
+
+**Features:**
+- Visual association for better comprehension
+- Support for JPG, PNG, WebP formats
+- Optimized lazy loading
+- Responsive images for mobile
+
+**Implementation:** Issue #63
+
+### Google Sheets Integration
+
+**Concept:** Enable Andri to manage content via shared Google Sheet
+
+**Technical approach:**
+1. Set up Google Sheets API or Zapier integration
+2. Create sync script to pull from designated sheet
+3. Map columns to database schema
+4. Support scheduled or manual sync
+
+**Features:**
+- Familiar spreadsheet interface for content creators
+- Easy collaboration and review workflow
+- Version history via Google Sheets
+- Bulk editing capabilities
+
+**Implementation:** Issue #64
+
+### Cultural Notes Expansion
+
+**Concept:** Add rich cultural context throughout the learning experience
+
+**Content needed from Andri:**
+- Cultural context for each journey
+- "Did you know?" tips
+- Formal vs informal usage explanations
+- Regional variations and dialect notes
+
+**Features:**
+- Cultural notes in journey introductions
+- "Did you know?" cards during practice
+- Usage context in vocabulary details
+- Formality explanations
+
+**Implementation:** Issue #65
 
 ---
 
@@ -275,7 +329,7 @@ See ANDRI_ATTRIBUTION_DESIGN.md (creating next)
   - [x] Footer attribution completed
   - [x] About page "Meet the Team" section added
   - [x] Resources page header attribution added
-- [ ] Create issues for content integration
+- [x] Create issues for content integration (#55-60, #63-65)
 - [ ] Share plan with Andri for feedback
 
 ### Milestone 2 (Weeks 1-4)
