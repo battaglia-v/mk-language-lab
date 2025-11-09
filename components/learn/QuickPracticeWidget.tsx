@@ -324,8 +324,8 @@ export function QuickPracticeWidget({
             aria-hidden="true"
           />
         )}
-        <CardHeader className={cn('space-y-6', isModalVariant ? 'px-10 py-10 lg:px-12' : '')}>
-          <div className="flex flex-col gap-4 text-center sm:text-left">
+        <CardHeader className={cn('space-y-4 md:space-y-6', isModalVariant ? 'px-6 py-6 md:px-10 md:py-10 lg:px-12' : '')}>
+          <div className="flex flex-col gap-3 md:gap-4 text-center sm:text-left">
             <div className="space-y-3">
               <CardTitle className={cn('text-2xl text-foreground sm:text-3xl', isModalVariant && 'sm:text-4xl')}>
                 {title ?? t('quickPractice')}
@@ -335,7 +335,7 @@ export function QuickPracticeWidget({
               </CardDescription>
             </div>
           </div>
-          <div className="rounded-2xl border border-border/30 bg-background/60 p-4 shadow-inner">
+          <div className="rounded-2xl border border-border/30 bg-background/60 p-3 md:p-4 shadow-inner">
             <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               <span>{t('practiceProgressLabel')}</span>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-xs font-bold text-primary">
@@ -363,10 +363,10 @@ export function QuickPracticeWidget({
             </div>
           </div>
         </CardHeader>
-        <CardContent className={cn('space-y-6', isModalVariant ? 'px-10 pb-10 lg:px-12' : '')}>
+        <CardContent className={cn('space-y-4 md:space-y-6', isModalVariant ? 'px-6 pb-6 md:px-10 md:pb-10 lg:px-12' : '')}>
           <div
             className={cn(
-              'flex gap-4',
+              'flex gap-3 md:gap-4',
               isModalVariant ? 'flex-col lg:flex-row lg:items-end lg:gap-6' : 'flex-col sm:flex-row sm:items-end'
             )}
           >
@@ -425,7 +425,7 @@ export function QuickPracticeWidget({
             </div>
           </div>
 
-          <div className="space-y-2 rounded-2xl border border-border/40 bg-muted/30 p-5">
+          <div className="space-y-2 rounded-2xl border border-border/40 bg-muted/30 p-4 md:p-5">
             <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{promptLabel}</p>
             <p className={cn('break-words font-semibold text-foreground', isModalVariant ? 'text-3xl' : 'text-2xl')}>
               {promptValue}
@@ -710,7 +710,7 @@ export function QuickPracticeWidget({
       </Card>
       <DialogContent
         showCloseButton={false}
-        className="h-[90vh] max-h-[760px] w-[min(96vw,900px)] max-w-none border border-border/40 bg-background/95 p-0 shadow-2xl"
+        className="h-[85vh] md:h-[90vh] max-h-[680px] md:max-h-[760px] w-[min(96vw,900px)] max-w-none border border-border/40 bg-background/95 p-0 shadow-2xl"
       >
         <div className="flex h-full flex-col overflow-hidden">
           <div className="flex items-center justify-between border-b border-border/40 px-6 py-4">

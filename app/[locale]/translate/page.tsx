@@ -68,7 +68,7 @@ export default function TranslatePage() {
     [directionLabels.en_mk, directionLabels.mk_en, placeholderLabels.en_mk, placeholderLabels.mk_en]
   );
 
-  const [directionId, setDirectionId] = useState<DirectionOption['id']>('mk-en');
+  const [directionId, setDirectionId] = useState<DirectionOption['id']>('en-mk');
   const selectedDirection = useMemo(() => {
     return directionOptions.find((option) => option.id === directionId) ?? directionOptions[0];
   }, [directionId, directionOptions]);
@@ -249,25 +249,25 @@ export default function TranslatePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
-      <div className="container mx-auto px-4 py-8 lg:py-12">
+      <div className="container mx-auto px-4 py-4 md:py-8 lg:py-12">
         {/* Header */}
-        <div className="mb-8 space-y-3 text-center">
+        <div className="mb-4 md:mb-8 space-y-2 md:space-y-3 text-center">
           <Badge variant="outline" className="mx-auto w-fit border-primary/40 bg-primary/10 text-primary">
             {t('badge')}
           </Badge>
-          <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground lg:text-5xl">
             {t('title')}
           </h1>
-          <p className="text-base text-muted-foreground md:text-lg">{t('subtitle')}</p>
+          <p className="text-sm md:text-base text-muted-foreground lg:text-lg">{t('subtitle')}</p>
         </div>
 
         {/* Main Layout */}
         <div className="mx-auto max-w-4xl">
           {/* Main Translator */}
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             <Card className="border-border/40 bg-card/70 backdrop-blur shadow-xl">
-              <CardContent className="p-6 md:p-8">
-              <form className="space-y-6" onSubmit={handleTranslate}>
+              <CardContent className="p-4 md:p-6 lg:p-8">
+              <form className="space-y-4 md:space-y-6" onSubmit={handleTranslate}>
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                   <div
                     className="flex flex-wrap items-center gap-2"
@@ -303,7 +303,7 @@ export default function TranslatePage() {
                   </Button>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-2">
                   <label htmlFor="translate-input" className="text-sm font-semibold text-foreground">
                     {t('inputLabel')}
                   </label>
@@ -314,7 +314,7 @@ export default function TranslatePage() {
                     placeholder={selectedDirection.placeholder}
                     maxLength={MAX_CHARACTERS}
                     aria-describedby={`${shortcutHintId} ${characterCountId}`}
-                    className="min-h-32 resize-none text-base md:min-h-40"
+                    className="min-h-24 md:min-h-32 resize-none text-base lg:min-h-40"
                     onKeyDown={(event) => {
                       if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
                         event.preventDefault();
@@ -358,7 +358,7 @@ export default function TranslatePage() {
                     ) : null}
                   </div>
                   <div
-                    className="min-h-32 whitespace-pre-wrap rounded-xl border-2 border-border/50 bg-background/80 p-5 text-base leading-relaxed text-foreground md:min-h-40 md:text-lg"
+                    className="min-h-24 md:min-h-32 whitespace-pre-wrap rounded-xl border-2 border-border/50 bg-background/80 p-4 md:p-5 text-base leading-relaxed text-foreground lg:min-h-40 md:text-lg"
                     role="status"
                     aria-live="polite"
                     aria-atomic="true"
