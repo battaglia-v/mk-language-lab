@@ -82,7 +82,47 @@ Most test failures are caused by the environment variable issue. Once fixed, the
 1. **Fix the environment variable** (see Solution Options above)
 2. **Re-run tests:** `npm run test:e2e`
 3. **Review any remaining failures** and adjust selectors as needed
-4. **Set up CI/CD** to run tests automatically on push/PR
+4. **Configure GitHub Secrets** for CI/CD (see below)
+
+---
+
+## CI/CD Setup
+
+### GitHub Actions Workflow
+
+A GitHub Actions workflow has been created at `.github/workflows/e2e.yml` that:
+- Runs on push to `main` and `develop` branches
+- Runs on pull requests to `main` and `develop` branches
+- Installs dependencies and Playwright browsers
+- Runs all E2E tests
+- Uploads test reports and traces as artifacts
+
+### Required GitHub Secrets
+
+To enable E2E tests in CI/CD, configure these secrets in your GitHub repository settings:
+
+**Settings → Secrets and variables → Actions → New repository secret**
+
+Required secrets:
+- `DATABASE_URL` - Neon PostgreSQL connection string
+- `DIRECT_URL` - Neon direct connection URL
+- `GOOGLE_PROJECT_ID` - Google Cloud project ID
+- `GOOGLE_APPLICATION_CREDENTIALS_JSON` - Base64-encoded Google credentials
+- `GOOGLE_DOCS_ID` - Google Doc ID for resources
+- `DICTIONARY_PDF_URL` - Dictionary PDF URL
+- `GOOGLE_SHEETS_CONTENT_ID` - Google Sheets content ID
+- `CRON_SECRET` - Secret for cron endpoints
+- `AUTH_SECRET` - NextAuth.js secret
+- `GOOGLE_CLIENT_ID` - Google OAuth client ID
+- `GOOGLE_CLIENT_SECRET` - Google OAuth client secret
+- `NEXT_PUBLIC_SENTRY_DSN` - Sentry DSN
+
+**Quick Setup:** Copy from Vercel environment variables:
+```bash
+# Get secrets from Vercel and set them in GitHub
+vercel env pull .env.production
+# Then manually add each secret to GitHub repository settings
+```
 
 ---
 
@@ -92,3 +132,4 @@ Most test failures are caused by the environment variable issue. Once fixed, the
 - Test infrastructure is properly configured
 - The translate route's JSON parsing has try-catch error handling, but the error occurs before that code runs (likely in Next.js/Turbopack internals)
 - Production deployment is unaffected as the environment variables are properly configured in Vercel
+- CI/CD will automatically run tests on every push and PR once secrets are configured
