@@ -33,13 +33,9 @@
       - generic [ref=e44]:
         - img
         - text: K
-    - generic [ref=e45]:
-      - button "Јазик" [ref=e46]:
-        - img
-        - generic [ref=e47]: Македонски
-      - button "Најави се" [ref=e48]:
-        - img
-        - text: Најави се
+    - button "Јазик" [ref=e46]:
+      - img
+      - generic [ref=e47]: Македонски
   - generic [ref=e49]:
     - main [ref=e50]:
       - generic [ref=e51]:

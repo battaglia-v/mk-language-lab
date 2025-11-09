@@ -1,0 +1,527 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - link "Home" [ref=e4] [cursor=pointer]:
+      - /url: /mk
+      - img "Ajvar Logo" [ref=e6]
+    - navigation "Главна навигација" [ref=e16]:
+      - link "Вежбање" [ref=e17] [cursor=pointer]:
+        - /url: /mk/practice
+        - img [ref=e18]
+        - generic: Вежбање
+      - link "Преведи" [ref=e23] [cursor=pointer]:
+        - /url: /mk/translate
+        - img [ref=e24]
+        - generic: Преведи
+      - link "Вести" [ref=e28] [cursor=pointer]:
+        - /url: /mk/news
+        - img [ref=e30]
+        - generic: Вести
+      - link "Ресурси" [ref=e33] [cursor=pointer]:
+        - /url: /mk/resources
+        - img [ref=e34]
+        - generic: Ресурси
+    - button "Expand sidebar" [disabled] [ref=e37]:
+      - img [ref=e38]
+  - generic [ref=e41]:
+    - button "Брзо пребарување K" [ref=e42]:
+      - generic [ref=e43]:
+        - img
+        - generic [ref=e44]: Брзо пребарување
+      - generic [ref=e45]:
+        - img
+        - text: K
+    - generic [ref=e46]:
+      - button "Јазик" [ref=e47]:
+        - img
+        - generic [ref=e48]: Македонски
+      - button "Најави се" [ref=e49]:
+        - img
+        - text: Најави се
+  - generic [ref=e50]:
+    - main [ref=e51]:
+      - generic [ref=e52]:
+        - generic [ref=e53]:
+          - generic [ref=e54]:
+            - generic [ref=e55]:
+              - img
+              - text: Извори
+            - heading "Новости" [level=1] [ref=e56]
+            - paragraph [ref=e57]: Следи македонски наслови и пронајди видео клипови за вежбање на слушање.
+          - generic [ref=e59]:
+            - generic [ref=e60]:
+              - button "Сите" [ref=e61]
+              - button "Time.mk" [ref=e62]
+              - button "Meta.mk" [ref=e63]
+              - button "Само видеа" [ref=e64]:
+                - img
+                - text: Само видеа
+            - generic [ref=e65]:
+              - textbox "Барај наслови или клучни зборови..." [ref=e67]
+              - generic [ref=e68]:
+                - generic [ref=e69]: Последно ажурирање 10:37 PM
+                - button "Освежи" [ref=e70]:
+                  - img
+                  - text: Освежи
+          - generic [ref=e71]:
+            - generic [ref=e74]:
+              - generic [ref=e75]:
+                - generic [ref=e76]:
+                  - 'link "Дневен хороскоп за 9 ноември 2025: Стрелците чувствуваат притисок, Девиците ја враќаат јасноста | Скопје инфо" [ref=e78] [cursor=pointer]':
+                    - /url: https://time.mk/c/d11d6e6cd9/dneven-horoskop-za-9-noemvri-2025-strelcite-cuvstvuvaat-pritisok-devicite-ja-vrakaat-jasnosta.html
+                  - generic [ref=e79]: Time.mk · Објавено 5 hours ago
+                  - paragraph [ref=e80]: Ова е ден за забавено темпо, фокус на реалноста и враќање кон нешта што можеби сме ги оставиле недовршени. Photo by Priscilla Du Preez on Unsplash Меркур почнува да оди ретроградно во Стрелец и буди силна желба за простор, бегство, спонтаност, но ...
+                - generic [ref=e82]: Занимливости / Забава
+                - link "Отвори статија" [ref=e84] [cursor=pointer]:
+                  - /url: https://time.mk/c/d11d6e6cd9/dneven-horoskop-za-9-noemvri-2025-strelcite-cuvstvuvaat-pritisok-devicite-ja-vrakaat-jasnosta.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e85]:
+                - img [ref=e87]
+                - 'img "Preview for Дневен хороскоп за 9 ноември 2025: Стрелците чувствуваат притисок, Девиците ја враќаат јасноста | Скопје инфо" [ref=e89]'
+            - generic [ref=e92]:
+              - generic [ref=e93]:
+                - generic [ref=e94]:
+                  - 'link "(Видео) Серија А: Милан „прокоцка“ 2-0 во Парма, Јуве „заглави“ во дербито! | SportStation" [ref=e96] [cursor=pointer]':
+                    - /url: https://time.mk/c/4afff4e191/video-serija-a-milan-prokocka-2-0-vo-parma-juve-zaglavi-vo-derbito.html
+                  - generic [ref=e97]: Time.mk · Објавено 5 hours ago
+                  - paragraph [ref=e98]: Саботното попладне во Серија А донесе две „нула“ (0-0) и еден неверојатен „трилер“ во Парма, каде Милан испушти готова победа. „Дерби дела Моле“ меѓу Јувентус и Торино ги разочара фановите, додека Комо и Каљари, како и Лече и Верона, ги поделија ...
+                - generic [ref=e100]: Фудбал
+                - link "Отвори статија" [ref=e102] [cursor=pointer]:
+                  - /url: https://time.mk/c/4afff4e191/video-serija-a-milan-prokocka-2-0-vo-parma-juve-zaglavi-vo-derbito.html
+                  - img
+                  - text: Отвори статија
+              - 'img "Preview for (Видео) Серија А: Милан „прокоцка“ 2-0 во Парма, Јуве „заглави“ во дербито! | SportStation" [ref=e104]'
+            - generic [ref=e107]:
+              - generic [ref=e108]:
+                - generic [ref=e109]:
+                  - 'link "Битка на десетинки: Алекс Маркез изби на врвот, Бањаја и Акоста веднаш зад него во Португалија! | SportStation" [ref=e111] [cursor=pointer]':
+                    - /url: https://time.mk/c/6f00e10ba3/bitka-na-desetinki-aleks-markez-izbi-na-vrvot-banjaja-i-akosta-vednas-zad-nego-vo-portugalija.html
+                  - generic [ref=e112]: Time.mk · Објавено 6 hours ago
+                - generic [ref=e114]: Автомото
+                - link "Отвори статија" [ref=e116] [cursor=pointer]:
+                  - /url: https://time.mk/c/6f00e10ba3/bitka-na-desetinki-aleks-markez-izbi-na-vrvot-banjaja-i-akosta-vednas-zad-nego-vo-portugalija.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e118]:
+                - generic [ref=e119]: T
+                - generic [ref=e120]: Time.mk
+            - generic [ref=e123]:
+              - generic [ref=e124]:
+                - generic [ref=e125]:
+                  - link "Еурофарм Пелистер лесно до победа над Куманово во Битола | Битола Њуз" [ref=e127] [cursor=pointer]:
+                    - /url: https://time.mk/c/c519b1f003/eurofarm-pelister-lesno-do-pobeda-nad-kumanovo-vo-bitola.html
+                  - generic [ref=e128]: Time.mk · Објавено 6 hours ago
+                  - paragraph [ref=e129]: Еурофарм Пелистер – Куманово 45:20 (20:8) Ракометарите на Еурофарм Пелистер денес во Битола лесно го победија тимот на Куманово со убедливи 45:20 во единаесеттото коло од македонската Суперлига.
+                - generic [ref=e131]: Ракомет
+                - link "Отвори статија" [ref=e133] [cursor=pointer]:
+                  - /url: https://time.mk/c/c519b1f003/eurofarm-pelister-lesno-do-pobeda-nad-kumanovo-vo-bitola.html
+                  - img
+                  - text: Отвори статија
+              - img "Preview for Еурофарм Пелистер лесно до победа над Куманово во Битола | Битола Њуз" [ref=e135]
+            - generic [ref=e138]:
+              - generic [ref=e139]:
+                - generic [ref=e140]:
+                  - 'link "МЗТ го „урна“ непобедениот Пелистер: Шампионот славеше во тензичното дерби во Битола! | SportStation" [ref=e142] [cursor=pointer]':
+                    - /url: https://time.mk/c/49b71ca8c0/mzt-go-urna-nepobedeniot-pelister-sampionot-slavese-vo-tenzicnoto-derbi-vo-bitola.html
+                  - generic [ref=e143]: Time.mk · Објавено 6 hours ago
+                  - paragraph [ref=e144]: Кошаркарите на МЗТ Скопје покажаа зошто се актуелни шампиони. Во големото дерби на 6. коло, „штрковите“ славеа на најжешкиот терен во лигата, во Битола, против Пелистер со 67-72 и му го нанесоа првиот сезонски пораз (5-1) на тимот што досега беше ...
+                - generic [ref=e146]: Кошарка
+                - link "Отвори статија" [ref=e148] [cursor=pointer]:
+                  - /url: https://time.mk/c/49b71ca8c0/mzt-go-urna-nepobedeniot-pelister-sampionot-slavese-vo-tenzicnoto-derbi-vo-bitola.html
+                  - img
+                  - text: Отвори статија
+              - 'img "Preview for МЗТ го „урна“ непобедениот Пелистер: Шампионот славеше во тензичното дерби во Битола! | SportStation" [ref=e150]'
+            - generic [ref=e153]:
+              - generic [ref=e154]:
+                - generic [ref=e155]:
+                  - link "Млади иноватори од Медицинското училиште со идеја за подобро здравје! | Бабам Битола" [ref=e157] [cursor=pointer]:
+                    - /url: https://time.mk/c/1a6b485dd9/mladi-inovatori-od-medicinskoto-uciliste-so-ideja-za-podobro-zdravje.html
+                  - generic [ref=e158]: Time.mk · Објавено 6 hours ago
+                  - paragraph [ref=e159]: Учениците од Медицинското училиште во Битола повторно покажуваат дека младите знаат да размислуваат иновативно и во служба на здравјето! Со својата бизнис-идеја за паметна нараквица што ја следи хидратацијата на телото, тие се меѓу најдобрите ...
+                - generic [ref=e161]: Република
+                - link "Отвори статија" [ref=e163] [cursor=pointer]:
+                  - /url: https://time.mk/c/1a6b485dd9/mladi-inovatori-od-medicinskoto-uciliste-so-ideja-za-podobro-zdravje.html
+                  - img
+                  - text: Отвори статија
+              - img "Preview for Млади иноватори од Медицинското училиште со идеја за подобро здравје! | Бабам Битола" [ref=e165]
+            - generic [ref=e168]:
+              - generic [ref=e169]:
+                - generic [ref=e170]:
+                  - link "Шестмина загинати и стотици повредени во силно торнадо во Бразил | 360 степени" [ref=e172] [cursor=pointer]:
+                    - /url: https://time.mk/c/5cc4e04d9d/sestmina-zaginati-i-stotici-povredeni-vo-silno-tornado-vo-brazil.html
+                  - generic [ref=e173]: Time.mk · Објавено 7 hours ago
+                  - paragraph [ref=e174]: Владата изјави дека 437 лица, вклучувајќи деца и бремена жена, добиле медицинска нега во болници или на самото место. Најмалку 10 од повредените биле оперирани, а девет од нив се во тешка состојба Бразилските власти денес објавија дека најмалку шест ...
+                - generic [ref=e176]: Свет
+                - link "Отвори статија" [ref=e178] [cursor=pointer]:
+                  - /url: https://time.mk/c/5cc4e04d9d/sestmina-zaginati-i-stotici-povredeni-vo-silno-tornado-vo-brazil.html
+                  - img
+                  - text: Отвори статија
+              - img "Preview for Шестмина загинати и стотици повредени во силно торнадо во Бразил | 360 степени" [ref=e180]
+            - generic [ref=e183]:
+              - generic [ref=e184]:
+                - generic [ref=e185]:
+                  - 'link "3 совети од фармацевти за совршена кожа: Со ова, вашето лице ќе сјае како никогаш досега | Попара" [ref=e187] [cursor=pointer]':
+                    - /url: https://time.mk/c/b809b3524b/3-soveti-od-farmacevti-za-sovrsena-koza-so-ova-vaseto-lice-ke-sjae-kako-nikogas-dosega.html
+                  - generic [ref=e188]: Time.mk · Објавено 7 hours ago
+                  - paragraph [ref=e189]: Фармацевтот Сонал Чавда-Ситарам се залага за холистички пристап – комбинација од соодветна надворешна нега и поддршка на телото одвнатре. Вистинската убавина на кожата доаѓа одвнатре. Добриот сон, балансираната исхрана и внимателно одбраните ...
+                - generic [ref=e191]: Здравје
+                - link "Отвори статија" [ref=e193] [cursor=pointer]:
+                  - /url: https://time.mk/c/b809b3524b/3-soveti-od-farmacevti-za-sovrsena-koza-so-ova-vaseto-lice-ke-sjae-kako-nikogas-dosega.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e194]:
+                - img [ref=e196]
+                - 'img "Preview for 3 совети од фармацевти за совршена кожа: Со ова, вашето лице ќе сјае како никогаш досега | Попара" [ref=e198]'
+            - generic [ref=e201]:
+              - generic [ref=e202]:
+                - generic [ref=e203]:
+                  - link "Колку и да ги предизвикувате, четири хороскопски знаци никогаш нема да ја покажат својата ранлива страна | Вечер Прес" [ref=e205] [cursor=pointer]:
+                    - /url: https://time.mk/c/85d69327aa/kolku-i-da-gi-predizvikuvate-cetiri-horoskopski-znaci-nikogas-nema-da-ja-pokazat-svojata-ranliva-strana.html
+                  - generic [ref=e206]: Time.mk · Објавено 7 hours ago
+                  - paragraph [ref=e207]: Некои луѓе остануваат смирени пред другите дури и во најтешките моменти. Тие веруваат дека покажувањето внатрешни слабости може да предизвика недоверба, да отвори можност некој да ги повреди или да ги натера другите да ги ценат помалку.
+                - generic [ref=e209]: Занимливости / Забава
+                - link "Отвори статија" [ref=e211] [cursor=pointer]:
+                  - /url: https://time.mk/c/85d69327aa/kolku-i-da-gi-predizvikuvate-cetiri-horoskopski-znaci-nikogas-nema-da-ja-pokazat-svojata-ranliva-strana.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e212]:
+                - img [ref=e214]
+                - img "Preview for Колку и да ги предизвикувате, четири хороскопски знаци никогаш нема да ја покажат својата ранлива страна | Вечер Прес" [ref=e216]
+            - generic [ref=e219]:
+              - generic [ref=e220]:
+                - generic [ref=e221]:
+                  - link "Денеска најмногу дожд имало во Охрид, а најстудено било во Лазарополе и Маврови Анови | 360 степени" [ref=e223] [cursor=pointer]:
+                    - /url: https://time.mk/c/c1d40b1dab/deneska-najmnogu-dozd-imalo-vo-ohrid-a-najstudeno-bilo-vo-lazaropole-i-mavrovi-anovi.html
+                  - generic [ref=e224]: Time.mk · Објавено 7 hours ago
+                  - paragraph [ref=e225]: Од УХМР информираат дека до вторник претпладне ќе се задржи претежно облачно време со повремени локални врнежи од дожд Под влијание на влажни воздушни бранови од Медитеранот денеска во земјата имаше поројни и пообилни врнежи од дожд.
+                - generic [ref=e227]: Топ теми на денот
+                - link "Отвори статија" [ref=e229] [cursor=pointer]:
+                  - /url: https://time.mk/c/c1d40b1dab/deneska-najmnogu-dozd-imalo-vo-ohrid-a-najstudeno-bilo-vo-lazaropole-i-mavrovi-anovi.html
+                  - img
+                  - text: Отвори статија
+              - img "Preview for Денеска најмногу дожд имало во Охрид, а најстудено било во Лазарополе и Маврови Анови | 360 степени" [ref=e231]
+            - generic [ref=e234]:
+              - generic [ref=e235]:
+                - generic [ref=e236]:
+                  - 'link "Ставете кора од портокал во машина за садови: Трикот што го запали интернетот – домаќинките се воодушевени | Попара" [ref=e238] [cursor=pointer]':
+                    - /url: https://time.mk/c/883baf27e1/stavete-kora-od-portokal-vo-masina-za-sadovi-trikot-sto-go-zapali-internetot-domakinkite-se-vooduseveni.html
+                  - generic [ref=e239]: Time.mk · Објавено 7 hours ago
+                - generic [ref=e241]: Живот / Уметност
+                - link "Отвори статија" [ref=e243] [cursor=pointer]:
+                  - /url: https://time.mk/c/883baf27e1/stavete-kora-od-portokal-vo-masina-za-sadovi-trikot-sto-go-zapali-internetot-domakinkite-se-vooduseveni.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e245]:
+                - generic [ref=e246]: T
+                - generic [ref=e247]: Time.mk
+            - generic [ref=e250]:
+              - generic [ref=e251]:
+                - generic [ref=e252]:
+                  - link "Вучиќ е подготвен да разговара со Дијана Хрка, мајка на еден од загинатите во Нови Сад, која седми ден штрајкува со глад | 360 степени" [ref=e254] [cursor=pointer]:
+                    - /url: https://time.mk/c/db264f6615/vucik-e-podgotven-da-razgovara-so-dijana-hrka-majka-na-eden-od-zaginatite-vo-novi-sad-koja-sedmi-den-strajkuva-so-glad.html
+                  - generic [ref=e255]: Time.mk · Објавено 7 hours ago
+                - generic [ref=e257]: Балкан
+                - link "Отвори статија" [ref=e259] [cursor=pointer]:
+                  - /url: https://time.mk/c/db264f6615/vucik-e-podgotven-da-razgovara-so-dijana-hrka-majka-na-eden-od-zaginatite-vo-novi-sad-koja-sedmi-den-strajkuva-so-glad.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e261]:
+                - generic [ref=e262]: T
+                - generic [ref=e263]: Time.mk
+            - generic [ref=e266]:
+              - generic [ref=e267]:
+                - generic [ref=e268]:
+                  - 'link "(Видео) Шок во Бразил: Норис доминантнo до пол-позиција, Верстапен доживеа ‘Историски Дебакл’ и испадна во Q1! | SportStation" [ref=e270] [cursor=pointer]':
+                    - /url: https://time.mk/c/5554c8a4b2/video-sok-vo-brazil-noris-dominantno-do-pol-pozicija-verstapen-dozivea-istoriski-debakl-i-ispadna-vo-q1.html
+                  - generic [ref=e271]: Time.mk · Објавено 7 hours ago
+                - generic [ref=e273]: Автомото
+                - link "Отвори статија" [ref=e275] [cursor=pointer]:
+                  - /url: https://time.mk/c/5554c8a4b2/video-sok-vo-brazil-noris-dominantno-do-pol-pozicija-verstapen-dozivea-istoriski-debakl-i-ispadna-vo-q1.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e277]:
+                - generic [ref=e278]: T
+                - generic [ref=e279]: Time.mk
+            - generic [ref=e282]:
+              - generic [ref=e283]:
+                - generic [ref=e284]:
+                  - link "Рибакина го освои Финалниот турнир кај тенисерките | Либертас" [ref=e286] [cursor=pointer]:
+                    - /url: https://time.mk/c/212a0c886a/ribakina-go-osvoi-finalniot-turnir-kaj-teniserkite.html
+                  - generic [ref=e287]: Time.mk · Објавено 8 hours ago
+                - generic [ref=e289]: Тенис
+                - link "Отвори статија" [ref=e291] [cursor=pointer]:
+                  - /url: https://time.mk/c/212a0c886a/ribakina-go-osvoi-finalniot-turnir-kaj-teniserkite.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e293]:
+                - generic [ref=e294]: T
+                - generic [ref=e295]: Time.mk
+            - generic [ref=e298]:
+              - generic [ref=e299]:
+                - generic [ref=e300]:
+                  - 'link "6 клучни особини на одличен љубовник: Како да го препознаете мажот со кој ќе уживате | Во Бело" [ref=e302] [cursor=pointer]':
+                    - /url: https://time.mk/c/24ef4ffdd9/6-klucni-osobini-na-odlicen-ljubovnik-kako-da-go-prepoznaete-mazot-so-koj-ke-uzivate.html
+                  - generic [ref=e303]: Time.mk · Објавено 8 hours ago
+                - generic [ref=e305]: Интима
+                - link "Отвори статија" [ref=e307] [cursor=pointer]:
+                  - /url: https://time.mk/c/24ef4ffdd9/6-klucni-osobini-na-odlicen-ljubovnik-kako-da-go-prepoznaete-mazot-so-koj-ke-uzivate.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e309]:
+                - generic [ref=e310]: T
+                - generic [ref=e311]: Time.mk
+            - generic [ref=e314]:
+              - generic [ref=e315]:
+                - generic [ref=e316]:
+                  - 'link "Потврдено: Ѓоковиќ се повлече од Торино! Мусети, кого Новак го победи денес, ја соопшти веста! | SportStation" [ref=e318] [cursor=pointer]':
+                    - /url: https://time.mk/c/b799de115e/potvrdeno-gjokovik-se-povlece-od-torino-museti-kogo-novak-go-pobedi-denes-ja-soopsti-vesta.html
+                  - generic [ref=e319]: Time.mk · Објавено 8 hours ago
+                - generic [ref=e321]: Тенис
+                - link "Отвори статија" [ref=e323] [cursor=pointer]:
+                  - /url: https://time.mk/c/b799de115e/potvrdeno-gjokovik-se-povlece-od-torino-museti-kogo-novak-go-pobedi-denes-ja-soopsti-vesta.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e325]:
+                - generic [ref=e326]: T
+                - generic [ref=e327]: Time.mk
+            - generic [ref=e330]:
+              - generic [ref=e331]:
+                - generic [ref=e332]:
+                  - 'link "Протест во Тузла: Граѓаните бараат одговорност од властите по трагедијата во домот за пензионери и скандалот со трговија со луѓе | 360 степени" [ref=e334] [cursor=pointer]':
+                    - /url: https://time.mk/c/50cc2a34fc/protest-vo-tuzla-gragjanite-baraat-odgovornost-od-vlastite-po-tragedijata-vo-domot-za-penzioneri-i-skandalot-so-trgovija-so-lugje.html
+                  - generic [ref=e335]: Time.mk · Објавено 8 hours ago
+                - generic [ref=e337]: Балкан
+                - link "Отвори статија" [ref=e339] [cursor=pointer]:
+                  - /url: https://time.mk/c/50cc2a34fc/protest-vo-tuzla-gragjanite-baraat-odgovornost-od-vlastite-po-tragedijata-vo-domot-za-penzioneri-i-skandalot-so-trgovija-so-lugje.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e341]:
+                - generic [ref=e342]: T
+                - generic [ref=e343]: Time.mk
+            - generic [ref=e346]:
+              - generic [ref=e347]:
+                - generic [ref=e348]:
+                  - 'link "Утринска „акција“ влијае на повисока плата и напредување во кариерата: Еве како | Независен" [ref=e350] [cursor=pointer]':
+                    - /url: https://time.mk/c/11c17e5ab2/utrinska-akcija-vlijae-na-povisoka-plata-i-napreduvanje-vo-karierata-eve-kako.html
+                  - generic [ref=e351]: Time.mk · Објавено 8 hours ago
+                - generic [ref=e353]: Интима
+                - link "Отвори статија" [ref=e355] [cursor=pointer]:
+                  - /url: https://time.mk/c/11c17e5ab2/utrinska-akcija-vlijae-na-povisoka-plata-i-napreduvanje-vo-karierata-eve-kako.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e357]:
+                - generic [ref=e358]: T
+                - generic [ref=e359]: Time.mk
+            - generic [ref=e362]:
+              - generic [ref=e363]:
+                - generic [ref=e364]:
+                  - link "(Видео) „Црните мачки“ го запреа Арсенал | TopSport" [ref=e366] [cursor=pointer]:
+                    - /url: https://time.mk/c/1b56cd9423/video-crnite-macki-go-zaprea-arsenal.html
+                  - generic [ref=e367]: Time.mk · Објавено 9 hours ago
+                - generic [ref=e369]: Фудбал
+                - link "Отвори статија" [ref=e371] [cursor=pointer]:
+                  - /url: https://time.mk/c/1b56cd9423/video-crnite-macki-go-zaprea-arsenal.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e373]:
+                - generic [ref=e374]: T
+                - generic [ref=e375]: Time.mk
+            - generic [ref=e378]:
+              - generic [ref=e379]:
+                - generic [ref=e380]:
+                  - link "🎥 ЕВЕ КАДЕ ЌЕ СЕ ДВИЖИ ГРАДСКИОТ ВОЗ Министерот Николоски објави видео од трасата | +инфо" [ref=e382] [cursor=pointer]:
+                    - /url: https://time.mk/c/6641f89911/eve-kade-ke-se-dvizi-gradskiot-voz-ministerot-nikoloski-objavi-video-od-trasata.html
+                  - generic [ref=e383]: Time.mk · Објавено 9 hours ago
+                - generic [ref=e385]: Скопје
+                - link "Отвори статија" [ref=e387] [cursor=pointer]:
+                  - /url: https://time.mk/c/6641f89911/eve-kade-ke-se-dvizi-gradskiot-voz-ministerot-nikoloski-objavi-video-od-trasata.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e389]:
+                - generic [ref=e390]: T
+                - generic [ref=e391]: Time.mk
+            - generic [ref=e394]:
+              - generic [ref=e395]:
+                - generic [ref=e396]:
+                  - link "Најмалку шест загинати по последните руски напади врз Украина | Трн" [ref=e398] [cursor=pointer]:
+                    - /url: https://time.mk/c/e3d5ee74cb/najmalku-sest-zaginati-po-poslednite-ruski-napadi-vrz-ukraina.html
+                  - generic [ref=e399]: Time.mk · Објавено 9 hours ago
+                - generic [ref=e401]: Свет
+                - link "Отвори статија" [ref=e403] [cursor=pointer]:
+                  - /url: https://time.mk/c/e3d5ee74cb/najmalku-sest-zaginati-po-poslednite-ruski-napadi-vrz-ukraina.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e405]:
+                - generic [ref=e406]: T
+                - generic [ref=e407]: Time.mk
+            - generic [ref=e410]:
+              - generic [ref=e411]:
+                - generic [ref=e412]:
+                  - 'link "Каде што летото никогаш не завршува: Посетата на овој град во ноември е вистински противотров на зимата | Независен" [ref=e414] [cursor=pointer]':
+                    - /url: https://time.mk/c/c6dbd25d85/kade-sto-letoto-nikogas-ne-zavrsuva-posetata-na-ovoj-grad-vo-noemvri-e-vistinski-protivotrov-na-zimata.html
+                  - generic [ref=e415]: Time.mk · Објавено 9 hours ago
+                - generic [ref=e417]: Патувања
+                - link "Отвори статија" [ref=e419] [cursor=pointer]:
+                  - /url: https://time.mk/c/c6dbd25d85/kade-sto-letoto-nikogas-ne-zavrsuva-posetata-na-ovoj-grad-vo-noemvri-e-vistinski-protivotrov-na-zimata.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e421]:
+                - generic [ref=e422]: T
+                - generic [ref=e423]: Time.mk
+            - generic [ref=e426]:
+              - generic [ref=e427]:
+                - generic [ref=e428]:
+                  - link "Пијана жена предизвикала инцидент на бензинска во Кавадарци, полицијата ѝ измерила 1,95 промили алкохол во крвта | 360 степени" [ref=e430] [cursor=pointer]:
+                    - /url: https://time.mk/c/fedcd12342/pijana-zena-predizvikala-incident-na-benzinska-vo-kavadarci-policijata-i-izmerila-1-95-promili-alkohol-vo-krvta.html
+                  - generic [ref=e431]: Time.mk · Објавено 9 hours ago
+                - generic [ref=e433]: Црна Хроника
+                - link "Отвори статија" [ref=e435] [cursor=pointer]:
+                  - /url: https://time.mk/c/fedcd12342/pijana-zena-predizvikala-incident-na-benzinska-vo-kavadarci-policijata-i-izmerila-1-95-promili-alkohol-vo-krvta.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e437]:
+                - generic [ref=e438]: T
+                - generic [ref=e439]: Time.mk
+            - generic [ref=e442]:
+              - generic [ref=e443]:
+                - generic [ref=e444]:
+                  - link "ДПА СЕ НУДИ ДА ВЛЕЗЕ ВО ВЛАДАТА Немаме покана, ама нема да ја одбиеме ако ја добиеме, вели Имер Алиу | +инфо" [ref=e446] [cursor=pointer]:
+                    - /url: https://time.mk/c/660b8e5731/dpa-se-nudi-da-vleze-vo-vladata-nemame-pokana-ama-nema-da-ja-odbieme-ako-ja-dobieme-veli-imer-aliu.html
+                  - generic [ref=e447]: Time.mk · Објавено 10 hours ago
+                - generic [ref=e449]: Македонија
+                - link "Отвори статија" [ref=e451] [cursor=pointer]:
+                  - /url: https://time.mk/c/660b8e5731/dpa-se-nudi-da-vleze-vo-vladata-nemame-pokana-ama-nema-da-ja-odbieme-ako-ja-dobieme-veli-imer-aliu.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e453]:
+                - generic [ref=e454]: T
+                - generic [ref=e455]: Time.mk
+            - generic [ref=e458]:
+              - generic [ref=e459]:
+                - generic [ref=e460]:
+                  - link "Наградата „Вавилон“ за најдобар млад преведувач за Марина Иванова | Трн" [ref=e462] [cursor=pointer]:
+                    - /url: https://time.mk/c/347ba8ffdd/nagradata-vavilon-za-najdobar-mlad-preveduvac-za-marina-ivanova.html
+                  - generic [ref=e463]: Time.mk · Објавено 10 hours ago
+                - generic [ref=e465]: Култура
+                - link "Отвори статија" [ref=e467] [cursor=pointer]:
+                  - /url: https://time.mk/c/347ba8ffdd/nagradata-vavilon-za-najdobar-mlad-preveduvac-za-marina-ivanova.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e469]:
+                - generic [ref=e470]: T
+                - generic [ref=e471]: Time.mk
+            - generic [ref=e474]:
+              - generic [ref=e475]:
+                - generic [ref=e476]:
+                  - link "ДАНСКАТА ВЛАДА ПОСТИГНА ДОГОВОР ЗА ЗАБРАНА НА СОЦИЈАЛНИТЕ МРЕЖИ ЗА СИТЕ ПОД 15 ГОДИНИ | Сакам да кажам" [ref=e478] [cursor=pointer]:
+                    - /url: https://time.mk/c/b114da2002/danskata-vlada-postigna-dogovor-za-zabrana-na-socijalnite-mrezi-za-site-pod-15-godini.html
+                  - generic [ref=e479]: Time.mk · Објавено 10 hours ago
+                - generic [ref=e481]: Наука / Технологија
+                - link "Отвори статија" [ref=e483] [cursor=pointer]:
+                  - /url: https://time.mk/c/b114da2002/danskata-vlada-postigna-dogovor-za-zabrana-na-socijalnite-mrezi-za-site-pod-15-godini.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e485]:
+                - generic [ref=e486]: T
+                - generic [ref=e487]: Time.mk
+            - generic [ref=e490]:
+              - generic [ref=e491]:
+                - generic [ref=e492]:
+                  - link "Европската лига ќе ги замени квалификациите за ЕП одлука донесена на Конгрес на ЦЕВ | Бриф" [ref=e494] [cursor=pointer]:
+                    - /url: https://time.mk/c/d149814189/evropskata-liga-ke-gi-zameni-kvalifikaciite-za-ep-odluka-donesena-na-kongres-na-cev.html
+                  - generic [ref=e495]: Time.mk · Објавено 10 hours ago
+                - generic [ref=e497]: Останато
+                - link "Отвори статија" [ref=e499] [cursor=pointer]:
+                  - /url: https://time.mk/c/d149814189/evropskata-liga-ke-gi-zameni-kvalifikaciite-za-ep-odluka-donesena-na-kongres-na-cev.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e501]:
+                - generic [ref=e502]: T
+                - generic [ref=e503]: Time.mk
+            - generic [ref=e506]:
+              - generic [ref=e507]:
+                - generic [ref=e508]:
+                  - link "ХРАНАТА ВО СВЕТОТ ПОЕВТИНУВА, пониски цени на млекото и млечните производи | Економија и Бизнис" [ref=e510] [cursor=pointer]:
+                    - /url: https://time.mk/c/d27320f4d5/hranata-vo-svetot-poevtinuva-poniski-ceni-na-mlekoto-i-mlecnite-proizvodi.html
+                  - generic [ref=e511]: Time.mk · Објавено 11 hours ago
+                - generic [ref=e513]: Економија
+                - link "Отвори статија" [ref=e515] [cursor=pointer]:
+                  - /url: https://time.mk/c/d27320f4d5/hranata-vo-svetot-poevtinuva-poniski-ceni-na-mlekoto-i-mlecnite-proizvodi.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e517]:
+                - generic [ref=e518]: T
+                - generic [ref=e519]: Time.mk
+            - generic [ref=e522]:
+              - generic [ref=e523]:
+                - generic [ref=e524]:
+                  - link "СКОПЈЕ ГО ПРАВИМЕ ЗАЕДНО, НАЈДОБРОТО ДОАЃА Еве како Ѓорѓиевски ги „светна“ и плоштадот и Вардар | +инфо" [ref=e526] [cursor=pointer]:
+                    - /url: https://time.mk/c/7722859f83/skopje-go-pravime-zaedno-najdobroto-doagja-eve-kako-gjorgjievski-gi-svetna-i-plostadot-i-vardar.html
+                  - generic [ref=e527]: Time.mk · Објавено 11 hours ago
+                - generic [ref=e529]: Топ теми на денот
+                - link "Отвори статија" [ref=e531] [cursor=pointer]:
+                  - /url: https://time.mk/c/7722859f83/skopje-go-pravime-zaedno-najdobroto-doagja-eve-kako-gjorgjievski-gi-svetna-i-plostadot-i-vardar.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e533]:
+                - generic [ref=e534]: T
+                - generic [ref=e535]: Time.mk
+            - generic [ref=e538]:
+              - generic [ref=e539]:
+                - generic [ref=e540]:
+                  - link "НАЈМНОГУ ПАРИ СОБИРА РОМАНОВЦЕ, НАЈМАЛКУ КАДРИФАКОВО За 9 месеци наплатени 58 милиони евра од патарините | +инфо" [ref=e542] [cursor=pointer]:
+                    - /url: https://time.mk/c/77a1656493/najmnogu-pari-sobira-romanovce-najmalku-kadrifakovo-za-9-meseci-naplateni-58-milioni-evra-od-patarinite.html
+                  - generic [ref=e543]: Time.mk · Објавено 11 hours ago
+                - generic [ref=e545]: Економија
+                - link "Отвори статија" [ref=e547] [cursor=pointer]:
+                  - /url: https://time.mk/c/77a1656493/najmnogu-pari-sobira-romanovce-najmalku-kadrifakovo-za-9-meseci-naplateni-58-milioni-evra-od-patarinite.html
+                  - img
+                  - text: Отвори статија
+              - generic [ref=e549]:
+                - generic [ref=e550]: T
+                - generic [ref=e551]: Time.mk
+        - paragraph [ref=e554]: Креирано од Винсент Баталија
+    - contentinfo [ref=e555]:
+      - generic [ref=e557]:
+        - generic [ref=e558]:
+          - generic [ref=e559]: Креирано со ❤️ од
+          - link "Вини" [ref=e560] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/vincentvinnybattaglia/
+            - text: Вини
+            - img [ref=e561]
+          - generic [ref=e565]: "&"
+          - link "Андри" [ref=e566] [cursor=pointer]:
+            - /url: https://macedonianlanguagecorner.com
+            - text: Андри
+            - img [ref=e567]
+        - paragraph [ref=e572]:
+          - text: 🇲🇰 Сета содржина е курирана и валидирана од Андри, роден говорник на македонски и основач на
+          - link "Македонски Јазичен Кут" [ref=e573] [cursor=pointer]:
+            - /url: https://macedonianlanguagecorner.com
+            - text: Македонски Јазичен Кут
+            - img [ref=e574]
+        - generic [ref=e578]:
+          - link "Политика за Приватност" [ref=e579] [cursor=pointer]:
+            - /url: /mk/privacy
+          - generic [ref=e580]: •
+          - link "Услови за Користење" [ref=e581] [cursor=pointer]:
+            - /url: /mk/terms
+          - generic [ref=e582]: •
+          - link "Контактирајте Не" [ref=e583] [cursor=pointer]:
+            - /url: mailto:macedonianlanguagelab@gmail.com?subject=Macedonian%20Learning%20App%20-%20Contact%20Inquiry
+  - generic [ref=e588] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e589]:
+      - img [ref=e590]
+    - generic [ref=e593]:
+      - button "Open issues overlay" [ref=e594]:
+        - generic [ref=e595]:
+          - generic [ref=e596]: "0"
+          - generic [ref=e597]: "1"
+        - generic [ref=e598]: Issue
+      - button "Collapse issues badge" [ref=e599]:
+        - img [ref=e600]
+  - alert [ref=e602]
+```
