@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { LayoutDashboard, Home, BookOpen, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ToasterProvider } from '@/components/ui/toast';
+import { SessionProvider } from '@/components/auth/SessionProvider';
 import { headers } from 'next/headers';
 
 export default async function AdminLayout({
@@ -20,9 +21,13 @@ export default async function AdminLayout({
     await requireAdmin();
   }
 
-  // If on signin page, render children without admin layout chrome
+  // If on signin page, render children with SessionProvider but without admin layout chrome
   if (isSigninPage) {
-    return <ToasterProvider>{children}</ToasterProvider>;
+    return (
+      <SessionProvider>
+        <ToasterProvider>{children}</ToasterProvider>
+      </SessionProvider>
+    );
   }
 
   return (

@@ -52,7 +52,7 @@ function AdminSignInContent() {
               <ShieldAlert className="h-8 w-8 text-primary" />
             </div>
             <div>
-              <CardTitle className="text-3xl font-bold">Admin Sign In</CardTitle>
+              <h2 className="text-3xl font-bold leading-none font-semibold">Admin Sign In</h2>
               <CardDescription className="mt-2">
                 Sign in with an authorized admin account to access the admin panel
               </CardDescription>
