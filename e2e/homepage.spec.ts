@@ -46,8 +46,8 @@ test.describe('Homepage', () => {
     // Wait for navigation
     await page.waitForURL('**/practice');
 
-    // Verify we're on the practice page
-    await expect(page.getByRole('heading', { name: /Practice/i })).toBeVisible();
+    // Verify we're on the practice page (actual heading is "Train your Macedonian skills")
+    await expect(page.getByRole('heading', { name: /Train.*Macedonian.*skills|Вежбај/i })).toBeVisible();
   });
 
   test('should navigate to resources page', async ({ page }) => {
@@ -126,8 +126,8 @@ test.describe('Homepage', () => {
     if (await localeSwitcher.isVisible()) {
       await localeSwitcher.click();
 
-      // Should show language options
-      await expect(page.getByText(/English|Македонски/i)).toBeVisible();
+      // Should show language options (use first() to avoid strict mode violation)
+      await expect(page.getByText(/English|Македонски/i).first()).toBeVisible();
     }
   });
 });
