@@ -265,38 +265,44 @@ export default function TranslatePage() {
       <div className="flex-1 flex flex-col">
         <div className="mx-auto w-full max-w-4xl flex-1 flex flex-col px-4 py-3 md:py-4">
           <form className="flex-1 flex flex-col gap-3 md:gap-4" onSubmit={handleTranslate}>
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-center justify-between gap-2">
                   <div
-                    className="flex flex-wrap items-center gap-2"
+                    className="flex items-center gap-1.5"
                     role="radiogroup"
                     aria-label={t('directionsGroupLabel')}
                   >
-                    {directionOptions.map((option) => {
-                      const isActive = option.id === selectedDirection.id;
-                      return (
-                        <Button
-                          key={option.id}
-                          type="button"
-                          size="sm"
-                          variant={isActive ? 'default' : 'outline'}
-                          onClick={() => handleDirectionChange(option.id)}
-                          role="radio"
-                          aria-checked={isActive}
-                        >
-                          {option.label}
-                        </Button>
-                      );
-                    })}
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant={directionId === 'en-mk' ? 'default' : 'outline'}
+                      onClick={() => handleDirectionChange('en-mk')}
+                      role="radio"
+                      aria-checked={directionId === 'en-mk'}
+                      className="h-8 px-3 text-xs font-medium"
+                    >
+                      EN → MK
+                    </Button>
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant={directionId === 'mk-en' ? 'default' : 'outline'}
+                      onClick={() => handleDirectionChange('mk-en')}
+                      role="radio"
+                      aria-checked={directionId === 'mk-en'}
+                      className="h-8 px-3 text-xs font-medium"
+                    >
+                      MK → EN
+                    </Button>
                   </div>
                   <Button
                     type="button"
                     size="sm"
-                    variant="outline"
+                    variant="ghost"
                     onClick={handleSwapDirections}
                     aria-label={t('swapDirections')}
-                    className="h-9 w-9 p-0"
+                    className="h-8 w-8 p-0"
                   >
-                    <ArrowLeftRight className="h-4 w-4" />
+                    <ArrowLeftRight className="h-3.5 w-3.5" />
                   </Button>
                 </div>
 

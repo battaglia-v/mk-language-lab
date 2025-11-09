@@ -49,8 +49,8 @@
         - generic [ref=e59]:
           - generic [ref=e60]:
             - radiogroup "Насока на превод" [ref=e61]:
-              - radio "Македонски → Англиски" [ref=e62]
-              - radio "Англиски → Македонски" [checked] [ref=e63]
+              - radio "EN → MK" [checked] [ref=e62]
+              - radio "MK → EN" [ref=e63]
             - button "Смени јазици" [ref=e64]:
               - img
           - generic [ref=e65]:
