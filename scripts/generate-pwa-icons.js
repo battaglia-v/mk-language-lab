@@ -96,7 +96,7 @@ async function generateIcons() {
   console.log('Creating icon-192.png...');
   const svg192 = await createAjvarJarSVG(192);
   await sharp(svg192)
-    .png()
+    .png({ quality: 100, compressionLevel: 0 })
     .toFile(path.join(publicDir, 'icon-192.png'));
   console.log('✓ icon-192.png created');
 
@@ -104,7 +104,7 @@ async function generateIcons() {
   console.log('Creating icon-512.png...');
   const svg512 = await createAjvarJarSVG(512);
   await sharp(svg512)
-    .png()
+    .png({ quality: 100, compressionLevel: 0 })
     .toFile(path.join(publicDir, 'icon-512.png'));
   console.log('✓ icon-512.png created');
 
@@ -112,7 +112,7 @@ async function generateIcons() {
   console.log('Creating icon-512-maskable.png...');
   const svg512Maskable = await createAjvarJarSVG(512, true);
   await sharp(svg512Maskable)
-    .png()
+    .png({ quality: 100, compressionLevel: 0 })
     .toFile(path.join(publicDir, 'icon-512-maskable.png'));
   console.log('✓ icon-512-maskable.png created (with safe zone for maskable format)');
 
