@@ -12,7 +12,9 @@ const parseCredentials = (value: string) => {
   } catch (error) {
     try {
       const decoded = Buffer.from(value, 'base64').toString('utf-8');
-      return JSON.parse(decoded);
+      // Remove surrounding quotes if present (e.g., '{"type":"..."}')
+      const cleaned = decoded.replace(/^['"]|['"]$/g, '');
+      return JSON.parse(cleaned);
     } catch {
       throw error;
     }

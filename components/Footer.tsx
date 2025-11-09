@@ -1,7 +1,6 @@
 'use client';
 
 import { useTranslations, useLocale } from 'next-intl';
-import { ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Footer() {
@@ -9,72 +8,29 @@ export default function Footer() {
   const locale = useLocale();
 
   return (
-    <footer className="border-t border-border/40 bg-card/30 backdrop-blur-sm mt-auto pb-16 lg:pb-8">
-      <div className="container mx-auto px-4 py-6 md:py-7 lg:py-8">
-        {/* Main Attribution */}
-        <div className="text-center space-y-3">
-          <div className="flex items-center justify-center gap-2 text-sm md:text-base">
-            <span className="text-muted-foreground">{t('createdWith')}</span>
-            <a
-              href="https://www.linkedin.com/in/vincentvinnybattaglia/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-foreground hover:text-primary transition-colors inline-flex items-center gap-1"
-            >
-              {t('vini')}
-              <ExternalLink className="h-3 w-3" />
-            </a>
-            <span className="text-muted-foreground">{t('and')}</span>
-            <a
-              href="https://macedonianlanguagecorner.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-foreground hover:text-primary transition-colors inline-flex items-center gap-1"
-            >
-              {t('andri')}
-              <ExternalLink className="h-3 w-3" />
-            </a>
-          </div>
-
-          {/* Content Attribution */}
-          <div className="text-xs md:text-sm text-muted-foreground max-w-2xl mx-auto">
-            <p className="inline-block px-4 py-2 rounded-lg bg-primary/5 border border-primary/10">
-              🇲🇰 {t('contentBy')}{' '}
-              <a
-                href="https://macedonianlanguagecorner.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-foreground hover:text-primary transition-colors underline decoration-dotted inline-flex items-center gap-1"
-              >
-                {t('macedonianLanguageCorner')}
-                <ExternalLink className="h-3 w-3" />
-              </a>
-            </p>
-          </div>
-
-          {/* Legal Links */}
-          <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground pt-2">
-            <Link
-              href={`/${locale}/privacy`}
-              className="hover:text-foreground transition-colors underline-offset-4 hover:underline"
-            >
-              {t('privacy')}
-            </Link>
-            <span>•</span>
-            <Link
-              href={`/${locale}/terms`}
-              className="hover:text-foreground transition-colors underline-offset-4 hover:underline"
-            >
-              {t('terms')}
-            </Link>
-            <span>•</span>
-            <a
-              href="mailto:macedonianlanguagelab@gmail.com?subject=Macedonian%20Learning%20App%20-%20Contact%20Inquiry"
-              className="hover:text-foreground transition-colors underline-offset-4 hover:underline"
-            >
-              {t('contact')}
-            </a>
-          </div>
+    <footer className="mt-auto pb-16 lg:pb-6">
+      <div className="container mx-auto px-4 py-3">
+        <div className="flex items-center justify-center gap-3 text-[10px] md:text-xs text-muted-foreground/60">
+          <Link
+            href={`/${locale}/privacy`}
+            className="hover:text-muted-foreground transition-colors"
+          >
+            {t('privacy')}
+          </Link>
+          <span>•</span>
+          <Link
+            href={`/${locale}/terms`}
+            className="hover:text-muted-foreground transition-colors"
+          >
+            {t('terms')}
+          </Link>
+          <span>•</span>
+          <a
+            href="mailto:macedonianlanguagelab@gmail.com?subject=Macedonian%20Learning%20App%20-%20Contact%20Inquiry"
+            className="hover:text-muted-foreground transition-colors"
+          >
+            {t('contact')}
+          </a>
         </div>
       </div>
     </footer>
