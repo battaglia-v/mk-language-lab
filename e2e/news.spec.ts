@@ -6,8 +6,8 @@ test.describe('News Page', () => {
   });
 
   test('should load news page successfully', async ({ page }) => {
-    // Check page heading
-    await expect(page.getByRole('heading', { name: /News|Вести/i })).toBeVisible();
+    // Check page heading (actual text is "News Feed" or "Новости")
+    await expect(page.getByRole('heading', { name: /News Feed|Новости/i })).toBeVisible();
   });
 
   test('should display news articles', async ({ page }) => {
@@ -120,8 +120,8 @@ test.describe('News Page', () => {
     // Wait for news
     await page.waitForTimeout(3000);
 
-    // Main heading should still be visible
-    await expect(page.getByRole('heading', { name: /News|Вести/i })).toBeVisible();
+    // Main heading should still be visible (actual text is "News Feed" or "Новости")
+    await expect(page.getByRole('heading', { name: /News Feed|Новости/i })).toBeVisible();
 
     // Articles should stack vertically (responsive)
     const articles = page.locator('article, [class*="card"]').first();
