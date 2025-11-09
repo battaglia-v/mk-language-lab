@@ -84,7 +84,10 @@
     "practiceAccuracyExcellent": "Excellent",
     "practiceAccuracyGood": "Good",
     "practiceAccuracyNeedsWork": "Keep Practicing",
-    "practiceProgressCount": "{current}/{target} correct"
+    "practiceProgressCount": "{current}/{target} correct",
+    "practiceGameOverTitle": "Out of Hearts!",
+    "practiceGameOverMessage": "You ran out of hearts. Review your mistakes and try again!",
+    "practiceTryAgain": "Try Again"
   },
   "learnVocabulary": {
     "back": "Back to Learn Hub",

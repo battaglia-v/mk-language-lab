@@ -84,7 +84,10 @@
     "practiceAccuracyExcellent": "Одлично",
     "practiceAccuracyGood": "Добро",
     "practiceAccuracyNeedsWork": "Продолжи да вежбаш",
-    "practiceProgressCount": "{current}/{target} точни"
+    "practiceProgressCount": "{current}/{target} точни",
+    "practiceGameOverTitle": "Нема повеќе срца!",
+    "practiceGameOverMessage": "Останавте без срца. Прегледајте ги грешките и обидете се повторно!",
+    "practiceTryAgain": "Обиди се повторно"
   },
   "learnVocabulary": {
     "back": "Назад до центарот за учење",
