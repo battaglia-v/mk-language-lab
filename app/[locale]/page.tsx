@@ -59,9 +59,9 @@ export default function HomePage() {
                   <RefreshCw className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold text-foreground">Daily Practice</h3>
+                  <h3 className="text-sm font-semibold text-foreground">{t('dailyPractice')}</h3>
                   <p className="hidden md:block text-xs text-muted-foreground mt-0.5">
-                    Interactive quizzes
+                    {t('dailyPracticeDesc')}
                   </p>
                 </div>
               </div>
@@ -77,9 +77,9 @@ export default function HomePage() {
                   <Library className="h-5 w-5 text-secondary" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold text-foreground">Resources</h3>
+                  <h3 className="text-sm font-semibold text-foreground">{t('resourcesTitle')}</h3>
                   <p className="hidden md:block text-xs text-muted-foreground mt-0.5">
-                    Curated materials
+                    {t('resourcesDesc')}
                   </p>
                 </div>
               </div>
