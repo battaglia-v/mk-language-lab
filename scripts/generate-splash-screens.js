@@ -18,29 +18,35 @@ const SPLASH_SIZES = [
 ];
 
 async function createSplashSVG(width, height) {
-  // Calculate icon size (about 30% of screen width, max 512px)
-  const iconSize = Math.min(width * 0.3, 512);
+  // Modern design: small icon below large text
+  const iconSize = Math.min(width * 0.15, 200); // Smaller icon
   const scale = iconSize / 40; // Original SVG is 40x40
 
   // Center position
   const centerX = width / 2;
-  const centerY = height / 2 - iconSize / 4; // Slightly above center
+  const centerY = height / 2;
+
+  // Text above center, icon below
+  const textY = centerY - 40;
+  const iconY = centerY + 80;
 
   // Offset for centered icon
   const offsetX = centerX - (20 * scale);
-  const offsetY = centerY - (20 * scale);
+  const offsetY = iconY - (20 * scale);
 
   const svg = `
     <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
-      <!-- Background with gradient -->
+      <!-- Background and gradients -->
       <defs>
-        <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" style="stop-color:${BACKGROUND_COLOR};stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#D63616;stop-opacity:1" />
+        <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#ff5a2c;stop-opacity:1" />
+          <stop offset="50%" style="stop-color:#FFD700;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#ff5a2c;stop-opacity:1" />
         </linearGradient>
       </defs>
 
-      <rect width="${width}" height="${height}" fill="url(#bgGradient)"/>
+      <!-- Dark background -->
+      <rect width="${width}" height="${height}" fill="#080b12"/>
 
       <!-- Large crisp icon in center -->
       <g transform="translate(${offsetX}, ${offsetY}) scale(${scale})">
@@ -68,16 +74,17 @@ async function createSplashSVG(width, height) {
         <ellipse cx="20" cy="12.8" rx="6.5" ry="0.8" fill="white" fill-opacity="0.3"/>
       </g>
 
-      <!-- App name below icon -->
+      <!-- Large gradient Cyrillic text -->
       <text
         x="${centerX}"
-        y="${centerY + iconSize / 2 + 60}"
+        y="${textY}"
         font-family="Arial, sans-serif"
-        font-size="${Math.min(width * 0.08, 56)}"
-        font-weight="bold"
-        fill="white"
+        font-size="${Math.min(width * 0.12, 72)}"
+        font-weight="900"
+        fill="url(#textGradient)"
         text-anchor="middle"
-      >MK Lang Lab</text>
+        letter-spacing="2"
+      >Македонски</text>
     </svg>
   `;
 
