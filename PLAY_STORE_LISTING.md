@@ -166,10 +166,10 @@ Visit macedonianlanguagecorner.com for more learning resources!
 - [x] Write full description
 - [x] Define keywords and tags
 - [x] Set category and age rating
-- [ ] Create 8 phone screenshots with text overlays
-- [ ] Design feature graphic (1024x500)
-- [ ] Export high-res app icon (512x512)
-- [ ] Create privacy policy page
+- [x] Create privacy policy page (live at /privacy)
+- [x] Design feature graphic (1024x500) - public/feature-graphic.png
+- [x] Export high-res app icon (512x512) - public/icon-512.png
+- [ ] Create 8 phone screenshots with text overlays (use ANDROID_TESTING_GUIDE.md)
 - [ ] Complete IARC content rating questionnaire
 - [ ] (Optional) Record promotional video
 - [ ] Review all content for typos and accuracy
