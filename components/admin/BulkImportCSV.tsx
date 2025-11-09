@@ -45,7 +45,9 @@ export function BulkImportCSV() {
 книга,book,kniga,noun,Јас читам книга.,I am reading a book.,book,objects,beginner,false
 вода,water,voda,noun,Сакам да пијам вода.,I want to drink water.,water drop,food,beginner,false`;
 
-    const blob = new Blob([template], { type: 'text/csv' });
+    // Add UTF-8 BOM for proper Cyrillic display in Excel and other apps
+    const BOM = '\uFEFF';
+    const blob = new Blob([BOM + template], { type: 'text/csv;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
