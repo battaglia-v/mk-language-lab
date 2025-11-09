@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { RefreshCcw, Eye, Sparkles, PlayCircle, X, Trophy, TrendingUp, Settings, MoreVertical, Heart, Check, XCircle, Flame, Zap } from 'lucide-react';
+import { RefreshCcw, Eye, Sparkles, PlayCircle, X, Trophy, TrendingUp, Settings, MoreVertical, Heart, Check, XCircle, Flame, Zap, Shield } from 'lucide-react';
 import practicePrompts from '@/data/practice-vocabulary.json';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -23,6 +23,8 @@ type PracticeItem = {
 };
 
 type PracticeDirection = 'mkToEn' | 'enToMk';
+
+type Level = 'beginner' | 'intermediate' | 'advanced';
 
 type QuickPracticeWidgetProps = {
   title?: string;
@@ -70,6 +72,39 @@ const addXP = (points: number) => {
   }));
 
   return newXP;
+};
+
+const calculateLevel = (xp: number): Level => {
+  if (xp >= 500) return 'advanced';
+  if (xp >= 200) return 'intermediate';
+  return 'beginner';
+};
+
+const getLevelInfo = (level: Level) => {
+  const levelConfig = {
+    beginner: {
+      label: 'Beginner',
+      color: 'text-blue-600',
+      bgColor: 'bg-blue-500/10',
+      borderColor: 'border-blue-500/20',
+      nextThreshold: 200,
+    },
+    intermediate: {
+      label: 'Intermediate',
+      color: 'text-purple-600',
+      bgColor: 'bg-purple-500/10',
+      borderColor: 'border-purple-500/20',
+      nextThreshold: 500,
+    },
+    advanced: {
+      label: 'Advanced',
+      color: 'text-emerald-600',
+      bgColor: 'bg-emerald-500/10',
+      borderColor: 'border-emerald-500/20',
+      nextThreshold: null,
+    },
+  };
+  return levelConfig[level];
 };
 
 const formatCategory = (category?: string) => {
@@ -124,6 +159,7 @@ export function QuickPracticeWidget({
   const [showGameOverModal, setShowGameOverModal] = useState(false);
   const [streak, setStreak] = useState(0);
   const [xp, setXP] = useState(0);
+  const [level, setLevel] = useState<Level>('beginner');
   const celebrationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const autoAdvanceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -140,6 +176,7 @@ export function QuickPracticeWidget({
     const data = getStreakData();
     setStreak(data.streak);
     setXP(data.xp);
+    setLevel(calculateLevel(data.xp));
   }, []);
 
   const filteredItems = useMemo(() => {
@@ -230,6 +267,7 @@ export function QuickPracticeWidget({
       // Award XP and update streak for correct answer
       const newXP = addXP(10);
       setXP(newXP);
+      setLevel(calculateLevel(newXP));
       const { streak: newStreak } = updateStreak();
       setStreak(newStreak);
 
@@ -266,6 +304,7 @@ export function QuickPracticeWidget({
       // Award participation XP for incorrect answer
       const newXP = addXP(5);
       setXP(newXP);
+      setLevel(calculateLevel(newXP));
 
       // Decrease hearts and trigger shake animation
       const newHearts = Math.max(0, hearts - 1);
@@ -421,6 +460,16 @@ export function QuickPracticeWidget({
                 <Flame className="h-4 w-4 text-orange-500" />
                 <span className="text-xs font-bold text-orange-600">{streak}</span>
               </div>
+              {/* Level Display */}
+              {(() => {
+                const levelInfo = getLevelInfo(level);
+                return (
+                  <div className={cn("flex items-center gap-1 rounded-full px-2 py-1 border", levelInfo.bgColor, levelInfo.borderColor)}>
+                    <Shield className={cn("h-4 w-4", levelInfo.color)} />
+                    <span className={cn("text-xs font-bold", levelInfo.color)}>{levelInfo.label}</span>
+                  </div>
+                );
+              })()}
               {/* XP Display */}
               <div className="flex items-center gap-1 rounded-full bg-yellow-500/10 px-2 py-1 border border-yellow-500/20">
                 <Zap className="h-4 w-4 text-yellow-500" />
