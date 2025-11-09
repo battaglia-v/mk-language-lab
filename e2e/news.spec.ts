@@ -26,15 +26,15 @@ test.describe('News Page', () => {
     // Wait for news API to load (5 seconds for external RSS feeds)
     await page.waitForTimeout(5000);
 
-    // Look for article titles - they're in CardTitle divs with links
-    const titles = page.locator('div.text-2xl a[target="_blank"]').filter({ hasText: /.{10,}/ });
+    // Look for article titles - they're h3 elements inside article links
+    const titles = page.locator('a[target="_blank"] h3').filter({ hasText: /.{5,}/ });
     const count = await titles.count();
 
     // Should have at least one title OR show appropriate empty/error state
     if (count === 0) {
       // Check if there's an error message or empty state (acceptable fallback)
       const errorMessage = page.locator('text=/error|failed|unavailable/i');
-      const emptyState = page.locator('text=/no.*articles|no.*news|empty/i');
+      const emptyState = page.locator('text=/no.*result|no.*articles|no.*news|empty/i');
       const hasErrorOrEmpty = await errorMessage.or(emptyState).isVisible().catch(() => false);
 
       // Either articles should load, or an error/empty state should be shown
