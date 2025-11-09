@@ -262,6 +262,37 @@ Completed comprehensive audit of all 385 vocabulary entries in practiceVocabular
 
 ---
 
+### 12. Word of the Day Pool Fixed ✅ (P0 Critical)
+**Files Created:**
+- `scripts/flag-wotd-words.ts` - Script to flag vocabulary words for WOTD rotation
+
+**What Changed:**
+Fixed critical P0 issue from VOCABULARY_AUDIT_REPORT.md where zero words were flagged for Word of the Day. WOTD API was returning 404 errors because `includeInWOTD` flag was false/null for all 385 words.
+
+**Solution:**
+Created and ran flagging script that identified all 385 active beginner words with complete data (examples + icons) and enabled them for WOTD rotation.
+
+**Impact:**
+- ✅ WOTD API now has 385 words to rotate daily
+- ✅ Provides 12+ months of unique daily words
+- ✅ Covers all 20 categories (activities, food, family, greetings, etc.)
+- ✅ Fixes 404 error from empty WOTD pool
+
+**Commit:** `236f5d6` - Fix P0 Critical: Enable Word of the Day pool
+
+**For Other Agents:**
+- Word of the Day feature is now fully operational
+- No database migration needed (used existing `includeInWOTD` boolean field)
+- Script can be re-run safely if needed: `npx tsx scripts/flag-wotd-words.ts`
+- Future vocabulary additions should consider setting `includeInWOTD: true` for quality words
+
+**Next Steps:**
+- ✅ P0 complete - WOTD pool active
+- P1 remaining: Add difficulty levels (all words currently "beginner")
+- P1 remaining: Resolve 18 duplicate entries
+
+---
+
 ---
 
 ## 🔮 Future Considerations & Technical Debt
