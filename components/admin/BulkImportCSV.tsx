@@ -169,7 +169,7 @@ export function BulkImportCSV() {
           <div className="text-sm">
             <p className="font-medium">Need a template?</p>
             <p className="text-muted-foreground">Download a sample CSV with proper Cyrillic examples</p>
-            <p className="text-muted-foreground text-xs mt-1">Tip: For icons, use English descriptions like "book" or "waving hand" instead of emojis</p>
+            <p className="text-muted-foreground text-xs mt-1">Tip: For icons, use English descriptions like &quot;book&quot; or &quot;waving hand&quot; instead of emojis</p>
           </div>
           <Button variant="outline" size="sm" onClick={downloadTemplate}>
             <Download className="h-4 w-4 mr-2" />
