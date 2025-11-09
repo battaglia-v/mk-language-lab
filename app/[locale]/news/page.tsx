@@ -704,10 +704,11 @@ export default function NewsPage() {
           })}
           </div>
         )}
+        </div>
       </div>
 
-      <footer className="border-t border-border/40 bg-card/30 backdrop-blur-sm mt-20">
-        <div className="container mx-auto px-4 py-8 text-center text-muted-foreground">
+      <footer className="border-t border-border/40 bg-card/30 backdrop-blur-sm">
+        <div className="mx-auto max-w-4xl px-4 py-4 text-center text-xs text-muted-foreground">
           <p>
             Креирано од <span className="font-semibold text-foreground">Винсент Баталија</span>
           </p>
