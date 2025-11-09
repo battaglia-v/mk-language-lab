@@ -57,29 +57,29 @@ export default function LearnPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-6 md:py-12">
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+        <div className="max-w-3xl mx-auto text-center mb-6 md:mb-12">
+          <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             {t('title')}
           </h1>
-          <p className="text-xl text-muted-foreground mb-4">{t('subtitle')}</p>
-          <p className="text-muted-foreground">{t('modulesIntro')}</p>
+          <p className="text-base md:text-lg lg:text-xl text-muted-foreground mb-2 md:mb-4">{t('subtitle')}</p>
+          <p className="text-sm md:text-base text-muted-foreground">{t('modulesIntro')}</p>
         </div>
 
         {/* Learning Modules */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8 md:mb-12">
           {modules.map((module) => {
             const Icon = module.icon;
             return (
               <Link key={module.href} href={`/${locale}${module.href}`} className="group block">
                 <Card className="h-full transition-all duration-300 border-border/50 bg-card/50 backdrop-blur group-hover:border-primary/50 group-hover:scale-[1.02]">
-                  <CardHeader>
-                    <div className={`w-14 h-14 rounded-lg bg-gradient-to-br ${module.gradient} flex items-center justify-center mb-4`}>
-                      <Icon className="h-7 w-7 text-white" />
+                  <CardHeader className="p-4 md:p-6">
+                    <div className={`w-12 h-12 md:w-14 md:h-14 rounded-lg bg-gradient-to-br ${module.gradient} flex items-center justify-center mb-3 md:mb-4`}>
+                      <Icon className="h-6 w-6 md:h-7 md:w-7 text-white" />
                     </div>
-                    <CardTitle className="text-2xl">{module.title}</CardTitle>
-                    <CardDescription className="text-base pt-2">{module.description}</CardDescription>
+                    <CardTitle className="text-xl md:text-2xl">{module.title}</CardTitle>
+                    <CardDescription className="text-sm md:text-base pt-1.5 md:pt-2">{module.description}</CardDescription>
                   </CardHeader>
                 </Card>
               </Link>
