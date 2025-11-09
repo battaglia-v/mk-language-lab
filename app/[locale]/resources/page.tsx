@@ -231,7 +231,7 @@ export default function ResourcesPage() {
         <div className="mx-auto max-w-4xl">
           {/* Header */}
           <div className="border-b border-border/40 bg-card/50 backdrop-blur-sm px-4 py-4 md:py-5">
-            <div className="flex items-center justify-between gap-3">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
               <div className="flex-1 min-w-0">
                 <h1 className="text-lg md:text-xl font-bold text-foreground">
                   {t('title')}
@@ -244,7 +244,7 @@ export default function ResourcesPage() {
                 href="https://macedonianlanguagecorner.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-shrink-0 inline-flex items-center gap-1.5 rounded-full border border-border/40 bg-muted/30 px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
+                className="self-start md:flex-shrink-0 inline-flex items-center gap-1.5 rounded-full border border-border/40 bg-muted/30 px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
               >
                 <span>{t('curatedBy')} Andri · {t('macedonianLanguageCorner')}</span>
                 <ExternalLink className="h-3 w-3 flex-shrink-0" />
