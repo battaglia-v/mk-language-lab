@@ -106,10 +106,10 @@ export function CommandMenu() {
           type="button"
           variant="outline"
           size="sm"
-          className="h-10 border-border/40 bg-background/60 text-muted-foreground md:min-w-[200px]"
+          className="h-10 w-10 md:w-auto border-border/40 bg-background/60 text-muted-foreground md:min-w-[200px] p-0 md:px-4"
         >
           <span className="flex items-center gap-2 text-sm">
-            <Search className="h-4 w-4" />
+            <Search className="h-4 w-4 md:h-4 md:w-4" />
             <span className="hidden md:inline">{t("trigger")}</span>
           </span>
           <span className="hidden md:flex items-center gap-2 rounded-md border border-border/40 bg-muted/50 px-2 py-1 text-[0.65rem] font-semibold uppercase tracking-wide">

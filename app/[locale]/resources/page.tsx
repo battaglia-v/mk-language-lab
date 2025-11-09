@@ -227,52 +227,80 @@ export default function ResourcesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
-        <div className="container mx-auto px-4 py-12">
-          <div className="mx-auto mb-12 max-w-4xl space-y-6 text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1 text-sm font-medium text-primary">
-              <Sparkles className="h-4 w-4" />
-              {t('title')}
-            </div>
-            <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-              {t('subtitle')}
-            </h1>
-
-            <div className="inline-block px-6 py-3 rounded-lg bg-primary/5 border border-primary/10">
-              <p className="text-sm md:text-base text-muted-foreground text-center">
+    <div className="min-h-screen bg-background">
+        <div className="mx-auto max-w-4xl">
+          {/* Header */}
+          <div className="border-b border-border/40 bg-card/50 backdrop-blur-sm px-4 py-4 md:py-5">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <h1 className="text-lg md:text-xl font-bold text-foreground">
+                  {t('subtitle')}
+                </h1>
+                <Badge variant="outline" className="border-primary/40 bg-primary/10 text-primary text-xs">
+                  {t('title')}
+                </Badge>
+              </div>
+              <p className="text-xs md:text-sm text-muted-foreground">
                 🇲🇰 {t('attributionText')}{' '}
                 <a
                   href="https://macedonianlanguagecorner.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-foreground hover:text-primary transition-colors underline decoration-dotted whitespace-nowrap inline-flex items-center gap-1"
+                  className="font-medium text-foreground hover:text-primary transition-colors underline decoration-dotted inline-flex items-center gap-1"
                 >
                   {t('macedonianLanguageCorner')}
                   <ExternalLink className="h-3 w-3 flex-shrink-0" />
                 </a>
               </p>
             </div>
+          </div>
 
-            <div className="relative mx-auto max-w-xl">
-              <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+          {/* Search & Filters */}
+          <div className="border-b border-border/40 px-4 py-3 space-y-3">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
                 placeholder={t('search')}
-                className="h-12 rounded-xl pl-10 text-lg"
+                className="h-10 rounded-lg pl-10 text-sm"
               />
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground">
+            <div className="flex flex-wrap gap-2">
+              <Button
+                type="button"
+                size="sm"
+                variant={activeCollection === 'all' ? 'default' : 'outline'}
+                onClick={() => handleCollectionSelect('all')}
+                className="h-8 text-xs"
+              >
+                {t('showAll')}
+              </Button>
+              {collectionsWithSlug.map((collection) => (
+                <Button
+                  key={collection.slug}
+                  type="button"
+                  size="sm"
+                  variant={activeCollection === collection.slug ? 'default' : 'outline'}
+                  onClick={() => handleCollectionSelect(collection.slug)}
+                  className="h-8 text-xs"
+                >
+                  {collection.title}
+                </Button>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
               {pdfLink ? (
-                <Button variant="outline" asChild className="gap-2">
+                <Button variant="ghost" size="sm" asChild className="h-7 gap-1.5 px-2">
                   <a href={pdfLink.url} target="_blank" rel="noopener noreferrer">
-                    <FileText className="h-4 w-4" />
+                    <FileText className="h-3 w-3" />
                     {pdfLink.label || t('viewPdf')}
                   </a>
                 </Button>
               ) : null}
-              <span>
+              <span className="hidden md:inline">
                 {t('updatedOn', {
                   date: updatedDate.toLocaleDateString(undefined, {
                     month: 'short',
@@ -282,72 +310,43 @@ export default function ResourcesPage() {
                 })}
               </span>
               <span>{resultsSummary}</span>
-              {selectedCollection && (
-                <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1 text-primary">
-                  <Sparkles className="h-4 w-4" />
-                  {selectedCollection.title}
-                </span>
-              )}
-            </div>
-
-            <div className="mx-auto max-w-3xl">
-              <div className="flex flex-wrap justify-center gap-2">
-                <Button
-                  type="button"
-                  size="sm"
-                  variant={activeCollection === 'all' ? 'default' : 'outline'}
-                  onClick={() => handleCollectionSelect('all')}
-                >
-                  {t('showAll')}
-                </Button>
-                {collectionsWithSlug.map((collection) => (
-                  <Button
-                    key={collection.slug}
-                    type="button"
-                    size="sm"
-                    variant={activeCollection === collection.slug ? 'default' : 'outline'}
-                    onClick={() => handleCollectionSelect(collection.slug)}
-                  >
-                    {collection.title}
-                  </Button>
-                ))}
-              </div>
             </div>
           </div>
 
-          <div className="mx-auto max-w-6xl">
+          {/* Content */}
+          <div className="px-4 py-4">
             {filteredCollections.length === 0 || totalMatches === 0 ? (
-              <Card className="border-border/50 bg-card/50 backdrop-blur">
-                <CardContent className="py-12 text-center text-muted-foreground">
+              <Card className="border-border/40 bg-card/50">
+                <CardContent className="py-8 text-center text-sm text-muted-foreground">
                   {t('noResults')}
                 </CardContent>
               </Card>
             ) : (
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {filteredCollections.map((collection) => {
                   const Icon = collectionIcons[collection.icon] ?? BookMarked;
                   return (
-                    <Card key={collection.slug} id={`collection-${collection.slug}`} className="border-border/50 bg-card/60 backdrop-blur">
-                      <CardHeader className="flex flex-col gap-4">
-                        <div className="flex flex-wrap items-center justify-between gap-3">
-                          <div className="flex items-center gap-3 text-left">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-primary-foreground">
-                              <Icon className="h-6 w-6" />
+                    <Card key={collection.slug} id={`collection-${collection.slug}`} className="border-border/40 bg-card/50">
+                      <CardHeader className="p-4 pb-3">
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="flex items-start gap-3 flex-1 min-w-0">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 flex-shrink-0">
+                              <Icon className="h-5 w-5 text-primary" />
                             </div>
-                            <div>
-                              <CardTitle className="text-2xl font-semibold text-foreground">{collection.title}</CardTitle>
-                              <CardDescription className="text-sm text-muted-foreground">
+                            <div className="flex-1 min-w-0">
+                              <CardTitle className="text-base md:text-lg font-semibold text-foreground">{collection.title}</CardTitle>
+                              <CardDescription className="text-xs md:text-sm text-muted-foreground mt-1">
                                 {collection.description}
                               </CardDescription>
                             </div>
                           </div>
-                          <Badge variant="secondary" className="text-xs font-semibold uppercase tracking-wide">
-                            {t('collectionCount', { count: collection.items.length })}
+                          <Badge variant="secondary" className="text-[10px] md:text-xs font-semibold flex-shrink-0">
+                            {collection.items.length}
                           </Badge>
                         </div>
                       </CardHeader>
-                      <CardContent>
-                        <div className="space-y-3">
+                      <CardContent className="p-4 pt-0">
+                        <div className="space-y-2">
                           {collection.items.map((item) => {
                             const FormatIcon = formatIcons[item.format] ?? FileText;
                             return (
@@ -356,22 +355,20 @@ export default function ResourcesPage() {
                                 href={item.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group block rounded-xl border border-border/60 bg-card/40 px-4 py-4 transition hover:border-primary/40 hover:bg-primary/5"
+                                className="group block rounded-lg border border-border/40 bg-background/50 px-3 py-2.5 transition hover:border-primary/40 hover:bg-primary/5"
                               >
-                                <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                                  <div className="space-y-1 pr-0 md:pr-6">
-                                    <p className="flex items-center gap-2 text-base font-semibold text-foreground transition group-hover:text-primary">
-                                      {item.title}
-                                      <ExternalLink className="h-4 w-4 opacity-50 group-hover:opacity-100" />
+                                <div className="flex items-start justify-between gap-3">
+                                  <div className="flex-1 min-w-0">
+                                    <p className="flex items-center gap-1.5 text-sm font-semibold text-foreground transition group-hover:text-primary">
+                                      <span className="truncate">{item.title}</span>
+                                      <ExternalLink className="h-3 w-3 opacity-50 group-hover:opacity-100 flex-shrink-0" />
                                     </p>
-                                    <p className="text-sm text-muted-foreground">{item.summary}</p>
+                                    <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{item.summary}</p>
                                   </div>
-                                  <div className="flex items-center gap-2 self-start md:self-center">
-                                    <Badge variant="outline" className="flex items-center gap-2">
-                                      <FormatIcon className="h-3.5 w-3.5" />
-                                      {formatLabel(item.format)}
-                                    </Badge>
-                                  </div>
+                                  <Badge variant="outline" className="flex items-center gap-1.5 text-[10px] flex-shrink-0 ml-2">
+                                    <FormatIcon className="h-3 w-3" />
+                                    <span className="hidden md:inline">{formatLabel(item.format)}</span>
+                                  </Badge>
                                 </div>
                               </a>
                             );
@@ -383,20 +380,21 @@ export default function ResourcesPage() {
                 })}
               </div>
             )}
-          </div>
 
-          <Card className="mt-8 border-border/60 bg-gradient-to-br from-card/80 to-muted/30 backdrop-blur">
-            <CardHeader>
-              <CardTitle>{t('searchInDoc')}</CardTitle>
-              <CardDescription className="pt-2 text-base text-muted-foreground">
-                {t('pdfHint')}
-              </CardDescription>
-            </CardHeader>
-          </Card>
+            {/* PDF Hint */}
+            <Card className="mt-4 border-border/40 bg-card/50">
+              <CardHeader className="p-4">
+                <CardTitle className="text-sm md:text-base">{t('searchInDoc')}</CardTitle>
+                <CardDescription className="text-xs md:text-sm text-muted-foreground mt-1">
+                  {t('pdfHint')}
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </div>
         </div>
 
-        <footer className="mt-20 border-t border-border/40 bg-card/30 backdrop-blur-sm">
-          <div className="container mx-auto px-4 py-8 text-center text-muted-foreground">
+        <footer className="border-t border-border/40 bg-card/30 py-4">
+          <div className="mx-auto max-w-4xl px-4 text-center text-xs text-muted-foreground">
             <p>
               Креирано од <span className="font-semibold text-foreground">Винсент Баталија</span>
             </p>

@@ -498,190 +498,197 @@ export default function NewsPage() {
   const showSkeleton = isLoading && items.length === 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
-      <div className="container mx-auto px-4 py-12 space-y-10">
-        <header className="max-w-3xl space-y-4">
-          <Badge variant="secondary" className="w-fit gap-1">
-            <Newspaper className="h-4 w-4" />
-            {t('sourceLabel')}
-          </Badge>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">{t('title')}</h1>
-          <p className="text-lg text-muted-foreground">{t('subtitle')}</p>
-        </header>
+    <div className="min-h-screen bg-background">
+      <div className="mx-auto max-w-4xl">
+        {/* Header */}
+        <div className="border-b border-border/40 bg-card/50 backdrop-blur-sm px-4 py-4 md:py-5">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-lg md:text-xl font-bold text-foreground">{t('title')}</h1>
+              <p className="hidden md:block text-sm text-muted-foreground mt-1">{t('subtitle')}</p>
+            </div>
+            <Badge variant="secondary" className="gap-1.5 text-xs">
+              <Newspaper className="h-3 w-3" />
+              {t('sourceLabel')}
+            </Badge>
+          </div>
+        </div>
 
-        <Card className="border-border/50 bg-card/60 backdrop-blur">
-          <CardContent className="space-y-6 pt-6">
-            <div className="flex flex-wrap gap-3">
-              {sourceFilters.map((filter) => {
-                const isActive = source === filter.id;
-                return (
-                  <Button
-                    key={filter.id}
-                    variant={isActive ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => setSource(filter.id)}
-                  >
-                    {filter.label}
-                  </Button>
-                );
-              })}
-              <Button
-                variant={videosOnly ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => setVideosOnly((prev) => !prev)}
-                className="gap-2"
-              >
-                <Video className="h-4 w-4" />
-                {t('videosOnly')}
+        {/* Filters & Search */}
+        <div className="border-b border-border/40 px-4 py-3 space-y-3">
+          <div className="flex flex-wrap gap-2">
+            {sourceFilters.map((filter) => {
+              const isActive = source === filter.id;
+              return (
+                <Button
+                  key={filter.id}
+                  variant={isActive ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setSource(filter.id)}
+                  className="h-8 text-xs"
+                >
+                  {filter.label}
+                </Button>
+              );
+            })}
+            <Button
+              variant={videosOnly ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => setVideosOnly((prev) => !prev)}
+              className="gap-1.5 h-8 text-xs"
+            >
+              <Video className="h-3 w-3" />
+              {t('videosOnly')}
+            </Button>
+          </div>
+
+          <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+            <div className="relative flex-1">
+              <Input
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder={t('searchPlaceholder')}
+                className="h-10 text-sm"
+              />
+            </div>
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+              {isLoading ? (
+                <span className="inline-flex items-center gap-1.5">
+                  <Loader2 className="h-3 w-3 animate-spin" />
+                  <span className="hidden md:inline">{t('refresh')}</span>
+                </span>
+              ) : (
+                <span className="hidden md:inline">{lastUpdatedLabel}</span>
+              )}
+              <Button variant="ghost" size="sm" onClick={handleRefresh} className="gap-1.5 h-7 px-2">
+                <RefreshCcw className="h-3 w-3" />
+                <span className="hidden md:inline">{t('refresh')}</span>
               </Button>
             </div>
-
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <div className="relative w-full md:max-w-sm">
-                <Input
-                  value={query}
-                  onChange={(event) => setQuery(event.target.value)}
-                  placeholder={t('searchPlaceholder')}
-                  className="h-11"
-                />
-              </div>
-              <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                {isLoading ? (
-                  <span className="inline-flex items-center gap-2">
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                    {t('refresh')}
-                  </span>
-                ) : (
-                  <span>{lastUpdatedLabel}</span>
-                )}
-                <Button variant="outline" size="sm" onClick={handleRefresh} className="gap-2">
-                  <RefreshCcw className="h-4 w-4" />
-                  {t('refresh')}
-                </Button>
-              </div>
-            </div>
-
-            {error && (
-              <Card className="border-destructive/50 bg-destructive/10">
-                <CardHeader>
-                  <CardTitle className="text-destructive">{t('error')}</CardTitle>
-                  <CardDescription className="text-destructive">
-                    {error}
-                  </CardDescription>
-                  <Button variant="destructive" size="sm" className="mt-4 w-fit" onClick={handleRefresh}>
-                    {t('retry')}
-                  </Button>
-                </CardHeader>
-              </Card>
-            )}
-
-            {!error && meta?.errors && meta.errors.length > 0 && (
-              <Card className="border-border/40 bg-muted/30">
-                <CardHeader>
-                  <CardTitle className="text-sm font-semibold text-muted-foreground">{t('error')}</CardTitle>
-                  <CardDescription className="text-muted-foreground text-sm">
-                    {meta.errors.join(' • ')}
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            )}
-          </CardContent>
-        </Card>
-
-        {showSkeleton && (
-          <div className="grid gap-6">
-            {SKELETON_PLACEHOLDERS.map((index) => (
-              <SkeletonCard key={`news-skeleton-${index}`} />
-            ))}
           </div>
-        )}
 
-        {!hasResults && !isLoading && !error && (
-          <Card className="border-border/50 bg-card/60 backdrop-blur">
-            <CardContent className="py-16 text-center text-muted-foreground text-lg">
-              {t('noResults')}
-            </CardContent>
-          </Card>
-        )}
+          {error && (
+            <Card className="border-destructive/40 bg-destructive/10">
+              <CardHeader className="p-3">
+                <CardTitle className="text-sm text-destructive">{t('error')}</CardTitle>
+                <CardDescription className="text-xs text-destructive mt-1">
+                  {error}
+                </CardDescription>
+                <Button variant="destructive" size="sm" className="mt-3 w-fit h-8 text-xs" onClick={handleRefresh}>
+                  {t('retry')}
+                </Button>
+              </CardHeader>
+            </Card>
+          )}
 
-        {hasResults && (
-          <div className="grid gap-6">
-            {items.map((item) => {
-            const publishedLabel = item.publishedAt ? t('published', { relative: formatRelativeTime(item.publishedAt) }) : '';
-            const hasVideos = item.videos.length > 0;
-            const { url: previewImage, fromVideo } = resolvePreviewAsset(item);
-              const sourceInitials = getSourceInitials(item.sourceName);
+          {!error && meta?.errors && meta.errors.length > 0 && (
+            <Card className="border-border/40 bg-muted/20">
+              <CardHeader className="p-3">
+                <CardTitle className="text-xs font-semibold text-muted-foreground">{t('error')}</CardTitle>
+                <CardDescription className="text-xs text-muted-foreground mt-1">
+                  {meta.errors.join(' • ')}
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          )}
+        </div>
 
-            return (
-              <Card key={item.id} className="border-border/50 bg-card/70 backdrop-blur">
-                <CardHeader>
-                  <div className="flex flex-col gap-4 md:flex-row md:items-stretch md:justify-between">
-                    <div className="flex-1 space-y-3">
-                      <div className="space-y-2">
-                        <CardTitle className="text-2xl leading-tight">
-                          <a href={item.link} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                            {item.title}
-                          </a>
-                        </CardTitle>
-                        <CardDescription className="text-sm text-muted-foreground">
-                          <span className="font-medium text-foreground">{item.sourceName}</span>
-                          {publishedLabel ? ` · ${publishedLabel}` : ''}
-                        </CardDescription>
-                        {item.description && (
-                          <p className="text-sm text-muted-foreground line-clamp-3">{item.description}</p>
-                        )}
-                      </div>
+        {/* Content */}
+        <div className="px-4 py-4">
+          {showSkeleton && (
+            <div className="space-y-3">
+              {SKELETON_PLACEHOLDERS.map((index) => (
+                <SkeletonCard key={`news-skeleton-${index}`} />
+              ))}
+            </div>
+          )}
 
-                      <div className="flex flex-wrap gap-2">
-                        {item.categories.slice(0, 4).map((category) => (
-                          <Badge key={`${item.id}-${category}`} variant="outline" className="text-xs">
-                            {category}
-                          </Badge>
-                        ))}
-                        {hasVideos && (
-                          <Badge variant="secondary" className="gap-1 text-xs">
-                            <PlayCircle className="h-3.5 w-3.5" />
-                            {item.videos.length}
-                          </Badge>
-                        )}
-                      </div>
+          {!hasResults && !isLoading && !error && (
+            <Card className="border-border/40 bg-card/50">
+              <CardContent className="py-8 text-center text-sm text-muted-foreground">
+                {t('noResults')}
+              </CardContent>
+            </Card>
+          )}
 
-                      <div className="flex flex-wrap gap-2 pt-2 md:pt-3">
-                        <Button asChild size="sm" className="gap-2">
-                          <Link
-                            href={item.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() => {
-                              trackEvent(AnalyticsEvents.NEWS_ARTICLE_CLICKED, {
-                                source: item.sourceId,
-                                hasCategories: item.categories.length > 0,
-                              });
-                            }}
-                          >
-                            <ExternalLink className="h-4 w-4" />
-                            {t('viewArticle')}
-                          </Link>
-                        </Button>
-                        {hasVideos && (
-                          <Button asChild size="sm" variant="outline" className="gap-2">
+          {hasResults && (
+            <div className="space-y-3">
+              {items.map((item) => {
+              const publishedLabel = item.publishedAt ? t('published', { relative: formatRelativeTime(item.publishedAt) }) : '';
+              const hasVideos = item.videos.length > 0;
+              const { url: previewImage, fromVideo } = resolvePreviewAsset(item);
+                const sourceInitials = getSourceInitials(item.sourceName);
+
+              return (
+                <Card key={item.id} className="border-border/40 bg-card/50">
+                  <CardHeader className="p-4">
+                    <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                      <div className="flex-1 space-y-2">
+                        <div className="space-y-1.5">
+                          <CardTitle className="text-base md:text-lg leading-snug">
+                            <a href={item.link} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                              {item.title}
+                            </a>
+                          </CardTitle>
+                          <CardDescription className="text-xs text-muted-foreground">
+                            <span className="font-medium text-foreground">{item.sourceName}</span>
+                            {publishedLabel ? ` · ${publishedLabel}` : ''}
+                          </CardDescription>
+                          {item.description && (
+                            <p className="text-xs text-muted-foreground line-clamp-2">{item.description}</p>
+                          )}
+                        </div>
+
+                        <div className="flex flex-wrap gap-1.5">
+                          {item.categories.slice(0, 3).map((category) => (
+                            <Badge key={`${item.id}-${category}`} variant="outline" className="text-[10px] h-5">
+                              {category}
+                            </Badge>
+                          ))}
+                          {hasVideos && (
+                            <Badge variant="secondary" className="gap-1 text-[10px] h-5">
+                              <PlayCircle className="h-3 w-3" />
+                              {item.videos.length}
+                            </Badge>
+                          )}
+                        </div>
+
+                        <div className="flex flex-wrap gap-2 pt-1">
+                          <Button asChild size="sm" className="gap-1.5 h-8 text-xs">
                             <Link
-                              href={item.videos[0]}
+                              href={item.link}
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={() => {
-                                trackEvent(AnalyticsEvents.NEWS_VIDEO_CLICKED, {
+                                trackEvent(AnalyticsEvents.NEWS_ARTICLE_CLICKED, {
                                   source: item.sourceId,
+                                  hasCategories: item.categories.length > 0,
                                 });
                               }}
                             >
-                              <PlayCircle className="h-4 w-4" />
-                              {t('watchVideo')}
+                              <ExternalLink className="h-3 w-3" />
+                              {t('viewArticle')}
                             </Link>
                           </Button>
-                        )}
+                          {hasVideos && (
+                            <Button asChild size="sm" variant="outline" className="gap-1.5 h-8 text-xs">
+                              <Link
+                                href={item.videos[0]}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={() => {
+                                  trackEvent(AnalyticsEvents.NEWS_VIDEO_CLICKED, {
+                                    source: item.sourceId,
+                                  });
+                                }}
+                              >
+                                <PlayCircle className="h-3 w-3" />
+                                {t('watchVideo')}
+                              </Link>
+                            </Button>
+                          )}
+                        </div>
                       </div>
-                    </div>
 
                     <NewsPreviewMedia
                       imageUrl={previewImage}
