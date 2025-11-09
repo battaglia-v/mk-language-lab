@@ -545,7 +545,7 @@ async function fetchArticlePreview(url: string, signal: AbortSignal): Promise<Ar
 }
 
 async function enrichPreviews(items: NewsItem[], signal: AbortSignal): Promise<void> {
-  const candidates = items.filter((item) => !(item.description && item.image)).slice(0, PREVIEW_FETCH_LIMIT);
+  const candidates = items.filter((item) => !item.description || !item.image).slice(0, PREVIEW_FETCH_LIMIT);
   const requestCache = new Map<string, ArticlePreviewResult>();
 
   const tasks = candidates.map((item) => async () => {
