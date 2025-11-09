@@ -322,60 +322,57 @@ export default function ResourcesPage() {
                 </CardContent>
               </Card>
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-0">
                 {filteredCollections.map((collection) => {
                   const Icon = collectionIcons[collection.icon] ?? BookMarked;
                   return (
-                    <Card key={collection.slug} id={`collection-${collection.slug}`} className="border-border/40 bg-card/50">
-                      <CardHeader className="p-4 pb-3">
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="flex items-start gap-3 flex-1 min-w-0">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 flex-shrink-0">
-                              <Icon className="h-5 w-5 text-primary" />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <CardTitle className="text-base md:text-lg font-semibold text-foreground">{collection.title}</CardTitle>
-                              <CardDescription className="text-xs md:text-sm text-muted-foreground mt-1">
-                                {collection.description}
-                              </CardDescription>
-                            </div>
-                          </div>
-                          <Badge variant="secondary" className="text-[10px] md:text-xs font-semibold flex-shrink-0">
-                            {collection.items.length}
-                          </Badge>
+                    <div key={collection.slug} id={`collection-${collection.slug}`} className="border-b border-border/30 last:border-b-0">
+                      {/* Section Header */}
+                      <div className="sticky top-0 z-10 flex items-center justify-between gap-3 bg-muted/50 backdrop-blur-sm px-4 py-3 border-b border-border/30">
+                        <div className="flex items-center gap-2 flex-1 min-w-0">
+                          <Icon className="h-4 w-4 text-primary flex-shrink-0" />
+                          <h2 className="text-sm font-semibold text-foreground truncate">{collection.title}</h2>
                         </div>
-                      </CardHeader>
-                      <CardContent className="p-4 pt-0">
-                        <div className="space-y-2">
-                          {collection.items.map((item) => {
-                            const FormatIcon = formatIcons[item.format] ?? FileText;
-                            return (
-                              <a
-                                key={`${collection.slug}-${item.url}`}
-                                href={item.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group block rounded-lg border border-border/40 bg-background/50 px-3 py-2.5 transition hover:border-primary/40 hover:bg-primary/5"
-                              >
-                                <div className="flex items-start justify-between gap-3">
-                                  <div className="flex-1 min-w-0">
-                                    <p className="flex items-center gap-1.5 text-sm font-semibold text-foreground transition group-hover:text-primary">
-                                      <span className="truncate">{item.title}</span>
-                                      <ExternalLink className="h-3 w-3 opacity-50 group-hover:opacity-100 flex-shrink-0" />
-                                    </p>
-                                    <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{item.summary}</p>
-                                  </div>
-                                  <Badge variant="outline" className="flex items-center gap-1.5 text-[10px] flex-shrink-0 ml-2">
-                                    <FormatIcon className="h-3 w-3" />
-                                    <span className="hidden md:inline">{formatLabel(item.format)}</span>
-                                  </Badge>
+                        <Badge variant="secondary" className="text-[10px] font-semibold flex-shrink-0">
+                          {collection.items.length}
+                        </Badge>
+                      </div>
+
+                      {/* Resource Items */}
+                      <div className="divide-y divide-border/20">
+                        {collection.items.map((item) => {
+                          const FormatIcon = formatIcons[item.format] ?? FileText;
+                          return (
+                            <a
+                              key={`${collection.slug}-${item.url}`}
+                              href={item.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="group flex items-center gap-3 py-3 px-4 transition-colors hover:bg-muted/30 active:bg-muted/50"
+                            >
+                              {/* Left: Format Icon */}
+                              <div className="flex-shrink-0">
+                                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-secondary/10">
+                                  <FormatIcon className="h-4 w-4 text-secondary" />
                                 </div>
-                              </a>
-                            );
-                          })}
-                        </div>
-                      </CardContent>
-                    </Card>
+                              </div>
+
+                              {/* Center: Title */}
+                              <div className="flex-1 min-w-0">
+                                <p className="text-sm font-medium text-foreground truncate group-hover:text-primary transition-colors">
+                                  {item.title}
+                                </p>
+                              </div>
+
+                              {/* Right: External Link Icon */}
+                              <div className="flex-shrink-0">
+                                <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                              </div>
+                            </a>
+                          );
+                        })}
+                      </div>
+                    </div>
                   );
                 })}
               </div>

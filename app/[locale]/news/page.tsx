@@ -612,98 +612,66 @@ export default function NewsPage() {
           )}
 
           {hasResults && (
-            <div className="space-y-3">
+            <div className="divide-y divide-border/30">
               {items.map((item) => {
-              const publishedLabel = item.publishedAt ? t('published', { relative: formatRelativeTime(item.publishedAt) }) : '';
-              const hasVideos = item.videos.length > 0;
-              const { url: previewImage, fromVideo } = resolvePreviewAsset(item);
-                const sourceInitials = getSourceInitials(item.sourceName);
+                const publishedLabel = item.publishedAt ? formatRelativeTime(item.publishedAt) : '';
+                const hasVideos = item.videos.length > 0;
 
-              return (
-                <Card key={item.id} className="border-border/40 bg-card/50">
-                  <CardHeader className="p-4">
-                    <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                      <div className="flex-1 space-y-2">
-                        <div className="space-y-1.5">
-                          <CardTitle className="text-base md:text-lg leading-snug">
-                            <a href={item.link} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                              {item.title}
-                            </a>
-                          </CardTitle>
-                          <CardDescription className="text-xs text-muted-foreground">
-                            <span className="font-medium text-foreground">{item.sourceName}</span>
-                            {publishedLabel ? ` · ${publishedLabel}` : ''}
-                          </CardDescription>
-                          {item.description && (
-                            <p className="text-xs text-muted-foreground line-clamp-2">{item.description}</p>
-                          )}
-                        </div>
+                return (
+                  <a
+                    key={item.id}
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      trackEvent(AnalyticsEvents.NEWS_ARTICLE_CLICKED, {
+                        source: item.sourceId,
+                        hasCategories: item.categories.length > 0,
+                      });
+                    }}
+                    className="group flex items-start gap-3 py-3 px-4 transition-colors hover:bg-muted/30 active:bg-muted/50"
+                  >
+                    {/* Left: Source Badge */}
+                    <div className="flex-shrink-0 mt-0.5">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
+                        {getSourceInitials(item.sourceName)}
+                      </div>
+                    </div>
 
-                        <div className="flex flex-wrap gap-1.5">
-                          {item.categories.slice(0, 3).map((category) => (
-                            <Badge key={`${item.id}-${category}`} variant="outline" className="text-[10px] h-5">
-                              {category}
-                            </Badge>
-                          ))}
-                          {hasVideos && (
-                            <Badge variant="secondary" className="gap-1 text-[10px] h-5">
+                    {/* Center: Content */}
+                    <div className="flex-1 min-w-0 space-y-1">
+                      <h3 className="text-sm font-semibold text-foreground line-clamp-2 leading-snug group-hover:text-primary transition-colors">
+                        {item.title}
+                      </h3>
+                      <div className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
+                        <span className="font-medium">{item.sourceName}</span>
+                        {publishedLabel && (
+                          <>
+                            <span>·</span>
+                            <span>{publishedLabel}</span>
+                          </>
+                        )}
+                        {hasVideos && (
+                          <>
+                            <span>·</span>
+                            <span className="inline-flex items-center gap-1">
                               <PlayCircle className="h-3 w-3" />
                               {item.videos.length}
-                            </Badge>
-                          )}
-                        </div>
-
-                        <div className="flex flex-wrap gap-2 pt-1">
-                          <Button asChild size="sm" className="gap-1.5 h-8 text-xs">
-                            <Link
-                              href={item.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={() => {
-                                trackEvent(AnalyticsEvents.NEWS_ARTICLE_CLICKED, {
-                                  source: item.sourceId,
-                                  hasCategories: item.categories.length > 0,
-                                });
-                              }}
-                            >
-                              <ExternalLink className="h-3 w-3" />
-                              {t('viewArticle')}
-                            </Link>
-                          </Button>
-                          {hasVideos && (
-                            <Button asChild size="sm" variant="outline" className="gap-1.5 h-8 text-xs">
-                              <Link
-                                href={item.videos[0]}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={() => {
-                                  trackEvent(AnalyticsEvents.NEWS_VIDEO_CLICKED, {
-                                    source: item.sourceId,
-                                  });
-                                }}
-                              >
-                                <PlayCircle className="h-3 w-3" />
-                                {t('watchVideo')}
-                              </Link>
-                            </Button>
-                          )}
-                        </div>
+                            </span>
+                          </>
+                        )}
                       </div>
+                    </div>
 
-                    <NewsPreviewMedia
-                      imageUrl={previewImage}
-                      sourceInitials={sourceInitials}
-                      sourceName={item.sourceName}
-                      alt={item.title}
-                      showVideoOverlay={fromVideo}
-                    />
-                  </div>
-                </CardHeader>
-              </Card>
-            );
-          })}
-          </div>
-        )}
+                    {/* Right: External Link Icon */}
+                    <div className="flex-shrink-0 mt-1">
+                      <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
 
