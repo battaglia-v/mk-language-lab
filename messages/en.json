@@ -627,9 +627,7 @@
   },
   "resources": {
     "title": "Resources",
-    "subtitle": "Handpicked by native speakers",
-    "curatedBy": "Curated by",
-    "macedonianLanguageCorner": "MLC",
+    "badge": "Handpicked by Андри · MLC",
     "search": "Search resources...",
     "viewPdf": "View PDF",
     "showAll": "All collections",

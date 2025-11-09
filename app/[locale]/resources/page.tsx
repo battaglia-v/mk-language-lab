@@ -236,9 +236,6 @@ export default function ResourcesPage() {
                 <h1 className="text-lg md:text-xl font-bold text-foreground">
                   {t('title')}
                 </h1>
-                <p className="text-xs text-muted-foreground mt-1">
-                  {t('subtitle')}
-                </p>
               </div>
               <a
                 href="https://macedonianlanguagecorner.com"
@@ -247,7 +244,7 @@ export default function ResourcesPage() {
                 className="self-start md:flex-shrink-0 inline-flex items-center gap-2 rounded-lg border border-primary/20 bg-gradient-to-r from-primary/10 to-primary/5 px-3 py-2 text-xs font-medium text-foreground hover:border-primary/40 hover:from-primary/15 hover:to-primary/10 transition-all shadow-sm hover:shadow"
               >
                 <Sparkles className="h-3.5 w-3.5 text-primary flex-shrink-0" />
-                <span className="font-semibold">Andri · MLC</span>
+                <span className="font-semibold">{t('badge')}</span>
                 <ExternalLink className="h-3 w-3 text-muted-foreground flex-shrink-0" />
               </a>
             </div>
