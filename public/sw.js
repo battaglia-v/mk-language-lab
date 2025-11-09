@@ -1,6 +1,6 @@
 // Service Worker for Macedonian Language Lab PWA
-const CACHE_NAME = 'mk-language-lab-v2'; // Updated version to invalidate old caches
-const RUNTIME_CACHE = 'mk-language-lab-runtime-v2';
+const CACHE_NAME = 'mk-language-lab-v3'; // Updated version to invalidate old caches
+const RUNTIME_CACHE = 'mk-language-lab-runtime-v3';
 
 // Core assets to cache on install
 // NOTE: '/' is intentionally excluded - next-intl middleware must handle locale redirects
@@ -13,7 +13,7 @@ const CORE_ASSETS = [
 
 // Install event - cache core assets
 self.addEventListener('install', (event) => {
-  console.log('[SW] Installing service worker v2...');
+  console.log('[SW] Installing service worker v3...');
 
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
