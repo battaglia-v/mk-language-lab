@@ -1,3 +1,5 @@
+'use client';
+
 import { Card } from '@/components/ui/card';
 import { WifiOff } from 'lucide-react';
 
@@ -13,10 +15,10 @@ export default function OfflinePage() {
 
         <div className="space-y-2">
           <h1 className="text-2xl font-bold text-foreground">
-            You're Offline
+            You&apos;re Offline
           </h1>
           <p className="text-muted-foreground">
-            It looks like you've lost your internet connection. Some features may be limited until you're back online.
+            It looks like you&apos;ve lost your internet connection. Some features may be limited until you&apos;re back online.
           </p>
         </div>
 
