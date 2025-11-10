@@ -1,6 +1,6 @@
 'use client';
 
-import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { LogIn } from 'lucide-react';
@@ -13,9 +13,10 @@ interface SignInButtonProps {
 
 export function SignInButton({ variant = 'default', size = 'default', className }: SignInButtonProps) {
   const t = useTranslations('userMenu');
+  const router = useRouter();
 
   const handleSignIn = () => {
-    signIn('google', { callbackUrl: '/' });
+    router.push('/auth/signin');
   };
 
   return (
