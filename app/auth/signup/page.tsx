@@ -1,8 +1,8 @@
 'use client';
 
-import { Suspense, useState } from 'react';
+import { useState } from 'react';
 import { signIn } from 'next-auth/react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -11,59 +11,86 @@ import { Label } from '@/components/ui/label';
 import { Chrome, ArrowLeft, Loader2 } from 'lucide-react';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
-function SignInContent() {
+export default function SignUpPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams?.get('callbackUrl') || '/';
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
     password: '',
+    confirmPassword: '',
   });
 
   const handleGoogleSignIn = () => {
-    // Track sign-in initiation
     trackEvent(AnalyticsEvents.SIGNIN_INITIATED, {
       provider: 'google',
     });
-
-    signIn('google', { callbackUrl });
+    signIn('google', { callbackUrl: '/' });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
-    if (!formData.email || !formData.password) {
-      setError('Email and password are required');
+    // Validation
+    if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
+      setError('All fields are required');
+      return;
+    }
+
+    if (formData.password.length < 8) {
+      setError('Password must be at least 8 characters');
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match');
       return;
     }
 
     setIsLoading(true);
 
     try {
-      // Track sign-in initiation
-      trackEvent(AnalyticsEvents.SIGNIN_INITIATED, {
-        provider: 'credentials',
+      // Register the user
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        }),
       });
 
-      const result = await signIn('credentials', {
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Registration failed');
+      }
+
+      // Track successful registration
+      trackEvent(AnalyticsEvents.SIGNIN_INITIATED, {
+        provider: 'credentials',
+        action: 'register',
+      });
+
+      // Auto sign-in after successful registration
+      const signInResult = await signIn('credentials', {
         email: formData.email,
         password: formData.password,
         redirect: false,
       });
 
-      if (result?.error) {
-        setError('Invalid email or password');
-        return;
+      if (signInResult?.error) {
+        throw new Error('Registration successful but sign-in failed. Please try signing in manually.');
       }
 
-      // Redirect to callback URL or home
-      router.push(callbackUrl);
+      // Redirect to home page
+      router.push('/');
       router.refresh();
     } catch (err) {
-      setError('An error occurred during sign-in');
+      setError(err instanceof Error ? err.message : 'An error occurred during registration');
     } finally {
       setIsLoading(false);
     }
@@ -83,9 +110,9 @@ function SignInContent() {
 
         <Card className="border-border/50 bg-card/60 backdrop-blur">
           <CardHeader className="space-y-3 text-center">
-            <CardTitle className="text-3xl font-bold">Sign In</CardTitle>
+            <CardTitle className="text-3xl font-bold">Create Account</CardTitle>
             <CardDescription>
-              Sign in to access your learning progress and personalized content
+              Sign up to start your Macedonian language learning journey
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -107,7 +134,7 @@ function SignInContent() {
                 <span className="w-full border-t" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-card px-2 text-muted-foreground">Or continue with email</span>
+                <span className="bg-card px-2 text-muted-foreground">Or sign up with email</span>
               </div>
             </div>
 
@@ -118,8 +145,21 @@ function SignInContent() {
               </div>
             )}
 
-            {/* Sign-In Form */}
+            {/* Sign-Up Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="name">Full Name</Label>
+                <Input
+                  id="name"
+                  type="text"
+                  placeholder="John Doe"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  disabled={isLoading}
+                  required
+                />
+              </div>
+
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -138,9 +178,22 @@ function SignInContent() {
                 <Input
                   id="password"
                   type="password"
-                  placeholder="Enter your password"
+                  placeholder="At least 8 characters"
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  disabled={isLoading}
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="confirmPassword">Confirm Password</Label>
+                <Input
+                  id="confirmPassword"
+                  type="password"
+                  placeholder="Re-enter your password"
+                  value={formData.confirmPassword}
+                  onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
                   disabled={isLoading}
                   required
                 />
@@ -155,25 +208,25 @@ function SignInContent() {
                 {isLoading ? (
                   <>
                     <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                    Signing in...
+                    Creating account...
                   </>
                 ) : (
-                  'Sign In'
+                  'Create Account'
                 )}
               </Button>
             </form>
 
-            {/* Sign-Up Link */}
+            {/* Sign-In Link */}
             <div className="text-center text-sm">
-              <span className="text-muted-foreground">Don't have an account? </span>
-              <Link href="/auth/signup" className="font-medium text-primary hover:underline">
-                Sign up
+              <span className="text-muted-foreground">Already have an account? </span>
+              <Link href="/auth/signin" className="font-medium text-primary hover:underline">
+                Sign in
               </Link>
             </div>
 
             <div className="text-center text-xs text-muted-foreground">
               <p>
-                By signing in, you agree to our{' '}
+                By creating an account, you agree to our{' '}
                 <Link href="/about" className="underline hover:text-foreground">
                   Terms of Service
                 </Link>
@@ -183,13 +236,5 @@ function SignInContent() {
         </Card>
       </div>
     </div>
-  );
-}
-
-export default function SignInPage() {
-  return (
-    <Suspense fallback={<div className="flex min-h-screen items-center justify-center">Loading...</div>}>
-      <SignInContent />
-    </Suspense>
   );
 }
