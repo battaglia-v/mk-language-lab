@@ -100,12 +100,8 @@
     "macedonian": "така-така"
   },
   {
-    "english": "great",
-    "category": "greetings",
-    "macedonian": "одлично"
-  },
-  {
     "english": "excellent",
+    "englishAlternates": ["great"],
     "category": "greetings",
     "macedonian": "одлично"
   },
@@ -871,11 +867,7 @@
   },
   {
     "english": "hand",
-    "category": "health",
-    "macedonian": "рака"
-  },
-  {
-    "english": "arm",
+    "englishAlternates": ["arm"],
     "category": "health",
     "macedonian": "рака"
   },
@@ -906,11 +898,7 @@
   },
   {
     "english": "sick",
-    "category": "health",
-    "macedonian": "болен"
-  },
-  {
-    "english": "ill",
+    "englishAlternates": ["ill"],
     "category": "health",
     "macedonian": "болен"
   },

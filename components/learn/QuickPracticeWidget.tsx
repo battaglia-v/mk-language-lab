@@ -20,6 +20,8 @@ const SESSION_TARGET = 5;
 type PracticeItem = {
   macedonian: string;
   english: string;
+  englishAlternates?: string[];  // Optional array of alternate English translations
+  macedonianAlternates?: string[];  // Optional array of alternate Macedonian translations
   category?: string;
 };
 
@@ -199,11 +201,20 @@ export function QuickPracticeWidget({
     const normalizedAnswer = normalizeAnswer(answer);
     const normalizedExpected = normalizeAnswer(expectedAnswer);
 
+    // Build array of all valid answers (primary + alternates)
+    const validAnswers = [normalizedExpected];
+    if (mode === 'mkToEn' && currentItem.englishAlternates) {
+      validAnswers.push(...currentItem.englishAlternates.map(normalizeAnswer));
+    } else if (mode === 'enToMk' && currentItem.macedonianAlternates) {
+      validAnswers.push(...currentItem.macedonianAlternates.map(normalizeAnswer));
+    }
+
     // ✅ ALWAYS increment total attempts for ALL answer submissions
     const newTotalAttempts = totalAttempts + 1;
     setTotalAttempts(newTotalAttempts);
 
-    if (normalizedAnswer === normalizedExpected) {
+    // Check if answer matches any valid option
+    if (validAnswers.some(valid => normalizedAnswer === valid)) {
       // Increment correct count
       const newCorrectCount = correctCount + 1;
       setCorrectCount(newCorrectCount);

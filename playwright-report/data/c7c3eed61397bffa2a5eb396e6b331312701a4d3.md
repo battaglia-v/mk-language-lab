@@ -62,14 +62,14 @@
             - generic [ref=e84]:
               - generic [ref=e85]: 📝
               - generic [ref=e86]:
-                - heading "велам" [level=4] [ref=e87]
+                - heading "трчам" [level=4] [ref=e87]
                 - generic [ref=e88]:
                   - generic [ref=e89]: "Pronunciation:"
-                  - generic [ref=e90]: velam
-            - paragraph [ref=e92]: I tell
+                  - generic [ref=e90]: trcham
+            - paragraph [ref=e92]: I run
           - generic [ref=e93]:
-            - paragraph [ref=e94]: Јас велам.
-            - paragraph [ref=e95]: I tell.
+            - paragraph [ref=e94]: Јас трчам.
+            - paragraph [ref=e95]: I run.
           - paragraph [ref=e96]: A new word is featured each day to expand your vocabulary.
         - generic [ref=e99]:
           - link "Daily Practice Interactive quizzes" [ref=e100] [cursor=pointer]:

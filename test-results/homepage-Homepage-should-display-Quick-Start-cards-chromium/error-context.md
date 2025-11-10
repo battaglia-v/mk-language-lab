@@ -77,7 +77,5 @@
           - text: "&"
           - link "Андри" [ref=e106] [cursor=pointer]:
             - /url: https://macedonianlanguagecorner.com
-  - button "Open Next.js Dev Tools" [ref=e112] [cursor=pointer]:
-    - img [ref=e113]
-  - alert [ref=e116]
+  - alert [ref=e107]
 ```

@@ -74,15 +74,15 @@
                   - generic:
                     - generic: 📝
                     - generic:
-                      - heading [level=4]: велам
+                      - heading [level=4]: трчам
                       - generic:
                         - generic: "Pronunciation:"
-                        - generic: velam
+                        - generic: trcham
                   - generic:
-                    - paragraph: I tell
+                    - paragraph: I run
                 - generic:
-                  - paragraph: Јас велам.
-                  - paragraph: I tell.
+                  - paragraph: Јас трчам.
+                  - paragraph: I run.
                 - paragraph: A new word is featured each day to expand your vocabulary.
         - generic:
           - generic:
