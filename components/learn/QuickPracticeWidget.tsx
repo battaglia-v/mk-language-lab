@@ -77,8 +77,10 @@ const normalizeAnswer = (value: string) =>
     .normalize('NFKC')
     .trim()
     .toLowerCase()
+    .replace(/\s*\([^)]*\)/g, '') // Remove parentheses and their contents (e.g., "(informal)")
     .replace(/[?!.,;:]/g, '')
-    .replace(/\s+/g, ' ');
+    .replace(/\s+/g, ' ')
+    .trim(); // Trim again after removing parentheses
 
 export function QuickPracticeWidget({
   title,
