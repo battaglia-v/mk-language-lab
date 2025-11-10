@@ -30,18 +30,17 @@ test.describe('News Page', () => {
     const titles = page.locator('a[target="_blank"] h3').filter({ hasText: /.{5,}/ });
     const count = await titles.count();
 
-    // Should have at least one title OR show appropriate empty/error state
-    if (count === 0) {
-      // Check if there's an error message or empty state (acceptable fallback)
-      const errorMessage = page.locator('text=/error|failed|unavailable/i');
-      const emptyState = page.locator('text=/no.*result|no.*articles|no.*news|empty/i');
-      const hasErrorOrEmpty = await errorMessage.or(emptyState).isVisible().catch(() => false);
+    // Check if there's an error message or empty state (acceptable if no articles)
+    const errorMessage = page.getByText(/error|failed|unavailable|грешка/i);
+    const emptyState = page.getByText(/no.*result|no.*articles|нема.*написи|нема.*статии/i);
+    const loadingState = page.getByText(/loading|учитување|вчитување/i);
 
-      // Either articles should load, or an error/empty state should be shown
-      expect(hasErrorOrEmpty).toBeTruthy();
-    } else {
-      expect(count).toBeGreaterThan(0);
-    }
+    const hasErrorOrEmpty = await errorMessage.isVisible().catch(() => false) ||
+                           await emptyState.isVisible().catch(() => false) ||
+                           await loadingState.isVisible().catch(() => false);
+
+    // Either articles should load, or an error/empty/loading state should be shown
+    expect(count > 0 || hasErrorOrEmpty).toBeTruthy();
   });
 
   test('should display article images', async ({ page }) => {

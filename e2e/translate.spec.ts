@@ -20,8 +20,9 @@ test.describe('Translate Page', () => {
   test('should display direction buttons', async ({ page }) => {
     // Look for compact direction buttons with arrow notation (EN → MK, MK → EN)
     // Note: These buttons have role="radio" not role="button"
-    const enToMkButton = page.getByRole('radio', { name: /EN.*→.*MK/i });
-    const mkToEnButton = page.getByRole('radio', { name: /MK.*→.*EN/i });
+    // Use exact match for the arrow character
+    const enToMkButton = page.getByRole('radio', { name: 'EN → MK' });
+    const mkToEnButton = page.getByRole('radio', { name: 'MK → EN' });
 
     // Both direction buttons should be visible
     await expect(enToMkButton).toBeVisible();
@@ -84,9 +85,10 @@ test.describe('Translate Page', () => {
     const resultArea = page.locator('[role="status"]').first();
     const resultText = await resultArea.textContent();
 
-    // Should have some content - either a translation (>10 chars) or an error message (>0 chars)
-    // Accept any non-empty result as the translation may fail due to API issues
-    expect(resultText?.length).toBeGreaterThan(0);
+    // Should have some content - accept any non-empty result (translation, error, or loading state)
+    // This is lenient because the translation API might fail in test environments
+    expect(resultText).toBeTruthy();
+    expect(resultText && resultText.length > 0).toBe(true);
 
     // Verify the result area is visible
     await expect(resultArea).toBeVisible();
@@ -141,8 +143,8 @@ test.describe('Translate Page', () => {
 
   test('should switch translation direction', async ({ page }) => {
     // Get initial active button (should be EN → MK by default)
-    const enToMkButton = page.getByRole('radio', { name: /EN.*→.*MK/i });
-    const mkToEnButton = page.getByRole('radio', { name: /MK.*→.*EN/i });
+    const enToMkButton = page.getByRole('radio', { name: 'EN → MK' });
+    const mkToEnButton = page.getByRole('radio', { name: 'MK → EN' });
 
     // Click the other direction button
     await mkToEnButton.click();
@@ -152,9 +154,9 @@ test.describe('Translate Page', () => {
     const mkToEnChecked = await mkToEnButton.getAttribute('aria-checked');
     expect(mkToEnChecked).toBe('true');
 
-    // Click swap button if exists
-    const swapButton = page.getByRole('button', { name: /swap/i });
-    if (await swapButton.isVisible()) {
+    // Click swap button - look for the button with aria-label for swap
+    const swapButton = page.getByLabel(/swap/i);
+    if (await swapButton.isVisible().catch(() => false)) {
       await swapButton.click();
       await page.waitForTimeout(500);
 
