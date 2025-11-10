@@ -397,7 +397,34 @@ export function QuickPracticeWidget({
                 {summarySubtitle}
               </p>
             </div>
-            <div className="flex items-center gap-2">
+            {/* Mobile: Simplified top bar with only Streak + Level */}
+            <div className="flex md:hidden items-center gap-2">
+              {/* Streak Display */}
+              <div className="flex items-center gap-1 rounded-full bg-orange-500/10 px-2 py-1 border border-orange-500/20">
+                <Flame className="h-4 w-4 text-orange-500" />
+                <span className="text-xs font-bold text-orange-600">{streak}</span>
+              </div>
+              {/* Level Display */}
+              {(() => {
+                const levelInfo = getLevelInfo(level);
+                return (
+                  <div className={cn("flex items-center gap-1 rounded-full px-2 py-1 border", levelInfo.bgColor, levelInfo.borderColor)}>
+                    <Shield className={cn("h-4 w-4", levelInfo.color)} />
+                    <span className={cn("text-xs font-bold", levelInfo.color)}>{levelInfo.label}</span>
+                  </div>
+                );
+              })()}
+              <button
+                type="button"
+                onClick={() => setShowSettings(!showSettings)}
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-border/40 bg-background/60 text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
+                aria-label="Toggle settings"
+              >
+                <Settings className="h-4 w-4" />
+              </button>
+            </div>
+            {/* Desktop: All badges in horizontal layout */}
+            <div className="hidden md:flex items-center gap-2">
               {/* Streak Display */}
               <div className="flex items-center gap-1 rounded-full bg-orange-500/10 px-2 py-1 border border-orange-500/20">
                 <Flame className="h-4 w-4 text-orange-500" />
@@ -432,14 +459,36 @@ export function QuickPracticeWidget({
                   />
                 ))}
               </div>
-              <button
-                type="button"
-                onClick={() => setShowSettings(!showSettings)}
-                className="md:hidden flex h-8 w-8 items-center justify-center rounded-full border border-border/40 bg-background/60 text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
-                aria-label="Toggle settings"
-              >
-                <Settings className="h-4 w-4" />
-              </button>
+            </div>
+          </div>
+          {/* Mobile: Collapsible XP & Hearts stats panel below header */}
+          <div className="md:hidden rounded-xl border border-border/30 bg-background/40 p-3">
+            <div className="flex items-center justify-between gap-3">
+              {/* XP Badge */}
+              <div className="flex items-center gap-2 flex-1">
+                <div className="flex items-center gap-1 rounded-full bg-yellow-500/10 px-2.5 py-1.5 border border-yellow-500/20">
+                  <Zap className="h-4 w-4 text-yellow-500" />
+                  <span className="text-sm font-bold text-yellow-600">{xp}</span>
+                </div>
+                <span className="text-xs text-muted-foreground">XP</span>
+              </div>
+              {/* Hearts Display */}
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-muted-foreground">Hearts</span>
+                <div className="flex items-center gap-0.5">
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <Heart
+                      key={i}
+                      className={cn(
+                        'h-4 w-4 transition-all duration-200',
+                        i < hearts
+                          ? 'fill-[#ef4444] text-[#ef4444]'
+                          : 'fill-muted text-muted'
+                      )}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
           {/* Mobile: Compact inline progress */}
