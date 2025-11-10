@@ -19,7 +19,10 @@ export function ServiceWorkerRegistration() {
 
             // Check for updates periodically
             setInterval(() => {
-              registration.update();
+              registration.update().catch((error) => {
+                console.warn('[SW] Update check failed:', error);
+                // Silently fail - this is expected if offline or during deployment
+              });
             }, 60000); // Check every minute
 
             // Handle updates
