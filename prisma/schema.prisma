@@ -53,6 +53,7 @@ model User {
   journeyProgress    JourneyProgress[]
   lessonProgress     UserLessonProgress[]
   exerciseAttempts   ExerciseAttempt[]
+  gameProgress       GameProgress?
 }
 
 model VerificationToken {
@@ -343,4 +344,22 @@ model PracticeVocabulary {
   @@index([category])
   @@index([includeInWOTD, scheduledDate])
   @@index([formality])
+}
+
+// Game Progress - gamification data (streak, XP, level, hearts)
+model GameProgress {
+  id                String   @id @default(cuid())
+  userId            String   @unique
+  streak            Int      @default(0) // consecutive days of practice
+  xp                Int      @default(0) // total experience points
+  level             String   @default("beginner") // beginner | intermediate | advanced
+  hearts            Int      @default(5) // current heart count (max 5)
+  lastPracticeDate  DateTime? // last date user practiced (for streak calculation)
+  streakUpdatedAt   DateTime? // last time streak was updated
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
