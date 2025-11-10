@@ -4,5 +4,6 @@
     "autoJobCancelation": true
   },
   "buildCommand": "npm run build",
-  "installCommand": "npm ci"
+  "installCommand": "npm ci",
+  "ignoreCommand": "exit 0"
 }
