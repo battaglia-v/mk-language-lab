@@ -88,14 +88,66 @@ Your app starts in **Development Mode** - only you can sign in!
 
 ---
 
-## Email/Password Setup (Coming Soon)
+## Email/Password Authentication
 
-Email/Password authentication will require:
-- Email service setup (Resend or SendGrid)
-- Password reset flow
-- Email verification
+Email/password authentication is now available as a universal fallback option!
 
-This will be added in Phase 2 of the auth implementation.
+### How It Works
+
+1. **Registration**: Users create an account with email and password
+2. **Password Security**: Passwords are hashed using bcryptjs with 12 salt rounds
+3. **Sign-In**: Users authenticate with their email and password
+
+### Registration Endpoint
+
+**POST `/api/auth/register`**
+
+```json
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "securepassword123"
+}
+```
+
+**Requirements:**
+- Name: minimum 2 characters
+- Email: valid email format
+- Password: minimum 8 characters
+
+**Response (Success):**
+```json
+{
+  "success": true,
+  "user": {
+    "id": "user-id",
+    "name": "John Doe",
+    "email": "john@example.com"
+  }
+}
+```
+
+### Integration
+
+Email/password authentication is automatically available through NextAuth:
+- No environment variables needed
+- Works out of the box
+- NextAuth handles the sign-in UI
+
+### Security Features
+
+- Passwords hashed with bcryptjs (12 salt rounds)
+- Email uniqueness enforced at database level
+- Auto email verification (can be enhanced later)
+- Input validation using Zod
+
+### Future Enhancements
+
+The following features can be added in future phases:
+- Email verification flow (Resend or SendGrid)
+- Password reset functionality
+- Two-factor authentication
+- Password strength requirements
 
 ---
 
@@ -135,8 +187,8 @@ This will be added in Phase 2 of the auth implementation.
 ## Current Auth Stack
 
 ✅ **Google OAuth** - Working
-✅ **Facebook OAuth** - Just added!
-⏳ **Email/Password** - Coming soon
+✅ **Facebook OAuth** - Working
+✅ **Email/Password** - Working (just added!)
 ⏳ **Apple Sign-In** - Future (for iOS App Store)
 
 ---
