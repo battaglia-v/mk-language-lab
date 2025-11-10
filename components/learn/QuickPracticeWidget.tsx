@@ -12,6 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { Dialog, DialogClose, DialogContent, DialogTrigger, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
+import { useGameProgress } from '@/hooks/useGameProgress';
 
 const ALL_CATEGORIES = 'all';
 const SESSION_TARGET = 5;
@@ -34,51 +35,6 @@ type QuickPracticeWidgetProps = {
 };
 
 const PRACTICE_ITEMS = practicePrompts as PracticeItem[];
-
-// Helper functions for streak/XP tracking
-const getStreakData = () => {
-  if (typeof window === 'undefined') return { streak: 0, lastPracticeDate: null, xp: 0 };
-  const data = localStorage.getItem('practice-streak');
-  return data ? JSON.parse(data) : { streak: 0, lastPracticeDate: null, xp: 0 };
-};
-
-const updateStreak = () => {
-  const today = new Date().toDateString();
-  const { streak, lastPracticeDate, xp } = getStreakData();
-
-  if (lastPracticeDate === today) {
-    return { streak, xp }; // Already practiced today
-  }
-
-  const yesterday = new Date(Date.now() - 86400000).toDateString();
-  const newStreak = lastPracticeDate === yesterday ? streak + 1 : 1;
-
-  localStorage.setItem('practice-streak', JSON.stringify({
-    streak: newStreak,
-    lastPracticeDate: today,
-    xp
-  }));
-
-  return { streak: newStreak, xp };
-};
-
-const addXP = (points: number) => {
-  const data = getStreakData();
-  const newXP = data.xp + points;
-
-  localStorage.setItem('practice-streak', JSON.stringify({
-    ...data,
-    xp: newXP
-  }));
-
-  return newXP;
-};
-
-const calculateLevel = (xp: number): Level => {
-  if (xp >= 500) return 'advanced';
-  if (xp >= 200) return 'intermediate';
-  return 'beginner';
-};
 
 const getLevelInfo = (level: Level) => {
   const levelConfig = {
@@ -157,9 +113,10 @@ export function QuickPracticeWidget({
   const [hearts, setHearts] = useState(5);
   const [isShaking, setIsShaking] = useState(false);
   const [showGameOverModal, setShowGameOverModal] = useState(false);
-  const [streak, setStreak] = useState(0);
-  const [xp, setXP] = useState(0);
-  const [level, setLevel] = useState<Level>('beginner');
+
+  // Use custom hook for game progress (database-backed with localStorage fallback)
+  const { streak, xp, level, updateProgress, isLoading: isProgressLoading } = useGameProgress();
+
   const celebrationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const autoAdvanceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -170,14 +127,6 @@ export function QuickPracticeWidget({
       setIsInitialized(true);
     }
   }, [isInitialized]);
-
-  // Load streak and XP data from localStorage
-  useEffect(() => {
-    const data = getStreakData();
-    setStreak(data.streak);
-    setXP(data.xp);
-    setLevel(calculateLevel(data.xp));
-  }, []);
 
   const filteredItems = useMemo(() => {
     if (category === ALL_CATEGORIES) {
@@ -240,7 +189,7 @@ export function QuickPracticeWidget({
     ? `${t('practiceCategoryLabel')}: ${formatCategory(currentItem.category)}`
     : t('practiceAllCategories');
 
-  const handleCheck = () => {
+  const handleCheck = async () => {
     if (!currentItem || !answer.trim()) {
       return;
     }
@@ -264,12 +213,8 @@ export function QuickPracticeWidget({
       }
       celebrationTimeoutRef.current = setTimeout(() => setIsCelebrating(false), 1200);
 
-      // Award XP and update streak for correct answer
-      const newXP = addXP(10);
-      setXP(newXP);
-      setLevel(calculateLevel(newXP));
-      const { streak: newStreak } = updateStreak();
-      setStreak(newStreak);
+      // Award XP and update streak for correct answer (database-backed)
+      await updateProgress({ xp: xp + 10, streak: streak + 1 });
 
       // Track correct answer
       trackEvent(AnalyticsEvents.PRACTICE_ANSWER_CORRECT, {
@@ -301,10 +246,8 @@ export function QuickPracticeWidget({
       setRevealedAnswer(expectedAnswer);
       setIsCelebrating(false);
 
-      // Award participation XP for incorrect answer
-      const newXP = addXP(5);
-      setXP(newXP);
-      setLevel(calculateLevel(newXP));
+      // Award participation XP for incorrect answer (database-backed)
+      await updateProgress({ xp: xp + 5 });
 
       // Decrease hearts and trigger shake animation
       const newHearts = Math.max(0, hearts - 1);
