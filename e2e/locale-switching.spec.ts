@@ -25,8 +25,8 @@ test.describe('Locale Switching', () => {
   test('should maintain locale across navigation', async ({ page }) => {
     await page.goto('/mk');
 
-    // Navigate to practice page
-    const practiceLink = page.getByRole('link', { name: /Daily Practice|Вежбање/i }).first();
+    // Navigate to practice page - use correct translation "Дневна Практика" not "Вежбање"
+    const practiceLink = page.getByRole('link', { name: /Daily Practice|Дневна Практика/i }).first();
     if (await practiceLink.isVisible()) {
       await practiceLink.click();
       await page.waitForURL('**/practice');

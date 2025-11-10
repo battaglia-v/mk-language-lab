@@ -27,40 +27,42 @@ test.describe('Homepage', () => {
   });
 
   test('should display Quick Start cards', async ({ page }) => {
-    // Check for Daily Practice card
-    await expect(page.getByRole('heading', { name: /Daily Practice/i })).toBeVisible();
+    // Check for Daily Practice card (English: "Daily Practice", Macedonian: "Дневна Практика")
+    await expect(page.getByRole('heading', { name: /Daily Practice|Дневна Практика/i })).toBeVisible();
 
     // Check for Practice link
-    const practiceLink = page.getByRole('link', { name: /Daily Practice/i });
+    const practiceLink = page.getByRole('link', { name: /Daily Practice|Дневна Практика/i });
     await expect(practiceLink).toBeVisible();
 
-    // Check for Resources card
-    const resourcesLink = page.getByRole('link', { name: /Resources/i });
+    // Check for Resources card (English: "Resources", Macedonian: "Ресурси")
+    const resourcesLink = page.getByRole('link', { name: /Resources|Ресурси/i });
     await expect(resourcesLink).toBeVisible();
   });
 
   test('should navigate to practice page', async ({ page }) => {
-    const practiceLink = page.getByRole('link', { name: /Daily Practice/i });
+    const practiceLink = page.getByRole('link', { name: /Daily Practice|Дневна Практика/i });
     await practiceLink.click();
 
     // Wait for navigation
     await page.waitForURL('**/practice');
 
-    // Verify we're on the practice page (actual heading is "Train your Macedonian skills")
-    await expect(page.getByRole('heading', { name: /Train.*Macedonian.*skills|Вежбај/i })).toBeVisible();
+    // Verify we're on the practice page
+    // English: "Train your Macedonian skills"
+    // Macedonian: "Вежбај ги македонските вештини"
+    await expect(page.getByRole('heading', { name: /Train.*Macedonian.*skills|Вежбај.*македонските.*вештини/i })).toBeVisible();
   });
 
   test('should navigate to resources page', async ({ page }) => {
-    const resourcesLink = page.getByRole('link', { name: /Resources/i }).first();
+    const resourcesLink = page.getByRole('link', { name: /Resources|Ресурси/i }).first();
     await resourcesLink.click();
 
     // Wait for navigation
     await page.waitForURL('**/resources');
 
-    // Verify we're on the resources page by checking for h1 with subtitle text
-    // English: "Curated Macedonian study collections and trusted references"
-    // Macedonian: "Курирани колекции за учење и доверливи македонски извори"
-    await expect(page.locator('h1')).toContainText(/Curated.*study|Курирани.*колекции/i);
+    // Verify we're on the resources page by checking for the title
+    // English: "Resources"
+    // Macedonian: "Ресурси"
+    await expect(page.getByRole('heading', { name: /Resources|Ресурси/i, level: 1 })).toBeVisible();
   });
 
   test('should have working navigation', async ({ page }) => {

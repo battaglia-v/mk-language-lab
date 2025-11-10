@@ -63,10 +63,14 @@ const saveLocalProgress = (progress: GameProgress) => {
 
 export function useGameProgress(): UseGameProgressReturn {
   const { data: session, status } = useSession();
-  const [streak, setStreak] = useState(0);
-  const [xp, setXP] = useState(0);
-  const [level, setLevel] = useState<Level>('beginner');
-  const [hearts, setHearts] = useState(5);
+
+  // Initialize with localStorage data to prevent showing 0 before load completes
+  const initialProgress = typeof window !== 'undefined' ? getLocalProgress() : { streak: 0, xp: 0, level: 'beginner' as Level, hearts: 5, lastPracticeDate: null, streakUpdatedAt: null };
+
+  const [streak, setStreak] = useState(initialProgress.streak);
+  const [xp, setXP] = useState(initialProgress.xp);
+  const [level, setLevel] = useState<Level>(initialProgress.level);
+  const [hearts, setHearts] = useState(initialProgress.hearts);
   const [isLoading, setIsLoading] = useState(true);
   const [hasMigrated, setHasMigrated] = useState(false);
   const syncTimeoutRef = useRef<NodeJS.Timeout | null>(null);

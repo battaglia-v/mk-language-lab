@@ -1,0 +1,74 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - link "Home" [ref=e4] [cursor=pointer]:
+      - /url: /mk
+      - img "Ajvar Logo" [ref=e6]
+    - navigation "Главна навигација" [ref=e16]:
+      - link "Вежбање" [ref=e17] [cursor=pointer]:
+        - /url: /mk/practice
+        - img [ref=e18]
+        - generic: Вежбање
+      - link "Преведи" [ref=e23] [cursor=pointer]:
+        - /url: /mk/translate
+        - img [ref=e25]
+        - generic: Преведи
+      - link "Вести" [ref=e29] [cursor=pointer]:
+        - /url: /mk/news
+        - img [ref=e30]
+        - generic: Вести
+      - link "Ресурси" [ref=e33] [cursor=pointer]:
+        - /url: /mk/resources
+        - img [ref=e34]
+        - generic: Ресурси
+    - button "Expand sidebar" [disabled] [ref=e37]:
+      - img [ref=e38]
+  - button "Јазик" [ref=e43]:
+    - img
+    - generic [ref=e44]: Македонски
+  - generic [ref=e46]:
+    - main [ref=e47]:
+      - generic [ref=e48]:
+        - generic [ref=e50]:
+          - heading "Преведи" [level=1] [ref=e51]
+          - generic [ref=e52]: Алатка за преведување
+        - generic [ref=e55]:
+          - generic [ref=e56]:
+            - radiogroup "Насока на превод" [ref=e57]:
+              - radio "EN → MK" [checked] [ref=e58]
+              - radio "MK → EN" [ref=e59]
+            - button "Смени јазици" [ref=e60]:
+              - img
+          - generic [ref=e61]:
+            - text: Внеси текст
+            - textbox "Внеси текст" [ref=e62]:
+              - /placeholder: Напиши реченици на англиски за превод на македонски…
+            - generic [ref=e64]: "Знаци: 0/1800"
+          - generic [ref=e65]:
+            - button "Преведи" [ref=e66]
+            - button "Исчисти" [disabled]
+          - generic [ref=e67]:
+            - generic [ref=e69]: Превод
+            - status [ref=e70]: Тука ќе се прикаже преводот.
+    - contentinfo [ref=e71]:
+      - generic [ref=e72]:
+        - generic [ref=e73]:
+          - link "Приватност" [ref=e74] [cursor=pointer]:
+            - /url: /mk/privacy
+          - generic [ref=e75]: •
+          - link "Услови" [ref=e76] [cursor=pointer]:
+            - /url: /mk/terms
+          - generic [ref=e77]: •
+          - link "Контакт" [ref=e78] [cursor=pointer]:
+            - /url: mailto:macedonianlanguagelab@gmail.com?subject=Macedonian%20Learning%20App%20-%20Contact%20Inquiry
+        - generic [ref=e80]:
+          - text: Креирано со ❤️ од
+          - link "Вини" [ref=e81] [cursor=pointer]:
+            - /url: https://vincebattaglia.com
+          - text: "&"
+          - link "Андри" [ref=e82] [cursor=pointer]:
+            - /url: https://macedonianlanguagecorner.com
+  - alert [ref=e83]
+```
