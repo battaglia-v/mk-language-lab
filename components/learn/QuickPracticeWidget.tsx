@@ -634,16 +634,17 @@ export function QuickPracticeWidget({
             </div>
           )}
 
-          {/* Prompt section - sticky at top when keyboard is visible on mobile */}
+          {/* Prompt section - Duolingo-style speech bubble */}
           <div className={cn(
-            'space-y-1.5 rounded-xl border border-border/40 bg-muted/30 p-3 md:p-4 md:rounded-2xl',
-            isInputFocused && 'md:hidden sticky top-0 z-20 bg-background shadow-md p-2'
+            'relative space-y-2 rounded-2xl bg-white dark:bg-slate-800 p-4 md:p-6 md:rounded-3xl shadow-lg border-2 border-slate-200 dark:border-slate-700',
+            isInputFocused && 'md:hidden sticky top-0 z-20 shadow-xl p-3',
+            'transition-all duration-200 hover:shadow-xl'
           )}>
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{promptLabel}</p>
-            <p className={cn('break-words font-semibold text-foreground', isModalVariant ? 'text-3xl' : isInputFocused ? 'text-lg' : 'text-xl md:text-2xl')}>
+            <p className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{promptLabel}</p>
+            <p className={cn('break-words font-bold text-slate-900 dark:text-white leading-tight', isModalVariant ? 'text-4xl' : isInputFocused ? 'text-xl' : 'text-2xl md:text-3xl')}>
               {promptValue}
             </p>
-            <Badge variant="secondary" className={cn('mt-2 w-fit text-xs', isInputFocused && 'mt-1')}>
+            <Badge variant="secondary" className={cn('mt-2 w-fit text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border-none', isInputFocused && 'mt-1')}>
               {categoryLabel}
             </Badge>
           </div>
@@ -656,7 +657,13 @@ export function QuickPracticeWidget({
                 onFocus={() => setIsInputFocused(true)}
                 onBlur={() => setIsInputFocused(false)}
                 placeholder={placeholder}
-                className={cn('rounded-xl border-border/40 bg-background/80', isModalVariant ? 'h-14 text-xl' : isInputFocused ? 'h-10 text-base' : 'h-11 text-base md:h-12 md:text-lg', 'pr-10')}
+                className={cn(
+                  'rounded-2xl border-2 border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white',
+                  'focus:border-[#58CC02] focus:ring-4 focus:ring-[#58CC02]/20 transition-all duration-200',
+                  'font-medium placeholder:text-slate-400',
+                  isModalVariant ? 'h-14 text-xl' : isInputFocused ? 'h-11 text-base' : 'h-12 text-base md:h-14 md:text-lg',
+                  'pr-10'
+                )}
                 aria-label={placeholder}
                 disabled={!isReady}
               />
@@ -672,9 +679,21 @@ export function QuickPracticeWidget({
               </button>
             </div>
 
-            {/* Mobile: Simplified 2-button layout */}
-            <div className="md:hidden flex flex-col gap-2">
-              <Button ref={checkButtonRef} type="submit" size="lg" className={cn('w-full text-base font-semibold', isInputFocused ? 'h-10' : 'h-12')} disabled={!isReady || !answer.trim()}>
+            {/* Mobile: Duolingo-style chunky check button */}
+            <div className="md:hidden flex flex-col gap-3">
+              <Button
+                ref={checkButtonRef}
+                type="submit"
+                size="lg"
+                className={cn(
+                  'w-full text-base font-bold uppercase tracking-wide shadow-lg hover:shadow-xl transition-all duration-200',
+                  isInputFocused ? 'h-11' : 'h-14',
+                  'bg-[#58CC02] hover:bg-[#4CAF02] text-white border-b-4 border-[#4CAF02] active:border-b-0 active:mt-1',
+                  'rounded-2xl hover:-translate-y-0.5 active:translate-y-0',
+                  'disabled:bg-slate-300 disabled:border-slate-400 disabled:text-slate-500 disabled:hover:translate-y-0'
+                )}
+                disabled={!isReady || !answer.trim()}
+              >
                 {t('checkAnswer')}
               </Button>
               {!isInputFocused && (
@@ -705,8 +724,18 @@ export function QuickPracticeWidget({
             </div>
 
             {/* Desktop: Full 4-button grid */}
-            <div className="hidden md:grid grid-cols-1 gap-2 sm:grid-cols-2">
-              <Button type="submit" size={isModalVariant ? 'lg' : 'default'} className="w-full gap-2" disabled={!isReady || !answer.trim()}>
+            <div className="hidden md:grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <Button
+                type="submit"
+                size={isModalVariant ? 'lg' : 'default'}
+                className={cn(
+                  'w-full gap-2 font-bold uppercase tracking-wide shadow-lg hover:shadow-xl transition-all duration-200',
+                  'bg-[#58CC02] hover:bg-[#4CAF02] text-white border-b-4 border-[#4CAF02] active:border-b-0',
+                  'rounded-2xl hover:-translate-y-0.5 active:translate-y-0 h-12',
+                  'disabled:bg-slate-300 disabled:border-slate-400 disabled:text-slate-500 disabled:hover:translate-y-0'
+                )}
+                disabled={!isReady || !answer.trim()}
+              >
                 {t('checkAnswer')}
               </Button>
               <Button
@@ -747,21 +776,25 @@ export function QuickPracticeWidget({
           {feedback && isReady ? (
             <div
               className={cn(
-                'rounded-xl px-4 py-3 font-semibold flex items-center gap-2',
+                'rounded-2xl px-5 py-4 font-bold text-lg flex items-center gap-3 shadow-lg border-2',
                 feedback === 'correct'
-                  ? 'bg-[#22c55e] text-white'
-                  : 'bg-[#ef4444] text-white',
+                  ? 'bg-[#D7FFB8] dark:bg-[#58CC02] border-[#58CC02] text-[#58A700] dark:text-white'
+                  : 'bg-[#FFC5C5] dark:bg-[#EA2B2B] border-[#EA2B2B] text-[#EA2B2B] dark:text-white',
                 isShaking && feedback === 'incorrect' && 'animate-shake'
               )}
             >
               {feedback === 'correct' ? (
                 <>
-                  <Check className="h-5 w-5 flex-shrink-0" />
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#58CC02] dark:bg-white flex-shrink-0">
+                    <Check className="h-5 w-5 text-white dark:text-[#58CC02]" />
+                  </div>
                   <span>{t('correctAnswer')}</span>
                 </>
               ) : (
                 <>
-                  <XCircle className="h-5 w-5 flex-shrink-0" />
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#EA2B2B] dark:bg-white flex-shrink-0">
+                    <XCircle className="h-5 w-5 text-white dark:text-[#EA2B2B]" />
+                  </div>
                   <span>{t('incorrectAnswer', { answer: revealedAnswer })}</span>
                 </>
               )}
