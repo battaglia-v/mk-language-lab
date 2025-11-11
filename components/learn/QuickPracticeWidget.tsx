@@ -124,7 +124,6 @@ export function QuickPracticeWidget({
 
   const celebrationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const autoAdvanceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const checkButtonRef = useRef<HTMLButtonElement>(null);
 
   // Initialize with random index after mount to avoid hydration mismatch
   useEffect(() => {
@@ -179,20 +178,6 @@ export function QuickPracticeWidget({
       }
     };
   }, []);
-
-  // Scroll check button into view when keyboard opens
-  useEffect(() => {
-    if (isInputFocused && checkButtonRef.current) {
-      // Small delay to let keyboard fully open
-      setTimeout(() => {
-        checkButtonRef.current?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest',
-          inline: 'nearest'
-        });
-      }, 300);
-    }
-  }, [isInputFocused]);
 
   const currentItem =
     currentIndex >= 0 && currentIndex < filteredItems.length ? filteredItems[currentIndex] : undefined;
@@ -426,31 +411,38 @@ export function QuickPracticeWidget({
                 {summarySubtitle}
               </p>
             </div>
-            {/* Mobile: Simplified top bar with only Streak + Level */}
-            <div className="flex md:hidden items-center gap-2">
+            {/* Mobile: Duolingo-style minimal header - only Streak + Hearts when keyboard open */}
+            <div className="flex md:hidden items-center gap-1.5">
               {/* Streak Display */}
               <div className="flex items-center gap-1 rounded-full bg-orange-500/10 px-2 py-1 border border-orange-500/20">
-                <Flame className="h-4 w-4 text-orange-500" />
+                <Flame className="h-3.5 w-3.5 text-orange-500" />
                 <span className="text-xs font-bold text-orange-600">{streak}</span>
               </div>
-              {/* Level Display */}
-              {(() => {
-                const levelInfo = getLevelInfo(level);
-                return (
-                  <div className={cn("flex items-center gap-1 rounded-full px-2 py-1 border", levelInfo.bgColor, levelInfo.borderColor)}>
-                    <Shield className={cn("h-4 w-4", levelInfo.color)} />
-                    <span className={cn("text-xs font-bold", levelInfo.color)}>{levelInfo.label}</span>
-                  </div>
-                );
-              })()}
-              <button
-                type="button"
-                onClick={() => setShowSettings(!showSettings)}
-                className="flex h-8 w-8 items-center justify-center rounded-full border border-border/40 bg-background/60 text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
-                aria-label="Toggle settings"
-              >
-                <Settings className="h-4 w-4" />
-              </button>
+              {/* Hearts Display - always visible like Duolingo */}
+              <div className="flex items-center gap-0.5">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <Heart
+                    key={i}
+                    className={cn(
+                      'h-4 w-4 transition-all duration-200',
+                      i < hearts
+                        ? 'fill-[#ef4444] text-[#ef4444]'
+                        : 'fill-muted text-muted'
+                    )}
+                  />
+                ))}
+              </div>
+              {/* Settings icon only when keyboard closed */}
+              {!isInputFocused && (
+                <button
+                  type="button"
+                  onClick={() => setShowSettings(!showSettings)}
+                  className="flex h-7 w-7 items-center justify-center rounded-full border border-border/40 bg-background/60 text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors ml-auto"
+                  aria-label="Toggle settings"
+                >
+                  <MoreVertical className="h-3.5 w-3.5" />
+                </button>
+              )}
             </div>
             {/* Desktop: All badges in horizontal layout */}
             <div className="hidden md:flex items-center gap-2">
@@ -490,35 +482,23 @@ export function QuickPracticeWidget({
               </div>
             </div>
           </div>
-          {/* Mobile: Collapsible XP & Hearts stats panel below header - hidden when keyboard is visible */}
+          {/* Mobile: Secondary stats shown only when keyboard closed */}
           {!isInputFocused && (
-            <div className="md:hidden rounded-xl border border-border/30 bg-background/40 p-3">
-              <div className="flex items-center justify-between gap-3">
-                {/* XP Badge */}
-                <div className="flex items-center gap-2 flex-1">
-                  <div className="flex items-center gap-1 rounded-full bg-yellow-500/10 px-2.5 py-1.5 border border-yellow-500/20">
-                    <Zap className="h-4 w-4 text-yellow-500" />
-                    <span className="text-sm font-bold text-yellow-600">{xp}</span>
+            <div className="md:hidden flex items-center gap-2">
+              {/* Level Badge */}
+              {(() => {
+                const levelInfo = getLevelInfo(level);
+                return (
+                  <div className={cn("flex items-center gap-1 rounded-full px-2 py-1 border text-xs", levelInfo.bgColor, levelInfo.borderColor)}>
+                    <Shield className={cn("h-3.5 w-3.5", levelInfo.color)} />
+                    <span className={cn("font-bold", levelInfo.color)}>{levelInfo.label}</span>
                   </div>
-                  <span className="text-xs text-muted-foreground">XP</span>
-                </div>
-                {/* Hearts Display */}
-                <div className="flex items-center gap-2">
-                  <span className="text-xs text-muted-foreground">Hearts</span>
-                  <div className="flex items-center gap-0.5">
-                    {Array.from({ length: 5 }, (_, i) => (
-                      <Heart
-                        key={i}
-                        className={cn(
-                          'h-4 w-4 transition-all duration-200',
-                          i < hearts
-                            ? 'fill-[#ef4444] text-[#ef4444]'
-                            : 'fill-muted text-muted'
-                        )}
-                      />
-                    ))}
-                  </div>
-                </div>
+                );
+              })()}
+              {/* XP Badge */}
+              <div className="flex items-center gap-1 rounded-full bg-yellow-500/10 px-2 py-1 border border-yellow-500/20">
+                <Zap className="h-3.5 w-3.5 text-yellow-500" />
+                <span className="text-xs font-bold text-yellow-600">{xp} XP</span>
               </div>
             </div>
           )}
@@ -649,7 +629,13 @@ export function QuickPracticeWidget({
             </Badge>
           </div>
 
-          <form className={cn('space-y-2 md:space-y-4', isInputFocused && 'md:hidden space-y-1.5')} onSubmit={handleSubmit}>
+          <form
+            className={cn(
+              'space-y-2 md:space-y-4',
+              isInputFocused && 'md:hidden space-y-1.5 pb-6'
+            )}
+            onSubmit={handleSubmit}
+          >
             <div className="relative">
               <Input
                 value={answer}
@@ -682,7 +668,6 @@ export function QuickPracticeWidget({
             {/* Mobile: Duolingo-style chunky check button */}
             <div className="md:hidden flex flex-col gap-3">
               <Button
-                ref={checkButtonRef}
                 type="submit"
                 size="lg"
                 className={cn(
