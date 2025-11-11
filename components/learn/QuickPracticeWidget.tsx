@@ -124,6 +124,7 @@ export function QuickPracticeWidget({
 
   const celebrationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const autoAdvanceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const checkButtonRef = useRef<HTMLButtonElement>(null);
 
   // Initialize with random index after mount to avoid hydration mismatch
   useEffect(() => {
@@ -178,6 +179,20 @@ export function QuickPracticeWidget({
       }
     };
   }, []);
+
+  // Scroll check button into view when keyboard opens
+  useEffect(() => {
+    if (isInputFocused && checkButtonRef.current) {
+      // Small delay to let keyboard fully open
+      setTimeout(() => {
+        checkButtonRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'nearest'
+        });
+      }, 300);
+    }
+  }, [isInputFocused]);
 
   const currentItem =
     currentIndex >= 0 && currentIndex < filteredItems.length ? filteredItems[currentIndex] : undefined;
@@ -622,18 +637,18 @@ export function QuickPracticeWidget({
           {/* Prompt section - sticky at top when keyboard is visible on mobile */}
           <div className={cn(
             'space-y-1.5 rounded-xl border border-border/40 bg-muted/30 p-3 md:p-4 md:rounded-2xl',
-            isInputFocused && 'md:hidden sticky top-0 z-20 bg-background shadow-md'
+            isInputFocused && 'md:hidden sticky top-0 z-20 bg-background shadow-md p-2'
           )}>
             <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{promptLabel}</p>
-            <p className={cn('break-words font-semibold text-foreground', isModalVariant ? 'text-3xl' : 'text-xl md:text-2xl')}>
+            <p className={cn('break-words font-semibold text-foreground', isModalVariant ? 'text-3xl' : isInputFocused ? 'text-lg' : 'text-xl md:text-2xl')}>
               {promptValue}
             </p>
-            <Badge variant="secondary" className="mt-2 w-fit text-xs">
+            <Badge variant="secondary" className={cn('mt-2 w-fit text-xs', isInputFocused && 'mt-1')}>
               {categoryLabel}
             </Badge>
           </div>
 
-          <form className="space-y-2 md:space-y-4" onSubmit={handleSubmit}>
+          <form className={cn('space-y-2 md:space-y-4', isInputFocused && 'md:hidden space-y-1.5')} onSubmit={handleSubmit}>
             <div className="relative">
               <Input
                 value={answer}
@@ -641,7 +656,7 @@ export function QuickPracticeWidget({
                 onFocus={() => setIsInputFocused(true)}
                 onBlur={() => setIsInputFocused(false)}
                 placeholder={placeholder}
-                className={cn('rounded-xl border-border/40 bg-background/80', isModalVariant ? 'h-14 text-xl' : 'h-11 text-base md:h-12 md:text-lg', 'pr-10')}
+                className={cn('rounded-xl border-border/40 bg-background/80', isModalVariant ? 'h-14 text-xl' : isInputFocused ? 'h-10 text-base' : 'h-11 text-base md:h-12 md:text-lg', 'pr-10')}
                 aria-label={placeholder}
                 disabled={!isReady}
               />
@@ -659,32 +674,34 @@ export function QuickPracticeWidget({
 
             {/* Mobile: Simplified 2-button layout */}
             <div className="md:hidden flex flex-col gap-2">
-              <Button type="submit" size="lg" className="w-full h-12 text-base font-semibold" disabled={!isReady || !answer.trim()}>
+              <Button ref={checkButtonRef} type="submit" size="lg" className={cn('w-full text-base font-semibold', isInputFocused ? 'h-10' : 'h-12')} disabled={!isReady || !answer.trim()}>
                 {t('checkAnswer')}
               </Button>
-              <div className="flex gap-2">
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleReveal}
-                  className="flex-1 gap-1.5 text-xs"
-                  disabled={!isReady}
-                >
-                  <Eye className="h-3.5 w-3.5" />
-                  {t('practiceRevealAnswer')}
-                </Button>
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleReset}
-                  className="flex-1 gap-1.5 text-xs"
-                  disabled={!isReady && !answer}
-                >
-                  {t('practiceReset')}
-                </Button>
-              </div>
+              {!isInputFocused && (
+                <div className="flex gap-2">
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleReveal}
+                    className="flex-1 gap-1.5 text-xs"
+                    disabled={!isReady}
+                  >
+                    <Eye className="h-3.5 w-3.5" />
+                    {t('practiceRevealAnswer')}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleReset}
+                    className="flex-1 gap-1.5 text-xs"
+                    disabled={!isReady && !answer}
+                  >
+                    {t('practiceReset')}
+                  </Button>
+                </div>
+              )}
             </div>
 
             {/* Desktop: Full 4-button grid */}
