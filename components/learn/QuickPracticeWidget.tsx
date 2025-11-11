@@ -2,9 +2,9 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { RefreshCcw, Eye, Sparkles, PlayCircle, X, Trophy, TrendingUp, Settings, MoreVertical, Heart, Check, XCircle, Flame, Zap, Shield } from 'lucide-react';
+import { RefreshCcw, Eye, Sparkles, PlayCircle, X, Trophy, TrendingUp, MoreVertical, Heart, Check, XCircle, Flame, Zap, Shield } from 'lucide-react';
 import practicePrompts from '@/data/practice-vocabulary.json';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -121,7 +121,7 @@ export function QuickPracticeWidget({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Use custom hook for game progress (database-backed with localStorage fallback)
-  const { streak, xp, level, updateProgress, isLoading: isProgressLoading } = useGameProgress();
+  const { streak, xp, level, updateProgress } = useGameProgress();
 
   const celebrationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const autoAdvanceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -435,7 +435,7 @@ export function QuickPracticeWidget({
                     className={cn(
                       'h-4 w-4 transition-all duration-200',
                       i < hearts
-                        ? 'fill-[#ef4444] text-[#ef4444]'
+                        ? 'fill-[var(--brand-red)] text-[var(--brand-red)]'
                         : 'fill-muted text-muted'
                     )}
                   />
@@ -483,7 +483,7 @@ export function QuickPracticeWidget({
                     className={cn(
                       'h-5 w-5 transition-all duration-200',
                       i < hearts
-                        ? 'fill-[#ef4444] text-[#ef4444]'
+                        ? 'fill-[var(--brand-red)] text-[var(--brand-red)]'
                         : 'fill-muted text-muted'
                     )}
                   />
@@ -665,7 +665,7 @@ export function QuickPracticeWidget({
                 placeholder={placeholder}
                 className={cn(
                   'rounded-2xl border-2 border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white',
-                  'focus:border-[#58CC02] focus:ring-4 focus:ring-[#58CC02]/20 transition-all duration-200',
+                  'focus:border-[var(--brand-green)] focus:ring-4 focus:ring-[color:rgb(47_191_113_/_0.25)] transition-all duration-200',
                   'font-medium placeholder:text-slate-400',
                   isModalVariant ? 'h-14 text-xl' : isInputFocused ? 'h-11 text-base' : 'h-12 text-base md:h-14 md:text-lg',
                   'pr-10'
@@ -693,7 +693,7 @@ export function QuickPracticeWidget({
                 className={cn(
                   'w-full text-base font-bold uppercase tracking-wide shadow-lg hover:shadow-xl transition-all duration-200',
                   isInputFocused ? 'h-11' : 'h-14',
-                  'bg-[#58CC02] hover:bg-[#4CAF02] text-white border-b-4 border-[#4CAF02] active:border-b-0 active:mt-1',
+                  'bg-[var(--brand-green)] hover:bg-[var(--brand-green-dark)] text-white border-b-4 border-[var(--brand-green-dark)] active:border-b-0 active:mt-1',
                   'rounded-2xl hover:-translate-y-0.5 active:translate-y-0',
                   'disabled:bg-slate-300 disabled:border-slate-400 disabled:text-slate-500 disabled:hover:translate-y-0'
                 )}
@@ -735,7 +735,7 @@ export function QuickPracticeWidget({
                 size={isModalVariant ? 'lg' : 'default'}
                 className={cn(
                   'w-full gap-2 font-bold uppercase tracking-wide shadow-lg hover:shadow-xl transition-all duration-200',
-                  'bg-[#58CC02] hover:bg-[#4CAF02] text-white border-b-4 border-[#4CAF02] active:border-b-0',
+                  'bg-[var(--brand-green)] hover:bg-[var(--brand-green-dark)] text-white border-b-4 border-[var(--brand-green-dark)] active:border-b-0',
                   'rounded-2xl hover:-translate-y-0.5 active:translate-y-0 h-12',
                   'disabled:bg-slate-300 disabled:border-slate-400 disabled:text-slate-500 disabled:hover:translate-y-0'
                 )}
@@ -783,22 +783,22 @@ export function QuickPracticeWidget({
               className={cn(
                 'rounded-2xl px-5 py-4 font-bold text-lg flex items-center gap-3 shadow-lg border-2',
                 feedback === 'correct'
-                  ? 'bg-[#D7FFB8] dark:bg-[#58CC02] border-[#58CC02] text-[#58A700] dark:text-white'
-                  : 'bg-[#FFC5C5] dark:bg-[#EA2B2B] border-[#EA2B2B] text-[#EA2B2B] dark:text-white',
+                  ? 'bg-[var(--brand-mint)] dark:bg-[var(--brand-green)] border-[var(--brand-green)] text-[var(--brand-green-dark)] dark:text-white'
+                  : 'bg-[var(--brand-rose)] dark:bg-[var(--brand-red)] border-[var(--brand-red)] text-[var(--brand-red)] dark:text-white',
                 isShaking && feedback === 'incorrect' && 'animate-shake'
               )}
             >
               {feedback === 'correct' ? (
                 <>
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#58CC02] dark:bg-white flex-shrink-0">
-                    <Check className="h-5 w-5 text-white dark:text-[#58CC02]" />
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--brand-green)] dark:bg-white flex-shrink-0">
+                    <Check className="h-5 w-5 text-white dark:text-[var(--brand-green)]" />
                   </div>
                   <span>{t('correctAnswer')}</span>
                 </>
               ) : (
                 <>
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#EA2B2B] dark:bg-white flex-shrink-0">
-                    <XCircle className="h-5 w-5 text-white dark:text-[#EA2B2B]" />
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--brand-red)] dark:bg-white flex-shrink-0">
+                    <XCircle className="h-5 w-5 text-white dark:text-[var(--brand-red)]" />
                   </div>
                   <span>{t('incorrectAnswer', { answer: revealedAnswer })}</span>
                 </>
@@ -860,7 +860,7 @@ export function QuickPracticeWidget({
                     style={{
                       left: `${Math.random() * 100}%`,
                       animationDelay: `${Math.random() * 3}s`,
-                      backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6'][Math.floor(Math.random() * 5)],
+                      backgroundColor: ['#2fbf71', '#f7c948', '#d7263d', '#4c1d95', '#0ea5e9'][Math.floor(Math.random() * 5)],
                     }}
                   />
                 ))}
@@ -919,8 +919,8 @@ export function QuickPracticeWidget({
         <Dialog open={showGameOverModal} onOpenChange={setShowGameOverModal}>
           <DialogContent className="max-w-md">
             <DialogHeader className="relative z-10">
-              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#ef4444]/20 to-[#ef4444]/10">
-                <Heart className="h-8 w-8 text-[#ef4444]" />
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[rgba(215,38,61,0.2)] to-[rgba(215,38,61,0.1)]">
+                <Heart className="h-8 w-8 text-[var(--brand-red)]" />
               </div>
               <DialogTitle className="text-center text-2xl">
                 {t('practiceGameOverTitle') || 'Out of Hearts!'}
@@ -1117,7 +1117,7 @@ export function QuickPracticeWidget({
                   style={{
                     left: `${Math.random() * 100}%`,
                     animationDelay: `${Math.random() * 3}s`,
-                    backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6'][Math.floor(Math.random() * 5)],
+                    backgroundColor: ['#2fbf71', '#f7c948', '#d7263d', '#4c1d95', '#0ea5e9'][Math.floor(Math.random() * 5)],
                   }}
                 />
               ))}
@@ -1176,8 +1176,8 @@ export function QuickPracticeWidget({
       <Dialog open={showGameOverModal} onOpenChange={setShowGameOverModal}>
         <DialogContent className="max-w-md">
           <DialogHeader className="relative z-10">
-            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#ef4444]/20 to-[#ef4444]/10">
-              <Heart className="h-8 w-8 text-[#ef4444]" />
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[rgba(215,38,61,0.2)] to-[rgba(215,38,61,0.1)]">
+              <Heart className="h-8 w-8 text-[var(--brand-red)]" />
             </div>
             <DialogTitle className="text-center text-2xl">
               {t('practiceGameOverTitle') || 'Out of Hearts!'}

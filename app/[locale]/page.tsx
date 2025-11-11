@@ -2,8 +2,6 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
 import { WordOfTheDay } from '@/components/learn/WordOfTheDay';
 import { WelcomeBanner } from '@/components/WelcomeBanner';
 import {
@@ -49,10 +47,10 @@ export default function HomePage() {
       <section className="w-full">
         <div className="mx-auto max-w-4xl px-4 py-3">
           <div className="grid grid-cols-2 gap-3 md:gap-4">
-            {/* Practice Button - Duolingo Green */}
+            {/* Practice Button - Primary CTA */}
             <Link
               href={buildHref('/practice')}
-              className="block bg-[#58CC02] hover:bg-[#4CAF02] text-white border-b-4 border-[#4CAF02] active:border-b-0 rounded-2xl p-3 md:p-5 text-center shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:mt-1"
+              className="block bg-[var(--brand-green)] hover:bg-[var(--brand-green-dark)] text-white border-b-4 border-[var(--brand-green-dark)] active:border-b-0 rounded-2xl p-3 md:p-5 text-center shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:mt-1"
             >
               <div className="flex flex-col items-center gap-2 md:gap-3">
                 <RefreshCw className="h-7 w-7 md:h-9 md:w-9" />
@@ -65,10 +63,10 @@ export default function HomePage() {
               </div>
             </Link>
 
-            {/* Resources Button - Orange */}
+            {/* Resources Button - Secondary CTA */}
             <Link
               href={buildHref('/resources')}
-              className="block bg-[#FF9600] hover:bg-[#E58600] text-white border-b-4 border-[#E58600] active:border-b-0 rounded-2xl p-3 md:p-5 text-center shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:mt-1"
+              className="block bg-[var(--brand-gold)] hover:bg-[var(--brand-gold-dark)] text-[#1f1403] border-b-4 border-[var(--brand-gold-dark)] active:border-b-0 rounded-2xl p-3 md:p-5 text-center shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:mt-1"
             >
               <div className="flex flex-col items-center gap-2 md:gap-3">
                 <Library className="h-7 w-7 md:h-9 md:w-9" />

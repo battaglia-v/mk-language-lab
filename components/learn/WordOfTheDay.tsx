@@ -19,12 +19,13 @@ type WordOfTheDayData = {
 
 export function WordOfTheDay() {
   const t = useTranslations('wordOfTheDay');
+  type WordOfDayKey = Parameters<typeof t>[0];
   const [word, setWord] = useState<WordOfTheDayData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const translateWithFallback = (key: string, fallback: string) => {
-    const value = t(key as any);
+  const translateWithFallback = (key: WordOfDayKey, fallback: string) => {
+    const value = t(key);
     return value === key ? fallback : value;
   };
 
