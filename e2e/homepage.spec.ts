@@ -35,7 +35,8 @@ test.describe('Homepage', () => {
     await expect(practiceLink).toBeVisible();
 
     // Check for Resources card (English: "Resources", Macedonian: "Ресурси")
-    const resourcesLink = page.getByRole('link', { name: /Resources|Ресурси/i });
+    // Use .last() to get the card link (not the sidebar link)
+    const resourcesLink = page.getByRole('link', { name: /Resources|Ресурси/i }).last();
     await expect(resourcesLink).toBeVisible();
   });
 
