@@ -118,6 +118,7 @@ export function QuickPracticeWidget({
   const [isShaking, setIsShaking] = useState(false);
   const [showGameOverModal, setShowGameOverModal] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Use custom hook for game progress (database-backed with localStorage fallback)
   const { streak, xp, level, updateProgress, isLoading: isProgressLoading } = useGameProgress();
@@ -195,27 +196,31 @@ export function QuickPracticeWidget({
     : t('practiceAllCategories');
 
   const handleCheck = async () => {
-    if (!currentItem || !answer.trim()) {
+    if (!currentItem || !answer.trim() || isSubmitting) {
       return;
     }
 
-    const normalizedAnswer = normalizeAnswer(answer);
-    const normalizedExpected = normalizeAnswer(expectedAnswer);
+    // Prevent double-clicks by setting submitting state
+    setIsSubmitting(true);
 
-    // Build array of all valid answers (primary + alternates)
-    const validAnswers = [normalizedExpected];
-    if (mode === 'mkToEn' && currentItem.englishAlternates) {
-      validAnswers.push(...currentItem.englishAlternates.map(normalizeAnswer));
-    } else if (mode === 'enToMk' && currentItem.macedonianAlternates) {
-      validAnswers.push(...currentItem.macedonianAlternates.map(normalizeAnswer));
-    }
+    try {
+      const normalizedAnswer = normalizeAnswer(answer);
+      const normalizedExpected = normalizeAnswer(expectedAnswer);
 
-    // ✅ ALWAYS increment total attempts for ALL answer submissions
-    const newTotalAttempts = totalAttempts + 1;
-    setTotalAttempts(newTotalAttempts);
+      // Build array of all valid answers (primary + alternates)
+      const validAnswers = [normalizedExpected];
+      if (mode === 'mkToEn' && currentItem.englishAlternates) {
+        validAnswers.push(...currentItem.englishAlternates.map(normalizeAnswer));
+      } else if (mode === 'enToMk' && currentItem.macedonianAlternates) {
+        validAnswers.push(...currentItem.macedonianAlternates.map(normalizeAnswer));
+      }
 
-    // Check if answer matches any valid option
-    if (validAnswers.some(valid => normalizedAnswer === valid)) {
+      // ✅ ALWAYS increment total attempts for ALL answer submissions
+      const newTotalAttempts = totalAttempts + 1;
+      setTotalAttempts(newTotalAttempts);
+
+      // Check if answer matches any valid option
+      if (validAnswers.some(valid => normalizedAnswer === valid)) {
       // Increment correct count
       const newCorrectCount = correctCount + 1;
       setCorrectCount(newCorrectCount);
@@ -290,6 +295,10 @@ export function QuickPracticeWidget({
       if (autoAdvanceTimeoutRef.current) {
         clearTimeout(autoAdvanceTimeoutRef.current);
       }
+    }
+    } finally {
+      // Always reset submitting state to allow next submission
+      setIsSubmitting(false);
     }
   };
 
@@ -677,7 +686,7 @@ export function QuickPracticeWidget({
                   'rounded-2xl hover:-translate-y-0.5 active:translate-y-0',
                   'disabled:bg-slate-300 disabled:border-slate-400 disabled:text-slate-500 disabled:hover:translate-y-0'
                 )}
-                disabled={!isReady || !answer.trim()}
+                disabled={!isReady || !answer.trim() || isSubmitting}
               >
                 {t('checkAnswer')}
               </Button>
@@ -719,7 +728,7 @@ export function QuickPracticeWidget({
                   'rounded-2xl hover:-translate-y-0.5 active:translate-y-0 h-12',
                   'disabled:bg-slate-300 disabled:border-slate-400 disabled:text-slate-500 disabled:hover:translate-y-0'
                 )}
-                disabled={!isReady || !answer.trim()}
+                disabled={!isReady || !answer.trim() || isSubmitting}
               >
                 {t('checkAnswer')}
               </Button>

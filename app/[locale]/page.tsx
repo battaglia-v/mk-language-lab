@@ -45,40 +45,36 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Quick Start - Side by Side, Ultra Compact */}
+      {/* Quick Start - Side by Side, Duolingo-Style Chunky Buttons */}
       <section className="w-full">
         <div className="mx-auto max-w-4xl px-4 py-3">
-          <div className="grid grid-cols-2 gap-2 md:gap-3">
-            {/* Practice Card */}
+          <div className="grid grid-cols-2 gap-3 md:gap-4">
+            {/* Practice Button - Duolingo Green */}
             <Link
               href={buildHref('/practice')}
-              className="block border border-border/40 rounded-lg p-3 md:p-4 transition-colors hover:border-primary/50 hover:bg-primary/5"
+              className="block bg-[#58CC02] hover:bg-[#4CAF02] text-white border-b-4 border-[#4CAF02] active:border-b-0 rounded-2xl p-4 md:p-6 text-center shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:mt-1"
             >
-              <div className="flex flex-col items-center text-center gap-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                  <RefreshCw className="h-5 w-5 text-primary" />
-                </div>
+              <div className="flex flex-col items-center gap-2 md:gap-3">
+                <RefreshCw className="h-8 w-8 md:h-10 md:w-10" />
                 <div>
-                  <h3 className="text-sm font-semibold text-foreground">{t('dailyPractice')}</h3>
-                  <p className="hidden md:block text-xs text-muted-foreground mt-0.5">
+                  <h3 className="text-sm md:text-base font-bold uppercase tracking-wide">{t('dailyPractice')}</h3>
+                  <p className="hidden md:block text-xs font-medium mt-1 opacity-90">
                     {t('dailyPracticeDesc')}
                   </p>
                 </div>
               </div>
             </Link>
 
-            {/* Resources Card */}
+            {/* Resources Button - Orange */}
             <Link
               href={buildHref('/resources')}
-              className="block border border-border/40 rounded-lg p-3 md:p-4 transition-colors hover:border-secondary/50 hover:bg-secondary/5"
+              className="block bg-[#FF9600] hover:bg-[#E58600] text-white border-b-4 border-[#E58600] active:border-b-0 rounded-2xl p-4 md:p-6 text-center shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:mt-1"
             >
-              <div className="flex flex-col items-center text-center gap-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary/10">
-                  <Library className="h-5 w-5 text-secondary" />
-                </div>
+              <div className="flex flex-col items-center gap-2 md:gap-3">
+                <Library className="h-8 w-8 md:h-10 md:w-10" />
                 <div>
-                  <h3 className="text-sm font-semibold text-foreground">{t('resourcesTitle')}</h3>
-                  <p className="hidden md:block text-xs text-muted-foreground mt-0.5">
+                  <h3 className="text-sm md:text-base font-bold uppercase tracking-wide">{t('resourcesTitle')}</h3>
+                  <p className="hidden md:block text-xs font-medium mt-1 opacity-90">
                     {t('resourcesDesc')}
                   </p>
                 </div>
