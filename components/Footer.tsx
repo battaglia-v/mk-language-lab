@@ -34,7 +34,7 @@ export default function Footer() {
         </div>
         <div className="flex items-center justify-center text-[10px] text-muted-foreground/60">
           <span>
-            {t('createdWith')} <a href="https://vincebattaglia.com" target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">{t('vini')}</a> {t('and')} <a href="https://macedonianlanguagecorner.com" target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">{t('andri')}</a>
+            {t('createdWith')} <a href="https://www.linkedin.com/in/vincentvinnybattaglia/" target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">{t('vini')}</a> {t('and')} <a href="https://macedonianlanguagecorner.com" target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">{t('andri')}</a>
           </span>
         </div>
       </div>
