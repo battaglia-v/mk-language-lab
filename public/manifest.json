@@ -1,5 +1,5 @@
 {
-  "name": "Macedonian Language Lab",
+  "name": "Македонски • MK Language Lab",
   "short_name": "Македонски",
   "description": "Learn Macedonian with AI-powered tutoring, translation, and interactive lessons",
   "start_url": "/mk",
@@ -9,6 +9,18 @@
   "theme_color": "#ff5a2c",
   "orientation": "portrait-primary",
   "icons": [
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "any"
+    },
     {
       "src": "/icon-192.png",
       "sizes": "192x192",

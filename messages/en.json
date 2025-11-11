@@ -818,7 +818,9 @@
       "adjective": "Adjective",
       "adverb": "Adverb"
     },
-    "footer": "A new word is featured each day to expand your vocabulary."
+    "footer": "A new word is featured each day to expand your vocabulary.",
+    "loading": "Loading word of the day...",
+    "pronunciationFallback": "Pronunciation unavailable"
   },
   "welcomeBanner": {
     "title": "Welcome to Macedonian Learning!",

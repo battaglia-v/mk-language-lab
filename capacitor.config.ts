@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.macedonian.learn',
-  appName: 'Macedonian Learning',
+  appName: 'Македонски',
   webDir: 'out',
   server: {
     // Load from production Vercel deployment

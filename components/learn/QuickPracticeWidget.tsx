@@ -514,14 +514,22 @@ export function QuickPracticeWidget({
           {/* Mobile: Compact inline progress - hidden when keyboard is visible */}
           {!isInputFocused && (
             <div className="flex md:hidden items-center gap-2 text-xs">
+              <span className="sr-only">
+                {t('practiceProgressSummary', { count: correctCount })}
+              </span>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 font-bold text-primary">
                 {correctCount}/{SESSION_TARGET}
               </span>
               {totalAttempts > 0 && (
-                <span className={cn('inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-semibold', getAccuracyBadge(accuracy).color)}>
-                  <TrendingUp className="h-3 w-3" />
-                  {accuracy}%
-                </span>
+                <>
+                  <span className="sr-only">
+                    {t('practiceAccuracy', { value: accuracy })}
+                  </span>
+                  <span className={cn('inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-semibold', getAccuracyBadge(accuracy).color)}>
+                    <TrendingUp className="h-3 w-3" />
+                    {accuracy}%
+                  </span>
+                </>
               )}
             </div>
           )}

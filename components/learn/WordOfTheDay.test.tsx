@@ -172,7 +172,7 @@ describe('WordOfTheDay', () => {
     render(<WordOfTheDay />);
 
     await waitFor(() => {
-      expect(screen.getByText('тест')).toBeInTheDocument();
+      expect(screen.getAllByText('тест')[0]).toBeInTheDocument();
     });
 
     expect(screen.getByText('Word')).toBeInTheDocument();

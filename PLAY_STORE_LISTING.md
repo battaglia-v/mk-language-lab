@@ -7,6 +7,8 @@ Learn Macedonian with interactive lessons, translation tools, and daily practice
 
 **Learn Macedonian the Smart Way** 🇲🇰
 
+> **November 2025 refresh:** The experience now ships under the Macedonian-first name **„Македонски • MK Language Lab“** with updated favicon, splash art, and Ajvar-inspired iconography so web, PWA, and native shells share the same look.
+
 Macedonian Language Lab is your complete solution for learning Macedonian, whether you're reconnecting with your heritage, planning a trip, or exploring a new language. Created in partnership with native speaker Andri from Macedonian Language Corner, our app makes learning engaging, practical, and culturally authentic.
 
 **KEY FEATURES**
@@ -141,7 +143,7 @@ Visit macedonianlanguagecorner.com for more learning resources!
 
 **Dimensions:** 512 x 512 pixels
 **Format:** 32-bit PNG with alpha channel
-**Design:** Current icon (Cyrillic letter with Macedonian colors)
+**Design:** Ajvar jar monogram with Macedonian flag gradients (Nov 2025 refresh)
 
 ## Promotional Video (Optional)
 

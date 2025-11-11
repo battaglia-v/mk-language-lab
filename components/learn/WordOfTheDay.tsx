@@ -23,6 +23,17 @@ export function WordOfTheDay() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const translateWithFallback = (key: string, fallback: string) => {
+    const value = t(key as any);
+    return value === key ? fallback : value;
+  };
+
+  const loadingLabel = translateWithFallback('loading', 'Loading word of the day...');
+  const pronunciationFallback = translateWithFallback(
+    'pronunciationFallback',
+    'Pronunciation unavailable'
+  );
+
   useEffect(() => {
     async function fetchWordOfTheDay() {
       try {
@@ -54,7 +65,10 @@ export function WordOfTheDay() {
     return (
       <Card className="relative overflow-hidden border-primary/20 bg-gradient-to-br from-primary/5 via-background to-secondary/5 p-4 md:p-6 lg:p-8">
         <div className="flex items-center justify-center py-8 md:py-12">
-          <Loader2 className="h-6 w-6 md:h-8 md:w-8 animate-spin text-primary" />
+          <div role="status" aria-live="polite" aria-label={loadingLabel} className="flex flex-col items-center gap-2">
+            <Loader2 aria-hidden="true" className="h-6 w-6 md:h-8 md:w-8 animate-spin text-primary" />
+            <span className="sr-only">{loadingLabel}</span>
+          </div>
         </div>
       </Card>
     );
@@ -103,7 +117,9 @@ export function WordOfTheDay() {
                   Pronunciation:
                 </span>
                 <span className="font-serif italic text-sm md:text-base text-muted-foreground/80">
-                  {word.pronunciation}
+                  {word.pronunciation?.trim()
+                    ? `[${word.pronunciation.trim()}]`
+                    : pronunciationFallback}
                 </span>
               </div>
             </div>

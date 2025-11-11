@@ -237,7 +237,7 @@ View all issues and progress on our [Project Board](https://github.com/users/bat
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please read our contributing guidelines before submitting PRs.
+Contributions are welcome! Please read our contributor guide in [AGENTS.md](AGENTS.md) before submitting PRs.
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)

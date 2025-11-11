@@ -1,6 +1,6 @@
 import React from 'react';
 import { describe, it, expect, beforeEach, afterAll, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 vi.mock('next-intl', () => {
@@ -62,6 +62,20 @@ vi.mock('@/data/practice-vocabulary.json', () => ({
 
 import { QuickPracticeWidget } from './QuickPracticeWidget';
 
+const getPrimaryCheckButton = () => screen.getAllByRole('button', { name: 'Check Answer' })[0];
+const getNextPromptButton = () => screen.getAllByRole('button', { name: 'Show another word' })[0];
+const getResetButton = () => screen.getAllByRole('button', { name: 'Reset' })[0];
+const getRevealAnswerButton = () =>
+  screen.getAllByRole('button', { name: 'Reveal answer' })[0];
+const expectPromptsSummaryVisible = (value: number) => {
+  const matches = screen.getAllByText(`Prompts answered: ${value}`);
+  expect(matches.length).toBeGreaterThan(0);
+};
+const expectAccuracyVisible = (value: number) => {
+  const matches = screen.getAllByText(new RegExp(`Accuracy: ${value}%`));
+  expect(matches.length).toBeGreaterThan(0);
+};
+
 describe('QuickPracticeWidget', () => {
   const randomSpy = vi.spyOn(Math, 'random');
 
@@ -91,7 +105,7 @@ describe('QuickPracticeWidget', () => {
     const input = screen.getByLabelText('Type the English translation');
     await user.type(input, 'hello');
 
-    await user.click(screen.getByRole('button', { name: 'Check Answer' }));
+    await user.click(getPrimaryCheckButton());
 
     expect(screen.getByText('Correct!')).toBeInTheDocument();
   expect(screen.queryByText(/Answer:/i)).not.toBeInTheDocument();
@@ -104,7 +118,7 @@ describe('QuickPracticeWidget', () => {
     const input = screen.getByLabelText('Type the English translation');
     await user.type(input, 'goodbye');
 
-    await user.click(screen.getByRole('button', { name: 'Check Answer' }));
+    await user.click(getPrimaryCheckButton());
 
   expect(screen.getByText('Incorrect. Correct answer: hello')).toBeInTheDocument();
   });
@@ -128,26 +142,30 @@ describe('QuickPracticeWidget', () => {
     render(<QuickPracticeWidget />);
 
     // Check initial state - no attempts
-    expect(screen.getByText('Prompts answered: 0')).toBeInTheDocument();
+    expectPromptsSummaryVisible(0);
 
     // First attempt - correct
     const input = screen.getByLabelText('Type the English translation');
     await user.type(input, 'hello');
-    await user.click(screen.getByRole('button', { name: 'Check Answer' }));
+    await user.click(getPrimaryCheckButton());
 
-    expect(screen.getByText('Prompts answered: 1')).toBeInTheDocument();
-    expect(screen.getByText(/Accuracy: 100%/)).toBeInTheDocument();
+    await waitFor(() => {
+      expectPromptsSummaryVisible(1);
+      expectAccuracyVisible(100);
+    });
 
     // Move to next prompt
     randomSpy.mockReturnValue(0.5); // Different word
-    await user.click(screen.getByRole('button', { name: 'Show another word' }));
+    await user.click(getNextPromptButton());
 
     // Second attempt - incorrect
     await user.type(input, 'wrong answer');
-    await user.click(screen.getByRole('button', { name: 'Check Answer' }));
+    await user.click(getPrimaryCheckButton());
 
-    expect(screen.getByText('Prompts answered: 2')).toBeInTheDocument();
-    expect(screen.getByText(/Accuracy: 50%/)).toBeInTheDocument();
+    await waitFor(() => {
+      expectPromptsSummaryVisible(2);
+      expectAccuracyVisible(50);
+    });
   });
 
   it('calculates accuracy correctly across multiple attempts', async () => {
@@ -169,15 +187,17 @@ describe('QuickPracticeWidget', () => {
       randomSpy.mockReturnValue(0); // Always get 'zdravo'
       await user.clear(input);
       await user.type(input, attempts[i].answer);
-      await user.click(screen.getByRole('button', { name: 'Check Answer' }));
+      await user.click(getPrimaryCheckButton());
 
       if (i < attempts.length - 1) {
-        await user.click(screen.getByRole('button', { name: 'Show another word' }));
+        await user.click(getNextPromptButton());
       }
     }
 
-    expect(screen.getByText('Prompts answered: 3')).toBeInTheDocument();
-    expect(screen.getByText(/Accuracy: 60%/)).toBeInTheDocument();
+    await waitFor(() => {
+      expectPromptsSummaryVisible(3);
+      expectAccuracyVisible(60);
+    });
   });
 
   it('completes session after 5 correct answers', async () => {
@@ -191,15 +211,17 @@ describe('QuickPracticeWidget', () => {
       randomSpy.mockReturnValue(0); // Always get 'zdravo' -> 'hello'
       await user.clear(input);
       await user.type(input, 'hello');
-      await user.click(screen.getByRole('button', { name: 'Check Answer' }));
+      await user.click(getPrimaryCheckButton());
 
       if (i < 4) {
-        await user.click(screen.getByRole('button', { name: 'Show another word' }));
+        await user.click(getNextPromptButton());
       }
     }
 
     // Check that we've reached the goal
-    expect(screen.getByText('Prompts answered: 5')).toBeInTheDocument();
+    await waitFor(() => {
+      expectPromptsSummaryVisible(5);
+    });
 
     // Progress bar should be at 100%
     const progressBar = screen.getByRole('progressbar');
@@ -214,15 +236,19 @@ describe('QuickPracticeWidget', () => {
 
     // Make some progress
     await user.type(input, 'hello');
-    await user.click(screen.getByRole('button', { name: 'Check Answer' }));
-    expect(screen.getByText('Prompts answered: 1')).toBeInTheDocument();
+    await user.click(getPrimaryCheckButton());
+    await waitFor(() => {
+      expectPromptsSummaryVisible(1);
+    });
 
     // Click reset
-    await user.click(screen.getByRole('button', { name: 'Reset' }));
+    await user.click(getResetButton());
 
     // Check that state is reset
-    expect(screen.getByText('Prompts answered: 0')).toBeInTheDocument();
-    expect(screen.queryByText('Accuracy:')).not.toBeInTheDocument();
+    await waitFor(() => {
+      expectPromptsSummaryVisible(0);
+      expect(screen.queryByText('Accuracy:')).not.toBeInTheDocument();
+    });
 
     // Progress bar should be at 0%
     const progressBar = screen.getByRole('progressbar');
@@ -267,7 +293,7 @@ describe('QuickPracticeWidget', () => {
     expect(screen.queryByText(/Answer:/i)).not.toBeInTheDocument();
 
     // Click reveal
-    await user.click(screen.getByRole('button', { name: 'Reveal answer' }));
+    await user.click(getRevealAnswerButton());
 
     // Answer should now be revealed
     expect(screen.getByText('Answer: hello')).toBeInTheDocument();
@@ -281,7 +307,7 @@ describe('QuickPracticeWidget', () => {
 
     // Submit an answer to get feedback
     await user.type(input, 'hello');
-    await user.click(screen.getByRole('button', { name: 'Check Answer' }));
+      await user.click(getPrimaryCheckButton());
     expect(screen.getByText('Correct!')).toBeInTheDocument();
 
     // Switch mode
@@ -296,7 +322,7 @@ describe('QuickPracticeWidget', () => {
   it('disables check button when input is empty', async () => {
     render(<QuickPracticeWidget />);
 
-    const checkButton = screen.getByRole('button', { name: 'Check Answer' });
+    const checkButton = getPrimaryCheckButton();
     expect(checkButton).toBeDisabled();
   });
 
@@ -305,7 +331,7 @@ describe('QuickPracticeWidget', () => {
     render(<QuickPracticeWidget />);
 
     const input = screen.getByLabelText('Type the English translation');
-    const checkButton = screen.getByRole('button', { name: 'Check Answer' });
+    const checkButton = getPrimaryCheckButton();
 
     await user.type(input, 'test');
     expect(checkButton).toBeEnabled();
@@ -319,7 +345,7 @@ describe('QuickPracticeWidget', () => {
 
     // Test with various normalizations
     await user.type(input, '  HELLO!  ');
-    await user.click(screen.getByRole('button', { name: 'Check Answer' }));
+    await user.click(getPrimaryCheckButton());
 
     // Should still be correct despite uppercase, spaces, and punctuation
     expect(screen.getByText('Correct!')).toBeInTheDocument();
