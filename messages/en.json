@@ -1,6 +1,7 @@
 {
   "nav": {
     "label": "Main navigation",
+    "home": "Home",
     "practice": "Practice",
     "tutor": "Tutor",
     "library": "Library",
@@ -8,7 +9,10 @@
     "dailyLessons": "Daily Lessons",
     "savedLessons": "Saved Lessons",
     "resources": "Resources",
-    "news": "News"
+    "news": "News",
+    "collapse": "Collapse",
+    "expand": "Expand sidebar",
+    "toggleSettings": "Toggle settings"
   },
   "home": {
     "learn": "Learn",

@@ -1,6 +1,7 @@
 {
   "nav": {
     "label": "Главна навигација",
+    "home": "Почетна",
     "practice": "Вежбање",
     "tutor": "Наставник",
     "library": "Библиотека",
@@ -8,7 +9,10 @@
     "dailyLessons": "Дневни Лекции",
     "savedLessons": "Зачувани Лекции",
     "resources": "Ресурси",
-    "news": "Вести"
+    "news": "Вести",
+    "collapse": "Собери",
+    "expand": "Прошири странично мени",
+    "toggleSettings": "Поставки"
   },
   "home": {
     "learn": "Учи",

@@ -30,6 +30,9 @@ export default function Sidebar() {
   const [userCollapsed, setUserCollapsed] = useState(false);
   const [isBreakpointCollapsed, setIsBreakpointCollapsed] = useState(false);
   const collapsed = isBreakpointCollapsed || userCollapsed;
+  const homeLabel = t("home");
+  const collapseLabel = t("collapse");
+  const expandLabel = t("expand");
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -97,7 +100,7 @@ export default function Sidebar() {
           <Link
             href={`/${locale}`}
             className="flex items-center gap-3 transition-all duration-200 hover:opacity-80 group"
-            aria-label="Home"
+            aria-label={homeLabel}
           >
             <div className="transform transition-transform duration-200 group-hover:scale-105">
               <AjvarLogo size={collapsed ? 36 : 40} />
@@ -169,7 +172,7 @@ export default function Sidebar() {
               "hover:bg-sidebar-accent text-sidebar-foreground hover:text-sidebar-accent-foreground",
               collapsed && "justify-center px-3",
             )}
-            aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+            aria-label={collapsed ? expandLabel : collapseLabel}
             disabled={isBreakpointCollapsed}
           >
             {collapsed ? (
@@ -177,7 +180,7 @@ export default function Sidebar() {
             ) : (
               <>
                 <ChevronLeft className="h-5 w-5" />
-                <span className="text-sm">Collapse</span>
+                <span className="text-sm">{collapseLabel}</span>
               </>
             )}
           </button>
@@ -188,8 +191,9 @@ export default function Sidebar() {
       <nav
         className="lg:hidden fixed bottom-0 left-0 right-0 bg-sidebar border-t border-sidebar-border z-50"
         aria-label={t("label")}
+        style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 0.25rem)" }}
       >
-        <div className="grid grid-cols-5 gap-0.5 px-1 py-1">
+        <div className="grid grid-cols-5 gap-0.5 px-1 pt-1 pb-0.5">
           {/* Home button */}
           <Link
             href={`/${locale}`}
@@ -207,7 +211,7 @@ export default function Sidebar() {
                 pathname === `/${locale}` && "text-primary",
               )}
             >
-              Home
+              {homeLabel}
             </span>
           </Link>
 

@@ -315,8 +315,17 @@ export function QuickPracticeWidget({
     }
 
     let nextIndex = currentIndex;
-    while (nextIndex === currentIndex) {
+    let attempts = 0;
+    const maxAttempts = filteredItems.length * 2;
+
+    while (nextIndex === currentIndex && attempts < maxAttempts) {
+      // Guard against deterministic Math.random mocks that always return the same index
       nextIndex = Math.floor(Math.random() * filteredItems.length);
+      attempts += 1;
+    }
+
+    if (nextIndex === currentIndex) {
+      nextIndex = (currentIndex + 1) % filteredItems.length;
     }
 
     setCurrentIndex(nextIndex);
