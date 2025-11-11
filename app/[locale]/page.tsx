@@ -52,10 +52,10 @@ export default function HomePage() {
             {/* Practice Button - Duolingo Green */}
             <Link
               href={buildHref('/practice')}
-              className="block bg-[#58CC02] hover:bg-[#4CAF02] text-white border-b-4 border-[#4CAF02] active:border-b-0 rounded-2xl p-4 md:p-6 text-center shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:mt-1"
+              className="block bg-[#58CC02] hover:bg-[#4CAF02] text-white border-b-4 border-[#4CAF02] active:border-b-0 rounded-2xl p-3 md:p-5 text-center shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:mt-1"
             >
               <div className="flex flex-col items-center gap-2 md:gap-3">
-                <RefreshCw className="h-8 w-8 md:h-10 md:w-10" />
+                <RefreshCw className="h-7 w-7 md:h-9 md:w-9" />
                 <div>
                   <h3 className="text-sm md:text-base font-bold uppercase tracking-wide">{t('dailyPractice')}</h3>
                   <p className="hidden md:block text-xs font-medium mt-1 opacity-90">
@@ -68,10 +68,10 @@ export default function HomePage() {
             {/* Resources Button - Orange */}
             <Link
               href={buildHref('/resources')}
-              className="block bg-[#FF9600] hover:bg-[#E58600] text-white border-b-4 border-[#E58600] active:border-b-0 rounded-2xl p-4 md:p-6 text-center shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:mt-1"
+              className="block bg-[#FF9600] hover:bg-[#E58600] text-white border-b-4 border-[#E58600] active:border-b-0 rounded-2xl p-3 md:p-5 text-center shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:mt-1"
             >
               <div className="flex flex-col items-center gap-2 md:gap-3">
-                <Library className="h-8 w-8 md:h-10 md:w-10" />
+                <Library className="h-7 w-7 md:h-9 md:w-9" />
                 <div>
                   <h3 className="text-sm md:text-base font-bold uppercase tracking-wide">{t('resourcesTitle')}</h3>
                   <p className="hidden md:block text-xs font-medium mt-1 opacity-90">

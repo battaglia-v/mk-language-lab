@@ -626,7 +626,7 @@ export function QuickPracticeWidget({
           {/* Prompt section - Duolingo-style speech bubble */}
           <div className={cn(
             'relative space-y-2 rounded-2xl bg-white dark:bg-slate-800 p-4 md:p-6 md:rounded-3xl shadow-lg border-2 border-slate-200 dark:border-slate-700',
-            isInputFocused && 'md:hidden sticky top-0 z-20 shadow-xl p-3',
+            isInputFocused && 'sticky top-0 z-20 shadow-xl md:shadow-lg md:static p-3 md:p-6',
             'transition-all duration-200 hover:shadow-xl'
           )}>
             <p className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{promptLabel}</p>
@@ -641,7 +641,7 @@ export function QuickPracticeWidget({
           <form
             className={cn(
               'space-y-2 md:space-y-4',
-              isInputFocused && 'md:hidden space-y-1.5 pb-6'
+              isInputFocused && 'space-y-1.5 pb-6 md:space-y-4 md:pb-0'
             )}
             onSubmit={handleSubmit}
           >
@@ -650,7 +650,10 @@ export function QuickPracticeWidget({
                 value={answer}
                 onChange={(event) => setAnswer(event.target.value)}
                 onFocus={() => setIsInputFocused(true)}
-                onBlur={() => setIsInputFocused(false)}
+                onBlur={() => {
+                  // Add small delay to prevent interfering with button clicks
+                  setTimeout(() => setIsInputFocused(false), 100);
+                }}
                 placeholder={placeholder}
                 className={cn(
                   'rounded-2xl border-2 border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white',
