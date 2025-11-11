@@ -117,6 +117,7 @@ export function QuickPracticeWidget({
   const [hearts, setHearts] = useState(5);
   const [isShaking, setIsShaking] = useState(false);
   const [showGameOverModal, setShowGameOverModal] = useState(false);
+  const [isInputFocused, setIsInputFocused] = useState(false);
 
   // Use custom hook for game progress (database-backed with localStorage fallback)
   const { streak, xp, level, updateProgress, isLoading: isProgressLoading } = useGameProgress();
@@ -474,51 +475,56 @@ export function QuickPracticeWidget({
               </div>
             </div>
           </div>
-          {/* Mobile: Collapsible XP & Hearts stats panel below header */}
-          <div className="md:hidden rounded-xl border border-border/30 bg-background/40 p-3">
-            <div className="flex items-center justify-between gap-3">
-              {/* XP Badge */}
-              <div className="flex items-center gap-2 flex-1">
-                <div className="flex items-center gap-1 rounded-full bg-yellow-500/10 px-2.5 py-1.5 border border-yellow-500/20">
-                  <Zap className="h-4 w-4 text-yellow-500" />
-                  <span className="text-sm font-bold text-yellow-600">{xp}</span>
+          {/* Mobile: Collapsible XP & Hearts stats panel below header - hidden when keyboard is visible */}
+          {!isInputFocused && (
+            <div className="md:hidden rounded-xl border border-border/30 bg-background/40 p-3">
+              <div className="flex items-center justify-between gap-3">
+                {/* XP Badge */}
+                <div className="flex items-center gap-2 flex-1">
+                  <div className="flex items-center gap-1 rounded-full bg-yellow-500/10 px-2.5 py-1.5 border border-yellow-500/20">
+                    <Zap className="h-4 w-4 text-yellow-500" />
+                    <span className="text-sm font-bold text-yellow-600">{xp}</span>
+                  </div>
+                  <span className="text-xs text-muted-foreground">XP</span>
                 </div>
-                <span className="text-xs text-muted-foreground">XP</span>
-              </div>
-              {/* Hearts Display */}
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-muted-foreground">Hearts</span>
-                <div className="flex items-center gap-0.5">
-                  {Array.from({ length: 5 }, (_, i) => (
-                    <Heart
-                      key={i}
-                      className={cn(
-                        'h-4 w-4 transition-all duration-200',
-                        i < hearts
-                          ? 'fill-[#ef4444] text-[#ef4444]'
-                          : 'fill-muted text-muted'
-                      )}
-                    />
-                  ))}
+                {/* Hearts Display */}
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-muted-foreground">Hearts</span>
+                  <div className="flex items-center gap-0.5">
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <Heart
+                        key={i}
+                        className={cn(
+                          'h-4 w-4 transition-all duration-200',
+                          i < hearts
+                            ? 'fill-[#ef4444] text-[#ef4444]'
+                            : 'fill-muted text-muted'
+                        )}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          {/* Mobile: Compact inline progress */}
-          <div className="flex md:hidden items-center gap-2 text-xs">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 font-bold text-primary">
-              {correctCount}/{SESSION_TARGET}
-            </span>
-            {totalAttempts > 0 && (
-              <span className={cn('inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-semibold', getAccuracyBadge(accuracy).color)}>
-                <TrendingUp className="h-3 w-3" />
-                {accuracy}%
+          )}
+          {/* Mobile: Compact inline progress - hidden when keyboard is visible */}
+          {!isInputFocused && (
+            <div className="flex md:hidden items-center gap-2 text-xs">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 font-bold text-primary">
+                {correctCount}/{SESSION_TARGET}
               </span>
-            )}
-          </div>
+              {totalAttempts > 0 && (
+                <span className={cn('inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-semibold', getAccuracyBadge(accuracy).color)}>
+                  <TrendingUp className="h-3 w-3" />
+                  {accuracy}%
+                </span>
+              )}
+            </div>
+          )}
 
-          {/* Desktop: Full progress section */}
-          <div className="hidden md:block rounded-2xl border border-border/30 bg-background/60 p-3 md:p-4 shadow-inner">
+          {/* Desktop: Full progress section - hidden when keyboard is visible on mobile */}
+          {!isInputFocused && (
+            <div className="hidden md:block rounded-2xl border border-border/30 bg-background/60 p-3 md:p-4 shadow-inner">
             <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               <span>{t('practiceProgressLabel')}</span>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-xs font-bold text-primary">
@@ -545,16 +551,18 @@ export function QuickPracticeWidget({
               )}
             </div>
           </div>
+          )}
         </div>
         <div className={cn('flex-1 flex flex-col space-y-2 md:space-y-4', isModalVariant ? 'px-6 pb-6 md:px-10 md:pb-10 lg:px-12' : 'pb-4 md:pb-6')}>
-          {/* Settings panel - hidden on mobile unless showSettings is true */}
-          <div
-            className={cn(
-              'flex gap-2 md:gap-4',
-              isModalVariant ? 'flex-col lg:flex-row lg:items-end lg:gap-6' : 'flex-col sm:flex-row sm:items-end',
-              !showSettings && 'hidden md:flex'
-            )}
-          >
+          {/* Settings panel - hidden on mobile when keyboard is visible */}
+          {!isInputFocused && (
+            <div
+              className={cn(
+                'flex gap-2 md:gap-4',
+                isModalVariant ? 'flex-col lg:flex-row lg:items-end lg:gap-6' : 'flex-col sm:flex-row sm:items-end',
+                !showSettings && 'hidden md:flex'
+              )}
+            >
             <div className={cn('space-y-1.5', isModalVariant ? 'w-full lg:flex-1' : 'flex-1')}>
               <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 {t('practiceFilterLabel')}
@@ -608,9 +616,14 @@ export function QuickPracticeWidget({
                 </Button>
               </div>
             </div>
-          </div>
+            </div>
+          )}
 
-          <div className="space-y-1.5 rounded-xl border border-border/40 bg-muted/30 p-3 md:p-4 md:rounded-2xl">
+          {/* Prompt section - sticky at top when keyboard is visible on mobile */}
+          <div className={cn(
+            'space-y-1.5 rounded-xl border border-border/40 bg-muted/30 p-3 md:p-4 md:rounded-2xl',
+            isInputFocused && 'md:hidden sticky top-0 z-20 bg-background shadow-md'
+          )}>
             <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{promptLabel}</p>
             <p className={cn('break-words font-semibold text-foreground', isModalVariant ? 'text-3xl' : 'text-xl md:text-2xl')}>
               {promptValue}
@@ -625,6 +638,8 @@ export function QuickPracticeWidget({
               <Input
                 value={answer}
                 onChange={(event) => setAnswer(event.target.value)}
+                onFocus={() => setIsInputFocused(true)}
+                onBlur={() => setIsInputFocused(false)}
                 placeholder={placeholder}
                 className={cn('rounded-xl border-border/40 bg-background/80', isModalVariant ? 'h-14 text-xl' : 'h-11 text-base md:h-12 md:text-lg', 'pr-10')}
                 aria-label={placeholder}
