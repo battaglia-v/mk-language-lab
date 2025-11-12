@@ -25,7 +25,7 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: 'npm run dev -- --turbo=false',
+    command: 'npm run dev:webpack',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
   },
