@@ -3,16 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
-import {
-  Command as CommandIcon,
-  HelpCircle,
-  Languages,
-  Newspaper,
-  RefreshCcw,
-  Search,
-  Sparkles,
-  BookOpen,
-} from "lucide-react";
+import { Languages, Newspaper, RefreshCcw, Search, Sparkles, BookOpen } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

@@ -62,7 +62,7 @@ function SignInContent() {
       // Redirect to callback URL or home
       router.push(callbackUrl);
       router.refresh();
-    } catch (err) {
+    } catch {
       setError('An error occurred during sign-in');
     } finally {
       setIsLoading(false);
