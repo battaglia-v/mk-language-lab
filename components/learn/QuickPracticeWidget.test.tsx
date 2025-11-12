@@ -19,8 +19,9 @@ vi.mock('next-intl', () => {
     practiceCategoryLabel: 'Category',
     practiceRevealAnswer: 'Reveal answer',
     practiceReset: 'Reset',
+    practiceSkipPrompt: 'Skip prompt',
+    practiceMoreActions: 'More actions',
     checkAnswer: 'Check Answer',
-    nextPrompt: 'Show another word',
     correctAnswer: 'Correct!',
     incorrectAnswer: (values?: Record<string, string>) =>
       `Incorrect. Correct answer: ${values?.answer ?? ''}`,
@@ -63,10 +64,11 @@ vi.mock('@/data/practice-vocabulary.json', () => ({
 import { QuickPracticeWidget } from './QuickPracticeWidget';
 
 const getPrimaryCheckButton = () => screen.getAllByRole('button', { name: 'Check Answer' })[0];
-const getNextPromptButton = () => screen.getAllByRole('button', { name: 'Show another word' })[0];
-const getResetButton = () => screen.getAllByRole('button', { name: 'Reset' })[0];
-const getRevealAnswerButton = () =>
-  screen.getAllByRole('button', { name: 'Reveal answer' })[0];
+const getNextPromptButton = () => screen.getAllByRole('button', { name: 'Skip prompt' })[0];
+const openMoreActionsMenu = async (user: ReturnType<typeof userEvent['setup']>) => {
+  const trigger = screen.getByRole('button', { name: 'More actions' });
+  await user.click(trigger);
+};
 const expectPromptsSummaryVisible = (value: number) => {
   const matches = screen.getAllByText(`Prompts answered: ${value}`);
   expect(matches.length).toBeGreaterThan(0);
@@ -195,7 +197,7 @@ describe('QuickPracticeWidget', () => {
     }
 
     await waitFor(() => {
-      expectPromptsSummaryVisible(3);
+      expectPromptsSummaryVisible(5);
       expectAccuracyVisible(60);
     });
   });
@@ -242,7 +244,8 @@ describe('QuickPracticeWidget', () => {
     });
 
     // Click reset
-    await user.click(getResetButton());
+    await openMoreActionsMenu(user);
+    await user.click(screen.getByRole('menuitem', { name: 'Reset' }));
 
     // Check that state is reset
     await waitFor(() => {
@@ -293,7 +296,8 @@ describe('QuickPracticeWidget', () => {
     expect(screen.queryByText(/Answer:/i)).not.toBeInTheDocument();
 
     // Click reveal
-    await user.click(getRevealAnswerButton());
+    await openMoreActionsMenu(user);
+    await user.click(screen.getByRole('menuitem', { name: 'Reveal answer' }));
 
     // Answer should now be revealed
     expect(screen.getByText('Answer: hello')).toBeInTheDocument();

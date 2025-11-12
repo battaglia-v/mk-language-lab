@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { RefreshCcw, Eye, Sparkles, PlayCircle, X, Trophy, TrendingUp, MoreVertical, Heart, Check, XCircle, Flame, Zap, Shield, EllipsisVertical } from 'lucide-react';
+import { RefreshCcw, Eye, Sparkles, PlayCircle, X, Trophy, TrendingUp, MoreVertical, Heart, Check, XCircle, Flame, Zap, Shield, EllipsisVertical, ChevronDown } from 'lucide-react';
 import practicePrompts from '@/data/practice-vocabulary.json';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -119,6 +119,9 @@ export function QuickPracticeWidget({
   const [showGameOverModal, setShowGameOverModal] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isCategoryMenuOpen, setIsCategoryMenuOpen] = useState(false);
+  const categoryButtonRef = useRef<HTMLButtonElement | null>(null);
+  const categoryMenuRef = useRef<HTMLDivElement | null>(null);
   const isOverlayActive = showCompletionModal || showGameOverModal;
   const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
 
@@ -609,28 +612,62 @@ export function QuickPracticeWidget({
               )}
             >
             <div className={cn('space-y-1.5', isModalVariant ? 'w-full lg:flex-1' : 'flex-1')}>
-              <label
-                htmlFor="practice-category-select"
-                className="text-xs font-semibold uppercase tracking-wide text-muted-foreground"
-              >
+              <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 {t('practiceFilterLabel')}
-              </label>
-              <select
-                id="practice-category-select"
-                value={category}
-                onChange={(event) => setCategory(event.target.value)}
-                className={cn(
-                  'w-full h-9 rounded-md border border-border/60 bg-background/80 px-3 text-sm font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50',
-                  isModalVariant && 'md:h-12 md:text-base'
+              </span>
+              <div className="relative">
+                <button
+                  ref={categoryButtonRef}
+                  type="button"
+                  role="combobox"
+                  aria-label={t('practiceFilterLabel')}
+                  aria-haspopup="listbox"
+                  aria-expanded={isCategoryMenuOpen}
+                  aria-controls="practice-category-options"
+                  className={cn(
+                    'flex w-full items-center justify-between rounded-md border border-border/60 bg-background/80 px-3 py-2 text-sm font-medium text-foreground transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50',
+                    isModalVariant && 'md:h-12 md:text-base',
+                    isCategoryMenuOpen && 'ring-2 ring-ring/50'
+                  )}
+                  onClick={() => setIsCategoryMenuOpen((prev) => !prev)}
+                >
+                  <span className="truncate">
+                    {category === ALL_CATEGORIES ? t('practiceAllCategories') : formatCategory(category)}
+                  </span>
+                  <ChevronDown className={cn('h-4 w-4 transition-transform', isCategoryMenuOpen && 'rotate-180')} />
+                </button>
+                {isCategoryMenuOpen && (
+                  <div
+                    ref={categoryMenuRef}
+                    id="practice-category-options"
+                    role="listbox"
+                    className="absolute z-20 mt-2 w-full rounded-md border border-border/40 bg-background/95 p-1 shadow-lg"
+                  >
+                    {[ALL_CATEGORIES, ...categories].map((cat) => {
+                      const isSelected = category === cat;
+                      return (
+                        <button
+                          key={cat || 'all'}
+                          type="button"
+                          role="option"
+                          aria-selected={isSelected}
+                          className={cn(
+                            'flex w-full items-center justify-between rounded-sm px-3 py-1.5 text-left text-sm',
+                            isSelected ? 'bg-primary/10 text-primary font-semibold' : 'hover:bg-muted'
+                          )}
+                          onClick={() => {
+                            setCategory(cat);
+                            setIsCategoryMenuOpen(false);
+                          }}
+                        >
+                          <span>{cat === ALL_CATEGORIES ? t('practiceAllCategories') : formatCategory(cat)}</span>
+                          {isSelected && <Check className="h-4 w-4" />}
+                        </button>
+                      );
+                    })}
+                  </div>
                 )}
-              >
-                <option value={ALL_CATEGORIES}>{t('practiceAllCategories')}</option>
-                {categories.map((cat) => (
-                  <option key={cat} value={cat}>
-                    {formatCategory(cat)}
-                  </option>
-                ))}
-              </select>
+              </div>
             </div>
             <div className={cn('space-y-1.5', isModalVariant ? 'w-full lg:w-auto' : 'sm:w-auto')}>
               <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
@@ -895,6 +932,36 @@ export function QuickPracticeWidget({
       });
     }
   }, [showCompletionModal, mode, category, correctCount, totalAttempts, accuracy]);
+
+  useEffect(() => {
+    if (!isCategoryMenuOpen) {
+      return;
+    }
+
+    const handlePointerDown = (event: MouseEvent) => {
+      if (
+        categoryMenuRef.current &&
+        !categoryMenuRef.current.contains(event.target as Node) &&
+        categoryButtonRef.current &&
+        !categoryButtonRef.current.contains(event.target as Node)
+      ) {
+        setIsCategoryMenuOpen(false);
+      }
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsCategoryMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handlePointerDown);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isCategoryMenuOpen]);
 
   if (layout !== 'compact') {
     return (
