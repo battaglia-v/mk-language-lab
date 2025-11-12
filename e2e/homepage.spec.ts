@@ -93,8 +93,10 @@ test.describe('Homepage', () => {
     const mobileNav = page.locator('[class*="fixed bottom-0"], .fixed.bottom-0').first();
     await expect(mobileNav).toBeVisible();
 
-    // Check for home button in mobile nav
-    await expect(page.getByRole('link', { name: /Home/i }).first()).toBeVisible();
+    // Check for home button in mobile nav (English "Home" or Macedonian "Почетна")
+    await expect(
+      page.getByRole('link', { name: /Home|Почетна/i }).first()
+    ).toBeVisible();
   });
 
   test('should load Word of the Day with translation', async ({ page }) => {

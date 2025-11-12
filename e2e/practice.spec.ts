@@ -27,7 +27,7 @@ test.describe('Practice Page', () => {
 
   test('should show translator link', async ({ page }) => {
     const translatorLink = page
-      .getByRole('link', { name: /(Open translator|Quick Translator|Отвори превод|Брз преведувач|Преведувач)/i })
+      .getByRole('link', { name: /(Open translator|Quick Translator|Отвори преведувач|Брз преведувач|Преведувач)/i })
       .first();
     await expect(translatorLink).toBeVisible();
     await expect(translatorLink).toHaveAttribute('href', /\/translate/);
@@ -35,7 +35,7 @@ test.describe('Practice Page', () => {
 
   test('should navigate to translate page from practice', async ({ page }) => {
     const translatorLink = page
-      .getByRole('link', { name: /(Open translator|Quick Translator|Отвори превод|Брз преведувач|Преведувач)/i })
+      .getByRole('link', { name: /(Open translator|Quick Translator|Отвори преведувач|Брз преведувач|Преведувач)/i })
       .first();
     await translatorLink.click();
 
