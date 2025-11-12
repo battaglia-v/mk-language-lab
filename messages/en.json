@@ -34,7 +34,66 @@
     "newsFeatureDescription": "Read current Macedonian stories with automatic previews.",
     "ctaTranslate": "Open translator",
     "ctaResources": "View resources",
-    "ctaNews": "Browse news"
+    "ctaNews": "Browse news",
+    "heroSection": {
+      "title": "Keep your streak alive",
+      "subtitle": "Complete today's lesson to unlock translator challenges and stay on pace.",
+      "continueCta": "Continue practice",
+      "viewPlan": "View focus plan",
+      "streak": "{count} day streak",
+      "dailyGoal": "{value} XP goal",
+      "xpProgress": "{earned} / {goal} XP today",
+      "weeklyLessons": "{count} lessons this week",
+      "translatorDirection": "{direction} translate mode"
+    },
+    "actionCards": {
+      "continue": {
+        "title": "Continue lesson",
+        "description": "Pick up where you left off in Quick Practice.",
+        "cta": "Resume session"
+      },
+      "translator": {
+        "title": "Translator",
+        "description": "Jump back into your last translate direction.",
+        "cta": "Open translator"
+      },
+      "resources": {
+        "title": "Resources",
+        "description": "Browse curated decks, guides, and news roundups.",
+        "cta": "Explore library"
+      }
+    },
+    "dailyFocus": {
+      "title": "Daily focus",
+      "subtitle": "Complete mini challenges to keep your streak energized.",
+      "status": {
+        "completed": "Completed",
+        "inProgress": "In progress"
+      },
+      "items": {
+        "vocabulary": {
+          "title": "Vocabulary sprint",
+          "description": "Recall themed words in under 5 minutes.",
+          "progress": "{current}/{total} words"
+        },
+        "listening": {
+          "title": "Listening drill",
+          "description": "Shadow native audio for clarity.",
+          "progress": "{minutes} min audio"
+        },
+        "translator": {
+          "title": "Translator challenge",
+          "description": "Translate tricky prompts with hints.",
+          "progress": "{current}/{total} prompts"
+        }
+      }
+    },
+    "translatorInbox": {
+      "title": "Translator inbox",
+      "subtitle": "Review recent phrases and pin the most helpful ones.",
+      "viewHistory": "Open history",
+      "empty": "Your translator activity will appear here."
+    }
   },
   "learn": {
     "title": "Learn Macedonian",
