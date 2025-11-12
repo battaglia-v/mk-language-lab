@@ -82,7 +82,6 @@ export default function TranslatePage() {
   const [copiedState, setCopiedState] = useState<'idle' | 'copied'>('idle');
   const [history, setHistory] = useState<TranslationHistoryEntry[]>([]);
   const [isHistoryExpanded, setIsHistoryExpanded] = useState(false);
-  const shortcutHintId = 'translate-shortcut-hint';
   const characterCountId = 'translate-character-count';
 
 
@@ -263,11 +262,14 @@ export default function TranslatePage() {
 
       {/* Main Content - Full Screen */}
       <div className="flex-1 flex flex-col">
-        <div className="mx-auto w-full max-w-4xl flex-1 flex flex-col px-4 py-3 md:py-4">
-          <form className="flex-1 flex flex-col gap-3 md:gap-4" onSubmit={handleTranslate}>
-                <div className="flex items-center justify-between gap-2">
+        <div className="mx-auto w-full max-w-4xl flex-1 flex flex-col px-4 py-3 md:py-4 gap-4">
+          <form
+            className="flex flex-col gap-4 rounded-3xl border border-border/40 bg-card/80 p-4 shadow-lg md:p-6"
+            onSubmit={handleTranslate}
+          >
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                   <div
-                    className="flex items-center gap-1.5"
+                    className="flex w-full flex-wrap gap-2"
                     role="radiogroup"
                     aria-label={t('directionsGroupLabel')}
                   >
@@ -278,7 +280,7 @@ export default function TranslatePage() {
                       onClick={() => handleDirectionChange('en-mk')}
                       role="radio"
                       aria-checked={directionId === 'en-mk'}
-                      className="h-8 px-3 text-xs font-medium"
+                      className="h-9 flex-1 min-w-[130px] rounded-full px-3 text-xs font-semibold uppercase"
                     >
                       EN → MK
                     </Button>
@@ -289,7 +291,7 @@ export default function TranslatePage() {
                       onClick={() => handleDirectionChange('mk-en')}
                       role="radio"
                       aria-checked={directionId === 'mk-en'}
-                      className="h-8 px-3 text-xs font-medium"
+                      className="h-9 flex-1 min-w-[130px] rounded-full px-3 text-xs font-semibold uppercase"
                     >
                       MK → EN
                     </Button>
@@ -300,7 +302,7 @@ export default function TranslatePage() {
                     variant="ghost"
                     onClick={handleSwapDirections}
                     aria-label={t('swapDirections')}
-                    className="h-8 w-8 p-0"
+                    className="h-9 w-9 rounded-full border border-border/40 p-0 text-muted-foreground"
                   >
                     <ArrowLeftRight className="h-3.5 w-3.5" />
                   </Button>
@@ -317,7 +319,7 @@ export default function TranslatePage() {
                     placeholder={selectedDirection.placeholder}
                     maxLength={MAX_CHARACTERS}
                     aria-describedby={characterCountId}
-                    className="min-h-20 md:min-h-24 resize-none text-base"
+                    className="min-h-[140px] md:min-h-[180px] resize-none rounded-2xl border border-border/60 bg-background/80 text-base"
                     onKeyDown={(event) => {
                       if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
                         event.preventDefault();
@@ -336,7 +338,7 @@ export default function TranslatePage() {
                     type="submit"
                     disabled={isTranslating}
                     size="lg"
-                    className="w-full sm:w-auto gap-2 h-12 text-base font-semibold"
+                    className="w-full sm:w-auto gap-2 h-12 rounded-2xl text-base font-semibold"
                   >
                     {isTranslating ? <Loader2 className="h-5 w-5 animate-spin" /> : null}
                     {t('translateButton')}
@@ -347,7 +349,7 @@ export default function TranslatePage() {
                     size="sm"
                     onClick={handleClear}
                     disabled={!inputText && !translatedText}
-                    className="w-full sm:w-auto"
+                    className="w-full sm:w-auto text-sm"
                   >
                     {t('clearButton')}
                   </Button>
@@ -366,7 +368,7 @@ export default function TranslatePage() {
                     ) : null}
                   </div>
                   <div
-                    className="min-h-20 md:min-h-24 whitespace-pre-wrap rounded-xl border-2 border-border/50 bg-background/80 p-3 md:p-4 text-base leading-relaxed text-foreground"
+                    className="min-h-[120px] whitespace-pre-wrap rounded-2xl border border-border/40 bg-background/80 p-3 md:p-4 text-base leading-relaxed text-foreground"
                     role="status"
                     aria-live="polite"
                     aria-atomic="true"
@@ -377,11 +379,11 @@ export default function TranslatePage() {
                         <Loader2 className="h-4 w-4 animate-spin" />
                         {t('translatingStatus')}
                       </span>
-                    ) : translatedText ? (
-                      translatedText
-                    ) : (
-                      <span className="text-muted-foreground">{t('resultPlaceholder')}</span>
-                    )}
+                      ) : translatedText ? (
+                        translatedText
+                      ) : (
+                        <span className="text-muted-foreground">{t('resultPlaceholder')}</span>
+                      )}
                   </div>
                   {detectedLanguage ? (
                     <p className="text-xs text-muted-foreground">
