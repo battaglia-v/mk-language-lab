@@ -66,6 +66,8 @@
     "checkAnswer": "Провери",
     "nextPrompt": "Нова задача",
     "practiceReset": "Ресетирај",
+    "practiceSkipPrompt": "Прескокни задача",
+    "practiceMoreActions": "Повеќе опции",
     "correctAnswer": "Браво!",
     "incorrectAnswer": "Не е точно. Одговорот е {answer}.",
     "practiceCategoryLabel": "Категорија",

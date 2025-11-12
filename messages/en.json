@@ -66,6 +66,8 @@
     "checkAnswer": "Check",
     "nextPrompt": "New Prompt",
     "practiceReset": "Reset",
+    "practiceSkipPrompt": "Skip prompt",
+    "practiceMoreActions": "More actions",
     "correctAnswer": "Great job!",
     "incorrectAnswer": "Not quite. The answer is {answer}.",
     "practiceCategoryLabel": "Category",

@@ -2,15 +2,15 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { RefreshCcw, Eye, Sparkles, PlayCircle, X, Trophy, TrendingUp, MoreVertical, Heart, Check, XCircle, Flame, Zap, Shield } from 'lucide-react';
+import { RefreshCcw, Eye, Sparkles, PlayCircle, X, Trophy, TrendingUp, MoreVertical, Heart, Check, XCircle, Flame, Zap, Shield, EllipsisVertical } from 'lucide-react';
 import practicePrompts from '@/data/practice-vocabulary.json';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { Dialog, DialogClose, DialogContent, DialogTrigger, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 import { useGameProgress } from '@/hooks/useGameProgress';
 
@@ -119,6 +119,8 @@ export function QuickPracticeWidget({
   const [showGameOverModal, setShowGameOverModal] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const isOverlayActive = showCompletionModal || showGameOverModal;
+  const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
 
   // Use custom hook for game progress (database-backed with localStorage fallback)
   const { streak, xp, level, updateProgress } = useGameProgress();
@@ -233,7 +235,7 @@ export function QuickPracticeWidget({
       celebrationTimeoutRef.current = setTimeout(() => setIsCelebrating(false), 1200);
 
       // Award XP and update streak for correct answer (database-backed)
-      await updateProgress({ xp: xp + 10, streak: streak + 1 });
+      void updateProgress({ xp: xp + 10, streak: streak + 1 }).catch(() => undefined);
 
       // Track correct answer
       trackEvent(AnalyticsEvents.PRACTICE_ANSWER_CORRECT, {
@@ -266,7 +268,7 @@ export function QuickPracticeWidget({
       setIsCelebrating(false);
 
       // Award participation XP for incorrect answer (database-backed)
-      await updateProgress({ xp: xp + 5 });
+      void updateProgress({ xp: xp + 5 }).catch(() => undefined);
 
       // Decrease hearts and trigger shake animation
       const newHearts = Math.max(0, hearts - 1);
@@ -315,17 +317,14 @@ export function QuickPracticeWidget({
     }
 
     let nextIndex = currentIndex;
-    let attempts = 0;
     const maxAttempts = filteredItems.length * 2;
 
-    while (nextIndex === currentIndex && attempts < maxAttempts) {
-      // Guard against deterministic Math.random mocks that always return the same index
-      nextIndex = Math.floor(Math.random() * filteredItems.length);
-      attempts += 1;
-    }
-
-    if (nextIndex === currentIndex) {
-      nextIndex = (currentIndex + 1) % filteredItems.length;
+    for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
+      const candidateIndex = Math.floor(Math.random() * filteredItems.length);
+      if (candidateIndex !== currentIndex) {
+        nextIndex = candidateIndex;
+        break;
+      }
     }
 
     setCurrentIndex(nextIndex);
@@ -372,8 +371,23 @@ export function QuickPracticeWidget({
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    handleCheck();
+    void handleCheck();
+  };
 
+  const handleInstantSubmit = (event: React.PointerEvent<HTMLButtonElement>) => {
+    if (isPrimaryDisabled) {
+      return;
+    }
+    event.preventDefault();
+    void handleCheck();
+  };
+
+  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (isPrimaryDisabled) {
+      return;
+    }
+    event.preventDefault();
+    void handleCheck();
   };
 
   // Helper function to get accuracy badge color and label
@@ -401,6 +415,7 @@ export function QuickPracticeWidget({
   // ✅ Accuracy now calculated correctly using total attempts
   const accuracy = totalAttempts > 0 ? Math.round((correctCount / totalAttempts) * 100) : 0;
   const summarySubtitle = description ?? t('quickPracticeDescription');
+  const isPrimaryDisabled = !isReady || !answer.trim() || isSubmitting;
 
   const renderPracticeCard = (variant: 'default' | 'modal', extraClassName?: string) => {
     const isModalVariant = variant === 'modal';
@@ -419,6 +434,12 @@ export function QuickPracticeWidget({
             aria-hidden="true"
           />
         )}
+        <span className="sr-only" aria-live="polite">
+          {t('practiceProgressSummary', { count: totalAttempts })}
+        </span>
+        <span className="sr-only" aria-live="polite">
+          {t('practiceProgressSummary', { count: correctCount })}
+        </span>
         <div className={cn('space-y-2 md:space-y-4', isModalVariant ? 'px-6 py-4 md:px-10 md:py-8 lg:px-12' : 'py-3 md:py-4')}>
           <div className="flex items-center justify-between gap-2">
             <div className="flex-1 min-w-0">
@@ -524,7 +545,7 @@ export function QuickPracticeWidget({
           {!isInputFocused && (
             <div className="flex md:hidden items-center gap-2 text-xs">
               <span className="sr-only">
-                {t('practiceProgressSummary', { count: correctCount })}
+                {t('practiceProgressSummary', { count: totalAttempts })}
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 font-bold text-primary">
                 {correctCount}/{SESSION_TARGET}
@@ -545,7 +566,10 @@ export function QuickPracticeWidget({
 
           {/* Desktop: Full progress section - hidden when keyboard is visible on mobile */}
           {!isInputFocused && (
-            <div className="hidden md:block rounded-2xl border border-border/30 bg-background/60 p-3 md:p-4 shadow-inner">
+            <div
+              className="hidden md:block rounded-2xl border border-border/30 bg-background/60 p-3 md:p-4 shadow-inner"
+              aria-hidden={isOverlayActive || undefined}
+            >
             <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               <span>{t('practiceProgressLabel')}</span>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-xs font-bold text-primary">
@@ -563,7 +587,7 @@ export function QuickPracticeWidget({
               />
             </div>
             <div className="mt-3 flex flex-wrap items-center gap-3 text-sm">
-              <span className="text-muted-foreground">{t('practiceProgressSummary', { count: correctCount })}</span>
+              <span className="text-muted-foreground">{t('practiceProgressSummary', { count: totalAttempts })}</span>
               {totalAttempts > 0 && (
                 <span className={cn('inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold', getAccuracyBadge(accuracy).color)}>
                   <TrendingUp className="h-3.5 w-3.5" />
@@ -585,25 +609,28 @@ export function QuickPracticeWidget({
               )}
             >
             <div className={cn('space-y-1.5', isModalVariant ? 'w-full lg:flex-1' : 'flex-1')}>
-              <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              <label
+                htmlFor="practice-category-select"
+                className="text-xs font-semibold uppercase tracking-wide text-muted-foreground"
+              >
                 {t('practiceFilterLabel')}
-              </span>
-              <Select value={category} onValueChange={setCategory}>
-                <SelectTrigger
-                  aria-label={t('practiceFilterLabel')}
-                  className={cn('w-full h-9', isModalVariant && 'md:h-12 md:text-base')}
-                >
-                  <SelectValue placeholder={t('practiceAllCategories')} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value={ALL_CATEGORIES}>{t('practiceAllCategories')}</SelectItem>
-                  {categories.map((cat) => (
-                    <SelectItem key={cat} value={cat}>
-                      {formatCategory(cat)}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              </label>
+              <select
+                id="practice-category-select"
+                value={category}
+                onChange={(event) => setCategory(event.target.value)}
+                className={cn(
+                  'w-full h-9 rounded-md border border-border/60 bg-background/80 px-3 text-sm font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50',
+                  isModalVariant && 'md:h-12 md:text-base'
+                )}
+              >
+                <option value={ALL_CATEGORIES}>{t('practiceAllCategories')}</option>
+                {categories.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {formatCategory(cat)}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className={cn('space-y-1.5', isModalVariant ? 'w-full lg:w-auto' : 'sm:w-auto')}>
               <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
@@ -688,7 +715,7 @@ export function QuickPracticeWidget({
                 onClick={handleNext}
                 className="md:hidden absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full hover:bg-muted transition-colors"
                 disabled={!filteredItems.length}
-                aria-label={t('nextPrompt')}
+                aria-label={t('practiceSkipPrompt')}
               >
                 <RefreshCcw className="h-4 w-4 text-muted-foreground" />
               </button>
@@ -697,7 +724,7 @@ export function QuickPracticeWidget({
             {/* Mobile: Duolingo-style chunky check button */}
             <div className="md:hidden flex flex-col gap-3">
               <Button
-                type="submit"
+                type="button"
                 size="lg"
                 className={cn(
                   'w-full text-base font-bold uppercase tracking-wide shadow-lg hover:shadow-xl transition-all duration-200',
@@ -706,33 +733,49 @@ export function QuickPracticeWidget({
                   'rounded-2xl hover:-translate-y-0.5 active:translate-y-0',
                   'disabled:bg-slate-300 disabled:border-slate-400 disabled:text-slate-500 disabled:hover:translate-y-0'
                 )}
-                disabled={!isReady || !answer.trim() || isSubmitting}
+                disabled={isPrimaryDisabled}
+                onPointerDown={handleInstantSubmit}
+                onClick={handleButtonClick}
               >
                 {t('checkAnswer')}
               </Button>
               {!isInputFocused && (
-                <div className="flex gap-2">
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleReveal}
-                    className="flex-1 gap-1.5 text-xs"
-                    disabled={!isReady}
-                  >
-                    <Eye className="h-3.5 w-3.5" />
-                    {t('practiceRevealAnswer')}
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleReset}
-                    className="flex-1 gap-1.5 text-xs"
-                    disabled={!isReady && !answer}
-                  >
-                    {t('practiceReset')}
-                  </Button>
+                <div className="flex justify-end">
+                  <DropdownMenu open={isActionMenuOpen} onOpenChange={setIsActionMenuOpen}>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        type="button"
+                        size="icon"
+                        variant="ghost"
+                        className="h-9 w-9 rounded-full border border-border/50"
+                        aria-label={t('practiceMoreActions')}
+                      >
+                        <EllipsisVertical className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-48 text-sm">
+                      <DropdownMenuItem
+                        onSelect={(event) => {
+                          event.preventDefault();
+                          handleReveal();
+                        }}
+                        disabled={!isReady}
+                      >
+                        <Eye className="mr-2 h-3.5 w-3.5" />
+                        {t('practiceRevealAnswer')}
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem
+                        onSelect={(event) => {
+                          event.preventDefault();
+                          handleReset();
+                        }}
+                      >
+                        <RefreshCcw className="mr-2 h-3.5 w-3.5" />
+                        {t('practiceReset')}
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
               )}
             </div>
@@ -740,7 +783,8 @@ export function QuickPracticeWidget({
             {/* Desktop: Full 4-button grid */}
             <div className="hidden md:grid grid-cols-1 gap-3 sm:grid-cols-2">
               <Button
-                type="submit"
+                type="button"
+                onClick={handleCheck}
                 size={isModalVariant ? 'lg' : 'default'}
                 className={cn(
                   'w-full gap-2 font-bold uppercase tracking-wide shadow-lg hover:shadow-xl transition-all duration-200',
@@ -912,6 +956,22 @@ export function QuickPracticeWidget({
               </div>
             </div>
 
+            <div className="relative z-10 px-1 pb-4">
+              <div className="h-2 w-full overflow-hidden rounded-full bg-border/40">
+                <div
+                  role="progressbar"
+                  aria-valuenow={sessionProgress}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  className="h-full rounded-full bg-primary transition-all duration-500"
+                  style={{ width: `${sessionProgress}%` }}
+                />
+              </div>
+              <p className="mt-2 text-center text-sm text-muted-foreground">
+                {t('practiceProgressSummary', { count: totalAttempts })}
+              </p>
+            </div>
+
             <DialogFooter className="relative z-10 flex-col gap-2 sm:flex-col">
               <Button onClick={handleReset} size="lg" className="w-full gap-2">
                 <RefreshCcw className="h-4 w-4" />
@@ -1065,7 +1125,7 @@ export function QuickPracticeWidget({
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center gap-2 text-muted-foreground">
               <Sparkles className="h-4 w-4 text-primary" />
-              <span>{t('practiceProgressSummary', { count: correctCount })}</span>
+              <span>{t('practiceProgressSummary', { count: totalAttempts })}</span>
             </div>
             {totalAttempts > 0 && (
               <span className="text-primary font-medium">
@@ -1114,7 +1174,7 @@ export function QuickPracticeWidget({
       </DialogContent>
 
       {/* Session Completion Modal */}
-      <Dialog open={showCompletionModal} onOpenChange={setShowCompletionModal}>
+        <Dialog open={showCompletionModal} onOpenChange={setShowCompletionModal}>
         <DialogContent className="max-w-md">
           {/* Confetti Effect */}
           <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-lg">
