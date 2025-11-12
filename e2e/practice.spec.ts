@@ -26,17 +26,17 @@ test.describe('Practice Page', () => {
   });
 
   test('should show translator link', async ({ page }) => {
-    // Check for translator card/link
-    const translatorLink = page.getByRole('link', { name: /Open|Translate/i });
+    const translatorLink = page
+      .getByRole('link', { name: /(Open translator|Quick Translator|Отвори превод|Брз преведувач|Преведувач)/i })
+      .first();
     await expect(translatorLink).toBeVisible();
-
-    // Should link to translate page
     await expect(translatorLink).toHaveAttribute('href', /\/translate/);
   });
 
   test('should navigate to translate page from practice', async ({ page }) => {
-    // Click translator link
-    const translatorLink = page.getByRole('link', { name: /Open|Translate/i });
+    const translatorLink = page
+      .getByRole('link', { name: /(Open translator|Quick Translator|Отвори превод|Брз преведувач|Преведувач)/i })
+      .first();
     await translatorLink.click();
 
     // Wait for navigation
