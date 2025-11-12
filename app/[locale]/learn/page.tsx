@@ -57,29 +57,29 @@ export default function LearnPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
-      <div className="container mx-auto px-4 py-6 md:py-12">
+      <div className="container mx-auto px-4 py-5 md:py-10">
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center mb-6 md:mb-12">
-          <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+        <div className="mx-auto mb-5 max-w-3xl text-center md:mb-10">
+          <h1 className="mb-2 text-2xl font-bold text-transparent bg-gradient-to-r from-primary to-secondary bg-clip-text sm:text-3xl md:mb-3 md:text-4xl lg:text-5xl">
             {t('title')}
           </h1>
-          <p className="text-base md:text-lg lg:text-xl text-muted-foreground mb-2 md:mb-4">{t('subtitle')}</p>
-          <p className="text-sm md:text-base text-muted-foreground">{t('modulesIntro')}</p>
+          <p className="mb-2 text-sm text-muted-foreground md:mb-3 md:text-lg lg:text-xl">{t('subtitle')}</p>
+          <p className="text-xs text-muted-foreground md:text-base">{t('modulesIntro')}</p>
         </div>
 
         {/* Learning Modules */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8 md:mb-12">
+        <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2 md:mb-10 md:gap-5">
           {modules.map((module) => {
             const Icon = module.icon;
             return (
               <Link key={module.href} href={`/${locale}${module.href}`} className="group block">
-                <Card className="h-full transition-all duration-300 border-border/50 bg-card/50 backdrop-blur group-hover:border-primary/50 group-hover:scale-[1.02]">
-                  <CardHeader className="p-4 md:p-6">
-                    <div className={`w-12 h-12 md:w-14 md:h-14 rounded-lg bg-gradient-to-br ${module.gradient} flex items-center justify-center mb-3 md:mb-4`}>
-                      <Icon className="h-6 w-6 md:h-7 md:w-7 text-white" />
+                <Card className="h-full border-border/50 bg-card/60 backdrop-blur transition-all duration-300 group-hover:scale-[1.02] group-hover:border-primary/50">
+                  <CardHeader className="p-4 md:p-5">
+                    <div className={`mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${module.gradient} md:mb-4 md:h-14 md:w-14`}>
+                      <Icon className="h-5 w-5 text-white md:h-7 md:w-7" />
                     </div>
-                    <CardTitle className="text-xl md:text-2xl">{module.title}</CardTitle>
-                    <CardDescription className="text-sm md:text-base pt-1.5 md:pt-2">{module.description}</CardDescription>
+                    <CardTitle className="text-lg md:text-2xl">{module.title}</CardTitle>
+                    <CardDescription className="pt-1 text-sm md:pt-2 md:text-base">{module.description}</CardDescription>
                   </CardHeader>
                 </Card>
               </Link>

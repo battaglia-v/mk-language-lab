@@ -8,7 +8,7 @@ import {
   Badge,
 } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import {
   BookMarked,
@@ -69,15 +69,6 @@ const formatIcons: Record<ResourceFormat, LucideIcon> = {
   podcast: Mic,
   article: Newspaper,
   document: FileText,
-};
-
-const formatFallbackLabel: Record<ResourceFormat, string> = {
-  website: 'Website',
-  video: 'Video',
-  audio: 'Audio',
-  podcast: 'Podcast',
-  article: 'Article',
-  document: 'Document',
 };
 
 function slugify(value: string, fallback: string): string {
@@ -209,21 +200,11 @@ export default function ResourcesPage() {
 
   const totalMatches = filteredCollections.reduce((acc, collection) => acc + collection.items.length, 0);
   const totalResources = collectionsWithSlug.reduce((acc, collection) => acc + collection.items.length, 0);
-  const pdfLink = resourceData.pdf;
   const updatedDate = new Date(resourceData.updatedAt);
-  const selectedCollection = activeCollection !== 'all' ? collectionsWithSlug.find((collection) => collection.slug === activeCollection) : null;
   const resultsSummary = t('resultsSummary', { count: totalMatches, total: totalResources });
 
   const handleCollectionSelect = (slug: string) => {
     setActiveCollection(slug);
-  };
-
-  const formatLabel = (format: ResourceFormat) => {
-    try {
-      return t(`formats.${format}` as const);
-    } catch {
-      return formatFallbackLabel[format];
-    }
   };
 
   return (

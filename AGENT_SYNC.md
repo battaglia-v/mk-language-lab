@@ -118,6 +118,17 @@ All changes have been committed and pushed to `main` branch.
 - Next.js 15.5.6 → 16.0.1 (major version, breaking changes)
 - pdfjs-dist (depends on React upgrade)
 
+### 6. Quick Practice Vitest Status ✅ (2025-11-09 ~19:55 UTC)
+**Files Involved:** `components/learn/QuickPracticeWidget.tsx`, `components/learn/QuickPracticeWidget.test.tsx`
+
+**What Changed:** Removed the styled-jsx `<style jsx>` blocks in favor of a shared `CONFETTI_STYLES` string injected via a plain `<style>` tag, added a touch-only guard to the mobile submit button to avoid double submissions, and refreshed the Vitest suite so it mirrors the new mobile workflow (drill-mode strings, hidden-on-focus controls, action menu flow).
+
+**Why It Matters:** `npm run test -- QuickPracticeWidget` now passes locally, so Husky is unblocked. Future UI tweaks should keep the pointer guard and blur the textarea before interacting with controls that hide while the keyboard is open.
+
+**For Other Agents / QA:** If you tweak Quick Practice, update the co-located tests—the translation mock now includes the drill-mode strings, and helpers like `openMoreActionsMenu` assume the mobile layout. No further action required for Issue #76.
+
+**Commit Hash:** Pending (batched with the broader UI work awaiting push)
+
 **Recommendation:** Wait for ecosystem stability before upgrading
 
 ---
@@ -187,9 +198,20 @@ These files are actively being modified:
 - Use `cyrillicToLatin()` helper when you need to show Latin/Romanized Macedonian text
 - Standard Macedonian transliteration rules are implemented (ж→zh, ч→ch, љ→lj, etc.)
 
+### 9. Quick Practice Cloze Mode Foundations ✅ (2025-11-09 ~19:30 UTC)
+**Files Modified:** `components/learn/QuickPracticeWidget.tsx`, `data/practice-vocabulary.json`, `lib/cloze.ts`, `lib/cloze.test.ts`, `lib/analytics.ts`, `messages/en.json`, `messages/mk.json`
+
+**What Changed:** Added the Flashcard ↔ Cloze toggle (desktop settings + mobile action menu), filtered prompts so Cloze mode only surfaces entries that include a `{{blank}}` sentence, and seeded the greetings vocabulary with bilingual context sentences. Introduced the `splitClozeSentence` helper with Vitest coverage plus new analytics events (`cloze_answer_correct/incorrect`) so we can track Cloze accuracy separately.
+
+**Why It Matters:** Content editors now need to provide optional `contextMk` / `contextEn` objects (with `sentence` + `translation`) when adding vocabulary; otherwise the entry will not appear in Cloze mode. The UI already shows a friendly empty-state when no sentences exist.
+
+**For Other Agents:** When syncing the Google Sheet, make sure the context columns map to the JSON structure: `"contextMk": { "sentence": "…{{blank}}…", "translation": "…" }` and same for English. Keep analytics payloads updated if you add new drill states.
+
+**Commit Hash:** Pending (blocked behind Issue #76 test fixes)
+
 ---
 
-### 9. Phase 1 Andri Attribution Complete ✅
+### 10. Phase 1 Andri Attribution Complete ✅
 **Files Modified:**
 - `app/[locale]/about/page.tsx` - Added "Meet the Team" section with Vincent & Andri cards
 - `app/[locale]/resources/page.tsx` - Added attribution banner with Macedonian Language Corner link

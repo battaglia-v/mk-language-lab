@@ -288,9 +288,9 @@ export default function TranslatePage() {
 
         {/* Main Content - Full Screen */}
         <div className="flex-1 flex flex-col">
-          <div className="mx-auto w-full max-w-4xl flex-1 flex flex-col px-4 py-3 md:py-4 gap-4">
+          <div className="mx-auto w-full max-w-4xl flex-1 flex flex-col gap-4 px-4 py-3 md:py-4">
             <form
-              className="flex flex-col gap-4 rounded-3xl border border-border/40 bg-card/80 p-4 shadow-lg md:p-6"
+              className="flex flex-col gap-3 rounded-3xl border border-border/40 bg-card/80 p-3 shadow-lg md:gap-4 md:p-5"
               onSubmit={handleTranslate}
             >
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
@@ -346,7 +346,7 @@ export default function TranslatePage() {
                   placeholder={selectedDirection.placeholder}
                   maxLength={MAX_CHARACTERS}
                   aria-describedby={characterCountId}
-                  className="min-h-[140px] md:min-h-[180px] resize-none rounded-2xl border border-border/60 bg-background/80 text-base"
+                  className="min-h-[120px] md:min-h-[180px] resize-none rounded-2xl border border-border/60 bg-background/80 text-base"
                   onKeyDown={(event) => {
                     if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
                       event.preventDefault();
@@ -354,20 +354,20 @@ export default function TranslatePage() {
                     }
                   }}
                 />
-                <div className="flex items-center justify-end text-xs text-muted-foreground">
+                <div className="flex items-center justify-end text-[11px] text-muted-foreground sm:text-xs">
                   <span id={characterCountId}>{characterCountLabel}</span>
                 </div>
               </div>
 
-                {/* Primary Action Button - Full width on mobile, Duolingo-style */}
+              {/* Primary Action Button - sticky on mobile */}
+              <div className="sticky bottom-3 z-20 rounded-2xl border border-border/30 bg-background/95 p-2 shadow-lg sm:static sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none">
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                   <Button
                     type="submit"
                     disabled={isTranslating}
-                    size="lg"
-                    className="w-full sm:w-auto gap-2 h-12 rounded-2xl text-base font-semibold"
+                    className="h-11 w-full rounded-2xl text-sm font-semibold sm:h-12 sm:w-auto sm:text-base"
                   >
-                    {isTranslating ? <Loader2 className="h-5 w-5 animate-spin" /> : null}
+                    {isTranslating ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
                     {t('translateButton')}
                   </Button>
                   <Button
@@ -376,14 +376,15 @@ export default function TranslatePage() {
                     size="sm"
                     onClick={handleClear}
                     disabled={!inputText && !translatedText}
-                    className="w-full sm:w-auto text-sm"
+                    className="w-full text-sm sm:w-auto"
                   >
                     {t('clearButton')}
                   </Button>
                 </div>
+              </div>
 
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between gap-4">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between gap-4">
                     <span className="text-sm font-semibold text-foreground">
                       {t('resultLabel')}
                     </span>
@@ -441,22 +442,29 @@ export default function TranslatePage() {
           </form>
 
           {history.length > 0 && (
-            <div className="md:hidden space-y-2">
+            <div className="space-y-2 md:hidden">
               <div className="flex items-center justify-between">
                 <p className="text-sm font-semibold text-foreground">{t('historyTitle')}</p>
-                <Button variant="ghost" size="sm" className="text-xs" onClick={() => setIsHistoryDialogOpen(true)}>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-xs"
+                  onClick={() => setIsHistoryDialogOpen(true)}
+                >
                   {t('historyViewAll')}
                 </Button>
               </div>
-              <div className="flex gap-2 overflow-x-auto pb-2">
+              <div className="flex gap-2 overflow-x-auto pb-2 snap-x snap-mandatory [-webkit-overflow-scrolling:touch]">
                 {history.slice(0, 6).map((entry) => (
                   <button
                     key={entry.id}
                     type="button"
-                    className="flex min-w-[140px] flex-col gap-1 rounded-2xl border border-border/40 bg-background/70 px-3 py-2 text-left text-xs shadow-sm"
+                    className="flex min-w-[130px] snap-center flex-col gap-1 rounded-2xl border border-border/30 bg-background/80 px-3 py-2 text-left text-[11px] shadow-sm"
                     onClick={() => handleHistoryLoad(entry)}
                   >
-                    <span className="font-semibold text-foreground">{formatDirectionAbbrev(entry.directionId)}</span>
+                    <span className="font-semibold text-foreground">
+                      {formatDirectionAbbrev(entry.directionId)}
+                    </span>
                     <span className="text-muted-foreground">{truncateText(entry.sourceText)}</span>
                   </button>
                 ))}

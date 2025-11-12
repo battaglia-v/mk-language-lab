@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { Fragment, ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { RefreshCcw, Eye, Sparkles, PlayCircle, X, Trophy, TrendingUp, MoreVertical, Heart, Check, XCircle, Flame, Zap, Shield, EllipsisVertical, ChevronDown } from 'lucide-react';
 import practicePrompts from '@/data/practice-vocabulary.json';
@@ -10,12 +10,18 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { Dialog, DialogClose, DialogContent, DialogTrigger, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
+import { splitClozeSentence } from '@/lib/cloze';
 import { useGameProgress } from '@/hooks/useGameProgress';
 
 const ALL_CATEGORIES = 'all';
 const SESSION_TARGET = 5;
+
+type ClozeContext = {
+  sentence: string;
+  translation: string;
+};
 
 type PracticeItem = {
   macedonian: string;
@@ -23,9 +29,12 @@ type PracticeItem = {
   englishAlternates?: string[];  // Optional array of alternate English translations
   macedonianAlternates?: string[];  // Optional array of alternate Macedonian translations
   category?: string;
+  contextMk?: ClozeContext;
+  contextEn?: ClozeContext;
 };
 
 type PracticeDirection = 'mkToEn' | 'enToMk';
+type PracticeDrillMode = 'flashcard' | 'cloze';
 
 type Level = 'beginner' | 'intermediate' | 'advanced';
 
@@ -37,6 +46,46 @@ type QuickPracticeWidgetProps = {
 };
 
 const PRACTICE_ITEMS = practicePrompts as PracticeItem[];
+
+const CONFETTI_STYLES = `
+  @keyframes confetti-fall {
+    0% {
+      transform: translateY(-100%) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) rotate(720deg);
+      opacity: 0;
+    }
+  }
+
+  .confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    animation: confetti-fall 3s linear infinite;
+    opacity: 0;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+  }
+
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+`;
 
 const getLevelInfo = (level: Level) => {
   const levelConfig = {
@@ -102,7 +151,8 @@ export function QuickPracticeWidget({
   }, []);
 
   const [category, setCategory] = useState<string>(ALL_CATEGORIES);
-  const [mode, setMode] = useState<PracticeDirection>('mkToEn');
+  const [direction, setDirection] = useState<PracticeDirection>('mkToEn');
+  const [practiceMode, setPracticeMode] = useState<PracticeDrillMode>('flashcard');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answer, setAnswer] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
@@ -146,8 +196,22 @@ export function QuickPracticeWidget({
     return PRACTICE_ITEMS.filter((item) => item.category === category);
   }, [category]);
 
+  const isClozeMode = practiceMode === 'cloze';
+
+  const practiceItems = useMemo(() => {
+    if (!isClozeMode) {
+      return filteredItems;
+    }
+    return filteredItems.filter((item) => {
+      const context = direction === 'enToMk' ? item.contextMk : item.contextEn;
+      return Boolean(context?.sentence && context.sentence.includes('{{blank}}'));
+    });
+  }, [filteredItems, direction, isClozeMode]);
+
+  const hasAvailablePrompts = practiceItems.length > 0;
+
   useEffect(() => {
-    if (!filteredItems.length) {
+    if (!practiceItems.length) {
       setCurrentIndex(-1);
       setAnswer('');
       setFeedback(null);
@@ -158,21 +222,21 @@ export function QuickPracticeWidget({
       return;
     }
 
-    setCurrentIndex(Math.floor(Math.random() * filteredItems.length));
+    setCurrentIndex(Math.floor(Math.random() * practiceItems.length));
     setAnswer('');
     setFeedback(null);
     setRevealedAnswer('');
     setTotalAttempts(0);
     setCorrectCount(0);
     setIsCelebrating(false);
-  }, [filteredItems]);
+  }, [practiceItems]);
 
   useEffect(() => {
     setAnswer('');
     setFeedback(null);
     setRevealedAnswer('');
     setIsCelebrating(false);
-  }, [mode]);
+  }, [direction, practiceMode]);
 
   useEffect(() => {
     return () => {
@@ -186,16 +250,61 @@ export function QuickPracticeWidget({
   }, []);
 
   const currentItem =
-    currentIndex >= 0 && currentIndex < filteredItems.length ? filteredItems[currentIndex] : undefined;
+    currentIndex >= 0 && currentIndex < practiceItems.length ? practiceItems[currentIndex] : undefined;
 
-  const promptLabel = mode === 'mkToEn' ? t('practicePromptLabelMk') : t('practicePromptLabelEn');
-  const promptValue = currentItem ? (mode === 'mkToEn' ? currentItem.macedonian : currentItem.english) : '—';
-  const placeholder = mode === 'mkToEn' ? t('practicePlaceholderMk') : t('practicePlaceholderEn');
+  const clozeContext = currentItem
+    ? direction === 'enToMk'
+      ? currentItem.contextMk
+      : currentItem.contextEn
+    : undefined;
+  const promptLabel = isClozeMode
+    ? t('practiceClozePromptLabel')
+    : direction === 'mkToEn'
+      ? t('practicePromptLabelMk')
+      : t('practicePromptLabelEn');
+  const placeholder = isClozeMode
+    ? t('practiceClozePlaceholder')
+    : direction === 'mkToEn'
+      ? t('practicePlaceholderMk')
+      : t('practicePlaceholderEn');
   const expectedAnswer = currentItem
-    ? mode === 'mkToEn'
+    ? direction === 'mkToEn'
       ? currentItem.english
       : currentItem.macedonian
     : '';
+  const promptContent: ReactNode = (() => {
+    if (!currentItem) {
+      return '—';
+    }
+    if (isClozeMode && clozeContext) {
+      const { segments, hasBlank } = splitClozeSentence(clozeContext.sentence);
+      if (!hasBlank) {
+        return clozeContext.sentence;
+      }
+      return segments.reduce<ReactNode[]>((acc, segment, index) => {
+        if (segment) {
+          acc.push(
+            <span key={`segment-${index}`} className="whitespace-pre-wrap">
+              {segment}
+            </span>
+          );
+        }
+        if (index < segments.length - 1) {
+          acc.push(
+            <span
+              key={`blank-${index}`}
+              className="mx-1 inline-flex min-w-[72px] justify-center rounded-full border border-dashed border-border/60 bg-muted px-3 py-1 text-sm font-semibold uppercase tracking-wide text-muted-foreground"
+            >
+              ______
+            </span>
+          );
+        }
+        return acc;
+      }, []);
+    }
+    return direction === 'mkToEn' ? currentItem.macedonian : currentItem.english;
+  })();
+  const clozeTranslation = isClozeMode ? clozeContext?.translation : null;
   const categoryLabel = currentItem?.category
     ? `${t('practiceCategoryLabel')}: ${formatCategory(currentItem.category)}`
     : t('practiceAllCategories');
@@ -214,11 +323,16 @@ export function QuickPracticeWidget({
 
       // Build array of all valid answers (primary + alternates)
       const validAnswers = [normalizedExpected];
-      if (mode === 'mkToEn' && currentItem.englishAlternates) {
+      if (direction === 'mkToEn' && currentItem.englishAlternates) {
         validAnswers.push(...currentItem.englishAlternates.map(normalizeAnswer));
-      } else if (mode === 'enToMk' && currentItem.macedonianAlternates) {
+      } else if (direction === 'enToMk' && currentItem.macedonianAlternates) {
         validAnswers.push(...currentItem.macedonianAlternates.map(normalizeAnswer));
       }
+      const analyticsPayload = {
+        direction,
+        category: category === ALL_CATEGORIES ? 'all' : category,
+        drillMode: practiceMode,
+      };
 
       // ✅ ALWAYS increment total attempts for ALL answer submissions
       const newTotalAttempts = totalAttempts + 1;
@@ -241,17 +355,16 @@ export function QuickPracticeWidget({
       void updateProgress({ xp: xp + 10, streak: streak + 1 }).catch(() => undefined);
 
       // Track correct answer
-      trackEvent(AnalyticsEvents.PRACTICE_ANSWER_CORRECT, {
-        mode,
-        category: category === ALL_CATEGORIES ? 'all' : category,
-      });
+      trackEvent(AnalyticsEvents.PRACTICE_ANSWER_CORRECT, analyticsPayload);
+      if (isClozeMode) {
+        trackEvent(AnalyticsEvents.PRACTICE_CLOZE_ANSWER_CORRECT, analyticsPayload);
+      }
 
       // Check for session completion (5 correct answers)
       if (newCorrectCount === SESSION_TARGET) {
         setShowCompletionModal(true);
         trackEvent(AnalyticsEvents.PRACTICE_COMPLETED, {
-          mode,
-          category: category === ALL_CATEGORIES ? 'all' : category,
+          ...analyticsPayload,
           correctCount: newCorrectCount,
           totalAttempts: newTotalAttempts,
           accuracy: Math.round((newCorrectCount / newTotalAttempts) * 100),
@@ -283,18 +396,17 @@ export function QuickPracticeWidget({
       if (newHearts === 0) {
         setShowGameOverModal(true);
         trackEvent(AnalyticsEvents.PRACTICE_GAME_OVER, {
-          mode,
-          category: category === ALL_CATEGORIES ? 'all' : category,
+          ...analyticsPayload,
           correctCount,
           totalAttempts: newTotalAttempts,
         });
       }
 
       // Track incorrect answer
-      trackEvent(AnalyticsEvents.PRACTICE_ANSWER_INCORRECT, {
-        mode,
-        category: category === ALL_CATEGORIES ? 'all' : category,
-      });
+      trackEvent(AnalyticsEvents.PRACTICE_ANSWER_INCORRECT, analyticsPayload);
+      if (isClozeMode) {
+        trackEvent(AnalyticsEvents.PRACTICE_CLOZE_ANSWER_INCORRECT, analyticsPayload);
+      }
 
       // Clear any pending auto-advance if answer was incorrect
       if (autoAdvanceTimeoutRef.current) {
@@ -308,11 +420,11 @@ export function QuickPracticeWidget({
   };
 
   const handleNext = () => {
-    if (filteredItems.length === 0) {
+    if (practiceItems.length === 0) {
       return;
     }
 
-    if (filteredItems.length === 1) {
+    if (practiceItems.length === 1) {
       setAnswer('');
       setFeedback(null);
       setRevealedAnswer('');
@@ -320,10 +432,10 @@ export function QuickPracticeWidget({
     }
 
     let nextIndex = currentIndex;
-    const maxAttempts = filteredItems.length * 2;
+    const maxAttempts = practiceItems.length * 2;
 
     for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
-      const candidateIndex = Math.floor(Math.random() * filteredItems.length);
+      const candidateIndex = Math.floor(Math.random() * practiceItems.length);
       if (candidateIndex !== currentIndex) {
         nextIndex = candidateIndex;
         break;
@@ -348,16 +460,18 @@ export function QuickPracticeWidget({
     setShowGameOverModal(false);
     setHearts(5);
     trackEvent(AnalyticsEvents.PRACTICE_SESSION_NEW, {
-      mode,
+      direction,
       category: category === ALL_CATEGORIES ? 'all' : category,
+      drillMode: practiceMode,
     });
   };
 
   const handleContinuePracticing = () => {
     setShowCompletionModal(false);
     trackEvent(AnalyticsEvents.PRACTICE_SESSION_CONTINUE, {
-      mode,
+      direction,
       category: category === ALL_CATEGORIES ? 'all' : category,
+      drillMode: practiceMode,
     });
   };
 
@@ -378,7 +492,7 @@ export function QuickPracticeWidget({
   };
 
   const handleInstantSubmit = (event: React.PointerEvent<HTMLButtonElement>) => {
-    if (isPrimaryDisabled) {
+    if (event.pointerType !== 'touch' || isPrimaryDisabled) {
       return;
     }
     event.preventDefault();
@@ -682,9 +796,9 @@ export function QuickPracticeWidget({
                 <Button
                   type="button"
                   size="sm"
-                  variant={mode === 'mkToEn' ? 'default' : 'outline'}
-                  onClick={() => setMode('mkToEn')}
-                  aria-pressed={mode === 'mkToEn'}
+                  variant={direction === 'mkToEn' ? 'default' : 'outline'}
+                  onClick={() => setDirection('mkToEn')}
+                  aria-pressed={direction === 'mkToEn'}
                   className={cn(isModalVariant && 'md:h-10', 'px-2 text-xs')}
                 >
                   {t('practiceModeMkToEn')}
@@ -692,12 +806,44 @@ export function QuickPracticeWidget({
                 <Button
                   type="button"
                   size="sm"
-                  variant={mode === 'enToMk' ? 'default' : 'outline'}
-                  onClick={() => setMode('enToMk')}
-                  aria-pressed={mode === 'enToMk'}
+                  variant={direction === 'enToMk' ? 'default' : 'outline'}
+                  onClick={() => setDirection('enToMk')}
+                  aria-pressed={direction === 'enToMk'}
                   className={cn(isModalVariant && 'md:h-10', 'px-2 text-xs')}
                 >
                   {t('practiceModeEnToMk')}
+                </Button>
+              </div>
+            </div>
+            <div className={cn('space-y-1.5', isModalVariant ? 'w-full lg:w-auto' : 'sm:w-auto')}>
+              <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                {t('practiceDrillModeLabel')}
+              </span>
+              <div
+                className={cn(
+                  'flex rounded-xl border border-border/60 bg-background/60 p-1',
+                  isModalVariant ? 'flex-col gap-3 lg:flex-row' : 'w-full sm:w-max'
+                )}
+              >
+                <Button
+                  type="button"
+                  size="sm"
+                  variant={practiceMode === 'flashcard' ? 'default' : 'outline'}
+                  onClick={() => setPracticeMode('flashcard')}
+                  aria-pressed={practiceMode === 'flashcard'}
+                  className={cn(isModalVariant && 'md:h-10', 'px-2 text-xs')}
+                >
+                  {t('practiceDrillModeFlashcard')}
+                </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant={practiceMode === 'cloze' ? 'default' : 'outline'}
+                  onClick={() => setPracticeMode('cloze')}
+                  aria-pressed={practiceMode === 'cloze'}
+                  className={cn(isModalVariant && 'md:h-10', 'px-2 text-xs')}
+                >
+                  {t('practiceDrillModeCloze')}
                 </Button>
               </div>
             </div>
@@ -712,11 +858,17 @@ export function QuickPracticeWidget({
           )}>
             <p className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{promptLabel}</p>
             <p className={cn('break-words font-bold text-slate-900 dark:text-white leading-tight', isModalVariant ? 'text-4xl' : isInputFocused ? 'text-xl' : 'text-2xl md:text-3xl')}>
-              {promptValue}
+              {promptContent}
             </p>
             <Badge variant="secondary" className={cn('mt-2 w-fit text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border-none', isInputFocused && 'mt-1')}>
               {categoryLabel}
             </Badge>
+            {isClozeMode && clozeTranslation ? (
+              <p className="text-sm text-muted-foreground">
+                <span className="font-semibold">{t('practiceClozeTranslationLabel')}:</span>{' '}
+                {clozeTranslation}
+              </p>
+            ) : null}
           </div>
 
           <form
@@ -751,7 +903,7 @@ export function QuickPracticeWidget({
                 type="button"
                 onClick={handleNext}
                 className="md:hidden absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full hover:bg-muted transition-colors"
-                disabled={!filteredItems.length}
+                disabled={!practiceItems.length}
                 aria-label={t('practiceSkipPrompt')}
               >
                 <RefreshCcw className="h-4 w-4 text-muted-foreground" />
@@ -790,12 +942,34 @@ export function QuickPracticeWidget({
                         <EllipsisVertical className="h-4 w-4" />
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-48 text-sm">
-                      <DropdownMenuItem
-                        onSelect={(event) => {
-                          event.preventDefault();
-                          handleReveal();
-                        }}
+                  <DropdownMenuContent align="end" className="w-48 text-sm">
+                    <DropdownMenuLabel className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                      {t('practiceDrillModeLabel')}
+                    </DropdownMenuLabel>
+                    <DropdownMenuItem
+                      onSelect={(event) => {
+                        event.preventDefault();
+                        setPracticeMode('flashcard');
+                      }}
+                    >
+                      <span className="flex-1">{t('practiceDrillModeFlashcard')}</span>
+                      {practiceMode === 'flashcard' && <Check className="h-3.5 w-3.5 text-primary" />}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onSelect={(event) => {
+                        event.preventDefault();
+                        setPracticeMode('cloze');
+                      }}
+                    >
+                      <span className="flex-1">{t('practiceDrillModeCloze')}</span>
+                      {practiceMode === 'cloze' && <Check className="h-3.5 w-3.5 text-primary" />}
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem
+                      onSelect={(event) => {
+                        event.preventDefault();
+                        handleReveal();
+                      }}
                         disabled={!isReady}
                       >
                         <Eye className="mr-2 h-3.5 w-3.5" />
@@ -839,7 +1013,7 @@ export function QuickPracticeWidget({
                 size={isModalVariant ? 'lg' : 'default'}
                 onClick={handleNext}
                 className="w-full gap-2"
-                disabled={!filteredItems.length}
+                disabled={!practiceItems.length}
               >
                 <RefreshCcw className="h-4 w-4" />
                 {t('nextPrompt')}
@@ -902,8 +1076,10 @@ export function QuickPracticeWidget({
             </div>
           ) : null}
 
-          {!isReady && (
-            <p className="text-sm text-muted-foreground">{t('practiceEmptyCategory')}</p>
+          {!hasAvailablePrompts && (
+            <p className="text-sm text-muted-foreground">
+              {isClozeMode ? t('practiceClozeUnavailable') : t('practiceEmptyCategory')}
+            </p>
           )}
         </div>
       </div>
@@ -914,24 +1090,26 @@ export function QuickPracticeWidget({
   useEffect(() => {
     if (layout === 'compact' && isModalOpen) {
       trackEvent(AnalyticsEvents.PRACTICE_MODAL_OPENED, {
-        mode,
+        direction,
         category: category === ALL_CATEGORIES ? 'all' : category,
+        drillMode: practiceMode,
       });
     }
-  }, [isModalOpen, mode, category, layout]);
+  }, [isModalOpen, direction, category, layout, practiceMode]);
 
   // Track when completion modal is viewed
   useEffect(() => {
     if (showCompletionModal) {
       trackEvent(AnalyticsEvents.PRACTICE_COMPLETION_MODAL_VIEWED, {
-        mode,
+        direction,
         category: category === ALL_CATEGORIES ? 'all' : category,
+        drillMode: practiceMode,
         correctCount,
         totalAttempts,
         accuracy,
       });
     }
-  }, [showCompletionModal, mode, category, correctCount, totalAttempts, accuracy]);
+  }, [showCompletionModal, direction, category, correctCount, totalAttempts, accuracy, practiceMode]);
 
   useEffect(() => {
     if (!isCategoryMenuOpen) {
@@ -1099,46 +1277,6 @@ export function QuickPracticeWidget({
           </DialogContent>
         </Dialog>
 
-        {/* Confetti CSS */}
-        <style jsx>{`
-          @keyframes confetti-fall {
-            0% {
-              transform: translateY(-100%) rotate(0deg);
-              opacity: 1;
-            }
-            100% {
-              transform: translateY(100vh) rotate(720deg);
-              opacity: 0;
-            }
-          }
-
-          .confetti-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-          }
-
-          .confetti {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            animation: confetti-fall 3s linear infinite;
-            opacity: 0;
-          }
-
-          @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-            20%, 40%, 60%, 80% { transform: translateX(5px); }
-          }
-
-          .animate-shake {
-            animation: shake 0.5s ease-in-out;
-          }
-        `}</style>
       </>
     );
   }
@@ -1170,8 +1308,8 @@ export function QuickPracticeWidget({
               <Button
                 type="button"
                 size="sm"
-                variant={mode === 'mkToEn' ? 'default' : 'ghost'}
-                onClick={() => setMode('mkToEn')}
+                variant={direction === 'mkToEn' ? 'default' : 'ghost'}
+                onClick={() => setDirection('mkToEn')}
                 className="flex-1"
               >
                 {t('practiceModeMkToEn')}
@@ -1179,8 +1317,8 @@ export function QuickPracticeWidget({
               <Button
                 type="button"
                 size="sm"
-                variant={mode === 'enToMk' ? 'default' : 'ghost'}
-                onClick={() => setMode('enToMk')}
+                variant={direction === 'enToMk' ? 'default' : 'ghost'}
+                onClick={() => setDirection('enToMk')}
                 className="flex-1"
               >
                 {t('practiceModeEnToMk')}
@@ -1356,46 +1494,10 @@ export function QuickPracticeWidget({
         </DialogContent>
       </Dialog>
 
-      {/* Confetti CSS */}
-      <style jsx>{`
-        @keyframes confetti-fall {
-          0% {
-            transform: translateY(-100%) rotate(0deg);
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(100vh) rotate(720deg);
-            opacity: 0;
-          }
-        }
-
-        .confetti-container {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          pointer-events: none;
-        }
-
-        .confetti {
-          position: absolute;
-          width: 8px;
-          height: 8px;
-          animation: confetti-fall 3s linear infinite;
-          opacity: 0;
-        }
-
-        @keyframes shake {
-          0%, 100% { transform: translateX(0); }
-          10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-          20%, 40%, 60%, 80% { transform: translateX(5px); }
-        }
-
-        .animate-shake {
-          animation: shake 0.5s ease-in-out;
-        }
-      `}</style>
+      <style
+        data-confetti
+        dangerouslySetInnerHTML={{ __html: CONFETTI_STYLES }}
+      />
     </Dialog>
   );
 }

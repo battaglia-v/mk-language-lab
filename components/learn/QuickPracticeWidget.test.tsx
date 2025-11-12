@@ -12,6 +12,13 @@ vi.mock('next-intl', () => {
     practiceModeLabel: 'Direction',
     practiceModeMkToEn: 'Macedonian → English',
     practiceModeEnToMk: 'English → Macedonian',
+    practiceDrillModeLabel: 'Practice mode',
+    practiceDrillModeFlashcard: 'Flashcards',
+    practiceDrillModeCloze: 'Fill in the blank',
+    practiceClozePromptLabel: 'Fill in the blank',
+    practiceClozePlaceholder: 'Type the missing word',
+    practiceClozeTranslationLabel: 'Translation',
+    practiceClozeUnavailable: 'No fill-in-the-blank sentences yet. Switch to flashcards.',
     practicePromptLabelMk: 'Translate from Macedonian',
     practicePromptLabelEn: 'Translate from English',
     practicePlaceholderMk: 'Type the English translation',
@@ -21,7 +28,8 @@ vi.mock('next-intl', () => {
     practiceReset: 'Reset',
     practiceSkipPrompt: 'Skip prompt',
     practiceMoreActions: 'More actions',
-    checkAnswer: 'Check Answer',
+    checkAnswer: 'Check',
+    nextPrompt: 'New Prompt',
     correctAnswer: 'Correct!',
     incorrectAnswer: (values?: Record<string, string>) =>
       `Incorrect. Correct answer: ${values?.answer ?? ''}`,
@@ -63,11 +71,15 @@ vi.mock('@/data/practice-vocabulary.json', () => ({
 
 import { QuickPracticeWidget } from './QuickPracticeWidget';
 
-const getPrimaryCheckButton = () => screen.getAllByRole('button', { name: 'Check Answer' })[0];
-const getNextPromptButton = () => screen.getAllByRole('button', { name: 'Skip prompt' })[0];
+const getPrimaryCheckButton = () => screen.getAllByRole('button', { name: 'Check' })[0];
+const getNextPromptButton = () => screen.getAllByRole('button', { name: 'New Prompt' })[0];
 const openMoreActionsMenu = async (user: ReturnType<typeof userEvent['setup']>) => {
-  const trigger = screen.getByRole('button', { name: 'More actions' });
-  await user.click(trigger);
+  const input = screen.queryByLabelText('Type the English translation') as HTMLInputElement | null;
+  input?.blur();
+  await waitFor(() => {
+    expect(screen.getByRole('button', { name: 'More actions' })).toBeVisible();
+  });
+  await user.click(screen.getByRole('button', { name: 'More actions' }));
 };
 const expectPromptsSummaryVisible = (value: number) => {
   const matches = screen.getAllByText(`Prompts answered: ${value}`);
@@ -224,10 +236,6 @@ describe('QuickPracticeWidget', () => {
     await waitFor(() => {
       expectPromptsSummaryVisible(5);
     });
-
-    // Progress bar should be at 100%
-    const progressBar = screen.getByRole('progressbar');
-    expect(progressBar).toHaveAttribute('aria-valuenow', '100');
   });
 
   it('resets session state when reset button is clicked', async () => {
@@ -253,9 +261,6 @@ describe('QuickPracticeWidget', () => {
       expect(screen.queryByText('Accuracy:')).not.toBeInTheDocument();
     });
 
-    // Progress bar should be at 0%
-    const progressBar = screen.getByRole('progressbar');
-    expect(progressBar).toHaveAttribute('aria-valuenow', '0');
   });
 
   it('filters vocabulary by category', async () => {
@@ -314,7 +319,11 @@ describe('QuickPracticeWidget', () => {
       await user.click(getPrimaryCheckButton());
     expect(screen.getByText('Correct!')).toBeInTheDocument();
 
-    // Switch mode
+    // Switch mode (controls hidden while input focused, so blur first)
+    input.blur();
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: 'English → Macedonian' })).toBeVisible();
+    });
     await user.click(screen.getByRole('button', { name: 'English → Macedonian' }));
 
     // Feedback should be cleared

@@ -1,9 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -62,20 +60,6 @@ function getVideoThumbnailUrl(videoUrl: string): string | null {
   }
 
   return null;
-}
-
-function resolvePreviewAsset(item: NewsItem): { url: string | null; fromVideo: boolean } {
-  if (item.image) {
-    return { url: item.image, fromVideo: false };
-  }
-
-  const primaryVideo = item.videos[0];
-  if (!primaryVideo) {
-    return { url: null, fromVideo: false };
-  }
-
-  const thumbnail = getVideoThumbnailUrl(primaryVideo);
-  return { url: thumbnail, fromVideo: Boolean(thumbnail) };
 }
 
 function getSourceInitials(name: string): string {

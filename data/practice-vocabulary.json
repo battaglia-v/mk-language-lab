@@ -2,273 +2,707 @@
   {
     "macedonian": "здраво",
     "english": "hello",
-    "category": "greetings"
+    "category": "greetings",
+    "contextMk": {
+      "sentence": "Кога ќе влезеш во продавница, прво кажи {{blank}}.",
+      "translation": "When you enter the store, say hello first."
+    },
+    "contextEn": {
+      "sentence": "My kids shout {{blank}} when I arrive home.",
+      "translation": "Моите деца викнуваат здраво кога ќе стигнам дома."
+    }
   },
   {
     "english": "good morning",
     "category": "greetings",
-    "macedonian": "добро утро"
+    "macedonian": "добро утро",
+    "contextMk": {
+      "sentence": "Му велам {{blank}} на татко ми секое утро.",
+      "translation": "I tell my father good morning every morning."
+    },
+    "contextEn": {
+      "sentence": "She texted {{blank}} to the team chat at 7 AM.",
+      "translation": "Таа им напиша добро утро во тимската група во 7 часот."
+    }
   },
   {
     "english": "good evening",
     "category": "greetings",
-    "macedonian": "добра вечер"
+    "macedonian": "добра вечер",
+    "contextMk": {
+      "sentence": "Домаќинот им рече {{blank}} на гостите.",
+      "translation": "The host told the guests good evening."
+    },
+    "contextEn": {
+      "sentence": "When the sun sets, the neighbors whisper {{blank}}.",
+      "translation": "Кога заоѓа сонцето, соседите си шепотат добра вечер."
+    }
   },
   {
     "english": "how are you?",
     "category": "greetings",
-    "macedonian": "како си?"
+    "macedonian": "како си?",
+    "contextMk": {
+      "sentence": "Секогаш почнувам со {{blank}} кога ќе се чуеме.",
+      "translation": "I always start with how are you when we talk."
+    },
+    "contextEn": {
+      "sentence": "He leaned over and asked {{blank}}.",
+      "translation": "Тој се наведна и праша како си?"
+    }
   },
   {
     "english": "see you",
     "category": "greetings",
-    "macedonian": "се гледаме"
+    "macedonian": "се гледаме",
+    "contextMk": {
+      "sentence": "Му мавнав и реков {{blank}}.",
+      "translation": "I waved and said see you."
+    },
+    "contextEn": {
+      "sentence": "After class we shouted {{blank}} across the hallway.",
+      "translation": "По часовите извикавме се гледаме низ ходникот."
+    }
   },
   {
     "english": "good afternoon",
     "category": "greetings",
-    "macedonian": "добро попладне"
+    "macedonian": "добро попладне",
+    "contextMk": {
+      "sentence": "Наставникот им рече {{blank}} на учениците.",
+      "translation": "The teacher told the students good afternoon."
+    },
+    "contextEn": {
+      "sentence": "The receptionist greeted every visitor with {{blank}}.",
+      "translation": "Рецепционерката ги поздрави сите посетители со добро попладне."
+    }
   },
   {
     "english": "good night",
     "category": "greetings",
-    "macedonian": "добра ноќ"
+    "macedonian": "добра ноќ",
+    "contextMk": {
+      "sentence": "Детето ми прошепоти {{blank}} пред да заспие.",
+      "translation": "My child whispered good night before falling asleep."
+    },
+    "contextEn": {
+      "sentence": "We always text {{blank}} before bed.",
+      "translation": "Секогаш си испраќаме добра ноќ пред спиење."
+    }
   },
   {
     "english": "goodbye",
     "category": "greetings",
-    "macedonian": "довидување"
+    "macedonian": "довидување",
+    "contextMk": {
+      "sentence": "Се насмевна и кажа {{blank}} пред да замине.",
+      "translation": "She smiled and said goodbye before leaving."
+    },
+    "contextEn": {
+      "sentence": "They bowed and said {{blank}} to the audience.",
+      "translation": "Тие се поклонија и рекоа довидување на публиката."
+    }
   },
   {
     "english": "bye (informal)",
     "category": "greetings",
-    "macedonian": "чао"
+    "macedonian": "чао",
+    "contextMk": {
+      "sentence": "Му реков {{blank}} и го исклучив повикот.",
+      "translation": "I said bye and ended the call."
+    },
+    "contextEn": {
+      "sentence": "Kids in Skopje shout {{blank}} when the bell rings.",
+      "translation": "Децата во Скопје извикaат чао кога ќе заѕвони ѕвончето."
+    }
   },
   {
     "english": "see you later",
     "category": "greetings",
-    "macedonian": "се гледаме подоцна"
+    "macedonian": "се гледаме подоцна",
+    "contextMk": {
+      "sentence": "Ќе одам до продавница, {{blank}}.",
+      "translation": "I'm going to the store, see you later."
+    },
+    "contextEn": {
+      "sentence": "After rehearsal we always whisper {{blank}} backstage.",
+      "translation": "По пробата секогаш шепотиме се гледаме подоцна зад сцената."
+    }
   },
   {
     "english": "see you tomorrow",
     "category": "greetings",
-    "macedonian": "се гледаме утре"
+    "macedonian": "се гледаме утре",
+    "contextMk": {
+      "sentence": "Наставничката ни рече {{blank}} на крајот од часот.",
+      "translation": "The teacher told us see you tomorrow at the end of class."
+    },
+    "contextEn": {
+      "sentence": "Before leaving work he said {{blank}} to the whole team.",
+      "translation": "Пред да си тргне од работа им рече се гледаме утре на целиот тим."
+    }
   },
   {
     "english": "see you soon",
     "category": "greetings",
-    "macedonian": "се гледаме наскоро"
+    "macedonian": "се гледаме наскоро",
+    "contextMk": {
+      "sentence": "Им ветив {{blank}} кога се преселив во Битола.",
+      "translation": "I promised them see you soon when I moved to Bitola."
+    },
+    "contextEn": {
+      "sentence": "Send me a message and write {{blank}} at the end.",
+      "translation": "Испрати ми порака и напиши се гледаме наскоро на крајот."
+    }
   },
   {
     "english": "welcome",
     "category": "greetings",
-    "macedonian": "добредојдовте"
+    "macedonian": "добредојдовте",
+    "contextMk": {
+      "sentence": "Водичот им рече {{blank}} на туристите од автобусот.",
+      "translation": "The guide told the tourists welcome as they left the bus."
+    },
+    "contextEn": {
+      "sentence": "The sign over the door reads {{blank}}.",
+      "translation": "Знакот над вратата пишува добредојдовте."
+    }
   },
   {
     "english": "nice to meet you",
     "category": "greetings",
-    "macedonian": "драго ми е"
+    "macedonian": "драго ми е",
+    "contextMk": {
+      "sentence": "Кога ми го претставија новиот сосед реков {{blank}}.",
+      "translation": "When they introduced the new neighbor I said nice to meet you."
+    },
+    "contextEn": {
+      "sentence": "At interviews I always smile and say {{blank}}.",
+      "translation": "На интервјуа секогаш се насмевнувам и велам драго ми е."
+    }
   },
   {
     "english": "how's it going?",
     "category": "greetings",
-    "macedonian": "како оди?"
+    "macedonian": "како оди?",
+    "contextMk": {
+      "sentence": "Соседот ме праша {{blank}} додека пиев кафе.",
+      "translation": "The neighbor asked me how's it going while I was drinking coffee."
+    },
+    "contextEn": {
+      "sentence": "Friends in Ohrid greet me with {{blank}} every time.",
+      "translation": "Пријателите во Охрид ме поздравуваат со како оди? секој пат."
+    }
   },
   {
     "english": "what's new?",
     "category": "greetings",
-    "macedonian": "што има ново?"
+    "macedonian": "што има ново?",
+    "contextMk": {
+      "sentence": "По летниот распуст си велиме {{blank}}.",
+      "translation": "After summer break we always say what's new."
+    },
+    "contextEn": {
+      "sentence": "Send a voice message that starts with {{blank}}.",
+      "translation": "Испрати гласовна порака што почнува со што има ново?"
+    }
   },
   {
     "english": "I'm fine",
     "category": "greetings",
-    "macedonian": "добро сум"
+    "macedonian": "добро сум",
+    "contextMk": {
+      "sentence": "Кога ме прашуваат, одговарам {{blank}}.",
+      "translation": "When they ask me, I reply I'm fine."
+    },
+    "contextEn": {
+      "sentence": "He nodded and said {{blank}} softly.",
+      "translation": "Тој кимна и тивко рече добро сум."
+    }
   },
   {
     "english": "I'm well, thank you",
     "category": "greetings",
-    "macedonian": "добро сум, благодарам"
+    "macedonian": "добро сум, благодарам",
+    "contextMk": {
+      "sentence": "На докторот му одговорив {{blank}}.",
+      "translation": "I answered I'm well, thank you to the doctor."
+    },
+    "contextEn": {
+      "sentence": "Polite guests usually reply {{blank}}.",
+      "translation": "Учтивите гости обично одговараат добро сум, благодарам."
+    }
   },
   {
     "english": "not bad",
     "category": "greetings",
-    "macedonian": "не е лошо"
+    "macedonian": "не е лошо",
+    "contextMk": {
+      "sentence": "Кога денот ми е просечен велам {{blank}}.",
+      "translation": "When my day is average I say not bad."
+    },
+    "contextEn": {
+      "sentence": "He shrugged and muttered {{blank}} to his friend.",
+      "translation": "Тој слегна со рамениците и му прошепоти не е лошо на другарот."
+    }
   },
   {
     "english": "so-so",
     "category": "greetings",
-    "macedonian": "така-така"
+    "macedonian": "така-така",
+    "contextMk": {
+      "sentence": "Ако сум уморен, одговарам {{blank}}.",
+      "translation": "If I'm tired I answer so-so."
+    },
+    "contextEn": {
+      "sentence": "Grandpa often says {{blank}} when it rains.",
+      "translation": "Дедо често вели така-така кога врне."
+    }
   },
   {
     "english": "excellent",
-    "englishAlternates": ["great"],
+    "englishAlternates": [
+      "great"
+    ],
     "category": "greetings",
-    "macedonian": "одлично"
+    "macedonian": "одлично",
+    "contextMk": {
+      "sentence": "Кога тестот помина добро, извикав {{blank}}!",
+      "translation": "When the test went well I shouted excellent!"
+    },
+    "contextEn": {
+      "sentence": "Coaches clap and yell {{blank}} during practice.",
+      "translation": "Тренерите плескаат и викаат одлично на тренинг."
+    }
   },
   {
     "english": "how are you? (formal)",
     "category": "greetings",
-    "macedonian": "како сте?"
+    "macedonian": "како сте?",
+    "contextMk": {
+      "sentence": "На директорот му реков {{blank}} пред состанокот.",
+      "translation": "I told the director how are you (formal) before the meeting."
+    },
+    "contextEn": {
+      "sentence": "Students message their professor with {{blank}} at the start.",
+      "translation": "Студентите му пишуваат на професорот како сте? на почетокот."
+    }
   },
   {
     "english": "good day (formal)",
     "category": "greetings",
-    "macedonian": "добар ден"
+    "macedonian": "добар ден",
+    "contextMk": {
+      "sentence": "Во банка секогаш велат {{blank}}.",
+      "translation": "At the bank they always say good day."
+    },
+    "contextEn": {
+      "sentence": "Knock on the door and greet with {{blank}}.",
+      "translation": "Чукни на вратата и поздрави со добар ден."
+    }
   },
   {
     "english": "take care",
     "category": "greetings",
-    "macedonian": "чувај се"
+    "macedonian": "чувај се",
+    "contextMk": {
+      "sentence": "Му испратив порака: {{blank}} и јави се кога ќе стигнеш.",
+      "translation": "I texted him take care and call when you arrive."
+    },
+    "contextEn": {
+      "sentence": "Before the storm she whispered {{blank}} to her kids.",
+      "translation": "Пред бурата им прошепоти чувај се на децата."
+    }
   },
   {
     "english": "stay well",
     "category": "greetings",
-    "macedonian": "биди здрав"
+    "macedonian": "биди здрав",
+    "contextMk": {
+      "sentence": "Бабите често велат {{blank}} на пазар.",
+      "translation": "Grandmothers often say stay well at the market."
+    },
+    "contextEn": {
+      "sentence": "He ended the call with {{blank}} and a laugh.",
+      "translation": "Тој го заврши разговорот со биди здрав и смеа."
+    }
   },
   {
     "english": "have a safe journey",
     "category": "greetings",
-    "macedonian": "среќен пат"
+    "macedonian": "среќен пат",
+    "contextMk": {
+      "sentence": "На сестра ми и посакав {{blank}} кога тргна за Битола.",
+      "translation": "I wished my sister a safe journey when she left for Bitola."
+    },
+    "contextEn": {
+      "sentence": "Announcements in buses end with {{blank}}.",
+      "translation": "Најавите во автобусите завршуваат со среќен пат."
+    }
   },
   {
     "english": "have a nice weekend",
     "category": "greetings",
-    "macedonian": "пријатен викенд"
+    "macedonian": "пријатен викенд",
+    "contextMk": {
+      "sentence": "Емаилот до тимот го завршив со {{blank}}.",
+      "translation": "I ended the email to the team with have a nice weekend."
+    },
+    "contextEn": {
+      "sentence": "Neighbors smile and say {{blank}} each Friday night.",
+      "translation": "Соседите се насмевнуваат и велат пријатен викенд секој петок навечер."
+    }
   },
   {
     "english": "good health to you",
     "category": "greetings",
-    "macedonian": "дај здравје"
+    "macedonian": "дај здравје",
+    "contextMk": {
+      "sentence": "Секоја наздравица во семејството вклучува {{blank}}.",
+      "translation": "Every family toast includes good health to you."
+    },
+    "contextEn": {
+      "sentence": "Uncles raise their glasses and shout {{blank}}.",
+      "translation": "Стрико им ги крева чашите и вика дај здравје."
+    }
   },
   {
     "english": "congratulations",
     "category": "greetings",
-    "macedonian": "честитки"
+    "macedonian": "честитки",
+    "contextMk": {
+      "sentence": "Коментарите на Инстаграм беа полни со {{blank}}.",
+      "translation": "Instagram comments were full of congratulations."
+    },
+    "contextEn": {
+      "sentence": "Send a postcard that simply says {{blank}}.",
+      "translation": "Испрати разгледница што едноставно вели честитки."
+    }
   },
   {
     "english": "happy birthday",
     "category": "greetings",
-    "macedonian": "среќен роденден"
+    "macedonian": "среќен роденден",
+    "contextMk": {
+      "sentence": "Децата со големи букви напишаа {{blank}}.",
+      "translation": "The kids wrote happy birthday in big letters."
+    },
+    "contextEn": {
+      "sentence": "Call your cousin tonight and say {{blank}} loudly.",
+      "translation": "Јави му се на братучед ти вечер и кажи среќен роденден гласно."
+    }
   },
   {
     "english": "best wishes",
     "category": "greetings",
-    "macedonian": "најдобри желби"
+    "macedonian": "најдобри желби",
+    "contextMk": {
+      "sentence": "Тетратката за гостите имаше страница со {{blank}}.",
+      "translation": "The guestbook had a page filled with best wishes."
+    },
+    "contextEn": {
+      "sentence": "She signs every email with {{blank}}.",
+      "translation": "Таа потпишува секој имејл со најдобри желби."
+    }
   },
   {
     "english": "happy holidays",
     "category": "greetings",
-    "macedonian": "среќни празници"
+    "macedonian": "среќни празници",
+    "contextMk": {
+      "sentence": "Радиото постојано пушта реклами со {{blank}}.",
+      "translation": "The radio keeps playing ads that say happy holidays."
+    },
+    "contextEn": {
+      "sentence": "Write {{blank}} on the gift tags this year.",
+      "translation": "Напиши среќни празници на етикетите за подароците годинава."
+    }
   },
   {
     "english": "let me know",
     "category": "greetings",
-    "macedonian": "јави ми"
+    "macedonian": "јави ми",
+    "contextMk": {
+      "sentence": "Кога ќе стигнеш, само кажи {{blank}}.",
+      "translation": "When you arrive just say let me know."
+    },
+    "contextEn": {
+      "sentence": "Messages from coworkers usually end with {{blank}}.",
+      "translation": "Пораките од колегите обично завршуваат со јави ми."
+    }
   },
   {
     "english": "call me",
     "category": "greetings",
-    "macedonian": "јави ми се"
+    "macedonian": "јави ми се",
+    "contextMk": {
+      "sentence": "На белешка му напишав {{blank}} вечерва.",
+      "translation": "I wrote call me tonight on the note."
+    },
+    "contextEn": {
+      "sentence": "Parents tell their kids {{blank}} if plans change.",
+      "translation": "Родителите им велат на децата јави ми се ако се сменат плановите."
+    }
   },
   {
     "english": "text me",
     "category": "greetings",
-    "macedonian": "испрати ми порака"
+    "macedonian": "испрати ми порака",
+    "contextMk": {
+      "sentence": "Одмори кога ќе пристигнеш и {{blank}}.",
+      "translation": "Rest when you arrive and text me."
+    },
+    "contextEn": {
+      "sentence": "Friends abroad just write {{blank}} instead of calling.",
+      "translation": "Пријателите во странство само пишуваат испрати ми порака наместо да се јават."
+    }
   },
   {
     "english": "talk soon",
     "category": "greetings",
-    "macedonian": "зборуваме наскоро"
+    "macedonian": "зборуваме наскоро",
+    "contextMk": {
+      "sentence": "По секој состанок велиме {{blank}}.",
+      "translation": "After every meeting we say talk soon."
+    },
+    "contextEn": {
+      "sentence": "Wrap up the chat with {{blank}} for a friendly tone.",
+      "translation": "Заврши го разговорот со зборуваме наскоро за пријателски тон."
+    }
   },
   {
     "english": "good to see you",
     "category": "greetings",
-    "macedonian": "драго ми е да те видам"
+    "macedonian": "драго ми е да те видам",
+    "contextMk": {
+      "sentence": "На стар пријател му реков {{blank}}.",
+      "translation": "I told an old friend good to see you."
+    },
+    "contextEn": {
+      "sentence": "She smiled and whispered {{blank}} before hugging.",
+      "translation": "Таа се насмевна и прошепоти драго ми е да те видам пред да го прегрне."
+    }
   },
   {
     "english": "thank you",
     "category": "politeness",
-    "macedonian": "благодарам"
+    "macedonian": "благодарам",
+    "contextMk": {
+      "sentence": "Келнерот ја донесе храната и веднаш реков {{blank}}.",
+      "translation": "The waiter brought the food and I immediately said thank you."
+    },
+    "contextEn": {
+      "sentence": "She smiled and whispered {{blank}} to the volunteer.",
+      "translation": "Таа се насмевна и му прошепоти благодарам на волонтерот."
+    }
   },
   {
     "english": "thanks a lot",
     "category": "politeness",
-    "macedonian": "фала многу"
+    "macedonian": "фала многу",
+    "contextMk": {
+      "sentence": "Кога ми помогна со задачата, му реков {{blank}}.",
+      "translation": "When he helped me with the assignment I told him thanks a lot."
+    },
+    "contextEn": {
+      "sentence": "Messages from my cousins always end with {{blank}}.",
+      "translation": "Пораките од братучедите секогаш завршуваат со фала многу."
+    }
   },
   {
     "english": "please",
     "category": "politeness",
-    "macedonian": "те молам"
+    "macedonian": "те молам",
+    "contextMk": {
+      "sentence": "Ако имаш време, {{blank}} ми испрати линк.",
+      "translation": "If you have time, please send me the link."
+    },
+    "contextEn": {
+      "sentence": "Kids fold their hands and say {{blank}} when they want ice cream.",
+      "translation": "Децата ги спојуваат рацете и велат те молам кога сакаат сладолед."
+    }
   },
   {
     "english": "excuse me",
     "category": "politeness",
-    "macedonian": "извинете"
+    "macedonian": "извинете",
+    "contextMk": {
+      "sentence": "Во автобусот реков {{blank}} за да поминам.",
+      "translation": "On the bus I said excuse me to pass by."
+    },
+    "contextEn": {
+      "sentence": "Tourists tap your shoulder and start with {{blank}}.",
+      "translation": "Туристите ти чукнуваат по рамото и почнуваат со извинете."
+    }
   },
   {
     "english": "no problem",
     "category": "politeness",
-    "macedonian": "без проблем"
+    "macedonian": "без проблем",
+    "contextMk": {
+      "sentence": "Кога побара повторно објаснување, одговорив {{blank}}.",
+      "translation": "When she asked for another explanation I replied no problem."
+    },
+    "contextEn": {
+      "sentence": "Mechanics in Skopje laugh and say {{blank}} after helping.",
+      "translation": "Механичарите во Скопје се смеат и велат без проблем после помошта."
+    }
   },
   {
     "english": "you're welcome",
     "category": "politeness",
-    "macedonian": "нема на што"
+    "macedonian": "нема на што",
+    "contextMk": {
+      "sentence": "Му дадов совет и додадов {{blank}}.",
+      "translation": "I gave him advice and added you're welcome."
+    },
+    "contextEn": {
+      "sentence": "Hosts wave goodbye and say {{blank}} at the door.",
+      "translation": "Домаќините мавтаат за збогум и велат нема на што на вратата."
+    }
   },
   {
     "english": "don't mention it",
     "category": "politeness",
-    "macedonian": "молам"
+    "macedonian": "молам",
+    "contextMk": {
+      "sentence": "Кога ми се заблагодари, одговорив {{blank}}.",
+      "translation": "When she thanked me I replied don't mention it."
+    },
+    "contextEn": {
+      "sentence": "Old friends shrug and mumble {{blank}} after helping.",
+      "translation": "Старите пријатели слегнуваат со рамениците и мрморат молам после помошта."
+    }
   },
   {
     "english": "I'm sorry",
     "category": "politeness",
-    "macedonian": "жал ми е"
+    "macedonian": "жал ми е",
+    "contextMk": {
+      "sentence": "Закоцав во ред и реков {{blank}}.",
+      "translation": "I bumped in line and said I'm sorry."
+    },
+    "contextEn": {
+      "sentence": "She looked down and whispered {{blank}} to her sister.",
+      "translation": "Таа погледна надолу и прошепоти жал ми е на сестра и."
+    }
   },
   {
     "english": "forgive me",
     "category": "politeness",
-    "macedonian": "прости ми"
+    "macedonian": "прости ми",
+    "contextMk": {
+      "sentence": "По расправијата само реков {{blank}}.",
+      "translation": "After the argument I only said forgive me."
+    },
+    "contextEn": {
+      "sentence": "He sent a handwritten note that said {{blank}}.",
+      "translation": "Тоа испрати рачно напишана белешка што пишува прости ми."
+    }
   },
   {
     "english": "my apologies",
     "category": "politeness",
-    "macedonian": "се извинувам"
+    "macedonian": "се извинувам",
+    "contextMk": {
+      "sentence": "На состанокот се исправив и реков {{blank}}.",
+      "translation": "At the meeting I stood up and said my apologies."
+    },
+    "contextEn": {
+      "sentence": "Emails to clients sometimes start with {{blank}}.",
+      "translation": "Имејлите до клиенти понекогаш почнуваат со се извинувам."
+    }
   },
   {
     "english": "may I?",
     "category": "politeness",
-    "macedonian": "може ли?"
+    "macedonian": "може ли?",
+    "contextMk": {
+      "sentence": "Почукав и прашав {{blank}} да влезам?",
+      "translation": "I knocked and asked may I come in?"
+    },
+    "contextEn": {
+      "sentence": "Students raise their hands and say {{blank}} before speaking.",
+      "translation": "Учениците ја креваат раката и велат може ли? пред да зборуваат."
+    }
   },
   {
     "english": "can I?",
     "category": "politeness",
-    "macedonian": "можам ли?"
+    "macedonian": "можам ли?",
+    "contextMk": {
+      "sentence": "Го кренав телефонот и прашав {{blank}} да повикам?",
+      "translation": "I picked up the phone and asked can I call?"
+    },
+    "contextEn": {
+      "sentence": "Kids peek into the fridge and say {{blank}} have another piece?",
+      "translation": "Децата ѕиркаат во фрижидер и велат можам ли? да земам уште едно парче?"
+    }
   },
   {
     "english": "could you?",
     "category": "politeness",
-    "macedonian": "можеш ли?"
+    "macedonian": "можеш ли?",
+    "contextMk": {
+      "sentence": "Го замолив колегата: {{blank}} да ми испратиш извештај?",
+      "translation": "I asked my colleague: could you send me the report?"
+    },
+    "contextEn": {
+      "sentence": "Travelers politely ask {{blank}} hold this bag?",
+      "translation": "Патниците учтиво прашуваат можеш ли? да ја држиш оваа торба?"
+    }
   },
   {
     "english": "after you",
     "category": "politeness",
-    "macedonian": "по вас"
+    "macedonian": "по вас",
+    "contextMk": {
+      "sentence": "Пред лифтот се повлеков и реков {{blank}}.",
+      "translation": "In front of the elevator I stepped back and said after you."
+    },
+    "contextEn": {
+      "sentence": "Gentlemen nod and whisper {{blank}} at the doorway.",
+      "translation": "Джентлмените кимнуваат и шепотат по вас на влезот."
+    }
   },
   {
     "english": "go ahead",
     "category": "politeness",
-    "macedonian": "заповедајте"
+    "macedonian": "заповедајте",
+    "contextMk": {
+      "sentence": "Колегата се двоумеше, па му реков {{blank}}.",
+      "translation": "My coworker hesitated so I told him go ahead."
+    },
+    "contextEn": {
+      "sentence": "Cashiers often say {{blank}} кога е твој ред.",
+      "translation": "Касиерките често велат заповедајте кога е твој ред."
+    }
   },
   {
     "english": "pardon me",
     "category": "politeness",
-    "macedonian": "извинете ме"
+    "macedonian": "извинете ме",
+    "contextMk": {
+      "sentence": "Во библиотека тивко шепотам {{blank}}.",
+      "translation": "In the library I quietly whisper pardon me."
+    },
+    "contextEn": {
+      "sentence": "He leaned over and said {{blank}} before asking a question.",
+      "translation": "Тој се наведна и рече извинете ме пред да постави прашање."
+    }
   },
   {
     "english": "sorry to bother you",
     "category": "politeness",
-    "macedonian": "извини што те вознемирувам"
+    "macedonian": "извини што те вознемирувам",
+    "contextMk": {
+      "sentence": "Му ѕвонев на докторот со {{blank}} во порака.",
+      "translation": "I called the doctor with sorry to bother you in the message."
+    },
+    "contextEn": {
+      "sentence": "Neighbors knock gently and begin with {{blank}}.",
+      "translation": "Соседите тивко чукаат и почнуваат со извини што те вознемирувам."
+    }
   },
   {
     "english": "mother",
@@ -867,7 +1301,9 @@
   },
   {
     "english": "hand",
-    "englishAlternates": ["arm"],
+    "englishAlternates": [
+      "arm"
+    ],
     "category": "health",
     "macedonian": "рака"
   },
@@ -898,7 +1334,9 @@
   },
   {
     "english": "sick",
-    "englishAlternates": ["ill"],
+    "englishAlternates": [
+      "ill"
+    ],
     "category": "health",
     "macedonian": "болен"
   },

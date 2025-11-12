@@ -23,14 +23,14 @@ export default function HomePage() {
 
       {/* Hero Section - Ultra Compact */}
       <section className="w-full border-b border-border/40 bg-gradient-to-b from-primary/5 to-background">
-        <div className="mx-auto max-w-4xl px-4 py-3 md:py-4">
-          <h1 className="text-center text-lg font-bold tracking-tight text-foreground md:text-2xl">
+        <div className="mx-auto max-w-4xl px-4 py-2.5 md:py-4">
+          <h1 className="text-center text-base font-bold tracking-tight text-foreground sm:text-lg md:text-2xl">
             {t('learn')}{' '}
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Македонски
             </span>
           </h1>
-          <p className="hidden md:block text-center text-sm text-muted-foreground mt-1">
+          <p className="mt-1 text-center text-xs text-muted-foreground md:text-sm">
             {t('subtitle')}
           </p>
         </div>
@@ -46,17 +46,17 @@ export default function HomePage() {
       {/* Quick Start - Side by Side, Duolingo-Style Chunky Buttons */}
       <section className="w-full">
         <div className="mx-auto max-w-4xl px-4 py-3">
-          <div className="grid grid-cols-2 gap-3 md:gap-4">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4">
             {/* Practice Button - Primary CTA */}
             <Link
               href={buildHref('/practice')}
-              className="block bg-[var(--brand-green)] hover:bg-[var(--brand-green-dark)] text-white border-b-4 border-[var(--brand-green-dark)] active:border-b-0 rounded-2xl p-3 md:p-5 text-center shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:mt-1"
+              className="block rounded-2xl border-b-4 border-[var(--brand-green-dark)] bg-[var(--brand-green)] p-3 text-center text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--brand-green-dark)] hover:shadow-xl active:mt-1 active:translate-y-0 active:border-b-0 md:p-5"
             >
               <div className="flex flex-col items-center gap-2 md:gap-3">
-                <RefreshCw className="h-7 w-7 md:h-9 md:w-9" />
+                <RefreshCw className="h-6 w-6 md:h-9 md:w-9" />
                 <div>
-                  <h3 className="text-sm md:text-base font-bold uppercase tracking-wide">{t('dailyPractice')}</h3>
-                  <p className="hidden md:block text-xs font-medium mt-1 opacity-90">
+                  <h3 className="text-xs font-bold uppercase tracking-wide md:text-base">{t('dailyPractice')}</h3>
+                  <p className="mt-1 text-xs font-medium opacity-90">
                     {t('dailyPracticeDesc')}
                   </p>
                 </div>
@@ -66,13 +66,13 @@ export default function HomePage() {
             {/* Resources Button - Secondary CTA */}
             <Link
               href={buildHref('/resources')}
-              className="block bg-[var(--brand-gold)] hover:bg-[var(--brand-gold-dark)] text-[#1f1403] border-b-4 border-[var(--brand-gold-dark)] active:border-b-0 rounded-2xl p-3 md:p-5 text-center shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:mt-1"
+              className="block rounded-2xl border-b-4 border-[var(--brand-gold-dark)] bg-[var(--brand-gold)] p-3 text-center text-[#1f1403] shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--brand-gold-dark)] hover:shadow-xl active:mt-1 active:translate-y-0 active:border-b-0 md:p-5"
             >
               <div className="flex flex-col items-center gap-2 md:gap-3">
-                <Library className="h-7 w-7 md:h-9 md:w-9" />
+                <Library className="h-6 w-6 md:h-9 md:w-9" />
                 <div>
-                  <h3 className="text-sm md:text-base font-bold uppercase tracking-wide">{t('resourcesTitle')}</h3>
-                  <p className="hidden md:block text-xs font-medium mt-1 opacity-90">
+                  <h3 className="text-xs font-bold uppercase tracking-wide md:text-base">{t('resourcesTitle')}</h3>
+                  <p className="mt-1 text-xs font-medium opacity-90">
                     {t('resourcesDesc')}
                   </p>
                 </div>
