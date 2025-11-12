@@ -1,12 +1,13 @@
 'use client';
 
-import { FormEvent, useCallback, useMemo, useState } from 'react';
+import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { ArrowLeftRight, Check, Copy, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
 type DirectionOption = {
@@ -27,6 +28,15 @@ type TranslationHistoryEntry = {
 
 const HISTORY_LIMIT = 5;
 const MAX_CHARACTERS = 1800;
+
+const formatDirectionAbbrev = (id: DirectionOption['id']) => (id === 'en-mk' ? 'EN → MK' : 'MK → EN');
+
+const truncateText = (text: string, limit = 24) => {
+  if (text.length <= limit) {
+    return text;
+  }
+  return `${text.slice(0, limit)}…`;
+};
 
 export default function TranslatePage() {
   const t = useTranslations('translate');
@@ -82,7 +92,9 @@ export default function TranslatePage() {
   const [copiedState, setCopiedState] = useState<'idle' | 'copied'>('idle');
   const [history, setHistory] = useState<TranslationHistoryEntry[]>([]);
   const [isHistoryExpanded, setIsHistoryExpanded] = useState(false);
+  const [isHistoryDialogOpen, setIsHistoryDialogOpen] = useState(false);
   const characterCountId = 'translate-character-count';
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
 
   const directionLabelMap = useMemo(() => {
@@ -113,6 +125,19 @@ export default function TranslatePage() {
     setErrorMessage(null);
     setCopiedState('idle');
   }, []);
+
+  const autoResizeInput = useCallback(() => {
+    const textarea = textareaRef.current;
+    if (!textarea) {
+      return;
+    }
+    textarea.style.height = 'auto';
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  }, []);
+
+  useEffect(() => {
+    autoResizeInput();
+  }, [autoResizeInput, inputText]);
 
   const handleTranslate = useCallback(
     async (event?: FormEvent<HTMLFormElement>) => {
@@ -247,90 +272,92 @@ export default function TranslatePage() {
   });
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      {/* Compact Header Bar */}
-      <div className="border-b border-border/40 bg-card/50 backdrop-blur-sm px-4 py-3">
-        <div className="mx-auto max-w-4xl flex items-center justify-between gap-4">
-          <h1 className="text-lg md:text-xl font-bold text-foreground">
-            {t('title')}
-          </h1>
-          <Badge variant="outline" className="border-primary/40 bg-primary/10 text-primary text-xs">
-            {t('badge')}
-          </Badge>
+    <>
+      <div className="min-h-screen flex flex-col bg-background">
+        {/* Compact Header Bar */}
+        <div className="border-b border-border/40 bg-card/50 backdrop-blur-sm px-4 py-3">
+          <div className="mx-auto max-w-4xl flex items-center justify-between gap-4">
+            <h1 className="text-lg md:text-xl font-bold text-foreground">
+              {t('title')}
+            </h1>
+            <Badge variant="outline" className="border-primary/40 bg-primary/10 text-primary text-xs">
+              {t('badge')}
+            </Badge>
+          </div>
         </div>
-      </div>
 
-      {/* Main Content - Full Screen */}
-      <div className="flex-1 flex flex-col">
-        <div className="mx-auto w-full max-w-4xl flex-1 flex flex-col px-4 py-3 md:py-4 gap-4">
-          <form
-            className="flex flex-col gap-4 rounded-3xl border border-border/40 bg-card/80 p-4 shadow-lg md:p-6"
-            onSubmit={handleTranslate}
-          >
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                  <div
-                    className="flex w-full flex-wrap gap-2"
-                    role="radiogroup"
-                    aria-label={t('directionsGroupLabel')}
-                  >
-                    <Button
-                      type="button"
-                      size="sm"
-                      variant={directionId === 'en-mk' ? 'default' : 'outline'}
-                      onClick={() => handleDirectionChange('en-mk')}
-                      role="radio"
-                      aria-checked={directionId === 'en-mk'}
-                      className="h-9 flex-1 min-w-[130px] rounded-full px-3 text-xs font-semibold uppercase"
-                    >
-                      EN → MK
-                    </Button>
-                    <Button
-                      type="button"
-                      size="sm"
-                      variant={directionId === 'mk-en' ? 'default' : 'outline'}
-                      onClick={() => handleDirectionChange('mk-en')}
-                      role="radio"
-                      aria-checked={directionId === 'mk-en'}
-                      className="h-9 flex-1 min-w-[130px] rounded-full px-3 text-xs font-semibold uppercase"
-                    >
-                      MK → EN
-                    </Button>
-                  </div>
+        {/* Main Content - Full Screen */}
+        <div className="flex-1 flex flex-col">
+          <div className="mx-auto w-full max-w-4xl flex-1 flex flex-col px-4 py-3 md:py-4 gap-4">
+            <form
+              className="flex flex-col gap-4 rounded-3xl border border-border/40 bg-card/80 p-4 shadow-lg md:p-6"
+              onSubmit={handleTranslate}
+            >
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <div
+                  className="flex w-full flex-wrap gap-2"
+                  role="radiogroup"
+                  aria-label={t('directionsGroupLabel')}
+                >
                   <Button
                     type="button"
                     size="sm"
-                    variant="ghost"
-                    onClick={handleSwapDirections}
-                    aria-label={t('swapDirections')}
-                    className="h-9 w-9 rounded-full border border-border/40 p-0 text-muted-foreground"
+                    variant={directionId === 'en-mk' ? 'default' : 'outline'}
+                    onClick={() => handleDirectionChange('en-mk')}
+                    role="radio"
+                    aria-checked={directionId === 'en-mk'}
+                    className="h-9 flex-1 min-w-[130px] rounded-full px-3 text-xs font-semibold uppercase"
                   >
-                    <ArrowLeftRight className="h-3.5 w-3.5" />
+                    EN → MK
+                  </Button>
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant={directionId === 'mk-en' ? 'default' : 'outline'}
+                    onClick={() => handleDirectionChange('mk-en')}
+                    role="radio"
+                    aria-checked={directionId === 'mk-en'}
+                    className="h-9 flex-1 min-w-[130px] rounded-full px-3 text-xs font-semibold uppercase"
+                  >
+                    MK → EN
                   </Button>
                 </div>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="ghost"
+                  onClick={handleSwapDirections}
+                  aria-label={t('swapDirections')}
+                  className="h-9 w-9 rounded-full border border-border/40 p-0 text-muted-foreground"
+                >
+                  <ArrowLeftRight className="h-3.5 w-3.5" />
+                </Button>
+              </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="translate-input" className="text-sm font-semibold text-foreground">
-                    {t('inputLabel')}
-                  </label>
-                  <Textarea
-                    id="translate-input"
-                    value={inputText}
-                    onChange={(event) => setInputText(event.target.value)}
-                    placeholder={selectedDirection.placeholder}
-                    maxLength={MAX_CHARACTERS}
-                    aria-describedby={characterCountId}
-                    className="min-h-[140px] md:min-h-[180px] resize-none rounded-2xl border border-border/60 bg-background/80 text-base"
-                    onKeyDown={(event) => {
-                      if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
-                        event.preventDefault();
-                        void handleTranslate();
-                      }
-                    }}
-                  />
-                  <div className="flex items-center justify-end text-xs text-muted-foreground">
-                    <span id={characterCountId}>{characterCountLabel}</span>
-                  </div>
+              <div className="space-y-2">
+                <label htmlFor="translate-input" className="text-sm font-semibold text-foreground">
+                  {t('inputLabel')}
+                </label>
+                <Textarea
+                  id="translate-input"
+                  ref={textareaRef}
+                  value={inputText}
+                  onChange={(event) => setInputText(event.target.value)}
+                  placeholder={selectedDirection.placeholder}
+                  maxLength={MAX_CHARACTERS}
+                  aria-describedby={characterCountId}
+                  className="min-h-[140px] md:min-h-[180px] resize-none rounded-2xl border border-border/60 bg-background/80 text-base"
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
+                      event.preventDefault();
+                      void handleTranslate();
+                    }
+                  }}
+                />
+                <div className="flex items-center justify-end text-xs text-muted-foreground">
+                  <span id={characterCountId}>{characterCountLabel}</span>
                 </div>
+              </div>
 
                 {/* Primary Action Button - Full width on mobile, Duolingo-style */}
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
@@ -379,11 +406,11 @@ export default function TranslatePage() {
                         <Loader2 className="h-4 w-4 animate-spin" />
                         {t('translatingStatus')}
                       </span>
-                      ) : translatedText ? (
-                        translatedText
-                      ) : (
-                        <span className="text-muted-foreground">{t('resultPlaceholder')}</span>
-                      )}
+                    ) : translatedText ? (
+                      translatedText
+                    ) : (
+                      <span className="text-muted-foreground">{t('resultPlaceholder')}</span>
+                    )}
                   </div>
                   {detectedLanguage ? (
                     <p className="text-xs text-muted-foreground">
@@ -413,9 +440,32 @@ export default function TranslatePage() {
                 </div>
           </form>
 
-          {/* Translation History */}
           {history.length > 0 && (
-            <Card className="border-border/40 bg-card/60 backdrop-blur mt-4">
+            <div className="md:hidden space-y-2">
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-semibold text-foreground">{t('historyTitle')}</p>
+                <Button variant="ghost" size="sm" className="text-xs" onClick={() => setIsHistoryDialogOpen(true)}>
+                  {t('historyViewAll')}
+                </Button>
+              </div>
+              <div className="flex gap-2 overflow-x-auto pb-2">
+                {history.slice(0, 6).map((entry) => (
+                  <button
+                    key={entry.id}
+                    type="button"
+                    className="flex min-w-[140px] flex-col gap-1 rounded-2xl border border-border/40 bg-background/70 px-3 py-2 text-left text-xs shadow-sm"
+                    onClick={() => handleHistoryLoad(entry)}
+                  >
+                    <span className="font-semibold text-foreground">{formatDirectionAbbrev(entry.directionId)}</span>
+                    <span className="text-muted-foreground">{truncateText(entry.sourceText)}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {history.length > 0 && (
+            <Card className="hidden border-border/40 bg-card/60 backdrop-blur md:block">
               <button
                 type="button"
                 onClick={() => setIsHistoryExpanded(!isHistoryExpanded)}
@@ -424,7 +474,7 @@ export default function TranslatePage() {
                 <div className="space-y-1">
                   <p className="text-sm font-semibold text-foreground">{t('historyTitle')}</p>
                   <p className="text-xs text-muted-foreground">
-                    {history.length} {history.length === 1 ? 'translation' : 'translations'}
+                    {history.length} {history.length === 1 ? t('historyItemSingular') : t('historyItemPlural')}
                   </p>
                 </div>
                 {isHistoryExpanded ? (
@@ -477,5 +527,52 @@ export default function TranslatePage() {
         </div>
       </div>
     </div>
+
+    <Dialog open={isHistoryDialogOpen} onOpenChange={setIsHistoryDialogOpen}>
+      <DialogContent className="max-w-md">
+        <DialogHeader>
+          <DialogTitle>{t('historyTitle')}</DialogTitle>
+        </DialogHeader>
+        {history.length === 0 ? (
+          <p className="text-sm text-muted-foreground">{t('historyEmpty')}</p>
+        ) : (
+          <ul className="space-y-3">
+            {history.map((entry) => (
+              <li
+                key={entry.id}
+                className="rounded-2xl border border-border/30 bg-background/80 p-3"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    {directionLabelMap[entry.directionId] ?? entry.directionId}
+                  </span>
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="outline"
+                    className="h-7 px-2 text-xs"
+                    onClick={() => {
+                      handleHistoryLoad(entry);
+                      setIsHistoryDialogOpen(false);
+                    }}
+                  >
+                    {t('historyLoad')}
+                  </Button>
+                </div>
+                <p className="mt-2 text-xs text-muted-foreground">
+                  <span className="font-medium text-foreground">{t('inputLabel')}:</span>{' '}
+                  {entry.sourceText}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  <span className="font-medium text-foreground">{t('resultLabel')}:</span>{' '}
+                  {entry.translatedText}
+                </p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </DialogContent>
+    </Dialog>
+    </>
   );
 }

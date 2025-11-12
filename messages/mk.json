@@ -534,6 +534,9 @@
     "historyTitle": "Последни преводи",
     "historyEmpty": "Тука ќе се појават твоите најнови преводи.",
     "historyLoad": "Вчитај",
+    "historyViewAll": "Прикажи ги сите",
+    "historyItemSingular": "превод",
+    "historyItemPlural": "преводи",
     "fallbackTitle": "Ти треба резервен преведувач?",
     "fallbackDescription": "Ако инстант преведувачот заглави, пробај ги овие брзи опции.",
     "fallbackSteps": [

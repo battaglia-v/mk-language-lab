@@ -515,6 +515,9 @@
     "historyTitle": "Recent translations",
     "historyEmpty": "Your latest translations will appear here.",
     "historyLoad": "Load",
+    "historyViewAll": "View all",
+    "historyItemSingular": "translation",
+    "historyItemPlural": "translations",
     "fallbackTitle": "Need a backup translator?",
     "fallbackDescription": "If the instant translator hiccups, try these quick options.",
     "fallbackSteps": [
