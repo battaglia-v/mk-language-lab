@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback } from 'react';
+import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useLocale, useTranslations } from 'next-intl';
 import { Badge } from '@/components/ui/badge';
@@ -34,13 +35,27 @@ export default function PracticeHubPage() {
             <h1 className="text-lg md:text-xl font-bold text-foreground">
               {t('title')}
             </h1>
-            <Badge variant="outline" className="border-primary/40 bg-primary/10 text-primary text-xs">
-              {t('badge')}
-            </Badge>
+            <div className="flex items-center gap-2">
+              <Badge variant="outline" className="border-primary/40 bg-primary/10 text-primary text-xs">
+                {t('badge')}
+              </Badge>
+              <Link
+                href={buildHref('/translate')}
+                className="hidden rounded-full border border-border/40 bg-background/70 px-3 py-1 text-xs font-semibold text-foreground transition hover:bg-background/90 hover:text-primary md:inline-flex md:items-center md:gap-1.5"
+              >
+                {t('cards.translate.title')}
+              </Link>
+            </div>
           </div>
           <p className="hidden md:block text-sm text-muted-foreground">
             {t('subtitle')}
           </p>
+          <Link
+            href={buildHref('/translate')}
+            className="mt-2 inline-flex w-full items-center justify-center rounded-2xl border border-border/40 bg-background/80 px-3 py-2 text-sm font-semibold text-foreground shadow-sm transition hover:-translate-y-0.5 hover:text-primary hover:shadow-lg md:hidden"
+          >
+            {t('cards.translate.title')}
+          </Link>
         </div>
       </div>
 
