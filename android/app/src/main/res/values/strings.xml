@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">Македонски</string>
-    <string name="title_activity_main">Македонски</string>
-    <string name="package_name">com.macedonian.learn</string>
-    <string name="custom_url_scheme">com.macedonian.learn</string>
-</resources>

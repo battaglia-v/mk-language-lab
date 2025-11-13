@@ -2,7 +2,7 @@
 
 > **Last Updated**: 2025-10-27  > **Owner**: Vincent Battaglia  > **Review Cycle**: Monthly
 
-The MK Language Lab exposes a small set of Next.js App Router handlers under `app/api/`. These routes power translation utilities, tutor chat, content news feeds, and persistent task boards. All endpoints return JSON and are scoped to internal clients.
+Македонски • MK Language Lab exposes a small set of Next.js App Router handlers under `app/api/`. These routes power translation utilities, tutor chat, content news feeds, and persistent task boards. All endpoints return JSON and are scoped to internal clients.
 
 | Route | Method(s) | Purpose |
 | --- | --- | --- |

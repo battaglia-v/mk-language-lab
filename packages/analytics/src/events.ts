@@ -1,0 +1,27 @@
+export const AnalyticsEvents = {
+  WORD_OF_DAY_VIEWED: 'word_of_day_viewed',
+  WORD_OF_DAY_LOADED: 'word_of_day_loaded',
+  PRACTICE_STARTED: 'practice_started',
+  PRACTICE_COMPLETED: 'practice_completed',
+  PRACTICE_ANSWER_CORRECT: 'practice_answer_correct',
+  PRACTICE_ANSWER_INCORRECT: 'practice_answer_incorrect',
+  PRACTICE_CLOZE_ANSWER_CORRECT: 'cloze_answer_correct',
+  PRACTICE_CLOZE_ANSWER_INCORRECT: 'cloze_answer_incorrect',
+  PRACTICE_MODAL_OPENED: 'practice_modal_opened',
+  PRACTICE_SESSION_NEW: 'practice_session_new',
+  PRACTICE_SESSION_CONTINUE: 'practice_session_continue',
+  PRACTICE_COMPLETION_MODAL_VIEWED: 'practice_completion_modal_viewed',
+  PRACTICE_GAME_OVER: 'practice_game_over',
+  TRANSLATION_REQUESTED: 'translation_requested',
+  TRANSLATION_SUCCESS: 'translation_success',
+  TRANSLATION_FAILED: 'translation_failed',
+  TRANSLATION_COPIED: 'translation_copied',
+  NEWS_ARTICLE_CLICKED: 'news_article_clicked',
+  NEWS_VIDEO_CLICKED: 'news_video_clicked',
+  NEWS_FILTER_CHANGED: 'news_filter_changed',
+  SIGNIN_INITIATED: 'signin_initiated',
+  SIGNIN_SUCCESS: 'signin_success',
+  SIGNIN_FAILED: 'signin_failed',
+} as const;
+
+export type AnalyticsEvent = (typeof AnalyticsEvents)[keyof typeof AnalyticsEvents];

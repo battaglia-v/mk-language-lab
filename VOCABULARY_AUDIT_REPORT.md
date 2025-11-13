@@ -182,11 +182,11 @@ Review vocabulary and assign proper difficulty levels based on:
 
 1. Share this report with Andri for native speaker review
 2. Create GitHub issues for P0 and P1 tasks
-3. Develop bulk update scripts for difficulty and WOTD flags
+3. Document manual SQL/Prisma steps for difficulty + WOTD updates (legacy scripts removed)
 4. Schedule content expansion planning session
 
 ---
 
 **Auditor:** Claude Code Agent
 **Database:** Neon PostgreSQL (practiceVocabulary table)
-**Script:** `/scripts/audit-vocabulary.ts`
+**Note:** Former helper script (`scripts/audit-vocabulary.ts`) was retired; replicate checks via SQL or Prisma as needed.

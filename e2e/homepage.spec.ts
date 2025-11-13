@@ -7,7 +7,7 @@ test.describe('Homepage', () => {
 
   test('should load homepage successfully', async ({ page }) => {
     // Check page title
-    await expect(page).toHaveTitle(/Macedonian Language Lab|MK Language Lab/);
+    await expect(page).toHaveTitle(/Македонски.*MK Language Lab/);
 
     // Check hero heading is visible
     const heading = page.getByRole('heading', { level: 1 });

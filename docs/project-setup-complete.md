@@ -7,8 +7,7 @@
 - **docs/github-issues-template.md**: Full issue templates with task checklists
 - **docs/create-issues-commands.md**: GitHub CLI commands reference
 - **docs/github-milestones-guide.md**: Step-by-step milestone setup guide
-- **scripts/create-github-milestones-and-issues.sh**: Original batch script
-- **scripts/create-all-issues.sh**: Updated working batch script
+- _Legacy automation scripts were retired in Nov 2025; milestone/issue setup is now manual via the guides above._
 
 ### ✅ GitHub Infrastructure
 - **Project Created**: https://github.com/users/battaglia-v/projects/2
@@ -53,7 +52,7 @@
 
 ### iOS Release Milestone (Week 10-14, Due: Feb 1, 2026)
 - [#31] Set up Apple Developer account and certificates
-- [#32] Migrate PWA to React Native or Capacitor
+- [#32] Migrate PWA to React Native or Capacitor _(paused; native wrapper TBD)_
 - [#33] TestFlight beta testing (25+ testers, 2-3 weeks)
 - [#34] Complete App Store listing and submit
 

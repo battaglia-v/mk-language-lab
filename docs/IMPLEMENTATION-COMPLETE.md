@@ -38,8 +38,8 @@ The Macedonian Learning App now has a complete **structured curriculum system** 
 **How It Works:**
 1. Andri creates content in Google Sheets (3 tabs: Family, Travel, Culture)
 2. Each row represents a lesson with vocabulary, grammar, and exercises
-3. Content syncs automatically every hour OR manually via `npm run sync:content`
-4. Changes appear in app immediately after sync
+3. Content previously synced via automation but now requires manual updates (see note below)
+4. Changes appear in app after you update the database or seed data
 
 **Column Structure:**
 - Module info (number, title)
@@ -52,23 +52,13 @@ The Macedonian Learning App now has a complete **structured curriculum system** 
 
 ---
 
-### 3. Content Sync System
+### 3. Content Sync System (Legacy)
 
-**Script:** `/scripts/sync-content-from-sheets.ts`
-**Command:** `npm run sync:content`
+> Automation scripts were removed in Nov 2025. Keep this section for historical context only.
 
-**Features:**
-- Authenticates with Google Sheets API
-- Fetches content from all 3 journey tabs
-- Creates/updates modules and lessons
-- Adds vocabulary, grammar notes, and exercises
-- Handles updates gracefully (doesn't duplicate)
-- Provides detailed logging
-
-**API Endpoint:** `/api/cron/sync-content`
-- Secured with CRON_SECRET
-- Called automatically by Vercel Cron (hourly)
-- Returns sync status and statistics
+- Formerly relied on `/scripts/sync-content-from-sheets.ts` + `npm run sync:content`.
+- API endpoint `/api/cron/sync-content` remains but should be disabled or updated if a new pipeline is introduced.
+- Until a replacement exists, update lesson data manually (Prisma seeds or admin tooling) and document changes in `docs/projects/`.
 
 ---
 
@@ -145,120 +135,41 @@ The Macedonian Learning App now has a complete **structured curriculum system** 
 │
 ├── components/
 │   └── learn/
-│       ├── ContinueLearningServer.tsx (✅ New - Server data fetcher)
-│       ├── ContinueLearningWidget.tsx (✅ New - UI widget)
+│       ├── ContinueLearningServer.tsx (🗑️ Retired Nov 2025)
+│       ├── ContinueLearningWidget.tsx (🗑️ Retired Nov 2025)
 │       ├── LessonContent.tsx (✅ New - Main lesson component)
 │       ├── VocabularySection.tsx (✅ New - Vocab display)
 │       ├── GrammarSection.tsx (✅ New - Grammar display)
 │       └── ExerciseSection.tsx (✅ New - Interactive exercises)
-│
-├── scripts/
-│   └── sync-content-from-sheets.ts (✅ New - Sync script)
 │
 ├── docs/
 │   ├── google-sheets-content-template.md (✅ New - Template guide)
 │   └── IMPLEMENTATION-COMPLETE.md (✅ This file)
 │
 ├── .env.local (✅ Updated with GOOGLE_SHEETS_CONTENT_ID and CRON_SECRET)
-└── package.json (✅ Updated with sync:content script)
+└── package.json
 ```
 
 ---
 
-## 🔧 Environment Variables
+## 🔧 Environment Variables (Legacy)
 
-**Required (Added to `.env.local`):**
+> The Google Sheets automation was retired in Nov 2025. These environment variables are not required unless the pipeline returns.
 
-```bash
-# Google Sheets Content ID - MUST be filled in
-GOOGLE_SHEETS_CONTENT_ID="<YOUR_SHEET_ID_HERE>"
+- `GOOGLE_SHEETS_CONTENT_ID`
+- `CRON_SECRET`
 
-# Cron secret for automated sync
-CRON_SECRET="your-random-secret-here-change-in-production"
-
-# Existing vars (already set):
-DATABASE_URL="..."
-DIRECT_URL="..."
-GOOGLE_APPLICATION_CREDENTIALS_JSON='...'
-```
+If you remove them from `.env.local`, ensure Prisma seeds or admin dashboards provide the data instead.
 
 ---
 
-## 📝 Next Steps - Action Items
+## 📝 Legacy Workflow (Archived)
 
-### For Vinny (You):
+The instructions below describe the deprecated Google Sheets process (kept for historical reference only).
 
-1. **Create Google Sheet for Content**
-   ```
-   - Go to Google Sheets
-   - Create new spreadsheet: "Macedonian Learning App - Content"
-   - Create 3 tabs: Family, Travel, Culture
-   - Add column headers as documented in google-sheets-content-template.md
-   - Share sheet with service account email:
-     mk-translator@mk-language-lab.iam.gserviceaccount.com
-   - Copy Sheet ID from URL and add to .env.local
-   ```
-
-2. **Set Up Vercel Cron (for auto-sync)**
-   ```
-   - Add vercel.json to project root:
-   {
-     "crons": [
-       {
-         "path": "/api/cron/sync-content",
-         "schedule": "0 * * * *"
-       }
-     ]
-   }
-   - Deploy to Vercel
-   - Add CRON_SECRET to Vercel environment variables
-   ```
-
-3. **Generate Secure CRON_SECRET**
-   ```bash
-   # Run this to generate a secure secret:
-   openssl rand -base64 32
-
-   # Add to .env.local and Vercel env vars
-   ```
-
-4. **Test the System**
-   ```bash
-   # 1. Add Sheet ID to .env.local
-   # 2. Run manual sync
-   npm run sync:content
-
-   # 3. Check database has content
-   npx prisma studio
-
-   # 4. Visit app homepage - should see Continue Learning widget
-   npm run dev
-   ```
-
-### For Andri (Content Creator):
-
-1. **Get Access to Google Sheet**
-   - Vinny will share the sheet with you
-   - Review the template guide: `/docs/google-sheets-content-template.md`
-
-2. **Start Creating Content**
-   - Begin with Family journey (most popular)
-   - Aim for 3-5 modules per journey
-   - 3-5 lessons per module
-   - Include vocabulary, examples, and exercises
-
-3. **Example First Lesson**
-   ```
-   Module 1: Greetings & Introductions
-   Lesson 1: Basic Greetings
-   - Vocabulary: Здраво | Hello | Zdravo
-   - Example: Здраво, како си? | Hello, how are you?
-   - Exercise: How do you say "Hello"? (multiple choice)
-   ```
-
-4. **Content Will Sync Automatically**
-   - Changes appear within 60 minutes
-   - Or ask Vinny to run manual sync for immediate updates
+- Create/share the spreadsheet documented in `docs/google-sheets-content-template.md`.
+- Re-add the cron job + secrets if you reinstate `/api/cron/sync-content`.
+- Manual testing commands (`npm run sync:content`) no longer exist; replace with Prisma seed or DB scripts when re-implementing automation.
 
 ---
 
@@ -288,21 +199,18 @@ GOOGLE_APPLICATION_CREDENTIALS_JSON='...'
 
 ---
 
-## 🚀 Deployment Checklist
+## 🚀 Deployment Checklist (Legacy)
 
-- [ ] Create Google Sheet with proper structure
-- [ ] Share sheet with service account
-- [ ] Add GOOGLE_SHEETS_CONTENT_ID to .env.local
-- [ ] Generate and set CRON_SECRET
-- [ ] Test manual sync locally (`npm run sync:content`)
-- [ ] Verify lessons appear in database (Prisma Studio)
+> Archived for reference. The Google Sheets automation, cron job, and associated environment variables were removed in Nov 2025.
+
+- [ ] (Legacy) Create Google Sheet with proper structure
+- [ ] (Legacy) Share sheet with service account + add `GOOGLE_SHEETS_CONTENT_ID`
+- [ ] (Legacy) Generate and set `CRON_SECRET`
+- [ ] (Legacy) Run `npm run sync:content` (command removed)
+- [ ] Verify lessons via Prisma Studio or updated admin tooling
 - [ ] Test lesson pages work correctly
 - [ ] Deploy to Vercel
-- [ ] Add environment variables to Vercel
-- [ ] Set up Vercel Cron Job (vercel.json)
-- [ ] Test cron endpoint with correct auth header
-- [ ] Have Andri create first 5 lessons
-- [ ] Test end-to-end user flow
+- [ ] Document manual workflow in `docs/projects/`
 
 ---
 
@@ -315,7 +223,7 @@ After full implementation, you'll have:
 - **~200-400 Vocabulary Items**
 - **~100-200 Exercises**
 - **Database**: Fully relational with progress tracking
-- **Sync**: Automated hourly updates
+- **Sync**: Manual updates (legacy automation retired)
 
 ---
 
@@ -347,17 +255,17 @@ After full implementation, you'll have:
 ## 📞 Support
 
 If you encounter issues:
-1. Check logs: `npm run sync:content` for sync errors
-2. Verify environment variables are set
-3. Test Google Sheets API access
+1. Review recent manual data changes (Prisma seeds/admin tools)
+2. Verify environment variables if you re-enable the cron job
+3. Test Google Sheets API access only if restoring the legacy pipeline
 4. Check Prisma Studio for database content
-5. Review this document for setup steps
+5. Review this document for historical context
 
 ---
 
 **🎊 Congratulations! The structured curriculum system is complete and ready for content!**
 
-**Next:** Create the Google Sheet, add the first lesson, sync it, and watch it appear in the app! 🚀
+**Next:** If you plan to revive the automation, recreate the scripts in `docs/projects/` and update this document accordingly. Until then, manage lesson data manually. 🚀
 
 ---
 

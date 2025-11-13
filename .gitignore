@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+node_modules/
 /.pnp
 .pnp.*
 .yarn/*
@@ -51,6 +51,13 @@ sentry.properties
 android/
 ios/
 out/
+
+# Expo / React Native
+apps/mobile/.expo
+apps/mobile/.expo-shared
+apps/mobile/android
+apps/mobile/ios
+apps/mobile/web-build
 
 # Test files with potential secrets
 test-*.mjs

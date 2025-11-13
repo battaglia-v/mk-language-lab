@@ -23,12 +23,12 @@ Create these 5 milestones:
 - **Due Date:** December 14, 2025  
 - **Description:** Migrate to PostgreSQL, implement authentication, add rate limiting, set up error tracking, add analytics/monitoring, create privacy policy and terms. Full production-ready backend.
 
-### Milestone 4: Android Release
+### Milestone 4: Android Release _(paused)_
 - **Title:** Android Release
 - **Due Date:** January 4, 2026
 - **Description:** Convert to PWA, create Play Store listing with assets, beta test for 14+ days with 20+ users, submit and launch on Google Play Store.
 
-### Milestone 5: iOS Release
+### Milestone 5: iOS Release _(paused)_
 - **Title:** iOS Release  
 - **Due Date:** February 1, 2026
 - **Description:** Set up Apple Developer account, migrate to Capacitor for native iOS, TestFlight beta testing (25+ testers, 2-3 weeks), submit and launch on App Store.

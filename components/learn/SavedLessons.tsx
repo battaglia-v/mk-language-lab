@@ -289,7 +289,7 @@ export function SavedLessons() {
                     </button>
                     {post.media_type === 'VIDEO' && (
                       <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-surface-elevated">
                           <svg
                             className="h-6 w-6 text-black"
                             fill="currentColor"

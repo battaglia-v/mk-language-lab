@@ -25,6 +25,7 @@
   - [Translate](api/translate.md)
   - [Translate Detect](api/translate-detect.md)
   - [Tutor](api/tutor.md)
+- [Agent Handbook](agents/README.md)
 - [Content Pipeline](content-pipeline.md)
 - [Design System](design-system.md)
 - Feature Guides
@@ -40,6 +41,9 @@
   - [Troubleshooting](operations/troubleshooting.md)
 - Roadmaps
   - [Tutor Roadmap](roadmap/tutor-roadmap.md)
+- Projects
+  - [How to document projects](projects/README.md)
+  - [_template starter](projects/_template/brief.md)
 
 ## How to Use This Repository
 

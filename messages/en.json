@@ -143,6 +143,8 @@
     "practiceProgressGoal": "Goal: {target} prompts",
     "practiceProgressSummary": "Prompts answered: {count}",
     "practiceAccuracy": "Accuracy: {value}%",
+    "practiceInlineProgress": "Progress: {current}/{target} ⚡ {accuracy}%",
+    "practiceCheckingAnswer": "Checking...",
     "practiceModalTitle": "Daily Drill",
     "practiceClose": "Close session",
     "practiceSessionCompleteTitle": "Session Complete!",

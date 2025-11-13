@@ -45,6 +45,9 @@ vi.mock('next-intl', () => {
       `Prompts answered: ${values?.count ?? ''}`,
     practiceAccuracy: (values?: Record<string, string>) =>
       `Accuracy: ${values?.value ?? ''}%`,
+    practiceInlineProgress: (values?: Record<string, string>) =>
+      `Progress: ${values?.current ?? ''}/${values?.target ?? ''} ⚡ ${values?.accuracy ?? ''}%`,
+    practiceCheckingAnswer: 'Checking...',
     practiceModalTitle: 'Practice lab',
     practiceClose: 'Close session',
   };
@@ -68,6 +71,44 @@ vi.mock('@/data/practice-vocabulary.json', () => ({
     { macedonian: 'kompjuter', english: 'computer', category: 'technology' },
   ],
 }));
+
+vi.mock('@mk/ui', () => ({
+  WebProgressRing: ({ children }: { children?: React.ReactNode }) => <div data-testid="progress-ring">{children}</div>,
+  WebStatPill: ({ label, value }: { label: string; value: string }) => (
+    <div data-testid="stat-pill">
+      {label}:{value}
+    </div>
+  ),
+}));
+
+vi.mock('next/navigation', () => ({
+  useSearchParams: () => new URLSearchParams(),
+}));
+
+vi.mock('lucide-react', () => {
+  const Icon = ({ children }: { children?: React.ReactNode }) => <span data-testid="icon">{children}</span>;
+  return {
+    __esModule: true,
+    RefreshCcw: Icon,
+    Eye: Icon,
+    Sparkles: Icon,
+    PlayCircle: Icon,
+    X: Icon,
+    TrendingUp: Icon,
+    MoreVertical: Icon,
+    Heart: Icon,
+    Check: Icon,
+    XCircle: Icon,
+    Flame: Icon,
+    Zap: Icon,
+    Shield: Icon,
+    EllipsisVertical: Icon,
+    ChevronDown: Icon,
+    Loader2: Icon,
+    Trophy: Icon,
+    XIcon: Icon,
+  };
+});
 
 import { QuickPracticeWidget } from './QuickPracticeWidget';
 

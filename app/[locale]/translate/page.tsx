@@ -3,6 +3,7 @@
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { ArrowLeftRight, Check, Copy, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
+import { WebStatPill, WebButton, WebCard } from '@mk/ui';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -95,6 +96,14 @@ export default function TranslatePage() {
   const [isHistoryDialogOpen, setIsHistoryDialogOpen] = useState(false);
   const characterCountId = 'translate-character-count';
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const historyTimestampFormatter = useMemo(
+    () =>
+      new Intl.DateTimeFormat(undefined, {
+        dateStyle: 'short',
+        timeStyle: 'short',
+      }),
+    []
+  );
 
 
   const directionLabelMap = useMemo(() => {
@@ -299,28 +308,50 @@ export default function TranslatePage() {
                   role="radiogroup"
                   aria-label={t('directionsGroupLabel')}
                 >
-                  <Button
-                    type="button"
-                    size="sm"
-                    variant={directionId === 'en-mk' ? 'default' : 'outline'}
-                    onClick={() => handleDirectionChange('en-mk')}
-                    role="radio"
-                    aria-checked={directionId === 'en-mk'}
-                    className="h-9 flex-1 min-w-[130px] rounded-full px-3 text-xs font-semibold uppercase"
+                  <WebButton
+                    asChild
+                    style={{
+                      flex: 1,
+                      minWidth: 130,
+                      justifyContent: 'center',
+                      borderColor: directionId === 'en-mk' ? 'var(--brand-red)' : 'var(--border-neutral-muted)',
+                      background: directionId === 'en-mk' ? 'var(--brand-red)' : 'var(--surface-frosted)',
+                      color:
+                        directionId === 'en-mk' ? 'var(--primary-foreground)' : 'var(--brand-red)',
+                    }}
                   >
-                    EN → MK
-                  </Button>
-                  <Button
-                    type="button"
-                    size="sm"
-                    variant={directionId === 'mk-en' ? 'default' : 'outline'}
-                    onClick={() => handleDirectionChange('mk-en')}
-                    role="radio"
-                    aria-checked={directionId === 'mk-en'}
-                    className="h-9 flex-1 min-w-[130px] rounded-full px-3 text-xs font-semibold uppercase"
+                    <button
+                      type="button"
+                      onClick={() => handleDirectionChange('en-mk')}
+                      role="radio"
+                      aria-checked={directionId === 'en-mk'}
+                      className="w-full text-xs font-semibold uppercase"
+                    >
+                      EN → MK
+                    </button>
+                  </WebButton>
+                  <WebButton
+                    asChild
+                    style={{
+                      flex: 1,
+                      minWidth: 130,
+                      justifyContent: 'center',
+                      borderColor: directionId === 'mk-en' ? 'var(--brand-red)' : 'var(--border-neutral-muted)',
+                      background: directionId === 'mk-en' ? 'var(--brand-red)' : 'var(--surface-frosted)',
+                      color:
+                        directionId === 'mk-en' ? 'var(--primary-foreground)' : 'var(--brand-red)',
+                    }}
                   >
-                    MK → EN
-                  </Button>
+                    <button
+                      type="button"
+                      onClick={() => handleDirectionChange('mk-en')}
+                      role="radio"
+                      aria-checked={directionId === 'mk-en'}
+                      className="w-full text-xs font-semibold uppercase"
+                    >
+                      MK → EN
+                    </button>
+                  </WebButton>
                 </div>
                 <Button
                   type="button"
@@ -455,19 +486,24 @@ export default function TranslatePage() {
                 </Button>
               </div>
               <div className="flex gap-2 overflow-x-auto pb-2 snap-x snap-mandatory [-webkit-overflow-scrolling:touch]">
-                {history.slice(0, 6).map((entry) => (
-                  <button
-                    key={entry.id}
-                    type="button"
-                    className="flex min-w-[130px] snap-center flex-col gap-1 rounded-2xl border border-border/30 bg-background/80 px-3 py-2 text-left text-[11px] shadow-sm"
-                    onClick={() => handleHistoryLoad(entry)}
-                  >
-                    <span className="font-semibold text-foreground">
-                      {formatDirectionAbbrev(entry.directionId)}
-                    </span>
-                    <span className="text-muted-foreground">{truncateText(entry.sourceText)}</span>
-                  </button>
-                ))}
+                {history.slice(0, 6).map((entry) => {
+                  const entryTime = historyTimestampFormatter.format(entry.timestamp);
+                  return (
+                    <button
+                      key={entry.id}
+                      type="button"
+                      className="flex min-w-[150px] snap-center flex-col gap-2 rounded-2xl border border-border/30 bg-background/80 px-3 py-2 text-left text-[11px] shadow-sm"
+                      onClick={() => handleHistoryLoad(entry)}
+                    >
+                      <WebStatPill
+                        label={formatDirectionAbbrev(entry.directionId)}
+                        value={entryTime}
+                        accent="gold"
+                      />
+                      <span className="text-muted-foreground">{truncateText(entry.sourceText)}</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -494,39 +530,44 @@ export default function TranslatePage() {
               {isHistoryExpanded && (
                 <CardContent className="border-t border-border/40 pt-4">
                   <ul className="space-y-2">
-                    {history.map((entry) => (
-                      <li
-                        key={entry.id}
-                        className="rounded-lg border border-border/30 bg-background/60 p-3"
-                      >
-                        <div className="flex flex-col gap-2">
-                          <div className="flex items-center justify-between gap-3">
-                            <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                              {directionLabelMap[entry.directionId] ?? entry.directionId}
-                            </span>
-                            <Button
-                              type="button"
-                              size="sm"
-                              variant="outline"
-                              className="h-7 px-2 text-xs"
-                              onClick={() => handleHistoryLoad(entry)}
-                            >
-                              {t('historyLoad')}
-                            </Button>
+                    {history.map((entry) => {
+                      const entryTime = historyTimestampFormatter.format(entry.timestamp);
+                      return (
+                        <li
+                          key={entry.id}
+                          className="rounded-lg border border-border/30 bg-background/60 p-3"
+                        >
+                          <div className="flex flex-col gap-2">
+                            <div className="flex items-center justify-between gap-3">
+                              <WebStatPill
+                                label={formatDirectionAbbrev(entry.directionId)}
+                                value={entryTime}
+                                accent="gold"
+                              />
+                              <Button
+                                type="button"
+                                size="sm"
+                                variant="outline"
+                                className="h-7 px-2 text-xs"
+                                onClick={() => handleHistoryLoad(entry)}
+                              >
+                                {t('historyLoad')}
+                              </Button>
+                            </div>
+                            <div className="space-y-1">
+                              <p className="text-xs text-muted-foreground">
+                                <span className="font-medium text-foreground">{t('inputLabel')}:</span>{' '}
+                                {entry.sourceText}
+                              </p>
+                              <p className="text-xs text-muted-foreground">
+                                <span className="font-medium text-foreground">{t('resultLabel')}:</span>{' '}
+                                {entry.translatedText}
+                              </p>
+                            </div>
                           </div>
-                          <div className="space-y-1">
-                            <p className="text-xs text-muted-foreground">
-                              <span className="font-medium text-foreground">{t('inputLabel')}:</span>{' '}
-                              {entry.sourceText}
-                            </p>
-                            <p className="text-xs text-muted-foreground">
-                              <span className="font-medium text-foreground">{t('resultLabel')}:</span>{' '}
-                              {entry.translatedText}
-                            </p>
-                          </div>
-                        </div>
-                      </li>
-                    ))}
+                        </li>
+                      );
+                    })}
                   </ul>
                 </CardContent>
               )}
@@ -545,38 +586,43 @@ export default function TranslatePage() {
           <p className="text-sm text-muted-foreground">{t('historyEmpty')}</p>
         ) : (
           <ul className="space-y-3">
-            {history.map((entry) => (
-              <li
-                key={entry.id}
-                className="rounded-2xl border border-border/30 bg-background/80 p-3"
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                    {directionLabelMap[entry.directionId] ?? entry.directionId}
-                  </span>
-                  <Button
-                    type="button"
-                    size="sm"
-                    variant="outline"
-                    className="h-7 px-2 text-xs"
-                    onClick={() => {
-                      handleHistoryLoad(entry);
-                      setIsHistoryDialogOpen(false);
-                    }}
-                  >
-                    {t('historyLoad')}
-                  </Button>
-                </div>
-                <p className="mt-2 text-xs text-muted-foreground">
-                  <span className="font-medium text-foreground">{t('inputLabel')}:</span>{' '}
-                  {entry.sourceText}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  <span className="font-medium text-foreground">{t('resultLabel')}:</span>{' '}
-                  {entry.translatedText}
-                </p>
-              </li>
-            ))}
+            {history.map((entry) => {
+              const entryTime = historyTimestampFormatter.format(entry.timestamp);
+              return (
+                <li
+                  key={entry.id}
+                  className="rounded-2xl border border-border/30 bg-background/80 p-3"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <WebStatPill
+                      label={formatDirectionAbbrev(entry.directionId)}
+                      value={entryTime}
+                      accent="gold"
+                    />
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="outline"
+                      className="h-7 px-2 text-xs"
+                      onClick={() => {
+                        handleHistoryLoad(entry);
+                        setIsHistoryDialogOpen(false);
+                      }}
+                    >
+                      {t('historyLoad')}
+                    </Button>
+                  </div>
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    <span className="font-medium text-foreground">{t('inputLabel')}:</span>{' '}
+                    {entry.sourceText}
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    <span className="font-medium text-foreground">{t('resultLabel')}:</span>{' '}
+                    {entry.translatedText}
+                  </p>
+                </li>
+              );
+            })}
           </ul>
         )}
       </DialogContent>

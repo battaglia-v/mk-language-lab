@@ -100,23 +100,9 @@ These fields can be left empty if not needed:
 - `grammarTitle`
 - `grammarExplanation`
 
-## Syncing to App
+## Syncing to App (Legacy)
 
-### Automatic Sync
-- Content syncs automatically every hour
-- Changes appear in the app within 60 minutes
-
-### Manual Sync
-To sync immediately, run:
-```bash
-npm run sync:content
-```
-
-### Verification
-After syncing, check:
-1. App homepage - "Continue Learning" widget should show first lesson
-2. Journey pages - Modules should appear
-3. Lesson pages - Content should be formatted correctly
+> The Google Sheets automation was removed in Nov 2025. Keep this section for historical reference only. Today, update lesson data directly via Prisma seeds or admin tools, and document the process in `docs/projects/`.
 
 ## Content Creation Workflow
 

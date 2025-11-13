@@ -103,7 +103,7 @@ Test each feature and note any issues:
 
 #### Installation
 - [ ] App icon displays correctly on home screen
-- [ ] App name is readable ("MK Language Lab")
+- [ ] App name is readable ("Македонски • MK Language Lab")
 - [ ] Icon uses Macedonian colors (red/yellow)
 
 #### App Behavior

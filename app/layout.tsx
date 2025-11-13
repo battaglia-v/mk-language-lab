@@ -1,10 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
-import { InstallPrompt } from "@/components/InstallPrompt";
 import { SentryInit } from "@/components/SentryInit";
 import { Analytics } from "@vercel/analytics/react";
+import { brandColors } from "@mk/tokens";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,21 +22,21 @@ export const viewport: Viewport = {
   userScalable: true,
   viewportFit: 'cover',
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ff5a2c' },
-    { media: '(prefers-color-scheme: dark)', color: '#ff5a2c' },
+    { media: '(prefers-color-scheme: light)', color: brandColors.red },
+    { media: '(prefers-color-scheme: dark)', color: brandColors.redDark },
   ],
 };
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mk-language-lab.vercel.app';
-const brandNameCyrillic = 'Македонски';
-const brandNameEnglish = 'MK Language Lab';
-const brandCombined = `${brandNameCyrillic} • ${brandNameEnglish}`;
+const brandNamePrimary = 'Македонски';
+const brandNameSecondary = 'MK Language Lab';
+const brandCombined = `${brandNamePrimary} • ${brandNameSecondary}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: brandCombined,
-    template: `%s • ${brandNameEnglish}`,
+    template: `%s • ${brandCombined}`,
   },
   description: "Learn Macedonian with AI-powered tutoring, translation, and interactive lessons. Free and open-source language learning app.",
   applicationName: brandCombined,
@@ -51,9 +50,9 @@ export const metadata: Metadata = {
     "language app",
     "Cyrillic",
   ],
-  authors: [{ name: brandNameEnglish }],
-  creator: brandNameEnglish,
-  publisher: brandNameEnglish,
+  authors: [{ name: brandCombined }],
+  creator: brandCombined,
+  publisher: brandCombined,
   formatDetection: {
     telephone: false,
   },
@@ -67,6 +66,7 @@ export const metadata: Metadata = {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-64x64.png', sizes: '64x64', type: 'image/png' },
       { url: '/favicon.ico', type: 'image/x-icon' },
     ],
     shortcut: ['/favicon.ico'],
@@ -132,8 +132,6 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}>
         <SentryInit />
-        <ServiceWorkerRegistration />
-        <InstallPrompt />
         {children}
         <Analytics />
       </body>

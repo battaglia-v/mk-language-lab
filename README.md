@@ -1,4 +1,4 @@
-# MK Language Lab 🇲🇰
+# Македонски • MK Language Lab 🇲🇰
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat&logo=next.js)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat&logo=typescript)](https://www.typescriptlang.org)
@@ -6,7 +6,7 @@
 [![Prisma](https://img.shields.io/badge/Prisma-6-2D3748?style=flat&logo=prisma)](https://www.prisma.io)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8?style=flat&logo=tailwind-css)](https://tailwindcss.com)
 
-A modern, multilingual learning platform for Macedonian language learners. Built with Next.js 15 App Router, featuring AI-powered conversations, interactive practice modules, translation tools, and curated news content.
+Македонски • MK Language Lab is a modern, multilingual learning platform for Macedonian language learners. Built with Next.js 15 App Router, it features AI-powered conversations, interactive practice modules, translation tools, and curated news content.
 
 ## 🎯 Project Status
 
@@ -87,6 +87,35 @@ npm run dev
 ```
 
 Visit http://localhost:3000/en (or /mk) to explore the app. Turbopack is enabled by default for fast reloads.
+
+### Native Mobile (Expo)
+
+The managed Expo app lives in `apps/mobile` so we can ship Android (and later iOS) from the same repo.
+
+1. Install web dependencies (`npm install`) plus the Expo ones (`cd apps/mobile && npm install`).
+2. Start the Expo dev server from the repo root:
+   - `npm run mobile:start` – QR code/dev menu
+   - `npm run mobile:android` – boots Android emulator/device
+   - `npm run mobile:ios` – boots iOS simulator (requires macOS/Xcode)
+3. Update shared tokens/components in the upcoming `packages/` workspace so both web and native stay in sync.
+4. Navigation is powered by `expo-router` (`apps/mobile/app/`), which currently exposes Home (mission preview), Practice, Discover, and Profile tabs that all reuse the shared Query Client/tokens.
+
+### Shared Packages
+
+- `packages/tokens` – single source of truth for Macedonian brand colors, spacing, radii, and typography scales (consumed by web + native).
+- `packages/ui` – lightweight primitives (`WebButton`, `WebCard`, `WebStatPill`, `WebProgressRing`, plus the matching Native* variants) that wrap the token system for both platforms.
+- `packages/api-client` – typed helpers and React Query hooks (`usePracticePromptsQuery`) that read from our Next.js APIs or fall back to bundled JSON during offline dev.
+
+Import them via the `@mk/*` aliases defined in `tsconfig.json` to avoid brittle relative paths.
+
+```tsx
+// Web
+import { WebProgressRing, WebStatPill } from '@mk/ui';
+// Native
+import { NativeProgressRing, NativeStatPill } from '@mk/ui';
+// Data (shared)
+import { usePracticePromptsQuery } from '@mk/api-client';
+```
 
 ### Required Environment Variables
 
@@ -230,14 +259,14 @@ See our complete [POC to Production Roadmap](docs/poc-production-roadmap.md) for
 - **✅ Phase 1:** MVP POC (Week 1-2) - Simplify to single learning path
 - **📝 Phase 2:** Content Complete (Week 3-4) - 300+ vocabulary items
 - **🏗️ Phase 3:** Production Infrastructure (Week 5-6) - Auth, monitoring, security
-- **📱 Phase 4:** Android Release (Week 7-9) - PWA + Play Store
-- **🍎 Phase 5:** iOS Release (Week 10-14) - Capacitor + App Store
+- **📱 Phase 4:** Android Release (Week 7-9) - PWA + Play Store _(paused; mobile shells retired Nov 2025)_
+- **🍎 Phase 5:** iOS Release (Week 10-14) - Native wrapper _(paused; evaluate fresh approach before restarting)_
 
 View all issues and progress on our [Project Board](https://github.com/users/battaglia-v/projects/2).
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please read our contributor guide in [AGENTS.md](AGENTS.md) before submitting PRs.
+Contributions are welcome! Please read the shared agent handbook in [`docs/agents/README.md`](docs/agents/README.md) before submitting PRs.
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)

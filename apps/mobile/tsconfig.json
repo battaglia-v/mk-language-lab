@@ -1,0 +1,13 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@mk/tokens": ["../../packages/tokens/src/index.ts"],
+      "@mk/ui": ["../../packages/ui/src/index.ts"],
+      "@mk/api-client": ["../../packages/api-client/src/index.ts"],
+      "@mk/practice": ["../../packages/practice/src/index.ts"]
+    }
+  }
+}

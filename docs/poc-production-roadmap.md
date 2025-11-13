@@ -1,5 +1,5 @@
 # POC to Production Roadmap
-**MK Language Lab - Production Readiness Plan**
+**Македонски • MK Language Lab - Production Readiness Plan**
 
 **Last Updated:** November 2, 2025  
 **Owner:** Vincent Battaglia  
@@ -126,7 +126,7 @@ This document outlines the path from current state to production-ready Macedonia
 - Load testing results
 
 ### Milestone 4: Android Release (Week 7-9)
-**Goal:** MK Language Lab on Google Play Store  
+**Goal:** Македонски • MK Language Lab on Google Play Store  
 **Target:** Public release  
 **Deadline:** 3 weeks
 
@@ -145,14 +145,14 @@ This document outlines the path from current state to production-ready Macedonia
 - Post-launch monitoring dashboard
 
 ### Milestone 5: iOS Release (Week 10-14)
-**Goal:** MK Language Lab on Apple App Store  
+**Goal:** Македонски • MK Language Lab on Apple App Store  
 **Target:** Public release  
 **Deadline:** 4-5 weeks
 
 **Key Deliverables:**
 - Apple Developer account ($99/year)
 - App Store Connect setup
-- React Native or Capacitor migration (PWAs have limited iOS support)
+- React Native or Capacitor migration (PWAs have limited iOS support) _(paused – revisit when mobile roadmap resumes)_
 - iOS-specific UI polish (safe areas, haptics, gestures)
 - TestFlight beta testing (min 25 testers, 2-3 weeks)
 - App Store listing (description, screenshots, keywords)
@@ -254,7 +254,7 @@ This document outlines the path from current state to production-ready Macedonia
 ### Mobile: PWA First, React Native Later
 - **POC:** Progressive Web App (web technologies)
 - **Android:** TWA (Trusted Web Activity) wraps PWA
-- **iOS:** Capacitor or React Native (PWAs limited on iOS)
+- **iOS:** Capacitor or React Native (PWAs limited on iOS) _(deferred until mobile focus returns)_
 
 ---
 

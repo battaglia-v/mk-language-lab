@@ -21,6 +21,23 @@ Last updated: November 2025
 
 The CSS variables live in `app/globals.css`. Access them via Tailwind’s arbitrary value syntax: e.g. `bg-[var(--brand-red)]`, `hover:bg-[var(--brand-red-dark)]`, `border-[var(--brand-gold)]`.
 
+## Semantic Surfaces & Text
+
+To avoid sprinkling translucent hex values across components, `app/globals.css` now exposes higher-level tokens:
+
+| Token | Light Value | Dark Value | Usage |
+| --- | --- | --- | --- |
+| `--surface-elevated` | subtle cream glass | desaturated navy | Hero cards, Quick Start tiles, translator inbox rows |
+| `--surface-frosted` | lighter parchment wash | frosted navy glaze | Inactive pills, translator direction buttons, muted alerts |
+| `--surface-gold-tint` | warm gold wash | deep gold glow | Accent cards, progress callouts |
+| `--border-accent-red` | brand red @ 20% alpha | brand red @ 30% alpha | Streak/focus cards, CTA outlines |
+| `--border-accent-plum` | brand plum @ 28% alpha | brand plum @ 35% alpha | Resource cards, plum-toned highlights |
+| `--border-neutral-muted` | foreground @ 15% alpha | foreground @ 20% alpha | Neutral pill outlines, translator inputs |
+| `--success-surface` / `--success-border` / `--success-foreground` | mint / green / deep green | green glaze variants | Success toasts, Quick Practice “Correct” state |
+| `--error-surface` / `--error-border` / `--error-foreground` | rose / primary red / primary red | wine glaze variants | Error feedback, depleted hearts |
+
+Utility classes (`bg-surface-elevated`, `bg-surface-frosted`, `border-accent-red`, `bg-success-soft`, `text-success-strong`, etc.) are registered in `app/globals.css` so components can consume the palette without re-declaring inline colors.
+
 ## Backgrounds & Surfaces
 
 - **Base background:** `bg-[var(--brand-cream)]` for pages to echo the red/gold palette without overwhelming the UI.

@@ -2,7 +2,7 @@
 
 > **Last Updated**: 2025-10-27  > **Owner**: Vincent Battaglia  > **Review Cycle**: Quarterly
 
-MK Language Lab is a Next.js 15 application that serves localized learning experiences backed by Prisma content storage and external API integrations. The app runs primarily on the Vercel Edge runtime, with selective Node.js functions for third-party SDKs.
+Македонски • MK Language Lab is a Next.js 15 application that serves localized learning experiences backed by Prisma content storage and external API integrations. The app runs primarily on the Vercel Edge runtime, with selective Node.js functions for third-party SDKs.
 
 ## High-Level Diagram
 

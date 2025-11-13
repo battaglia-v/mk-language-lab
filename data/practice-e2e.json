@@ -1,0 +1,16 @@
+[
+  {
+    "id": "practice-e2e-sunrise",
+    "macedonian": "добро утро",
+    "english": "good morning",
+    "category": "greetings",
+    "contextMk": {
+      "sentence": "Кажи {{blank}} кога ќе влезеш во училницата.",
+      "translation": "Say good morning when you enter the classroom."
+    },
+    "contextEn": {
+      "sentence": "Every day at 7 AM we text {{blank}} in the study group.",
+      "translation": "Секој ден во 7 часот пишуваме добро утро во групата."
+    }
+  }
+]

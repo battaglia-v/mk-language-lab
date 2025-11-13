@@ -2,7 +2,7 @@
 
 > **Last Updated**: 2025-10-27  > **Owner**: Vincent Battaglia  > **Review Cycle**: Monthly
 
-This glossary records preferred Macedonian terminology and usage notes. Keep it synchronized with the shared Google Drive spreadsheet (`MK Language Lab / Documentation / Glossary`).
+This glossary records preferred Macedonian terminology and usage notes. Keep it synchronized with the shared Google Drive spreadsheet (`Македонски • MK Language Lab / Documentation / Glossary`).
 
 | English Term | Macedonian Term | Notes |
 | --- | --- | --- |

@@ -129,4 +129,17 @@ test.describe('Quick Practice Widget', () => {
     const widget = page.locator('[class*="card"], .rounded-2xl').first();
     await expect(widget).toBeVisible();
   });
+
+  test('should submit a deterministic quick practice answer', async ({ page }) => {
+    await page.goto('/mk/practice?practiceFixture=e2e');
+
+    const input = page.locator('input[placeholder*="Type"], input[placeholder*="Напиши"]').first();
+    await expect(input).toBeVisible();
+    await input.fill('good morning');
+
+    const checkButton = page.getByRole('button', { name: /Check|Checking|Браво|Great job|Провери/i }).first();
+    await checkButton.click();
+
+    await expect(page.locator('text=/Great job|Браво/i')).toBeVisible();
+  });
 });

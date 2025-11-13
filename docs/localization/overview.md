@@ -2,7 +2,7 @@
 
 > **Last Updated**: 2025-10-27  > **Owner**: Vincent Battaglia  > **Review Cycle**: Monthly
 
-MK Language Lab supports Macedonian (`mk`) and English (`en`) locales. Localization is handled during render via the `TranslationProvider`, with message bundles stored in `messages/*.json`.
+Македонски • MK Language Lab supports Macedonian (`mk`) and English (`en`) locales. Localization is handled during render via the `TranslationProvider`, with message bundles stored in `messages/*.json`.
 
 ## Workflow
 

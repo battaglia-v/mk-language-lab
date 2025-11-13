@@ -1,5 +1,7 @@
 # Mobile App Deployment Guide
 
+> ⚠️ **Legacy Notice (Nov 2025):** Capacitor-based mobile builds are no longer maintained. Keep this guide for historical reference only; set up new mobile shells via a fresh project if native apps return to the roadmap.
+
 This guide explains how to build and deploy your Macedonian Learning App to Android and iOS app stores using Capacitor.
 
 ## Overview

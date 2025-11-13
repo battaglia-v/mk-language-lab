@@ -1,5 +1,7 @@
 # Google Play Store Listing Content
 
+> ⚠️ **Status (Nov 2025):** Google Play submission is paused. All listing assets (feature graphics, splash screens) were removed from `public/`. Use this document as a template when/if the Android launch is rebooted.
+
 ## Short Description (80 characters max)
 Learn Macedonian with interactive lessons, translation tools, and daily practice.
 
@@ -9,7 +11,7 @@ Learn Macedonian with interactive lessons, translation tools, and daily practice
 
 > **November 2025 refresh:** The experience now ships under the Macedonian-first name **„Македонски • MK Language Lab“** with updated favicon, splash art, and Ajvar-inspired iconography so web, PWA, and native shells share the same look.
 
-Macedonian Language Lab is your complete solution for learning Macedonian, whether you're reconnecting with your heritage, planning a trip, or exploring a new language. Created in partnership with native speaker Andri from Macedonian Language Corner, our app makes learning engaging, practical, and culturally authentic.
+Македонски • MK Language Lab is your complete solution for learning Macedonian, whether you're reconnecting with your heritage, planning a trip, or exploring a new language. Created in partnership with native speaker Andri from Macedonian Language Corner, our app makes learning engaging, practical, and culturally authentic.
 
 **KEY FEATURES**
 
@@ -56,7 +58,7 @@ Install as a Progressive Web App (PWA) for offline access. Practice vocabulary, 
 **PRIVACY-FIRST DESIGN**
 Your learning data stays secure. Optional account creation for progress sync across devices. No ads, no spam, just focused learning.
 
-**WHY MACEDONIAN LANGUAGE LAB?**
+**WHY МАКЕДОНСКИ • MK LANGUAGE LAB?**
 ✓ Native speaker-validated content
 ✓ Cultural context for authentic communication
 ✓ Regular content updates
@@ -72,7 +74,7 @@ Your learning data stays secure. Optional account creation for progress sync acr
 • Community features to connect with other learners
 • Integration with Macedonian Language Corner video content
 
-Start your Macedonian learning journey today. Whether you're saying your first "Здраво" (Hello) or working toward fluency, Macedonian Language Lab is here to guide you every step of the way.
+Start your Macedonian learning journey today. Whether you're saying your first "Здраво" (Hello) or working toward fluency, Македонски • MK Language Lab is here to guide you every step of the way.
 
 Download now and learn Macedonian with confidence! 🎓🇲🇰
 

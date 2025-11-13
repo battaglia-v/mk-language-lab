@@ -143,6 +143,8 @@
     "practiceProgressGoal": "Цел: {target} задачи",
     "practiceProgressSummary": "Одговорени задачи: {count}",
     "practiceAccuracy": "Точност: {value}%",
+    "practiceInlineProgress": "Напредок: {current}/{target} ⚡ {accuracy}%",
+    "practiceCheckingAnswer": "Проверувам...",
     "practiceModalTitle": "Дневна Вежба",
     "practiceClose": "Затвори сесија",
     "practiceSessionCompleteTitle": "Сесијата е завршена!",

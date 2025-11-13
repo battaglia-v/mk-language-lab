@@ -64,7 +64,9 @@ gh issue create --repo "battaglia-v/mk-language-lab" --title "[Android] Create P
 gh issue create --repo "battaglia-v/mk-language-lab" --title "[Android] Beta testing and Play Store submission" --body "See docs/github-issues-template.md - Issue #18"
 ```
 
-### iOS Release Issues (4 issues)
+### iOS Release Issues (4 issues) _(legacy / paused)_
+
+> ⚠️ Mobile workstreams are on hold. Keep these commands for future planning but avoid opening new issues until the roadmap revives native apps.
 
 ```bash
 gh issue create --repo "battaglia-v/mk-language-lab" --title "[iOS] Set up Apple Developer account and certificates" --body "See docs/github-issues-template.md - Issue #19"

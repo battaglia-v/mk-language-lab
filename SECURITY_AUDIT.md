@@ -2,7 +2,7 @@
 
 **Date**: November 9, 2025
 **Auditor**: Claude Code
-**Application**: Macedonian Language Lab
+**Application**: Македонски • MK Language Lab
 **Version**: Production (Vercel)
 **URL**: https://mk-language-lab.vercel.app
 
@@ -12,7 +12,7 @@
 
 ✅ **Overall Security Status**: GOOD - Ready for production launch
 
-The Macedonian Language Lab application demonstrates solid security practices with no critical vulnerabilities detected. The application is safe for Android Play Store submission and production launch.
+The Македонски • MK Language Lab application demonstrates solid security practices with no critical vulnerabilities detected. The application is safe for Android Play Store submission and production launch.
 
 ### Key Findings
 - ✅ Zero npm package vulnerabilities
@@ -339,7 +339,7 @@ None - application is secure for launch.
 
 ## Conclusion
 
-The Macedonian Language Lab application demonstrates **strong security practices** and is **ready for production launch on Android Play Store**.
+The Македонски • MK Language Lab application demonstrates **strong security practices** and is **ready for production launch on Android Play Store**.
 
 ### Security Score: 8.5/10
 

@@ -2,7 +2,7 @@
 
 > **Last Updated**: 2025-10-27  > **Owner**: Vincent Battaglia  > **Review Cycle**: Monthly
 
-This guide documents how we deploy MK Language Lab to Vercel and manage environment secrets.
+This guide documents how we deploy Македонски • MK Language Lab to Vercel and manage environment secrets.
 
 ## Environments
 

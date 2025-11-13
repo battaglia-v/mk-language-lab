@@ -634,7 +634,7 @@ Create GDPR-compliant privacy policy and terms of service for production launch.
 
 ## Implementation Tasks
 - [ ] Use privacy policy generator or template
-- [ ] Customize for MK Language Lab specifics
+- [ ] Customize for Македонски • MK Language Lab specifics
 - [ ] Review with legal expert (optional but recommended)
 - [ ] Create /privacy and /terms routes
 - [ ] Add links to footer
@@ -713,7 +713,7 @@ Convert web app to Progressive Web App (PWA) for Android installation.
 
 ## PWA Manifest Tasks
 - [ ] Create public/manifest.json
-- [ ] Add app name ("MK Language Lab")
+- [ ] Add app name ("Македонски • MK Language Lab")
 - [ ] Add short name ("MK Lab")
 - [ ] Set theme color
 - [ ] Set background color
@@ -914,11 +914,13 @@ Set up Apple Developer Program membership and required certificates for iOS app.
 
 ---
 
-### Issue #20: [iOS] Migrate PWA to React Native or Capacitor
+### Issue #20: [iOS] Migrate PWA to React Native or Capacitor _(legacy / paused)_
 **Labels:** `ios`, `mobile`, `critical`, `technical`
 
 **Body:**
 ```markdown
+> ⚠️ **Status (Nov 2025):** Mobile wrappers are on hold. Keep this issue template for future planning, but do not open new work until the roadmap revives native apps.
+
 ## Overview
 PWAs have limited support on iOS. Migrate to React Native or Capacitor for full native experience.
 

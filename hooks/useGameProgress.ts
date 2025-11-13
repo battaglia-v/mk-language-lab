@@ -73,7 +73,7 @@ export function useGameProgress(): UseGameProgressReturn {
   const [hearts, setHearts] = useState(initialProgress.hearts);
   const [isLoading, setIsLoading] = useState(true);
   const [hasMigrated, setHasMigrated] = useState(false);
-  const syncTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const syncTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Fetch progress from database (for authenticated users)
   const fetchDatabaseProgress = useCallback(async () => {

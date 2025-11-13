@@ -107,10 +107,7 @@ const sentryWebpackPluginOptions = {
 const pwaConfig = withPWA({
   dest: 'public',
   disable: process.env.NODE_ENV === 'development',
-  register: false, // Disabled - using custom ServiceWorkerRegistration component
-  fallbacks: {
-    document: '/offline',
-  },
+  register: false,
 });
 
 // Wrap the config with PWA, next-intl, and Sentry

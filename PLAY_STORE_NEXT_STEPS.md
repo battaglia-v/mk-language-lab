@@ -1,5 +1,7 @@
 # Play Store Submission - Next Steps
 
+> ⚠️ **Status (Nov 2025):** Android Play Store work is currently paused. The generated assets referenced below (feature graphic, splash screens, etc.) were removed from `public/` to reduce repo size. Recreate them if/when the Android release cycle resumes.
+
 ## ✅ Completed Items
 
 ### 1. High-Quality PWA Icons (Deployed)
@@ -14,8 +16,8 @@
   - Install again from Chrome menu
 
 ### 2. Feature Graphic
-- **Status:** ✅ Generated
-- **File:** `public/feature-graphic.png` (1024x500px, 502KB)
+- **Status:** ✅ Generated _(file archived; recreate when needed)_
+- **File:** `public/feature-graphic.png` (previously 1024x500px, 502KB)
 - **Design:** Ajvar jar icon + app name + tagline + Macedonian colors
 - **Location:** Ready in `/public` directory
 
@@ -125,7 +127,7 @@ Once you have your 8 screenshots:
 
 **In Play Console → Store presence → Main store listing:**
 
-1. **App name:** Macedonian Language Lab
+1. **App name:** Македонски • MK Language Lab
 2. **Short description:** Copy from `PLAY_STORE_LISTING.md` line 4
 3. **Full description:** Copy from `PLAY_STORE_LISTING.md` lines 8-83
 4. **App icon:** Upload `public/icon-512.png`

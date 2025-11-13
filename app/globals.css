@@ -66,6 +66,19 @@
   --brand-plum: #4c1d95;
   --brand-cream: #fff6e1;
   --brand-cream-light: #fffaf0;
+  --surface-elevated: color-mix(in srgb, #ffffff 92%, var(--brand-cream) 8%);
+  --surface-frosted: color-mix(in srgb, #ffffff 78%, var(--brand-cream) 22%);
+  --surface-gold-tint: color-mix(in srgb, var(--brand-gold) 25%, #ffffff 75%);
+  --border-accent-red: color-mix(in srgb, var(--brand-red) 22%, transparent);
+  --border-accent-plum: color-mix(in srgb, var(--brand-plum) 28%, transparent);
+  --border-accent-gold: color-mix(in srgb, var(--brand-gold) 28%, transparent);
+  --border-neutral-muted: color-mix(in srgb, var(--foreground) 15%, transparent);
+  --success-surface: var(--brand-mint);
+  --success-border: var(--brand-green);
+  --success-foreground: var(--brand-green-dark);
+  --error-surface: var(--brand-rose);
+  --error-border: var(--brand-red);
+  --error-foreground: var(--brand-red);
 
   --background: var(--brand-cream);
   --foreground: #1c1e23;
@@ -103,6 +116,19 @@
 .dark {
   --background: #090e1a;
   --foreground: #f5f6f8;
+  --surface-elevated: color-mix(in srgb, #1c2335 85%, #101828 15%);
+  --surface-frosted: color-mix(in srgb, #11172a 80%, #101828 20%);
+  --surface-gold-tint: color-mix(in srgb, var(--brand-gold) 20%, #1f1604 80%);
+  --border-accent-red: color-mix(in srgb, var(--brand-red) 30%, transparent);
+  --border-accent-plum: color-mix(in srgb, var(--brand-plum) 35%, transparent);
+  --border-accent-gold: color-mix(in srgb, var(--brand-gold) 32%, transparent);
+  --border-neutral-muted: color-mix(in srgb, var(--foreground) 20%, transparent);
+  --success-surface: color-mix(in srgb, var(--brand-green) 18%, #0f1526 82%);
+  --success-border: color-mix(in srgb, var(--brand-green) 70%, transparent);
+  --success-foreground: var(--brand-mint);
+  --error-surface: color-mix(in srgb, var(--brand-red) 12%, #140a12 88%);
+  --error-border: color-mix(in srgb, var(--brand-red) 65%, transparent);
+  --error-foreground: var(--brand-rose);
   --card: #101828;
   --card-foreground: #f5f6f8;
   --popover: #101828;
@@ -197,6 +223,70 @@
 }
 
 @layer utilities {
+  .bg-surface-elevated {
+    background-color: var(--surface-elevated);
+  }
+
+  .bg-surface-frosted {
+    background-color: var(--surface-frosted);
+  }
+
+  .bg-surface-gold {
+    background-color: var(--surface-gold-tint);
+  }
+
+  .text-brand-primary {
+    color: var(--brand-red);
+  }
+
+  .text-brand-secondary {
+    color: var(--brand-gold-dark);
+  }
+
+  .text-on-primary {
+    color: var(--primary-foreground);
+  }
+
+  .border-accent-red {
+    border-color: var(--border-accent-red);
+  }
+
+  .border-accent-plum {
+    border-color: var(--border-accent-plum);
+  }
+
+  .border-accent-gold {
+    border-color: var(--border-accent-gold);
+  }
+
+  .border-neutral-muted {
+    border-color: var(--border-neutral-muted);
+  }
+
+  .bg-success-soft {
+    background-color: var(--success-surface);
+  }
+
+  .border-success-soft {
+    border-color: var(--success-border);
+  }
+
+  .text-success-strong {
+    color: var(--success-foreground);
+  }
+
+  .bg-error-soft {
+    background-color: var(--error-surface);
+  }
+
+  .border-error-soft {
+    border-color: var(--error-border);
+  }
+
+  .text-error-strong {
+    color: var(--error-foreground);
+  }
+
   .lg\:ml-sidebar {
     margin-left: 0;
   }

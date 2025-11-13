@@ -1,0 +1,55 @@
+{
+  "missionId": "streak-saver-q4",
+  "name": "Streak Saver",
+  "cycle": {
+    "type": "daily",
+    "endsAt": "2025-11-13T05:00:00Z"
+  },
+  "xp": {
+    "earned": 320,
+    "target": 450
+  },
+  "streakDays": 7,
+  "heartsRemaining": 4,
+  "translatorDirection": "Mk → En",
+  "checklist": [
+    { "id": "quick-practice", "label": "Finish Quick Practice", "status": "completed" },
+    { "id": "translator-review", "label": "Review translator inbox", "status": "pending" },
+    { "id": "listening-minutes", "label": "Log 10 listening minutes", "status": "in_progress" }
+  ],
+  "coachTips": [
+    {
+      "id": "coach-voice",
+      "title": "Coach Jana",
+      "body": "Record yourself saying today’s phrases and compare with the native clip.",
+      "tag": "Speaking"
+    },
+    {
+      "id": "culture-note",
+      "title": "Culture bite",
+      "body": "When ordering coffee, add “ве молам” for a polite tone locals appreciate.",
+      "tag": "Culture"
+    },
+    {
+      "id": "memory-hack",
+      "title": "Memory hack",
+      "body": "Chunk longer sentences by emphasizing verbs first, then add modifiers.",
+      "tag": "Study tip"
+    }
+  ],
+  "reviewClusters": [
+    { "id": "market", "label": "Market phrases", "accuracy": 0.62 },
+    { "id": "travel", "label": "Travel verbs", "accuracy": 0.71 },
+    { "id": "family", "label": "Family nouns", "accuracy": 0.55 }
+  ],
+  "communityHighlights": [
+    { "id": "streak", "title": "Ana kept a 21-day streak!", "detail": "Send congrats", "accent": "gold" },
+    { "id": "squad", "title": "Squad Ohrid unlocked a quest", "detail": "Join weekend challenge", "accent": "green" },
+    { "id": "leaderboard", "title": "You are #5 in Weekly XP", "detail": "Earn 120 XP to catch #4", "accent": "red" }
+  ],
+  "links": {
+    "practice": "/practice",
+    "translatorInbox": "/translator/history",
+    "settings": "/practice/settings"
+  }
+}
