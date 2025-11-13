@@ -91,18 +91,76 @@ export const practicePromptsQueryKey = ['practice-prompts'] as const;
 export type PracticePromptsQueryOptions<TData = PracticeItem[]> = {
   baseUrl?: string;
   staleTime?: number;
+  fetcher?: typeof fetch;
   select?: UseQueryOptions<PracticeItem[], Error, TData>['select'];
 };
 
 export function usePracticePromptsQuery<TData = PracticeItem[]>({
   baseUrl,
   staleTime = 1000 * 60,
+  fetcher,
   select,
 }: PracticePromptsQueryOptions<TData> = {}) {
   return useQuery<PracticeItem[], Error, TData>({
     queryKey: practicePromptsQueryKey,
     staleTime,
-    queryFn: ({ signal }) => fetchPracticePrompts({ baseUrl, signal }),
+    queryFn: ({ signal }) => fetchPracticePrompts({ baseUrl, signal, fetcher }),
     select,
   });
+}
+
+export type PracticeCompletionEventPayload = {
+  id: string;
+  deckId: string;
+  category: string;
+  mode: 'typing' | 'cloze' | 'listening' | 'multipleChoice';
+  direction: PracticeDirection;
+  correctCount: number;
+  totalAttempts: number;
+  accuracy: number;
+  streakDelta: number;
+  xpEarned: number;
+  heartsRemaining: number;
+  completedAt: string;
+};
+
+type SubmitPracticeCompletionsConfig = {
+  baseUrl?: string | null;
+  signal?: AbortSignal;
+  fetcher?: typeof fetch;
+  deviceId?: string | null;
+};
+
+export async function submitPracticeCompletions(
+  events: PracticeCompletionEventPayload[],
+  config: SubmitPracticeCompletionsConfig = {}
+): Promise<{ accepted: number }> {
+  if (!events.length) {
+    return { accepted: 0 };
+  }
+
+  const { baseUrl, signal, fetcher = fetch, deviceId } = config;
+  if (!baseUrl) {
+    throw new Error('Missing API base URL for practice completion sync');
+  }
+
+  const endpoint = `${baseUrl.replace(/\/$/, '')}/api/mobile/practice-completions`;
+  const response = await fetcher(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      events,
+      deviceId: deviceId ?? undefined,
+    }),
+    signal,
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to sync practice completions (${response.status})`);
+  }
+
+  const payload = (await response.json()) as { accepted?: number };
+  return { accepted: payload.accepted ?? events.length };
 }

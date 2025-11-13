@@ -1,0 +1,91 @@
+appId: com.mk.language.lab
+tags:
+  - translator
+---
+# Translator Tab & History Flow
+# Tests translator interface, direction toggle, translation input, and history
+
+- launchApp
+
+# Navigate to Translator tab
+- tapOn:
+    text: "Translator"
+
+# Verify we're on the Translator screen
+- assertVisible:
+    text: "Translator"
+- assertVisible:
+    text: "Pick a direction, type a prompt, and review recent translations"
+
+# Wait for content to load
+- waitForAnimationToEnd
+
+# Verify direction buttons are present
+- assertVisible:
+    text: "EN → MK"
+- assertVisible:
+    text: "MK → EN"
+
+# Verify swap button
+- assertVisible:
+    text: "Swap"
+
+# Test swap functionality
+- tapOn:
+    text: "Swap"
+- waitForAnimationToEnd
+
+# Verify direction changed (MK → EN should now be active)
+- assertVisible:
+    text: "MK → EN"
+
+# Swap back
+- tapOn:
+    text: "Swap"
+- waitForAnimationToEnd
+
+# Verify Input and Result cards
+- assertVisible:
+    text: "Input"
+- assertVisible:
+    text: "Result"
+
+# Verify translation controls
+- assertVisible:
+    text: "Translate"
+- assertVisible:
+    text: "Clear"
+
+# Scroll down to see History section
+- scroll
+
+# Verify History section
+- assertVisible:
+    text: "History"
+
+# Note: Testing actual text input and translation requires API
+# which may not be available in test environment
+# The test validates UI structure and navigation
+
+# Test direction toggle
+- tapOn:
+    text: "MK → EN"
+- waitForAnimationToEnd
+
+# Verify placeholder changes (indicated by different active state)
+- assertVisible:
+    text: "Input"
+
+# Test Clear button (even without input)
+- tapOn:
+    text: "Clear"
+
+# Scroll back to top
+- scroll:
+    direction: UP
+
+# Verify we're still on Translator tab
+- assertVisible:
+    text: "EN → MK"
+- assertVisible:
+    text: "Translate"

@@ -7,6 +7,7 @@ import {
   REMINDER_CHANNEL_ID,
   REMINDER_WINDOWS,
   type ReminderPreference,
+  type ReminderWindow,
   type ReminderWindowId,
 } from './constants';
 import { getNotificationPermissionsStatus, requestNotificationPermission } from './permissions';
@@ -22,11 +23,17 @@ import {
 } from './reminderScheduler';
 
 type NotificationContextValue = {
-  permissions: Notifications.NotificationPermissionsStatus | null;
+  permissionStatus: Notifications.PermissionStatus | null;
   reminderPreferences: ReminderPreference[];
+  reminderWindows: ReminderWindowId[];
+  availableWindows: ReminderWindow[];
   isHydrated: boolean;
+  isScheduling: boolean;
+  isRegisteringToken: boolean;
+  lastSyncedAt?: string;
   requestPermission: () => Promise<Notifications.NotificationPermissionsStatus>;
-  toggleReminderWindow: (windowId: ReminderWindowId, enabled: boolean) => Promise<void>;
+  toggleReminderWindow: (windowId: ReminderWindowId, enabled?: boolean) => Promise<void>;
+  refreshScheduledReminders: () => Promise<void>;
   scheduleMissionReminder: (mission: MissionStatus) => Promise<void>;
 };
 
@@ -71,6 +78,8 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
   const [permissions, setPermissions] = useState<Notifications.NotificationPermissionsStatus | null>(null);
   const [settings, setSettings] = useState<ReminderSettingsStorage>(DEFAULT_REMINDER_SETTINGS);
   const [isHydrated, setIsHydrated] = useState(!isNativeRuntime);
+  const [isScheduling, setIsScheduling] = useState(false);
+  const [isRegisteringToken, setIsRegisteringToken] = useState(false);
   const settingsRef = useRef<ReminderSettingsStorage>(DEFAULT_REMINDER_SETTINGS);
   const lastRegisteredSignatureRef = useRef<string | null>(null);
 
@@ -83,7 +92,7 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
       return;
     }
 
-    let isMounted = true;
+    let cancelled = false;
 
     (async () => {
       const [storedSettings, status] = await Promise.all([
@@ -91,22 +100,30 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
         getNotificationPermissionsStatus(),
       ]);
 
-      if (!isMounted) {
+      if (cancelled) {
         return;
       }
 
-      setSettings(storedSettings);
-      settingsRef.current = storedSettings;
+      const nextSettings = { ...storedSettings };
+      settingsRef.current = nextSettings;
+      setSettings(nextSettings);
       setPermissions(status);
       setIsHydrated(true);
 
       await ensureAndroidChannel();
-      await syncReminderSchedule(storedSettings.enabledWindows);
       await ensureReminderBackgroundTask();
+      await syncReminderSchedule(nextSettings.enabledWindows);
+
+      if (!cancelled) {
+        const stamped = { ...nextSettings, lastSyncedAt: new Date().toISOString() };
+        settingsRef.current = stamped;
+        setSettings(stamped);
+        await saveReminderSettings(stamped);
+      }
     })();
 
     return () => {
-      isMounted = false;
+      cancelled = true;
     };
   }, []);
 
@@ -120,8 +137,24 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
       return;
     }
 
-    lastRegisteredSignatureRef.current = signature;
-    void registerPushTokenWithBackend({ reminderWindows: settings.enabledWindows });
+    let cancelled = false;
+    setIsRegisteringToken(true);
+    (async () => {
+      try {
+        await registerPushTokenWithBackend({ reminderWindows: settings.enabledWindows });
+        if (!cancelled) {
+          lastRegisteredSignatureRef.current = signature;
+        }
+      } finally {
+        if (!cancelled) {
+          setIsRegisteringToken(false);
+        }
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
   }, [isHydrated, permissions?.status, settings.enabledWindows]);
 
   const reminderPreferences = useMemo<ReminderPreference[]>(
@@ -133,34 +166,74 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
     [settings.enabledWindows]
   );
 
+  const refreshScheduledReminders = useCallback(async () => {
+    if (!isNativeRuntime) {
+      return;
+    }
+
+    setIsScheduling(true);
+    try {
+      await syncReminderSchedule(settingsRef.current.enabledWindows);
+      const stamped: ReminderSettingsStorage = {
+        ...settingsRef.current,
+        lastSyncedAt: new Date().toISOString(),
+      };
+      settingsRef.current = stamped;
+      setSettings(stamped);
+      await saveReminderSettings(stamped);
+    } finally {
+      setIsScheduling(false);
+    }
+  }, []);
+
   const handleRequestPermission = useCallback(async () => {
     const status = await requestNotificationPermission();
     setPermissions(status);
     if (status.status === Notifications.PermissionStatus.GRANTED) {
       await ensureReminderBackgroundTask();
-      await syncReminderSchedule(settingsRef.current.enabledWindows);
+      await refreshScheduledReminders();
     }
 
     return status;
-  }, []);
+  }, [refreshScheduledReminders]);
 
   const toggleReminderWindow = useCallback(
-    async (windowId: ReminderWindowId, enabled: boolean) => {
-      if (!isNativeRuntime) {
-        return;
-      }
-
+    async (windowId: ReminderWindowId, explicitValue?: boolean) => {
       const current = settingsRef.current;
-      const nextEnabled = enabled
+      const shouldEnable =
+        explicitValue ?? !current.enabledWindows.includes(windowId);
+
+      const nextEnabled = shouldEnable
         ? Array.from(new Set([...current.enabledWindows, windowId]))
         : current.enabledWindows.filter((id) => id !== windowId);
 
-      const nextSettings = { ...current, enabledWindows: nextEnabled };
+      if (!isNativeRuntime) {
+        const nextSettings = { ...current, enabledWindows: nextEnabled };
+        settingsRef.current = nextSettings;
+        setSettings(nextSettings);
+        return;
+      }
 
-      settingsRef.current = nextSettings;
-      setSettings(nextSettings);
-      await saveReminderSettings(nextSettings);
-      await syncReminderSchedule(nextEnabled);
+      setIsScheduling(true);
+      try {
+        const nextSettings: ReminderSettingsStorage = {
+          ...current,
+          enabledWindows: nextEnabled,
+        };
+        settingsRef.current = nextSettings;
+        setSettings(nextSettings);
+        await saveReminderSettings(nextSettings);
+        await syncReminderSchedule(nextEnabled);
+        const stamped: ReminderSettingsStorage = {
+          ...nextSettings,
+          lastSyncedAt: new Date().toISOString(),
+        };
+        settingsRef.current = stamped;
+        setSettings(stamped);
+        await saveReminderSettings(stamped);
+      } finally {
+        setIsScheduling(false);
+      }
     },
     []
   );
@@ -190,11 +263,17 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
   );
 
   const value: NotificationContextValue = {
-    permissions,
+    permissionStatus: permissions?.status ?? null,
     reminderPreferences,
+    reminderWindows: settings.enabledWindows,
+    availableWindows: REMINDER_WINDOWS,
     isHydrated,
+    isScheduling,
+    isRegisteringToken,
+    lastSyncedAt: settings.lastSyncedAt,
     requestPermission: handleRequestPermission,
     toggleReminderWindow,
+    refreshScheduledReminders,
     scheduleMissionReminder,
   };
 

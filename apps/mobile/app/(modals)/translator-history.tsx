@@ -2,16 +2,12 @@ import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { NativeButton, NativeCard, NativeStatPill, NativeTypography } from '@mk/ui';
 import { brandColors, spacingScale } from '@mk/tokens';
-
-const TRANSLATOR_ENTRIES = [
-  { id: 'greeting', phrase: '„Здраво, ќе се видиме подоцна.“', direction: 'Mk → En', minutesAgo: 2 },
-  { id: 'coffee', phrase: '„Може ли две кафиња без шеќер?“', direction: 'Mk → En', minutesAgo: 30 },
-  { id: 'idiom', phrase: '„It is raining cats and dogs.“', direction: 'En → Mk', minutesAgo: 90 },
-  { id: 'travel', phrase: '„Каде е најблиската автобуска станица?“', direction: 'Mk → En', minutesAgo: 240 },
-] as const;
+import { useTranslatorHistory } from '../../lib/translator/history';
 
 export default function TranslatorHistoryModal() {
   const router = useRouter();
+  const { history, isHydrated } = useTranslatorHistory();
+  const directionLabel = (id: 'en-mk' | 'mk-en') => (id === 'en-mk' ? 'EN → MK' : 'MK → EN');
 
   return (
     <View style={styles.overlay}>
@@ -24,21 +20,44 @@ export default function TranslatorHistoryModal() {
             Recent prompts you looked up on the go. Tap to pin favorites later.
           </NativeTypography>
 
-          <ScrollView contentContainerStyle={styles.list}>
-            {TRANSLATOR_ENTRIES.map((entry) => (
-              <View key={entry.id} style={styles.entry}>
-                <View style={{ flex: 1 }}>
-                  <NativeTypography variant="body" style={styles.entryPhrase}>
-                    {entry.phrase}
-                  </NativeTypography>
-                  <NativeTypography variant="caption" style={styles.entryMeta}>
-                    {entry.direction} · {entry.minutesAgo} min ago
-                  </NativeTypography>
+          {!isHydrated ? (
+            <NativeTypography variant="body" style={styles.subtitle}>
+              Loading your recent translations…
+            </NativeTypography>
+          ) : history.length === 0 ? (
+            <NativeTypography variant="body" style={styles.subtitle}>
+              No translations yet. Your next lookup will appear here.
+            </NativeTypography>
+          ) : (
+            <ScrollView contentContainerStyle={styles.list}>
+              {history.map((entry) => (
+                <View key={entry.id} style={styles.entry}>
+                  <View style={{ flex: 1 }}>
+                    <NativeTypography variant="body" style={styles.entryPhrase}>
+                      {entry.sourceText}
+                    </NativeTypography>
+                    <NativeTypography variant="caption" style={styles.entryMeta}>
+                      {directionLabel(entry.directionId)} ·{' '}
+                      {new Date(entry.timestamp).toLocaleString(undefined, {
+                        month: 'short',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: '2-digit',
+                      })}
+                    </NativeTypography>
+                    <NativeTypography variant="caption" style={styles.resultText}>
+                      {entry.translatedText}
+                    </NativeTypography>
+                  </View>
+                  <NativeStatPill
+                    label="Detected"
+                    value={entry.detectedLanguage ? entry.detectedLanguage.toUpperCase() : 'Auto'}
+                    accent="gold"
+                  />
                 </View>
-                <NativeStatPill label="Pin soon" value="Hold to save" accent="gold" />
-              </View>
-            ))}
-          </ScrollView>
+              ))}
+            </ScrollView>
+          )}
 
           <NativeButton onPress={() => router.back()}>
             <NativeTypography variant="body" style={styles.primaryButtonText}>
@@ -89,6 +108,9 @@ const styles = StyleSheet.create({
   },
   entryMeta: {
     color: 'rgba(16,24,40,0.65)',
+  },
+  resultText: {
+    color: brandColors.navy,
   },
   primaryButtonText: {
     color: '#fff',

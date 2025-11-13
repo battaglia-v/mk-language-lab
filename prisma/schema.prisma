@@ -35,25 +35,26 @@ model Session {
 }
 
 model User {
-  id                 String                   @id @default(cuid())
-  name               String?
-  email              String?                  @unique
-  emailVerified      DateTime?
-  password           String?                  // Hashed password (optional for OAuth users)
-  image              String?
-  role               String                   @default("user") // "user" | "admin"
-  createdAt          DateTime                 @default(now())
-  updatedAt          DateTime                 @updatedAt
-  accounts           Account[]
-  boards             Board[]
-  lessons            Lesson[]
-  sessions           Session[]
-  tutorSessions      TutorSession[]
-  savedPosts         SavedPost[]
-  journeyProgress    JourneyProgress[]
-  lessonProgress     UserLessonProgress[]
-  exerciseAttempts   ExerciseAttempt[]
-  gameProgress       GameProgress?
+  id               String               @id @default(cuid())
+  name             String?
+  email            String?              @unique
+  emailVerified    DateTime?
+  password         String? // Hashed password (optional for OAuth users)
+  image            String?
+  role             String               @default("user") // "user" | "admin"
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+  accounts         Account[]
+  boards           Board[]
+  lessons          Lesson[]
+  sessions         Session[]
+  tutorSessions    TutorSession[]
+  savedPosts       SavedPost[]
+  journeyProgress  JourneyProgress[]
+  lessonProgress   UserLessonProgress[]
+  exerciseAttempts ExerciseAttempt[]
+  gameProgress     GameProgress?
+  mobilePushTokens MobilePushToken[]
 }
 
 model VerificationToken {
@@ -62,6 +63,32 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model MobilePushToken {
+  id                   String             @id @default(cuid())
+  userId               String?
+  expoPushToken        String             @unique
+  platform             MobilePushPlatform
+  appVersion           String?
+  locale               String?
+  timezone             String?
+  reminderWindows      String[]           @default([])
+  lastSuccessfulSync   DateTime?
+  lastReminderSentAt   DateTime?
+  lastReminderWindowId String?
+  revokedAt            DateTime?
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+enum MobilePushPlatform {
+  ios
+  android
 }
 
 model Lesson {
@@ -143,7 +170,7 @@ model PostTag {
 model JourneyProgress {
   id               String    @id @default(cuid())
   userId           String
-  journeyId        String    // 'family' | 'travel' | 'culture'
+  journeyId        String // 'family' | 'travel' | 'culture'
   isActive         Boolean   @default(false)
   currentModuleId  String?
   currentLessonId  String?
@@ -154,8 +181,8 @@ model JourneyProgress {
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
 
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  currentModule Module?  @relation("CurrentModule", fields: [currentModuleId], references: [id])
+  user          User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  currentModule Module?           @relation("CurrentModule", fields: [currentModuleId], references: [id])
   currentLesson CurriculumLesson? @relation("CurrentLesson", fields: [currentLessonId], references: [id])
 
   @@unique([userId, journeyId])
@@ -165,7 +192,7 @@ model JourneyProgress {
 // Modules organize lessons into themed collections
 model Module {
   id          String             @id @default(cuid())
-  journeyId   String             // 'family' | 'travel' | 'culture'
+  journeyId   String // 'family' | 'travel' | 'culture'
   title       String
   description String             @db.Text
   orderIndex  Int
@@ -181,14 +208,14 @@ model Module {
 
 // Curriculum lessons (structured content created by Andri)
 model CurriculumLesson {
-  id               String   @id @default(cuid())
+  id               String  @id @default(cuid())
   moduleId         String
   title            String
-  summary          String?  @db.Text
-  content          String   @db.Text
+  summary          String? @db.Text
+  content          String  @db.Text
   orderIndex       Int
-  estimatedMinutes Int      @default(15)
-  difficultyLevel  String   @default("beginner") // beginner|intermediate|advanced
+  estimatedMinutes Int     @default(15)
+  difficultyLevel  String  @default("beginner") // beginner|intermediate|advanced
   audioUrl         String?
   videoUrl         String?
 
@@ -198,7 +225,7 @@ model CurriculumLesson {
   exercises       Exercise[]
 
   // Relations
-  module       Module                   @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  module       Module               @relation(fields: [moduleId], references: [id], onDelete: Cascade)
   userProgress UserLessonProgress[]
 
   activeInJourneys JourneyProgress[] @relation("CurrentLesson")
@@ -230,15 +257,15 @@ model UserLessonProgress {
 
 // Vocabulary items in lessons
 model VocabularyItem {
-  id                 String   @id @default(cuid())
-  lessonId           String
-  macedonianText     String
-  englishText        String
-  pronunciation      String?
-  audioUrl           String?
-  exampleSentenceMk  String?  @db.Text
-  exampleSentenceEn  String?  @db.Text
-  orderIndex         Int
+  id                String  @id @default(cuid())
+  lessonId          String
+  macedonianText    String
+  englishText       String
+  pronunciation     String?
+  audioUrl          String?
+  exampleSentenceMk String? @db.Text
+  exampleSentenceEn String? @db.Text
+  orderIndex        Int
 
   lesson CurriculumLesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
 
@@ -249,11 +276,11 @@ model VocabularyItem {
 
 // Grammar explanations
 model GrammarNote {
-  id          String   @id @default(cuid())
+  id          String @id @default(cuid())
   lessonId    String
   title       String
-  explanation String   @db.Text
-  examples    String   @db.Text // JSON array of examples
+  explanation String @db.Text
+  examples    String @db.Text // JSON array of examples
   orderIndex  Int
 
   lesson CurriculumLesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
@@ -265,13 +292,13 @@ model GrammarNote {
 
 // Interactive exercises
 model Exercise {
-  id            String   @id @default(cuid())
+  id            String  @id @default(cuid())
   lessonId      String
-  type          String   // 'multiple_choice' | 'fill_blank' | 'translation' | 'matching'
-  question      String   @db.Text
-  options       String   @db.Text // JSON array
-  correctAnswer String   @db.Text
-  explanation   String?  @db.Text
+  type          String // 'multiple_choice' | 'fill_blank' | 'translation' | 'matching'
+  question      String  @db.Text
+  options       String  @db.Text // JSON array
+  correctAnswer String  @db.Text
+  explanation   String? @db.Text
   orderIndex    Int
 
   lesson       CurriculumLesson  @relation(fields: [lessonId], references: [id], onDelete: Cascade)
@@ -300,18 +327,18 @@ model ExerciseAttempt {
 
 // Word of the Day - managed by admins
 model WordOfTheDay {
-  id             String   @id @default(cuid())
-  macedonian     String
-  pronunciation  String
-  english        String
-  partOfSpeech   String   // noun, verb, adjective, etc.
-  exampleMk      String   @db.Text
-  exampleEn      String   @db.Text
-  icon           String   // emoji icon
-  scheduledDate  DateTime @unique // date this word should appear
-  isActive       Boolean  @default(true)
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  id            String   @id @default(cuid())
+  macedonian    String
+  pronunciation String
+  english       String
+  partOfSpeech  String // noun, verb, adjective, etc.
+  exampleMk     String   @db.Text
+  exampleEn     String   @db.Text
+  icon          String // emoji icon
+  scheduledDate DateTime @unique // date this word should appear
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   @@index([scheduledDate, isActive])
   @@index([isActive])
@@ -319,26 +346,26 @@ model WordOfTheDay {
 
 // Practice Vocabulary - word bank for Quick Practice exercises
 model PracticeVocabulary {
-  id             String    @id @default(cuid())
-  macedonian     String
-  english        String
-  category       String?   // Optional category (e.g., "food", "family", "greetings")
-  difficulty     String    @default("beginner") // beginner | intermediate | advanced
-  formality      String    @default("neutral") // formal | neutral | informal
-  isActive       Boolean   @default(true)
+  id         String  @id @default(cuid())
+  macedonian String
+  english    String
+  category   String? // Optional category (e.g., "food", "family", "greetings")
+  difficulty String  @default("beginner") // beginner | intermediate | advanced
+  formality  String  @default("neutral") // formal | neutral | informal
+  isActive   Boolean @default(true)
 
   // Word of the Day fields (optional - only needed if includeInWOTD is true)
-  includeInWOTD  Boolean   @default(false) // Flag to indicate if this should appear as WOTD
-  pronunciation  String?   // Pronunciation guide (e.g., "zdravo")
-  partOfSpeech   String?   // noun, verb, adjective, etc.
-  exampleMk      String?   @db.Text // Example sentence in Macedonian
-  exampleEn      String?   @db.Text // Example sentence in English
-  icon           String?   // Emoji icon
-  scheduledDate  DateTime? @unique // Date this word should appear as WOTD
-  usageContext   String?   @db.Text // Usage context and situational notes
+  includeInWOTD Boolean   @default(false) // Flag to indicate if this should appear as WOTD
+  pronunciation String? // Pronunciation guide (e.g., "zdravo")
+  partOfSpeech  String? // noun, verb, adjective, etc.
+  exampleMk     String?   @db.Text // Example sentence in Macedonian
+  exampleEn     String?   @db.Text // Example sentence in English
+  icon          String? // Emoji icon
+  scheduledDate DateTime? @unique // Date this word should appear as WOTD
+  usageContext  String?   @db.Text // Usage context and situational notes
 
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([isActive, difficulty])
   @@index([category])
@@ -348,16 +375,16 @@ model PracticeVocabulary {
 
 // Game Progress - gamification data (streak, XP, level, hearts)
 model GameProgress {
-  id                String   @id @default(cuid())
-  userId            String   @unique
-  streak            Int      @default(0) // consecutive days of practice
-  xp                Int      @default(0) // total experience points
-  level             String   @default("beginner") // beginner | intermediate | advanced
-  hearts            Int      @default(5) // current heart count (max 5)
-  lastPracticeDate  DateTime? // last date user practiced (for streak calculation)
-  streakUpdatedAt   DateTime? // last time streak was updated
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  id               String    @id @default(cuid())
+  userId           String    @unique
+  streak           Int       @default(0) // consecutive days of practice
+  xp               Int       @default(0) // total experience points
+  level            String    @default("beginner") // beginner | intermediate | advanced
+  hearts           Int       @default(5) // current heart count (max 5)
+  lastPracticeDate DateTime? // last date user practiced (for streak calculation)
+  streakUpdatedAt  DateTime? // last time streak was updated
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 

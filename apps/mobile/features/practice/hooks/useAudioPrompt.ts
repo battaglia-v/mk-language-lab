@@ -1,6 +1,8 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import * as FileSystem from 'expo-file-system';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Audio, type AVPlaybackStatus } from 'expo-av';
+import type { PracticeCardContent } from '@mk/practice';
+import { cacheAudioClip, markAudioUsage, trimAudioCache } from '../../../lib/audioCache';
+import { ensureAudioCacheTaskRegistered, queueAudioPrefetch } from '../../../app/tasks/audioCacheTask';
 
 type AudioStatus = 'idle' | 'loading' | 'ready' | 'playing' | 'error';
 
@@ -10,16 +12,10 @@ type UseAudioPromptOptions = {
   audioUrl?: string | null;
 };
 
-const CACHE_DIR_NAME = 'practice-audio-cache';
-
 export function useAudioPrompt({ audioId, cardId, audioUrl }: UseAudioPromptOptions) {
   const [status, setStatus] = useState<AudioStatus>('idle');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const soundRef = useRef<Audio.Sound | null>(null);
-  const cacheDir = useMemo(() => {
-    const base = FileSystem.cacheDirectory ?? FileSystem.documentDirectory ?? '';
-    return `${base}${CACHE_DIR_NAME}`;
-  }, []);
   const cacheKey = audioId ?? cardId;
   const hasAudio = Boolean(cacheKey && audioUrl);
 
@@ -45,14 +41,8 @@ export function useAudioPrompt({ audioId, cardId, audioUrl }: UseAudioPromptOpti
       setStatus('loading');
       setErrorMessage(null);
       try {
-        await FileSystem.makeDirectoryAsync(cacheDir, { intermediates: true }).catch(() => undefined);
-        const targetPath = `${cacheDir}/${cacheKey}.mp3`;
-        let fileUri = targetPath;
-        const existing = await FileSystem.getInfoAsync(targetPath);
-        if (!existing.exists) {
-          const download = await FileSystem.downloadAsync(audioUrl, targetPath);
-          fileUri = download.uri;
-        }
+        const fileUri = await cacheAudioClip(cacheKey, audioUrl);
+        await markAudioUsage(cacheKey, fileUri);
         await unloadCurrentSound();
         const { sound } = await Audio.Sound.createAsync(
           { uri: fileUri },
@@ -78,8 +68,9 @@ export function useAudioPrompt({ audioId, cardId, audioUrl }: UseAudioPromptOpti
     return () => {
       isMounted = false;
       void unloadCurrentSound();
+      void trimAudioCache();
     };
-  }, [audioUrl, cacheDir, cacheKey, hasAudio, unloadCurrentSound]);
+  }, [audioUrl, cacheKey, hasAudio, unloadCurrentSound]);
 
   const play = useCallback(async () => {
     if (!soundRef.current || status === 'loading') return;
@@ -149,4 +140,18 @@ export function useAudioPrompt({ audioId, cardId, audioUrl }: UseAudioPromptOpti
     pause,
     stop,
   };
+}
+
+export async function queueDeckAudioPrefetch(deckId: string, cards: PracticeCardContent[]) {
+  const audioItems = cards
+    .filter((card) => Boolean(card.audioUrl))
+    .map((card) => ({
+      id: `${deckId}-${card.id}`,
+      url: card.audioUrl as string,
+    }));
+  if (audioItems.length === 0) {
+    return;
+  }
+  await ensureAudioCacheTaskRegistered();
+  await queueAudioPrefetch(audioItems, deckId);
 }

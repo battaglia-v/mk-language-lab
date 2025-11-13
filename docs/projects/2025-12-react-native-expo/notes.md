@@ -4,6 +4,7 @@ Use this scratchpad to record async hand-offs, owner changes, or blocking issues
 
 | Date (UTC) | Author | Note |
 | --- | --- | --- |
+| 2025-11-13 | Agent Codex | All Claude agents working on the React Native migration must read `docs/projects/2025-12-mobile-ui-overhaul.md` before committing changes so UX alignment stays intact; confirm access to that file (shared repo path) in your kickoff notes. |
 | 2025-11-13 | Agent Codex | Verified and completed Expo/EAS setup: fixed `app.json` with correct projectId and slug, confirmed `eas.json` build profiles, validated `app.config.ts` scheme/projectId, updated `.env.local.example` and `apps/mobile/env.example` with actual project ID (5c712af3-a6e9-462d-8243-a119b56af569), verified package scripts (mobile:start, mobile:build:preview:android/ios), confirmed EAS CLI authentication. `npm run mobile:start` now boots successfully with only a non-critical expo-file-system version warning. All critical config files ready for commit. |
 | 2025-11-15 | Agent Codex | Registered the Expo/EAS project (`@vbattaglia/makedonski-mk-language-lab`, projectId `5c712af3-a6e9-462d-8243-a119b56af569`) via `eas init`. `.env.local` and `apps/mobile/.env` now reference that ID so push tokens/EAS builds resolve the correct project. |
 | 2025-11-15 | Agent Codex | Added Expo env placeholders to `.env.local.example` and committed `apps/mobile/env.example` so devs can copy/paste the required `EXPO_PUBLIC_*` settings. README’s native section now walks through copying those files and running `npm run dev` before launching `npm run mobile:start`, which should unblock anyone who ran the mobile app without configuring the API base URL. |
@@ -88,7 +89,7 @@ Use this scratchpad to record async hand-offs, owner changes, or blocking issues
    - Toggle a window again and watch the Next.js logs for a `POST /api/mobile/push-token` entry (should include `{ reminderWindows, locale, timezone }`).
    - In Prisma Studio (or SQL client) confirm the row now has `lastSuccessfulSync`, `timezone`, and the correct window list.
 4. **Cron smoke test**
-   - Trigger the worker manually: `curl -H "Authorization: Bearer $CRON_SECRET" https://<host>/api/cron/reminders`.
+   - Trigger the worker manually via `npm run mobile:cron:smoke` (reads `REMINDER_CRON_BASE_URL`/`EXPO_PUBLIC_API_BASE_URL`) or `curl -H "Authorization: Bearer $CRON_SECRET" https://<host>/api/cron/reminders`.
    - Response should include `{ ok: true, sent: N }`. A push should hit the device (foreground + background) with the deep link `mkll://practice/quick`.
 5. **Log results**
    - Capture device OS + Expo SDK version plus any issues back in this file so the next agent knows what worked (or didn’t). Include screenshots if the notification copy looks off.
@@ -100,6 +101,7 @@ _Tip: use `npx expo run:ios --device`/`run:android` if you need a standalone bui
 | --- | --- | --- | --- | --- | --- | --- |
 | 2025-11-13 | Android hardware | Blocked in CLI-only environment | 52 | Midday, Evening (pending) | 🚧 Pending | Need a physical Android device connected to Expo Go to capture OS prompts, `Notifications.getAllScheduledNotificationsAsync()` output, and Prisma rows before onboarding beta testers. |
 | 2025-11-13 | iOS hardware | Blocked in CLI-only environment | 52 | Midday, Evening (pending) | 🚧 Pending | Same as above—run through the checklist on iPhone hardware and link screenshots/logs here once available. |
+| 2025-11-13 | CLI validation run | N/A | N/A | Cron invocation only | ⚠️ Blocked | `npm run mobile:cron:smoke` executed with `REMINDER_CRON_BASE_URL=http://127.0.0.1:3000` & `CRON_SECRET=dummy` to verify tooling, but the call fails locally (`connect EPERM`), and production validation is blocked until actual host + secret are provided. Hardware reminder evidence still outstanding. |
 
 #### Step 18 To-Do – Detailed Run Book
 - **Android sequence**
@@ -110,11 +112,11 @@ _Tip: use `npx expo run:ios --device`/`run:android` if you need a standalone bui
      - Dev Menu output of `Notifications.getAllScheduledNotificationsAsync()` showing the scheduled identifiers.
      - Terminal logs for `POST /api/mobile/push-token` (include `reminderWindows`, `locale`, `timezone`).
      - Prisma Studio screenshot of the affected `MobilePushToken` row (`lastSuccessfulSync`, `reminderWindows`, `timezone`).
-  4. Trigger cron manually: `curl -H "Authorization: Bearer $CRON_SECRET" https://<prod-host>/api/cron/reminders`. Save the JSON response (`runId`, `sent`, `windows`, `revoked`, `errors`) and capture Android foreground/background push notifications (screenshots or a video).
+  4. Trigger cron manually: `npm run mobile:cron:smoke` (set `REMINDER_CRON_BASE_URL=https://<prod-host>` and `CRON_SECRET=...`) or issue the raw curl. Save the JSON response (`runId`, `sent`, `windows`, `revoked`, `errors`) and capture Android foreground/background push notifications (screenshots or a video).
 - **iOS sequence**
   1. Build via `npx expo run:ios --device` (or install the TestFlight build) using the same env vars (configure via EAS secrets if needed). Use `npx expo start --tunnel` for Metro logging.
   2. Repeat the Mission Settings toggles, Dev Menu dump, API log capture, and Prisma screenshots.
-  3. Re-run the cron curl (or let the hosted scheduler fire) and record iOS foreground/background push receipts plus the JSON summary.
+  3. Re-run `npm run mobile:cron:smoke` (or the raw curl) and record iOS foreground/background push receipts plus the JSON summary.
 - **Monitoring/alerts**
   - Note where `[cron.reminders] Completed run` logs appear (e.g., Vercel/Render logs, Datadog). Confirm alerts exist for `sent === 0` for >24 h and for spikes in `errors`/`revoked`.
   - After each device run, paste links to screenshots/log snippets in the Notes column of the table above. If evidence lives outside the repo, use shared-drive links with timestamps.

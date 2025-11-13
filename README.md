@@ -92,13 +92,19 @@ Visit http://localhost:3000/en (or /mk) to explore the app. Turbopack is enabled
 
 The managed Expo app lives in `apps/mobile` so we can ship Android (and later iOS) from the same repo.
 
+Before launching Expo:
+- Copy `.env.local.example` → `.env.local` (root) and `apps/mobile/env.example` → `apps/mobile/.env`, then fill in `EXPO_PUBLIC_API_BASE_URL`, `EXPO_PUBLIC_PROJECT_ID`, and `EXPO_PUBLIC_ENV`. During local development point `EXPO_PUBLIC_API_BASE_URL` at `http://localhost:3000`.
+- Run the Next.js API locally via `npm run dev` so the Expo client can authenticate and fetch data.
+
+Once env vars and the web server are ready:
 1. Install web dependencies (`npm install`) plus the Expo ones (`cd apps/mobile && npm install`).
 2. Start the Expo dev server from the repo root:
    - `npm run mobile:start` – QR code/dev menu
    - `npm run mobile:android` – boots Android emulator/device
    - `npm run mobile:ios` – boots iOS simulator (requires macOS/Xcode)
-3. Update shared tokens/components in the upcoming `packages/` workspace so both web and native stay in sync.
+3. Sign-in runs through NextAuth + `expo-auth-session`: tap “Continue with browser” on the `/sign-in` screen, and the returned bearer token automatically unlocks push reminders + authenticated APIs.
 4. Navigation is powered by `expo-router` (`apps/mobile/app/`), which currently exposes Home (mission preview), Practice, Discover, and Profile tabs that all reuse the shared Query Client/tokens.
+5. Run `npm run test` to execute the shared Vitest suite plus the offline mobile smoke checks (mission/profile/practice fallbacks). Maestro flows live under `apps/mobile/tests/smoke.maestro.yml`; run them locally with `npm run mobile:test:maestro` (requires the Maestro CLI + a connected device/emulator).
 
 ### Shared Packages
 

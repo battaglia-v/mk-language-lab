@@ -30,8 +30,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files (keep real secrets ignored but allow checked-in examples)
 .env*
+!.env*.example
 
 # Secrets documentation (contains actual credentials)
 GITHUB_SECRETS.txt

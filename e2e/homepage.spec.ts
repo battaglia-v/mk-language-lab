@@ -27,11 +27,11 @@ test.describe('Homepage', () => {
   });
 
   test('should display Quick Start cards', async ({ page }) => {
-    // Check for Daily Practice card (English: "Daily Practice", Macedonian: "Дневна Практика")
-    await expect(page.getByRole('heading', { name: /Daily Practice|Дневна Практика/i })).toBeVisible();
+    // Check for Continue lesson card (English: "Continue lesson", Macedonian: "Продолжи лекција")
+    await expect(page.getByRole('heading', { name: /Continue lesson|Продолжи лекција/i })).toBeVisible();
 
-    // Check for Practice link
-    const practiceLink = page.getByRole('link', { name: /Daily Practice|Дневна Практика/i });
+    // Check for Practice link (the entire card is a link to /practice)
+    const practiceLink = page.getByRole('link', { name: /Continue lesson|Продолжи лекција/i });
     await expect(practiceLink).toBeVisible();
 
     // Check for Resources card (English: "Resources", Macedonian: "Ресурси")
@@ -41,7 +41,7 @@ test.describe('Homepage', () => {
   });
 
   test('should navigate to practice page', async ({ page }) => {
-    const practiceLink = page.getByRole('link', { name: /Daily Practice|Дневна Практика/i });
+    const practiceLink = page.getByRole('link', { name: /Continue lesson|Продолжи лекција/i });
     await practiceLink.click();
 
     // Wait for navigation

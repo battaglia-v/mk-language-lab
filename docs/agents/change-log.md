@@ -7,6 +7,30 @@ Add an entry whenever you introduce a change that affects other contributors (AP
 2. Include date/time (UTC), files touched, summary, impact, guidance, and commit SHA.
 3. Reference this update in your PR message.
 
+### 23. 2025-11-14 – Expo NextAuth sign-in + mobile release docs (`TBD`)
+**Files**: `app/api/mobile/auth/expo-complete/route.ts`, `apps/mobile/lib/auth/{AuthProvider.tsx,index.ts,mobileAuthApi.ts,tokenStore.ts}`, `apps/mobile/app/sign-in.tsx`, `apps/mobile/package.json`, `.github/workflows/ci.yml`, `apps/mobile/__tests__/offline-smoke.test.ts`, `README.md`, `docs/projects/2025-12-react-native-expo/{notes.md,execution_steps.md}`
+**What Changed**: Replaced the temporary `/api/mobile/auth/authorize` flow with `/api/mobile/auth/expo-complete`, so the Expo browser session now bounces through the hosted NextAuth providers, returns a signed JWT via `mkll://auth`, and hydrates SecureStore/React Query automatically. `/sign-in` defaults to the “Continue with browser” CTA (credentials remain for QA), `registerPushTokenWithBackend` continues to forward the bearer header, `npm run test` now covers the offline mission/profile/practice fallbacks, and CI gained a `unit-tests` job alongside a refreshed README/release checklist describing Play Store/TestFlight prep + Maestro smoke expectations.
+**Impact**: Signing into the Expo app mirrors the web NextAuth experience (OAuth + credentials) and reuses the exact tokens the backend expects, so reminders, XP queues, and analytics all tie back to the signed-in learner. Contributors must keep the offline fixtures/tests updated when changing mission/profile/practice payloads, and CI will fail if these smoke checks regress.
+**Action for Agents**: Use `npm run mobile:start` + the “Continue with browser” CTA whenever you need authenticated API data, update `apps/mobile/__tests__/offline-smoke.test.ts` when touching the fallback fixtures, keep `.github/workflows/ci.yml`’s `unit-tests` job green, and follow the release checklist in `docs/projects/2025-12-react-native-expo/notes.md` before cutting new preview/beta builds.
+
+### 22. 2025-11-13 – Live data required for Home/Discover/Profile (`TBD`)
+**Files**: `packages/api-client/src/{mission,discover,news,profile}.ts`, `app/api/discover/feed/route.ts`, `data/discover-feed.json`, `apps/mobile/app/(tabs)/{home,discover,profile}.tsx`, `apps/mobile/features/discover/sections.tsx`, `apps/mobile/features/news/HeadlinesSection.tsx`, `apps/mobile/lib/api.ts`, `docs/projects/2025-12-react-native-expo/{execution_steps.md,notes.md}`
+**What Changed**: The API client hooks now throw when `EXPO_PUBLIC_API_BASE_URL` is missing instead of silently returning JSON fixtures, Discover cards/events include `ctaTarget` metadata, the Expo Discover tab routes CTAs to the correct tab/modal/external link, and Profile badges (plus the “Manage” CTA) navigate to their respective settings/practice/discover views instead of being inert. Headlines gained clearer empty/error messaging, and `apps/mobile/lib/api.ts` exposes `requireApiBaseUrl()` for future call sites.
+**Impact**: Expo builds no longer mask missing backend config—real Prisma/RSS data is the default path, CTA buttons actually land users in the right surfaces, and QA/beta testers can trust that tapping any badge or Discover card hits a real route. Fixtures remain opt-in previews with prominent warnings.
+**Action for Agents**: Always set `EXPO_PUBLIC_API_BASE_URL` (and `EXPO_PUBLIC_PROJECT_ID`) before running `npm run mobile:start`. When adding new Discover cards/events or badges, wire `ctaTarget` appropriately so buttons continue to deep-link into the app; only fall back to fixtures when intentionally testing offline.
+
+### 21. 2025-11-14 – Prisma-backed mission/profile/discover APIs (`TBD`)
+**Files**: `app/api/cron/reminders/route.ts`, `lib/expo-push.ts`, `docs/projects/2025-12-react-native-expo/{execution_steps.md,notes.md}`
+**What Changed**: The cron endpoint now logs structured summaries (runId, sent, revoked, duration), only stamps `lastReminderSentAt` for successful deliveries, and auto-revokes tokens when Expo returns `DeviceNotRegistered`. `lib/expo-push` now surfaces per-ticket results so we can act on Expo errors, and the project notes include the env prerequisites + device validation log required for Step 14.
+**Impact**: Cron runs are auditable, unhealthy runs (“sent === 0”) are easy to alert on, and dead Expo tokens are cleaned up automatically instead of spamming errors.
+**Action for Agents**: Preserve the structured logging when touching `/api/cron/reminders`, inspect the run summary before/after deploying cron jobs, and update the Step 14 device log once you complete physical Android/iOS validation.
+
+### 21. 2025-11-14 – Prisma-backed mission/profile/discover APIs (`TBD`)
+**Files**: `app/api/{missions/current,profile/summary,discover/feed}/route.ts`, `packages/api-client/src/news.ts`, `docs/projects/2025-12-react-native-expo/{execution_steps.md,notes.md,mission-api.md}`
+**What Changed**: Implemented authenticated Prisma-powered routes for missions (GameProgress + JourneyProgress aggregation), profile summaries (XP/streak/quests/badges), and the Discover feed (modules/lessons + Word Lab events), plus tightened the news client hook so Expo/web consume the live `/api/news` payload. All three endpoints emit `x-*-source` headers and fall back to the JSON fixtures only when Prisma or upstream RSS is unavailable.
+**Impact**: Setting `EXPO_PUBLIC_API_BASE_URL` now delivers real learner data end-to-end in the Expo Home/Discover/Profile tabs; QA can inspect the response headers to confirm whether a payload came from Prisma or the local fixture. Docs/logs were updated so future agents know the telemetry and verification steps.
+**Action for Agents**: Keep Prisma models/contracts in sync with `@mk/api-client`, update the mission/profile docs when adding new fields, and surface any additional deep links/CTA targets through the shared payloads instead of hard-coding them in clients.
+
 ### 19. 2025-11-13 – Discover headlines powered by `/api/news` (`TBD`)
 **Files**: `data/news-fallback.json`, `app/api/news/route.ts`, `packages/api-client/src/{news.ts,index.ts}`, `apps/mobile/app/(tabs)/discover.tsx`, `apps/mobile/features/news/HeadlinesSection.tsx`, `docs/projects/2025-12-react-native-expo/{execution_steps.md,notes.md}`
 **What Changed**: Moved the news fallback data into a shared JSON file, exposed `useNewsFeedQuery` in `@mk/api-client`, and wired the Discover tab to show live headlines via `/api/news` (with graceful fallbacks + external links).
@@ -36,6 +60,12 @@ Add an entry whenever you introduce a change that affects other contributors (AP
 **What Changed**: Defined the Discover feed contract + fallback data, added `useDiscoverFeedQuery` so both clients can consume it, shipped `/api/discover/feed`, and rebuilt the Discover tab with filter pills, editorial cards, and upcoming event entries.
 **Impact**: The Discover tab now showcases real content while the backend route gives us a single place to swap in CMS data later.
 **Action for Agents**: Extend the feed via `data/discover-feed.json` (or the API once hooked to CMS) and reuse the new components when adding additional categories/events.
+
+### 18. 2025-11-13 – Profile summary hook + API (`TBD`)
+**Files**: `data/profile-summary.json`, `packages/api-client/src/{profile.ts,index.ts}`, `app/api/profile/summary/route.ts`, `apps/mobile/app/(tabs)/profile.tsx`, `docs/projects/2025-12-react-native-expo/{execution_steps.md,notes.md}`
+**What Changed**: Added the profile summary contract + fallback data, exposed `useProfileSummaryQuery`, wired `/api/profile/summary`, and rebuilt the Profile tab so it displays XP/streak/quest stats and badges tied to the shared payload.
+**Impact**: Both mobile and future web profile surfaces can rely on the same schema today, and backend teams have a single endpoint to replace with Prisma data when ready.
+**Action for Agents**: Update `data/profile-summary.json` (or the API) when changing profile stats, and reuse the new hook instead of hard-coding numbers in UI components.
 
 
 ### 14. 2025-11-13 – Mobile push-token API + reminder helpers (`TBD`)

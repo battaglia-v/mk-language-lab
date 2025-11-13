@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import { Modal, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
@@ -13,9 +14,14 @@ import { CardStack } from '../../features/practice/components';
 import {
   useMobileQuickPracticeSession,
   type PracticeDeckMode,
+  type QuickPracticeCompletionSummary,
 } from '../../features/practice/useMobileQuickPracticeSession';
+import { usePracticeCompletionQueue } from '../../features/practice/usePracticeCompletionQueue';
+import { SESSION_TARGET } from '@mk/practice';
+import { useQueryHydration } from '../../lib/queryClient';
 
 const HEART_SLOTS = 5;
+const XP_PER_CARD = 12;
 const PRACTICE_MODES: Array<{ key: PracticeDeckMode; label: string }> = [
   { key: 'typing', label: 'Typing' },
   { key: 'cloze', label: 'Cloze' },
@@ -25,6 +31,28 @@ const PRACTICE_MODES: Array<{ key: PracticeDeckMode; label: string }> = [
 
 export default function PracticeScreen() {
   const router = useRouter();
+  const completionQueue = usePracticeCompletionQueue();
+  const { isHydrated } = useQueryHydration();
+  const handleSessionComplete = useCallback(
+    (summary: QuickPracticeCompletionSummary) => {
+      const xpEarned = summary.correctCount * XP_PER_CARD;
+      const streakDelta = summary.correctCount >= SESSION_TARGET ? 1 : 0;
+      void completionQueue.queueCompletion({
+        deckId: summary.deckId,
+        category: summary.category,
+        direction: summary.direction,
+        mode: summary.practiceMode,
+        correctCount: summary.correctCount,
+        totalAttempts: summary.totalAttempts,
+        accuracy: summary.accuracy,
+        heartsRemaining: summary.heartsRemaining,
+        xpEarned,
+        streakDelta,
+      });
+    },
+    [completionQueue]
+  );
+
   const {
     isLoading,
     categories,
@@ -49,7 +77,8 @@ export default function PracticeScreen() {
     setShowGameOverModal,
     handleReset,
     handleContinue,
-  } = useMobileQuickPracticeSession();
+  } = useMobileQuickPracticeSession({ onSessionComplete: handleSessionComplete });
+  const isRestoring = !isHydrated && isLoading;
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -84,6 +113,21 @@ export default function PracticeScreen() {
             </NativeButton>
           </View>
         </View>
+
+        {isRestoring ? (
+          <NativeTypography variant="caption" style={styles.syncNotice}>
+            Restoring cached practice data…
+          </NativeTypography>
+        ) : null}
+
+        {completionQueue.hasPending ? (
+          <SyncBanner
+            pendingCount={completionQueue.pendingCount}
+            isSyncing={completionQueue.isSyncing}
+            lastError={completionQueue.lastError}
+            onSync={() => completionQueue.flushPending()}
+          />
+        ) : null}
 
         <NativeCard style={styles.progressCard}>
           <View style={styles.hudRow}>
@@ -267,12 +311,42 @@ function ResultModal({
   );
 }
 
+type SyncBannerProps = {
+  pendingCount: number;
+  isSyncing: boolean;
+  lastError?: string | null;
+  onSync: () => void;
+};
+
+function SyncBanner({ pendingCount, isSyncing, lastError, onSync }: SyncBannerProps) {
+  return (
+    <NativeCard style={styles.syncBanner}>
+      <View style={{ flex: 1, gap: spacingScale.xs }}>
+        <NativeTypography variant="body" style={styles.syncText}>
+          {isSyncing ? 'Syncing offline XP…' : `Offline XP ready to sync (${pendingCount})`}
+        </NativeTypography>
+        {lastError ? (
+          <NativeTypography variant="caption" style={styles.syncError}>
+            {lastError}
+          </NativeTypography>
+        ) : null}
+      </View>
+      <NativeButton variant="secondary" onPress={onSync} disabled={isSyncing}>
+        <NativeTypography variant="body" style={styles.syncButtonText}>
+          {isSyncing ? 'Syncing' : 'Sync now'}
+        </NativeTypography>
+      </NativeButton>
+    </NativeCard>
+  );
+}
+
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: brandColors.cream },
   container: { padding: spacingScale.xl, gap: spacingScale.lg },
   headerRow: { gap: spacingScale.sm },
   hero: { color: brandColors.navy },
   subtitle: { color: 'rgba(16,24,40,0.8)' },
+  syncNotice: { color: 'rgba(16,24,40,0.6)' },
   toolbar: { gap: spacingScale.xs },
   toolbarButton: { borderColor: 'rgba(16,24,40,0.2)', paddingVertical: spacingScale.xs },
   toolbarButtonText: { color: brandColors.navy },
@@ -320,4 +394,12 @@ const styles = StyleSheet.create({
   modalCard: { width: '100%', gap: spacingScale.sm },
   modalButton: { marginTop: spacingScale.sm },
   primaryText: { color: '#fff' },
+  syncBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacingScale.sm,
+  },
+  syncText: { color: brandColors.navy },
+  syncError: { color: brandColors.red },
+  syncButtonText: { color: brandColors.navy },
 });

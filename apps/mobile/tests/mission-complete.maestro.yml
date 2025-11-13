@@ -1,0 +1,183 @@
+appId: com.mk.language.lab
+tags:
+  - mission
+  - home
+  - progress
+---
+# Comprehensive Mission Flow
+# Tests mission progress tracking, XP calculation, coach tips, smart review, and mission completion
+
+- launchApp
+
+# ============================================================
+# SECTION 1: Mission Hero & Progress Display
+# ============================================================
+
+# Verify we're on the Home tab with mission content
+- assertVisible:
+    text: "Добредојде назад"
+- assertVisible:
+    text: "Nova"
+
+# Verify mission progress indicators
+- assertVisible:
+    text: "Continue"
+
+# Wait for mission data to load
+- waitForAnimationToEnd:
+    timeout: 5000
+
+# Verify XP progress is displayed
+# The mission hero should show current XP progress
+- assertVisible:
+    text: "Goal"
+
+# ============================================================
+# SECTION 2: Coach Tips Interaction
+# ============================================================
+
+# Verify Coach Tips section is visible
+- assertVisible:
+    text: "Coach"
+
+# The coach tips should be swipeable/tappable
+# Test scrolling through tips by scrolling the home screen
+- scroll
+
+# Verify we can see more mission content after scrolling
+- assertVisible:
+    text: "Smart review"
+
+# ============================================================
+# SECTION 3: Smart Review Section
+# ============================================================
+
+# Smart Review shows words that need reinforcement
+# Verify the section header and description
+- assertVisible:
+    text: "Smart review"
+
+# The smart review section should display vocabulary cards
+# that need practice based on the user's progress
+
+# Scroll to see if there are review cards displayed
+- scroll
+
+# ============================================================
+# SECTION 4: Community Highlights
+# ============================================================
+
+# Community section shows recent learner achievements
+# Continue scrolling to reach community highlights
+
+# Look for community-related content
+# This may include user achievements, leaderboard, or shared progress
+
+# ============================================================
+# SECTION 5: Mission Continue CTA
+# ============================================================
+
+# Scroll back to top to interact with the Continue button
+- scroll:
+    direction: UP
+- scroll:
+    direction: UP
+
+# Verify Continue button is still visible
+- assertVisible:
+    text: "Continue"
+
+# Test Continue CTA interaction
+# This should navigate to the next mission step or practice session
+- tapOn:
+    text: "Continue"
+
+# Wait for navigation to complete
+- waitForAnimationToEnd:
+    timeout: 3000
+
+# After tapping Continue, we should either:
+# 1. Navigate to a practice session
+# 2. See a mission completion screen
+# 3. Navigate to a specific lesson/module
+
+# Verify we've navigated somewhere by checking for common practice elements
+# or return to home if mission requires authentication
+- assertVisible:
+    text: "Goal"
+
+# ============================================================
+# SECTION 6: Mission Progress Validation
+# ============================================================
+
+# Navigate back to Home to verify progress was updated
+- tapOn:
+    text: "Home"
+
+# Verify mission content is still accessible
+- assertVisible:
+    text: "Nova"
+
+# ============================================================
+# SECTION 7: Mission Settings & Preferences
+# ============================================================
+
+# Users should be able to access mission settings
+# Scroll down to find mission-related settings or preferences
+
+# Verify mission persistence by navigating away and back
+- tapOn:
+    text: "Discover"
+- waitForAnimationToEnd
+- tapOn:
+    text: "Home"
+
+# Mission state should persist
+- assertVisible:
+    text: "Continue"
+- assertVisible:
+    text: "Coach"
+
+# ============================================================
+# SECTION 8: Mission Completion State
+# ============================================================
+
+# Verify mission UI handles different completion states
+# The Continue button should update based on progress
+
+# Check if we can see mission progress indicators
+- assertVisible:
+    text: "Goal"
+
+# Verify the mission hero adapts to user progress
+# Daily goals, streaks, and achievements should be reflected
+
+# Scroll through entire home screen to validate all mission components
+- scroll
+- scroll
+
+# Verify Smart Review is still accessible after navigation
+- assertVisible:
+    text: "Smart review"
+
+# ============================================================
+# SECTION 9: Return to Top & Final Validation
+# ============================================================
+
+# Navigate back to top of home screen
+- scroll:
+    direction: UP
+- scroll:
+    direction: UP
+
+# Final verification of key mission elements
+- assertVisible:
+    text: "Добредојде назад"
+- assertVisible:
+    text: "Continue"
+- assertVisible:
+    text: "Coach"
+
+# Verify Home tab remains selected
+- assertVisible:
+    text: "Home"

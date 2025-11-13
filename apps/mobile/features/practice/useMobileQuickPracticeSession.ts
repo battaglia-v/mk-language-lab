@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { usePracticePromptsQuery } from '@mk/api-client';
 import {
   ALL_CATEGORIES,
@@ -19,8 +19,26 @@ import type {
   PracticeEvaluationResult,
   PracticeItem,
 } from '@mk/practice';
+import { queueDeckAudioPrefetch } from './hooks/useAudioPrompt';
+import { getApiBaseUrl } from '../../lib/api';
+import { authenticatedFetch } from '../../lib/auth';
 
 export type PracticeDeckMode = PracticeCardKind;
+
+export type QuickPracticeCompletionSummary = {
+  deckId: string;
+  category: string;
+  direction: PracticeDirection;
+  practiceMode: PracticeDeckMode;
+  correctCount: number;
+  totalAttempts: number;
+  accuracy: number;
+  heartsRemaining: number;
+};
+
+type QuickPracticeSessionOptions = {
+  onSessionComplete?: (summary: QuickPracticeCompletionSummary) => void;
+};
 
 type QuickPracticeSession = {
   isLoading: boolean;
@@ -31,6 +49,7 @@ type QuickPracticeSession = {
   setDirection: (value: PracticeDirection) => void;
   practiceMode: PracticeDeckMode;
   setPracticeMode: (mode: PracticeDeckMode) => void;
+  deckId: string;
   currentCard?: PracticeCardContent;
   nextCard?: PracticeCardContent;
   evaluateAnswer: (value: string) => PracticeEvaluationResult | null;
@@ -52,8 +71,13 @@ type QuickPracticeSession = {
   handleContinue: () => void;
 };
 
-export function useMobileQuickPracticeSession(): QuickPracticeSession {
-  const { data = [], isLoading } = usePracticePromptsQuery();
+export function useMobileQuickPracticeSession(options: QuickPracticeSessionOptions = {}): QuickPracticeSession {
+  const { onSessionComplete } = options;
+  const apiBaseUrl = getApiBaseUrl();
+  const { data = [], isLoading } = usePracticePromptsQuery({
+    baseUrl: apiBaseUrl ?? undefined,
+    fetcher: authenticatedFetch,
+  });
   const prompts = data as PracticeItem[];
 
   const baseCategories = useMemo(() => getPracticeCategories(prompts), [prompts]);
@@ -84,13 +108,26 @@ export function useMobileQuickPracticeSession(): QuickPracticeSession {
     () => buildPracticeDeck(practiceItems, { direction, variant: practiceMode }),
     [practiceItems, direction, practiceMode]
   );
+  const deckId = useMemo(
+    () => buildDeckFingerprint(deck, practiceMode, direction, category),
+    [deck, practiceMode, direction, category]
+  );
+  const completionNotifiedRef = useRef(false);
 
   useEffect(() => {
     setCurrentIndex(0);
     setTotalAttempts(0);
     setCorrectCount(0);
     setHearts(INITIAL_HEARTS);
+    completionNotifiedRef.current = false;
   }, [deck.length, practiceMode, direction, category]);
+
+  useEffect(() => {
+    if (deck.length === 0) {
+      return;
+    }
+    void queueDeckAudioPrefetch(deckId, deck);
+  }, [deck, deckId]);
 
   const currentCard = deck[currentIndex];
   const nextCard = deck.length > 1 ? deck[(currentIndex + 1) % deck.length] : undefined;
@@ -188,8 +225,36 @@ export function useMobileQuickPracticeSession(): QuickPracticeSession {
     setCorrectCount(0);
     setTotalAttempts(0);
     setHearts(INITIAL_HEARTS);
+    completionNotifiedRef.current = false;
     advanceCard();
   }, [advanceCard]);
+
+  useEffect(() => {
+    if (correctCount < SESSION_TARGET || completionNotifiedRef.current) {
+      return;
+    }
+    completionNotifiedRef.current = true;
+    onSessionComplete?.({
+      deckId,
+      category,
+      direction,
+      practiceMode,
+      correctCount,
+      totalAttempts,
+      accuracy,
+      heartsRemaining: hearts,
+    });
+  }, [
+    accuracy,
+    category,
+    correctCount,
+    deckId,
+    direction,
+    hearts,
+    onSessionComplete,
+    practiceMode,
+    totalAttempts,
+  ]);
 
   return {
     isLoading,
@@ -200,6 +265,7 @@ export function useMobileQuickPracticeSession(): QuickPracticeSession {
     setDirection,
     practiceMode,
     setPracticeMode,
+    deckId,
     currentCard,
     nextCard,
     evaluateAnswer,
@@ -220,4 +286,25 @@ export function useMobileQuickPracticeSession(): QuickPracticeSession {
     handleReset,
     handleContinue,
   };
+}
+
+function buildDeckFingerprint(
+  deck: PracticeCardContent[],
+  mode: PracticeDeckMode,
+  direction: PracticeDirection,
+  category: string
+) {
+  if (deck.length === 0) {
+    return `${mode}:${direction}:${category}:empty`;
+  }
+  const hashSource = deck
+    .map((card) => card.id)
+    .sort()
+    .join('|');
+  let hash = 0;
+  for (let i = 0; i < hashSource.length; i += 1) {
+    hash = (hash << 5) - hash + hashSource.charCodeAt(i);
+    hash |= 0;
+  }
+  return `${mode}:${direction}:${category}:${Math.abs(hash)}`;
 }

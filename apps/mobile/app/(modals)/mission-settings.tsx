@@ -3,57 +3,46 @@ import { Pressable, SafeAreaView, ScrollView, StyleSheet, Switch, View } from 'r
 import { useRouter } from 'expo-router';
 import { NativeButton, NativeCard, NativeStatPill, NativeTypography } from '@mk/ui';
 import { brandColors, spacingScale } from '@mk/tokens';
-import { useNotifications } from '../../lib/notifications/NotificationProvider';
-import type { ReminderWindowOption } from '../../lib/notifications/useNotificationSettings';
+import { useNotifications } from '../../lib/notifications';
+import type { ReminderPreference } from '../../lib/notifications/constants';
 
 export default function MissionSettingsModal() {
   const router = useRouter();
   const {
     permissionStatus,
+    reminderPreferences,
+    availableWindows,
+    reminderWindows,
     isHydrated,
     isScheduling,
     isRegisteringToken,
-    reminderWindows,
-    availableWindows,
-    lastScheduledAt,
+    lastSyncedAt,
     requestPermission,
     toggleReminderWindow,
     refreshScheduledReminders,
   } = useNotifications();
 
+  const permissionState = permissionStatus ?? 'undetermined';
   const permissionLabel =
-    permissionStatus === 'granted' ? 'Enabled' : permissionStatus === 'denied' ? 'Denied' : 'Pending';
-  const permissionAccent = permissionStatus === 'granted' ? 'green' : permissionStatus === 'denied' ? 'red' : 'gold';
+    permissionState === 'granted' ? 'Enabled' : permissionState === 'denied' ? 'Denied' : 'Pending';
+  const permissionAccent = permissionState === 'granted' ? 'green' : permissionState === 'denied' ? 'red' : 'gold';
 
-  const reminderSummary = useMemo(() => {
-    if (reminderWindows.length === 0) {
-      return 'No reminders scheduled yet. Pick at least one window to receive streak nudges.';
+  const enabledWindows = reminderPreferences.filter((preference) => preference.enabled);
+  const summary = useMemo(() => {
+    if (enabledWindows.length === 0) {
+      return 'No reminders scheduled yet. Opt in to stay ahead of streak resets.';
     }
-    const parts = reminderWindows
-      .map((id) => {
-        const option = availableWindows.find((window) => window.id === id);
-        if (!option) {
-          return id;
-        }
-        return `${option.label} • ${formatWindowTime(option.hour, option.minute)}`;
-      })
+
+    return enabledWindows
+      .map((window) => `${window.label} • ${formatWindowTime(window.hour, window.minute)}`)
       .join('  ·  ');
-    return parts;
-  }, [availableWindows, reminderWindows]);
+  }, [enabledWindows]);
 
-  const togglesDisabled = !isHydrated || permissionStatus !== 'granted' || isScheduling;
-
-  const handleRequestPermission = async () => {
-    await requestPermission();
-  };
-
-  const handleSyncReminders = async () => {
-    await refreshScheduledReminders();
-  };
+  const togglesDisabled = !isHydrated || permissionState !== 'granted' || isScheduling;
 
   return (
     <View style={styles.overlay}>
-      <Pressable style={StyleSheet.absoluteFill} onPress={() => router.back()} accessibilityRole="button" />
+      <Pressable accessibilityRole="button" style={StyleSheet.absoluteFill} onPress={() => router.back()} />
       <SafeAreaView style={styles.safeArea}>
         <NativeCard style={styles.card}>
           <View style={styles.header}>
@@ -61,22 +50,22 @@ export default function MissionSettingsModal() {
               Mission reminders
             </NativeTypography>
             <NativeTypography variant="caption" style={styles.subheading}>
-              Daily nudges that rescue your streak and keep the mission front and center.
+              Status-aware nudges keep your streak alive without spamming.
             </NativeTypography>
           </View>
 
           <View style={styles.statusRow}>
             <NativeStatPill label="Permission" value={permissionLabel} accent={permissionAccent} />
-            <NativeStatPill label="Windows" value={`${reminderWindows.length}/3`} accent="gold" />
+            <NativeStatPill label="Windows" value={`${enabledWindows.length}/${availableWindows.length}`} accent="gold" />
           </View>
-          {lastScheduledAt && (
-            <NativeTypography variant="caption" style={styles.scheduleMeta}>
-              Synced {formatLastScheduled(lastScheduledAt)}
+          {lastSyncedAt && (
+            <NativeTypography variant="caption" style={styles.metaText}>
+              Synced {formatTimestamp(lastSyncedAt)}
             </NativeTypography>
           )}
           {(isScheduling || isRegisteringToken) && (
             <NativeTypography variant="caption" style={styles.syncingText}>
-              {isScheduling ? 'Updating local reminder schedule…' : 'Syncing push token with the server…'}
+              {isScheduling ? 'Updating local reminder queue…' : 'Registering push token with backend…'}
             </NativeTypography>
           )}
 
@@ -86,42 +75,43 @@ export default function MissionSettingsModal() {
                 Reminder windows
               </NativeTypography>
               <NativeTypography variant="caption" style={styles.sectionHint}>
-                Choose up to two preferred times. We’ll send a friendly ping each day.
+                Pick the times that work for you. We’ll handle the rest via Expo background tasks.
               </NativeTypography>
               <View style={styles.windowList}>
-                {availableWindows.map((option) => (
+                {reminderPreferences.map((preference) => (
                   <ReminderWindowToggle
-                    key={option.id}
-                    option={option}
-                    enabled={reminderWindows.includes(option.id)}
+                    key={preference.id}
+                    preference={preference}
                     disabled={togglesDisabled}
-                    onToggle={() => toggleReminderWindow(option.id)}
+                    onToggle={async () => {
+                      await toggleReminderWindow(preference.id, !preference.enabled);
+                    }}
                   />
                 ))}
               </View>
               <NativeTypography variant="caption" style={styles.summaryText}>
-                {reminderSummary}
+                {summary}
               </NativeTypography>
             </View>
 
             <View style={styles.section}>
               <NativeTypography variant="eyebrow" style={styles.sectionLabel}>
-                Status & controls
+                Status & permissions
               </NativeTypography>
-              {permissionStatus !== 'granted' && (
+              {permissionState !== 'granted' && (
                 <NativeTypography variant="caption" style={styles.permissionHint}>
-                  Enable notifications to unlock streak reminders. iOS users may need to allow alerts in Settings ▸
-                  Македонски.
+                  Allow notifications to enable streak rescue reminders. If prompts do not appear, open iOS/Android
+                  Settings ▸ Македонски and toggle notifications on.
                 </NativeTypography>
               )}
-              <NativeButton onPress={handleRequestPermission} disabled={permissionStatus === 'granted'}>
+              <NativeButton onPress={() => void requestPermission()} disabled={permissionState === 'granted'}>
                 <NativeTypography variant="body" style={styles.primaryButtonText}>
-                  {permissionStatus === 'granted' ? 'Notifications enabled' : 'Enable notifications'}
+                  {permissionState === 'granted' ? 'Notifications enabled' : 'Enable notifications'}
                 </NativeTypography>
               </NativeButton>
               <NativeButton
                 variant="secondary"
-                onPress={handleSyncReminders}
+                onPress={() => void refreshScheduledReminders()}
                 disabled={reminderWindows.length === 0 || isScheduling}
               >
                 <NativeTypography variant="body" style={styles.secondaryButtonText}>
@@ -145,13 +135,12 @@ export default function MissionSettingsModal() {
 }
 
 type ReminderWindowToggleProps = {
-  option: ReminderWindowOption;
-  enabled: boolean;
+  preference: ReminderPreference;
   disabled: boolean;
-  onToggle: () => Promise<void> | void;
+  onToggle: () => Promise<void>;
 };
 
-function ReminderWindowToggle({ option, enabled, disabled, onToggle }: ReminderWindowToggleProps) {
+function ReminderWindowToggle({ preference, disabled, onToggle }: ReminderWindowToggleProps) {
   const handleToggle = () => {
     if (disabled) {
       return;
@@ -160,31 +149,31 @@ function ReminderWindowToggle({ option, enabled, disabled, onToggle }: ReminderW
   };
 
   return (
-    <NativeCard style={[styles.windowCard, enabled && styles.windowCardEnabled]}>
+    <NativeCard style={[styles.windowCard, preference.enabled && styles.windowCardEnabled]}>
       <Pressable
         accessibilityRole="switch"
-        accessibilityState={{ checked: enabled, disabled }}
+        accessibilityState={{ checked: preference.enabled, disabled }}
         style={styles.windowContent}
         onPress={handleToggle}
         disabled={disabled}
       >
         <View style={{ flex: 1, gap: spacingScale.xs }}>
           <NativeTypography variant="body" style={styles.windowLabel}>
-            {option.label}
+            {preference.label}
           </NativeTypography>
           <NativeTypography variant="caption" style={styles.windowTime}>
-            {formatWindowTime(option.hour, option.minute)}
+            {formatWindowTime(preference.hour, preference.minute)}
           </NativeTypography>
           <NativeTypography variant="caption" style={styles.windowDescription}>
-            {option.description}
+            {preference.description}
           </NativeTypography>
         </View>
         <Switch
-          value={enabled}
+          value={preference.enabled}
           onValueChange={handleToggle}
           disabled={disabled}
-          thumbColor={enabled ? brandColors.red : '#fff'}
-          trackColor={{ true: 'rgba(230,57,70,0.5)', false: 'rgba(16,24,40,0.25)' }}
+          thumbColor={preference.enabled ? brandColors.red : '#fff'}
+          trackColor={{ true: 'rgba(230,57,70,0.45)', false: 'rgba(16,24,40,0.25)' }}
         />
       </Pressable>
     </NativeCard>
@@ -200,16 +189,16 @@ function formatWindowTime(hour: number, minute: number) {
   });
 }
 
-function formatLastScheduled(isoDate: string) {
+function formatTimestamp(isoDate: string) {
   const date = new Date(isoDate);
   if (Number.isNaN(date.getTime())) {
     return 'recently';
   }
   return date.toLocaleString(undefined, {
-    hour: 'numeric',
-    minute: '2-digit',
     month: 'short',
     day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
   });
 }
 
@@ -244,7 +233,7 @@ const styles = StyleSheet.create({
     gap: spacingScale.sm,
     flexWrap: 'wrap',
   },
-  scheduleMeta: {
+  metaText: {
     color: 'rgba(16,24,40,0.6)',
   },
   syncingText: {

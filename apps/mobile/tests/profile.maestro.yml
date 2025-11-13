@@ -1,0 +1,13 @@
+appId: com.mk.language.lab
+tags:
+  - profile
+---
+- launchApp
+- tapOn:
+    text: "Profile"
+- assertVisible:
+    text: "Account"
+- tapOn:
+    text: "Sign in"
+- assertVisible:
+    text: "Continue with browser"

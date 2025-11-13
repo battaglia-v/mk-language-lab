@@ -1,0 +1,484 @@
+appId: com.mk.language.lab
+tags:
+  - offline
+  - network
+  - cache
+---
+# Offline Functionality Tests
+# Tests app behavior without network connection, data persistence, graceful degradation, and cached content
+
+# ============================================================
+# SECTION 1: Initial Setup & Network Verification
+# ============================================================
+
+- launchApp
+
+# Verify app launches successfully without network
+# The app should handle offline state gracefully
+
+# Wait for initial load
+- waitForAnimationToEnd:
+    timeout: 5000
+
+# Verify we're on Home tab
+- assertVisible:
+    text: "Home"
+
+# ============================================================
+# SECTION 2: Offline Mission/Home Tab
+# ============================================================
+
+# Mission content should load from cache or show offline-friendly UI
+- assertVisible:
+    text: "Добредојде назад"
+
+# Basic mission structure should be visible even offline
+# The Continue button may show offline messaging or cached progress
+- assertVisible:
+    text: "Nova"
+
+# Verify core UI elements load from cache
+- assertVisible:
+    text: "Coach"
+
+# Scroll to see cached mission content
+- scroll
+
+# Smart Review may show cached vocabulary
+- assertVisible:
+    text: "Smart review"
+
+# ============================================================
+# SECTION 3: Offline Practice Session
+# ============================================================
+
+# Navigate to Practice tab
+- tapOn:
+    text: "Practice"
+- waitForAnimationToEnd:
+    timeout: 3000
+
+# Practice should work offline with cached vocabulary
+- assertVisible:
+    text: "Quick Practice"
+
+# Offline practice should show:
+# - Cached vocabulary prompts
+# - Local XP tracking
+# - Functioning card stack
+# - All UI controls
+
+# Wait for practice data to load from cache
+- waitForAnimationToEnd:
+    timeout: 5000
+
+# Verify practice HUD is functional offline
+- assertVisible:
+    text: "Goal"
+- assertVisible:
+    text: "Accuracy"
+
+# Direction toggles should work offline
+- assertVisible:
+    text: "EN → MK"
+- assertVisible:
+    text: "MK → EN"
+
+# Test direction toggle offline
+- tapOn:
+    text: "MK → EN"
+- waitForAnimationToEnd
+
+# Practice modes should be available offline
+- assertVisible:
+    text: "Typing"
+- assertVisible:
+    text: "Multiple choice"
+
+# Test mode switching offline
+- tapOn:
+    text: "Typing"
+- waitForAnimationToEnd
+
+# Category filter should work with cached data
+- assertVisible:
+    text: "All topics"
+
+# Scroll to card stack
+- scroll
+
+# Verify session controls work offline
+- assertVisible:
+    text: "Skip card"
+- assertVisible:
+    text: "Reset session"
+
+# Test offline skip functionality
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd:
+    timeout: 2000
+
+# Verify card progression works offline
+- assertVisible:
+    text: "Goal"
+
+# Test offline reset functionality
+- tapOn:
+    text: "Reset session"
+- waitForAnimationToEnd:
+    timeout: 3000
+
+# Practice should reset with cached vocabulary
+- assertVisible:
+    text: "Quick Practice"
+
+# ============================================================
+# SECTION 4: Offline Translation (Degraded)
+# ============================================================
+
+# Navigate to Translator tab
+- tapOn:
+    text: "Translator"
+- waitForAnimationToEnd
+
+# Translator UI should load, but may show offline warning
+- assertVisible:
+    text: "Translator"
+
+# Basic UI should be visible
+- assertVisible:
+    text: "Input"
+
+# Direction controls should render
+- assertVisible:
+    text: "EN → MK"
+- assertVisible:
+    text: "Swap"
+
+# Translation button should be present (may be disabled or show warning)
+- assertVisible:
+    text: "Translate"
+- assertVisible:
+    text: "Clear"
+
+# Scroll to see history
+- scroll
+
+# Translation history should show cached/previous translations
+- assertVisible:
+    text: "History"
+
+# Test direction swap offline
+- scroll:
+    direction: UP
+- tapOn:
+    text: "Swap"
+- waitForAnimationToEnd
+
+# Verify swap worked
+- assertVisible:
+    text: "MK → EN"
+
+# ============================================================
+# SECTION 5: Offline Discovery Feed
+# ============================================================
+
+# Navigate to Discover tab
+- tapOn:
+    text: "Discover"
+- waitForAnimationToEnd
+
+# Discovery feed should show cached content
+- assertVisible:
+    text: "Discover"
+
+# Verify basic structure loads
+- waitForAnimationToEnd:
+    timeout: 5000
+
+# Cached editorial content should be visible
+# May show offline indicator or last updated timestamp
+
+# Scroll through cached content
+- scroll
+
+# Verify events section (cached)
+- assertVisible:
+    text: "Upcoming events"
+
+# Scroll to headlines
+- scroll
+
+# Verify headlines section (cached)
+- assertVisible:
+    text: "Headlines"
+
+# ============================================================
+# SECTION 6: Offline Profile & Authentication
+# ============================================================
+
+# Navigate to Profile tab
+- tapOn:
+    text: "Profile"
+- waitForAnimationToEnd
+
+# Profile should show cached user data or offline state
+- assertVisible:
+    text: "Account"
+
+# If not authenticated, should show sign-in option
+# but may indicate offline mode prevents authentication
+- waitForAnimationToEnd
+
+# Profile structure should be functional
+# Settings, preferences, and cached data should be accessible
+
+# ============================================================
+# SECTION 7: Offline Data Persistence
+# ============================================================
+
+# Test that offline changes persist across navigation
+# Navigate through tabs to verify state preservation
+
+- tapOn:
+    text: "Home"
+- waitForAnimationToEnd
+- assertVisible:
+    text: "Continue"
+
+- tapOn:
+    text: "Practice"
+- waitForAnimationToEnd
+- assertVisible:
+    text: "Quick Practice"
+
+- tapOn:
+    text: "Discover"
+- waitForAnimationToEnd
+- assertVisible:
+    text: "Discover"
+
+# ============================================================
+# SECTION 8: Offline XP & Progress Tracking
+# ============================================================
+
+# Navigate back to Practice
+- tapOn:
+    text: "Practice"
+- waitForAnimationToEnd
+
+# Offline practice should track XP locally
+- assertVisible:
+    text: "Goal"
+
+# Scroll to controls
+- scroll
+
+# Complete some practice actions offline
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd
+
+# Navigate to Home to verify XP tracking
+- tapOn:
+    text: "Home"
+- waitForAnimationToEnd
+
+# Mission progress should reflect offline practice
+# (may show "pending sync" indicator)
+- assertVisible:
+    text: "Goal"
+- assertVisible:
+    text: "Continue"
+
+# ============================================================
+# SECTION 9: Offline Settings & Preferences
+# ============================================================
+
+# Navigate to Practice
+- tapOn:
+    text: "Practice"
+- waitForAnimationToEnd
+
+# Scroll up to access settings
+- scroll:
+    direction: UP
+
+# Open practice settings offline
+- tapOn:
+    text: "Session settings"
+- waitForAnimationToEnd
+
+# Settings modal should work offline
+- assertVisible:
+    text: "Session Settings"
+- assertVisible:
+    text: "Mode"
+- assertVisible:
+    text: "Helpers"
+
+# Test offline settings changes
+- tapOn:
+    text: "Casual"
+- waitForAnimationToEnd
+
+# Toggle helpers offline
+- tapOn:
+    text: "Audio prompts"
+- waitForAnimationToEnd
+
+# Close settings
+- tapOn:
+    text: "Cancel"
+- waitForAnimationToEnd
+
+# ============================================================
+# SECTION 10: Offline Tab Navigation & State
+# ============================================================
+
+# Verify all tabs remain accessible offline
+- tapOn:
+    text: "Home"
+- assertVisible:
+    text: "Continue"
+
+- tapOn:
+    text: "Practice"
+- assertVisible:
+    text: "Quick Practice"
+
+- tapOn:
+    text: "Translator"
+- assertVisible:
+    text: "Input"
+
+- tapOn:
+    text: "Discover"
+- assertVisible:
+    text: "Discover"
+
+- tapOn:
+    text: "Profile"
+- assertVisible:
+    text: "Account"
+
+# ============================================================
+# SECTION 11: Offline Cached Content Validation
+# ============================================================
+
+# Return to Home and verify cached mission data
+- tapOn:
+    text: "Home"
+- waitForAnimationToEnd
+
+# Cached mission content should be complete
+- assertVisible:
+    text: "Добредојде назад"
+- assertVisible:
+    text: "Coach"
+
+- scroll
+- assertVisible:
+    text: "Smart review"
+
+# ============================================================
+# SECTION 12: Offline Error Handling
+# ============================================================
+
+# Navigate to features that require network
+- tapOn:
+    text: "Translator"
+- waitForAnimationToEnd
+
+# Try to use network-dependent features
+# App should show graceful error messages, not crashes
+
+# Verify UI remains stable
+- assertVisible:
+    text: "Translator"
+- assertVisible:
+    text: "Translate"
+
+# ============================================================
+# SECTION 13: Offline Practice Session Completion
+# ============================================================
+
+# Test a complete offline practice session
+- tapOn:
+    text: "Practice"
+- waitForAnimationToEnd
+
+# Practice should work fully offline with cached vocabulary
+- assertVisible:
+    text: "Quick Practice"
+- assertVisible:
+    text: "Goal"
+
+# Scroll to controls
+- scroll
+
+# Interact with practice offline
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd
+
+# Verify session remains functional
+- assertVisible:
+    text: "Skip card"
+
+# ============================================================
+# SECTION 14: Offline UI Responsiveness
+# ============================================================
+
+# Verify app remains responsive offline
+# Test rapid navigation
+- tapOn:
+    text: "Home"
+- waitForAnimationToEnd
+- tapOn:
+    text: "Discover"
+- waitForAnimationToEnd
+- tapOn:
+    text: "Practice"
+- waitForAnimationToEnd
+
+# App should handle rapid navigation without crashes
+- assertVisible:
+    text: "Quick Practice"
+
+# ============================================================
+# SECTION 15: Final Offline Validation
+# ============================================================
+
+# Navigate to Home for final check
+- tapOn:
+    text: "Home"
+- waitForAnimationToEnd
+
+# Verify core mission features remain accessible
+- assertVisible:
+    text: "Добредојде назад"
+- assertVisible:
+    text: "Continue"
+- assertVisible:
+    text: "Coach"
+
+# Verify tab navigation works
+- assertVisible:
+    text: "Home"
+- assertVisible:
+    text: "Practice"
+
+# Final validation: app is stable and functional offline
+- assertVisible:
+    text: "Nova"

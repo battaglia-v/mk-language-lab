@@ -1,0 +1,33 @@
+{
+  "name": "Sofia Koleva",
+  "level": "Intermediate",
+  "xp": {
+    "total": 12450,
+    "weekly": 420
+  },
+  "streakDays": 21,
+  "quests": {
+    "active": 3,
+    "completedThisWeek": 2
+  },
+  "badges": [
+    {
+      "id": "streak-guard",
+      "label": "Streak Guardian",
+      "description": "Protected a 20-day streak",
+      "earnedAt": "2025-11-10T00:00:00Z"
+    },
+    {
+      "id": "audio-ace",
+      "label": "Audio Ace",
+      "description": "Logged 120 minutes of listening drills",
+      "earnedAt": "2025-11-05T00:00:00Z"
+    },
+    {
+      "id": "squad-lead",
+      "label": "Squad Lead",
+      "description": "Hosted 3 Grammar Club sessions",
+      "earnedAt": null
+    }
+  ]
+}

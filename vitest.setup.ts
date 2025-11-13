@@ -3,6 +3,10 @@ import type { ReactNode } from 'react';
 import { cleanup } from '@testing-library/react';
 import { afterEach, vi } from 'vitest';
 
+if (typeof (globalThis as Record<string, unknown>).__DEV__ === 'undefined') {
+  (globalThis as Record<string, unknown>).__DEV__ = false;
+}
+
 vi.mock('next-auth/react', () => {
   return {
     __esModule: true,

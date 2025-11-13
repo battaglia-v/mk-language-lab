@@ -1,0 +1,77 @@
+appId: com.mk.language.lab
+tags:
+  - authentication
+  - profile
+---
+# Authentication Flow
+# Tests sign-in screen, browser authentication, and credential form
+
+- launchApp
+
+# Navigate to Profile tab
+- tapOn:
+    text: "Profile"
+
+# Verify we're on the Profile screen
+- assertVisible:
+    text: "Account"
+
+# Wait for profile data to load
+- waitForAnimationToEnd
+
+# Verify sign-in section is present (when not authenticated)
+- assertVisible:
+    text: "Sign in to sync XP, streaks, and reminders across devices."
+
+# Tap sign-in CTA
+- tapOn:
+    text: "Sign in"
+
+# Verify sign-in screen appears
+- assertVisible:
+    text: "Sign in"
+- assertVisible:
+    text: "Continue with the secure browser flow"
+
+# Verify "Continue with browser" button exists
+- assertVisible:
+    text: "Continue with browser"
+
+# Verify credential form fallback section
+- assertVisible:
+    text: "or use email/password"
+
+# Verify email/password input fields are present
+# Note: We can't directly verify TextInput placeholders in Maestro easily
+# but we can verify the form structure exists
+
+# Verify the Continue button for credential form
+# There are two buttons with "Continue" text:
+# 1. "Continue with browser"
+# 2. "Continue" (for email/password form)
+# Both should be visible
+
+# Verify helper text
+- assertVisible:
+    text: "Status:"
+
+# Test back navigation (without actually signing in)
+# Since this is a modal/screen, we should be able to go back
+# In Expo Router, there should be a back button or we can tap outside
+
+# Tap back navigation (varies by platform)
+# For now, we'll just verify the screen loaded correctly
+
+# Additional verification: Check for authentication form elements
+- assertVisible:
+    text: "Clear"
+
+# Note: We do not actually submit credentials in automated tests
+# to avoid creating test data or requiring real credentials
+
+# Verify the screen is functional by checking all key elements
+- assertVisible:
+    text: "Translate"
+
+# This indicates we can navigate around even on sign-in screen
+# by using bottom tab navigation

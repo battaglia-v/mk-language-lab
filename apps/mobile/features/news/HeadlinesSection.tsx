@@ -7,14 +7,15 @@ type HeadlinesSectionProps = {
   items: NewsItem[];
   isLoading?: boolean;
   onRefresh?: () => void;
+  emptyMessage?: string;
 };
 
-export function HeadlinesSection({ items, isLoading, onRefresh }: HeadlinesSectionProps) {
+export function HeadlinesSection({ items, isLoading, onRefresh, emptyMessage }: HeadlinesSectionProps) {
   if (!items.length) {
     return (
       <NativeCard style={styles.emptyCard}>
         <NativeTypography variant="body" style={styles.emptyText}>
-          {isLoading ? 'Loading the latest headlines…' : 'Headlines arrive once the newsroom updates.'}
+          {isLoading ? 'Loading the latest headlines…' : emptyMessage ?? 'Headlines arrive once the newsroom updates.'}
         </NativeTypography>
         {onRefresh ? (
           <NativeButton variant="ghost" onPress={onRefresh}>

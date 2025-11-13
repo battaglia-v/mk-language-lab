@@ -6,13 +6,14 @@ import * as BackgroundFetch from 'expo-background-fetch';
 import type { MissionStatus } from '@mk/api-client';
 import {
   REMINDER_CHANNEL_ID,
+  REMINDER_DEEPLINK,
   REMINDER_STORAGE_KEY,
   REMINDER_TASK_NAME,
   REMINDER_WINDOWS,
   type ReminderWindowId,
 } from './constants';
 
-type MissionReminderSnapshot = {
+export type MissionReminderSnapshot = {
   missionId: string;
   fireAt: string;
 };
@@ -20,6 +21,7 @@ type MissionReminderSnapshot = {
 export type ReminderSettingsStorage = {
   enabledWindows: ReminderWindowId[];
   lastMissionReminder?: MissionReminderSnapshot;
+  lastSyncedAt?: string;
 };
 
 const DEFAULT_SETTINGS: ReminderSettingsStorage = {
@@ -56,6 +58,7 @@ export async function loadReminderSettings(): Promise<ReminderSettingsStorage> {
     return {
       enabledWindows: parsed.enabledWindows ?? DEFAULT_SETTINGS.enabledWindows,
       lastMissionReminder: parsed.lastMissionReminder,
+      lastSyncedAt: parsed.lastSyncedAt,
     };
   } catch (error) {
     console.warn('Failed to read reminder settings', error);
@@ -115,6 +118,7 @@ export async function syncReminderSchedule(enabledWindows: ReminderWindowId[]): 
             data: {
               type: 'daily-reminder',
               windowId: window.id,
+              deeplink: REMINDER_DEEPLINK,
             },
           },
           trigger,
@@ -188,6 +192,7 @@ export async function scheduleMissionDeadlineReminder(
       data: {
         type: 'mission-deadline',
         missionId: mission.missionId,
+        deeplink: REMINDER_DEEPLINK,
       },
     },
     trigger: new Date(fireAt),
@@ -211,11 +216,15 @@ async function clearMissionDeadlineReminders() {
 }
 
 function buildReminderCopy(windowId: ReminderWindowId): string {
-  if (windowId === 'midday') {
-    return 'Keep the streak alive with a quick mid-day practice session.';
+  switch (windowId) {
+    case 'morning':
+      return 'Morning boost! Lock in XP before the day takes over.';
+    case 'lunch':
+      return 'Lunch break reminder: take five and keep the streak alive.';
+    case 'evening':
+    default:
+      return 'Evening rescue! Earn a few XP before the streak resets.';
   }
-
-  return 'Evening rescue! Earn a few XP before the streak resets.';
 }
 
 function buildDeadlineCopy(mission: MissionStatus): string {

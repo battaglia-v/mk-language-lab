@@ -1,8 +1,8 @@
-# Mission Status API Contract (Draft – 2025-11-12)
+# Mission Status & Mobile Push API Contracts
 
 Purpose: provide a single API that powers both the web dashboard and Expo Home mission hero components. This draft keeps parity with the UX brief in `2025-12-mobile-ui-overhaul.md` and the analytics events already recorded in Quick Practice.
 
-## Endpoint
+## Mission Status Endpoint
 - `GET /api/missions/current`
 - Auth: requires authenticated learner session (NextAuth). Anonymous requests return `401`.
 
@@ -70,6 +70,11 @@ Purpose: provide a single API that powers both the web dashboard and Expo Home m
 - `links` are optional, but including them allows deep-linking from mobile/web.
 - `coachTips`, `reviewClusters`, and `communityHighlights` are capped at 3 items each in the UI; backend can send fewer/more.
 
+### Implementation (2025-11-14)
+- `/api/missions/current` now aggregates Prisma `GameProgress`, `JourneyProgress`, `UserLessonProgress`, and recent `ExerciseAttempt` rows to build the payload above. The route requires an authenticated session and responds with `x-mission-source=prisma` (or `fallback`) so QA can confirm whether the JSON fixture was used.
+- `/api/profile/summary` pulls the same Prisma sources to hydrate XP/streak/quest/badge stats, while `/api/discover/feed` is backed by saved modules/lessons and the upcoming Word Lab schedule until the CMS feed lands.
+- The mission and profile responses inherit learner-specific IDs and timestamps directly from Prisma so reminder analytics can trust the data. JSON fixtures remain for offline/dev mode only.
+
 ## Error Responses
 | Status | Payload example | Notes |
 | --- | --- | --- |
@@ -84,9 +89,9 @@ Purpose: provide a single API that powers both the web dashboard and Expo Home m
 ## Analytics
 - When the API returns `missionId`, the Home hero should include it in existing analytics events (e.g., `MISSION_CONTINUE`, `MISSION_SETTINGS_OPENED`) to keep dashboards consistent. New events will be defined once the client wiring lands.
 
-## Mobile Push Token Endpoint (Draft – 2025-11-13)
+## Mobile Push Token Endpoint (Live – 2025-11-13)
 - `POST /api/mobile/push-token`
-- Auth: learner session (same requirements as `/api/missions/current`).
+- Auth: learner session header (same as `/api/missions/current`). (Expo clients will call this once auth lands; local dev can still hit it by running the Next app in the same session.)
 
 ### Request Body
 ```jsonc
@@ -94,47 +99,44 @@ Purpose: provide a single API that powers both the web dashboard and Expo Home m
   "expoPushToken": "ExponentPushToken[sample]",
   "platform": "ios",                  // ios | android
   "appVersion": "1.0.0",
-  "reminderWindows": ["morning", "evening"],
+  "reminderWindows": ["midday", "evening"],
   "locale": "en-US",
   "timezone": "America/Los_Angeles"
 }
 ```
 
 ### Response
-- `201` with `{ "ok": true, "nextReminderAt": "2025-11-14T07:30:00Z" }` when persisted.
+- `200 OK` with `{ "success": true, "reminderWindows": ["midday"], "nextReminderAt": "2025-11-15T19:00:00.000Z" }`.
 - `400` for malformed payloads.
-- `401` if the learner session is missing/invalid.
+- `200 OK` with `{ "ok": true, "reminderWindows": [], "nextReminderAt": null }` when the learner clears all windows (effectively an opt-out).
 
 ### Storage Notes
-- Persist tokens in Prisma (new `MobilePushToken` table) with `{ userId, expoPushToken, platform, locale, timezone, reminderWindows, appVersion, updatedAt }`.
-- When Expo responds with a DeviceNotRegistered error, mark the row as `revokedAt` to prevent future sends.
-- Cron job enumerates rows where streak is at risk or reminder windows align with “now”, batches payloads, and calls the Expo Push API.
+- Persist tokens in Prisma (`MobilePushToken` model) with `{ userId?, expoPushToken, platform, locale, timezone, reminderWindows, appVersion, lastSuccessfulSync, lastReminderSentAt, lastReminderWindowId, revokedAt }`.
+- When Expo responds with a `DeviceNotRegistered` error, mark the row as `revokedAt` to prevent future sends.
+- Cron job enumerates rows where streak is at risk or reminder windows align with “now”, batches payloads, and calls the Expo Push API (`deeplink = mkll://practice/quick`).
 
-### Outstanding Work
-- Add the Prisma model + API route implementation.
-- Hook the cron job into the existing worker queue once backend bandwidth frees up.
+### Implementation Notes
+- Prisma model lives at `prisma/schema.prisma` (added `timezone` + reminders metadata) with helpers/tests under `lib/mobile-reminders.{ts,test.ts}`.
+- API handler is `app/api/mobile/push-token/route.ts` (zod validation + Prisma upsert + reminder window dedupe + `nextReminderAt` computation). Requests accept anonymous calls today and automatically associate a `userId` when a session exists.
+- Cron/device smoke testing remain TODOs once Expo auth lands (see `execution_steps.md` Step 8 follow-ups).
 
----
+## Reminder Cron Endpoint
+- `GET /api/cron/reminders`
+- Auth: `Authorization: Bearer $CRON_SECRET` (mirrors the existing Google Sheets sync job).
+- Schedule: run every 5 minutes via Vercel Cron or preferred scheduler.
 
-## Mobile Push Token Endpoint (Draft)
-- `POST /api/mobile/push-token`
-- Auth: learner session header (same as mission API) once auth lands. For now the Expo client only calls this when `EXPO_PUBLIC_API_BASE_URL` is configured.
+### Behavior
+1. Fetches all `MobilePushToken` rows where `revokedAt IS NULL` and `reminderWindows` is non-empty.
+2. For each token, `getDueReminderWindow()` determines whether any window is within tolerance (default: 1 min early, 5 min late, 45 min minimum interval per window).
+3. Batches due tokens into Expo push payloads (max 100 per request) and POSTs to `https://exp.host/--/api/v2/push/send`.
+4. Updates `lastReminderWindowId` + `lastReminderSentAt` so subsequent cron runs skip duplicates.
 
-### Request Body
-```jsonc
-{
-  "expoPushToken": "ExponentPushToken[xxxxxxxxxxxxxx]",
-  "platform": "ios",               // ios | android
-  "appVersion": "1.0.0",
-  "reminderWindows": ["morning", "evening"]
-}
-```
+### Env Vars
+- `CRON_SECRET` – shared bearer token for cron invocations.
+- `REMINDER_PAST_TOLERANCE_MINUTES` – optional override (default `5`).
+- `REMINDER_FUTURE_TOLERANCE_MINUTES` – optional override (default `1`).
+- `REMINDER_MIN_INTERVAL_MINUTES` – optional override (default `45`).
 
-### Response
-- `200 OK` with `{ "nextReminderAt": "2025-11-14T20:00:00Z" }` (optional metadata for the client).
-- Non-200 responses should include `{ "error": "..." }` and the client will log + retry later.
-
-### Notes
-- Backend stores `{ userId, expoPushToken, platform, reminderWindows, locale }`.
-- Cron workers evaluate streak risk and send Expo push payloads shaped as `{ type: 'mission-reminder', title, body, deeplink }`.
-- When reminder windows are empty, backend should treat it as an opt-out and delete the token.
+### TODO
+- Hook the route to prod cron (Vercel or alternative) once Expo auth + device smoke tests pass.
+- Extend logging/analytics + delivery receipts after initial rollout.

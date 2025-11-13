@@ -3,6 +3,7 @@ import Constants from 'expo-constants';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import type { ReminderWindowId } from './constants';
+import { getStoredAuthToken } from '../auth/tokenStore';
 
 type RegisterPushTokenOptions = {
   reminderWindows: ReminderWindowId[];
@@ -61,6 +62,7 @@ export async function registerPushTokenWithBackend({
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        ...(buildAuthHeader() ?? {}),
       },
       body: JSON.stringify({
         expoPushToken,
@@ -68,6 +70,7 @@ export async function registerPushTokenWithBackend({
         reminderWindows,
         appVersion: Constants.expoConfig?.version ?? 'dev',
         locale: Intl.DateTimeFormat().resolvedOptions().locale,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       }),
     });
   } catch (error) {
@@ -75,4 +78,14 @@ export async function registerPushTokenWithBackend({
   }
 
   return expoPushToken;
+}
+
+function buildAuthHeader() {
+  const token = getStoredAuthToken();
+  if (!token) {
+    return null;
+  }
+  return {
+    Authorization: `Bearer ${token}`,
+  };
 }

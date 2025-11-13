@@ -3,7 +3,8 @@ import { Pressable, SafeAreaView, ScrollView, StyleSheet, Switch, View } from 'r
 import { useRouter } from 'expo-router';
 import { NativeButton, NativeCard, NativeStatPill, NativeTypography } from '@mk/ui';
 import { brandColors, spacingScale } from '@mk/tokens';
-import { useNotificationSettings, type ReminderWindowId } from '../../lib/notifications';
+import { useNotifications } from '../../lib/notifications';
+import type { ReminderWindowId } from '../../lib/notifications/constants';
 
 const DIFFICULTY_MODES = [
   { key: 'casual', label: 'Casual', description: 'No timers, focus on accuracy.' },
@@ -17,12 +18,14 @@ export default function PracticeSettingsModal() {
   const [audioPrompts, setAudioPrompts] = useState(true);
   const [hintsEnabled, setHintsEnabled] = useState(true);
   const {
-    reminderWindows,
+    reminderPreferences,
     toggleReminderWindow,
-    permissionStatus: notificationPermission,
-    isHydrated: reminderHydrated,
-    registeringPushToken,
-  } = useNotificationSettings();
+    permissionStatus,
+    isHydrated: remindersHydrated,
+    isScheduling: remindersScheduling,
+    isRegisteringToken: remindersRegistering,
+    requestPermission: requestReminderPermission,
+  } = useNotifications();
 
   const selectedDetails = useMemo(
     () => DIFFICULTY_MODES.find((mode) => mode.key === selectedMode)?.description ?? '',
@@ -32,11 +35,12 @@ export default function PracticeSettingsModal() {
   const reminderStatusCopy = useMemo(
     () =>
       getReminderStatusCopy({
-        hasPermission: notificationPermission?.granted ?? false,
-        registering: registeringPushToken,
-        hasSelection: reminderWindows.some((window) => window.isEnabled),
+        hasPermission: permissionStatus === 'granted',
+        hasSelection: reminderPreferences.some((window) => window.enabled),
+        isHydrated: remindersHydrated,
+        isSyncing: remindersScheduling || remindersRegistering,
       }),
-    [notificationPermission?.granted, registeringPushToken, reminderWindows]
+    [permissionStatus, reminderPreferences, remindersHydrated, remindersScheduling, remindersRegistering]
   );
 
   const handleReminderToggle = useCallback(
@@ -112,16 +116,28 @@ export default function PracticeSettingsModal() {
               <NativeTypography variant="eyebrow" style={styles.label}>
                 Mission reminders
               </NativeTypography>
-              {reminderWindows.map((window) => (
+              {reminderPreferences.map((window) => (
                 <SettingToggle
                   key={window.id}
                   label={window.label}
                   description={window.description}
-                  value={window.isEnabled}
-                  disabled={!reminderHydrated || window.isPending || registeringPushToken}
+                  value={window.enabled}
+                  disabled={
+                    !remindersHydrated ||
+                    remindersScheduling ||
+                    remindersRegistering ||
+                    permissionStatus !== 'granted'
+                  }
                   onValueChange={(value) => handleReminderToggle(window.id, value)}
                 />
               ))}
+              {permissionStatus !== 'granted' && (
+                <NativeButton variant="secondary" onPress={requestReminderPermission}>
+                  <NativeTypography variant="body" style={styles.secondaryButtonText}>
+                    Enable notifications
+                  </NativeTypography>
+                </NativeButton>
+              )}
               <NativeTypography variant="caption" style={styles.permissionHint}>
                 {reminderStatusCopy}
               </NativeTypography>
@@ -183,13 +199,17 @@ function SettingToggle({ label, description, value, onValueChange, disabled }: S
 
 type ReminderStatusCopyInput = {
   hasPermission: boolean;
-  registering: boolean;
   hasSelection: boolean;
+  isHydrated: boolean;
+  isSyncing: boolean;
 };
 
-function getReminderStatusCopy({ hasPermission, registering, hasSelection }: ReminderStatusCopyInput) {
-  if (registering) {
-    return 'Syncing reminder preferences...';
+function getReminderStatusCopy({ hasPermission, hasSelection, isHydrated, isSyncing }: ReminderStatusCopyInput) {
+  if (!isHydrated) {
+    return 'Loading your reminder preferences...';
+  }
+  if (isSyncing) {
+    return 'Syncing your reminder preferences...';
   }
   if (!hasPermission) {
     return 'Enable notifications in system settings to get mission nudges.';

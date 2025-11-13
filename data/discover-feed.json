@@ -1,0 +1,115 @@
+{
+  "categories": [
+    {
+      "id": "culture",
+      "label": "Culture",
+      "summary": "Festivals, food stories, and travel diaries from professors and learners.",
+      "cards": [
+        {
+          "id": "winter-market",
+          "title": "Skopje Winter Market Walk",
+          "summary": "Coach Jana narrates idioms you will hear while weaving through the bazar.",
+          "duration": "4 min listen",
+          "cta": "Listen now",
+          "accent": "plum",
+          "tag": "Audio lesson",
+          "ctaTarget": "practice",
+          "ctaUrl": "/practice"
+        },
+        {
+          "id": "struga-journal",
+          "title": "48 Hours in Struga",
+          "summary": "Weekend itinerary + phrases to greet friendly hosts along the Drim River.",
+          "duration": "Article",
+          "cta": "Read guide",
+          "accent": "gold",
+          "tag": "City guide",
+          "ctaTarget": "translator",
+          "ctaUrl": "/translator/history"
+        }
+      ]
+    },
+    {
+      "id": "grammar",
+      "label": "Grammar",
+      "summary": "Micro lessons that demystify cases, aspect pairs, and perfective pitfalls.",
+      "cards": [
+        {
+          "id": "cases-drill",
+          "title": "Dative vs. Accusative in 90 Seconds",
+          "summary": "Swipeable cheatsheet plus quick prompts to test yourself.",
+          "duration": "Mini lesson",
+          "cta": "Start drill",
+          "accent": "navy",
+          "tag": "Grammar",
+          "ctaTarget": "practice",
+          "ctaUrl": "/practice"
+        },
+        {
+          "id": "aspect-loop",
+          "title": "Aspect Loop: Cooking Verbs",
+          "summary": "Practice imperfective/perfective swaps with a kitchen story arc.",
+          "duration": "6 cards",
+          "cta": "Practice verbs",
+          "accent": "mint",
+          "tag": "Practice deck",
+          "ctaTarget": "practice",
+          "ctaUrl": "/practice"
+        }
+      ]
+    },
+    {
+      "id": "news",
+      "label": "News",
+      "summary": "Bite-size Macedonian headlines with context + vocabulary glossaries.",
+      "cards": [
+        {
+          "id": "tech-summit",
+          "title": "Bitola Tech Summit Recap",
+          "summary": "Learn how speakers described AI breakthroughs in Macedonian.",
+          "duration": "3 min read",
+          "cta": "Read recap",
+          "accent": "red",
+          "tag": "Breaking news",
+          "ctaTarget": "discover",
+          "ctaUrl": "/discover"
+        },
+        {
+          "id": "climate-brief",
+          "title": "Climate Brief: Vardar Valley",
+          "summary": "Listen to today’s radio segment + vocab covering sustainable farming.",
+          "duration": "5 min listen",
+          "cta": "Play segment",
+          "accent": "navy",
+          "tag": "Audio news",
+          "ctaTarget": "translator",
+          "ctaUrl": "/translator/history"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "id": "ama-coach-jana",
+      "title": "Live AMA: Travel Phrases IRL",
+      "description": "Bring any scenario—Jana will role-play stubborn taxi drivers + friendly hosts.",
+      "host": "Coach Jana",
+      "location": "Discord · #mk-study-hall",
+      "startAt": "2025-11-15T18:00:00Z",
+      "cta": "Reserve spot",
+      "ctaTarget": "external",
+      "ctaUrl": "https://discord.gg/mk-study-hall"
+    },
+    {
+      "id": "study-group",
+      "title": "Grammar Club – Case Files",
+      "description": "Peer-led study group reviewing learner submissions before the next exam sprint.",
+      "host": "Grammar Club",
+      "location": "Zoom",
+      "startAt": "2025-11-18T17:30:00Z",
+      "cta": "Join session",
+      "ctaTarget": "external",
+      "ctaUrl": "https://zoom.us/j/555123456"
+    }
+  ]
+}

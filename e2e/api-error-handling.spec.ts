@@ -220,8 +220,8 @@ test.describe('API Error Handling', () => {
       // Even if WOTD fails, rest of homepage should work
       await page.waitForTimeout(2000);
 
-      // Quick Start cards should still be visible (handle both English and Macedonian)
-      const practiceLink = page.getByRole('link', { name: /Daily Practice|Дневна Практика/i });
+      // Action cards should still be visible (handle both English and Macedonian)
+      const practiceLink = page.getByRole('link', { name: /Continue lesson|Продолжи лекција/i });
       await expect(practiceLink).toBeVisible();
 
       // Navigation should still work

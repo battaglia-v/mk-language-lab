@@ -183,11 +183,75 @@ jobs:
               body: body
             });
 
+  unit-tests:
+    name: Unit Tests (Vitest)
+    runs-on: ubuntu-latest
+    needs: [lint]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Vitest suite (includes mobile smoke tests)
+        run: npm run test
+
+  mobile-maestro:
+    name: Mobile Smoke (Maestro)
+    runs-on: macos-latest
+    needs: [build]
+    env:
+      MAESTRO_APP_URL: ${{ secrets.MAESTRO_APP_URL }}
+      MAESTRO_APP_PATH: ${{ secrets.MAESTRO_APP_PATH }}
+      MAESTRO_DEVICE_UDID: ${{ secrets.MAESTRO_DEVICE_UDID }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Determine Maestro prerequisites
+        id: maestro_prereqs
+        run: |
+          if [ -z "${MAESTRO_APP_URL}" ] || [ -z "${MAESTRO_APP_PATH}" ] || [ -z "${MAESTRO_DEVICE_UDID}" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install Maestro CLI
+        if: steps.maestro_prereqs.outputs.skip == 'false'
+        run: |
+          brew tap mobile-dev-inc/tap
+          brew install maestro
+
+      - name: Download mobile build artifact
+        if: steps.maestro_prereqs.outputs.skip == 'false'
+        run: |
+          curl -L "$MAESTRO_APP_URL" -o mobile-app.zip
+          unzip -q mobile-app.zip -d mobile-app
+
+      - name: Run Maestro smoke suite
+        if: steps.maestro_prereqs.outputs.skip == 'false'
+        run: |
+          APP_PATH="mobile-app/$MAESTRO_APP_PATH"
+          maestro test apps/mobile/tests --app "$APP_PATH" --device "$MAESTRO_DEVICE_UDID"
+
+      - name: Skip notice
+        if: steps.maestro_prereqs.outputs.skip == 'true'
+        run: echo "Skipping mobile Maestro smoke suite (set MAESTRO_APP_URL, MAESTRO_APP_PATH, and MAESTRO_DEVICE_UDID secrets to enable)."
+
   # Summary job that all branch protections should depend on
   ci-success:
     name: CI Pipeline Success
     runs-on: ubuntu-latest
-    needs: [lint, type-check, build, e2e]
+    needs: [lint, type-check, build, e2e, unit-tests, mobile-maestro]
     if: always()
 
     steps:
@@ -196,7 +260,8 @@ jobs:
           if [ "${{ needs.lint.result }}" != "success" ] || \
              [ "${{ needs.type-check.result }}" != "success" ] || \
              [ "${{ needs.build.result }}" != "success" ] || \
-             [ "${{ needs.e2e.result }}" != "success" ]; then
+             [ "${{ needs.e2e.result }}" != "success" ] || \
+             [ "${{ needs.mobile-maestro.result }}" != "success" ]; then
             echo "❌ One or more CI jobs failed"
             exit 1
           fi

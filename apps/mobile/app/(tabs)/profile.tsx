@@ -1,37 +1,218 @@
-import { SafeAreaView, StyleSheet, View } from 'react-native';
-import { NativeTypography, NativeCard, NativeStatPill } from '@mk/ui';
+import { useCallback } from 'react';
+import { Pressable, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
+import { useRouter } from 'expo-router';
+import { NativeTypography, NativeCard, NativeStatPill, NativeButton } from '@mk/ui';
 import { brandColors, spacingScale } from '@mk/tokens';
+import { useProfileSummaryQuery, getLocalProfileSummary } from '@mk/api-client';
+import { getApiBaseUrl } from '../../lib/api';
+import { useQueryHydration } from '../../lib/queryClient';
+import { useAuth, authenticatedFetch } from '../../lib/auth';
 
 export default function ProfileScreen() {
+  const router = useRouter();
+  const apiBaseUrl = getApiBaseUrl();
+  const isApiConfigured = Boolean(apiBaseUrl);
+  const { isHydrated } = useQueryHydration();
+  const {
+    data,
+    isLoading,
+    error,
+  } = useProfileSummaryQuery({
+    baseUrl: apiBaseUrl ?? undefined,
+    enabled: isApiConfigured,
+    fetcher: authenticatedFetch,
+  });
+  const profile = data ?? (!isApiConfigured ? getLocalProfileSummary() : null);
+  const badges = profile?.badges ?? [];
+  const isRestoring = isApiConfigured && !isHydrated && !data;
+  const { status: authStatus, user: authUser, signOut, isWorking: authWorking } = useAuth();
+  const isAuthenticated = authStatus === 'authenticated';
+  const handleBadgePress = useCallback(
+    (badgeId: string) => {
+      switch (badgeId) {
+        case 'streak-guardian':
+          router.push('/(modals)/mission-settings');
+          break;
+        case 'journey-lead':
+          router.push('/(tabs)/discover');
+          break;
+        case 'xp-ranger':
+        case 'weekly-warrior':
+        default:
+          router.push('/(tabs)/practice');
+          break;
+      }
+    },
+    [router]
+  );
+
+  const handleManageBadges = useCallback(() => {
+    router.push('/(modals)/mission-settings');
+  }, [router]);
+
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <NativeTypography variant="hero" style={styles.hero}>
-          Sofia Koleva
+          {profile?.name ?? 'Profile'}
         </NativeTypography>
-        <NativeTypography variant="body" style={styles.body}>
-          Account settings, streak history, and badges will arrive soon. For now, enjoy this preview.
-        </NativeTypography>
-        <NativeCard style={styles.statCard}>
-          <View style={styles.statRow}>
-            <NativeStatPill label="XP" value="12,450" accent="green" />
-            <NativeStatPill label="Level" value="Intermediate" accent="gold" />
-          </View>
-          <View style={styles.statRow}>
-            <NativeStatPill label="Streak" value="21 days" />
-            <NativeStatPill label="Quests" value="3 active" accent="red" />
-          </View>
+        {!isApiConfigured ? (
+          <NativeCard style={styles.warningCard}>
+            <NativeTypography variant="body" style={styles.warningText}>
+              Configure `EXPO_PUBLIC_API_BASE_URL` to load live XP/streak stats. Fixture data is shown for preview only.
+            </NativeTypography>
+          </NativeCard>
+        ) : null}
+        {isRestoring ? (
+          <NativeTypography variant="caption" style={styles.helperText}>
+            Restoring cached profile data…
+          </NativeTypography>
+        ) : null}
+        {isLoading && isApiConfigured && !data ? (
+          <NativeTypography variant="body" style={styles.body}>
+            Loading profile summary…
+          </NativeTypography>
+        ) : null}
+        {error ? (
+          <NativeCard style={styles.warningCard}>
+            <NativeTypography variant="body" style={styles.errorText}>
+              Unable to fetch profile summary: {error.message}
+            </NativeTypography>
+          </NativeCard>
+        ) : null}
+
+        <NativeCard style={styles.accountCard}>
+          <NativeTypography variant="title" style={styles.accountTitle}>
+            Account
+          </NativeTypography>
+          {isAuthenticated ? (
+            <>
+              <NativeTypography variant="body" style={styles.body}>
+                Signed in as {authUser?.email ?? 'unknown'}
+              </NativeTypography>
+              <NativeButton
+                variant="ghost"
+                onPress={() => {
+                  void signOut();
+                }}
+                disabled={authWorking}
+              >
+                <NativeTypography variant="body" style={styles.badgesLink}>
+                  {authWorking ? 'Signing out…' : 'Sign out'}
+                </NativeTypography>
+              </NativeButton>
+            </>
+          ) : (
+            <>
+              <NativeTypography variant="body" style={styles.body}>
+                Sign in to sync XP, streaks, and reminders across devices.
+              </NativeTypography>
+              <NativeButton
+                onPress={() => {
+                  router.push('/sign-in');
+                }}
+              >
+                <NativeTypography variant="body" style={styles.signInCta}>
+                  Sign in
+                </NativeTypography>
+              </NativeButton>
+            </>
+          )}
         </NativeCard>
-      </View>
+
+        {profile ? (
+          <>
+            <NativeCard style={styles.statCard}>
+              <View style={styles.statRow}>
+                <NativeStatPill label="XP" value={`${profile.xp.total.toLocaleString()} total`} accent="green" />
+                <NativeStatPill label="Weekly XP" value={`${profile.xp.weekly}`} accent="gold" />
+              </View>
+              <View style={styles.statRow}>
+                <NativeStatPill label="Level" value={profile.level} />
+                <NativeStatPill label="Streak" value={`${profile.streakDays} days`} accent="red" />
+              </View>
+              <View style={styles.statRow}>
+                <NativeStatPill label="Quests active" value={`${profile.quests.active}`} />
+                <NativeStatPill label="Completed this week" value={`${profile.quests.completedThisWeek}`} accent="gold" />
+              </View>
+            </NativeCard>
+
+            <View style={styles.badgesSection}>
+              <View style={styles.badgesHeader}>
+                <NativeTypography variant="title" style={styles.badgesTitle}>
+                  Badges
+                </NativeTypography>
+            <NativeButton variant="ghost" onPress={handleManageBadges}>
+              <NativeTypography variant="body" style={styles.badgesLink}>
+                Manage
+              </NativeTypography>
+            </NativeButton>
+          </View>
+              {badges.length === 0 ? (
+                <NativeTypography variant="body" style={styles.body}>
+                  Earn badges by completing missions and quests.
+                </NativeTypography>
+              ) : (
+                <View style={styles.badgeList}>
+                  {badges.map((badge) => (
+                    <Pressable
+                      key={badge.id}
+                      style={styles.badgePressable}
+                      accessibilityRole="button"
+                      accessibilityLabel={`View ${badge.label} badge`}
+                      onPress={() => handleBadgePress(badge.id)}
+                    >
+                      <NativeCard style={styles.badgeCard}>
+                        <NativeTypography variant="body" style={styles.badgeLabel}>
+                          {badge.label}
+                        </NativeTypography>
+                        <NativeTypography variant="caption" style={styles.badgeDescription}>
+                          {badge.description}
+                        </NativeTypography>
+                        <NativeTypography variant="caption" style={styles.badgeMeta}>
+                          {badge.earnedAt ? new Date(badge.earnedAt).toLocaleDateString() : 'In progress'}
+                        </NativeTypography>
+                      </NativeCard>
+                    </Pressable>
+                  ))}
+                </View>
+              )}
+            </View>
+          </>
+        ) : (
+          <NativeCard style={styles.warningCard}>
+            <NativeTypography variant="body" style={styles.warningText}>
+              Profile stats will appear once the API responds. Pull to refresh if you recently created an account.
+            </NativeTypography>
+          </NativeCard>
+        )}
+      </ScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: brandColors.cream },
-  container: { flex: 1, padding: spacingScale.xl, gap: spacingScale.lg },
+  safeArea: { flex: 1, backgroundColor: brandColors.creamLight },
+  container: { flexGrow: 1, padding: spacingScale.xl, gap: spacingScale.lg },
   hero: { color: brandColors.navy },
-  body: { color: 'rgba(16,24,40,0.85)' },
+  body: { color: 'rgba(16,24,40,0.8)' },
+  helperText: { color: 'rgba(16,24,40,0.6)' },
+  warningCard: { gap: spacingScale.xs },
+  warningText: { color: brandColors.navy },
+  errorText: { color: brandColors.red },
+  accountCard: { gap: spacingScale.sm },
+  accountTitle: { color: brandColors.navy },
+  signInCta: { color: brandColors.cream },
   statCard: { gap: spacingScale.sm },
   statRow: { flexDirection: 'row', gap: spacingScale.sm, flexWrap: 'wrap' },
+  badgesSection: { gap: spacingScale.sm },
+  badgesHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  badgesTitle: { color: brandColors.navy },
+  badgesLink: { color: brandColors.navy },
+  badgeList: { gap: spacingScale.sm },
+  badgePressable: { borderRadius: spacingScale.md },
+  badgeCard: { gap: spacingScale.xs },
+  badgeLabel: { color: brandColors.navy },
+  badgeDescription: { color: 'rgba(16,24,40,0.7)' },
+  badgeMeta: { color: 'rgba(16,24,40,0.6)' },
 });

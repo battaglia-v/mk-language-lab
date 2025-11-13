@@ -28,7 +28,11 @@
     "mobile:start": "npm --prefix apps/mobile run start",
     "mobile:android": "npm --prefix apps/mobile run android",
     "mobile:ios": "npm --prefix apps/mobile run ios",
-    "mobile:web": "npm --prefix apps/mobile run web"
+    "mobile:web": "npm --prefix apps/mobile run web",
+    "mobile:test:maestro": "maestro test apps/mobile/tests",
+    "mobile:build:preview:android": "npx eas build --platform android --profile preview --non-interactive",
+    "mobile:build:preview:ios": "npx eas build --platform ios --profile preview --non-interactive",
+    "mobile:cron:smoke": "node scripts/run-reminder-cron-smoke.mjs"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
@@ -59,6 +63,7 @@
     "bcryptjs": "^3.0.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "expo-file-system": "~19.0.17",
     "expo-router": "^3.5.23",
     "googleapis": "^165.0.0",
     "lucide-react": "^0.553.0",

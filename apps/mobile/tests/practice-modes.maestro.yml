@@ -1,0 +1,596 @@
+appId: com.mk.language.lab
+tags:
+  - practice
+  - modes
+  - typing
+  - multiple-choice
+  - cloze
+---
+# Practice Modes Comprehensive Test
+# Tests all practice modes: Typing, Multiple Choice, Cloze (Fill in the Blank), and mode-specific features
+
+- launchApp
+
+# ============================================================
+# SECTION 1: Practice Initialization
+# ============================================================
+
+# Navigate to Practice tab
+- tapOn:
+    text: "Practice"
+
+# Verify practice screen loads
+- assertVisible:
+    text: "Quick Practice"
+- assertVisible:
+    text: "Swipe through prompts, keep your hearts, and reach the XP goal."
+
+# Wait for practice session to load
+- waitForAnimationToEnd:
+    timeout: 5000
+
+# Verify HUD is displayed
+- assertVisible:
+    text: "Goal"
+- assertVisible:
+    text: "Accuracy"
+
+# ============================================================
+# SECTION 2: Typing Mode
+# ============================================================
+
+# Verify Typing mode chip is available
+- assertVisible:
+    text: "Typing"
+
+# Select Typing mode
+- tapOn:
+    text: "Typing"
+- waitForAnimationToEnd:
+    timeout: 2000
+
+# In Typing mode:
+# - User sees a word/phrase in source language
+# - Text input field for entering translation
+# - Submit button to check answer
+# - Real-time feedback on correctness
+
+# Verify mode selection worked
+- assertVisible:
+    text: "Typing"
+
+# Scroll to see typing input interface
+- scroll
+
+# In Typing mode, should see:
+# - Current vocabulary prompt
+# - Text input field
+# - Keyboard (on device)
+# - Submit/Check button
+
+# Verify session controls
+- assertVisible:
+    text: "Skip card"
+- assertVisible:
+    text: "Reset session"
+
+# Test skip in Typing mode
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd:
+    timeout: 2000
+
+# Verify progression to next card
+- assertVisible:
+    text: "Goal"
+
+# ============================================================
+# SECTION 3: Multiple Choice Mode
+# ============================================================
+
+# Scroll back up to mode selector
+- scroll:
+    direction: UP
+
+# Verify Multiple Choice mode is available
+- assertVisible:
+    text: "Multiple choice"
+
+# Select Multiple Choice mode
+- tapOn:
+    text: "Multiple choice"
+- waitForAnimationToEnd:
+    timeout: 2000
+
+# In Multiple Choice mode:
+# - User sees a word/phrase in source language
+# - 3-4 answer options displayed as buttons
+# - User taps the correct answer
+# - Immediate visual feedback (correct/incorrect)
+# - Correct answer highlighted if wrong choice made
+
+# Verify mode selection worked
+- assertVisible:
+    text: "Multiple choice"
+
+# Scroll to see multiple choice interface
+- scroll
+
+# In Multiple Choice mode, should see:
+# - Current vocabulary prompt
+# - Multiple answer buttons (usually 3-4 options)
+# - Visual styling for options
+
+# Verify session controls
+- assertVisible:
+    text: "Skip card"
+
+# Test skip in Multiple Choice mode
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd:
+    timeout: 2000
+
+# Verify progression
+- assertVisible:
+    text: "Goal"
+
+# Test multiple skips to ensure mode consistency
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd:
+    timeout: 2000
+
+# ============================================================
+# SECTION 4: Cloze (Fill in the Blank) Mode
+# ============================================================
+
+# Scroll back up to mode selector
+- scroll:
+    direction: UP
+
+# Verify Cloze mode is available
+- assertVisible:
+    text: "Cloze"
+
+# Select Cloze mode
+- tapOn:
+    text: "Cloze"
+- waitForAnimationToEnd:
+    timeout: 2000
+
+# In Cloze mode:
+# - User sees a sentence with a blank: "I love ___"
+# - Text input or word bank to fill the blank
+# - Context clues from surrounding words
+# - Submit button to check answer
+
+# Verify mode selection worked
+- assertVisible:
+    text: "Cloze"
+
+# Scroll to see cloze interface
+- scroll
+
+# In Cloze mode, should see:
+# - Sentence with blank(s)
+# - Input area for answer
+# - Context paragraph or sentence
+# - Submit/Check button
+
+# Verify session controls
+- assertVisible:
+    text: "Skip card"
+
+# Test skip in Cloze mode
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd:
+    timeout: 2000
+
+# Verify progression
+- assertVisible:
+    text: "Goal"
+
+# ============================================================
+# SECTION 5: Mode Switching During Session
+# ============================================================
+
+# Test rapid mode switching
+- scroll:
+    direction: UP
+
+# Switch to Typing
+- tapOn:
+    text: "Typing"
+- waitForAnimationToEnd:
+    timeout: 1000
+
+# Verify session adapts
+- assertVisible:
+    text: "Goal"
+
+# Switch to Multiple Choice
+- tapOn:
+    text: "Multiple choice"
+- waitForAnimationToEnd:
+    timeout: 1000
+
+# Switch to Cloze
+- tapOn:
+    text: "Cloze"
+- waitForAnimationToEnd:
+    timeout: 1000
+
+# Switch back to Typing
+- tapOn:
+    text: "Typing"
+- waitForAnimationToEnd:
+    timeout: 1000
+
+# Verify session remains stable after rapid switching
+- assertVisible:
+    text: "Goal"
+
+# ============================================================
+# SECTION 6: Mode with Direction Toggle
+# ============================================================
+
+# Test modes with different translation directions
+
+# Verify current direction
+- assertVisible:
+    text: "EN → MK"
+
+# Select Typing mode
+- tapOn:
+    text: "Typing"
+- waitForAnimationToEnd
+
+# Scroll to practice
+- scroll
+
+# Skip a card in EN → MK Typing mode
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd:
+    timeout: 2000
+
+# Change direction
+- scroll:
+    direction: UP
+- tapOn:
+    text: "MK → EN"
+- waitForAnimationToEnd
+
+# Verify Typing mode adapts to new direction
+- assertVisible:
+    text: "Typing"
+
+# Scroll and practice
+- scroll
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd:
+    timeout: 2000
+
+# ============================================================
+# SECTION 7: Multiple Choice with Direction
+# ============================================================
+
+# Switch to Multiple Choice in MK → EN
+- scroll:
+    direction: UP
+- tapOn:
+    text: "Multiple choice"
+- waitForAnimationToEnd
+
+# Practice in this mode/direction combo
+- scroll
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd:
+    timeout: 2000
+
+# Switch direction again
+- scroll:
+    direction: UP
+- tapOn:
+    text: "EN → MK"
+- waitForAnimationToEnd
+
+# Verify Multiple Choice adapts
+- assertVisible:
+    text: "Multiple choice"
+
+# ============================================================
+# SECTION 8: Cloze with Direction
+# ============================================================
+
+# Switch to Cloze mode
+- tapOn:
+    text: "Cloze"
+- waitForAnimationToEnd
+
+# Practice in Cloze
+- scroll
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd:
+    timeout: 2000
+
+# Change direction
+- scroll:
+    direction: UP
+- tapOn:
+    text: "MK → EN"
+- waitForAnimationToEnd
+
+# Verify Cloze adapts to direction
+- assertVisible:
+    text: "Cloze"
+
+# ============================================================
+# SECTION 9: Mode-Specific Features
+# ============================================================
+
+# Open practice settings to test mode-specific options
+- tapOn:
+    text: "Session settings"
+- waitForAnimationToEnd
+
+# Verify settings modal
+- assertVisible:
+    text: "Session Settings"
+- assertVisible:
+    text: "Mode"
+- assertVisible:
+    text: "Helpers"
+
+# Practice Mode settings affect all modes
+- assertVisible:
+    text: "Casual"
+- assertVisible:
+    text: "Focus"
+- assertVisible:
+    text: "Blitz"
+
+# Test mode selection (these affect difficulty, not practice type)
+- tapOn:
+    text: "Focus"
+- waitForAnimationToEnd
+
+# Helper settings may affect modes differently
+- assertVisible:
+    text: "Audio prompts"
+- assertVisible:
+    text: "Smart hints"
+
+# Audio prompts: useful for all modes
+# Smart hints: especially helpful in Typing and Cloze modes
+
+# Toggle Audio prompts
+- tapOn:
+    text: "Audio prompts"
+- waitForAnimationToEnd
+
+# Close settings
+- tapOn:
+    text: "Cancel"
+- waitForAnimationToEnd
+
+# ============================================================
+# SECTION 10: Mode Performance Testing
+# ============================================================
+
+# Test each mode with several cards to ensure stability
+
+# Typing mode stress test
+- tapOn:
+    text: "Typing"
+- waitForAnimationToEnd
+- scroll
+
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd:
+    timeout: 2000
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd:
+    timeout: 2000
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd:
+    timeout: 2000
+
+# Multiple Choice mode stress test
+- scroll:
+    direction: UP
+- tapOn:
+    text: "Multiple choice"
+- waitForAnimationToEnd
+- scroll
+
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd:
+    timeout: 2000
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd:
+    timeout: 2000
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd:
+    timeout: 2000
+
+# Cloze mode stress test
+- scroll:
+    direction: UP
+- tapOn:
+    text: "Cloze"
+- waitForAnimationToEnd
+- scroll
+
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd:
+    timeout: 2000
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd:
+    timeout: 2000
+- tapOn:
+    text: "Skip card"
+- waitForAnimationToEnd:
+    timeout: 2000
+
+# ============================================================
+# SECTION 11: Mode Reset Testing
+# ============================================================
+
+# Test session reset in different modes
+
+# Select Typing mode
+- scroll:
+    direction: UP
+- tapOn:
+    text: "Typing"
+- waitForAnimationToEnd
+
+# Reset session
+- scroll
+- tapOn:
+    text: "Reset session"
+- waitForAnimationToEnd:
+    timeout: 3000
+
+# Verify reset worked
+- assertVisible:
+    text: "Goal"
+
+# Select Multiple Choice and reset
+- scroll:
+    direction: UP
+- tapOn:
+    text: "Multiple choice"
+- waitForAnimationToEnd
+- scroll
+- tapOn:
+    text: "Reset session"
+- waitForAnimationToEnd:
+    timeout: 3000
+
+# Verify reset worked
+- assertVisible:
+    text: "Goal"
+
+# ============================================================
+# SECTION 12: Category Filtering with Modes
+# ============================================================
+
+# Test if category filtering works with different modes
+- scroll:
+    direction: UP
+
+# Verify category filter
+- assertVisible:
+    text: "All topics"
+
+# Select Typing mode
+- tapOn:
+    text: "Typing"
+- waitForAnimationToEnd
+
+# Category filter should work in Typing mode
+- assertVisible:
+    text: "All topics"
+
+# Switch to Multiple Choice
+- tapOn:
+    text: "Multiple choice"
+- waitForAnimationToEnd
+
+# Category filter should work in Multiple Choice
+- assertVisible:
+    text: "All topics"
+
+# Switch to Cloze
+- tapOn:
+    text: "Cloze"
+- waitForAnimationToEnd
+
+# Category filter should work in Cloze
+- assertVisible:
+    text: "All topics"
+
+# ============================================================
+# SECTION 13: Mode Persistence
+# ============================================================
+
+# Test that mode selection persists across navigation
+
+# Select Typing mode
+- tapOn:
+    text: "Typing"
+- waitForAnimationToEnd
+
+# Navigate away
+- tapOn:
+    text: "Home"
+- waitForAnimationToEnd
+
+# Return to Practice
+- tapOn:
+    text: "Practice"
+- waitForAnimationToEnd:
+    timeout: 5000
+
+# Verify mode preference may be remembered (or defaults to Typing)
+- assertVisible:
+    text: "Typing"
+- assertVisible:
+    text: "Multiple choice"
+- assertVisible:
+    text: "Cloze"
+
+# ============================================================
+# SECTION 14: Final Mode Validation
+# ============================================================
+
+# Verify all modes remain accessible
+- assertVisible:
+    text: "Typing"
+- assertVisible:
+    text: "Multiple choice"
+- assertVisible:
+    text: "Cloze"
+
+# Verify practice session is functional
+- assertVisible:
+    text: "Goal"
+- assertVisible:
+    text: "Accuracy"
+
+# Scroll to controls
+- scroll
+
+# Final verification
+- assertVisible:
+    text: "Skip card"
+- assertVisible:
+    text: "Reset session"
+
+# Test one final mode switch
+- scroll:
+    direction: UP
+- tapOn:
+    text: "Multiple choice"
+- waitForAnimationToEnd
+
+# Verify session is stable
+- assertVisible:
+    text: "Quick Practice"
+- assertVisible:
+    text: "Goal"

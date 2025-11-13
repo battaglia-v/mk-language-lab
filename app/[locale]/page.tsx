@@ -213,7 +213,7 @@ export default function HomePage() {
                     <RefreshCw className="h-5 w-5" aria-hidden="true" />
                   </span>
                   <div className="flex-1">
-                    <p className="text-sm font-semibold text-foreground">{t('actionCards.continue.title')}</p>
+                    <h3 className="text-sm font-semibold text-foreground">{t('actionCards.continue.title')}</h3>
                     <p className="text-xs text-muted-foreground">{t('actionCards.continue.description')}</p>
                   </div>
                 </div>
@@ -236,7 +236,7 @@ export default function HomePage() {
                     <Compass className="h-5 w-5" aria-hidden="true" />
                   </span>
                   <div className="flex-1">
-                    <p className="text-sm font-semibold text-foreground">{t('actionCards.translator.title')}</p>
+                    <h3 className="text-sm font-semibold text-foreground">{t('actionCards.translator.title')}</h3>
                     <p className="text-xs text-muted-foreground">{t('actionCards.translator.description')}</p>
                   </div>
                 </div>
@@ -263,7 +263,7 @@ export default function HomePage() {
                     <Library className="h-5 w-5" aria-hidden="true" />
                   </span>
                   <div className="flex-1">
-                    <p className="text-sm font-semibold text-foreground">{t('actionCards.resources.title')}</p>
+                    <h3 className="text-sm font-semibold text-foreground">{t('actionCards.resources.title')}</h3>
                     <p className="text-xs text-muted-foreground">{t('actionCards.resources.description')}</p>
                   </div>
                 </div>
