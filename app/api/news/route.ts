@@ -1,6 +1,7 @@
 import crypto from 'node:crypto';
 import { NextRequest, NextResponse } from 'next/server';
 import { newsRateLimit, checkRateLimit } from '@/lib/rate-limit';
+import fallbackNews from '@/data/news-fallback.json';
 
 export const revalidate = 180;
 
@@ -53,32 +54,7 @@ type ArticlePreviewResult = {
   image: string | null;
 };
 
-const FALLBACK_ITEMS: NewsItem[] = [
-  {
-    id: 'fallback-time-1',
-    title: 'Добредојдовте во новиот македонски јазичен лабораториум',
-    link: 'https://time.mk',
-    description: 'Пример објава додека се вчитуваат вистинските вести од Time.mk.',
-    publishedAt: new Date().toISOString(),
-    sourceId: 'time-mk',
-    sourceName: 'Time.mk',
-    categories: ['placeholder'],
-    videos: [],
-    image: null,
-  },
-  {
-    id: 'fallback-meta-1',
-    title: 'Проверете ги најновите вести на Meta.mk',
-    link: 'https://meta.mk',
-    description: 'Пример објава додека се вчитуваат вистинските вести од Meta.mk.',
-    publishedAt: new Date().toISOString(),
-    sourceId: 'meta-mk',
-    sourceName: 'Meta.mk',
-    categories: ['placeholder'],
-    videos: [],
-    image: null,
-  },
-];
+const FALLBACK_ITEMS: NewsItem[] = fallbackNews as NewsItem[];
 
 type CacheEntry<T> = {
   value: T;

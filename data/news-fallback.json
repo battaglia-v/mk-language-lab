@@ -1,0 +1,26 @@
+[
+  {
+    "id": "fallback-time-1",
+    "title": "Добредојдовте во новиот македонски јазичен лабораториум",
+    "link": "https://time.mk",
+    "description": "Пример објава додека се вчитуваат вистинските вести од Time.mk.",
+    "publishedAt": "2025-11-12T08:00:00.000Z",
+    "sourceId": "time-mk",
+    "sourceName": "Time.mk",
+    "categories": ["placeholder"],
+    "videos": [],
+    "image": null
+  },
+  {
+    "id": "fallback-meta-1",
+    "title": "Проверете ги најновите вести на Meta.mk",
+    "link": "https://meta.mk",
+    "description": "Пример објава додека се вчитуваат вистинските вести од Meta.mk.",
+    "publishedAt": "2025-11-12T09:00:00.000Z",
+    "sourceId": "meta-mk",
+    "sourceName": "Meta.mk",
+    "categories": ["placeholder"],
+    "videos": [],
+    "image": null
+  }
+]

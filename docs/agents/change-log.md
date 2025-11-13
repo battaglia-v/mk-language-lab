@@ -7,13 +7,48 @@ Add an entry whenever you introduce a change that affects other contributors (AP
 2. Include date/time (UTC), files touched, summary, impact, guidance, and commit SHA.
 3. Reference this update in your PR message.
 
----
+### 19. 2025-11-13 – Discover headlines powered by `/api/news` (`TBD`)
+**Files**: `data/news-fallback.json`, `app/api/news/route.ts`, `packages/api-client/src/{news.ts,index.ts}`, `apps/mobile/app/(tabs)/discover.tsx`, `apps/mobile/features/news/HeadlinesSection.tsx`, `docs/projects/2025-12-react-native-expo/{execution_steps.md,notes.md}`
+**What Changed**: Moved the news fallback data into a shared JSON file, exposed `useNewsFeedQuery` in `@mk/api-client`, and wired the Discover tab to show live headlines via `/api/news` (with graceful fallbacks + external links).
+**Impact**: Editors only update one JSON (or the future CMS) to feed both the API and the Expo UI; the Discover tab now showcases real headlines next to its curated cards/events.
+**Action for Agents**: When adding new sources or CMS-backed data, update `app/api/news/route.ts` + `packages/api-client/src/news.ts` and keep the fallback file in sync. Use the new `HeadlinesSection` when embedding headlines elsewhere.
+
+### 18. 2025-11-13 – `/api/discover/feed` endpoint for shared editorial data (`TBD`)
+**Files**: `app/api/discover/feed/route.ts`, `docs/projects/2025-12-react-native-expo/{execution_steps.md,notes.md}`
+**What Changed**: Added a server route that returns the curated Discover feed (currently backed by `data/discover-feed.json`) with cache headers so web + Expo call the same endpoint instead of relying on local fallbacks.
+**Impact**: Discover surfaces now consume identical data whether they run against localhost or production, unblocking backend/CMS work to swap in live content without touching the mobile client.
+**Action for Agents**: When the CMS or backend feed lands, update this route (and `@mk/api-client` helpers) rather than introducing new fetch logic in clients; keep cache headers aligned with editorial cadence.
+
+### 15. 2025-11-13 – Expo translator wired to Next API (`TBD`)
+**Files**: `apps/mobile/lib/api.ts`, `apps/mobile/app/(tabs)/{home.tsx,translator.tsx}`, `packages/api-client/src/{translate.ts,index.ts}`, `docs/projects/2025-12-react-native-expo/{execution_steps.md,notes.md}`
+**What Changed**: Added a reusable API base resolver, introduced `translateText`/`TranslateTextError` in `@mk/api-client`, pointed the Home mission query at the configured backend URL, and rebuilt the Translator tab so it calls `/api/translate`, surfaces detected languages, dedupes history, and warns when `EXPO_PUBLIC_API_BASE_URL` is missing.
+**Impact**: Expo builds now reach the live translator + mission endpoints whenever the API base env is set, and failures deliver actionable retry/config guidance instead of silent placeholders.
+**Action for Agents**: Configure the API base env variable when testing on device, and use `translateText` for any future translator surfaces to keep error handling consistent across platforms.
+
+### 16. 2025-11-13 – Translator history provider + inbox (`TBD`)
+**Files**: `apps/mobile/app/_layout.tsx`, `apps/mobile/lib/translator/history.tsx`, `apps/mobile/app/(tabs)/translator.tsx`, `apps/mobile/app/(modals)/translator-history.tsx`, `docs/projects/2025-12-react-native-expo/{execution_steps.md,notes.md}`
+**What Changed**: Added `TranslatorHistoryProvider` (AsyncStorage-backed) so any screen can add/read translation entries, wrapped the Expo tree with it, updated the Translator tab to write through the shared store, and swapped the Translator Inbox modal to render real data with loading/empty states.
+**Impact**: The mission “Translator inbox” CTA now reflects recent activity, and translations persist between sessions without copy/pasting sample data. Future analytics or pinning features can reuse the same provider.
+**Action for Agents**: Use `useTranslatorHistory()` whenever you need to display or mutate translation history, and avoid duplicating AsyncStorage logic elsewhere.
+
+### 17. 2025-11-13 – Discover feed + events (`TBD`)
+**Files**: `data/discover-feed.json`, `packages/api-client/src/{discover.ts,index.ts}`, `apps/mobile/features/discover/*`, `apps/mobile/app/(tabs)/discover.tsx`, `app/api/discover/feed/route.ts`, `docs/projects/2025-12-react-native-expo/{execution_steps.md,notes.md}`
+**What Changed**: Defined the Discover feed contract + fallback data, added `useDiscoverFeedQuery` so both clients can consume it, shipped `/api/discover/feed`, and rebuilt the Discover tab with filter pills, editorial cards, and upcoming event entries.
+**Impact**: The Discover tab now showcases real content while the backend route gives us a single place to swap in CMS data later.
+**Action for Agents**: Extend the feed via `data/discover-feed.json` (or the API once hooked to CMS) and reuse the new components when adding additional categories/events.
+
+
+### 14. 2025-11-13 – Mobile push-token API + reminder helpers (`TBD`)
+**Files**: `prisma/schema.prisma`, `prisma/migrations/20251113180000_add_mobile_push_platform/migration.sql`, `lib/mobile-reminders.{ts,test.ts}`, `app/api/mobile/push-token/route.ts`, `apps/mobile/lib/notifications/{constants.ts,registerPushToken.ts}`, `docs/projects/2025-12-react-native-expo/{execution_steps.md,notes.md,mission-api.md}`
+**What Changed**: Added the `MobilePushToken` model (userId optional, locale/timezone/reminder metadata), introduced shared reminder window helpers + Vitest coverage, shipped `/api/mobile/push-token` with zod validation/opt-out handling/`nextReminderAt`, and updated the Expo notification stack to send locale + timezone with deduped reminder IDs.
+**Impact**: Expo clients can now register or revoke reminder windows against a documented backend contract, backend helpers ensure cron jobs share the same reminder math as the device, and the docs spell out the remaining work (device smoke + cron fan-out) for the next agent.
+**Action for Agents**: Run `npx vitest run lib/mobile-reminders.test.ts` + `npx eslint app/api/mobile/push-token/route.ts` after changes, keep `lib/mobile-reminders.ts` and `apps/mobile/lib/notifications/constants.ts` in sync when adding windows, and capture device/cron validation notes once those follow-ups land.
 
 ### 13. 2025-11-13 – Expo mission reminders scaffolding (`TBD`)
-**Files**: `apps/mobile/{package.json,package-lock.json,app.json,app/_layout.tsx,app/(tabs)/home.tsx,app/(modals)/{_layout,mission-settings}.tsx}`, `apps/mobile/features/home/sections.tsx`, `apps/mobile/lib/notifications/*`, `docs/projects/2025-12-react-native-expo/{execution_steps.md,notes.md,mission-api.md}`
-**What Changed**: Installed `expo-notifications` + AsyncStorage, added a `NotificationProvider` (permission polling, Android channel config, reminder scheduling, push-token helper), exposed a Mission Settings modal + hero CTA for selecting reminder windows, and documented the draft `POST /api/mobile/push-token` contract.
-**Impact**: All reminder/notification logic now flows through a single provider, reminder windows persist locally, and backend teams know exactly what payload to accept once the API ships. Until the server endpoint exists, token registration no-ops gracefully.
-**Action for Agents**: Use `useNotifications()` for any reminder UI, add new windows via `apps/mobile/lib/notifications/useNotificationSettings.ts`, and coordinate before modifying `/api/mobile/push-token` expectations. Run `npx eslint apps/mobile` after touching these files.
+**Files**: `apps/mobile/{package.json,package-lock.json,app.json,app/_layout.tsx,app/(modals)/practice-settings.tsx}`, `apps/mobile/lib/notifications/*`, `docs/projects/2025-12-react-native-expo/{execution_steps.md,notes.md}`, `docs/agents/change-log.md`
+**What Changed**: Installed `expo-notifications` + AsyncStorage, wired the shared `NotificationProvider` into the app shell, exposed reminder toggles inside the Practice/Mission Settings modals, and documented the reminder windows/background sync flow ahead of the backend work.
+**Impact**: Reminder windows now persist locally, the mission hero can surface scheduling status, and teammates know exactly where to plug in backend push support (Step 8).
+**Action for Agents**: Use `useNotifications()` for reminder UI, update `apps/mobile/lib/notifications/constants.ts` if new windows are added, and run `npx eslint apps/mobile` after touching the notification stack.
 
 ### 12. 2025-11-13 – Quick Practice swipe stack + audio hook foundation (`TBD`)
 **Files**: `packages/practice/src/{types.ts,cards.ts}`, `apps/mobile/features/practice/**/*`, `apps/mobile/app/(tabs)/practice.tsx`, `docs/projects/2025-12-react-native-expo/*`

@@ -1,43 +1,112 @@
-import { SafeAreaView, StyleSheet, View } from 'react-native';
-import { NativeTypography, NativeCard, NativeButton } from '@mk/ui';
-import { spacingScale, brandColors } from '@mk/tokens';
+import { useEffect, useMemo, useState } from 'react';
+import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
+import { NativeTypography } from '@mk/ui';
+import { brandColors, spacingScale } from '@mk/tokens';
+import {
+  useDiscoverFeedQuery,
+  getLocalDiscoverFeed,
+  useNewsFeedQuery,
+  getLocalNewsFeed,
+} from '@mk/api-client';
+import { DiscoverFilterRow, DiscoverCardList, UpcomingEvents } from '../../features/discover';
+import { HeadlinesSection } from '../../features/news/HeadlinesSection';
+import { getApiBaseUrl } from '../../lib/api';
 
 export default function DiscoverScreen() {
+  const apiBaseUrl = getApiBaseUrl();
+  const { data } = useDiscoverFeedQuery({ baseUrl: apiBaseUrl ?? undefined });
+  const feed = data ?? getLocalDiscoverFeed();
+  const categories = useMemo(() => feed.categories ?? [], [feed]);
+  const [selectedCategoryId, setSelectedCategoryId] = useState(
+    categories[0]?.id ?? 'culture'
+  );
+
+  useEffect(() => {
+    if (!categories.some((category) => category.id === selectedCategoryId) && categories[0]) {
+      setSelectedCategoryId(categories[0].id);
+    }
+  }, [categories, selectedCategoryId]);
+
+  const selectedCategory = useMemo(() => {
+    return categories.find((category) => category.id === selectedCategoryId) ?? categories[0];
+  }, [categories, selectedCategoryId]);
+
+  const events = useMemo(() => feed.events ?? [], [feed]);
+  const {
+    data: newsData,
+    isLoading: isNewsLoading,
+    refetch: refetchNews,
+  } = useNewsFeedQuery({ baseUrl: apiBaseUrl ?? undefined });
+  const newsItems = newsData ?? getLocalNewsFeed();
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <NativeTypography variant="hero" style={styles.hero}>
           Discover
         </NativeTypography>
         <NativeTypography variant="body" style={styles.body}>
-          Culture drops, news feeds, and quests will surface here once the content API lands.
+          Curated drops from professors, journalists, and study groups. Tap a filter to shape your queue.
         </NativeTypography>
-        <NativeCard style={styles.card}>
-          <NativeTypography variant="title" style={styles.cardTitle}>
-            Upcoming
-          </NativeTypography>
-          <NativeTypography variant="body" style={styles.cardBody}>
-            Editorial cards, Instagram lessons, and Smart Review suggestions will populate this tab.
-          </NativeTypography>
-          <NativeButton variant="secondary" style={styles.cardButton}>
-            <NativeTypography variant="body" style={styles.buttonLabel}>
-              See Roadmap
+
+        {categories.length > 0 ? (
+          <DiscoverFilterRow
+            categories={categories}
+            selectedId={selectedCategoryId}
+            onSelect={setSelectedCategoryId}
+          />
+        ) : null}
+
+        {selectedCategory ? (
+          <View style={styles.section}>
+            <NativeTypography variant="title" style={styles.sectionTitle}>
+              {selectedCategory.label}
             </NativeTypography>
-          </NativeButton>
-        </NativeCard>
-      </View>
+            <NativeTypography variant="caption" style={styles.sectionSummary}>
+              {selectedCategory.summary}
+            </NativeTypography>
+            <DiscoverCardList cards={selectedCategory.cards} />
+          </View>
+        ) : null}
+
+        <View style={styles.section}>
+          <NativeTypography variant="title" style={styles.sectionTitle}>
+            Upcoming events
+          </NativeTypography>
+          <NativeTypography variant="caption" style={styles.sectionSummary}>
+            Live study groups, AMAs, and quests from the next two weeks.
+          </NativeTypography>
+          <UpcomingEvents
+            events={events}
+            formatter={new Intl.DateTimeFormat(undefined, {
+              weekday: 'short',
+              month: 'short',
+              day: 'numeric',
+              hour: 'numeric',
+              minute: '2-digit',
+            })}
+          />
+        </View>
+
+        <View style={styles.section}>
+          <NativeTypography variant="title" style={styles.sectionTitle}>
+            Headlines
+          </NativeTypography>
+          <NativeTypography variant="caption" style={styles.sectionSummary}>
+            Bite-size coverage from Time.mk and Meta.mk with quick links to the full stories.
+          </NativeTypography>
+          <HeadlinesSection items={newsItems} isLoading={isNewsLoading} onRefresh={() => void refetchNews()} />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: brandColors.cream },
-  container: { flex: 1, padding: spacingScale.xl, gap: spacingScale.lg },
+  safeArea: { flex: 1, backgroundColor: brandColors.creamLight },
+  container: { flexGrow: 1, padding: spacingScale.xl, gap: spacingScale.lg },
   hero: { color: brandColors.navy },
   body: { color: 'rgba(16,24,40,0.85)' },
-  card: { gap: spacingScale.sm },
-  cardTitle: { color: brandColors.navy },
-  cardBody: { color: 'rgba(16,24,40,0.8)' },
-  cardButton: { marginTop: spacingScale.sm },
-  buttonLabel: { color: brandColors.navy },
+  section: { gap: spacingScale.sm },
+  sectionTitle: { color: brandColors.navy },
+  sectionSummary: { color: 'rgba(16,24,40,0.7)' },
 });
