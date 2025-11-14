@@ -9,12 +9,18 @@ import { CommandMenuLazy } from '@/components/CommandMenuLazy';
 import Footer from '@/components/Footer';
 import { SessionProvider } from '@/components/auth/SessionProvider';
 import { UserMenu } from '@/components/auth/UserMenu';
+import type { ReactNode } from 'react';
+
+type LayoutProps = {
+  children: ReactNode;
+  params: Promise<{ locale: string }>;
+};
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export default async function LocaleLayout({ children, params }: LayoutProps<'/[locale]'>) {
+export default async function LocaleLayout({ children, params }: LayoutProps) {
   const { locale } = await params;
   // Validate locale
   if (!locales.includes(locale as (typeof locales)[number])) {

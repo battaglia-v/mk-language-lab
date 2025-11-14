@@ -61,7 +61,9 @@ export async function GET() {
   }
 }
 
-type ModuleWithLessons = Awaited<ReturnType<typeof prisma.module.findMany>>[number];
+type ModuleWithLessons = Awaited<ReturnType<typeof prisma.module.findMany<{
+  include: { lessons: true };
+}>>>[number];
 
 type WordRecord = Awaited<ReturnType<typeof prisma.wordOfTheDay.findMany>>[number];
 
@@ -78,7 +80,7 @@ function buildCategories(modules: ModuleWithLessons[]): DiscoverFeed['categories
   for (const [journeyId, moduleList] of grouped.entries()) {
     const cards = moduleList
       .flatMap((module) =>
-        (module.lessons ?? []).map((lesson, index) => ({
+        (module.lessons ?? []).map((lesson: any, index: number) => ({
           id: lesson.id,
           title: lesson.title,
           summary: lesson.summary ?? module.description ?? '',
@@ -86,7 +88,7 @@ function buildCategories(modules: ModuleWithLessons[]): DiscoverFeed['categories
           cta: lesson.audioUrl ? 'Play audio lesson' : lesson.videoUrl ? 'Watch walkthrough' : 'Start lesson',
           accent: CARD_ACCENTS[index % CARD_ACCENTS.length],
           tag: module.title,
-          ctaTarget: 'practice',
+          ctaTarget: 'practice' as const,
           ctaUrl: '/practice',
         }))
       )
