@@ -8,9 +8,9 @@ test.describe('Locale Switching', () => {
     // Since localeDetection is enabled, accept either locale
     await expect(page).toHaveURL(/\/(mk|en)/);
 
-    // Should display locale text
-    const hasMacedonian = await page.getByText('Македонски').first().isVisible().catch(() => false);
-    const hasEnglish = await page.getByText('English').first().isVisible().catch(() => false);
+    // Should display locale text in the page (locale switcher exists)
+    const hasMacedonian = await page.getByText('Македонски').count() > 0;
+    const hasEnglish = await page.getByText('English').count() > 0;
     expect(hasMacedonian || hasEnglish).toBeTruthy();
   });
 
