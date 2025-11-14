@@ -4,5 +4,11 @@
     "autoJobCancelation": true
   },
   "buildCommand": "npm run build",
-  "installCommand": "npm ci"
+  "installCommand": "npm ci",
+  "crons": [
+    {
+      "path": "/api/cron/reminders",
+      "schedule": "10 * * * *"
+    }
+  ]
 }
