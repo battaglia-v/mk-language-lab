@@ -1,4 +1,8 @@
 {
+  "brand": {
+    "full": "Македонски • MK Language Lab",
+    "short": "Македонски"
+  },
   "nav": {
     "label": "Главна навигација",
     "home": "Почетна",
@@ -12,7 +16,24 @@
     "news": "Вести",
     "collapse": "Собери",
     "expand": "Прошири странично мени",
-    "toggleSettings": "Поставки"
+    "toggleSettings": "Поставки",
+    "openMenu": "Отвори мени",
+    "closeMenu": "Затвори мени",
+    "streakLabel": "Серија",
+    "streakValue": "{count, plural, one {# ден} other {# дена}}",
+    "xpLabel": "Дневни XP",
+    "xpValue": "{earned}/{goal} XP",
+    "heartsLabel": "Животи",
+    "heartsValue": "{current}/{total} животи",
+    "summaryLoading": "Се синхронизира напредокот…",
+    "summaryError": "Не може да се вчита статусот на мисијата.",
+    "retry": "Обиди се повторно",
+    "continueButtonLabel": "Продолжи ја мисијата",
+    "continueButtonSubtitle": "{earned}/{goal} XP денес",
+    "continueButtonFallback": "Продолжи со брзата практика",
+    "continueButtonLoading": "Се вчитува мисијата…",
+    "quickActionPractice": "Продолжи со вежбање",
+    "quickActionTranslate": "Отвори преведувач"
   },
   "home": {
     "learn": "Учи",
@@ -569,6 +590,8 @@
   "translate": {
     "title": "Преведи",
     "subtitle": "Преведувај помеѓу македонски и англиски.",
+    "workspaceTab": "Работна површина",
+    "historyTab": "Историја и совети",
     "badge": "Алатка за преведување",
     "assistantTitle": "Преведувач",
     "assistantDescription": "Преведувај помеѓу македонски и англиски.",
@@ -585,9 +608,14 @@
     "shortcutHint": "Притисни Ctrl+Enter (Windows) или Cmd+Enter (Mac) за преведување.",
     "swapDirections": "Смени јазици",
     "characterCount": "Знаци: {count}/{limit}",
+    "directionStatLabel": "Насока",
+    "charactersStatLabel": "Знаци",
+    "shortcutStatLabel": "Кратенка",
     "translateButton": "Преведи",
     "clearButton": "Исчисти",
     "resultLabel": "Превод",
+    "resultEmptyTitle": "Тука ќе се појави преводот",
+    "resultEmptyDescription": "Започни со пишување лево и притисни „Преведи“ за да ја видиш македонската или англиската верзија.",
     "resultPlaceholder": "Тука ќе се прикаже преводот.",
     "copyButton": "Копирај",
     "copied": "Копирано!",
@@ -600,6 +628,7 @@
       "en": "Англиски"
     },
     "historyTitle": "Последни преводи",
+    "historySubtitle": "Вчитај скорешен превод или разгледај ги панелите со совети.",
     "historyEmpty": "Тука ќе се појават твоите најнови преводи.",
     "historyLoad": "Вчитај",
     "historyViewAll": "Прикажи ги сите",
@@ -930,6 +959,7 @@
     "badge": "Курирано од Андри · МЈК",
     "search": "Пребарај ресурси...",
     "viewPdf": "Погледни PDF",
+    "openResource": "Отвори ресурс",
     "showAll": "Сите колекции",
     "searchInDoc": "Пребарај во документот",
     "resultsSummary": "{count} резултати • {total} вкупно ресурси",
@@ -997,6 +1027,8 @@
     "edit": "Уреди",
     "search": "Пребарај",
     "language": "Јазик",
+    "goHome": "Назад кон почетна",
+    "tryAgain": "Обиди се повторно",
     "skipToContent": "Прескокни до главната содржина",
     "commandMenu": {
       "trigger": "Брзо пребарување",
@@ -1030,7 +1062,11 @@
     "allLinks": "Сите Линкови",
     "privacy": "Приватност",
     "terms": "Услови",
-    "contact": "Контакт"
+    "contact": "Контакт",
+    "tagline": "Учи македонски со интелигентни лекции, преведувачки алатки и дневни мисии.",
+    "product": "Производ",
+    "support": "Поддршка",
+    "allRightsReserved": "Сите права се задржани."
   },
   "userMenu": {
     "signIn": "Најави се",
@@ -1193,7 +1229,7 @@
       "content": "If you have any questions about this Privacy Policy or wish to exercise your data rights, please contact us at:"
     },
     "viewTerms": "View Terms of Service",
-    "backHome": "Back to Home"
+    "backHome": "Назад кон почетна"
   },
   "terms": {
     "badge": "Legal Terms",
@@ -1285,6 +1321,24 @@
       "content": "If you have questions about these Terms of Service or need support, please contact us at:"
     },
     "viewPrivacy": "View Privacy Policy",
-    "backHome": "Back to Home"
+    "backHome": "Назад кон почетна"
+  },
+  "footer": {
+    "tagline": "Ежедневна македонска практика создадена со љубов.",
+    "contentBy": "Содржина од",
+    "macedonianLanguageCorner": "Macedonian Language Corner",
+    "product": "Производ",
+    "support": "Поддршка",
+    "instagram": "Инстаграм",
+    "youtube": "Јутјуб",
+    "allLinks": "Види ги сите врски",
+    "privacy": "Приватност",
+    "terms": "Услови",
+    "contact": "Контакт",
+    "createdWith": "Создадено со",
+    "and": "и",
+    "vini": "Винсент Баталија",
+    "andri": "Андријана",
+    "allRightsReserved": "Сите права се задржани."
   }
 }

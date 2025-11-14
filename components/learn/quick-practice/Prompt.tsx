@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
+import { Sparkles } from 'lucide-react';
 
 type QuickPracticePromptProps = {
   label: string;
@@ -26,26 +27,30 @@ export function QuickPracticePrompt({
   return (
     <div
       className={cn(
-        'relative space-y-2 rounded-2xl bg-[color:var(--surface-elevated)] p-4 md:p-6 md:rounded-3xl shadow-lg border border-border/60',
-        isInputFocused && 'sticky top-0 z-20 shadow-xl md:shadow-lg md:static p-3 md:p-6',
-        'transition-all duration-200 hover:shadow-xl'
+        'relative space-y-3 rounded-3xl border border-border/50 bg-gradient-to-br from-background/85 via-card/80 to-muted/70 p-4 shadow-lg transition-all duration-200 md:p-6',
+        isInputFocused && 'sticky top-0 z-20 shadow-xl md:shadow-lg md:static',
       )}
     >
-      <p className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{label}</p>
+      <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+        <span className="inline-flex items-center gap-1">
+          <Sparkles className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+          {label}
+        </span>
+        <Badge
+          variant="secondary"
+          className="border-none bg-background/70 text-[11px] font-semibold text-foreground"
+        >
+          {categoryLabel}
+        </Badge>
+      </div>
       <p
         className={cn(
-          'break-words font-bold text-slate-900 dark:text-white leading-tight',
-          isModalVariant ? 'text-4xl' : isInputFocused ? 'text-xl' : 'text-2xl md:text-3xl'
+          'break-words font-bold leading-tight text-slate-900 dark:text-white',
+          isModalVariant ? 'text-4xl' : isInputFocused ? 'text-xl' : 'text-2xl md:text-3xl',
         )}
       >
         {content}
       </p>
-      <Badge
-        variant="secondary"
-        className={cn('mt-2 w-fit text-xs font-semibold bg-surface-frosted text-brand-secondary border-none', isInputFocused && 'mt-1')}
-      >
-        {categoryLabel}
-      </Badge>
       {isClozeMode && clozeTranslation ? (
         <p className="text-sm text-muted-foreground">
           <span className="font-semibold">{clozeTranslationLabel}:</span> {clozeTranslation}

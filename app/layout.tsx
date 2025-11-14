@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SentryInit } from "@/components/SentryInit";
 import { Analytics } from "@vercel/analytics/react";
-import { brandColors } from "@mk/tokens";
+import { brandColors, brandNames } from "@mk/tokens";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,9 +28,7 @@ export const viewport: Viewport = {
 };
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mk-language-lab.vercel.app';
-const brandNamePrimary = 'Македонски';
-const brandNameSecondary = 'MK Language Lab';
-const brandCombined = `${brandNamePrimary} • ${brandNameSecondary}`;
+const brandCombined = brandNames.full;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

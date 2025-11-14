@@ -1,0 +1,652 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - link "Почетна" [ref=e4] [cursor=pointer]:
+      - /url: /mk
+      - img "Ajvar Logo" [ref=e6]
+    - navigation "Главна навигација" [ref=e16]:
+      - link "Вежбање" [ref=e17] [cursor=pointer]:
+        - /url: /mk/practice
+        - img [ref=e18]
+        - generic: Вежбање
+      - link "Преведи" [ref=e23] [cursor=pointer]:
+        - /url: /mk/translate
+        - img [ref=e24]
+        - generic: Преведи
+      - link "Вести" [ref=e28] [cursor=pointer]:
+        - /url: /mk/news
+        - img [ref=e30]
+        - generic: Вести
+      - link "Ресурси" [ref=e33] [cursor=pointer]:
+        - /url: /mk/resources
+        - img [ref=e34]
+        - generic: Ресурси
+    - button "Прошири странично мени" [disabled] [ref=e37]:
+      - img [ref=e38]
+  - generic [ref=e40]:
+    - link "Прескокни до главната содржина" [ref=e41] [cursor=pointer]:
+      - /url: "#main-content"
+    - navigation "Главна навигација" [ref=e42]:
+      - generic [ref=e43]:
+        - generic [ref=e44]:
+          - generic [ref=e45]:
+            - link "Почетна" [ref=e46] [cursor=pointer]:
+              - /url: /mk
+              - img "Ajvar Logo" [ref=e47]
+              - generic [ref=e57]:
+                - generic [ref=e58]: Македонски
+                - generic [ref=e59]: Macedonian Missions
+            - generic [ref=e60]:
+              - link "Почетна" [ref=e61] [cursor=pointer]:
+                - /url: /mk
+              - link "Вежбање" [ref=e62] [cursor=pointer]:
+                - /url: /mk/practice
+              - link "Преведи" [ref=e63] [cursor=pointer]:
+                - /url: /mk/translate
+              - link "Вести" [ref=e64] [cursor=pointer]:
+                - /url: /mk/news
+              - link "Ресурси" [ref=e65] [cursor=pointer]:
+                - /url: /mk/resources
+          - generic [ref=e66]:
+            - button "Брзо пребарување" [ref=e67]:
+              - generic [ref=e68]:
+                - img
+                - generic [ref=e69]: Брзо пребарување
+            - button "Јазик" [ref=e70]:
+              - img
+              - generic [ref=e71]: Македонски
+            - button "Најави се" [ref=e72]:
+              - img
+              - text: Најави се
+        - generic [ref=e73]:
+          - generic [ref=e74]:
+            - img [ref=e75]
+            - generic [ref=e77]: Using cached mission data. Retry to refresh.
+          - button "Обиди се повторно" [ref=e78]
+    - main [ref=e79]:
+      - generic [ref=e81]:
+        - generic [ref=e83]:
+          - generic [ref=e84]:
+            - generic [ref=e85]:
+              - img [ref=e86]
+              - text: Новости
+            - heading "Следи македонски наслови и пронајди видео клипови за вежбање на слушање." [level=1] [ref=e89]
+            - paragraph [ref=e90]: Извори · 30/72
+          - generic [ref=e92]:
+            - button "Сите" [pressed] [ref=e93]
+            - button "Time.mk" [ref=e94]
+            - button "Meta.mk" [ref=e95]
+            - button "Само видеа" [ref=e96]:
+              - img [ref=e97]
+              - text: Само видеа
+          - generic [ref=e100]:
+            - generic [ref=e101]:
+              - img [ref=e102]
+              - textbox "Барај наслови или клучни зборови..." [ref=e105]
+            - generic [ref=e106]:
+              - generic [ref=e107]:
+                - img [ref=e108]
+                - text: Последно ажурирање 09:46 AM
+              - button "Освежи" [ref=e111]:
+                - img
+                - text: Освежи
+        - generic [ref=e112]:
+          - link "Time.mk По првпат во земјава се извршени трансплантации на рожница | 360 степени Две интервенции се направени со методата ДМЕК – најдовремена техника со која се трансплантира само еден микронски слој на рожницата, што првпат се изведе во нашата земја. Останатите седум се пенератрантни кератопластики (ПРК), што се направија ... Македонија 3 minutes ago Отвори статија" [ref=e113] [cursor=pointer]:
+            - /url: https://time.mk/c/c6a6bc2a33/po-prvpat-vo-zemjava-se-izvrseni-transplantacii-na-roznica.html
+            - generic [ref=e114]:
+              - generic [ref=e118]: Time.mk
+              - generic [ref=e119]:
+                - generic [ref=e120]: По првпат во земјава се извршени трансплантации на рожница | 360 степени
+                - generic [ref=e121]: Две интервенции се направени со методата ДМЕК – најдовремена техника со која се трансплантира само еден микронски слој на рожницата, што првпат се изведе во нашата земја. Останатите седум се пенератрантни кератопластики (ПРК), што се направија ...
+              - generic [ref=e122]:
+                - generic [ref=e124]: Македонија
+                - generic [ref=e125]:
+                  - generic [ref=e126]:
+                    - img [ref=e127]
+                    - text: 3 minutes ago
+                  - generic [ref=e130]:
+                    - text: Отвори статија
+                    - img [ref=e131]
+          - 'link "Time.mk „Би имала секс со Саша Ковачевиќ, да не ја познавав жена му“: Уште двајца познати мажи се најдоа на списокот на Беквалац | Убавина и Здравје Пејачката Наташа Беквалац призна дека би имала интимни односи со својот колега Саша Ковачевиќ, а потоа на листата ги додаде Нучи и кошаркарот Богдан Богдановиќ. Наташа учествуваше во играта „Секс, брак или оган“ во која требаше да избере што од ... Сцена 7 minutes ago Отвори статија" [ref=e135] [cursor=pointer]':
+            - /url: https://time.mk/c/12f4f86f59/bi-imala-seks-so-sasa-kovacevik-da-ne-ja-poznavav-zena-mu-uste-dvajca-poznati-mazi-se-najdoa-na-spisokot-na-bekvalac.html
+            - generic [ref=e136]:
+              - generic [ref=e140]: Time.mk
+              - generic [ref=e141]:
+                - generic [ref=e142]: "„Би имала секс со Саша Ковачевиќ, да не ја познавав жена му“: Уште двајца познати мажи се најдоа на списокот на Беквалац | Убавина и Здравје"
+                - generic [ref=e143]: Пејачката Наташа Беквалац призна дека би имала интимни односи со својот колега Саша Ковачевиќ, а потоа на листата ги додаде Нучи и кошаркарот Богдан Богдановиќ. Наташа учествуваше во играта „Секс, брак или оган“ во која требаше да избере што од ...
+              - generic [ref=e144]:
+                - generic [ref=e146]: Сцена
+                - generic [ref=e147]:
+                  - generic [ref=e148]:
+                    - img [ref=e149]
+                    - text: 7 minutes ago
+                  - generic [ref=e152]:
+                    - text: Отвори статија
+                    - img [ref=e153]
+          - link "Time.mk ЕУ покренува истрага против Google поради наводно неправедно рангирање на медиумските содржини во пребарувањето | Конект Европската унија покрена нова антимонополска истрага против Google, сомневајќи се дека американскиот технолошки гигант неправедно ги спушта ранговите на медиумските издавачи во резултатите од пребарувањето. Наука / Технологија 25 minutes ago Отвори статија" [ref=e157] [cursor=pointer]:
+            - /url: https://time.mk/c/62dc1a57f0/eu-pokrenuva-istraga-protiv-google-poradi-navodno-nepravedno-rangiranje-na-mediumskite-sodrzini-vo-prebaruvanjeto.html
+            - generic [ref=e158]:
+              - generic [ref=e162]: Time.mk
+              - generic [ref=e163]:
+                - generic [ref=e164]: ЕУ покренува истрага против Google поради наводно неправедно рангирање на медиумските содржини во пребарувањето | Конект
+                - generic [ref=e165]: Европската унија покрена нова антимонополска истрага против Google, сомневајќи се дека американскиот технолошки гигант неправедно ги спушта ранговите на медиумските издавачи во резултатите од пребарувањето.
+              - generic [ref=e166]:
+                - generic [ref=e168]: Наука / Технологија
+                - generic [ref=e169]:
+                  - generic [ref=e170]:
+                    - img [ref=e171]
+                    - text: 25 minutes ago
+                  - generic [ref=e174]:
+                    - text: Отвори статија
+                    - img [ref=e175]
+          - 'link "Time.mk Мицкоски: Јас сум за финансиска независност на правосудството, но да има одговорност за секој денар, а на крајот и „петка“ од Брисел | 360 степени Одговарајќи на новинарското прашање за писмото што двете највисоки тела на судската власт во државата и Здружението на судии денеска го упатија до него, рече дека остава на граѓаните да кажат дали се задоволни од испораката на правдата во Македонија ... Топ теми на денот 35 minutes ago Отвори статија" [ref=e179] [cursor=pointer]':
+            - /url: https://time.mk/c/edc7c59a93/mickoski-jas-sum-za-finansiska-nezavisnost-na-pravosudstvoto-no-da-ima-odgovornost-za-sekoj-denar-a-na-krajot-i-petka-od-brisel.html
+            - generic [ref=e180]:
+              - generic [ref=e184]: Time.mk
+              - generic [ref=e185]:
+                - generic [ref=e186]: "Мицкоски: Јас сум за финансиска независност на правосудството, но да има одговорност за секој денар, а на крајот и „петка“ од Брисел | 360 степени"
+                - generic [ref=e187]: Одговарајќи на новинарското прашање за писмото што двете највисоки тела на судската власт во државата и Здружението на судии денеска го упатија до него, рече дека остава на граѓаните да кажат дали се задоволни од испораката на правдата во Македонија ...
+              - generic [ref=e188]:
+                - generic [ref=e190]: Топ теми на денот
+                - generic [ref=e191]:
+                  - generic [ref=e192]:
+                    - img [ref=e193]
+                    - text: 35 minutes ago
+                  - generic [ref=e196]:
+                    - text: Отвори статија
+                    - img [ref=e197]
+          - link "Time.mk „Варвари“ на Милчин – критика на општеството без совест и морал; Праизведба на драмата на Максим Горки во МНТ | Вечер Прес Во Македонскиот народен театар, синоќа, првпат на македонската сцена беше изведена претставата „Варвари“, според драмата на рускиот писател Максим Горки, а во режија на Владимир Милчин. Дејството во драмата на Горки (напишана 1906) се случува во ... Култура 47 minutes ago Отвори статија" [ref=e201] [cursor=pointer]:
+            - /url: https://time.mk/c/71689e015c/varvari-na-milcin-kritika-na-opstestvoto-bez-sovest-i-moral-praizvedba-na-dramata-na-maksim-gorki-vo-mnt.html
+            - generic [ref=e202]:
+              - generic [ref=e206]: Time.mk
+              - generic [ref=e207]:
+                - generic [ref=e208]: „Варвари“ на Милчин – критика на општеството без совест и морал; Праизведба на драмата на Максим Горки во МНТ | Вечер Прес
+                - generic [ref=e209]: Во Македонскиот народен театар, синоќа, првпат на македонската сцена беше изведена претставата „Варвари“, според драмата на рускиот писател Максим Горки, а во режија на Владимир Милчин. Дејството во драмата на Горки (напишана 1906) се случува во ...
+              - generic [ref=e210]:
+                - generic [ref=e212]: Култура
+                - generic [ref=e213]:
+                  - generic [ref=e214]:
+                    - img [ref=e215]
+                    - text: 47 minutes ago
+                  - generic [ref=e218]:
+                    - text: Отвори статија
+                    - img [ref=e219]
+          - link "Time.mk Кинеската криптокралица опљачка 120.000 пензионери, сакаше да отвори банка, да купи замок, да стане кралица на Либерленд, а доби затворска ќелија | Вечер Прес Живот / Уметност 47 minutes ago Отвори статија" [ref=e223] [cursor=pointer]:
+            - /url: https://time.mk/c/bcea435113/kineskata-kriptokralica-opljacka-120-000-penzioneri-sakase-da-otvori-banka-da-kupi-zamok-da-stane-kralica-na-liberlend-a-dobi-zatvorska-kelija.html
+            - generic [ref=e224]:
+              - generic [ref=e228]: Time.mk
+              - generic [ref=e230]: Кинеската криптокралица опљачка 120.000 пензионери, сакаше да отвори банка, да купи замок, да стане кралица на Либерленд, а доби затворска ќелија | Вечер Прес
+              - generic [ref=e231]:
+                - generic [ref=e233]: Живот / Уметност
+                - generic [ref=e234]:
+                  - generic [ref=e235]:
+                    - img [ref=e236]
+                    - text: 47 minutes ago
+                  - generic [ref=e239]:
+                    - text: Отвори статија
+                    - img [ref=e240]
+          - link "Time.mk Свечена Академија по повод вековниот јубилеј на ПК Љуботен и првото документарно филмско сведоштво | Рацин Под слоганот „100 години вредности за 100 години иднина“ на 15 ноември 2025 година, во Домот на култура „Иљо Антески – Смок“ во Тетово, ќе се одржи Свечената академија по повод 100 години од основањето на Планинарскиот клуб „Љуботен“.Настанот ... Култура 49 minutes ago Отвори статија" [ref=e244] [cursor=pointer]:
+            - /url: https://time.mk/c/47b26c872d/svecena-akademija-po-povod-vekovniot-jubilej-na-pk-ljuboten-i-prvoto-dokumentarno-filmsko-svedostvo.html
+            - generic [ref=e245]:
+              - generic [ref=e249]: Time.mk
+              - generic [ref=e250]:
+                - generic [ref=e251]: Свечена Академија по повод вековниот јубилеј на ПК Љуботен и првото документарно филмско сведоштво | Рацин
+                - generic [ref=e252]: Под слоганот „100 години вредности за 100 години иднина“ на 15 ноември 2025 година, во Домот на култура „Иљо Антески – Смок“ во Тетово, ќе се одржи Свечената академија по повод 100 години од основањето на Планинарскиот клуб „Љуботен“.Настанот ...
+              - generic [ref=e253]:
+                - generic [ref=e255]: Култура
+                - generic [ref=e256]:
+                  - generic [ref=e257]:
+                    - img [ref=e258]
+                    - text: 49 minutes ago
+                  - generic [ref=e261]:
+                    - text: Отвори статија
+                    - img [ref=e262]
+          - link "Time.mk Почна собраниската расправа за Буџетот – Обвинителството и Народниот правобранител побараа повеќе пари за да функционираат | ТВ21 Обвинителството и Омбудсманот бараат повеќе пари во буџетот за 2026-та. Според нив, наредната година овие две институции нема да може нормално да си ја извршуваат својата дејност, поради немање пари. Економија 51 minutes ago Отвори статија" [ref=e266] [cursor=pointer]:
+            - /url: https://time.mk/c/7786e585ef/pocna-sobraniskata-rasprava-za-budzetot-obvinitelstvoto-i-narodniot-pravobranitel-pobaraa-poveke-pari-za-da-funkcioniraat.html
+            - generic [ref=e267]:
+              - generic [ref=e271]: Time.mk
+              - generic [ref=e272]:
+                - generic [ref=e273]: Почна собраниската расправа за Буџетот – Обвинителството и Народниот правобранител побараа повеќе пари за да функционираат | ТВ21
+                - generic [ref=e274]: Обвинителството и Омбудсманот бараат повеќе пари во буџетот за 2026-та. Според нив, наредната година овие две институции нема да може нормално да си ја извршуваат својата дејност, поради немање пари.
+              - generic [ref=e275]:
+                - generic [ref=e277]: Економија
+                - generic [ref=e278]:
+                  - generic [ref=e279]:
+                    - img [ref=e280]
+                    - text: 51 minutes ago
+                  - generic [ref=e283]:
+                    - text: Отвори статија
+                    - img [ref=e284]
+          - link "Time.mk ЕУ размислува да ја преземе обуката на 3.000 палестински полицајци од Газа | Трн Министрите за надворешни работи на Европската унија следната недела ќе разговараат за предлогот блокот да ја преземе водечката улога во обуката на 3.000 палестински полицајци за подоцнежно распоредување во Газа, објави Ројтерс, повикувајќи се на ... Свет 53 minutes ago Отвори статија" [ref=e288] [cursor=pointer]:
+            - /url: https://time.mk/c/0fa2d2821b/eu-razmisluva-da-ja-prezeme-obukata-na-3-000-palestinski-policajci-od-gaza.html
+            - generic [ref=e289]:
+              - generic [ref=e293]: Time.mk
+              - generic [ref=e294]:
+                - generic [ref=e295]: ЕУ размислува да ја преземе обуката на 3.000 палестински полицајци од Газа | Трн
+                - generic [ref=e296]: Министрите за надворешни работи на Европската унија следната недела ќе разговараат за предлогот блокот да ја преземе водечката улога во обуката на 3.000 палестински полицајци за подоцнежно распоредување во Газа, објави Ројтерс, повикувајќи се на ...
+              - generic [ref=e297]:
+                - generic [ref=e299]: Свет
+                - generic [ref=e300]:
+                  - generic [ref=e301]:
+                    - img [ref=e302]
+                    - text: 53 minutes ago
+                  - generic [ref=e305]:
+                    - text: Отвори статија
+                    - img [ref=e306]
+          - link "Meta.mk Американски и македонски офталмолози извршија девет трансплантации на рожница Pартнерството со Duke University, нивната донација на ткива и директната соработка во оперативните сали, создале силен темел за натамошен развој на програмата, рече доц. д-р Наташа Трпевска Шекеринов Македонија Подглавна секција Duke University 54 minutes ago Отвори статија" [ref=e310] [cursor=pointer]:
+            - /url: https://meta.mk/amerikanski-i-makedonski-oftalmolozi-izvrshija-devet-transplantacii-na-rozhnica/
+            - generic [ref=e311]:
+              - generic [ref=e315]: Meta.mk
+              - generic [ref=e316]:
+                - generic [ref=e317]: Американски и македонски офталмолози извршија девет трансплантации на рожница
+                - generic [ref=e318]: Pартнерството со Duke University, нивната донација на ткива и директната соработка во оперативните сали, создале силен темел за натамошен развој на програмата, рече доц. д-р Наташа Трпевска Шекеринов
+              - generic [ref=e319]:
+                - generic [ref=e320]:
+                  - generic [ref=e321]: Македонија
+                  - generic [ref=e322]: Подглавна секција
+                  - generic [ref=e323]: Duke University
+                - generic [ref=e324]:
+                  - generic [ref=e325]:
+                    - img [ref=e326]
+                    - text: 54 minutes ago
+                  - generic [ref=e329]:
+                    - text: Отвори статија
+                    - img [ref=e330]
+          - link "Time.mk Десет пациенти жртви на бизнис операции – се отворале срца за профит! | Вечер Прес Потврден скандалот со непотребните кардиолошки интервенции, министерот не откри каде се правени Кај 10 од вкупно 19 случаи било откриено дека пациентите непотребно се оперирале или биле праќани на кардиолошки интервенции во државните и во приватните ... Топ теми на денот 57 minutes ago Отвори статија" [ref=e334] [cursor=pointer]:
+            - /url: https://time.mk/c/63bfb286ea/deset-pacienti-zrtvi-na-biznis-operacii-se-otvorale-srca-za-profit.html
+            - generic [ref=e335]:
+              - generic [ref=e339]: Time.mk
+              - generic [ref=e340]:
+                - generic [ref=e341]: Десет пациенти жртви на бизнис операции – се отворале срца за профит! | Вечер Прес
+                - generic [ref=e342]: Потврден скандалот со непотребните кардиолошки интервенции, министерот не откри каде се правени Кај 10 од вкупно 19 случаи било откриено дека пациентите непотребно се оперирале или биле праќани на кардиолошки интервенции во државните и во приватните ...
+              - generic [ref=e343]:
+                - generic [ref=e345]: Топ теми на денот
+                - generic [ref=e346]:
+                  - generic [ref=e347]:
+                    - img [ref=e348]
+                    - text: 57 minutes ago
+                  - generic [ref=e351]:
+                    - text: Отвори статија
+                    - img [ref=e352]
+          - link "Meta.mk Советот на Скопје го усвои ребалансот на буџетот, пари ќе има за субвенции, за паркови и за новогодишно китење Со ребалансот ќе се обезбедат субвенции за јавните претпријатија „Паркови и зеленило“ и „Дрисла“, како и средства за продолжување или за забрзување на некои проекти Главна секција буџет град скопје 57 minutes ago Отвори статија" [ref=e356] [cursor=pointer]:
+            - /url: https://meta.mk/sovetot-na-skopje-go-usvoi-rebalansot-na-budjetot-pari-kje-ima-za-subvencii-za-parkovi-i-za-novogodishno-kitenje/
+            - generic [ref=e357]:
+              - generic [ref=e361]: Meta.mk
+              - generic [ref=e362]:
+                - generic [ref=e363]: Советот на Скопје го усвои ребалансот на буџетот, пари ќе има за субвенции, за паркови и за новогодишно китење
+                - generic [ref=e364]: Со ребалансот ќе се обезбедат субвенции за јавните претпријатија „Паркови и зеленило“ и „Дрисла“, како и средства за продолжување или за забрзување на некои проекти
+              - generic [ref=e365]:
+                - generic [ref=e366]:
+                  - generic [ref=e367]: Главна секција
+                  - generic [ref=e368]: буџет
+                  - generic [ref=e369]: град скопје
+                - generic [ref=e370]:
+                  - generic [ref=e371]:
+                    - img [ref=e372]
+                    - text: 57 minutes ago
+                  - generic [ref=e375]:
+                    - text: Отвори статија
+                    - img [ref=e376]
+          - link "Time.mk Градот во долгови до гуша – јавните претпријатија уште повеќе! | Вечер Прес Топ теми на денот 59 minutes ago Отвори статија" [ref=e380] [cursor=pointer]:
+            - /url: https://time.mk/c/0dcb4a23e2/gradot-vo-dolgovi-do-gusa-javnite-pretprijatija-uste-poveke.html
+            - generic [ref=e381]:
+              - generic [ref=e382]:
+                - img [ref=e384]
+                - generic [ref=e388]: Time.mk
+              - generic [ref=e390]: Градот во долгови до гуша – јавните претпријатија уште повеќе! | Вечер Прес
+              - generic [ref=e391]:
+                - generic [ref=e393]: Топ теми на денот
+                - generic [ref=e394]:
+                  - generic [ref=e395]:
+                    - img [ref=e396]
+                    - text: 59 minutes ago
+                  - generic [ref=e399]:
+                    - text: Отвори статија
+                    - img [ref=e400]
+          - link "Time.mk ИВАНА ЃОРЃИЕВСКА ОД „ЗНАМ“ ПАК Е ПРЕТСЕДАТЕЛКА НА СОВЕТОТ НА ОПШТИНА КУМАНОВО | Сакам да кажам Република 59 minutes ago Отвори статија" [ref=e404] [cursor=pointer]:
+            - /url: https://time.mk/c/6b37ab836f/ivana-gjorgjievska-od-znam-pak-e-pretsedatelka-na-sovetot-na-opstina-kumanovo.html
+            - generic [ref=e405]:
+              - generic [ref=e406]:
+                - img [ref=e408]
+                - generic [ref=e412]: Time.mk
+              - generic [ref=e414]: ИВАНА ЃОРЃИЕВСКА ОД „ЗНАМ“ ПАК Е ПРЕТСЕДАТЕЛКА НА СОВЕТОТ НА ОПШТИНА КУМАНОВО | Сакам да кажам
+              - generic [ref=e415]:
+                - generic [ref=e417]: Република
+                - generic [ref=e418]:
+                  - generic [ref=e419]:
+                    - img [ref=e420]
+                    - text: 59 minutes ago
+                  - generic [ref=e423]:
+                    - text: Отвори статија
+                    - img [ref=e424]
+          - link "Time.mk Ова е новиот Volkswagen што воопшто не личи на Volkswagen | 24auto Автомобили / Мотори 59 minutes ago Отвори статија" [ref=e428] [cursor=pointer]:
+            - /url: https://time.mk/c/5f6057cdc8/ova-e-noviot-volkswagen-sto-voopsto-ne-lici-na-volkswagen.html
+            - generic [ref=e429]:
+              - generic [ref=e430]:
+                - img [ref=e432]
+                - generic [ref=e436]: Time.mk
+              - generic [ref=e438]: Ова е новиот Volkswagen што воопшто не личи на Volkswagen | 24auto
+              - generic [ref=e439]:
+                - generic [ref=e441]: Автомобили / Мотори
+                - generic [ref=e442]:
+                  - generic [ref=e443]:
+                    - img [ref=e444]
+                    - text: 59 minutes ago
+                  - generic [ref=e447]:
+                    - text: Отвори статија
+                    - img [ref=e448]
+          - link "Time.mk Бројот на жртви од рускиот напад врз Киев се зголеми на шест, а 35 лица се повредени | ТВ21 Свет 1 hour ago Отвори статија" [ref=e452] [cursor=pointer]:
+            - /url: https://time.mk/c/316c49e443/brojot-na-zrtvi-od-ruskiot-napad-vrz-kiev-se-zgolemi-na-sest-a-35-lica-se-povredeni.html
+            - generic [ref=e453]:
+              - generic [ref=e454]:
+                - img [ref=e456]
+                - generic [ref=e460]: Time.mk
+              - generic [ref=e462]: Бројот на жртви од рускиот напад врз Киев се зголеми на шест, а 35 лица се повредени | ТВ21
+              - generic [ref=e463]:
+                - generic [ref=e465]: Свет
+                - generic [ref=e466]:
+                  - generic [ref=e467]:
+                    - img [ref=e468]
+                    - text: 1 hour ago
+                  - generic [ref=e471]:
+                    - text: Отвори статија
+                    - img [ref=e472]
+          - link "Meta.mk Донаторска вечер и кулинарска работилница за децата со дијабетес Вечерва во „Студио 70“ во Буњаковец, ќе се одржи донаторска вечер од 20 часот, а собраните пари ќе се искористат за креирање дигитална апликација за броење јаглехидрати наменета за лицата со дијабетес Македонија Подглавна секција деца 1 hour ago Отвори статија" [ref=e476] [cursor=pointer]:
+            - /url: https://meta.mk/donatorska-vecher-i-kulinarska-rabotilnica-za-decata-so-dijabetes/
+            - generic [ref=e477]:
+              - generic [ref=e481]: Meta.mk
+              - generic [ref=e482]:
+                - generic [ref=e483]: Донаторска вечер и кулинарска работилница за децата со дијабетес
+                - generic [ref=e484]: Вечерва во „Студио 70“ во Буњаковец, ќе се одржи донаторска вечер од 20 часот, а собраните пари ќе се искористат за креирање дигитална апликација за броење јаглехидрати наменета за лицата со дијабетес
+              - generic [ref=e485]:
+                - generic [ref=e486]:
+                  - generic [ref=e487]: Македонија
+                  - generic [ref=e488]: Подглавна секција
+                  - generic [ref=e489]: деца
+                - generic [ref=e490]:
+                  - generic [ref=e491]:
+                    - img [ref=e492]
+                    - text: 1 hour ago
+                  - generic [ref=e495]:
+                    - text: Отвори статија
+                    - img [ref=e496]
+          - link "Time.mk Автомобил се заби во група луѓе во Белград, има повредени/ВИДЕО | Вечер Прес Балкан 1 hour ago Отвори статија" [ref=e500] [cursor=pointer]:
+            - /url: https://time.mk/c/7b33241d41/avtomobil-se-zabi-vo-grupa-lugje-vo-belgrad-ima-povredeni-video.html
+            - generic [ref=e501]:
+              - generic [ref=e502]:
+                - img [ref=e504]
+                - generic [ref=e508]: Time.mk
+              - generic [ref=e510]: Автомобил се заби во група луѓе во Белград, има повредени/ВИДЕО | Вечер Прес
+              - generic [ref=e511]:
+                - generic [ref=e513]: Балкан
+                - generic [ref=e514]:
+                  - generic [ref=e515]:
+                    - img [ref=e516]
+                    - text: 1 hour ago
+                  - generic [ref=e519]:
+                    - text: Отвори статија
+                    - img [ref=e520]
+          - link "Time.mk Зошто ФИЗИЧКАТА АКТИВНОСТ е важна за лицата со ДИЈАБЕТ? | Д-р Митов Здравје 1 hour ago Отвори статија" [ref=e524] [cursor=pointer]:
+            - /url: https://time.mk/c/0e8fe050d5/zosto-fizickata-aktivnost-e-vazna-za-licata-so-dijabet.html
+            - generic [ref=e525]:
+              - generic [ref=e526]:
+                - img [ref=e528]
+                - generic [ref=e532]: Time.mk
+              - generic [ref=e534]: Зошто ФИЗИЧКАТА АКТИВНОСТ е важна за лицата со ДИЈАБЕТ? | Д-р Митов
+              - generic [ref=e535]:
+                - generic [ref=e537]: Здравје
+                - generic [ref=e538]:
+                  - generic [ref=e539]:
+                    - img [ref=e540]
+                    - text: 1 hour ago
+                  - generic [ref=e543]:
+                    - text: Отвори статија
+                    - img [ref=e544]
+          - link "Time.mk Маски од куркума за здрава и сјајна кожа | WebMind Убавина / Стил / Мода 1 hour ago Отвори статија" [ref=e548] [cursor=pointer]:
+            - /url: https://time.mk/c/44915369fa/maski-od-kurkuma-za-zdrava-i-sjajna-koza.html
+            - generic [ref=e549]:
+              - generic [ref=e550]:
+                - img [ref=e552]
+                - generic [ref=e556]: Time.mk
+              - generic [ref=e558]: Маски од куркума за здрава и сјајна кожа | WebMind
+              - generic [ref=e559]:
+                - generic [ref=e561]: Убавина / Стил / Мода
+                - generic [ref=e562]:
+                  - generic [ref=e563]:
+                    - img [ref=e564]
+                    - text: 1 hour ago
+                  - generic [ref=e567]:
+                    - text: Отвори статија
+                    - img [ref=e568]
+          - link "Meta.mk Денеска започнува фестивалот „Ехо на Балканот“ Настанот соединува млади музичари од шест земји - Македонија, Босна и Херцеговина, Србија, Косово, Албанија и Црна Гора и создава нови музички звуци кои црпaт инспирација од традиционалниот музички извор на Западен Балкан Македонија Подглавна секција Ехо на Балканот 1 hour ago Отвори статија" [ref=e572] [cursor=pointer]:
+            - /url: https://meta.mk/deneska-zapochnuva-festivalot-eho-na-balkanot/
+            - generic [ref=e573]:
+              - generic [ref=e577]: Meta.mk
+              - generic [ref=e578]:
+                - generic [ref=e579]: Денеска започнува фестивалот „Ехо на Балканот“
+                - generic [ref=e580]: Настанот соединува млади музичари од шест земји - Македонија, Босна и Херцеговина, Србија, Косово, Албанија и Црна Гора и создава нови музички звуци кои црпaт инспирација од традиционалниот музички извор на Западен Балкан
+              - generic [ref=e581]:
+                - generic [ref=e582]:
+                  - generic [ref=e583]: Македонија
+                  - generic [ref=e584]: Подглавна секција
+                  - generic [ref=e585]: Ехо на Балканот
+                - generic [ref=e586]:
+                  - generic [ref=e587]:
+                    - img [ref=e588]
+                    - text: 1 hour ago
+                  - generic [ref=e591]:
+                    - text: Отвори статија
+                    - img [ref=e592]
+          - link "Time.mk ЛЕВИЦА ГЛАСАШЕ ПРОТИВ НОВИ УЛИЦИ, БУЛЕВАРИ И ПАРКОВИ ВО СКОПЈЕ Партијата не го поддржа ребалансот на градскиот буџет, обвини ВМРО-ДПМНЕ | +инфо Скопје 1 hour ago Отвори статија" [ref=e596] [cursor=pointer]:
+            - /url: https://time.mk/c/34fe4242b4/levica-glasase-protiv-novi-ulici-bulevari-i-parkovi-vo-skopje-partijata-ne-go-poddrza-rebalansot-na-gradskiot-budzet-obvini-vmro-dpmne.html
+            - generic [ref=e597]:
+              - generic [ref=e598]:
+                - img [ref=e600]
+                - generic [ref=e604]: Time.mk
+              - generic [ref=e606]: ЛЕВИЦА ГЛАСАШЕ ПРОТИВ НОВИ УЛИЦИ, БУЛЕВАРИ И ПАРКОВИ ВО СКОПЈЕ Партијата не го поддржа ребалансот на градскиот буџет, обвини ВМРО-ДПМНЕ | +инфо
+              - generic [ref=e607]:
+                - generic [ref=e609]: Скопје
+                - generic [ref=e610]:
+                  - generic [ref=e611]:
+                    - img [ref=e612]
+                    - text: 1 hour ago
+                  - generic [ref=e615]:
+                    - text: Отвори статија
+                    - img [ref=e616]
+          - 'link "Time.mk ССМ: Работниците бараат минимална плата од 600 до 700 евра – Владата останува на законското усогласување во март | ТВ21 Економија 2 hours ago Отвори статија" [ref=e620] [cursor=pointer]':
+            - /url: https://time.mk/c/6934c9bf50/ssm-rabotnicite-baraat-minimalna-plata-od-600-do-700-evra-vladata-ostanuva-na-zakonskoto-usoglasuvanje-vo-mart.html
+            - generic [ref=e621]:
+              - generic [ref=e622]:
+                - img [ref=e624]
+                - generic [ref=e628]: Time.mk
+              - generic [ref=e630]: "ССМ: Работниците бараат минимална плата од 600 до 700 евра – Владата останува на законското усогласување во март | ТВ21"
+              - generic [ref=e631]:
+                - generic [ref=e633]: Економија
+                - generic [ref=e634]:
+                  - generic [ref=e635]:
+                    - img [ref=e636]
+                    - text: 2 hours ago
+                  - generic [ref=e639]:
+                    - text: Отвори статија
+                    - img [ref=e640]
+          - 'link "Time.mk Ново насилство помеѓу малолетнички: 15-годишна девојка во Скопје физички нападната од три малолетнички | еМагазин Црна Хроника 2 hours ago Отвори статија" [ref=e644] [cursor=pointer]':
+            - /url: https://time.mk/c/c37792eb9e/novo-nasilstvo-pomegju-maloletnicki-15-godisna-devojka-vo-skopje-fizicki-napadnata-od-tri-maloletnicki.html
+            - generic [ref=e645]:
+              - generic [ref=e646]:
+                - img [ref=e648]
+                - generic [ref=e652]: Time.mk
+              - generic [ref=e654]: "Ново насилство помеѓу малолетнички: 15-годишна девојка во Скопје физички нападната од три малолетнички | еМагазин"
+              - generic [ref=e655]:
+                - generic [ref=e657]: Црна Хроника
+                - generic [ref=e658]:
+                  - generic [ref=e659]:
+                    - img [ref=e660]
+                    - text: 2 hours ago
+                  - generic [ref=e663]:
+                    - text: Отвори статија
+                    - img [ref=e664]
+          - 'link "Time.mk Нови правила во ЕУ: Веќе не се доволни само вклучени предни светла! | Вечер Прес Автомобили / Мотори 2 hours ago Отвори статија" [ref=e668] [cursor=pointer]':
+            - /url: https://time.mk/c/19fa396cb6/novi-pravila-vo-eu-veke-ne-se-dovolni-samo-vkluceni-predni-svetla.html
+            - generic [ref=e669]:
+              - generic [ref=e670]:
+                - img [ref=e672]
+                - generic [ref=e676]: Time.mk
+              - generic [ref=e678]: "Нови правила во ЕУ: Веќе не се доволни само вклучени предни светла! | Вечер Прес"
+              - generic [ref=e679]:
+                - generic [ref=e681]: Автомобили / Мотори
+                - generic [ref=e682]:
+                  - generic [ref=e683]:
+                    - img [ref=e684]
+                    - text: 2 hours ago
+                  - generic [ref=e687]:
+                    - text: Отвори статија
+                    - img [ref=e688]
+          - link "Time.mk Промена во тимот на Македонија за дуелот со Грција | Спорт+ Кошарка 2 hours ago Отвори статија" [ref=e692] [cursor=pointer]:
+            - /url: https://time.mk/c/1cc98df2bd/promena-vo-timot-na-makedonija-za-duelot-so-grcija.html
+            - generic [ref=e693]:
+              - generic [ref=e694]:
+                - img [ref=e696]
+                - generic [ref=e700]: Time.mk
+              - generic [ref=e702]: Промена во тимот на Македонија за дуелот со Грција | Спорт+
+              - generic [ref=e703]:
+                - generic [ref=e705]: Кошарка
+                - generic [ref=e706]:
+                  - generic [ref=e707]:
+                    - img [ref=e708]
+                    - text: 2 hours ago
+                  - generic [ref=e711]:
+                    - text: Отвори статија
+                    - img [ref=e712]
+          - link "Time.mk Зошто некои луѓе имаат магнетна привлечност, додека други, еднакво убави, не го предизвикуваат истиот ефект? Дознајте! | Убавина и Здравје Интима 2 hours ago Отвори статија" [ref=e716] [cursor=pointer]:
+            - /url: https://time.mk/c/02e3c12172/zosto-nekoi-lugje-imaat-magnetna-privlecnost-dodeka-drugi-ednakvo-ubavi-ne-go-predizvikuvaat-istiot-efekt-doznajte.html
+            - generic [ref=e717]:
+              - generic [ref=e718]:
+                - img [ref=e720]
+                - generic [ref=e724]: Time.mk
+              - generic [ref=e726]: Зошто некои луѓе имаат магнетна привлечност, додека други, еднакво убави, не го предизвикуваат истиот ефект? Дознајте! | Убавина и Здравје
+              - generic [ref=e727]:
+                - generic [ref=e729]: Интима
+                - generic [ref=e730]:
+                  - generic [ref=e731]:
+                    - img [ref=e732]
+                    - text: 2 hours ago
+                  - generic [ref=e735]:
+                    - text: Отвори статија
+                    - img [ref=e736]
+          - 'link "Time.mk dm раззелени 4 училишни двора за 2 месеци како дел од конкурсот „Зелена иднина: од градинка до училиште“ | Црнобело Живот / Уметност 2 hours ago Отвори статија" [ref=e740] [cursor=pointer]':
+            - /url: https://time.mk/c/9890ec2c7e/dm-razzeleni-4-ucilisni-dvora-za-2-meseci-kako-del-od-konkursot-zelena-idnina-od-gradinka-do-uciliste.html
+            - generic [ref=e741]:
+              - generic [ref=e742]:
+                - img [ref=e744]
+                - generic [ref=e748]: Time.mk
+              - generic [ref=e750]: "dm раззелени 4 училишни двора за 2 месеци како дел од конкурсот „Зелена иднина: од градинка до училиште“ | Црнобело"
+              - generic [ref=e751]:
+                - generic [ref=e753]: Живот / Уметност
+                - generic [ref=e754]:
+                  - generic [ref=e755]:
+                    - img [ref=e756]
+                    - text: 2 hours ago
+                  - generic [ref=e759]:
+                    - text: Отвори статија
+                    - img [ref=e760]
+          - link "Time.mk Ни требаат кадар и пари за да можеме да работиме, состојбата со која се соочуваме е алармантна – им порача Коцевски на пратениците | 360 степени Топ теми на денот 2 hours ago Отвори статија" [ref=e764] [cursor=pointer]:
+            - /url: https://time.mk/c/f397a7ce32/ni-trebaat-kadar-i-pari-za-da-mozeme-da-rabotime-sostojbata-so-koja-se-soocuvame-e-alarmantna-im-poraca-kocevski-na-pratenicite.html
+            - generic [ref=e765]:
+              - generic [ref=e766]:
+                - img [ref=e768]
+                - generic [ref=e772]: Time.mk
+              - generic [ref=e774]: Ни требаат кадар и пари за да можеме да работиме, состојбата со која се соочуваме е алармантна – им порача Коцевски на пратениците | 360 степени
+              - generic [ref=e775]:
+                - generic [ref=e777]: Топ теми на денот
+                - generic [ref=e778]:
+                  - generic [ref=e779]:
+                    - img [ref=e780]
+                    - text: 2 hours ago
+                  - generic [ref=e783]:
+                    - text: Отвори статија
+                    - img [ref=e784]
+          - link "Meta.mk ЕУ предлага формирање нова агенција за борба против руските дезинформации и ботови Иницијативата „Штит за демократија“, која Комисијата ја претстави на 12 ноември, има за цел да се справи со хибридните напади со дезинформации од странски актери како што е Русија, со посебен фокус на нудење поддршка за време на избори Европа Подглавна секција Свет 2 hours ago Отвори статија" [ref=e788] [cursor=pointer]:
+            - /url: https://meta.mk/eu-predlaga-formiranje-nova-agencija-za-borba-protiv-ruskite-dezinformacii-i-botovi/
+            - generic [ref=e789]:
+              - generic [ref=e793]: Meta.mk
+              - generic [ref=e794]:
+                - generic [ref=e795]: ЕУ предлага формирање нова агенција за борба против руските дезинформации и ботови
+                - generic [ref=e796]: Иницијативата „Штит за демократија“, која Комисијата ја претстави на 12 ноември, има за цел да се справи со хибридните напади со дезинформации од странски актери како што е Русија, со посебен фокус на нудење поддршка за време на избори
+              - generic [ref=e797]:
+                - generic [ref=e798]:
+                  - generic [ref=e799]: Европа
+                  - generic [ref=e800]: Подглавна секција
+                  - generic [ref=e801]: Свет
+                - generic [ref=e802]:
+                  - generic [ref=e803]:
+                    - img [ref=e804]
+                    - text: 2 hours ago
+                  - generic [ref=e807]:
+                    - text: Отвори статија
+                    - img [ref=e808]
+    - contentinfo [ref=e812]:
+      - generic [ref=e813]:
+        - generic [ref=e814]:
+          - generic [ref=e815]:
+            - generic [ref=e816]:
+              - img "Ajvar Logo" [ref=e817]
+              - generic [ref=e827]:
+                - paragraph [ref=e828]: Македонски • MK Language Lab
+                - paragraph [ref=e829]: Ежедневна македонска практика создадена со љубов.
+            - paragraph [ref=e830]:
+              - text: Содржина од
+              - link "Macedonian Language Corner" [ref=e831] [cursor=pointer]:
+                - /url: https://macedonianlanguagecorner.com
+              - text: .
+            - generic [ref=e832]:
+              - link "Инстаграм" [ref=e833] [cursor=pointer]:
+                - /url: https://instagram.com/macedonianlanguagecorner
+              - link "Јутјуб" [ref=e834] [cursor=pointer]:
+                - /url: https://youtube.com/@macedonianlanguagecorner
+              - link "Види ги сите врски" [ref=e835] [cursor=pointer]:
+                - /url: https://linktr.ee/macedonianlanguagecorner
+          - generic [ref=e836]:
+            - paragraph [ref=e837]: Производ
+            - list [ref=e838]:
+              - listitem [ref=e839]:
+                - link "Почетна" [ref=e840] [cursor=pointer]:
+                  - /url: /mk
+              - listitem [ref=e841]:
+                - link "Вежбање" [ref=e842] [cursor=pointer]:
+                  - /url: /mk/practice
+              - listitem [ref=e843]:
+                - link "Преведи" [ref=e844] [cursor=pointer]:
+                  - /url: /mk/translate
+              - listitem [ref=e845]:
+                - link "Вести" [ref=e846] [cursor=pointer]:
+                  - /url: /mk/news
+              - listitem [ref=e847]:
+                - link "Ресурси" [ref=e848] [cursor=pointer]:
+                  - /url: /mk/resources
+          - generic [ref=e849]:
+            - paragraph [ref=e850]: Поддршка
+            - list [ref=e851]:
+              - listitem [ref=e852]:
+                - link "Приватност" [ref=e853] [cursor=pointer]:
+                  - /url: /mk/privacy
+              - listitem [ref=e854]:
+                - link "Услови" [ref=e855] [cursor=pointer]:
+                  - /url: /mk/terms
+              - listitem [ref=e856]:
+                - link "Контакт" [ref=e857] [cursor=pointer]:
+                  - /url: mailto:macedonianlanguagelab@gmail.com?subject=Macedonian%20Language%20Lab
+        - generic [ref=e858]:
+          - generic [ref=e859]:
+            - text: Создадено со
+            - link "Винсент Баталија" [ref=e860] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/vincentvinnybattaglia/
+            - text: и
+            - link "Андријана" [ref=e861] [cursor=pointer]:
+              - /url: https://macedonianlanguagecorner.com
+          - generic [ref=e862]: © 2025 Македонски • MK Language Lab. Сите права се задржани.
+  - button "Open Next.js Dev Tools" [ref=e868] [cursor=pointer]:
+    - img [ref=e869]
+  - alert [ref=e872]
+```

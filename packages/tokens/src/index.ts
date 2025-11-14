@@ -1,3 +1,8 @@
+export const brandNames = {
+  full: 'Македонски • MK Language Lab',
+  short: 'Македонски',
+} as const;
+
 export const brandColors = {
   red: '#D7263D',
   redDark: '#B4162B',
@@ -112,6 +117,7 @@ export const typographyScale: Record<string, TypographyConfig> = {
 export type TypographyToken = keyof typeof typographyScale;
 
 export const designTokens = {
+  brand: brandNames,
   colors: brandColors,
   surfaces: surfaceColors,
   semantic: semanticColors,

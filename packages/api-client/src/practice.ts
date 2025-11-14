@@ -115,6 +115,7 @@ export type PracticeCompletionEventPayload = {
   category: string;
   mode: 'typing' | 'cloze' | 'listening' | 'multipleChoice';
   direction: PracticeDirection;
+  difficulty?: 'casual' | 'focus' | 'blitz';
   correctCount: number;
   totalAttempts: number;
   accuracy: number;

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { View, Text, TextInput, Pressable, StyleSheet, SafeAreaView, KeyboardAvoidingView, Platform } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useAuth } from '../lib/auth';
-import { brandColors, semanticColors, spacingScale } from '@mk/tokens';
+import { brandColors, brandNames, semanticColors, spacingScale } from '@mk/tokens';
 
 export default function SignInScreen() {
   const router = useRouter();
@@ -46,7 +46,7 @@ export default function SignInScreen() {
         <View style={styles.content}>
           <Text style={styles.title}>Sign in</Text>
           <Text style={styles.subtitle}>
-            Continue with the secure browser flow (Google, Facebook, or password) or sign in directly with your MK Language Lab credentials.
+            Continue with the secure browser flow (Google, Facebook, or password) or sign in directly with your {brandNames.full} credentials.
           </Text>
           <Pressable
             style={[styles.button, styles.browserButton, isWorking && styles.buttonDisabled]}

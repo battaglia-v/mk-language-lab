@@ -4,6 +4,8 @@ Use this scratchpad to record async hand-offs, owner changes, or blocking issues
 
 | Date (UTC) | Author | Note |
 | --- | --- | --- |
+| 2025-11-14 | Agent Codex | Step 19 continuation: wired Discover + News rails into the dashboard with dedicated hooks, inline retry banners, and CTA links so the page now reflects the full mission-first UX brief. |
+| 2025-11-14 | Agent Codex | Step 19 kickoff: rebuilt `app/[locale]/page.tsx` into the mission-focused dashboard (hero streak module, quick actions, checklist, tips, review/community rails) with loading/error states so the web surface mirrors the UX plan. |
 | 2025-11-13 | Agent Codex | All Claude agents working on the React Native migration must read `docs/projects/2025-12-mobile-ui-overhaul.md` before committing changes so UX alignment stays intact; confirm access to that file (shared repo path) in your kickoff notes. |
 | 2025-11-13 | Agent Codex | Verified and completed Expo/EAS setup: fixed `app.json` with correct projectId and slug, confirmed `eas.json` build profiles, validated `app.config.ts` scheme/projectId, updated `.env.local.example` and `apps/mobile/env.example` with actual project ID (5c712af3-a6e9-462d-8243-a119b56af569), verified package scripts (mobile:start, mobile:build:preview:android/ios), confirmed EAS CLI authentication. `npm run mobile:start` now boots successfully with only a non-critical expo-file-system version warning. All critical config files ready for commit. |
 | 2025-11-15 | Agent Codex | Registered the Expo/EAS project (`@vbattaglia/makedonski-mk-language-lab`, projectId `5c712af3-a6e9-462d-8243-a119b56af569`) via `eas init`. `.env.local` and `apps/mobile/.env` now reference that ID so push tokens/EAS builds resolve the correct project. |

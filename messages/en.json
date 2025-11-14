@@ -1,4 +1,8 @@
 {
+  "brand": {
+    "full": "Македонски • MK Language Lab",
+    "short": "Македонски"
+  },
   "nav": {
     "label": "Main navigation",
     "home": "Home",
@@ -12,7 +16,24 @@
     "news": "News",
     "collapse": "Collapse",
     "expand": "Expand sidebar",
-    "toggleSettings": "Toggle settings"
+    "toggleSettings": "Toggle settings",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "streakLabel": "Streak",
+    "streakValue": "{count, plural, one {# day} other {# days}}",
+    "xpLabel": "Daily XP",
+    "xpValue": "{earned}/{goal} XP",
+    "heartsLabel": "Hearts",
+    "heartsValue": "{current}/{total} hearts",
+    "summaryLoading": "Syncing progress…",
+    "summaryError": "Unable to load your mission summary.",
+    "retry": "Retry",
+    "continueButtonLabel": "Continue mission",
+    "continueButtonSubtitle": "{earned}/{goal} XP today",
+    "continueButtonFallback": "Jump back into Quick Practice",
+    "continueButtonLoading": "Syncing mission…",
+    "quickActionPractice": "Continue practice",
+    "quickActionTranslate": "Open translator"
   },
   "home": {
     "learn": "Learn",
@@ -550,6 +571,8 @@
   "translate": {
     "title": "Translate",
     "subtitle": "Translate between Macedonian and English.",
+    "workspaceTab": "Workspace",
+    "historyTab": "History & tips",
     "badge": "Translation Tool",
     "assistantTitle": "Translator",
     "assistantDescription": "Translate between Macedonian and English.",
@@ -566,9 +589,14 @@
     "shortcutHint": "Press Ctrl+Enter (Windows) or Cmd+Enter (Mac) to translate.",
     "swapDirections": "Swap languages",
     "characterCount": "Characters: {count}/{limit}",
+    "directionStatLabel": "Direction",
+    "charactersStatLabel": "Characters",
+    "shortcutStatLabel": "Shortcut",
     "translateButton": "Translate",
     "clearButton": "Clear",
     "resultLabel": "Translation",
+    "resultEmptyTitle": "Your translation will appear here",
+    "resultEmptyDescription": "Start typing on the left and press Translate to preview the Macedonian or English version.",
     "resultPlaceholder": "Your translation will appear here.",
     "copyButton": "Copy",
     "copied": "Copied!",
@@ -581,6 +609,7 @@
       "en": "English"
     },
     "historyTitle": "Recent translations",
+    "historySubtitle": "Load a recent translation or revisit the helper panels.",
     "historyEmpty": "Your latest translations will appear here.",
     "historyLoad": "Load",
     "historyViewAll": "View all",
@@ -711,6 +740,7 @@
     "badge": "Handpicked by Андри · MLC",
     "search": "Search resources...",
     "viewPdf": "View PDF",
+    "openResource": "Open resource",
     "showAll": "All collections",
     "searchInDoc": "Search in document",
     "resultsSummary": "{count} results • {total} total resources",
@@ -787,6 +817,8 @@
     "edit": "Edit",
     "search": "Search",
     "language": "Language",
+    "goHome": "Go to Home",
+    "tryAgain": "Try Again",
     "skipToContent": "Skip to main content",
     "commandMenu": {
       "trigger": "Quick search",
@@ -819,7 +851,11 @@
     "allLinks": "All Links",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
-    "contact": "Contact Us"
+    "contact": "Contact Us",
+    "tagline": "AI-guided lessons, translator tools, and daily missions for Macedonian learners.",
+    "product": "Product",
+    "support": "Support",
+    "allRightsReserved": "All rights reserved."
   },
   "userMenu": {
     "signIn": "Sign In",
@@ -1075,5 +1111,23 @@
     },
     "viewPrivacy": "View Privacy Policy",
     "backHome": "Back to Home"
+  },
+  "footer": {
+    "tagline": "Daily Macedonian practice built with care.",
+    "contentBy": "Content by",
+    "macedonianLanguageCorner": "Macedonian Language Corner",
+    "product": "Product",
+    "support": "Support",
+    "instagram": "Instagram",
+    "youtube": "YouTube",
+    "allLinks": "View all links",
+    "vini": "Vincent Battaglia",
+    "andri": "Andrijana",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "contact": "Contact",
+    "createdWith": "Created with",
+    "and": "and",
+    "allRightsReserved": "All rights reserved."
   }
 }

@@ -12,6 +12,8 @@ import {
 } from '@mk/ui';
 import { CardStack } from '../../features/practice/components';
 import {
+  PRACTICE_DIFFICULTIES,
+  getPracticeDifficultyPreset,
   useMobileQuickPracticeSession,
   type PracticeDeckMode,
   type QuickPracticeCompletionSummary,
@@ -35,13 +37,15 @@ export default function PracticeScreen() {
   const { isHydrated } = useQueryHydration();
   const handleSessionComplete = useCallback(
     (summary: QuickPracticeCompletionSummary) => {
-      const xpEarned = summary.correctCount * XP_PER_CARD;
+      const preset = getPracticeDifficultyPreset(summary.difficulty);
+      const xpEarned = summary.correctCount * XP_PER_CARD * preset.xpMultiplier;
       const streakDelta = summary.correctCount >= SESSION_TARGET ? 1 : 0;
       void completionQueue.queueCompletion({
         deckId: summary.deckId,
         category: summary.category,
         direction: summary.direction,
         mode: summary.practiceMode,
+        difficulty: summary.difficulty,
         correctCount: summary.correctCount,
         totalAttempts: summary.totalAttempts,
         accuracy: summary.accuracy,
@@ -62,6 +66,9 @@ export default function PracticeScreen() {
     setDirection,
     practiceMode,
     setPracticeMode,
+    difficulty,
+    setDifficulty,
+    timeRemaining,
     currentCard,
     handleResult,
     evaluateAnswer,
@@ -78,6 +85,8 @@ export default function PracticeScreen() {
     handleReset,
     handleContinue,
   } = useMobileQuickPracticeSession({ onSessionComplete: handleSessionComplete });
+  const difficultyPreset = getPracticeDifficultyPreset(difficulty);
+  const timerDuration = difficultyPreset.timerSeconds ?? null;
   const isRestoring = !isHydrated && isLoading;
 
   return (
@@ -140,6 +149,7 @@ export default function PracticeScreen() {
               <NativeStatPill label="Accuracy" value={`${accuracy || 0}%`} accent="green" />
               <NativeStatPill label="Attempts" value={`${totalAttempts}`} accent="gold" />
               <NativeStatPill label="Mode" value={practiceMode} accent="red" />
+              <NativeStatPill label="Difficulty" value={difficultyPreset.label} accent="gold" />
             </View>
           </View>
           <View style={styles.heartsRow}>
@@ -152,6 +162,11 @@ export default function PracticeScreen() {
               />
             ))}
           </View>
+          <NativeTypography variant="caption" style={styles.timerLabel}>
+            {timerDuration
+              ? `Timer: ${(timeRemaining ?? timerDuration).toString()}s remaining`
+              : 'Timer off for Casual runs'}
+          </NativeTypography>
         </NativeCard>
 
         <View style={styles.toggleRow}>
@@ -192,6 +207,37 @@ export default function PracticeScreen() {
               </NativeTypography>
             </NativeButton>
           ))}
+        </ScrollView>
+
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.difficultyRow}
+        >
+          {PRACTICE_DIFFICULTIES.map((preset) => {
+            const isSelected = difficulty === preset.id;
+            return (
+              <NativeButton
+                key={preset.id}
+                variant={isSelected ? 'primary' : 'secondary'}
+                style={styles.difficultyButton}
+                onPress={() => setDifficulty(preset.id)}
+              >
+                <NativeTypography
+                  variant="body"
+                  style={[styles.difficultyText, !isSelected && styles.difficultyTextUnselected]}
+                >
+                  {preset.label} · {Math.round(preset.xpMultiplier * 100)}% XP
+                </NativeTypography>
+                <NativeTypography
+                  variant="caption"
+                  style={[styles.difficultyHint, !isSelected && styles.difficultyHintUnselected]}
+                >
+                  {preset.timerSeconds ? `${preset.timerSeconds}s timer` : 'No timer'}
+                </NativeTypography>
+              </NativeButton>
+            );
+          })}
         </ScrollView>
 
         <ScrollView
@@ -358,6 +404,10 @@ const styles = StyleSheet.create({
     gap: spacingScale.xs,
     justifyContent: 'center',
   },
+  timerLabel: {
+    color: 'rgba(16,24,40,0.6)',
+    textAlign: 'center',
+  },
   toggleRow: { flexDirection: 'row', gap: spacingScale.sm },
   toggleButton: { flex: 1 },
   toggleText: { color: '#fff' },
@@ -370,6 +420,20 @@ const styles = StyleSheet.create({
     minWidth: 140,
   },
   modeText: { color: '#fff' },
+  difficultyRow: {
+    flexDirection: 'row',
+    gap: spacingScale.sm,
+    paddingVertical: spacingScale.xs,
+  },
+  difficultyButton: {
+    minWidth: 200,
+    alignItems: 'flex-start',
+    gap: spacingScale.xs,
+  },
+  difficultyText: { color: '#fff' },
+  difficultyTextUnselected: { color: brandColors.navy },
+  difficultyHint: { color: 'rgba(255,255,255,0.85)' },
+  difficultyHintUnselected: { color: 'rgba(16,24,40,0.7)' },
   categoryRow: {
     flexDirection: 'row',
     gap: spacingScale.sm,

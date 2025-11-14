@@ -27,6 +27,7 @@ vi.mock('lucide-react', () => {
     Heart: Icon,
     MoreVertical: Icon,
     Shield: Icon,
+    Sparkles: Icon,
     Zap: Icon,
   };
 });
@@ -57,7 +58,7 @@ describe('QuickPracticeHeader', () => {
 
     expect(screen.getByText('Daily Drills')).toBeInTheDocument();
     expect(screen.getByText('Stay sharp with rapid-fire prompts.')).toBeInTheDocument();
-    expect(screen.getByText('Progress: 3/5 ⚡ 80%')).toBeInTheDocument();
+    expect(screen.getAllByText('Progress: 3/5 ⚡ 80%')[0]).toBeInTheDocument();
     expect(screen.getByTestId('progress-ring')).toHaveTextContent('Quick Practice:3/5');
     expect(screen.getByTestId('stat-pill-great-accuracy')).toHaveTextContent('Great Accuracy:Accuracy: 80%');
     expect(screen.getByTestId('stat-pill-category')).toHaveTextContent('Category:Greetings');

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
-import { Menu, X, Flame, Heart, Loader2, AlertCircle } from 'lucide-react';
+import { Menu, X, Flame, Heart, Loader2, AlertCircle, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { AjvarLogo } from '@/components/AjvarLogo';
@@ -285,49 +285,73 @@ function MissionSummaryBanner({ mission, state, error, onRefresh, t }: MissionSu
   const xpGoal = mission.xp.target || 1;
   const xpPercent = Math.max(0, Math.min(1, mission.xp.earned / xpGoal));
 
+  const continueSubtitle = t('continueButtonSubtitle', {
+    earned: mission.xp.earned,
+    goal: mission.xp.target,
+  });
+
   return (
     <div className="flex flex-wrap items-center gap-4 rounded-2xl border border-border/80 bg-[var(--surface-elevated)] px-4 py-4">
-      <div className="flex items-center gap-3">
-        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--brand-red)]/10 text-[var(--brand-red)]">
-          <Flame className="h-5 w-5" aria-hidden="true" />
-        </span>
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--brand-red)]">
-            {t('streakLabel')}
-          </p>
-          <p className="text-base font-semibold text-foreground">
-            {t('streakValue', { count: mission.streakDays })}
-          </p>
+      <div className="flex flex-1 flex-wrap items-center gap-4">
+        <div className="flex items-center gap-3">
+          <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--brand-red)]/10 text-[var(--brand-red)]">
+            <Flame className="h-5 w-5" aria-hidden="true" />
+          </span>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--brand-red)]">
+              {t('streakLabel')}
+            </p>
+            <p className="text-base font-semibold text-foreground">
+              {t('streakValue', { count: mission.streakDays })}
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div className="min-w-[180px] flex-1">
-        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
-          {t('xpLabel')}
-        </p>
-        <div className="mt-2 h-1.5 w-full rounded-full bg-[var(--surface-frosted)]">
-          <div
-            className="h-full rounded-full bg-[var(--brand-red)] transition-all duration-500"
-            style={{ width: `${xpPercent * 100}%` }}
-          />
-        </div>
-        <p className="mt-1 text-xs font-semibold text-foreground">
-          {t('xpValue', { earned: mission.xp.earned, goal: mission.xp.target })}
-        </p>
-      </div>
-
-      <div className="flex items-center gap-3">
-        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--brand-gold)]/20 text-[var(--brand-gold-dark)]">
-          <Heart className="h-5 w-5" aria-hidden="true" />
-        </span>
-        <div>
+        <div className="min-w-[180px] flex-1">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
-            {t('heartsLabel')}
+            {t('xpLabel')}
           </p>
-          <p className="text-base font-semibold text-foreground">
-            {t('heartsValue', { current: mission.heartsRemaining, total: 5 })}
+          <div className="mt-2 h-1.5 w-full rounded-full bg-[var(--surface-frosted)]">
+            <div
+              className="h-full rounded-full bg-[var(--brand-red)] transition-all duration-500"
+              style={{ width: `${xpPercent * 100}%` }}
+            />
+          </div>
+          <p className="mt-1 text-xs font-semibold text-foreground">
+            {t('xpValue', { earned: mission.xp.earned, goal: mission.xp.target })}
           </p>
         </div>
+
+        <div className="flex items-center gap-3">
+          <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--brand-gold)]/20 text-[var(--brand-gold-dark)]">
+            <Heart className="h-5 w-5" aria-hidden="true" />
+          </span>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+              {t('heartsLabel')}
+            </p>
+            <p className="text-base font-semibold text-foreground">
+              {t('heartsValue', { current: mission.heartsRemaining, total: 5 })}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex w-full flex-col gap-2 md:w-[240px]">
+        <Link
+          href="/practice"
+          className="flex flex-col rounded-2xl bg-[var(--brand-red)] px-4 py-3 text-white shadow-lg shadow-[rgba(255,79,94,0.35)] transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--brand-red)] focus-visible:ring-offset-background"
+        >
+          <span className="text-sm font-semibold">{t('quickActionPractice')}</span>
+          <span className="text-xs text-white/85">{continueSubtitle}</span>
+        </Link>
+        <Link
+          href="/translate"
+          className="flex items-center justify-between rounded-2xl border border-border/70 bg-background/80 px-4 py-3 text-sm font-semibold text-foreground transition hover:border-[var(--brand-red)] hover:text-[var(--brand-red)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--brand-red)] focus-visible:ring-offset-background"
+        >
+          <span>{t('quickActionTranslate')}</span>
+          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        </Link>
       </div>
     </div>
   );

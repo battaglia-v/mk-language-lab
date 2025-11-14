@@ -120,6 +120,16 @@ _Latest run (2025-11-13)_: `npx eslint apps/mobile packages/ui`
 - ✅ Add audio playback hooks (expo-av) with caching stubs (`apps/mobile/features/practice/hooks/useAudioPrompt.ts` + new Expo deps).
 - ✅ Mirror the card definitions on web so future parity work is easier (`packages/practice/src/cards.ts`, `buildPracticeDeck`, `PracticeCardKind` exports).
 - ✅ Update the native Practice screen HUD + modals to consume the stack/audio plumbing.
+**Files Touched (2025-11-15)**:
+- `apps/mobile/features/practice/useMobileQuickPracticeSession.ts`
+- `apps/mobile/app/(tabs)/practice.tsx`
+- `apps/mobile/features/practice/usePracticeCompletionQueue.ts`
+- `packages/api-client/src/practice.ts`
+- `app/api/mobile/practice-completions/route.ts`
+**Progress (2025-11-15)**:
+- Introduced difficulty presets (Casual/Focus/Blitz) with per-card timers, XP multipliers, and heart penalties inside the Quick Practice hook so timed runs feel distinct and analytics know which tier was used.
+- Updated the Practice screen HUD to surface the difficulty selector, timer countdown, and descriptive CTAs, matching the `2025-12-mobile-ui-overhaul.md` spec.
+- Extended the completion queue/API payload to carry the selected difficulty so backend streak/X P analytics can differentiate between tiers and future rewards.
 **Success Criteria**:
 - Mobile practice screen uses the new card stack with working hearts/XP flow.
 - Web still compiles; shared types cover the new card data.
@@ -457,6 +467,33 @@ _Latest run (2025-11-13)_: `npx eslint apps/mobile`
 3. Review the configured log/metric dashboard to ensure `runId`, `sent`, and error alerts are visible; document their locations.
 **Dependencies**: Steps 7–17
 **Owner**: Agent Infra / Backend partner
+**Risk Level**: Medium
+
+## Step 19: Web dashboard mission experience
+**Status**: 🔄 In Progress
+**Objective**: Bring the desktop dashboard into parity with the approved mission-first UX (streak hero, checklists, tips, community rail, discover/news rails) so the web experience mirrors the mobile blueprint and exercises the shared mission API.
+**Files to Modify**:
+- `app/[locale]/page.tsx`
+- Any new `components/home/*` files needed for the dashboard sections
+- Supporting docs (README, notes) if UX or data contracts shift
+**Changes Required**:
+- Replace the marketing hero with the mission streak module: progress ring, streak/hearts stats, and CTA buttons using shared `@mk/ui` primitives.
+- Add quick actions, mission checklist, coach tips, review accuracy bars, community highlights, and discover/news rails that consume `@mk/api-client` data.
+- Handle loading/error states (fallback to local JSON + retry mechanics) and ensure mobile stacking matches the UX brief in `2025-12-mobile-ui-overhaul.md`.
+**Progress (2025-11-14)**:
+- Rebuilt `app/[locale]/page.tsx` as a client dashboard that fetches `/api/missions/current`, shows skeleton/loading badges, and falls back to the bundled mission status when offline. Added hero streak module, quick actions, checklist, coach tips, review clusters, and community highlights using `WebCard`, `WebStatPill`, and `WebProgressRing`.
+- Injected consistent CTA styling (WebButton instances) and responsive grids so the layout collapses cleanly on mobile.
+- Hooked the Discover and News rails into the dashboard, including dedicated hooks with fallback data, inline retry banners, and editorial/event/headline components that reuse the shared design tokens.
+**Remaining To-Dos**:
+- Evaluate whether the dashboard should surface additional Discover/news modules (e.g., podcasts, quests) and add coverage/tests when APIs stabilize.
+**Success Criteria**:
+- Desktop Home renders the mission hero/checklist/tips/community/discover/news sections powered by live API data, degrading gracefully when offline.
+- Loading/error states communicate status and allow retrying without a full page refresh.
+**Verification Steps**:
+1. `npx eslint app/[locale]/page.tsx`
+2. `npm run dev` → navigate to `/en` and `/mk` to confirm responsive layout + data hydration.
+**Dependencies**: Mission API (Step 15), Discover/news APIs (Steps 11–12), shared UI tokens (Step 5)
+**Owner**: Agent Codex (Web)
 **Risk Level**: Medium
 
 ## Lessons Learned and Step Improvements

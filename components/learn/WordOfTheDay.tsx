@@ -93,8 +93,14 @@ export function WordOfTheDay() {
   return (
     <Card className="relative overflow-hidden border-primary/20 bg-gradient-to-br from-primary/5 via-background to-secondary/5 p-3 md:p-5 lg:p-6">
       {/* Decorative elements */}
-      <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-primary/5 blur-3xl" />
-      <div className="absolute bottom-0 left-0 h-32 w-32 rounded-full bg-secondary/5 blur-3xl" />
+      <div
+        className="pointer-events-none absolute right-0 top-0 h-32 w-32 rounded-full bg-primary/5 blur-3xl"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute bottom-0 left-0 h-32 w-32 rounded-full bg-secondary/5 blur-3xl"
+        aria-hidden="true"
+      />
 
       <div className="relative space-y-2.5 md:space-y-4 lg:space-y-5">
         {/* Header */}

@@ -3,11 +3,14 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { FilterChip } from '@/components/ui/filter-chip';
 import { Input } from '@/components/ui/input';
-import { ExternalLink, Loader2, Newspaper, PlayCircle, RefreshCcw, Video } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
+import { ExternalLink, Loader2, Newspaper, PlayCircle, RefreshCcw, Search, Video, Clock3 } from 'lucide-react';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
 const SOURCE_IDS = ['all', 'time-mk', 'meta-mk'] as const;
@@ -41,144 +44,27 @@ type NewsResponse = {
 
 const SKELETON_PLACEHOLDERS = Array.from({ length: 6 }, (_, index) => index);
 
-function getSourceInitials(name: string): string {
-  const initials = name
-    .split(' ')
-    .filter(Boolean)
-    .map((part) => part[0]?.toUpperCase())
-    .join('');
-  return initials.slice(0, 2) || 'MK';
-}
-
-function SkeletonCard() {
+function NewsSkeletonCard() {
   return (
-    <Card className="border-border/30 bg-card/40 overflow-hidden">
-      <CardHeader>
-        <div className="flex flex-col md:flex-row gap-4">
-          {/* Content skeleton */}
-          <div className="flex-1 space-y-3">
-            {/* Source badge */}
-            <div className="relative h-5 w-20 rounded-full overflow-hidden bg-muted/40">
-              <div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-muted/20 to-transparent animate-pulse"
-                style={{
-                  backgroundSize: '200% 100%',
-                  animation: 'shimmer 2s infinite'
-                }}
-              />
-            </div>
-
-            {/* Title skeleton - 2 lines */}
-            <div className="space-y-2">
-              <div className="relative h-6 w-full rounded overflow-hidden bg-muted/50">
-                <div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-muted/30 to-transparent"
-                  style={{
-                    backgroundSize: '200% 100%',
-                    animation: 'shimmer 2s infinite 0.1s'
-                  }}
-                />
-              </div>
-              <div className="relative h-6 w-4/5 rounded overflow-hidden bg-muted/50">
-                <div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-muted/30 to-transparent"
-                  style={{
-                    backgroundSize: '200% 100%',
-                    animation: 'shimmer 2s infinite 0.2s'
-                  }}
-                />
-              </div>
-            </div>
-
-            {/* Meta info */}
-            <div className="relative h-4 w-48 rounded overflow-hidden bg-muted/40">
-              <div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-muted/20 to-transparent"
-                style={{
-                  backgroundSize: '200% 100%',
-                  animation: 'shimmer 2s infinite 0.3s'
-                }}
-              />
-            </div>
-
-            {/* Description - 3 lines */}
-            <div className="space-y-2">
-              <div className="relative h-4 w-full rounded overflow-hidden bg-muted/30">
-                <div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-muted/15 to-transparent"
-                  style={{
-                    backgroundSize: '200% 100%',
-                    animation: 'shimmer 2s infinite 0.4s'
-                  }}
-                />
-              </div>
-              <div className="relative h-4 w-full rounded overflow-hidden bg-muted/30">
-                <div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-muted/15 to-transparent"
-                  style={{
-                    backgroundSize: '200% 100%',
-                    animation: 'shimmer 2s infinite 0.5s'
-                  }}
-                />
-              </div>
-              <div className="relative h-4 w-3/4 rounded overflow-hidden bg-muted/30">
-                <div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-muted/15 to-transparent"
-                  style={{
-                    backgroundSize: '200% 100%',
-                    animation: 'shimmer 2s infinite 0.6s'
-                  }}
-                />
-              </div>
-            </div>
-
-            {/* Category badges */}
-            <div className="flex gap-2">
-              <div className="relative h-6 w-16 rounded-full overflow-hidden bg-muted/30">
-                <div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-muted/15 to-transparent"
-                  style={{
-                    backgroundSize: '200% 100%',
-                    animation: 'shimmer 2s infinite 0.7s'
-                  }}
-                />
-              </div>
-              <div className="relative h-6 w-20 rounded-full overflow-hidden bg-muted/30">
-                <div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-muted/15 to-transparent"
-                  style={{
-                    backgroundSize: '200% 100%',
-                    animation: 'shimmer 2s infinite 0.8s'
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Image skeleton */}
-          <div className="relative w-full md:w-64 lg:w-72 aspect-video rounded-xl overflow-hidden border border-border/20 bg-muted/30">
-            <div
-              className="absolute inset-0 bg-gradient-to-br from-muted/20 via-muted/10 to-muted/20"
-              style={{
-                backgroundSize: '200% 200%',
-                animation: 'shimmer 2s infinite 0.9s'
-              }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent" />
-          </div>
+    <Card className="overflow-hidden border-border/50 bg-card/60">
+      <Skeleton className="aspect-video w-full rounded-none" />
+      <CardHeader className="space-y-3">
+        <Skeleton className="h-4 w-24 rounded-full" />
+        <Skeleton className="h-5 w-full" />
+        <Skeleton className="h-5 w-3/4" />
+        <div className="space-y-2">
+          <Skeleton className="h-3 w-full" />
+          <Skeleton className="h-3 w-5/6" />
+          <Skeleton className="h-3 w-2/3" />
         </div>
       </CardHeader>
-
-      <style jsx>{`
-        @keyframes shimmer {
-          0% {
-            background-position: 200% 0;
-          }
-          100% {
-            background-position: -200% 0;
-          }
-        }
-      `}</style>
+      <CardContent className="space-y-2">
+        <div className="flex gap-2">
+          <Skeleton className="h-6 w-16 rounded-full" />
+          <Skeleton className="h-6 w-20 rounded-full" />
+        </div>
+        <Skeleton className="h-4 w-32" />
+      </CardContent>
     </Card>
   );
 }
@@ -345,194 +231,192 @@ export default function NewsPage() {
 
   const hasResults = items.length > 0;
   const showSkeleton = isLoading && items.length === 0;
+  const showEmpty = !hasResults && !isLoading && !error;
 
   return (
-    <div className="bg-background">
-      <div className="mx-auto max-w-4xl">
-        {/* Header */}
-        <div className="border-b border-border/40 bg-card/50 backdrop-blur-sm px-4 py-4 md:py-5">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-lg md:text-xl font-bold text-foreground">{t('title')}</h1>
-              <p className="hidden md:block text-sm text-muted-foreground mt-1">{t('subtitle')}</p>
+    <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/40">
+      <div className="mx-auto max-w-6xl space-y-6 px-4 py-10">
+        <section className="rounded-3xl border border-border/40 bg-card/60 p-6 shadow-sm">
+          <div className="flex flex-col gap-6">
+            <div className="space-y-2">
+              <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-primary">
+                <Newspaper className="h-4 w-4" />
+                {t('title')}
+              </div>
+              <h1 className="text-2xl font-semibold text-foreground md:text-3xl">{t('subtitle')}</h1>
+              <p className="text-sm text-muted-foreground">
+                {t('sourceLabel')} · {meta?.count ?? 0}/{meta?.total ?? 0}
+              </p>
             </div>
-            <Badge variant="secondary" className="gap-1.5 text-xs">
-              <Newspaper className="h-3 w-3" />
-              {t('sourceLabel')}
-            </Badge>
-          </div>
-        </div>
 
-        {/* Filters & Search */}
-        <div className="border-b border-border/40 px-4 py-3 space-y-3">
-          <div className="relative -mx-4 px-4">
-            <div className="flex gap-2 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-2">
-              {sourceFilters.map((filter) => {
-                const isActive = source === filter.id;
-                return (
-                  <Button
-                    key={filter.id}
-                    variant={isActive ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => setSource(filter.id)}
-                    className="h-8 text-xs flex-shrink-0 snap-start"
-                  >
-                    {filter.label}
-                  </Button>
-                );
-              })}
-              <Button
-                variant={videosOnly ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => setVideosOnly((prev) => !prev)}
-                className="gap-1.5 h-8 text-xs flex-shrink-0 snap-start"
-              >
-                <Video className="h-3 w-3" />
-                {t('videosOnly')}
-              </Button>
-            </div>
-            <style jsx>{`
-              .scrollbar-hide::-webkit-scrollbar {
-                display: none;
-              }
-              .scrollbar-hide {
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-              }
-            `}</style>
-          </div>
-
-          <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-            <div className="relative flex-1">
-              <Input
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder={t('searchPlaceholder')}
-                className="h-10 text-sm"
-              />
-            </div>
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              {isLoading ? (
-                <span className="inline-flex items-center gap-1.5">
-                  <Loader2 className="h-3 w-3 animate-spin" />
-                  <span className="hidden md:inline">{t('refresh')}</span>
-                </span>
-              ) : (
-                <span className="hidden md:inline">{lastUpdatedLabel}</span>
-              )}
-              <Button variant="ghost" size="sm" onClick={handleRefresh} className="gap-1.5 h-7 px-2">
-                <RefreshCcw className="h-3 w-3" />
-                <span className="hidden md:inline">{t('refresh')}</span>
-              </Button>
-            </div>
-          </div>
-
-          {error && (
-            <Card className="border-destructive/40 bg-destructive/10">
-              <CardHeader className="p-3">
-                <CardTitle className="text-sm text-destructive">{t('error')}</CardTitle>
-                <CardDescription className="text-xs text-destructive mt-1">
-                  {error}
-                </CardDescription>
-                <Button variant="destructive" size="sm" className="mt-3 w-fit h-8 text-xs" onClick={handleRefresh}>
-                  {t('retry')}
-                </Button>
-              </CardHeader>
-            </Card>
-          )}
-
-          {!error && meta?.errors && meta.errors.length > 0 && (
-            <Card className="border-border/40 bg-muted/20">
-              <CardHeader className="p-3">
-                <CardTitle className="text-xs font-semibold text-muted-foreground">{t('error')}</CardTitle>
-                <CardDescription className="text-xs text-muted-foreground mt-1">
-                  {meta.errors.join(' • ')}
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          )}
-        </div>
-
-        {/* Content */}
-        <div className="px-4 py-4">
-          {showSkeleton && (
             <div className="space-y-3">
-              {SKELETON_PLACEHOLDERS.map((index) => (
-                <SkeletonCard key={`news-skeleton-${index}`} />
-              ))}
+              <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                {sourceFilters.map((filter) => (
+                  <FilterChip key={filter.id} active={source === filter.id} onClick={() => setSource(filter.id)}>
+                    {filter.label}
+                  </FilterChip>
+                ))}
+                <FilterChip active={videosOnly} onClick={() => setVideosOnly((prev) => !prev)}>
+                  <Video className="h-3.5 w-3.5" />
+                  {t('videosOnly')}
+                </FilterChip>
+              </div>
+              <style jsx>{`
+                .scrollbar-hide::-webkit-scrollbar {
+                  display: none;
+                }
+                .scrollbar-hide {
+                  -ms-overflow-style: none;
+                  scrollbar-width: none;
+                }
+              `}</style>
             </div>
-          )}
 
-          {!hasResults && !isLoading && !error && (
-            <Card className="border-border/40 bg-card/50">
-              <CardContent className="py-8 text-center text-sm text-muted-foreground">
-                {t('noResults')}
-              </CardContent>
-            </Card>
-          )}
+            <div className="flex flex-col gap-3 md:flex-row md:items-center">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Input
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  placeholder={t('searchPlaceholder')}
+                  className="h-11 rounded-2xl pl-10 text-sm"
+                />
+              </div>
+              <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                {isLoading ? (
+                  <span className="inline-flex items-center gap-1.5">
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                    {t('refresh')}
+                  </span>
+                ) : (
+                  lastUpdatedLabel && (
+                    <span className="inline-flex items-center gap-1.5">
+                      <Clock3 className="h-3.5 w-3.5" />
+                      {lastUpdatedLabel}
+                    </span>
+                  )
+                )}
+                <Button variant="ghost" size="sm" onClick={handleRefresh} className="gap-1.5 rounded-full">
+                  <RefreshCcw className="h-3.5 w-3.5" />
+                  {t('refresh')}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
 
-          {hasResults && (
-            <div className="divide-y divide-border/30">
-              {items.map((item) => {
-                const publishedLabel = item.publishedAt ? formatRelativeTime(item.publishedAt) : '';
-                const hasVideos = item.videos.length > 0;
+        {error && (
+          <Alert variant="destructive" className="border border-destructive/40">
+            <AlertTitle>{t('error')}</AlertTitle>
+            <AlertDescription>{error}</AlertDescription>
+            <Button variant="outline" size="sm" className="mt-4" onClick={handleRefresh}>
+              {t('retry')}
+            </Button>
+          </Alert>
+        )}
 
-                return (
-                  <a
-                    key={item.id}
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => {
-                      trackEvent(AnalyticsEvents.NEWS_ARTICLE_CLICKED, {
-                        source: item.sourceId,
-                        hasCategories: item.categories.length > 0,
-                      });
-                    }}
-                    className="group flex items-start gap-3 py-3 px-4 transition-colors hover:bg-muted/30 active:bg-muted/50"
-                  >
-                    {/* Left: Source Badge */}
-                    <div className="flex-shrink-0 mt-0.5">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
-                        {getSourceInitials(item.sourceName)}
-                      </div>
+        {!error && meta?.errors && meta.errors.length > 0 && (
+          <Alert className="border-border/50 bg-card/70">
+            <AlertTitle>{t('error')}</AlertTitle>
+            <AlertDescription>{meta.errors.join(' • ')}</AlertDescription>
+          </Alert>
+        )}
+
+        {showSkeleton && (
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            {SKELETON_PLACEHOLDERS.map((index) => (
+              <NewsSkeletonCard key={`news-skeleton-${index}`} />
+            ))}
+          </div>
+        )}
+
+        {showEmpty && (
+          <Card className="border-border/40 bg-card/60">
+            <CardContent className="py-10 text-center text-sm text-muted-foreground">{t('noResults')}</CardContent>
+          </Card>
+        )}
+
+        {hasResults && !showSkeleton && (
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            {items.map((item) => {
+              const publishedLabel = item.publishedAt ? formatRelativeTime(item.publishedAt) : '';
+              const hasVideos = item.videos.length > 0;
+
+              return (
+                <a
+                  key={item.id}
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    trackEvent(AnalyticsEvents.NEWS_ARTICLE_CLICKED, {
+                      source: item.sourceId,
+                      hasCategories: item.categories.length > 0,
+                    });
+                  }}
+                  className="group h-full"
+                >
+                  <Card className="flex h-full flex-col overflow-hidden border-border/40 bg-background/70 transition-shadow hover:border-primary/40 hover:shadow-lg">
+                    <div className="relative aspect-video w-full overflow-hidden bg-muted">
+                      {item.image ? (
+                        <div
+                          className="h-full w-full bg-cover bg-center"
+                          style={{ backgroundImage: `url(${item.image})` }}
+                          aria-hidden="true"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-muted via-muted/80 to-muted">
+                          <Newspaper className="h-8 w-8 text-muted-foreground" />
+                        </div>
+                      )}
+                      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent" />
+                      <Badge variant="secondary" className="absolute left-4 bottom-3 text-[11px]">
+                        {item.sourceName}
+                      </Badge>
                     </div>
-
-                    {/* Center: Content */}
-                    <div className="flex-1 min-w-0 space-y-1">
-                      <h3 className="text-sm font-semibold text-foreground line-clamp-2 leading-snug group-hover:text-primary transition-colors">
+                    <CardHeader className="flex-1 space-y-3">
+                      <CardTitle className="text-base font-semibold leading-snug text-foreground line-clamp-2 group-hover:text-primary">
                         {item.title}
-                      </h3>
-                      <div className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
-                        <span className="font-medium">{item.sourceName}</span>
-                        {publishedLabel && (
-                          <>
-                            <span>·</span>
-                            <span>{publishedLabel}</span>
-                          </>
-                        )}
+                      </CardTitle>
+                      {item.description && (
+                        <CardDescription className="line-clamp-3 text-sm text-muted-foreground">
+                          {item.description}
+                        </CardDescription>
+                      )}
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <div className="flex flex-wrap gap-1.5">
+                        {item.categories.slice(0, 3).map((category) => (
+                          <Badge key={`${item.id}-${category}`} variant="outline" className="rounded-full px-2 text-[11px]">
+                            {category}
+                          </Badge>
+                        ))}
                         {hasVideos && (
-                          <>
-                            <span>·</span>
-                            <span className="inline-flex items-center gap-1">
-                              <PlayCircle className="h-3 w-3" />
-                              {item.videos.length}
-                            </span>
-                          </>
+                          <Badge variant="secondary" className="inline-flex items-center gap-1 rounded-full px-2 text-[11px]">
+                            <PlayCircle className="h-3 w-3" />
+                            {item.videos.length}
+                          </Badge>
                         )}
                       </div>
-                    </div>
-
-                    {/* Right: External Link Icon */}
-                    <div className="flex-shrink-0 mt-1">
-                      <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                    </div>
-                  </a>
-                );
-              })}
-            </div>
-          )}
-        </div>
+                      <div className="flex items-center justify-between text-xs text-muted-foreground">
+                        {publishedLabel && (
+                          <span className="inline-flex items-center gap-1.5">
+                            <Clock3 className="h-3.5 w-3.5" />
+                            {publishedLabel}
+                          </span>
+                        )}
+                        <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                          {hasVideos ? t('watchVideo') : t('viewArticle')}
+                          <ExternalLink className="h-3.5 w-3.5" />
+                        </span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </a>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

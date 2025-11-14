@@ -1,4 +1,5 @@
-import { Flame, Heart, MoreVertical, Shield, Zap } from 'lucide-react';
+import { Flame, Heart, MoreVertical, Shield, Sparkles, Zap } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 import { WebProgressRing, WebStatPill } from '@mk/ui';
 import { cn } from '@/lib/utils';
 import { getLevelInfo } from '@/components/learn/quick-practice/utils';
@@ -49,16 +50,20 @@ export function QuickPracticeHeader({
 
   return (
     <div className={cn('space-y-2 md:space-y-4', isModalVariant ? 'px-6 py-4 md:px-10 md:py-8 lg:px-12' : 'py-3 md:py-4')}>
-      <div className="flex items-center justify-between gap-2">
-        <div className="flex-1 min-w-0">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div className="flex-1 min-w-0 space-y-1">
+          {summarySubtitle ? (
+            <Badge
+              variant="outline"
+              className="inline-flex items-center gap-1.5 border-primary/30 bg-primary/5 text-xs font-semibold uppercase tracking-wide text-primary"
+            >
+              <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
+              {summarySubtitle}
+            </Badge>
+          ) : null}
           <h2 className={cn('text-lg font-semibold text-foreground md:text-2xl', isModalVariant && 'md:text-3xl')}>
             {title}
           </h2>
-          {summarySubtitle ? (
-            <p className={cn('hidden md:block text-sm text-muted-foreground', isModalVariant && 'md:text-base')}>
-              {summarySubtitle}
-            </p>
-          ) : null}
         </div>
 
         <div className="flex md:hidden items-center gap-1.5">
@@ -150,6 +155,9 @@ export function QuickPracticeHeader({
           </div>
         </div>
       )}
+      <p className="sr-only" aria-live="polite">
+        {inlineProgressLabel}
+      </p>
     </div>
   );
 }

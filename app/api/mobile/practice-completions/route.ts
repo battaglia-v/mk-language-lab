@@ -9,6 +9,7 @@ const completionEventSchema = z.object({
   category: z.string(),
   mode: z.enum(['typing', 'cloze', 'listening', 'multipleChoice']),
   direction: z.enum(['mkToEn', 'enToMk']),
+  difficulty: z.enum(['casual', 'focus', 'blitz']).optional(),
   correctCount: z.number().int().min(0),
   totalAttempts: z.number().int().min(0),
   accuracy: z.number().min(0).max(100),

@@ -4,11 +4,10 @@ import { useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import type { LucideIcon } from 'lucide-react';
-import {
-  Badge,
-} from '@/components/ui/badge';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { FilterChip } from '@/components/ui/filter-chip';
 import { Input } from '@/components/ui/input';
 import {
   BookMarked,
@@ -54,6 +53,12 @@ type ResourceData = {
 
 type ExtendedCollection = ResourceCollection & { slug: string };
 
+type FlattenedResource = ResourceItem & {
+  collectionTitle: string;
+  collectionSlug: string;
+  iconKey: string;
+};
+
 const collectionIcons: Record<string, LucideIcon> = {
   library: BookMarked,
   graduation: GraduationCap,
@@ -71,15 +76,14 @@ const formatIcons: Record<ResourceFormat, LucideIcon> = {
   document: FileText,
 };
 
-function slugify(value: string, fallback: string): string {
-  const slug = value
-    .toLowerCase()
-    .trim()
-    .replace(/[^\p{L}\p{N}]+/gu, '-')
-    .replace(/^-+|-+$/g, '');
-
-  return slug || fallback;
-}
+const formatLabelKeys: Record<ResourceFormat, `formats.${ResourceFormat}`> = {
+  website: 'formats.website',
+  video: 'formats.video',
+  audio: 'formats.audio',
+  podcast: 'formats.podcast',
+  article: 'formats.article',
+  document: 'formats.document',
+};
 
 export default function ResourcesPage() {
   const t = useTranslations('resources');
@@ -97,6 +101,19 @@ export default function ResourcesPage() {
         slug: slugify(collection.id || collection.title, `collection-${index}`),
       })),
     [collections]
+  );
+
+  const flattenedResources = useMemo<FlattenedResource[]>(
+    () =>
+      collectionsWithSlug.flatMap((collection) =>
+        collection.items.map((item) => ({
+          ...item,
+          collectionTitle: collection.title,
+          collectionSlug: collection.slug,
+          iconKey: collection.icon,
+        }))
+      ),
+    [collectionsWithSlug]
   );
 
   const sectionParamRaw = searchParams.get('section');
@@ -121,243 +138,186 @@ export default function ResourcesPage() {
   }, [validCollectionParam]);
 
   useEffect(() => {
-    const handler = setTimeout(() => {
-      if (typeof window === 'undefined') {
-        return;
-      }
+    const params = new URLSearchParams();
+    const trimmedQuery = searchQuery.trim();
 
-      const params = new URLSearchParams(window.location.search);
-      const trimmedQuery = searchQuery.trim();
-
-      if (trimmedQuery) {
-        params.set('q', trimmedQuery);
-      } else {
-        params.delete('q');
-      }
-
-      if (activeCollection && activeCollection !== 'all') {
-        params.set('section', activeCollection);
-      } else {
-        params.delete('section');
-      }
-
-      const nextQuery = params.toString();
-      const currentQuery = window.location.search.replace(/^\?/, '');
-
-      if (nextQuery !== currentQuery) {
-        router.replace(`${pathname}${nextQuery ? `?${nextQuery}` : ''}`, { scroll: false });
-      }
-    }, 200);
-
-    return () => clearTimeout(handler);
-  }, [activeCollection, pathname, router, searchQuery]);
-
-  useEffect(() => {
-    if (activeCollection === 'all') {
-      return;
+    if (trimmedQuery) {
+      params.set('q', trimmedQuery);
     }
-
-    const element = document.getElementById(`collection-${activeCollection}`);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }, [activeCollection]);
-
-  const filteredCollections = useMemo(() => {
-    const query = searchQuery.trim().toLowerCase();
-
-    let workingCollections = collectionsWithSlug;
 
     if (activeCollection !== 'all') {
-      workingCollections = workingCollections.filter((collection) => collection.slug === activeCollection);
+      params.set('section', activeCollection);
     }
 
-    if (!query) {
-      return workingCollections;
-    }
+    const queryString = params.toString();
+    router.replace(`${pathname}${queryString ? `?${queryString}` : ''}`, { scroll: false });
+  }, [activeCollection, pathname, router, searchQuery]);
 
-    return workingCollections
-      .map((collection) => {
-        const collectionMatches = collection.title.toLowerCase().includes(query) || collection.description.toLowerCase().includes(query);
-        const matchingItems = collection.items.filter((item) => {
-          const titleMatches = item.title.toLowerCase().includes(query);
-          const summaryMatches = item.summary.toLowerCase().includes(query);
-          const urlMatches = item.url.toLowerCase().includes(query);
-          return titleMatches || summaryMatches || urlMatches;
-        });
+  const filteredResources = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
 
-        if (matchingItems.length > 0) {
-          return {
-            ...collection,
-            items: matchingItems,
-          } satisfies ExtendedCollection;
-        }
+    return flattenedResources.filter((resource) => {
+      const matchesCollection = activeCollection === 'all' || resource.collectionSlug === activeCollection;
+      if (!matchesCollection) {
+        return false;
+      }
+      if (!query) {
+        return true;
+      }
 
-        return collectionMatches ? collection : null;
-      })
-      .filter((collection): collection is ExtendedCollection => Boolean(collection));
-  }, [activeCollection, collectionsWithSlug, searchQuery]);
+      return (
+        resource.title.toLowerCase().includes(query) ||
+        resource.summary.toLowerCase().includes(query) ||
+        resource.collectionTitle.toLowerCase().includes(query)
+      );
+    });
+  }, [activeCollection, flattenedResources, searchQuery]);
 
-  const totalMatches = filteredCollections.reduce((acc, collection) => acc + collection.items.length, 0);
-  const totalResources = collectionsWithSlug.reduce((acc, collection) => acc + collection.items.length, 0);
+  const totalMatches = filteredResources.length;
+  const totalResources = flattenedResources.length;
   const updatedDate = new Date(resourceData.updatedAt);
   const resultsSummary = t('resultsSummary', { count: totalMatches, total: totalResources });
+  const updatedLabel = t('updatedOn', {
+    date: updatedDate.toLocaleDateString(undefined, {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    }),
+  });
 
   const handleCollectionSelect = (slug: string) => {
     setActiveCollection(slug);
   };
 
   return (
-    <div className="bg-background">
-        <div className="mx-auto max-w-4xl">
-          {/* Header */}
-          <div className="border-b border-border/40 bg-card/50 backdrop-blur-sm px-4 py-4 md:py-5">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-              <div className="flex-1 min-w-0">
-                <h1 className="text-lg md:text-xl font-bold text-foreground">
-                  {t('title')}
-                </h1>
+    <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/40">
+      <div className="mx-auto max-w-6xl space-y-6 px-4 py-10">
+        <section className="rounded-3xl border border-border/40 bg-card/60 p-6 shadow-sm">
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div className="space-y-3">
+              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-primary">
+                <Sparkles className="h-4 w-4" />
+                {t('badge')}
+              </span>
+              <div>
+                <h1 className="text-2xl font-semibold text-foreground md:text-3xl">{t('title')}</h1>
+                <p className="text-sm text-muted-foreground">{updatedLabel}</p>
               </div>
-              <a
-                href="https://macedonianlanguagecorner.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="self-start md:flex-shrink-0 inline-flex items-center gap-2 rounded-lg border border-primary/20 bg-gradient-to-r from-primary/10 to-primary/5 px-3 py-2 text-xs font-medium text-foreground hover:border-primary/40 hover:from-primary/15 hover:to-primary/10 transition-all shadow-sm hover:shadow"
-              >
-                <Sparkles className="h-3.5 w-3.5 text-primary flex-shrink-0" />
-                <span className="font-semibold">{t('badge')}</span>
-                <ExternalLink className="h-3 w-3 text-muted-foreground flex-shrink-0" />
-              </a>
             </div>
-          </div>
 
-          {/* Search & Filters */}
-          <div className="border-b border-border/40 px-4 py-3 space-y-3">
+            {resourceData.pdf && (
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <Button variant="default" size="lg" className="gap-2 rounded-full" asChild>
+                  <a href={resourceData.pdf.url} target="_blank" rel="noopener noreferrer">
+                    <FileText className="h-4 w-4" />
+                    {resourceData.pdf.label || t('viewPdf')}
+                  </a>
+                </Button>
+                <p className="text-xs text-muted-foreground">{t('pdfHint')}</p>
+              </div>
+            )}
+          </div>
+        </section>
+
+        <section className="rounded-3xl border border-border/30 bg-card/60 p-6 shadow-sm">
+          <div className="space-y-4">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
                 placeholder={t('search')}
-                className="h-10 rounded-lg pl-10 text-sm"
+                className="h-11 rounded-2xl pl-11 text-sm"
               />
             </div>
 
-            <div className="relative -mx-4 px-4">
-              <div className="flex gap-2 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-2">
-                <Button
-                  type="button"
-                  size="sm"
-                  variant={activeCollection === 'all' ? 'default' : 'outline'}
-                  onClick={() => handleCollectionSelect('all')}
-                  className="h-8 text-xs flex-shrink-0 snap-start"
-                >
-                  {t('showAll')}
-                </Button>
-                {collectionsWithSlug.map((collection) => (
-                  <Button
-                    key={collection.slug}
-                    type="button"
-                    size="sm"
-                    variant={activeCollection === collection.slug ? 'default' : 'outline'}
-                    onClick={() => handleCollectionSelect(collection.slug)}
-                    className="h-8 text-xs flex-shrink-0 snap-start"
-                  >
-                    {collection.title}
-                  </Button>
-                ))}
-              </div>
-              <style jsx>{`
-                .scrollbar-hide::-webkit-scrollbar {
-                  display: none;
-                }
-                .scrollbar-hide {
-                  -ms-overflow-style: none;
-                  scrollbar-width: none;
-                }
-              `}</style>
+            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+              <FilterChip active={activeCollection === 'all'} onClick={() => handleCollectionSelect('all')}>
+                {t('showAll')}
+              </FilterChip>
+              {collectionsWithSlug.map((collection) => (
+                <FilterChip key={collection.slug} active={activeCollection === collection.slug} onClick={() => handleCollectionSelect(collection.slug)}>
+                  {collection.title}
+                </FilterChip>
+              ))}
             </div>
+            <style jsx>{`
+              .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+              }
+              .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+              }
+            `}</style>
 
             <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-              <span className="hidden md:inline">
-                {t('updatedOn', {
-                  date: updatedDate.toLocaleDateString(undefined, {
-                    month: 'short',
-                    day: 'numeric',
-                    year: 'numeric',
-                  }),
-                })}
-              </span>
               <span>{resultsSummary}</span>
+              <span>{updatedLabel}</span>
             </div>
           </div>
 
-          {/* Content */}
-          <div className="px-4 py-4">
-            {filteredCollections.length === 0 || totalMatches === 0 ? (
-              <Card className="border-border/40 bg-card/50">
-                <CardContent className="py-8 text-center text-sm text-muted-foreground">
-                  {t('noResults')}
-                </CardContent>
-              </Card>
-            ) : (
-              <div className="space-y-0">
-                {filteredCollections.map((collection) => {
-                  const Icon = collectionIcons[collection.icon] ?? BookMarked;
-                  return (
-                    <div key={collection.slug} id={`collection-${collection.slug}`} className="border-b border-border/30 last:border-b-0">
-                      {/* Section Header */}
-                      <div className="sticky top-0 z-10 flex items-center justify-between gap-3 bg-muted/50 backdrop-blur-sm px-4 py-3 border-b border-border/30">
-                        <div className="flex items-center gap-2 flex-1 min-w-0">
-                          <Icon className="h-4 w-4 text-primary flex-shrink-0" />
-                          <h2 className="text-sm font-semibold text-foreground truncate">{collection.title}</h2>
+          {filteredResources.length === 0 ? (
+            <Card className="mt-6 border-border/40 bg-card/70">
+              <CardContent className="py-10 text-center text-sm text-muted-foreground">{t('noResults')}</CardContent>
+            </Card>
+          ) : (
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              {filteredResources.map((resource) => {
+                const Icon = collectionIcons[resource.iconKey] ?? BookMarked;
+                const FormatIcon = formatIcons[resource.format] ?? FileText;
+                const formatLabel = t(formatLabelKeys[resource.format]);
+                const ctaLabel = resource.format === 'document' ? t('viewPdf') : t('openResource');
+
+                return (
+                  <a
+                    key={`${resource.collectionSlug}-${resource.url}`}
+                    href={resource.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block h-full"
+                  >
+                    <Card className="flex h-full flex-col justify-between border-border/40 bg-background/70 transition-shadow hover:border-primary/30 hover:shadow-lg">
+                      <CardHeader className="space-y-3">
+                        <div className="flex items-center gap-3">
+                          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                            <Icon className="h-5 w-5" />
+                          </div>
+                          <div className="space-y-1">
+                            <CardTitle className="text-base text-foreground">{resource.title}</CardTitle>
+                            <CardDescription className="text-xs text-muted-foreground">{resource.collectionTitle}</CardDescription>
+                          </div>
                         </div>
-                        <Badge variant="secondary" className="text-[10px] font-semibold flex-shrink-0">
-                          {collection.items.length}
+                        <Badge variant="secondary" className="w-fit gap-1.5 text-[11px]">
+                          <FormatIcon className="h-3.5 w-3.5" />
+                          {formatLabel}
                         </Badge>
-                      </div>
-
-                      {/* Resource Items */}
-                      <div className="divide-y divide-border/20">
-                        {collection.items.map((item) => {
-                          const FormatIcon = formatIcons[item.format] ?? FileText;
-                          return (
-                            <a
-                              key={`${collection.slug}-${item.url}`}
-                              href={item.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="group flex items-center gap-3 py-3 px-4 transition-colors hover:bg-muted/30 active:bg-muted/50"
-                            >
-                              {/* Left: Format Icon */}
-                              <div className="flex-shrink-0">
-                                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-secondary/10">
-                                  <FormatIcon className="h-4 w-4 text-secondary" />
-                                </div>
-                              </div>
-
-                              {/* Center: Title */}
-                              <div className="flex-1 min-w-0">
-                                <p className="text-sm font-medium text-foreground truncate group-hover:text-primary transition-colors">
-                                  {item.title}
-                                </p>
-                              </div>
-
-                              {/* Right: External Link Icon */}
-                              <div className="flex-shrink-0">
-                                <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                              </div>
-                            </a>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        </div>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        <p className="text-sm text-muted-foreground line-clamp-3">{resource.summary}</p>
+                        <div className="inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                          {ctaLabel}
+                          <ExternalLink className="h-3.5 w-3.5" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </a>
+                );
+              })}
+            </div>
+          )}
+        </section>
       </div>
+    </div>
   );
+}
+
+function slugify(value: string, fallback: string): string {
+  const slug = value
+    .toLowerCase()
+    .trim()
+    .replace(/[^\p{L}\p{N}]+/gu, '-')
+    .replace(/^-+|-+$/g, '');
+
+  return slug || fallback;
 }

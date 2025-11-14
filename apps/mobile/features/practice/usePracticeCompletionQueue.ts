@@ -5,7 +5,7 @@ import type { PracticeDirection } from '@mk/practice';
 import { submitPracticeCompletions, type PracticeCompletionEventPayload } from '@mk/api-client';
 import { getApiBaseUrl } from '../../lib/api';
 import { authenticatedFetch } from '../../lib/auth';
-import type { PracticeDeckMode } from './useMobileQuickPracticeSession';
+import type { PracticeDeckMode, PracticeDifficultyId } from './useMobileQuickPracticeSession';
 
 const STORAGE_KEY = '@mk/practice:pending-completions';
 const MAX_QUEUE_SIZE = 25;
@@ -15,6 +15,7 @@ export type PracticeCompletionDraft = {
   category: string;
   mode: PracticeDeckMode;
   direction: PracticeDirection;
+  difficulty: PracticeDifficultyId;
   correctCount: number;
   totalAttempts: number;
   accuracy: number;
@@ -132,6 +133,7 @@ export function usePracticeCompletionQueue(): PracticeCompletionQueue {
         category: draft.category,
         mode: draft.mode,
         direction: draft.direction,
+        difficulty: draft.difficulty,
         correctCount: draft.correctCount,
         totalAttempts: draft.totalAttempts,
         accuracy: Math.min(100, Math.max(0, Math.round(draft.accuracy))),

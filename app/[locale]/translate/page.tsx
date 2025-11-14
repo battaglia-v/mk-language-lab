@@ -26,6 +26,7 @@ type DirectionToggleProps = {
   onChange: (id: TranslationDirectionOption['id']) => void;
   onSwap: () => void;
   swapLabel: string;
+  groupLabel: string;
 };
 
 type TranslationResultProps = {
@@ -34,7 +35,6 @@ type TranslationResultProps = {
   isTranslating: boolean;
   placeholderTitle: string;
   placeholderDescription: string;
-  detectedLanguage: string | null;
   detectedLanguageLabel?: string;
   directionLabel: string;
   characterCountLabel: string;
@@ -93,7 +93,6 @@ export default function TranslatePage() {
     detectedLanguage,
     isTranslating,
     errorMessage,
-    isRetryable,
     copiedState,
     history,
     handleTranslate,
@@ -154,6 +153,7 @@ export default function TranslatePage() {
         onChange={(id) => setDirectionId(id)}
         onSwap={handleSwapDirections}
         swapLabel={t('swapDirections')}
+        groupLabel={t('directionsGroupLabel')}
       />
 
       <form
@@ -226,7 +226,6 @@ export default function TranslatePage() {
         isTranslating={isTranslating}
         placeholderTitle={t('resultEmptyTitle')}
         placeholderDescription={t('resultEmptyDescription')}
-        detectedLanguage={detectedLanguage}
         detectedLanguageLabel={
           detectedLanguage ? t('detectedLanguage', { language: languageLabels[detectedLanguage] ?? detectedLanguage }) : undefined
         }
@@ -341,10 +340,10 @@ export default function TranslatePage() {
   );
 }
 
-function DirectionToggle({ options, activeId, onChange, onSwap, swapLabel }: DirectionToggleProps) {
+function DirectionToggle({ options, activeId, onChange, onSwap, swapLabel, groupLabel }: DirectionToggleProps) {
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <div className="grid w-full grid-cols-2 gap-2" role="radiogroup" aria-label="Translation direction">
+      <div className="grid w-full grid-cols-2 gap-2" role="radiogroup" aria-label={groupLabel}>
         {options.map((option) => {
           const isActive = option.id === activeId;
           return (
@@ -381,13 +380,17 @@ function TranslationResult({
   isTranslating,
   placeholderTitle,
   placeholderDescription,
-  detectedLanguage,
   detectedLanguageLabel,
   directionLabel,
   characterCountLabel,
   shortcutHint,
   copyState,
   onCopy,
+  copyIdleLabel,
+  copySuccessLabel,
+  directionStatLabel,
+  charactersStatLabel,
+  shortcutStatLabel,
 }: TranslationResultProps) {
   const showSkeleton = isTranslating && !translatedText;
   return (
@@ -411,12 +414,12 @@ function TranslationResult({
           {copyState === 'copied' ? (
             <>
               <Check className="mr-2 h-4 w-4" />
-              {tCopyState('copied')}
+              {copySuccessLabel}
             </>
           ) : (
             <>
               <Copy className="mr-2 h-4 w-4" />
-              {tCopyState('idle')}
+              {copyIdleLabel}
             </>
           )}
         </Button>
@@ -443,14 +446,10 @@ function TranslationResult({
       </div>
 
       <div className="flex flex-wrap gap-2">
-        <WebStatPill label="Direction" value={directionLabel} accent="gold" />
-        <WebStatPill label="Characters" value={characterCountLabel} accent="red" />
-        <WebStatPill label="Shortcut" value={shortcutHint} accent="green" />
+        <WebStatPill label={directionStatLabel} value={directionLabel} accent="gold" />
+        <WebStatPill label={charactersStatLabel} value={characterCountLabel} accent="red" />
+        <WebStatPill label={shortcutStatLabel} value={shortcutHint} accent="green" />
       </div>
     </div>
   );
-}
-
-function tCopyState(state: 'idle' | 'copied') {
-  return state === 'copied' ? 'Copied' : 'Copy';
 }

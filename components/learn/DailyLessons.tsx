@@ -5,11 +5,14 @@ import { useTranslations, useLocale } from 'next-intl';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ExternalLink, Instagram, Loader2, AlertCircle, ArrowRight, Bookmark, BookmarkCheck } from 'lucide-react';
+import { ExternalLink, Instagram, Loader2, ArrowRight, Bookmark, BookmarkCheck } from 'lucide-react';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Skeleton } from '@/components/ui/skeleton';
+import { FilterChip } from '@/components/ui/filter-chip';
 import type { InstagramPost, InstagramPostsResponse } from '@/types/instagram';
 
 type Tag = {
@@ -299,19 +302,33 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
     return (
       <Card className="border-border/50 bg-card/60 backdrop-blur">
         <CardHeader>
-          <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-primary-foreground">
-              <Instagram className="h-6 w-6" />
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-primary-foreground">
+                <Instagram className="h-6 w-6" />
+              </div>
+              <div>
+                <CardTitle className="text-2xl">{t('title')}</CardTitle>
+                <CardDescription>{t('subtitle')}</CardDescription>
+              </div>
             </div>
-            <div>
-              <CardTitle className="text-2xl">{t('title')}</CardTitle>
-              <CardDescription>{t('subtitle')}</CardDescription>
+            <div className="flex items-center gap-2">
+              <Button variant="outline" size="sm" disabled>
+                <Instagram className="mr-2 h-4 w-4" />
+                {t('follow')}
+              </Button>
             </div>
           </div>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center justify-center py-12">
-            <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <div key={`daily-lessons-skeleton-${index}`} className="space-y-3 rounded-xl border border-border/40 bg-card/50 p-3">
+                <Skeleton className="aspect-square w-full rounded-lg" />
+                <Skeleton className="h-4 w-3/4" />
+                <Skeleton className="h-3 w-1/2" />
+              </div>
+            ))}
           </div>
         </CardContent>
       </Card>
@@ -322,36 +339,29 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
     return (
       <Card className="border-border/50 bg-card/60 backdrop-blur">
         <CardHeader>
-          <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-primary-foreground">
-              <Instagram className="h-6 w-6" />
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-primary-foreground">
+                <Instagram className="h-6 w-6" />
+              </div>
+              <div>
+                <CardTitle className="text-2xl">{t('title')}</CardTitle>
+                <CardDescription>{t('subtitle')}</CardDescription>
+              </div>
             </div>
-            <div>
-              <CardTitle className="text-2xl">{t('title')}</CardTitle>
-              <CardDescription>{t('subtitle')}</CardDescription>
-            </div>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-col items-center justify-center gap-4 py-12 text-center">
-            <AlertCircle className="h-12 w-12 text-muted-foreground" />
-            <div className="space-y-2">
-              <p className="text-sm text-muted-foreground">
-                {t('error')}
-              </p>
-              <p className="text-xs text-muted-foreground">{error}</p>
-            </div>
-            <Button variant="outline" asChild>
-              <a
-                href="https://www.instagram.com/macedonianlanguagecorner"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+            <Button variant="outline" size="sm" asChild>
+              <a href="https://www.instagram.com/macedonianlanguagecorner" target="_blank" rel="noopener noreferrer">
                 <Instagram className="mr-2 h-4 w-4" />
                 {t('visitInstagram')}
               </a>
             </Button>
           </div>
+        </CardHeader>
+        <CardContent>
+          <Alert variant="destructive">
+            <AlertTitle>{t('error')}</AlertTitle>
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
         </CardContent>
       </Card>
     );
@@ -402,48 +412,47 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
           </div>
         </div>
         {error && (
-          <div className="mt-2 flex items-center gap-2 rounded-lg border border-yellow-500/50 bg-yellow-500/10 px-3 py-2 text-xs text-yellow-700 dark:text-yellow-400">
-            <AlertCircle className="h-4 w-4" />
-            {error}
-          </div>
+          <Alert variant="destructive" className="mt-4">
+            <AlertTitle>{t('error')}</AlertTitle>
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
         )}
       </CardHeader>
       <CardContent>
         {/* Tag Filters */}
         {tags.length > 0 && (
-          <div className="mb-6 space-y-2">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <div className="mb-6 space-y-3">
+            <div className="flex items-center justify-between text-sm text-muted-foreground">
               <span className="font-medium">{t('filterByTag')}:</span>
               {selectedTagIds.size > 0 && (
-                <button
+                <Button
+                  type="button"
+                  variant="link"
+                  size="sm"
+                  className="h-auto px-0 text-xs font-medium"
                   onClick={() => setSelectedTagIds(new Set())}
-                  className="text-xs text-primary hover:underline"
                 >
                   {t('clearFilters')}
-                </button>
+                </Button>
               )}
             </div>
             <div className="flex flex-wrap gap-2">
               {tags.map((tag) => {
                 const isSelected = selectedTagIds.has(tag.id);
                 return (
-                  <button
+                  <FilterChip
                     key={tag.id}
+                    active={isSelected}
                     onClick={() => toggleTagFilter(tag.id)}
-                    className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-all ${
-                      isSelected
-                        ? 'bg-primary text-primary-foreground shadow-sm'
-                        : 'bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground'
-                    }`}
                     style={
                       isSelected
-                        ? { backgroundColor: tag.color, color: 'white' }
+                        ? { backgroundColor: tag.color, borderColor: tag.color, color: '#fff' }
                         : undefined
                     }
                   >
-                    {tag.icon && <span>{tag.icon}</span>}
+                    {tag.icon && <span className="text-sm">{tag.icon}</span>}
                     <span>{tag.name}</span>
-                  </button>
+                  </FilterChip>
                 );
               })}
             </div>

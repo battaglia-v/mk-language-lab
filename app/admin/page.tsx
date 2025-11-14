@@ -260,7 +260,10 @@ export default async function AdminDashboard() {
       <div className="grid gap-6 md:grid-cols-2">
         {/* Vocabulary Management */}
         <Card className="relative overflow-hidden transition-all hover:shadow-lg">
-          <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-primary/5 blur-2xl" />
+          <div
+            className="pointer-events-none absolute right-0 top-0 h-24 w-24 rounded-full bg-primary/5 blur-2xl"
+            aria-hidden="true"
+          />
           <CardHeader>
             <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
               <Sparkles className="h-6 w-6 text-primary" />
@@ -288,7 +291,10 @@ export default async function AdminDashboard() {
 
         {/* Quick Tips */}
         <Card className="relative overflow-hidden">
-          <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-blue-500/5 blur-2xl" />
+          <div
+            className="pointer-events-none absolute right-0 top-0 h-24 w-24 rounded-full bg-blue-500/5 blur-2xl"
+            aria-hidden="true"
+          />
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Activity className="h-5 w-5" />

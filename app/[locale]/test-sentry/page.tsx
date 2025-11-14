@@ -3,6 +3,7 @@
 import * as Sentry from "@sentry/nextjs";
 import Link from "next/link";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 /**
  * Test page for Sentry client-side error tracking
@@ -14,6 +15,7 @@ import { useState } from "react";
  */
 export default function TestSentryPage() {
   const [result, setResult] = useState<string>("");
+  const common = useTranslations("common");
 
   const testClientError = () => {
     try {
@@ -157,7 +159,7 @@ export default function TestSentryPage() {
             href="/"
             className="inline-block rounded-md border border-border bg-background px-6 py-2 font-medium transition-colors hover:bg-accent"
           >
-            Back to Home
+            {common("goHome")}
           </Link>
         </div>
       </div>

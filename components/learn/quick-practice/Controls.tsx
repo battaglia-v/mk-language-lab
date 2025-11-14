@@ -9,6 +9,7 @@ import type {
 } from 'react';
 import { RefreshCcw, Eye, EllipsisVertical, Check, XCircle, ChevronDown, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import {
   DropdownMenu,
@@ -141,71 +142,72 @@ export function QuickPracticeControls({
       )}
     >
       {!isInputFocused && (
-        <div
-          className={cn(
-            'flex gap-2 md:gap-4',
-            isModalVariant ? 'flex-col lg:flex-row lg:items-end lg:gap-6' : 'flex-col sm:flex-row sm:items-end',
-            !showSettings && 'hidden md:flex'
-          )}
-        >
-          <div className={cn('space-y-1.5', isModalVariant ? 'w-full lg:flex-1' : 'flex-1')}>
-            <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              {translate('practiceFilterLabel')}
-            </span>
-            <div className="relative">
-              <button
-                ref={categoryButtonRef}
-                type="button"
-                role="combobox"
-                aria-label={translate('practiceFilterLabel')}
-                aria-haspopup="listbox"
-                aria-expanded={isCategoryMenuOpen}
-                aria-controls="practice-category-options"
-                className={cn(
-                  'flex w-full items-center justify-between rounded-md border border-border/60 bg-background/80 px-3 py-2 text-sm font-medium text-foreground transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50',
-                  isModalVariant && 'md:h-12 md:text-base',
-                  isCategoryMenuOpen && 'ring-2 ring-ring/50'
-                )}
-                onClick={() => setIsCategoryMenuOpen((prev) => !prev)}
-              >
-                <span className="truncate">
-                  {category === ALL_CATEGORIES ? translate('practiceAllCategories') : formatCategory(category)}
-                </span>
-                <ChevronDown className={cn('h-4 w-4 transition-transform', isCategoryMenuOpen && 'rotate-180')} />
-              </button>
-              {isCategoryMenuOpen && (
-                <div
-                  ref={categoryMenuRef}
-                  id="practice-category-options"
-                  role="listbox"
-                  className="absolute z-20 mt-2 w-full rounded-md border border-border/40 bg-background/95 p-1 shadow-lg"
+        <>
+          <div
+            className={cn(
+              'flex gap-2 md:gap-4',
+              isModalVariant ? 'flex-col lg:flex-row lg:items-end lg:gap-6' : 'flex-col sm:flex-row sm:items-end',
+              !showSettings && 'hidden md:flex'
+            )}
+          >
+            <div className={cn('space-y-1.5', isModalVariant ? 'w-full lg:flex-1' : 'flex-1')}>
+              <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                {translate('practiceFilterLabel')}
+              </span>
+              <div className="relative">
+                <button
+                  ref={categoryButtonRef}
+                  type="button"
+                  role="combobox"
+                  aria-label={translate('practiceFilterLabel')}
+                  aria-haspopup="listbox"
+                  aria-expanded={isCategoryMenuOpen}
+                  aria-controls="practice-category-options"
+                  className={cn(
+                    'flex w-full items-center justify-between rounded-md border border-border/60 bg-background/80 px-3 py-2 text-sm font-medium text-foreground transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50',
+                    isModalVariant && 'md:h-12 md:text-base',
+                    isCategoryMenuOpen && 'ring-2 ring-ring/50'
+                  )}
+                  onClick={() => setIsCategoryMenuOpen((prev) => !prev)}
                 >
-                  {[ALL_CATEGORIES, ...categories].map((cat) => {
-                    const isSelected = category === cat;
-                    return (
-                      <button
-                        key={cat || 'all'}
-                        type="button"
-                        role="option"
-                        aria-selected={isSelected}
-                        className={cn(
-                          'flex w-full items-center justify-between rounded-sm px-3 py-1.5 text-left text-sm',
-                          isSelected ? 'bg-primary/10 text-primary font-semibold' : 'hover:bg-muted'
-                        )}
-                        onClick={() => {
-                          setCategory(cat);
-                          setIsCategoryMenuOpen(false);
-                        }}
-                      >
-                        <span>{cat === ALL_CATEGORIES ? translate('practiceAllCategories') : formatCategory(cat)}</span>
-                        {isSelected && <Check className="h-4 w-4" />}
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
+                  <span className="truncate">
+                    {category === ALL_CATEGORIES ? translate('practiceAllCategories') : formatCategory(category)}
+                  </span>
+                  <ChevronDown className={cn('h-4 w-4 transition-transform', isCategoryMenuOpen && 'rotate-180')} />
+                </button>
+                {isCategoryMenuOpen && (
+                  <div
+                    ref={categoryMenuRef}
+                    id="practice-category-options"
+                    role="listbox"
+                    className="absolute z-20 mt-2 w-full rounded-md border border-border/40 bg-background/95 p-1 shadow-lg"
+                  >
+                    {[ALL_CATEGORIES, ...categories].map((cat) => {
+                      const isSelected = category === cat;
+                      return (
+                        <button
+                          key={cat || 'all'}
+                          type="button"
+                          role="option"
+                          aria-selected={isSelected}
+                          className={cn(
+                            'flex w-full items-center justify-between rounded-sm px-3 py-1.5 text-left text-sm',
+                            isSelected ? 'bg-primary/10 text-primary font-semibold' : 'hover:bg-muted'
+                          )}
+                          onClick={() => {
+                            setCategory(cat);
+                            setIsCategoryMenuOpen(false);
+                          }}
+                        >
+                          <span>{cat === ALL_CATEGORIES ? translate('practiceAllCategories') : formatCategory(cat)}</span>
+                          {isSelected && <Check className="h-4 w-4" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
 
           <div className={cn('space-y-1.5', isModalVariant ? 'w-full lg:w-auto' : 'sm:w-auto')}>
             <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
@@ -240,38 +242,50 @@ export function QuickPracticeControls({
             </div>
           </div>
 
-          <div className={cn('space-y-1.5', isModalVariant ? 'w-full lg:w-auto' : 'sm:w-auto')}>
-            <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              {translate('practiceDrillModeLabel')}
-            </span>
-            <div
-              className={cn(
-                'flex rounded-xl border border-border/60 bg-background/60 p-1',
-                isModalVariant ? 'flex-col gap-3 lg:flex-row' : 'w-full sm:w-max'
-              )}
-            >
-              <Button
-                type="button"
-                size="sm"
-                variant={practiceMode === 'flashcard' ? 'default' : 'outline'}
-                onClick={() => setPracticeMode('flashcard')}
-                aria-pressed={practiceMode === 'flashcard'}
-                className={cn(isModalVariant && 'md:h-10', 'px-2 text-xs')}
+            <div className={cn('space-y-1.5', isModalVariant ? 'w-full lg:w-auto' : 'sm:w-auto')}>
+              <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                {translate('practiceDrillModeLabel')}
+              </span>
+              <div
+                className={cn(
+                  'flex rounded-xl border border-border/60 bg-background/60 p-1',
+                  isModalVariant ? 'flex-col gap-3 lg:flex-row' : 'w-full sm:w-max'
+                )}
               >
-                {translate('practiceDrillModeFlashcard')}
-              </Button>
-              <Button
-                type="button"
-                size="sm"
-                variant={practiceMode === 'cloze' ? 'default' : 'outline'}
-                onClick={() => setPracticeMode('cloze')}
-                aria-pressed={practiceMode === 'cloze'}
-                className={cn(isModalVariant && 'md:h-10', 'px-2 text-xs')}
-              >
-                {translate('practiceDrillModeCloze')}
-              </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant={practiceMode === 'flashcard' ? 'default' : 'outline'}
+                  onClick={() => setPracticeMode('flashcard')}
+                  aria-pressed={practiceMode === 'flashcard'}
+                  className={cn(isModalVariant && 'md:h-10', 'px-2 text-xs')}
+                >
+                  {translate('practiceDrillModeFlashcard')}
+                </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant={practiceMode === 'cloze' ? 'default' : 'outline'}
+                  onClick={() => setPracticeMode('cloze')}
+                  aria-pressed={practiceMode === 'cloze'}
+                  className={cn(isModalVariant && 'md:h-10', 'px-2 text-xs')}
+                >
+                  {translate('practiceDrillModeCloze')}
+                </Button>
+              </div>
             </div>
           </div>
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground md:hidden">
+            {translate('practiceHint')}
+          </p>
+        </>
+      )}
+
+      {!isInputFocused && (
+        <div className="hidden md:flex">
+          <Badge className="items-center gap-2 border border-primary/30 bg-primary/5 text-[11px] font-semibold uppercase tracking-wide text-primary">
+            {translate('practiceHint')}
+          </Badge>
         </div>
       )}
 
@@ -279,10 +293,15 @@ export function QuickPracticeControls({
 
       <form
         ref={formRef}
-        className={cn('space-y-2 md:space-y-4', isInputFocused && 'space-y-1.5 pb-6 md:space-y-4 md:pb-0')}
+        className={cn('space-y-3 md:space-y-4', isInputFocused && 'space-y-2 pb-6 md:space-y-4 md:pb-0')}
         onSubmit={handleSubmit}
       >
-        <div className="relative">
+        <div
+          className={cn(
+            'rounded-3xl border border-border/60 bg-background/80 p-3 shadow-inner transition-all duration-200 md:p-4',
+            isShaking && 'ring-2 ring-[var(--brand-red)]/40',
+          )}
+        >
           <Input
             value={answer}
             onChange={(event) => setAnswer(event.target.value)}
@@ -292,24 +311,32 @@ export function QuickPracticeControls({
             }}
             placeholder={placeholder}
             className={cn(
-              'rounded-2xl border-2 border-slate-300 dark:border-slate-600 bg-[color:var(--surface-elevated)] text-slate-900 dark:text-white',
-              'focus:border-[var(--brand-green)] focus:ring-4 focus:ring-[color:rgb(47_191_113_/_0.25)] transition-all duration-200',
-              'font-medium placeholder:text-slate-400',
-              isModalVariant ? 'h-14 text-xl' : isInputFocused ? 'h-11 text-base' : 'h-12 text-base md:h-14 md:text-lg',
-              'pr-10'
+              'h-auto min-h-[48px] border-0 bg-transparent px-0 text-base font-medium text-foreground placeholder:text-muted-foreground md:text-lg',
+              'focus-visible:ring-0 focus-visible:outline-none',
             )}
             aria-label={placeholder}
             disabled={!isReady}
           />
-          <button
-            type="button"
-            onClick={onNextPrompt}
-            className="md:hidden absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full hover:bg-muted transition-colors"
-            disabled={!hasAvailablePrompts}
-            aria-label={translate('practiceSkipPrompt')}
-          >
-            <RefreshCcw className="h-4 w-4 text-muted-foreground" />
-          </button>
+          <div className="mt-2 flex items-center justify-between text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+            <button
+              type="button"
+              onClick={onNextPrompt}
+              className="hover:text-primary disabled:opacity-40"
+              disabled={!hasAvailablePrompts}
+              aria-label={translate('practiceSkipPrompt')}
+            >
+              {translate('practiceSkipPrompt')}
+            </button>
+            <button
+              type="button"
+              onClick={onRevealAnswer}
+              className="hover:text-primary disabled:opacity-40"
+              disabled={!isReady}
+              aria-label={translate('practiceRevealAnswer')}
+            >
+              {translate('practiceRevealAnswer')}
+            </button>
+          </div>
         </div>
 
         <div className="md:hidden flex flex-col gap-3">
@@ -317,11 +344,9 @@ export function QuickPracticeControls({
             type="button"
             size="lg"
             className={cn(
-              'w-full text-base font-bold uppercase tracking-wide shadow-lg hover:shadow-xl transition-all duration-200',
-              isInputFocused ? 'h-11' : 'h-14',
-              'bg-[var(--brand-green)] hover:bg-[var(--brand-green-dark)] text-white border-b-4 border-[var(--brand-green-dark)] active:border-b-0 active:mt-1',
-              'rounded-2xl hover:-translate-y-0.5 active:translate-y-0',
-              'disabled:bg-slate-300 disabled:border-slate-400 disabled:text-slate-500 disabled:hover:translate-y-0',
+              'w-full rounded-2xl bg-gradient-to-r from-primary to-secondary text-base font-semibold text-white shadow-lg transition-all duration-200',
+              isInputFocused ? 'h-11' : 'h-12',
+              'hover:-translate-y-0.5 hover:shadow-xl disabled:opacity-60 disabled:hover:translate-y-0',
               'flex items-center justify-center gap-2'
             )}
             disabled={isPrimaryDisabled}
@@ -406,10 +431,8 @@ export function QuickPracticeControls({
             type="submit"
             size={isModalVariant ? 'lg' : 'default'}
             className={cn(
-              'w-full gap-2 font-bold uppercase tracking-wide shadow-lg hover:shadow-xl transition-all duration-200',
-              'bg-[var(--brand-green)] hover:bg-[var(--brand-green-dark)] text-white border-b-4 border-[var(--brand-green-dark)] active:border-b-0',
-              'rounded-2xl hover:-translate-y-0.5 active:translate-y-0 h-12',
-              'disabled:bg-slate-300 disabled:border-slate-400 disabled:text-slate-500 disabled:hover:translate-y-0',
+              'w-full gap-2 rounded-2xl bg-gradient-to-r from-primary to-secondary font-semibold shadow-lg transition-all duration-200',
+              'text-white hover:-translate-y-0.5 hover:shadow-xl h-12 disabled:opacity-60 disabled:hover:translate-y-0',
               'flex items-center justify-center gap-2'
             )}
             disabled={isPrimaryDisabled}
@@ -428,7 +451,7 @@ export function QuickPracticeControls({
             variant="outline"
             size={isModalVariant ? 'lg' : 'default'}
             onClick={onNextPrompt}
-            className="w-full gap-2"
+            className="w-full gap-2 rounded-2xl border-border/50"
             disabled={!hasAvailablePrompts}
           >
             <RefreshCcw className="h-4 w-4" />
@@ -439,7 +462,7 @@ export function QuickPracticeControls({
             variant="ghost"
             size={isModalVariant ? 'lg' : 'default'}
             onClick={onRevealAnswer}
-            className="w-full gap-2"
+            className="w-full gap-2 rounded-2xl"
             disabled={!isReady}
           >
             <Eye className="h-4 w-4" />
@@ -450,7 +473,7 @@ export function QuickPracticeControls({
             variant="ghost"
             size={isModalVariant ? 'lg' : 'default'}
             onClick={onReset}
-            className="w-full gap-2"
+            className="w-full gap-2 rounded-2xl"
             disabled={!isReady && !answer}
           >
             {translate('practiceReset')}

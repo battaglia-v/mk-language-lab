@@ -4,12 +4,10 @@ import { Analytics } from '@vercel/analytics/react';
 import { notFound } from 'next/navigation';
 import { locales } from '@/i18n';
 import Sidebar from '@/components/Sidebar';
-import LanguageSwitcher from '@/components/LanguageSwitcher';
-import { CommandMenuLazy } from '@/components/CommandMenuLazy';
 import Footer from '@/components/Footer';
 import { SessionProvider } from '@/components/auth/SessionProvider';
-import { UserMenu } from '@/components/auth/UserMenu';
 import type { ReactNode } from 'react';
+import { TopNav } from '@/components/layout/TopNav';
 
 type LayoutProps = {
   children: ReactNode;
@@ -34,22 +32,12 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
       <NextIntlClientProvider messages={messages}>
         <Sidebar />
 
-        {/* Top bar for search and language switcher */}
-        <div className="fixed top-0 right-0 left-0 lg:left-sidebar z-30 h-14 bg-background/80 backdrop-blur-md border-b border-border/40">
-          <div className="flex items-center justify-between h-full px-4 lg:px-6 gap-2">
-            <CommandMenuLazy />
-            <div className="flex items-center gap-3">
-              <LanguageSwitcher />
-              <UserMenu />
-            </div>
-          </div>
-        </div>
-
-        {/* Main content with proper spacing for sidebar and top bar */}
-        <div className="lg:ml-sidebar flex flex-col min-h-screen">
+        {/* Main content with responsive shell */}
+        <div className="lg:ml-sidebar flex min-h-screen flex-col bg-background">
+          <TopNav />
           <main
             id="main-content"
-            className="outline-none focus-visible:ring-2 focus-visible:ring-primary pt-14 flex-1"
+            className="flex-1 px-4 py-6 outline-none focus-visible:ring-2 focus-visible:ring-primary sm:px-6 lg:px-8"
           >
             {children}
           </main>

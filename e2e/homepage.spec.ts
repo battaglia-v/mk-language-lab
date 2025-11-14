@@ -17,31 +17,27 @@ test.describe('Homepage', () => {
     await expect(page.getByText('Македонски').first()).toBeVisible();
   });
 
-  test('should display Word of the Day section', async ({ page }) => {
-    // Wait for Word of the Day section to load
-    const wordSection = page.locator('#word-of-day');
-    await expect(wordSection).toBeVisible();
+  test('should display Mission Control dashboard', async ({ page }) => {
+    // Mission Control homepage doesn't have Word of Day section
+    // Check for Mission Control heading instead
+    await expect(page.getByText('Mission Control')).toBeVisible();
 
-    // Give time for the Word component to load its content
-    await page.waitForTimeout(1000);
+    // Check for mission-related content
+    await expect(page.getByText(/Stay on streak|power through missions/i)).toBeVisible();
   });
 
   test('should display Quick Start cards', async ({ page }) => {
-    // Check for Continue lesson card (English: "Continue lesson", Macedonian: "Продолжи лекција")
-    await expect(page.getByRole('heading', { name: /Continue lesson|Продолжи лекција/i })).toBeVisible();
+    // Mission Control has "Continue mission" instead of "Continue lesson"
+    await expect(page.getByRole('heading', { name: /Continue mission/i })).toBeVisible();
 
-    // Check for Practice link (the entire card is a link to /practice)
-    const practiceLink = page.getByRole('link', { name: /Continue lesson|Продолжи лекција/i });
-    await expect(practiceLink).toBeVisible();
-
-    // Check for Resources card (English: "Resources", Macedonian: "Ресурси")
-    // Use .last() to get the card link (not the sidebar link)
-    const resourcesLink = page.getByRole('link', { name: /Resources|Ресурси/i }).last();
-    await expect(resourcesLink).toBeVisible();
+    // Check for mission action cards
+    await expect(page.getByRole('heading', { name: /Translator inbox/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Reminder windows/i })).toBeVisible();
   });
 
   test('should navigate to practice page', async ({ page }) => {
-    const practiceLink = page.getByRole('link', { name: /Continue lesson|Продолжи лекција/i });
+    // Mission Control has "Continue mission" link
+    const practiceLink = page.getByRole('link', { name: /Continue mission/i });
     await practiceLink.click();
 
     // Wait for navigation

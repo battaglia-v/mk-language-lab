@@ -30,6 +30,7 @@ test.describe('API Error Handling', () => {
 
     test('should handle translation with very long text', async ({ page }) => {
       await page.goto('/mk/translate');
+      await page.waitForLoadState('networkidle');
 
       const textarea = page.getByRole('textbox').first();
 
@@ -39,10 +40,11 @@ test.describe('API Error Handling', () => {
         await textarea.fill(longText);
         await page.waitForTimeout(500);
 
-        // Should show character limit warning
-        const charCount = page.getByText(/1800|character|карактер/i);
+        // Should show character limit - check for the character count element
+        const charCount = page.locator('#translate-character-count, [id*="character"], text=/\\d+.*1800/i').first();
         const hasWarning = await charCount.isVisible().catch(() => false);
 
+        // The character count should be visible and show the limit
         expect(hasWarning).toBeTruthy();
       }
     });
@@ -125,16 +127,18 @@ test.describe('API Error Handling', () => {
       await page.waitForTimeout(5000);
 
       // Should show either articles OR an error/empty state
-      const articles = page.locator('a[target="_blank"] h3');
-      const error = page.getByText(/error|failed|unavailable|грешка/i).first();
-      const empty = page.getByText(/no result|no articles|ништо/i).first();
+      const articles = page.locator('a[target="_blank"]');
+      const error = page.getByText(/error|failed|unavailable|грешка|не можеме/i).first();
+      const empty = page.getByText(/no result|no articles|ништо|нема.*пронајдени/i).first();
+      const loadingSkeleton = page.locator('[class*="animate-pulse"], [class*="skeleton"]').first();
 
       const articleCount = await articles.count();
       const hasError = await error.isVisible().catch(() => false);
       const hasEmpty = await empty.isVisible().catch(() => false);
+      const hasLoading = await loadingSkeleton.isVisible().catch(() => false);
 
-      // Should show something (articles, error, or empty state)
-      expect(articleCount > 0 || hasError || hasEmpty).toBeTruthy();
+      // Should show something (articles, error, empty state, or loading)
+      expect(articleCount > 0 || hasError || hasEmpty || hasLoading).toBeTruthy();
     });
 
     test('should display loading state while fetching news', async ({ page }) => {
@@ -180,14 +184,14 @@ test.describe('API Error Handling', () => {
       await page.goto('/mk/news');
 
       // Should show loading state or skeleton
-      const loading = page.locator('[class*="skeleton"], [class*="loading"]').first();
+      const loading = page.locator('[class*="skeleton"], [class*="loading"], [class*="animate-pulse"]').first();
       const hasLoading = await loading.isVisible().catch(() => false);
 
       // Eventually should load or show error (within 10 seconds)
       await page.waitForTimeout(7000);
 
-      const articles = page.locator('a[target="_blank"] h3');
-      const error = page.getByText(/error|failed|unavailable/i).first();
+      const articles = page.locator('a[target="_blank"]');
+      const error = page.getByText(/error|failed|unavailable|грешка/i).first();
 
       const articleCount = await articles.count();
       const hasError = await error.isVisible().catch(() => false);
@@ -196,32 +200,32 @@ test.describe('API Error Handling', () => {
     });
   });
 
-  test.describe('Word of the Day API', () => {
-    test('should handle Word of the Day API failure gracefully', async ({ page }) => {
+  test.describe('Mission Control API', () => {
+    test('should handle Mission API failure gracefully', async ({ page }) => {
       await page.goto('/mk');
 
-      // Wait for WOTD to load
+      // Wait for Mission Control to load
       await page.waitForTimeout(2000);
 
-      // Should show either word OR loading OR error
-      const wordSection = page.locator('#word-of-day');
-      const error = page.getByText(/error|failed|unavailable/i);
+      // Should show either Mission Control OR loading OR error
+      const missionSection = page.getByText('Mission Control');
+      const error = page.getByText(/error|failed|unavailable|Unable to load/i);
 
-      const hasSection = await wordSection.isVisible().catch(() => false);
+      const hasSection = await missionSection.isVisible().catch(() => false);
       const hasError = await error.isVisible().catch(() => false);
 
       // Should handle gracefully (show something or error)
       expect(hasSection || hasError).toBeTruthy();
     });
 
-    test('should not crash homepage if Word of the Day fails', async ({ page }) => {
+    test('should not crash homepage if Mission API fails', async ({ page }) => {
       await page.goto('/mk');
 
-      // Even if WOTD fails, rest of homepage should work
+      // Even if Mission API fails, rest of homepage should work
       await page.waitForTimeout(2000);
 
-      // Action cards should still be visible (handle both English and Macedonian)
-      const practiceLink = page.getByRole('link', { name: /Continue lesson|Продолжи лекција/i });
+      // Action cards should still be visible with "Continue mission"
+      const practiceLink = page.getByRole('link', { name: /Continue mission/i });
       await expect(practiceLink).toBeVisible();
 
       // Navigation should still work

@@ -17,9 +17,9 @@ test.describe('Resources Page', () => {
     // Wait for content to load
     await page.waitForTimeout(1000);
 
-    // Should have at least one collection card
-    const collections = page.locator('[id^="collection-"]');
-    const count = await collections.count();
+    // Should have at least one resource card
+    const resourceCards = page.locator('a[target="_blank"] [class*="Card"]').or(page.locator('a[target="_blank"][rel="noopener noreferrer"]'));
+    const count = await resourceCards.count();
     expect(count).toBeGreaterThan(0);
   });
 
@@ -89,10 +89,10 @@ test.describe('Resources Page', () => {
   });
 
   test('should display last updated date', async ({ page }) => {
-    // Check for "Updated on" or similar text
-    const updatedText = page.getByText(/updated|Last updated|ажурирано/i);
+    // Check for "Updated on" or similar text - use first() to avoid strict mode violations
+    const updatedText = page.getByText(/updated|Last updated|ажурирано/i).first();
 
-    if (await updatedText.isVisible()) {
+    if (await updatedText.isVisible().catch(() => false)) {
       await expect(updatedText).toBeVisible();
     }
   });
@@ -104,9 +104,9 @@ test.describe('Resources Page', () => {
     // Content should still be visible
     await expect(page.locator('h1')).toBeVisible();
 
-    // Collections should be visible
-    const collections = page.locator('[id^="collection-"]');
-    const count = await collections.count();
+    // Resource cards should be visible
+    const resourceCards = page.locator('a[target="_blank"][rel="noopener noreferrer"]');
+    const count = await resourceCards.count();
     expect(count).toBeGreaterThan(0);
   });
 

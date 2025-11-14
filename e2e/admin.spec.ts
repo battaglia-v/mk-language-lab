@@ -48,8 +48,8 @@ test.describe('Admin Signin Page', () => {
     // Should navigate to homepage
     await page.waitForURL(/\/(mk|en)?$/);
 
-    // Verify we're on homepage
-    await expect(page.getByText('Македонски')).toBeVisible();
+    // Verify we're on homepage by checking for the heading or navigation
+    await expect(page.getByText('Македонски').first()).toBeVisible();
   });
 
   test('should display shield or security icon', async ({ page }) => {
