@@ -2,7 +2,7 @@
 
 import useSWR from 'swr';
 import { useMemo, useState } from 'react';
-import { ArrowUpTray, RefreshCw } from 'lucide-react';
+import { Upload, RefreshCw } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -127,6 +127,20 @@ function UploadPracticeAudioForm({ onUploaded }: { onUploaded: () => void }) {
             <Input id="notes" name="notes" placeholder="Accent, recording notes…" />
           </div>
         </div>
+        <div className="space-y-2">
+          <div className="flex items-center space-x-2">
+            <input
+              id="isPublished"
+              name="isPublished"
+              type="checkbox"
+              value="true"
+              className="h-4 w-4 rounded border-input focus:ring-2 focus:ring-primary"
+            />
+            <Label htmlFor="isPublished" className="cursor-pointer font-normal">
+              Publish immediately (if unchecked, saves as draft)
+            </Label>
+          </div>
+        </div>
         <div className="grid gap-4 md:grid-cols-2">
           <div className="space-y-2">
             <Label htmlFor="primaryFile">Primary clip</Label>
@@ -157,7 +171,7 @@ function UploadPracticeAudioForm({ onUploaded }: { onUploaded: () => void }) {
         ) : null}
         <div className="flex justify-end">
           <Button type="submit" disabled={isSubmitting}>
-            <ArrowUpTray className="mr-2 h-4 w-4" />
+            <Upload className="mr-2 h-4 w-4" />
             {isSubmitting ? 'Uploading…' : 'Upload clip'}
           </Button>
         </div>
