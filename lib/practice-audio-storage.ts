@@ -60,7 +60,7 @@ async function uploadToBlob(
     throw new Error('BLOB_READ_WRITE_TOKEN is not configured');
   }
 
-  const blob = await blobPut(\`practice-audio/\${filename}\`, file, {
+  const blob = await blobPut(`practice-audio/${filename}`, file, {
     access: 'public',
     contentType,
     token,
@@ -99,7 +99,7 @@ async function uploadToS3(
 
   const fileBuffer = file instanceof Buffer ? file : Buffer.from(await file.arrayBuffer());
 
-  const key = \`practice-audio/\${filename}\`;
+  const key = `practice-audio/${filename}`;
 
   await s3Client.send(
     new PutObjectCommand({
@@ -112,7 +112,7 @@ async function uploadToS3(
   );
 
   // Construct public URL
-  const url = \`https://\${bucket}.s3.\${region}.amazonaws.com/\${key}\`;
+  const url = `https://${bucket}.s3.${region}.amazonaws.com/${key}`;
 
   return {
     url,
@@ -130,8 +130,8 @@ export function generateFilename(originalName: string, suffix?: string): string 
   const baseName = originalName.replace(/\.[^/.]+$/, '').replace(/[^a-z0-9-]/gi, '-').toLowerCase();
 
   if (suffix) {
-    return \`\${baseName}-\${suffix}-\${timestamp}-\${randomString}.\${extension}\`;
+    return `${baseName}-${suffix}-${timestamp}-${randomString}.${extension}`;
   }
 
-  return \`\${baseName}-\${timestamp}-\${randomString}.\${extension}\`;
+  return `${baseName}-${timestamp}-${randomString}.${extension}`;
 }

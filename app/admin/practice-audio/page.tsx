@@ -2,7 +2,7 @@
 
 import useSWR from 'swr';
 import { useMemo, useState } from 'react';
-import { Upload, RefreshCw } from 'lucide-react';
+import { Upload as UploadIcon, RefreshCw } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -171,7 +171,7 @@ function UploadPracticeAudioForm({ onUploaded }: { onUploaded: () => void }) {
         ) : null}
         <div className="flex justify-end">
           <Button type="submit" disabled={isSubmitting}>
-            <Upload className="mr-2 h-4 w-4" />
+            <UploadIcon className="mr-2 h-4 w-4" />
             {isSubmitting ? 'Uploading…' : 'Upload clip'}
           </Button>
         </div>

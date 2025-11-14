@@ -41,14 +41,14 @@ async function main() {
   const fixturesPath = path.join(process.cwd(), 'data', 'practice-audio.json');
 
   if (!fs.existsSync(fixturesPath)) {
-    console.error(\`❌ Error: practice-audio.json not found at \${fixturesPath}\`);
+    console.error(`❌ Error: practice-audio.json not found at ${fixturesPath}`);
     process.exit(1);
   }
 
   const rawData = fs.readFileSync(fixturesPath, 'utf-8');
   const fixtures: AudioFixture[] = JSON.parse(rawData);
 
-  console.log(\`📖 Loaded \${fixtures.length} audio fixtures from practice-audio.json\n\`);
+  console.log(`📖 Loaded ${fixtures.length} audio fixtures from practice-audio.json\n`);
 
   // Upsert each fixture
   let upsertedCount = 0;
@@ -60,7 +60,7 @@ async function main() {
         fixture.sourceType === 'human' ? PracticeAudioSource.human : PracticeAudioSource.tts;
 
       if (isDryRun) {
-        console.log(\`  [DRY RUN] Would upsert: promptId=\${fixture.promptId}, sourceType=\${sourceType}\`);
+        console.log(`  [DRY RUN] Would upsert: promptId=${fixture.promptId}, sourceType=${sourceType}`);
         upsertedCount++;
       } else {
         await prisma.practiceAudio.upsert({
@@ -96,17 +96,17 @@ async function main() {
         });
 
         upsertedCount++;
-        console.log(\`  ✅ Upserted: promptId=\${fixture.promptId}, sourceType=\${sourceType}\`);
+        console.log(`  ✅ Upserted: promptId=${fixture.promptId}, sourceType=${sourceType}`);
       }
     } catch (error) {
-      console.error(\`  ❌ Failed to upsert promptId=\${fixture.promptId}:\`, error);
+      console.error(`  ❌ Failed to upsert promptId=${fixture.promptId}:`, error);
       skippedCount++;
     }
   }
 
-  console.log(\`\n✨ Upserted \${upsertedCount} records\`);
+  console.log(`\n✨ Upserted ${upsertedCount} records`);
   if (skippedCount > 0) {
-    console.log(\`⚠️  Skipped \${skippedCount} records due to errors\`);
+    console.log(`⚠️  Skipped ${skippedCount} records due to errors`);
   }
 
   // Prune stale records
@@ -126,9 +126,9 @@ async function main() {
     });
 
     if (staleRecords.length > 0) {
-      console.log(\`\n🗑️  Found \${staleRecords.length} stale records not in fixtures:\`);
+      console.log(`\n🗑️  Found ${staleRecords.length} stale records not in fixtures:`);
       staleRecords.forEach((record) => {
-        console.log(\`    - promptId: \${record.promptId}\`);
+        console.log(`    - promptId: ${record.promptId}`);
       });
 
       const deleteResult = await prisma.practiceAudio.deleteMany({
@@ -139,7 +139,7 @@ async function main() {
         },
       });
 
-      console.log(\`\n✅ Deleted \${deleteResult.count} stale records\`);
+      console.log(`\n✅ Deleted ${deleteResult.count} stale records`);
     } else {
       console.log('\n✨ No stale records found - database is in sync with fixtures');
     }
