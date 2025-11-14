@@ -380,6 +380,40 @@ model PracticeVocabulary {
   @@index([formality])
 }
 
+model PracticeAudio {
+  id          String               @id @default(cuid())
+  promptId    String
+  language    String               @default("mk")
+  speaker     String?
+  speed       String? // normal, slow
+  variant     String? // female, male, etc.
+  duration    Float?
+  status      PracticeAudioStatus  @default(draft)
+  sourceType  PracticeAudioSource  @default(human)
+  cdnUrl      String
+  slowUrl     String?
+  waveform    Json?
+  notes       String?              @db.Text
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
+  publishedAt DateTime?
+
+  @@index([promptId])
+  @@index([status])
+}
+
+enum PracticeAudioStatus {
+  draft
+  processing
+  published
+  archived
+}
+
+enum PracticeAudioSource {
+  human
+  tts
+}
+
 // Game Progress - gamification data (streak, XP, level, hearts)
 model GameProgress {
   id               String    @id @default(cuid())
