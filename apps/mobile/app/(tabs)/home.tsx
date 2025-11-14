@@ -1,24 +1,38 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Pressable, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { NativeCard, NativeTypography } from '@mk/ui';
 import { brandColors, spacingScale } from '@mk/tokens';
-import { useMissionStatusQuery, getLocalMissionStatus, type MissionStatus } from '@mk/api-client';
+import {
+  useMissionStatusQuery,
+  getLocalMissionStatus,
+  type MissionStatus,
+  useDiscoverFeedQuery,
+  getLocalDiscoverFeed,
+  useNewsFeedQuery,
+  getLocalNewsFeed,
+  type DiscoverCard,
+  type DiscoverEvent,
+} from '@mk/api-client';
 import {
   MissionHeroCard,
   CoachTipsCarousel,
   SmartReviewRail,
   CommunityHighlights,
+  QuickActionsGrid,
   type MissionStats,
   type CoachTip,
   type ReviewCluster,
   type CommunityHighlight,
 } from '../../features/home';
+import { DiscoverCardList, UpcomingEvents } from '../../features/discover';
+import { HeadlinesSection } from '../../features/news/HeadlinesSection';
 import { getApiBaseUrl } from '../../lib/api';
 import { useNotifications } from '../../lib/notifications';
 import { useQueryHydration } from '../../lib/queryClient';
 import { authenticatedFetch } from '../../lib/auth';
+import { openDiscoverTarget } from '../../lib/deepLinks';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -34,6 +48,40 @@ export default function HomeScreen() {
   const mission = data ?? (!isApiConfigured ? getLocalMissionStatus() : null);
   const { scheduleMissionReminder } = useNotifications();
   const isRestoring = isApiConfigured && !isHydrated && !data;
+  const {
+    data: discoverData,
+    error: discoverError,
+    isLoading: isDiscoverLoading,
+    isFetching: isDiscoverFetching,
+    refetch: refetchDiscover,
+  } = useDiscoverFeedQuery({ baseUrl: apiBaseUrl ?? undefined, enabled: isApiConfigured, fetcher: authenticatedFetch });
+  const discoverFallback = useMemo(() => getLocalDiscoverFeed(), []);
+  const discoverFeed = discoverData ?? (!isApiConfigured || discoverError ? discoverFallback : null);
+  const spotlightCategory = discoverFeed?.categories?.[0];
+  const spotlightCards = spotlightCategory?.cards?.slice(0, 2) ?? [];
+  const spotlightEvents = discoverFeed?.events?.slice(0, 2) ?? [];
+  const discoverNotice = !discoverData && discoverFeed === discoverFallback ? 'Using cached Discover cards until the API responds.' : undefined;
+  const {
+    data: newsData,
+    error: newsError,
+    isLoading: isNewsLoading,
+    isFetching: isNewsFetching,
+    refetch: refetchNews,
+  } = useNewsFeedQuery({ baseUrl: apiBaseUrl ?? undefined, enabled: isApiConfigured, fetcher: authenticatedFetch });
+  const newsFallback = useMemo(() => getLocalNewsFeed(), []);
+  const newsItems = newsData ?? (!isApiConfigured || newsError ? newsFallback : []);
+  const newsNotice = !newsData && newsItems === newsFallback ? 'Headlines fall back to fixtures until the newsroom syncs.' : undefined;
+  const discoverEventFormatter = useMemo(
+    () =>
+      new Intl.DateTimeFormat(undefined, {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+      }),
+    []
+  );
 
   const missionStats = mission ? mapMissionToHeroStats(mission) : null;
   const coachTips: CoachTip[] = mission?.coachTips ?? [];
@@ -42,12 +90,63 @@ export default function HomeScreen() {
     accuracy: Math.round(cluster.accuracy * 100),
   }));
   const communityHighlights: CommunityHighlight[] = mission?.communityHighlights ?? [];
+  const openPractice = useCallback(() => router.push('/(tabs)/practice'), [router]);
+  const openPracticeSettings = useCallback(() => router.push('/(modals)/practice-settings'), [router]);
+  const openTranslatorHistory = useCallback(() => router.push('/(modals)/translator-history'), [router]);
+  const openMissionSettings = useCallback(() => router.push('/(modals)/mission-settings'), [router]);
+  const quickActions = useMemo(
+    () =>
+      mission
+        ? [
+            {
+              id: 'continue',
+              title: 'Continue mission',
+              description: 'Jump back into your Quick Practice deck.',
+              icon: <Ionicons name="play" size={22} color={brandColors.red} />,
+              onPress: openPractice,
+              accent: 'primary' as const,
+              disabled: isLoading || isFetching,
+            },
+            {
+              id: 'translator',
+              title: 'Translator inbox',
+              description: 'Review saved phrases and weak vocab.',
+              icon: <Ionicons name="chatbubble-ellipses-outline" size={22} color={brandColors.navy} />,
+              onPress: openTranslatorHistory,
+              accent: 'secondary' as const,
+            },
+            {
+              id: 'reminders',
+              title: 'Reminder windows',
+              description: 'Adjust streak nudges and deadlines.',
+              icon: <Ionicons name="notifications-outline" size={22} color={brandColors.goldDark} />,
+              onPress: openMissionSettings,
+              accent: 'secondary' as const,
+            },
+          ]
+        : [],
+    [mission, isFetching, isLoading, openMissionSettings, openPractice, openTranslatorHistory]
+  );
 
   useEffect(() => {
     if (mission) {
       void scheduleMissionReminder(mission);
     }
   }, [mission, scheduleMissionReminder]);
+
+  const handleDiscoverCard = useCallback(
+    (card: DiscoverCard) => {
+      openDiscoverTarget(router, card.ctaTarget, card.ctaUrl);
+    },
+    [router]
+  );
+
+  const handleDiscoverEvent = useCallback(
+    (event: DiscoverEvent) => {
+      openDiscoverTarget(router, event.ctaTarget, event.ctaUrl);
+    },
+    [router]
+  );
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -76,10 +175,10 @@ export default function HomeScreen() {
           {missionStats ? (
             <MissionHeroCard
               stats={missionStats}
-              onContinue={() => router.push('/(tabs)/practice')}
-              onOpenPracticeSettings={() => router.push('/(modals)/practice-settings')}
-              onOpenTranslatorHistory={() => router.push('/(modals)/translator-history')}
-              onOpenMissionSettings={() => router.push('/(modals)/mission-settings')}
+              onContinue={openPractice}
+              onOpenPracticeSettings={openPracticeSettings}
+              onOpenTranslatorHistory={openTranslatorHistory}
+              onOpenMissionSettings={openMissionSettings}
             />
           ) : (
             <NativeCard style={styles.warningCard}>
@@ -88,6 +187,10 @@ export default function HomeScreen() {
               </NativeTypography>
             </NativeCard>
           )}
+
+          <View style={styles.section}>
+            <QuickActionsGrid actions={quickActions} isLoading={isLoading} />
+          </View>
 
           <View style={styles.section}>
             <CoachTipsCarousel tips={coachTips} />
@@ -99,6 +202,77 @@ export default function HomeScreen() {
 
           <View style={styles.section}>
             <CommunityHighlights items={communityHighlights} />
+          </View>
+
+          <View style={styles.section}>
+            <NativeTypography variant="eyebrow" style={styles.sectionEyebrow}>
+              Discover spotlight
+            </NativeTypography>
+            {discoverNotice ? (
+              <NativeTypography variant="caption" style={styles.sectionCaption}>
+                {discoverNotice}
+              </NativeTypography>
+            ) : null}
+            {isDiscoverLoading && !discoverFeed ? (
+              <NativeTypography variant="caption" style={styles.sectionCaption}>
+                Loading curated drops…
+              </NativeTypography>
+            ) : null}
+            {spotlightCards.length ? (
+              <>
+                <DiscoverCardList cards={spotlightCards} onSelectCard={handleDiscoverCard} />
+                <UpcomingEvents
+                  events={spotlightEvents}
+                  formatter={discoverEventFormatter}
+                  onSelectEvent={handleDiscoverEvent}
+                />
+                {isDiscoverFetching ? (
+                  <NativeTypography variant="caption" style={styles.sectionCaption}>
+                    Refreshing…
+                  </NativeTypography>
+                ) : null}
+              </>
+            ) : (
+              <NativeCard style={styles.warningCard}>
+                <NativeTypography variant="body" style={styles.warningText}>
+                  Discover cards will surface here once the feed syncs.
+                </NativeTypography>
+                {isApiConfigured ? (
+                  <Pressable onPress={() => void refetchDiscover()}>
+                    <NativeTypography variant="caption" style={styles.sectionCaption}>
+                      Retry now
+                    </NativeTypography>
+                  </Pressable>
+                ) : null}
+              </NativeCard>
+            )}
+          </View>
+
+          <View style={styles.section}>
+            <NativeTypography variant="eyebrow" style={styles.sectionEyebrow}>
+              Headlines
+            </NativeTypography>
+            {newsNotice ? (
+              <NativeTypography variant="caption" style={styles.sectionCaption}>
+                {newsNotice}
+              </NativeTypography>
+            ) : null}
+            {newsError && isApiConfigured ? (
+              <NativeTypography variant="caption" style={styles.sectionCaption}>
+                Unable to refresh headlines: {newsError.message}
+              </NativeTypography>
+            ) : null}
+            <HeadlinesSection
+              items={newsItems}
+              isLoading={isNewsLoading}
+              onRefresh={isApiConfigured ? () => void refetchNews() : undefined}
+              emptyMessage="Headlines appear here as soon as the newsroom updates."
+            />
+            {isNewsFetching ? (
+              <NativeTypography variant="caption" style={styles.sectionCaption}>
+                Checking for new stories…
+              </NativeTypography>
+            ) : null}
           </View>
         </ScrollView>
         <FloatingContinuePill
@@ -146,6 +320,14 @@ const styles = StyleSheet.create({
   },
   section: {
     gap: spacingScale.sm,
+  },
+  sectionEyebrow: {
+    color: brandColors.red,
+    letterSpacing: 1,
+    textTransform: 'uppercase',
+  },
+  sectionCaption: {
+    color: 'rgba(16,24,40,0.6)',
   },
   appBar: {
     flexDirection: 'row',

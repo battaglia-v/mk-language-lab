@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { NativeButton, NativeCard, NativeProgressRing, NativeStatPill, NativeTypography } from '@mk/ui';
 import { brandColors, spacingScale } from '@mk/tokens';
@@ -32,6 +32,71 @@ export type CommunityHighlight = {
   detail: string;
   accent: 'gold' | 'green' | 'red';
 };
+
+export type QuickAction = {
+  id: string;
+  title: string;
+  description: string;
+  icon: ReactNode;
+  onPress: () => void;
+  accent?: 'primary' | 'secondary';
+  disabled?: boolean;
+};
+
+type QuickActionsGridProps = {
+  actions: QuickAction[];
+  isLoading?: boolean;
+};
+
+export function QuickActionsGrid({ actions, isLoading }: QuickActionsGridProps) {
+  if (isLoading && !actions.length) {
+    return (
+      <NativeCard style={styles.warningCard}>
+        <NativeTypography variant="body" style={styles.warningText}>
+          Loading shortcuts…
+        </NativeTypography>
+      </NativeCard>
+    );
+  }
+  if (!actions.length) {
+    return null;
+  }
+
+  return (
+    <View style={styles.quickActionsGrid}>
+      {actions.map((action) => (
+        <NativeCard
+          key={action.id}
+          style={[
+            styles.quickActionCard,
+            action.accent === 'secondary' && styles.quickActionSecondaryCard,
+            action.disabled && styles.quickActionDisabled,
+          ]}
+        >
+          <View style={styles.quickActionIcon}>{action.icon}</View>
+          <View style={styles.quickActionBody}>
+            <NativeTypography variant="title" style={styles.quickActionTitle}>
+              {action.title}
+            </NativeTypography>
+            <NativeTypography variant="caption" style={styles.quickActionDescription}>
+              {action.description}
+            </NativeTypography>
+          </View>
+          <NativeButton
+            variant="ghost"
+            disabled={action.disabled}
+            onPress={action.onPress}
+            style={styles.quickActionButton}
+          >
+            <NativeTypography variant="body" style={styles.quickActionButtonText}>
+              Open
+            </NativeTypography>
+          </NativeButton>
+        </NativeCard>
+      ))}
+    </View>
+  );
+}
 
 type MissionHeroCardProps = {
   stats: MissionStats;
@@ -215,6 +280,12 @@ export function CommunityHighlights({ items }: CommunityHighlightsProps) {
 }
 
 const styles = StyleSheet.create({
+  warningCard: {
+    gap: spacingScale.xs,
+  },
+  warningText: {
+    color: brandColors.navy,
+  },
   heroCard: {
     gap: spacingScale.md,
     backgroundColor: brandColors.navy,
@@ -274,6 +345,44 @@ const styles = StyleSheet.create({
   },
   linkText: {
     color: brandColors.mint,
+  },
+  quickActionsGrid: {
+    gap: spacingScale.sm,
+  },
+  quickActionCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacingScale.sm,
+  },
+  quickActionSecondaryCard: {
+    backgroundColor: brandColors.cream,
+  },
+  quickActionDisabled: {
+    opacity: 0.6,
+  },
+  quickActionIcon: {
+    width: 48,
+    height: 48,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(16,24,40,0.06)',
+  },
+  quickActionBody: {
+    flex: 1,
+    gap: spacingScale.xs / 2,
+  },
+  quickActionTitle: {
+    color: brandColors.navy,
+  },
+  quickActionDescription: {
+    color: 'rgba(16,24,40,0.7)',
+  },
+  quickActionButton: {
+    paddingHorizontal: spacingScale.sm,
+  },
+  quickActionButtonText: {
+    color: brandColors.red,
   },
   sectionEyebrow: {
     marginBottom: spacingScale.xs,

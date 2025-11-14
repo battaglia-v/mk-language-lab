@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Linking, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { NativeCard, NativeTypography } from '@mk/ui';
 import { brandColors, spacingScale } from '@mk/tokens';
@@ -10,13 +10,13 @@ import {
   getLocalNewsFeed,
   type DiscoverCard,
   type DiscoverEvent,
-  type DiscoverLinkTarget,
 } from '@mk/api-client';
 import { DiscoverFilterRow, DiscoverCardList, UpcomingEvents } from '../../features/discover';
 import { HeadlinesSection } from '../../features/news/HeadlinesSection';
 import { getApiBaseUrl } from '../../lib/api';
 import { useQueryHydration } from '../../lib/queryClient';
 import { authenticatedFetch } from '../../lib/auth';
+import { openDiscoverTarget } from '../../lib/deepLinks';
 
 export default function DiscoverScreen() {
   const router = useRouter();
@@ -62,56 +62,18 @@ export default function DiscoverScreen() {
   const newsItems = newsData ?? (!isApiConfigured ? getLocalNewsFeed() : []);
   const isRestoring = isApiConfigured && !isHydrated && !data;
   const handleRefreshNews = isApiConfigured ? () => void refetchNews() : undefined;
-  const openTarget = useCallback(
-    (target?: DiscoverLinkTarget, url?: string | null) => {
-      switch (target) {
-        case 'practice':
-          router.push('/(tabs)/practice');
-          return;
-        case 'translator':
-          router.push('/(modals)/translator-history');
-          return;
-        case 'profile':
-          router.push('/(tabs)/profile');
-          return;
-        case 'discover':
-          router.push('/(tabs)/discover');
-          return;
-        case 'mission-settings':
-          router.push('/(modals)/mission-settings');
-          return;
-        case 'external':
-          if (url) {
-            void Linking.openURL(url);
-          }
-          return;
-        default:
-          if (url) {
-            if (url.startsWith('http')) {
-              void Linking.openURL(url);
-            } else {
-              router.push(mapWebPathToAppRoute(url));
-            }
-          } else {
-            router.push('/(tabs)/practice');
-          }
-      }
+  const handleCardAction = useCallback(
+    (card: DiscoverCard) => {
+      openDiscoverTarget(router, card.ctaTarget, card.ctaUrl);
     },
     [router]
   );
 
-  const handleCardAction = useCallback(
-    (card: DiscoverCard) => {
-      openTarget(card.ctaTarget, card.ctaUrl);
-    },
-    [openTarget]
-  );
-
   const handleEventAction = useCallback(
     (event: DiscoverEvent) => {
-      openTarget(event.ctaTarget, event.ctaUrl);
+      openDiscoverTarget(router, event.ctaTarget, event.ctaUrl);
     },
-    [openTarget]
+    [router]
   );
 
   return (
@@ -229,19 +191,3 @@ const styles = StyleSheet.create({
   sectionTitle: { color: brandColors.navy },
   sectionSummary: { color: 'rgba(16,24,40,0.7)' },
 });
-
-function mapWebPathToAppRoute(path: string): string {
-  switch (path) {
-    case '/practice':
-      return '/(tabs)/practice';
-    case '/translator/history':
-      return '/(modals)/translator-history';
-    case '/mission/settings':
-      return '/(modals)/mission-settings';
-    case '/profile':
-    case '/profile/badges':
-      return '/(tabs)/profile';
-    default:
-      return path.startsWith('/') ? path : `/${path}`;
-  }
-}
