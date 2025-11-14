@@ -59,6 +59,12 @@ You maintain **ONE codebase** with shared TypeScript, but deploy to **TWO platfo
 
 ---
 
+### 27. 2025-11-14 – Vercel native cron for reminders (`e43c0ab`)
+**Files**: `vercel.json`, `.github/workflows/reminder-cron.yml`
+**What Changed**: Configured Vercel's built-in cron system in `vercel.json` to invoke `/api/cron/reminders` hourly at :10 past the hour. This replaces the GitHub Actions workflow as the primary reminder delivery mechanism, automatically bypassing Vercel's deployment protection and integrating seamlessly with the platform. All required secrets (CRON_SECRET, DATABASE_URL, etc.) were added to both Vercel production environment and GitHub Actions.
+**Impact**: Push reminders will now be delivered reliably via Vercel's native cron infrastructure. The `/api/cron/reminders` endpoint is accessible to Vercel cron jobs without authentication barriers, while still requiring the CRON_SECRET bearer token for security. GitHub Actions workflow remains as a fallback smoke test but is no longer the primary delivery mechanism.
+**Action for Agents**: Monitor Vercel's cron logs in the dashboard (Settings → Cron) to verify hourly executions. The endpoint returns structured JSON with `{ ok, sent, evaluated, errors, revoked, durationMs, runId }` for monitoring. If adding new cron jobs, add them to the `crons` array in `vercel.json` and ensure CRON_SECRET is set in Vercel environment variables.
+
 ### 26. 2025-11-14 – Vercel deployment errors resolved (`cb58320`)
 **Files**: `app/api/mobile/auth/{callback,expo-complete}/route.ts`, `lib/mobile-auth{,-token}.ts`, `lib/mobile-reminders.ts`, `vitest.react-native.stub.ts`, `scripts/run-reminder-cron-smoke.mjs`, `app/[locale]/translate/page.tsx`, `components/{layout,translate}/*`, `hooks/useMissionStatus.ts`
 **What Changed**: Fixed all TypeScript/ESLint errors blocking CI/CD: added required `salt: ''` parameter to JWT encode/decode calls (NextAuth beta.30 requirement), fixed mobile-reminders type narrowing with explicit type assertion, removed unused imports/variables, added missing layout and translate components to git, added useMissionStatus hook. All checks now pass: TypeScript ✅, Build ✅, ESLint ✅, Deployment ✅.
