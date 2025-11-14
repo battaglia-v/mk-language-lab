@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
       email: session.user.email ?? undefined,
       name: session.user.name ?? undefined,
       picture: session.user.image ?? undefined,
-      role: (session.user as Record<string, unknown>)?.role as string | undefined,
+      role: (session.user as unknown as Record<string, unknown>)?.role as string | undefined,
     },
     secret,
     maxAge: TOKEN_MAX_AGE_SECONDS,
