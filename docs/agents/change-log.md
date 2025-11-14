@@ -7,6 +7,76 @@ Add an entry whenever you introduce a change that affects other contributors (AP
 2. Include date/time (UTC), files touched, summary, impact, guidance, and commit SHA.
 3. Reference this update in your PR message.
 
+---
+
+## 🏗️ Deployment Architecture Overview
+
+**This is a monorepo with TWO separate applications sharing code:**
+
+### Applications
+1. **Next.js Web App** (root directory)
+   - Deployed to: **Vercel** (automatic on `git push`)
+   - URL: https://mk-language-lab.com
+   - Tech: Next.js 16, React, Server Components
+
+2. **Expo Mobile App** (`apps/mobile/`)
+   - Deployed to: **Apple App Store + Google Play Store** (manual via EAS)
+   - Build: `eas build --platform all`
+   - Submit: `eas submit --platform all`
+   - Tech: Expo, React Native
+
+### Shared Code (maintains parity)
+```
+packages/
+├── @mk/api-client     # API calls (both platforms)
+├── @mk/practice       # Practice logic (both platforms)
+├── @mk/analytics      # Event tracking (both platforms)
+├── @mk/tokens         # Design tokens (both platforms)
+└── @mk/ui            # UI components (both platforms)
+```
+
+### Deployment Workflow
+```bash
+# One codebase, two deployments:
+git push origin main
+
+✅ Vercel auto-deploys web app
+✅ Shared packages updated for both
+
+# Mobile requires manual trigger:
+🔨 eas build --platform all
+📱 eas submit --platform all
+```
+
+### How Parity Works
+- **Business logic**: Shared in `packages/practice`
+- **API contracts**: Shared in `packages/api-client`
+- **UI layer**: Platform-specific (Next.js vs React Native components)
+- **Deployment cadence**: Web continuous, mobile weekly/monthly
+
+### Key Point
+You maintain **ONE codebase** with shared TypeScript, but deploy to **TWO platforms** independently. Changes to shared packages affect both web and mobile automatically.
+
+---
+
+### 26. 2025-11-14 – Vercel deployment errors resolved (`cb58320`)
+**Files**: `app/api/mobile/auth/{callback,expo-complete}/route.ts`, `lib/mobile-auth{,-token}.ts`, `lib/mobile-reminders.ts`, `vitest.react-native.stub.ts`, `scripts/run-reminder-cron-smoke.mjs`, `app/[locale]/translate/page.tsx`, `components/{layout,translate}/*`, `hooks/useMissionStatus.ts`
+**What Changed**: Fixed all TypeScript/ESLint errors blocking CI/CD: added required `salt: ''` parameter to JWT encode/decode calls (NextAuth beta.30 requirement), fixed mobile-reminders type narrowing with explicit type assertion, removed unused imports/variables, added missing layout and translate components to git, added useMissionStatus hook. All checks now pass: TypeScript ✅, Build ✅, ESLint ✅, Deployment ✅.
+**Impact**: Vercel deployments succeed automatically on every push. The web app is now continuously deployed. Mobile app remains separate (deploy via EAS when ready).
+**Action for Agents**: All JWT operations require `salt: ''` parameter with NextAuth beta.30. When adding new components, ensure they're committed to git (not just locally created). Run `npx tsc --noEmit && npx eslint .` before pushing to catch errors early.
+
+### 25. 2025-11-15 – Translator workspace dual-pane redesign (`TBD`)
+**Files**: `app/[locale]/translate/page.tsx`, `components/translate/{useTranslatorWorkspace.ts,HistoryList.tsx,InfoPanel.tsx}`, `messages/{en,mk}.json`
+**What Changed**: Rebuilt the translator route to match the mobile UI overhaul blueprint: dual-pane layout on desktop, mobile tabs, segmented direction control, shared history cards, consistent info panels, and a new hook that centralizes translation/state management (including analytics + local history). Added skeleton states, reusable components, and localized strings for the new UI.
+**Impact**: Users get a richer translator experience that mirrors the native blueprint, and future work can reuse the new hook/components instead of duplicating state logic. Any translator-related updates should go through the hook so analytics/history stay in sync, and new strings must be added to both `en` and `mk`.
+**Action for Agents**: Use `useTranslatorWorkspace` for future translator features, extend `components/translate/*` rather than re-implementing history/info UIs, and update both locale files when adding translator copy.
+
+### 24. 2025-11-15 – Quick Practice difficulty presets + telemetry (`TBD`)
+**Files**: `apps/mobile/features/practice/useMobileQuickPracticeSession.ts`, `apps/mobile/app/(tabs)/practice.tsx`, `apps/mobile/features/practice/usePracticeCompletionQueue.ts`, `packages/api-client/src/practice.ts`, `app/api/mobile/practice-completions/route.ts`, `docs/projects/2025-12-react-native-expo/execution_steps.md`
+**What Changed**: Added the Casual/Focus/Blitz difficulty selector to Quick Practice (timers, heart penalties, XP multipliers) plus the UI polish to surface it in the HUD. Session completions now record the selected difficulty, and the `/api/mobile/practice-completions` payload/schema learned an optional `difficulty` field so analytics and rewards can differentiate between tiers.
+**Impact**: Learners see the difficulty tier, countdown timer, and XP boost inside the mobile Practice screen, and queued completions tag the new enum. Any consumers of `PracticeCompletionEventPayload` must tolerate (and eventually store) the optional `difficulty` value.
+**Action for Agents**: When adding new difficulty tiers or changing timers/multipliers, update the hook presets and the queue/API schema in tandem. Downstream services should persist the `difficulty` field before relying on it for rewards or streak tuning.
+
 ### 23. 2025-11-14 – Expo NextAuth sign-in + mobile release docs (`TBD`)
 **Files**: `app/api/mobile/auth/expo-complete/route.ts`, `apps/mobile/lib/auth/{AuthProvider.tsx,index.ts,mobileAuthApi.ts,tokenStore.ts}`, `apps/mobile/app/sign-in.tsx`, `apps/mobile/package.json`, `.github/workflows/ci.yml`, `apps/mobile/__tests__/offline-smoke.test.ts`, `README.md`, `docs/projects/2025-12-react-native-expo/{notes.md,execution_steps.md}`
 **What Changed**: Replaced the temporary `/api/mobile/auth/authorize` flow with `/api/mobile/auth/expo-complete`, so the Expo browser session now bounces through the hosted NextAuth providers, returns a signed JWT via `mkll://auth`, and hydrates SecureStore/React Query automatically. `/sign-in` defaults to the “Continue with browser” CTA (credentials remain for QA), `registerPushTokenWithBackend` continues to forward the bearer header, `npm run test` now covers the offline mission/profile/practice fallbacks, and CI gained a `unit-tests` job alongside a refreshed README/release checklist describing Play Store/TestFlight prep + Maestro smoke expectations.
