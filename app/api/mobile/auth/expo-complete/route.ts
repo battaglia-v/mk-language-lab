@@ -30,6 +30,7 @@ export async function GET(request: NextRequest) {
       role: (session.user as unknown as Record<string, unknown>)?.role as string | undefined,
     },
     secret,
+    salt: '',
     maxAge: TOKEN_MAX_AGE_SECONDS,
   });
 

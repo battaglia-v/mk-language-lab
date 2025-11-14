@@ -29,7 +29,7 @@ export async function getMobileSessionFromRequest(request: NextRequest): Promise
   }
 
   try {
-    const payload = await decode({ token, secret });
+    const payload = await decode({ token, secret, salt: '' });
     if (!payload?.sub) {
       return null;
     }

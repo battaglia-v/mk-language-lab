@@ -39,6 +39,7 @@ export async function GET(request: NextRequest) {
       role: session.user.role ?? undefined,
     },
     secret,
+    salt: '',
     maxAge: TOKEN_MAX_AGE_SECONDS,
   });
 

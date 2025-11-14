@@ -25,6 +25,7 @@ export async function issueMobileAuthToken(user: MobileAuthUser) {
       role: user.role ?? undefined,
     },
     secret,
+    salt: '',
     maxAge: TOKEN_MAX_AGE_SECONDS,
   });
 
