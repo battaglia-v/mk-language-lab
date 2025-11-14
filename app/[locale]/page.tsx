@@ -1,15 +1,15 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import Link from 'next/link';
-import { WebTypography, WebButton, WebCard } from '@mk/ui';
+import { WebButton, WebCard } from '@mk/ui';
 import { ArrowRight, Sparkles, BookOpen, MessageCircle, Target } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { Container } from '@/components/layout/Container';
 
 const roles = ['speak', 'read', 'write', 'understand'];
 
 export default function HomePage() {
-  const t = useTranslations('home');
   const locale = useLocale();
   const [currentRole, setCurrentRole] = useState(0);
 
@@ -26,7 +26,7 @@ export default function HomePage() {
     <div className="bg-background">
       {/* Hero Section - Two Column */}
       <section className="w-full border-b border-border/20">
-        <div className="mx-auto max-w-6xl px-4 py-12 md:py-20">
+        <Container size="xl" spacing="lg" className="!py-12 md:!py-20">
           <div className="grid gap-8 md:grid-cols-2 md:gap-12 items-center">
             {/* Left Column - Headline, Role Rotator, CTAs */}
             <div>
@@ -53,13 +53,13 @@ export default function HomePage() {
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
-                <WebButton asChild size="lg">
+                <WebButton asChild>
                   <Link href={buildHref('/practice')}>
                     Start Learning
                     <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                   </Link>
                 </WebButton>
-                <WebButton asChild variant="outline" size="lg">
+                <WebButton asChild variant="ghost">
                   <Link href={buildHref('/learn')}>
                     Explore Curriculum
                   </Link>
@@ -90,12 +90,12 @@ export default function HomePage() {
               </WebCard>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Three Value Cards */}
       <section className="w-full border-b border-border/20 bg-card/30">
-        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
+        <Container size="xl" spacing="lg" className="!py-12 md:!py-16">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {/* Card 1: Interactive Practice */}
             <WebCard style={{ padding: 28 }}>
@@ -157,7 +157,7 @@ export default function HomePage() {
               </Link>
             </WebCard>
           </div>
-        </div>
+        </Container>
       </section>
     </div>
   );
