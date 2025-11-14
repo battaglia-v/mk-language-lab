@@ -89,7 +89,7 @@ export function computeNextReminderTimestamp({
     }
   });
 
-  return nearest?.toISOString() ?? null;
+  return nearest ? nearest.toISOString() : null;
 }
 
 type DueReminderOptions = {

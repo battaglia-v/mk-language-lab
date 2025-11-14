@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { WebButton, WebCard } from '@mk/ui';
 import { ArrowRight, Sparkles, BookOpen, MessageCircle, Target } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { Container } from '@/components/layout/Container';
 
 const roles = ['speak', 'read', 'write', 'understand'];
 
@@ -26,7 +25,7 @@ export default function HomePage() {
     <div className="bg-background">
       {/* Hero Section - Two Column */}
       <section className="w-full border-b border-border/20">
-        <Container size="xl" spacing="lg" className="!py-12 md:!py-20">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:py-20">
           <div className="grid gap-8 md:grid-cols-2 md:gap-12 items-center">
             {/* Left Column - Headline, Role Rotator, CTAs */}
             <div>
@@ -90,12 +89,12 @@ export default function HomePage() {
               </WebCard>
             </div>
           </div>
-        </Container>
+        </div>
       </section>
 
       {/* Three Value Cards */}
       <section className="w-full border-b border-border/20 bg-card/30">
-        <Container size="xl" spacing="lg" className="!py-12 md:!py-16">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {/* Card 1: Interactive Practice */}
             <WebCard style={{ padding: 28 }}>
@@ -157,7 +156,7 @@ export default function HomePage() {
               </Link>
             </WebCard>
           </div>
-        </Container>
+        </div>
       </section>
     </div>
   );

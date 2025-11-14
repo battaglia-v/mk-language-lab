@@ -80,7 +80,7 @@ function buildCategories(modules: ModuleWithLessons[]): DiscoverFeed['categories
   for (const [journeyId, moduleList] of grouped.entries()) {
     const cards = moduleList
       .flatMap((module) =>
-        (module.lessons ?? []).map((lesson: any, index: number) => ({
+        (module.lessons ?? []).map((lesson: NonNullable<ModuleWithLessons['lessons']>[number], index: number) => ({
           id: lesson.id,
           title: lesson.title,
           summary: lesson.summary ?? module.description ?? '',
