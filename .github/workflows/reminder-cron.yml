@@ -1,0 +1,54 @@
+name: Reminder Cron Smoke
+
+on:
+  schedule:
+    - cron: '10 * * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: reminder-cron
+  cancel-in-progress: true
+
+jobs:
+  reminder-cron:
+    name: Reminder Cron Probe
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Determine cron prerequisites
+        id: cron_prereqs
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          REMINDER_CRON_BASE_URL: ${{ secrets.REMINDER_CRON_BASE_URL }}
+        run: |
+          if [ -z "${CRON_SECRET}" ] || [ -z "${REMINDER_CRON_BASE_URL}" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout repository
+        if: steps.cron_prereqs.outputs.skip == 'false'
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        if: steps.cron_prereqs.outputs.skip == 'false'
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        if: steps.cron_prereqs.outputs.skip == 'false'
+        run: npm ci
+
+      - name: Invoke reminder cron
+        if: steps.cron_prereqs.outputs.skip == 'false'
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          REMINDER_CRON_BASE_URL: ${{ secrets.REMINDER_CRON_BASE_URL }}
+        run: npm run mobile:cron:smoke
+
+      - name: Skip notice
+        if: steps.cron_prereqs.outputs.skip == 'true'
+        run: echo "Skipping reminder cron probe; set CRON_SECRET and REMINDER_CRON_BASE_URL secrets to enable."
