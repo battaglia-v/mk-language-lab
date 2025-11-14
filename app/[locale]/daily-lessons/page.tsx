@@ -18,14 +18,10 @@ export async function generateMetadata({
 
 export default function DailyLessonsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
-      <section className="w-full py-12">
-        <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-6xl">
-            <DailyLessons limit={24} />
-          </div>
-        </div>
-      </section>
-    </div>
+    <section className="section-container section-container-xl section-spacing-lg">
+      <div className="mx-auto max-w-6xl">
+        <DailyLessons limit={24} />
+      </div>
+    </section>
   );
 }

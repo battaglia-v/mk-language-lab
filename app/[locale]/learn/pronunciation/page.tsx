@@ -49,8 +49,7 @@ export default function PronunciationModulePage() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
-      <div className="container mx-auto px-4 py-12 space-y-12">
+    <div className="section-container section-container-xl section-spacing-lg space-y-12">
         <Link
           href={`/${locale}/learn`}
           className="inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-primary/80"
@@ -59,7 +58,7 @@ export default function PronunciationModulePage() {
           {t('back')}
         </Link>
 
-        <section className="max-w-3xl space-y-4">
+        <section data-testid="pronunciation-hero" className="max-w-3xl space-y-4">
           <Badge variant="secondary" className="w-fit">
             {t('badge')}
           </Badge>
@@ -156,8 +155,6 @@ export default function PronunciationModulePage() {
             </CardContent>
           </Card>
         </section>
-      </div>
-
     </div>
   );
 }

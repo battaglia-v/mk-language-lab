@@ -221,7 +221,7 @@ export default function ResourcesPage() {
           </div>
         </section>
 
-        <section className="rounded-3xl border border-border/30 bg-card/60 p-6 shadow-sm">
+        <section data-testid="resources-workspace" className="rounded-3xl border border-border/30 bg-card/60 p-6 shadow-sm">
           <div className="space-y-4">
             <div className="relative">
               <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />

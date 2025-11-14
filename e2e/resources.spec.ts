@@ -166,4 +166,16 @@ test.describe('Resources Page', () => {
       scale: 'css',
     });
   });
+
+  test('resources workspace matches visual snapshot', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(500);
+
+    const workspace = page.locator('[data-testid="resources-workspace"]');
+    await expect(workspace).toHaveScreenshot('resources-workspace.png', {
+      animations: 'disabled',
+      scale: 'css',
+    });
+  });
 });

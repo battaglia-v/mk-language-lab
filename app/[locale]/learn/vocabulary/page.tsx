@@ -74,8 +74,7 @@ export default function VocabularyModulePage() {
   const primaryActionHref = nextActions[0]?.href ?? `/${locale}/practice`;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
-      <div className="container mx-auto px-4 py-12 space-y-12">
+    <div className="section-container section-container-xl section-spacing-lg space-y-12">
         <Link
           href={`/${locale}/learn`}
           className="inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-primary/80"
@@ -84,7 +83,7 @@ export default function VocabularyModulePage() {
           {t('back')}
         </Link>
 
-        <section className="max-w-3xl space-y-4">
+        <section data-testid="vocabulary-hero" className="max-w-3xl space-y-4">
           <Badge variant="secondary" className="w-fit">
             {t('badge')}
           </Badge>
@@ -249,8 +248,6 @@ export default function VocabularyModulePage() {
             </Button>
           </Link>
         </div>
-      </div>
-
     </div>
   );
 }

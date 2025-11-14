@@ -16,8 +16,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
-      <div className="container mx-auto px-4 py-12">
+    <div className="section-container section-container-xl section-spacing-lg">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
@@ -119,14 +118,6 @@ export default function AboutPage() {
             </Card>
           </div>
         </div>
-      </div>
-
-      {/* Footer */}
-      <footer className="border-t border-border/40 bg-card/30 backdrop-blur-sm mt-20">
-        <div className="container mx-auto px-4 py-8 text-center text-muted-foreground">
-          <p>Креирано од <span className="font-semibold text-foreground">Винсент Баталија</span></p>
-        </div>
-      </footer>
     </div>
   );
 }

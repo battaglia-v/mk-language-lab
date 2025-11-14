@@ -189,7 +189,7 @@ export default function PracticeHubPage() {
           </div>
         </section>
 
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,2.25fr),minmax(0,1fr)]">
+        <div data-testid="practice-workspace" className="grid gap-6 lg:grid-cols-[minmax(0,2.25fr),minmax(0,1fr)]">
           <div className="space-y-6">
             <div className="rounded-[32px] border border-border/40 bg-card/60 p-1.5 shadow-2xl">
               <QuickPracticeWidget

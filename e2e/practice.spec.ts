@@ -102,6 +102,18 @@ test.describe('Practice Page', () => {
       scale: 'css',
     });
   });
+
+  test('practice workspace matches visual snapshot', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(500);
+
+    const workspace = page.locator('[data-testid="practice-workspace"]');
+    await expect(workspace).toHaveScreenshot('practice-workspace.png', {
+      animations: 'disabled',
+      scale: 'css',
+    });
+  });
 });
 
 test.describe('Quick Practice Widget', () => {

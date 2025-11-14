@@ -1,26 +1,17 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
+import { useCallback, useMemo, type ReactNode } from 'react';
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import clsx from 'clsx';
 import { WebButton, WebCard, WebProgressRing, WebStatPill } from '@mk/ui';
-import {
-  getLocalDiscoverFeed,
-  getLocalMissionStatus,
-  getLocalNewsFeed,
-  type DiscoverFeed,
-  type MissionStatus,
-  type NewsItem,
-} from '@mk/api-client';
+import { getLocalMissionStatus, type MissionStatus } from '@mk/api-client';
 import {
   AlertCircle,
   ArrowRight,
   Bell,
-  CalendarDays,
   CheckCircle2,
   Circle,
-  ExternalLink,
   Flame,
   Heart,
   Loader2,
@@ -29,16 +20,7 @@ import {
   Sparkles,
   Target,
 } from 'lucide-react';
-import { useMissionStatusResource, type MissionLoadState } from '@/hooks/useMissionStatus';
-
-type LoadState = MissionLoadState;
-
-type ResourceState<TData> = {
-  data: TData;
-  state: LoadState;
-  error?: string;
-  refresh: () => void;
-};
+import { useMissionStatusResource } from '@/hooks/useMissionStatus';
 
 export default function HomePage() {
   const locale = useLocale();
@@ -48,19 +30,6 @@ export default function HomePage() {
     error: missionError,
     refresh: refreshMission,
   } = useMissionStatusResource(getLocalMissionStatus());
-  const {
-    data: discoverFeed,
-    state: discoverState,
-    error: discoverError,
-    refresh: refreshDiscover,
-  } = useDiscoverFeedResource();
-  const {
-    data: newsItems,
-    state: newsState,
-    error: newsError,
-    refresh: refreshNews,
-  } = useNewsFeedResource();
-
   const buildHref = useCallback((path: string) => (path === '/' ? `/${locale}` : `/${locale}${path}`), [locale]);
 
   const quickActions = useMemo(
@@ -93,11 +62,13 @@ export default function HomePage() {
     [buildHref, mission.links?.practice, mission.links?.settings, mission.links?.translatorInbox]
   );
 
-  const shellClasses = 'mx-auto flex w-full max-w-5xl flex-col gap-6 px-6 py-10 sm:px-8 lg:px-12 xl:max-w-6xl md:py-12';
+  const shellClasses = 'section-container section-container-wide section-spacing-lg space-y-6';
+  const glassCard = 'backdrop-blur-[18px]';
 
   return (
-    <div className="bg-[var(--surface-muted,#faf8f5)] text-foreground">
-      <div className={shellClasses} role="region" aria-label="Mission Control Dashboard">
+    <div className="relative min-h-screen bg-[radial-gradient(circle_at_top,_rgba(244,232,216,0.9),_rgba(5,7,15,0.93))] text-foreground">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white/25 to-transparent" />
+      <div className={clsx('relative', shellClasses)} role="region" aria-label="Mission Control Dashboard">
         <header className="space-y-2">
           <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-[var(--brand-red)]">
             <Sparkles className="h-4 w-4" aria-hidden="true" /> Mission Control
@@ -115,144 +86,37 @@ export default function HomePage() {
           <ErrorBanner message={missionError ?? 'Unable to load mission data.'} onRetry={refreshMission} />
         ) : null}
 
-        <MissionHero mission={mission} isLoading={missionState === 'loading'} buildHref={buildHref} />
+        <MissionHero mission={mission} isLoading={missionState === 'loading'} buildHref={buildHref} cardClassName={glassCard} />
 
-        <QuickActions actions={quickActions} isLoading={missionState === 'loading'} />
+        <QuickActions actions={quickActions} isLoading={missionState === 'loading'} cardClassName={glassCard} />
 
         <div className="grid gap-6 lg:grid-cols-[1.8fr,1fr]">
           <div className="space-y-6">
-            <MissionChecklist checklist={mission.checklist} isLoading={missionState === 'loading'} />
-            <CoachTips tips={mission.coachTips} isLoading={missionState === 'loading'} />
+            <MissionChecklist checklist={mission.checklist} isLoading={missionState === 'loading'} cardClassName={glassCard} />
+            <CoachTips tips={mission.coachTips} isLoading={missionState === 'loading'} cardClassName={glassCard} />
           </div>
           <div className="space-y-6">
-            <ReviewClusters clusters={mission.reviewClusters} isLoading={missionState === 'loading'} />
-            <CommunityHighlights highlights={mission.communityHighlights} isLoading={missionState === 'loading'} />
+            <ReviewClusters clusters={mission.reviewClusters} isLoading={missionState === 'loading'} cardClassName={glassCard} />
+            <CommunityHighlights highlights={mission.communityHighlights} isLoading={missionState === 'loading'} cardClassName={glassCard} />
           </div>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-[1.8fr,1fr]">
-          <DiscoverSpotlight
-            feed={discoverFeed}
-            state={discoverState}
-            error={discoverError}
-            onRetry={refreshDiscover}
-            buildHref={buildHref}
-          />
-          <NewsHeadlines
-            stories={newsItems}
-            state={newsState}
-            error={newsError}
-            onRetry={refreshNews}
-          />
-        </div>
+        <FutureModulesCard cardClassName={glassCard} />
       </div>
     </div>
   );
-}
-
-function useDiscoverFeedResource(): ResourceState<DiscoverFeed> {
-  const fallback = useMemo(() => getLocalDiscoverFeed(), []);
-  const [feed, setFeed] = useState<DiscoverFeed>(fallback);
-  const [state, setState] = useState<LoadState>('loading');
-  const [error, setError] = useState<string>();
-  const [refreshToken, setRefreshToken] = useState(0);
-
-  useEffect(() => {
-    let cancelled = false;
-    const controller = new AbortController();
-
-    async function load() {
-      setState('loading');
-      setError(undefined);
-      try {
-        const response = await fetch('/api/discover/feed', {
-          signal: controller.signal,
-        });
-        if (!response.ok) {
-          throw new Error(`Request failed with ${response.status}`);
-        }
-        const payload = (await response.json()) as DiscoverFeed;
-        if (!cancelled) {
-          setFeed(payload);
-          setState('ready');
-        }
-      } catch (err) {
-        if (cancelled) {
-          return;
-        }
-        console.warn('Failed to load discover feed', err);
-        setState('error');
-        setError('Showing offline discover cards. Retry to refresh.');
-      }
-    }
-
-    void load();
-    return () => {
-      cancelled = true;
-      controller.abort();
-    };
-  }, [refreshToken]);
-
-  const refresh = () => setRefreshToken((token) => token + 1);
-
-  return { data: feed, state, error, refresh };
-}
-
-function useNewsFeedResource(): ResourceState<NewsItem[]> {
-  const fallback = useMemo(() => getLocalNewsFeed(), []);
-  const [news, setNews] = useState<NewsItem[]>(fallback);
-  const [state, setState] = useState<LoadState>('loading');
-  const [error, setError] = useState<string>();
-  const [refreshToken, setRefreshToken] = useState(0);
-
-  useEffect(() => {
-    let cancelled = false;
-    const controller = new AbortController();
-
-    async function load() {
-      setState('loading');
-      setError(undefined);
-      try {
-        const response = await fetch('/api/news', { signal: controller.signal });
-        if (!response.ok) {
-          throw new Error(`Request failed with ${response.status}`);
-        }
-        const payload = (await response.json()) as { items?: NewsItem[] } | NewsItem[];
-        const items = Array.isArray(payload) ? payload : payload.items ?? [];
-        if (!cancelled) {
-          setNews(items);
-          setState('ready');
-        }
-      } catch (err) {
-        if (cancelled) {
-          return;
-        }
-        console.warn('Failed to load news feed', err);
-        setState('error');
-        setError('Showing cached headlines. Retry to refresh.');
-      }
-    }
-
-    void load();
-    return () => {
-      cancelled = true;
-      controller.abort();
-    };
-  }, [refreshToken]);
-
-  const refresh = () => setRefreshToken((token) => token + 1);
-
-  return { data: news, state, error, refresh };
 }
 
 function MissionHero({
   mission,
   isLoading,
   buildHref,
+  cardClassName = '',
 }: {
   mission: MissionStatus;
   isLoading: boolean;
   buildHref: (path: string) => string;
+  cardClassName?: string;
 }) {
   const xpProgress = mission.xp.target > 0 ? Math.min(mission.xp.earned / mission.xp.target, 1) : 0;
   const cycleEndsLabel = formatCycleWindow(mission.cycle.endsAt);
@@ -260,7 +124,7 @@ function MissionHero({
   const heartsStat = `${mission.heartsRemaining}/5 hearts`;
 
   return (
-    <WebCard style={{ padding: 32 }}>
+    <WebCard style={{ padding: 32 }} className={clsx(cardClassName)} data-testid="mission-hero-card">
       <div className="grid gap-8 lg:grid-cols-[1.35fr,1fr]">
         <div className="space-y-4">
           <div className="flex flex-wrap items-center gap-3">
@@ -313,11 +177,23 @@ type QuickAction = {
   accent: 'primary' | 'secondary';
 };
 
-function QuickActions({ actions, isLoading }: { actions: QuickAction[]; isLoading: boolean }) {
+function QuickActions({
+  actions,
+  isLoading,
+  cardClassName = '',
+}: {
+  actions: QuickAction[];
+  isLoading: boolean;
+  cardClassName?: string;
+}) {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       {actions.map((action) => (
-        <WebCard key={action.id} style={{ padding: 24 }} className={clsx(isLoading && 'animate-pulse opacity-80')}>
+        <WebCard
+          key={action.id}
+          style={{ padding: 24 }}
+          className={clsx(cardClassName, isLoading && 'animate-pulse opacity-70')}
+        >
           <div
             className={clsx('mb-3 inline-flex h-10 w-10 items-center justify-center rounded-2xl text-white', {
               'bg-[var(--brand-red,#e63946)]': action.accent === 'primary',
@@ -341,9 +217,17 @@ function QuickActions({ actions, isLoading }: { actions: QuickAction[]; isLoadin
   );
 }
 
-function MissionChecklist({ checklist, isLoading }: { checklist: MissionStatus['checklist']; isLoading: boolean }) {
+function MissionChecklist({
+  checklist,
+  isLoading,
+  cardClassName = '',
+}: {
+  checklist: MissionStatus['checklist'];
+  isLoading: boolean;
+  cardClassName?: string;
+}) {
   return (
-    <WebCard style={{ padding: 24 }}>
+    <WebCard style={{ padding: 24 }} className={clsx(cardClassName)}>
       <div className="flex items-center justify-between gap-4">
         <div>
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--brand-gold-dark,#c0841a)]">Mission checklist</p>
@@ -369,9 +253,17 @@ function MissionChecklist({ checklist, isLoading }: { checklist: MissionStatus['
   );
 }
 
-function CoachTips({ tips, isLoading }: { tips: MissionStatus['coachTips']; isLoading: boolean }) {
+function CoachTips({
+  tips,
+  isLoading,
+  cardClassName = '',
+}: {
+  tips: MissionStatus['coachTips'];
+  isLoading: boolean;
+  cardClassName?: string;
+}) {
   return (
-    <WebCard style={{ padding: 24 }}>
+    <WebCard style={{ padding: 24 }} className={clsx(cardClassName)}>
       <SectionHeader title="Coach tips" subtitle="Micro-guidance" isLoading={isLoading} />
       <div className="mt-6 grid gap-4 md:grid-cols-2">
         {tips.map((tip) => (
@@ -386,9 +278,17 @@ function CoachTips({ tips, isLoading }: { tips: MissionStatus['coachTips']; isLo
   );
 }
 
-function ReviewClusters({ clusters, isLoading }: { clusters: MissionStatus['reviewClusters']; isLoading: boolean }) {
+function ReviewClusters({
+  clusters,
+  isLoading,
+  cardClassName = '',
+}: {
+  clusters: MissionStatus['reviewClusters'];
+  isLoading: boolean;
+  cardClassName?: string;
+}) {
   return (
-    <WebCard style={{ padding: 24 }}>
+    <WebCard style={{ padding: 24 }} className={clsx(cardClassName)}>
       <SectionHeader title="Smart review" subtitle="Accuracy focus" isLoading={isLoading} />
       <div className="mt-6 space-y-4">
         {clusters.map((cluster) => (
@@ -413,12 +313,14 @@ function ReviewClusters({ clusters, isLoading }: { clusters: MissionStatus['revi
 function CommunityHighlights({
   highlights,
   isLoading,
+  cardClassName = '',
 }: {
   highlights: MissionStatus['communityHighlights'];
   isLoading: boolean;
+  cardClassName?: string;
 }) {
   return (
-    <WebCard style={{ padding: 24 }}>
+    <WebCard style={{ padding: 24 }} className={clsx(cardClassName)}>
       <SectionHeader title="Community" subtitle="Keep the momentum" isLoading={isLoading} />
       <ul className="mt-6 space-y-4">
         {highlights.map((highlight) => (
@@ -432,139 +334,56 @@ function CommunityHighlights({
   );
 }
 
-function DiscoverSpotlight({
-  feed,
-  state,
-  error,
-  onRetry,
-  buildHref,
-}: {
-  feed: DiscoverFeed;
-  state: LoadState;
-  error?: string;
-  onRetry: () => void;
-  buildHref: (path: string) => string;
-}) {
-  const featuredCards = useMemo(() => {
-    const cards = feed.categories.flatMap((category) =>
-      category.cards.map((card) => ({ ...card, category: category.label }))
-    );
-    return cards.slice(0, 3);
-  }, [feed]);
-  const events = feed.events.slice(0, 2);
+function FutureModulesCard({ cardClassName = '' }: { cardClassName?: string }) {
+  const modules = [
+    {
+      id: 'community',
+      title: 'Community spotlights',
+      detail: 'Curated streak shout-outs, leaderboard mentions, and forum prompts will land here once social APIs are wired up.',
+      status: 'Planned',
+    },
+    {
+      id: 'discover',
+      title: 'Discover editorials',
+      detail: 'Lesson clips, cultural notes, and editorial cards are in design review. Hidden for the PoC so we avoid filler news.',
+      status: 'In design',
+    },
+    {
+      id: 'sessions',
+      title: 'Live sessions calendar',
+      detail: 'Tutor labs + pronunciation workshops launch with the worker + CMS handoff in Step I. Expect calendar cards then.',
+      status: 'Coming soon',
+    },
+  ] as const;
 
   return (
-    <WebCard style={{ padding: 24 }}>
+    <WebCard style={{ padding: 24 }} className={clsx(cardClassName)}>
       <div className="flex items-center justify-between gap-4">
         <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-[var(--brand-gold-dark,#c0841a)]">Discover</p>
-          <h3 className="text-xl font-semibold">Editorial spotlight</h3>
+          <p className="text-xs uppercase tracking-[0.3em] text-[var(--brand-gold-dark,#c0841a)]">Future surfaces</p>
+          <h3 className="text-xl font-semibold">What&apos;s launching next</h3>
         </div>
-        {state === 'loading' ? <LoadingBadge label="Loading" /> : null}
+        <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-primary">
+          Beta
+        </span>
       </div>
-      {state === 'error' ? <InlineErrorNotice message={error ?? 'Offline discover feed.'} onRetry={onRetry} /> : null}
-      <div className="mt-6 space-y-4">
-        {featuredCards.map((card) => (
-          <div key={card.id} className="rounded-2xl border border-border/30 p-4">
-            <p className="text-xs uppercase tracking-widest text-[var(--brand-plum,#7a4988)]">{card.category}</p>
-            <h4 className="mt-1 text-base font-semibold text-foreground">{card.title}</h4>
-            <p className="mt-1 text-sm text-muted-foreground">{card.summary}</p>
-            <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-              <span>{card.duration}</span>
-              <span>•</span>
-              <span>{card.tag}</span>
-              <Link href={buildHref('/discover')} className="ml-auto inline-flex items-center gap-1 text-[var(--brand-red,#e63946)]">
-                {card.cta}
-                <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-              </Link>
-            </div>
-          </div>
-        ))}
-        {events.length > 0 ? (
-          <div className="rounded-2xl border border-border/40 p-4">
-            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-[var(--brand-gold-dark,#c0841a)]">
-              <CalendarDays className="h-4 w-4" aria-hidden="true" /> Upcoming sessions
-            </p>
-            <div className="mt-3 space-y-3">
-              {events.map((event) => (
-                <div key={event.id} className="rounded-2xl border border-border/40 p-3">
-                  <p className="text-sm font-semibold text-foreground">{event.title}</p>
-                  <p className="text-xs text-muted-foreground">
-                    {event.host} · {event.location}
-                  </p>
-                  <p className="text-xs text-muted-foreground">{formatDate(event.startAt)}</p>
-                  <p className="mt-2 text-sm text-muted-foreground">{event.description}</p>
-                  <Link
-                    href={buildHref('/discover')}
-                    className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[var(--brand-red,#e63946)]"
-                  >
-                    {event.cta}
-                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </div>
-        ) : null}
-      </div>
-    </WebCard>
-  );
-}
-
-function NewsHeadlines({
-  stories,
-  state,
-  error,
-  onRetry,
-}: {
-  stories: NewsItem[];
-  state: LoadState;
-  error?: string;
-  onRetry: () => void;
-}) {
-  const formatter = useMemo(
-    () =>
-      new Intl.DateTimeFormat(undefined, {
-        month: 'short',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: '2-digit',
-      }),
-    []
-  );
-  const topStories = stories.slice(0, 4);
-
-  return (
-    <WebCard style={{ padding: 24 }}>
-      <div className="flex items-center justify-between gap-4">
-        <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-[var(--brand-gold-dark,#c0841a)]">Headlines</p>
-          <h3 className="text-xl font-semibold">Language news</h3>
-        </div>
-        {state === 'loading' ? <LoadingBadge label="Refreshing" /> : null}
-      </div>
-      {state === 'error' ? <InlineErrorNotice message={error ?? 'Offline headlines.'} onRetry={onRetry} /> : null}
+      <p className="mt-3 text-sm text-muted-foreground">
+        Community, Discover, and upcoming session rails intentionally remain disabled for this PoC. Flip the flag once their
+        APIs provide real content so the dashboard stays purposeful.
+      </p>
       <ul className="mt-6 space-y-4">
-        {topStories.map((story) => (
-          <li key={story.id} className="rounded-2xl border border-border/40 p-4">
-            <p className="text-sm font-semibold text-foreground">{story.title}</p>
-            <p className="mt-1 text-xs text-muted-foreground">
-              {story.sourceName} · {formatter.format(new Date(story.publishedAt))}
-            </p>
-            <p className="mt-1 text-sm text-muted-foreground">{story.description}</p>
-            <a
-              href={story.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-[var(--brand-red,#e63946)]"
-            >
-              Read article
-              <ExternalLink className="h-4 w-4" aria-hidden="true" />
-            </a>
+        {modules.map((module) => (
+          <li key={module.id} className="rounded-2xl border border-border/40 bg-background/60 p-4">
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-base font-semibold text-foreground">{module.title}</p>
+              <span className="rounded-full border border-border/50 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                {module.status}
+              </span>
+            </div>
+            <p className="mt-1 text-sm text-muted-foreground">{module.detail}</p>
           </li>
         ))}
       </ul>
-      {topStories.length === 0 ? <p className="text-sm text-muted-foreground">No stories available right now.</p> : null}
     </WebCard>
   );
 }
@@ -586,23 +405,6 @@ function ErrorBanner({ message, onRetry }: { message: string; onRetry: () => voi
         </button>
       </div>
     </div>
-  );
-}
-
-function InlineErrorNotice({ message, onRetry }: { message: string; onRetry: () => void }) {
-  return (
-    <button
-      type="button"
-      onClick={onRetry}
-      className="mt-4 flex w-full items-center justify-between rounded-2xl border border-dashed border-red-200 bg-red-50 px-3 py-2 text-left text-sm text-red-700"
-    >
-      <span className="flex items-center gap-2">
-        <AlertCircle className="h-4 w-4" aria-hidden="true" /> {message}
-      </span>
-      <span className="inline-flex items-center gap-1 font-semibold">
-        Retry <RefreshCw className="h-4 w-4" aria-hidden="true" />
-      </span>
-    </button>
   );
 }
 
@@ -672,16 +474,4 @@ function formatCycleWindow(isoDate: string) {
     return `in ${hours}h${minutes > 0 ? ` ${minutes}m` : ''}`;
   }
   return `in ${diffMinutes}m`;
-}
-
-function formatDate(isoDate: string) {
-  const formatter = new Intl.DateTimeFormat(undefined, {
-    weekday: 'short',
-    month: 'short',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: '2-digit',
-  });
-  const date = new Date(isoDate);
-  return Number.isNaN(date.getTime()) ? 'Soon' : formatter.format(date);
 }

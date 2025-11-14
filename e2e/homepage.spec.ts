@@ -62,6 +62,18 @@ test.describe('Homepage', () => {
     await expect(page.getByRole('heading', { name: /Resources|Ресурси/i, level: 1 })).toBeVisible();
   });
 
+  test('mission hero matches visual snapshot', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(500);
+
+    const hero = page.locator('[data-testid="mission-hero-card"]');
+    await expect(hero).toHaveScreenshot('mission-hero.png', {
+      animations: 'disabled',
+      scale: 'css',
+    });
+  });
+
   test('should have working navigation', async ({ page }) => {
     // Check desktop navigation (sidebar)
     // Tests run on /mk locale, so links are in Macedonian

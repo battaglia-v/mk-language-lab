@@ -56,8 +56,7 @@ export default function LearnPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
-      <div className="container mx-auto px-4 py-5 md:py-10">
+    <div className="section-container section-container-xl section-spacing-md">
         {/* Header */}
         <div className="mx-auto mb-5 max-w-3xl text-center md:mb-10">
           <h1 className="mb-2 text-2xl font-bold text-transparent bg-gradient-to-r from-primary to-secondary bg-clip-text sm:text-3xl md:mb-3 md:text-4xl lg:text-5xl">
@@ -90,7 +89,6 @@ export default function LearnPage() {
         <div className="mx-auto max-w-3xl">
           <QuickPracticeWidget />
         </div>
-      </div>
     </div>
   );
 }
