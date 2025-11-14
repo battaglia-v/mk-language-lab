@@ -3,7 +3,7 @@
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { ArrowLeftRight, Check, Copy, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
-import { WebStatPill, WebButton, WebCard } from '@mk/ui';
+import { WebStatPill, WebButton } from '@mk/ui';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -104,14 +104,6 @@ export default function TranslatePage() {
       }),
     []
   );
-
-
-  const directionLabelMap = useMemo(() => {
-    return directionOptions.reduce<Record<DirectionOption['id'], string>>((acc, option) => {
-      acc[option.id] = option.label;
-      return acc;
-    }, {} as Record<DirectionOption['id'], string>);
-  }, [directionOptions]);
 
   const handleDirectionChange = useCallback((id: DirectionOption['id']) => {
     setDirectionId(id);

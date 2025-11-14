@@ -30,7 +30,7 @@ async function main() {
   let payload;
   try {
     payload = JSON.parse(text);
-  } catch (error) {
+  } catch {
     throw new Error(`Cron response was not valid JSON: ${text}`);
   }
 

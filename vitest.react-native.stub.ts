@@ -9,7 +9,7 @@ export const Platform = {
   OS: 'web',
 };
 
-export default {
+const ReactNativeStub = {
   View,
   Text,
   ScrollView,
@@ -17,3 +17,5 @@ export default {
   StyleSheet,
   Platform,
 };
+
+export default ReactNativeStub;
