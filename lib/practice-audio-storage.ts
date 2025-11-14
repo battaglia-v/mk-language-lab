@@ -97,6 +97,7 @@ async function uploadToS3(
     },
   });
 
+  // @ts-expect-error - File.arrayBuffer() exists in runtime but TypeScript definitions are incomplete
   const fileBuffer = file instanceof Buffer ? file : Buffer.from(await file.arrayBuffer());
 
   const key = `practice-audio/${filename}`;

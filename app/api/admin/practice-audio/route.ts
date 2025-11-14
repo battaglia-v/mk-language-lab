@@ -39,6 +39,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    // @ts-expect-error - FormData type definitions are incomplete in build environment
     const formData: FormData = await request.formData();
 
     // Extract form fields
