@@ -116,7 +116,7 @@
 **Risk Level**: High (multi-service coordination)
 
 ## Step K: Discover + Tutor/Translator polish & accessibility
-**Status**: ⏳ Pending  
+**Status**: 🔄 Partially Complete (2025-11-14)
 **Objective**: Close out Sections 5.4–5.9 with AI Tutor redesign, translator saved phrases/audio, Discover editorial stream, Profile stats map, and admin console updates – plus an accessibility audit.  
 **Key Surfaces / Files**:
 - `app/[locale]/tutor/page.tsx`, `components/tutor/*`  
@@ -132,12 +132,33 @@
 - Tutor/Translator surfaces match blueprint UX + audio integrations; saved phrases launch Quick Practice sets.  
 - Discover + Profile show the planned cards/maps/stats with localization + responsive behavior.  
 - Admin dashboard covers content/audio readiness, release gating, and translations; accessibility checklist signed off.  
+**Completed Work** (2025-11-14):
+- ✅ Created comprehensive accessibility test suite (`e2e/accessibility.spec.ts`)
+  - WCAG 2.1 AA compliance tests for heading hierarchy, keyboard navigation, ARIA labels
+  - Tests for Homepage, Translate, Practice, Onboarding, News, and Mobile Navigation
+  - Screen reader support verification, focus management, touch target sizing
+- ✅ Added skip-to-main-content link for keyboard users
+- ✅ Added `lang` attribute to HTML root element
+- ✅ Enhanced semantic HTML with ARIA labels on Homepage
+- ✅ Added `tabIndex={-1}` to main content for programmatic focus
+- ✅ All unit tests passing (82/82)
+- ✅ ESLint passing on all touched files
+
+**Remaining Work** (Deferred - requires Steps I & J):
+- ⏳ Tutor page doesn't exist yet (requires AI tutor implementation)
+- ⏳ Discover page doesn't exist yet (requires content pipeline)
+- ⏳ Profile stats map (requires gamification from Step J)
+- ⏳ Saved Phrases drawer for Translate (requires practice integration)
+- ⏳ Admin dashboard enhancements (requires audio pipeline from Step I)
+
 **Verification Steps**:
-1. `npx eslint app/[locale]/tutor app/[locale]/translate app/[locale]/discover app/[locale]/profile app/admin`  
-2. `npm run test -- tutor translator discover profile`  
-3. Accessibility + localization audit (VoiceOver/TalkBack, long-string review).  
-**Dependencies**: Steps H–J, audio pipeline (Step I), localization sign-off.  
-**Owner**: Agent D (Experience Polish)  
+1. ✅ `npx eslint app/layout.tsx app/[locale]/layout.tsx app/[locale]/page.tsx` - PASSED
+2. ✅ `npm test` - PASSED (82/82 tests)
+3. ⏳ E2E accessibility tests - Created but not yet run (requires full e2e suite)
+4. ⏳ VoiceOver/TalkBack audit - Manual testing deferred
+
+**Dependencies**: Steps H (✅ Complete), I & J (⏳ Pending), audio pipeline, localization.
+**Owner**: Agent D (Experience Polish)
 **Risk Level**: Medium
 
 ## Lessons Learned and Step Improvements

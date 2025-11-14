@@ -30,6 +30,14 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   return (
     <SessionProvider>
       <NextIntlClientProvider messages={messages}>
+        {/* Skip to main content link for keyboard navigation */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+        >
+          Skip to main content
+        </a>
+
         <Sidebar />
 
         {/* Main content with responsive shell */}
@@ -38,6 +46,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
           <main
             id="main-content"
             className="flex-1 px-4 py-6 outline-none focus-visible:ring-2 focus-visible:ring-primary sm:px-6 lg:px-8"
+            tabIndex={-1}
           >
             {children}
           </main>

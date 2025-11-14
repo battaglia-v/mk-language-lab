@@ -97,7 +97,7 @@ export default function HomePage() {
 
   return (
     <div className="bg-[var(--surface-muted,#faf8f5)] text-foreground">
-      <section className={shellClasses}>
+      <div className={shellClasses} role="region" aria-label="Mission Control Dashboard">
         <header className="space-y-2">
           <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-[var(--brand-red)]">
             <Sparkles className="h-4 w-4" aria-hidden="true" /> Mission Control
@@ -145,7 +145,7 @@ export default function HomePage() {
             onRetry={refreshNews}
           />
         </div>
-      </section>
+      </div>
     </div>
   );
 }

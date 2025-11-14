@@ -124,7 +124,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className="dark notranslate overflow-x-hidden" translate="no">
+    <html lang="en" className="dark notranslate overflow-x-hidden" translate="no">
       <head>
         <meta name="google" content="notranslate" />
       </head>
