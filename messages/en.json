@@ -1163,5 +1163,32 @@
     "next": "Next",
     "settingUp": "Setting up...",
     "completeSetup": "Complete setup"
+  },
+  "profile": {
+    "title": "Profile",
+    "description": "View your learning progress, achievements, and stats",
+    "totalXP": "Total XP",
+    "weeklyXP": "This week",
+    "dayStreak": "day streak",
+    "error": {
+      "title": "Unable to load profile",
+      "generic": "Something went wrong while loading your profile"
+    },
+    "stats": {
+      "totalXP": "Total XP",
+      "weeklyXP": "Weekly XP",
+      "streak": "Streak",
+      "days": "days",
+      "activeQuests": "Active Quests",
+      "completedQuests": "Completed This Week"
+    },
+    "quests": {
+      "title": "Active Quests",
+      "empty": "No active quests right now. Check back soon for new challenges!"
+    },
+    "badges": {
+      "title": "Badges & Achievements",
+      "shopLink": "Visit Shop"
+    }
   }
 }
