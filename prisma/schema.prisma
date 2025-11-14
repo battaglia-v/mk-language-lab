@@ -382,7 +382,7 @@ model PracticeVocabulary {
 
 model PracticeAudio {
   id          String               @id @default(cuid())
-  promptId    String
+  promptId    String               @unique
   language    String               @default("mk")
   speaker     String?
   speed       String? // normal, slow
