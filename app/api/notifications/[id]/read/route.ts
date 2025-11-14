@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic';
  */
 export async function POST(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const session = await auth().catch(() => null);
 
@@ -17,9 +17,11 @@ export async function POST(
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
   }
 
+  const { id } = await params;
+
   try {
     const notification = await prisma.notification.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!notification || notification.userId !== session.user.id) {
@@ -27,7 +29,7 @@ export async function POST(
     }
 
     const updated = await prisma.notification.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         isRead: true,
         readAt: new Date(),
