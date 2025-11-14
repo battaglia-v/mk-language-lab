@@ -152,8 +152,11 @@ export default function PracticeHubPage() {
   );
 
   return (
-    <div className="section-container section-container-xl section-spacing-md">
-        <section className="rounded-3xl border border-border/40 bg-gradient-to-br from-[var(--brand-red)]/15 via-background/80 to-background/40 p-6 shadow-lg backdrop-blur md:p-8">
+    <div className="section-container section-container-xl section-spacing-md space-y-6">
+        <section
+          data-testid="practice-hero"
+          className="rounded-3xl border border-border/40 bg-gradient-to-br from-[var(--brand-red)]/15 via-background/80 to-background/40 p-6 shadow-lg backdrop-blur md:p-8"
+        >
           <Badge variant="outline" className="w-fit border-primary/40 bg-primary/10 text-primary">
             {t('badge')}
           </Badge>
@@ -186,7 +189,7 @@ export default function PracticeHubPage() {
           </div>
         </section>
 
-        <div className="mt-6 grid gap-6 lg:grid-cols-[minmax(0,2.25fr),minmax(0,1fr)]">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,2.25fr),minmax(0,1fr)]">
           <div className="space-y-6">
             <div className="rounded-[32px] border border-border/40 bg-card/60 p-1.5 shadow-2xl">
               <QuickPracticeWidget

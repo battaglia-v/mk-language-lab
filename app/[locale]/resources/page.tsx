@@ -191,7 +191,10 @@ export default function ResourcesPage() {
 
   return (
     <div className="section-container section-container-xl section-spacing-md space-y-6">
-        <section className="rounded-3xl border border-border/40 bg-card/60 p-6 shadow-sm">
+        <section
+          data-testid="resources-hero"
+          className="rounded-3xl border border-border/40 bg-card/60 p-6 shadow-sm"
+        >
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <div className="space-y-3">
               <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-primary">

@@ -90,6 +90,18 @@ test.describe('Practice Page', () => {
     // h1 should be visible
     await expect(h1.first()).toBeVisible();
   });
+
+  test('practice hero matches visual snapshot', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(500);
+
+    const hero = page.locator('[data-testid="practice-hero"]');
+    await expect(hero).toHaveScreenshot('practice-hero.png', {
+      animations: 'disabled',
+      scale: 'css',
+    });
+  });
 });
 
 test.describe('Quick Practice Widget', () => {

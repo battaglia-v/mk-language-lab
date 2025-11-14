@@ -154,4 +154,16 @@ test.describe('Resources Page', () => {
     // Accept headings, links, or external resources
     expect(headingCount + linkCount + externalCount).toBeGreaterThanOrEqual(1);
   });
+
+  test('resources hero matches visual snapshot', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(500);
+
+    const hero = page.locator('[data-testid="resources-hero"]');
+    await expect(hero).toHaveScreenshot('resources-hero.png', {
+      animations: 'disabled',
+      scale: 'css',
+    });
+  });
 });

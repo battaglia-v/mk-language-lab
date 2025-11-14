@@ -186,6 +186,25 @@ test.describe('Translate Page', () => {
     }
   });
 
+  test('translate layout matches visual snapshot', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(500);
+
+    const hero = page.locator('[data-testid="translate-hero"]');
+    const workspace = page.locator('[data-testid="translate-workspace"]');
+
+    await expect(hero).toHaveScreenshot('translate-hero.png', {
+      animations: 'disabled',
+      scale: 'css',
+    });
+
+    await expect(workspace).toHaveScreenshot('translate-workspace.png', {
+      animations: 'disabled',
+      scale: 'css',
+    });
+  });
+
   test('should be responsive on mobile', async ({ page }) => {
     // Set mobile viewport
     await page.setViewportSize({ width: 375, height: 667 });

@@ -202,5 +202,24 @@
 **Owner**: Agent Shell (Layout)
 **Risk Level**: Low
 
+## Step M: Practice audio pipeline + uploader
+**Status**: ✅ Complete (2025-11-15)  
+**Objective**: Move Quick Practice audio off JSON fixtures by seeding `PracticeAudio` via Prisma, exposing DB-backed API routes, and giving admins a working upload form that ships files to S3/Vercel Blob.
+**Key Surfaces / Files**:
+- `prisma/migrations/20251115093000_add_practice_audio/migration.sql`, `scripts/practice-audio-sync.ts`
+- `app/api/practice/{audio,prompts}/route.ts`, `app/api/admin/practice-audio/route.ts`
+- `app/admin/practice-audio/page.tsx`, `lib/practice-audio-storage.ts`, `.env.local.example`
+**Completed Work**:
+- ✅ Added `PracticeAudio` migration + enums, plus a sync worker (`npm run practice-audio:sync`) that ingests the existing JSON fixtures and prunes stale rows.
+- ✅ `/api/practice/audio` and `/api/practice/prompts` now read from Prisma with JSON fallback, and support an `?all=1` flag for admin dashboards.
+- ✅ Built `lib/practice-audio-storage.ts` to upload clips to Vercel Blob or S3, and exposed a guarded `/api/admin/practice-audio` POST endpoint for multipart uploads.
+- ✅ Refreshed the `/admin/practice-audio` UI with a functional upload form, stats, and status badges tied to the DB instead of fixtures.
+- ✅ Documented new env vars (`PRACTICE_AUDIO_*`) so storage tokens are wired up across environments.
+**Verification Steps**:
+1. `npx eslint app/api/practice/audio/route.ts app/api/practice/prompts/route.ts app/api/admin/practice-audio/route.ts app/admin/practice-audio/page.tsx lib/practice-audio-storage.ts scripts/practice-audio-sync.ts`
+
+**Owner**: Agent Codex (Audio Pipeline)  
+**Risk Level**: Medium (storage credentials required)
+
 ## Lessons Learned and Step Improvements
 - _Add insights once validation and QA are completed._
