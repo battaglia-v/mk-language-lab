@@ -234,8 +234,7 @@ export default function NewsPage() {
   const showEmpty = !hasResults && !isLoading && !error;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/40">
-      <div className="mx-auto max-w-6xl space-y-6 px-4 py-10">
+    <div className="section-container section-container-xl section-spacing-md space-y-6">
         <section className="rounded-3xl border border-border/40 bg-card/60 p-6 shadow-sm">
           <div className="flex flex-col gap-6">
             <div className="space-y-2">
@@ -417,7 +416,6 @@ export default function NewsPage() {
             })}
           </div>
         )}
-      </div>
     </div>
   );
 }

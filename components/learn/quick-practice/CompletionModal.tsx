@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { SESSION_TARGET } from '@mk/practice';
 import { brandColors } from '@mk/tokens';
+import { Badge } from '@/components/ui/badge';
+import type { QuickPracticeTalisman } from '@/components/learn/quick-practice/types';
 
 type CompletionModalProps = {
   open: boolean;
@@ -15,6 +17,11 @@ type CompletionModalProps = {
   sessionProgress: number;
   onRestart: () => void;
   onContinue: () => void;
+  difficultyLabel: string;
+  difficultyDescription: string;
+  talismans: QuickPracticeTalisman[];
+  talismanMultiplier: number;
+  talismansEmptyLabel: string;
 };
 
 const ACCURACY_BADGES = [
@@ -36,9 +43,15 @@ export function QuickPracticeCompletionModal({
   sessionProgress,
   onRestart,
   onContinue,
+  difficultyLabel,
+  difficultyDescription,
+  talismans,
+  talismanMultiplier,
+  talismansEmptyLabel,
 }: CompletionModalProps) {
   const t = useTranslations('learn');
   const badge = getAccuracyBadge(accuracy);
+  const bonusPercent = Math.round((talismanMultiplier - 1) * 100);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -113,6 +126,39 @@ export function QuickPracticeCompletionModal({
           <p className="mt-2 text-center text-sm text-muted-foreground">
             {t('practiceProgressSummary', { count: totalAttempts })}
           </p>
+        </div>
+
+        <div className="relative z-10 space-y-2 rounded-xl border border-border/40 bg-muted/30 p-4">
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+              {t('practiceDifficultyLabel')}
+            </span>
+            <span className="text-sm font-semibold text-foreground">{difficultyLabel}</span>
+          </div>
+          <p className="text-xs text-muted-foreground">{difficultyDescription}</p>
+          <div className="mt-3">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                {t('practiceTalismansLabel')}
+              </span>
+              {bonusPercent > 0 ? (
+                <span className="text-xs font-semibold text-primary">
+                  {t('practiceTalismanMultiplier', { value: bonusPercent })}
+                </span>
+              ) : null}
+            </div>
+            {talismans.length ? (
+              <div className="mt-2 flex flex-wrap gap-2">
+                {talismans.map((talisman) => (
+                  <Badge key={talisman.id} variant="secondary" className="text-xs">
+                    {talisman.title}
+                  </Badge>
+                ))}
+              </div>
+            ) : (
+              <p className="mt-2 text-xs text-muted-foreground">{talismansEmptyLabel}</p>
+            )}
+          </div>
         </div>
 
         <DialogFooter className="relative z-10 flex-col gap-2 sm:flex-col">

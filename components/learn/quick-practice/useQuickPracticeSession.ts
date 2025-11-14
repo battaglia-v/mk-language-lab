@@ -12,7 +12,6 @@ import {
   selectNextPracticeIndex,
   evaluatePracticeAnswer,
   getExpectedAnswer,
-  PRACTICE_DIFFICULTIES,
   getPracticeDifficultyPreset,
 } from '@mk/practice';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
@@ -76,8 +75,6 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
   const [showCompletionModal, setShowCompletionModal] = useState(false);
   const [showGameOverModal, setShowGameOverModal] = useState(false);
   const [hearts, setHearts] = useState(INITIAL_HEARTS);
-  const [currentStreak, setCurrentStreak] = useState(0);
-  const [bestStreak, setBestStreak] = useState(0);
   const [perfectEligible, setPerfectEligible] = useState(true);
   const [activeTalismans, setActiveTalismans] = useState<QuickPracticeTalisman[]>([]);
   const [talismanMultiplier, setTalismanMultiplier] = useState(1);
@@ -91,6 +88,7 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
   const celebrationTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const autoAdvanceTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const timerIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const currentStreakRef = useRef(0);
   const bestStreakRef = useRef(0);
   const perfectEligibleRef = useRef(true);
   const timerExpiredRef = useRef(false);
@@ -134,10 +132,6 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     if (autoAdvanceTimeoutRef.current) clearTimeout(autoAdvanceTimeoutRef.current);
     if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
   }, []);
-
-  useEffect(() => {
-    bestStreakRef.current = bestStreak;
-  }, [bestStreak]);
 
   useEffect(() => {
     perfectEligibleRef.current = perfectEligible;
@@ -262,11 +256,11 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
         const nextCorrectCount = Math.min(correctCountRef.current + 1, SESSION_TARGET);
         correctCountRef.current = nextCorrectCount;
         setCorrectCount(nextCorrectCount);
-        setCurrentStreak((prev) => {
-          const next = prev + 1;
-          setBestStreak((best) => Math.max(best, next));
-          return next;
-        });
+        const nextStreak = currentStreakRef.current + 1;
+        currentStreakRef.current = nextStreak;
+        if (nextStreak > bestStreakRef.current) {
+          bestStreakRef.current = nextStreak;
+        }
         const xpGain = Math.round(10 * difficultyPreset.xpMultiplier);
         scheduleProgressUpdate({ xp: xp + xpGain, streak: streak + 1 });
         if (nextCorrectCount === SESSION_TARGET) {
@@ -284,7 +278,7 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
           });
         }
       } else {
-        setCurrentStreak(0);
+        currentStreakRef.current = 0;
         setPerfectEligible(false);
         const xpGain = Math.max(2, Math.round(4 * difficultyPreset.xpMultiplier));
         scheduleProgressUpdate({ xp: xp + xpGain });
@@ -413,8 +407,8 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     setShowCompletionModal(false);
     setShowGameOverModal(false);
     setHearts(INITIAL_HEARTS);
-    setCurrentStreak(0);
-    setBestStreak(0);
+    currentStreakRef.current = 0;
+    bestStreakRef.current = 0;
     setPerfectEligible(true);
     setActiveTalismans([]);
     setTalismanMultiplier(1);

@@ -1,5 +1,6 @@
 import { useQuery, type UseQueryOptions } from '@tanstack/react-query';
 import practiceVocabulary from '../../../data/practice-vocabulary.json';
+import practiceAudio from '../../../data/practice-audio.json';
 
 export type ClozeContext = {
   sentence: string;
@@ -50,10 +51,54 @@ type PracticeApiConfig = {
   fetcher?: typeof fetch;
 };
 
-const FALLBACK_PROMPTS: PracticeItem[] = (practiceVocabulary as PracticeItem[]).map((item, index) => ({
-  ...item,
-  id: item.id ?? `prompt-${index + 1}`,
-}));
+type PracticeAudioRecord = {
+  id: string;
+  promptId: string;
+  language: string;
+  speaker?: string;
+  speed?: string;
+  variant?: string;
+  duration?: number;
+  sourceType?: 'human' | 'tts' | 'unknown';
+  cdnUrl: string;
+  slowUrl?: string | null;
+  waveform?: number[];
+  autoplay?: boolean;
+};
+
+const FALLBACK_AUDIO_MAP = (practiceAudio as PracticeAudioRecord[]).reduce<Record<string, PracticeAudioClip>>(
+  (acc, clip) => {
+    acc[clip.promptId] = {
+      url: clip.cdnUrl,
+      slowUrl: clip.slowUrl ?? undefined,
+      waveform: clip.waveform ?? undefined,
+      duration: clip.duration ?? undefined,
+      autoplay: clip.autoplay ?? true,
+      speaker: clip.speaker ?? undefined,
+      sourceType: clip.sourceType ?? 'human',
+    };
+    return acc;
+  },
+  {}
+);
+
+const FALLBACK_PROMPTS: PracticeItem[] = enrichWithAudio(
+  (practiceVocabulary as PracticeItem[]).map((item, index) => ({
+    ...item,
+    id: item.id ?? `prompt-${index + 1}`,
+  }))
+);
+
+function enrichWithAudio(items: PracticeItem[]): PracticeItem[] {
+  return items.map((item) => {
+    const id = item.id ?? item.macedonian ?? `prompt-${Math.random().toString(36).slice(2)}`;
+    return {
+      ...item,
+      id,
+      audioClip: item.audioClip ?? FALLBACK_AUDIO_MAP[id] ?? null,
+    };
+  });
+}
 
 export function getLocalPracticePrompts(limit?: number) {
   if (!limit) return FALLBACK_PROMPTS;
@@ -71,7 +116,8 @@ export async function fetchPracticePrompts(config: PracticeApiConfig = {}): Prom
     throw new Error(`Failed to fetch practice prompts (${response.status})`);
   }
   const data = (await response.json()) as PracticeItem[];
-  return data.length ? data : FALLBACK_PROMPTS;
+  const enriched = data.length ? enrichWithAudio(data) : FALLBACK_PROMPTS;
+  return enriched;
 }
 
 export function createPracticeSessionSnapshot(prompts: PracticeItem[], meta?: Partial<PracticeSessionMeta>): PracticeSessionSnapshot {

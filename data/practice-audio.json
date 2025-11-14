@@ -1,0 +1,41 @@
+[
+  {
+    "id": "audio-zdravo-normal",
+    "promptId": "prompt-1",
+    "language": "mk",
+    "speaker": "Ana",
+    "speed": "normal",
+    "variant": "female",
+    "duration": 3.2,
+    "sourceType": "human",
+    "cdnUrl": "https://cdn.mklab.dev/audio/practice/zdravo-normal.mp3",
+    "slowUrl": "https://cdn.mklab.dev/audio/practice/zdravo-slow.mp3",
+    "waveform": [0.15, 0.22, 0.3, 0.25, 0.18, 0.12, 0.05]
+  },
+  {
+    "id": "audio-dobro-utro",
+    "promptId": "prompt-2",
+    "language": "mk",
+    "speaker": "Milan",
+    "speed": "normal",
+    "variant": "male",
+    "duration": 2.8,
+    "sourceType": "human",
+    "cdnUrl": "https://cdn.mklab.dev/audio/practice/dobro-utro-normal.mp3",
+    "slowUrl": "https://cdn.mklab.dev/audio/practice/dobro-utro-slow.mp3",
+    "waveform": [0.12, 0.18, 0.28, 0.32, 0.21, 0.13, 0.08]
+  },
+  {
+    "id": "audio-dobra-vecher",
+    "promptId": "prompt-3",
+    "language": "mk",
+    "speaker": "Teodora",
+    "speed": "normal",
+    "variant": "female",
+    "duration": 2.4,
+    "sourceType": "tts",
+    "cdnUrl": "https://cdn.mklab.dev/audio/practice/dobra-vecher-normal.mp3",
+    "slowUrl": null,
+    "waveform": [0.08, 0.15, 0.22, 0.24, 0.2, 0.14, 0.09]
+  }
+]

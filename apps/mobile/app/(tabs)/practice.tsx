@@ -12,12 +12,11 @@ import {
 } from '@mk/ui';
 import { CardStack } from '../../features/practice/components';
 import {
-  PRACTICE_DIFFICULTIES,
-  getPracticeDifficultyPreset,
   useMobileQuickPracticeSession,
   type PracticeDeckMode,
   type QuickPracticeCompletionSummary,
 } from '../../features/practice/useMobileQuickPracticeSession';
+import { PRACTICE_DIFFICULTIES, getPracticeDifficultyPreset } from '@mk/practice';
 import { usePracticeCompletionQueue } from '../../features/practice/usePracticeCompletionQueue';
 import { SESSION_TARGET } from '@mk/practice';
 import { useQueryHydration } from '../../lib/queryClient';

@@ -296,9 +296,9 @@ export default function TranslatePage() {
   );
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <div className="border-b border-border/40 bg-card/60 backdrop-blur-sm px-4 py-4">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
+    <>
+      <div className="border-b border-border/40 bg-card/60 backdrop-blur-sm">
+        <div className="section-container section-container-xl flex items-center justify-between gap-4 py-4">
           <div>
             <p className="text-2xl font-semibold text-foreground">{t('title')}</p>
             <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
@@ -309,8 +309,7 @@ export default function TranslatePage() {
         </div>
       </div>
 
-      <main className="flex-1">
-        <div className="mx-auto w-full max-w-6xl px-4 py-6 sm:py-8">
+      <div className="section-container section-container-xl section-spacing-md">
           <div className="md:hidden">
             <Tabs value={mobileTab} onValueChange={(value) => setMobileTab(value as 'workspace' | 'history')}>
               <TabsList className="w-full">
@@ -334,9 +333,8 @@ export default function TranslatePage() {
             {workspacePane}
             {insightsPane}
           </div>
-        </div>
-      </main>
-    </div>
+      </div>
+    </>
   );
 }
 

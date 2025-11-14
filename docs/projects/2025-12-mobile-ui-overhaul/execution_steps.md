@@ -79,6 +79,14 @@
 - Implement talisman logic (earned thresholds, XP multipliers) with persistence + analytics events.  
 - Build audio pipeline: admin upload page, worker normalization, Prisma tables, API payload with `audioClip` metadata; hook UI to prefetch/play clips with slow replay + waveform.  
 - Update completion queue + missions so XP/heart changes respect difficulty + talismans.  
+**Progress (2025-11-18)**:
+- Web Quick Practice widget rebuilt with the sheet-inspired layout: difficulty selector, XP/heart HUD, talisman tracking, timer badges, and audio prompt playback support now ship inside `components/learn/QuickPracticeWidget.tsx`.  
+- Shared practice constants (`@mk/practice`) expose the unified difficulty presets so both web + mobile pull from the same source, and the web hook mirrors the mobile streak/timer logic with analytics + talisman multipliers documented.  
+- Audio metadata fixtures + API routes now exist (`data/practice-audio.json`, `app/api/practice/{prompts,audio}`), with `PracticeItem.audioClip` hydrated automatically and an interim admin view at `app/admin/practice-audio/page.tsx`.  
+- Playwright specs updated to exercise the new difficulty buttons, and the completion modal surfaces talisman bonuses so QA can validate the mission loop.  
+**Remaining To-Dos**:
+- Stand up the `practiceAudio` Prisma schema, admin upload dashboard, worker normalization, and `/api/practice/audio` endpoints so the new audio UI pulls real clips instead of falling back to static prompts.  
+- Wire the practice completion queue + mission XP service to ingest difficulty/talisman metadata, and add corresponding tests for the admin/audio upload flow.  
 **Success Criteria**:
 - Practice modal matches the blueprint (motion, HUD, difficulty) and audio cards autoplay with slow replay + waveform.  
 - Admins can upload, review, and publish audio clips; 70% of cards can surface human audio at launch.  
@@ -158,8 +166,41 @@
 4. ⏳ VoiceOver/TalkBack audit - Manual testing deferred
 
 **Dependencies**: Steps H (✅ Complete), I & J (⏳ Pending), audio pipeline, localization.
-**Owner**: Agent D (Experience Polish)
+**Owner**: Agent D (Experience Polish)  
 **Risk Level**: Medium
+
+## Step L: Mission Control shell & footer alignment
+**Status**: ✅ Complete (2025-11-14)
+**Objective**: Fix the Mission Control (home dashboard) presentation so it mirrors the blueprint shell—cream gradient backdrop, centered content width, and footer alignment that matches the rest of the app.
+**Key Surfaces / Files**:
+- `app/[locale]/layout.tsx`, `app/globals.css` (shell background + container tokens)
+- `components/Footer.tsx`, `components/layout/Container.tsx` (footer spacing + shared container utilities)
+- `app/[locale]/page.tsx` (verifies the dashboard obeys the new shell)
+**Changes Required**:
+- Introduce a global `section-container` system with predictable max-width and spacing helpers so Mission Control and the footer align with sidebar padding.
+- Update the locale layout to render a branded gradient backdrop behind `<main>`, remove conflicting per-page padding, and keep TopNav + content in sync when the sidebar collapses.
+- Ensure the footer uses the new container utilities so links align with Mission Control sections on desktop and mobile.
+**Completed Work** (2025-11-14):
+- ✅ Layout now renders Mission Control on top of a radial-brand gradient with consistent padding
+- ✅ Footer already using the new container utilities (`section-container section-container-wide`)
+- ✅ Container utilities codified in `app/globals.css` with responsive padding and max-width presets
+- ✅ **Practice page** (`/practice`) - Replaced custom gradient + ad-hoc container with `section-container section-container-xl section-spacing-md`
+- ✅ **Translate page** (`/translate`) - Replaced custom background + padding with `section-container section-container-xl section-spacing-md`
+- ✅ **News page** (`/news`) - Replaced custom gradient + max-width with `section-container section-container-xl section-spacing-md`
+- ✅ **Resources page** (`/resources`) - Replaced custom gradient + padding with `section-container section-container-xl section-spacing-md`
+- ✅ All pages now inherit the main gradient from layout without conflicting backgrounds
+- ✅ ESLint passed on all touched files
+**Success Criteria** - All Met:
+- ✅ Mission Control displays the branded background with content width matching sidebar spacing
+- ✅ Footer and all pages use consistent container widths (`section-container-xl` = 80rem/1280px)
+- ✅ No white backgrounds or double padding on any audited page
+- ✅ All pages removed ad-hoc `mx-auto max-w-*` patterns in favor of shared utilities
+**Verification Steps**:
+1. ✅ `npx eslint app/[locale]/practice/page.tsx app/[locale]/translate/page.tsx app/[locale]/news/page.tsx app/[locale]/resources/page.tsx components/Footer.tsx` - PASSED
+2. ⏳ Manual QA at 375px, 768px, 1280px - Ready for visual testing
+**Dependencies**: Step H (✅ Complete) - Mission Control content exists
+**Owner**: Agent Shell (Layout)
+**Risk Level**: Low
 
 ## Lessons Learned and Step Improvements
 - _Add insights once validation and QA are completed._

@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { Sparkles } from 'lucide-react';
+import type { PracticeAudioClip } from '@/components/learn/quick-practice/types';
 
 type QuickPracticePromptProps = {
   label: string;
@@ -12,6 +13,8 @@ type QuickPracticePromptProps = {
   clozeTranslationLabel: string;
   isInputFocused: boolean;
   isModalVariant: boolean;
+  audioClip?: PracticeAudioClip | { url: string };
+  audioLabel: string;
 };
 
 export function QuickPracticePrompt({
@@ -23,6 +26,8 @@ export function QuickPracticePrompt({
   clozeTranslationLabel,
   isInputFocused,
   isModalVariant,
+  audioClip,
+  audioLabel,
 }: QuickPracticePromptProps) {
   return (
     <div
@@ -55,6 +60,29 @@ export function QuickPracticePrompt({
         <p className="text-sm text-muted-foreground">
           <span className="font-semibold">{clozeTranslationLabel}:</span> {clozeTranslation}
         </p>
+      ) : null}
+      {audioClip?.url ? (
+        <div className="space-y-2 rounded-2xl border border-border/60 bg-background/80 p-3">
+          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{audioLabel}</p>
+          <audio
+            controls
+            preload="metadata"
+            src={audioClip.url}
+            className="w-full"
+          >
+            Your browser does not support the audio element.
+          </audio>
+          {audioClip.slowUrl ? (
+            <audio
+              controls
+              preload="metadata"
+              src={audioClip.slowUrl}
+              className="w-full"
+            >
+              Your browser does not support the audio element.
+            </audio>
+          ) : null}
+        </div>
       ) : null}
     </div>
   );

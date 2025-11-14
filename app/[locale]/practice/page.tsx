@@ -152,8 +152,7 @@ export default function PracticeHubPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30">
-      <div className="mx-auto w-full max-w-6xl px-4 py-6 md:py-10">
+    <div className="section-container section-container-xl section-spacing-md">
         <section className="rounded-3xl border border-border/40 bg-gradient-to-br from-[var(--brand-red)]/15 via-background/80 to-background/40 p-6 shadow-lg backdrop-blur md:p-8">
           <Badge variant="outline" className="w-fit border-primary/40 bg-primary/10 text-primary">
             {t('badge')}
@@ -275,7 +274,6 @@ export default function PracticeHubPage() {
             </Card>
           </aside>
         </div>
-      </div>
     </div>
   );
 }

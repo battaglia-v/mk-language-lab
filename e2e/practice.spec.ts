@@ -120,6 +120,14 @@ test.describe('Quick Practice Widget', () => {
     }
   });
 
+  test('should allow difficulty selection', async ({ page }) => {
+    const focusButton = page.getByRole('button', { name: /Focus|Фокус/i }).first();
+    await expect(focusButton).toBeVisible();
+    await focusButton.click();
+    const blitzButton = page.getByRole('button', { name: /Blitz|Блиц/i }).first();
+    await blitzButton.click();
+  });
+
   test('should show vocabulary word or phrase', async ({ page }) => {
     // Should show some text content (either Macedonian or English)
     const hasVocab = await page.locator('text=/[а-шА-Ш]{2,}/').first().isVisible().catch(() => false) ||

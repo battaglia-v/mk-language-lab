@@ -11,10 +11,8 @@ import {
   getPracticeCategories,
   getPracticePromptsForSession,
   selectNextPracticeIndex,
-  PRACTICE_DIFFICULTIES,
   getPracticeDifficultyPreset,
   type PracticeDifficultyId,
-  type PracticeDifficultyPreset,
 } from '@mk/practice';
 import type {
   PracticeCardContent,
