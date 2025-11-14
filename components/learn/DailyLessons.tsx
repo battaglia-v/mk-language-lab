@@ -13,6 +13,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Skeleton } from '@/components/ui/skeleton';
 import { FilterChip } from '@/components/ui/filter-chip';
+import { cn } from '@/lib/utils';
 import type { InstagramPost, InstagramPostsResponse } from '@/types/instagram';
 
 type Tag = {
@@ -26,6 +27,7 @@ type Tag = {
 type DailyLessonsProps = {
   limit?: number;
   showViewAll?: boolean;
+  className?: string;
 };
 
 /**
@@ -95,7 +97,7 @@ function getMediaTypeBadge(
   }
 }
 
-export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsProps) {
+export function DailyLessons({ limit = 9, showViewAll = false, className }: DailyLessonsProps) {
   const t = useTranslations('dailyLessons');
   const locale = useLocale();
   const { data: session } = useSession();
@@ -300,7 +302,7 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
 
   if (loading) {
     return (
-      <Card className="border-border/50 bg-card/60 backdrop-blur">
+      <Card className={cn('glass-card border border-white/10', className)}>
         <CardHeader>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
@@ -308,8 +310,8 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
                 <Instagram className="h-6 w-6" />
               </div>
               <div>
-                <CardTitle className="text-2xl">{t('title')}</CardTitle>
-                <CardDescription>{t('subtitle')}</CardDescription>
+                <CardTitle className="text-2xl font-semibold text-white">{t('title')}</CardTitle>
+                <CardDescription className="text-slate-300">{t('subtitle')}</CardDescription>
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -323,7 +325,10 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
         <CardContent>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {Array.from({ length: 6 }).map((_, index) => (
-              <div key={`daily-lessons-skeleton-${index}`} className="space-y-3 rounded-xl border border-border/40 bg-card/50 p-3">
+              <div
+                key={`daily-lessons-skeleton-${index}`}
+                className="space-y-3 rounded-xl border border-white/10 bg-white/5 p-3"
+              >
                 <Skeleton className="aspect-square w-full rounded-lg" />
                 <Skeleton className="h-4 w-3/4" />
                 <Skeleton className="h-3 w-1/2" />
@@ -337,7 +342,7 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
 
   if (error && posts.length === 0) {
     return (
-      <Card className="border-border/50 bg-card/60 backdrop-blur">
+      <Card className={cn('glass-card border border-white/10', className)}>
         <CardHeader>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
@@ -345,8 +350,8 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
                 <Instagram className="h-6 w-6" />
               </div>
               <div>
-                <CardTitle className="text-2xl">{t('title')}</CardTitle>
-                <CardDescription>{t('subtitle')}</CardDescription>
+                <CardTitle className="text-2xl font-semibold text-white">{t('title')}</CardTitle>
+                <CardDescription className="text-slate-300">{t('subtitle')}</CardDescription>
               </div>
             </div>
             <Button variant="outline" size="sm" asChild>
@@ -368,7 +373,7 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
   }
 
   return (
-    <Card className="border-border/50 bg-card/60 backdrop-blur">
+    <Card className={cn('glass-card border border-white/10', className)}>
       <CardHeader>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
@@ -376,8 +381,8 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
               <Instagram className="h-6 w-6" />
             </div>
             <div>
-              <CardTitle className="text-2xl">{t('title')}</CardTitle>
-              <CardDescription>{t('subtitle')}</CardDescription>
+              <CardTitle className="text-2xl font-semibold text-white">{t('title')}</CardTitle>
+              <CardDescription className="text-slate-300">{t('subtitle')}</CardDescription>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -491,7 +496,7 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
                       href={post.permalink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group block overflow-hidden rounded-xl border border-border/60 bg-card/40 transition hover:border-primary/40 hover:bg-primary/5"
+                      className="group block overflow-hidden rounded-xl border border-white/10 bg-white/5 transition hover:border-primary/40 hover:bg-white/10"
                     >
                       <div className="relative aspect-square overflow-hidden bg-muted">
                         <Image
@@ -610,7 +615,7 @@ export function DailyLessons({ limit = 9, showViewAll = false }: DailyLessonsPro
                       href={post.permalink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group block overflow-hidden rounded-xl border border-border/60 bg-card/40 transition hover:border-primary/40 hover:bg-primary/5"
+                      className="group block overflow-hidden rounded-xl border border-white/10 bg-white/5 transition hover:border-primary/40 hover:bg-white/10"
                     >
                       <div className="relative aspect-square overflow-hidden bg-muted">
                         <Image

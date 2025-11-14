@@ -9,7 +9,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { FilterChip } from '@/components/ui/filter-chip';
 import { Input } from '@/components/ui/input';
-import { cn } from '@/lib/utils';
 import {
   BookMarked,
   Clapperboard,
@@ -191,11 +190,9 @@ export default function ResourcesPage() {
   };
 
   return (
-    <div className="section-container section-container-xl section-spacing-md space-y-6">
-        <section
-          data-testid="resources-hero"
-          className="rounded-3xl border border-border/40 bg-card/60 p-6 shadow-sm"
-        >
+    <div className="page-shell">
+      <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6">
+        <section data-testid="resources-hero" className="glass-card rounded-3xl p-6 md:p-8">
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <div className="space-y-3">
               <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-primary">
@@ -203,34 +200,39 @@ export default function ResourcesPage() {
                 {t('badge')}
               </span>
               <div>
-                <h1 className="text-2xl font-semibold text-foreground md:text-3xl">{t('title')}</h1>
-                <p className="text-sm text-muted-foreground">{updatedLabel}</p>
+                <h1 className="text-2xl font-bold text-white md:text-3xl">{t('title')}</h1>
+                <p className="text-sm text-slate-300">{updatedLabel}</p>
               </div>
             </div>
 
             {resourceData.pdf && (
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <Button variant="default" size="lg" className="gap-2 rounded-full" asChild>
+              <div className="space-y-2 text-sm text-slate-300">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="gap-2 rounded-full border-white/20 bg-white/10 text-white hover:bg-white/20"
+                  asChild
+                >
                   <a href={resourceData.pdf.url} target="_blank" rel="noopener noreferrer">
                     <FileText className="h-4 w-4" />
                     {resourceData.pdf.label || t('viewPdf')}
                   </a>
                 </Button>
-                <p className="text-xs text-muted-foreground">{t('pdfHint')}</p>
+                <p className="text-xs text-slate-400">{t('pdfHint')}</p>
               </div>
             )}
           </div>
         </section>
 
-        <section data-testid="resources-workspace" className="rounded-3xl border border-border/30 bg-card/60 p-6 shadow-sm">
-          <div className="space-y-4">
+        <section data-testid="resources-workspace" className="glass-card rounded-[32px] p-5 shadow-lg md:p-6">
+          <div className="space-y-5">
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <Input
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
                 placeholder={t('search')}
-                className="h-11 rounded-2xl pl-11 text-sm"
+                className="h-11 rounded-2xl border border-white/10 bg-background/80 pl-11 text-sm text-white placeholder:text-slate-400"
               />
             </div>
 
@@ -254,14 +256,14 @@ export default function ResourcesPage() {
               }
             `}</style>
 
-            <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+            <div className="flex flex-wrap items-center gap-3 text-xs text-slate-400">
               <span>{resultsSummary}</span>
               <span>{updatedLabel}</span>
             </div>
           </div>
 
           {filteredResources.length === 0 ? (
-            <Card className="glass-card mt-6 !bg-transparent">
+            <Card className="glass-card mt-6">
               <CardContent className="py-10 text-center text-sm text-slate-300">{t('noResults')}</CardContent>
             </Card>
           ) : (
@@ -280,7 +282,7 @@ export default function ResourcesPage() {
                     rel="noopener noreferrer"
                     className="group block h-full"
                   >
-                    <Card className="glass-card flex h-full flex-col justify-between !bg-transparent transition-shadow hover:border-primary/40 hover:shadow-2xl">
+                    <Card className="glass-card flex h-full flex-col justify-between transition-shadow hover:border-primary/40 hover:shadow-2xl">
                       <CardHeader className="space-y-3 px-0">
                         <div className="flex items-center gap-3">
                           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
@@ -310,6 +312,7 @@ export default function ResourcesPage() {
             </div>
           )}
         </section>
+      </div>
     </div>
   );
 }

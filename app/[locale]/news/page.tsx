@@ -46,7 +46,7 @@ const SKELETON_PLACEHOLDERS = Array.from({ length: 6 }, (_, index) => index);
 
 function NewsSkeletonCard() {
   return (
-    <Card className="overflow-hidden border-border/50 bg-card/60">
+    <Card className="glass-card overflow-hidden border border-white/10">
       <Skeleton className="aspect-video w-full rounded-none" />
       <CardHeader className="space-y-3">
         <Skeleton className="h-4 w-24 rounded-full" />
@@ -234,16 +234,17 @@ export default function NewsPage() {
   const showEmpty = !hasResults && !isLoading && !error;
 
   return (
-    <div className="section-container section-container-xl section-spacing-md space-y-6">
-        <section className="rounded-3xl border border-border/40 bg-card/60 p-6 shadow-sm">
+    <div className="page-shell">
+      <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6">
+        <section className="glass-card rounded-3xl p-6 md:p-8">
           <div className="flex flex-col gap-6">
             <div className="space-y-2">
               <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-primary">
                 <Newspaper className="h-4 w-4" />
                 {t('title')}
               </div>
-              <h1 className="text-2xl font-semibold text-foreground md:text-3xl">{t('subtitle')}</h1>
-              <p className="text-sm text-muted-foreground">
+              <h1 className="text-2xl font-bold text-white md:text-3xl">{t('subtitle')}</h1>
+              <p className="text-sm text-slate-300">
                 {t('sourceLabel')} · {meta?.count ?? 0}/{meta?.total ?? 0}
               </p>
             </div>
@@ -273,15 +274,15 @@ export default function NewsPage() {
 
             <div className="flex flex-col gap-3 md:flex-row md:items-center">
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                 <Input
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder={t('searchPlaceholder')}
-                  className="h-11 rounded-2xl pl-10 text-sm"
+                  className="h-11 rounded-2xl border border-white/10 bg-background/80 pl-10 text-sm text-white placeholder:text-slate-400"
                 />
               </div>
-              <div className="flex items-center gap-3 text-xs text-muted-foreground">
+              <div className="flex items-center gap-3 text-xs text-slate-300">
                 {isLoading ? (
                   <span className="inline-flex items-center gap-1.5">
                     <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -295,7 +296,12 @@ export default function NewsPage() {
                     </span>
                   )
                 )}
-                <Button variant="ghost" size="sm" onClick={handleRefresh} className="gap-1.5 rounded-full">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleRefresh}
+                  className="gap-1.5 rounded-full border border-white/10 text-white hover:bg-white/10"
+                >
                   <RefreshCcw className="h-3.5 w-3.5" />
                   {t('refresh')}
                 </Button>
@@ -305,19 +311,24 @@ export default function NewsPage() {
         </section>
 
         {error && (
-          <Alert variant="destructive" className="border border-destructive/40">
+          <Alert variant="destructive" className="glass-card border border-destructive/50 text-red-100">
             <AlertTitle>{t('error')}</AlertTitle>
-            <AlertDescription>{error}</AlertDescription>
-            <Button variant="outline" size="sm" className="mt-4" onClick={handleRefresh}>
+            <AlertDescription className="text-red-100/90">{error}</AlertDescription>
+            <Button
+              variant="outline"
+              size="sm"
+              className="mt-4 rounded-full border-white/20 text-white hover:bg-white/10"
+              onClick={handleRefresh}
+            >
               {t('retry')}
             </Button>
           </Alert>
         )}
 
         {!error && meta?.errors && meta.errors.length > 0 && (
-          <Alert className="border-border/50 bg-card/70">
+          <Alert className="glass-card border border-white/20 text-slate-200">
             <AlertTitle>{t('error')}</AlertTitle>
-            <AlertDescription>{meta.errors.join(' • ')}</AlertDescription>
+            <AlertDescription className="text-slate-300">{meta.errors.join(' • ')}</AlertDescription>
           </Alert>
         )}
 
@@ -330,8 +341,8 @@ export default function NewsPage() {
         )}
 
         {showEmpty && (
-          <Card className="border-border/40 bg-card/60">
-            <CardContent className="py-10 text-center text-sm text-muted-foreground">{t('noResults')}</CardContent>
+          <Card className="glass-card border border-white/10">
+            <CardContent className="py-10 text-center text-sm text-slate-300">{t('noResults')}</CardContent>
           </Card>
         )}
 
@@ -355,7 +366,7 @@ export default function NewsPage() {
                   }}
                   className="group h-full"
                 >
-                  <Card className="flex h-full flex-col overflow-hidden border-border/40 bg-background/70 transition-shadow hover:border-primary/40 hover:shadow-lg">
+                  <Card className="glass-card flex h-full flex-col overflow-hidden border border-white/5 bg-transparent transition-shadow hover:border-primary/40 hover:shadow-2xl">
                     <div className="relative aspect-video w-full overflow-hidden bg-muted">
                       {item.image ? (
                         <div
@@ -369,16 +380,16 @@ export default function NewsPage() {
                         </div>
                       )}
                       <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent" />
-                      <Badge variant="secondary" className="absolute left-4 bottom-3 text-[11px]">
+                      <Badge variant="secondary" className="absolute left-4 bottom-3 text-[11px] bg-black/50 text-white backdrop-blur">
                         {item.sourceName}
                       </Badge>
                     </div>
                     <CardHeader className="flex-1 space-y-3">
-                      <CardTitle className="text-base font-semibold leading-snug text-foreground line-clamp-2 group-hover:text-primary">
+                      <CardTitle className="text-base font-semibold leading-snug text-white line-clamp-2 group-hover:text-primary">
                         {item.title}
                       </CardTitle>
                       {item.description && (
-                        <CardDescription className="line-clamp-3 text-sm text-muted-foreground">
+                        <CardDescription className="line-clamp-3 text-sm text-slate-300">
                           {item.description}
                         </CardDescription>
                       )}
@@ -386,18 +397,25 @@ export default function NewsPage() {
                     <CardContent className="space-y-3">
                       <div className="flex flex-wrap gap-1.5">
                         {item.categories.slice(0, 3).map((category) => (
-                          <Badge key={`${item.id}-${category}`} variant="outline" className="rounded-full px-2 text-[11px]">
+                          <Badge
+                            key={`${item.id}-${category}`}
+                            variant="outline"
+                            className="rounded-full border-white/20 px-2 text-[11px] text-slate-200"
+                          >
                             {category}
                           </Badge>
                         ))}
                         {hasVideos && (
-                          <Badge variant="secondary" className="inline-flex items-center gap-1 rounded-full px-2 text-[11px]">
+                          <Badge
+                            variant="secondary"
+                            className="inline-flex items-center gap-1 rounded-full bg-primary/20 px-2 text-[11px] text-white"
+                          >
                             <PlayCircle className="h-3 w-3" />
                             {item.videos.length}
                           </Badge>
                         )}
                       </div>
-                      <div className="flex items-center justify-between text-xs text-muted-foreground">
+                      <div className="flex items-center justify-between text-xs text-slate-400">
                         {publishedLabel && (
                           <span className="inline-flex items-center gap-1.5">
                             <Clock3 className="h-3.5 w-3.5" />
@@ -416,6 +434,7 @@ export default function NewsPage() {
             })}
           </div>
         )}
+      </div>
     </div>
   );
 }
