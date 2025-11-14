@@ -241,6 +241,43 @@
     transform: scale(1.02);
     box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
   }
+
+  .page-shell {
+    position: relative;
+    min-height: 100vh;
+    background: #030712;
+    color: #f5f7ff;
+  }
+
+  .page-shell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top, rgba(122, 78, 255, 0.28), transparent 60%);
+    opacity: 0.8;
+    pointer-events: none;
+    filter: blur(50px);
+  }
+
+  .page-shell-content {
+    position: relative;
+  }
+
+  .glass-card {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(135deg, rgba(21, 30, 57, 0.95), rgba(7, 10, 18, 0.92));
+    box-shadow: 0 45px 85px -40px rgba(0, 0, 0, 0.9);
+    color: #f7fbff;
+    backdrop-filter: blur(24px);
+  }
+
+  .glass-card-muted {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(145deg, rgba(13, 18, 34, 0.92), rgba(5, 7, 15, 0.9));
+    box-shadow: 0 35px 80px -45px rgba(0, 0, 0, 0.85);
+    color: #e2e8f0;
+    backdrop-filter: blur(24px);
+  }
 }
 
 @layer utilities {

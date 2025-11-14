@@ -16,6 +16,7 @@ import {
 } from '@/components/translate/useTranslatorWorkspace';
 import { HistoryList } from '@/components/translate/HistoryList';
 import { InfoPanel } from '@/components/translate/InfoPanel';
+import { cn } from '@/lib/utils';
 
 const MAX_CHARACTERS = 1800;
 const GOOGLE_TRANSLATE_URL = 'https://translate.google.com/?sl=en&tl=mk';
@@ -145,8 +146,9 @@ export default function TranslatePage() {
     return Array.isArray(raw) ? (raw as string[]) : [];
   }, [t]);
 
+  const workspacePaneClass = 'glass-card rounded-3xl p-5 shadow-lg';
   const workspacePane = (
-    <div className="space-y-5 rounded-3xl border border-border/40 bg-card/80 p-5 shadow-lg">
+    <div className={cn(workspacePaneClass, 'space-y-5')}>
       <DirectionToggle
         options={directionOptions}
         activeId={directionId}
@@ -245,10 +247,10 @@ export default function TranslatePage() {
 
   const insightsPane = (
     <div className="space-y-6">
-      <div className="rounded-3xl border border-border/40 bg-card/80 p-5 shadow-lg">
-        <div className="mb-4">
-          <p className="text-base font-semibold text-foreground">{t('historyTitle')}</p>
-          <p className="text-sm text-muted-foreground">{t('historySubtitle')}</p>
+      <div className={cn(workspacePaneClass, 'space-y-4')}>
+        <div>
+          <p className="text-base font-semibold text-white">{t('historyTitle')}</p>
+          <p className="text-sm text-slate-300">{t('historySubtitle')}</p>
         </div>
         <HistoryList
           entries={history}
@@ -296,50 +298,52 @@ export default function TranslatePage() {
   );
 
   return (
-    <div className="section-container section-container-xl section-spacing-md space-y-6">
-      <section
-        data-testid="translate-hero"
-        className="rounded-3xl border border-border/40 bg-card/70 p-5 shadow-lg backdrop-blur-sm md:p-6"
-      >
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <p className="text-2xl font-semibold text-foreground">{t('title')}</p>
-            <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
+    <div className="page-shell">
+      <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6">
+        <section
+          data-testid="translate-hero"
+          className="glass-card rounded-3xl p-5 shadow-lg md:p-6"
+        >
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="text-2xl font-semibold text-white">{t('title')}</p>
+              <p className="text-sm text-slate-300">{t('subtitle')}</p>
+            </div>
+            <Badge variant="outline" className="border-primary/40 bg-primary/10 text-primary text-xs">
+              {t('badge')}
+            </Badge>
           </div>
-          <Badge variant="outline" className="border-primary/40 bg-primary/10 text-primary text-xs">
-            {t('badge')}
-          </Badge>
-        </div>
-      </section>
+        </section>
 
-      <section
-        data-testid="translate-workspace"
-        className="rounded-3xl border border-border/40 bg-card/60 p-4 shadow-lg md:p-6"
-      >
-        <div className="md:hidden">
-          <Tabs value={mobileTab} onValueChange={(value) => setMobileTab(value as 'workspace' | 'history')}>
-            <TabsList className="w-full">
-              <TabsTrigger value="workspace" className="flex-1">
-                {t('workspaceTab')}
-              </TabsTrigger>
-              <TabsTrigger value="history" className="flex-1">
-                {t('historyTab')}
-              </TabsTrigger>
-            </TabsList>
-            <TabsContent value="workspace" className="mt-4">
-              {workspacePane}
-            </TabsContent>
-            <TabsContent value="history" className="mt-4">
-              {insightsPane}
-            </TabsContent>
-          </Tabs>
-        </div>
+        <section
+          data-testid="translate-workspace"
+          className="glass-card rounded-3xl p-4 shadow-lg md:p-6"
+        >
+          <div className="md:hidden">
+            <Tabs value={mobileTab} onValueChange={(value) => setMobileTab(value as 'workspace' | 'history')}>
+              <TabsList className="w-full">
+                <TabsTrigger value="workspace" className="flex-1">
+                  {t('workspaceTab')}
+                </TabsTrigger>
+                <TabsTrigger value="history" className="flex-1">
+                  {t('historyTab')}
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent value="workspace" className="mt-4">
+                {workspacePane}
+              </TabsContent>
+              <TabsContent value="history" className="mt-4">
+                {insightsPane}
+              </TabsContent>
+            </Tabs>
+          </div>
 
-        <div className="hidden gap-6 md:grid md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
-          {workspacePane}
-          {insightsPane}
-        </div>
-      </section>
+          <div className="hidden gap-6 md:grid md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+            {workspacePane}
+            {insightsPane}
+          </div>
+        </section>
+      </div>
     </div>
   );
 }

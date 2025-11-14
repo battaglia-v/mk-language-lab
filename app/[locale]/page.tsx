@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useMemo, type ReactNode } from 'react';
+import { useCallback, useMemo, type CSSProperties, type ReactNode } from 'react';
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import clsx from 'clsx';
@@ -9,7 +9,6 @@ import { getLocalMissionStatus, type MissionStatus } from '@mk/api-client';
 import {
   AlertCircle,
   ArrowRight,
-  Bell,
   CheckCircle2,
   Circle,
   Flame,
@@ -32,13 +31,13 @@ export default function HomePage() {
   } = useMissionStatusResource(getLocalMissionStatus());
   const buildHref = useCallback((path: string) => (path === '/' ? `/${locale}` : `/${locale}${path}`), [locale]);
 
-  const quickActions = useMemo(
+  const quickActions = useMemo<QuickAction[]>(
     () => [
       {
         id: 'continue',
         title: 'Continue mission',
         description: 'Jump back into Quick Practice with your current deck.',
-        href: buildHref(mission.links?.practice ?? '/practice'),
+        href: buildHref('/practice'),
         icon: <Target className="h-5 w-5" aria-hidden="true" />,
         accent: 'primary' as const,
       },
@@ -46,37 +45,35 @@ export default function HomePage() {
         id: 'translator',
         title: 'Translator inbox',
         description: 'Review saved translations and weak vocab chips.',
-        href: buildHref(mission.links?.translatorInbox ?? '/translate'),
+        href: buildHref('/translate'),
         icon: <MessageCircle className="h-5 w-5" aria-hidden="true" />,
         accent: 'secondary' as const,
       },
-      {
-        id: 'reminders',
-        title: 'Reminder windows',
-        description: 'Tune streak nudges and mission deadlines.',
-        href: buildHref(mission.links?.settings ?? '/practice'),
-        icon: <Bell className="h-5 w-5" aria-hidden="true" />,
-        accent: 'secondary' as const,
-      },
     ],
-    [buildHref, mission.links?.practice, mission.links?.settings, mission.links?.translatorInbox]
+    [buildHref]
   );
 
-  const shellClasses = 'section-container section-container-wide section-spacing-lg space-y-6';
-  const glassCard = 'backdrop-blur-[18px]';
+  const shellClasses = 'section-container section-container-wide section-spacing-lg space-y-6 text-slate-100';
+  const glassCard = 'backdrop-blur-[22px]';
+  const cardSurfaceStyle: CSSProperties = {
+    background: 'linear-gradient(140deg, rgba(7,11,24,0.95), rgba(17,23,41,0.9))',
+    border: '1px solid rgba(255,255,255,0.08)',
+    color: '#eff2ff',
+    boxShadow: '0 35px 60px rgba(1,3,12,0.55)',
+  };
 
   return (
-    <div className="relative min-h-screen bg-[radial-gradient(circle_at_top,_rgba(244,232,216,0.9),_rgba(5,7,15,0.93))] text-foreground">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white/25 to-transparent" />
+    <div className="relative min-h-screen bg-[#030712] text-slate-100">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_top,_rgba(178,108,255,0.25),_transparent_65%)] blur-3xl opacity-80" />
       <div className={clsx('relative', shellClasses)} role="region" aria-label="Mission Control Dashboard">
         <header className="space-y-2">
-          <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-[var(--brand-red)]">
+          <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-rose-300">
             <Sparkles className="h-4 w-4" aria-hidden="true" /> Mission Control
           </p>
-          <h1 className="text-3xl font-semibold leading-tight text-foreground md:text-4xl">
+          <h1 className="text-3xl font-semibold leading-tight text-white md:text-4xl">
             Stay on streak, power through missions, and keep every surface in sync.
           </h1>
-          <p className="max-w-2xl text-base text-muted-foreground">
+          <p className="max-w-2xl text-base text-slate-300">
             The dashboard mirrors the mobile blueprint: streak-first hero, mission checklist, coach tips, review rails,
             and community highlights – all tuned for quick check-ins or deep study sessions.
           </p>
@@ -86,22 +83,43 @@ export default function HomePage() {
           <ErrorBanner message={missionError ?? 'Unable to load mission data.'} onRetry={refreshMission} />
         ) : null}
 
-        <MissionHero mission={mission} isLoading={missionState === 'loading'} buildHref={buildHref} cardClassName={glassCard} />
+        <MissionHero
+          mission={mission}
+          isLoading={missionState === 'loading'}
+          buildHref={buildHref}
+          cardClassName={glassCard}
+          cardSurfaceStyle={cardSurfaceStyle}
+        />
 
-        <QuickActions actions={quickActions} isLoading={missionState === 'loading'} cardClassName={glassCard} />
+        <QuickActions
+          actions={quickActions}
+          isLoading={missionState === 'loading'}
+          cardClassName={glassCard}
+          cardSurfaceStyle={cardSurfaceStyle}
+        />
 
         <div className="grid gap-6 lg:grid-cols-[1.8fr,1fr]">
           <div className="space-y-6">
-            <MissionChecklist checklist={mission.checklist} isLoading={missionState === 'loading'} cardClassName={glassCard} />
-            <CoachTips tips={mission.coachTips} isLoading={missionState === 'loading'} cardClassName={glassCard} />
+            <MissionChecklist
+              checklist={mission.checklist}
+              isLoading={missionState === 'loading'}
+              cardClassName={glassCard}
+              cardSurfaceStyle={cardSurfaceStyle}
+            />
+            <CoachTips
+              tips={mission.coachTips}
+              isLoading={missionState === 'loading'}
+              cardClassName={glassCard}
+              cardSurfaceStyle={cardSurfaceStyle}
+            />
           </div>
-          <div className="space-y-6">
-            <ReviewClusters clusters={mission.reviewClusters} isLoading={missionState === 'loading'} cardClassName={glassCard} />
-            <CommunityHighlights highlights={mission.communityHighlights} isLoading={missionState === 'loading'} cardClassName={glassCard} />
-          </div>
+          <ReviewClusters
+            clusters={mission.reviewClusters}
+            isLoading={missionState === 'loading'}
+            cardClassName={glassCard}
+            cardSurfaceStyle={cardSurfaceStyle}
+          />
         </div>
-
-        <FutureModulesCard cardClassName={glassCard} />
       </div>
     </div>
   );
@@ -112,11 +130,13 @@ function MissionHero({
   isLoading,
   buildHref,
   cardClassName = '',
+  cardSurfaceStyle,
 }: {
   mission: MissionStatus;
   isLoading: boolean;
   buildHref: (path: string) => string;
   cardClassName?: string;
+  cardSurfaceStyle: CSSProperties;
 }) {
   const xpProgress = mission.xp.target > 0 ? Math.min(mission.xp.earned / mission.xp.target, 1) : 0;
   const cycleEndsLabel = formatCycleWindow(mission.cycle.endsAt);
@@ -124,7 +144,11 @@ function MissionHero({
   const heartsStat = `${mission.heartsRemaining}/5 hearts`;
 
   return (
-    <WebCard style={{ padding: 32 }} className={clsx(cardClassName)} data-testid="mission-hero-card">
+    <WebCard
+      style={{ ...cardSurfaceStyle, padding: 32 }}
+      className={clsx(cardClassName)}
+      data-testid="mission-hero-card"
+    >
       <div className="grid gap-8 lg:grid-cols-[1.35fr,1fr]">
         <div className="space-y-4">
           <div className="flex flex-wrap items-center gap-3">
@@ -181,29 +205,31 @@ function QuickActions({
   actions,
   isLoading,
   cardClassName = '',
+  cardSurfaceStyle,
 }: {
   actions: QuickAction[];
   isLoading: boolean;
   cardClassName?: string;
+  cardSurfaceStyle: CSSProperties;
 }) {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       {actions.map((action) => (
         <WebCard
           key={action.id}
-          style={{ padding: 24 }}
+          style={{ ...cardSurfaceStyle, padding: 24 }}
           className={clsx(cardClassName, isLoading && 'animate-pulse opacity-70')}
         >
           <div
-            className={clsx('mb-3 inline-flex h-10 w-10 items-center justify-center rounded-2xl text-white', {
+            className={clsx('mb-3 inline-flex h-10 w-10 items-center justify-center rounded-2xl text-white shadow-md', {
               'bg-[var(--brand-red,#e63946)]': action.accent === 'primary',
-              'bg-[var(--brand-gold,#f4a261)] text-[var(--brand-red-dark,#8e1b2a)]': action.accent === 'secondary',
+              'bg-[var(--brand-gold,#f4a261)] text-[#201404]': action.accent === 'secondary',
             })}
           >
             {action.icon}
           </div>
-          <h3 className="text-lg font-semibold text-foreground">{action.title}</h3>
-          <p className="mt-1 text-sm text-muted-foreground">{action.description}</p>
+          <h3 className="text-lg font-semibold text-white">{action.title}</h3>
+          <p className="mt-1 text-sm text-slate-300">{action.description}</p>
           <Link
             href={action.href}
             className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[var(--brand-red,#e63946)]"
@@ -221,13 +247,15 @@ function MissionChecklist({
   checklist,
   isLoading,
   cardClassName = '',
+  cardSurfaceStyle,
 }: {
   checklist: MissionStatus['checklist'];
   isLoading: boolean;
   cardClassName?: string;
+  cardSurfaceStyle: CSSProperties;
 }) {
   return (
-    <WebCard style={{ padding: 24 }} className={clsx(cardClassName)}>
+    <WebCard style={{ ...cardSurfaceStyle, padding: 24 }} className={clsx(cardClassName)}>
       <div className="flex items-center justify-between gap-4">
         <div>
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--brand-gold-dark,#c0841a)]">Mission checklist</p>
@@ -257,13 +285,15 @@ function CoachTips({
   tips,
   isLoading,
   cardClassName = '',
+  cardSurfaceStyle,
 }: {
   tips: MissionStatus['coachTips'];
   isLoading: boolean;
   cardClassName?: string;
+  cardSurfaceStyle: CSSProperties;
 }) {
   return (
-    <WebCard style={{ padding: 24 }} className={clsx(cardClassName)}>
+    <WebCard style={{ ...cardSurfaceStyle, padding: 24 }} className={clsx(cardClassName)}>
       <SectionHeader title="Coach tips" subtitle="Micro-guidance" isLoading={isLoading} />
       <div className="mt-6 grid gap-4 md:grid-cols-2">
         {tips.map((tip) => (
@@ -282,13 +312,15 @@ function ReviewClusters({
   clusters,
   isLoading,
   cardClassName = '',
+  cardSurfaceStyle,
 }: {
   clusters: MissionStatus['reviewClusters'];
   isLoading: boolean;
   cardClassName?: string;
+  cardSurfaceStyle: CSSProperties;
 }) {
   return (
-    <WebCard style={{ padding: 24 }} className={clsx(cardClassName)}>
+    <WebCard style={{ ...cardSurfaceStyle, padding: 24 }} className={clsx(cardClassName)}>
       <SectionHeader title="Smart review" subtitle="Accuracy focus" isLoading={isLoading} />
       <div className="mt-6 space-y-4">
         {clusters.map((cluster) => (
@@ -310,83 +342,6 @@ function ReviewClusters({
   );
 }
 
-function CommunityHighlights({
-  highlights,
-  isLoading,
-  cardClassName = '',
-}: {
-  highlights: MissionStatus['communityHighlights'];
-  isLoading: boolean;
-  cardClassName?: string;
-}) {
-  return (
-    <WebCard style={{ padding: 24 }} className={clsx(cardClassName)}>
-      <SectionHeader title="Community" subtitle="Keep the momentum" isLoading={isLoading} />
-      <ul className="mt-6 space-y-4">
-        {highlights.map((highlight) => (
-          <li key={highlight.id} className="rounded-2xl border border-border/40 p-4">
-            <p className="text-sm font-semibold text-foreground">{highlight.title}</p>
-            <p className="text-sm text-muted-foreground">{highlight.detail}</p>
-          </li>
-        ))}
-      </ul>
-    </WebCard>
-  );
-}
-
-function FutureModulesCard({ cardClassName = '' }: { cardClassName?: string }) {
-  const modules = [
-    {
-      id: 'community',
-      title: 'Community spotlights',
-      detail: 'Curated streak shout-outs, leaderboard mentions, and forum prompts will land here once social APIs are wired up.',
-      status: 'Planned',
-    },
-    {
-      id: 'discover',
-      title: 'Discover editorials',
-      detail: 'Lesson clips, cultural notes, and editorial cards are in design review. Hidden for the PoC so we avoid filler news.',
-      status: 'In design',
-    },
-    {
-      id: 'sessions',
-      title: 'Live sessions calendar',
-      detail: 'Tutor labs + pronunciation workshops launch with the worker + CMS handoff in Step I. Expect calendar cards then.',
-      status: 'Coming soon',
-    },
-  ] as const;
-
-  return (
-    <WebCard style={{ padding: 24 }} className={clsx(cardClassName)}>
-      <div className="flex items-center justify-between gap-4">
-        <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-[var(--brand-gold-dark,#c0841a)]">Future surfaces</p>
-          <h3 className="text-xl font-semibold">What&apos;s launching next</h3>
-        </div>
-        <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-primary">
-          Beta
-        </span>
-      </div>
-      <p className="mt-3 text-sm text-muted-foreground">
-        Community, Discover, and upcoming session rails intentionally remain disabled for this PoC. Flip the flag once their
-        APIs provide real content so the dashboard stays purposeful.
-      </p>
-      <ul className="mt-6 space-y-4">
-        {modules.map((module) => (
-          <li key={module.id} className="rounded-2xl border border-border/40 bg-background/60 p-4">
-            <div className="flex items-center justify-between gap-3">
-              <p className="text-base font-semibold text-foreground">{module.title}</p>
-              <span className="rounded-full border border-border/50 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                {module.status}
-              </span>
-            </div>
-            <p className="mt-1 text-sm text-muted-foreground">{module.detail}</p>
-          </li>
-        ))}
-      </ul>
-    </WebCard>
-  );
-}
 
 function ErrorBanner({ message, onRetry }: { message: string; onRetry: () => void }) {
   return (

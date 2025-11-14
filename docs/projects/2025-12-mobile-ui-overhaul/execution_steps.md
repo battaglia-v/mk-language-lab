@@ -197,7 +197,7 @@
 - ✅ **Learn page** (`/learn`) - Replaced custom gradient + ad-hoc container with `section-container section-container-xl section-spacing-md`
 - ✅ **Daily Lessons page** (`/daily-lessons`) - Replaced custom gradient + ad-hoc container with `section-container section-container-xl section-spacing-lg`
 - ✅ **About page** (`/about`) - Replaced custom gradient + ad-hoc container with `section-container section-container-xl section-spacing-lg`, removed custom footer
-- ✅ **Learn module pages** (`/learn/vocabulary`, `/learn/grammar`, `/learn/phrases`, `/learn/pronunciation`) - Replaced custom gradients + ad-hoc containers with `section-container section-container-xl section-spacing-lg`
+- ✅ Removed the outdated **Learn module pages** (vocabulary/grammar/phrases/pronunciation) so the PoC only exposes surfaces with real content.
 - ✅ **Privacy & Terms pages** (`/privacy`, `/terms`) - Replaced custom gradients + ad-hoc containers with `section-container section-container-xl section-spacing-lg`
 - ✅ All pages now inherit the main gradient from layout without conflicting backgrounds
 - ✅ ESLint passed on all touched files
@@ -275,9 +275,9 @@
 - Existing `section-container` utilities (no new tokens required)
 **Completed Work**:
 - ✅ Wrapped the home dashboard in the shared container system with a branded radial gradient so hero, footer, and nav align perfectly.
-- ✅ Applied a reusable glassmorphism treatment to hero, quick actions, checklist, coach tips, review rail, and community cards for better contrast.
-- ✅ Removed the placeholder Discover, Headlines, and Upcoming Sessions rails (they lacked Macedonian content) and replaced them with a Future Modules card that documents when to re-enable them.
-- ✅ Clarified PoC scope so only working modules ship, preventing blank sections and irrelevant world-news headlines.
+- ✅ Applied a reusable glassmorphism treatment to hero, quick actions, checklist, and review rails for better contrast while keeping text legible on dark surfaces.
+- ✅ Removed placeholder rails entirely (Community highlights, Discover editorials, Headlines, Upcoming Sessions) so the PoC contains only live, working modules.
+- ✅ Quick actions now link strictly to valid routes (Practice + Translate) to avoid 404s.
 **Verification Steps**:
 1. `npx eslint app/[locale]/page.tsx`
 

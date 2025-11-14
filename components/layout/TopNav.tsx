@@ -1,11 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
-import { Menu, X, Flame, Heart, Loader2, AlertCircle, ArrowRight } from 'lucide-react';
+import { Flame, Heart, Loader2, AlertCircle, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useState, useEffect } from 'react';
 import { AjvarLogo } from '@/components/AjvarLogo';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { UserMenu } from '@/components/auth/UserMenu';
@@ -57,16 +55,13 @@ export interface TopNavProps {
  */
 export function TopNav({
   sticky = true,
-  showMobileMenu = true,
   className,
   initialMission,
 }: TopNavProps) {
-  const pathname = usePathname();
   const locale = useLocale();
   const t = useTranslations('nav');
   const common = useTranslations('common');
   const brand = useTranslations('brand');
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const brandLabel = brand('short');
   const {
     mission,
@@ -76,49 +71,7 @@ export function TopNav({
   } = useMissionStatusResource(initialMission);
 
   // Close mobile menu when route changes
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [pathname]);
-
-  // Close mobile menu on escape key
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setMobileMenuOpen(false);
-      }
-    };
-
-    if (mobileMenuOpen) {
-      document.addEventListener('keydown', handleEscape);
-      // Prevent body scroll when mobile menu is open
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = '';
-    };
-  }, [mobileMenuOpen]);
-
   const buildHref = (path: string) => `/${locale}${path}`;
-
-  const navItems = [
-    { path: '/', label: t('home') },
-    { path: '/practice', label: t('practice') },
-    { path: '/translate', label: t('translate') },
-    { path: '/news', label: t('news') },
-    { path: '/resources', label: t('resources') },
-  ];
-
-  const isActive = (path: string) => {
-    const fullPath = buildHref(path);
-    if (path === '/') {
-      return pathname === fullPath;
-    }
-    return pathname === fullPath || pathname.startsWith(`${fullPath}/`);
-  };
 
   return (
     <>
@@ -132,113 +85,39 @@ export function TopNav({
 
       <nav
         className={cn(
-          'w-full border-b border-border/60 bg-background/90 backdrop-blur-xl shadow-sm z-40',
+          'w-full border-b border-white/5 bg-[#050918]/90 backdrop-blur-xl shadow-lg shadow-black/30 z-40',
           sticky && 'sticky top-0',
           className
         )}
         aria-label={t('label')}
       >
-        <div className="section-container section-container-wide flex flex-col gap-3 py-3">
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="flex flex-1 items-center gap-2">
-              <Link
-                href={`/${locale}`}
-                className="flex items-center gap-2 transition-opacity hover:opacity-80"
-                aria-label={t('home')}
-              >
-                <AjvarLogo size={32} />
-                <div className="flex flex-col">
-                  <span className="text-base font-semibold text-foreground">{brandLabel}</span>
-                  <span className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                    Macedonian Missions
-                  </span>
-                </div>
-              </Link>
+        <div className="section-container section-container-wide flex flex-wrap items-center justify-between gap-3 py-3">
+          <Link
+            href={`/${locale}`}
+            className="flex items-center gap-2 transition-opacity hover:opacity-80"
+            aria-label={t('home')}
+          >
+            <AjvarLogo size={32} />
+            <span className="text-base font-semibold text-white">{brandLabel}</span>
+          </Link>
 
-              <div className="hidden flex-1 flex-wrap items-center gap-1 lg:flex">
-                {navItems.map((item) => {
-                  const active = isActive(item.path);
-                  return (
-                    <Link
-                      key={item.path}
-                      href={buildHref(item.path)}
-                      className={cn(
-                        'px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200',
-                        'hover:bg-muted focus-visible:ring-1 focus-visible:ring-primary',
-                        active ? 'text-primary bg-primary/10 shadow-sm' : 'text-foreground'
-                      )}
-                      aria-current={active ? 'page' : undefined}
-                    >
-                      {item.label}
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="ml-auto flex items-center gap-2 lg:gap-3">
-              <CommandMenuLazy />
-              <LanguageSwitcher />
-              <UserMenu />
-              {showMobileMenu && (
-                <button
-                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  className="rounded-lg p-2 transition-colors hover:bg-muted lg:hidden"
-                  aria-label={mobileMenuOpen ? t('closeMenu') : t('openMenu')}
-                  aria-expanded={mobileMenuOpen}
-                  aria-controls="mobile-menu"
-                >
-                  {mobileMenuOpen ? (
-                    <X className="h-5 w-5" />
-                  ) : (
-                    <Menu className="h-5 w-5" />
-                  )}
-                </button>
-              )}
-            </div>
+          <div className="flex items-center gap-2 lg:gap-3">
+            <CommandMenuLazy />
+            <LanguageSwitcher />
+            <UserMenu />
           </div>
+        </div>
 
+        <div className="section-container section-container-wide pb-3">
           <MissionSummaryBanner
             mission={mission}
             state={missionState}
             error={missionError}
             onRefresh={refreshMission}
             t={t}
+            buildHref={buildHref}
           />
         </div>
-
-        {/* Mobile Menu */}
-        {showMobileMenu && (
-          <div
-            id="mobile-menu"
-            className={cn(
-              'lg:hidden overflow-hidden border-t border-border/40 transition-all duration-300 ease-in-out',
-              mobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
-            )}
-            aria-hidden={!mobileMenuOpen}
-          >
-            <div className="section-container section-container-wide py-4 space-y-1">
-              {navItems.map((item) => {
-                const active = isActive(item.path);
-                return (
-                  <Link
-                    key={item.path}
-                    href={buildHref(item.path)}
-                    className={cn(
-                      'block rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 touch-target',
-                      'hover:bg-muted',
-                      active ? 'text-primary bg-primary/10' : 'text-foreground'
-                    )}
-                    aria-current={active ? 'page' : undefined}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        )}
       </nav>
     </>
   );
@@ -252,12 +131,13 @@ type MissionSummaryBannerProps = {
   error?: string;
   onRefresh: () => void;
   t: NavTranslator;
+  buildHref: (path: string) => string;
 };
 
-function MissionSummaryBanner({ mission, state, error, onRefresh, t }: MissionSummaryBannerProps) {
+function MissionSummaryBanner({ mission, state, error, onRefresh, t, buildHref }: MissionSummaryBannerProps) {
   if (state === 'loading') {
     return (
-      <div className="flex items-center gap-3 rounded-2xl border border-border/80 bg-[var(--surface-elevated)] px-4 py-3 text-sm text-muted-foreground">
+      <div className="flex items-center gap-3 rounded-2xl border border-white/5 bg-[#0f162e]/80 px-4 py-3 text-sm text-slate-300">
         <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
         {t('summaryLoading')}
       </div>
@@ -266,7 +146,7 @@ function MissionSummaryBanner({ mission, state, error, onRefresh, t }: MissionSu
 
   if (state === 'error') {
     return (
-      <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-error-border bg-error-soft px-4 py-3 text-sm text-error-strong">
+      <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-red-500/40 bg-red-900/20 px-4 py-3 text-sm text-red-200">
         <div className="flex items-center gap-2">
           <AlertCircle className="h-4 w-4" aria-hidden="true" />
           <span>{error ?? t('summaryError')}</span>
@@ -274,7 +154,7 @@ function MissionSummaryBanner({ mission, state, error, onRefresh, t }: MissionSu
         <button
           type="button"
           onClick={onRefresh}
-          className="rounded-full border border-error-border px-3 py-1 text-xs font-semibold text-error-strong transition-all hover:bg-error-border/10"
+          className="rounded-full border border-red-400/60 px-3 py-1 text-xs font-semibold text-red-100 transition-all hover:bg-red-500/20"
         >
           {t('retry')}
         </button>
@@ -291,7 +171,7 @@ function MissionSummaryBanner({ mission, state, error, onRefresh, t }: MissionSu
   });
 
   return (
-    <div className="flex flex-wrap items-center gap-4 rounded-2xl border border-border/80 bg-[var(--surface-elevated)] px-4 py-4">
+    <div className="flex flex-wrap items-center gap-4 rounded-2xl border border-white/5 bg-[#0f162e]/80 px-4 py-4">
       <div className="flex flex-1 flex-wrap items-center gap-4">
         <div className="flex items-center gap-3">
           <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--brand-red)]/10 text-[var(--brand-red)]">
@@ -339,14 +219,14 @@ function MissionSummaryBanner({ mission, state, error, onRefresh, t }: MissionSu
 
       <div className="flex w-full flex-col gap-2 md:w-[240px]">
         <Link
-          href="/practice"
+          href={buildHref('/practice')}
           className="flex flex-col rounded-2xl bg-[var(--brand-red)] px-4 py-3 text-white shadow-lg shadow-[rgba(255,79,94,0.35)] transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--brand-red)] focus-visible:ring-offset-background"
         >
           <span className="text-sm font-semibold">{t('quickActionPractice')}</span>
           <span className="text-xs text-white/85">{continueSubtitle}</span>
         </Link>
         <Link
-          href="/translate"
+          href={buildHref('/translate')}
           className="flex items-center justify-between rounded-2xl border border-border/70 bg-background/80 px-4 py-3 text-sm font-semibold text-foreground transition hover:border-[var(--brand-red)] hover:text-[var(--brand-red)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--brand-red)] focus-visible:ring-offset-background"
         >
           <span>{t('quickActionTranslate')}</span>
