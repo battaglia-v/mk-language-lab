@@ -41,7 +41,7 @@ async function buildProfileSummary(userId: string): Promise<ProfileSummary> {
   const now = new Date();
   const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
 
-  const [user, gameProgress, journeys, weeklyAttempts] = await Promise.all([
+  const [user, gameProgress, journeys, weeklyAttempts, userBadges, weeklyQuests] = await Promise.all([
     prisma.user.findUnique({ where: { id: userId }, select: { name: true } }),
     prisma.gameProgress.findUnique({ where: { userId } }),
     prisma.journeyProgress.findMany({
@@ -55,6 +55,18 @@ async function buildProfileSummary(userId: string): Promise<ProfileSummary> {
       },
       select: { attemptedAt: true },
     }),
+    prisma.userBadge.findMany({
+      where: { userId },
+      include: { badge: true },
+      orderBy: { createdAt: 'desc' },
+      take: 20,
+    }),
+    prisma.userQuestProgress.findMany({
+      where: {
+        userId,
+        updatedAt: { gte: sevenDaysAgo },
+      },
+    }),
   ]);
 
   const xpTotal = gameProgress?.xp ?? 0;
@@ -62,18 +74,31 @@ async function buildProfileSummary(userId: string): Promise<ProfileSummary> {
   const streakDays = gameProgress?.streak ?? 0;
   const level = formatLevel(gameProgress?.level ?? 'beginner');
 
-  const questsActive = journeys.filter((journey) => journey.isActive).length;
-  const questsCompleted = journeys.filter((journey) => journey.lastSessionDate && journey.lastSessionDate >= sevenDaysAgo).length;
+  // Use the new quest system for quest counts
+  const questsActive = weeklyQuests.filter((q) => q.status === 'active').length;
+  const questsCompleted = weeklyQuests.filter((q) => q.status === 'completed').length;
 
-  const badges = buildBadges({
-    xpTotal,
-    streakDays,
-    weeklyAttempts: weeklyAttempts.length,
-    questsActive,
-    streakUpdatedAt: gameProgress?.streakUpdatedAt ?? null,
-    xpUpdatedAt: gameProgress?.updatedAt ?? null,
-    journeyUpdatedAt: journeys[0]?.updatedAt ?? null,
-  });
+  // Map real badges from database or fall back to generated ones
+  let badges: ProfileSummary['badges'];
+  if (userBadges.length > 0) {
+    badges = userBadges.map((ub) => ({
+      id: ub.badge.id,
+      label: ub.badge.name,
+      description: ub.badge.description,
+      earnedAt: ub.earnedAt?.toISOString() ?? null,
+    }));
+  } else {
+    // Fallback to generated badges if no badges in DB yet
+    badges = buildBadges({
+      xpTotal,
+      streakDays,
+      weeklyAttempts: weeklyAttempts.length,
+      questsActive,
+      streakUpdatedAt: gameProgress?.streakUpdatedAt ?? null,
+      xpUpdatedAt: gameProgress?.updatedAt ?? null,
+      journeyUpdatedAt: journeys[0]?.updatedAt ?? null,
+    });
+  }
 
   return {
     name: user?.name ?? FALLBACK_PROFILE.name,
