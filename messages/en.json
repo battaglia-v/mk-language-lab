@@ -158,6 +158,20 @@
     "correctAnswer": "Great job!",
     "incorrectAnswer": "Not quite. The answer is {answer}.",
     "practiceCategoryLabel": "Category",
+    "practiceDifficultyLabel": "Difficulty",
+    "practiceDifficultyCasualLabel": "Casual",
+    "practiceDifficultyCasualDescription": "Relaxed pacing, no timer.",
+    "practiceDifficultyFocusLabel": "Focus",
+    "practiceDifficultyFocusDescription": "45s timer, +25% XP, normal heart cost.",
+    "practiceDifficultyBlitzLabel": "Blitz",
+    "practiceDifficultyBlitzDescription": "20s timer, +50% XP, mistakes cost two hearts.",
+    "practiceTimerLabel": "Timer",
+    "practiceTimerActive": "{seconds}s remaining",
+    "practiceNoTimer": "No timer",
+    "practiceTalismansLabel": "Session talismans",
+    "practiceTalismansEmpty": "Maintain 100% accuracy or a 10-card streak to unlock talismans.",
+    "practiceTalismanMultiplier": "+{value}% XP boost",
+    "practiceAudioPromptLabel": "Audio prompt",
     "quickPracticeLaunch": "Launch session",
     "quickPracticeLaunchDescription": "Open the full-screen practice lab to run focused drills.",
     "practiceProgressLabel": "Session progress",
@@ -1189,6 +1203,21 @@
     "badges": {
       "title": "Badges & Achievements",
       "shopLink": "Visit Shop"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "description": "View your reminders and updates",
+    "subtitle": "{count, plural, =0 {All caught up!} one {# unread notification} other {# unread notifications}}",
+    "markRead": "Mark read",
+    "viewAction": "View",
+    "empty": {
+      "title": "No notifications yet",
+      "description": "We'll notify you about streak warnings, quest invites, and important updates here."
+    },
+    "error": {
+      "title": "Unable to load notifications",
+      "generic": "Something went wrong while loading your notifications"
     }
   }
 }
