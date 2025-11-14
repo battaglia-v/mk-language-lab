@@ -39,17 +39,19 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    // @ts-expect-error - FormData type definitions are incomplete in build environment
-    const formData: FormData = await request.formData();
+    const formData = await request.formData();
 
-    // Extract form fields
-    const primaryFile = (formData.get('primaryFile') ?? null) as File | null;
-    const slowFile = (formData.get('slowFile') ?? null) as File | null;
-    const promptId = (formData.get('promptId') ?? '') as string;
-    const sourceType = (formData.get('sourceType') ?? '') as string;
-    const speaker = (formData.get('speaker') ?? null) as string | null;
-    const language = ((formData.get('language') ?? 'mk') as string) || 'mk';
-    const isPublished = (formData.get('isPublished') ?? 'false') === 'true';
+    // Extract form fields - FormData.get() returns FormDataEntryValue | null
+    const primaryFileEntry = formData.get('primaryFile');
+    const slowFileEntry = formData.get('slowFile');
+    const primaryFile = primaryFileEntry instanceof File ? primaryFileEntry : null;
+    const slowFile = slowFileEntry instanceof File ? slowFileEntry : null;
+    const promptId = String(formData.get('promptId') || '');
+    const sourceType = String(formData.get('sourceType') || '');
+    const speakerEntry = formData.get('speaker');
+    const speaker = speakerEntry ? String(speakerEntry) : null;
+    const language = String(formData.get('language') || 'mk');
+    const isPublished = formData.get('isPublished') === 'true';
 
     // Validate required fields
     if (!primaryFile) {
