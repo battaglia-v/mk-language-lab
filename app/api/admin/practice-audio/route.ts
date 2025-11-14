@@ -41,24 +41,22 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
 
-    // Extract form fields - FormData.get() returns FormDataEntryValue | null
-    // @ts-expect-error - FormData type definitions incomplete in build environment
-    const primaryFileEntry = formData.get('primaryFile');
-    // @ts-expect-error - FormData type definitions incomplete in build environment
-    const slowFileEntry = formData.get('slowFile');
+    // Extract form fields - workaround for incomplete FormData types
+    type FormDataWithGet = {
+      get(name: string): FormDataEntryValue | null;
+    };
+    const fd = formData as unknown as FormDataWithGet;
+
+    const primaryFileEntry = fd.get('primaryFile');
+    const slowFileEntry = fd.get('slowFile');
     const primaryFile = primaryFileEntry instanceof File ? primaryFileEntry : null;
     const slowFile = slowFileEntry instanceof File ? slowFileEntry : null;
-    // @ts-expect-error - FormData type definitions incomplete in build environment
-    const promptId = String(formData.get('promptId') || '');
-    // @ts-expect-error - FormData type definitions incomplete in build environment
-    const sourceType = String(formData.get('sourceType') || '');
-    // @ts-expect-error - FormData type definitions incomplete in build environment
-    const speakerEntry = formData.get('speaker');
+    const promptId = String(fd.get('promptId') || '');
+    const sourceType = String(fd.get('sourceType') || '');
+    const speakerEntry = fd.get('speaker');
     const speaker = speakerEntry ? String(speakerEntry) : null;
-    // @ts-expect-error - FormData type definitions incomplete in build environment
-    const language = String(formData.get('language') || 'mk');
-    // @ts-expect-error - FormData type definitions incomplete in build environment
-    const isPublished = formData.get('isPublished') === 'true';
+    const language = String(fd.get('language') || 'mk');
+    const isPublished = fd.get('isPublished') === 'true';
 
     // Validate required fields
     if (!primaryFile) {

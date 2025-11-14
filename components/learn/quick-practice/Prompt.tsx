@@ -72,7 +72,7 @@ export function QuickPracticePrompt({
           >
             Your browser does not support the audio element.
           </audio>
-          {audioClip.slowUrl ? (
+          {'slowUrl' in audioClip && audioClip.slowUrl ? (
             <audio
               controls
               preload="metadata"
