@@ -1,6 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { seedQuests } from './seeds/quests';
+import { seedBadges } from './seeds/badges';
+import { seedLeagues } from './seeds/leagues';
 
 const prisma = new PrismaClient();
 
@@ -89,6 +92,12 @@ async function main() {
     }
     console.log(`✓ Created ${wotdCreatedCount} Word of the Day entries`);
   }
+
+  // Seed gamification data
+  console.log('\n--- Gamification Data ---');
+  await seedQuests();
+  await seedBadges();
+  await seedLeagues();
 
   console.log('\nSeeding completed!');
 }
