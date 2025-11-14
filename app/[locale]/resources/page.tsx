@@ -261,8 +261,8 @@ export default function ResourcesPage() {
           </div>
 
           {filteredResources.length === 0 ? (
-            <Card className="mt-6 border-border/40 bg-card/70">
-              <CardContent className="py-10 text-center text-sm text-muted-foreground">{t('noResults')}</CardContent>
+            <Card className="glass-card mt-6 !bg-transparent">
+              <CardContent className="py-10 text-center text-sm text-slate-300">{t('noResults')}</CardContent>
             </Card>
           ) : (
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -280,24 +280,24 @@ export default function ResourcesPage() {
                     rel="noopener noreferrer"
                     className="group block h-full"
                   >
-                    <Card className="flex h-full flex-col justify-between border-border/40 bg-background/70 transition-shadow hover:border-primary/30 hover:shadow-lg">
-                      <CardHeader className="space-y-3">
+                    <Card className="glass-card flex h-full flex-col justify-between !bg-transparent transition-shadow hover:border-primary/40 hover:shadow-2xl">
+                      <CardHeader className="space-y-3 px-0">
                         <div className="flex items-center gap-3">
                           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
                             <Icon className="h-5 w-5" />
                           </div>
                           <div className="space-y-1">
-                            <CardTitle className="text-base text-foreground">{resource.title}</CardTitle>
-                            <CardDescription className="text-xs text-muted-foreground">{resource.collectionTitle}</CardDescription>
+                            <CardTitle className="text-base text-white">{resource.title}</CardTitle>
+                            <CardDescription className="text-xs text-slate-300">{resource.collectionTitle}</CardDescription>
                           </div>
                         </div>
-                        <Badge variant="secondary" className="w-fit gap-1.5 text-[11px]">
+                        <Badge variant="secondary" className="w-fit gap-1.5 text-[11px] bg-white/10 text-white">
                           <FormatIcon className="h-3.5 w-3.5" />
                           {formatLabel}
                         </Badge>
                       </CardHeader>
-                      <CardContent className="space-y-4">
-                        <p className="text-sm text-muted-foreground line-clamp-3">{resource.summary}</p>
+                      <CardContent className="space-y-4 px-0">
+                        <p className="text-sm text-slate-200 line-clamp-3">{resource.summary}</p>
                         <div className="inline-flex items-center gap-1 text-sm font-semibold text-primary">
                           {ctaLabel}
                           <ExternalLink className="h-3.5 w-3.5" />
