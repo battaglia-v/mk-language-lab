@@ -35,26 +35,33 @@ model Session {
 }
 
 model User {
-  id               String               @id @default(cuid())
-  name             String?
-  email            String?              @unique
-  emailVerified    DateTime?
-  password         String? // Hashed password (optional for OAuth users)
-  image            String?
-  role             String               @default("user") // "user" | "admin"
-  createdAt        DateTime             @default(now())
-  updatedAt        DateTime             @updatedAt
-  accounts         Account[]
-  boards           Board[]
-  lessons          Lesson[]
-  sessions         Session[]
-  tutorSessions    TutorSession[]
-  savedPosts       SavedPost[]
-  journeyProgress  JourneyProgress[]
-  lessonProgress   UserLessonProgress[]
-  exerciseAttempts ExerciseAttempt[]
-  gameProgress     GameProgress?
-  mobilePushTokens MobilePushToken[]
+  id                   String                  @id @default(cuid())
+  name                 String?
+  email                String?                 @unique
+  emailVerified        DateTime?
+  password             String? // Hashed password (optional for OAuth users)
+  image                String?
+  role                 String                  @default("user") // "user" | "admin"
+  createdAt            DateTime                @default(now())
+  updatedAt            DateTime                @updatedAt
+  accounts             Account[]
+  boards               Board[]
+  lessons              Lesson[]
+  sessions             Session[]
+  tutorSessions        TutorSession[]
+  savedPosts           SavedPost[]
+  journeyProgress      JourneyProgress[]
+  lessonProgress       UserLessonProgress[]
+  exerciseAttempts     ExerciseAttempt[]
+  gameProgress         GameProgress?
+  mobilePushTokens     MobilePushToken[]
+  mission              Mission?
+  questProgress        UserQuestProgress[]
+  badges               UserBadge[]
+  currency             Currency?
+  currencyTransactions CurrencyTransaction[]
+  leagueMemberships    LeagueMembership[]
+  notifications        Notification[]
 }
 
 model VerificationToken {
@@ -389,4 +396,194 @@ model GameProgress {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+}
+
+// Mission - stores onboarding wizard results and daily mission config
+model Mission {
+  id                    String   @id @default(cuid())
+  userId                String   @unique
+  goal                  String // 'conversation' | 'travel' | 'culture' | 'reading' | 'professional'
+  level                 String // 'beginner' | 'intermediate' | 'advanced'
+  dailyGoalMinutes      Int      @default(20) // minutes per day
+  reminderWindows       String[] @default([]) // e.g., ["09:00-10:00", "19:00-20:00"]
+  questSeeds            String[] @default([]) // initial quest IDs to unlock
+  onboardingCompletedAt DateTime?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([onboardingCompletedAt])
+}
+
+// Quest - daily/weekly challenges for learners
+model Quest {
+  id              String   @id @default(cuid())
+  type            String // 'daily' | 'weekly' | 'squad'
+  title           String
+  description     String   @db.Text
+  category        String // 'practice' | 'translation' | 'social' | 'lesson'
+  target          Int // target count (e.g., 5 exercises, 20 XP, 3 translations)
+  targetUnit      String // 'exercises' | 'xp' | 'translations' | 'minutes'
+  xpReward        Int      @default(50)
+  currencyReward  Int      @default(10) // gems earned on completion
+  difficultyLevel String   @default("medium") // 'easy' | 'medium' | 'hard'
+  isActive        Boolean  @default(true)
+  startDate       DateTime?
+  endDate         DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  userProgress UserQuestProgress[]
+
+  @@index([type, isActive, startDate])
+  @@index([category])
+}
+
+// UserQuestProgress - tracks individual progress on quests
+model UserQuestProgress {
+  id          String    @id @default(cuid())
+  userId      String
+  questId     String
+  progress    Int       @default(0) // current count toward target
+  status      String    @default("active") // 'active' | 'completed' | 'expired'
+  startedAt   DateTime  @default(now())
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quest Quest @relation(fields: [questId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, questId])
+  @@index([userId, status])
+  @@index([questId, status])
+}
+
+// Badge - achievements and cosmetics
+model Badge {
+  id               String   @id @default(cuid())
+  name             String   @unique
+  description      String   @db.Text
+  iconUrl          String?
+  category         String // 'achievement' | 'cosmetic' | 'seasonal'
+  rarityTier       String   @default("common") // 'common' | 'rare' | 'epic' | 'legendary'
+  unlockCondition  String   @db.Text // JSON describing unlock criteria
+  costGems         Int      @default(0) // 0 for achievements, > 0 for shop purchases
+  isAvailableInShop Boolean @default(false)
+  isActive         Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  // Relations
+  userBadges UserBadge[]
+
+  @@index([category, isActive])
+  @@index([isAvailableInShop, isActive])
+}
+
+// UserBadge - tracks which badges a user has earned/purchased
+model UserBadge {
+  id        String    @id @default(cuid())
+  userId    String
+  badgeId   String
+  earnedAt  DateTime?
+  purchasedAt DateTime?
+  isEquipped Boolean  @default(false) // for display badges
+  createdAt DateTime  @default(now())
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  badge Badge @relation(fields: [badgeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, badgeId])
+  @@index([userId, isEquipped])
+  @@index([badgeId])
+}
+
+// Currency - tracks gems, coins, or other in-app currency
+model Currency {
+  id                String   @id @default(cuid())
+  userId            String   @unique
+  gems              Int      @default(0) // premium currency earned via quests/achievements
+  coins             Int      @default(0) // optional secondary currency
+  lifetimeGemsEarned Int     @default(0)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+// CurrencyTransaction - audit log for currency changes
+model CurrencyTransaction {
+  id          String   @id @default(cuid())
+  userId      String
+  currencyType String // 'gems' | 'coins'
+  amount      Int // positive for earn, negative for spend
+  reason      String // 'quest_reward' | 'badge_purchase' | 'admin_grant'
+  metadata    String?  @db.Text // JSON with additional context
+  createdAt   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@index([reason])
+}
+
+// League - streak-based leaderboards
+model League {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  tier        Int // 1 = bronze, 2 = silver, 3 = gold, etc.
+  minStreak   Int // minimum streak to qualify
+  maxStreak   Int? // maximum streak (null for top tier)
+  xpMultiplier Float   @default(1.0)
+  icon        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  members LeagueMembership[]
+
+  @@index([tier])
+}
+
+// LeagueMembership - tracks user league placements
+model LeagueMembership {
+  id        String   @id @default(cuid())
+  userId    String
+  leagueId  String
+  joinedAt  DateTime @default(now())
+  rank      Int? // current rank within league
+  updatedAt DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  league League @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, leagueId])
+  @@index([leagueId, rank])
+  @@index([userId])
+}
+
+// Notification - inbox messages for reminder intelligence
+model Notification {
+  id          String    @id @default(cuid())
+  userId      String
+  type        String // 'streak_warning' | 'quest_invite' | 'admin_note' | 'friend_activity'
+  title       String
+  body        String    @db.Text
+  actionUrl   String?
+  isRead      Boolean   @default(false)
+  readAt      DateTime?
+  scheduledFor DateTime?
+  sentAt      DateTime?
+  createdAt   DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, isRead, createdAt])
+  @@index([type, scheduledFor])
 }

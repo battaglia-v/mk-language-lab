@@ -44,6 +44,15 @@ export const AnalyticsEvents = {
   SIGNIN_INITIATED: 'signin_initiated',
   SIGNIN_SUCCESS: 'signin_success',
   SIGNIN_FAILED: 'signin_failed',
+
+  // Onboarding events
+  ONBOARDING_STARTED: 'onboarding_started',
+  ONBOARDING_STEP_COMPLETED: 'onboarding_step_completed',
+  ONBOARDING_GOAL_SELECTED: 'onboarding_goal_selected',
+  ONBOARDING_LEVEL_SELECTED: 'onboarding_level_selected',
+  ONBOARDING_DAILY_GOAL_SELECTED: 'onboarding_daily_goal_selected',
+  ONBOARDING_COMPLETED: 'onboarding_completed',
+  ONBOARDING_FAILED: 'onboarding_failed',
 } as const;
 
 export type AnalyticsEvent = typeof AnalyticsEvents[keyof typeof AnalyticsEvents];

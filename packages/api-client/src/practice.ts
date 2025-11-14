@@ -6,6 +6,16 @@ export type ClozeContext = {
   translation: string;
 };
 
+export type PracticeAudioClip = {
+  url: string;
+  slowUrl?: string | null;
+  waveform?: number[] | null;
+  duration?: number | null;
+  autoplay?: boolean;
+  speaker?: string | null;
+  sourceType?: 'human' | 'tts' | 'unknown';
+};
+
 export type PracticeItem = {
   id?: string;
   macedonian: string;
@@ -16,6 +26,7 @@ export type PracticeItem = {
   contextMk?: ClozeContext;
   contextEn?: ClozeContext;
   audioClipUrl?: string;
+  audioClip?: PracticeAudioClip | null;
 };
 
 export type PracticeDirection = 'mkToEn' | 'enToMk';

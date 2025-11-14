@@ -12,15 +12,41 @@ import {
   selectNextPracticeIndex,
   evaluatePracticeAnswer,
   getExpectedAnswer,
+  PRACTICE_DIFFICULTIES,
+  getPracticeDifficultyPreset,
 } from '@mk/practice';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 import { useGameProgress } from '@/hooks/useGameProgress';
-import type { ClozeContext, PracticeDirection, PracticeDrillMode, PracticeItem } from '@/components/learn/quick-practice/types';
+import type {
+  ClozeContext,
+  PracticeDirection,
+  PracticeDrillMode,
+  PracticeItem,
+  PracticeDifficultyId,
+  QuickPracticeTalisman,
+} from '@/components/learn/quick-practice/types';
 
 const DEFAULT_PRACTICE_ITEMS: PracticeItem[] = (practicePrompts as PracticeItem[]).map((item, index) => ({
   ...item,
   id: item.id ?? `prompt-${index + 1}`,
 }));
+
+const TALISMAN_LIBRARY: Record<QuickPracticeTalisman['id'], QuickPracticeTalisman> = {
+  perfect: {
+    id: 'perfect',
+    title: 'Flawless Run',
+    description: 'Maintain 100% accuracy for the full deck.',
+    xpMultiplier: 1.25,
+  },
+  streak: {
+    id: 'streak',
+    title: 'Streak Master',
+    description: 'Answer 10 cards in a row without mistakes.',
+    xpMultiplier: 1.15,
+  },
+};
+
+const STREAK_TALISMAN_THRESHOLD = 10;
 
 export type QuickPracticeSessionOptions = {
   prompts?: PracticeItem[];
