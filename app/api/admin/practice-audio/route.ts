@@ -39,16 +39,16 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const formData = await request.formData();
+    const formData: FormData = await request.formData();
 
     // Extract form fields
-    const primaryFile = formData.get('primaryFile') as File | null;
-    const slowFile = formData.get('slowFile') as File | null;
-    const promptId = formData.get('promptId') as string;
-    const sourceType = formData.get('sourceType') as string;
-    const speaker = formData.get('speaker') as string | null;
-    const language = (formData.get('language') as string) || 'mk';
-    const isPublished = formData.get('isPublished') === 'true';
+    const primaryFile = (formData.get('primaryFile') ?? null) as File | null;
+    const slowFile = (formData.get('slowFile') ?? null) as File | null;
+    const promptId = (formData.get('promptId') ?? '') as string;
+    const sourceType = (formData.get('sourceType') ?? '') as string;
+    const speaker = (formData.get('speaker') ?? null) as string | null;
+    const language = ((formData.get('language') ?? 'mk') as string) || 'mk';
+    const isPublished = (formData.get('isPublished') ?? 'false') === 'true';
 
     // Validate required fields
     if (!primaryFile) {
