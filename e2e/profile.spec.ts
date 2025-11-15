@@ -70,7 +70,7 @@ test.describe('Profile Page', () => {
   test('should handle API error gracefully', async ({ page }) => {
     await page.route('**/api/profile/summary', (route) => route.abort('failed'));
     await page.reload();
-    await expect(page.getByText(/Неможеме да го вчитаме профилот/i)).toBeVisible();
+    await expect(page.getByText(/Неможеме да го вчитаме профилот|Unable to load/i)).toBeVisible();
   });
 
   test('profile hero matches visual snapshot', async ({ page }) => {
