@@ -1,7 +1,76 @@
 import { test, expect } from '@playwright/test';
 
+const mockProfileResponse = {
+  name: 'Mission Commander',
+  level: 'Level 12 • Linguist',
+  xp: { total: 42000, weekly: 1600 },
+  streakDays: 21,
+  quests: { active: 2, completedThisWeek: 4 },
+  badges: [
+    {
+      id: 'streak',
+      label: 'Heatseeker',
+      description: 'Keep your fire streak blazing.',
+      earnedAt: '2025-01-10T00:00:00.000Z',
+    },
+    {
+      id: 'rookie',
+      label: 'Daily Dialer',
+      description: 'Practice every day',
+      earnedAt: null,
+    },
+  ],
+};
+
+const mockQuestsResponse = {
+  quests: [
+    {
+      id: 'quest-1',
+      type: 'daily',
+      title: 'Daily Warmup',
+      description: 'Complete 3 quick practice drills',
+      category: 'practice',
+      target: 3,
+      targetUnit: 'drills',
+      progress: 2,
+      status: 'active',
+      xpReward: 150,
+      currencyReward: 10,
+      difficultyLevel: 'easy',
+    },
+    {
+      id: 'quest-2',
+      type: 'weekly',
+      title: 'Translator Sprint',
+      description: 'Submit 5 crowd translations',
+      category: 'translate',
+      target: 5,
+      targetUnit: 'translations',
+      progress: 5,
+      status: 'completed',
+      xpReward: 300,
+      currencyReward: 20,
+      difficultyLevel: 'medium',
+    },
+  ],
+};
+
 test.describe('Profile Page', () => {
   test.beforeEach(async ({ page }) => {
+    await page.route('**/api/profile/summary', async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify(mockProfileResponse),
+      });
+    });
+    await page.route('**/api/quests', async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify(mockQuestsResponse),
+      });
+    });
     // Navigate to profile page
     await page.goto('/mk/profile');
   });
@@ -88,6 +157,7 @@ test.describe('Profile Page', () => {
 
   test('should handle error state if API fails', async ({ page }) => {
     // Intercept API call and make it fail
+    await page.unroute('**/api/profile/summary');
     await page.route('**/api/profile/summary', (route) => {
       route.abort('failed');
     });
@@ -130,4 +200,51 @@ test.describe('Profile Page', () => {
     // Profile header should be visible
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
   });
+  test('profile hero matches visual snapshot', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(500);
+
+    const hero = page.locator('[data-testid="profile-overview"]');
+    await expect(hero).toHaveScreenshot('profile-hero.png', {
+      animations: 'disabled',
+      scale: 'css',
+    });
+  });
+
+  test('profile sections match visual snapshot', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(500);
+
+    const dashboard = page.locator('[data-testid="profile-dashboard"]');
+    await expect(dashboard).toHaveScreenshot('profile-dashboard.png', {
+      animations: 'disabled',
+      scale: 'css',
+    });
+  });
 });
+
+  test('profile hero matches visual snapshot', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(500);
+
+    const hero = page.locator('[data-testid="profile-overview"]');
+    await expect(hero).toHaveScreenshot('profile-hero.png', {
+      animations: 'disabled',
+      scale: 'css',
+    });
+  });
+
+  test('profile sections match visual snapshot', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(500);
+
+    const dashboard = page.locator('[data-testid="profile-dashboard"]');
+    await expect(dashboard).toHaveScreenshot('profile-dashboard.png', {
+      animations: 'disabled',
+      scale: 'css',
+    });
+  });
