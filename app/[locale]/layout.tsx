@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import { SessionProvider } from '@/components/auth/SessionProvider';
 import type { ReactNode } from 'react';
 import { TopNav } from '@/components/layout/TopNav';
+import { QueryProvider } from '@/components/providers/QueryProvider';
 
 type LayoutProps = {
   children: ReactNode;
@@ -30,6 +31,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   return (
     <SessionProvider>
       <NextIntlClientProvider messages={messages}>
+        <QueryProvider>
         {/* Skip to main content link for keyboard navigation */}
         <a
           href="#main-content"
@@ -55,6 +57,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
           </main>
           <Footer />
         </div>
+        </QueryProvider>
       </NextIntlClientProvider>
       <Analytics />
     </SessionProvider>

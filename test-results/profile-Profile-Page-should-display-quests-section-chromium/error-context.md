@@ -2,30 +2,126 @@
 
 ```yaml
 - generic [active] [ref=e1]:
-  - generic [ref=e6] [cursor=pointer]:
-    - button "Open Next.js Dev Tools" [ref=e7]:
-      - img [ref=e8]
-    - generic [ref=e11]:
-      - button "Open issues overlay" [ref=e12]:
-        - generic [ref=e13]:
-          - generic [ref=e14]: "2"
-          - generic [ref=e15]: "3"
-        - generic [ref=e16]:
-          - text: Issue
-          - generic [ref=e17]: s
-      - button "Collapse issues badge" [ref=e18]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - complementary [ref=e3]:
+    - link "Почетна" [ref=e5] [cursor=pointer]:
+      - /url: /mk
+      - img "Ajvar Logo" [ref=e7]
+    - navigation "Главна навигација" [ref=e17]:
+      - link "Вежбање" [ref=e18] [cursor=pointer]:
+        - /url: /mk/practice
         - img [ref=e19]
-  - generic [ref=e22]:
-    - generic [ref=e23]:
-      - heading "Oops! Something went wrong" [level=1] [ref=e24]
-      - paragraph [ref=e25]: We apologize for the inconvenience. An error occurred while processing your request.
-    - generic [ref=e26]:
-      - heading "Error Details (Development Only)" [level=2] [ref=e27]
-      - generic [ref=e28]: No QueryClient set, use QueryClientProvider to set one
-    - generic [ref=e29]:
-      - button "Try Again" [ref=e30]
-      - link "Go to Home" [ref=e31] [cursor=pointer]:
-        - /url: /
-    - paragraph [ref=e32]: If this problem persists, please contact support.
-  - alert [ref=e33]
+        - generic: Вежбање
+      - link "Преведи" [ref=e24] [cursor=pointer]:
+        - /url: /mk/translate
+        - img [ref=e25]
+        - generic: Преведи
+      - link "Вести" [ref=e29] [cursor=pointer]:
+        - /url: /mk/news
+        - img [ref=e30]
+        - generic: Вести
+      - link "Ресурси" [ref=e33] [cursor=pointer]:
+        - /url: /mk/resources
+        - img [ref=e34]
+        - generic: Ресурси
+    - button "Прошири странично мени" [disabled] [ref=e37]:
+      - img [ref=e38]
+  - generic [ref=e40]:
+    - link "Прескокни до главната содржина" [ref=e41] [cursor=pointer]:
+      - /url: "#main-content"
+    - navigation "Главна навигација" [ref=e42]:
+      - generic [ref=e43]:
+        - link "Почетна" [ref=e44] [cursor=pointer]:
+          - /url: /mk
+          - img "Ajvar Logo" [ref=e45]
+          - generic [ref=e55]: Македонски
+        - generic [ref=e56]:
+          - button "Брзо пребарување" [ref=e57]:
+            - generic [ref=e58]:
+              - img
+              - generic [ref=e59]: Брзо пребарување
+          - button "Јазик" [ref=e60]:
+            - img
+            - generic [ref=e61]: Македонски
+          - button "Најави се" [ref=e62]:
+            - img
+            - text: Најави се
+      - generic [ref=e64]:
+        - generic [ref=e65]:
+          - img [ref=e66]
+          - generic [ref=e68]: Using cached mission data. Retry to refresh.
+        - button "Обиди се повторно" [ref=e69]
+    - main [ref=e70]:
+      - generic [ref=e73]:
+        - generic [ref=e76]:
+          - paragraph [ref=e77]: Профил
+          - heading "Следете го вашиот напредок, достигнувања и статистики." [level=1] [ref=e78]
+          - paragraph [ref=e79]: Track your streak, quests, and badges across every device with the new glass dashboard.
+        - generic [ref=e81]:
+          - heading "Неможеме да го вчитаме профилот" [level=2] [ref=e82]
+          - paragraph [ref=e83]: Се случи грешка при вчитување на вашиот профил.
+    - contentinfo [ref=e84]:
+      - generic [ref=e85]:
+        - generic [ref=e86]:
+          - generic [ref=e87]:
+            - generic [ref=e88]:
+              - img "Ajvar Logo" [ref=e89]
+              - generic [ref=e99]:
+                - paragraph [ref=e100]: Македонски • MK Language Lab
+                - paragraph [ref=e101]: Ежедневна македонска практика создадена со љубов.
+            - paragraph [ref=e102]:
+              - text: Содржина од
+              - link "Macedonian Language Corner" [ref=e103] [cursor=pointer]:
+                - /url: https://macedonianlanguagecorner.com
+              - text: .
+            - generic [ref=e104]:
+              - link "Инстаграм" [ref=e105] [cursor=pointer]:
+                - /url: https://instagram.com/macedonianlanguagecorner
+              - link "Јутјуб" [ref=e106] [cursor=pointer]:
+                - /url: https://youtube.com/@macedonianlanguagecorner
+              - link "Види ги сите врски" [ref=e107] [cursor=pointer]:
+                - /url: https://linktr.ee/macedonianlanguagecorner
+          - generic [ref=e108]:
+            - paragraph [ref=e109]: Производ
+            - list [ref=e110]:
+              - listitem [ref=e111]:
+                - link "Почетна" [ref=e112] [cursor=pointer]:
+                  - /url: /mk
+              - listitem [ref=e113]:
+                - link "Вежбање" [ref=e114] [cursor=pointer]:
+                  - /url: /mk/practice
+              - listitem [ref=e115]:
+                - link "Преведи" [ref=e116] [cursor=pointer]:
+                  - /url: /mk/translate
+              - listitem [ref=e117]:
+                - link "Вести" [ref=e118] [cursor=pointer]:
+                  - /url: /mk/news
+              - listitem [ref=e119]:
+                - link "Ресурси" [ref=e120] [cursor=pointer]:
+                  - /url: /mk/resources
+          - generic [ref=e121]:
+            - paragraph [ref=e122]: Поддршка
+            - list [ref=e123]:
+              - listitem [ref=e124]:
+                - link "Приватност" [ref=e125] [cursor=pointer]:
+                  - /url: /mk/privacy
+              - listitem [ref=e126]:
+                - link "Услови" [ref=e127] [cursor=pointer]:
+                  - /url: /mk/terms
+              - listitem [ref=e128]:
+                - link "Контакт" [ref=e129] [cursor=pointer]:
+                  - /url: mailto:macedonianlanguagelab@gmail.com?subject=Macedonian%20Language%20Lab
+        - generic [ref=e130]:
+          - generic [ref=e131]:
+            - text: Создадено со
+            - link "Винсент Баталија" [ref=e132] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/vincentvinnybattaglia/
+            - text: и
+            - link "Андријана" [ref=e133] [cursor=pointer]:
+              - /url: https://macedonianlanguagecorner.com
+          - generic [ref=e134]: © 2025 Македонски • MK Language Lab. Сите права се задржани.
+  - button "Open Next.js Dev Tools" [ref=e140] [cursor=pointer]:
+    - img [ref=e141]
+  - alert [ref=e144]
 ```
