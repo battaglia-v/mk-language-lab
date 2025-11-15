@@ -25,7 +25,7 @@ export default async function DailyLessonsPage() {
   return (
     <div className="page-shell">
       <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6">
-        <section className="glass-card rounded-3xl p-6 md:p-8">
+        <section className="glass-card rounded-3xl p-6 md:p-8" data-testid="daily-lessons-hero">
           <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
             <div className="space-y-3">
               <Badge
@@ -52,7 +52,7 @@ export default async function DailyLessonsPage() {
           </div>
         </section>
 
-        <DailyLessons limit={24} className="rounded-[32px]" />
+        <DailyLessons limit={24} className="rounded-[32px]" dataTestId="daily-lessons-feed" />
       </div>
     </div>
   );

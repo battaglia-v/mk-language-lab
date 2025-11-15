@@ -236,7 +236,7 @@ export default function NewsPage() {
   return (
     <div className="page-shell">
       <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6">
-        <section className="glass-card rounded-3xl p-6 md:p-8">
+        <section className="glass-card rounded-3xl p-6 md:p-8" data-testid="news-hero">
           <div className="flex flex-col gap-6">
             <div className="space-y-2">
               <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-primary">
@@ -333,7 +333,7 @@ export default function NewsPage() {
         )}
 
         {showSkeleton && (
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3" data-testid="news-grid">
             {SKELETON_PLACEHOLDERS.map((index) => (
               <NewsSkeletonCard key={`news-skeleton-${index}`} />
             ))}
@@ -347,7 +347,7 @@ export default function NewsPage() {
         )}
 
         {hasResults && !showSkeleton && (
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3" data-testid="news-grid">
             {items.map((item) => {
               const publishedLabel = item.publishedAt ? formatRelativeTime(item.publishedAt) : '';
               const hasVideos = item.videos.length > 0;
