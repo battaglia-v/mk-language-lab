@@ -43,14 +43,14 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
         <Sidebar />
 
         {/* Main content with responsive shell */}
-        <div className="lg:ml-sidebar flex min-h-screen flex-col bg-[var(--brand-cream-light)]">
+        <div className="lg:ml-sidebar flex min-h-screen flex-col bg-[#030712] text-slate-100">
           <TopNav />
           <main
             id="main-content"
             className="relative flex-1 overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-primary"
             tabIndex={-1}
           >
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(247,201,72,0.25),transparent_55%),radial-gradient(circle_at_80%_0%,rgba(215,38,61,0.12),transparent_45%),linear-gradient(180deg,rgba(255,255,255,0.9),rgba(255,246,225,1))]" />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(92,73,255,0.25),transparent_60%),linear-gradient(180deg,rgba(3,7,18,0.95),rgba(3,7,18,0.9))]" />
             <div className="relative z-10 px-4 py-6 focus-visible:ring-2 focus-visible:ring-primary sm:px-6 lg:px-8">
               {children}
             </div>
