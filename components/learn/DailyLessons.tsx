@@ -28,6 +28,7 @@ type DailyLessonsProps = {
   limit?: number;
   showViewAll?: boolean;
   className?: string;
+  dataTestId?: string;
 };
 
 /**
@@ -97,7 +98,7 @@ function getMediaTypeBadge(
   }
 }
 
-export function DailyLessons({ limit = 9, showViewAll = false, className }: DailyLessonsProps) {
+export function DailyLessons({ limit = 9, showViewAll = false, className, dataTestId }: DailyLessonsProps) {
   const t = useTranslations('dailyLessons');
   const locale = useLocale();
   const { data: session } = useSession();
@@ -302,7 +303,7 @@ export function DailyLessons({ limit = 9, showViewAll = false, className }: Dail
 
   if (loading) {
     return (
-      <Card className={cn('glass-card border border-white/10', className)}>
+      <Card className={cn('glass-card border border-white/10', className)} data-testid={dataTestId}>
         <CardHeader>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
@@ -342,7 +343,7 @@ export function DailyLessons({ limit = 9, showViewAll = false, className }: Dail
 
   if (error && posts.length === 0) {
     return (
-      <Card className={cn('glass-card border border-white/10', className)}>
+      <Card className={cn('glass-card border border-white/10', className)} data-testid={dataTestId}>
         <CardHeader>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
@@ -373,7 +374,7 @@ export function DailyLessons({ limit = 9, showViewAll = false, className }: Dail
   }
 
   return (
-    <Card className={cn('glass-card border border-white/10', className)}>
+    <Card className={cn('glass-card border border-white/10', className)} data-testid={dataTestId}>
       <CardHeader>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">

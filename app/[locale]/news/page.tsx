@@ -366,7 +366,10 @@ export default function NewsPage() {
                   }}
                   className="group h-full"
                 >
-                  <Card className="glass-card flex h-full flex-col overflow-hidden border border-white/5 bg-transparent transition-shadow hover:border-primary/40 hover:shadow-2xl">
+                  <Card
+                    className="glass-card flex h-full flex-col overflow-hidden border border-white/5 bg-transparent transition-shadow hover:border-primary/40 hover:shadow-2xl"
+                    data-testid="news-card"
+                  >
                     <div className="relative aspect-video w-full overflow-hidden bg-muted">
                       {item.image ? (
                         <div

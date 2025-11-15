@@ -1,7 +1,65 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, Page } from '@playwright/test';
+
+const mockNewsResponse = {
+  items: [
+    {
+      id: 'news-1',
+      title: 'Мобилната апликација доби нов визуелен јазик',
+      link: 'https://time.mk/a/visual-refresh',
+      description: 'Целата апликација доби темна тема и стаклени карти за појасен фокус на содржината.',
+      publishedAt: '2025-01-15T10:00:00.000Z',
+      sourceId: 'time-mk',
+      sourceName: 'Time.mk',
+      categories: ['Дизајн', 'Технологија'],
+      videos: [],
+      image: null,
+    },
+    {
+      id: 'news-2',
+      title: 'Учете македонски со дневни вежби',
+      link: 'https://meta.mk/a/daily-lessons',
+      description: 'Кратки задачи и Instagram карусели за подобра пракса секој ден.',
+      publishedAt: '2025-01-14T09:30:00.000Z',
+      sourceId: 'meta-mk',
+      sourceName: 'Meta.mk',
+      categories: ['Образование'],
+      videos: ['https://video.example/daily-lessons.mp4'],
+      image: null,
+    },
+    {
+      id: 'news-3',
+      title: 'Партиципативна настава и ресурси',
+      link: 'https://time.mk/a/resources',
+      description: 'Кураторираните ресурси чинат основа за модерни часови по македонски.',
+      publishedAt: '2025-01-13T08:15:00.000Z',
+      sourceId: 'time-mk',
+      sourceName: 'Time.mk',
+      categories: ['Образование', 'Култура'],
+      videos: [],
+      image: null,
+    },
+  ],
+  meta: {
+    count: 3,
+    total: 3,
+    fetchedAt: '2025-01-15T10:05:00.000Z',
+    errors: [],
+  },
+};
+
+async function waitForNewsContent(page: Page) {
+  await page.waitForSelector('[data-testid="news-card"]');
+}
 
 test.describe('News Page', () => {
   test.beforeEach(async ({ page }) => {
+    await page.route('**/api/news**', async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify(mockNewsResponse),
+      });
+    });
     await page.goto('/mk/news');
   });
 
@@ -15,8 +73,7 @@ test.describe('News Page', () => {
   });
 
   test('should display news articles', async ({ page }) => {
-    // Wait for news to load (API call)
-    await page.waitForTimeout(3000);
+    await waitForNewsContent(page);
 
     // Look for article cards or links
     const articles = page.locator('article, [class*="card"], a[href*="time.mk"], a[href*="meta.mk"]');
@@ -27,8 +84,7 @@ test.describe('News Page', () => {
   });
 
   test('should display article titles', async ({ page }) => {
-    // Wait for news API to load (5 seconds for external RSS feeds)
-    await page.waitForTimeout(5000);
+    await waitForNewsContent(page);
 
     // Look for article titles (CardTitle elements) or any links
     const titles = page.locator('[class*="card"] h3, a[target="_blank"] [class*="CardTitle"]').filter({ hasText: /.{5,}/ });
@@ -54,8 +110,7 @@ test.describe('News Page', () => {
   });
 
   test('should display article images', async ({ page }) => {
-    // Wait for news to load
-    await page.waitForTimeout(3000);
+    await waitForNewsContent(page);
 
     // Look for images within articles
     const images = page.locator('article img, [class*="card"] img').or(page.locator('img[alt*="article"], img[alt*="news"]'));
@@ -69,8 +124,7 @@ test.describe('News Page', () => {
   });
 
   test('should have clickable article links', async ({ page }) => {
-    // Wait for news to load
-    await page.waitForTimeout(3000);
+    await waitForNewsContent(page);
 
     // Find external article links
     const articleLinks = page.locator('a[href*="time.mk"], a[href*="meta.mk"], a[target="_blank"]');
@@ -88,8 +142,7 @@ test.describe('News Page', () => {
   });
 
   test('should display article descriptions or excerpts', async ({ page }) => {
-    // Wait for news to load
-    await page.waitForTimeout(3000);
+    await waitForNewsContent(page);
 
     // Look for article descriptions/excerpts
     const descriptions = page.locator('p').filter({ hasText: /.{20,}/ });
@@ -100,8 +153,7 @@ test.describe('News Page', () => {
   });
 
   test('should display publication dates or timestamps', async ({ page }) => {
-    // Wait for news to load
-    await page.waitForTimeout(3000);
+    await waitForNewsContent(page);
 
     // Look for time elements or date text
     const timeElements = page.locator('time, [datetime], [class*="date"], [class*="time"]');
@@ -114,8 +166,7 @@ test.describe('News Page', () => {
   });
 
   test('should open articles in new tab', async ({ page }) => {
-    // Wait for news to load
-    await page.waitForTimeout(3000);
+    await waitForNewsContent(page);
 
     // Find external links
     const externalLinks = page.locator('a[href*="time.mk"], a[href*="meta.mk"]').first();
@@ -136,8 +187,7 @@ test.describe('News Page', () => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.reload();
 
-    // Wait for news
-    await page.waitForTimeout(3000);
+    await waitForNewsContent(page);
 
     // Main heading should still be visible
     const heading = page.locator('h1').first();
@@ -152,7 +202,6 @@ test.describe('News Page', () => {
   });
 
   test('should show loading state or skeleton', async ({ page }) => {
-    // Immediately check for loading indicator
     const loadingIndicator = page.locator('[class*="loading"], [class*="skeleton"], [class*="animate-pulse"]');
 
     // May or may not be visible depending on load speed
@@ -161,8 +210,7 @@ test.describe('News Page', () => {
   });
 
   test('should handle empty state gracefully', async ({ page }) => {
-    // Wait for news to load
-    await page.waitForTimeout(3000);
+    await waitForNewsContent(page);
 
     // Page should not show error messages
     const errorMessages = page.locator('text=/error|failed|could not load/i');
@@ -176,8 +224,7 @@ test.describe('News Page', () => {
   });
 
   test('should display Macedonian news sources', async ({ page }) => {
-    // Wait for news to load
-    await page.waitForTimeout(3000);
+    await waitForNewsContent(page);
 
     // Should show links to Macedonian news sites (fixed CSS selector syntax)
     const macedonianSources = page.locator('a[href*="time.mk"], a[href*="meta.mk"]');
@@ -188,8 +235,7 @@ test.describe('News Page', () => {
   });
 
   test('should have proper image loading', async ({ page }) => {
-    // Wait for news to load
-    await page.waitForTimeout(3000);
+    await waitForNewsContent(page);
 
     const images = page.locator('article img, [class*="card"] img').first();
 
@@ -205,5 +251,28 @@ test.describe('News Page', () => {
         expect(['lazy', 'eager']).toContain(loading);
       }
     }
+  });
+  test('news hero matches visual snapshot', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await waitForNewsContent(page);
+    await page.waitForTimeout(300);
+
+    const hero = page.locator('[data-testid="news-hero"]');
+    await expect(hero).toHaveScreenshot('news-hero.png', {
+      animations: 'disabled',
+      scale: 'css',
+    });
+  });
+
+  test('news grid matches visual snapshot', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await waitForNewsContent(page);
+    await page.waitForTimeout(300);
+
+    const grid = page.locator('[data-testid="news-grid"]').first();
+    await expect(grid).toHaveScreenshot('news-grid.png', {
+      animations: 'disabled',
+      scale: 'css',
+    });
   });
 });
