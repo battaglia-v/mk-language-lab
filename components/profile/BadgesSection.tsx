@@ -10,44 +10,36 @@ export function BadgesSection({ badges }: BadgesSectionProps) {
   const t = useTranslations('profile.badges');
 
   return (
-    <div className="bg-white rounded-xl shadow-sm p-6">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">{t('title')}</h2>
+    <section className="glass-card rounded-3xl p-6 md:p-8 text-white" data-testid="profile-badges">
+      <div className="flex items-center justify-between gap-4">
+        <h2 className="text-2xl font-semibold">{t('title')}</h2>
         <Link
           href="/shop"
-          className="text-blue-600 hover:text-blue-700 font-medium text-sm"
+          className="text-sm font-semibold text-primary hover:text-primary/80"
         >
           {t('shopLink')} →
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
         {badges.map((badge) => (
-          <div
+          <article
             key={badge.id}
-            className={`border rounded-lg p-4 ${
+            className={`rounded-2xl border p-4 text-center ${
               badge.earnedAt
-                ? 'bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200'
-                : 'bg-gray-50 border-gray-200 opacity-60'
+                ? 'border-amber-300/60 bg-gradient-to-br from-amber-400/20 to-rose-400/10'
+                : 'border-white/10 bg-white/5 opacity-70'
             }`}
           >
-            <div className="text-4xl mb-2 text-center">
-              {badge.earnedAt ? '🏆' : '🔒'}
-            </div>
-            <h3 className="font-semibold text-gray-900 text-sm text-center mb-1">
-              {badge.label}
-            </h3>
-            <p className="text-xs text-gray-600 text-center">
-              {badge.description}
-            </p>
+            <div className="text-4xl mb-2">{badge.earnedAt ? '🏆' : '🔒'}</div>
+            <h3 className="text-sm font-semibold">{badge.label}</h3>
+            <p className="text-xs text-slate-200">{badge.description}</p>
             {badge.earnedAt && (
-              <p className="text-xs text-gray-500 text-center mt-2">
-                {new Date(badge.earnedAt).toLocaleDateString()}
-              </p>
+              <p className="mt-2 text-xs text-slate-300">{new Date(badge.earnedAt).toLocaleDateString()}</p>
             )}
-          </div>
+          </article>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
