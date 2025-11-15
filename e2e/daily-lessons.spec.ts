@@ -58,7 +58,7 @@ async function mockDailyLessonsApi(page: Page) {
   });
 
   await page.route('**/api/instagram/posts/*/tags**', async (route) => {
-    const url = new URL(route.request().url);
+    const url = new URL(route.request().url, 'http://localhost');
     const segments = url.pathname.split('/');
     const postId = segments[segments.length - 2];
     const tags = mockPostTags[postId] ?? [];
@@ -85,7 +85,7 @@ test.describe('Daily Lessons Page', () => {
   test('should display hero title and CTA', async ({ page }) => {
     const heading = page.getByRole('heading', { name: /Daily Lessons|Дневни лекции/i });
     await expect(heading).toBeVisible();
-    await expect(page.getByRole('link', { name: /visit instagram/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Инстаграм|Instagram/i })).toBeVisible();
   });
 
   test('should render mocked lesson cards', async ({ page }) => {
