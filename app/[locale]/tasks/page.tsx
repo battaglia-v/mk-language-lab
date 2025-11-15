@@ -61,17 +61,15 @@ function TaskCard({ task }: { task: Task }) {
       style={style}
       {...attributes}
       {...listeners}
-      className="bg-card border border-border rounded-lg p-4 mb-3 cursor-move select-none hover:border-primary/50 transition-colors"
+      className="rounded-2xl border border-white/10 bg-white/5 p-4 mb-3 cursor-move select-none text-white transition hover:border-primary/50"
     >
       <div className="flex items-start gap-2">
         <div className="cursor-grab active:cursor-grabbing mt-1 touch-none">
-          <GripVertical className="h-4 w-4 text-muted-foreground" />
+          <GripVertical className="h-4 w-4 text-slate-400" />
         </div>
         <div className="flex-1">
           <h4 className="font-semibold mb-1">{task.title}</h4>
-          {task.description && (
-            <p className="text-sm text-muted-foreground">{task.description}</p>
-          )}
+          {task.description && <p className="text-sm text-slate-300">{task.description}</p>}
         </div>
       </div>
     </div>
@@ -98,20 +96,15 @@ function KanbanColumn({
   });
 
   return (
-    <Card className="bg-card/50 backdrop-blur border-border/50">
+    <Card className="glass-card rounded-3xl border border-white/10 text-white">
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg flex items-center gap-2">
             {column.title}
-            <span className="text-sm font-normal text-muted-foreground">({column.tasks.length})</span>
+            <span className="text-sm font-normal text-slate-300">({column.tasks.length})</span>
           </CardTitle>
           {totalColumns > 1 && (
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => onDeleteColumn(column.id)}
-              className="h-8 w-8"
-            >
+            <Button variant="ghost" size="icon" onClick={() => onDeleteColumn(column.id)} className="h-8 w-8 text-white">
               <Trash2 className="h-4 w-4 text-destructive" />
             </Button>
           )}
@@ -127,7 +120,7 @@ function KanbanColumn({
           {column.tasks.length > 0 ? (
             column.tasks.map((task) => <TaskCard key={task.id} task={task} />)
           ) : (
-            <p className="text-sm text-muted-foreground italic text-center py-6">{emptyHint}</p>
+            <p className="text-sm text-slate-300 italic text-center py-6">{emptyHint}</p>
           )}
         </div>
       </SortableContext>
@@ -369,89 +362,94 @@ export default function TasksPage() {
 
   return (
     <AuthGuard fallbackHeight="min-h-screen">
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
-      <div className="container mx-auto px-4 py-12">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              {t('title')}
-            </h1>
-            <p className="text-lg text-muted-foreground">{t('subtitle')}</p>
-          </div>
-          <div className="flex gap-2">
-            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-              <DialogTrigger asChild>
-                <Button>
+      <div className="page-shell">
+        <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6">
+          <section data-testid="tasks-hero" className="glass-card rounded-3xl p-6 md:p-8 text-white">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div className="space-y-2">
+                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary/80">{t('title')}</p>
+                <h1 className="text-3xl font-bold md:text-4xl text-white">{t('subtitle')}</h1>
+                <p className="text-sm text-slate-300">
+                  Arrange study tasks, quests, and reminders on a glassy kanban that syncs with the rest of the dashboard.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                  <DialogTrigger asChild>
+                    <Button className="rounded-full">
+                      <Plus className="h-4 w-4 mr-2" />
+                      {t('addTask')}
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="bg-background/90 text-white">
+                    <DialogHeader>
+                      <DialogTitle>{t('addTask')}</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4 pt-4">
+                      <div>
+                        <label className="text-sm font-medium mb-2 block">Column</label>
+                        <select
+                          value={newTaskColumn}
+                          onChange={(e) => setNewTaskColumn(e.target.value)}
+                          className="w-full rounded-2xl border border-white/15 bg-background/80 px-3 py-2 text-white"
+                        >
+                          <option value="">Select column...</option>
+                          {columns.map((col) => (
+                            <option key={col.id} value={col.id}>
+                              {col.title}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div>
+                        <label className="text-sm font-medium mb-2 block">{t('taskTitle')}</label>
+                        <Input
+                          value={newTaskTitle}
+                          onChange={(e) => setNewTaskTitle(e.target.value)}
+                          placeholder={t('taskTitle')}
+                          className="rounded-2xl border border-white/15 bg-background/80 text-white placeholder:text-slate-400"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-sm font-medium mb-2 block">{t('taskDescription')}</label>
+                        <Textarea
+                          value={newTaskDescription}
+                          onChange={(e) => setNewTaskDescription(e.target.value)}
+                          placeholder={t('taskDescription')}
+                          rows={3}
+                          className="rounded-2xl border border-white/15 bg-background/80 text-white placeholder:text-slate-400"
+                        />
+                      </div>
+                      <Button onClick={handleAddTask} className="w-full rounded-full">
+                        {t('create')}
+                      </Button>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+                <Button variant="outline" onClick={handleAddColumn} className="rounded-full border-white/20 text-white">
                   <Plus className="h-4 w-4 mr-2" />
-                  {t('addTask')}
+                  {t('addColumn')}
                 </Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>{t('addTask')}</DialogTitle>
-                </DialogHeader>
-                <div className="space-y-4 pt-4">
-                  <div>
-                    <label className="text-sm font-medium mb-2 block">Column</label>
-                    <select
-                      value={newTaskColumn}
-                      onChange={(e) => setNewTaskColumn(e.target.value)}
-                      className="w-full px-3 py-2 rounded-md border border-border bg-background"
-                    >
-                      <option value="">Select column...</option>
-                      {columns.map((col) => (
-                        <option key={col.id} value={col.id}>
-                          {col.title}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium mb-2 block">{t('taskTitle')}</label>
-                    <Input
-                      value={newTaskTitle}
-                      onChange={(e) => setNewTaskTitle(e.target.value)}
-                      placeholder={t('taskTitle')}
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium mb-2 block">{t('taskDescription')}</label>
-                    <Textarea
-                      value={newTaskDescription}
-                      onChange={(e) => setNewTaskDescription(e.target.value)}
-                      placeholder={t('taskDescription')}
-                      rows={3}
-                    />
-                  </div>
-                  <Button onClick={handleAddTask} className="w-full">
-                    {t('create')}
-                  </Button>
-                </div>
-              </DialogContent>
-            </Dialog>
-            <Button variant="outline" onClick={handleAddColumn}>
-              <Plus className="h-4 w-4 mr-2" />
-              {t('addColumn')}
-            </Button>
-          </div>
-        </div>
+              </div>
+            </div>
+          </section>
 
-        {/* Kanban Board */}
-  <DndContext sensors={sensors} collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {columns.map((column) => (
-              <KanbanColumn
-                key={column.id}
-                column={column}
-                totalColumns={columns.length}
-                onDeleteColumn={handleDeleteColumn}
-                emptyHint={emptyColumnHint}
-              />
-            ))}
-          </div>
-        </DndContext>
-      </div>
+          <section data-testid="tasks-board">
+            <DndContext sensors={sensors} collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {columns.map((column) => (
+                  <KanbanColumn
+                    key={column.id}
+                    column={column}
+                    totalColumns={columns.length}
+                    onDeleteColumn={handleDeleteColumn}
+                    emptyHint={emptyColumnHint}
+                  />
+                ))}
+              </div>
+            </DndContext>
+          </section>
+        </div>
       </div>
     </AuthGuard>
   );
