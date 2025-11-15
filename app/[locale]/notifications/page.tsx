@@ -10,6 +10,26 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function NotificationsPage() {
-  return <NotificationsInbox />;
+export default async function NotificationsPage() {
+  const t = await getTranslations('notifications');
+
+  return (
+    <div className="page-shell">
+      <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6">
+        <section data-testid="notifications-hero" className="glass-card rounded-3xl p-6 md:p-8">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="space-y-2">
+              <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-primary">
+                {t('badgeLabel')}
+              </p>
+              <h1 className="text-2xl font-bold text-white md:text-3xl">{t('title')}</h1>
+              <p className="text-sm text-slate-300">{t('description')}</p>
+            </div>
+          </div>
+        </section>
+
+        <NotificationsInbox className="rounded-[32px]" dataTestId="notifications-feed" />
+      </div>
+    </div>
+  );
 }
