@@ -300,3 +300,4 @@ For questions or support, please open an issue on GitHub or reach out to the mai
 
 **Made with ❤️ for Macedonian language learners**
 # Test for QR
+# Test2
