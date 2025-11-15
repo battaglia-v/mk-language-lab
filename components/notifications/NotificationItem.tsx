@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import { cn } from '@/lib/utils';
 
 type Notification = {
   id: string;
@@ -32,37 +33,39 @@ export function NotificationItem({ notification, onMarkAsRead }: NotificationIte
 
   return (
     <div
-      className={`bg-white rounded-lg shadow-sm p-4 border-l-4 ${
+      className={cn(
+        'rounded-2xl border px-4 py-5 text-white transition hover:-translate-y-0.5',
         notification.isRead
-          ? 'border-gray-300 opacity-75'
-          : 'border-blue-500'
-      }`}
+          ? 'border-white/10 bg-white/5 opacity-80'
+          : 'border-primary/40 bg-primary/10 shadow-[0_10px_35px_rgba(0,0,0,0.45)]'
+      )}
+      data-testid="notification-item"
     >
       <div className="flex items-start gap-4">
-        <div className="text-3xl flex-shrink-0">{icon}</div>
+        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-2xl">{icon}</div>
 
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
-            <h3 className="font-semibold text-gray-900">{notification.title}</h3>
+            <h3 className="font-semibold text-white">{notification.title}</h3>
             {!notification.isRead && (
               <button
                 onClick={() => onMarkAsRead(notification.id)}
-                className="text-sm text-blue-600 hover:text-blue-700 whitespace-nowrap"
+                className="text-xs font-semibold uppercase tracking-wide text-primary hover:text-primary/80"
               >
                 {t('markRead')}
               </button>
             )}
           </div>
 
-          <p className="text-gray-600 mt-1">{notification.body}</p>
+          <p className="mt-1 text-sm text-slate-200">{notification.body}</p>
 
           <div className="flex items-center gap-4 mt-3">
-            <span className="text-xs text-gray-500">{timeAgo}</span>
+            <span className="text-xs text-slate-400">{timeAgo}</span>
 
             {notification.actionUrl && (
               <Link
                 href={notification.actionUrl}
-                className="text-sm text-blue-600 hover:text-blue-700"
+                className="text-sm font-semibold text-primary hover:text-primary/80"
               >
                 {t('viewAction')} →
               </Link>

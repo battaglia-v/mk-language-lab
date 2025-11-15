@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { cn } from '@/lib/utils';
 import { NotificationItem } from './NotificationItem';
 
 type Notification = {
@@ -15,7 +16,12 @@ type Notification = {
   createdAt: string;
 };
 
-export function NotificationsInbox() {
+type NotificationsInboxProps = {
+  className?: string;
+  dataTestId?: string;
+};
+
+export function NotificationsInbox({ className, dataTestId }: NotificationsInboxProps) {
   const t = useTranslations('notifications');
   const queryClient = useQueryClient();
 
@@ -45,52 +51,66 @@ export function NotificationsInbox() {
     markAsReadMutation.mutate(id);
   };
 
+  const notifications = data?.notifications || [];
+  const unreadCount = notifications.filter((n) => !n.isRead).length;
+  const cardClasses = cn(
+    'glass-card border border-white/10 p-6 md:p-8 text-white space-y-6',
+    className
+  );
+
   if (isLoading) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="animate-pulse space-y-4">
-          <div className="h-8 bg-gray-200 rounded w-1/4" />
-          <div className="h-24 bg-gray-200 rounded" />
-          <div className="h-24 bg-gray-200 rounded" />
-          <div className="h-24 bg-gray-200 rounded" />
+      <section className={cardClasses} data-testid={dataTestId}>
+        <div className="space-y-2">
+          <div className="h-6 w-32 rounded-full bg-white/10" />
+          <div className="h-4 w-40 rounded-full bg-white/5" />
         </div>
-      </div>
+        <div className="space-y-3">
+          {Array.from({ length: 3 }).map((_, index) => (
+            <div key={`notifications-skeleton-${index}`} className="rounded-2xl border border-white/10 bg-white/5 p-4">
+              <div className="flex items-start gap-4">
+                <div className="h-10 w-10 rounded-full bg-white/10" />
+                <div className="flex-1 space-y-2">
+                  <div className="h-4 w-1/2 rounded-full bg-white/10" />
+                  <div className="h-3 w-3/4 rounded-full bg-white/5" />
+                  <div className="h-3 w-1/3 rounded-full bg-white/5" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     );
   }
 
   if (error) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-          <h2 className="text-red-800 font-semibold mb-2">{t('error.title')}</h2>
-          <p className="text-red-600">{t('error.generic')}</p>
+      <section className={cardClasses} data-testid={dataTestId}>
+        <div className="rounded-2xl border border-destructive/40 bg-destructive/10 p-6 text-sm text-red-100">
+          <h2 className="text-base font-semibold text-white">{t('error.title')}</h2>
+          <p className="mt-1 text-red-100/90">{t('error.generic')}</p>
         </div>
-      </div>
+      </section>
     );
   }
 
-  const notifications = data?.notifications || [];
-  const unreadCount = notifications.filter((n) => !n.isRead).length;
-
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
-        <p className="text-gray-600 mt-2">
+    <section className={cardClasses} data-testid={dataTestId}>
+      <div className="space-y-1">
+        <p className="text-xs font-semibold uppercase tracking-wide text-primary">
           {t('subtitle', { count: unreadCount })}
         </p>
+        <p className="text-sm text-slate-300">{t('description')}</p>
       </div>
 
       {notifications.length === 0 ? (
-        <div className="bg-white rounded-xl shadow-sm p-12 text-center">
-          <div className="text-6xl mb-4">📬</div>
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">
-            {t('empty.title')}
-          </h2>
-          <p className="text-gray-600">{t('empty.description')}</p>
+        <div className="rounded-2xl border border-dashed border-white/20 bg-white/5 p-10 text-center text-slate-200">
+          <div className="text-4xl mb-3">📬</div>
+          <h2 className="text-xl font-semibold text-white">{t('empty.title')}</h2>
+          <p className="mt-2 text-slate-300">{t('empty.description')}</p>
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="space-y-3" data-testid="notifications-list">
           {notifications.map((notification) => (
             <NotificationItem
               key={notification.id}
@@ -100,6 +120,6 @@ export function NotificationsInbox() {
           ))}
         </div>
       )}
-    </div>
+    </section>
   );
 }
