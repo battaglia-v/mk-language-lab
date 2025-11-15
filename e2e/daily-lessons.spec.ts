@@ -85,12 +85,13 @@ test.describe('Daily Lessons Page', () => {
   test('should display hero title and CTA', async ({ page }) => {
     const heading = page.getByRole('heading', { name: /Daily Lessons|Дневни лекции/i });
     await expect(heading).toBeVisible();
-    await expect(page.getByRole('link', { name: /Инстаграм|Instagram/i })).toBeVisible();
+    const heroCta = page.locator('[data-testid="daily-lessons-hero"] a[href*="instagram.com"]');
+    await expect(heroCta.first()).toBeVisible();
   });
 
   test('should render mocked lesson cards', async ({ page }) => {
     await waitForDailyLessonsContent(page);
-    const cards = page.locator('[data-testid="daily-lessons-feed"] [class*="grid"] a');
+    const cards = page.locator('[data-testid="daily-lessons-feed"] a[href*="/p/"]');
     await expect(cards).toHaveCount(2);
     await expect(cards.first()).toContainText(/Добредојдовте/i);
     await expect(cards.nth(1)).toContainText(/Љ/);
