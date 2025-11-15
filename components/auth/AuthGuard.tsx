@@ -13,6 +13,10 @@ interface AuthGuardProps {
 export default function AuthGuard({ children, fallbackHeight = 'min-h-[400px]' }: AuthGuardProps) {
   const { data: session, status } = useSession();
 
+  if (process.env.NEXT_PUBLIC_DISABLE_AUTH_GUARD === 'true') {
+    return <>{children}</>;
+  }
+
   if (status === 'loading') {
     return (
       <div className={`flex items-center justify-center ${fallbackHeight}`}>

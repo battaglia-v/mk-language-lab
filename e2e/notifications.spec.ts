@@ -1,5 +1,28 @@
 import { test, expect } from '@playwright/test';
 
+const mockNotifications = [
+  {
+    id: '1',
+    type: 'streak_warning',
+    title: '🔥 7-day streak at risk!',
+    body: 'Only 4 hours left to practice today.',
+    actionUrl: '/practice',
+    isRead: false,
+    readAt: null,
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: '2',
+    type: 'quest_invite',
+    title: '🎯 New quest available',
+    body: 'Complete 5 exercises today.',
+    actionUrl: '/profile',
+    isRead: true,
+    readAt: new Date().toISOString(),
+    createdAt: new Date(Date.now() - 86400000).toISOString(),
+  },
+];
+
 test.describe('Notifications Inbox', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/mk/notifications');
@@ -236,5 +259,43 @@ test.describe('Notifications Inbox', () => {
     // Content should be visible (either empty state or list)
     const hasContent = await page.getByText(/notification|All caught up|No notifications/i).first().isVisible();
     expect(hasContent).toBeTruthy();
+  });
+
+  test('notifications hero matches visual snapshot', async ({ page }) => {
+    await page.route('**/api/notifications', (route) => {
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ notifications: mockNotifications }),
+      });
+    });
+    await page.reload();
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.waitForTimeout(500);
+
+    const hero = page.locator('[data-testid="notifications-hero"]');
+    await expect(hero).toHaveScreenshot('notifications-hero.png', {
+      animations: 'disabled',
+      scale: 'css',
+    });
+  });
+
+  test('notifications feed matches visual snapshot', async ({ page }) => {
+    await page.route('**/api/notifications', (route) => {
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ notifications: mockNotifications }),
+      });
+    });
+    await page.reload();
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.waitForTimeout(500);
+
+    const feed = page.locator('[data-testid="notifications-feed"]');
+    await expect(feed).toHaveScreenshot('notifications-feed.png', {
+      animations: 'disabled',
+      scale: 'css',
+    });
   });
 });
