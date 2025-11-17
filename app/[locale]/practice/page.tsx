@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils';
 import type { LucideIcon } from 'lucide-react';
 import { Flame, MessageCircle, Sparkles, Target } from 'lucide-react';
 import { useSavedPhrases } from '@/components/translate/useSavedPhrases';
+import { CollapsiblePanel } from '@/components/layout/CollapsiblePanel';
 
 // Dynamic import for QuickPracticeWidget to reduce initial bundle size
 const QuickPracticeWidget = dynamic(
@@ -65,7 +66,7 @@ export default function PracticeHubPage() {
     [homeT, directionLabel],
   );
 
-const practiceSections = useMemo(
+  const practiceSections = useMemo(
     () => [
       {
         key: 'translation',
@@ -77,7 +78,7 @@ const practiceSections = useMemo(
             description: t('translation.cards.translate.description'),
             href: buildHref('/translate'),
             icon: MessageCircle,
-            accent: 'from-rose-500/20 to-pink-500/20',
+            accent: 'bg-[#f8f5ed] text-primary',
           },
         ] satisfies PracticeCard[],
       },
@@ -85,17 +86,35 @@ const practiceSections = useMemo(
     [t, buildHref],
   );
 
+  const ctaRailCards = useMemo(
+    () => [
+      {
+        title: t('cards.translate.title'),
+        description: t('cards.translate.description'),
+        href: buildHref('/translate'),
+        icon: MessageCircle,
+      },
+      {
+        title: t('savedDeck.title'),
+        description: hasSavedPhrases ? t('savedDeck.description') : t('savedDeck.emptyDescription'),
+        href: translatorSavedHref,
+        icon: Sparkles,
+      },
+    ],
+    [t, buildHref, translatorSavedHref, hasSavedPhrases],
+  );
+
   const savedDeckBanner = savedDeckActive ? (
-    <Alert className="mb-4 rounded-3xl border-primary/30 bg-primary/5 text-white">
-      <AlertTitle className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+    <Alert className="mb-4 rounded-2xl border-[var(--fold-border)] bg-white text-foreground">
+      <AlertTitle className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
         {t('savedDeck.badge')}
       </AlertTitle>
       <AlertDescription className="space-y-3">
-        <p className="text-lg font-semibold text-white">{t('savedDeck.title')}</p>
-        <p className="text-sm text-slate-100">
+        <p className="text-lg font-semibold text-foreground">{t('savedDeck.title')}</p>
+        <p className="text-sm text-muted-foreground">
           {hasSavedPhrases ? t('savedDeck.description') : t('savedDeck.emptyDescription')}
         </p>
-        <Button asChild variant="secondary" className="rounded-2xl text-sm font-semibold">
+        <Button asChild variant="secondary" className="rounded-full text-sm font-semibold">
           <Link href={translatorSavedHref}>{t('savedDeck.manageCta')}</Link>
         </Button>
       </AlertDescription>
@@ -103,112 +122,102 @@ const practiceSections = useMemo(
   ) : null;
 
   return (
-    <div className="page-shell">
-      <div className="section-container section-container-xl section-spacing-md space-y-6 page-shell-content">
-        <section
-          data-testid="practice-hero"
-          className="glass-card rounded-3xl p-6 md:p-8"
-        >
-          <Badge variant="outline" className="w-fit border-primary/40 bg-primary/10 text-primary">
-            {t('badge')}
-          </Badge>
-          <div className="mt-4 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+    <div className="minimal-shell">
+      <div className="minimal-shell-content section-container section-container-wide section-spacing-xl space-y-4">
+        <section data-testid="practice-hero" className="fold-grid">
+          <div className="neutral-panel space-y-6">
+            <Badge variant="outline" className="w-fit rounded-full border border-[var(--fold-border)] bg-white/70 text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+              {t('badge')}
+            </Badge>
             <div className="space-y-2">
-              <h1 className="text-2xl font-bold text-white md:text-4xl">{t('title')}</h1>
-              <p className="text-sm text-slate-300 md:text-base">{t('subtitle')}</p>
+              <h1 className="text-3xl font-semibold text-foreground md:text-[2.5rem]">{t('title')}</h1>
+              <p className="text-base text-muted-foreground">{t('subtitle')}</p>
             </div>
-            <Button
-              asChild
-              size="lg"
-              className="rounded-full border border-white/20 bg-white/10 px-6 text-white hover:bg-white/20"
-            >
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {heroStats.map((stat) => {
+                const Icon = stat.icon;
+                return (
+                  <div
+                    key={stat.label}
+                    className="flex items-center gap-3 rounded-2xl border border-[var(--fold-border)] bg-white px-4 py-3 text-sm font-medium text-muted-foreground"
+                  >
+                    <Icon className="h-4 w-4 text-primary" aria-hidden="true" />
+                    <span>{stat.label}</span>
+                  </div>
+                );
+              })}
+            </div>
+            <Button asChild size="lg" className="w-fit rounded-full px-6">
               <Link href={buildHref('/translate')} className="flex items-center gap-2 text-sm font-semibold">
-                <Sparkles className="h-4 w-4 text-primary" />
+                <Sparkles className="h-4 w-4" aria-hidden="true" />
                 {t('ctaTranslate')}
               </Link>
             </Button>
           </div>
-
-          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {heroStats.map((stat) => {
-              const Icon = stat.icon;
-              return (
-                <div
-                  key={stat.label}
-                  className="flex items-center gap-3 rounded-2xl border border-border/40 bg-background/70 px-4 py-3 text-sm font-semibold text-muted-foreground shadow-sm"
-                >
-                  <Icon className="h-4 w-4 text-primary" aria-hidden="true" />
-                  <span>{stat.label}</span>
-                </div>
-              );
-            })}
-          </div>
+          <PracticeCtaRail cards={ctaRailCards} ctaLabel={t('openAction')} />
         </section>
 
-        <div data-testid="practice-workspace" className="grid gap-6 lg:grid-cols-[minmax(0,2.25fr),minmax(0,1fr)]">
-          <div className="space-y-6">
-            <div className="glass-card rounded-[32px] p-2">
-              {savedDeckBanner}
-              <QuickPracticeWidget
-                className="rounded-[28px] border border-white/10 bg-[#04070f]/70"
-                layout="default"
-              />
-            </div>
-
-            {practiceSections.map((section) => (
-              <div key={section.key} className="glass-card rounded-3xl p-5 shadow-lg md:p-6">
-                <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-wide text-rose-200">{section.label}</p>
-                    <h2 className="text-xl font-semibold text-white">{section.description}</h2>
-                  </div>
-                </div>
-
-                <div className="mt-4 grid gap-3 md:grid-cols-2">
-                  {section.cards.map((card) => {
-                    const Icon = card.icon;
-                    return (
-                      <Link
-                        key={card.title}
-                        href={card.href}
-                        className="group block rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg"
-                      >
-                        <div
-                          className={cn(
-                            'mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br text-primary shadow-inner',
-                            card.accent,
-                          )}
-                        >
-                          <Icon className="h-5 w-5" aria-hidden="true" />
-                        </div>
-                        <p className="text-base font-semibold text-white">{card.title}</p>
-                        <p className="mt-1 text-sm text-slate-300">{card.description}</p>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
+        <CollapsiblePanel
+          eyebrow={t('savedDeck.badge')}
+          title={t('savedDeck.title')}
+          description={t('savedDeck.description')}
+          defaultOpen
+        >
+          <div className="neutral-panel neutral-panel-muted">
+            {savedDeckBanner}
+            <QuickPracticeWidget className="rounded-[24px] border border-[var(--fold-border)] bg-white" layout="default" />
           </div>
+        </CollapsiblePanel>
 
-          <aside className="space-y-6">
-            <div className="glass-card rounded-3xl p-5 shadow-lg md:p-6">
-              <div className="flex items-center gap-2 text-sm font-semibold text-primary">
-                <Sparkles className="h-4 w-4" aria-hidden="true" />
-                {t('openAction')}
-              </div>
-              <p className="mt-3 text-xl font-semibold text-white">{t('cards.translate.title')}</p>
-              <p className="text-sm text-slate-300">{t('cards.translate.description')}</p>
-              <Button
-                asChild
-                className="mt-4 w-full rounded-2xl border border-white/20 bg-white/10 text-white hover:bg-white/20"
-              >
-                <Link href={buildHref('/translate')}>{t('openAction')}</Link>
-              </Button>
+        {practiceSections.map((section) => (
+          <CollapsiblePanel key={section.key} eyebrow={section.label} title={section.description}>
+            <div className="grid gap-3 md:grid-cols-2">
+              {section.cards.map((card) => {
+                const Icon = card.icon;
+                return (
+                  <Link
+                    key={card.title}
+                    href={card.href}
+                    className="group rounded-2xl border border-[var(--fold-border)] bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                  >
+                    <div className={cn('mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-muted text-primary', card.accent)}>
+                      <Icon className="h-5 w-5" aria-hidden="true" />
+                    </div>
+                    <p className="text-base font-semibold text-foreground">{card.title}</p>
+                    <p className="mt-1 text-sm text-muted-foreground">{card.description}</p>
+                  </Link>
+                );
+              })}
             </div>
-          </aside>
-        </div>
+          </CollapsiblePanel>
+        ))}
       </div>
     </div>
+  );
+}
+
+function PracticeCtaRail({
+  cards,
+  ctaLabel,
+}: {
+  cards: { title: string; description: string; href: string; icon: LucideIcon }[];
+  ctaLabel: string;
+}) {
+  return (
+    <aside className="neutral-panel neutral-panel-muted cta-rail" aria-label="Practice quick actions">
+      {cards.map((card) => {
+        const Icon = card.icon;
+        return (
+          <div key={card.title} className="rounded-2xl border border-dashed border-[var(--fold-border)] bg-white/80 p-4">
+            <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
+            <p className="mt-3 text-base font-semibold text-foreground">{card.title}</p>
+            <p className="text-sm text-muted-foreground">{card.description}</p>
+            <Button asChild variant="ghost" className="mt-3 justify-start px-0 text-primary">
+              <Link href={card.href}>{ctaLabel}</Link>
+            </Button>
+          </div>
+        );
+      })}
+    </aside>
   );
 }
