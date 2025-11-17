@@ -9,6 +9,7 @@ import { SessionProvider } from '@/components/auth/SessionProvider';
 import type { ReactNode } from 'react';
 import { TopNav } from '@/components/layout/TopNav';
 import { QueryProvider } from '@/components/providers/QueryProvider';
+import { ToasterProvider } from '@/components/ui/toast';
 
 type LayoutProps = {
   children: ReactNode;
@@ -32,6 +33,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
     <SessionProvider>
       <NextIntlClientProvider messages={messages}>
         <QueryProvider>
+          <ToasterProvider>
         {/* Skip to main content link for keyboard navigation */}
         <a
           href="#main-content"
@@ -57,6 +59,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
           </main>
           <Footer />
         </div>
+          </ToasterProvider>
         </QueryProvider>
       </NextIntlClientProvider>
       <Analytics />
