@@ -7,8 +7,8 @@ dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
 
 const isCI = !!process.env.CI;
 
-// Next.js defaults to webpack whenever the Turbopack flag is omitted, so we rely on
-// dedicated npm scripts instead of passing the unsupported `--webpack` flag directly.
+// Use dedicated npm scripts that explicitly pass --webpack flag to ensure
+// Playwright tests run against webpack builds (not Turbopack) for stability.
 const ciWebServerCommand = 'npm run build:webpack && npm start';
 const localWebServerCommand = 'npm run dev:webpack';
 

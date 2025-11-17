@@ -430,15 +430,16 @@ Multi-layered rule-based system:
 ---
 
 ### 16. Playwright webpack command fix ✅ (2025-11-17 ~09:05 UTC)
-**Files Modified:** `playwright.config.ts`
+**Files Modified:** `playwright.config.ts`, `package.json`
 
-**What Changed:** Extracted explicit CI/local Playwright web server commands that call the dedicated `build:webpack` and `dev:webpack` npm scripts. Added documentation explaining that the Next.js CLI already defaults to webpack when no Turbopack flag is supplied.
+**What Changed:** 
+- Added `dev:webpack` and `build:webpack` npm scripts that explicitly use the `--webpack` flag
+- Updated `playwright.config.ts` to use these dedicated npm scripts for both CI and local Playwright runs
+- Fixed incorrect assumption that Next.js defaults to webpack (in Next.js 16, Turbopack is the default)
 
-**Why It Matters:** The previous configuration attempted to pass `--webpack` directly to the Next.js CLI, which is an unsupported flag and prevented the Playwright server from starting in both CI and local runs. Using the scripts avoids that flag entirely while keeping Playwright pinned to webpack, so E2E suites can launch reliably.
+**Why It Matters:** The Playwright tests need to run against webpack builds for stability, avoiding Turbopack startup issues. The `--webpack` flag is supported and necessary to force webpack usage in Next.js 16 where Turbopack is now the default.
 
-**For Other Agents:** If you need a webpack-only Next.js server, call the existing npm scripts instead of adding CLI flags (e.g., `npm run dev:webpack`). When adding new automation around Playwright or Next servers, avoid `--webpack`—omit Turbopack flags instead.
-
-**Commit Hash:** baa863f
+**For Other Agents:** Always use the `dev:webpack` or `build:webpack` npm scripts when you need webpack-specific builds (e.g., for Playwright or other tooling). The `--webpack` CLI flag is supported and required in Next.js 16 to override the Turbopack default.
 
 ---
 
