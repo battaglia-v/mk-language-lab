@@ -15,7 +15,7 @@ import {
   Flame,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { AjvarLogo } from "./AjvarLogo";
 import { useMissionStatusResource } from "@/hooks/useMissionStatus";
 
@@ -99,8 +99,29 @@ export default function Sidebar() {
         ? t("continueButtonLoading")
         : t("continueButtonFallback");
 
+  const actionableMission =
+    navMissionState === "ready" &&
+    navMission?.xp?.earned !== undefined &&
+    navMission?.xp?.target !== undefined &&
+    navMission.xp.earned < navMission.xp.target;
+
+  const missionRunKey = useMemo(() => {
+    if (!navMission?.missionId || !navMission?.cycle?.endsAt) {
+      return undefined;
+    }
+    return `${navMission.missionId}:${navMission.cycle.endsAt}`;
+  }, [navMission]);
+
   return (
     <>
+      {actionableMission && missionRunKey && (
+        <MobileMissionToast
+          missionKey={missionRunKey}
+          href={buildHref("/practice")}
+          label={t("continueButtonLabel")}
+          subtitle={continueSubtitle}
+        />
+      )}
       {/* Desktop Sidebar */}
       <aside
         className={cn(
@@ -211,21 +232,7 @@ export default function Sidebar() {
         aria-label={t("label")}
         style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 0.75rem)" }}
       >
-        <div className="relative px-2 pt-8 pb-1">
-          <Link
-            href={buildHref("/practice")}
-            className="absolute left-1/2 top-0 flex w-[92%] -translate-x-1/2 -translate-y-1/2 items-center gap-3 rounded-full bg-[var(--brand-red)] px-4 py-2 text-sm font-semibold text-white shadow-xl shadow-[rgba(255,79,94,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/60 focus-visible:ring-offset-[var(--brand-red)]"
-            aria-label={t("continueButtonLabel")}
-          >
-            <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-white/15">
-              <Flame className="h-4 w-4" aria-hidden="true" />
-            </span>
-            <span className="flex-1 text-left leading-tight">
-              <span className="block">{t("continueButtonLabel")}</span>
-              <span className="text-[11px] text-white/85">{continueSubtitle}</span>
-            </span>
-          </Link>
-
+        <div className="px-2 pt-2 pb-1">
           <div className="grid grid-cols-5 gap-0.5 pt-1">
           {/* Home button */}
           <Link
@@ -279,5 +286,69 @@ export default function Sidebar() {
         </div>
       </nav>
     </>
+  );
+}
+
+type MobileMissionToastProps = {
+  missionKey: string;
+  href: string;
+  label: string;
+  subtitle: string;
+};
+
+function MobileMissionToast({ missionKey, href, label, subtitle }: MobileMissionToastProps) {
+  const storageKey = useMemo(() => `mission-toast:${missionKey}`, [missionKey]);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    const dismissed = window.localStorage.getItem(storageKey) === "1";
+    setIsVisible(!dismissed);
+  }, [storageKey]);
+
+  const dismiss = useCallback(() => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(storageKey, "1");
+    }
+    setIsVisible(false);
+  }, [storageKey]);
+
+  useEffect(() => {
+    if (!isVisible) {
+      return;
+    }
+    const timer = window.setTimeout(() => {
+      dismiss();
+    }, 8000);
+    return () => window.clearTimeout(timer);
+  }, [dismiss, isVisible]);
+
+  if (!isVisible) {
+    return null;
+  }
+
+  return (
+    <div className="lg:hidden fixed inset-x-0 bottom-[calc(env(safe-area-inset-bottom,0px)+4.75rem)] z-50 px-4 pointer-events-none">
+      <div className="pointer-events-auto flex items-start gap-3 rounded-2xl border border-sidebar-border/70 bg-sidebar/95 px-4 py-3 text-sm shadow-lg backdrop-blur">
+        <div className="flex-1">
+          <p className="font-medium text-sidebar-foreground">{label}</p>
+          <p className="text-xs text-sidebar-foreground/80">{subtitle}</p>
+          <Link href={href} className="mt-1 inline-flex items-center text-xs font-semibold text-primary hover:underline">
+            {label}
+            <Flame className="ml-1 h-3 w-3" aria-hidden="true" />
+          </Link>
+        </div>
+        <button
+          type="button"
+          onClick={dismiss}
+          className="ml-2 text-xs font-medium text-sidebar-foreground/80 hover:text-sidebar-foreground"
+        >
+          {"×"}
+          <span className="sr-only">Dismiss</span>
+        </button>
+      </div>
+    </div>
   );
 }
