@@ -18,6 +18,7 @@ jobs:
     name: Reminder Cron Probe
     runs-on: ubuntu-latest
     env:
+      GITHUB_REF_NAME: ${{ github.ref_name }}
       CRON_SECRET: ${{ secrets.CRON_SECRET }}
       REMINDER_CRON_BASE_URL: ${{
         secrets.REMINDER_CRON_BASE_URL ||
@@ -30,15 +31,28 @@ jobs:
       REMINDER_CRON_ERROR_BUDGET: ${{ secrets.REMINDER_CRON_ERROR_BUDGET || vars.REMINDER_CRON_ERROR_BUDGET || '3' }}
       NEXT_PUBLIC_APP_URL: ${{ secrets.NEXT_PUBLIC_APP_URL || vars.NEXT_PUBLIC_APP_URL }}
       EXPO_PUBLIC_API_BASE_URL: ${{ secrets.EXPO_PUBLIC_API_BASE_URL || vars.EXPO_PUBLIC_API_BASE_URL }}
+      REMINDER_CRON_ENVIRONMENT: ${{ github.ref_name == 'main' && 'production' || 'non-production' }}
 
     steps:
       - name: Determine cron prerequisites
         id: cron_prereqs
         run: |
-          if [ -z "${CRON_SECRET}" ] || [ -z "${REMINDER_CRON_BASE_URL}" ]; then
+          reason=""
+
+          if [ "${GITHUB_REF_NAME}" != "main" ]; then
+            reason="workflow is running on ref ${GITHUB_REF_NAME:-unknown}, but cron smoke is production-only"
+          elif [ -z "${CRON_SECRET}" ]; then
+            reason="missing CRON_SECRET secret"
+          elif [ -z "${REMINDER_CRON_BASE_URL}" ]; then
+            reason="missing REMINDER_CRON_BASE_URL secret"
+          fi
+
+          if [ -n "$reason" ]; then
             echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "reason=$reason" >> "$GITHUB_OUTPUT"
           else
             echo "skip=false" >> "$GITHUB_OUTPUT"
+            echo "reason=" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Checkout repository
@@ -62,4 +76,7 @@ jobs:
 
       - name: Skip notice
         if: steps.cron_prereqs.outputs.skip == 'true'
-        run: echo "Skipping reminder cron probe; set CRON_SECRET and REMINDER_CRON_BASE_URL secrets to enable."
+        env:
+          SKIP_REASON: ${{ steps.cron_prereqs.outputs.reason }}
+        run: |
+          echo "Skipping reminder cron probe. $SKIP_REASON"
