@@ -33,7 +33,7 @@ export function QuickPracticePrompt({
     <div
       className={cn(
         'relative space-y-3 rounded-3xl border border-border/50 bg-gradient-to-br from-background/85 via-card/80 to-muted/70 p-4 shadow-lg transition-all duration-200 md:p-6',
-        isInputFocused && 'sticky top-0 z-20 shadow-xl md:shadow-lg md:static',
+        isInputFocused && 'ring-2 ring-primary/20 shadow-primary/20',
       )}
     >
       <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
@@ -51,7 +51,7 @@ export function QuickPracticePrompt({
       <p
         className={cn(
           'break-words font-bold leading-tight text-slate-900 dark:text-white',
-          isModalVariant ? 'text-4xl' : isInputFocused ? 'text-xl' : 'text-2xl md:text-3xl',
+          isModalVariant ? 'text-4xl' : 'text-2xl md:text-3xl',
         )}
       >
         {content}

@@ -6,7 +6,6 @@ import { useSearchParams } from 'next/navigation';
 import { Sparkles, PlayCircle, X } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { Dialog, DialogClose, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
@@ -20,7 +19,7 @@ import { QuickPracticeControls } from '@/components/learn/quick-practice/Control
 import { useQuickPracticeSession } from '@/components/learn/quick-practice/useQuickPracticeSession';
 import { ALL_CATEGORIES, SESSION_TARGET, PRACTICE_DIFFICULTIES } from '@/components/learn/quick-practice/constants';
 import { formatCategory } from '@/components/learn/quick-practice/utils';
-import type { PracticeItem, PracticeDifficultyId, PracticeDifficultyPreset, QuickPracticeTalisman } from '@/components/learn/quick-practice/types';
+import type { PracticeItem, PracticeDifficultyId, PracticeDifficultyPreset } from '@/components/learn/quick-practice/types';
 import type { QuickPracticeSessionOptions } from '@/components/learn/quick-practice/useQuickPracticeSession';
 import { getSavedPhrasePracticePrompts } from '@/lib/saved-phrases';
 
@@ -44,7 +43,7 @@ export function QuickPracticeWidget({
   const t = useTranslations('learn');
   const searchParams = useSearchParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(false);
   const formRef = useRef<HTMLFormElement | null>(null);
 
@@ -129,16 +128,11 @@ export function QuickPracticeWidget({
     handleReveal: revealAnswer,
     handleReset: resetSession,
     handleContinue: continueSession,
-    categoryButtonRef,
-    categoryMenuRef,
-    isCategoryMenuOpen,
-    setIsCategoryMenuOpen,
     isActionMenuOpen,
     setIsActionMenuOpen,
     streak,
     xp,
     level,
-    timeRemaining,
     activeTalismans,
     talismanMultiplier,
   } = useQuickPracticeSession(sessionOptions);
@@ -210,13 +204,7 @@ export function QuickPracticeWidget({
     accuracy,
   });
   const difficultyLabelText = t('practiceDifficultyLabel');
-  const timerLabelText = t('practiceTimerLabel');
-  const timerValueLabel =
-    timeRemaining !== null ? t('practiceTimerActive', { seconds: timeRemaining }) : t('practiceNoTimer');
-  const talismansLabelText = t('practiceTalismansLabel');
   const talismansEmptyText = t('practiceTalismansEmpty');
-  const talismanBonusLabel =
-    talismanMultiplier > 1 ? t('practiceTalismanMultiplier', { value: Math.round((talismanMultiplier - 1) * 100) }) : null;
   const audioLabel = t('practiceAudioPromptLabel');
 
   const isReady = Boolean(currentItem);
@@ -273,7 +261,14 @@ export function QuickPracticeWidget({
   const progressLabel = t('quickPractice');
   const categoryLabelText = t('practiceCategoryLabel');
   const clozeTranslationLabel = t('practiceClozeTranslationLabel');
-  const toggleSettings = () => setShowSettings((prev) => !prev);
+  useEffect(() => {
+    const updateViewport = () => {
+      setIsMobileViewport(window.innerWidth < 768);
+    };
+    updateViewport();
+    window.addEventListener('resize', updateViewport);
+    return () => window.removeEventListener('resize', updateViewport);
+  }, []);
 
   const renderPracticeCard = (variant: 'default' | 'modal', extraClassName?: string) => {
     const isModalVariant = variant === 'modal';
@@ -324,59 +319,57 @@ export function QuickPracticeWidget({
           summarySubtitle={summarySubtitle}
           isModalVariant={isModalVariant}
           isInputFocused={isInputFocused}
+          isMobileViewport={isMobileViewport}
           streak={streak}
           hearts={hearts}
           level={level}
           xp={xp}
-          sessionProgress={sessionProgress}
-          progressValueLabel={progressValueLabel}
-          progressLabel={progressLabel}
           accuracyBadgeLabel={accuracyBadge.label}
           accuracyValueLabel={accuracyValueLabel}
-          accuracyAccent={accuracyAccent}
           categoryValue={categoryValue}
           categoryLabelText={categoryLabelText}
-          inlineProgressLabel={inlineProgressLabel}
-          onToggleSettings={toggleSettings}
-        />
-
-        <SessionHud
-          difficultyLabel={difficultyLabelText}
-          difficultyDescription={selectedDifficultyOption.description}
           difficultyName={selectedDifficultyOption.label}
-          timerLabel={timerLabelText}
-          timerValue={timerValueLabel}
-          talismansLabel={talismansLabelText}
-          talismansEmptyLabel={talismansEmptyText}
-          talismanBonusLabel={talismanBonusLabel}
-          talismans={activeTalismans}
-          isModalVariant={isModalVariant}
+          difficultyLabelText={difficultyLabelText}
+          inlineProgressLabel={inlineProgressLabel}
         />
 
-        <DifficultySelector
-          difficulty={difficulty}
-          onChange={setDifficulty}
-          options={difficultyOptions}
-          isModalVariant={isModalVariant}
-          label={difficultyLabelText}
-        />
+        <div className={cn('px-6 md:px-10', isModalVariant ? 'pt-2' : 'pt-1')}>
+          <QuickPracticePrompt
+            label={promptLabel}
+            content={promptContent}
+            categoryLabel={categoryLabel}
+            isClozeMode={isClozeMode}
+            clozeTranslation={clozeTranslation}
+            clozeTranslationLabel={clozeTranslationLabel}
+            isInputFocused={isInputFocused}
+            isModalVariant={isModalVariant}
+            audioClip={
+              currentItem?.audioClip ??
+              (currentItem?.audioClipUrl ? { url: currentItem.audioClipUrl, autoplay: true } : undefined)
+            }
+            audioLabel={audioLabel}
+          />
+        </div>
 
         <QuickPracticeControls
           isModalVariant={isModalVariant}
           isInputFocused={isInputFocused}
           setIsInputFocused={setIsInputFocused}
-          showSettings={showSettings}
           categories={categories}
           category={category}
           setCategory={setCategory}
-          categoryButtonRef={categoryButtonRef}
-          categoryMenuRef={categoryMenuRef}
-          isCategoryMenuOpen={isCategoryMenuOpen}
-          setIsCategoryMenuOpen={setIsCategoryMenuOpen}
           direction={direction}
           setDirection={setDirection}
           practiceMode={practiceMode}
           setPracticeMode={setPracticeMode}
+          difficulty={difficulty}
+          setDifficulty={setDifficulty}
+          difficultyOptions={difficultyOptions}
+          difficultyLabelText={difficultyLabelText}
+          selectedDifficultyLabel={selectedDifficultyOption.label}
+          selectedDifficultyDescription={selectedDifficultyOption.description}
+          categoryLabelText={categoryLabelText}
+          categoryValue={categoryValue}
           answer={answer}
           setAnswer={setAnswer}
           placeholder={placeholder}
@@ -396,23 +389,7 @@ export function QuickPracticeWidget({
           translate={t}
           isShaking={isShaking}
           isClozeMode={isClozeMode}
-        >
-          <QuickPracticePrompt
-            label={promptLabel}
-            content={promptContent}
-            categoryLabel={categoryLabel}
-            isClozeMode={isClozeMode}
-            clozeTranslation={clozeTranslation}
-            clozeTranslationLabel={clozeTranslationLabel}
-            isInputFocused={isInputFocused}
-            isModalVariant={isModalVariant}
-            audioClip={
-              currentItem?.audioClip ??
-              (currentItem?.audioClipUrl ? { url: currentItem.audioClipUrl, autoplay: true } : undefined)
-            }
-            audioLabel={audioLabel}
-          />
-        </QuickPracticeControls>
+        />
       </div>
     );
   };
@@ -561,113 +538,3 @@ export function QuickPracticeWidget({
   );
 }
 
-type DifficultySelectorProps = {
-  difficulty: PracticeDifficultyId;
-  onChange: (id: PracticeDifficultyId) => void;
-  options: PracticeDifficultyPreset[];
-  isModalVariant: boolean;
-  label: string;
-};
-
-function DifficultySelector({ difficulty, onChange, options, isModalVariant, label }: DifficultySelectorProps) {
-  return (
-    <div
-      className={cn(
-        'px-6 pb-4 md:px-10',
-        isModalVariant ? 'md:pt-2' : 'pt-2'
-      )}
-    >
-      <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">
-        {label}
-      </p>
-      <div className="flex flex-col gap-2 md:flex-row">
-        {options.map((preset) => {
-          const isSelected = preset.id === difficulty;
-          return (
-            <button
-              key={preset.id}
-              type="button"
-              aria-pressed={isSelected}
-              className={cn(
-                'flex-1 rounded-2xl border px-3 py-2 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60',
-                isSelected
-                  ? 'border-primary bg-primary/10 text-primary'
-                  : 'border-border/50 bg-background/80 text-muted-foreground hover:border-primary/40'
-              )}
-              onClick={() => onChange(preset.id)}
-            >
-              <p className="text-sm font-semibold">{preset.label}</p>
-              <p className="text-xs text-muted-foreground">{preset.description}</p>
-            </button>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-type SessionHudProps = {
-  difficultyLabel: string;
-  difficultyDescription: string;
-  difficultyName: string;
-  timerLabel: string;
-  timerValue: string;
-  talismansLabel: string;
-  talismansEmptyLabel: string;
-  talismanBonusLabel: string | null;
-  talismans: QuickPracticeTalisman[];
-  isModalVariant: boolean;
-};
-
-function SessionHud({
-  difficultyLabel,
-  difficultyDescription,
-  difficultyName,
-  timerLabel,
-  timerValue,
-  talismansLabel,
-  talismansEmptyLabel,
-  talismanBonusLabel,
-  talismans,
-  isModalVariant,
-}: SessionHudProps) {
-  return (
-    <div
-      className={cn(
-        'px-6 pb-3 md:px-10',
-        isModalVariant ? 'md:pt-1' : 'pt-1'
-      )}
-    >
-      <div className="grid gap-3 md:grid-cols-3">
-        <div className="rounded-2xl border border-border/50 bg-card/70 p-3">
-          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{difficultyLabel}</p>
-          <p className="text-sm font-semibold text-foreground">{difficultyName}</p>
-          <p className="text-xs text-muted-foreground">{difficultyDescription}</p>
-        </div>
-        <div className="rounded-2xl border border-border/50 bg-card/70 p-3">
-          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{timerLabel}</p>
-          <p className="text-sm font-semibold text-foreground">{timerValue}</p>
-        </div>
-        <div className="rounded-2xl border border-border/50 bg-card/70 p-3 space-y-2">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{talismansLabel}</p>
-            {talismanBonusLabel ? (
-              <span className="text-xs font-semibold text-primary">{talismanBonusLabel}</span>
-            ) : null}
-          </div>
-          {talismans.length ? (
-            <div className="flex flex-wrap gap-1.5">
-              {talismans.map((talisman) => (
-                <Badge key={talisman.id} variant="secondary" className="text-xs">
-                  {talisman.title}
-                </Badge>
-              ))}
-            </div>
-          ) : (
-            <p className="text-xs text-muted-foreground">{talismansEmptyLabel}</p>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
