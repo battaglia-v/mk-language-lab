@@ -2,6 +2,9 @@
 
 import { useTranslations } from 'next-intl';
 import { useQuery } from '@tanstack/react-query';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 
 type Quest = {
   id: string;
@@ -12,10 +15,13 @@ type Quest = {
   target: number;
   targetUnit: string;
   progress: number;
+  progressPercent: number;
   status: string;
   xpReward: number;
   currencyReward: number;
   difficultyLevel: string;
+  minutesRemaining: number | null;
+  deadlineLabel: string | null;
 };
 
 export function QuestsSection() {
@@ -56,45 +62,68 @@ export function QuestsSection() {
             {t('empty')}
           </p>
         ) : (
-          quests.map((quest: Quest) => {
-            const progressPercent = Math.min(100, (quest.progress / quest.target) * 100);
-            return (
-              <article
-                key={quest.id}
-                className="rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:border-primary/40"
-              >
-                <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
-                  <div>
+          quests.map((quest: Quest) => (
+            <article
+              key={quest.id}
+              className="rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:border-primary/40"
+            >
+              <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                <div className="space-y-1">
+                  <div className="flex flex-wrap items-center gap-2">
                     <h3 className="text-lg font-semibold">{quest.title}</h3>
-                    <p className="text-sm text-slate-200">{quest.description}</p>
+                    <Badge variant="outline" className="border-white/20 bg-white/10 text-xs uppercase tracking-wide">
+                      {quest.type}
+                    </Badge>
                   </div>
-                  <span className="self-start rounded-full border border-primary/30 px-3 py-1 text-xs uppercase tracking-wide text-primary">
-                    {quest.type}
+                  <p className="text-sm text-slate-200">{quest.description}</p>
+                </div>
+                <div className="flex flex-col items-start gap-2 text-xs text-slate-300">
+                  <span className="rounded-full bg-primary/10 px-3 py-1 text-primary">
+                    {quest.difficultyLevel}
                   </span>
+                  {quest.deadlineLabel ? <span>{quest.deadlineLabel}</span> : null}
                 </div>
-                <div className="mt-4 space-y-2 text-sm text-slate-200">
-                  <div className="flex items-center justify-between">
-                    <span>
-                      {quest.progress} / {quest.target} {quest.targetUnit}
-                    </span>
-                    <span className="font-semibold text-white">{Math.round(progressPercent)}%</span>
-                  </div>
-                  <div className="h-2 w-full rounded-full bg-white/10">
-                    <div
-                      className="h-full rounded-full bg-gradient-to-r from-primary to-rose-400"
-                      style={{ width: `${progressPercent}%` }}
-                    />
-                  </div>
+              </div>
+              <div className="mt-4 space-y-2 text-sm text-slate-200">
+                <div className="flex items-center justify-between">
+                  <span>
+                    {quest.progress} / {quest.target} {quest.targetUnit}
+                  </span>
+                  <span className="font-semibold text-white">{quest.progressPercent}%</span>
                 </div>
-                <div className="mt-3 flex items-center gap-4 text-sm text-slate-200">
+                <div className="h-2 w-full rounded-full bg-white/10">
+                  <div
+                    className="h-full rounded-full bg-gradient-to-r from-primary to-rose-400"
+                    style={{ width: `${quest.progressPercent}%` }}
+                  />
+                </div>
+              </div>
+              <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-sm text-slate-200">
+                <div className="flex items-center gap-4">
                   <span className="text-emerald-300">+{quest.xpReward} XP</span>
                   <span className="text-indigo-200">+{quest.currencyReward} gems</span>
                 </div>
-              </article>
-            );
-          })
+                <QuestCTA category={quest.category} />
+              </div>
+            </article>
+          ))
         )}
       </div>
     </section>
+  );
+}
+
+function QuestCTA({ category }: { category: string }) {
+  const destinations: Record<string, string> = {
+    practice: '/practice',
+    translation: '/translate',
+    social: '/discover',
+    lesson: '/discover',
+  };
+  const href = destinations[category] ?? '/practice';
+  return (
+    <Button asChild size="sm" variant="secondary">
+      <Link href={href}>Start</Link>
+    </Button>
   );
 }

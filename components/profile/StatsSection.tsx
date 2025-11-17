@@ -3,37 +3,78 @@ import { cn } from '@/lib/utils';
 
 type StatsSectionProps = {
   xp: { total: number; weekly: number };
+  xpProgress: { percentComplete: number; xpInCurrentLevel: number; xpForNextLevel: number };
   streakDays: number;
   quests: { active: number; completedThisWeek: number };
+  hearts: { current: number; max: number; isFull: boolean; minutesUntilNext: number };
+  currency: { gems: number; coins: number };
+  league: { tier: string; nextTier?: string | null; daysUntilNextTier?: number | null };
 };
 
-export function StatsSection({ xp, streakDays, quests }: StatsSectionProps) {
+export function StatsSection({ xp, xpProgress, streakDays, quests, hearts, currency, league }: StatsSectionProps) {
   const t = useTranslations('profile.stats');
-
-  const stats = [
-    { label: t('totalXP'), value: xp.total.toLocaleString(), accent: 'from-primary/30 to-primary/10' },
-    { label: t('weeklyXP'), value: xp.weekly.toLocaleString(), accent: 'from-emerald-400/30 to-emerald-500/10' },
-    { label: t('streak'), value: `${streakDays} ${t('days')}`, accent: 'from-orange-400/30 to-orange-500/10' },
-    { label: t('activeQuests'), value: quests.active.toString(), accent: 'from-sky-400/30 to-sky-500/10' },
-    { label: t('completedQuests'), value: quests.completedThisWeek.toString(), accent: 'from-pink-400/30 to-pink-500/10' },
-  ];
 
   return (
     <section className="glass-card rounded-3xl p-6 md:p-8 text-white" data-testid="profile-stats">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
-        {stats.map((stat) => (
-          <article
-            key={stat.label}
-            className={cn(
-              'rounded-2xl border border-white/15 bg-gradient-to-br p-4 text-center',
-              stat.accent
-            )}
-          >
-            <p className="text-xs font-semibold uppercase tracking-wide text-white/70">{stat.label}</p>
-            <p className="mt-2 text-3xl font-bold text-white">{stat.value}</p>
-          </article>
-        ))}
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <StatCard title={t('streak')} value={`${streakDays} ${t('days')}`} accent="from-orange-400/30 to-orange-500/10">
+          <p className="text-xs text-slate-200">{t('leagueTier', { tier: league.tier })}</p>
+        </StatCard>
+        <StatCard title={t('activeQuests')} value={quests.active.toString()} accent="from-sky-400/30 to-sky-500/10">
+          <p className="text-xs text-slate-200">{t('completedQuestsLabel', { count: quests.completedThisWeek })}</p>
+        </StatCard>
+        <StatCard title={t('currency')} value={`${currency.gems.toLocaleString()} 💎`} accent="from-amber-400/30 to-amber-500/10">
+          <p className="text-xs text-slate-200">{t('currencyCaption')}</p>
+        </StatCard>
+        <StatCard title={t('weeklyXP')} value={xp.weekly.toLocaleString()} accent="from-emerald-400/30 to-emerald-500/10">
+          <p className="text-xs text-slate-200">{t('totalXPCaption', { value: xp.total.toLocaleString() })}</p>
+        </StatCard>
+        <StatCard title={t('hearts')} value={`${hearts.current}/${hearts.max}`} accent="from-rose-400/30 to-rose-500/10">
+          <p className="text-xs text-slate-200">
+            {hearts.isFull ? t('heartsFull') : t('heartsNext', { minutes: hearts.minutesUntilNext })}
+          </p>
+        </StatCard>
+        <div className="rounded-2xl border border-white/15 bg-white/5 p-4">
+          <div className="flex items-center justify-between">
+            <p className="text-xs font-semibold uppercase tracking-wide text-white/70">{t('xpProgress')}</p>
+            <span className="text-sm text-white/90">{xpProgress.percentComplete}%</span>
+          </div>
+          <div className="mt-2 h-2 w-full rounded-full bg-white/10">
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-primary to-emerald-400"
+              style={{ width: `${xpProgress.percentComplete}%` }}
+            />
+          </div>
+          <p className="mt-2 text-xs text-slate-200">
+            {t('xpProgressDetail', {
+              current: xpProgress.xpInCurrentLevel,
+              goal: xpProgress.xpForNextLevel,
+            })}
+          </p>
+        </div>
       </div>
     </section>
+  );
+}
+
+function StatCard({
+  title,
+  value,
+  accent,
+  children,
+}: {
+  title: string;
+  value: string;
+  accent: string;
+  children?: React.ReactNode;
+}) {
+  return (
+    <article
+      className={cn('rounded-2xl border border-white/15 bg-gradient-to-br p-4', accent)}
+    >
+      <p className="text-xs font-semibold uppercase tracking-wide text-white/70">{title}</p>
+      <p className="mt-2 text-3xl font-bold text-white">{value}</p>
+      {children}
+    </article>
   );
 }

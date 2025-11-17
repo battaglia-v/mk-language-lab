@@ -6,10 +6,22 @@ type ProfileHeaderProps = {
   level: string;
   xp: { total: number; weekly: number };
   streakDays: number;
+  xpProgress: { percentComplete: number };
+  hearts: { current: number; max: number; isFull: boolean; minutesUntilNext: number };
+  league: { tier: string; nextTier?: string | null; daysUntilNextTier?: number | null };
   className?: string;
 };
 
-export function ProfileHeader({ name, level, xp, streakDays, className }: ProfileHeaderProps) {
+export function ProfileHeader({
+  name,
+  level,
+  xp,
+  streakDays,
+  xpProgress,
+  hearts,
+  league,
+  className,
+}: ProfileHeaderProps) {
   const t = useTranslations('profile');
 
   return (
@@ -26,20 +38,32 @@ export function ProfileHeader({ name, level, xp, streakDays, className }: Profil
           <h2 className="mt-2 text-3xl font-bold md:text-4xl">{name}</h2>
           <p className="text-sm text-slate-300">{level}</p>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-3">
           <StatPill label={t('totalXP')} value={xp.total.toLocaleString()} accent="from-primary/40 to-primary/20" />
           <StatPill label={t('weeklyXP')} value={xp.weekly.toLocaleString()} accent="from-emerald-400/40 to-emerald-500/10" />
+          <StatPill
+            label={t('xpProgress')}
+            value={`${xpProgress.percentComplete}%`}
+            accent="from-rose-400/30 to-rose-500/10"
+            sublabel={t('xpProgressCaption')}
+          />
         </div>
       </div>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-4 space-y-1">
           <p className="text-sm uppercase tracking-wide text-slate-300">{t('dayStreak')}</p>
           <p className="text-3xl font-bold">{streakDays}</p>
+          <p className="text-xs text-slate-300">{t('league.status', { tier: league.tier })}</p>
         </div>
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-          <p className="text-sm uppercase tracking-wide text-slate-300">{t('weeklyXP')}</p>
-          <p className="text-3xl font-bold">{xp.weekly.toLocaleString()}</p>
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-4 space-y-1">
+          <p className="text-sm uppercase tracking-wide text-slate-300">{t('hearts')}</p>
+          <p className="text-3xl font-bold">
+            {hearts.current}/{hearts.max}
+          </p>
+          <p className="text-xs text-slate-300">
+            {hearts.isFull ? t('heartsFull') : t('heartsNext', { minutes: hearts.minutesUntilNext })}
+          </p>
         </div>
       </div>
     </section>
@@ -50,15 +74,18 @@ function StatPill({
   label,
   value,
   accent,
+  sublabel,
 }: {
   label: string;
   value: string;
   accent: string;
+  sublabel?: string;
 }) {
   return (
     <div className={cn('rounded-2xl border border-white/15 bg-gradient-to-br p-4 text-sm uppercase tracking-wide text-white/80', accent)}>
       <p>{label}</p>
       <p className="mt-1 text-3xl font-semibold text-white">{value}</p>
+      {sublabel ? <p className="text-[10px] uppercase tracking-[0.35em] text-white/60">{sublabel}</p> : null}
     </div>
   );
 }

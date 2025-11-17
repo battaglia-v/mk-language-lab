@@ -1,8 +1,9 @@
 'use client';
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { ArrowLeftRight, Check, Copy, Loader2, Sparkles, ShieldAlert, BookOpen } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
+import { ArrowLeftRight, BookmarkCheck, BookmarkPlus, Check, Copy, Loader2, Sparkles, ShieldAlert, BookOpen } from 'lucide-react';
 import { WebStatPill } from '@mk/ui';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -17,9 +18,21 @@ import {
 import { HistoryList } from '@/components/translate/HistoryList';
 import { InfoPanel } from '@/components/translate/InfoPanel';
 import { cn } from '@/lib/utils';
+import { SavedPhrasesPanel } from '@/components/translate/SavedPhrasesPanel';
+import { useSavedPhrases } from '@/components/translate/useSavedPhrases';
+import { useToast } from '@/components/ui/use-toast';
 
 const MAX_CHARACTERS = 1800;
 const GOOGLE_TRANSLATE_URL = 'https://translate.google.com/?sl=en&tl=mk';
+
+type MobileTabValue = 'workspace' | 'history' | 'saved';
+
+const deriveMobileTab = (value: string | null): MobileTabValue => {
+  if (value === 'history' || value === 'saved') {
+    return value;
+  }
+  return 'workspace';
+};
 
 type DirectionToggleProps = {
   options: TranslationDirectionOption[];
@@ -47,10 +60,19 @@ type TranslationResultProps = {
   directionStatLabel: string;
   charactersStatLabel: string;
   shortcutStatLabel: string;
+  saveLabel: string;
+  savedLabel: string;
+  removeSavedLabel: string;
+  onSavePhrase?: () => void;
+  onRemoveSavedPhrase?: () => void;
+  canSave?: boolean;
+  isSavedPhrase?: boolean;
 };
 
 export default function TranslatePage() {
   const t = useTranslations('translate');
+  const locale = useLocale();
+  const searchParams = useSearchParams();
   const directionLabels = useMemo(() => {
     const raw = t.raw('directions');
     return (typeof raw === 'object' && raw !== null ? raw : {}) as Record<'mk_en' | 'en_mk', string>;
@@ -110,12 +132,28 @@ export default function TranslatePage() {
     },
   });
 
-  const [mobileTab, setMobileTab] = useState<'workspace' | 'history'>('workspace');
+  const { toast } = useToast();
+  const { phrases, savePhrase, deletePhrase, clearAll, findMatchingPhrase } = useSavedPhrases();
+
+  const panelParam = searchParams?.get('panel');
+  const [mobileTab, setMobileTab] = useState<MobileTabValue>(() => deriveMobileTab(panelParam));
+  useEffect(() => {
+    setMobileTab(deriveMobileTab(panelParam));
+  }, [panelParam]);
+
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const historyTimestampFormatter = useMemo(
     () =>
       new Intl.DateTimeFormat(undefined, {
         dateStyle: 'short',
+        timeStyle: 'short',
+      }),
+    []
+  );
+  const savedTimestampFormatter = useMemo(
+    () =>
+      new Intl.DateTimeFormat(undefined, {
+        dateStyle: 'medium',
         timeStyle: 'short',
       }),
     []
@@ -136,6 +174,36 @@ export default function TranslatePage() {
     }, {} as Record<TranslationDirectionOption['id'], string>);
   }, [directionOptions]);
 
+  const practiceHref = `/${locale}/practice?practiceFixture=saved-phrases`;
+  const translatorSavedHref = `/${locale}/translate?panel=saved`;
+
+  const currentPayload = useMemo(() => {
+    const source = inputText.trim();
+    const result = translatedText.trim();
+    if (!source || !result) return null;
+    return { sourceText: source, translatedText: result, directionId } as const;
+  }, [directionId, inputText, translatedText]);
+  const savedMatch = currentPayload ? findMatchingPhrase(currentPayload) : undefined;
+  const isCurrentSaved = Boolean(savedMatch);
+
+  const handleSaveCurrentPhrase = () => {
+    if (!currentPayload) return;
+    savePhrase(currentPayload);
+    toast({ description: t('savedToastAdded') });
+  };
+
+  const handleRemoveCurrentPhrase = () => {
+    if (!savedMatch) return;
+    deletePhrase(savedMatch.id);
+    toast({ description: t('savedToastRemoved') });
+  };
+
+  const handleClearSaved = () => {
+    if (!phrases.length) return;
+    clearAll();
+    toast({ description: t('savedToastCleared') });
+  };
+
   const tips = useMemo(() => {
     const raw = t.raw('tips');
     return Array.isArray(raw) ? (raw as string[]) : [];
@@ -145,6 +213,33 @@ export default function TranslatePage() {
     const raw = t.raw('fallbackSteps');
     return Array.isArray(raw) ? (raw as string[]) : [];
   }, [t]);
+
+  const savedPanelLabels = {
+    title: t('savedTitle'),
+    description: t('savedSubtitle'),
+    emptyTitle: t('savedEmptyTitle'),
+    emptyDescription: t('savedEmptyDescription'),
+    practiceCta: t('savedPracticeCta'),
+    manageCta: t('savedManageCta'),
+    removeLabel: t('savedRemoveLabel'),
+    clearLabel: t('savedClearLabel'),
+    timestampLabel: (value: string) =>
+      t('savedTimestamp', {
+        value: savedTimestampFormatter.format(new Date(value)),
+      }),
+  } as const;
+
+  const savedPhrasesPane = (
+    <SavedPhrasesPanel
+      phrases={phrases}
+      directionLabelMap={directionLabelMap}
+      onRemove={deletePhrase}
+      onClear={handleClearSaved}
+      practiceHref={practiceHref}
+      manageHref={translatorSavedHref}
+      labels={savedPanelLabels}
+    />
+  );
 
   const workspacePaneClass = 'glass-card rounded-3xl p-5 shadow-lg';
   const workspacePane = (
@@ -241,6 +336,13 @@ export default function TranslatePage() {
         directionStatLabel={t('directionsGroupLabel')}
         charactersStatLabel={t('characterCount', { count: inputText.length, limit: MAX_CHARACTERS })}
         shortcutStatLabel={t('shortcutHint')}
+        saveLabel={t('savePhraseButton')}
+        savedLabel={t('savedPhraseButton')}
+        removeSavedLabel={t('removeSavedPhraseButton')}
+        onSavePhrase={handleSaveCurrentPhrase}
+        onRemoveSavedPhrase={handleRemoveCurrentPhrase}
+        canSave={Boolean(currentPayload)}
+        isSavedPhrase={isCurrentSaved}
       />
     </div>
   );
@@ -320,10 +422,13 @@ export default function TranslatePage() {
           className="glass-card rounded-3xl p-4 shadow-lg md:p-6"
         >
           <div className="md:hidden">
-            <Tabs value={mobileTab} onValueChange={(value) => setMobileTab(value as 'workspace' | 'history')}>
+            <Tabs value={mobileTab} onValueChange={(value) => setMobileTab(value as MobileTabValue)}>
               <TabsList className="w-full">
                 <TabsTrigger value="workspace" className="flex-1">
                   {t('workspaceTab')}
+                </TabsTrigger>
+                <TabsTrigger value="saved" className="flex-1">
+                  {t('savedTab')}
                 </TabsTrigger>
                 <TabsTrigger value="history" className="flex-1">
                   {t('historyTab')}
@@ -332,7 +437,10 @@ export default function TranslatePage() {
               <TabsContent value="workspace" className="mt-4">
                 {workspacePane}
               </TabsContent>
-              <TabsContent value="history" className="mt-4">
+              <TabsContent value="saved" className="mt-4">
+                {savedPhrasesPane}
+              </TabsContent>
+              <TabsContent value="history" className="mt-4 space-y-6">
                 {insightsPane}
               </TabsContent>
             </Tabs>
@@ -340,7 +448,10 @@ export default function TranslatePage() {
 
           <div className="hidden gap-6 md:grid md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
             {workspacePane}
-            {insightsPane}
+            <div className="space-y-6">
+              {savedPhrasesPane}
+              {insightsPane}
+            </div>
           </div>
         </section>
       </div>
@@ -399,11 +510,28 @@ function TranslationResult({
   directionStatLabel,
   charactersStatLabel,
   shortcutStatLabel,
+  saveLabel,
+  savedLabel,
+  removeSavedLabel,
+  onSavePhrase,
+  onRemoveSavedPhrase,
+  canSave = false,
+  isSavedPhrase = false,
 }: TranslationResultProps) {
   const showSkeleton = isTranslating && !translatedText;
+  const isSaved = Boolean(isSavedPhrase);
+  const canSavePhrase = Boolean(canSave);
+  const saveButtonDisabled = !translatedText || (!isSaved && !canSavePhrase);
+  const saveButtonHandler = () => {
+    if (isSaved) {
+      onRemoveSavedPhrase?.();
+    } else {
+      onSavePhrase?.();
+    }
+  };
   return (
     <div className="space-y-4 rounded-3xl border border-border/40 bg-background/60 p-5">
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
             {label}
@@ -412,25 +540,47 @@ function TranslationResult({
             <p className="text-xs text-muted-foreground">{detectedLanguageLabel}</p>
           ) : null}
         </div>
-        <Button
-          type="button"
-          variant="outline"
-          disabled={!translatedText}
-          onClick={onCopy}
-          className="rounded-full border-border/60 text-xs font-semibold"
-        >
-          {copyState === 'copied' ? (
-            <>
-              <Check className="mr-2 h-4 w-4" />
-              {copySuccessLabel}
-            </>
-          ) : (
-            <>
-              <Copy className="mr-2 h-4 w-4" />
-              {copyIdleLabel}
-            </>
-          )}
-        </Button>
+        <div className="flex flex-wrap gap-2">
+          <Button
+            type="button"
+            variant="outline"
+            disabled={!translatedText}
+            onClick={onCopy}
+            className="rounded-full border-border/60 text-xs font-semibold"
+          >
+            {copyState === 'copied' ? (
+              <>
+                <Check className="mr-2 h-4 w-4" />
+                {copySuccessLabel}
+              </>
+            ) : (
+              <>
+                <Copy className="mr-2 h-4 w-4" />
+                {copyIdleLabel}
+              </>
+            )}
+          </Button>
+          <Button
+            type="button"
+            variant={isSaved ? 'default' : 'secondary'}
+            disabled={saveButtonDisabled}
+            onClick={saveButtonHandler}
+            aria-label={isSaved ? removeSavedLabel : saveLabel}
+            className="rounded-full border-border/60 text-xs font-semibold"
+          >
+            {isSaved ? (
+              <>
+                <BookmarkCheck className="mr-2 h-4 w-4" />
+                {savedLabel}
+              </>
+            ) : (
+              <>
+                <BookmarkPlus className="mr-2 h-4 w-4" />
+                {saveLabel}
+              </>
+            )}
+          </Button>
+        </div>
       </div>
 
       <div

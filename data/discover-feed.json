@@ -111,5 +111,55 @@
       "ctaTarget": "external",
       "ctaUrl": "https://zoom.us/j/555123456"
     }
+  ],
+  "quests": [
+    {
+      "id": "weekly-listening",
+      "title": "Weekly Listening Loop",
+      "type": "weekly",
+      "progressPercent": 40,
+      "progressLabel": "2 / 5 sessions",
+      "xpReward": 150,
+      "currencyReward": 25,
+      "deadlineLabel": "3d left",
+      "cta": "Resume",
+      "ctaTarget": "practice",
+      "ctaUrl": "/practice"
+    },
+    {
+      "id": "daily-phrases",
+      "title": "Daily Phrase Sprint",
+      "type": "daily",
+      "progressPercent": 80,
+      "progressLabel": "8 / 10 phrases",
+      "xpReward": 75,
+      "currencyReward": 10,
+      "deadlineLabel": "2h left",
+      "cta": "Finish",
+      "ctaTarget": "translator",
+      "ctaUrl": "/translate"
+    }
+  ],
+  "community": [
+    {
+      "id": "badge-1",
+      "name": "Ana Stojanovska",
+      "summary": "Unlocked the City Storyteller badge by hosting a Discover walk.",
+      "highlightLabel": "+300 XP",
+      "updatedAt": "2025-11-18T10:00:00Z",
+      "cta": "Send kudos",
+      "ctaTarget": "discover",
+      "ctaUrl": "/discover"
+    },
+    {
+      "id": "badge-2",
+      "name": "Marko Ilioski",
+      "summary": "Finished the Squad Grammar quest with 4 friends.",
+      "highlightLabel": "Squad quest",
+      "updatedAt": "2025-11-19T08:00:00Z",
+      "cta": "View quest",
+      "ctaTarget": "profile",
+      "ctaUrl": "/profile"
+    }
   ]
 }

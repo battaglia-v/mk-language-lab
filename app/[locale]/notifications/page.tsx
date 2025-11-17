@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { NotificationsInbox } from '@/components/notifications/NotificationsInbox';
+import { ReminderSettingsCard } from '@/components/notifications/ReminderSettingsCard';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('notifications');
@@ -24,6 +25,8 @@ export default async function NotificationsPage() {
             </div>
           </div>
         </section>
+
+        <ReminderSettingsCard dataTestId="reminder-settings" />
 
         <NotificationsInbox className="rounded-[32px]" dataTestId="notifications-feed" />
       </div>

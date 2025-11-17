@@ -172,6 +172,9 @@
     "practiceTalismansEmpty": "Заработи талисман со 100% точност или серија од 10.",
     "practiceTalismanMultiplier": "+{value}% XP бонус",
     "practiceAudioPromptLabel": "Аудио задача",
+    "practiceSavedDeckTitle": "Сет од зачувани фрази",
+    "practiceSavedDeckLoading": "Се вчитуваат фразите од преведувачот…",
+    "practiceSavedDeckEmpty": "Зачувај преводи за да го отклучиш овој сет.",
     "quickPracticeLaunch": "Започни сесија",
     "quickPracticeLaunchDescription": "Отвори ја целосната лабораторија за брзи вежби.",
     "practiceProgressLabel": "Напредок на сесијата",
@@ -606,6 +609,7 @@
     "subtitle": "Преведувај помеѓу македонски и англиски.",
     "workspaceTab": "Работна површина",
     "historyTab": "Историја и совети",
+    "savedTab": "Зачувани фрази",
     "badge": "Алатка за преведување",
     "assistantTitle": "Преведувач",
     "assistantDescription": "Преведувај помеѓу македонски и англиски.",
@@ -666,6 +670,21 @@
     "resourcesTitle": "Бараш повеќе објаснувања?",
     "resourcesDescription": "Отвори проверени речници, граматички водичи и курирани македонски извори.",
     "resourcesCta": "Прегледај ресурси",
+    "savedTitle": "Зачувани фрази",
+    "savedSubtitle": "Креирај персонализирани сетови од преведувачот.",
+    "savedEmptyTitle": "Нема зачувани фрази",
+    "savedEmptyDescription": "Зачувај преводи за да направиш сопствен сет за вежбање.",
+    "savedPracticeCta": "Вежбај го сетот",
+    "savedManageCta": "Додај фрази",
+    "savedRemoveLabel": "Отстрани зачувана фраза",
+    "savedClearLabel": "Исчисти ги сите",
+    "savedTimestamp": "Зачувано {value}",
+    "savePhraseButton": "Зачувај фраза",
+    "savedPhraseButton": "Зачувано",
+    "removeSavedPhraseButton": "Отстрани",
+    "savedToastAdded": "Фразата е зачувана во твојата палета.",
+    "savedToastRemoved": "Фразата е отстранета од зачуваните.",
+    "savedToastCleared": "Зачуваните фрази се избришани.",
     "journeyPracticeTitle": "Поттици од патека: {journey}",
     "journeyPracticeDescription": "Вчитај куриран извадок за превод и дискусија со туторот.",
     "journeyPracticeLoad": "Вчитај во преведувачот",
@@ -735,6 +754,13 @@
           "description": "Работи на звуци, акцент и слушање преку насочени задачи."
         }
       }
+    },
+    "savedDeck": {
+      "badge": "Преведувачки сет",
+      "title": "Вежбаш зачувани фрази",
+      "description": "Тренингот ги користи фразите што ги зачува во преведувачот.",
+      "emptyDescription": "Зачувај барем една фраза за да го отклучиш сетот.",
+      "manageCta": "Отвори зачувани фрази"
     }
   },
   "libraryHub": {
@@ -1065,21 +1091,21 @@
     }
   },
   "footer": {
-    "createdWith": "Креирано со ❤️ од",
-    "vini": "Вини",
-    "and": "&",
-    "andri": "Андри",
-    "contentBy": "Сета содржина е курирана и валидирана од Андри, роден говорник на македонски и основач на",
-    "macedonianLanguageCorner": "Македонски Јазичен Кут",
+    "tagline": "Ежедневна македонска практика создадена со љубов.",
+    "contentBy": "Содржина од",
+    "macedonianLanguageCorner": "Macedonian Language Corner",
+    "product": "Производ",
+    "support": "Поддршка",
     "instagram": "Инстаграм",
-    "youtube": "YouTube",
-    "allLinks": "Сите Линкови",
+    "youtube": "Јутјуб",
+    "allLinks": "Види ги сите врски",
     "privacy": "Приватност",
     "terms": "Услови",
     "contact": "Контакт",
-    "tagline": "Учи македонски со интелигентни лекции, преведувачки алатки и дневни мисии.",
-    "product": "Производ",
-    "support": "Поддршка",
+    "createdWith": "Создадено со",
+    "and": "и",
+    "vini": "Винсент Баталија",
+    "andri": "Андријана",
     "allRightsReserved": "Сите права се задржани."
   },
   "userMenu": {
@@ -1337,24 +1363,6 @@
     "viewPrivacy": "View Privacy Policy",
     "backHome": "Назад кон почетна"
   },
-  "footer": {
-    "tagline": "Ежедневна македонска практика создадена со љубов.",
-    "contentBy": "Содржина од",
-    "macedonianLanguageCorner": "Macedonian Language Corner",
-    "product": "Производ",
-    "support": "Поддршка",
-    "instagram": "Инстаграм",
-    "youtube": "Јутјуб",
-    "allLinks": "Види ги сите врски",
-    "privacy": "Приватност",
-    "terms": "Услови",
-    "contact": "Контакт",
-    "createdWith": "Создадено со",
-    "and": "и",
-    "vini": "Винсент Баталија",
-    "andri": "Андријана",
-    "allRightsReserved": "Сите права се задржани."
-  },
   "onboarding": {
     "welcome": "Добредојдовте",
     "setupTitle": "Ајде да ја поставиме вашата мисија",
@@ -1405,7 +1413,14 @@
       "streak": "Серија",
       "days": "денови",
       "activeQuests": "Активни задачи",
-      "completedQuests": "Завршени оваа недела"
+      "completedQuests": "Завршени оваа недела",
+      "currency": "Валутa",
+      "currencyCaption": "Заработи камења преку задачи и значки",
+      "totalXPCaption": "Вкупно XP: {value}",
+      "xpProgress": "Следно ниво",
+      "xpProgressDetail": "{current} XP / {goal} XP",
+      "completedQuestsLabel": "{count} завршени оваа недела",
+      "leagueTier": "{tier} лига"
     },
     "quests": {
       "title": "Активни задачи",
@@ -1414,6 +1429,152 @@
     "badges": {
       "title": "Значки и признанија",
       "shopLink": "Посети продавница"
+    },
+    "xpProgress": "Напредок на ниво",
+    "xpProgressCaption": "до следно ниво",
+    "hearts": "Срца",
+    "heartsFull": "Целосно обновени",
+    "heartsNext": "уште {minutes} мин до ново срце",
+    "league": {
+      "status": "Лига • {tier}",
+      "title": "Табела на лигата",
+      "rankLabel": "Ранг {rank} во {tier}",
+      "streakLabel": "{days} дена серија",
+      "promotionLabel": "Топ {cutoff} одат нагоре",
+      "demotionLabel": "Долни {cutoff} паѓаат",
+      "progressLabel": "{percent}% до следната лига",
+      "memberStats": "{streak} дена • {xp} XP",
+      "youLabel": "Ти",
+      "trend": {
+        "up": "↑ Напредува",
+        "down": "↓ Пааѓа",
+        "neutral": "• Стабилно"
+      }
+    },
+    "activity": {
+      "title": "Топлинска мапа",
+      "subtitle": "Последни 4 недели XP",
+      "summary": "{completed} / {total} активни денови",
+      "xpLabel": "{value} XP заработени",
+      "legend": {
+        "complete": "Цел исполнета",
+        "partial": "Делумно",
+        "missed": "Пропуштено"
+      },
+      "tooltip": "{date}: {xp} XP • {minutes} мин"
+    },
+    "badgeShop": {
+      "title": "Продавница за значки",
+      "subtitle": "Носете нови козметики и засилувачи",
+      "description": "Трошете ги скапоцените камења на сезонски значки и препорачани засилувачи.",
+      "balance": "{gems} камења",
+      "balanceCaption": "Твоја залиха",
+      "cost": "{gems} камења",
+      "owned": "Поседувана",
+      "purchase": "Купи",
+      "rarity": {
+        "common": "Честа",
+        "rare": "Ретка",
+        "epic": "Епска",
+        "legendary": "Легендарна"
+      },
+      "success": {
+        "title": "Значката е отклучена",
+        "description": "Автоматски е додадена на профилот."
+      },
+      "error": {
+        "title": "Купувањето не успеа",
+        "description": "Обиди се повторно."
+      }
+    }
+  },
+  "discover": {
+    "hero": {
+      "badge": "Уреднички избор",
+      "title": "Откриј ја македонската култура, вести и мисии",
+      "subtitle": "Истражи курирани лекции, плејлисти и претстојни настани што одговараат на твоите цели.",
+      "systemsTitle": "Што е ново",
+      "systemsDiscover": "Курирани лекции и плејлисти",
+      "systemsEvents": "Word Lab сесии и AMA",
+      "updated": "Ажурирано {time}",
+      "ready": "Го полниме фидот..."
+    },
+    "filters": {
+      "all": "Сè"
+    },
+    "categories": {
+      "label": "Патеки за учење",
+      "title": "Избрани колекции",
+      "empty": "Моментално нема достапни колекции. Провери повторно наскоро!"
+    },
+    "events": {
+      "label": "Заедница",
+      "title": "Претстојни настани",
+      "subtitle": "Резервирај место за студиски сали, консултации и културни дружења.",
+      "emptyTitle": "Нема закажани сесии",
+      "emptyBody": "Во подготовка сме на следните Word Lab настани. Провери повторно наскоро!"
+    },
+    "actions": {
+      "refresh": "Освежи фид",
+      "refreshing": "Се освежува...",
+      "retry": "Обиди се повторно"
+    },
+    "error": {
+      "title": "Не успеавме да ја вчитаме Discover",
+      "description": "Освежи ја страницата или обиди се повторно наскоро."
+    },
+    "quests": {
+      "label": "Задачи",
+      "title": "Држи ги задачите живи",
+      "subtitle": "Следи XP, камења и рокови без да ја отвораш Practice.",
+      "retry": "Освежи задачи",
+      "empty": "Нема активни задачи. Провери ја Practice страница наскоро."
+    },
+    "community": {
+      "label": "Заедница",
+      "title": "Што постигна лабораторијата",
+      "subtitle": "Види што отклучија твоите соученици оваа недела.",
+      "empty": "Нема приказни во моментов."
+    }
+  },
+  "notifications": {
+    "title": "Нотификации",
+    "description": "Погледни потсетници и ажурирања",
+    "subtitle": "{count, plural, =0 {Сè е прочитано!} one {# непрочитана нотификација} other {# непрочитани нотификации}}",
+    "markRead": "Обележи како прочитано",
+    "viewAction": "Отвори",
+    "empty": {
+      "title": "Нема нотификации",
+      "description": "Ќе те известиме за серија, задачи и важни објави."
+    },
+    "error": {
+      "title": "Не успеавме да вчитаме",
+      "generic": "Обиди се повторно."
+    },
+    "settings": {
+      "title": "Контроли за потсетници",
+      "subtitle": "Мотивација кога ти одговара",
+      "description": "Постави тивки периоди, предупредувања за серијата и дневни потсетници.",
+      "quietHours": {
+        "label": "Тивки часови",
+        "description": "Замолчи нотификации додека спиеш или работиш",
+        "to": "до"
+      },
+      "streakWarnings": {
+        "label": "Предупредувања за серија",
+        "description": "Извести ме кога серијата е во опасност"
+      },
+      "dailyNudges": {
+        "label": "Дневни потсетници",
+        "description": "Дознај мотивација во избраните прозорци"
+      },
+      "save": "Зачувај поставки",
+      "saving": "Се зачувува...",
+      "savedTitle": "Поставките се ажурирани",
+      "savedDescription": "Ќе добиваш нотификации во вистинско време.",
+      "errorTitle": "Не успеавме да зачуваме",
+      "errorDescription": "Обиди се повторно наскоро.",
+      "footerHint": "Важи за веб, мобилни и push потсетници."
     }
   }
 }

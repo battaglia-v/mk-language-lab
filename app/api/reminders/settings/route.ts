@@ -11,6 +11,7 @@ const settingsSchema = z.object({
   quietHoursEnd: z.number().int().min(0).max(23),
   streakRemindersEnabled: z.boolean().default(true),
   dailyNudgesEnabled: z.boolean().default(true),
+  reminderWindows: z.array(z.string()).default([]),
 });
 
 /**
@@ -24,20 +25,22 @@ export async function GET() {
   }
 
   try {
-    // For now, we'll use Mission table to store reminder windows
-    // In production, you might want a dedicated ReminderSettings table
-    const mission = await prisma.mission.findUnique({
-      where: { userId: session.user.id },
-    });
+    const [mission, storedSettings] = await Promise.all([
+      prisma.mission.findUnique({
+        where: { userId: session.user.id },
+      }),
+      prisma.reminderSettings.findUnique({
+        where: { userId: session.user.id },
+      }),
+    ]);
 
-    // Default settings if no mission exists
     const settings = {
-      quietHoursEnabled: false,
-      quietHoursStart: 22, // 10 PM
-      quietHoursEnd: 8, // 8 AM
-      streakRemindersEnabled: true,
-      dailyNudgesEnabled: true,
-      reminderWindows: mission?.reminderWindows || [],
+      quietHoursEnabled: storedSettings?.quietHoursEnabled ?? false,
+      quietHoursStart: storedSettings?.quietHoursStart ?? 22,
+      quietHoursEnd: storedSettings?.quietHoursEnd ?? 8,
+      streakRemindersEnabled: storedSettings?.streakRemindersEnabled ?? true,
+      dailyNudgesEnabled: storedSettings?.dailyNudgesEnabled ?? true,
+      reminderWindows: mission?.reminderWindows ?? [],
     };
 
     return NextResponse.json({ settings });
@@ -64,26 +67,50 @@ export async function POST(request: Request) {
     const body = await request.json();
     const data = settingsSchema.parse(body);
 
-    // Store settings in user metadata or dedicated table
-    // For now, we'll use a simple approach with Mission table
-    await prisma.mission.upsert({
-      where: { userId: session.user.id },
-      update: {
-        // Store as JSON in a metadata field (you might want to add this to schema)
-        updatedAt: new Date(),
-      },
-      create: {
-        userId: session.user.id,
-        goal: 'conversation', // default
-        level: 'beginner', // default
-        dailyGoalMinutes: 20,
-        reminderWindows: [],
-      },
-    });
+    const [settings] = await Promise.all([
+      prisma.reminderSettings.upsert({
+        where: { userId: session.user.id },
+        create: {
+          userId: session.user.id,
+          quietHoursEnabled: data.quietHoursEnabled,
+          quietHoursStart: data.quietHoursStart,
+          quietHoursEnd: data.quietHoursEnd,
+          streakRemindersEnabled: data.streakRemindersEnabled,
+          dailyNudgesEnabled: data.dailyNudgesEnabled,
+        },
+        update: {
+          quietHoursEnabled: data.quietHoursEnabled,
+          quietHoursStart: data.quietHoursStart,
+          quietHoursEnd: data.quietHoursEnd,
+          streakRemindersEnabled: data.streakRemindersEnabled,
+          dailyNudgesEnabled: data.dailyNudgesEnabled,
+        },
+      }),
+      prisma.mission.upsert({
+        where: { userId: session.user.id },
+        update: {
+          reminderWindows: data.reminderWindows,
+        },
+        create: {
+          userId: session.user.id,
+          goal: 'conversation',
+          level: 'beginner',
+          dailyGoalMinutes: 20,
+          reminderWindows: data.reminderWindows,
+        },
+      }),
+    ]);
 
     return NextResponse.json({
       success: true,
-      settings: data,
+      settings: {
+        quietHoursEnabled: settings.quietHoursEnabled,
+        quietHoursStart: settings.quietHoursStart,
+        quietHoursEnd: settings.quietHoursEnd,
+        streakRemindersEnabled: settings.streakRemindersEnabled,
+        dailyNudgesEnabled: settings.dailyNudgesEnabled,
+        reminderWindows: data.reminderWindows,
+      },
     });
   } catch (error) {
     if (error instanceof z.ZodError) {

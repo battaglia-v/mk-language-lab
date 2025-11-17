@@ -42,9 +42,36 @@ export type DiscoverEvent = {
   ctaUrl?: string | null;
 };
 
+export type DiscoverQuestHighlight = {
+  id: string;
+  title: string;
+  type: string;
+  progressPercent: number;
+  progressLabel: string;
+  xpReward: number;
+  currencyReward: number;
+  deadlineLabel: string | null;
+  cta: string;
+  ctaTarget?: DiscoverLinkTarget;
+  ctaUrl?: string | null;
+};
+
+export type DiscoverCommunityHighlight = {
+  id: string;
+  name: string;
+  summary: string;
+  highlightLabel: string;
+  updatedAt: string;
+  cta: string;
+  ctaTarget?: DiscoverLinkTarget;
+  ctaUrl?: string | null;
+};
+
 export type DiscoverFeed = {
   categories: DiscoverCategory[];
   events: DiscoverEvent[];
+  quests: DiscoverQuestHighlight[];
+  community: DiscoverCommunityHighlight[];
 };
 
 const FALLBACK_DISCOVER_FEED = fallbackDiscoverFeed as DiscoverFeed;

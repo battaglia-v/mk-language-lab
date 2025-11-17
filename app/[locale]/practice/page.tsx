@@ -4,11 +4,14 @@ import { useMemo, useCallback } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useLocale, useTranslations } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { cn } from '@/lib/utils';
 import type { LucideIcon } from 'lucide-react';
 import { Flame, MessageCircle, Sparkles, Target } from 'lucide-react';
+import { useSavedPhrases } from '@/components/translate/useSavedPhrases';
 
 // Dynamic import for QuickPracticeWidget to reduce initial bundle size
 const QuickPracticeWidget = dynamic(
@@ -31,11 +34,16 @@ export default function PracticeHubPage() {
   const t = useTranslations('practiceHub');
   const homeT = useTranslations('home');
   const locale = useLocale();
+  const searchParams = useSearchParams();
+  const { phrases } = useSavedPhrases();
+  const savedDeckActive = searchParams?.get('practiceFixture') === 'saved-phrases';
+  const hasSavedPhrases = phrases.length > 0;
 
   const buildHref = useCallback(
     (path: string) => (path.startsWith('/') ? `/${locale}${path}` : `/${locale}/${path}`),
     [locale],
   );
+  const translatorSavedHref = buildHref('/translate?panel=saved');
 
   const directionLabel = locale === 'mk' ? 'МК → ЕН' : 'Mk → En';
 
@@ -76,6 +84,23 @@ const practiceSections = useMemo(
     ],
     [t, buildHref],
   );
+
+  const savedDeckBanner = savedDeckActive ? (
+    <Alert className="mb-4 rounded-3xl border-primary/30 bg-primary/5 text-white">
+      <AlertTitle className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+        {t('savedDeck.badge')}
+      </AlertTitle>
+      <AlertDescription className="space-y-3">
+        <p className="text-lg font-semibold text-white">{t('savedDeck.title')}</p>
+        <p className="text-sm text-slate-100">
+          {hasSavedPhrases ? t('savedDeck.description') : t('savedDeck.emptyDescription')}
+        </p>
+        <Button asChild variant="secondary" className="rounded-2xl text-sm font-semibold">
+          <Link href={translatorSavedHref}>{t('savedDeck.manageCta')}</Link>
+        </Button>
+      </AlertDescription>
+    </Alert>
+  ) : null;
 
   return (
     <div className="page-shell">
@@ -123,6 +148,7 @@ const practiceSections = useMemo(
         <div data-testid="practice-workspace" className="grid gap-6 lg:grid-cols-[minmax(0,2.25fr),minmax(0,1fr)]">
           <div className="space-y-6">
             <div className="glass-card rounded-[32px] p-2">
+              {savedDeckBanner}
               <QuickPracticeWidget
                 className="rounded-[28px] border border-white/10 bg-[#04070f]/70"
                 layout="default"

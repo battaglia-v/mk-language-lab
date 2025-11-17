@@ -15,12 +15,38 @@ export type ProfileSummary = {
     total: number;
     weekly: number;
   };
+  xpProgress: {
+    percentComplete: number;
+    xpInCurrentLevel: number;
+    xpForNextLevel: number;
+  };
   streakDays: number;
   quests: {
     active: number;
     completedThisWeek: number;
   };
+  hearts: {
+    current: number;
+    max: number;
+    minutesUntilNext: number;
+    isFull: boolean;
+  };
+  currency: {
+    gems: number;
+    coins: number;
+  };
+  league: {
+    tier: string;
+    nextTier?: string | null;
+    daysUntilNextTier?: number | null;
+  };
   badges: ProfileBadge[];
+  activityHeatmap: Array<{
+    date: string;
+    xp: number;
+    practiceMinutes: number;
+    status: 'complete' | 'partial' | 'missed';
+  }>;
 };
 
 const DEV_FIXTURE_PROFILE = fallbackProfileSummary as ProfileSummary;

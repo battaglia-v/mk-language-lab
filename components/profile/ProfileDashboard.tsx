@@ -1,12 +1,15 @@
 'use client';
 
-import { useProfileSummaryQuery } from '@mk/api-client';
+import { useLeagueStandingsQuery, useProfileSummaryQuery } from '@mk/api-client';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { ProfileHeader } from './ProfileHeader';
 import { QuestsSection } from './QuestsSection';
 import { BadgesSection } from './BadgesSection';
 import { StatsSection } from './StatsSection';
+import { BadgeShopPreview } from './BadgeShopPreview';
+import { LeagueStandingsCard } from './LeagueStandingsCard';
+import { ProfileActivityMap } from './ProfileActivityMap';
 
 type ProfileDashboardProps = {
   className?: string;
@@ -15,8 +18,16 @@ type ProfileDashboardProps = {
 
 export function ProfileDashboard({ className, dataTestId }: ProfileDashboardProps) {
   const t = useTranslations('profile');
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const { data: profile, isLoading, error } = useProfileSummaryQuery({
-    baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,
+    baseUrl: apiBaseUrl,
+  });
+  const {
+    data: leagueStandings,
+    isLoading: isLeagueLoading,
+    error: leagueError,
+  } = useLeagueStandingsQuery({
+    baseUrl: apiBaseUrl,
   });
 
   const containerClasses = cn('space-y-6', className);
@@ -55,15 +66,28 @@ export function ProfileDashboard({ className, dataTestId }: ProfileDashboardProp
         level={profile.level}
         xp={profile.xp}
         streakDays={profile.streakDays}
+        xpProgress={profile.xpProgress}
+        hearts={profile.hearts}
+        league={profile.league}
       />
 
       <StatsSection
         xp={profile.xp}
+        xpProgress={profile.xpProgress}
         streakDays={profile.streakDays}
         quests={profile.quests}
+        hearts={profile.hearts}
+        currency={profile.currency}
+        league={profile.league}
       />
 
+      <LeagueStandingsCard data={leagueStandings} isLoading={isLeagueLoading} error={leagueError} />
+
       <QuestsSection />
+
+      <ProfileActivityMap entries={profile.activityHeatmap} />
+
+      <BadgeShopPreview />
 
       <BadgesSection badges={profile.badges} />
     </div>

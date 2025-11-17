@@ -31,8 +31,10 @@ export async function GET() {
         where: { userId: session.user.id },
         select: { badgeId: true },
       }),
-      prisma.currency.findUnique({
+      prisma.currency.upsert({
         where: { userId: session.user.id },
+        create: { userId: session.user.id },
+        update: {},
       }),
     ]);
 

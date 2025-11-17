@@ -49,8 +49,15 @@ async function main() {
     problems.push('Cron summary reported ok=false');
   }
 
+  const errorBudget = Number.parseInt(process.env.REMINDER_CRON_ERROR_BUDGET ?? '3', 10);
+  const hasSevereErrors = Number.isFinite(errorBudget) && summary.errors > errorBudget;
   if (summary.errors > 0) {
-    problems.push(`Encountered ${summary.errors} Expo ticket error(s)`);
+    const message = `Encountered ${summary.errors} Expo ticket error(s)`;
+    if (hasSevereErrors) {
+      problems.push(message + ` (budget ${errorBudget})`);
+    } else {
+      console.warn(`[reminder-cron] ${message}; below error budget of ${errorBudget}`);
+    }
   }
 
   if (summary.revoked > 0) {

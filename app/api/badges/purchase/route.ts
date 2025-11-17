@@ -53,11 +53,13 @@ export async function POST(request: Request) {
     }
 
     // Check if user has enough gems
-    const currency = await prisma.currency.findUnique({
+    const currency = await prisma.currency.upsert({
       where: { userId: session.user.id },
+      create: { userId: session.user.id },
+      update: {},
     });
 
-    const currentGems = currency?.gems ?? 0;
+    const currentGems = currency.gems;
     if (currentGems < badge.costGems) {
       return NextResponse.json(
         {

@@ -328,6 +328,7 @@ _Latest run (2025-11-13)_: `npx eslint apps/mobile`
 - Backfill monitoring hooks (e.g., counter metrics, alert when `sent === 0` for >24 h) so failures surface quickly.
 **Progress (2025-11-13)**:
 - Cron endpoint now rejects missing/invalid `CRON_SECRET`, logs structured run summaries, only stamps `lastReminderSentAt` for successful tickets, and automatically revokes `DeviceNotRegistered` tokens. `lib/expo-push` now returns per-ticket results so revocations/metrics work, and `notes.md` captures the env prerequisites + placeholder device validation log. Physical Android/iOS validation + production cron curl remain blocked until hardware access is available.
+_2025-11-19 audit_: Requirements + env notes reviewed; no device screenshots or cron evidence have been captured yet, so this step stays pending until hardware runs happen.
 **Success Criteria**:
 - Toggling reminder windows registers push tokens, persists `lastSuccessfulSync`, and scheduling survives app restarts.
 - Manual cron invocation delivers a push to the device (foreground + background) and updates `lastReminderSentAt`.
@@ -457,6 +458,7 @@ _Latest run (2025-11-13)_: `npx eslint apps/mobile`
 - Update the Step 14 device validation table in `docs/projects/2025-12-react-native-expo/notes.md` with the dates/devices/sdk versions plus links to evidence (screenshots, log snippets).
 **Progress (2025-11-14)**:
 - Documented platform-specific run books (Android/iOS) plus monitoring expectations in `docs/projects/2025-12-react-native-expo/notes.md`. Awaiting physical hardware + production cron access to capture evidence.
+_2025-11-19 audit_: Confirmed the run books remain accurate and that no additional validation artifacts exist yet; Step 18 remains blocked on the same hardware + cron access dependencies as Step 14.
 **Success Criteria**:
 - Device validation log lists both Android and iOS runs with proof of reminder delivery (foreground/background) plus Prisma row updates.
 - Cron summary shows `sent > 0` with valid `windows`/`revoked` counts, and monitoring instructions exist for on-call follow-up.

@@ -3,6 +3,12 @@ import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import fallbackProfileSummary from '@/data/profile-summary.json';
 import type { ProfileSummary } from '@mk/api-client';
+import {
+  MAX_HEARTS,
+  calculateCurrentHearts,
+  getLevelProgress,
+  getLeagueTierFromStreak,
+} from '@mk/gamification';
 
 export const dynamic = 'force-dynamic';
 
@@ -40,8 +46,17 @@ export async function GET() {
 async function buildProfileSummary(userId: string): Promise<ProfileSummary> {
   const now = new Date();
   const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+  const twentyEightDaysAgo = new Date(now.getTime() - 28 * 24 * 60 * 60 * 1000);
 
-  const [user, gameProgress, journeys, weeklyAttempts, userBadges, weeklyQuests] = await Promise.all([
+  const [
+    user,
+    gameProgress,
+    journeys,
+    recentAttempts,
+    userBadges,
+    weeklyQuests,
+    currency,
+  ] = await Promise.all([
     prisma.user.findUnique({ where: { id: userId }, select: { name: true } }),
     prisma.gameProgress.findUnique({ where: { userId } }),
     prisma.journeyProgress.findMany({
@@ -51,7 +66,7 @@ async function buildProfileSummary(userId: string): Promise<ProfileSummary> {
     prisma.exerciseAttempt.findMany({
       where: {
         userId,
-        attemptedAt: { gte: sevenDaysAgo },
+        attemptedAt: { gte: twentyEightDaysAgo },
       },
       select: { attemptedAt: true },
     }),
@@ -67,9 +82,15 @@ async function buildProfileSummary(userId: string): Promise<ProfileSummary> {
         updatedAt: { gte: sevenDaysAgo },
       },
     }),
+    prisma.currency.upsert({
+      where: { userId },
+      create: { userId },
+      update: {},
+    }),
   ]);
 
   const xpTotal = gameProgress?.xp ?? 0;
+  const weeklyAttempts = recentAttempts.filter((attempt) => attempt.attemptedAt >= sevenDaysAgo);
   const weeklyXp = weeklyAttempts.length * XP_PER_REVIEW;
   const streakDays = gameProgress?.streak ?? 0;
   const level = formatLevel(gameProgress?.level ?? 'beginner');
@@ -100,6 +121,15 @@ async function buildProfileSummary(userId: string): Promise<ProfileSummary> {
     });
   }
 
+  const xpProgress = getLevelProgress(xpTotal);
+  const heartSnapshot = calculateCurrentHearts({
+    currentHearts: gameProgress?.hearts ?? MAX_HEARTS,
+    maxHearts: MAX_HEARTS,
+    lastPracticeDate: gameProgress?.lastPracticeDate ?? null,
+    currentDate: now,
+  });
+  const leagueTier = getLeagueTierFromStreak(streakDays);
+
   return {
     name: user?.name ?? FALLBACK_PROFILE.name,
     level,
@@ -107,12 +137,33 @@ async function buildProfileSummary(userId: string): Promise<ProfileSummary> {
       total: xpTotal,
       weekly: weeklyXp,
     },
+    xpProgress: {
+      percentComplete: xpProgress.percentComplete,
+      xpInCurrentLevel: xpProgress.xpInCurrentLevel,
+      xpForNextLevel: xpProgress.xpForNextLevel,
+    },
     streakDays,
     quests: {
       active: questsActive,
       completedThisWeek: questsCompleted,
     },
+    hearts: {
+      current: heartSnapshot.currentHearts,
+      max: MAX_HEARTS,
+      minutesUntilNext: heartSnapshot.minutesUntilNextHeart,
+      isFull: heartSnapshot.isFullyRegenerated,
+    },
+    currency: {
+      gems: currency.gems,
+      coins: currency.coins,
+    },
+    league: {
+      tier: leagueTier,
+      nextTier: getNextTier(leagueTier),
+      daysUntilNextTier: getDaysUntilNextTier(leagueTier, streakDays),
+    },
     badges,
+    activityHeatmap: buildActivityHeatmap({ attempts: recentAttempts, now }),
   };
 }
 
@@ -165,4 +216,67 @@ function buildBadges(context: BadgeContext): ProfileSummary['badges'] {
   });
 
   return badges;
+}
+
+function getNextTier(tier: string): string | null {
+  const order = ['bronze', 'silver', 'gold', 'platinum', 'diamond'];
+  const index = order.indexOf(tier);
+  if (index === -1 || index === order.length - 1) {
+    return null;
+  }
+  return order[index + 1];
+}
+
+function getDaysUntilNextTier(tier: string, streakDays: number): number | null {
+  const thresholds: Record<string, number> = {
+    bronze: 0,
+    silver: 7,
+    gold: 21,
+    platinum: 50,
+    diamond: 100,
+  };
+  const nextTier = getNextTier(tier);
+  if (!nextTier) return null;
+  const target = thresholds[nextTier];
+  return Math.max(0, target - streakDays);
+}
+
+type ActivityAttempt = { attemptedAt: Date };
+
+function buildActivityHeatmap({
+  attempts,
+  now,
+  days = 28,
+}: {
+  attempts: ActivityAttempt[];
+  now: Date;
+  days?: number;
+}): ProfileSummary['activityHeatmap'] {
+  const start = new Date(now);
+  start.setUTCHours(0, 0, 0, 0);
+  start.setUTCDate(start.getUTCDate() - (days - 1));
+
+  const counts = new Map<string, number>();
+  attempts.forEach((attempt) => {
+    const dateKey = attempt.attemptedAt.toISOString().slice(0, 10);
+    counts.set(dateKey, (counts.get(dateKey) ?? 0) + 1);
+  });
+
+  const entries: ProfileSummary['activityHeatmap'] = [];
+  for (let i = 0; i < days; i += 1) {
+    const date = new Date(start.getTime() + i * 24 * 60 * 60 * 1000);
+    const isoDate = date.toISOString().slice(0, 10);
+    const attemptsForDay = counts.get(isoDate) ?? 0;
+    const xp = attemptsForDay * XP_PER_REVIEW;
+    const practiceMinutes = attemptsForDay * 3;
+    let status: ProfileSummary['activityHeatmap'][number]['status'] = 'missed';
+    if (xp >= 60) {
+      status = 'complete';
+    } else if (xp > 0) {
+      status = 'partial';
+    }
+    entries.push({ date: isoDate, xp, practiceMinutes, status });
+  }
+
+  return entries;
 }
