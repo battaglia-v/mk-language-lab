@@ -1,10 +1,10 @@
 'use client';
 
-import { useCallback, useMemo, type CSSProperties, type ReactNode } from 'react';
+import { useCallback, useMemo, type ReactNode } from 'react';
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import clsx from 'clsx';
-import { WebButton, WebCard, WebProgressRing, WebStatPill } from '@mk/ui';
+import { WebButton, WebProgressRing, WebStatPill } from '@mk/ui';
 import { getLocalMissionStatus, type MissionStatus } from '@mk/api-client';
 import {
   AlertCircle,
@@ -20,6 +20,7 @@ import {
   Target,
 } from 'lucide-react';
 import { useMissionStatusResource } from '@/hooks/useMissionStatus';
+import { CollapsiblePanel } from '@/components/layout/CollapsiblePanel';
 
 export default function HomePage() {
   const locale = useLocale();
@@ -53,29 +54,23 @@ export default function HomePage() {
     [buildHref]
   );
 
-  const shellClasses = 'section-container section-container-wide section-spacing-lg space-y-6 text-slate-100';
-  const glassCard = 'backdrop-blur-[22px]';
-  const cardSurfaceStyle: CSSProperties = {
-    background: 'linear-gradient(140deg, rgba(7,11,24,0.95), rgba(17,23,41,0.9))',
-    border: '1px solid rgba(255,255,255,0.08)',
-    color: '#eff2ff',
-    boxShadow: '0 35px 60px rgba(1,3,12,0.55)',
-  };
-
   return (
-    <div className="relative min-h-screen bg-[#030712] text-slate-100">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_top,_rgba(178,108,255,0.25),_transparent_65%)] blur-3xl opacity-80" />
-      <div className={clsx('relative', shellClasses)} role="region" aria-label="Mission Control Dashboard">
+    <div className="minimal-shell">
+      <div
+        className="minimal-shell-content section-container section-container-wide section-spacing-xl"
+        role="region"
+        aria-label="Mission Control Dashboard"
+      >
         <header className="space-y-2">
-          <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-rose-300">
+          <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
             <Sparkles className="h-4 w-4" aria-hidden="true" /> Mission Control
           </p>
-          <h1 className="text-3xl font-semibold leading-tight text-white md:text-4xl">
-            Stay on streak, power through missions, and keep every surface in sync.
+          <h1 className="text-3xl font-semibold leading-tight text-foreground md:text-[2.75rem]">
+            Stay on streak with a calm dashboard designed for one clear action per fold.
           </h1>
-          <p className="max-w-2xl text-base text-slate-300">
-            The dashboard mirrors the mobile blueprint: streak-first hero, mission checklist, coach tips, review rails,
-            and community highlights – all tuned for quick check-ins or deep study sessions.
+          <p className="max-w-2xl text-base text-muted-foreground">
+            Mission Control mirrors the mobile blueprint but pares it down to essentials: a streak-first hero and a slim CTA
+            rail above the fold, with the rest tucked into calm accordions for deeper dives.
           </p>
         </header>
 
@@ -83,42 +78,21 @@ export default function HomePage() {
           <ErrorBanner message={missionError ?? 'Unable to load mission data.'} onRetry={refreshMission} />
         ) : null}
 
-        <MissionHero
-          mission={mission}
-          isLoading={missionState === 'loading'}
-          buildHref={buildHref}
-          cardClassName={glassCard}
-          cardSurfaceStyle={cardSurfaceStyle}
-        />
+        <div className="fold-grid">
+          <MissionHero mission={mission} isLoading={missionState === 'loading'} buildHref={buildHref} />
+          <QuickActions actions={quickActions} isLoading={missionState === 'loading'} />
+        </div>
 
-        <QuickActions
-          actions={quickActions}
-          isLoading={missionState === 'loading'}
-          cardClassName={glassCard}
-          cardSurfaceStyle={cardSurfaceStyle}
-        />
-
-        <div className="grid gap-6 lg:grid-cols-[1.8fr,1fr]">
-          <div className="space-y-6">
-            <MissionChecklist
-              checklist={mission.checklist}
-              isLoading={missionState === 'loading'}
-              cardClassName={glassCard}
-              cardSurfaceStyle={cardSurfaceStyle}
-            />
-            <CoachTips
-              tips={mission.coachTips}
-              isLoading={missionState === 'loading'}
-              cardClassName={glassCard}
-              cardSurfaceStyle={cardSurfaceStyle}
-            />
-          </div>
-          <ReviewClusters
-            clusters={mission.reviewClusters}
-            isLoading={missionState === 'loading'}
-            cardClassName={glassCard}
-            cardSurfaceStyle={cardSurfaceStyle}
-          />
+        <div className="space-y-4" aria-label="Mission secondary modules">
+          <CollapsiblePanel eyebrow="Checklist" title="Stay on target" description="Track the three tasks that keep your streak safe.">
+            <MissionChecklist checklist={mission.checklist} isLoading={missionState === 'loading'} />
+          </CollapsiblePanel>
+          <CollapsiblePanel eyebrow="Coach tips" title="Micro-guidance" description="Short nudges from your coach when you have more time.">
+            <CoachTips tips={mission.coachTips} isLoading={missionState === 'loading'} />
+          </CollapsiblePanel>
+          <CollapsiblePanel eyebrow="Review" title="Accuracy focus" description="See the weakest clusters only when you expand this rail.">
+            <ReviewClusters clusters={mission.reviewClusters} isLoading={missionState === 'loading'} />
+          </CollapsiblePanel>
         </div>
       </div>
     </div>
@@ -129,14 +103,10 @@ function MissionHero({
   mission,
   isLoading,
   buildHref,
-  cardClassName = '',
-  cardSurfaceStyle,
 }: {
   mission: MissionStatus;
   isLoading: boolean;
   buildHref: (path: string) => string;
-  cardClassName?: string;
-  cardSurfaceStyle: CSSProperties;
 }) {
   const xpProgress = mission.xp.target > 0 ? Math.min(mission.xp.earned / mission.xp.target, 1) : 0;
   const cycleEndsLabel = formatCycleWindow(mission.cycle.endsAt);
@@ -144,15 +114,11 @@ function MissionHero({
   const heartsStat = `${mission.heartsRemaining}/5 hearts`;
 
   return (
-    <WebCard
-      style={{ ...cardSurfaceStyle, padding: 32 }}
-      className={clsx(cardClassName)}
-      data-testid="mission-hero-card"
-    >
+    <section className="neutral-panel" data-testid="mission-hero-card">
       <div className="grid gap-8 lg:grid-cols-[1.35fr,1fr]">
         <div className="space-y-4">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="rounded-full bg-[var(--brand-red,#e63946)]/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[var(--brand-red,#e63946)]">
+            <span className="rounded-full bg-muted px-3 py-1 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
               {mission.cycle.type} mission
             </span>
             <span className="text-sm text-muted-foreground">Resets {cycleEndsLabel}</span>
@@ -160,7 +126,7 @@ function MissionHero({
           </div>
           <h2 className="text-3xl font-semibold text-foreground md:text-4xl">{mission.name}</h2>
           <p className="text-base text-muted-foreground">
-            Earn {mission.xp.target} XP to stay in the streak club. Celebrate wins, prioritize weak clusters, and keep the translator inbox tidy.
+            Earn {mission.xp.target} XP to stay in the streak club. Prioritize weak clusters and keep the translator inbox tidy.
           </p>
           <div className="flex flex-wrap gap-3">
             <WebStatPill icon={<Flame className="h-4 w-4" aria-hidden="true" />} label="Streak" value={streakStat} accent="gold" />
@@ -181,14 +147,14 @@ function MissionHero({
             </WebButton>
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center gap-4 rounded-3xl bg-gradient-to-br from-[var(--brand-gold,#f4a261)]/10 via-white to-[var(--brand-plum,#7a4988)]/15 p-6">
+        <div className="flex flex-col items-center justify-center gap-4 rounded-3xl bg-muted p-6 text-center">
           <WebProgressRing progress={xpProgress} label="XP" value={`${mission.xp.earned}/${mission.xp.target}`} />
           <p className="text-sm text-muted-foreground">
             {xpProgress === 1 ? 'Target met! claim rewards' : 'Keep pushing – streak bonus unlocks at 100%.'}
           </p>
         </div>
       </div>
-    </WebCard>
+    </section>
   );
 }
 
@@ -201,71 +167,44 @@ type QuickAction = {
   accent: 'primary' | 'secondary';
 };
 
-function QuickActions({
-  actions,
-  isLoading,
-  cardClassName = '',
-  cardSurfaceStyle,
-}: {
-  actions: QuickAction[];
-  isLoading: boolean;
-  cardClassName?: string;
-  cardSurfaceStyle: CSSProperties;
-}) {
+function QuickActions({ actions, isLoading }: { actions: QuickAction[]; isLoading: boolean }) {
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <aside className="neutral-panel neutral-panel-muted cta-rail" aria-label="Primary mission actions">
       {actions.map((action) => (
-        <WebCard
-          key={action.id}
-          style={{ ...cardSurfaceStyle, padding: 24 }}
-          className={clsx(cardClassName, isLoading && 'animate-pulse opacity-70')}
-        >
+        <div key={action.id} className="rounded-2xl border border-dashed border-[var(--fold-border)] bg-white/70 p-4">
           <div
-            className={clsx('mb-3 inline-flex h-10 w-10 items-center justify-center rounded-2xl text-white shadow-md', {
-              'bg-[var(--brand-red,#e63946)]': action.accent === 'primary',
-              'bg-[var(--brand-gold,#f4a261)] text-[#201404]': action.accent === 'secondary',
+            className={clsx('mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl text-sm font-semibold text-foreground', {
+              'bg-black/5 text-foreground': action.accent === 'primary',
+              'bg-[#fdf8ee] text-foreground': action.accent === 'secondary',
             })}
           >
             {action.icon}
           </div>
-          <h3 className="text-lg font-semibold text-white">{action.title}</h3>
-          <p className="mt-1 text-sm text-slate-300">{action.description}</p>
-          <Link
-            href={action.href}
-            className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[var(--brand-red,#e63946)]"
-          >
-            Open
+          <h3 className="text-base font-semibold text-foreground">{action.title}</h3>
+          <p className="mt-1 text-sm text-muted-foreground">{action.description}</p>
+          <Link href={action.href} className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+            {isLoading ? 'Loading…' : 'Open'}
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
-        </WebCard>
+        </div>
       ))}
-    </div>
+    </aside>
   );
 }
 
 function MissionChecklist({
   checklist,
   isLoading,
-  cardClassName = '',
-  cardSurfaceStyle,
 }: {
   checklist: MissionStatus['checklist'];
   isLoading: boolean;
-  cardClassName?: string;
-  cardSurfaceStyle: CSSProperties;
 }) {
   return (
-    <WebCard style={{ ...cardSurfaceStyle, padding: 24 }} className={clsx(cardClassName)}>
-      <div className="flex items-center justify-between gap-4">
-        <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-[var(--brand-gold-dark,#c0841a)]">Mission checklist</p>
-          <h3 className="text-xl font-semibold">Stay on target</h3>
-        </div>
-        {isLoading ? <LoadingBadge label="Syncing" /> : null}
-      </div>
-      <ul className="mt-6 space-y-4">
+    <div className="space-y-4">
+      {isLoading ? <LoadingBadge label="Syncing" /> : null}
+      <ul className="space-y-3">
         {checklist.map((item) => (
-          <li key={item.id} className="flex items-start justify-between gap-4 rounded-2xl border border-border/40 p-4">
+          <li key={item.id} className="flex items-start justify-between gap-4 rounded-2xl border border-[var(--fold-border)] bg-white p-4">
             <div className="flex items-start gap-3">
               <StatusIcon status={item.status} />
               <div>
@@ -277,68 +216,48 @@ function MissionChecklist({
           </li>
         ))}
       </ul>
-    </WebCard>
+    </div>
   );
 }
 
-function CoachTips({
-  tips,
-  isLoading,
-  cardClassName = '',
-  cardSurfaceStyle,
-}: {
-  tips: MissionStatus['coachTips'];
-  isLoading: boolean;
-  cardClassName?: string;
-  cardSurfaceStyle: CSSProperties;
-}) {
+function CoachTips({ tips, isLoading }: { tips: MissionStatus['coachTips']; isLoading: boolean }) {
   return (
-    <WebCard style={{ ...cardSurfaceStyle, padding: 24 }} className={clsx(cardClassName)}>
-      <SectionHeader title="Coach tips" subtitle="Micro-guidance" isLoading={isLoading} />
-      <div className="mt-6 grid gap-4 md:grid-cols-2">
+    <div className="space-y-4">
+      {isLoading ? <LoadingBadge label="Loading" /> : null}
+      <div className="grid gap-4 md:grid-cols-2">
         {tips.map((tip) => (
-          <div key={tip.id} className="rounded-2xl border border-border/30 p-4">
-            <p className="text-xs uppercase tracking-widest text-[var(--brand-plum,#7a4988)]">{tip.tag}</p>
+          <div key={tip.id} className="rounded-2xl border border-[var(--fold-border)] bg-white p-4">
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{tip.tag}</p>
             <h4 className="mt-2 text-base font-semibold text-foreground">{tip.title}</h4>
             <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{tip.body}</p>
           </div>
         ))}
       </div>
-    </WebCard>
+    </div>
   );
 }
 
-function ReviewClusters({
-  clusters,
-  isLoading,
-  cardClassName = '',
-  cardSurfaceStyle,
-}: {
-  clusters: MissionStatus['reviewClusters'];
-  isLoading: boolean;
-  cardClassName?: string;
-  cardSurfaceStyle: CSSProperties;
-}) {
+function ReviewClusters({ clusters, isLoading }: { clusters: MissionStatus['reviewClusters']; isLoading: boolean }) {
   return (
-    <WebCard style={{ ...cardSurfaceStyle, padding: 24 }} className={clsx(cardClassName)}>
-      <SectionHeader title="Smart review" subtitle="Accuracy focus" isLoading={isLoading} />
-      <div className="mt-6 space-y-4">
+    <div className="space-y-4">
+      {isLoading ? <LoadingBadge label="Loading" /> : null}
+      <div className="space-y-4">
         {clusters.map((cluster) => (
           <div key={cluster.id}>
             <div className="flex items-center justify-between text-sm">
               <span className="font-medium text-foreground">{cluster.label}</span>
               <span className="text-muted-foreground">{Math.round(cluster.accuracy * 100)}%</span>
             </div>
-            <div className="mt-2 h-2 rounded-full bg-border/50">
+            <div className="mt-2 h-2 rounded-full bg-muted">
               <div
-                className="h-full rounded-full bg-[var(--brand-red,#e63946)]"
+                className="h-full rounded-full bg-primary"
                 style={{ width: `${Math.min(cluster.accuracy * 100, 100)}%` }}
               />
             </div>
           </div>
         ))}
       </div>
-    </WebCard>
+    </div>
   );
 }
 
@@ -359,18 +278,6 @@ function ErrorBanner({ message, onRetry }: { message: string; onRetry: () => voi
           <RefreshCw className="h-4 w-4" aria-hidden="true" /> Retry
         </button>
       </div>
-    </div>
-  );
-}
-
-function SectionHeader({ title, subtitle, isLoading }: { title: string; subtitle: string; isLoading: boolean }) {
-  return (
-    <div className="flex items-center justify-between">
-      <div>
-        <p className="text-xs uppercase tracking-[0.3em] text-[var(--brand-gold-dark,#c0841a)]">{title}</p>
-        <h3 className="text-xl font-semibold">{subtitle}</h3>
-      </div>
-      {isLoading ? <LoadingBadge label="Loading" /> : null}
     </div>
   );
 }
