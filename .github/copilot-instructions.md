@@ -1,3 +1,175 @@
+# Copilot Coding Agent Instructions
+
+## Project Overview
+
+MK Language Lab (Македонски) is a modern, multilingual learning platform for Macedonian language learners. Built with cutting-edge technologies, it provides AI-powered conversations, interactive practice modules, translation tools, and curated news content.
+
+## Tech Stack & Architecture
+
+### Core Technologies
+- **Framework:** Next.js 15 (App Router) with TypeScript 5
+- **UI:** React 19, Tailwind CSS 4, shadcn/ui components
+- **Database:** Prisma ORM (SQLite for dev, PostgreSQL for production)
+- **AI/APIs:** OpenAI GPT-4o-mini, Google Cloud Translate API
+- **Localization:** next-intl with English and Macedonian support
+- **Testing:** Vitest (unit tests), Playwright (E2E tests)
+- **Monitoring:** Sentry for error tracking, Vercel Analytics
+- **Deployment:** Vercel with edge runtime support
+
+### Project Structure
+```
+.
+├── app/                          # Next.js App Router pages
+│   ├── [locale]/                # Locale-aware routes
+│   └── api/                     # API routes (translate, tutor, news)
+├── components/                   # React components
+│   └── ui/                      # shadcn/ui design system components
+├── lib/                         # Utility functions and helpers
+├── data/                        # Static content and data modules
+├── prisma/                      # Database schema and migrations
+├── messages/                    # i18n translation files (en.json, mk.json)
+├── hooks/                       # Custom React hooks
+├── types/                       # TypeScript type definitions
+├── e2e/                         # Playwright E2E tests
+├── docs/                        # Project documentation
+└── public/                      # Static assets
+```
+
+## Development Workflow
+
+### Prerequisites
+- Node.js 20+
+- npm (workspaces enabled)
+- SQLite (development) / PostgreSQL (production)
+
+### Essential Commands
+```bash
+# Development
+npm run dev              # Start dev server with Turbopack
+npm run dev:webpack      # Start dev server with Webpack
+
+# Code Quality
+npm run lint             # Run ESLint (max 50 warnings allowed)
+npm run lint:fix         # Auto-fix ESLint issues
+npm run type-check       # Run TypeScript type checking
+npm run format           # Format code with Prettier
+npm run format:check     # Check code formatting
+
+# Testing
+npm run test             # Run Vitest unit tests
+npm run test:watch       # Run tests in watch mode
+npm run test:e2e         # Run Playwright E2E tests
+npm run test:e2e:ui      # Run E2E tests with UI
+npm run test:e2e:debug   # Debug E2E tests
+
+# Database
+npx prisma generate      # Generate Prisma client
+npx prisma migrate dev   # Run migrations (development)
+npx prisma migrate deploy # Deploy migrations (production)
+npm run prisma:seed      # Seed database with initial data
+
+# Build & Deploy
+npm run build            # Create production build
+npm run start            # Start production server
+```
+
+### Environment Setup
+
+Required environment variables (see `.env.local.example`):
+- `DATABASE_URL` - Database connection string (SQLite for dev: `file:./dev.db`)
+- `GOOGLE_PROJECT_ID` - Google Cloud project ID for translation API
+- `GOOGLE_APPLICATION_CREDENTIALS_JSON` - Google service account credentials
+- `OPENAI_API_KEY` - OpenAI API key for tutor feature (optional)
+- `GOOGLE_DOCS_ID` - Google Docs integration (optional)
+- `DICTIONARY_PDF_URL` - Dictionary resource URL (optional)
+- `INSTAGRAM_ACCESS_TOKEN` - Set to "demo" for mock data (no API needed)
+- `NEXT_PUBLIC_SENTRY_DSN` - Sentry error tracking (optional)
+- `AUTH_SECRET` - NextAuth secret for authentication
+- `NEXTAUTH_URL` - Application URL (default: http://localhost:3000)
+
+### Testing Strategy
+
+1. **Unit Tests (Vitest)**
+   - Test business logic, hooks, utilities
+   - Use React Testing Library for component tests
+   - Run automatically in CI pipeline
+   - Aim for high coverage on critical paths
+
+2. **E2E Tests (Playwright)**
+   - Test complete user workflows
+   - Run on Chromium in CI
+   - Include accessibility checks
+   - Test both English and Macedonian locales
+
+3. **Type Safety**
+   - Strict TypeScript configuration
+   - Type-check runs in CI before build
+   - No implicit any types allowed
+
+### Code Quality Standards
+
+- **Linting:** ESLint with Next.js config, max 50 warnings in CI
+- **Formatting:** Prettier with automatic formatting on commit (Husky)
+- **Type Safety:** Strict TypeScript mode with full type coverage
+- **Git Workflow:** 
+  - Feature branches from `main` or `develop`
+  - PR required for all changes
+  - CI must pass before merge
+  - Atomic commits with clear messages
+
+### Common Development Tasks
+
+#### Adding a New Feature
+1. Create feature branch from `develop`
+2. Implement feature with tests
+3. Update relevant documentation in `docs/`
+4. Run linting, type-check, and tests locally
+5. Create PR with clear description
+6. Address review feedback and CI failures
+
+#### Updating Database Schema
+1. Modify `prisma/schema.prisma`
+2. Run `npx prisma migrate dev --name <migration-name>`
+3. Update seed data if needed (`prisma/seed.ts`)
+4. Test migrations locally
+5. Document schema changes
+
+#### Adding Translations
+1. Update `messages/en.json` (source of truth)
+2. Add corresponding keys in `messages/mk.json`
+3. Use translation keys in components via `useTranslations` hook
+4. Test both locales work correctly
+5. Follow glossary for consistent terminology
+
+#### Creating New API Route
+1. Add route under `app/api/`
+2. Use proper HTTP methods and status codes
+3. Add error handling and validation (Zod)
+4. Document in `docs/api/`
+5. Add rate limiting if needed (Upstash)
+6. Test with various inputs and edge cases
+
+### CI/CD Pipeline
+
+The `.github/workflows/ci.yml` pipeline runs:
+1. **Lint** - ESLint checks
+2. **Type Check** - TypeScript compilation
+3. **Build** - Production build verification
+4. **Unit Tests** - Vitest test suite
+5. **E2E Tests** - Playwright browser tests
+6. **Mobile Tests** - Maestro smoke tests (optional)
+
+All jobs must pass for PR to be mergeable.
+
+### Important Constraints
+
+- **No Environment File Edits:** Never modify `.env` files - only users can change them
+- **Minimal Changes:** Make surgical, focused changes - don't refactor unrelated code
+- **Preserve Working Code:** Don't delete or modify working code unless necessary
+- **Test Coverage:** Add tests for new features, update tests for changes
+- **Documentation:** Update docs when changing APIs, features, or architecture
+- **Security:** Never commit secrets, validate inputs, fix vulnerabilities
+
 ## Documentation Management
 
 ### Project Context

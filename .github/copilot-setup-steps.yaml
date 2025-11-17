@@ -1,0 +1,42 @@
+name: Copilot Coding Agent Setup
+
+on:
+  workflow_call:
+
+jobs:
+  setup:
+    name: Setup Environment for Copilot Coding Agent
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+        env:
+          # Use SQLite for development/testing in agent environment
+          DATABASE_URL: "file:./dev.db"
+
+      - name: Setup test database
+        run: |
+          # Initialize SQLite database for testing
+          npx prisma migrate dev --name init --skip-generate || true
+        env:
+          DATABASE_URL: "file:./dev.db"
+
+      - name: Verify build tools
+        run: |
+          echo "Node version: $(node --version)"
+          echo "npm version: $(npm --version)"
+          echo "TypeScript version: $(npx tsc --version)"
+
+      - name: Install Playwright browsers (if needed for E2E tests)
+        run: npx playwright install --with-deps chromium
+        if: github.event.inputs.include_e2e == 'true'
