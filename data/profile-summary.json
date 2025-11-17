@@ -5,10 +5,30 @@
     "total": 12450,
     "weekly": 420
   },
+  "xpProgress": {
+    "percentComplete": 65,
+    "xpInCurrentLevel": 650,
+    "xpForNextLevel": 1000
+  },
   "streakDays": 21,
   "quests": {
     "active": 3,
     "completedThisWeek": 2
+  },
+  "hearts": {
+    "current": 4,
+    "max": 5,
+    "minutesUntilNext": 12,
+    "isFull": false
+  },
+  "currency": {
+    "gems": 320,
+    "coins": 0
+  },
+  "league": {
+    "tier": "gold",
+    "nextTier": "platinum",
+    "daysUntilNextTier": 9
   },
   "badges": [
     {
@@ -29,5 +49,35 @@
       "description": "Hosted 3 Grammar Club sessions",
       "earnedAt": null
     }
+  ],
+  "activityHeatmap": [
+    { "date": "2025-10-23", "xp": 0, "practiceMinutes": 0, "status": "missed" },
+    { "date": "2025-10-24", "xp": 36, "practiceMinutes": 9, "status": "partial" },
+    { "date": "2025-10-25", "xp": 48, "practiceMinutes": 12, "status": "partial" },
+    { "date": "2025-10-26", "xp": 60, "practiceMinutes": 15, "status": "complete" },
+    { "date": "2025-10-27", "xp": 0, "practiceMinutes": 0, "status": "missed" },
+    { "date": "2025-10-28", "xp": 24, "practiceMinutes": 6, "status": "partial" },
+    { "date": "2025-10-29", "xp": 72, "practiceMinutes": 18, "status": "complete" },
+    { "date": "2025-10-30", "xp": 60, "practiceMinutes": 15, "status": "complete" },
+    { "date": "2025-10-31", "xp": 12, "practiceMinutes": 3, "status": "partial" },
+    { "date": "2025-11-01", "xp": 0, "practiceMinutes": 0, "status": "missed" },
+    { "date": "2025-11-02", "xp": 84, "practiceMinutes": 21, "status": "complete" },
+    { "date": "2025-11-03", "xp": 48, "practiceMinutes": 12, "status": "partial" },
+    { "date": "2025-11-04", "xp": 60, "practiceMinutes": 15, "status": "complete" },
+    { "date": "2025-11-05", "xp": 36, "practiceMinutes": 9, "status": "partial" },
+    { "date": "2025-11-06", "xp": 24, "practiceMinutes": 6, "status": "partial" },
+    { "date": "2025-11-07", "xp": 60, "practiceMinutes": 15, "status": "complete" },
+    { "date": "2025-11-08", "xp": 0, "practiceMinutes": 0, "status": "missed" },
+    { "date": "2025-11-09", "xp": 72, "practiceMinutes": 18, "status": "complete" },
+    { "date": "2025-11-10", "xp": 36, "practiceMinutes": 9, "status": "partial" },
+    { "date": "2025-11-11", "xp": 60, "practiceMinutes": 15, "status": "complete" },
+    { "date": "2025-11-12", "xp": 48, "practiceMinutes": 12, "status": "partial" },
+    { "date": "2025-11-13", "xp": 60, "practiceMinutes": 15, "status": "complete" },
+    { "date": "2025-11-14", "xp": 12, "practiceMinutes": 3, "status": "partial" },
+    { "date": "2025-11-15", "xp": 0, "practiceMinutes": 0, "status": "missed" },
+    { "date": "2025-11-16", "xp": 72, "practiceMinutes": 18, "status": "complete" },
+    { "date": "2025-11-17", "xp": 60, "practiceMinutes": 15, "status": "complete" },
+    { "date": "2025-11-18", "xp": 36, "practiceMinutes": 9, "status": "partial" },
+    { "date": "2025-11-19", "xp": 60, "practiceMinutes": 15, "status": "complete" }
   ]
 }

@@ -22,6 +22,7 @@ import { ALL_CATEGORIES, SESSION_TARGET, PRACTICE_DIFFICULTIES } from '@/compone
 import { formatCategory } from '@/components/learn/quick-practice/utils';
 import type { PracticeItem, PracticeDifficultyId, PracticeDifficultyPreset, QuickPracticeTalisman } from '@/components/learn/quick-practice/types';
 import type { QuickPracticeSessionOptions } from '@/components/learn/quick-practice/useQuickPracticeSession';
+import { getSavedPhrasePracticePrompts } from '@/lib/saved-phrases';
 
 type QuickPracticeWidgetProps = {
   title?: string;
@@ -48,15 +49,41 @@ export function QuickPracticeWidget({
   const formRef = useRef<HTMLFormElement | null>(null);
 
   const fixtureKey = searchParams?.get('practiceFixture');
+  const isSavedFixture = fixtureKey === 'saved-phrases';
+  const [savedFixturePrompts, setSavedFixturePrompts] = useState<PracticeItem[] | null>(null);
+  const [savedFixtureState, setSavedFixtureState] = useState<'idle' | 'loading' | 'ready' | 'empty'>('idle');
   const forcedPromptIdParam = searchParams?.get('practicePromptId');
   const promptsOverride = useMemo<PracticeItem[] | undefined>(() => {
     if (!fixtureKey) return undefined;
     if (fixtureKey === 'e2e') {
       return E2E_PRACTICE_PROMPTS;
     }
+    if (fixtureKey === 'saved-phrases') {
+      return savedFixtureState === 'ready' ? savedFixturePrompts ?? undefined : undefined;
+    }
     return undefined;
-  }, [fixtureKey]);
+  }, [fixtureKey, savedFixturePrompts, savedFixtureState]);
+  useEffect(() => {
+    if (!isSavedFixture) {
+      setSavedFixtureState('idle');
+      setSavedFixturePrompts(null);
+      return;
+    }
+    setSavedFixtureState('loading');
+    const prompts = getSavedPhrasePracticePrompts();
+    setSavedFixturePrompts(prompts);
+    setSavedFixtureState(prompts.length ? 'ready' : 'empty');
+  }, [isSavedFixture]);
   const sessionOptions = useMemo<QuickPracticeSessionOptions | undefined>(() => {
+    if (isSavedFixture) {
+      if (savedFixtureState !== 'ready' || !savedFixturePrompts?.length) {
+        return undefined;
+      }
+      return {
+        prompts: savedFixturePrompts,
+        initialPromptId: forcedPromptIdParam ?? savedFixturePrompts[0]?.id ?? null,
+      };
+    }
     if (!promptsOverride && !forcedPromptIdParam) {
       return undefined;
     }
@@ -64,7 +91,7 @@ export function QuickPracticeWidget({
       prompts: promptsOverride,
       initialPromptId: forcedPromptIdParam ?? promptsOverride?.[0]?.id ?? null,
     };
-  }, [forcedPromptIdParam, promptsOverride]);
+  }, [forcedPromptIdParam, isSavedFixture, promptsOverride, savedFixturePrompts, savedFixtureState]);
 
   const {
     categories,
@@ -250,6 +277,24 @@ export function QuickPracticeWidget({
 
   const renderPracticeCard = (variant: 'default' | 'modal', extraClassName?: string) => {
     const isModalVariant = variant === 'modal';
+
+    if (isSavedFixture && savedFixtureState !== 'ready') {
+      const message = savedFixtureState === 'loading' ? t('practiceSavedDeckLoading') : t('practiceSavedDeckEmpty');
+      return (
+        <div
+          className={cn(
+            'rounded-[32px] border border-border/60 bg-background/80 p-6 text-left',
+            extraClassName,
+            isModalVariant ? '' : 'flex-1'
+          )}
+        >
+          <div className="space-y-2">
+            <p className="text-base font-semibold text-foreground">{t('practiceSavedDeckTitle')}</p>
+            <p className="text-sm text-muted-foreground">{message}</p>
+          </div>
+        </div>
+      );
+    }
 
     return (
       <div

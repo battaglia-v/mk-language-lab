@@ -62,6 +62,7 @@ model User {
   currencyTransactions CurrencyTransaction[]
   leagueMemberships    LeagueMembership[]
   notifications        Notification[]
+  reminderSettings     ReminderSettings?
 }
 
 model VerificationToken {
@@ -565,6 +566,24 @@ model CurrencyTransaction {
 
   @@index([userId, createdAt])
   @@index([reason])
+}
+
+// ReminderSettings - quiet hours + reminder preferences
+model ReminderSettings {
+  id                     String   @id @default(cuid())
+  userId                 String   @unique
+  quietHoursEnabled      Boolean  @default(false)
+  quietHoursStart        Int      @default(22)
+  quietHoursEnd          Int      @default(8)
+  streakRemindersEnabled Boolean  @default(true)
+  dailyNudgesEnabled     Boolean  @default(true)
+  timezone               String?
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
 // League - streak-based leaderboards

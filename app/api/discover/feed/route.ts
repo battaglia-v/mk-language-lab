@@ -1,7 +1,13 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
+import { auth } from '@/lib/auth';
 import fallbackDiscoverFeed from '@/data/discover-feed.json';
-import type { DiscoverFeed, DiscoverCardAccent } from '@mk/api-client';
+import type {
+  DiscoverFeed,
+  DiscoverCardAccent,
+  DiscoverCommunityHighlight,
+  DiscoverQuestHighlight,
+} from '@mk/api-client';
 
 export const revalidate = 300;
 
@@ -9,8 +15,9 @@ const FALLBACK_FEED = fallbackDiscoverFeed as DiscoverFeed;
 const CARD_ACCENTS: DiscoverCardAccent[] = ['plum', 'gold', 'navy', 'mint', 'red'];
 
 export async function GET() {
+  const session = await auth().catch(() => null);
   try {
-    const [modules, upcomingWords] = await Promise.all([
+    const [modules, upcomingWords, quests, community] = await Promise.all([
       prisma.module.findMany({
         include: {
           lessons: {
@@ -30,6 +37,8 @@ export async function GET() {
         orderBy: { scheduledDate: 'asc' },
         take: 4,
       }),
+      buildQuestHighlights(session?.user?.id),
+      buildCommunityHighlights(),
     ]);
 
     const builtCategories = buildCategories(modules);
@@ -42,6 +51,8 @@ export async function GET() {
     const payload: DiscoverFeed = {
       categories: builtCategories.length ? builtCategories : FALLBACK_FEED.categories,
       events: builtEvents.length ? builtEvents : FALLBACK_FEED.events,
+      quests: quests.length ? quests : FALLBACK_FEED.quests,
+      community: community.length ? community : FALLBACK_FEED.community,
     };
 
     return NextResponse.json(payload, {
@@ -121,6 +132,88 @@ function buildEvents(words: WordRecord[]): DiscoverFeed['events'] {
     ctaTarget: 'external',
     ctaUrl: `https://mk-language-lab.com/events/${word.id}`,
   }));
+}
+
+async function buildQuestHighlights(userId?: string | null): Promise<DiscoverQuestHighlight[]> {
+  const now = new Date();
+  const quests = await prisma.quest.findMany({
+    where: { isActive: true },
+    orderBy: [{ type: 'asc' }, { createdAt: 'desc' }],
+    take: 4,
+  });
+
+  if (!quests.length) {
+    return [];
+  }
+
+  const progress = userId
+    ? await prisma.userQuestProgress.findMany({
+        where: { userId, questId: { in: quests.map((q) => q.id) } },
+      })
+    : [];
+
+  const progressMap = new Map(progress.map((entry) => [entry.questId, entry]));
+
+  return quests.map((quest) => {
+    const userProgress = progressMap.get(quest.id);
+    const progressValue = userProgress?.progress ?? 0;
+    const progressPercent = Math.min(100, Math.round((progressValue / quest.target) * 100));
+    const progressLabel = `${progressValue} / ${quest.target} ${quest.targetUnit}`;
+    const deadlineLabel = quest.endDate ? formatRelativeDeadline(now, quest.endDate) : null;
+
+    return {
+      id: quest.id,
+      title: quest.title,
+      type: quest.type,
+      progressPercent,
+      progressLabel,
+      xpReward: quest.xpReward,
+      currencyReward: quest.currencyReward,
+      deadlineLabel,
+      cta: userProgress?.status === 'completed' ? 'Review' : 'Resume',
+      ctaTarget: quest.category === 'translation' ? 'translator' : 'practice',
+      ctaUrl: quest.category === 'translation' ? '/translate' : '/practice',
+    } satisfies DiscoverQuestHighlight;
+  });
+}
+
+async function buildCommunityHighlights(): Promise<DiscoverCommunityHighlight[]> {
+  const achievements = await prisma.userBadge.findMany({
+    include: {
+      badge: true,
+      user: { select: { name: true } },
+    },
+    orderBy: { createdAt: 'desc' },
+    take: 6,
+  });
+
+  return achievements.map((record) => ({
+    id: record.id,
+    name: record.user.name ?? 'Learner',
+    summary: record.badge.description,
+    highlightLabel: record.badge.name,
+    updatedAt: (record.earnedAt ?? record.createdAt).toISOString(),
+    cta: 'View profile',
+    ctaTarget: 'profile',
+    ctaUrl: '/profile',
+  }));
+}
+
+function formatRelativeDeadline(now: Date, endDate: Date): string {
+  const diffMs = endDate.getTime() - now.getTime();
+  if (diffMs <= 0) {
+    return 'Ends soon';
+  }
+  const minutes = Math.floor(diffMs / 60000);
+  if (minutes < 60) {
+    return `${minutes}m left`;
+  }
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) {
+    return `${hours}h left`;
+  }
+  const days = Math.floor(hours / 24);
+  return `${days}d left`;
 }
 
 function startOfDay(date: Date): Date {

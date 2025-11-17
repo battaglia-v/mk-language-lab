@@ -43,7 +43,7 @@
 **Risk Level**: Medium (multi-surface UX changes)
 
 ## Step H: Mission loop onboarding + Home hero refresh
-**Status**: ⏳ Pending  
+**Status**: ✅ Completed (2025-11-18)
 **Objective**: Deliver Section 5.1–5.2 of the UX plan – the 3-step onboarding wizard that seeds a Daily Mission plus the streak-first Home hero, coach carousel, review rail, and community row.  
 **Key Surfaces / Files**:
 - `app/[locale]/(auth)/onboarding/*` (new wizard, mascot art, mission pledge copy)  
@@ -54,10 +54,15 @@
 - Implement wizard steps (Goal → Level check → Schedule) with illustrated coach, scheduling UI, and mission preview; persist results via `/api/missions/setup`.  
 - Create hero card with streak flame, XP meter, and long-pressable mission checklist plus coach tips carousel, Smart Review chips, and community row.  
 - Wire analytics + reminder intent: mission creation triggers reminder defaults and populates the Home hero on first load.  
+**Completed Work (2025-11-18)**:
+- ✅ Shipped the illustrated onboarding wizard at `app/[locale]/(auth)/onboarding/page.tsx` with goal → level → schedule steps, analytics logging, and `/api/missions/setup` persistence so users land on Home with an active mission + reminder defaults.
+- ✅ Rebuilt `app/[locale]/page.tsx` hero modules (mission streak card, quick actions, checklist modal, tips, review clusters, community rail) to consume `useMissionStatus` data with skeletons/error banners per the blueprint.
+- ✅ Localized copy, safe-area padding, and mission analytics instrumentation aligned across onboarding and Home to keep telemetry in sync.
+
 **Success Criteria**:
-- New users hit the wizard before the dashboard, see localized copy, and land on Home with an active mission (target XP + reminders).  
-- Home hero, tips, review rail, and community row match the blueprint layout across breakpoints with loading/error states tied to mission API data.  
-- ESLint + integration tests (`npm run test -- home-mission`) cover the wizard flow and hero state machine.  
+- New users hit the wizard before the dashboard, see localized copy, and land on Home with an active mission (target XP + reminders). ✅
+- Home hero, tips, review rail, and community row match the blueprint layout across breakpoints with loading/error states tied to mission API data. ✅
+- ESLint + integration tests (`npm run test -- mission-onboarding`) cover the wizard flow and hero state machine. ✅
 **Verification Steps**:
 1. `npx eslint app/[locale]/page.tsx app/[locale]/(auth)/onboarding hooks/useMissionStatus.ts`  
 2. `npm run test -- mission-onboarding`  
@@ -79,7 +84,7 @@
 - Implement talisman logic (earned thresholds, XP multipliers) with persistence + analytics events.
 - Build audio pipeline: admin upload page, worker normalization, Prisma tables, API payload with `audioClip` metadata; hook UI to prefetch/play clips with slow replay + waveform.
 - Update completion queue + missions so XP/heart changes respect difficulty + talismans.
-**Completed Work** (2025-11-14):
+**Completed Work** (Updated 2025-11-19):
 - ✅ Web Quick Practice widget rebuilt with sheet-inspired layout: difficulty selector (casual/focused/intense), XP/heart HUD, talisman tracking, timer badges, and audio prompt playback support in `components/learn/QuickPracticeWidget.tsx`
 - ✅ Shared practice constants (`@mk/practice`) expose unified difficulty presets with XP multipliers (casual: 1.0x, focused: 1.5x, intense: 2.0x) and heart penalties
 - ✅ Talisman system implemented: "Flawless Run" (1.25x XP) and "Streak Master" (1.15x XP) with eligibility tracking at `useQuickPracticeSession.ts:227-242`
@@ -107,7 +112,7 @@
 **Risk Level**: Low (fully implemented and verified)
 
 ## Step J: Gamification loops (XP/hearts, quests, badge shop, reminders)
-**Status**: ⏳ Pending  
+**Status**: 🔄 In Progress (2025-11-19)
 **Objective**: Implement Section 6 systems – refreshed XP/hearts mechanics, streak leagues, daily/weekly quests, currency/badge shop, and reminder intelligence surfaces.  
 **Key Surfaces / Files**:
 - `app/[locale]/profile/page.tsx`, `components/profile/*`, `packages/gamification/*`  
@@ -126,8 +131,17 @@
 2. `npm run test -- gamification`  
 3. Manual: complete quests, purchase badges, validate reminder fan-out.  
 **Dependencies**: Step I (talisman + XP metadata), backend queue capacity.  
-**Owner**: Agent C (Retention Systems)  
+**Owner**: Agent C (Retention Systems)
 **Risk Level**: High (multi-service coordination)
+
+**Progress (2025-11-19)**:
+- Added XP + hearts regeneration data to `/api/profile/summary` using `@mk/gamification` helpers so the profile header + stats cards surface live level progress, league tier, and timers.
+- Rebuilt the profile stats and quest modules with progress bars, CTA buttons, and a new Badge Shop preview that reads from `/api/badges/shop` with purchase mutations + localization.
+- Implemented `/api/reminders/settings` persistence (new `ReminderSettings` model + mission window sync) and shipped the Reminder Settings card on `/notifications` with quiet hours, streak warnings, and toast feedback.
+- `/api/quests` now emits progress percentages and deadline labels so Discover/Profile rails can render the quest countdown experience described in the brief.
+- ✅ (2025-11-20) Launched `/api/leagues/standings` with a fallback fixture plus the glass League Standings card on `/profile`, including localized progress bars and member lists backed by Prisma league membership.
+- ✅ Reminder cron fan-out now respects quiet hours + reminder toggles, hydrates contextual copy from `lib/reminders/reminder-logic`, and records inbox notifications whenever pushes are sent.
+- ✅ Profile summary now exposes a 28-day activity heatmap so `/profile` can visualize mission adherence (Step K dependency) without client-side math.
 
 ## Step K: Discover + Tutor/Translator polish & accessibility
 **Status**: 🔄 Partially Complete (2025-11-14)
@@ -157,12 +171,16 @@
 - ✅ Added `tabIndex={-1}` to main content for programmatic focus
 - ✅ All unit tests passing (82/82)
 - ✅ ESLint passing on all touched files
+- ✅ Translator saved phrases drawer + Quick Practice handoff shipped (2025-11-18): `app/[locale]/translate/page.tsx`, `components/translate/{SavedPhrasesPanel,useSavedPhrases}.ts`, `lib/saved-phrases.ts`, `components/learn/QuickPracticeWidget.tsx`, and `app/[locale]/practice/page.tsx` now let learners save translator results, manage them in a drawer, and launch a `practiceFixture=saved-phrases` run with safe fallbacks and localization.
+- ✅ Discover route is now live (2025-11-19): `app/[locale]/discover/page.tsx` renders the curated Discover feed from `/api/discover/feed` with category chips, editorial cards, and a Word Lab events rail powered by `messages/{en,mk}.json` for localization.
+- ✅ Quest + community rails now surface inside Discover (2025-11-19): `/api/discover/feed` hydrates learner quest status + community badges so `/discover` shows countdown timers, CTA buttons, and localization-aware skeleton states.
+- ✅ (2025-11-20) Added the Profile Activity heatmap component + API payload so Step J progress is visualized per blueprint section 5.4, including localization + keyboard focus states.
+- ✅ (2025-11-20) Introduced `/admin/discover` with the `AdminDiscoverEditor` client, plus `/api/admin/discover/feed` for secure GET/PUT access to `data/discover-feed.json`, giving content teams a stopgap CMS for quests, community highlights, and events.
 
 **Remaining Work** (Deferred - requires Steps I & J):
 - ⏳ Tutor page doesn't exist yet (requires AI tutor implementation)
-- ⏳ Discover page doesn't exist yet (requires content pipeline)
-- ⏳ Profile stats map (requires gamification from Step J)
-- ⏳ Saved Phrases drawer for Translate (requires practice integration)
+- ⏳ Discover CMS still needs lesson/category editing + moderation tools once tutor/audio feeds land
+- ⏳ Profile stats map overlays (geo insights) still pending AI tutor data
 - ⏳ Admin dashboard enhancements (requires audio pipeline from Step I)
 
 **Verification Steps**:
@@ -296,9 +314,8 @@
 7. **Step M**: Practice audio pipeline + uploader - ✅ **VERIFIED COMPLETE**
 
 ### ⏳ Pending Steps
-- **Step H**: Mission onboarding wizard (not yet started)
 - **Step J**: Gamification loops (XP/hearts mechanics exist, quests/shop/reminders pending)
-- **Step K**: Tutor/Translator/Discover surfaces (requires Steps I & J completion first)
+- **Step K**: Tutor/Translator/Discover surfaces (translator + discover web UIs partially complete; tutor/profile/admin polish pending)
 
 ### 🔍 Verification Summary (2025-11-14)
 

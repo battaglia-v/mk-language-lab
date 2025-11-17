@@ -1,0 +1,23 @@
+{
+  "tier": "gold",
+  "tierLabel": "Gold League",
+  "icon": "🥇",
+  "rank": 4,
+  "streakDays": 21,
+  "promotionCutoff": 5,
+  "demotionCutoff": 10,
+  "progressPercent": 68,
+  "members": [
+    { "id": "user-1", "name": "Mila N.", "rank": 1, "streakDays": 58, "xp": 18200, "avatarUrl": null, "trend": "up" },
+    { "id": "user-2", "name": "Elena S.", "rank": 2, "streakDays": 54, "xp": 17700, "avatarUrl": null, "trend": "neutral" },
+    { "id": "user-3", "name": "Marko P.", "rank": 3, "streakDays": 45, "xp": 16500, "avatarUrl": null, "trend": "down" },
+    { "id": "user-demo", "name": "You", "rank": 4, "streakDays": 21, "xp": 12450, "avatarUrl": null, "trend": "up", "isCurrentUser": true },
+    { "id": "user-5", "name": "Andrej L.", "rank": 5, "streakDays": 20, "xp": 11800, "avatarUrl": null, "trend": "up" },
+    { "id": "user-6", "name": "Aleks K.", "rank": 6, "streakDays": 18, "xp": 11240, "avatarUrl": null, "trend": "neutral" },
+    { "id": "user-7", "name": "Jana I.", "rank": 7, "streakDays": 17, "xp": 11020, "avatarUrl": null, "trend": "down" },
+    { "id": "user-8", "name": "Ivana D.", "rank": 8, "streakDays": 15, "xp": 10500, "avatarUrl": null, "trend": "up" },
+    { "id": "user-9", "name": "Kosta R.", "rank": 9, "streakDays": 14, "xp": 9900, "avatarUrl": null, "trend": "down" },
+    { "id": "user-10", "name": "Simona G.", "rank": 10, "streakDays": 13, "xp": 9400, "avatarUrl": null, "trend": "down" }
+  ],
+  "updatedAt": "2025-11-19T00:00:00.000Z"
+}

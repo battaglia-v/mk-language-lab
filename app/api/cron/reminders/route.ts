@@ -2,18 +2,32 @@ import { randomUUID } from 'crypto';
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { sendExpoPushNotifications, type ExpoPushTicketRecord } from '@/lib/expo-push';
+import { REMINDER_WINDOW_IDS, getDueReminderWindow, type ReminderWindowId } from '@/lib/mobile-reminders';
 import {
-  REMINDER_WINDOW_IDS,
-  REMINDER_WINDOW_MESSAGES,
-  getDueReminderWindow,
-  type ReminderWindowId,
-} from '@/lib/mobile-reminders';
+  shouldSendStreakReminder,
+  generateStreakReminderNotification,
+  generateDailyNudgeNotification,
+  isQuietHours,
+  type ReminderContext,
+} from '@/lib/reminders/reminder-logic';
 
 const REMINDER_DEEPLINK = 'mkll://practice/quick';
+const XP_PER_REVIEW = 12;
+const DAILY_TARGET_XP = 60;
+const WINDOW_INTENT: Record<ReminderWindowId, 'daily' | 'streak'> = {
+  midday: 'daily',
+  evening: 'streak',
+};
 const DEFAULT_PAST_TOLERANCE_MINUTES = Number(process.env.REMINDER_PAST_TOLERANCE_MINUTES ?? '5');
 const DEFAULT_FUTURE_TOLERANCE_MINUTES = Number(process.env.REMINDER_FUTURE_TOLERANCE_MINUTES ?? '1');
 const DEFAULT_MIN_INTERVAL_MINUTES = Number(process.env.REMINDER_MIN_INTERVAL_MINUTES ?? '45');
 const REVOKABLE_ERRORS = new Set(['DeviceNotRegistered', 'InvalidCredentials']);
+const NOTIFICATION_TYPE_MAP: Record<string, string> = {
+  streak_at_risk: 'streak_warning',
+  daily_nudge: 'daily_nudge',
+  quest_expiring: 'quest_invite',
+  achievement_earned: 'achievement',
+};
 
 export async function GET(request: NextRequest) {
   const authHeader = request.headers.get('authorization');
@@ -33,6 +47,7 @@ export async function GET(request: NextRequest) {
     },
     select: {
       id: true,
+      userId: true,
       expoPushToken: true,
       reminderWindows: true,
       timezone: true,
@@ -42,11 +57,33 @@ export async function GET(request: NextRequest) {
     },
   });
 
+  const userIds = Array.from(new Set(tokens.map((token) => token.userId)));
+
+  const [settingsRecords, progressRecords, dailyPracticeCounts] = await Promise.all([
+    prisma.reminderSettings.findMany({ where: { userId: { in: userIds } } }),
+    prisma.gameProgress.findMany({
+      where: { userId: { in: userIds } },
+      select: { userId: true, streak: true, lastPracticeDate: true },
+    }),
+    prisma.exerciseAttempt.groupBy({
+      by: ['userId'],
+      where: {
+        userId: { in: userIds.filter((id): id is string => id !== null) },
+        attemptedAt: { gte: startOfDay(now) },
+      },
+      _count: { _all: true },
+    }),
+  ]);
+
+  const settingsMap = new Map(settingsRecords.map((record) => [record.userId, record]));
+  const progressMap = new Map(progressRecords.map((record) => [record.userId, record]));
+  const dailyCountMap = new Map(dailyPracticeCounts.map((record) => [record.userId, record._count?._all ?? 0]));
+
   const due = tokens
     .map((token) => {
       const dueWindow = getDueReminderWindow({
-        reminderWindows: token.reminderWindows as ReminderWindowId[],
-        timeZone: token.timezone,
+        reminderWindows: (token.reminderWindows as (string | null)[]).filter((w): w is string => w !== null) as ReminderWindowId[],
+        timeZone: token.timezone ?? 'UTC',
         now,
         lastReminderSentAt: token.lastReminderSentAt ?? undefined,
         lastReminderWindowId: token.lastReminderWindowId as ReminderWindowId | null,
@@ -59,20 +96,88 @@ export async function GET(request: NextRequest) {
         return null;
       }
 
+      const windowIntent = WINDOW_INTENT[dueWindow.windowId];
+      if (!windowIntent) {
+        return null;
+      }
+
+      if (!token.userId) {
+        return null;
+      }
+
+      const settings = settingsMap.get(token.userId);
+      const timezone = settings?.timezone ?? token.timezone ?? 'UTC';
+
+      if (
+        settings?.quietHoursEnabled &&
+        isQuietHours(
+          {
+            enabled: settings.quietHoursEnabled,
+            startHour: settings.quietHoursStart,
+            endHour: settings.quietHoursEnd,
+          },
+          timezone
+        )
+      ) {
+        return null;
+      }
+
+      if (windowIntent === 'streak' && settings?.streakRemindersEnabled === false) {
+        return null;
+      }
+
+      if (windowIntent === 'daily' && settings?.dailyNudgesEnabled === false) {
+        return null;
+      }
+
+      const progress = progressMap.get(token.userId);
+      const dailyAttempts = dailyCountMap.get(token.userId) ?? 0;
+      const context: ReminderContext = {
+        userId: token.userId,
+        streakDays: progress?.streak ?? 0,
+        lastPracticeDate: progress?.lastPracticeDate ?? null,
+        dailyXP: dailyAttempts * XP_PER_REVIEW,
+        dailyXPTarget: DAILY_TARGET_XP,
+        timezone,
+      };
+
+      let notificationCopy:
+        | ReturnType<typeof generateStreakReminderNotification>
+        | ReturnType<typeof generateDailyNudgeNotification>
+        | null = null;
+
+      if (windowIntent === 'streak') {
+        if (!shouldSendStreakReminder(context)) {
+          return null;
+        }
+        notificationCopy = generateStreakReminderNotification(context);
+      } else {
+        if (context.dailyXP >= context.dailyXPTarget) {
+          return null;
+        }
+        notificationCopy = generateDailyNudgeNotification(context);
+      }
+
       return {
         tokenId: token.id,
+        userId: token.userId,
         expoPushToken: token.expoPushToken,
-        reminderWindows: token.reminderWindows as ReminderWindowId[],
+        reminderWindows: (token.reminderWindows as (string | null)[]).filter((w): w is string => w !== null) as ReminderWindowId[],
         locale: token.locale ?? 'en',
         windowId: dueWindow.windowId,
+        scheduledAt: dueWindow.scheduledAt,
+        copy: notificationCopy,
       };
     })
     .filter(Boolean) as Array<{
       tokenId: string;
+      userId: string;
       expoPushToken: string;
       reminderWindows: ReminderWindowId[];
       locale: string;
       windowId: ReminderWindowId;
+      scheduledAt: Date;
+      copy: ReturnType<typeof generateStreakReminderNotification> | ReturnType<typeof generateDailyNudgeNotification>;
     }>;
 
   const tokenMetaByExpoPushToken = new Map(
@@ -82,6 +187,9 @@ export async function GET(request: NextRequest) {
         tokenId: token.tokenId,
         windowId: token.windowId,
         reminderWindows: token.reminderWindows,
+        userId: token.userId,
+        scheduledAt: token.scheduledAt,
+        copy: token.copy,
       },
     ])
   );
@@ -107,21 +215,18 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(summary);
   }
 
-  const messages = due.map((item) => {
-    const copy = REMINDER_WINDOW_MESSAGES[item.windowId];
-    return {
-      to: item.expoPushToken,
-      sound: 'default' as const,
-      title: copy.title,
-      body: copy.body,
-      data: {
-        reason: 'mission-reminder',
-        windowId: item.windowId,
-        deeplink: REMINDER_DEEPLINK,
-      },
-      ttl: 3600,
-    };
-  });
+  const messages = due.map((item) => ({
+    to: item.expoPushToken,
+    sound: 'default' as const,
+    title: item.copy.title,
+    body: item.copy.body,
+    data: {
+      reason: item.copy.type,
+      windowId: item.windowId,
+      deeplink: item.copy.actionUrl ?? REMINDER_DEEPLINK,
+    },
+    ttl: 3600,
+  }));
 
   const sendResults = await sendExpoPushNotifications(messages);
   const successfulTokenIds = new Set<string>();
@@ -163,6 +268,20 @@ export async function GET(request: NextRequest) {
       })
     )
   );
+
+  if (successfulDue.length > 0) {
+    await prisma.notification.createMany({
+      data: successfulDue.map((item) => ({
+        userId: item.userId,
+        type: normalizeNotificationType(item.copy.type),
+        title: item.copy.title,
+        body: item.copy.body,
+        actionUrl: item.copy.actionUrl ?? REMINDER_DEEPLINK,
+        scheduledFor: item.scheduledAt,
+        sentAt: now,
+      })),
+    });
+  }
 
   if (revokedTokenIds.size > 0) {
     await prisma.mobilePushToken.updateMany({
@@ -210,4 +329,14 @@ export async function GET(request: NextRequest) {
   }
 
   return NextResponse.json(summary);
+}
+
+function startOfDay(date: Date): Date {
+  const start = new Date(date);
+  start.setHours(0, 0, 0, 0);
+  return start;
+}
+
+function normalizeNotificationType(type: string): string {
+  return NOTIFICATION_TYPE_MAP[type] ?? type;
 }

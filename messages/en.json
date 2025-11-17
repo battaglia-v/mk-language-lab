@@ -172,6 +172,9 @@
     "practiceTalismansEmpty": "Maintain 100% accuracy or a 10-card streak to unlock talismans.",
     "practiceTalismanMultiplier": "+{value}% XP boost",
     "practiceAudioPromptLabel": "Audio prompt",
+    "practiceSavedDeckTitle": "Saved phrases deck",
+    "practiceSavedDeckLoading": "Loading your translator phrases…",
+    "practiceSavedDeckEmpty": "Save translator results to unlock this deck.",
     "quickPracticeLaunch": "Launch session",
     "quickPracticeLaunchDescription": "Open the full-screen practice lab to run focused drills.",
     "practiceProgressLabel": "Session progress",
@@ -548,10 +551,10 @@
   "news": {
     "title": "News Feed",
     "subtitle": "Follow Macedonian headlines and find video clips to support your listening practice.",
-  "sourceLabel": "Sources",
-  "sourceAll": "All",
-  "sourceTime": "Time.mk",
-  "sourceMeta": "Meta.mk",
+    "sourceLabel": "Sources",
+    "sourceAll": "All",
+    "sourceTime": "Time.mk",
+    "sourceMeta": "Meta.mk",
     "searchPlaceholder": "Search headlines or keywords...",
     "videosOnly": "Videos only",
     "refresh": "Refresh",
@@ -587,6 +590,7 @@
     "subtitle": "Translate between Macedonian and English.",
     "workspaceTab": "Workspace",
     "historyTab": "History & tips",
+    "savedTab": "Saved phrases",
     "badge": "Translation Tool",
     "assistantTitle": "Translator",
     "assistantDescription": "Translate between Macedonian and English.",
@@ -646,7 +650,22 @@
     ],
     "resourcesTitle": "Need richer explanations?",
     "resourcesDescription": "Explore trusted dictionaries, grammar guides, and curated Macedonian sources.",
-    "resourcesCta": "Browse resources"
+    "resourcesCta": "Browse resources",
+    "savedTitle": "Saved phrases",
+    "savedSubtitle": "Build personalized decks from the translator.",
+    "savedEmptyTitle": "No saved phrases yet",
+    "savedEmptyDescription": "Save translations to unlock a custom practice deck.",
+    "savedPracticeCta": "Practice this set",
+    "savedManageCta": "Add more phrases",
+    "savedRemoveLabel": "Remove saved phrase",
+    "savedClearLabel": "Clear all",
+    "savedTimestamp": "Saved {value}",
+    "savePhraseButton": "Save phrase",
+    "savedPhraseButton": "Saved",
+    "removeSavedPhraseButton": "Remove",
+    "savedToastAdded": "Saved to your personal deck.",
+    "savedToastRemoved": "Removed from saved phrases.",
+    "savedToastCleared": "Cleared saved phrases."
   },
   "practiceHub": {
     "badge": "Daily practice",
@@ -709,6 +728,13 @@
           "description": "Work on sounds, stress, and listening through targeted exercises."
         }
       }
+    },
+    "savedDeck": {
+      "badge": "Translator deck",
+      "title": "Practicing saved phrases",
+      "description": "Quick Practice will use the phrases you saved in the translator.",
+      "emptyDescription": "Save at least one translation to unlock this custom deck.",
+      "manageCta": "Manage saved phrases"
     }
   },
   "libraryHub": {
@@ -735,8 +761,7 @@
     "saved": {
       "tabLabel": "Saved",
       "description": "Your bookmarked items from practice sessions will surface here.",
-      "cards": {
-      }
+      "cards": {}
     },
     "culture": {
       "tabLabel": "Culture",
@@ -817,7 +842,7 @@
   "auth": {
     "signInRetiredTitle": "No sign-in needed anymore",
     "signInRetiredDescription": "The Macedonian Learning App now works without accounts.",
-  "signInRetiredBody": "All tools - including news, translation, the tutor, and the task board - are now available instantly. Update any bookmarks pointing to the old sign-in page.",
+    "signInRetiredBody": "All tools - including news, translation, the tutor, and the task board - are now available instantly. Update any bookmarks pointing to the old sign-in page.",
     "returnHome": "Back to home"
   },
   "common": {
@@ -854,21 +879,21 @@
     }
   },
   "footer": {
-    "createdWith": "Created with ❤️ by",
-    "vini": "Vinny",
-    "and": "&",
-    "andri": "Andri",
-    "contentBy": "All content curated and validated by Andri, native Macedonian speaker and founder of",
+    "tagline": "Daily Macedonian practice built with care.",
+    "contentBy": "Content by",
     "macedonianLanguageCorner": "Macedonian Language Corner",
-    "instagram": "Instagram",
-    "youtube": "YouTube",
-    "allLinks": "All Links",
-    "privacy": "Privacy Policy",
-    "terms": "Terms of Service",
-    "contact": "Contact Us",
-    "tagline": "AI-guided lessons, translator tools, and daily missions for Macedonian learners.",
     "product": "Product",
     "support": "Support",
+    "instagram": "Instagram",
+    "youtube": "YouTube",
+    "allLinks": "View all links",
+    "vini": "Vincent Battaglia",
+    "andri": "Andrijana",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "contact": "Contact",
+    "createdWith": "Created with",
+    "and": "and",
     "allRightsReserved": "All rights reserved."
   },
   "userMenu": {
@@ -1126,24 +1151,6 @@
     "viewPrivacy": "View Privacy Policy",
     "backHome": "Back to Home"
   },
-  "footer": {
-    "tagline": "Daily Macedonian practice built with care.",
-    "contentBy": "Content by",
-    "macedonianLanguageCorner": "Macedonian Language Corner",
-    "product": "Product",
-    "support": "Support",
-    "instagram": "Instagram",
-    "youtube": "YouTube",
-    "allLinks": "View all links",
-    "vini": "Vincent Battaglia",
-    "andri": "Andrijana",
-    "privacy": "Privacy",
-    "terms": "Terms",
-    "contact": "Contact",
-    "createdWith": "Created with",
-    "and": "and",
-    "allRightsReserved": "All rights reserved."
-  },
   "onboarding": {
     "welcome": "Welcome",
     "setupTitle": "Let's set up your mission",
@@ -1194,7 +1201,14 @@
       "streak": "Streak",
       "days": "days",
       "activeQuests": "Active Quests",
-      "completedQuests": "Completed This Week"
+      "completedQuests": "Completed This Week",
+      "currency": "Currency",
+      "currencyCaption": "Earn gems from quests and badges",
+      "totalXPCaption": "Lifetime XP: {value}",
+      "xpProgress": "Next level",
+      "xpProgressDetail": "{current} XP / {goal} XP",
+      "completedQuestsLabel": "{count} completed this week",
+      "leagueTier": "{tier} league"
     },
     "quests": {
       "title": "Active Quests",
@@ -1203,6 +1217,64 @@
     "badges": {
       "title": "Badges & Achievements",
       "shopLink": "Visit Shop"
+    },
+    "xpProgress": "Level progress",
+    "xpProgressCaption": "toward next level",
+    "hearts": "Hearts",
+    "heartsFull": "Fully restored",
+    "heartsNext": "{minutes}m until next heart",
+    "league": {
+      "status": "League • {tier}",
+      "title": "League standings",
+      "rankLabel": "Rank {rank} in {tier}",
+      "streakLabel": "{days}-day streak",
+      "promotionLabel": "Top {cutoff} advance",
+      "demotionLabel": "Bottom {cutoff} drop",
+      "progressLabel": "{percent}% toward next tier",
+      "memberStats": "{streak}-day streak • {xp} XP",
+      "youLabel": "You",
+      "trend": {
+        "up": "↑ Rising",
+        "down": "↓ Falling",
+        "neutral": "• Stable"
+      }
+    },
+    "activity": {
+      "title": "Practice heatmap",
+      "subtitle": "Last 4 weeks of XP",
+      "summary": "{completed} / {total} active days",
+      "xpLabel": "{value} XP earned",
+      "legend": {
+        "complete": "Goal met",
+        "partial": "Partial",
+        "missed": "Missed"
+      },
+      "tooltip": "{date}: {xp} XP • {minutes} min"
+    },
+    "badgeShop": {
+      "title": "Badge shop",
+      "subtitle": "Equip new cosmetics and boosters",
+      "description": "Spend your gems on limited seasonal badges and coach-approved boosters.",
+      "balance": "{gems} gems",
+      "balanceCaption": "Current stash",
+      "cost": "{gems} gems",
+      "owned": "Owned",
+      "purchase": "Purchase",
+      "rarity": {
+        "common": "Common",
+        "rare": "Rare",
+        "epic": "Epic",
+        "legendary": "Legendary",
+        "mythic": "Mythic"
+      },
+      "success": {
+        "title": "Badge unlocked",
+        "description": "Equipped in your profile."
+      },
+      "error": {
+        "title": "Unable to purchase",
+        "description": "Please try again shortly."
+      }
     }
   },
   "notifications": {
@@ -1218,6 +1290,80 @@
     "error": {
       "title": "Unable to load notifications",
       "generic": "Something went wrong while loading your notifications"
+    },
+    "settings": {
+      "title": "Reminder controls",
+      "subtitle": "Stay motivated on your schedule",
+      "description": "Set quiet hours, streak warnings, and daily nudges for mission reminders.",
+      "quietHours": {
+        "label": "Quiet hours",
+        "description": "Mute notifications during sleep or focus time",
+        "to": "to"
+      },
+      "streakWarnings": {
+        "label": "Streak warnings",
+        "description": "Alert me when my streak is at risk"
+      },
+      "dailyNudges": {
+        "label": "Daily nudges",
+        "description": "Daily motivation around my reminder windows"
+      },
+      "save": "Save preferences",
+      "saving": "Saving...",
+      "savedTitle": "Settings updated",
+      "savedDescription": "We’ll only notify you at the right time.",
+      "errorTitle": "Unable to update",
+      "errorDescription": "Please try again shortly.",
+      "footerHint": "Applies to web, mobile, and push reminders."
+    }
+  },
+  "discover": {
+    "hero": {
+      "badge": "Editorial",
+      "title": "Discover Macedonian culture, news, and quests",
+      "subtitle": "Browse hand-picked lessons, playlists, and upcoming events that match your mission goals.",
+      "systemsTitle": "What's new",
+      "systemsDiscover": "Curated lessons & playlists",
+      "systemsEvents": "Word Lab sessions & AMAs",
+      "updated": "Updated {time}",
+      "ready": "Pulling fresh picks..."
+    },
+    "filters": {
+      "all": "All"
+    },
+    "categories": {
+      "label": "Learning tracks",
+      "title": "Featured collections",
+      "empty": "No collections are available right now. Check back soon!"
+    },
+    "events": {
+      "label": "Community",
+      "title": "Upcoming events",
+      "subtitle": "Reserve a seat for study halls, office hours, and cultural drop-ins.",
+      "emptyTitle": "No live sessions scheduled",
+      "emptyBody": "We're lining up the next batch of Word Lab events. Check back shortly!"
+    },
+    "actions": {
+      "refresh": "Refresh feed",
+      "refreshing": "Refreshing...",
+      "retry": "Try again"
+    },
+    "error": {
+      "title": "Unable to load Discover",
+      "description": "Reload the page or try again shortly."
+    },
+    "quests": {
+      "label": "Quests",
+      "title": "Keep your quests alive",
+      "subtitle": "Track XP, gems, and deadlines without opening the Practice sheet.",
+      "retry": "Reload quests",
+      "empty": "You’re all caught up. Check the Practice tab for new quests soon."
+    },
+    "community": {
+      "label": "Community",
+      "title": "Celebrating the lab",
+      "subtitle": "See what your classmates unlocked this week.",
+      "empty": "No community highlights yet."
     }
   }
 }

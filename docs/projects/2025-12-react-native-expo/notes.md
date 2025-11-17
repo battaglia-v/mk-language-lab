@@ -130,3 +130,4 @@ _Evidence template_: when adding a row to the table, include device info, SDK, r
 - `EXPO_PUBLIC_PROJECT_ID` – surfaced through `app.config.ts` → `extra.eas.projectId`; needed for `Notifications.getExpoPushTokenAsync`.
 - `EXPO_PUBLIC_ENV` – set to `prod` when validating push reminders against production services.
 - `CRON_SECRET` – bearer token for `/api/cron/reminders`; store in Vercel/Render cron configs and local `.env.local` for manual curls.
+- `REMINDER_CRON_ERROR_BUDGET` – optional; GitHub’s fallback cron smoke respects this threshold (default `3`) so isolated Expo ticket revocations warn instead of failing the workflow. Raise/lower based on acceptable error noise.

@@ -17,13 +17,23 @@ jobs:
   reminder-cron:
     name: Reminder Cron Probe
     runs-on: ubuntu-latest
+    env:
+      CRON_SECRET: ${{ secrets.CRON_SECRET }}
+      REMINDER_CRON_BASE_URL: ${{
+        secrets.REMINDER_CRON_BASE_URL ||
+        vars.REMINDER_CRON_BASE_URL ||
+        secrets.NEXT_PUBLIC_APP_URL ||
+        vars.NEXT_PUBLIC_APP_URL ||
+        secrets.EXPO_PUBLIC_API_BASE_URL ||
+        vars.EXPO_PUBLIC_API_BASE_URL
+      }}
+      REMINDER_CRON_ERROR_BUDGET: ${{ secrets.REMINDER_CRON_ERROR_BUDGET || vars.REMINDER_CRON_ERROR_BUDGET || '3' }}
+      NEXT_PUBLIC_APP_URL: ${{ secrets.NEXT_PUBLIC_APP_URL || vars.NEXT_PUBLIC_APP_URL }}
+      EXPO_PUBLIC_API_BASE_URL: ${{ secrets.EXPO_PUBLIC_API_BASE_URL || vars.EXPO_PUBLIC_API_BASE_URL }}
 
     steps:
       - name: Determine cron prerequisites
         id: cron_prereqs
-        env:
-          CRON_SECRET: ${{ secrets.CRON_SECRET }}
-          REMINDER_CRON_BASE_URL: ${{ secrets.REMINDER_CRON_BASE_URL }}
         run: |
           if [ -z "${CRON_SECRET}" ] || [ -z "${REMINDER_CRON_BASE_URL}" ]; then
             echo "skip=true" >> "$GITHUB_OUTPUT"
@@ -48,9 +58,6 @@ jobs:
 
       - name: Invoke reminder cron
         if: steps.cron_prereqs.outputs.skip == 'false'
-        env:
-          CRON_SECRET: ${{ secrets.CRON_SECRET }}
-          REMINDER_CRON_BASE_URL: ${{ secrets.REMINDER_CRON_BASE_URL }}
         run: npm run mobile:cron:smoke
 
       - name: Skip notice
