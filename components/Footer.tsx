@@ -34,34 +34,45 @@ export default function Footer() {
 
   return (
     <footer
-      className="mt-auto border-t border-border bg-[var(--brand-cream-light)] text-sm text-muted-foreground"
+      className="relative mt-auto border-t border-white/10 bg-[var(--brand-navy)] text-sm text-white/80"
       style={{ paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 2.25rem)' }}
     >
-      <div className="section-container section-container-wide space-y-8 py-8">
-        <div className="grid gap-8 md:grid-cols-[1.6fr_1fr_1fr]">
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,var(--brand-cream)/12,transparent_55%)]"
+        aria-hidden="true"
+      />
+      <div className="relative section-container section-container-wide space-y-10 py-10">
+        <div className="grid gap-8 md:grid-cols-[1.5fr_1fr_1fr]">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <AjvarLogo size={38} />
               <div>
-                <p className="text-base font-semibold text-foreground">{brandNames.full}</p>
-                <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">{t('tagline')}</p>
+                <p className="text-base font-semibold text-white">{brandNames.full}</p>
+                <p className="text-xs uppercase tracking-[0.3em] text-white/70">{t('tagline')}</p>
               </div>
             </div>
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="text-sm leading-relaxed text-white/70">
               {t('contentBy')}{' '}
               <a
                 href="https://macedonianlanguagecorner.com"
                 target="_blank"
                 rel="noreferrer"
-                className="font-semibold text-[var(--brand-red)] hover:underline"
+                className="font-semibold text-[var(--brand-gold)] hover:underline"
               >
                 {t('macedonianLanguageCorner')}
               </a>
               .
             </p>
-            <div className="flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+            <div className="flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-[0.25em] text-white/70">
               {socialLinks.map((link) => (
-                <a key={link.href} href={link.href} target="_blank" rel="noreferrer" className="hover:text-foreground">
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={link.label}
+                  className="rounded-full border border-white/20 px-3 py-1 text-[11px] text-white/80 transition hover:border-white/40 hover:text-white"
+                >
                   {link.label}
                 </a>
               ))}
@@ -69,13 +80,16 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
               {t('product')}
             </p>
             <ul className="mt-3 space-y-2 text-sm leading-relaxed">
               {productLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-foreground transition-colors hover:text-[var(--brand-red)]">
+                  <Link
+                    href={link.href}
+                    className="text-white/80 transition-colors hover:text-[var(--brand-gold)]"
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -84,18 +98,24 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
               {t('support')}
             </p>
             <ul className="mt-3 space-y-2 text-sm leading-relaxed">
               {supportLinks.map((link) => (
                 <li key={link.href}>
                   {link.external ? (
-                    <a href={link.href} className="text-foreground hover:text-[var(--brand-red)]">
+                    <a
+                      href={link.href}
+                      className="text-white/80 transition-colors hover:text-[var(--brand-gold)]"
+                    >
                       {link.label}
                     </a>
                   ) : (
-                    <Link href={link.href} className="text-foreground hover:text-[var(--brand-red)]">
+                    <Link
+                      href={link.href}
+                      className="text-white/80 transition-colors hover:text-[var(--brand-gold)]"
+                    >
                       {link.label}
                     </Link>
                   )}
@@ -105,14 +125,14 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 border-t border-border/70 pt-4 text-xs text-muted-foreground/80">
+        <div className="flex flex-col gap-2 border-t border-white/10 pt-4 text-xs text-white/70">
           <span className="text-center md:text-left">
             {t('createdWith')}{' '}
             <a
               href="https://www.linkedin.com/in/vincentvinnybattaglia/"
               target="_blank"
               rel="noreferrer"
-              className="font-semibold text-foreground hover:underline"
+              className="font-semibold text-white hover:text-[var(--brand-gold)]"
             >
               {t('vini')}
             </a>{' '}
@@ -121,12 +141,12 @@ export default function Footer() {
               href="https://macedonianlanguagecorner.com"
               target="_blank"
               rel="noreferrer"
-              className="font-semibold text-foreground hover:underline"
+              className="font-semibold text-white hover:text-[var(--brand-gold)]"
             >
               {t('andri')}
             </a>
           </span>
-          <span className="text-center text-[11px] uppercase tracking-[0.3em] text-muted-foreground/70 md:text-left">
+          <span className="text-center text-[11px] uppercase tracking-[0.3em] text-white/60 md:text-left">
             © {year} {brandNames.full}. {t('allRightsReserved')}
           </span>
         </div>
