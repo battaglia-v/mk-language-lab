@@ -1,6 +1,6 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { defineConfig } from 'vitest/config';
+import { defineConfig, defaultExclude } from 'vitest/config';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -18,6 +18,7 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./vitest.setup.ts'],
     css: true,
+    exclude: [...defaultExclude, 'e2e/**'],
     passWithNoTests: true,
     coverage: {
       provider: 'v8',

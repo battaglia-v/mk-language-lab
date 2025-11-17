@@ -5,6 +5,8 @@ import * as path from 'path';
 // Load environment variables from .env.local for testing
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
 
+const isCI = !!process.env.CI;
+
 export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
@@ -25,8 +27,11 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: 'npm run dev -- --turbo=false',
+    command: isCI
+      ? 'npx next build --webpack && npx next start -p 3000'
+      : 'npx next dev --webpack --port 3000',
     url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: !isCI,
+    timeout: 180 * 1000,
   },
 });
