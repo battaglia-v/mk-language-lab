@@ -1,6 +1,6 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { defineConfig, defaultExclude } from 'vitest/config';
+import { defineConfig } from 'vitest/config';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -8,6 +8,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, '.'),
+      'react-native': path.resolve(__dirname, 'vitest.react-native.stub.ts'),
+      '@mk/practice': path.resolve(__dirname, 'packages/practice/src'),
     },
   },
   esbuild: {
@@ -18,8 +20,15 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./vitest.setup.ts'],
     css: true,
-    exclude: [...defaultExclude, 'e2e/**'],
     passWithNoTests: true,
+    exclude: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/cypress/**',
+      '**/.{idea,git,cache,output,temp}/**',
+      '**/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build,eslint,prettier}.config.*',
+      '**/e2e/**', // Exclude Playwright E2E tests
+    ],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'lcov'],

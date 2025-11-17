@@ -28,8 +28,8 @@ export default defineConfig({
 
   webServer: {
     command: isCI
-      ? 'npx next build --webpack && npx next start -p 3000'
-      : 'npx next dev --webpack --port 3000',
+      ? 'npm run build:webpack && npm start'
+      : 'npm run dev:webpack',
     url: 'http://localhost:3000',
     reuseExistingServer: !isCI,
     timeout: 180 * 1000,
