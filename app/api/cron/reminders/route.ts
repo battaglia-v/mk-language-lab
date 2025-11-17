@@ -68,7 +68,7 @@ export async function GET(request: NextRequest) {
     prisma.exerciseAttempt.groupBy({
       by: ['userId'],
       where: {
-        userId: { in: userIds },
+        userId: { in: userIds.filter((id): id is string => id !== null) },
         attemptedAt: { gte: startOfDay(now) },
       },
       _count: { _all: true },
@@ -77,13 +77,13 @@ export async function GET(request: NextRequest) {
 
   const settingsMap = new Map(settingsRecords.map((record) => [record.userId, record]));
   const progressMap = new Map(progressRecords.map((record) => [record.userId, record]));
-  const dailyCountMap = new Map(dailyPracticeCounts.map((record) => [record.userId, record._count._all]));
+  const dailyCountMap = new Map(dailyPracticeCounts.map((record) => [record.userId, record._count?._all ?? 0]));
 
   const due = tokens
     .map((token) => {
       const dueWindow = getDueReminderWindow({
-        reminderWindows: token.reminderWindows as ReminderWindowId[],
-        timeZone: token.timezone,
+        reminderWindows: (token.reminderWindows as (string | null)[]).filter((w): w is string => w !== null) as ReminderWindowId[],
+        timeZone: token.timezone ?? 'UTC',
         now,
         lastReminderSentAt: token.lastReminderSentAt ?? undefined,
         lastReminderWindowId: token.lastReminderWindowId as ReminderWindowId | null,
@@ -98,6 +98,10 @@ export async function GET(request: NextRequest) {
 
       const windowIntent = WINDOW_INTENT[dueWindow.windowId];
       if (!windowIntent) {
+        return null;
+      }
+
+      if (!token.userId) {
         return null;
       }
 
@@ -158,7 +162,7 @@ export async function GET(request: NextRequest) {
         tokenId: token.id,
         userId: token.userId,
         expoPushToken: token.expoPushToken,
-        reminderWindows: token.reminderWindows as ReminderWindowId[],
+        reminderWindows: (token.reminderWindows as (string | null)[]).filter((w): w is string => w !== null) as ReminderWindowId[],
         locale: token.locale ?? 'en',
         windowId: dueWindow.windowId,
         scheduledAt: dueWindow.scheduledAt,

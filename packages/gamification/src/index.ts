@@ -1,5 +1,5 @@
 // Export types
-export type * from './types.js';
+export type * from './types';
 
 // Export XP utilities
 export {
@@ -10,7 +10,7 @@ export {
   calculateXPForLevel,
   calculateLevelFromXP,
   getLevelProgress,
-} from './xp.js';
+} from './xp';
 
 // Export heart utilities
 export {
@@ -21,7 +21,7 @@ export {
   formatHeartRegenTime,
   calculateHeartReward,
   canPerformActivity,
-} from './hearts.js';
+} from './hearts';
 
 // Export streak utilities
 export {
@@ -31,4 +31,4 @@ export {
   getLeagueTierFromStreak,
   getStreakXPMultiplier,
   getHoursRemainingToday,
-} from './streak.js';
+} from './streak';
