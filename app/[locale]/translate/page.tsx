@@ -132,7 +132,7 @@ export default function TranslatePage() {
     },
   });
 
-  const { toast } = useToast();
+  const { addToast } = useToast();
   const { phrases, savePhrase, deletePhrase, clearAll, findMatchingPhrase } = useSavedPhrases();
 
   const panelParam = searchParams?.get('panel');
@@ -189,19 +189,19 @@ export default function TranslatePage() {
   const handleSaveCurrentPhrase = () => {
     if (!currentPayload) return;
     savePhrase(currentPayload);
-    toast({ description: t('savedToastAdded') });
+    addToast({ description: t('savedToastAdded') });
   };
 
   const handleRemoveCurrentPhrase = () => {
     if (!savedMatch) return;
     deletePhrase(savedMatch.id);
-    toast({ description: t('savedToastRemoved') });
+    addToast({ description: t('savedToastRemoved') });
   };
 
   const handleClearSaved = () => {
     if (!phrases.length) return;
     clearAll();
-    toast({ description: t('savedToastCleared') });
+    addToast({ description: t('savedToastCleared') });
   };
 
   const tips = useMemo(() => {
