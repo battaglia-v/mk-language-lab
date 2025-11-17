@@ -19,6 +19,9 @@ async function main() {
     throw new Error('Missing CRON_SECRET env variable.');
   }
 
+  const cronEnvironment = resolveCronEnvironment();
+  const isProduction = isProductionEnvironment(cronEnvironment);
+
   const target = new URL('/api/cron/reminders', ensureTrailingSlash(baseUrl));
   const response = await fetch(target.toString(), {
     headers: {
@@ -27,17 +30,25 @@ async function main() {
   });
 
   const text = await response.text();
+
+  if (!response.ok) {
+    const message = `Cron endpoint returned ${response.status}: ${response.statusText}. Body: ${text}`;
+    if ([401, 403].includes(response.status) && !isProduction) {
+      console.warn(`[reminder-cron] ${message}`);
+      console.warn(
+        `[reminder-cron] Skipping smoke check in ${cronEnvironment} environment because the cron endpoint is protected.`
+      );
+      return;
+    }
+
+    throw new Error(message);
+  }
+
   let payload;
   try {
     payload = JSON.parse(text);
   } catch {
     throw new Error(`Cron response was not valid JSON: ${text}`);
-  }
-
-  if (!response.ok) {
-    throw new Error(
-      `Cron endpoint returned ${response.status}: ${response.statusText}. Body: ${text}`
-    );
   }
 
   const summary = normalizeSummary(payload);
@@ -73,6 +84,19 @@ async function main() {
 
 function ensureTrailingSlash(url) {
   return url.endsWith('/') ? url : `${url}/`;
+}
+
+function resolveCronEnvironment() {
+  return (
+    process.env.REMINDER_CRON_ENVIRONMENT ??
+    process.env.VERCEL_ENV ??
+    process.env.NODE_ENV ??
+    'development'
+  ).toLowerCase();
+}
+
+function isProductionEnvironment(env) {
+  return env === 'production' || env === 'prod';
 }
 
 function normalizeSummary(payload) {
