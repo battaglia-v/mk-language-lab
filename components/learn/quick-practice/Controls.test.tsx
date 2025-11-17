@@ -14,6 +14,9 @@ const translations: Record<string, string | ((values?: Record<string, string>) =
   practiceDrillModeLabel: 'Mode',
   practiceDrillModeFlashcard: 'Flashcards',
   practiceDrillModeCloze: 'Cloze',
+  practiceDifficultyLabel: 'Intensity',
+  practiceDifficultyCasualLabel: 'Casual',
+  practiceDifficultyCasualDescription: 'Relaxed',
   practiceSkipPrompt: 'Skip prompt',
   practiceMoreActions: 'More actions',
   practiceRevealAnswer: 'Reveal answer',
@@ -25,6 +28,9 @@ const translations: Record<string, string | ((values?: Record<string, string>) =
   practiceAnswerRevealed: (values?: Record<string, string>) => `Revealed: ${values?.answer ?? ''}`,
   practiceClozeUnavailable: 'No cloze prompts.',
   practiceEmptyCategory: 'No prompts available.',
+  practiceHint: 'Try switching directions.',
+  practiceClose: 'Close',
+  practiceAllCategories: 'All categories',
 };
 
 const translate: QuickPracticeControlsProps['translate'] = (key, values) => {
@@ -35,33 +41,30 @@ const translate: QuickPracticeControlsProps['translate'] = (key, values) => {
   return value ?? key;
 };
 
-type ControlsOverrides = Partial<Omit<QuickPracticeControlsProps, 'children'>> & {
-  children?: React.ReactNode;
-};
-
-const setupControls = (overrides?: ControlsOverrides) => {
+const setupControls = (overrides?: Partial<QuickPracticeControlsProps>) => {
   const setCategorySpy = vi.fn();
   const onSubmitSpy = overrides?.onSubmit ?? vi.fn();
   const onNextPromptSpy = overrides?.onNextPrompt ?? vi.fn();
 
   function Wrapper() {
     const [category, setCategory] = useState('greetings');
-    const [isCategoryMenuOpen, setIsCategoryMenuOpen] = useState(false);
     const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
-    const categoryButtonRef = useRef<HTMLButtonElement | null>(null);
-    const categoryMenuRef = useRef<HTMLDivElement | null>(null);
     const formRef = useRef<HTMLFormElement | null>(null);
 
     const resolvedCategory = overrides?.category ?? category;
-    const resolvedMenuOpen = overrides?.isCategoryMenuOpen ?? isCategoryMenuOpen;
     const resolvedActionMenuOpen = overrides?.isActionMenuOpen ?? isActionMenuOpen;
+    const [direction, setDirection] = useState<QuickPracticeControlsProps['direction']>('mkToEn');
+    const [practiceMode, setPracticeMode] = useState<QuickPracticeControlsProps['practiceMode']>('flashcard');
+    const [difficulty, setDifficulty] = useState<QuickPracticeControlsProps['difficulty']>('casual');
+    const difficultyOptions = overrides?.difficultyOptions ?? [
+      { id: 'casual', label: 'Casual', description: 'Relaxed' },
+      { id: 'focus', label: 'Focus', description: 'Faster' },
+    ];
 
     const props: QuickPracticeControlsProps = {
-      children: overrides?.children ?? <div data-testid="prompt-slot">Prompt slot</div>,
       isModalVariant: overrides?.isModalVariant ?? false,
       isInputFocused: overrides?.isInputFocused ?? false,
       setIsInputFocused: overrides?.setIsInputFocused ?? vi.fn(),
-      showSettings: overrides?.showSettings ?? true,
       categories: overrides?.categories ?? ['greetings', 'technology'],
       category: resolvedCategory,
       setCategory:
@@ -71,19 +74,33 @@ const setupControls = (overrides?: ControlsOverrides) => {
           setCategory(next);
           setCategorySpy(next);
         }),
-      categoryButtonRef,
-      categoryMenuRef,
-      isCategoryMenuOpen: resolvedMenuOpen,
-      setIsCategoryMenuOpen:
-        overrides?.setIsCategoryMenuOpen ??
+      direction: overrides?.direction ?? direction,
+      setDirection:
+        overrides?.setDirection ??
         ((value) => {
-          const next = typeof value === 'function' ? value(resolvedMenuOpen) : value;
-          setIsCategoryMenuOpen(next);
+          const next = typeof value === 'function' ? value(direction) : value;
+          setDirection(next);
         }),
-      direction: overrides?.direction ?? 'mkToEn',
-      setDirection: overrides?.setDirection ?? vi.fn(),
-      practiceMode: overrides?.practiceMode ?? 'flashcard',
-      setPracticeMode: overrides?.setPracticeMode ?? vi.fn(),
+      practiceMode: overrides?.practiceMode ?? practiceMode,
+      setPracticeMode:
+        overrides?.setPracticeMode ??
+        ((value) => {
+          const next = typeof value === 'function' ? value(practiceMode) : value;
+          setPracticeMode(next);
+        }),
+      difficulty: overrides?.difficulty ?? difficulty,
+      setDifficulty:
+        overrides?.setDifficulty ??
+        ((value) => {
+          const next = typeof value === 'function' ? value(difficulty) : value;
+          setDifficulty(next);
+        }),
+      difficultyOptions,
+      difficultyLabelText: overrides?.difficultyLabelText ?? 'Difficulty',
+      selectedDifficultyLabel: overrides?.selectedDifficultyLabel ?? 'Casual',
+      selectedDifficultyDescription: overrides?.selectedDifficultyDescription ?? 'Relaxed',
+      categoryLabelText: overrides?.categoryLabelText ?? 'Category',
+      categoryValue: overrides?.categoryValue ?? 'All categories',
       answer: overrides?.answer ?? 'hello',
       setAnswer: overrides?.setAnswer ?? vi.fn(),
       placeholder: overrides?.placeholder ?? 'Type the answer',
@@ -123,15 +140,27 @@ const setupControls = (overrides?: ControlsOverrides) => {
 };
 
 describe('QuickPracticeControls', () => {
-  it('allows selecting a different category from the combobox', async () => {
+  it('allows selecting a different category from the drawer', async () => {
     const { user, setCategorySpy } = setupControls();
 
-    const categoryCombobox = screen.getByRole('combobox', { name: 'Category' });
-    await user.click(categoryCombobox);
-    await user.click(screen.getByRole('option', { name: 'Technology' }));
+    await user.click(screen.getByRole('button', { name: 'Category filters' }));
+    await user.click(screen.getByRole('button', { name: 'Technology' }));
 
     expect(setCategorySpy).toHaveBeenCalledWith('technology');
-    expect(categoryCombobox).toHaveTextContent('Technology');
+  });
+
+  it('only expands one selector panel at a time', async () => {
+    const { user } = setupControls();
+
+    const difficultyButton = screen.getByRole('button', { name: /Difficulty:/ });
+    const directionButton = screen.getByRole('button', { name: /Direction:/ });
+
+    await user.click(difficultyButton);
+    expect(difficultyButton).toHaveAttribute('aria-expanded', 'true');
+
+    await user.click(directionButton);
+    expect(directionButton).toHaveAttribute('aria-expanded', 'true');
+    expect(difficultyButton).toHaveAttribute('aria-expanded', 'false');
   });
 
   it('submits answers via the primary check button', async () => {

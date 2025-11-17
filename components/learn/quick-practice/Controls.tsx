@@ -1,4 +1,4 @@
-import type {
+import {
   Dispatch,
   FormEvent,
   MouseEvent,
@@ -6,10 +6,10 @@ import type {
   ReactNode,
   RefObject,
   SetStateAction,
+  useState,
 } from 'react';
 import { RefreshCcw, Eye, EllipsisVertical, Check, XCircle, ChevronDown, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import {
   DropdownMenu,
@@ -22,27 +22,36 @@ import {
 import { cn } from '@/lib/utils';
 import { ALL_CATEGORIES } from '@/components/learn/quick-practice/constants';
 import { formatCategory } from '@/components/learn/quick-practice/utils';
-import type { PracticeDirection, PracticeDrillMode } from '@/components/learn/quick-practice/types';
+import type {
+  PracticeDirection,
+  PracticeDrillMode,
+  PracticeDifficultyId,
+  PracticeDifficultyPreset,
+} from '@/components/learn/quick-practice/types';
 
 type Translate = (key: string, values?: Record<string, string | number | Date>) => string;
 
+type PanelId = 'difficulty' | 'direction' | 'mode';
+
 export type QuickPracticeControlsProps = {
-  children: ReactNode;
   isModalVariant: boolean;
   isInputFocused: boolean;
   setIsInputFocused: Dispatch<SetStateAction<boolean>>;
-  showSettings: boolean;
   categories: string[];
   category: string;
   setCategory: Dispatch<SetStateAction<string>>;
-  categoryButtonRef: RefObject<HTMLButtonElement | null>;
-  categoryMenuRef: RefObject<HTMLDivElement | null>;
-  isCategoryMenuOpen: boolean;
-  setIsCategoryMenuOpen: Dispatch<SetStateAction<boolean>>;
   direction: PracticeDirection;
   setDirection: Dispatch<SetStateAction<PracticeDirection>>;
   practiceMode: PracticeDrillMode;
   setPracticeMode: Dispatch<SetStateAction<PracticeDrillMode>>;
+  difficulty: PracticeDifficultyId;
+  setDifficulty: Dispatch<SetStateAction<PracticeDifficultyId>>;
+  difficultyOptions: PracticeDifficultyPreset[];
+  difficultyLabelText: string;
+  selectedDifficultyLabel: string;
+  selectedDifficultyDescription: string;
+  categoryLabelText: string;
+  categoryValue: string;
   answer: string;
   setAnswer: Dispatch<SetStateAction<string>>;
   placeholder: string;
@@ -65,22 +74,24 @@ export type QuickPracticeControlsProps = {
 };
 
 export function QuickPracticeControls({
-  children,
   isModalVariant,
   isInputFocused,
   setIsInputFocused,
-  showSettings,
   categories,
   category,
   setCategory,
-  categoryButtonRef,
-  categoryMenuRef,
-  isCategoryMenuOpen,
-  setIsCategoryMenuOpen,
   direction,
   setDirection,
   practiceMode,
   setPracticeMode,
+  difficulty,
+  setDifficulty,
+  difficultyOptions,
+  difficultyLabelText,
+  selectedDifficultyLabel,
+  selectedDifficultyDescription,
+  categoryLabelText,
+  categoryValue,
   answer,
   setAnswer,
   placeholder,
@@ -101,6 +112,9 @@ export function QuickPracticeControls({
   isShaking,
   isClozeMode,
 }: QuickPracticeControlsProps) {
+  const [activePanel, setActivePanel] = useState<PanelId | null>(null);
+  const [isFiltersDrawerOpen, setIsFiltersDrawerOpen] = useState(false);
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (isPrimaryDisabled) {
@@ -134,131 +148,334 @@ export function QuickPracticeControls({
     void onSubmit();
   };
 
+  const togglePanel = (panel: PanelId) => {
+    setActivePanel((prev) => (prev === panel ? null : panel));
+  };
+
   return (
-    <div
-      className={cn(
-        'flex-1 flex flex-col space-y-2 md:space-y-4',
-        isModalVariant ? 'px-6 pb-6 md:px-10 md:pb-10 lg:px-12' : 'pb-4 md:pb-6'
-      )}
-    >
-      {!isInputFocused && (
-        <>
+    <>
+      <div
+        className={cn(
+          'flex flex-col gap-4',
+          isModalVariant ? 'px-6 pb-6 md:px-10 md:pb-10 lg:px-12' : 'pb-4 md:pb-6'
+        )}
+      >
+        <form
+          ref={formRef}
+          className={cn('space-y-3 md:space-y-4', isInputFocused && 'space-y-2 pb-4 md:pb-0')}
+          onSubmit={handleSubmit}
+        >
           <div
             className={cn(
-              'flex gap-2 md:gap-4',
-              isModalVariant ? 'flex-col lg:flex-row lg:items-end lg:gap-6' : 'flex-col sm:flex-row sm:items-end',
-              !showSettings && 'hidden md:flex'
+              'rounded-3xl border border-border/60 bg-background/80 p-3 shadow-inner transition-all duration-200 md:p-4',
+              isShaking && 'ring-2 ring-[var(--brand-red)]/40'
             )}
           >
-            <div className={cn('space-y-1.5', isModalVariant ? 'w-full lg:flex-1' : 'flex-1')}>
-              <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                {translate('practiceFilterLabel')}
-              </span>
-              <div className="relative">
-                <button
-                  ref={categoryButtonRef}
-                  type="button"
-                  role="combobox"
-                  aria-label={translate('practiceFilterLabel')}
-                  aria-haspopup="listbox"
-                  aria-expanded={isCategoryMenuOpen}
-                  aria-controls="practice-category-options"
-                  className={cn(
-                    'flex w-full items-center justify-between rounded-md border border-border/60 bg-background/80 px-3 py-2 text-sm font-medium text-foreground transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50',
-                    isModalVariant && 'md:h-12 md:text-base',
-                    isCategoryMenuOpen && 'ring-2 ring-ring/50'
-                  )}
-                  onClick={() => setIsCategoryMenuOpen((prev) => !prev)}
-                >
-                  <span className="truncate">
-                    {category === ALL_CATEGORIES ? translate('practiceAllCategories') : formatCategory(category)}
-                  </span>
-                  <ChevronDown className={cn('h-4 w-4 transition-transform', isCategoryMenuOpen && 'rotate-180')} />
-                </button>
-                {isCategoryMenuOpen && (
-                  <div
-                    ref={categoryMenuRef}
-                    id="practice-category-options"
-                    role="listbox"
-                    className="absolute z-20 mt-2 w-full rounded-md border border-border/40 bg-background/95 p-1 shadow-lg"
-                  >
-                    {[ALL_CATEGORIES, ...categories].map((cat) => {
-                      const isSelected = category === cat;
-                      return (
-                        <button
-                          key={cat || 'all'}
-                          type="button"
-                          role="option"
-                          aria-selected={isSelected}
-                          className={cn(
-                            'flex w-full items-center justify-between rounded-sm px-3 py-1.5 text-left text-sm',
-                            isSelected ? 'bg-primary/10 text-primary font-semibold' : 'hover:bg-muted'
-                          )}
-                          onClick={() => {
-                            setCategory(cat);
-                            setIsCategoryMenuOpen(false);
-                          }}
-                        >
-                          <span>{cat === ALL_CATEGORIES ? translate('practiceAllCategories') : formatCategory(cat)}</span>
-                          {isSelected && <Check className="h-4 w-4" />}
-                        </button>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-            </div>
-
-          <div className={cn('space-y-1.5', isModalVariant ? 'w-full lg:w-auto' : 'sm:w-auto')}>
-            <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              {translate('practiceModeLabel')}
-            </span>
-            <div
+            <Input
+              value={answer}
+              onChange={(event) => setAnswer(event.target.value)}
+              onFocus={() => setIsInputFocused(true)}
+              onBlur={() => {
+                setTimeout(() => setIsInputFocused(false), 100);
+              }}
+              placeholder={placeholder}
               className={cn(
-                'flex rounded-xl border border-border/60 bg-background/60 p-1',
-                isModalVariant ? 'flex-col gap-3 lg:flex-row' : 'w-full sm:w-max'
+                'h-auto min-h-[48px] border-0 bg-transparent px-0 text-base font-medium text-foreground placeholder:text-muted-foreground md:text-lg',
+                'focus-visible:ring-0 focus-visible:outline-none'
               )}
-            >
-              <Button
+              aria-label={placeholder}
+              disabled={!isReady}
+            />
+            <div className="mt-2 flex items-center justify-between text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+              <button
                 type="button"
-                size="sm"
-                variant={direction === 'mkToEn' ? 'default' : 'outline'}
-                onClick={() => setDirection('mkToEn')}
-                aria-pressed={direction === 'mkToEn'}
-                className={cn(isModalVariant && 'md:h-10', 'px-2 text-xs')}
+                onClick={onNextPrompt}
+                className="hover:text-primary disabled:opacity-40"
+                disabled={!hasAvailablePrompts}
+                aria-label={translate('practiceSkipPrompt')}
               >
-                {translate('practiceModeMkToEn')}
-              </Button>
-              <Button
+                {translate('practiceSkipPrompt')}
+              </button>
+              <button
                 type="button"
-                size="sm"
-                variant={direction === 'enToMk' ? 'default' : 'outline'}
-                onClick={() => setDirection('enToMk')}
-                aria-pressed={direction === 'enToMk'}
-                className={cn(isModalVariant && 'md:h-10', 'px-2 text-xs')}
+                onClick={onRevealAnswer}
+                className="hover:text-primary disabled:opacity-40"
+                disabled={!isReady}
+                aria-label={translate('practiceRevealAnswer')}
               >
-                {translate('practiceModeEnToMk')}
-              </Button>
+                {translate('practiceRevealAnswer')}
+              </button>
             </div>
           </div>
 
-            <div className={cn('space-y-1.5', isModalVariant ? 'w-full lg:w-auto' : 'sm:w-auto')}>
-              <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                {translate('practiceDrillModeLabel')}
-              </span>
-              <div
-                className={cn(
-                  'flex rounded-xl border border-border/60 bg-background/60 p-1',
-                  isModalVariant ? 'flex-col gap-3 lg:flex-row' : 'w-full sm:w-max'
-                )}
-              >
+          <div className="md:hidden flex flex-col gap-3">
+            <Button
+              type="button"
+              size="lg"
+              className={cn(
+                'w-full rounded-2xl bg-gradient-to-r from-primary to-secondary text-base font-semibold text-white shadow-lg transition-all duration-200',
+                isInputFocused ? 'h-11' : 'h-12',
+                'hover:-translate-y-0.5 hover:shadow-xl disabled:opacity-60 disabled:hover:translate-y-0',
+                'flex items-center justify-center gap-2'
+              )}
+              disabled={isPrimaryDisabled}
+              onPointerDown={handleInstantSubmit}
+              onClick={handleButtonClick}
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                  {translate('practiceCheckingAnswer')}
+                </>
+              ) : (
+                translate('checkAnswer')
+              )}
+            </Button>
+
+            {!isInputFocused && (
+              <div className="flex justify-end">
+                <DropdownMenu open={isActionMenuOpen} onOpenChange={setIsActionMenuOpen}>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      type="button"
+                      size="icon"
+                      variant="ghost"
+                      className="h-9 w-9 rounded-full border border-border/50"
+                      aria-label={translate('practiceMoreActions')}
+                    >
+                      <EllipsisVertical className="h-4 w-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-52 text-sm">
+                    <DropdownMenuLabel className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                      {translate('practiceDrillModeLabel')}
+                    </DropdownMenuLabel>
+                    <DropdownMenuItem
+                      onSelect={(event) => {
+                        event.preventDefault();
+                        setPracticeMode('flashcard');
+                      }}
+                    >
+                      <span className="flex-1">{translate('practiceDrillModeFlashcard')}</span>
+                      {practiceMode === 'flashcard' && <Check className="h-3.5 w-3.5 text-primary" />}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onSelect={(event) => {
+                        event.preventDefault();
+                        setPracticeMode('cloze');
+                      }}
+                    >
+                      <span className="flex-1">{translate('practiceDrillModeCloze')}</span>
+                      {practiceMode === 'cloze' && <Check className="h-3.5 w-3.5 text-primary" />}
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem
+                      onSelect={(event) => {
+                        event.preventDefault();
+                        onRevealAnswer();
+                      }}
+                      disabled={!isReady}
+                    >
+                      <Eye className="mr-2 h-3.5 w-3.5" />
+                      {translate('practiceRevealAnswer')}
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem
+                      onSelect={(event) => {
+                        event.preventDefault();
+                        onReset();
+                      }}
+                    >
+                      <RefreshCcw className="mr-2 h-3.5 w-3.5" />
+                      {translate('practiceReset')}
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            )}
+          </div>
+
+          <div className="hidden md:grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <Button
+              type="submit"
+              size={isModalVariant ? 'lg' : 'default'}
+              className={cn(
+                'w-full gap-2 rounded-2xl bg-gradient-to-r from-primary to-secondary font-semibold shadow-lg transition-all duration-200',
+                'text-white hover:-translate-y-0.5 hover:shadow-xl h-12 disabled:opacity-60 disabled:hover:translate-y-0',
+                'flex items-center justify-center gap-2'
+              )}
+              disabled={isPrimaryDisabled}
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                  {translate('practiceCheckingAnswer')}
+                </>
+              ) : (
+                translate('checkAnswer')
+              )}
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              size={isModalVariant ? 'lg' : 'default'}
+              onClick={onNextPrompt}
+              className="w-full gap-2 rounded-2xl border-border/50"
+              disabled={!hasAvailablePrompts}
+            >
+              <RefreshCcw className="h-4 w-4" />
+              {translate('nextPrompt')}
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size={isModalVariant ? 'lg' : 'default'}
+              onClick={onRevealAnswer}
+              className="w-full gap-2 rounded-2xl"
+              disabled={!isReady}
+            >
+              <Eye className="h-4 w-4" />
+              {translate('practiceRevealAnswer')}
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size={isModalVariant ? 'lg' : 'default'}
+              onClick={onReset}
+              className="w-full gap-2 rounded-2xl"
+              disabled={!isReady && !answer}
+            >
+              {translate('practiceReset')}
+            </Button>
+          </div>
+        </form>
+
+        {feedback && isReady ? (
+          <div
+            className={cn(
+              'rounded-2xl px-5 py-4 font-bold text-lg flex items-center gap-3 shadow-lg border-2',
+              feedback === 'correct'
+                ? 'bg-success-soft border-success-soft text-success-strong'
+                : 'bg-error-soft border-error-soft text-error-strong',
+              isShaking && feedback === 'incorrect' && 'animate-shake'
+            )}
+          >
+            {feedback === 'correct' ? (
+              <>
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-success-soft flex-shrink-0">
+                  <Check className="h-5 w-5 text-success-strong" />
+                </div>
+                <span>{translate('correctAnswer')}</span>
+              </>
+            ) : (
+              <>
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-error-soft flex-shrink-0">
+                  <XCircle className="h-5 w-5 text-error-strong" />
+                </div>
+                <span>{translate('incorrectAnswer', { answer: revealedAnswer })}</span>
+              </>
+            )}
+          </div>
+        ) : null}
+
+        {!feedback && revealedAnswer ? (
+          <div className="rounded-xl border border-border/40 bg-muted/30 px-4 py-3 text-sm text-muted-foreground">
+            {translate('practiceAnswerRevealed', { answer: revealedAnswer })}
+          </div>
+        ) : null}
+
+        {!hasAvailablePrompts && (
+          <p className="text-sm text-muted-foreground">
+            {isClozeMode ? translate('practiceClozeUnavailable') : translate('practiceEmptyCategory')}
+          </p>
+        )}
+
+        {!isInputFocused && (
+          <div className="space-y-2" data-testid="practice-panels">
+            <CollapsiblePanel
+              id="difficulty"
+              title={`${difficultyLabelText}: ${selectedDifficultyLabel}`}
+              description={selectedDifficultyDescription}
+              isOpen={activePanel === 'difficulty'}
+              onToggle={togglePanel}
+            >
+              <div className="flex flex-col gap-2">
+                {difficultyOptions.map((preset) => {
+                  const isSelected = preset.id === difficulty;
+                  return (
+                    <button
+                      key={preset.id}
+                      type="button"
+                      className={cn(
+                        'rounded-2xl border px-4 py-2 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60',
+                        isSelected
+                          ? 'border-primary bg-primary/10 text-primary'
+                          : 'border-border/50 bg-background/80 text-muted-foreground hover:border-primary/40'
+                      )}
+                      onClick={() => setDifficulty(preset.id)}
+                    >
+                      <p className="text-sm font-semibold">{preset.label}</p>
+                      <p className="text-xs text-muted-foreground">{preset.description}</p>
+                    </button>
+                  );
+                })}
+              </div>
+            </CollapsiblePanel>
+
+            <CollapsiblePanel
+              id="direction"
+              title={`${translate('practiceModeLabel')}: ${
+                direction === 'mkToEn'
+                  ? translate('practiceModeMkToEn')
+                  : translate('practiceModeEnToMk')
+              }`}
+              description={translate('practiceHint')}
+              isOpen={activePanel === 'direction'}
+              onToggle={togglePanel}
+            >
+              <div className="flex flex-col gap-2">
+                <Button
+                  type="button"
+                  size="sm"
+                  variant={direction === 'mkToEn' ? 'default' : 'outline'}
+                  onClick={() => setDirection('mkToEn')}
+                  aria-pressed={direction === 'mkToEn'}
+                  className="w-full justify-start"
+                >
+                  {translate('practiceModeMkToEn')}
+                </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant={direction === 'enToMk' ? 'default' : 'outline'}
+                  onClick={() => setDirection('enToMk')}
+                  aria-pressed={direction === 'enToMk'}
+                  className="w-full justify-start"
+                >
+                  {translate('practiceModeEnToMk')}
+                </Button>
+              </div>
+            </CollapsiblePanel>
+
+            <CollapsiblePanel
+              id="mode"
+              title={`${translate('practiceDrillModeLabel')}: ${
+                practiceMode === 'flashcard'
+                  ? translate('practiceDrillModeFlashcard')
+                  : translate('practiceDrillModeCloze')
+              }`}
+              description={translate('practiceHint')}
+              isOpen={activePanel === 'mode'}
+              onToggle={togglePanel}
+            >
+              <div className="flex flex-col gap-2">
                 <Button
                   type="button"
                   size="sm"
                   variant={practiceMode === 'flashcard' ? 'default' : 'outline'}
                   onClick={() => setPracticeMode('flashcard')}
                   aria-pressed={practiceMode === 'flashcard'}
-                  className={cn(isModalVariant && 'md:h-10', 'px-2 text-xs')}
+                  className="w-full justify-start"
                 >
                   {translate('practiceDrillModeFlashcard')}
                 </Button>
@@ -268,258 +485,130 @@ export function QuickPracticeControls({
                   variant={practiceMode === 'cloze' ? 'default' : 'outline'}
                   onClick={() => setPracticeMode('cloze')}
                   aria-pressed={practiceMode === 'cloze'}
-                  className={cn(isModalVariant && 'md:h-10', 'px-2 text-xs')}
+                  className="w-full justify-start"
                 >
                   {translate('practiceDrillModeCloze')}
                 </Button>
               </div>
+            </CollapsiblePanel>
+
+            <div className="flex items-center justify-between rounded-2xl border border-dashed border-border/50 px-4 py-2">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  {categoryLabelText}
+                </p>
+                <p className="text-sm font-medium text-foreground">{categoryValue}</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsFiltersDrawerOpen(true)}
+                className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-primary"
+                aria-label={`${translate('practiceFilterLabel')} filters`}
+              >
+                <span>{translate('practiceFilterLabel')}</span>
+                <ChevronDown className="h-3.5 w-3.5" />
+              </button>
             </div>
           </div>
-          <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground md:hidden">
-            {translate('practiceHint')}
-          </p>
-        </>
-      )}
+        )}
+      </div>
 
-      {!isInputFocused && (
-        <div className="hidden md:flex">
-          <Badge className="items-center gap-2 border border-primary/30 bg-primary/5 text-[11px] font-semibold uppercase tracking-wide text-primary">
-            {translate('practiceHint')}
-          </Badge>
-        </div>
-      )}
+      <FiltersDrawer
+        isOpen={isFiltersDrawerOpen}
+        onClose={() => setIsFiltersDrawerOpen(false)}
+        translate={translate}
+        categories={categories}
+        category={category}
+        setCategory={setCategory}
+      />
+    </>
+  );
+}
 
-      {children}
+type CollapsiblePanelProps = {
+  id: PanelId;
+  title: string;
+  description: string;
+  isOpen: boolean;
+  onToggle: (panel: PanelId) => void;
+  children: ReactNode;
+};
 
-      <form
-        ref={formRef}
-        className={cn('space-y-3 md:space-y-4', isInputFocused && 'space-y-2 pb-6 md:space-y-4 md:pb-0')}
-        onSubmit={handleSubmit}
+function CollapsiblePanel({ id, title, description, isOpen, onToggle, children }: CollapsiblePanelProps) {
+  return (
+    <div className="rounded-2xl border border-border/50 bg-background/70">
+      <button
+        type="button"
+        className="flex w-full items-center justify-between px-4 py-3 text-left"
+        aria-expanded={isOpen}
+        onClick={() => onToggle(id)}
       >
-        <div
-          className={cn(
-            'rounded-3xl border border-border/60 bg-background/80 p-3 shadow-inner transition-all duration-200 md:p-4',
-            isShaking && 'ring-2 ring-[var(--brand-red)]/40',
-          )}
-        >
-          <Input
-            value={answer}
-            onChange={(event) => setAnswer(event.target.value)}
-            onFocus={() => setIsInputFocused(true)}
-            onBlur={() => {
-              setTimeout(() => setIsInputFocused(false), 100);
-            }}
-            placeholder={placeholder}
-            className={cn(
-              'h-auto min-h-[48px] border-0 bg-transparent px-0 text-base font-medium text-foreground placeholder:text-muted-foreground md:text-lg',
-              'focus-visible:ring-0 focus-visible:outline-none',
-            )}
-            aria-label={placeholder}
-            disabled={!isReady}
-          />
-          <div className="mt-2 flex items-center justify-between text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-            <button
-              type="button"
-              onClick={onNextPrompt}
-              className="hover:text-primary disabled:opacity-40"
-              disabled={!hasAvailablePrompts}
-              aria-label={translate('practiceSkipPrompt')}
-            >
-              {translate('practiceSkipPrompt')}
-            </button>
-            <button
-              type="button"
-              onClick={onRevealAnswer}
-              className="hover:text-primary disabled:opacity-40"
-              disabled={!isReady}
-              aria-label={translate('practiceRevealAnswer')}
-            >
-              {translate('practiceRevealAnswer')}
-            </button>
-          </div>
+        <div>
+          <p className="text-sm font-semibold text-foreground">{title}</p>
+          <p className="text-xs text-muted-foreground">{description}</p>
         </div>
+        <ChevronDown className={cn('h-4 w-4 text-muted-foreground transition-transform', isOpen && 'rotate-180')} />
+      </button>
+      {isOpen ? <div className="px-4 pb-4">{children}</div> : null}
+    </div>
+  );
+}
 
-        <div className="md:hidden flex flex-col gap-3">
-          <Button
-            type="button"
-            size="lg"
-            className={cn(
-              'w-full rounded-2xl bg-gradient-to-r from-primary to-secondary text-base font-semibold text-white shadow-lg transition-all duration-200',
-              isInputFocused ? 'h-11' : 'h-12',
-              'hover:-translate-y-0.5 hover:shadow-xl disabled:opacity-60 disabled:hover:translate-y-0',
-              'flex items-center justify-center gap-2'
-            )}
-            disabled={isPrimaryDisabled}
-            onPointerDown={handleInstantSubmit}
-            onClick={handleButtonClick}
-          >
-            {isSubmitting ? (
-              <>
-                <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-                {translate('practiceCheckingAnswer')}
-              </>
-            ) : (
-              translate('checkAnswer')
-            )}
-          </Button>
+type FiltersDrawerProps = {
+  isOpen: boolean;
+  onClose: () => void;
+  translate: Translate;
+  categories: string[];
+  category: string;
+  setCategory: Dispatch<SetStateAction<string>>;
+};
 
-          {!isInputFocused && (
-            <div className="flex justify-end">
-              <DropdownMenu open={isActionMenuOpen} onOpenChange={setIsActionMenuOpen}>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    type="button"
-                    size="icon"
-                    variant="ghost"
-                    className="h-9 w-9 rounded-full border border-border/50"
-                    aria-label={translate('practiceMoreActions')}
-                  >
-                    <EllipsisVertical className="h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-48 text-sm">
-                  <DropdownMenuLabel className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                    {translate('practiceDrillModeLabel')}
-                  </DropdownMenuLabel>
-                  <DropdownMenuItem
-                    onSelect={(event) => {
-                      event.preventDefault();
-                      setPracticeMode('flashcard');
-                    }}
-                  >
-                    <span className="flex-1">{translate('practiceDrillModeFlashcard')}</span>
-                    {practiceMode === 'flashcard' && <Check className="h-3.5 w-3.5 text-primary" />}
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    onSelect={(event) => {
-                      event.preventDefault();
-                      setPracticeMode('cloze');
-                    }}
-                  >
-                    <span className="flex-1">{translate('practiceDrillModeCloze')}</span>
-                    {practiceMode === 'cloze' && <Check className="h-3.5 w-3.5 text-primary" />}
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem
-                    onSelect={(event) => {
-                      event.preventDefault();
-                      onRevealAnswer();
-                    }}
-                    disabled={!isReady}
-                  >
-                    <Eye className="mr-2 h-3.5 w-3.5" />
-                    {translate('practiceRevealAnswer')}
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem
-                    onSelect={(event) => {
-                      event.preventDefault();
-                      onReset();
-                    }}
-                  >
-                    <RefreshCcw className="mr-2 h-3.5 w-3.5" />
-                    {translate('practiceReset')}
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-          )}
-        </div>
+function FiltersDrawer({ isOpen, onClose, translate, categories, category, setCategory }: FiltersDrawerProps) {
+  if (!isOpen) {
+    return null;
+  }
 
-        <div className="hidden md:grid grid-cols-1 gap-3 sm:grid-cols-2">
-          <Button
-            type="submit"
-            size={isModalVariant ? 'lg' : 'default'}
-            className={cn(
-              'w-full gap-2 rounded-2xl bg-gradient-to-r from-primary to-secondary font-semibold shadow-lg transition-all duration-200',
-              'text-white hover:-translate-y-0.5 hover:shadow-xl h-12 disabled:opacity-60 disabled:hover:translate-y-0',
-              'flex items-center justify-center gap-2'
-            )}
-            disabled={isPrimaryDisabled}
-          >
-            {isSubmitting ? (
-              <>
-                <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-                {translate('practiceCheckingAnswer')}
-              </>
-            ) : (
-              translate('checkAnswer')
-            )}
-          </Button>
-          <Button
-            type="button"
-            variant="outline"
-            size={isModalVariant ? 'lg' : 'default'}
-            onClick={onNextPrompt}
-            className="w-full gap-2 rounded-2xl border-border/50"
-            disabled={!hasAvailablePrompts}
-          >
-            <RefreshCcw className="h-4 w-4" />
-            {translate('nextPrompt')}
-          </Button>
-          <Button
-            type="button"
-            variant="ghost"
-            size={isModalVariant ? 'lg' : 'default'}
-            onClick={onRevealAnswer}
-            className="w-full gap-2 rounded-2xl"
-            disabled={!isReady}
-          >
-            <Eye className="h-4 w-4" />
-            {translate('practiceRevealAnswer')}
-          </Button>
-          <Button
-            type="button"
-            variant="ghost"
-            size={isModalVariant ? 'lg' : 'default'}
-            onClick={onReset}
-            className="w-full gap-2 rounded-2xl"
-            disabled={!isReady && !answer}
-          >
-            {translate('practiceReset')}
+  const allOptions = [ALL_CATEGORIES, ...categories];
+
+  return (
+    <div className="fixed inset-0 z-50 flex flex-col bg-black/40" role="dialog" aria-modal aria-label="Filters">
+      <button type="button" className="flex-1" onClick={onClose} aria-label={translate('practiceClose')} />
+      <div className="rounded-t-3xl bg-background p-5 shadow-2xl">
+        <div className="mb-4 flex items-center justify-between">
+          <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+            {translate('practiceFilterLabel')}
+          </p>
+          <Button type="button" size="sm" variant="ghost" onClick={onClose}>
+            {translate('practiceClose')}
           </Button>
         </div>
-      </form>
-
-      {feedback && isReady ? (
-        <div
-          className={cn(
-            'rounded-2xl px-5 py-4 font-bold text-lg flex items-center gap-3 shadow-lg border-2',
-            feedback === 'correct'
-              ? 'bg-success-soft border-success-soft text-success-strong'
-              : 'bg-error-soft border-error-soft text-error-strong',
-            isShaking && feedback === 'incorrect' && 'animate-shake'
-          )}
-        >
-          {feedback === 'correct' ? (
-            <>
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-success-soft flex-shrink-0">
-                <Check className="h-5 w-5 text-success-strong" />
-              </div>
-              <span>{translate('correctAnswer')}</span>
-            </>
-          ) : (
-            <>
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-error-soft flex-shrink-0">
-                <XCircle className="h-5 w-5 text-error-strong" />
-              </div>
-              <span>{translate('incorrectAnswer', { answer: revealedAnswer })}</span>
-            </>
-          )}
+        <div className="max-h-[50vh] space-y-2 overflow-y-auto pr-1">
+          {allOptions.map((cat) => {
+            const isSelected = cat === category;
+            return (
+              <button
+                key={cat || 'all'}
+                type="button"
+                className={cn(
+                  'flex w-full items-center justify-between rounded-2xl border px-4 py-2 text-left',
+                  isSelected
+                    ? 'border-primary bg-primary/10 text-primary'
+                    : 'border-border/60 bg-background/80 text-foreground hover:border-primary/40'
+                )}
+                onClick={() => {
+                  setCategory(cat);
+                  onClose();
+                }}
+              >
+                <span className="text-sm font-medium">
+                  {cat === ALL_CATEGORIES ? translate('practiceAllCategories') : formatCategory(cat)}
+                </span>
+                {isSelected && <Check className="h-4 w-4" />}
+              </button>
+            );
+          })}
         </div>
-      ) : null}
-
-      {!feedback && revealedAnswer ? (
-        <div className="rounded-xl border border-border/40 bg-muted/30 px-4 py-3 text-sm text-muted-foreground">
-          {translate('practiceAnswerRevealed', { answer: revealedAnswer })}
-        </div>
-      ) : null}
-
-      {!hasAvailablePrompts && (
-        <p className="text-sm text-muted-foreground">
-          {isClozeMode ? translate('practiceClozeUnavailable') : translate('practiceEmptyCategory')}
-        </p>
-      )}
+      </div>
     </div>
   );
 }

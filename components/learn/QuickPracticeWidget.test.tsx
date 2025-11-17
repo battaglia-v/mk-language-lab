@@ -146,8 +146,8 @@ describe('QuickPracticeWidget', () => {
   it('renders the initial prompt in Macedonian by default', () => {
     render(<QuickPracticeWidget />);
 
-  expect(screen.getAllByText('Quick Practice')[0]).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Macedonian → English' })).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getAllByText('Quick Practice')[0]).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Direction: Macedonian → English/i })).toBeInTheDocument();
     expect(screen.getByText('Translate from Macedonian')).toBeInTheDocument();
     expect(screen.getByText('zdravo')).toBeInTheDocument();
     expect(screen.getByText('Category: Greetings')).toBeInTheDocument();
@@ -182,6 +182,7 @@ describe('QuickPracticeWidget', () => {
     const user = userEvent.setup();
     render(<QuickPracticeWidget />);
 
+    await user.click(screen.getByRole('button', { name: /Direction:/ }));
     const englishButton = screen.getByRole('button', { name: 'English → Macedonian' });
     await user.click(englishButton);
 
@@ -308,14 +309,9 @@ describe('QuickPracticeWidget', () => {
     const user = userEvent.setup();
     render(<QuickPracticeWidget />);
 
-    // Select "technology" category
-    const categorySelect = screen.getByRole('combobox', { name: 'Category' });
-    await user.click(categorySelect);
+    await user.click(screen.getByRole('button', { name: 'Category filters' }));
+    await user.click(screen.getByRole('button', { name: 'Technology' }));
 
-    const technologyOption = screen.getByRole('option', { name: 'Technology' });
-    await user.click(technologyOption);
-
-    // Should now show only technology words
     expect(screen.getByText('Category: Technology')).toBeInTheDocument();
     expect(screen.getByText('kompjuter')).toBeInTheDocument();
   });
@@ -363,8 +359,9 @@ describe('QuickPracticeWidget', () => {
     // Switch mode (controls hidden while input focused, so blur first)
     input.blur();
     await waitFor(() => {
-      expect(screen.getByRole('button', { name: 'English → Macedonian' })).toBeVisible();
+      expect(screen.getByTestId('practice-panels')).toBeInTheDocument();
     });
+    await user.click(screen.getByRole('button', { name: /Direction:/ }));
     await user.click(screen.getByRole('button', { name: 'English → Macedonian' }));
 
     // Feedback should be cleared
@@ -403,5 +400,37 @@ describe('QuickPracticeWidget', () => {
 
     // Should still be correct despite uppercase, spaces, and punctuation
     expect(screen.getByText('Correct!')).toBeInTheDocument();
+  });
+
+  it('collapses the HUD on mobile when the answer field is focused', async () => {
+    const originalWidth = window.innerWidth;
+    window.innerWidth = 360;
+    const user = userEvent.setup();
+    render(<QuickPracticeWidget />);
+
+    const input = screen.getByLabelText('Type the English translation');
+    await user.click(input);
+
+    await waitFor(() => {
+      expect(screen.getByTestId('practice-hud')).toHaveAttribute('data-collapsed', 'true');
+    });
+
+    window.innerWidth = originalWidth;
+  });
+
+  it('keeps the HUD expanded on desktop even when focused', async () => {
+    const originalWidth = window.innerWidth;
+    window.innerWidth = 1280;
+    const user = userEvent.setup();
+    render(<QuickPracticeWidget />);
+
+    const input = screen.getByLabelText('Type the English translation');
+    await user.click(input);
+
+    await waitFor(() => {
+      expect(screen.getByTestId('practice-hud')).toHaveAttribute('data-collapsed', 'false');
+    });
+
+    window.innerWidth = originalWidth;
   });
 });
