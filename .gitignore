@@ -72,3 +72,7 @@ DATABASE_TEST_REPORT.md
 temp-*.mjs
 temp-*.js
 test change
+
+# Test results and reports
+test-results/
+playwright-report/

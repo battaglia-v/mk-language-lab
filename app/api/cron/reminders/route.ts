@@ -57,7 +57,7 @@ export async function GET(request: NextRequest) {
     },
   });
 
-  const userIds = Array.from(new Set(tokens.map((token) => token.userId)));
+  const userIds = Array.from(new Set(tokens.map((token) => token.userId).filter((id): id is string => id !== null)));
 
   const [settingsRecords, progressRecords, dailyPracticeCounts] = await Promise.all([
     prisma.reminderSettings.findMany({ where: { userId: { in: userIds } } }),
@@ -68,7 +68,7 @@ export async function GET(request: NextRequest) {
     prisma.exerciseAttempt.groupBy({
       by: ['userId'],
       where: {
-        userId: { in: userIds.filter((id): id is string => id !== null) },
+        userId: { in: userIds },
         attemptedAt: { gte: startOfDay(now) },
       },
       _count: { _all: true },

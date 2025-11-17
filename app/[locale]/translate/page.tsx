@@ -20,7 +20,7 @@ import { InfoPanel } from '@/components/translate/InfoPanel';
 import { cn } from '@/lib/utils';
 import { SavedPhrasesPanel } from '@/components/translate/SavedPhrasesPanel';
 import { useSavedPhrases } from '@/components/translate/useSavedPhrases';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/components/ui/toast';
 
 const MAX_CHARACTERS = 1800;
 const GOOGLE_TRANSLATE_URL = 'https://translate.google.com/?sl=en&tl=mk';
@@ -132,7 +132,7 @@ export default function TranslatePage() {
     },
   });
 
-  const { toast } = useToast();
+  const { addToast } = useToast();
   const { phrases, savePhrase, deletePhrase, clearAll, findMatchingPhrase } = useSavedPhrases();
 
   const panelParam = searchParams?.get('panel');
@@ -189,19 +189,19 @@ export default function TranslatePage() {
   const handleSaveCurrentPhrase = () => {
     if (!currentPayload) return;
     savePhrase(currentPayload);
-    toast({ description: t('savedToastAdded') });
+    addToast({ description: t('savedToastAdded') });
   };
 
   const handleRemoveCurrentPhrase = () => {
     if (!savedMatch) return;
     deletePhrase(savedMatch.id);
-    toast({ description: t('savedToastRemoved') });
+    addToast({ description: t('savedToastRemoved') });
   };
 
   const handleClearSaved = () => {
     if (!phrases.length) return;
     clearAll();
-    toast({ description: t('savedToastCleared') });
+    addToast({ description: t('savedToastCleared') });
   };
 
   const tips = useMemo(() => {
