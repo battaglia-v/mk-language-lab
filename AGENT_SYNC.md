@@ -429,6 +429,19 @@ Multi-layered rule-based system:
 
 ---
 
+### 16. Playwright webpack command fix ✅ (2025-11-17 ~09:05 UTC)
+**Files Modified:** `playwright.config.ts`
+
+**What Changed:** Extracted explicit CI/local Playwright web server commands that call the dedicated `build:webpack` and `dev:webpack` npm scripts. Added documentation explaining that the Next.js CLI already defaults to webpack when no Turbopack flag is supplied.
+
+**Why It Matters:** The previous configuration attempted to pass `--webpack` directly to the Next.js CLI, which is an unsupported flag and prevented the Playwright server from starting in both CI and local runs. Using the scripts avoids that flag entirely while keeping Playwright pinned to webpack, so E2E suites can launch reliably.
+
+**For Other Agents:** If you need a webpack-only Next.js server, call the existing npm scripts instead of adding CLI flags (e.g., `npm run dev:webpack`). When adding new automation around Playwright or Next servers, avoid `--webpack`—omit Turbopack flags instead.
+
+**Commit Hash:** baa863f
+
+---
+
 ## 🔮 Future Considerations & Technical Debt
 
 This section tracks things to keep in mind for future work or technical debt that needs addressing.

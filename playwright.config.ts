@@ -7,6 +7,11 @@ dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
 
 const isCI = !!process.env.CI;
 
+// Next.js defaults to webpack whenever the Turbopack flag is omitted, so we rely on
+// dedicated npm scripts instead of passing the unsupported `--webpack` flag directly.
+const ciWebServerCommand = 'npm run build:webpack && npm start';
+const localWebServerCommand = 'npm run dev:webpack';
+
 export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
@@ -27,9 +32,7 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: isCI
-      ? 'npm run build:webpack && npm start'
-      : 'npm run dev:webpack',
+    command: isCI ? ciWebServerCommand : localWebServerCommand,
     url: 'http://localhost:3000',
     reuseExistingServer: !isCI,
     timeout: 180 * 1000,
