@@ -20,7 +20,7 @@ import { InfoPanel } from '@/components/translate/InfoPanel';
 import { cn } from '@/lib/utils';
 import { SavedPhrasesPanel } from '@/components/translate/SavedPhrasesPanel';
 import { useSavedPhrases } from '@/components/translate/useSavedPhrases';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/components/ui/toast';
 
 const MAX_CHARACTERS = 1800;
 const GOOGLE_TRANSLATE_URL = 'https://translate.google.com/?sl=en&tl=mk';
