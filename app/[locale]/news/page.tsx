@@ -238,16 +238,20 @@ export default function NewsPage() {
       <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6">
         <section className="glass-card rounded-3xl p-6 md:p-8" data-testid="news-hero">
           <div className="flex flex-col gap-6">
-            <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-primary">
-                <Newspaper className="h-4 w-4" />
+            <header className="space-y-2">
+              <div
+                className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-primary"
+                aria-hidden="true"
+              >
+                <Newspaper className="h-4 w-4" aria-hidden="true" />
                 {t('title')}
               </div>
-              <h1 className="text-2xl font-bold text-white md:text-3xl">{t('subtitle')}</h1>
+              <h1 className="text-2xl font-bold text-white md:text-3xl">{t('title')}</h1>
+              <p className="text-sm text-slate-300">{t('subtitle')}</p>
               <p className="text-sm text-slate-300">
                 {t('sourceLabel')} · {meta?.count ?? 0}/{meta?.total ?? 0}
               </p>
-            </div>
+            </header>
 
             <div className="space-y-3">
               <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
