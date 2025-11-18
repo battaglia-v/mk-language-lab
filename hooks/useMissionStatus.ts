@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import { useSession } from 'next-auth/react';
 import { getLocalMissionStatus, type MissionStatus } from '@mk/api-client';
 
 export type MissionLoadState = 'loading' | 'ready' | 'error';
@@ -13,6 +14,7 @@ export type MissionResource = {
 };
 
 export function useMissionStatusResource(initialMission?: MissionStatus): MissionResource {
+  const { status } = useSession();
   const fallback = useMemo(
     () => initialMission ?? getLocalMissionStatus(),
     [initialMission]
@@ -23,6 +25,16 @@ export function useMissionStatusResource(initialMission?: MissionStatus): Missio
   const [refreshToken, setRefreshToken] = useState(0);
 
   useEffect(() => {
+    if (status === 'loading') {
+      return;
+    }
+
+    if (status === 'unauthenticated') {
+      setState('ready');
+      setError(undefined);
+      return;
+    }
+
     let cancelled = false;
     const controller = new AbortController();
 
@@ -57,7 +69,7 @@ export function useMissionStatusResource(initialMission?: MissionStatus): Missio
       cancelled = true;
       controller.abort();
     };
-  }, [refreshToken]);
+  }, [refreshToken, status]);
 
   const refresh = () => setRefreshToken((token) => token + 1);
 
