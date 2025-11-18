@@ -1,0 +1,159 @@
+name: Agent Orchestration
+
+on:
+  workflow_dispatch:
+    inputs:
+      task_id:
+        description: 'Specific task ID to launch (leave empty for all ready tasks)'
+        required: false
+        type: string
+      advanced_model:
+        description: 'Use advanced AI model (chatGPT-5 codex)'
+        required: false
+        type: boolean
+        default: false
+      force_launch:
+        description: 'Force launch even if dependencies not met'
+        required: false
+        type: boolean
+        default: false
+      dry_run:
+        description: 'Preview without actually launching'
+        required: false
+        type: boolean
+        default: true
+
+  # Can be triggered from other workflows
+  workflow_call:
+    inputs:
+      task_id:
+        required: false
+        type: string
+      advanced_model:
+        required: false
+        type: boolean
+        default: false
+      force_launch:
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  orchestrate:
+    name: Orchestrate Agents
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Required to commit status updates
+      actions: read    # Required to upload artifacts
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build orchestration arguments
+        id: args
+        run: |
+          ARGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+          if [ "${{ inputs.advanced_model }}" = "true" ]; then
+            ARGS="$ARGS --advanced-model"
+          fi
+          if [ "${{ inputs.force_launch }}" = "true" ]; then
+            ARGS="$ARGS --force"
+          fi
+          if [ -n "${{ inputs.task_id }}" ]; then
+            ARGS="$ARGS ${{ inputs.task_id }}"
+          fi
+          echo "args=$ARGS" >> $GITHUB_OUTPUT
+          echo "Orchestration arguments: $ARGS"
+      
+      - name: Run agent orchestration
+        id: orchestrate
+        run: |
+          echo "🚀 Starting agent orchestration..."
+          npm run agents:orchestrate -- ${{ steps.args.outputs.args }} | tee orchestration-output.txt
+          echo "status=completed" >> $GITHUB_OUTPUT
+      
+      - name: Commit status updates
+        if: ${{ inputs.dry_run != true && steps.orchestrate.outputs.status == 'completed' }}
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          if git diff --quiet data/sub-agents-status.json; then
+            echo "No changes to commit"
+          else
+            git add data/sub-agents-status.json
+            git commit -m "chore: update agent status after orchestration [skip ci]"
+            git push
+            echo "✅ Status updates committed"
+          fi
+      
+      - name: Upload orchestration report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: orchestration-report
+          path: orchestration-output.txt
+          retention-days: 7
+      
+      - name: Post summary
+        if: always()
+        run: |
+          echo "## Agent Orchestration Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Mode:** $([ "${{ inputs.dry_run }}" = "true" ] && echo "🔍 Dry Run" || echo "🚀 Live")" >> $GITHUB_STEP_SUMMARY
+          echo "**Advanced Model:** $([ "${{ inputs.advanced_model }}" = "true" ] && echo "✅ Enabled (chatGPT-5 codex)" || echo "❌ Disabled (gpt-4o)")" >> $GITHUB_STEP_SUMMARY
+          echo "**Task ID:** $([ -n "${{ inputs.task_id }}" ] && echo "${{ inputs.task_id }}" || echo "All ready tasks")" >> $GITHUB_STEP_SUMMARY
+          echo "**Force Launch:** $([ "${{ inputs.force_launch }}" = "true" ] && echo "✅ Yes" || echo "❌ No")" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Output" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          cat orchestration-output.txt | head -50 >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📊 [View dashboard](/agents)" >> $GITHUB_STEP_SUMMARY
+          echo "📝 [View status](data/sub-agents-status.json)" >> $GITHUB_STEP_SUMMARY
+
+  notify:
+    name: Notify Status
+    needs: orchestrate
+    runs-on: ubuntu-latest
+    if: ${{ inputs.dry_run != true }}
+    permissions:
+      contents: read  # Minimal permissions for notification job
+    
+    steps:
+      - name: Post to Slack
+        if: ${{ vars.SLACK_WEBHOOK_URL }}
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+            {
+              "text": "Agent orchestration completed",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "🚀 *Agent Orchestration Completed*\n\nTask: ${{ inputs.task_id || 'All ready tasks' }}\nModel: ${{ inputs.advanced_model && 'chatGPT-5 codex' || 'gpt-4o' }}"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ vars.SLACK_WEBHOOK_URL }}

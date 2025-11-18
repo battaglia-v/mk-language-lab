@@ -4,20 +4,18 @@ import statusEntries from "@/data/sub-agents-status.json"
 export type AgentStatus = "pending" | "in_progress" | "blocked" | "complete"
 
 type PlanTask = (typeof projectPlan)["tasks"][number]
-type StatusEntry = (typeof statusEntries)[number]
 
-export type SubAgentTask = PlanTask &
-  StatusEntry & {
-    status: AgentStatus
-    progress: number
-    owner: string
-    highlights: string[]
-    blockers: string[]
-    updatedAt: string
-    eta: string
-    launchedAt?: string
-    launchNotes?: string
-  }
+export type SubAgentTask = PlanTask & {
+  status: AgentStatus
+  progress: number
+  owner: string
+  highlights: string[]
+  blockers: string[]
+  updatedAt: string
+  eta: string
+  launchedAt?: string
+  launchNotes?: string
+}
 
 export type SubAgentSnapshot = {
   project: string

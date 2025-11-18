@@ -34,7 +34,9 @@
     "mobile:build:preview:ios": "npx eas build --platform ios --profile preview --non-interactive",
     "mobile:cron:smoke": "node scripts/run-reminder-cron-smoke.mjs",
     "practice-audio:sync": "tsx scripts/practice-audio-sync.ts",
-    "agents:launch": "tsx scripts/launch-sub-agents.ts"
+    "agents:launch": "tsx scripts/launch-sub-agents.ts",
+    "agents:orchestrate": "tsx scripts/orchestrate-agents.ts",
+    "agents:create-issues": "tsx scripts/create-agent-issues.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

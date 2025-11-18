@@ -1,0 +1,83 @@
+{
+  "version": "1.0",
+  "defaultModel": "gpt-4o",
+  "advancedModel": "chatgpt-5-codex",
+  "agents": {
+    "A0-design-tokens": {
+      "name": "Design Tokens Agent",
+      "model": "gpt-4o",
+      "capabilities": ["design-systems", "css", "theming"],
+      "maxParallelism": 1,
+      "priority": "high"
+    },
+    "A1-ui-shell": {
+      "name": "UI Shell Agent",
+      "model": "gpt-4o",
+      "capabilities": ["react", "nextjs", "layout"],
+      "maxParallelism": 1,
+      "priority": "high"
+    },
+    "A2-translator-core": {
+      "name": "Translator Core Agent",
+      "model": "chatgpt-5-codex",
+      "capabilities": ["react", "nextjs", "api", "streaming"],
+      "maxParallelism": 1,
+      "priority": "high"
+    },
+    "A3-quick-practice": {
+      "name": "Quick Practice Agent",
+      "model": "gpt-4o",
+      "capabilities": ["react", "keyboard-events", "flashcards"],
+      "maxParallelism": 1,
+      "priority": "medium"
+    },
+    "A4-resources-panel": {
+      "name": "Resources Panel Agent",
+      "model": "gpt-4o",
+      "capabilities": ["react", "lazy-loading", "search"],
+      "maxParallelism": 1,
+      "priority": "medium"
+    },
+    "A5-performance": {
+      "name": "Performance Agent",
+      "model": "chatgpt-5-codex",
+      "capabilities": ["optimization", "bundling", "performance"],
+      "maxParallelism": 1,
+      "priority": "high"
+    },
+    "A6-accessibility-tests": {
+      "name": "Accessibility Agent",
+      "model": "gpt-4o",
+      "capabilities": ["playwright", "accessibility", "testing"],
+      "maxParallelism": 1,
+      "priority": "high"
+    },
+    "A7-content-cleanup": {
+      "name": "Content Cleanup Agent",
+      "model": "gpt-4o",
+      "capabilities": ["refactoring", "cleanup"],
+      "maxParallelism": 1,
+      "priority": "low"
+    },
+    "A8-theming-and-components": {
+      "name": "Theming Agent",
+      "model": "gpt-4o",
+      "capabilities": ["design-systems", "react", "components"],
+      "maxParallelism": 1,
+      "priority": "medium"
+    },
+    "A9-ci-cd": {
+      "name": "CI/CD Agent",
+      "model": "chatgpt-5-codex",
+      "capabilities": ["github-actions", "ci-cd", "performance-budgets"],
+      "maxParallelism": 1,
+      "priority": "high"
+    }
+  },
+  "orchestration": {
+    "maxConcurrentAgents": 3,
+    "retryAttempts": 2,
+    "timeoutMinutes": 30,
+    "checkDependencies": true
+  }
+}
