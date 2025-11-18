@@ -11,8 +11,8 @@
       "Drafted TikTok-inspired gradient for the македонски masthead"
     ],
     "blockers": [],
-    "launchedAt": "2025-11-18T00:11:04.455Z",
-    "launchNotes": "Mission control kickoff via CLI"
+    "launchedAt": "2025-11-18T01:18:47.230Z",
+    "launchNotes": "Launched via ChatGPT thread sync"
   },
   {
     "id": "A1-ui-shell",
@@ -28,72 +28,85 @@
     "blockers": [
       "Awaiting final spacing scale from A0 to lock responsive gutter"
     ],
-    "launchedAt": "2025-11-18T00:11:04.455Z",
-    "launchNotes": "Mission control kickoff via CLI"
+    "launchedAt": "2025-11-18T01:18:47.230Z",
+    "launchNotes": "Launched via ChatGPT thread sync"
   },
   {
     "id": "A2-translator-core",
     "owner": "Agent-A2",
-    "status": "pending",
-    "progress": 5,
-    "updatedAt": "2024-12-05T09:00:00Z",
-    "eta": "2024-12-18",
+    "status": "in_progress",
+    "progress": 28,
+    "updatedAt": "2025-11-18T00:57:00Z",
+    "eta": "2025-11-26",
     "highlights": [
-      "Skeleton blueprint drafted"
+      "Skeleton + streaming transport prototyped against mock server",
+      "Local history store running in IndexedDB with optimistic writes"
     ],
-    "blockers": [
-      "Depends on finalized design tokens and shell layout"
-    ]
+    "blockers": [],
+    "launchedAt": "2025-11-18T01:18:47.230Z",
+    "launchNotes": "Launched via ChatGPT thread sync"
   },
   {
     "id": "A3-quick-practice",
     "owner": "Agent-A3",
-    "status": "pending",
-    "progress": 0,
-    "updatedAt": "2024-12-04T22:30:00Z",
-    "eta": "2024-12-22",
-    "highlights": [],
+    "status": "in_progress",
+    "progress": 14,
+    "updatedAt": "2025-11-18T00:58:00Z",
+    "eta": "2025-11-28",
+    "highlights": [
+      "Keyboard shortcut map drafted and tested in isolation",
+      "Flashcard deck seeded with 20 curated Macedonian phrases"
+    ],
     "blockers": [
-      "Requires translator history storage from A2"
-    ]
+      "Awaiting final history schema from A2 but using mocked adapters"
+    ],
+    "launchedAt": "2025-11-18T01:18:47.230Z",
+    "launchNotes": "Launched via ChatGPT thread sync"
   },
   {
     "id": "A4-resources-panel",
     "owner": "Agent-A4",
-    "status": "pending",
-    "progress": 12,
-    "updatedAt": "2024-12-05T08:50:00Z",
-    "eta": "2024-12-16",
+    "status": "in_progress",
+    "progress": 33,
+    "updatedAt": "2025-11-18T00:58:30Z",
+    "eta": "2025-11-24",
     "highlights": [
-      "Initial resource shortlist curated"
+      "Lazy-loaded card grid wired to SWR data source",
+      "Search input debounced + wired to fuzzy matcher"
     ],
-    "blockers": [
-      "Waiting on shell scaffolding for layout slot"
-    ]
+    "blockers": [],
+    "launchedAt": "2025-11-18T01:18:47.230Z",
+    "launchNotes": "Launched via ChatGPT thread sync"
   },
   {
     "id": "A5-performance",
     "owner": "Agent-A5",
-    "status": "pending",
-    "progress": 0,
-    "updatedAt": "2024-12-05T07:15:00Z",
-    "eta": "2024-12-28",
-    "highlights": [],
-    "blockers": [
-      "Requires shell implementation to profile bundles"
-    ]
+    "status": "in_progress",
+    "progress": 18,
+    "updatedAt": "2025-11-18T00:59:00Z",
+    "eta": "2025-11-29",
+    "highlights": [
+      "Route-level dynamic imports landed for translator + practice views",
+      "Baseline Lighthouse + bundle analyzer snapshot captured"
+    ],
+    "blockers": [],
+    "launchedAt": "2025-11-18T01:18:47.230Z",
+    "launchNotes": "Launched via ChatGPT thread sync"
   },
   {
     "id": "A6-accessibility-tests",
     "owner": "Agent-A6",
-    "status": "pending",
-    "progress": 0,
-    "updatedAt": "2024-12-05T06:55:00Z",
-    "eta": "2025-01-05",
-    "highlights": [],
-    "blockers": [
-      "Waiting for Translator + Practice flows to stabilize"
-    ]
+    "status": "in_progress",
+    "progress": 11,
+    "updatedAt": "2025-11-18T00:59:30Z",
+    "eta": "2025-12-03",
+    "highlights": [
+      "Playwright smoke run scripted for Translator happy path",
+      "axe-core integration stubbed inside shared test utils"
+    ],
+    "blockers": [],
+    "launchedAt": "2025-11-18T01:18:47.230Z",
+    "launchNotes": "Launched via ChatGPT thread sync"
   },
   {
     "id": "A7-content-cleanup",
@@ -109,33 +122,39 @@
     "blockers": [
       "Needs confirmation from product to delete streak badges"
     ],
-    "launchedAt": "2025-11-18T00:11:04.455Z",
-    "launchNotes": "Mission control kickoff via CLI"
+    "launchedAt": "2025-11-18T01:18:47.230Z",
+    "launchNotes": "Launched via ChatGPT thread sync"
   },
   {
     "id": "A8-theming-and-components",
     "owner": "Agent-A8",
-    "status": "pending",
-    "progress": 3,
-    "updatedAt": "2024-12-05T09:20:00Z",
-    "eta": "2024-12-19",
+    "status": "in_progress",
+    "progress": 24,
+    "updatedAt": "2025-11-18T01:00:00Z",
+    "eta": "2025-11-25",
     "highlights": [
-      "Button token audit underway"
+      "Button + input components now ingest new design tokens",
+      "Card elevation scale prototyped across Resources mock"
     ],
-    "blockers": [
-      "Requires final tokens from A0"
-    ]
+    "blockers": [],
+    "launchedAt": "2025-11-18T01:18:47.230Z",
+    "launchNotes": "Launched via ChatGPT thread sync"
   },
   {
     "id": "A9-ci-cd",
     "owner": "Agent-A9",
-    "status": "pending",
-    "progress": 0,
-    "updatedAt": "2024-12-05T05:40:00Z",
-    "eta": "2025-01-08",
-    "highlights": [],
+    "status": "in_progress",
+    "progress": 6,
+    "updatedAt": "2025-11-18T01:00:30Z",
+    "eta": "2025-12-06",
+    "highlights": [
+      "Preview deploy workflow drafted with build/lint/test gates",
+      "Performance budget thresholds defined awaiting bundle data"
+    ],
     "blockers": [
-      "Needs output from A5 + A6"
-    ]
+      "Will plug in final metrics from A5/A6 once published"
+    ],
+    "launchedAt": "2025-11-18T01:18:47.230Z",
+    "launchNotes": "Launched via ChatGPT thread sync"
   }
 ]

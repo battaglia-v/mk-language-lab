@@ -9,6 +9,12 @@ Add an entry whenever you introduce a change that affects other contributors (AP
 
 ---
 
+### 28. 2025-11-18 – Sub-agent relaunch CLI (`TBD`)
+**Files**: `scripts/launch-sub-agents.ts`, `docs/SUB_AGENTS.md`, `data/sub-agents-status.json`
+**What Changed**: Added a `--force` flag to the `agents:launch` script so we can restamp in-progress sub-agents with fresh `launchedAt` metadata + context notes, updated the sub-agent handbook, and re-launched every roadmap task with the "Launched via ChatGPT thread sync" note.
+**Impact**: Mission control + `/api/sub-agents` now reflect that all roadmap agents are actively running from this thread, unlocking accurate dashboards + API consumers.
+**Action for Agents**: When you need to broadcast a relaunch (or refresh launch notes), run `npm run agents:launch -- --force --note "context" --tasks <optional filter>` to update the JSON.
+
 ## 🏗️ Deployment Architecture Overview
 
 **This is a monorepo with TWO separate applications sharing code:**
