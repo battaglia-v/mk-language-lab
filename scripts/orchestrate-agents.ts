@@ -70,12 +70,6 @@ const isDryRun = args.includes("--dry-run")
 const targetTask = args.find(arg => !arg.startsWith("--"))
 const useAdvancedModel = args.includes("--advanced-model")
 
-function getArg(name: string): string | undefined {
-  const index = args.indexOf(name)
-  if (index === -1) return undefined
-  return args[index + 1]
-}
-
 // Status map for quick lookup
 const statusMap = new Map(statusEntries.map(entry => [entry.id, entry]))
 
