@@ -42,6 +42,9 @@ jobs:
   orchestrate:
     name: Orchestrate Agents
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Required to commit status updates
+      actions: read    # Required to upload artifacts
     
     steps:
       - name: Checkout repository
@@ -131,6 +134,8 @@ jobs:
     needs: orchestrate
     runs-on: ubuntu-latest
     if: ${{ inputs.dry_run != true }}
+    permissions:
+      contents: read  # Minimal permissions for notification job
     
     steps:
       - name: Post to Slack
