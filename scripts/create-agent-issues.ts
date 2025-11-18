@@ -34,6 +34,12 @@ interface StatusEntry {
   status: "pending" | "in_progress" | "blocked" | "complete"
   owner: string
   progress: number
+  updatedAt: string
+  eta: string
+  highlights: string[]
+  blockers: string[]
+  launchedAt?: string
+  launchNotes?: string
 }
 
 interface AgentConfig {
