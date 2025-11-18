@@ -55,6 +55,10 @@ const nextConfig: NextConfig = {
     serverActions: {
       bodySizeLimit: '2mb',
     },
+    // Enable system TLS certificates so Turbopack can download Google Fonts
+    // assets (Vercel's build environment does not allow outbound TLS without
+    // explicitly opting in, which caused deployments to fail).
+    turbopackUseSystemTlsCerts: true,
   },
 };
 
