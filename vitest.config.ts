@@ -8,6 +8,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, '.'),
+      // Some dependencies import `react-native` even in web builds; point to a
+      // stub so those imports resolve cleanly in the Vitest environment.
       'react-native': path.resolve(__dirname, 'vitest.react-native.stub.ts'),
       '@mk/practice': path.resolve(__dirname, 'packages/practice/src'),
     },

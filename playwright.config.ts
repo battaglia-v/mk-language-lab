@@ -7,8 +7,8 @@ dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
 
 const isCI = !!process.env.CI;
 
-// Use dedicated npm scripts that explicitly pass --webpack flag to ensure
-// Playwright tests run against webpack builds (not Turbopack) for stability.
+// Use dedicated npm scripts that skip the Turbopack flag so Playwright
+// tests always run against webpack builds for stability.
 const ciWebServerCommand = 'npm run build:webpack && npm start';
 const localWebServerCommand = 'npm run dev:webpack';
 
@@ -35,6 +35,8 @@ export default defineConfig({
     command: isCI ? ciWebServerCommand : localWebServerCommand,
     url: 'http://localhost:3000',
     reuseExistingServer: !isCI,
+    // 3-minute timeout accommodates slow webpack builds, especially on cold
+    // starts in CI, while still applying to local runs for consistency.
     timeout: 180 * 1000,
   },
 });
