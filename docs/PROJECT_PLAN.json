@@ -1,0 +1,179 @@
+{
+  "project": "MK Language Lab – UI Overhaul & POC Feature Implementation",
+  "version": "1.0",
+  "tasks": [
+    {
+      "id": "A0-design-tokens",
+      "title": "Create global design tokens & dark theme variables",
+      "description": "Set up all color, spacing, typography, and gradient variables for the new dark theme. Provide both a JSON definition file and CSS variables. Theme must support a black UI similar to ChatGPT, white text, and a TikTok-style pink gradient for 'македонски'.",
+      "deliverables": [
+        "design-tokens.json",
+        "globals.css or theme.css with CSS variables",
+        "Gradient class for title (TikTok-style pink → magenta → purple)"
+      ],
+      "acceptance_criteria": [
+        "All tokens defined in JSON and CSS.",
+        "Tokens include colors, gradients, font sizes, spacing, radii, transitions.",
+        "Other agents can import and use the theme.",
+        "Visual sample in README or PR body."
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "A1-ui-shell",
+      "title": "Implement UI Shell: header, македонски gradient title, sidebar, layout foundation",
+      "description": "Create the global layout shell: top header, left sidebar navigation, responsive layout, and base styling. Add the gradient Cyrillic title 'македонски'. Sidebar should include icons for Translate, Quick Practice, and Resources. Build minimal, modern layout similar to ChatGPT.",
+      "deliverables": [
+        "Header component with gradient title",
+        "Sidebar component with nav icons",
+        "Layout component wrapping all pages",
+        "Responsive behavior for mobile (sidebar collapses)"
+      ],
+      "acceptance_criteria": [
+        "Header displays 'македонски' in pink gradient.",
+        "Sidebar works on mobile + desktop.",
+        "Layout feels minimal, dark, modern.",
+        "No broken pages after integration."
+      ],
+      "dependencies": ["A0-design-tokens"]
+    },
+    {
+      "id": "A2-translator-core",
+      "title": "Rebuild Translator UI & logic with skeletons, streaming, and local history",
+      "description": "Create a new modern translator component: main textarea, instant submit, skeleton loader, and streaming result output. Store history locally in IndexedDB/localStorage. Implement optimistic save and toggleable history panel.",
+      "deliverables": [
+        "Translator page with new UI",
+        "Skeleton loader component",
+        "Streaming output handling",
+        "Local history store (IndexedDB or localStorage)",
+        "History panel toggle"
+      ],
+      "acceptance_criteria": [
+        "Translate button responds instantly with skeleton.",
+        "Streaming text output works without lag.",
+        "History persists on refresh.",
+        "Keyboard submit (Enter → translate)."
+      ],
+      "dependencies": ["A0-design-tokens", "A1-ui-shell"]
+    },
+    {
+      "id": "A3-quick-practice",
+      "title": "Build new Quick Practice flashcard system",
+      "description": "Create minimal, fast flashcard UI: Macedonian → reveal → next/prev, plus keyboard controls. Cards use translation history or a small curated deck. Design should feel clean and focused.",
+      "deliverables": [
+        "Flashcard component",
+        "Keyboard shortcuts: space to reveal, arrows to navigate",
+        "History deck integration",
+        "Curated starter deck"
+      ],
+      "acceptance_criteria": [
+        "Flashcard transitions are instant",
+        "History deck loads if translations exist",
+        "Keyboard controls work globally",
+        "Visually consistent with new dark theme"
+      ],
+      "dependencies": ["A0-design-tokens", "A1-ui-shell", "A2-translator-core"]
+    },
+    {
+      "id": "A4-resources-panel",
+      "title": "Create Resources page & optional right-side panel",
+      "description": "Create a curated list of Macedonian learning resources. Layout is minimal and uses card/List UI. Content should lazy-load and be searchable.",
+      "deliverables": [
+        "Resources page",
+        "Lazy-loaded component",
+        "Search filter bar",
+        "Minimal list of recommended learning links"
+      ],
+      "acceptance_criteria": [
+        "Page loads instantly with skeletons",
+        "Search filters client-side only",
+        "No placeholder or long descriptive blocks",
+        "Links open in new tab"
+      ],
+      "dependencies": ["A0-design-tokens", "A1-ui-shell"]
+    },
+    {
+      "id": "A5-performance",
+      "title": "Performance optimization & loading state overhaul",
+      "description": "Add skeleton loaders everywhere needed. Split bundles using route-level lazy components. Remove unused imports, add local caching, and ensure instant tap responsiveness.",
+      "deliverables": [
+        "Skeleton component library",
+        "Lazy-loaded routes",
+        "Bundle analyzer report",
+        "Caching setup (prefetching & memoization)"
+      ],
+      "acceptance_criteria": [
+        "Lighthouse score noticeably improved",
+        "Button clicks respond instantly with UI feedback",
+        "Reduced bundle size (in report)",
+        "No blocking UI interactions"
+      ],
+      "dependencies": ["A1-ui-shell"]
+    },
+    {
+      "id": "A6-accessibility-tests",
+      "title": "Add accessibility & end-to-end test coverage",
+      "description": "Add Playwright tests for core user flows. Implement axe-core checks and fix major issues. Create a PR checklist.",
+      "deliverables": [
+        "Playwright test suite",
+        "Axe-core accessibility report",
+        "PR checklist for future work"
+      ],
+      "acceptance_criteria": [
+        "Core flows tested: Translate, Quick Practice, Resources",
+        "No critical a11y violations",
+        "CI tests pass"
+      ],
+      "dependencies": ["A1-ui-shell", "A2-translator-core", "A3-quick-practice", "A4-resources-panel"]
+    },
+    {
+      "id": "A7-content-cleanup",
+      "title": "Remove unused pages, placeholder text, and deprecated features",
+      "description": "Delete all old dashboard pages, streaks, mission control, coach tips, placeholder gating text, and anything not part of Translate / Practice / Resources.",
+      "deliverables": [
+        "Removal of old pages",
+        "Simplified routing",
+        "Content pruning across the app"
+      ],
+      "acceptance_criteria": [
+        "No pages or sections remain except: Translate, Practice, Resources",
+        "No placeholder/dummy text exists",
+        "No broken links"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "A8-theming-and-components",
+      "title": "Apply dark theme to all core components",
+      "description": "Create a modern minimal component system using the design tokens. Update buttons, inputs, textareas, cards, and panels to match the dark theme aesthetic.",
+      "deliverables": [
+        "Updated global button styles",
+        "Updated input/textarea styles",
+        "Card styles for consistent UI",
+        "Theme documentation"
+      ],
+      "acceptance_criteria": [
+        "All UI feels cohesive, modern, and minimal",
+        "No component uses ad-hoc inline colors",
+        "Consistent spacing & elevation"
+      ],
+      "dependencies": ["A0-design-tokens"]
+    },
+    {
+      "id": "A9-ci-cd",
+      "title": "Set up CI/CD pipelines, PR previews, and performance budgets",
+      "description": "Set up GitHub Actions (or Vercel CI) that run build, lint, tests, and deploy preview branches. Add a bundle-size threshold so PRs fail if too large.",
+      "deliverables": [
+        "CI workflow YAML",
+        "Preview deployment pipeline",
+        "Performance budget gate"
+      ],
+      "acceptance_criteria": [
+        "Every PR generates a preview URL",
+        "Tests + accessibility checks run automatically",
+        "Performance threshold enforced"
+      ],
+      "dependencies": ["A5-performance", "A6-accessibility-tests"]
+    }
+  ]
+}

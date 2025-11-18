@@ -1,0 +1,141 @@
+[
+  {
+    "id": "A0-design-tokens",
+    "owner": "Agent-A0",
+    "status": "in_progress",
+    "progress": 62,
+    "updatedAt": "2024-12-05T14:10:00Z",
+    "eta": "2024-12-10",
+    "highlights": [
+      "Mapped 32 color tokens across core + semantic layers",
+      "Drafted TikTok-inspired gradient for the македонски masthead"
+    ],
+    "blockers": [],
+    "launchedAt": "2025-11-18T00:11:04.455Z",
+    "launchNotes": "Mission control kickoff via CLI"
+  },
+  {
+    "id": "A1-ui-shell",
+    "owner": "Agent-A1",
+    "status": "in_progress",
+    "progress": 38,
+    "updatedAt": "2024-12-05T13:45:00Z",
+    "eta": "2024-12-12",
+    "highlights": [
+      "Header + gradient title prototype approved",
+      "Sidebar iconography imported from Lucide set"
+    ],
+    "blockers": [
+      "Awaiting final spacing scale from A0 to lock responsive gutter"
+    ],
+    "launchedAt": "2025-11-18T00:11:04.455Z",
+    "launchNotes": "Mission control kickoff via CLI"
+  },
+  {
+    "id": "A2-translator-core",
+    "owner": "Agent-A2",
+    "status": "pending",
+    "progress": 5,
+    "updatedAt": "2024-12-05T09:00:00Z",
+    "eta": "2024-12-18",
+    "highlights": [
+      "Skeleton blueprint drafted"
+    ],
+    "blockers": [
+      "Depends on finalized design tokens and shell layout"
+    ]
+  },
+  {
+    "id": "A3-quick-practice",
+    "owner": "Agent-A3",
+    "status": "pending",
+    "progress": 0,
+    "updatedAt": "2024-12-04T22:30:00Z",
+    "eta": "2024-12-22",
+    "highlights": [],
+    "blockers": [
+      "Requires translator history storage from A2"
+    ]
+  },
+  {
+    "id": "A4-resources-panel",
+    "owner": "Agent-A4",
+    "status": "pending",
+    "progress": 12,
+    "updatedAt": "2024-12-05T08:50:00Z",
+    "eta": "2024-12-16",
+    "highlights": [
+      "Initial resource shortlist curated"
+    ],
+    "blockers": [
+      "Waiting on shell scaffolding for layout slot"
+    ]
+  },
+  {
+    "id": "A5-performance",
+    "owner": "Agent-A5",
+    "status": "pending",
+    "progress": 0,
+    "updatedAt": "2024-12-05T07:15:00Z",
+    "eta": "2024-12-28",
+    "highlights": [],
+    "blockers": [
+      "Requires shell implementation to profile bundles"
+    ]
+  },
+  {
+    "id": "A6-accessibility-tests",
+    "owner": "Agent-A6",
+    "status": "pending",
+    "progress": 0,
+    "updatedAt": "2024-12-05T06:55:00Z",
+    "eta": "2025-01-05",
+    "highlights": [],
+    "blockers": [
+      "Waiting for Translator + Practice flows to stabilize"
+    ]
+  },
+  {
+    "id": "A7-content-cleanup",
+    "owner": "Agent-A7",
+    "status": "in_progress",
+    "progress": 44,
+    "updatedAt": "2024-12-05T14:05:00Z",
+    "eta": "2024-12-11",
+    "highlights": [
+      "Deprecated mission control screens removed",
+      "Routing map simplified"
+    ],
+    "blockers": [
+      "Needs confirmation from product to delete streak badges"
+    ],
+    "launchedAt": "2025-11-18T00:11:04.455Z",
+    "launchNotes": "Mission control kickoff via CLI"
+  },
+  {
+    "id": "A8-theming-and-components",
+    "owner": "Agent-A8",
+    "status": "pending",
+    "progress": 3,
+    "updatedAt": "2024-12-05T09:20:00Z",
+    "eta": "2024-12-19",
+    "highlights": [
+      "Button token audit underway"
+    ],
+    "blockers": [
+      "Requires final tokens from A0"
+    ]
+  },
+  {
+    "id": "A9-ci-cd",
+    "owner": "Agent-A9",
+    "status": "pending",
+    "progress": 0,
+    "updatedAt": "2024-12-05T05:40:00Z",
+    "eta": "2025-01-08",
+    "highlights": [],
+    "blockers": [
+      "Needs output from A5 + A6"
+    ]
+  }
+]
