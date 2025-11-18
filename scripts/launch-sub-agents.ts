@@ -24,6 +24,7 @@ function getArg(name: string) {
 
 const targetList = getArg("--tasks")
 const note = getArg("--note")
+const force = args.includes("--force")
 const now = new Date().toISOString()
 
 const targets = targetList
@@ -40,7 +41,7 @@ let updated = 0
 const updatedTasks = tasks.map((task) => {
   const shouldLaunch =
     task.status === "in_progress" &&
-    !task.launchedAt &&
+    (force || !task.launchedAt) &&
     (targets ? targets.has(task.id) : true)
 
   if (!shouldLaunch) {
@@ -52,7 +53,11 @@ const updatedTasks = tasks.map((task) => {
   return {
     ...task,
     launchedAt: now,
-    launchNotes: note ?? task.launchNotes ?? "Manual launch triggered via CLI",
+    launchNotes:
+      note ??
+      (force
+        ? "Manual relaunch triggered via CLI"
+        : task.launchNotes ?? "Manual launch triggered via CLI"),
   }
 })
 
@@ -61,7 +66,11 @@ if (targets && updated === 0) {
 }
 
 if (updated === 0 && !targets) {
-  console.warn("No new agents launched. Are there in-progress tasks without launch metadata?")
+  console.warn(
+    force
+      ? "No matching in-progress tasks found to relaunch."
+      : "No new agents launched. Are there in-progress tasks without launch metadata?"
+  )
 }
 
 writeFileSync(statusPath, `${JSON.stringify(updatedTasks, null, 2)}\n`)
