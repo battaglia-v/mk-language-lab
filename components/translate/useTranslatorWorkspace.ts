@@ -1,7 +1,8 @@
 'use client';
 
-import { FormEvent, useCallback, useMemo, useState } from 'react';
+import { FormEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { AnalyticsEvents, trackEvent } from '@/lib/analytics';
+import { readTranslatorHistory, writeTranslatorHistory } from '@/lib/translator-history';
 
 export type TranslationDirectionOption = {
   id: 'mk-en' | 'en-mk';
@@ -57,6 +58,21 @@ export function useTranslatorWorkspace({
   const [isRetryable, setIsRetryable] = useState(false);
   const [copiedState, setCopiedState] = useState<CopyState>('idle');
   const [history, setHistory] = useState<TranslationHistoryEntry[]>([]);
+
+  useEffect(() => {
+    setHistory(readTranslatorHistory(historyLimit));
+  }, [historyLimit]);
+
+  const persistHistory = useCallback(
+    (updater: TranslationHistoryEntry[] | ((previous: TranslationHistoryEntry[]) => TranslationHistoryEntry[])) => {
+      setHistory((previous) => {
+        const next = typeof updater === 'function' ? (updater as (prev: TranslationHistoryEntry[]) => TranslationHistoryEntry[])(previous) : updater;
+        writeTranslatorHistory(next);
+        return next;
+      });
+    },
+    [],
+  );
 
   const handleTranslate = useCallback(
     async (event?: FormEvent<HTMLFormElement>) => {
@@ -127,7 +143,7 @@ export function useTranslatorWorkspace({
           timestamp: Date.now(),
         };
 
-        setHistory((previous) => {
+        persistHistory((previous) => {
           const filtered = previous.filter(
             (entry) => entry.sourceText !== text || entry.directionId !== directionId
           );
@@ -142,7 +158,7 @@ export function useTranslatorWorkspace({
         setIsTranslating(false);
       }
     },
-    [directionId, historyLimit, inputText, messages.genericError, selectedDirection, translatePath]
+    [directionId, historyLimit, inputText, messages.genericError, persistHistory, selectedDirection, translatePath]
   );
 
   const handleSwapDirections = useCallback(() => {
@@ -209,5 +225,6 @@ export function useTranslatorWorkspace({
     handleClear,
     handleCopy,
     handleHistoryLoad,
+    setHistory: persistHistory,
   };
 }

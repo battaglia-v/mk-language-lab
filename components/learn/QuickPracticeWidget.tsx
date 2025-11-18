@@ -19,7 +19,7 @@ import { QuickPracticeControls } from '@/components/learn/quick-practice/Control
 import { useQuickPracticeSession } from '@/components/learn/quick-practice/useQuickPracticeSession';
 import { ALL_CATEGORIES, SESSION_TARGET, PRACTICE_DIFFICULTIES } from '@/components/learn/quick-practice/constants';
 import { formatCategory } from '@/components/learn/quick-practice/utils';
-import type { PracticeItem, PracticeDifficultyId, PracticeDifficultyPreset } from '@/components/learn/quick-practice/types';
+import type { PracticeItem, PracticeDifficultyId } from '@/components/learn/quick-practice/types';
 import type { QuickPracticeSessionOptions } from '@/components/learn/quick-practice/useQuickPracticeSession';
 import { getSavedPhrasePracticePrompts } from '@/lib/saved-phrases';
 
@@ -195,8 +195,6 @@ export function QuickPracticeWidget({
 
   const accuracyBadge = getAccuracyBadge(accuracy);
   const accuracyValueLabel = t('practiceAccuracy', { value: accuracy });
-  const accuracyAccent: 'green' | 'gold' | 'red' =
-    accuracy >= 90 ? 'green' : accuracy >= 70 ? 'gold' : 'red';
   const normalizedCorrect = Math.min(correctCount, SESSION_TARGET);
   const inlineProgressLabel = t('practiceInlineProgress', {
     current: normalizedCorrect,
@@ -257,8 +255,6 @@ export function QuickPracticeWidget({
   const summarySubtitle = description ?? t('quickPracticeDescription');
   const isPrimaryDisabled = !isReady || !answer.trim() || isSubmitting;
   const headerTitle = title ?? t('quickPractice');
-  const progressValueLabel = `${normalizedCorrect}/${SESSION_TARGET}`;
-  const progressLabel = t('quickPractice');
   const categoryLabelText = t('practiceCategoryLabel');
   const clozeTranslationLabel = t('practiceClozeTranslationLabel');
   useEffect(() => {

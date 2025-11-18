@@ -33,7 +33,19 @@
     "continueButtonFallback": "Jump back into Quick Practice",
     "continueButtonLoading": "Syncing mission…",
     "quickActionPractice": "Continue practice",
-    "quickActionTranslate": "Open translator"
+    "quickActionTranslate": "Open translator",
+    "roadmap": "Roadmap",
+    "roadmapBlurb": "Next sprint ships translator skeletons"
+  },
+  "shell": {
+    "menu": "Menu",
+    "eyebrow": "MK language lab",
+    "tagline": "Minimal AI-powered translator, focused flashcards, and a curated Macedonian library in one blacked-out shell.",
+    "status": "Live mode",
+    "statusValue": "POC 01",
+    "ctaTranslate": "Translate now",
+    "ctaPractice": "Quick practice",
+    "ctaResources": "Resources"
   },
   "home": {
     "learn": "Learn",
@@ -592,6 +604,7 @@
     "historyTab": "History & tips",
     "savedTab": "Saved phrases",
     "badge": "Translation Tool",
+    "liveStatus": "Streaming build online",
     "assistantTitle": "Translator",
     "assistantDescription": "Translate between Macedonian and English.",
     "directionsGroupLabel": "Translation direction",
@@ -665,7 +678,8 @@
     "removeSavedPhraseButton": "Remove",
     "savedToastAdded": "Saved to your personal deck.",
     "savedToastRemoved": "Removed from saved phrases.",
-    "savedToastCleared": "Cleared saved phrases."
+    "savedToastCleared": "Cleared saved phrases.",
+    "retryableHint": "You can try again immediately."
   },
   "practiceHub": {
     "badge": "Daily practice",
@@ -777,13 +791,17 @@
   "resources": {
     "title": "Resources",
     "badge": "Handpicked by Андри · MLC",
+    "subtitle": "Curated Macedonian study drops. Filter links instantly.",
     "search": "Search resources...",
+    "searchPlaceholder": "Search by title, topic, or tag",
     "viewPdf": "View PDF",
     "openResource": "Open resource",
+    "openAction": "Instant list",
     "showAll": "All collections",
     "searchInDoc": "Search in document",
     "resultsSummary": "{count} results • {total} total resources",
     "noResults": "No results found",
+    "emptyState": "No resources match this filter yet.",
     "loading": "Loading...",
     "updatedOn": "Updated {date}",
     "collectionCount": "{count, plural, one {# resource} other {# resources}}",

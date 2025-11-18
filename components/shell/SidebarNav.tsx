@@ -1,0 +1,85 @@
+"use client";
+
+import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
+import { Languages, Sparkles, BookOpen } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+const navItems = [
+  { id: "translate", icon: Languages, path: "/translate" },
+  { id: "practice", icon: Sparkles, path: "/practice" },
+  { id: "resources", icon: BookOpen, path: "/resources" },
+] as const;
+
+export type SidebarNavProps = {
+  isOpen: boolean;
+  onNavigate?: () => void;
+};
+
+export function SidebarNav({ isOpen, onNavigate }: SidebarNavProps) {
+  const locale = useLocale();
+  const t = useTranslations("nav");
+  const pathname = usePathname();
+
+  const buildHref = (path: string) => `/${locale}${path}`;
+
+  return (
+    <>
+      <div
+        className={cn(
+          "fixed inset-y-0 left-0 z-40 w-72 bg-sidebar text-sidebar-foreground border-r border-sidebar-border transition-transform duration-300 ease-out lg:translate-x-0",
+          isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0",
+        )}
+      >
+        <div className="flex items-center justify-between gap-3 border-b border-sidebar-border px-6 py-5">
+          <div>
+            <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground">{t("label")}</p>
+            <p className="text-2xl font-semibold mk-gradient">македонски</p>
+          </div>
+          <span className="rounded-full border border-sidebar-border px-3 py-1 text-[11px] text-sidebar-foreground/70">
+            lab
+          </span>
+        </div>
+        <nav className="flex flex-col gap-2 px-4 py-6" aria-label={t("label")}>
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            const href = buildHref(item.path);
+            const active = pathname === href || pathname.startsWith(`${href}/`);
+            return (
+              <Link
+                key={item.id}
+                href={href}
+                className={cn(
+                  "group flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-semibold transition",
+                  active
+                    ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-lg"
+                    : "bg-transparent text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                )}
+                onClick={onNavigate}
+                aria-current={active ? "page" : undefined}
+              >
+                <Icon className="h-5 w-5" aria-hidden="true" />
+                <span>{t(item.id)}</span>
+              </Link>
+            );
+          })}
+        </nav>
+        <div className="mt-auto px-6 pb-8">
+          <div className="rounded-2xl border border-sidebar-border/60 bg-sidebar-accent/70 p-4 text-sm text-sidebar-foreground">
+            <p className="text-xs uppercase tracking-[0.3em] text-sidebar-foreground/70">{t("roadmap")}</p>
+            <p className="mt-2 font-semibold text-sidebar-primary-foreground">{t("roadmapBlurb")}</p>
+          </div>
+        </div>
+      </div>
+      {isOpen ? (
+        <button
+          type="button"
+          aria-label="Close navigation"
+          className="fixed inset-0 z-30 bg-black/60 backdrop-blur-sm lg:hidden"
+          onClick={onNavigate}
+        />
+      ) : null}
+    </>
+  );
+}

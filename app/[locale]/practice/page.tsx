@@ -1,224 +1,232 @@
 'use client';
 
-import { useMemo, useCallback } from 'react';
-import Link from 'next/link';
-import dynamic from 'next/dynamic';
-import { useLocale, useTranslations } from 'next-intl';
-import { useSearchParams } from 'next/navigation';
-import { Badge } from '@/components/ui/badge';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { ArrowLeft, ArrowRight, Sparkles, Shuffle, Zap, Keyboard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { cn } from '@/lib/utils';
-import type { LucideIcon } from 'lucide-react';
-import { Flame, MessageCircle, Sparkles, Target } from 'lucide-react';
 import { useSavedPhrases } from '@/components/translate/useSavedPhrases';
-import { CollapsiblePanel } from '@/components/layout/CollapsiblePanel';
+import { readTranslatorHistory } from '@/lib/translator-history';
 
-// Dynamic import for QuickPracticeWidget to reduce initial bundle size
-const QuickPracticeWidget = dynamic(
-  () => import('@/components/learn/QuickPracticeWidget').then((mod) => ({ default: mod.QuickPracticeWidget })),
-  {
-    loading: () => <div className="h-[600px] animate-pulse rounded-[32px] bg-muted/50" />,
-    ssr: false,
-  },
-);
+const curatedDeck = [
+  { id: 'c1', source: 'Како си?', target: 'How are you?' },
+  { id: 'c2', source: 'Од каде си?', target: 'Where are you from?' },
+  { id: 'c3', source: 'Благодарам многу.', target: 'Thank you very much.' },
+  { id: 'c4', source: 'Сакам кафе.', target: 'I would like coffee.' },
+  { id: 'c5', source: 'Колку чини ова?', target: 'How much is this?' },
+];
 
-type PracticeCard = {
-  title: string;
-  description: string;
-  href: string;
-  icon: LucideIcon;
-  accent: string;
-};
+type Flashcard = { id: string; source: string; target: string; direction: 'mk-en' | 'en-mk' };
 
-export default function PracticeHubPage() {
+type DeckType = 'saved' | 'history' | 'curated';
+
+export default function PracticePage() {
   const t = useTranslations('practiceHub');
-  const homeT = useTranslations('home');
-  const locale = useLocale();
-  const searchParams = useSearchParams();
   const { phrases } = useSavedPhrases();
-  const savedDeckActive = searchParams?.get('practiceFixture') === 'saved-phrases';
-  const hasSavedPhrases = phrases.length > 0;
+  const [historySnapshot, setHistorySnapshot] = useState(() => readTranslatorHistory(32));
+  const [deckType, setDeckType] = useState<DeckType>('curated');
+  const [index, setIndex] = useState(0);
+  const [revealed, setRevealed] = useState(false);
 
-  const buildHref = useCallback(
-    (path: string) => (path.startsWith('/') ? `/${locale}${path}` : `/${locale}/${path}`),
-    [locale],
-  );
-  const translatorSavedHref = buildHref('/translate?panel=saved');
+  useEffect(() => {
+    setHistorySnapshot(readTranslatorHistory(32));
+  }, []);
 
-  const directionLabel = locale === 'mk' ? 'МК → ЕН' : 'Mk → En';
+  useEffect(() => {
+    if (phrases.length && deckType === 'curated') {
+      setDeckType('saved');
+    } else if (!phrases.length && deckType === 'saved') {
+      setDeckType(historySnapshot.length ? 'history' : 'curated');
+    }
+  }, [deckType, historySnapshot.length, phrases.length]);
 
-  const heroStats = useMemo(
-    () => [
-      {
-        icon: Flame,
-        label: homeT('heroSection.streak', { count: 7 }),
-      },
-      {
-        icon: Target,
-        label: homeT('heroSection.xpProgress', { earned: 320, goal: 450 }),
-      },
-      {
-        icon: MessageCircle,
-        label: homeT('heroSection.translatorDirection', { direction: directionLabel }),
-      },
-    ],
-    [homeT, directionLabel],
-  );
-
-  const practiceSections = useMemo(
-    () => [
-      {
-        key: 'translation',
-        label: t('translation.tabLabel'),
-        description: t('translation.description'),
-        cards: [
-          {
-            title: t('translation.cards.translate.title'),
-            description: t('translation.cards.translate.description'),
-            href: buildHref('/translate'),
-            icon: MessageCircle,
-            accent: 'bg-[#f8f5ed] text-primary',
-          },
-        ] satisfies PracticeCard[],
-      },
-    ],
-    [t, buildHref],
+  const savedDeck = useMemo<Flashcard[]>(
+    () =>
+      phrases.map((phrase) => ({
+        id: phrase.id,
+        source: phrase.directionId === 'en-mk' ? phrase.sourceText : phrase.translatedText,
+        target: phrase.directionId === 'en-mk' ? phrase.translatedText : phrase.sourceText,
+        direction: phrase.directionId,
+      })),
+    [phrases],
   );
 
-  const ctaRailCards = useMemo(
-    () => [
-      {
-        title: t('cards.translate.title'),
-        description: t('cards.translate.description'),
-        href: buildHref('/translate'),
-        icon: MessageCircle,
-      },
-      {
-        title: t('savedDeck.title'),
-        description: hasSavedPhrases ? t('savedDeck.description') : t('savedDeck.emptyDescription'),
-        href: translatorSavedHref,
-        icon: Sparkles,
-      },
-    ],
-    [t, buildHref, translatorSavedHref, hasSavedPhrases],
+  const historyDeck = useMemo<Flashcard[]>(
+    () =>
+      historySnapshot.map((entry) => ({
+        id: entry.id,
+        source: entry.directionId === 'en-mk' ? entry.sourceText : entry.translatedText,
+        target: entry.directionId === 'en-mk' ? entry.translatedText : entry.sourceText,
+        direction: entry.directionId,
+      })),
+    [historySnapshot],
   );
 
-  const savedDeckBanner = savedDeckActive ? (
-    <Alert className="mb-4 rounded-2xl border-[var(--fold-border)] bg-white text-foreground">
-      <AlertTitle className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
-        {t('savedDeck.badge')}
-      </AlertTitle>
-      <AlertDescription className="space-y-3">
-        <p className="text-lg font-semibold text-foreground">{t('savedDeck.title')}</p>
-        <p className="text-sm text-muted-foreground">
-          {hasSavedPhrases ? t('savedDeck.description') : t('savedDeck.emptyDescription')}
-        </p>
-        <Button asChild variant="secondary" className="rounded-full text-sm font-semibold">
-          <Link href={translatorSavedHref}>{t('savedDeck.manageCta')}</Link>
-        </Button>
-      </AlertDescription>
-    </Alert>
-  ) : null;
+  const curatedFlashcards: Flashcard[] = useMemo(
+    () => curatedDeck.map((card) => ({ ...card, direction: 'mk-en' })),
+    [],
+  );
+
+  const deck = deckType === 'saved' ? savedDeck : deckType === 'history' ? historyDeck : curatedFlashcards;
+  const total = deck.length || 1;
+  const safeIndex = deck.length ? Math.min(index, deck.length - 1) : 0;
+  const currentCard = deck[safeIndex];
+
+  useEffect(() => {
+    if (safeIndex !== index) {
+      setIndex(safeIndex);
+      setRevealed(false);
+    }
+  }, [index, safeIndex]);
+
+  const goNext = useCallback(() => {
+    if (!deck.length) return;
+    setIndex((previous) => (previous + 1) % deck.length);
+    setRevealed(false);
+  }, [deck.length]);
+
+  const goPrevious = useCallback(() => {
+    if (!deck.length) return;
+    setIndex((previous) => (previous - 1 + deck.length) % deck.length);
+    setRevealed(false);
+  }, [deck.length]);
+
+  const toggleReveal = useCallback(() => {
+    if (!deck.length) return;
+    setRevealed((prev) => !prev);
+  }, [deck.length]);
+
+  useEffect(() => {
+    const handler = (event: KeyboardEvent) => {
+      if (event.key === ' ') {
+        event.preventDefault();
+        toggleReveal();
+      } else if (event.key === 'ArrowRight') {
+        goNext();
+      } else if (event.key === 'ArrowLeft') {
+        goPrevious();
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [goNext, goPrevious, toggleReveal]);
 
   return (
-    <div className="minimal-shell">
-      <div className="minimal-shell-content section-container section-container-wide section-spacing-xl space-y-4">
-        <section data-testid="practice-hero" className="fold-grid">
-          <div className="neutral-panel space-y-6">
-            <Badge variant="outline" className="w-fit rounded-full border border-[var(--fold-border)] bg-white/70 text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
-              {t('badge')}
-            </Badge>
-            <div className="space-y-2">
-              <h1 className="text-3xl font-semibold text-foreground md:text-[2.5rem]">{t('title')}</h1>
-              <p className="text-base text-muted-foreground">{t('subtitle')}</p>
+    <div className="space-y-6">
+      <section className="glass-card p-6">
+        <div className="flex flex-wrap items-center gap-4">
+          <div>
+            <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground">{t('badge')}</p>
+            <h1 className="mt-2 text-3xl font-semibold text-white">{t('title')}</h1>
+            <p className="mt-1 max-w-2xl text-sm text-muted-foreground">{t('subtitle')}</p>
+          </div>
+          <div className="ml-auto flex items-center gap-2 rounded-full border border-border/60 px-3 py-1 text-xs text-muted-foreground">
+            <Keyboard className="h-4 w-4" aria-hidden="true" />
+            Space · ← →
+          </div>
+        </div>
+      </section>
+
+      <div className="glass-card space-y-5 p-6">
+        <div className="flex flex-wrap items-center gap-3">
+          <DeckToggle
+            label={t('savedDeck.badge')}
+            count={savedDeck.length}
+            active={deckType === 'saved'}
+            disabled={!savedDeck.length}
+            onClick={() => setDeckType('saved')}
+          />
+          <DeckToggle
+            label={t('translation.tabLabel')}
+            count={historyDeck.length}
+            active={deckType === 'history'}
+            disabled={!historyDeck.length}
+            onClick={() => setDeckType('history')}
+          />
+          <DeckToggle
+            label={t('cards.translate.title')}
+            count={curatedFlashcards.length}
+            active={deckType === 'curated'}
+            onClick={() => setDeckType('curated')}
+          />
+        </div>
+        {!deck.length ? (
+          <Alert className="rounded-2xl border border-border/60 bg-background/70">
+            <AlertDescription className="text-sm text-muted-foreground">
+              {t('savedDeck.emptyDescription')}
+            </AlertDescription>
+          </Alert>
+        ) : (
+          <>
+            <div className="relative min-h-[260px] rounded-3xl border border-border/60 bg-background/60 p-8">
+              <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-muted-foreground">
+                <span>{currentCard?.direction === 'en-mk' ? 'EN → MK' : 'MK → EN'}</span>
+                <span>
+                  {safeIndex + 1} / {total}
+                </span>
+              </div>
+              <div className="mt-8 space-y-4">
+                <p className="text-2xl font-semibold text-white">{currentCard?.source}</p>
+                <p className={cn('text-lg text-primary transition-opacity', revealed ? 'opacity-100' : 'opacity-0')}>
+                  {currentCard?.target}
+                </p>
+              </div>
+              <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-6">
+                <Button variant="ghost" className="rounded-full" onClick={goPrevious}>
+                  <ArrowLeft className="mr-2 h-4 w-4" aria-hidden="true" /> Prev
+                </Button>
+                <Button className="rounded-full px-6" onClick={toggleReveal}>
+                  {revealed ? t('drills.cards.vocabulary.title') : t('drills.cards.tasks.title')}
+                </Button>
+                <Button variant="ghost" className="rounded-full" onClick={goNext}>
+                  Next <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                </Button>
+              </div>
             </div>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {heroStats.map((stat) => {
-                const Icon = stat.icon;
-                return (
-                  <div
-                    key={stat.label}
-                    data-testid="practice-stat"
-                    className="flex items-center gap-3 rounded-2xl border border-[var(--fold-border)] bg-white px-4 py-3 text-sm font-medium text-muted-foreground"
-                  >
-                    <Icon className="h-4 w-4 text-primary" aria-hidden="true" />
-                    <span>{stat.label}</span>
-                  </div>
-                );
-              })}
-            </div>
-            <Button asChild size="lg" className="w-fit rounded-full px-6">
-              <Link href={buildHref('/translate')} className="flex items-center gap-2 text-sm font-semibold">
-                <Sparkles className="h-4 w-4" aria-hidden="true" />
+            <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+              <span className="inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-1">
+                <Sparkles className="h-4 w-4 text-primary" aria-hidden="true" />
                 {t('ctaTranslate')}
-              </Link>
-            </Button>
-          </div>
-          <PracticeCtaRail cards={ctaRailCards} ctaLabel={t('openAction')} />
-        </section>
-
-        <CollapsiblePanel
-          eyebrow={t('savedDeck.badge')}
-          title={t('savedDeck.title')}
-          description={t('savedDeck.description')}
-          defaultOpen
-        >
-          <div className="neutral-panel neutral-panel-muted" data-testid="practice-workspace">
-            {savedDeckBanner}
-            <QuickPracticeWidget className="rounded-[24px] border border-[var(--fold-border)] bg-white" layout="default" />
-          </div>
-        </CollapsiblePanel>
-
-        {practiceSections.map((section) => (
-          <CollapsiblePanel key={section.key} eyebrow={section.label} title={section.description}>
-            <div className="grid gap-3 md:grid-cols-2">
-              {section.cards.map((card) => {
-                const Icon = card.icon;
-                return (
-                  <Link
-                    key={card.title}
-                    href={card.href}
-                    className="group rounded-2xl border border-[var(--fold-border)] bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-                  >
-                    <div className={cn('mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-muted text-primary', card.accent)}>
-                      <Icon className="h-5 w-5" aria-hidden="true" />
-                    </div>
-                    <p className="text-base font-semibold text-foreground">{card.title}</p>
-                    <p className="mt-1 text-sm text-muted-foreground">{card.description}</p>
-                  </Link>
-                );
-              })}
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-1">
+                <Shuffle className="h-4 w-4 text-primary" aria-hidden="true" />
+                {t('openAction')}
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-1">
+                <Zap className="h-4 w-4 text-primary" aria-hidden="true" />
+                {t('cards.translate.description')}
+              </span>
             </div>
-          </CollapsiblePanel>
-        ))}
+          </>
+        )}
       </div>
     </div>
   );
 }
 
-function PracticeCtaRail({
-  cards,
-  ctaLabel,
-}: {
-  cards: { title: string; description: string; href: string; icon: LucideIcon }[];
-  ctaLabel: string;
-}) {
+type DeckToggleProps = {
+  label: string;
+  count: number;
+  active: boolean;
+  disabled?: boolean;
+  onClick: () => void;
+};
+
+function DeckToggle({ label, count, active, disabled, onClick }: DeckToggleProps) {
   return (
-    <aside className="neutral-panel neutral-panel-muted cta-rail" aria-label="Practice quick actions">
-      {cards.map((card) => {
-        const Icon = card.icon;
-        return (
-          <div key={card.title} className="rounded-2xl border border-dashed border-[var(--fold-border)] bg-white/80 p-4">
-            <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
-            <p className="mt-3 text-base font-semibold text-foreground">{card.title}</p>
-            <p className="text-sm text-muted-foreground">{card.description}</p>
-            <Button asChild variant="ghost" className="mt-3 justify-start px-0 text-primary">
-              <Link href={card.href}>{ctaLabel}</Link>
-            </Button>
-          </div>
-        );
-      })}
-    </aside>
+    <Button
+      type="button"
+      variant={active ? 'default' : 'ghost'}
+      disabled={disabled}
+      className={cn(
+        'rounded-full border border-border/60 px-4 text-sm',
+        active ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground',
+      )}
+      onClick={onClick}
+    >
+      <span className="font-semibold">{label}</span>
+      <span className="ml-2 text-xs text-muted-foreground">{count}</span>
+    </Button>
   );
 }
