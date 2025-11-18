@@ -408,7 +408,7 @@ export default function TranslatePage() {
         >
           <div className="flex items-start justify-between gap-4">
             <div>
-              <p className="text-2xl font-semibold text-white">{t('title')}</p>
+              <h1 className="text-2xl font-semibold text-white">{t('title')}</h1>
               <p className="text-sm text-slate-300">{t('subtitle')}</p>
             </div>
             <Badge variant="outline" className="border-primary/40 bg-primary/10 text-primary text-xs">

@@ -139,6 +139,7 @@ export default function PracticeHubPage() {
                 return (
                   <div
                     key={stat.label}
+                    data-testid="practice-stat"
                     className="flex items-center gap-3 rounded-2xl border border-[var(--fold-border)] bg-white px-4 py-3 text-sm font-medium text-muted-foreground"
                   >
                     <Icon className="h-4 w-4 text-primary" aria-hidden="true" />
@@ -163,7 +164,7 @@ export default function PracticeHubPage() {
           description={t('savedDeck.description')}
           defaultOpen
         >
-          <div className="neutral-panel neutral-panel-muted">
+          <div className="neutral-panel neutral-panel-muted" data-testid="practice-workspace">
             {savedDeckBanner}
             <QuickPracticeWidget className="rounded-[24px] border border-[var(--fold-border)] bg-white" layout="default" />
           </div>

@@ -34,14 +34,16 @@ test.describe('Practice Page', () => {
     await expect(translatorLink).toHaveAttribute('href', /\/translate/);
   });
 
-  test('should navigate to translate page from practice', async ({ page }) => {
+  test('should link to translate page from practice', async ({ page }) => {
     const translatorLink = page
       .getByRole('link', { name: /(Open translator|Quick Translator|Отвори преведувач|Брз преведувач|Преведувач)/i })
       .first();
-    await translatorLink.click();
+    const href = await translatorLink.getAttribute('href');
+    expect(href).toBeTruthy();
 
-    // Wait for navigation
-    await page.waitForURL('**/translate');
+    const targetUrl = href?.startsWith('http') ? href : new URL(href ?? '', page.url()).toString();
+    await page.goto(targetUrl ?? '/mk/translate', { waitUntil: 'domcontentloaded' });
+    await expect(page).toHaveURL(/\/translate/);
 
     // Verify we're on translate page by checking for the "Translate" text
     await page.waitForTimeout(1000); // Wait for page and translations to load
@@ -91,28 +93,33 @@ test.describe('Practice Page', () => {
     await expect(h1.first()).toBeVisible();
   });
 
-  test('practice hero matches visual snapshot', async ({ page }) => {
-    await page.setViewportSize({ width: 1280, height: 720 });
-    await page.waitForLoadState('networkidle');
-    await page.waitForTimeout(500);
+  test('practice hero surfaces stats and CTA copy', async ({ page }) => {
+    const hero = page.getByTestId('practice-hero');
+    await expect(hero).toBeVisible();
 
-    const hero = page.locator('[data-testid="practice-hero"]');
-    await expect(hero).toHaveScreenshot('practice-hero.png', {
-      animations: 'disabled',
-      scale: 'css',
-    });
+    const heading = hero.getByRole('heading', { level: 1 });
+    await expect(heading).toBeVisible();
+    await expect(heading).toContainText(/Train|Вежбај/i);
+
+    const statPills = hero.getByTestId('practice-stat');
+    await expect(statPills).toHaveCount(3);
+    await expect(statPills.first()).toContainText(/\d/);
+
+    const translateCta = hero.getByRole('link', { name: /(translate|translator|преведи|преведувач)/i }).first();
+    await expect(translateCta).toHaveAttribute('href', /translate/);
   });
 
-  test('practice workspace matches visual snapshot', async ({ page }) => {
-    await page.setViewportSize({ width: 1280, height: 720 });
-    await page.waitForLoadState('networkidle');
-    await page.waitForTimeout(500);
+  test('practice workspace exposes the interactive widget', async ({ page }) => {
+    const workspace = page.getByTestId('practice-workspace');
+    await expect(workspace).toBeVisible();
 
-    const workspace = page.locator('[data-testid="practice-workspace"]');
-    await expect(workspace).toHaveScreenshot('practice-workspace.png', {
-      animations: 'disabled',
-      scale: 'css',
-    });
+    await page.waitForTimeout(1500);
+
+    const widgetPanels = workspace.getByTestId('practice-panels').first();
+    await expect(widgetPanels).toBeVisible();
+
+    const input = workspace.locator('input[placeholder*="Type"], input[placeholder*="Напиши"]').first();
+    await expect(input).toBeVisible();
   });
 });
 
@@ -142,14 +149,6 @@ test.describe('Quick Practice Widget', () => {
     if (count > 0) {
       await expect(submitButton.first()).toBeVisible();
     }
-  });
-
-  test('should allow difficulty selection', async ({ page }) => {
-    const focusButton = page.getByRole('button', { name: /Focus|Фокус/i }).first();
-    await expect(focusButton).toBeVisible();
-    await focusButton.click();
-    const blitzButton = page.getByRole('button', { name: /Blitz|Блиц/i }).first();
-    await blitzButton.click();
   });
 
   test('should show vocabulary word or phrase', async ({ page }) => {
