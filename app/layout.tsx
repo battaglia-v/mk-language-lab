@@ -128,7 +128,7 @@ export default function RootLayout({
       <head>
         <meta name="google" content="notranslate" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden theme-dark`}>
         <SentryInit />
         {children}
         <Analytics />

@@ -45,7 +45,8 @@
     "statusValue": "POC 01",
     "ctaTranslate": "Translate now",
     "ctaPractice": "Quick practice",
-    "ctaResources": "Resources"
+    "ctaResources": "Resources",
+    "profile": "Profile"
   },
   "home": {
     "learn": "Learn",
@@ -643,6 +644,9 @@
     "historySubtitle": "Load a recent translation or revisit the helper panels.",
     "historyEmpty": "Your latest translations will appear here.",
     "historyLoad": "Load",
+    "contextPanelLabel": "Context panel",
+    "contextCollapse": "Hide panel",
+    "contextExpand": "Show panel",
     "historyViewAll": "View all",
     "historyItemSingular": "translation",
     "historyItemPlural": "translations",

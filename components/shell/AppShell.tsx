@@ -11,7 +11,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   return (
     <div className="app-shell">
       <SidebarNav isOpen={sidebarOpen} onNavigate={() => setSidebarOpen(false)} />
-      <div className="app-shell-main lg:ml-72">
+      <div className="app-shell-main lg:ml-[72px] xl:ml-72">
         <div className="app-shell-scroll">
           <ShellHeader onToggleSidebar={() => setSidebarOpen((prev) => !prev)} />
           <main id="main-content" className="space-y-8" role="main">

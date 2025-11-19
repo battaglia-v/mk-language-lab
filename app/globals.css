@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "./theme.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -34,58 +35,9 @@
   --color-card: var(--card);
 }
 
-:root {
-  color-scheme: dark;
-  --mk-bg: #030303;
-  --mk-bg-panel: #0b0b11;
-  --mk-bg-panel-muted: #151520;
-  --mk-bg-card: #12121c;
-  --mk-border: #272738;
-  --mk-border-soft: #1f1f2c;
-  --mk-text: #f5f5fa;
-  --mk-text-muted: #a7a9c3;
-  --mk-accent: #ff2d85;
-  --mk-accent-2: #ff4fd8;
-  --mk-accent-3: #7a4dff;
-  --mk-success: #58f5b8;
-  --mk-warning: #ffc148;
-  --mk-danger: #ff5f5f;
-  --mk-gradient: linear-gradient(120deg, var(--mk-accent), var(--mk-accent-2), var(--mk-accent-3));
-  --background: var(--mk-bg);
-  --foreground: var(--mk-text);
-  --card: var(--mk-bg-card);
-  --card-foreground: var(--mk-text);
-  --popover: #050507;
-  --popover-foreground: var(--mk-text);
-  --primary: var(--mk-accent);
-  --primary-foreground: #0d0108;
-  --secondary: var(--mk-accent-3);
-  --secondary-foreground: #0d020f;
-  --muted: #1c1c28;
-  --muted-foreground: var(--mk-text-muted);
-  --accent: var(--mk-accent);
-  --accent-foreground: #050505;
-  --destructive: var(--mk-danger);
-  --destructive-foreground: #2b0303;
-  --border: var(--mk-border);
-  --input: var(--mk-border-soft);
-  --ring: var(--mk-accent-2);
-  --radius: 1rem;
-  --sidebar: var(--mk-bg-panel);
-  --sidebar-foreground: var(--mk-text-muted);
-  --sidebar-primary: var(--mk-accent);
-  --sidebar-primary-foreground: #050505;
-  --sidebar-accent: #19192b;
-  --sidebar-accent-foreground: var(--mk-text);
-  --sidebar-border: var(--mk-border);
-  --sidebar-ring: var(--mk-accent);
-  --shadow-soft: 0 10px 40px rgba(3, 3, 3, 0.45);
-  --panel-shadow: 0 20px 60px rgba(5, 5, 5, 0.65);
-}
-
 body {
   font-family: var(--font-geist-sans, "Geist", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
-  background: radial-gradient(circle at top, rgba(122, 77, 255, 0.25), transparent 45%), var(--mk-bg);
+  background: var(--mk-bg);
   color: var(--mk-text);
 }
 
@@ -114,7 +66,8 @@ body {
   }
 }
 
-.mk-gradient {
+.mk-gradient,
+.title-gradient {
   background-image: var(--mk-gradient);
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -123,32 +76,34 @@ body {
   animation: mkGradientShift 6s ease infinite;
 }
 
+.title-gradient {
+  font-weight: 700;
+}
+
 .glass-panel {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.04), rgba(5, 5, 5, 0.1));
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   box-shadow: var(--panel-shadow);
   border-radius: 1.25rem;
 }
 
 .glass-card {
-  background: rgba(10, 10, 14, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(8, 8, 12, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(24px);
+  backdrop-filter: blur(18px);
   border-radius: 1.5rem;
 }
 
 .panel-muted {
-  background: rgba(14, 14, 18, 0.85);
+  background: rgba(16, 16, 24, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .app-shell {
   display: flex;
   min-height: 100vh;
-  background: radial-gradient(circle at 10% 20%, rgba(255, 45, 133, 0.15), transparent 55%),
-    radial-gradient(circle at 80% 0%, rgba(122, 77, 255, 0.25), transparent 60%),
-    var(--mk-bg);
+  background: var(--mk-bg);
 }
 
 .app-shell-main {
@@ -156,11 +111,38 @@ body {
   min-height: 100vh;
   position: relative;
   z-index: 0;
+  padding: 1.5rem;
 }
 
 .app-shell-scroll {
   min-height: 100vh;
+}
+
+.lab-hero {
+  border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.55));
+  padding: 1.75rem;
+  box-shadow: var(--panel-shadow);
+}
+
+.lab-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .lab-grid.has-panel {
+    grid-template-columns: minmax(0, 1fr) 320px;
+  }
+}
+
+.context-panel {
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(8, 8, 12, 0.7);
   padding: 1.25rem;
+  box-shadow: var(--shadow-soft);
 }
 
 @keyframes mkGradientShift {
