@@ -45,7 +45,8 @@
     "statusValue": "POC 01",
     "ctaTranslate": "Преведи веднаш",
     "ctaPractice": "Брза пракса",
-    "ctaResources": "Ресурси"
+    "ctaResources": "Ресурси",
+    "profile": "Профил"
   },
   "home": {
     "learn": "Учи",
@@ -662,6 +663,9 @@
     "historySubtitle": "Вчитај скорешен превод или разгледај ги панелите со совети.",
     "historyEmpty": "Тука ќе се појават твоите најнови преводи.",
     "historyLoad": "Вчитај",
+    "contextPanelLabel": "Контекст панел",
+    "contextCollapse": "Скриј панел",
+    "contextExpand": "Прикажи панел",
     "historyViewAll": "Прикажи ги сите",
     "historyItemSingular": "превод",
     "historyItemPlural": "преводи",

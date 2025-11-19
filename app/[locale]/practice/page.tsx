@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { ArrowLeft, ArrowRight, Sparkles, Shuffle, Zap, Keyboard } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Keyboard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { cn } from '@/lib/utils';
@@ -114,22 +114,21 @@ export default function PracticePage() {
 
   return (
     <div className="space-y-6">
-      <section className="glass-card p-6">
-        <div className="flex flex-wrap items-center gap-4">
+      <section className="lab-hero">
+        <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground">{t('badge')}</p>
+            <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{t('badge')}</p>
             <h1 className="mt-2 text-3xl font-semibold text-white">{t('title')}</h1>
             <p className="mt-1 max-w-2xl text-sm text-muted-foreground">{t('subtitle')}</p>
           </div>
-          <div className="ml-auto flex items-center gap-2 rounded-full border border-border/60 px-3 py-1 text-xs text-muted-foreground">
-            <Keyboard className="h-4 w-4" aria-hidden="true" />
-            Space · ← →
+          <div className="inline-flex items-center gap-2 rounded-full border border-border/60 px-4 py-2 text-xs text-muted-foreground">
+            <Keyboard className="h-4 w-4" aria-hidden="true" /> Space · ← →
           </div>
         </div>
       </section>
 
-      <div className="glass-card space-y-5 p-6">
-        <div className="flex flex-wrap items-center gap-3">
+      <div className="space-y-4 rounded-3xl border border-border/60 bg-black/30 p-6">
+        <div className="flex flex-wrap gap-2">
           <DeckToggle
             label={t('savedDeck.badge')}
             count={savedDeck.length}
@@ -151,15 +150,16 @@ export default function PracticePage() {
             onClick={() => setDeckType('curated')}
           />
         </div>
+
         {!deck.length ? (
-          <Alert className="rounded-2xl border border-border/60 bg-background/70">
+          <Alert className="rounded-2xl border border-border/60 bg-black/40">
             <AlertDescription className="text-sm text-muted-foreground">
               {t('savedDeck.emptyDescription')}
             </AlertDescription>
           </Alert>
         ) : (
-          <>
-            <div className="relative min-h-[260px] rounded-3xl border border-border/60 bg-background/60 p-8">
+          <div className="space-y-4">
+            <div className="rounded-3xl border border-border/60 bg-black/40 p-8">
               <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-muted-foreground">
                 <span>{currentCard?.direction === 'en-mk' ? 'EN → MK' : 'MK → EN'}</span>
                 <span>
@@ -172,33 +172,22 @@ export default function PracticePage() {
                   {currentCard?.target}
                 </p>
               </div>
-              <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-6">
-                <Button variant="ghost" className="rounded-full" onClick={goPrevious}>
-                  <ArrowLeft className="mr-2 h-4 w-4" aria-hidden="true" /> Prev
+              <div className="mt-10 grid gap-3 sm:grid-cols-3">
+                <Button variant="outline" className="rounded-full" onClick={goPrevious}>
+                  <ArrowLeft className="mr-2 h-4 w-4" aria-hidden="true" />
+                  Prev
                 </Button>
-                <Button className="rounded-full px-6" onClick={toggleReveal}>
+                <Button className="rounded-full" onClick={toggleReveal}>
                   {revealed ? t('drills.cards.vocabulary.title') : t('drills.cards.tasks.title')}
                 </Button>
-                <Button variant="ghost" className="rounded-full" onClick={goNext}>
-                  Next <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                <Button variant="outline" className="rounded-full" onClick={goNext}>
+                  Next
+                  <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </Button>
               </div>
             </div>
-            <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-              <span className="inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-1">
-                <Sparkles className="h-4 w-4 text-primary" aria-hidden="true" />
-                {t('ctaTranslate')}
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-1">
-                <Shuffle className="h-4 w-4 text-primary" aria-hidden="true" />
-                {t('openAction')}
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-1">
-                <Zap className="h-4 w-4 text-primary" aria-hidden="true" />
-                {t('cards.translate.description')}
-              </span>
-            </div>
-          </>
+            <p className="text-xs text-muted-foreground">{t('translation.description')}</p>
+          </div>
         )}
       </div>
     </div>
@@ -215,18 +204,20 @@ type DeckToggleProps = {
 
 function DeckToggle({ label, count, active, disabled, onClick }: DeckToggleProps) {
   return (
-    <Button
+    <button
       type="button"
-      variant={active ? 'default' : 'ghost'}
       disabled={disabled}
-      className={cn(
-        'rounded-full border border-border/60 px-4 text-sm',
-        active ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground',
-      )}
       onClick={onClick}
+      className={cn(
+        'inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition',
+        active
+          ? 'border-primary bg-primary/10 text-white'
+          : 'border-border/60 text-muted-foreground hover:text-foreground',
+        disabled && 'opacity-50',
+      )}
     >
-      <span className="font-semibold">{label}</span>
-      <span className="ml-2 text-xs text-muted-foreground">{count}</span>
-    </Button>
+      <span>{label}</span>
+      <span className="text-xs text-muted-foreground">{count}</span>
+    </button>
   );
 }
