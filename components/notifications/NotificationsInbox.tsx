@@ -55,7 +55,7 @@ export function NotificationsInbox({ className, dataTestId }: NotificationsInbox
   const notifications = data?.notifications || [];
   const unreadCount = notifications.filter((n) => !n.isRead).length;
   const cardClasses = cn(
-    'glass-card border border-white/10 p-6 md:p-8 text-white space-y-6',
+    'glass-card border border-white/10 card-padding-lg md:p-8 text-white space-y-6',
     className
   );
 

@@ -45,7 +45,7 @@ export function SidebarNav({ isOpen, onNavigate }: SidebarNavProps) {
                 key={item.id}
                 href={href}
                 className={cn(
-                  "group flex items-center gap-3 rounded-2xl px-3 py-3 text-sm font-semibold transition justify-center xl:justify-start",
+                  "group icon-gap flex items-center rounded-2xl px-3 py-3 text-sm font-semibold transition justify-center xl:justify-start",
                   active
                     ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-lg"
                     : "bg-transparent text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
@@ -53,7 +53,7 @@ export function SidebarNav({ isOpen, onNavigate }: SidebarNavProps) {
                 onClick={onNavigate}
                 aria-current={active ? "page" : undefined}
               >
-                <Icon className="h-5 w-5" aria-hidden="true" />
+                <Icon className="icon-base" aria-hidden="true" />
                 <span className="hidden xl:inline">{t(item.id)}</span>
               </Link>
             );

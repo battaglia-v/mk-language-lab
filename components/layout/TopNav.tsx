@@ -85,13 +85,13 @@ export function TopNav({
 
       <nav
         className={cn(
-          'w-full border-b border-white/5 bg-[#050918]/90 backdrop-blur-xl shadow-lg shadow-black/30 z-40',
-          sticky && 'sticky top-0',
+          'nav-surface w-full border-b border-white/5 bg-[#050918]/90 backdrop-blur-xl shadow-lg shadow-black/30 z-40',
+          sticky && 'sticky safe-top',
           className
         )}
         aria-label={t('label')}
       >
-        <div className="section-container section-container-wide flex flex-wrap items-center justify-between gap-3 py-3">
+        <div className="section-container section-container-wide nav-toolbar flex flex-wrap items-center justify-between gap-3">
           <Link
             href={`/${locale}`}
             className="flex items-center gap-2 transition-opacity hover:opacity-80"
@@ -108,7 +108,7 @@ export function TopNav({
           </div>
         </div>
 
-        <div className="section-container section-container-wide pb-3">
+        <div className="nav-toolbar-helper section-container section-container-wide pb-3 hidden sm:block">
           <MissionSummaryBanner
             mission={mission}
             state={missionState}
@@ -137,7 +137,7 @@ type MissionSummaryBannerProps = {
 function MissionSummaryBanner({ mission, state, error, onRefresh, t, buildHref }: MissionSummaryBannerProps) {
   if (state === 'loading') {
     return (
-      <div className="flex items-center gap-3 rounded-2xl border border-white/5 bg-[#0f162e]/80 px-4 py-3 text-sm text-slate-300">
+      <div className="flex items-center gap-3 rounded-2xl border border-white/5 bg-[#0f162e]/80 card-padding text-sm text-slate-300">
         <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
         {t('summaryLoading')}
       </div>
@@ -146,7 +146,7 @@ function MissionSummaryBanner({ mission, state, error, onRefresh, t, buildHref }
 
   if (state === 'error') {
     return (
-      <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-red-500/40 bg-red-900/20 px-4 py-3 text-sm text-red-200">
+      <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-red-500/40 bg-red-900/20 card-padding text-sm text-red-200">
         <div className="flex items-center gap-2">
           <AlertCircle className="h-4 w-4" aria-hidden="true" />
           <span>{error ?? t('summaryError')}</span>
@@ -154,7 +154,7 @@ function MissionSummaryBanner({ mission, state, error, onRefresh, t, buildHref }
         <button
           type="button"
           onClick={onRefresh}
-          className="rounded-full border border-red-400/60 px-3 py-1 text-xs font-semibold text-red-100 transition-all hover:bg-red-500/20"
+          className="touch-target rounded-full border border-red-400/60 px-3 py-1 text-xs font-semibold text-red-100 transition-all hover:bg-red-500/20"
         >
           {t('retry')}
         </button>
@@ -171,8 +171,8 @@ function MissionSummaryBanner({ mission, state, error, onRefresh, t, buildHref }
   });
 
   return (
-    <div className="flex flex-wrap items-center gap-4 rounded-2xl border border-white/5 bg-[#0f162e]/80 px-4 py-4">
-      <div className="flex flex-1 flex-wrap items-center gap-4">
+    <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-white/5 bg-[#0f162e]/80 card-padding">
+      <div className="flex flex-1 flex-wrap items-center gap-3">
         <div className="flex items-center gap-3">
           <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--brand-red)]/10 text-[var(--brand-red)]">
             <Flame className="h-5 w-5" aria-hidden="true" />
