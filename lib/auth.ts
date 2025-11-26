@@ -5,12 +5,18 @@ import Credentials from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import prisma from '@/lib/prisma';
 
+const googleClientId = process.env.AUTH_GOOGLE_ID ?? process.env.GOOGLE_CLIENT_ID;
+const googleClientSecret = process.env.AUTH_GOOGLE_SECRET ?? process.env.GOOGLE_CLIENT_SECRET;
+const facebookClientId = process.env.AUTH_FACEBOOK_ID ?? process.env.FACEBOOK_CLIENT_ID;
+const facebookClientSecret = process.env.AUTH_FACEBOOK_SECRET ?? process.env.FACEBOOK_CLIENT_SECRET;
+const authSecret = process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET;
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   trustHost: true,
   providers: [
     Google({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: googleClientId,
+      clientSecret: googleClientSecret,
       authorization: {
         params: {
           prompt: 'consent',
@@ -20,8 +26,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
     Facebook({
-      clientId: process.env.FACEBOOK_CLIENT_ID,
-      clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+      clientId: facebookClientId,
+      clientSecret: facebookClientSecret,
     }),
     Credentials({
       name: 'credentials',
@@ -154,6 +160,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     strategy: 'jwt', // JWT sessions for serverless compatibility
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
+  secret: authSecret,
   debug: process.env.NODE_ENV === 'development', // Enable debug mode only in development
   events: {
     async signIn({ user, account }) {
