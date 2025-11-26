@@ -3,24 +3,8 @@
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
-import {
-  Bell,
-  BookOpen,
-  CircleUserRound,
-  Compass,
-  Languages,
-  Sparkles,
-} from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const navItems = [
-  { id: "dashboard", icon: Languages, path: "/translate" },
-  { id: "lessons", icon: Compass, path: "/discover" },
-  { id: "practice", icon: Sparkles, path: "/practice" },
-  { id: "resources", icon: BookOpen, path: "/resources" },
-  { id: "notifications", icon: Bell, path: "/notifications" },
-  { id: "profile", icon: CircleUserRound, path: "/profile" },
-] as const;
+import { shellNavItems } from "./navItems";
 
 export function MobileTabNav() {
   const locale = useLocale();
@@ -36,11 +20,14 @@ export function MobileTabNav() {
       style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 0.75rem)" }}
     >
       <div className="px-2 pt-2 pb-1">
-        <div className="grid grid-cols-3 gap-1 sm:grid-cols-6">
-          {navItems.map((item) => {
+        <div className="grid grid-cols-4 gap-1 sm:grid-cols-4 md:grid-cols-8">
+          {shellNavItems.map((item) => {
             const Icon = item.icon;
             const href = buildHref(item.path);
-            const active = pathname === href || pathname.startsWith(`${href}/`);
+            const isDashboard = item.path === "/";
+            const active = isDashboard
+              ? pathname === `/${locale}` || pathname === `/${locale}/`
+              : pathname === href || pathname.startsWith(`${href}/`);
             return (
               <Link
                 key={item.id}
