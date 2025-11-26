@@ -51,8 +51,16 @@ body {
   }
   button,
   a,
-  [role="button"] {
-    transition: transform 150ms ease, box-shadow 150ms ease;
+  [role="button"],
+  input,
+  select,
+  textarea {
+    transition:
+      color 150ms ease,
+      background-color 150ms ease,
+      border-color 150ms ease,
+      box-shadow 150ms ease,
+      transform 150ms ease;
   }
   button:hover,
   a:hover,
@@ -63,6 +71,16 @@ body {
   a:active,
   [role="button"]:active {
     transform: translateY(0);
+  }
+  button:focus-visible,
+  a:focus-visible,
+  [role="button"]:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.35);
   }
 }
 

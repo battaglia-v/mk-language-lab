@@ -125,7 +125,7 @@ export default function Sidebar() {
       {/* Desktop Sidebar */}
       <aside
         className={cn(
-          "hidden lg:flex flex-col fixed left-0 top-0 h-screen bg-sidebar border-r border-sidebar-border transition-all duration-300 ease-in-out z-40",
+          "hidden lg:flex flex-col fixed left-0 top-0 h-screen bg-sidebar border-r border-sidebar-border transition-all duration-150 ease-in-out z-40",
           collapsed ? "w-20" : "w-64",
         )}
       >
@@ -138,10 +138,10 @@ export default function Sidebar() {
         >
           <Link
             href={`/${locale}`}
-            className="flex items-center gap-3 transition-all duration-200 hover:opacity-80 group"
+            className="flex items-center gap-3 transition-colors duration-150 hover:opacity-80 group"
             aria-label={homeLabel}
           >
-            <div className="transform transition-transform duration-200 group-hover:scale-105">
+            <div className="transform transition-transform duration-150 group-hover:scale-105">
               <AjvarLogo size={collapsed ? 36 : 40} />
             </div>
             {!collapsed && (
@@ -165,9 +165,10 @@ export default function Sidebar() {
                 key={item.path}
                 href={buildHref(item.path)}
                 aria-current={active ? "page" : undefined}
+                aria-label={item.label}
                 className={cn(
-                  "flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all duration-200",
-                  "hover:bg-sidebar-accent group relative",
+                  "flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-colors duration-150 ease-out",
+                  "hover:bg-sidebar-accent group relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar active:scale-[0.99]",
                   active &&
                     "bg-sidebar-primary text-sidebar-primary-foreground",
                   !active &&
@@ -207,12 +208,13 @@ export default function Sidebar() {
           <button
             onClick={() => setUserCollapsed((prev) => !prev)}
             className={cn(
-              "flex items-center gap-3 w-full px-4 py-3 rounded-xl font-medium transition-all duration-200",
-              "hover:bg-sidebar-accent text-sidebar-foreground hover:text-sidebar-accent-foreground",
+              "flex items-center gap-3 w-full px-4 py-3 rounded-xl font-medium transition-colors duration-150 ease-out",
+              "hover:bg-sidebar-accent text-sidebar-foreground hover:text-sidebar-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar active:scale-[0.99]",
               collapsed && "justify-center px-3",
             )}
             aria-label={collapsed ? expandLabel : collapseLabel}
             disabled={isBreakpointCollapsed}
+            aria-pressed={userCollapsed}
           >
             {collapsed ? (
               <ChevronRight className="h-5 w-5" />
@@ -238,11 +240,12 @@ export default function Sidebar() {
           <Link
             href={`/${locale}`}
             className={cn(
-              "flex flex-col items-center gap-0.5 px-1 py-1.5 rounded-lg transition-all duration-200 min-h-[3.25rem]",
+              "flex flex-col items-center gap-0.5 px-1 py-1.5 rounded-lg transition-colors duration-150 min-h-[3.25rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar active:scale-[0.98]",
               pathname === `/${locale}` && "text-primary",
               pathname !== `/${locale}` &&
                 "text-sidebar-foreground hover:text-sidebar-accent-foreground",
             )}
+            aria-label={homeLabel}
           >
             <AjvarLogo size={16} className="h-4 w-4" />
             <span
@@ -264,11 +267,12 @@ export default function Sidebar() {
                 href={buildHref(item.path)}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "flex flex-col items-center gap-0.5 px-1 py-1.5 rounded-lg transition-all duration-200 min-h-[3.25rem]",
+                  "flex flex-col items-center gap-0.5 px-1 py-1.5 rounded-lg transition-colors duration-150 min-h-[3.25rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar active:scale-[0.98]",
                   active && "text-primary",
                   !active &&
                     "text-sidebar-foreground hover:text-sidebar-accent-foreground",
                 )}
+                aria-label={item.label}
               >
                 <Icon className={cn("h-4 w-4", active && "text-primary")} />
                 <span
@@ -343,7 +347,7 @@ function MobileMissionToast({ missionKey, href, label, subtitle }: MobileMission
         <button
           type="button"
           onClick={dismiss}
-          className="ml-2 text-xs font-medium text-sidebar-foreground/80 hover:text-sidebar-foreground"
+          className="ml-2 text-xs font-medium text-sidebar-foreground/80 hover:text-sidebar-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar active:scale-[0.98]"
         >
           {"×"}
           <span className="sr-only">Dismiss</span>

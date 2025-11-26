@@ -16,7 +16,7 @@ function SignInContent() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams?.get('callbackUrl') || '/';
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState<{ email?: string; password?: string; general?: string }>({});
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -33,10 +33,18 @@ function SignInContent() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    setFieldErrors({});
 
-    if (!formData.email || !formData.password) {
-      setError('Email and password are required');
+    const nextErrors: { email?: string; password?: string } = {};
+    if (!formData.email) {
+      nextErrors.email = 'Email is required';
+    }
+    if (!formData.password) {
+      nextErrors.password = 'Password is required';
+    }
+
+    if (Object.keys(nextErrors).length) {
+      setFieldErrors(nextErrors);
       return;
     }
 
@@ -55,7 +63,7 @@ function SignInContent() {
       });
 
       if (result?.error) {
-        setError('Invalid email or password');
+        setFieldErrors({ general: 'Invalid email or password' });
         return;
       }
 
@@ -63,7 +71,7 @@ function SignInContent() {
       router.push(callbackUrl);
       router.refresh();
     } catch {
-      setError('An error occurred during sign-in');
+      setFieldErrors({ general: 'An error occurred during sign-in' });
     } finally {
       setIsLoading(false);
     }
@@ -74,7 +82,7 @@ function SignInContent() {
       <div className="w-full max-w-md space-y-6">
         <div className="flex justify-start">
           <Button variant="ghost" size="sm" asChild>
-            <Link href="/">
+            <Link href="/" aria-label="Back to home">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Home
             </Link>
@@ -96,6 +104,7 @@ function SignInContent() {
               className="w-full gap-3 py-6"
               size="lg"
               disabled={isLoading}
+              aria-label="Continue with Google"
             >
               <Chrome className="h-5 w-5" />
               Continue with Google
@@ -112,9 +121,13 @@ function SignInContent() {
             </div>
 
             {/* Error Message */}
-            {error && (
-              <div className="rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-600">
-                {error}
+            {fieldErrors.general && (
+              <div
+                className="rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-600"
+                role="alert"
+                aria-live="assertive"
+              >
+                {fieldErrors.general}
               </div>
             )}
 
@@ -130,7 +143,14 @@ function SignInContent() {
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   disabled={isLoading}
                   required
+                  aria-invalid={Boolean(fieldErrors.email)}
+                  aria-describedby={fieldErrors.email ? 'email-error' : undefined}
                 />
+                {fieldErrors.email && (
+                  <p id="email-error" className="text-sm text-red-500" role="alert" aria-live="assertive">
+                    {fieldErrors.email}
+                  </p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -143,7 +163,19 @@ function SignInContent() {
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                   disabled={isLoading}
                   required
+                  aria-invalid={Boolean(fieldErrors.password)}
+                  aria-describedby={fieldErrors.password ? 'password-error' : undefined}
                 />
+                {fieldErrors.password && (
+                  <p
+                    id="password-error"
+                    className="text-sm text-red-500"
+                    role="alert"
+                    aria-live="assertive"
+                  >
+                    {fieldErrors.password}
+                  </p>
+                )}
               </div>
 
               <Button
@@ -151,6 +183,7 @@ function SignInContent() {
                 className="w-full py-6"
                 size="lg"
                 disabled={isLoading}
+                aria-label="Sign in with email and password"
               >
                 {isLoading ? (
                   <>

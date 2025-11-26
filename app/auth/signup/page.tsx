@@ -14,7 +14,13 @@ import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 export default function SignUpPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState<{
+    name?: string;
+    email?: string;
+    password?: string;
+    confirmPassword?: string;
+    general?: string;
+  }>({});
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -31,21 +37,38 @@ export default function SignUpPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    setFieldErrors({});
 
     // Validation
-    if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
-      setError('All fields are required');
-      return;
+    const nextErrors: {
+      name?: string;
+      email?: string;
+      password?: string;
+      confirmPassword?: string;
+    } = {};
+
+    if (!formData.name) {
+      nextErrors.name = 'Name is required';
     }
 
-    if (formData.password.length < 8) {
-      setError('Password must be at least 8 characters');
-      return;
+    if (!formData.email) {
+      nextErrors.email = 'Email is required';
     }
 
-    if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
+    if (!formData.password) {
+      nextErrors.password = 'Password is required';
+    } else if (formData.password.length < 8) {
+      nextErrors.password = 'Password must be at least 8 characters';
+    }
+
+    if (!formData.confirmPassword) {
+      nextErrors.confirmPassword = 'Please confirm your password';
+    } else if (formData.password !== formData.confirmPassword) {
+      nextErrors.confirmPassword = 'Passwords do not match';
+    }
+
+    if (Object.keys(nextErrors).length) {
+      setFieldErrors(nextErrors);
       return;
     }
 
@@ -90,7 +113,7 @@ export default function SignUpPage() {
       router.push('/');
       router.refresh();
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred during registration');
+      setFieldErrors({ general: err instanceof Error ? err.message : 'An error occurred during registration' });
     } finally {
       setIsLoading(false);
     }
@@ -123,6 +146,7 @@ export default function SignUpPage() {
               className="w-full gap-3 py-6"
               size="lg"
               disabled={isLoading}
+              aria-label="Continue with Google"
             >
               <Chrome className="h-5 w-5" />
               Continue with Google
@@ -139,9 +163,13 @@ export default function SignUpPage() {
             </div>
 
             {/* Error Message */}
-            {error && (
-              <div className="rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-600">
-                {error}
+            {fieldErrors.general && (
+              <div
+                className="rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-600"
+                role="alert"
+                aria-live="assertive"
+              >
+                {fieldErrors.general}
               </div>
             )}
 
@@ -157,7 +185,14 @@ export default function SignUpPage() {
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   disabled={isLoading}
                   required
+                  aria-invalid={Boolean(fieldErrors.name)}
+                  aria-describedby={fieldErrors.name ? 'name-error' : undefined}
                 />
+                {fieldErrors.name && (
+                  <p id="name-error" className="text-sm text-red-500" role="alert" aria-live="assertive">
+                    {fieldErrors.name}
+                  </p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -170,7 +205,19 @@ export default function SignUpPage() {
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   disabled={isLoading}
                   required
+                  aria-invalid={Boolean(fieldErrors.email)}
+                  aria-describedby={fieldErrors.email ? 'signup-email-error' : undefined}
                 />
+                {fieldErrors.email && (
+                  <p
+                    id="signup-email-error"
+                    className="text-sm text-red-500"
+                    role="alert"
+                    aria-live="assertive"
+                  >
+                    {fieldErrors.email}
+                  </p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -183,7 +230,14 @@ export default function SignUpPage() {
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                   disabled={isLoading}
                   required
+                  aria-invalid={Boolean(fieldErrors.password)}
+                  aria-describedby={fieldErrors.password ? 'password-error' : undefined}
                 />
+                {fieldErrors.password && (
+                  <p id="password-error" className="text-sm text-red-500" role="alert" aria-live="assertive">
+                    {fieldErrors.password}
+                  </p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -196,7 +250,19 @@ export default function SignUpPage() {
                   onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
                   disabled={isLoading}
                   required
+                  aria-invalid={Boolean(fieldErrors.confirmPassword)}
+                  aria-describedby={fieldErrors.confirmPassword ? 'confirm-password-error' : undefined}
                 />
+                {fieldErrors.confirmPassword && (
+                  <p
+                    id="confirm-password-error"
+                    className="text-sm text-red-500"
+                    role="alert"
+                    aria-live="assertive"
+                  >
+                    {fieldErrors.confirmPassword}
+                  </p>
+                )}
               </div>
 
               <Button
@@ -204,6 +270,7 @@ export default function SignUpPage() {
                 className="w-full py-6"
                 size="lg"
                 disabled={isLoading}
+                aria-label="Create your account"
               >
                 {isLoading ? (
                   <>
