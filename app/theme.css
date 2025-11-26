@@ -1,6 +1,31 @@
 :root,
 .theme-dark {
   color-scheme: dark;
+  /* Typography scale */
+  --font-size-xs: 0.875rem;
+  --font-size-sm: 0.95rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.375rem;
+  --line-height-tight: 1.35;
+  --line-height-base: 1.6;
+  --line-height-relaxed: 1.8;
+
+  /* Layout guardrails */
+  --content-padding: clamp(1rem, 3vw, 1.5rem);
+  --content-max: 1200px;
+  --content-wide: 1120px;
+  --content-reading: 896px;
+
+  /* Button sizing */
+  --button-height-sm: 2.5rem;
+  --button-height-md: 3rem;
+  --button-height-lg: 3.5rem;
+  --button-pad-x-sm: 0.9rem;
+  --button-pad-x-md: 1.15rem;
+  --button-pad-x-lg: 1.35rem;
+  --button-pad-y: 0.65rem;
+
   --mk-bg: #020203;
   --mk-bg-panel: #08080a;
   --mk-bg-panel-muted: #101017;

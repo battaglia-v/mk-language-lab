@@ -39,6 +39,8 @@ body {
   font-family: var(--font-geist-sans, "Geist", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
   background: var(--mk-bg);
   color: var(--mk-text);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
 }
 
 @layer base {
@@ -48,6 +50,32 @@ body {
   body {
     @apply bg-background text-foreground antialiased;
     min-height: 100vh;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: var(--line-height-tight);
+    letter-spacing: -0.015em;
+  }
+  h1 {
+    font-size: clamp(1.85rem, 3vw, 2.5rem);
+  }
+  h2 {
+    font-size: clamp(1.5rem, 2.4vw, 2.05rem);
+  }
+  h3 {
+    font-size: clamp(1.25rem, 2vw, 1.6rem);
+  }
+  p,
+  li {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-base);
+  }
+  button,
+  .button-reset {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-tight);
   }
   button,
   a,
@@ -98,6 +126,16 @@ body {
   font-weight: 700;
 }
 
+.page-shell-content {
+  width: 100%;
+  max-width: var(--content-wide);
+  padding-inline: var(--content-padding);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 2vw, 2rem);
+}
+
 .glass-panel {
   background: rgba(255, 255, 255, 0.015);
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -129,11 +167,19 @@ body {
   min-height: 100vh;
   position: relative;
   z-index: 0;
-  padding: 1.5rem;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  display: flex;
+  justify-content: center;
 }
 
 .app-shell-scroll {
   min-height: 100vh;
+  width: min(100%, var(--content-max));
+  max-width: var(--content-max);
+  padding-inline: var(--content-padding);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 2vw, 2rem);
 }
 
 .lab-hero {
@@ -147,6 +193,57 @@ body {
 .lab-grid {
   display: grid;
   gap: 1.5rem;
+}
+
+.section-container {
+  width: 100%;
+  max-width: var(--content-wide);
+  margin-inline: auto;
+  padding-inline: var(--content-padding);
+}
+
+.section-container-sm {
+  max-width: 640px;
+}
+
+.section-container-md {
+  max-width: 768px;
+}
+
+.section-container-lg {
+  max-width: 1024px;
+}
+
+.section-container-xl {
+  max-width: 1280px;
+}
+
+.section-container-2xl {
+  max-width: 1536px;
+}
+
+.section-container-content {
+  max-width: var(--content-reading);
+}
+
+.section-container-wide {
+  max-width: var(--content-wide);
+}
+
+.section-spacing-sm {
+  padding-block: clamp(1.5rem, 2.5vw, 2rem);
+}
+
+.section-spacing-md {
+  padding-block: clamp(2rem, 3vw, 3rem);
+}
+
+.section-spacing-lg {
+  padding-block: clamp(3rem, 4vw, 4rem);
+}
+
+.section-spacing-xl {
+  padding-block: clamp(4rem, 5vw, 5rem);
 }
 
 @media (min-width: 1024px) {
@@ -198,12 +295,14 @@ body {
 
 .card-grid {
   display: grid;
-  gap: 1rem;
+  gap: clamp(1rem, 1.8vw, 1.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  align-items: stretch;
 }
 
 @media (min-width: 960px) {
   .app-shell-scroll {
-    padding: 2rem 3rem;
+    padding-block: clamp(1.5rem, 2.5vw, 2.25rem);
   }
   .card-grid.two {
     grid-template-columns: repeat(2, minmax(0, 1fr));
