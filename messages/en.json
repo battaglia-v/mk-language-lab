@@ -1317,17 +1317,19 @@
   },
   "notifications": {
     "title": "Notifications",
-    "description": "View your reminders and updates",
-    "subtitle": "{count, plural, =0 {All caught up!} one {# unread notification} other {# unread notifications}}",
-    "markRead": "Mark read",
+    "description": "Updates and reminders.",
+    "subtitle": "{count, plural, =0 {No unread} one {# unread} other {# unread}}",
+    "markRead": "Read",
     "viewAction": "View",
     "empty": {
-      "title": "No notifications yet",
-      "description": "We'll notify you about streak warnings, quest invites, and important updates here."
+      "title": "No notifications",
+      "description": "New alerts will appear here.",
+      "cta": "Refresh"
     },
     "error": {
-      "title": "Unable to load notifications",
-      "generic": "Something went wrong while loading your notifications"
+      "title": "Couldn't load",
+      "generic": "Please try again.",
+      "cta": "Retry"
     },
     "settings": {
       "title": "Reminder controls",

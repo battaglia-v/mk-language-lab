@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 import { NotificationItem } from './NotificationItem';
 
 type Notification = {
@@ -25,7 +26,7 @@ export function NotificationsInbox({ className, dataTestId }: NotificationsInbox
   const t = useTranslations('notifications');
   const queryClient = useQueryClient();
 
-  const { data, isLoading, error } = useQuery<{ notifications: Notification[] }>({
+  const { data, isLoading, isFetching, error, refetch } = useQuery<{ notifications: Notification[] }>({
     queryKey: ['notifications'],
     queryFn: async () => {
       const res = await fetch('/api/notifications');
@@ -87,8 +88,21 @@ export function NotificationsInbox({ className, dataTestId }: NotificationsInbox
     return (
       <section className={cardClasses} data-testid={dataTestId}>
         <div className="rounded-2xl border border-destructive/40 bg-destructive/10 p-6 text-sm text-red-100">
-          <h2 className="text-base font-semibold text-white">{t('error.title')}</h2>
-          <p className="mt-1 text-red-100/90">{t('error.generic')}</p>
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h2 className="text-base font-semibold text-white">{t('error.title')}</h2>
+              <p className="mt-1 text-red-100/90">{t('error.generic')}</p>
+            </div>
+            <Button
+              size="sm"
+              variant="secondary"
+              className="rounded-full bg-white/10 text-white hover:bg-white/20"
+              onClick={() => void refetch()}
+              disabled={isFetching}
+            >
+              {t('error.cta')}
+            </Button>
+          </div>
         </div>
       </section>
     );
@@ -108,6 +122,16 @@ export function NotificationsInbox({ className, dataTestId }: NotificationsInbox
           <div className="text-4xl mb-3">📬</div>
           <h2 className="text-xl font-semibold text-white">{t('empty.title')}</h2>
           <p className="mt-2 text-slate-300">{t('empty.description')}</p>
+          <div className="mt-5 flex justify-center">
+            <Button
+              variant="secondary"
+              className="rounded-full border-white/20 bg-white/10 text-white hover:bg-white/20"
+              onClick={() => void refetch()}
+              disabled={isFetching}
+            >
+              {t('empty.cta')}
+            </Button>
+          </div>
         </div>
       ) : (
         <div className="space-y-3" data-testid="notifications-list">
