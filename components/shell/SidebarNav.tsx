@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
-import { Languages, Sparkles, BookOpen } from "lucide-react";
+import { Languages, Sparkles, BookOpen, Newspaper } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { id: "translate", icon: Languages, path: "/translate" },
   { id: "practice", icon: Sparkles, path: "/practice" },
+  { id: "news", icon: Newspaper, path: "/news" },
   { id: "resources", icon: BookOpen, path: "/resources" },
 ] as const;
 

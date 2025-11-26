@@ -52,7 +52,16 @@ async function waitForNewsContent(page: Page) {
 }
 
 test.describe('News Page', () => {
+  let consoleErrors: string[];
+
   test.beforeEach(async ({ page }) => {
+    consoleErrors = [];
+    page.on('console', (message) => {
+      if (message.type() === 'error') {
+        consoleErrors.push(message.text());
+      }
+    });
+
     await page.route('**/api/news**', async (route) => {
       await route.fulfill({
         status: 200,
@@ -70,6 +79,10 @@ test.describe('News Page', () => {
 
     // Also check for the "Новости" title text
     await expect(page.getByText(/Новости|News/i).first()).toBeVisible();
+  });
+
+  test('should load without console errors', async () => {
+    expect(consoleErrors).toEqual([]);
   });
 
   test('should display news articles', async ({ page }) => {
