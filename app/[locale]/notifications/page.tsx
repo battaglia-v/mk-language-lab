@@ -20,7 +20,7 @@ export default async function NotificationsPage() {
   return (
     <div className="page-shell">
       <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6">
-        <section data-testid="notifications-hero" className="glass-card rounded-3xl p-6 md:p-8">
+        <section data-testid="notifications-hero" className="glass-card rounded-3xl card-padding-lg md:p-8">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div className="flex items-center gap-3">
               <Link

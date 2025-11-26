@@ -54,13 +54,13 @@ export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
   const backTarget = section === "dashboard" ? null : { label: backLabel, href: backHref };
 
   return (
-    <header className="mx-auto mb-8 max-w-6xl rounded-3xl border border-border/50 bg-black/30 p-4 shadow-xl">
-      <div className="flex flex-wrap items-center justify-between gap-4">
+    <header className="mx-auto mb-6 max-w-6xl shell-surface nav-toolbar px-4 md:px-6">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={onToggleSidebar}
-            className="inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-2 text-sm text-muted-foreground lg:hidden"
+            className="touch-target inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-2 text-sm text-muted-foreground lg:hidden"
           >
             <Menu className="h-4 w-4" aria-hidden="true" />
             {localeT("menu")}
@@ -109,7 +109,7 @@ export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
           </Button>
         </div>
       </div>
-      <p className="mt-4 text-sm text-muted-foreground">{localeT("tagline")}</p>
+      <p className="mt-2 hidden text-xs text-muted-foreground sm:block">{localeT("tagline")}</p>
     </header>
   );
 }

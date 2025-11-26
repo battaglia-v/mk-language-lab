@@ -147,7 +147,7 @@ export default function PracticePage() {
         </div>
       </section>
 
-      <div className="space-y-4 rounded-3xl border border-border/60 bg-black/30 p-6">
+      <div className="space-y-4 rounded-3xl border border-border/60 bg-black/30 card-padding-lg md:p-7">
         <div className="flex flex-wrap gap-2">
           <DeckToggle
             label={t('savedDeck.badge')}
@@ -179,20 +179,20 @@ export default function PracticePage() {
           </Alert>
         ) : (
           <div className="space-y-4">
-            <div className="rounded-3xl border border-border/60 bg-black/40 p-8">
+            <div className="rounded-3xl border border-border/60 bg-black/40 card-padding-lg md:p-8">
               <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-muted-foreground">
                 <span>{currentCard?.direction === 'en-mk' ? 'EN → MK' : 'MK → EN'}</span>
                 <span>
                   {safeIndex + 1} / {total}
                 </span>
               </div>
-              <div className="mt-8 space-y-4">
+              <div className="mt-6 space-y-4">
                 <p className="text-2xl font-semibold text-white">{currentCard?.source}</p>
                 <p className={cn('text-lg text-primary transition-opacity', revealed ? 'opacity-100' : 'opacity-0')}>
                   {currentCard?.target}
                 </p>
               </div>
-              <div className="mt-10 grid gap-3 sm:grid-cols-3">
+              <div className="mt-8 grid gap-3 sm:grid-cols-3">
                 <Button variant="outline" className="rounded-full" onClick={goPrevious}>
                   <ArrowLeft className="mr-2 h-4 w-4" aria-hidden="true" />
                   Prev

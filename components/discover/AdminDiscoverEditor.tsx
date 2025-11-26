@@ -4,7 +4,9 @@ import { useEffect, useMemo, useState } from 'react';
 import useSWR from 'swr';
 import { Loader2, Plus, RefreshCcw, Save, Trash2 } from 'lucide-react';
 import type { DiscoverCommunityHighlight, DiscoverEvent, DiscoverFeed, DiscoverQuestHighlight } from '@mk/api-client';
-import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const fetcher = (url: string) => fetch(url).then((response) => {
   if (!response.ok) {
@@ -118,10 +120,31 @@ export function AdminDiscoverEditor() {
 
   if (isLoading || !feed) {
     return (
-      <section className="glass-card rounded-3xl p-6 md:p-8">
-        <div className="flex items-center gap-3 text-white">
-          <Loader2 className="h-5 w-5 animate-spin" />
-          <p>Loading Discover feed…</p>
+      <section className="glass-card rounded-[var(--radius-card)] p-6 md:p-8">
+        <div className="space-y-6 text-foreground">
+          <div className="flex items-center icon-gap text-muted-foreground">
+            <Loader2 className="icon-base animate-spin" />
+            <p className="text-sm">Loading Discover feed…</p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            {[0, 1, 2, 3].map((item) => (
+              <div
+                key={item}
+                className="rounded-[var(--radius-control)] border border-border/50 bg-muted/30 p-4"
+              >
+                <Skeleton className="h-4 w-24 rounded-sm bg-muted-foreground/20" />
+                <Skeleton className="mt-3 h-6 w-16 rounded-sm bg-muted-foreground/20" />
+              </div>
+            ))}
+          </div>
+          <div className="space-y-3">
+            {[0, 1, 2].map((row) => (
+              <Skeleton
+                key={row}
+                className="h-11 rounded-[var(--radius-control)] bg-muted/30"
+              />
+            ))}
+          </div>
         </div>
       </section>
     );
@@ -129,7 +152,7 @@ export function AdminDiscoverEditor() {
 
   if (error) {
     return (
-      <section className="glass-card rounded-3xl border border-destructive/40 p-6 text-red-100">
+      <section className="glass-card rounded-[var(--radius-card)] border border-destructive/40 p-6 text-red-100">
         <p>Unable to load Discover feed. Please refresh.</p>
       </section>
     );
@@ -137,29 +160,27 @@ export function AdminDiscoverEditor() {
 
   return (
     <div className="space-y-6">
-      <section className="glass-card rounded-3xl p-6 md:p-8 text-white">
+      <section className="glass-card rounded-[var(--radius-card)] p-6 md:p-8 text-white">
         <div className="flex flex-wrap items-center gap-4">
-          <button
+          <Button
             type="button"
-            className={cn(
-              'inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white shadow-lg transition hover:brightness-110',
-              isSaving && 'opacity-70'
-            )}
+            className="rounded-full px-6"
             onClick={handleSave}
             disabled={isSaving || !draft}
           >
-            <Save className="h-4 w-4" />
+            <Save className="icon-sm" />
             {isSaving ? 'Saving…' : 'Save feed'}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
-            className="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-sm text-white/90 transition hover:bg-white/10"
+            variant="outline"
+            className="rounded-full px-6"
             onClick={resetDraft}
             disabled={!data}
           >
-            <RefreshCcw className="h-4 w-4" />
+            <RefreshCcw className="icon-sm" />
             Reset
-          </button>
+          </Button>
           {toast ? <p className="text-sm text-emerald-200">{toast}</p> : null}
         </div>
         {totals ? (
@@ -294,34 +315,35 @@ type SectionEditorProps<TItem> = {
 
 function SectionEditor<TItem>({ title, description, items, onAdd, onRemove, render }: SectionEditorProps<TItem>) {
   return (
-    <section className="glass-card rounded-3xl p-6 md:p-8 text-white">
+    <section className="glass-card rounded-[var(--radius-card)] p-6 md:p-8 text-white">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h2 className="text-2xl font-semibold">{title}</h2>
           <p className="text-sm text-slate-200">{description}</p>
         </div>
-        <button
-          type="button"
-          onClick={onAdd}
-          className="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-sm text-white/90 transition hover:bg-white/10"
-        >
-          <Plus className="h-4 w-4" />
+        <Button type="button" onClick={onAdd} variant="outline" className="rounded-full" size="sm">
+          <Plus className="icon-sm" />
           Add entry
-        </button>
+        </Button>
       </div>
 
       <div className="mt-6 space-y-4">
         {items.map((item, index) => (
-          <article key={index} className="rounded-2xl border border-white/10 bg-white/5 p-4">
+          <article
+            key={index}
+            className="rounded-[var(--radius-card)] border border-border/50 bg-muted/30 p-4"
+          >
             <div className="flex items-center justify-between">
               <p className="text-sm font-semibold text-white/80">Entry {index + 1}</p>
-              <button
+              <Button
                 type="button"
+                variant="ghost"
+                size="sm"
+                className="text-xs text-muted-foreground hover:text-destructive"
                 onClick={() => onRemove(index)}
-                className="text-xs text-white/70 transition hover:text-red-300"
               >
-                <Trash2 className="mr-1 inline h-4 w-4" /> Remove
-              </button>
+                <Trash2 className="icon-sm" /> Remove
+              </Button>
             </div>
             <div className="mt-4 space-y-4 text-sm text-slate-200">{render(item, index)}</div>
           </article>
@@ -344,8 +366,8 @@ function InputField({ label, value, onChange }: InputFieldProps) {
   return (
     <label className="block text-sm">
       <span className="text-xs uppercase tracking-wide text-white/70">{label}</span>
-      <input
-        className="mt-1 w-full rounded-xl border border-white/10 bg-white/10 px-3 py-2 text-white outline-none focus-visible:border-primary"
+      <Input
+        className="mt-1 border-border/60 bg-transparent"
         value={value}
         onChange={(event) => onChange(event.target.value)}
       />
