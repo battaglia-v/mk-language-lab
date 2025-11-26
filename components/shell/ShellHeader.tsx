@@ -7,6 +7,7 @@ import { Menu, CircleUserRound, ArrowLeft } from "lucide-react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { Button } from "@/components/ui/button";
 import { CommandMenuLazy } from "@/components/CommandMenuLazy";
+import { buildLocalizedHref } from "./navItems";
 
 export type ShellHeaderProps = {
   onToggleSidebar: () => void;
@@ -18,9 +19,9 @@ export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
   const localeT = useTranslations("shell");
   const navT = useTranslations("nav");
   const pathname = usePathname();
-  const buildHref = (path: string) => `/${locale}${path}`;
+  const buildHref = (path: string) => buildLocalizedHref(locale, path);
 
-  const section = pathname.replace(`/${locale}`, "").split("/")[1] ?? "translate";
+  const section = pathname.replace(`/${locale}`, "").split("/")[1] || "dashboard";
 
   const backKey =
     section === "discover" || section === "lesson" || section === "daily-lessons"
@@ -46,12 +47,14 @@ export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
     }
   })();
 
-  const backHref = backKey === "lessons" ? buildHref("/discover") : buildHref(`/${backKey}`);
+  const backHref = backKey === "lessons"
+    ? buildHref("/discover")
+    : buildHref(backKey === "dashboard" ? "/dashboard" : `/${backKey}`);
 
-  const backTarget = section === "translate" ? null : { label: backLabel, href: backHref };
+  const backTarget = section === "dashboard" ? null : { label: backLabel, href: backHref };
 
   return (
-    <header className="mb-8 rounded-3xl border border-border/50 bg-black/30 p-4 shadow-xl">
+    <header className="mx-auto mb-8 max-w-6xl rounded-3xl border border-border/50 bg-black/30 p-4 shadow-xl">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <button
@@ -75,7 +78,7 @@ export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
               </Link>
             </Button>
           ) : null}
-          <Link href={buildHref("/translate")} className="flex items-center gap-3" aria-label={t("full")}>
+          <Link href={buildHref("/dashboard")} className="flex items-center gap-3" aria-label={t("full")}>
             <span className="title-gradient text-2xl lowercase">македонски</span>
             <span className="hidden text-[11px] uppercase tracking-[0.35em] text-muted-foreground md:inline">
               MK LANGUAGE LAB
