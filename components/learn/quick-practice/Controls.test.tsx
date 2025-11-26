@@ -28,9 +28,9 @@ const translations: Record<string, string | ((values?: Record<string, string>) =
   practiceAnswerRevealed: (values?: Record<string, string>) => `Revealed: ${values?.answer ?? ''}`,
   practiceClozeUnavailable: 'No cloze prompts.',
   practiceEmptyCategory: 'No prompts available.',
+  practiceContinueLearning: 'Keep going',
   practiceHint: 'Try switching directions.',
   practiceClose: 'Close',
-  practiceAllCategories: 'All categories',
 };
 
 const translate: QuickPracticeControlsProps['translate'] = (key, values) => {
