@@ -7,6 +7,7 @@
     "label": "Main navigation",
     "home": "Home",
     "practice": "Practice",
+    "discover": "Discover",
     "tutor": "Tutor",
     "library": "Library",
     "translate": "Translate",
@@ -14,6 +15,7 @@
     "savedLessons": "Saved Lessons",
     "resources": "Resources",
     "news": "News",
+    "profile": "Profile",
     "collapse": "Collapse",
     "expand": "Expand sidebar",
     "toggleSettings": "Toggle settings",
@@ -36,6 +38,12 @@
     "quickActionTranslate": "Open translator",
     "roadmap": "Roadmap",
     "roadmapBlurb": "Next sprint ships translator skeletons"
+  },
+  "pageNav": {
+    "home": "Home",
+    "breadcrumbsLabel": "Breadcrumb",
+    "sectionsLabel": "Section navigation",
+    "sectionsHelp": "Jump to another learning area"
   },
   "shell": {
     "menu": "Menu",

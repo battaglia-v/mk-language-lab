@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { ArrowLeft, ArrowRight, Keyboard } from 'lucide-react';
+import { PageNavigation, getLearningTabs } from '@/components/navigation/PageNavigation';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { cn } from '@/lib/utils';
@@ -114,6 +115,7 @@ export default function PracticePage() {
 
   return (
     <div className="space-y-6">
+      <PageNavigation breadcrumbs={[{ label: t('title'), href: '/practice' }]} tabs={getLearningTabs()} />
       <section className="lab-hero">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>

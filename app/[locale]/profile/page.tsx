@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
+import { PageNavigation, getLearningTabs } from '@/components/navigation/PageNavigation';
 import { ProfileDashboard } from '@/components/profile/ProfileDashboard';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -16,6 +17,7 @@ export default async function ProfilePage() {
   return (
     <div className="page-shell">
       <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6">
+        <PageNavigation breadcrumbs={[{ label: t('title'), href: '/profile' }]} tabs={getLearningTabs()} />
         <section data-testid="profile-hero" className="glass-card rounded-3xl p-6 md:p-8">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="space-y-3">

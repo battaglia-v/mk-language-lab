@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { ExternalLink, Search, PanelRightClose, PanelLeftOpen } from 'lucide-react';
+import { PageNavigation, getLearningTabs } from '@/components/navigation/PageNavigation';
 import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
@@ -106,6 +107,7 @@ export default function ResourcesPage() {
 
   return (
     <div className="space-y-6">
+      <PageNavigation breadcrumbs={[{ label: t('title'), href: '/resources' }]} tabs={getLearningTabs()} />
       <section className="lab-hero">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>

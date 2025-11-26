@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useFormatter, useTranslations } from 'next-intl';
+import { PageNavigation, getLearningTabs } from '@/components/navigation/PageNavigation';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -120,6 +121,7 @@ export default function DiscoverPage() {
 
   return (
     <div className="section-container section-container-xl section-spacing-lg">
+      <PageNavigation breadcrumbs={[{ label: t('hero.title'), href: '/discover' }]} tabs={getLearningTabs()} />
       <section className="rounded-3xl border border-white/10 bg-gradient-to-b from-primary/10 via-background to-background p-8 text-foreground shadow-lg">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
           <div className="space-y-4">

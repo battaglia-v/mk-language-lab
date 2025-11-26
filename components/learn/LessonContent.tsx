@@ -1,10 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, Circle, ArrowRight, Clock, Award } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { PageNavigation, getLearningTabs } from '@/components/navigation/PageNavigation';
 import VocabularySection from './VocabularySection';
 import GrammarSection from './GrammarSection';
 import ExerciseSection from './ExerciseSection';
@@ -32,6 +34,7 @@ export default function LessonContent({
   nextLesson,
   userId,
 }: LessonContentProps) {
+  const navT = useTranslations('nav');
   const router = useRouter();
   const [completedSections, setCompletedSections] = useState<Set<string>>(new Set());
   const [startTime] = useState(Date.now());
@@ -111,6 +114,14 @@ export default function LessonContent({
 
   return (
     <div className="max-w-4xl mx-auto p-4 md:p-6 space-y-6 pb-24 lg:pb-8">
+      <PageNavigation
+        breadcrumbs={[
+          { label: navT('dailyLessons'), href: '/daily-lessons' },
+          { label: lesson.module.title },
+          { label: lesson.title },
+        ]}
+        tabs={getLearningTabs()}
+      />
       {/* Header */}
       <Card className="p-6 bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20">
         <div className="space-y-4">

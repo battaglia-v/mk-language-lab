@@ -7,6 +7,7 @@
     "label": "Главна навигација",
     "home": "Почетна",
     "practice": "Вежбање",
+    "discover": "Откриј",
     "tutor": "Наставник",
     "library": "Библиотека",
     "translate": "Преведи",
@@ -14,6 +15,7 @@
     "savedLessons": "Зачувани Лекции",
     "resources": "Ресурси",
     "news": "Вести",
+    "profile": "Профил",
     "collapse": "Собери",
     "expand": "Прошири странично мени",
     "toggleSettings": "Поставки",
@@ -36,6 +38,12 @@
     "quickActionTranslate": "Отвори преведувач",
     "roadmap": "Патоказ",
     "roadmapBlurb": "Следната верзија носи нови скелети за преведувачот"
+  },
+  "pageNav": {
+    "home": "Главна", 
+    "breadcrumbsLabel": "Навигација", 
+    "sectionsLabel": "Навигација по секции", 
+    "sectionsHelp": "Скокни до друга област за учење"
   },
   "shell": {
     "menu": "Мени",

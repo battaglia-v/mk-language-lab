@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
+import { PageNavigation, getLearningTabs } from '@/components/navigation/PageNavigation';
 import { DailyLessons } from '@/components/learn/DailyLessons';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -25,6 +26,7 @@ export default async function DailyLessonsPage() {
   return (
     <div className="page-shell">
       <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6">
+        <PageNavigation breadcrumbs={[{ label: t('title'), href: '/daily-lessons' }]} tabs={getLearningTabs()} />
         <section className="glass-card rounded-3xl p-6 md:p-8" data-testid="daily-lessons-hero">
           <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
             <div className="space-y-3">

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { PageNavigation, getLearningTabs } from '@/components/navigation/PageNavigation';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -236,6 +237,7 @@ export default function NewsPage() {
   return (
     <div className="page-shell">
       <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6">
+        <PageNavigation breadcrumbs={[{ label: t('title'), href: '/news' }]} tabs={getLearningTabs()} />
         <section className="glass-card rounded-3xl p-6 md:p-8" data-testid="news-hero">
           <div className="flex flex-col gap-6">
             <header className="space-y-2">
