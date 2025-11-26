@@ -230,17 +230,17 @@ SENTRY_PROJECT
 #### Reminder Cron Secrets
 
 - Generate a single `CRON_SECRET` value and add it to the Vercel project (**Settings → Environment Variables**) for the
-  Production environment. Vercel's hourly cron (configured in `vercel.json`) reads this token before invoking
+  Production environment. Vercel's daily cron (configured in `vercel.json`) reads this token before invoking
   `/api/cron/reminders`.
 - Mirror the exact same value in GitHub (**Settings → Secrets and variables → Actions**) as the `CRON_SECRET` repository
   secret and set `REMINDER_CRON_BASE_URL` to the production hostname. The fallback GitHub Actions smoke test validates the
-  cron endpoint hourly and now skips automatically when those protected secrets are unavailable.
+  cron endpoint daily and now skips automatically when those protected secrets are unavailable.
 - If either side is missing or mismatched, the reminder cron probe is skipped (non-production) or fails (production) so the
   protected endpoint is never pinged with invalid credentials.
 
 ### Deployment Workflow (Vercel)
 1. Push the repository to GitHub/GitLab/Bitbucket.
-2. Vercel dashboard → “New Project” → import the repo.
+2. Vercel dashboard → “New Project” → import the repo. Link it to the existing **mk-language-lab** project to avoid double deployments to multiple Vercel apps.
 3. Configure env vars as above.
 4. (Optional) Add a Postgres integration directly from Vercel to auto-provision `DATABASE_URL`.
 5. Deploy – Vercel runs `npm install`, `prisma generate`, and `next build` automatically.
