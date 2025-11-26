@@ -8,13 +8,13 @@ import {
   BookOpen,
   CircleUserRound,
   Compass,
-  Languages,
+  Home,
   Sparkles,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { id: "dashboard", icon: Languages, path: "/translate" },
+  { id: "dashboard", icon: Home, path: "/translate" },
   { id: "lessons", icon: Compass, path: "/discover" },
   { id: "practice", icon: Sparkles, path: "/practice" },
   { id: "resources", icon: BookOpen, path: "/resources" },
