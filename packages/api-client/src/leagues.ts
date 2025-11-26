@@ -63,7 +63,7 @@ export function useLeagueStandingsQuery<TData = LeagueStandings>({
     queryKey: ['league-standings'],
     queryFn: ({ signal }) => fetchLeagueStandings({ baseUrl: baseUrl ?? undefined, signal, fetcher }),
     staleTime,
-    enabled: enabled ?? Boolean(baseUrl),
+    enabled: enabled ?? true,
     select,
     initialData: baseUrl ? undefined : DEV_FIXTURE_STANDINGS,
   });
@@ -75,7 +75,7 @@ export function getLocalLeagueStandings(): LeagueStandings {
 
 function normalizeBaseUrl(value?: string | null): string {
   if (!value || value.trim().length === 0) {
-    throw new Error('API base URL is not configured. Set NEXT_PUBLIC_API_BASE_URL to load leagues.');
+    return '';
   }
   return value.replace(/\/$/, '');
 }

@@ -910,7 +910,7 @@
     "youtube": "YouTube",
     "allLinks": "View all links",
     "vini": "Vincent Battaglia",
-    "andri": "Andrijana",
+    "andri": "Andri",
     "privacy": "Privacy",
     "terms": "Terms",
     "contact": "Contact",
@@ -1210,6 +1210,13 @@
   "profile": {
     "title": "Profile",
     "description": "View your learning progress, achievements, and stats",
+    "signIn": {
+      "title": "Profile sign-in required",
+      "subtitle": "Sign in to view your progress",
+      "body": "Log in to sync streaks, quests, and badges across all your devices.",
+      "cta": "Sign in to continue",
+      "secondary": "Back to home"
+    },
     "totalXP": "Total XP",
     "weeklyXP": "This week",
     "dayStreak": "day streak",

@@ -1,7 +1,7 @@
 'use client';
 
 import { useSession } from 'next-auth/react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { SignInButton } from './SignInButton';
 import { SignOutButton } from './SignOutButton';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -19,6 +19,7 @@ import Link from 'next/link';
 export function UserMenu() {
   const { data: session, status } = useSession();
   const t = useTranslations('userMenu');
+  const locale = useLocale();
 
   if (status === 'loading') {
     return (
@@ -59,10 +60,10 @@ export function UserMenu() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <button className="w-full cursor-pointer">
+          <Link href={`/${locale}/profile`} className="flex w-full cursor-pointer items-center">
             <User className="mr-2 h-4 w-4" />
             {t('profile')}
-          </button>
+          </Link>
         </DropdownMenuItem>
         {session.user.role === 'admin' && (
           <DropdownMenuItem asChild>

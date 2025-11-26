@@ -12,6 +12,8 @@ import {
   Plus,
   Calendar,
   Activity,
+  Compass,
+  Headphones,
 } from 'lucide-react';
 import prisma from '@/lib/prisma';
 
@@ -89,35 +91,44 @@ async function getAdminStats() {
 
 export default async function AdminDashboard() {
   const stats = await getAdminStats();
+  const engagementRate =
+    stats.totalUsers > 0 ? Math.round((stats.activeUsers / stats.totalUsers) * 100) : 0;
+  const hasRecentVocabulary = stats.recentVocabulary.length > 0;
 
   return (
-    <div className="space-y-6 px-6 lg:px-8">
+    <div className="space-y-6 px-4 sm:px-6 lg:px-8">
       {/* Header with Quick Actions */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Admin Dashboard</h1>
           <p className="text-muted-foreground mt-2">
             Manage content for the Macedonian language learning app
           </p>
         </div>
-        <div className="flex gap-2">
-          <Button asChild size="sm">
+        <div className="flex flex-wrap gap-2">
+          <Button asChild size="sm" className="gap-2">
             <Link href="/admin/practice-vocabulary" className="gap-2">
               <Plus className="h-4 w-4" />
               Add Vocabulary
             </Link>
           </Button>
-          <Button asChild variant="outline" size="sm">
+          <Button asChild variant="outline" size="sm" className="gap-2">
             <Link href="/admin/word-of-the-day" className="gap-2">
               <Calendar className="h-4 w-4" />
               Schedule WOTD
+            </Link>
+          </Button>
+          <Button asChild variant="outline" size="sm" className="gap-2">
+            <Link href="/admin/practice-audio" className="gap-2">
+              <Headphones className="h-4 w-4" />
+              Practice Audio
             </Link>
           </Button>
         </div>
       </div>
 
       {/* Quick Stats Grid */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Practice Vocabulary</CardTitle>
@@ -174,7 +185,7 @@ export default async function AdminDashboard() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            {stats.recentVocabulary.length > 0 ? (
+            {hasRecentVocabulary ? (
               <div className="space-y-3">
                 {stats.recentVocabulary.map((word) => (
                   <div
@@ -198,9 +209,15 @@ export default async function AdminDashboard() {
                 ))}
               </div>
             ) : (
-              <p className="text-sm text-muted-foreground text-center py-8">
-                No recent vocabulary additions
-              </p>
+              <div className="flex flex-col items-center gap-3 py-8 text-center text-sm text-muted-foreground">
+                <p className="max-w-sm">No recent vocabulary additions.</p>
+                <Button variant="outline" size="sm" asChild className="gap-2">
+                  <Link href="/admin/practice-vocabulary">
+                    <Plus className="h-4 w-4" />
+                    Add your first word
+                  </Link>
+                </Button>
+              </div>
             )}
           </CardContent>
         </Card>
@@ -241,12 +258,7 @@ export default async function AdminDashboard() {
               </div>
               <div className="pt-4 border-t">
                 <div className="text-xs text-muted-foreground">Engagement Rate</div>
-                <div className="text-lg font-semibold mt-1">
-                  {stats.totalUsers > 0
-                    ? Math.round((stats.activeUsers / stats.totalUsers) * 100)
-                    : 0}
-                  %
-                </div>
+                <div className="text-lg font-semibold mt-1">{engagementRate}%</div>
                 <p className="text-xs text-muted-foreground mt-1">
                   Users active in last 30 days
                 </p>
@@ -257,7 +269,7 @@ export default async function AdminDashboard() {
       </div>
 
       {/* Management Cards */}
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 lg:grid-cols-3">
         {/* Vocabulary Management */}
         <Card className="relative overflow-hidden transition-all hover:shadow-lg">
           <div
@@ -274,15 +286,53 @@ export default async function AdminDashboard() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
-            <Button className="w-full gap-2" asChild>
-              <Link href="/admin/practice-vocabulary">
-                Manage Practice Vocabulary
+            <Button className="w-full" asChild>
+              <Link
+                href="/admin/practice-vocabulary"
+                className="flex items-center justify-between"
+              >
+                <span>Manage Practice Vocabulary</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
-            <Button variant="outline" className="w-full gap-2" asChild>
-              <Link href="/admin/word-of-the-day">
-                Manage Word of the Day
+            <Button variant="outline" className="w-full" asChild>
+              <Link
+                href="/admin/word-of-the-day"
+                className="flex items-center justify-between"
+              >
+                <span>Manage Word of the Day</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </CardContent>
+        </Card>
+
+        {/* Admin Tools */}
+        <Card className="relative overflow-hidden transition-all hover:shadow-lg">
+          <div
+            className="pointer-events-none absolute right-0 top-0 h-24 w-24 rounded-full bg-primary/5 blur-2xl"
+            aria-hidden="true"
+          />
+          <CardHeader>
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+              <Compass className="h-6 w-6 text-primary" />
+            </div>
+            <CardTitle>Admin Tools</CardTitle>
+            <CardDescription>Navigate to supporting admin features</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <Button variant="outline" className="w-full" asChild>
+              <Link
+                href="/admin/practice-audio"
+                className="flex items-center justify-between"
+              >
+                <span>Practice Audio Library</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+            <Button variant="outline" className="w-full" asChild>
+              <Link href="/admin/discover" className="flex items-center justify-between">
+                <span>Discover Feed CMS</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>

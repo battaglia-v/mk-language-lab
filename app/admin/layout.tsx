@@ -1,34 +1,58 @@
 import { requireAdmin } from '@/lib/admin';
 import Link from 'next/link';
-import { LayoutDashboard, Home, BookOpen, Calendar } from 'lucide-react';
+import type React from 'react';
+import {
+  LayoutDashboard,
+  Home,
+  BookOpen,
+  Calendar,
+  Menu,
+  Headphones,
+  Compass,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { ToasterProvider } from '@/components/ui/toast';
-import { SessionProvider } from '@/components/auth/SessionProvider';
-import { headers } from 'next/headers';
+
+const navLinks = [
+  {
+    href: '/admin',
+    label: 'Dashboard',
+    icon: LayoutDashboard,
+  },
+  {
+    href: '/admin/practice-vocabulary',
+    label: 'Vocabulary',
+    icon: BookOpen,
+  },
+  {
+    href: '/admin/word-of-the-day',
+    label: 'Word of the Day',
+    icon: Calendar,
+  },
+  {
+    href: '/admin/practice-audio',
+    label: 'Practice Audio',
+    icon: Headphones,
+  },
+  {
+    href: '/admin/discover',
+    label: 'Discover Feed',
+    icon: Compass,
+  },
+];
 
 export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // Get the current pathname to check if we're on the signin page
-  const headersList = await headers();
-  const pathname = headersList.get('x-pathname') || '';
-  const isSigninPage = pathname.includes('/admin/signin');
-
-  // Only protect admin routes if not on signin page
-  if (!isSigninPage) {
-    await requireAdmin();
-  }
-
-  // If on signin page, render children with SessionProvider but without admin layout chrome
-  if (isSigninPage) {
-    return (
-      <SessionProvider>
-        <ToasterProvider>{children}</ToasterProvider>
-      </SessionProvider>
-    );
-  }
+  await requireAdmin();
 
   return (
     <ToasterProvider>
@@ -42,28 +66,54 @@ export default async function AdminLayout({
                 <span className="hidden sm:inline">Admin Panel</span>
               </Link>
               <nav className="hidden md:flex items-center gap-4 text-sm">
-                <Link
-                  href="/admin/practice-vocabulary"
-                  className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <BookOpen className="h-4 w-4" />
-                  <span>Vocabulary</span>
-                </Link>
-                <Link
-                  href="/admin/word-of-the-day"
-                  className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Calendar className="h-4 w-4" />
-                  <span>Word of the Day</span>
-                </Link>
+                {navLinks.map(({ href, label, icon: Icon }) => (
+                  <Link
+                    key={href}
+                    href={href}
+                    className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <Icon className="h-4 w-4" />
+                    <span>{label}</span>
+                  </Link>
+                ))}
               </nav>
             </div>
-            <Button variant="outline" size="sm" asChild>
-              <Link href="/" className="gap-2">
-                <Home className="h-4 w-4" />
-                <span className="hidden sm:inline">Back to Site</span>
-              </Link>
-            </Button>
+            <div className="flex items-center gap-2">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="md:hidden"
+                    aria-label="Open admin menu"
+                  >
+                    <Menu className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-52">
+                  {navLinks.map(({ href, label, icon: Icon }) => (
+                    <DropdownMenuItem key={href} asChild>
+                      <Link href={href} className="flex items-center gap-2">
+                        <Icon className="h-4 w-4" />
+                        <span>{label}</span>
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                  <DropdownMenuItem asChild>
+                    <Link href="/" className="flex items-center gap-2">
+                      <Home className="h-4 w-4" />
+                      <span>Back to site</span>
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <Button variant="outline" size="sm" className="hidden md:inline-flex" asChild>
+                <Link href="/" className="gap-2">
+                  <Home className="h-4 w-4" />
+                  <span className="hidden sm:inline">Back to Site</span>
+                </Link>
+              </Button>
+            </div>
           </div>
         </header>
 

@@ -91,14 +91,15 @@ export function useProfileSummaryQuery<TData = ProfileSummary>({
     queryKey: profileSummaryQueryKey,
     queryFn: ({ signal }) => fetchProfileSummary({ baseUrl: baseUrl ?? undefined, signal, fetcher }),
     staleTime,
-    enabled: enabled ?? Boolean(baseUrl),
+    enabled: enabled ?? true,
     select,
+    initialData: baseUrl ? undefined : getLocalProfileSummary(),
   });
 }
 
 function normalizeBaseUrl(value?: string | null): string {
   if (!value || value.trim().length === 0) {
-    throw new Error('API base URL is not configured. Set EXPO_PUBLIC_API_BASE_URL to enable profile stats.');
+    return '';
   }
   return value.replace(/\/$/, '');
 }
