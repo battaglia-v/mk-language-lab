@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { buildLocalizedHref, shellNavItems } from "./navItems";
+import { buildLocalizedHref, isNavItemActive, shellNavItems } from "./navItems";
 
 export type SidebarNavProps = {
   isOpen: boolean;
@@ -16,7 +16,7 @@ export function SidebarNav({ isOpen, onNavigate }: SidebarNavProps) {
   const t = useTranslations("nav");
   const pathname = usePathname();
 
-  const buildHref = (path: string) => buildLocalizedHref(locale, path);
+  const buildHref = (path: string) => buildLocalizedHref(locale, path, pathname);
 
   return (
     <>
@@ -39,7 +39,7 @@ export function SidebarNav({ isOpen, onNavigate }: SidebarNavProps) {
           {shellNavItems.map((item) => {
             const Icon = item.icon;
             const href = buildHref(item.path);
-            const active = pathname === href || pathname.startsWith(`${href}/`);
+            const active = isNavItemActive(pathname, href);
             return (
               <Link
                 key={item.id}
