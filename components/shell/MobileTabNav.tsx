@@ -40,7 +40,10 @@ export function MobileTabNav() {
                     : "text-sidebar-foreground hover:text-sidebar-accent-foreground"
                 )}
               >
-                <Icon className={cn("h-5 w-5", active && "text-primary") } aria-hidden="true" />
+                <Icon
+                  className={cn("h-5 w-5", active && "text-primary")}
+                  aria-hidden="true"
+                />
                 <span className="text-[11px] leading-tight text-center break-words">
                   {t(item.id)}
                 </span>

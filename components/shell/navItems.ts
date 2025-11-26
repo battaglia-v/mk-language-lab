@@ -1,3 +1,4 @@
+import type { LucideIcon } from "lucide-react";
 import {
   Bell,
   BookOpen,
@@ -9,6 +10,22 @@ import {
   Sparkles,
 } from "lucide-react";
 
+export type ShellNavItemId =
+  | "dashboard"
+  | "translate"
+  | "lessons"
+  | "practice"
+  | "news"
+  | "resources"
+  | "notifications"
+  | "profile";
+
+export type ShellNavItem = {
+  id: ShellNavItemId;
+  icon: LucideIcon;
+  path: string;
+};
+
 export const shellNavItems = [
   { id: "dashboard", icon: Home, path: "/" },
   { id: "translate", icon: Languages, path: "/translate" },
@@ -18,6 +35,4 @@ export const shellNavItems = [
   { id: "resources", icon: BookOpen, path: "/resources" },
   { id: "notifications", icon: Bell, path: "/notifications" },
   { id: "profile", icon: CircleUserRound, path: "/profile" },
-] as const;
-
-export type ShellNavItem = (typeof shellNavItems)[number];
+] satisfies readonly ShellNavItem[];
