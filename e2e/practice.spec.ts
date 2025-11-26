@@ -26,6 +26,30 @@ test.describe('Practice Page', () => {
     await expect(practiceCard).toBeVisible();
   });
 
+  test('sidebar navigation stays in sync on mobile', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 720 });
+    await page.reload();
+
+    const openMenu = page.getByRole('button', { name: /Menu|Мени/i });
+    await openMenu.click();
+
+    const practiceNavLink = page.getByRole('link', { name: /Practice|Практика/i }).first();
+    await expect(practiceNavLink).toHaveAttribute('aria-current', 'page');
+
+    const translateNavLink = page.getByRole('link', { name: /Translate|Преведи/i }).first();
+    await translateNavLink.click();
+
+    await expect(page).toHaveURL(/\/translate/);
+
+    await openMenu.click();
+
+    const translateNavLinkAfterNav = page.getByRole('link', { name: /Translate|Преведи/i }).first();
+    await expect(translateNavLinkAfterNav).toHaveAttribute('aria-current', 'page');
+
+    const practiceNavLinkAfterNav = page.getByRole('link', { name: /Practice|Практика/i }).first();
+    await expect(practiceNavLinkAfterNav).not.toHaveAttribute('aria-current', 'page');
+  });
+
   test('should show translator link', async ({ page }) => {
     const translatorLink = page
       .getByRole('link', { name: /(Open translator|Quick Translator|Отвори преведувач|Брз преведувач|Преведувач)/i })
@@ -173,5 +197,22 @@ test.describe('Quick Practice Widget', () => {
     await checkButton.click();
 
     await expect(page.locator('text=/Great job|Браво/i')).toBeVisible();
+  });
+
+  test('should clear the input and surface progress after submitting the e2e fixture', async ({ page }) => {
+    await page.goto('/mk/practice?practiceFixture=e2e&practicePromptId=practice-e2e-sunrise');
+
+    const input = page.locator('input[placeholder*="Type"], input[placeholder*="Напиши"]').first();
+    await expect(input).toBeVisible();
+    await input.fill('good morning');
+
+    await page.getByRole('button', { name: /Check|Checking|Браво|Great job|Провери/i }).first().click();
+
+    await expect(page.locator('text=/Great job|Браво/i')).toBeVisible();
+    await expect(page.getByText(/Progress:\s*1\/5/i)).toBeVisible();
+    await expect(input).toHaveValue('');
+
+    const nextPromptButton = page.getByRole('button', { name: /New Prompt|Next/i }).first();
+    await expect(nextPromptButton).toBeVisible();
   });
 });
