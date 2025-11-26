@@ -15,7 +15,11 @@ export function AppShell({ children }: { children: ReactNode }) {
       <div className="app-shell-main lg:ml-[72px] xl:ml-72">
         <div className="app-shell-scroll">
           <ShellHeader onToggleSidebar={() => setSidebarOpen((prev) => !prev)} />
-          <main id="main-content" className="space-y-8 pb-28 lg:pb-0" role="main">
+          <main
+            id="main-content"
+            className="space-y-8 pb-[calc(7rem+env(safe-area-inset-bottom,0px))] lg:pb-0"
+            role="main"
+          >
             {children}
           </main>
         </div>
