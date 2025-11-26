@@ -209,7 +209,7 @@ export default function TranslatePage() {
             swapLabel={t('swapDirections')}
           />
           <form
-            className="rounded-3xl border border-border/60 bg-black/30 p-6"
+            className="rounded-3xl border border-border/60 bg-black/30 card-padding-lg md:p-7"
             onSubmit={(event: FormEvent<HTMLFormElement>) => {
               event.preventDefault();
               void handleTranslate(event);
@@ -247,7 +247,7 @@ export default function TranslatePage() {
             </div>
           </form>
 
-          <section className="space-y-4 rounded-3xl border border-border/60 bg-black/30 p-6">
+          <section className="space-y-4 rounded-3xl border border-border/60 bg-black/30 card-padding-lg md:p-7">
             <div className="flex flex-wrap items-center gap-3">
               <div>
                 <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{t('resultLabel')}</p>
@@ -390,7 +390,7 @@ type DirectionToggleProps = {
 
 function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel }: DirectionToggleProps) {
   return (
-    <div className="rounded-3xl border border-border/60 bg-black/30 p-4">
+    <div className="rounded-3xl border border-border/60 bg-black/30 card-padding">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{label}</p>
@@ -412,7 +412,7 @@ function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel
             key={option.id}
             type="button"
             className={cn(
-              'rounded-full px-4 py-2 text-sm font-semibold transition',
+              'touch-target rounded-full px-4 py-2 text-sm font-semibold transition',
               option.id === activeId
                 ? 'bg-primary text-primary-foreground'
                 : 'bg-transparent text-muted-foreground hover:text-foreground',
@@ -441,7 +441,7 @@ function PanelToggleButton({ icon: Icon, label, active, onClick }: PanelToggleBu
       role="tab"
       aria-selected={active}
       className={cn(
-        'flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold transition',
+        'touch-target flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold transition',
         active ? 'bg-white text-black' : 'text-muted-foreground hover:text-white',
       )}
       onClick={onClick}

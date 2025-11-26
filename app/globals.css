@@ -35,10 +35,93 @@
   --color-card: var(--card);
 }
 
+:root {
+  --space-gutter: clamp(1rem, 3vw, 1.5rem);
+  --space-gutter-wide: clamp(1.125rem, 3.5vw, 1.75rem);
+  --space-section-sm: clamp(1.25rem, 3vw, 2.25rem);
+  --space-section-md: clamp(1.75rem, 4vw, 3rem);
+  --space-section-lg: clamp(2.5rem, 5vw, 3.75rem);
+  --card-padding: clamp(1rem, 3vw, 1.5rem);
+  --card-padding-lg: clamp(1.25rem, 4vw, 2rem);
+  --gap-compact: clamp(0.5rem, 2vw, 0.75rem);
+  --gap-cozy: clamp(0.75rem, 2.5vw, 1.125rem);
+  --text-sm-mobile: clamp(0.95rem, 0.6vw + 0.88rem, 1rem);
+  --text-xs-mobile: clamp(0.85rem, 0.5vw + 0.8rem, 0.92rem);
+  --mobile-nav-height: 56px;
+  --mobile-nav-height-max: 64px;
+  --touch-target-size: 44px;
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+}
+
 body {
   font-family: var(--font-geist-sans, "Geist", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
   background: var(--mk-bg);
   color: var(--mk-text);
+}
+
+.section-container {
+  width: 100%;
+  padding-inline: var(--space-gutter);
+  margin-inline: auto;
+  position: relative;
+}
+
+@media (min-width: 960px) {
+  .section-container {
+    padding-inline: var(--space-gutter-wide);
+  }
+}
+
+.section-container-sm {
+  max-width: 40rem;
+}
+
+.section-container-md {
+  max-width: 48rem;
+}
+
+.section-container-lg {
+  max-width: 64rem;
+}
+
+.section-container-xl {
+  max-width: 80rem;
+}
+
+.section-container-2xl {
+  max-width: 96rem;
+}
+
+.section-container-content {
+  max-width: 56rem;
+}
+
+.section-container-wide {
+  max-width: 70rem;
+}
+
+.section-spacing-sm {
+  padding-block: var(--space-section-sm);
+}
+
+.section-spacing-md {
+  padding-block: var(--space-section-md);
+}
+
+.section-spacing-lg {
+  padding-block: var(--space-section-lg);
+}
+
+.section-spacing-xl {
+  padding-block: calc(var(--space-section-lg) + 1rem);
+}
+
+.page-shell,
+.page-shell-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-section-sm);
 }
 
 @layer base {
@@ -111,24 +194,28 @@ body {
   min-height: 100vh;
   position: relative;
   z-index: 0;
-  padding: 1.5rem;
+  padding: var(--space-gutter);
+  padding-top: calc(var(--space-section-sm) / 2 + var(--safe-area-top));
+  padding-bottom: calc(var(--space-section-sm) / 2 + var(--safe-area-bottom));
 }
 
 .app-shell-scroll {
   min-height: 100vh;
+  scroll-padding-top: calc(var(--mobile-nav-height) + var(--safe-area-top));
 }
 
 .lab-hero {
   border-radius: 32px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.55));
-  padding: 1.75rem;
+  padding: var(--card-padding-lg);
+  gap: var(--gap-cozy);
   box-shadow: var(--panel-shadow);
 }
 
 .lab-grid {
   display: grid;
-  gap: 1.5rem;
+  gap: var(--gap-cozy);
 }
 
 @media (min-width: 1024px) {
@@ -141,7 +228,7 @@ body {
   border-radius: 28px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(8, 8, 12, 0.7);
-  padding: 1.25rem;
+  padding: var(--card-padding);
   box-shadow: var(--shadow-soft);
 }
 
@@ -180,7 +267,77 @@ body {
 
 .card-grid {
   display: grid;
-  gap: 1rem;
+  gap: var(--gap-cozy);
+}
+
+.safe-top {
+  top: var(--safe-area-top);
+}
+
+.nav-toolbar {
+  min-height: var(--mobile-nav-height);
+  padding-block: clamp(0.75rem, 2vw, 0.95rem);
+}
+
+.nav-toolbar + .nav-toolbar-helper {
+  padding-top: clamp(0.35rem, 2vw, 0.75rem);
+}
+
+.nav-surface {
+  padding-top: var(--safe-area-top);
+}
+
+.shell-surface {
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.24);
+  box-shadow: var(--shadow-soft);
+}
+
+.card-padding {
+  padding: var(--card-padding);
+}
+
+.card-padding-lg {
+  padding: var(--card-padding-lg);
+}
+
+.stack-compact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-compact);
+}
+
+.stack-cozy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-cozy);
+}
+
+.touch-target {
+  min-height: var(--touch-target-size);
+  min-width: var(--touch-target-size);
+}
+
+@media (min-width: 768px) {
+  .nav-toolbar {
+    min-height: var(--mobile-nav-height-max);
+    padding-block: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .lab-hero {
+    border-radius: 24px;
+  }
+
+  .app-shell-main {
+    padding-inline: var(--space-gutter);
+  }
+
+  .section-heading {
+    font-size: clamp(1.15rem, 3vw, 1.5rem);
+  }
 }
 
 @media (min-width: 960px) {

@@ -95,7 +95,7 @@ export function ReminderSettingsCard({ className, dataTestId }: ReminderSettings
   return (
     <section
       className={cn(
-        'glass-card rounded-3xl border border-white/15 bg-white/5 p-6 text-white space-y-6',
+        'glass-card rounded-3xl border border-white/15 bg-white/5 card-padding-lg md:p-7 text-white space-y-6',
         className
       )}
       data-testid={dataTestId}
