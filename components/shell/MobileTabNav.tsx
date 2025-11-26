@@ -3,22 +3,13 @@
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
-import {
-  Bell,
-  BookOpen,
-  CircleUserRound,
-  Compass,
-  Languages,
-  Sparkles,
-} from "lucide-react";
+import { BookOpen, CircleUserRound, Languages, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { id: "dashboard", icon: Languages, path: "/translate" },
-  { id: "lessons", icon: Compass, path: "/discover" },
   { id: "practice", icon: Sparkles, path: "/practice" },
   { id: "resources", icon: BookOpen, path: "/resources" },
-  { id: "notifications", icon: Bell, path: "/notifications" },
   { id: "profile", icon: CircleUserRound, path: "/profile" },
 ] as const;
 
@@ -36,7 +27,7 @@ export function MobileTabNav() {
       style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 0.75rem)" }}
     >
       <div className="px-2 pt-2 pb-1">
-        <div className="grid grid-cols-3 gap-1 sm:grid-cols-6">
+        <div className="grid grid-cols-4 gap-1 sm:grid-cols-4">
           {navItems.map((item) => {
             const Icon = item.icon;
             const href = buildHref(item.path);

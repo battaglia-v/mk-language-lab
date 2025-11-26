@@ -73,7 +73,6 @@ export default function Sidebar() {
   const navItems: NavItem[] = [
     { path: "/practice", label: t("practice"), icon: RefreshCw },
     { path: "/translate", label: t("translate"), icon: Languages },
-    // { path: '/daily-lessons', label: t('dailyLessons'), icon: Instagram }, // Hidden until Instagram access is available
     { path: "/news", label: t("news"), icon: Newspaper },
     { path: "/resources", label: t("resources"), icon: BookOpen },
   ];
