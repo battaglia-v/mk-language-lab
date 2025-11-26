@@ -1,7 +1,9 @@
 'use client';
 
+import Link from 'next/link';
 import { useLeagueStandingsQuery, useProfileSummaryQuery } from '@mk/api-client';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { useSession } from 'next-auth/react';
 import { cn } from '@/lib/utils';
 import { ProfileHeader } from './ProfileHeader';
 import { QuestsSection } from './QuestsSection';
@@ -10,6 +12,7 @@ import { StatsSection } from './StatsSection';
 import { BadgeShopPreview } from './BadgeShopPreview';
 import { LeagueStandingsCard } from './LeagueStandingsCard';
 import { ProfileActivityMap } from './ProfileActivityMap';
+import { Button } from '@/components/ui/button';
 
 type ProfileDashboardProps = {
   className?: string;
@@ -18,9 +21,19 @@ type ProfileDashboardProps = {
 
 export function ProfileDashboard({ className, dataTestId }: ProfileDashboardProps) {
   const t = useTranslations('profile');
+  const common = useTranslations('common');
+  const locale = useLocale();
+  const { status } = useSession();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const { data: profile, isLoading, error } = useProfileSummaryQuery({
+  const {
+    data: profile,
+    isLoading,
+    error,
+    refetch: refetchProfile,
+    isFetching,
+  } = useProfileSummaryQuery({
     baseUrl: apiBaseUrl,
+    enabled: status === 'authenticated',
   });
   const {
     data: leagueStandings,
@@ -28,11 +41,12 @@ export function ProfileDashboard({ className, dataTestId }: ProfileDashboardProp
     error: leagueError,
   } = useLeagueStandingsQuery({
     baseUrl: apiBaseUrl,
+    enabled: status === 'authenticated',
   });
 
   const containerClasses = cn('space-y-6', className);
 
-  if (isLoading) {
+  if (status === 'loading' || isLoading) {
     return (
       <div className={containerClasses} data-testid={dataTestId}>
         {Array.from({ length: 3 }).map((_, index) => (
@@ -48,12 +62,42 @@ export function ProfileDashboard({ className, dataTestId }: ProfileDashboardProp
     );
   }
 
+  if (status !== 'authenticated') {
+    const signInHref = `/${locale}/sign-in?callbackUrl=/${locale}/profile`;
+
+    return (
+      <div className={containerClasses} data-testid={dataTestId}>
+        <div className="glass-card rounded-3xl border border-border/60 p-6 md:p-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary/70">{t('signIn.title')}</p>
+          <h2 className="mt-2 text-2xl font-bold text-white md:text-3xl">{t('signIn.subtitle')}</h2>
+          <p className="mt-3 max-w-2xl text-sm text-slate-300">{t('signIn.body')}</p>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <Button asChild size="lg" className="px-6">
+              <Link href={signInHref}>{t('signIn.cta')}</Link>
+            </Button>
+            <Button asChild variant="ghost" size="lg" className="px-6 text-slate-200">
+              <Link href={`/${locale}`}>{t('signIn.secondary')}</Link>
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (error || !profile) {
     return (
       <div className={containerClasses} data-testid={dataTestId}>
         <div className="glass-card rounded-3xl border border-destructive/40 p-6 text-sm text-red-100">
           <h2 className="text-lg font-semibold text-white">{t('error.title')}</h2>
           <p className="mt-1 text-red-100/90">{error?.message || t('error.generic')}</p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Button onClick={() => void refetchProfile()} size="sm" variant="secondary">
+              {isFetching ? common('loading') : common('tryAgain')}
+            </Button>
+            <Button asChild size="sm" variant="ghost" className="text-slate-200">
+              <Link href={`/${locale}/practice`}>{common('goHome')}</Link>
+            </Button>
+          </div>
         </div>
       </div>
     );
