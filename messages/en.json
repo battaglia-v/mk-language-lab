@@ -5,6 +5,7 @@
   },
   "nav": {
     "label": "Main navigation",
+    "labelNote": "Keep this as a short primary label and avoid repeating the word navigation in translated copy.",
     "home": "Home",
     "dashboard": "Dashboard",
     "practice": "Practice",
