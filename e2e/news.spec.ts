@@ -72,6 +72,10 @@ test.describe('News Page', () => {
     await page.goto('/mk/news');
   });
 
+  test.afterEach(() => {
+    expect(consoleErrors).toEqual([]);
+  });
+
   test('should load news page successfully', async ({ page }) => {
     // Check page heading - the h1 contains the subtitle
     const heading = page.locator('h1').first();
@@ -79,10 +83,6 @@ test.describe('News Page', () => {
 
     // Also check for the "Новости" title text
     await expect(page.getByText(/Новости|News/i).first()).toBeVisible();
-  });
-
-  test('should load without console errors', async () => {
-    expect(consoleErrors).toEqual([]);
   });
 
   test('should display news articles', async ({ page }) => {
