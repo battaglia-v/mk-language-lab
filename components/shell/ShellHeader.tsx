@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
-import { Menu, CircleUserRound } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Menu, CircleUserRound, ArrowLeft } from "lucide-react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { Button } from "@/components/ui/button";
+import { CommandMenuLazy } from "@/components/CommandMenuLazy";
 
 export type ShellHeaderProps = {
   onToggleSidebar: () => void;
@@ -14,7 +16,39 @@ export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
   const locale = useLocale();
   const t = useTranslations("brand");
   const localeT = useTranslations("shell");
+  const navT = useTranslations("nav");
+  const pathname = usePathname();
   const buildHref = (path: string) => `/${locale}${path}`;
+
+  const section = pathname.replace(`/${locale}`, "").split("/")[1] ?? "translate";
+
+  const backKey =
+    section === "discover" || section === "lesson" || section === "daily-lessons"
+      ? "lessons"
+      : section;
+
+  const backLabel = (() => {
+    switch (backKey) {
+      case "practice":
+        return navT("practice");
+      case "resources":
+        return navT("resources");
+      case "notifications":
+        return navT("notifications");
+      case "profile":
+        return navT("profile");
+      case "news":
+        return navT("news");
+      case "lessons":
+        return navT("lessons");
+      default:
+        return navT("dashboard");
+    }
+  })();
+
+  const backHref = backKey === "lessons" ? buildHref("/discover") : buildHref(`/${backKey}`);
+
+  const backTarget = section === "translate" ? null : { label: backLabel, href: backHref };
 
   return (
     <header className="mb-8 rounded-3xl border border-border/50 bg-black/30 p-4 shadow-xl">
@@ -28,6 +62,19 @@ export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
             <Menu className="h-4 w-4" aria-hidden="true" />
             {localeT("menu")}
           </button>
+          {backTarget ? (
+            <Button
+              asChild
+              variant="ghost"
+              size="sm"
+              className="inline-flex items-center gap-2 rounded-full border border-border/60 px-3 text-muted-foreground"
+            >
+              <Link href={backTarget.href} aria-label={navT("backToDashboard")}>
+                <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+                {navT("backToSection", { section: backTarget.label })}
+              </Link>
+            </Button>
+          ) : null}
           <Link href={buildHref("/translate")} className="flex items-center gap-3" aria-label={t("full")}>
             <span className="title-gradient text-2xl lowercase">македонски</span>
             <span className="hidden text-[11px] uppercase tracking-[0.35em] text-muted-foreground md:inline">
@@ -36,6 +83,13 @@ export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
           </Link>
         </div>
         <div className="flex items-center gap-2">
+          <div className="hidden sm:flex items-center gap-2 rounded-full border border-border/60 bg-transparent px-3 py-1.5 text-xs text-muted-foreground">
+            <span className="font-semibold text-foreground">⌘K</span>
+            <span className="text-muted-foreground">/</span>
+            <span className="font-semibold text-foreground">Ctrl+K</span>
+            <span className="text-muted-foreground">{navT("quickActions")}</span>
+          </div>
+          <CommandMenuLazy />
           <LanguageSwitcher />
           <Button
             asChild

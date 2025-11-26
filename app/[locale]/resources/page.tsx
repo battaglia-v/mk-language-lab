@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { ExternalLink, Search, PanelRightClose, PanelLeftOpen } from 'lucide-react';
+import Link from 'next/link';
+import { useLocale, useTranslations } from 'next-intl';
+import { ExternalLink, Search, PanelRightClose, PanelLeftOpen, ArrowLeft } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
@@ -35,6 +36,8 @@ type FlatResource = {
 export default function ResourcesPage() {
   const t = useTranslations('resources');
   const translateT = useTranslations('translate');
+  const navT = useTranslations('nav');
+  const locale = useLocale();
   const [query, setQuery] = useState('');
   const [data, setData] = useState<ResourceFile | null>(null);
   const [loading, setLoading] = useState(true);
@@ -108,26 +111,36 @@ export default function ResourcesPage() {
     <div className="space-y-6">
       <section className="lab-hero">
         <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex flex-wrap items-center gap-3">
+            <Link
+              href={`/${locale}/translate`}
+              aria-label={navT('backToDashboard')}
+              className="inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-1.5 text-xs text-muted-foreground"
+            >
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+              {navT('backToDashboard')}
+            </Link>
+            <button
+              type="button"
+              className="inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-1.5 text-xs text-muted-foreground"
+              onClick={() => setPanelCollapsed((prev) => !prev)}
+            >
+              {panelCollapsed ? (
+                <>
+                  <PanelLeftOpen className="h-4 w-4" aria-hidden="true" /> {translateT('contextExpand')}
+                </>
+              ) : (
+                <>
+                  <PanelRightClose className="h-4 w-4" aria-hidden="true" /> {translateT('contextCollapse')}
+                </>
+              )}
+            </button>
+          </div>
           <div>
             <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{t('badge')}</p>
             <h1 className="mt-2 text-3xl font-semibold text-white">{t('title')}</h1>
             <p className="mt-1 max-w-2xl text-sm text-muted-foreground">{t('subtitle')}</p>
           </div>
-          <button
-            type="button"
-            className="inline-flex items-center gap-2 rounded-full border border-border/60 px-4 py-2 text-xs text-muted-foreground"
-            onClick={() => setPanelCollapsed((prev) => !prev)}
-          >
-            {panelCollapsed ? (
-              <>
-                <PanelLeftOpen className="h-4 w-4" aria-hidden="true" /> {translateT('contextExpand')}
-              </>
-            ) : (
-              <>
-                <PanelRightClose className="h-4 w-4" aria-hidden="true" /> {translateT('contextCollapse')}
-              </>
-            )}
-          </button>
         </div>
       </section>
 
