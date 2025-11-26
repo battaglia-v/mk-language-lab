@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import { ChevronLeft, ChevronRight, Home } from "lucide-react";
@@ -58,11 +58,7 @@ export function PageNavigation({ breadcrumbs = [], tabs = [], actions }: PageNav
   const navT = useTranslations("nav");
   const locale = useLocale();
   const pathname = usePathname();
-  const [direction, setDirection] = useState<"ltr" | "rtl">("ltr");
-
-  useEffect(() => {
-    setDirection(getDirection());
-  }, []);
+  const [direction] = useState<"ltr" | "rtl">(() => getDirection());
 
   const Chevron = direction === "rtl" ? ChevronLeft : ChevronRight;
   const homeHref = useMemo(() => `/${locale}`, [locale]);
@@ -128,7 +124,7 @@ export function PageNavigation({ breadcrumbs = [], tabs = [], actions }: PageNav
           title={t("sectionsHelp")}
           className="rounded-2xl border border-border/60 bg-black/20 p-1"
         >
-          <div className="flex flex-wrap gap-2 md:flex-nowrap md:overflow-x-auto" role="tablist">
+          <div className="flex flex-wrap gap-2 md:flex-nowrap md:overflow-x-auto">
             {resolvedTabs.map((tab) => {
               const href = renderHref(tab.href);
               const isActive = tab.isActive ? tab.isActive(pathname) : pathname === href || pathname.startsWith(`${href}/`);
@@ -137,10 +133,7 @@ export function PageNavigation({ breadcrumbs = [], tabs = [], actions }: PageNav
                 <Link
                   key={tab.id}
                   href={href}
-                  role="tab"
-                  aria-selected={isActive}
                   aria-current={isActive ? "page" : undefined}
-                  tabIndex={isActive ? 0 : undefined}
                   className={cn(
                     "inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition",
                     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary",
