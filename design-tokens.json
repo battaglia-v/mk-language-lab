@@ -3,27 +3,30 @@
     "name": "MK Language Lab",
     "theme": "dark",
     "description": "Minimal assistant-style interface for Macedonian translator, practice, and resources.",
-    "updatedAt": "2024-05-01"
+    "updatedAt": "2024-06-01"
   },
   "colors": {
-    "background": "#000000",
-    "surface": "#08080a",
-    "surfaceMuted": "#101017",
-    "panel": "#11111b",
-    "panelMuted": "#1a1a25",
-    "border": "#262637",
-    "borderSoft": "#1d1d28",
-    "text": "#ffffff",
-    "textMuted": "rgba(255,255,255,0.68)",
+    "background": "#06060b",
+    "surface": "#0b0b12",
+    "surfaceRaised": "#111424",
+    "surfaceMuted": "#14172a",
+    "panel": "#151827",
+    "panelMuted": "#1b1f33",
+    "border": "#222536",
+    "borderStrong": "#2e3246",
+    "borderSoft": "#1a1d2b",
+    "text": "#f7f8fb",
+    "textMuted": "rgba(247,248,251,0.72)",
     "accent": "#ff6ec7",
     "accentPink": "#ff3cac",
     "accentPurple": "#8b5cf6",
-    "success": "#5EF7B7",
-    "warning": "#FFC857",
-    "danger": "#FF6B6B"
+    "success": "#6ee7b7",
+    "warning": "#f2cc60",
+    "danger": "#ff7878"
   },
   "gradient": {
-    "title": "linear-gradient(90deg,#ff6ec7,#ff3cac,#8b5cf6)"
+    "title": "linear-gradient(115deg,#ff6ec7,#ff3cac,#8b5cf6)",
+    "surface": "linear-gradient(145deg,rgba(255,255,255,0.02),rgba(255,255,255,0))"
   },
   "typography": {
     "fontFamily": "'Inter', 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
@@ -46,9 +49,26 @@
     "2xl": "36px"
   },
   "radii": {
-    "pill": "999px",
-    "xl": "18px",
-    "2xl": "24px",
-    "3xl": "32px"
+    "control": "14px",
+    "card": "22px",
+    "panel": "26px",
+    "sm": "10px",
+    "md": "14px",
+    "lg": "18px",
+    "xl": "22px",
+    "2xl": "26px",
+    "pill": "999px"
+  },
+  "elevation": {
+    "sm": "0 10px 24px -18px rgba(0,0,0,0.58)",
+    "md": "0 18px 42px -20px rgba(0,0,0,0.6)",
+    "lg": "0 30px 64px -24px rgba(0,0,0,0.62)",
+    "focus": "0 0 0 3px rgba(255,110,199,0.28)"
+  },
+  "icons": {
+    "size": "20px",
+    "sizeSm": "16px",
+    "stroke": 1.6,
+    "gap": "10px"
   }
 }
