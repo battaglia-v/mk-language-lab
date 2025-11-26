@@ -1,13 +1,4 @@
-import {
-  Dispatch,
-  FormEvent,
-  MouseEvent,
-  PointerEvent,
-  ReactNode,
-  RefObject,
-  SetStateAction,
-  useState,
-} from 'react';
+import { Dispatch, FormEvent, PointerEvent, ReactNode, RefObject, SetStateAction, useState } from 'react';
 import { RefreshCcw, Eye, EllipsisVertical, Check, XCircle, ChevronDown, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -115,37 +106,26 @@ export function QuickPracticeControls({
   const [activePanel, setActivePanel] = useState<PanelId | null>(null);
   const [isFiltersDrawerOpen, setIsFiltersDrawerOpen] = useState(false);
 
+  const submitIfReady = () => {
+    if (isPrimaryDisabled) {
+      return;
+    }
+
+    void onSubmit();
+  };
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (isPrimaryDisabled) {
-      return;
-    }
-    void onSubmit();
+    submitIfReady();
   };
 
-  const handleInstantSubmit = (event: PointerEvent<HTMLButtonElement>) => {
-    if (event.pointerType !== 'touch' || isPrimaryDisabled) {
+  const handleTouchSubmit = (event: PointerEvent<HTMLButtonElement>) => {
+    if (event.pointerType !== 'touch') {
       return;
     }
-    event.preventDefault();
-    const targetForm = formRef.current;
-    if (targetForm) {
-      if (typeof targetForm.requestSubmit === 'function') {
-        targetForm.requestSubmit();
-      } else {
-        targetForm.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
-      }
-      return;
-    }
-    void onSubmit();
-  };
 
-  const handleButtonClick = (event: MouseEvent<HTMLButtonElement>) => {
-    if (isPrimaryDisabled) {
-      return;
-    }
     event.preventDefault();
-    void onSubmit();
+    submitIfReady();
   };
 
   const togglePanel = (panel: PanelId) => {
@@ -186,31 +166,35 @@ export function QuickPracticeControls({
               aria-label={placeholder}
               disabled={!isReady}
             />
-            <div className="mt-2 flex items-center justify-between text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-              <button
-                type="button"
-                onClick={onNextPrompt}
-                className="hover:text-primary disabled:opacity-40"
-                disabled={!hasAvailablePrompts}
-                aria-label={translate('practiceSkipPrompt')}
-              >
-                {translate('practiceSkipPrompt')}
-              </button>
-              <button
-                type="button"
-                onClick={onRevealAnswer}
-                className="hover:text-primary disabled:opacity-40"
-                disabled={!isReady}
-                aria-label={translate('practiceRevealAnswer')}
-              >
-                {translate('practiceRevealAnswer')}
-              </button>
-            </div>
+            {hasAvailablePrompts || isReady ? (
+              <div className="mt-2 flex items-center justify-between text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                {hasAvailablePrompts ? (
+                  <button
+                    type="button"
+                    onClick={onNextPrompt}
+                    className="hover:text-primary"
+                    aria-label={translate('practiceSkipPrompt')}
+                  >
+                    {translate('practiceSkipPrompt')}
+                  </button>
+                ) : null}
+                {isReady ? (
+                  <button
+                    type="button"
+                    onClick={onRevealAnswer}
+                    className="hover:text-primary"
+                    aria-label={translate('practiceRevealAnswer')}
+                  >
+                    {translate('practiceRevealAnswer')}
+                  </button>
+                ) : null}
+              </div>
+            ) : null}
           </div>
 
           <div className="md:hidden flex flex-col gap-3">
             <Button
-              type="button"
+              type="submit"
               size="lg"
               className={cn(
                 'w-full rounded-2xl bg-gradient-to-r from-primary to-secondary text-base font-semibold text-white shadow-lg transition-all duration-200',
@@ -219,8 +203,7 @@ export function QuickPracticeControls({
                 'flex items-center justify-center gap-2'
               )}
               disabled={isPrimaryDisabled}
-              onPointerDown={handleInstantSubmit}
-              onClick={handleButtonClick}
+              onPointerDown={handleTouchSubmit}
             >
               {isSubmitting ? (
                 <>
@@ -247,11 +230,11 @@ export function QuickPracticeControls({
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-52 text-sm">
-                    <DropdownMenuLabel className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                      {translate('practiceDrillModeLabel')}
-                    </DropdownMenuLabel>
-                    <DropdownMenuItem
-                      onSelect={(event) => {
+                  <DropdownMenuLabel className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    {translate('practiceDrillModeLabel')}
+                  </DropdownMenuLabel>
+                  <DropdownMenuItem
+                    onSelect={(event) => {
                         event.preventDefault();
                         setPracticeMode('flashcard');
                       }}
@@ -295,7 +278,7 @@ export function QuickPracticeControls({
             )}
           </div>
 
-          <div className="hidden md:grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div className="hidden md:grid md:grid-cols-2 md:gap-3">
             <Button
               type="submit"
               size={isModalVariant ? 'lg' : 'default'}
@@ -305,6 +288,7 @@ export function QuickPracticeControls({
                 'flex items-center justify-center gap-2'
               )}
               disabled={isPrimaryDisabled}
+              onPointerDown={handleTouchSubmit}
             >
               {isSubmitting ? (
                 <>
@@ -315,28 +299,30 @@ export function QuickPracticeControls({
                 translate('checkAnswer')
               )}
             </Button>
-            <Button
-              type="button"
-              variant="outline"
-              size={isModalVariant ? 'lg' : 'default'}
-              onClick={onNextPrompt}
-              className="w-full gap-2 rounded-2xl border-border/50"
-              disabled={!hasAvailablePrompts}
-            >
-              <RefreshCcw className="h-4 w-4" />
-              {translate('nextPrompt')}
-            </Button>
-            <Button
-              type="button"
-              variant="ghost"
-              size={isModalVariant ? 'lg' : 'default'}
-              onClick={onRevealAnswer}
-              className="w-full gap-2 rounded-2xl"
-              disabled={!isReady}
-            >
-              <Eye className="h-4 w-4" />
-              {translate('practiceRevealAnswer')}
-            </Button>
+            {hasAvailablePrompts ? (
+              <Button
+                type="button"
+                variant="outline"
+                size={isModalVariant ? 'lg' : 'default'}
+                onClick={onNextPrompt}
+                className="w-full gap-2 rounded-2xl border-border/50"
+              >
+                <RefreshCcw className="h-4 w-4" />
+                {translate('nextPrompt')}
+              </Button>
+            ) : null}
+            {isReady ? (
+              <Button
+                type="button"
+                variant="ghost"
+                size={isModalVariant ? 'lg' : 'default'}
+                onClick={onRevealAnswer}
+                className="w-full gap-2 rounded-2xl"
+              >
+                <Eye className="h-4 w-4" />
+                {translate('practiceRevealAnswer')}
+              </Button>
+            ) : null}
             <Button
               type="button"
               variant="ghost"
@@ -352,29 +338,41 @@ export function QuickPracticeControls({
 
         {feedback && isReady ? (
           <div
+            role="status"
+            aria-live="polite"
             className={cn(
-              'rounded-2xl px-5 py-4 font-bold text-lg flex items-center gap-3 shadow-lg border-2',
+              'rounded-2xl px-4 py-3 md:px-5 md:py-4 shadow-lg border-2',
+              'flex items-start gap-3 md:gap-4',
               feedback === 'correct'
                 ? 'bg-success-soft border-success-soft text-success-strong'
                 : 'bg-error-soft border-error-soft text-error-strong',
               isShaking && feedback === 'incorrect' && 'animate-shake'
             )}
           >
-            {feedback === 'correct' ? (
-              <>
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-success-soft flex-shrink-0">
-                  <Check className="h-5 w-5 text-success-strong" />
-                </div>
-                <span>{translate('correctAnswer')}</span>
-              </>
-            ) : (
-              <>
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-error-soft flex-shrink-0">
-                  <XCircle className="h-5 w-5 text-error-strong" />
-                </div>
-                <span>{translate('incorrectAnswer', { answer: revealedAnswer })}</span>
-              </>
-            )}
+            <div
+              className={cn(
+                'flex h-9 w-9 items-center justify-center rounded-full bg-background/60',
+                feedback === 'correct' ? 'text-success-strong' : 'text-error-strong'
+              )}
+            >
+              {feedback === 'correct' ? (
+                <Check className="h-5 w-5" />
+              ) : (
+                <XCircle className="h-5 w-5" />
+              )}
+            </div>
+            <div className="flex-1 space-y-1">
+              <p className="text-sm font-bold leading-tight md:text-base">
+                {feedback === 'correct'
+                  ? translate('correctAnswer')
+                  : translate('incorrectAnswer', { answer: revealedAnswer })}
+              </p>
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                {feedback === 'correct'
+                  ? translate('practiceContinueLearning')
+                  : translate('practiceRevealAnswer')}
+              </p>
+            </div>
           </div>
         ) : null}
 
