@@ -70,7 +70,7 @@ export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
               asChild
               variant="ghost"
               size="sm"
-              className="inline-flex items-center gap-2 rounded-full border border-border/60 px-3 text-muted-foreground"
+              className="hidden items-center gap-2 rounded-full border border-border/60 px-3 text-muted-foreground sm:inline-flex"
             >
               <Link href={backTarget.href} aria-label={navT("backToDashboard")}>
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />

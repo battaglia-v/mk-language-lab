@@ -4,6 +4,7 @@ import { Languages, Sparkles, Newspaper, BookOpen, CircleUserRound } from "lucid
 import type { LucideIcon } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { buildLocalizedHref } from "@/components/shell/navItems";
 
 type Translator = Awaited<ReturnType<typeof getTranslations>>;
@@ -12,6 +13,7 @@ type ActionConfig = {
   id: "translate" | "practice" | "news" | "resources" | "profile";
   icon: LucideIcon;
   path: string;
+  mobileHidden?: boolean;
   getDescription: (deps: { homeT: Translator; profileT: Translator }) => string;
 };
 
@@ -32,18 +34,21 @@ const ACTIONS: ActionConfig[] = [
     id: "news",
     icon: Newspaper,
     path: "/news",
+    mobileHidden: true,
     getDescription: ({ homeT }) => homeT("newsFeatureDescription"),
   },
   {
     id: "resources",
     icon: BookOpen,
     path: "/resources",
+    mobileHidden: true,
     getDescription: ({ homeT }) => homeT("resourcesFeatureDescription"),
   },
   {
     id: "profile",
     icon: CircleUserRound,
     path: "/profile",
+    mobileHidden: true,
     getDescription: ({ profileT }) => profileT("profile"),
   },
 ];
@@ -70,7 +75,10 @@ export default async function DashboardPage() {
           return (
             <Card
               key={action.id}
-              className="glass-card border border-border/50 shadow-xl transition hover:translate-y-[-2px] hover:border-border"
+              className={cn(
+                "glass-card border border-border/50 shadow-xl transition hover:translate-y-[-2px] hover:border-border",
+                action.mobileHidden && "hidden md:block",
+              )}
             >
               <CardHeader className="space-y-2">
                 <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-black/40 px-3 py-1 text-xs text-muted-foreground">
