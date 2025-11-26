@@ -43,7 +43,7 @@ export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
       case "lessons":
         return navT("lessons");
       default:
-        return navT("dashboard");
+        return navT("home");
     }
   })();
 
