@@ -1,7 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { ArrowLeft, ArrowRight, Keyboard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -23,6 +24,8 @@ type DeckType = 'saved' | 'history' | 'curated';
 
 export default function PracticePage() {
   const t = useTranslations('practiceHub');
+  const navT = useTranslations('nav');
+  const locale = useLocale();
   const { phrases } = useSavedPhrases();
   const [historySnapshot, setHistorySnapshot] = useState(() => readTranslatorHistory(32));
   const [deckType, setDeckType] = useState<DeckType>('curated');
@@ -116,6 +119,23 @@ export default function PracticePage() {
     <div className="space-y-6">
       <section className="lab-hero">
         <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex flex-wrap items-center gap-3">
+            <Button
+              asChild
+              variant="ghost"
+              size="sm"
+              className="inline-flex items-center gap-2 rounded-full border border-border/60 text-muted-foreground"
+            >
+              <Link href={`/${locale}/translate`} aria-label={navT('backToDashboard')}>
+                <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+                {navT('backToDashboard')}
+              </Link>
+            </Button>
+            <div className="hidden sm:inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-1 text-xs text-muted-foreground">
+              <Keyboard className="h-3.5 w-3.5" aria-hidden="true" />
+              <span>{navT('flashcardShortcuts')}</span>
+            </div>
+          </div>
           <div>
             <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{t('badge')}</p>
             <h1 className="mt-2 text-3xl font-semibold text-white">{t('title')}</h1>

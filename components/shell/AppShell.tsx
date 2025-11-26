@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { ReactNode } from "react";
 import { SidebarNav } from "./SidebarNav";
 import { ShellHeader } from "./ShellHeader";
+import { MobileTabNav } from "./MobileTabNav";
 
 export function AppShell({ children }: { children: ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -14,11 +15,12 @@ export function AppShell({ children }: { children: ReactNode }) {
       <div className="app-shell-main lg:ml-[72px] xl:ml-72">
         <div className="app-shell-scroll">
           <ShellHeader onToggleSidebar={() => setSidebarOpen((prev) => !prev)} />
-          <main id="main-content" className="space-y-8" role="main">
+          <main id="main-content" className="space-y-8 pb-28 lg:pb-0" role="main">
             {children}
           </main>
         </div>
       </div>
+      <MobileTabNav />
     </div>
   );
 }
