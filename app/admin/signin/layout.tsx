@@ -1,9 +1,15 @@
-// Signin page layout - bypasses admin auth requirement
-// This allows the signin page to be accessible without authentication
-export default function SigninLayout({
+import { SessionProvider } from '@/components/auth/SessionProvider';
+import { ToasterProvider } from '@/components/ui/toast';
+import type { ReactNode } from 'react';
+
+export default function AdminSigninLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <SessionProvider>
+      <ToasterProvider>{children}</ToasterProvider>
+    </SessionProvider>
+  );
 }

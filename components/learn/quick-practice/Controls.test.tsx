@@ -30,7 +30,6 @@ const translations: Record<string, string | ((values?: Record<string, string>) =
   practiceEmptyCategory: 'No prompts available.',
   practiceHint: 'Try switching directions.',
   practiceClose: 'Close',
-  practiceAllCategories: 'All categories',
 };
 
 const translate: QuickPracticeControlsProps['translate'] = (key, values) => {
