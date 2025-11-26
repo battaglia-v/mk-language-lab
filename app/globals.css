@@ -81,18 +81,18 @@ body {
 }
 
 .glass-panel {
-  background: rgba(255, 255, 255, 0.015);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: var(--panel-shadow);
-  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-panel);
 }
 
 .glass-card {
-  background: rgba(8, 8, 12, 0.85);
+  background: color-mix(in srgb, var(--card) 86%, transparent);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--shadow-lg);
   backdrop-filter: blur(18px);
-  border-radius: 1.5rem;
+  border-radius: var(--radius-card);
 }
 
 .panel-muted {
@@ -119,11 +119,11 @@ body {
 }
 
 .lab-hero {
-  border-radius: 32px;
+  border-radius: var(--radius-panel);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.55));
+  background: var(--mk-surface-glow), linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.55));
   padding: 1.75rem;
-  box-shadow: var(--panel-shadow);
+  box-shadow: var(--shadow-lg);
 }
 
 .lab-grid {
@@ -138,11 +138,11 @@ body {
 }
 
 .context-panel {
-  border-radius: 28px;
+  border-radius: var(--radius-panel);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(8, 8, 12, 0.7);
+  background: color-mix(in srgb, var(--mk-bg-panel) 85%, transparent);
   padding: 1.25rem;
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--shadow-md);
 }
 
 @keyframes mkGradientShift {
@@ -171,6 +171,22 @@ body {
 
 .skip-nav-link:focus-visible {
   transform: translate(-50%, 1rem);
+}
+
+[data-icon],
+.icon-base {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  stroke-width: var(--icon-stroke);
+  flex-shrink: 0;
+}
+
+.icon-sm {
+  --icon-size: var(--icon-size-sm);
+}
+
+.icon-gap {
+  gap: var(--icon-gap);
 }
 
 .section-heading {
