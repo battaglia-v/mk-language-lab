@@ -22,33 +22,24 @@ export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
 
   const section = pathname.replace(`/${locale}`, "").split("/")[1] ?? "translate";
 
-  const backKey =
-    section === "discover" || section === "lesson" || section === "daily-lessons"
-      ? "lessons"
-      : section;
+  const backLabels: Record<string, string> = {
+    practice: navT("practice"),
+    resources: navT("resources"),
+    profile: navT("profile"),
+    news: navT("news"),
+  };
 
-  const backLabel = (() => {
-    switch (backKey) {
-      case "practice":
-        return navT("practice");
-      case "resources":
-        return navT("resources");
-      case "notifications":
-        return navT("notifications");
-      case "profile":
-        return navT("profile");
-      case "news":
-        return navT("news");
-      case "lessons":
-        return navT("lessons");
-      default:
-        return navT("dashboard");
+  const backTarget = (() => {
+    if (section === "translate") {
+      return null;
     }
+
+    if (backLabels[section]) {
+      return { label: backLabels[section], href: buildHref(`/${section}`) };
+    }
+
+    return { label: navT("dashboard"), href: buildHref("/translate") };
   })();
-
-  const backHref = backKey === "lessons" ? buildHref("/discover") : buildHref(`/${backKey}`);
-
-  const backTarget = section === "translate" ? null : { label: backLabel, href: backHref };
 
   return (
     <header className="mb-8 rounded-3xl border border-border/50 bg-black/30 p-4 shadow-xl">
