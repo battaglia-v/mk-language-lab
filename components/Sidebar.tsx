@@ -232,20 +232,21 @@ export default function Sidebar() {
       <nav
         className="lg:hidden fixed bottom-0 left-0 right-0 bg-sidebar border-t border-sidebar-border z-50"
         aria-label={t("label")}
-        style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 0.9rem)" }}
+        style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 1rem)" }}
       >
-        <div className="px-3 pt-2 pb-2">
-          <div className="grid grid-cols-5 gap-2">
+        <div className="px-3 pt-2 pb-3">
+          <div className="grid grid-cols-5 gap-2 items-stretch">
             {/* Home button */}
             <Link
-              href={`/${locale}`}
+              href={buildHref("")}
               className={cn(
-                "flex flex-col items-center justify-center gap-1.5 rounded-xl px-2.5 py-2 transition-colors duration-150 min-h-[3.5rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar active:scale-[0.98]",
+                "flex h-full w-full flex-col items-center justify-center gap-1.5 rounded-xl px-3 py-2.5 transition-colors duration-150 min-h-[3.5rem] touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar active:scale-[0.98]",
                 pathname === `/${locale}` && "text-primary bg-sidebar-accent/40",
                 pathname !== `/${locale}` &&
                   "text-sidebar-foreground hover:text-sidebar-accent-foreground",
               )}
               aria-label={homeLabel}
+              aria-current={pathname === `/${locale}` ? "page" : undefined}
             >
               <AjvarLogo size={16} className="h-4 w-4" />
               <span
@@ -267,7 +268,7 @@ export default function Sidebar() {
                   href={buildHref(item.path)}
                   aria-current={active ? "page" : undefined}
                   className={cn(
-                    "flex flex-col items-center justify-center gap-1.5 rounded-xl px-2.5 py-2 transition-colors duration-150 min-h-[3.5rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar active:scale-[0.98]",
+                    "flex h-full w-full flex-col items-center justify-center gap-1.5 rounded-xl px-3 py-2.5 transition-colors duration-150 min-h-[3.5rem] touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar active:scale-[0.98]",
                     active && "text-primary bg-sidebar-accent/40",
                     !active &&
                       "text-sidebar-foreground hover:text-sidebar-accent-foreground",
