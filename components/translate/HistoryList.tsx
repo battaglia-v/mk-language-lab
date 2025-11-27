@@ -36,7 +36,10 @@ export function HistoryList({
     return (
       <div className="space-y-3">
         {Array.from({ length: skeletonCount }).map((_, index) => (
-          <Card key={`history-skeleton-${index}`} className="rounded-2xl border-border/40 bg-card/70 p-4">
+          <Card
+            key={`history-skeleton-${index}`}
+            className="rounded-2xl border border-white/8 bg-[#0c0f1d]/80 p-4 shadow-[var(--shadow-soft)]"
+          >
             <div className="flex items-center justify-between gap-4">
               <Skeleton className="h-4 w-24" />
               <Skeleton className="h-9 w-20 rounded-full" />
@@ -51,7 +54,7 @@ export function HistoryList({
 
   if (!entries.length) {
     return (
-      <Card className="rounded-2xl border-dashed border-border/50 bg-card/30 p-6 text-sm text-muted-foreground">
+      <Card className="rounded-2xl border border-dashed border-white/12 bg-[#0c0f1d]/60 p-6 text-sm text-muted-foreground shadow-[var(--shadow-soft)]">
         <p className="font-semibold text-foreground">{emptyTitle}</p>
         <p className="mt-1">{emptyDescription}</p>
       </Card>
@@ -63,7 +66,7 @@ export function HistoryList({
       {entries.map((entry) => (
         <Card
           key={entry.id}
-          className="rounded-2xl border-border/40 bg-card/70 p-4 shadow-sm"
+          className="rounded-2xl border border-white/8 bg-[#0c0f1d]/80 p-4 shadow-[var(--shadow-soft)]"
         >
           <div className="flex items-center justify-between gap-3">
             <div>
@@ -73,9 +76,9 @@ export function HistoryList({
               <p className="text-xs text-muted-foreground">{formatTimestamp(entry.timestamp)}</p>
             </div>
             <Button
-              variant="outline"
+              variant="ghost"
               size="sm"
-              className="rounded-full border-border/60 bg-background/80 text-xs font-semibold"
+              className="rounded-full border border-white/12 bg-[#161927] px-4 text-xs font-semibold text-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333]"
               onClick={() => onSelect(entry)}
             >
               {loadLabel}
@@ -98,7 +101,7 @@ type RowProps = {
 
 function Row({ label, value }: RowProps) {
   return (
-    <div className="rounded-xl border border-border/30 bg-background/60 px-3 py-2 text-[13px] leading-relaxed">
+    <div className="rounded-xl border border-white/8 bg-[#111527] px-3 py-2 text-[13px] leading-relaxed shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
       <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
         {label}
       </p>
