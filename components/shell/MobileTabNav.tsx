@@ -13,7 +13,7 @@ export function MobileTabNav() {
 
   return (
     <nav
-      className="lg:hidden fixed bottom-0 left-0 right-0 z-50 border-t border-sidebar-border bg-sidebar/95 shadow-lg backdrop-blur"
+      className="lg:hidden fixed bottom-0 left-0 right-0 z-50 border-t border-white/10 bg-[color-mix(in_srgb,var(--mk-bg-surface)_94%,transparent)] shadow-[0_-18px_38px_rgba(0,0,0,0.55)] backdrop-blur-xl text-white"
       aria-label={t("label")}
       style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 0.9rem)" }}
     >
@@ -29,14 +29,14 @@ export function MobileTabNav() {
                   href={href}
                   aria-current={active ? "page" : undefined}
                   className={cn(
-                    "group flex h-full flex-col items-center justify-center gap-1.5 rounded-2xl px-3 py-3 text-xs font-medium transition-all duration-200",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                    "group flex h-full flex-col items-center justify-center gap-1.5 rounded-2xl px-3 py-2.5 text-[11px] font-semibold transition-all duration-200",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--mk-bg)]",
                     active
-                      ? "bg-sidebar-primary/15 text-primary shadow-sm"
+                      ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-lg ring-1 ring-sidebar-ring/30"
                       : "text-sidebar-foreground hover:bg-sidebar/80 hover:text-sidebar-accent-foreground",
                   )}
                 >
-                  <Icon className={cn("h-6 w-6", active && "text-primary")} aria-hidden="true" />
+                  <Icon className={cn("h-5 w-5", active && "text-primary")} aria-hidden="true" />
                   <span className="text-[11px] leading-tight text-center text-balance">
                     {t(item.id)}
                   </span>
