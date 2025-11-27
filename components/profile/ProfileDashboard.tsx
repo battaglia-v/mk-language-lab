@@ -44,7 +44,7 @@ export function ProfileDashboard({ className, dataTestId }: ProfileDashboardProp
     enabled: status === 'authenticated',
   });
 
-  const containerClasses = cn('space-y-6', className);
+  const containerClasses = cn('space-y-5 lg:space-y-6', className);
 
   if (status === 'loading' || isLoading) {
     return (
@@ -115,25 +115,31 @@ export function ProfileDashboard({ className, dataTestId }: ProfileDashboardProp
         league={profile.league}
       />
 
-      <StatsSection
-        xp={profile.xp}
-        xpProgress={profile.xpProgress}
-        streakDays={profile.streakDays}
-        quests={profile.quests}
-        hearts={profile.hearts}
-        currency={profile.currency}
-        league={profile.league}
-      />
+      <div className="grid gap-5 lg:grid-cols-12">
+        <div className="space-y-5 lg:col-span-7">
+          <StatsSection
+            xp={profile.xp}
+            xpProgress={profile.xpProgress}
+            streakDays={profile.streakDays}
+            quests={profile.quests}
+            hearts={profile.hearts}
+            currency={profile.currency}
+            league={profile.league}
+          />
 
-      <LeagueStandingsCard data={leagueStandings} isLoading={isLeagueLoading} error={leagueError} />
+          <QuestsSection />
 
-      <QuestsSection />
+          <ProfileActivityMap entries={profile.activityHeatmap} />
+        </div>
 
-      <ProfileActivityMap entries={profile.activityHeatmap} />
+        <div className="space-y-5 lg:col-span-5">
+          <LeagueStandingsCard data={leagueStandings} isLoading={isLeagueLoading} error={leagueError} />
 
-      <BadgeShopPreview />
+          <BadgeShopPreview />
 
-      <BadgesSection badges={profile.badges} />
+          <BadgesSection badges={profile.badges} />
+        </div>
+      </div>
     </div>
   );
 }
