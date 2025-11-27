@@ -85,7 +85,7 @@ export function TopNav({
 
       <nav
         className={cn(
-          'nav-surface w-full border-b border-white/5 bg-[#050918]/90 backdrop-blur-xl shadow-lg shadow-black/30 z-40',
+          'nav-surface w-full border-b border-white/10 bg-[var(--mk-bg-surface)]/95 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.45)] text-white',
           sticky && 'sticky safe-top',
           className
         )}

@@ -420,9 +420,15 @@ body {
 
 .shell-surface {
   border-radius: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(0, 0, 0, 0.24);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.03),
+      rgba(255, 255, 255, 0)
+    ),
+    rgba(5, 6, 16, 0.72);
   box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(12px);
 }
 
 .card-padding {

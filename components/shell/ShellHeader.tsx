@@ -54,7 +54,7 @@ export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
   const backTarget = section === "dashboard" ? null : { label: backLabel, href: backHref };
 
   return (
-    <header className="mx-auto mb-6 max-w-6xl shell-surface nav-toolbar px-4 md:px-6">
+    <header className="mx-auto mb-6 max-w-6xl shell-surface nav-toolbar px-4 md:px-6 text-white">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <button
