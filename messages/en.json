@@ -741,7 +741,14 @@
           "title": "Vocabulary tracks",
           "description": "Dive into themed decks that expand your active word bank."
         }
-      }
+      },
+      "wordInputLabel": "Submit your translation",
+      "wordInputPlaceholder": "Type the English or Macedonian word",
+      "wordInputHelper": "Press Enter or tap Submit to check your answer.",
+      "submitWord": "Submit",
+      "revealAnswer": "Reveal answer",
+      "feedbackCorrect": "Great job! You got it right.",
+      "feedbackIncorrect": "Keep going — the correct answer is {answer}."
     },
     "speaking": {
       "tabLabel": "Speaking",

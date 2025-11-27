@@ -1,11 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { FormEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { ArrowLeft, ArrowRight, Keyboard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import { useSavedPhrases } from '@/components/translate/useSavedPhrases';
 import { readTranslatorHistory } from '@/lib/translator-history';
@@ -31,6 +32,8 @@ export default function PracticePage() {
   const [deckType, setDeckType] = useState<DeckType>('curated');
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
+  const [guess, setGuess] = useState('');
+  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
 
   useEffect(() => {
     setHistorySnapshot(readTranslatorHistory(32));
@@ -83,22 +86,51 @@ export default function PracticePage() {
     }
   }, [index, safeIndex]);
 
+  const resetCardState = useCallback(() => {
+    setGuess('');
+    setFeedback(null);
+    setRevealed(false);
+  }, []);
+
   const goNext = useCallback(() => {
     if (!deck.length) return;
     setIndex((previous) => (previous + 1) % deck.length);
-    setRevealed(false);
-  }, [deck.length]);
+    resetCardState();
+  }, [deck.length, resetCardState]);
 
   const goPrevious = useCallback(() => {
     if (!deck.length) return;
     setIndex((previous) => (previous - 1 + deck.length) % deck.length);
-    setRevealed(false);
-  }, [deck.length]);
+    resetCardState();
+  }, [deck.length, resetCardState]);
 
   const toggleReveal = useCallback(() => {
     if (!deck.length) return;
     setRevealed((prev) => !prev);
+    setFeedback(null);
   }, [deck.length]);
+
+  const handleSubmitGuess = useCallback(
+    (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      if (!deck.length || !currentCard) return;
+
+      const normalize = (value: string) => value.trim().toLowerCase();
+      const expected = normalize(currentCard.target);
+      const attempt = normalize(guess);
+
+      if (!attempt) return;
+
+      const isCorrect = attempt === expected;
+      setFeedback(isCorrect ? 'correct' : 'incorrect');
+      setRevealed(true);
+    },
+    [currentCard, deck.length, guess]
+  );
+
+  useEffect(() => {
+    resetCardState();
+  }, [resetCardState, currentCard?.id]);
 
   useEffect(() => {
     const handler = (event: KeyboardEvent) => {
@@ -187,25 +219,63 @@ export default function PracticePage() {
                   {safeIndex + 1} / {total}
                 </span>
               </div>
-              <div className="mt-6 space-y-4">
-                <p className="text-2xl font-semibold text-white">{currentCard?.source}</p>
-                <p className={cn('text-lg text-primary transition-opacity', revealed ? 'opacity-100' : 'opacity-0')}>
-                  {currentCard?.target}
-                </p>
+            <div className="mt-6 space-y-4">
+              <p className="text-2xl font-semibold text-white">{currentCard?.source}</p>
+              <p className={cn('text-lg text-primary transition-opacity', revealed ? 'opacity-100' : 'opacity-0')}>
+                {currentCard?.target}
+              </p>
+            </div>
+
+            <form onSubmit={handleSubmitGuess} className="mt-6 space-y-3">
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-white" htmlFor="practice-guess">
+                  {t('drills.wordInputLabel')}
+                </label>
+                <div className="flex flex-col gap-2 sm:flex-row">
+                  <Input
+                    id="practice-guess"
+                    value={guess}
+                    onChange={(event) => setGuess(event.target.value)}
+                    placeholder={t('drills.wordInputPlaceholder')}
+                    className="flex-1 rounded-2xl border border-primary/50 bg-white/5 text-white placeholder:text-slate-400"
+                  />
+                  <Button type="submit" className="rounded-2xl px-6" disabled={!deck.length || !guess.trim()}>
+                    {t('drills.submitWord')}
+                  </Button>
+                </div>
+                <p className="text-xs text-slate-300">{t('drills.wordInputHelper')}</p>
               </div>
-              <div className="mt-8 grid gap-3 sm:grid-cols-3">
-                <Button variant="outline" className="rounded-full" onClick={goPrevious}>
-                  <ArrowLeft className="mr-2 h-4 w-4" aria-hidden="true" />
-                  Prev
-                </Button>
-                <Button className="rounded-full" onClick={toggleReveal}>
-                  {revealed ? t('drills.cards.vocabulary.title') : t('drills.cards.tasks.title')}
-                </Button>
-                <Button variant="outline" className="rounded-full" onClick={goNext}>
-                  Next
-                  <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                </Button>
-              </div>
+
+              {feedback && (
+                <div
+                  role="status"
+                  className={cn(
+                    'rounded-2xl border px-4 py-3 text-sm shadow',
+                    feedback === 'correct'
+                      ? 'border-emerald-300/60 bg-emerald-500/10 text-emerald-100'
+                      : 'border-amber-300/60 bg-amber-500/10 text-amber-50'
+                  )}
+                >
+                  {feedback === 'correct'
+                    ? t('drills.feedbackCorrect')
+                    : t('drills.feedbackIncorrect', { answer: currentCard?.target })}
+                </div>
+              )}
+            </form>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              <Button variant="outline" className="rounded-full" onClick={goPrevious}>
+                <ArrowLeft className="mr-2 h-4 w-4" aria-hidden="true" />
+                Prev
+              </Button>
+              <Button variant="secondary" className="rounded-full" onClick={toggleReveal}>
+                {t('drills.revealAnswer')}
+              </Button>
+              <Button variant="outline" className="rounded-full" onClick={goNext}>
+                Next
+                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+              </Button>
+            </div>
             </div>
             <p className="text-xs text-muted-foreground">{t('translation.description')}</p>
           </div>
