@@ -280,6 +280,7 @@ body {
 .lab-grid {
   display: grid;
   gap: var(--gap-cozy);
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .section-container {
@@ -399,7 +400,7 @@ body {
 .card-grid {
   display: grid;
   gap: var(--gap-cozy);
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
   align-items: stretch;
 }
 
@@ -462,6 +463,8 @@ body {
 @media (max-width: 480px) {
   .lab-hero {
     border-radius: 24px;
+    padding: var(--card-padding);
+    gap: var(--gap-compact);
   }
 
   .app-shell-main {
@@ -470,6 +473,16 @@ body {
 
   .section-heading {
     font-size: clamp(1.15rem, 3vw, 1.5rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .lab-grid {
+    gap: var(--gap-compact);
+  }
+
+  .card-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 

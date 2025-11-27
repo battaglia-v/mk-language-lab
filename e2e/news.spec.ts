@@ -275,4 +275,20 @@ test.describe('News Page', () => {
       scale: 'css',
     });
   });
+
+  test('news layout stays scroll-safe on mobile', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.reload();
+    await waitForNewsContent(page);
+    await page.waitForTimeout(300);
+
+    const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
+    expect(scrollWidth).toBeLessThanOrEqual(400);
+
+    await expect(page).toHaveScreenshot('news-mobile.png', {
+      fullPage: true,
+      animations: 'disabled',
+      scale: 'css',
+    });
+  });
 });
