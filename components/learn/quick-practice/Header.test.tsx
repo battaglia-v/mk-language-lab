@@ -35,6 +35,9 @@ const baseProps = {
   difficultyName: 'Casual',
   difficultyLabelText: 'Difficulty',
   inlineProgressLabel: 'Progress: 3/5 ⚡ 80%',
+  progressValueLabel: '3/5',
+  heartsValueLabel: '4/5',
+  accuracyShortLabel: '80%',
 };
 
 describe('QuickPracticeHeader', () => {
@@ -47,6 +50,9 @@ describe('QuickPracticeHeader', () => {
     expect(screen.getByText('Category')).toBeInTheDocument();
     expect(screen.getByText('Greetings')).toBeInTheDocument();
     expect(screen.getAllByText('Progress: 3/5 ⚡ 80%')[0]).toBeInTheDocument();
+    expect(screen.getByText('3/5')).toBeInTheDocument();
+    expect(screen.getByText('4/5')).toBeInTheDocument();
+    expect(screen.getAllByText('80%')[0]).toBeInTheDocument();
   });
 
   it('collapses the HUD into a pill on mobile focus', () => {

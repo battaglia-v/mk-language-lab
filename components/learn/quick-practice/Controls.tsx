@@ -1,5 +1,5 @@
-import { Dispatch, FormEvent, PointerEvent, ReactNode, RefObject, SetStateAction, useState } from 'react';
-import { RefreshCcw, Eye, EllipsisVertical, Check, XCircle, ChevronDown, Loader2 } from 'lucide-react';
+import { Dispatch, FormEvent, PointerEvent, ReactNode, RefObject, SetStateAction, useRef, useState } from 'react';
+import { RefreshCcw, Eye, EllipsisVertical, Check, XCircle, ChevronDown, Loader2, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -48,6 +48,7 @@ export type QuickPracticeControlsProps = {
   placeholder: string;
   isReady: boolean;
   hasAvailablePrompts: boolean;
+  isLoadingPrompts?: boolean;
   onNextPrompt: () => void;
   formRef: RefObject<HTMLFormElement | null>;
   isPrimaryDisabled: boolean;
@@ -62,6 +63,7 @@ export type QuickPracticeControlsProps = {
   translate: Translate;
   isShaking: boolean;
   isClozeMode: boolean;
+  promptNotice?: string | null;
 };
 
 export function QuickPracticeControls({
@@ -88,6 +90,7 @@ export function QuickPracticeControls({
   placeholder,
   isReady,
   hasAvailablePrompts,
+  isLoadingPrompts,
   onNextPrompt,
   formRef,
   isPrimaryDisabled,
@@ -102,16 +105,29 @@ export function QuickPracticeControls({
   translate,
   isShaking,
   isClozeMode,
+  promptNotice,
 }: QuickPracticeControlsProps) {
   const [activePanel, setActivePanel] = useState<PanelId | null>(null);
   const [isFiltersDrawerOpen, setIsFiltersDrawerOpen] = useState(false);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const submitIfReady = () => {
+  const focusInput = () => {
+    if (inputRef.current) {
+      inputRef.current.focus({ preventScroll: true });
+      setIsInputFocused(true);
+    }
+  };
+
+  const submitIfReady = async () => {
     if (isPrimaryDisabled) {
       return;
     }
 
-    void onSubmit();
+    try {
+      await Promise.resolve(onSubmit());
+    } finally {
+      focusInput();
+    }
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -151,21 +167,34 @@ export function QuickPracticeControls({
               isShaking && 'ring-2 ring-[var(--brand-red)]/40'
             )}
           >
-            <Input
-              value={answer}
-              onChange={(event) => setAnswer(event.target.value)}
-              onFocus={() => setIsInputFocused(true)}
-              onBlur={() => {
-                setTimeout(() => setIsInputFocused(false), 100);
-              }}
-              placeholder={placeholder}
-              className={cn(
-                'h-auto min-h-[48px] border-0 bg-transparent px-0 text-base font-medium text-foreground placeholder:text-muted-foreground md:text-lg',
-                'focus-visible:ring-0 focus-visible:outline-none'
-              )}
-              aria-label={placeholder}
-              disabled={!isReady}
-            />
+            <div className="flex items-start gap-2">
+              <Input
+                ref={inputRef}
+                value={answer}
+                onChange={(event) => setAnswer(event.target.value)}
+                onFocus={() => setIsInputFocused(true)}
+                onBlur={() => {
+                  setTimeout(() => setIsInputFocused(false), 100);
+                }}
+                placeholder={placeholder}
+                className={cn(
+                  'h-auto min-h-[48px] flex-1 border-0 bg-transparent px-0 text-base font-medium text-foreground placeholder:text-muted-foreground md:text-lg',
+                  'focus-visible:ring-0 focus-visible:outline-none'
+                )}
+                aria-label={placeholder}
+                disabled={!isReady}
+              />
+              <Button
+                type="submit"
+                size="sm"
+                variant="secondary"
+                className="shrink-0 rounded-xl font-semibold"
+                disabled={isPrimaryDisabled}
+                onPointerDown={handleTouchSubmit}
+              >
+                {isSubmitting ? translate('practiceCheckingAnswer') : translate('checkAnswer')}
+              </Button>
+            </div>
             {hasAvailablePrompts || isReady ? (
               <div className="mt-2 flex items-center justify-between text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
                 {hasAvailablePrompts ? (
@@ -336,6 +365,13 @@ export function QuickPracticeControls({
           </div>
         </form>
 
+        {promptNotice ? (
+          <div className="flex items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-900 dark:border-amber-900/60 dark:bg-amber-950/40">
+            <AlertTriangle className="mt-0.5 h-4 w-4 text-amber-500" aria-hidden="true" />
+            <span>{promptNotice}</span>
+          </div>
+        ) : null}
+
         {feedback && isReady ? (
           <div
             role="status"
@@ -382,7 +418,7 @@ export function QuickPracticeControls({
           </div>
         ) : null}
 
-        {!hasAvailablePrompts && (
+        {!hasAvailablePrompts && !isLoadingPrompts && !promptNotice && (
           <p className="text-sm text-muted-foreground">
             {isClozeMode ? translate('practiceClozeUnavailable') : translate('practiceEmptyCategory')}
           </p>

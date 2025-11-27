@@ -81,6 +81,14 @@ vi.mock('@mk/ui', () => ({
   ),
 }));
 
+vi.mock('@/components/ui/use-toast', () => ({
+  useToast: () => ({ addToast: vi.fn(), removeToast: vi.fn(), toasts: [] }),
+}));
+
+vi.mock('@mk/api-client', () => ({
+  fetchPracticePrompts: vi.fn(async () => []),
+}));
+
 vi.mock('next/navigation', () => ({
   useSearchParams: () => new URLSearchParams(),
 }));
@@ -97,6 +105,7 @@ vi.mock('lucide-react', () => {
     TrendingUp: Icon,
     MoreVertical: Icon,
     Heart: Icon,
+    AlertTriangle: Icon,
     Check: Icon,
     XCircle: Icon,
     Flame: Icon,

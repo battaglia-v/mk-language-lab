@@ -17,11 +17,12 @@ import { QuickPracticeHeader } from '@/components/learn/quick-practice/Header';
 import { QuickPracticePrompt } from '@/components/learn/quick-practice/Prompt';
 import { QuickPracticeControls } from '@/components/learn/quick-practice/Controls';
 import { useQuickPracticeSession } from '@/components/learn/quick-practice/useQuickPracticeSession';
-import { ALL_CATEGORIES, SESSION_TARGET, PRACTICE_DIFFICULTIES } from '@/components/learn/quick-practice/constants';
+import { ALL_CATEGORIES, SESSION_TARGET, PRACTICE_DIFFICULTIES, INITIAL_HEARTS } from '@/components/learn/quick-practice/constants';
 import { formatCategory } from '@/components/learn/quick-practice/utils';
 import type { PracticeItem, PracticeDifficultyId } from '@/components/learn/quick-practice/types';
 import type { QuickPracticeSessionOptions } from '@/components/learn/quick-practice/useQuickPracticeSession';
 import { getSavedPhrasePracticePrompts } from '@/lib/saved-phrases';
+import { useToast } from '@/components/ui/use-toast';
 
 type QuickPracticeWidgetProps = {
   title?: string;
@@ -42,10 +43,12 @@ export function QuickPracticeWidget({
 }: QuickPracticeWidgetProps) {
   const t = useTranslations('learn');
   const searchParams = useSearchParams();
+  const { addToast } = useToast();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileViewport, setIsMobileViewport] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(false);
   const formRef = useRef<HTMLFormElement | null>(null);
+  const shortcutsToastRef = useRef(false);
 
   const fixtureKey = searchParams?.get('practiceFixture');
   const isSavedFixture = fixtureKey === 'saved-phrases';
@@ -135,6 +138,9 @@ export function QuickPracticeWidget({
     level,
     activeTalismans,
     talismanMultiplier,
+    promptStatus,
+    promptNotice,
+    isLoadingPrompts,
   } = useQuickPracticeSession(sessionOptions);
 
   const promptLabel = isClozeMode
@@ -204,8 +210,12 @@ export function QuickPracticeWidget({
   const difficultyLabelText = t('practiceDifficultyLabel');
   const talismansEmptyText = t('practiceTalismansEmpty');
   const audioLabel = t('practiceAudioPromptLabel');
-
-  const isReady = Boolean(currentItem);
+  const isReady = Boolean(currentItem) && !isLoadingPrompts && hasAvailablePrompts;
+  const progressValueLabel = `${normalizedCorrect}/${SESSION_TARGET}`;
+  const accuracyShortLabel = `${accuracy}%`;
+  const heartsValueLabel = `${hearts}/${INITIAL_HEARTS}`;
+  const resolvedPromptNotice =
+    promptNotice ?? (promptStatus === 'ready' && !hasAvailablePrompts ? t('practiceEmptyCategory') : null);
 
   // Helper function to get accuracy badge color and label
   function getAccuracyBadge(accuracyValue: number) {
@@ -265,6 +275,40 @@ export function QuickPracticeWidget({
     window.addEventListener('resize', updateViewport);
     return () => window.removeEventListener('resize', updateViewport);
   }, []);
+
+  useEffect(() => {
+    if (shortcutsToastRef.current) return;
+    shortcutsToastRef.current = true;
+    addToast({
+      title: t('quickPractice'),
+      description: 'Enter to submit. Shift + Enter to reveal the answer instantly.',
+      type: 'info',
+      duration: 2600,
+    });
+  }, [addToast, t]);
+
+  useEffect(() => {
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key !== 'Enter') return;
+      if (layout === 'compact' && !isModalOpen) return;
+      if (!isReady) return;
+      const target = event.target as HTMLElement | null;
+      const isInputElement = target?.tagName === 'INPUT';
+      if (!isInputElement && !isInputFocused) return;
+
+      if (event.shiftKey) {
+        event.preventDefault();
+        revealAnswer();
+        return;
+      }
+
+      event.preventDefault();
+      void submitAnswer();
+    };
+
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [isReady, isInputFocused, layout, isModalOpen, revealAnswer, submitAnswer]);
 
   const renderPracticeCard = (variant: 'default' | 'modal', extraClassName?: string) => {
     const isModalVariant = variant === 'modal';
@@ -327,6 +371,9 @@ export function QuickPracticeWidget({
           difficultyName={selectedDifficultyOption.label}
           difficultyLabelText={difficultyLabelText}
           inlineProgressLabel={inlineProgressLabel}
+          progressValueLabel={progressValueLabel}
+          heartsValueLabel={heartsValueLabel}
+          accuracyShortLabel={accuracyShortLabel}
         />
 
         <div className={cn('px-6 md:px-10', isModalVariant ? 'pt-2' : 'pt-1')}>
@@ -344,6 +391,9 @@ export function QuickPracticeWidget({
               (currentItem?.audioClipUrl ? { url: currentItem.audioClipUrl, autoplay: true } : undefined)
             }
             audioLabel={audioLabel}
+            progressValueLabel={progressValueLabel}
+            hearts={hearts}
+            accuracyShortLabel={accuracyShortLabel}
           />
         </div>
 
@@ -371,6 +421,7 @@ export function QuickPracticeWidget({
           placeholder={placeholder}
           isReady={isReady}
           hasAvailablePrompts={hasAvailablePrompts}
+          isLoadingPrompts={isLoadingPrompts}
           onNextPrompt={nextPrompt}
           formRef={formRef}
           isPrimaryDisabled={isPrimaryDisabled}
@@ -385,6 +436,7 @@ export function QuickPracticeWidget({
           translate={t}
           isShaking={isShaking}
           isClozeMode={isClozeMode}
+          promptNotice={resolvedPromptNotice}
         />
       </div>
     );
