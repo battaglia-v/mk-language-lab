@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, CSSProperties, ReactElement } from 'react';
 import { cloneElement, forwardRef, isValidElement } from 'react';
-import { brandColors, spacingScale, radii } from '@mk/tokens';
+import { brandColors, designTokens, radii, semanticColors, spacingScale } from '@mk/tokens';
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost';
 
@@ -13,34 +13,35 @@ const baseStyle: CSSProperties = {
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: 8,
+  gap: spacingScale.xs,
   borderRadius: radii['3xl'],
   borderWidth: 2,
   borderStyle: 'solid',
-  fontWeight: 600,
+  fontWeight: 700,
   padding: `${spacingScale.sm}px ${spacingScale.xl}px`,
   cursor: 'pointer',
   transition: 'transform 150ms ease, box-shadow 150ms ease',
   textDecoration: 'none',
+  color: brandColors.text,
 };
 
 const variantMap: Record<ButtonVariant, CSSProperties> = {
   primary: {
-    backgroundColor: brandColors.red,
-    borderColor: brandColors.redDark,
-    color: brandColors.creamLight,
-    boxShadow: `0 10px 20px rgba(215, 38, 61, 0.2)`,
+    backgroundColor: brandColors.accent,
+    borderColor: brandColors.accentEmphasis,
+    color: semanticColors.textOnPrimary,
+    boxShadow: designTokens.elevation.md,
   },
   secondary: {
-    backgroundColor: brandColors.gold,
-    borderColor: brandColors.goldDark,
-    color: brandColors.navy,
-    boxShadow: `0 10px 20px rgba(247, 201, 72, 0.25)`,
+    backgroundColor: brandColors.accentGreen,
+    borderColor: brandColors.greenDark,
+    color: semanticColors.textOnSecondary,
+    boxShadow: designTokens.elevation.sm,
   },
   ghost: {
     backgroundColor: 'transparent',
-    borderColor: brandColors.red,
-    color: brandColors.red,
+    borderColor: brandColors.accent,
+    color: brandColors.accent,
     boxShadow: 'none',
   },
 };

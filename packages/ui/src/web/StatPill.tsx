@@ -1,5 +1,6 @@
 import type { CSSProperties, PropsWithChildren, ReactNode } from 'react';
 import { brandColors, spacingScale, radii } from '@mk/tokens';
+import { getWebTypography } from '../helpers';
 
 export type WebStatPillProps = PropsWithChildren<{
   icon?: ReactNode;
@@ -11,19 +12,19 @@ export type WebStatPillProps = PropsWithChildren<{
 
 const accentMap = {
   red: {
-    background: `${brandColors.red}10`,
-    border: `${brandColors.redDark}40`,
-    color: brandColors.redDark,
+    background: `${brandColors.danger}10`,
+    border: `${brandColors.danger}40`,
+    color: brandColors.danger,
   },
   gold: {
-    background: `${brandColors.gold}25`,
-    border: `${brandColors.goldDark}50`,
-    color: brandColors.goldDark,
+    background: `${brandColors.accent}22`,
+    border: `${brandColors.accentEmphasis}50`,
+    color: brandColors.accentEmphasis,
   },
   green: {
-    background: `${brandColors.mint}`,
-    border: `${brandColors.green}40`,
-    color: brandColors.greenDark,
+    background: `${brandColors.accentGreen}1a`,
+    border: `${brandColors.greenDark}40`,
+    color: brandColors.accentGreen,
   },
 };
 
@@ -38,15 +39,26 @@ export function WebStatPill({ icon, label, value, accent = 'red', style }: WebSt
     background: accentStyle.background,
     padding: `${spacingScale.xs}px ${spacingScale.sm}px`,
     color: accentStyle.color,
-    fontWeight: 600,
+    fontWeight: 700,
     ...style,
   };
+
+  const labelStyle = {
+    ...getWebTypography('eyebrow'),
+    color: accentStyle.color,
+  } satisfies CSSProperties;
+
+  const valueStyle = {
+    ...getWebTypography('caption'),
+    color: accentStyle.color,
+    fontWeight: 700,
+  } satisfies CSSProperties;
 
   return (
     <div style={container}>
       {icon ? <span style={{ display: 'inline-flex' }}>{icon}</span> : null}
-      <span style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: 1.2 }}>{label}</span>
-      <span style={{ fontSize: 14 }}>{value}</span>
+      <span style={labelStyle}>{label}</span>
+      <span style={valueStyle}>{value}</span>
     </div>
   );
 }

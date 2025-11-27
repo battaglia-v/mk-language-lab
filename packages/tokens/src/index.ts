@@ -4,69 +4,88 @@ export const brandNames = {
 } as const;
 
 export const brandColors = {
-  red: '#D7263D',
-  redDark: '#B4162B',
-  gold: '#F7C948',
-  goldDark: '#D8A524',
-  green: '#2FBF71',
-  greenDark: '#208F56',
-  mint: '#DFF6EA',
-  rose: '#FFE3E3',
-  navy: '#101828',
-  plum: '#4C1D95',
-  cream: '#FFF6E1',
-  creamLight: '#FFFAF0',
+  background: '#06060b',
+  surface: '#0b0b12',
+  surfaceRaised: '#111424',
+  surfaceMuted: '#14172a',
+  panel: '#151827',
+  panelMuted: '#1b1f33',
+  border: '#222536',
+  borderStrong: '#2e3246',
+  borderSoft: '#1a1d2b',
+  text: '#f7f8fb',
+  textMuted: 'rgba(247,248,251,0.72)',
+  accent: '#f6d83b',
+  accentEmphasis: '#f4b400',
+  accentGreen: '#34d399',
+  success: '#3ecf8e',
+  warning: '#f4c84a',
+  danger: '#ff7878',
+  // Legacy aliases kept for existing component references
+  gold: '#f6d83b',
+  goldDark: '#f4b400',
+  green: '#34d399',
+  greenDark: '#2fa56c',
+  red: '#ff7878',
+  redDark: '#e86161',
+  mint: 'rgba(52,211,153,0.14)',
+  rose: 'rgba(255,120,120,0.12)',
+  navy: '#f7f8fb',
+  plum: '#1b1f33',
+  cream: '#06060b',
+  creamLight: '#0b0b12',
 } as const;
 
 export type BrandColorToken = keyof typeof brandColors;
 
 export const surfaceColors = {
-  base: brandColors.cream,
-  card: brandColors.creamLight,
-  accent: brandColors.gold,
-  contrast: brandColors.navy,
+  base: brandColors.background,
+  card: brandColors.surface,
+  accent: `${brandColors.accent}1f`,
+  contrast: brandColors.surfaceRaised,
 } as const;
 
 export const semanticColors = {
-  surfaceElevated: '#FFF9F2',
-  surfaceFrosted: '#FFF3E4',
-  surfaceGoldTint: '#FFEECB',
-  borderAccentRed: '#D7263D33',
-  borderAccentPlum: '#4C1D9540',
-  borderNeutralMuted: '#1C1E2326',
-  textMuted: '#6E4625',
-  textOnPrimary: '#FFF9F4',
-  textOnSecondary: '#281501',
-  successSurface: brandColors.mint,
-  successBorder: brandColors.green,
-  successText: brandColors.greenDark,
-  errorSurface: brandColors.rose,
-  errorBorder: brandColors.red,
-  errorText: brandColors.red,
+  surfaceElevated: '#0f1324',
+  surfaceFrosted: '#0c0f1c',
+  surfaceGoldTint: `${brandColors.accent}26`,
+  borderAccentRed: `${brandColors.danger}33`,
+  borderAccentPlum: `${brandColors.panelMuted}80`,
+  borderNeutralMuted: `${brandColors.borderSoft}80`,
+  textMuted: brandColors.textMuted,
+  textOnPrimary: '#0b0a03',
+  textOnSecondary: '#02150c',
+  successSurface: `${brandColors.accentGreen}1f`,
+  successBorder: brandColors.accentGreen,
+  successText: brandColors.accentGreen,
+  errorSurface: `${brandColors.danger}14`,
+  errorBorder: brandColors.danger,
+  errorText: brandColors.danger,
 } as const;
 
 export type SemanticColorToken = keyof typeof semanticColors;
 
 export const spacingScale = {
-  xs: 4,
-  sm: 8,
-  md: 12,
-  lg: 16,
-  xl: 24,
-  '2xl': 32,
-  '3xl': 40,
+  '2xs': 6,
+  xs: 10,
+  sm: 14,
+  md: 18,
+  lg: 22,
+  xl: 28,
+  '2xl': 36,
+  '3xl': 44,
 } as const;
 
 export type SpacingToken = keyof typeof spacingScale;
 
 export const radii = {
   none: 0,
-  sm: 6,
-  md: 8,
-  lg: 10,
-  xl: 12,
-  '2xl': 18,
-  '3xl': 24,
+  sm: 12,
+  md: 14,
+  lg: 18,
+  xl: 22,
+  '2xl': 24,
+  '3xl': 30,
   pill: 999,
 } as const;
 
@@ -83,34 +102,34 @@ export const typographyScale: Record<string, TypographyConfig> = {
   eyebrow: {
     fontSize: 12,
     lineHeight: 16,
-    fontWeight: 600,
+    fontWeight: 700,
     letterSpacing: 1.8,
     textTransform: 'uppercase',
-    color: brandColors.goldDark,
+    color: brandColors.textMuted,
   },
   hero: {
     fontSize: 32,
     lineHeight: 40,
     fontWeight: 700,
-    color: brandColors.navy,
+    color: brandColors.text,
   },
   title: {
     fontSize: 24,
     lineHeight: 32,
-    fontWeight: 600,
-    color: brandColors.navy,
+    fontWeight: 700,
+    color: brandColors.text,
   },
   body: {
     fontSize: 16,
     lineHeight: 24,
     fontWeight: 500,
-    color: brandColors.navy,
+    color: brandColors.text,
   },
   caption: {
-    fontSize: 13,
-    lineHeight: 18,
-    fontWeight: 500,
-    color: brandColors.navy,
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: 600,
+    color: brandColors.textMuted,
   },
 } as const;
 
@@ -124,10 +143,16 @@ export const designTokens = {
   spacing: spacingScale,
   radii,
   typography: typographyScale,
+  elevation: {
+    sm: '0 10px 24px -18px rgba(0,0,0,0.58)',
+    md: '0 18px 42px -20px rgba(0,0,0,0.6)',
+    lg: '0 30px 64px -24px rgba(0,0,0,0.62)',
+    focus: '0 0 0 3px rgba(246,216,59,0.28)',
+  },
 };
 
 export const tokenMeta = {
-  updatedAt: '2025-12-01',
+  updatedAt: '2025-02-08',
   source: 'docs/design/tokens.md',
 };
 

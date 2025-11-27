@@ -31,7 +31,7 @@ export function getNativeTypography(variant: TypographyVariant): NativeTextStyle
     fontWeight: toNativeFontWeight(style.fontWeight),
     letterSpacing: style.letterSpacing,
     textTransform: style.textTransform,
-    color: style.color ?? brandColors.navy,
+    color: style.color ?? brandColors.text,
   };
 }
 
@@ -46,7 +46,7 @@ export function getWebTypography(variant: TypographyVariant): CSSProperties {
     fontWeight: style.fontWeight,
     letterSpacing: style.letterSpacing ? `${style.letterSpacing}px` : undefined,
     textTransform: style.textTransform ?? 'none',
-    color: style.color ?? brandColors.navy,
+    color: style.color ?? brandColors.text,
   };
 }
 
@@ -56,21 +56,21 @@ export function getSurfaceColors(emphasis: SurfaceEmphasis = 'base') {
   if (emphasis === 'card') {
     return {
       background: surfaceColors.card,
-      border: `${brandColors.gold}40`,
-      text: brandColors.navy,
+      border: `${brandColors.border}80`,
+      text: brandColors.text,
     };
   }
   if (emphasis === 'accent') {
     return {
-      background: `${brandColors.red}15`,
-      border: `${brandColors.redDark}60`,
-      text: brandColors.redDark,
+      background: `${brandColors.accent}1f`,
+      border: `${brandColors.accentEmphasis}60`,
+      text: brandColors.text,
     };
   }
   return {
     background: surfaceColors.base,
-    border: `${brandColors.goldDark}30`,
-    text: brandColors.navy,
+    border: `${brandColors.border}99`,
+    text: brandColors.text,
   };
 }
 

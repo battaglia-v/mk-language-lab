@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react';
-import { brandColors } from '@mk/tokens';
+import { brandColors, spacingScale } from '@mk/tokens';
+import { getWebTypography } from '../helpers';
 
 export type WebProgressRingProps = {
   progress: number; // 0..1
@@ -16,8 +17,8 @@ export function WebProgressRing({
   progress,
   size = 120,
   strokeWidth = 10,
-  trackColor = `${brandColors.gold}44`,
-  progressColor = brandColors.red,
+  trackColor = `${brandColors.border}80`,
+  progressColor = brandColors.accent,
   label,
   value,
   style,
@@ -59,17 +60,31 @@ export function WebProgressRing({
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          color: brandColors.navy,
+          color: brandColors.text,
           textAlign: 'center',
-          gap: 4,
+          gap: spacingScale.xs,
         }}
       >
         {label ? (
-          <span style={{ fontSize: 12, letterSpacing: 1.2, textTransform: 'uppercase', color: brandColors.goldDark }}>
+          <span
+            style={{
+              ...getWebTypography('eyebrow'),
+              color: brandColors.textMuted,
+            }}
+          >
             {label}
           </span>
         ) : null}
-        {value ? <span style={{ fontSize: 20, fontWeight: 700 }}>{value}</span> : null}
+        {value ? (
+          <span
+            style={{
+              ...getWebTypography('title'),
+              color: brandColors.text,
+            }}
+          >
+            {value}
+          </span>
+        ) : null}
       </div>
     </div>
   );
