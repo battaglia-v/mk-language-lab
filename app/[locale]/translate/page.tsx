@@ -179,14 +179,14 @@ export default function TranslatePage() {
             <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white md:text-4xl">{t('title')}</h1>
             <p className="mt-2 max-w-2xl text-sm text-muted-foreground">{t('subtitle')}</p>
           </div>
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            className="rounded-full border border-border/50 text-muted-foreground"
-            onClick={() => setPanelCollapsed((prev) => !prev)}
-            aria-label={panelCollapsed ? t('contextExpand') : t('contextCollapse')}
-          >
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          className="rounded-full border border-white/10 bg-[#161927] text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333]"
+          onClick={() => setPanelCollapsed((prev) => !prev)}
+          aria-label={panelCollapsed ? t('contextExpand') : t('contextCollapse')}
+        >
             {panelCollapsed ? (
               <span className="inline-flex items-center gap-2">
                 <PanelLeftOpen className="h-4 w-4" aria-hidden="true" /> {t('contextExpand')}
@@ -211,7 +211,7 @@ export default function TranslatePage() {
             swapLabel={t('swapDirections')}
           />
           <form
-            className="rounded-3xl border border-border/60 bg-black/30 card-padding-lg md:p-7"
+            className="rounded-[28px] border border-white/5 bg-[#0c0f1d]/80 p-5 shadow-[var(--shadow-soft)] backdrop-blur md:p-7"
             onSubmit={(event: FormEvent<HTMLFormElement>) => {
               event.preventDefault();
               void handleTranslate(event);
@@ -225,7 +225,7 @@ export default function TranslatePage() {
               aria-label={t('inputLabel')}
               aria-describedby="translate-character-count"
               maxLength={MAX_CHARACTERS}
-              className="min-h-[140px] resize-none rounded-3xl border border-border/60 bg-transparent text-base"
+              className="min-h-[140px] resize-none rounded-2xl border border-white/10 bg-[#0f1326] px-4 py-3 text-base shadow-inner placeholder:text-muted-foreground"
             />
             <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
               <span id="translate-character-count">{characterCount}</span>
@@ -233,12 +233,16 @@ export default function TranslatePage() {
                 <Button
                   type="button"
                   variant="ghost"
-                  className="rounded-full text-xs text-muted-foreground"
+                  className="rounded-full bg-[#161927] px-4 text-xs text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333] hover:text-white"
                   onClick={handleClear}
                 >
                   {t('clearButton')}
                 </Button>
-                <Button type="submit" className="rounded-full px-6" disabled={isTranslating}>
+                <Button
+                  type="submit"
+                  className="rounded-full bg-[var(--mk-accent)] px-7 text-[#0b0a03] shadow-[0_18px_48px_rgba(0,0,0,0.5)] transition hover:bg-[#ffe253]"
+                  disabled={isTranslating}
+                >
                   {isTranslating ? (
                     <span className="flex items-center gap-2">
                       <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
@@ -252,7 +256,7 @@ export default function TranslatePage() {
             </div>
           </form>
 
-          <section className="space-y-4 rounded-3xl border border-border/60 bg-black/30 card-padding-lg md:p-7">
+          <section className="space-y-4 rounded-[28px] border border-white/5 bg-[#0c0f1d]/80 p-5 shadow-[var(--shadow-soft)] backdrop-blur md:p-7">
             <div className="flex flex-wrap items-center gap-3">
               <div>
                 <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{t('resultLabel')}</p>
@@ -263,7 +267,7 @@ export default function TranslatePage() {
               <Button
                 type="button"
                 variant="ghost"
-                className="ml-auto rounded-full text-xs text-muted-foreground"
+                className="ml-auto rounded-full bg-[#161927] px-4 text-xs text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333] hover:text-white"
                 onClick={handleCopy}
               >
                 {copiedState === 'copied' ? (
@@ -278,7 +282,7 @@ export default function TranslatePage() {
               </Button>
             </div>
             <div
-              className="rounded-2xl border border-border/60 bg-black/40 p-4 min-h-[200px]"
+              className="min-h-[200px] rounded-2xl border border-white/10 bg-[#0f1326] px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_16px_40px_rgba(0,0,0,0.55)]"
               aria-live="polite"
             >
               {isTranslating ? (
@@ -292,8 +296,13 @@ export default function TranslatePage() {
             {currentPayload ? (
               <Button
                 type="button"
-                variant={isCurrentSaved ? 'outline' : 'default'}
-                className="w-full rounded-2xl border-border/60"
+                variant={isCurrentSaved ? 'secondary' : 'default'}
+                className={cn(
+                  'w-full rounded-2xl border border-white/10 px-5 py-4 text-base shadow-[0_16px_40px_rgba(0,0,0,0.55)]',
+                  isCurrentSaved
+                    ? 'bg-[#161927] text-white hover:bg-[#1f2333]'
+                    : 'bg-[var(--mk-accent)] text-[#0b0a03] hover:bg-[#ffe253]',
+                )}
                 onClick={isCurrentSaved ? handleRemove : handleSave}
               >
                 <span className="flex items-center justify-center gap-2">
@@ -319,7 +328,7 @@ export default function TranslatePage() {
               <div
                 role="tablist"
                 aria-label={t('contextPanelLabel')}
-                className="inline-flex items-center rounded-full border border-border/50 bg-black/40 p-1"
+                className="inline-flex items-center rounded-full border border-white/10 bg-[#111627] p-1 shadow-[0_18px_40px_rgba(0,0,0,0.55)]"
               >
                 <PanelToggleButton
                   icon={History}
@@ -338,7 +347,7 @@ export default function TranslatePage() {
                 type="button"
                 variant="ghost"
                 size="icon-sm"
-                className="rounded-full border border-border/60 text-muted-foreground"
+                className="rounded-full border border-white/10 bg-[#161927] text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333]"
                 onClick={() => setPanelCollapsed(true)}
                 aria-label={t('contextCollapse')}
               >
@@ -395,16 +404,16 @@ type DirectionToggleProps = {
 
 function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel }: DirectionToggleProps) {
   return (
-    <div className="rounded-3xl border border-border/60 bg-black/30 card-padding">
+    <div className="rounded-[26px] border border-white/5 bg-[#0c0f1d]/80 p-5 shadow-[var(--shadow-soft)] backdrop-blur md:p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{label}</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-muted-foreground">{label}</p>
         </div>
         <Button
           type="button"
           variant="ghost"
           size="sm"
-          className="rounded-full border border-border/60 text-xs text-muted-foreground"
+          className="rounded-full bg-[#161927] px-4 text-xs text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333] hover:text-white"
           onClick={onSwap}
           aria-label={swapLabel}
         >
@@ -412,25 +421,36 @@ function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel
           {swapLabel}
         </Button>
       </div>
-      <div className="mt-4 flex flex-wrap gap-2" role="radiogroup" aria-label={label}>
-        {options.map((option) => (
-          <button
-            key={option.id}
-            type="button"
-            className={cn(
-              'touch-target rounded-full px-4 py-2 text-sm font-semibold transition',
-              option.id === activeId
-                ? 'bg-primary text-primary-foreground'
-                : 'bg-transparent text-muted-foreground hover:text-foreground',
-            )}
-            onClick={() => onChange(option.id)}
-            role="radio"
-            aria-checked={option.id === activeId}
-            aria-label={option.label}
-          >
-            {option.label}
-          </button>
-        ))}
+      <div
+        className="mt-4 flex flex-1 flex-wrap gap-2 rounded-2xl border border-white/10 bg-gradient-to-r from-[#2b1216] via-[#131525] to-[#103420] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_18px_40px_rgba(0,0,0,0.55)]"
+        role="radiogroup"
+        aria-label={label}
+      >
+        {options.map((option, index) => {
+          const isActive = option.id === activeId;
+          const isFirst = index === 0;
+          return (
+            <button
+              key={option.id}
+              type="button"
+              className={cn(
+                'touch-target flex flex-1 items-center justify-center gap-2 rounded-[18px] px-4 py-2 text-sm font-semibold transition md:text-base',
+                isActive
+                  ? isFirst
+                    ? 'bg-gradient-to-r from-[#7c1f2d] to-[#b23542] text-white shadow-[0_18px_36px_rgba(0,0,0,0.55)]'
+                    : 'bg-gradient-to-r from-[#1f6b3c] to-[#31a45b] text-white shadow-[0_18px_36px_rgba(0,0,0,0.55)]'
+                  : 'bg-transparent text-muted-foreground hover:text-white',
+                'border border-white/5 backdrop-blur'
+              )}
+              onClick={() => onChange(option.id)}
+              role="radio"
+              aria-checked={isActive}
+              aria-label={option.label}
+            >
+              <span className="text-[12px] md:text-sm">{option.label}</span>
+            </button>
+          );
+        })}
       </div>
     </div>
   );
@@ -451,7 +471,9 @@ function PanelToggleButton({ icon: Icon, label, active, onClick }: PanelToggleBu
       aria-selected={active}
       className={cn(
         'touch-target flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold transition',
-        active ? 'bg-white text-black' : 'text-muted-foreground hover:text-white',
+        active
+          ? 'border border-white/10 bg-[var(--mk-accent)] text-[#0b0a03] shadow-[0_12px_32px_rgba(0,0,0,0.55)]'
+          : 'border border-transparent text-muted-foreground hover:border-white/10 hover:text-white',
       )}
       onClick={onClick}
     >
@@ -490,7 +512,7 @@ function SavedList({
 }: SavedListProps) {
   if (!phrases.length) {
     return (
-      <div className="rounded-2xl border border-dashed border-border/60 bg-black/20 p-5 text-sm text-muted-foreground">
+      <div className="rounded-2xl border border-dashed border-white/12 bg-[#0c0f1d]/60 p-5 text-sm text-muted-foreground shadow-[var(--shadow-soft)]">
         <p className="text-base font-semibold text-white">{emptyTitle}</p>
         <p className="mt-2">{emptyDescription}</p>
       </div>
@@ -515,7 +537,7 @@ function SavedList({
         {phrases.map((phrase) => (
           <li
             key={phrase.id}
-            className="rounded-2xl border border-border/50 bg-black/30 p-4"
+            className="rounded-2xl border border-white/10 bg-[#0c0f1d]/80 p-4 shadow-[var(--shadow-soft)]"
           >
             <div className="flex items-start justify-between gap-3">
               <div>
@@ -532,8 +554,8 @@ function SavedList({
                 <Button
                   type="button"
                   size="sm"
-                  variant="outline"
-                  className="rounded-full border-border/60 text-xs"
+                  variant="ghost"
+                  className="rounded-full border border-white/12 bg-[#161927] px-4 text-xs font-semibold text-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333]"
                   onClick={() => onLoad(phrase)}
                 >
                   {loadLabel}
@@ -543,7 +565,7 @@ function SavedList({
                   variant="ghost"
                   size="icon-sm"
                   aria-label={removeLabel}
-                  className="text-muted-foreground"
+                  className="rounded-full border border-white/10 bg-[#161927] text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333]"
                   onClick={() => onRemove(phrase.id)}
                 >
                   <Trash2 className="h-4 w-4" aria-hidden="true" />
