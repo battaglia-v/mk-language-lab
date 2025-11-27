@@ -17,7 +17,24 @@ import {
 } from 'lucide-react';
 import prisma from '@/lib/prisma';
 
-async function getAdminStats() {
+type RecentVocabulary = {
+  id: string;
+  macedonian: string;
+  english: string;
+  difficulty: string;
+  createdAt: Date;
+};
+
+type AdminStats = {
+  totalVocabulary: number;
+  activeUsers: number;
+  totalUsers: number;
+  wordOfTheDay: number;
+  recentVocabulary: RecentVocabulary[];
+  todayActiveUsers: number;
+};
+
+async function getAdminStats(): Promise<AdminStats> {
   try {
     // Query database directly (faster than API route)
     const [
