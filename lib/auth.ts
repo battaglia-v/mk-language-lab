@@ -2,6 +2,7 @@ import NextAuth from 'next-auth';
 import Google from 'next-auth/providers/google';
 import Facebook from 'next-auth/providers/facebook';
 import Credentials from 'next-auth/providers/credentials';
+import * as Sentry from '@sentry/nextjs';
 import bcrypt from 'bcryptjs';
 import prisma from '@/lib/prisma';
 
@@ -14,9 +15,30 @@ const authSecret =
   process.env.NEXTAUTH_SECRET ??
   (process.env.NODE_ENV === 'production' ? undefined : 'development-auth-secret');
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
-  trustHost: true,
-  providers: [
+function reportAuthConfigurationIssue(message: string, extra?: Record<string, unknown>) {
+  const details = extra ? { extra } : undefined;
+
+  if (process.env.NODE_ENV !== 'production') {
+    console.warn('[AUTH CONFIG]', message, extra ?? '');
+  } else {
+    console.error('[AUTH CONFIG]', message, extra ?? '');
+  }
+
+  try {
+    Sentry.captureMessage(message, {
+      level: 'error',
+      ...details,
+    });
+  } catch (error) {
+    console.error('[AUTH CONFIG] Failed to report issue to Sentry', error);
+  }
+}
+
+const providers = [];
+
+const googleConfigReady = Boolean(googleClientId && googleClientSecret);
+if (googleConfigReady) {
+  providers.push(
     Google({
       clientId: googleClientId,
       clientSecret: googleClientSecret,
@@ -27,53 +49,93 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           response_type: 'code',
         },
       },
-    }),
-    Facebook({
-      clientId: facebookClientId,
-      clientSecret: facebookClientSecret,
-    }),
-    Credentials({
-      name: 'credentials',
-      credentials: {
-        email: { label: 'Email', type: 'email' },
-        password: { label: 'Password', type: 'password' },
-      },
-      async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
+    })
+  );
+} else {
+  reportAuthConfigurationIssue('Google provider is not fully configured.', {
+    googleClientIdPresent: Boolean(googleClientId),
+    googleClientSecretPresent: Boolean(googleClientSecret),
+  });
+}
+
+const facebookConfigReady = Boolean(facebookClientId && facebookClientSecret);
+if (facebookClientId || facebookClientSecret) {
+  if (facebookConfigReady) {
+    providers.push(
+      Facebook({
+        clientId: facebookClientId,
+        clientSecret: facebookClientSecret,
+      })
+    );
+  } else {
+    reportAuthConfigurationIssue('Facebook provider is not fully configured.', {
+      facebookClientIdPresent: Boolean(facebookClientId),
+      facebookClientSecretPresent: Boolean(facebookClientSecret),
+    });
+  }
+}
+
+providers.push(
+  Credentials({
+    name: 'credentials',
+    credentials: {
+      email: { label: 'Email', type: 'email' },
+      password: { label: 'Password', type: 'password' },
+    },
+    async authorize(credentials) {
+      if (!credentials?.email || !credentials?.password) {
+        return null;
+      }
+
+      try {
+        const user = await prisma.user.findUnique({
+          where: { email: credentials.email as string },
+        });
+
+        if (!user || !user.password) {
           return null;
         }
 
-        try {
-          const user = await prisma.user.findUnique({
-            where: { email: credentials.email as string },
-          });
+        const isPasswordValid = await bcrypt.compare(
+          credentials.password as string,
+          user.password
+        );
 
-          if (!user || !user.password) {
-            return null;
-          }
-
-          const isPasswordValid = await bcrypt.compare(
-            credentials.password as string,
-            user.password
-          );
-
-          if (!isPasswordValid) {
-            return null;
-          }
-
-          return {
-            id: user.id,
-            email: user.email,
-            name: user.name,
-            image: user.image,
-          };
-        } catch (error) {
-          console.error('[AUTH] Credentials authorize error:', error);
+        if (!isPasswordValid) {
           return null;
         }
-      },
-    }),
-  ],
+
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          image: user.image,
+        };
+      } catch (error) {
+        console.error('[AUTH] Credentials authorize error:', error);
+        return null;
+      }
+    },
+  })
+);
+
+if (!authSecret) {
+  reportAuthConfigurationIssue('Authentication secret is missing. Set AUTH_SECRET or NEXTAUTH_SECRET.');
+
+  if (process.env.NODE_ENV === 'production') {
+    throw new Error('Authentication secret is required in production environments.');
+  }
+}
+
+if (!providers.length) {
+  const error = new Error('No authentication providers are configured.');
+  reportAuthConfigurationIssue(error.message);
+  throw error;
+}
+
+export const { handlers, signIn, signOut, auth } = NextAuth({
+  trustHost: true,
+  providers,
   pages: {
     signIn: '/auth/signin',
     signOut: '/auth/signout',
@@ -181,11 +243,29 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         console.log('[AUTH EVENT] Account linked:', { userId: user.id, provider: account.provider });
       }
     },
+    async error(error) {
+      reportAuthConfigurationIssue('NextAuth error event captured', {
+        name: (error as Error)?.name,
+        message: (error as Error)?.message,
+      });
+
+      try {
+        Sentry.captureException(error);
+      } catch (captureError) {
+        console.error('[AUTH EVENT] Failed to capture error in Sentry', captureError);
+      }
+    },
   },
   logger: {
     error(error) {
       console.error('[AUTH ERROR]', error.name, error.message);
       console.error('[AUTH ERROR STACK]', error.stack);
+
+      try {
+        Sentry.captureException(error);
+      } catch (captureError) {
+        console.error('[AUTH LOGGER] Failed to capture error in Sentry', captureError);
+      }
     },
     warn(code) {
       console.warn('[AUTH WARN]', code);
