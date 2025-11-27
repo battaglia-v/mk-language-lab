@@ -234,50 +234,41 @@ export default function NewsPage() {
   const showEmpty = !hasResults && !isLoading && !error;
 
   return (
-    <div className="page-shell">
-      <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6">
-        <section className="glass-card rounded-3xl p-6 md:p-8" data-testid="news-hero">
-          <div className="flex flex-col gap-6">
-            <header className="space-y-2">
-              <div
-                className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-primary"
-                aria-hidden="true"
-              >
-                <Newspaper className="h-4 w-4" aria-hidden="true" />
-                {t('title')}
-              </div>
-              <h1 className="text-2xl font-bold text-white md:text-3xl">{t('title')}</h1>
-              <p className="text-sm text-slate-300">{t('subtitle')}</p>
-              <p className="text-sm text-slate-300">
+    <div className="section-container section-container-xl section-spacing-lg space-y-8">
+      <section className="glass-card rounded-3xl card-padding-lg md:p-8" data-testid="news-hero">
+        <div className="space-y-6">
+          <header className="space-y-3 text-white">
+            <div
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-primary"
+              aria-hidden="true"
+            >
+              <Newspaper className="h-3.5 w-3.5" aria-hidden="true" />
+              {t('title')}
+            </div>
+            <div className="space-y-2">
+              <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">{t('title')}</h1>
+              <p className="text-sm text-slate-300 md:text-base">{t('subtitle')}</p>
+              <p className="text-xs text-slate-400 md:text-sm">
                 {t('sourceLabel')} · {meta?.count ?? 0}/{meta?.total ?? 0}
               </p>
-            </header>
+            </div>
+          </header>
 
-            <div className="space-y-3">
-              <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-                {sourceFilters.map((filter) => (
-                  <FilterChip key={filter.id} active={source === filter.id} onClick={() => setSource(filter.id)}>
-                    {filter.label}
-                  </FilterChip>
-                ))}
-                <FilterChip active={videosOnly} onClick={() => setVideosOnly((prev) => !prev)}>
-                  <Video className="h-3.5 w-3.5" />
-                  {t('videosOnly')}
+          <div className="space-y-4">
+            <div className="flex flex-wrap gap-2">
+              {sourceFilters.map((filter) => (
+                <FilterChip key={filter.id} active={source === filter.id} onClick={() => setSource(filter.id)}>
+                  {filter.label}
                 </FilterChip>
-              </div>
-              <style jsx>{`
-                .scrollbar-hide::-webkit-scrollbar {
-                  display: none;
-                }
-                .scrollbar-hide {
-                  -ms-overflow-style: none;
-                  scrollbar-width: none;
-                }
-              `}</style>
+              ))}
+              <FilterChip active={videosOnly} onClick={() => setVideosOnly((prev) => !prev)}>
+                <Video className="h-3.5 w-3.5" />
+                {t('videosOnly')}
+              </FilterChip>
             </div>
 
-            <div className="flex flex-col gap-3 md:flex-row md:items-center">
-              <div className="relative flex-1">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="relative w-full sm:max-w-md">
                 <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                 <Input
                   value={query}
@@ -286,7 +277,7 @@ export default function NewsPage() {
                   className="h-11 rounded-2xl border border-white/10 bg-background/80 pl-10 text-sm text-white placeholder:text-slate-400"
                 />
               </div>
-              <div className="flex items-center gap-3 text-xs text-slate-300">
+              <div className="flex flex-wrap items-center gap-3 text-xs text-slate-300 md:text-sm">
                 {isLoading ? (
                   <span className="inline-flex items-center gap-1.5">
                     <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -312,136 +303,136 @@ export default function NewsPage() {
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {error && (
-          <Alert variant="destructive" className="glass-card border border-destructive/50 text-red-100">
-            <AlertTitle>{t('error')}</AlertTitle>
-            <AlertDescription className="text-red-100/90">{error}</AlertDescription>
-            <Button
-              variant="outline"
-              size="sm"
-              className="mt-4 rounded-full border-white/20 text-white hover:bg-white/10"
-              onClick={handleRefresh}
-            >
-              {t('retry')}
-            </Button>
-          </Alert>
-        )}
+      {error && (
+        <Alert variant="destructive" className="glass-card border border-destructive/50 text-red-100">
+          <AlertTitle>{t('error')}</AlertTitle>
+          <AlertDescription className="text-red-100/90">{error}</AlertDescription>
+          <Button
+            variant="outline"
+            size="sm"
+            className="mt-4 rounded-full border-white/20 text-white hover:bg-white/10"
+            onClick={handleRefresh}
+          >
+            {t('retry')}
+          </Button>
+        </Alert>
+      )}
 
-        {!error && meta?.errors && meta.errors.length > 0 && (
-          <Alert className="glass-card border border-white/20 text-slate-200">
-            <AlertTitle>{t('error')}</AlertTitle>
-            <AlertDescription className="text-slate-300">{meta.errors.join(' • ')}</AlertDescription>
-          </Alert>
-        )}
+      {!error && meta?.errors && meta.errors.length > 0 && (
+        <Alert className="glass-card border border-white/20 text-slate-200">
+          <AlertTitle>{t('error')}</AlertTitle>
+          <AlertDescription className="text-slate-300">{meta.errors.join(' • ')}</AlertDescription>
+        </Alert>
+      )}
 
-        {showSkeleton && (
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3" data-testid="news-grid">
-            {SKELETON_PLACEHOLDERS.map((index) => (
-              <NewsSkeletonCard key={`news-skeleton-${index}`} />
-            ))}
-          </div>
-        )}
+      {showSkeleton && (
+        <div className="card-grid three" data-testid="news-grid">
+          {SKELETON_PLACEHOLDERS.map((index) => (
+            <NewsSkeletonCard key={`news-skeleton-${index}`} />
+          ))}
+        </div>
+      )}
 
-        {showEmpty && (
-          <Card className="glass-card border border-white/10">
-            <CardContent className="py-10 text-center text-sm text-slate-300">{t('noResults')}</CardContent>
-          </Card>
-        )}
+      {showEmpty && (
+        <Card className="glass-card border border-white/10">
+          <CardContent className="py-10 text-center text-sm text-slate-300">{t('noResults')}</CardContent>
+        </Card>
+      )}
 
-        {hasResults && !showSkeleton && (
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3" data-testid="news-grid">
-            {items.map((item) => {
-              const publishedLabel = item.publishedAt ? formatRelativeTime(item.publishedAt) : '';
-              const hasVideos = item.videos.length > 0;
+      {hasResults && !showSkeleton && (
+        <div className="card-grid three" data-testid="news-grid">
+          {items.map((item) => {
+            const publishedLabel = item.publishedAt ? formatRelativeTime(item.publishedAt) : '';
+            const hasVideos = item.videos.length > 0;
 
-              return (
-                <a
-                  key={item.id}
-                  href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => {
-                    trackEvent(AnalyticsEvents.NEWS_ARTICLE_CLICKED, {
-                      source: item.sourceId,
-                      hasCategories: item.categories.length > 0,
-                    });
-                  }}
-                  className="group h-full"
+            return (
+              <a
+                key={item.id}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  trackEvent(AnalyticsEvents.NEWS_ARTICLE_CLICKED, {
+                    source: item.sourceId,
+                    hasCategories: item.categories.length > 0,
+                  });
+                }}
+                className="group h-full"
+              >
+                <Card
+                  className="glass-card flex h-full flex-col overflow-hidden border border-white/10 bg-background/40 transition-shadow hover:border-primary/40 hover:shadow-2xl"
+                  data-testid="news-card"
                 >
-                  <Card
-                    className="glass-card flex h-full flex-col overflow-hidden border border-white/5 bg-transparent transition-shadow hover:border-primary/40 hover:shadow-2xl"
-                    data-testid="news-card"
-                  >
-                    <div className="relative aspect-video w-full overflow-hidden bg-muted">
-                      {item.image ? (
-                        <div
-                          className="h-full w-full bg-cover bg-center"
-                          style={{ backgroundImage: `url(${item.image})` }}
-                          aria-hidden="true"
-                        />
-                      ) : (
-                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-muted via-muted/80 to-muted">
-                          <Newspaper className="h-8 w-8 text-muted-foreground" />
-                        </div>
+                  <div className="relative aspect-video w-full overflow-hidden bg-muted">
+                    {item.image ? (
+                      <div
+                        className="h-full w-full bg-cover bg-center"
+                        style={{ backgroundImage: `url(${item.image})` }}
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-muted via-muted/80 to-muted">
+                        <Newspaper className="h-8 w-8 text-muted-foreground" />
+                      </div>
+                    )}
+                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent" />
+                    <Badge variant="secondary" className="absolute left-4 bottom-3 text-[11px] bg-black/50 text-white backdrop-blur">
+                      {item.sourceName}
+                    </Badge>
+                  </div>
+                  <CardHeader className="flex-1 space-y-3">
+                    <CardTitle className="text-base font-semibold leading-snug text-white line-clamp-2 group-hover:text-primary">
+                      {item.title}
+                    </CardTitle>
+                    {item.description && (
+                      <CardDescription className="line-clamp-3 text-sm text-slate-300">
+                        {item.description}
+                      </CardDescription>
+                    )}
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <div className="flex flex-wrap gap-1.5">
+                      {item.categories.slice(0, 3).map((category) => (
+                        <Badge
+                          key={`${item.id}-${category}`}
+                          variant="outline"
+                          className="rounded-full border-white/20 px-2 text-[11px] text-slate-200"
+                        >
+                          {category}
+                        </Badge>
+                      ))}
+                      {hasVideos && (
+                        <Badge
+                          variant="secondary"
+                          className="inline-flex items-center gap-1 rounded-full bg-primary/20 px-2 text-[11px] text-white"
+                        >
+                          <PlayCircle className="h-3 w-3" />
+                          {item.videos.length}
+                        </Badge>
                       )}
-                      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent" />
-                      <Badge variant="secondary" className="absolute left-4 bottom-3 text-[11px] bg-black/50 text-white backdrop-blur">
-                        {item.sourceName}
-                      </Badge>
                     </div>
-                    <CardHeader className="flex-1 space-y-3">
-                      <CardTitle className="text-base font-semibold leading-snug text-white line-clamp-2 group-hover:text-primary">
-                        {item.title}
-                      </CardTitle>
-                      {item.description && (
-                        <CardDescription className="line-clamp-3 text-sm text-slate-300">
-                          {item.description}
-                        </CardDescription>
-                      )}
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                      <div className="flex flex-wrap gap-1.5">
-                        {item.categories.slice(0, 3).map((category) => (
-                          <Badge
-                            key={`${item.id}-${category}`}
-                            variant="outline"
-                            className="rounded-full border-white/20 px-2 text-[11px] text-slate-200"
-                          >
-                            {category}
-                          </Badge>
-                        ))}
-                        {hasVideos && (
-                          <Badge
-                            variant="secondary"
-                            className="inline-flex items-center gap-1 rounded-full bg-primary/20 px-2 text-[11px] text-white"
-                          >
-                            <PlayCircle className="h-3 w-3" />
-                            {item.videos.length}
-                          </Badge>
-                        )}
-                      </div>
-                      <div className="flex items-center justify-between text-xs text-slate-400">
-                        {publishedLabel && (
-                          <span className="inline-flex items-center gap-1.5">
-                            <Clock3 className="h-3.5 w-3.5" />
-                            {publishedLabel}
-                          </span>
-                        )}
-                        <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary">
-                          {hasVideos ? t('watchVideo') : t('viewArticle')}
-                          <ExternalLink className="h-3.5 w-3.5" />
+                    <div className="flex items-center justify-between text-xs text-slate-400">
+                      {publishedLabel && (
+                        <span className="inline-flex items-center gap-1.5">
+                          <Clock3 className="h-3.5 w-3.5" />
+                          {publishedLabel}
                         </span>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </a>
-              );
-            })}
-          </div>
-        )}
-      </div>
+                      )}
+                      <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                        {hasVideos ? t('watchVideo') : t('viewArticle')}
+                        <ExternalLink className="h-3.5 w-3.5" />
+                      </span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </a>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
