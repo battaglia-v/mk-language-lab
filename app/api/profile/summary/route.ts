@@ -30,15 +30,43 @@ export async function GET() {
       },
     });
   } catch (error) {
-    console.error('[api.profile.summary] Falling back to fixture payload', error);
+    console.error('[api.profile.summary] Falling back to empty payload', error);
+    const safeProgress = getLevelProgress(0);
     const fallbackPayload: ProfileSummary = {
-      ...FALLBACK_PROFILE,
-      name: session.user.name ?? FALLBACK_PROFILE.name,
+      name: session.user.name ?? 'Learner',
+      level: 'Beginner',
+      xp: {
+        total: 0,
+        weekly: 0,
+      },
+      xpProgress: {
+        percentComplete: safeProgress.percentComplete,
+        xpInCurrentLevel: safeProgress.xpInCurrentLevel,
+        xpForNextLevel: safeProgress.xpForNextLevel,
+      },
+      streakDays: 0,
+      quests: { active: 0, completedThisWeek: 0 },
+      hearts: {
+        current: MAX_HEARTS,
+        max: MAX_HEARTS,
+        minutesUntilNext: 0,
+        isFull: true,
+      },
+      currency: { gems: 0, coins: 0 },
+      league: {
+        tier: getLeagueTierFromStreak(0),
+        nextTier: getNextTier(getLeagueTierFromStreak(0)),
+        daysUntilNextTier: getDaysUntilNextTier(getLeagueTierFromStreak(0), 0),
+      },
+      badges: [],
+      activityHeatmap: [],
     };
+
     return NextResponse.json(fallbackPayload, {
       headers: {
-        'x-profile-source': 'fallback',
+        'x-profile-source': 'empty',
       },
+      status: 503,
     });
   }
 }

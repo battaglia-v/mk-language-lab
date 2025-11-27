@@ -78,6 +78,11 @@ export type ProfileSummaryQueryOptions<TData = ProfileSummary> = {
   enabled?: boolean;
   fetcher?: typeof fetch;
   select?: UseQueryOptions<ProfileSummary, Error, TData>['select'];
+  /**
+   * Opt into using local fixtures as initial data. Disabled by default so
+   * authenticated users do not see placeholder accounts.
+   */
+  useFixtures?: boolean;
 };
 
 export function useProfileSummaryQuery<TData = ProfileSummary>({
@@ -86,6 +91,7 @@ export function useProfileSummaryQuery<TData = ProfileSummary>({
   enabled,
   fetcher,
   select,
+  useFixtures = false,
 }: ProfileSummaryQueryOptions<TData> = {}) {
   return useQuery<ProfileSummary, Error, TData>({
     queryKey: profileSummaryQueryKey,
@@ -93,7 +99,7 @@ export function useProfileSummaryQuery<TData = ProfileSummary>({
     staleTime,
     enabled: enabled ?? true,
     select,
-    initialData: baseUrl ? undefined : getLocalProfileSummary(),
+    initialData: useFixtures ? getLocalProfileSummary() : undefined,
   });
 }
 

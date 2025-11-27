@@ -232,61 +232,61 @@ export default function Sidebar() {
       <nav
         className="lg:hidden fixed bottom-0 left-0 right-0 bg-sidebar border-t border-sidebar-border z-50"
         aria-label={t("label")}
-        style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 0.75rem)" }}
+        style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 0.9rem)" }}
       >
-        <div className="px-2 pt-2 pb-1">
-          <div className="grid grid-cols-5 gap-0.5 pt-1">
-          {/* Home button */}
-          <Link
-            href={`/${locale}`}
-            className={cn(
-              "flex flex-col items-center gap-0.5 px-1 py-1.5 rounded-lg transition-colors duration-150 min-h-[3.25rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar active:scale-[0.98]",
-              pathname === `/${locale}` && "text-primary",
-              pathname !== `/${locale}` &&
-                "text-sidebar-foreground hover:text-sidebar-accent-foreground",
-            )}
-            aria-label={homeLabel}
-          >
-            <AjvarLogo size={16} className="h-4 w-4" />
-            <span
+        <div className="px-3 pt-2 pb-2">
+          <div className="grid grid-cols-5 gap-2">
+            {/* Home button */}
+            <Link
+              href={`/${locale}`}
               className={cn(
-                "text-[10px] font-medium w-full text-center leading-tight whitespace-normal break-words",
-                pathname === `/${locale}` && "text-primary",
+                "flex flex-col items-center justify-center gap-1.5 rounded-xl px-2.5 py-2 transition-colors duration-150 min-h-[3.5rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar active:scale-[0.98]",
+                pathname === `/${locale}` && "text-primary bg-sidebar-accent/40",
+                pathname !== `/${locale}` &&
+                  "text-sidebar-foreground hover:text-sidebar-accent-foreground",
               )}
+              aria-label={homeLabel}
             >
-              {homeLabel}
-            </span>
-          </Link>
-
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            const active = isActive(item.path);
-            return (
-              <Link
-                key={`mobile-${item.path}`}
-                href={buildHref(item.path)}
-                aria-current={active ? "page" : undefined}
+              <AjvarLogo size={16} className="h-4 w-4" />
+              <span
                 className={cn(
-                  "flex flex-col items-center gap-0.5 px-1 py-1.5 rounded-lg transition-colors duration-150 min-h-[3.25rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar active:scale-[0.98]",
-                  active && "text-primary",
-                  !active &&
-                    "text-sidebar-foreground hover:text-sidebar-accent-foreground",
+                  "text-[11px] font-semibold w-full text-center leading-tight whitespace-nowrap",
+                  pathname === `/${locale}` && "text-primary",
                 )}
-                aria-label={item.label}
               >
-                <Icon className={cn("h-4 w-4", active && "text-primary")} />
-                <span
+                {homeLabel}
+              </span>
+            </Link>
+
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              const active = isActive(item.path);
+              return (
+                <Link
+                  key={`mobile-${item.path}`}
+                  href={buildHref(item.path)}
+                  aria-current={active ? "page" : undefined}
                   className={cn(
-                    "text-[10px] font-medium w-full text-center leading-tight whitespace-normal break-words",
-                    active && "text-primary",
+                    "flex flex-col items-center justify-center gap-1.5 rounded-xl px-2.5 py-2 transition-colors duration-150 min-h-[3.5rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar active:scale-[0.98]",
+                    active && "text-primary bg-sidebar-accent/40",
+                    !active &&
+                      "text-sidebar-foreground hover:text-sidebar-accent-foreground",
                   )}
+                  aria-label={item.label}
                 >
-                  {item.label}
-                </span>
-              </Link>
-            );
-          })}
-        </div>
+                  <Icon className={cn("h-4 w-4", active && "text-primary")} />
+                  <span
+                    className={cn(
+                      "text-[11px] font-semibold w-full text-center leading-tight whitespace-nowrap",
+                      active && "text-primary",
+                    )}
+                  >
+                    {item.label}
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </nav>
     </>

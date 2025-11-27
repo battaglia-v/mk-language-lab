@@ -15,7 +15,7 @@ export function StatsSection({ xp, xpProgress, streakDays, quests, hearts, curre
   const t = useTranslations('profile.stats');
 
   return (
-    <section className="glass-card rounded-3xl p-6 md:p-8 text-white" data-testid="profile-stats">
+    <section className="glass-card rounded-3xl p-5 md:p-7 text-white" data-testid="profile-stats">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         <StatCard title={t('streak')} value={`${streakDays} ${t('days')}`} accent="from-orange-400/30 to-orange-500/10">
           <p className="text-xs text-slate-200">{t('leagueTier', { tier: league.tier })}</p>
