@@ -2,7 +2,7 @@
 
 import { Suspense, useState } from 'react';
 import { signIn } from 'next-auth/react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -10,11 +10,16 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Chrome, ArrowLeft, Loader2 } from 'lucide-react';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
+import { locales, type Locale } from '@/i18n';
 
 function SignInContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams?.get('callbackUrl') || '/';
+  const pathname = usePathname();
+  const pathLocale = pathname?.split('/').filter(Boolean)[0];
+  const resolvedLocale = locales.includes(pathLocale as Locale) ? (pathLocale as Locale) : 'mk';
+  const dashboardPath = `/${resolvedLocale}/dashboard`;
+  const callbackUrl = searchParams?.get('callbackUrl') || dashboardPath;
   const [isLoading, setIsLoading] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<{ email?: string; password?: string; general?: string }>({});
   const [formData, setFormData] = useState({
@@ -82,7 +87,7 @@ function SignInContent() {
       <div className="w-full max-w-md space-y-6">
         <div className="flex justify-start">
           <Button variant="ghost" size="sm" asChild>
-            <Link href="/" aria-label="Back to home">
+            <Link href={dashboardPath} aria-label="Back to home">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Home
             </Link>
