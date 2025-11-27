@@ -284,21 +284,21 @@ const styles = StyleSheet.create({
     gap: spacingScale.xs,
   },
   warningText: {
-    color: brandColors.navy,
+    color: brandColors.text,
   },
   heroCard: {
     gap: spacingScale.md,
-    backgroundColor: brandColors.navy,
-    borderColor: 'rgba(255,255,255,0.1)',
+    backgroundColor: brandColors.panel,
+    borderColor: brandColors.border,
   },
   heroEyebrow: {
-    color: brandColors.gold,
+    color: brandColors.accentEmphasis,
   },
   heroTitle: {
-    color: brandColors.cream,
+    color: brandColors.text,
   },
   heroDescription: {
-    color: brandColors.mint,
+    color: brandColors.textMuted,
   },
   heroStatsRow: {
     flexDirection: 'row',
@@ -321,13 +321,13 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 999,
-    backgroundColor: brandColors.gold,
+    backgroundColor: brandColors.accent,
   },
   checklistText: {
-    color: brandColors.cream,
+    color: brandColors.text,
   },
   checklistHint: {
-    color: 'rgba(255,255,255,0.75)',
+    color: brandColors.textMuted,
   },
   heroActions: {
     flexDirection: 'row',
@@ -341,10 +341,10 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   secondaryButtonText: {
-    color: brandColors.navy,
+    color: brandColors.text,
   },
   linkText: {
-    color: brandColors.mint,
+    color: brandColors.accentGreen,
   },
   quickActionsGrid: {
     gap: spacingScale.sm,
@@ -355,7 +355,7 @@ const styles = StyleSheet.create({
     gap: spacingScale.sm,
   },
   quickActionSecondaryCard: {
-    backgroundColor: brandColors.cream,
+    backgroundColor: brandColors.surface,
   },
   quickActionDisabled: {
     opacity: 0.6,
@@ -366,27 +366,27 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(16,24,40,0.06)',
+    backgroundColor: `${brandColors.borderSoft}40`,
   },
   quickActionBody: {
     flex: 1,
     gap: spacingScale.xs / 2,
   },
   quickActionTitle: {
-    color: brandColors.navy,
+    color: brandColors.text,
   },
   quickActionDescription: {
-    color: 'rgba(16,24,40,0.7)',
+    color: brandColors.textMuted,
   },
   quickActionButton: {
     paddingHorizontal: spacingScale.sm,
   },
   quickActionButtonText: {
-    color: brandColors.red,
+    color: brandColors.accentEmphasis,
   },
   sectionEyebrow: {
     marginBottom: spacingScale.xs,
-    color: brandColors.red,
+    color: brandColors.accent,
   },
   carousel: {
     gap: spacingScale.sm,
@@ -394,16 +394,16 @@ const styles = StyleSheet.create({
   tipCard: {
     width: 220,
     gap: spacingScale.xs,
-    backgroundColor: brandColors.cream,
+    backgroundColor: brandColors.panel,
   },
   tipTag: {
-    color: brandColors.goldDark,
+    color: brandColors.accentEmphasis,
   },
   tipTitle: {
-    color: brandColors.navy,
+    color: brandColors.text,
   },
   tipBody: {
-    color: 'rgba(16,24,40,0.8)',
+    color: brandColors.textMuted,
   },
   reviewRail: {
     gap: spacingScale.sm,
@@ -411,16 +411,16 @@ const styles = StyleSheet.create({
   reviewChip: {
     width: 200,
     gap: spacingScale.xs,
-    backgroundColor: '#fff',
+    backgroundColor: brandColors.surfaceRaised,
   },
   reviewLabel: {
-    color: brandColors.navy,
+    color: brandColors.text,
   },
   reviewMeta: {
-    color: 'rgba(16,24,40,0.65)',
+    color: brandColors.textMuted,
   },
   reviewLink: {
-    color: brandColors.red,
+    color: brandColors.accentEmphasis,
   },
   communityCard: {
     gap: spacingScale.sm,
@@ -431,9 +431,9 @@ const styles = StyleSheet.create({
     gap: spacingScale.sm,
   },
   communityTitle: {
-    color: brandColors.navy,
+    color: brandColors.text,
   },
   communityDetail: {
-    color: 'rgba(16,24,40,0.7)',
+    color: brandColors.textMuted,
   },
 });

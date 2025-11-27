@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { View, Text, TextInput, Pressable, StyleSheet, SafeAreaView, KeyboardAvoidingView, Platform } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useAuth } from '../lib/auth';
-import { brandColors, brandNames, semanticColors, spacingScale } from '@mk/tokens';
+import { brandColors, brandNames, radii, semanticColors, spacingScale } from '@mk/tokens';
 
 export default function SignInScreen() {
   const router = useRouter();
@@ -101,7 +101,7 @@ export default function SignInScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: brandColors.creamLight,
+    backgroundColor: brandColors.background,
   },
   container: {
     flex: 1,
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: '700',
-    color: brandColors.navy,
+    color: brandColors.text,
   },
   subtitle: {
     fontSize: 16,
@@ -122,32 +122,32 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: 'rgba(16,24,40,0.2)',
-    borderRadius: 12,
+    borderColor: brandColors.border,
+    borderRadius: radii.md,
     paddingHorizontal: spacingScale.md,
     paddingVertical: spacingScale.sm,
     fontSize: 16,
-    backgroundColor: '#fff',
+    backgroundColor: brandColors.surface,
   },
   button: {
-    backgroundColor: brandColors.red,
+    backgroundColor: brandColors.accent,
     paddingVertical: spacingScale.md,
-    borderRadius: 999,
+    borderRadius: radii.pill,
     alignItems: 'center',
   },
   browserButton: {
-    backgroundColor: brandColors.navy,
+    backgroundColor: brandColors.panel,
   },
   buttonDisabled: {
     opacity: 0.6,
   },
   buttonText: {
-    color: brandColors.cream,
+    color: semanticColors.textOnPrimary,
     fontSize: 16,
     fontWeight: '600',
   },
   browserButtonText: {
-    color: brandColors.cream,
+    color: brandColors.text,
   },
   errorText: {
     color: brandColors.red,

@@ -3,7 +3,7 @@
     "name": "MK Language Lab",
     "theme": "dark",
     "description": "Minimal assistant-style interface for Macedonian translator, practice, and resources.",
-    "updatedAt": "2024-06-01"
+    "updatedAt": "2025-02-08"
   },
   "colors": {
     "background": "#06060b",
@@ -17,21 +17,21 @@
     "borderSoft": "#1a1d2b",
     "text": "#f7f8fb",
     "textMuted": "rgba(247,248,251,0.72)",
-    "accent": "#ff6ec7",
-    "accentPink": "#ff3cac",
-    "accentPurple": "#8b5cf6",
-    "success": "#6ee7b7",
-    "warning": "#f2cc60",
+    "accent": "#f6d83b",
+    "accentAmber": "#f4b400",
+    "accentGreen": "#34d399",
+    "success": "#3ecf8e",
+    "warning": "#f4c84a",
     "danger": "#ff7878"
   },
   "gradient": {
-    "title": "linear-gradient(115deg,#ff6ec7,#ff3cac,#8b5cf6)",
+    "title": "linear-gradient(115deg,#f6d83b,#f4b400,#34d399)",
     "surface": "linear-gradient(145deg,rgba(255,255,255,0.02),rgba(255,255,255,0))"
   },
   "typography": {
     "fontFamily": "'Inter', 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
     "baseSize": "16px",
-    "lineHeight": 1.5,
+    "lineHeight": 1.6,
     "weights": {
       "regular": 400,
       "medium": 500,
@@ -40,27 +40,28 @@
     }
   },
   "spacing": {
-    "2xs": "4px",
-    "xs": "8px",
-    "sm": "12px",
-    "md": "16px",
-    "lg": "20px",
+    "2xs": "6px",
+    "xs": "10px",
+    "sm": "14px",
+    "md": "18px",
+    "lg": "22px",
     "xl": "28px",
-    "2xl": "36px"
+    "2xl": "36px",
+    "3xl": "44px"
   },
   "radii": {
-    "sm": "10px",
+    "sm": "12px",
     "md": "14px",
     "lg": "18px",
     "xl": "22px",
-    "2xl": "26px",
+    "2xl": "24px",
     "pill": "999px"
   },
   "elevation": {
     "sm": "0 10px 24px -18px rgba(0,0,0,0.58)",
     "md": "0 18px 42px -20px rgba(0,0,0,0.6)",
     "lg": "0 30px 64px -24px rgba(0,0,0,0.62)",
-    "focus": "0 0 0 3px rgba(255,110,199,0.28)"
+    "focus": "0 0 0 3px rgba(246,216,59,0.28)"
   },
   "icons": {
     "size": "20px",

@@ -3,7 +3,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { Pressable, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { NativeCard, NativeTypography } from '@mk/ui';
-import { brandColors, spacingScale } from '@mk/tokens';
+import { brandColors, semanticColors, spacingScale } from '@mk/tokens';
 import {
   useMissionStatusQuery,
   getLocalMissionStatus,
@@ -299,7 +299,7 @@ function mapMissionToHeroStats(mission: MissionStatus): MissionStats {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: brandColors.creamLight,
+    backgroundColor: brandColors.background,
   },
   page: {
     flex: 1,
@@ -310,13 +310,13 @@ const styles = StyleSheet.create({
     paddingBottom: spacingScale['3xl'],
   },
   hydrationNotice: {
-    color: 'rgba(16,24,40,0.6)',
+    color: brandColors.textMuted,
   },
   warningCard: {
     gap: spacingScale.xs,
   },
   warningText: {
-    color: brandColors.navy,
+    color: brandColors.text,
   },
   section: {
     gap: spacingScale.sm,
@@ -367,15 +367,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacingScale['2xl'],
     paddingVertical: spacingScale.sm,
     borderRadius: 999,
-    backgroundColor: brandColors.red,
-    shadowColor: brandColors.redDark,
+    backgroundColor: brandColors.accent,
+    shadowColor: brandColors.accentEmphasis,
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.25,
     shadowRadius: 12,
     elevation: 6,
   },
   floatingPillText: {
-    color: brandColors.cream,
+    color: semanticColors.textOnPrimary,
   },
   floatingPillDisabled: {
     opacity: 0.4,
