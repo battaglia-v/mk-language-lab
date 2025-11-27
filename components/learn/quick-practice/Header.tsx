@@ -21,6 +21,9 @@ type QuickPracticeHeaderProps = {
   difficultyName: string;
   difficultyLabelText: string;
   inlineProgressLabel: string;
+  progressValueLabel: string;
+  heartsValueLabel: string;
+  accuracyShortLabel: string;
 };
 
 export function QuickPracticeHeader({
@@ -40,6 +43,9 @@ export function QuickPracticeHeader({
   difficultyName,
   difficultyLabelText,
   inlineProgressLabel,
+  progressValueLabel,
+  heartsValueLabel,
+  accuracyShortLabel,
 }: QuickPracticeHeaderProps) {
   const levelInfo = getLevelInfo(level);
   const shouldCollapseHud = isMobileViewport && isInputFocused;
@@ -61,6 +67,21 @@ export function QuickPracticeHeader({
             {title}
           </h2>
         </div>
+      </div>
+
+      <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-muted-foreground">
+        <span className="inline-flex items-center gap-1 rounded-full bg-muted/70 px-2 py-1 text-foreground">
+          <Sparkles className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+          {progressValueLabel}
+        </span>
+        <span className="inline-flex items-center gap-1 rounded-full bg-muted/70 px-2 py-1 text-foreground">
+          <Heart className="h-3.5 w-3.5 text-[var(--brand-red)]" aria-hidden="true" />
+          {heartsValueLabel}
+        </span>
+        <span className="inline-flex items-center gap-1 rounded-full bg-muted/70 px-2 py-1 text-foreground">
+          <Zap className="h-3.5 w-3.5 text-yellow-500" aria-hidden="true" />
+          {accuracyShortLabel}
+        </span>
       </div>
 
       <div

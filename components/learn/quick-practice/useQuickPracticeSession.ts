@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import practicePrompts from '@/data/practice-vocabulary.json';
+import { fetchPracticePrompts } from '@mk/api-client';
 import {
   splitClozeSentence,
   ALL_CATEGORIES,
@@ -52,11 +53,127 @@ export type QuickPracticeSessionOptions = {
   initialPromptId?: string | null;
 };
 
+function normalizePracticeItems(items: PracticeItem[]): PracticeItem[] {
+  return items.map((item, index) => ({
+    ...item,
+    id: item.id ?? item.macedonian ?? `prompt-${index + 1}`,
+  }));
+}
+
+function useDebouncedValue<T>(value: T, delay = 200) {
+  const [debounced, setDebounced] = useState(value);
+
+  useEffect(() => {
+    const handle = setTimeout(() => setDebounced(value), delay);
+    return () => clearTimeout(handle);
+  }, [value, delay]);
+
+  return debounced;
+}
+
 export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {}) {
-  const promptsSource = options.prompts && options.prompts.length > 0 ? options.prompts : DEFAULT_PRACTICE_ITEMS;
+  const [promptSource, setPromptSource] = useState<PracticeItem[]>(
+    options.prompts && options.prompts.length > 0
+      ? normalizePracticeItems(options.prompts)
+      : DEFAULT_PRACTICE_ITEMS
+  );
+  const [promptStatus, setPromptStatus] = useState<'loading' | 'ready' | 'cached' | 'fallback'>(
+    options.prompts && options.prompts.length > 0 ? 'ready' : 'loading'
+  );
+  const cachedPromptsRef = useRef<PracticeItem[] | null>(null);
   const initialPromptId = options.initialPromptId ?? null;
 
-  const categories = useMemo(() => getPracticeCategories(promptsSource), [promptsSource]);
+  useEffect(() => {
+    if (options.prompts && options.prompts.length > 0) {
+      setPromptSource(normalizePracticeItems(options.prompts));
+      setPromptStatus('ready');
+      return;
+    }
+
+    if (process.env.NODE_ENV === 'test') {
+      setPromptStatus('ready');
+      return;
+    }
+
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    let isCancelled = false;
+    const cacheKey = 'quick-practice-prompts';
+    const cached = window.sessionStorage.getItem(cacheKey);
+
+    if (cached) {
+      try {
+        const parsed = JSON.parse(cached) as PracticeItem[];
+        const normalized = normalizePracticeItems(parsed);
+        cachedPromptsRef.current = normalized;
+        setPromptSource(normalized);
+        setPromptStatus('cached');
+      } catch (error) {
+        console.error('Failed to restore cached practice prompts', error);
+      }
+    }
+
+    const fetchPrompts = async () => {
+      setPromptStatus((prev) => (prev === 'cached' ? 'cached' : 'loading'));
+      try {
+        const baseUrl = window.location.origin;
+        const prompts = await fetchPracticePrompts({
+          baseUrl,
+          fetcher: (input, init) =>
+            fetch(input, {
+              ...init,
+              credentials: 'include',
+            }),
+        });
+
+        if (isCancelled) return;
+
+        if (prompts.length > 0) {
+          const normalized = normalizePracticeItems(prompts);
+          setPromptSource(normalized);
+          setPromptStatus('ready');
+          cachedPromptsRef.current = normalized;
+          window.sessionStorage.setItem(cacheKey, JSON.stringify(normalized));
+          return;
+        }
+
+        if (cachedPromptsRef.current?.length) {
+          setPromptStatus('cached');
+          return;
+        }
+
+        setPromptStatus('fallback');
+        setPromptSource(DEFAULT_PRACTICE_ITEMS);
+      } catch (error) {
+        if (isCancelled) return;
+        console.error('Unable to fetch practice prompts', error);
+
+        if (cachedPromptsRef.current?.length) {
+          setPromptStatus('cached');
+          setPromptSource(cachedPromptsRef.current);
+          return;
+        }
+
+        setPromptStatus('fallback');
+        setPromptSource(DEFAULT_PRACTICE_ITEMS);
+      }
+    };
+
+    void fetchPrompts();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [options.prompts]);
+
+  const normalizedPromptSource = useMemo(
+    () => (promptSource.length ? promptSource : promptStatus === 'fallback' ? DEFAULT_PRACTICE_ITEMS : []),
+    [promptSource, promptStatus]
+  );
+
+  const categories = useMemo(() => getPracticeCategories(normalizedPromptSource), [normalizedPromptSource]);
 
   const [category, setCategory] = useState<string>(ALL_CATEGORIES);
   const [direction, setDirection] = useState<PracticeDirection>('mkToEn');
@@ -149,20 +266,31 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     setTimeRemaining(timerDuration);
   }, [timerDuration]);
 
+  const debouncedCategoryReset = useDebouncedValue(category, 250);
+
   const practiceItems = useMemo(
     () =>
       getPracticePromptsForSession({
-        prompts: promptsSource,
+        prompts: normalizedPromptSource,
         category,
         practiceMode,
         direction,
       }),
-    [promptsSource, category, practiceMode, direction]
+    [normalizedPromptSource, category, practiceMode, direction]
   );
 
   const isClozeMode = practiceMode === 'cloze';
 
   const hasAvailablePrompts = practiceItems.length > 0;
+  const isLoadingPrompts = promptStatus === 'loading';
+  const promptNotice =
+    promptStatus === 'loading'
+      ? 'Loading live prompts...'
+      : promptStatus === 'fallback'
+        ? 'Live prompts unavailable — using offline deck.'
+        : promptStatus === 'cached'
+          ? 'Using cached practice prompts while offline.'
+          : null;
   const currentItem =
     currentIndex >= 0 && currentIndex < practiceItems.length ? practiceItems[currentIndex] : undefined;
 
@@ -185,7 +313,6 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
       }
     }
     setCurrentIndex(nextIndex);
-    setAnswer('');
     setFeedback(null);
     setRevealedAnswer('');
     setTotalAttempts(0);
@@ -198,7 +325,14 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     setFeedback(null);
     setRevealedAnswer('');
     setIsCelebrating(false);
-  }, [direction, practiceMode]);
+  }, [practiceMode, direction]);
+
+  useEffect(() => {
+    setAnswer('');
+    setFeedback(null);
+    setRevealedAnswer('');
+    setIsCelebrating(false);
+  }, [debouncedCategoryReset]);
 
   useEffect(() => {
     if (!timerDuration) {
@@ -527,6 +661,9 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     timeRemaining,
     activeTalismans,
     talismanMultiplier,
+    promptStatus,
+    promptNotice,
+    isLoadingPrompts,
     categoryButtonRef,
     categoryMenuRef,
     isCategoryMenuOpen,

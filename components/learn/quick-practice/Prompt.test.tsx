@@ -12,6 +12,10 @@ describe('QuickPracticePrompt', () => {
     clozeTranslationLabel: 'Translation',
     isInputFocused: false,
     isModalVariant: false,
+    audioLabel: 'Audio prompt',
+    progressValueLabel: '1/5',
+    hearts: 3,
+    accuracyShortLabel: '80%',
   };
 
   it('renders the prompt label, content, and category', () => {

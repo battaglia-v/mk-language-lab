@@ -139,6 +139,7 @@ describe('useQuickPracticeSession', () => {
 
     await act(async () => {
       result.current.setCategory('nonexistent');
+      await new Promise((resolve) => setTimeout(resolve, 400));
     });
 
     expect(result.current.hasAvailablePrompts).toBe(false);
