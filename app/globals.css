@@ -158,6 +158,12 @@ body {
   .button-reset {
     font-size: var(--font-size-sm);
     line-height: var(--line-height-tight);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--icon-gap);
+    min-height: var(--touch-target-size);
+    vertical-align: middle;
   }
   button,
   a,
@@ -166,21 +172,12 @@ body {
   select,
   textarea {
     transition:
-      color 150ms ease,
-      background-color 150ms ease,
-      border-color 150ms ease,
-      box-shadow 150ms ease,
-      transform 150ms ease;
-  }
-  button:hover,
-  a:hover,
-  [role="button"]:hover {
-    transform: translateY(-1px);
-  }
-  button:active,
-  a:active,
-  [role="button"]:active {
-    transform: translateY(0);
+      color 120ms ease,
+      background-color 120ms ease,
+      border-color 120ms ease,
+      box-shadow 120ms ease,
+      outline-color 120ms ease;
+    touch-action: manipulation;
   }
   button:focus-visible,
   a:focus-visible,
