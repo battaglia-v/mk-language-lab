@@ -17,34 +17,34 @@ export function MobileTabNav() {
       aria-label={t("label")}
       style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 0.9rem)" }}
     >
-      <div className="px-4 pt-3 pb-2">
-        <div className="mx-auto max-w-4xl overflow-x-auto">
-          <div className="grid min-w-[360px] grid-flow-col auto-cols-[minmax(88px,1fr)] grid-cols-4 gap-3 sm:min-w-0 sm:grid-flow-row sm:grid-cols-6">
-            {shellNavItems.map((item) => {
-              const Icon = item.icon;
-              const href = buildLocalizedHref(locale, item.path, pathname);
-              const active = isNavItemActive(pathname, href);
-              return (
+      <div className="mx-auto max-w-5xl px-4 pt-3 pb-2">
+        <ul className="flex items-stretch gap-2 overflow-x-auto pb-1" role="list">
+          {shellNavItems.map((item) => {
+            const Icon = item.icon;
+            const href = buildLocalizedHref(locale, item.path, pathname);
+            const active = isNavItemActive(pathname, href);
+            return (
+              <li key={item.id} className="min-w-[86px] flex-1 basis-0 snap-center">
                 <Link
-                  key={item.id}
                   href={href}
                   aria-current={active ? "page" : undefined}
                   className={cn(
-                    "flex flex-col items-center gap-1.5 rounded-2xl px-3 py-3 text-xs font-medium transition-all duration-200",
+                    "group flex h-full flex-col items-center justify-center gap-1.5 rounded-2xl px-3 py-3 text-xs font-medium transition-all duration-200",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                     active
-                      ? "bg-sidebar-primary/10 text-primary shadow-sm"
-                      : "text-sidebar-foreground hover:text-sidebar-accent-foreground"
+                      ? "bg-sidebar-primary/15 text-primary shadow-sm"
+                      : "text-sidebar-foreground hover:bg-sidebar/80 hover:text-sidebar-accent-foreground",
                   )}
                 >
                   <Icon className={cn("h-6 w-6", active && "text-primary")} aria-hidden="true" />
-                  <span className="text-[11px] leading-tight text-center break-words">
+                  <span className="text-[11px] leading-tight text-center text-balance">
                     {t(item.id)}
                   </span>
                 </Link>
-              );
-            })}
-          </div>
-        </div>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </nav>
   );
