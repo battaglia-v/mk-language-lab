@@ -94,19 +94,21 @@ export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
           </div>
           <CommandMenuLazy />
           <LanguageSwitcher />
-          <Button
-            asChild
-            variant="ghost"
-            size="sm"
-            className="hidden rounded-full border border-border/60 bg-transparent px-3 text-muted-foreground hover:text-foreground sm:inline-flex"
-          >
-            <Link href={buildHref("/profile")}
-              className="inline-flex items-center gap-2"
+          <div className="hidden sm:inline-flex">
+            <Button
+              asChild
+              variant="ghost"
+              size="sm"
+              className="rounded-full border border-border/60 bg-transparent px-3 text-muted-foreground hover:text-foreground"
             >
-              <CircleUserRound className="h-4 w-4" aria-hidden="true" />
-              {localeT("profile")}
-            </Link>
-          </Button>
+              <Link href={buildHref("/profile")}
+                className="inline-flex items-center gap-2"
+              >
+                <CircleUserRound className="h-4 w-4" aria-hidden="true" />
+                {localeT("profile")}
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
       <p className="mt-2 hidden text-xs text-muted-foreground sm:block">{localeT("tagline")}</p>
