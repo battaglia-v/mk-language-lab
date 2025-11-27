@@ -3,15 +3,8 @@
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
-import { Languages, Sparkles, BookOpen, Newspaper } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const navItems = [
-  { id: "translate", icon: Languages, path: "/translate" },
-  { id: "practice", icon: Sparkles, path: "/practice" },
-  { id: "news", icon: Newspaper, path: "/news" },
-  { id: "resources", icon: BookOpen, path: "/resources" },
-] as const;
+import { buildLocalizedHref, shellNavItems } from "./navItems";
 
 export type SidebarNavProps = {
   isOpen: boolean;
@@ -23,7 +16,7 @@ export function SidebarNav({ isOpen, onNavigate }: SidebarNavProps) {
   const t = useTranslations("nav");
   const pathname = usePathname();
 
-  const buildHref = (path: string) => `/${locale}${path}`;
+  const buildHref = (path: string) => buildLocalizedHref(locale, path);
 
   return (
     <>
@@ -43,7 +36,7 @@ export function SidebarNav({ isOpen, onNavigate }: SidebarNavProps) {
           </span>
         </div>
         <nav className="flex flex-col gap-2 px-2 py-6 xl:px-4" aria-label={t("label")}>
-          {navItems.map((item) => {
+          {shellNavItems.map((item) => {
             const Icon = item.icon;
             const href = buildHref(item.path);
             const active = pathname === href || pathname.startsWith(`${href}/`);

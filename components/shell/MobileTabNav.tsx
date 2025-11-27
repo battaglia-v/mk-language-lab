@@ -3,33 +3,13 @@
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
-import {
-  Bell,
-  BookOpen,
-  CircleUserRound,
-  Compass,
-  Languages,
-  Newspaper,
-  Sparkles,
-} from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const navItems = [
-  { id: "dashboard", icon: Languages, path: "/translate" },
-  { id: "lessons", icon: Compass, path: "/discover" },
-  { id: "practice", icon: Sparkles, path: "/practice" },
-  { id: "news", icon: Newspaper, path: "/news" },
-  { id: "resources", icon: BookOpen, path: "/resources" },
-  { id: "notifications", icon: Bell, path: "/notifications" },
-  { id: "profile", icon: CircleUserRound, path: "/profile" },
-] as const;
+import { buildLocalizedHref, shellNavItems } from "./navItems";
 
 export function MobileTabNav() {
   const locale = useLocale();
   const t = useTranslations("nav");
   const pathname = usePathname();
-
-  const buildHref = (path: string) => `/${locale}${path}`;
 
   return (
     <nav
@@ -37,11 +17,11 @@ export function MobileTabNav() {
       aria-label={t("label")}
       style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 0.75rem)" }}
     >
-      <div className="px-2 pt-2 pb-1">
-        <div className="grid grid-cols-3 gap-1 sm:grid-cols-6">
-          {navItems.map((item) => {
+      <div className="px-3 pt-2 pb-1">
+        <div className="mx-auto grid max-w-4xl grid-cols-3 gap-1 sm:grid-cols-6">
+          {shellNavItems.map((item) => {
             const Icon = item.icon;
-            const href = buildHref(item.path);
+            const href = buildLocalizedHref(locale, item.path);
             const active = pathname === href || pathname.startsWith(`${href}/`);
             return (
               <Link
