@@ -243,18 +243,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         console.log('[AUTH EVENT] Account linked:', { userId: user.id, provider: account.provider });
       }
     },
-    async error(error) {
-      reportAuthConfigurationIssue('NextAuth error event captured', {
-        name: (error as Error)?.name,
-        message: (error as Error)?.message,
-      });
-
-      try {
-        Sentry.captureException(error);
-      } catch (captureError) {
-        console.error('[AUTH EVENT] Failed to capture error in Sentry', captureError);
-      }
-    },
   },
   logger: {
     error(error) {
