@@ -168,7 +168,7 @@ export default function TranslatePage() {
 
   return (
     <div className="space-y-6">
-      <section className="lab-hero">
+      <section className="lab-hero" data-testid="translate-hero">
         <div className="flex flex-wrap items-center justify-between gap-6">
           <div>
             <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{t('badge')}</p>
@@ -176,6 +176,7 @@ export default function TranslatePage() {
               <span className="title-gradient text-4xl lowercase">македонски</span>
               <span className="text-sm text-muted-foreground">MK LANGUAGE LAB · {locale.toUpperCase()}</span>
             </div>
+            <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white md:text-4xl">{t('title')}</h1>
             <p className="mt-2 max-w-2xl text-sm text-muted-foreground">{t('subtitle')}</p>
           </div>
           <Button
@@ -184,6 +185,7 @@ export default function TranslatePage() {
             size="sm"
             className="rounded-full border border-border/50 text-muted-foreground"
             onClick={() => setPanelCollapsed((prev) => !prev)}
+            aria-label={panelCollapsed ? t('contextExpand') : t('contextCollapse')}
           >
             {panelCollapsed ? (
               <span className="inline-flex items-center gap-2">
@@ -198,7 +200,7 @@ export default function TranslatePage() {
         </div>
       </section>
 
-      <div className={cn('lab-grid', !panelCollapsed && 'has-panel')}>
+      <div className={cn('lab-grid', !panelCollapsed && 'has-panel')} data-testid="translate-workspace">
         <div className="space-y-4">
           <DirectionToggle
             options={directionOptions}
@@ -220,10 +222,13 @@ export default function TranslatePage() {
               value={inputText}
               onChange={(event) => setInputText(event.target.value.slice(0, MAX_CHARACTERS))}
               placeholder={selectedDirection?.placeholder}
+              aria-label={t('inputLabel')}
+              aria-describedby="translate-character-count"
+              maxLength={MAX_CHARACTERS}
               className="min-h-[140px] resize-none rounded-3xl border border-border/60 bg-transparent text-base"
             />
             <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
-              <span>{characterCount}</span>
+              <span id="translate-character-count">{characterCount}</span>
               <div className="flex items-center gap-2">
                 <Button
                   type="button"
@@ -401,12 +406,13 @@ function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel
           size="sm"
           className="rounded-full border border-border/60 text-xs text-muted-foreground"
           onClick={onSwap}
+          aria-label={swapLabel}
         >
           <RefreshCw className="mr-2 h-4 w-4" aria-hidden="true" />
           {swapLabel}
         </Button>
       </div>
-      <div className="mt-4 flex flex-wrap gap-2">
+      <div className="mt-4 flex flex-wrap gap-2" role="radiogroup" aria-label={label}>
         {options.map((option) => (
           <button
             key={option.id}
@@ -418,6 +424,9 @@ function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel
                 : 'bg-transparent text-muted-foreground hover:text-foreground',
             )}
             onClick={() => onChange(option.id)}
+            role="radio"
+            aria-checked={option.id === activeId}
+            aria-label={option.label}
           >
             {option.label}
           </button>
