@@ -4,13 +4,14 @@ import Facebook from 'next-auth/providers/facebook';
 import Credentials from 'next-auth/providers/credentials';
 import * as Sentry from '@sentry/nextjs';
 import bcrypt from 'bcryptjs';
+import crypto from 'crypto';
 import prisma from '@/lib/prisma';
 
 const googleClientId = process.env.AUTH_GOOGLE_ID ?? process.env.GOOGLE_CLIENT_ID;
 const googleClientSecret = process.env.AUTH_GOOGLE_SECRET ?? process.env.GOOGLE_CLIENT_SECRET;
 const facebookClientId = process.env.AUTH_FACEBOOK_ID ?? process.env.FACEBOOK_CLIENT_ID;
 const facebookClientSecret = process.env.AUTH_FACEBOOK_SECRET ?? process.env.FACEBOOK_CLIENT_SECRET;
-const authSecret =
+let authSecret =
   process.env.AUTH_SECRET ??
   process.env.NEXTAUTH_SECRET ??
   (process.env.NODE_ENV === 'production' ? undefined : 'development-auth-secret');
@@ -118,6 +119,14 @@ providers.push(
     },
   })
 );
+
+if (!authSecret && process.env.NODE_ENV === 'production' && process.env.CI) {
+  authSecret = crypto.randomBytes(32).toString('hex');
+  reportAuthConfigurationIssue(
+    'Authentication secret is missing. Generated a temporary secret for build-time checks. Set AUTH_SECRET or NEXTAUTH_SECRET.',
+    { fallbackGenerated: true }
+  );
+}
 
 if (!authSecret) {
   reportAuthConfigurationIssue('Authentication secret is missing. Set AUTH_SECRET or NEXTAUTH_SECRET.');
