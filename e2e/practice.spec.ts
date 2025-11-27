@@ -145,6 +145,21 @@ test.describe('Practice Page', () => {
     const input = workspace.locator('input[placeholder*="Type"], input[placeholder*="Напиши"]').first();
     await expect(input).toBeVisible();
   });
+
+  test('practice layout stays scroll-safe on mobile', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.reload();
+    await page.waitForTimeout(800);
+
+    const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
+    expect(scrollWidth).toBeLessThanOrEqual(400);
+
+    await expect(page).toHaveScreenshot('practice-mobile.png', {
+      fullPage: true,
+      animations: 'disabled',
+      scale: 'css',
+    });
+  });
 });
 
 test.describe('Quick Practice Widget', () => {

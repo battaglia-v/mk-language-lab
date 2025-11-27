@@ -42,6 +42,8 @@ export default function ResourcesPage() {
   const [data, setData] = useState<ResourceFile | null>(null);
   const [loading, setLoading] = useState(true);
   const [panelCollapsed, setPanelCollapsed] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [isPanelDrawerOpen, setIsPanelDrawerOpen] = useState(false);
   const [sectionFilter, setSectionFilter] = useState<string | null>(null);
 
   useEffect(() => {
@@ -87,6 +89,27 @@ export default function ResourcesPage() {
     [data],
   );
 
+  useEffect(() => {
+    const media = window.matchMedia('(min-width: 1024px)');
+    const handleChange = () => {
+      setIsDesktop(media.matches);
+    };
+
+    handleChange();
+    media.addEventListener('change', handleChange);
+
+    return () => media.removeEventListener('change', handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (isDesktop) {
+      setPanelCollapsed(false);
+      setIsPanelDrawerOpen(false);
+    } else {
+      setPanelCollapsed(true);
+    }
+  }, [isDesktop]);
+
   const filtered = useMemo(() => {
     const term = query.trim().toLowerCase();
     return resources.filter((resource) => {
@@ -109,8 +132,8 @@ export default function ResourcesPage() {
 
   return (
     <div className="space-y-6">
-      <section className="lab-hero">
-        <div className="flex flex-wrap items-center justify-between gap-4">
+      <section className="lab-hero" data-testid="resources-hero">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
           <div className="flex flex-wrap items-center gap-3">
             <Link
               href={`/${locale}/translate`}
@@ -120,23 +143,8 @@ export default function ResourcesPage() {
               <ArrowLeft className="h-4 w-4" aria-hidden="true" />
               {navT('backToDashboard')}
             </Link>
-            <button
-              type="button"
-              className="inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-1.5 text-xs text-muted-foreground"
-              onClick={() => setPanelCollapsed((prev) => !prev)}
-            >
-              {panelCollapsed ? (
-                <>
-                  <PanelLeftOpen className="h-4 w-4" aria-hidden="true" /> {translateT('contextExpand')}
-                </>
-              ) : (
-                <>
-                  <PanelRightClose className="h-4 w-4" aria-hidden="true" /> {translateT('contextCollapse')}
-                </>
-              )}
-            </button>
           </div>
-          <div>
+          <div className="space-y-1 text-balance">
             <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{t('badge')}</p>
             <h1 className="mt-2 text-3xl font-semibold text-white">{t('title')}</h1>
             <p className="mt-1 max-w-2xl text-sm text-muted-foreground">{t('subtitle')}</p>
@@ -144,7 +152,7 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      <div className={cn('lab-grid', !panelCollapsed && 'has-panel')}>
+      <div className={cn('lab-grid', isDesktop && !panelCollapsed && 'has-panel')} data-testid="resources-workspace">
         <div className="space-y-4">
           <div className="rounded-3xl border border-border/60 bg-black/30 p-6">
             <div className="flex flex-col gap-3 md:flex-row md:items-center">
@@ -170,6 +178,17 @@ export default function ResourcesPage() {
               ) : null}
             </div>
             <p className="mt-2 text-xs text-muted-foreground">{updatedLabel}</p>
+            <div className="mt-4 flex flex-wrap gap-2 lg:hidden">
+              <button
+                type="button"
+                className="inline-flex items-center gap-2 rounded-full border border-border/60 px-4 py-2 text-sm font-semibold text-muted-foreground"
+                onClick={() => setIsPanelDrawerOpen(true)}
+              >
+                <PanelLeftOpen className="h-4 w-4" aria-hidden="true" />
+                {t('openAction')}
+              </button>
+              {panelCollapsed && !isDesktop ? null : null}
+            </div>
           </div>
 
           <div className="card-grid two">
@@ -184,43 +203,100 @@ export default function ResourcesPage() {
           </div>
         </div>
 
-        {!panelCollapsed ? (
-          <aside className="context-panel space-y-4">
-            <div className="flex items-center justify-between">
+        {isDesktop ? (
+          !panelCollapsed ? (
+            <aside className="context-panel space-y-4">
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-semibold text-white">{t('openAction')}</p>
+                <button
+                  type="button"
+                  className="rounded-full border border-border/60 p-2 text-muted-foreground"
+                  onClick={() => setPanelCollapsed(true)}
+                  aria-label={translateT('contextCollapse')}
+                >
+                  <PanelRightClose className="h-4 w-4" aria-hidden="true" />
+                </button>
+              </div>
+              <PanelFilters
+                sections={sections}
+                sectionFilter={sectionFilter}
+                onSelect={(title) => setSectionFilter((current) => (current === title ? null : title))}
+                emptyLabel={t('emptyState')}
+              />
+            </aside>
+          ) : (
+            <div className="hidden lg:flex lg:flex-col lg:items-start lg:gap-2">
+              <button
+                type="button"
+                className="inline-flex items-center gap-2 rounded-full border border-border/60 px-4 py-2 text-sm font-semibold text-muted-foreground"
+                onClick={() => setPanelCollapsed(false)}
+              >
+                <PanelLeftOpen className="h-4 w-4" aria-hidden="true" />
+                {t('openAction')}
+              </button>
+            </div>
+          )
+        ) : null}
+      </div>
+
+      {!isDesktop && isPanelDrawerOpen ? (
+        <div className="fixed inset-0 z-40 flex flex-col bg-black/40 lg:hidden" role="dialog" aria-modal>
+          <button type="button" className="flex-1" aria-label={translateT('contextCollapse')} onClick={() => setIsPanelDrawerOpen(false)} />
+          <div className="rounded-t-3xl border border-border/50 bg-background/90 p-5 shadow-2xl backdrop-blur">
+            <div className="mb-4 flex items-center justify-between">
               <p className="text-sm font-semibold text-white">{t('openAction')}</p>
               <button
                 type="button"
                 className="rounded-full border border-border/60 p-2 text-muted-foreground"
-                onClick={() => setPanelCollapsed(true)}
+                onClick={() => setIsPanelDrawerOpen(false)}
                 aria-label={translateT('contextCollapse')}
               >
                 <PanelRightClose className="h-4 w-4" aria-hidden="true" />
               </button>
             </div>
-            <div className="space-y-2">
-              {sections.map((section) => (
-                <button
-                  key={section.id}
-                  type="button"
-                  className={cn(
-                    'flex w-full items-center justify-between rounded-2xl border px-4 py-3 text-left text-sm transition',
-                    sectionFilter === section.title
-                      ? 'border-primary bg-primary/10 text-white'
-                      : 'border-border/60 text-muted-foreground hover:text-foreground',
-                  )}
-                  onClick={() => setSectionFilter((current) => (current === section.title ? null : section.title))}
-                >
-                  <span>{section.title}</span>
-                  <span className="text-xs">{section.count}</span>
-                </button>
-              ))}
-              {sections.length === 0 ? (
-                <p className="text-xs text-muted-foreground">{t('emptyState')}</p>
-              ) : null}
-            </div>
-          </aside>
-        ) : null}
-      </div>
+            <PanelFilters
+              sections={sections}
+              sectionFilter={sectionFilter}
+              onSelect={(title) => {
+                setSectionFilter((current) => (current === title ? null : title));
+                setIsPanelDrawerOpen(false);
+              }}
+              emptyLabel={t('emptyState')}
+            />
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+type PanelFiltersProps = {
+  sections: { id: string; title: string; count: number }[];
+  sectionFilter: string | null;
+  onSelect: (title: string) => void;
+  emptyLabel: string;
+};
+
+function PanelFilters({ sections, sectionFilter, onSelect, emptyLabel }: PanelFiltersProps) {
+  return (
+    <div className="space-y-2">
+      {sections.map((section) => (
+        <button
+          key={section.id}
+          type="button"
+          className={cn(
+            'flex w-full items-center justify-between rounded-2xl border px-4 py-3 text-left text-sm transition',
+            sectionFilter === section.title
+              ? 'border-primary bg-primary/10 text-white'
+              : 'border-border/60 text-muted-foreground hover:text-foreground',
+          )}
+          onClick={() => onSelect(section.title)}
+        >
+          <span className="text-left leading-snug">{section.title}</span>
+          <span className="text-xs">{section.count}</span>
+        </button>
+      ))}
+      {sections.length === 0 ? <p className="text-xs text-muted-foreground">{emptyLabel}</p> : null}
     </div>
   );
 }
@@ -239,8 +315,8 @@ function ResourceCard({ resource }: ResourceCardProps) {
     >
       <div>
         <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">{resource.section}</p>
-        <h3 className="mt-2 text-lg font-semibold text-white">{resource.title}</h3>
-        <p className="mt-2 text-sm text-muted-foreground">{resource.summary}</p>
+        <h3 className="mt-2 text-lg font-semibold leading-snug text-white break-words">{resource.title}</h3>
+        <p className="mt-2 text-sm text-muted-foreground break-words">{resource.summary}</p>
       </div>
       <div className="mt-6 flex items-center justify-between text-xs text-muted-foreground">
         <span>{resource.format ?? 'link'}</span>

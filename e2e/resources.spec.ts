@@ -178,4 +178,19 @@ test.describe('Resources Page', () => {
       scale: 'css',
     });
   });
+
+  test('resources stay scroll-safe on mobile', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.reload();
+    await page.waitForLoadState('networkidle');
+
+    const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
+    expect(scrollWidth).toBeLessThanOrEqual(400);
+
+    await expect(page).toHaveScreenshot('resources-mobile.png', {
+      fullPage: true,
+      animations: 'disabled',
+      scale: 'css',
+    });
+  });
 });
