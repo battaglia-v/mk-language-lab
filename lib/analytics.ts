@@ -1,7 +1,7 @@
 import { track } from '@vercel/analytics';
 
 /**
- * Privacy-friendly analytics utility for the Macedonian Learning App
+ * Privacy-friendly analytics utility for MK Language Lab
  *
  * This utility wraps Vercel Analytics which is:
  * - Privacy-friendly (no cookies)
