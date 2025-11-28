@@ -1,10 +1,8 @@
-// @ts-nocheck
 import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import fallbackMissionStatus from '@/data/mission-status.json';
 import type { MissionStatus, MissionChecklistItem, MissionCoachTip, MissionCommunityHighlight } from '@mk/api-client';
-import type { ExerciseAttempt, GameProgress, Prisma } from '@prisma/client';
 
 export const dynamic = 'force-dynamic';
 
@@ -44,20 +42,7 @@ async function buildMissionPayload(userId: string): Promise<MissionStatus> {
   const now = new Date();
   const todayStart = startOfDay(now);
 
-  const [gameProgress, journeys, lessonProgress, exerciseAttempts] = await Promise.all<[
-    GameProgress | null,
-    Array<
-      Prisma.JourneyProgressGetPayload<{
-        include: { currentLesson: { include: { module: true } }; currentModule: true };
-      }>
-    >,
-    Array<
-      Prisma.UserLessonProgressGetPayload<{
-        include: { lesson: { include: { module: true } } };
-      }>
-    >,
-    ExerciseAttempt[],
-  ]>([
+  const [gameProgress, journeys, lessonProgress, exerciseAttempts] = await Promise.all([
     prisma.gameProgress.findUnique({ where: { userId } }),
     prisma.journeyProgress.findMany({
       where: { userId },
