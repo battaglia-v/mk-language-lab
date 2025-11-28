@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
-import { Menu, CircleUserRound, ArrowLeft } from "lucide-react";
+import { Menu, ArrowLeft } from "lucide-react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { Button } from "@/components/ui/button";
 import { CommandMenuLazy } from "@/components/CommandMenuLazy";

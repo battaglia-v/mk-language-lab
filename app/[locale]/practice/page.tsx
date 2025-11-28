@@ -133,6 +133,14 @@ export default function PracticePage() {
   }, [resetCardState, currentCard?.id]);
 
   useEffect(() => {
+    if (feedback !== "correct") return;
+    const timer = setTimeout(() => {
+      goNext();
+    }, 900);
+    return () => clearTimeout(timer);
+  }, [feedback, goNext]);
+
+  useEffect(() => {
     const handler = (event: KeyboardEvent) => {
       if (event.key === ' ') {
         event.preventDefault();
@@ -148,9 +156,9 @@ export default function PracticePage() {
   }, [goNext, goPrevious, toggleReveal]);
 
   return (
-    <div className="space-y-6">
-      <section className="lab-hero">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+    <div className="space-y-8 sm:space-y-10">
+      <section className="lab-hero rounded-3xl border border-border/60 bg-black/30 p-4 sm:p-6">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-wrap items-center gap-3">
             <Button
               asChild
@@ -173,14 +181,14 @@ export default function PracticePage() {
             <h1 className="mt-2 text-3xl font-semibold text-white">{t('title')}</h1>
             <p className="mt-1 max-w-2xl text-sm text-muted-foreground">{t('subtitle')}</p>
           </div>
-          <div className="inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-border/60 px-4 py-2 text-xs text-muted-foreground">
+          <div className="hidden max-w-full flex-wrap items-center gap-2 rounded-full border border-border/60 px-4 py-2 text-xs text-muted-foreground sm:inline-flex">
             <Keyboard className="h-4 w-4" aria-hidden="true" />
             <span className="whitespace-normal">Space · ← →</span>
           </div>
         </div>
       </section>
 
-      <div className="space-y-4 rounded-3xl border border-border/60 bg-black/30 card-padding-lg md:p-7">
+      <div className="space-y-4 rounded-3xl border border-border/60 bg-black/30 card-padding-lg p-5 sm:p-6 md:p-7">
         <div className="flex flex-wrap gap-2">
           <DeckToggle
             label={t('savedDeck.badge')}
@@ -212,7 +220,7 @@ export default function PracticePage() {
           </Alert>
         ) : (
           <div className="space-y-4">
-            <div className="rounded-3xl border border-border/60 bg-black/40 card-padding-lg md:p-8">
+            <div className="rounded-3xl border border-border/60 bg-black/40 card-padding-lg p-5 sm:p-6 md:p-8">
               <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-muted-foreground">
                 <span>{currentCard?.direction === 'en-mk' ? 'EN → MK' : 'MK → EN'}</span>
                 <span>
@@ -226,11 +234,11 @@ export default function PracticePage() {
               </p>
             </div>
 
-            <form onSubmit={handleSubmitGuess} className="mt-6 space-y-3">
-              <div className="space-y-2">
-                <label className="text-sm font-semibold text-white" htmlFor="practice-guess">
-                  {t('drills.wordInputLabel')}
-                </label>
+              <form onSubmit={handleSubmitGuess} className="mt-6 space-y-3">
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-white" htmlFor="practice-guess">
+                    {t('drills.wordInputLabel')}
+                  </label>
                 <div className="flex flex-col gap-2 sm:flex-row">
                   <Input
                     id="practice-guess"
@@ -300,7 +308,7 @@ function DeckToggle({ label, count, active, disabled, onClick }: DeckToggleProps
       disabled={disabled}
       onClick={onClick}
       className={cn(
-        'flex w-full min-w-[200px] flex-1 flex-wrap items-center justify-between gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition sm:w-auto sm:flex-initial sm:min-w-[0] lg:flex-none',
+        'flex w-full min-w-0 flex-1 flex-wrap items-center justify-between gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition sm:w-auto sm:flex-initial lg:flex-none',
         active
           ? 'border-primary bg-primary/10 text-white'
           : 'border-border/60 text-muted-foreground hover:text-foreground',
