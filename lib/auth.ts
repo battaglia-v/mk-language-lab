@@ -216,6 +216,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           token.role = 'user'; // Default to user role if database write fails
         }
       }
+
+      // Ensure token role stays in sync with database (e.g., when roles change after sign-in)
+      if (token.email && token.role !== 'admin') {
+        const existingUser = await prisma.user.findUnique({
+          where: { email: token.email as string },
+          select: { role: true },
+        });
+
+        if (existingUser?.role) {
+          token.role = existingUser.role;
+        }
+      }
+
       return token;
     },
     async session({ session, token }) {
