@@ -1,8 +1,7 @@
-// @ts-nocheck
 import { randomUUID } from 'crypto';
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
-import type { GameProgress, MobilePushToken, Prisma, ReminderSettings } from '@prisma/client';
+import type { GameProgress, MobilePushToken, ReminderSettings } from '@prisma/client';
 import { sendExpoPushNotifications, type ExpoPushTicketRecord } from '@/lib/expo-push';
 import { REMINDER_WINDOW_IDS, getDueReminderWindow, type ReminderWindowId } from '@/lib/mobile-reminders';
 import {
@@ -66,11 +65,7 @@ export async function GET(request: NextRequest) {
 
   const userIds = Array.from(new Set(tokens.map((token) => token.userId).filter((id): id is string => id !== null)));
 
-  const [settingsRecords, progressRecords, dailyPracticeCounts] = await Promise.all<[
-    ReminderSettings[],
-    Pick<GameProgress, 'userId' | 'streak' | 'lastPracticeDate'>[],
-    Array<Prisma.ExerciseAttemptGroupByOutputType>,
-  ]>([
+  const [settingsRecords, progressRecords, dailyPracticeCounts] = await Promise.all([
     prisma.reminderSettings.findMany({ where: { userId: { in: userIds } } }),
     prisma.gameProgress.findMany({
       where: { userId: { in: userIds } },

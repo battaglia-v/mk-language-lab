@@ -1,25 +1,21 @@
-// @ts-nocheck
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 
 export const dynamic = 'force-dynamic';
 
-type Params = Promise<{ id: string }>;
+type Params = { id: string };
 
 /**
  * GET /api/instagram/posts/[id]/tags
  *
  * Get all tags for a specific Instagram post
  */
-export async function GET(
-  _request: NextRequest,
-  context: { params: Params }
-) {
+export async function GET(_request: NextRequest, context: { params: Params }) {
   try {
-    const { id } = await context.params;
+    const { id } = context.params;
 
-    const postTags: Awaited<ReturnType<typeof prisma.postTag.findMany>> = await prisma.postTag.findMany({
+    const postTags = await prisma.postTag.findMany({
       where: {
         instagramId: id,
       },
@@ -48,10 +44,7 @@ export async function GET(
  *
  * Add a tag to an Instagram post (admin only)
  */
-export async function POST(
-  request: NextRequest,
-  context: { params: Params }
-) {
+export async function POST(request: NextRequest, context: { params: Params }) {
   try {
     // Check authentication (in a real app, you'd check for admin role)
     const session = await auth();
@@ -62,7 +55,7 @@ export async function POST(
       );
     }
 
-    const { id } = await context.params;
+    const { id } = context.params;
     const body = await request.json() as { tagId: string };
 
     if (!body.tagId) {
@@ -120,10 +113,7 @@ export async function POST(
  *
  * Remove a tag from an Instagram post (admin only)
  */
-export async function DELETE(
-  request: NextRequest,
-  context: { params: Params }
-) {
+export async function DELETE(request: NextRequest, context: { params: Params }) {
   try {
     // Check authentication (in a real app, you'd check for admin role)
     const session = await auth();
@@ -134,7 +124,7 @@ export async function DELETE(
       );
     }
 
-    const { id } = await context.params;
+    const { id } = context.params;
     const { searchParams } = new URL(request.url);
     const tagId = searchParams.get('tagId');
 
@@ -165,4 +155,3 @@ export async function DELETE(
     );
   }
 }
-// @ts-nocheck

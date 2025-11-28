@@ -1,11 +1,10 @@
-// @ts-nocheck
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { auth } from '@/lib/auth';
 import fallbackStandings from '@/data/league-standings.json';
 import type { LeagueStandings } from '@mk/api-client';
 import { getLeagueTierFromStreak } from '@mk/gamification';
-import type { GameProgress, League, Prisma } from '@prisma/client';
+import type { GameProgress, Prisma } from '@prisma/client';
 
 const FALLBACK_STANDINGS = fallbackStandings as LeagueStandings;
 const TIER_ORDER: Record<string, number> = {
@@ -58,10 +57,7 @@ async function buildLeagueStandings(userId: string): Promise<LeagueStandings> {
     orderBy: { updatedAt: 'desc' },
   });
 
-  const [gameProgress, leagues] = await Promise.all<[
-    GameProgress | null,
-    League[],
-  ]>([
+  const [gameProgress, leagues] = await Promise.all([
     prisma.gameProgress.findUnique({ where: { userId } }),
     prisma.league.findMany(),
   ]);
