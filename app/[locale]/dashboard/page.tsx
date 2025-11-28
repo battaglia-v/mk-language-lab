@@ -60,14 +60,14 @@ export default async function DashboardPage() {
   const profileT = await getTranslations("shell");
 
   return (
-    <section className="mx-auto flex w-full max-w-6xl flex-col gap-8">
-      <div className="space-y-3">
+    <section className="mx-auto flex w-full max-w-5xl flex-col gap-8 sm:gap-10">
+      <div className="space-y-3 text-balance">
         <p className="text-sm uppercase tracking-[0.35em] text-muted-foreground">{navT("home")}</p>
         <h1 className="text-3xl font-bold tracking-tight md:text-4xl">{navT("dashboard")}</h1>
         <p className="max-w-3xl text-base text-muted-foreground md:text-lg">{homeT("subtitle")}</p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-3">
         {ACTIONS.map((action) => {
           const Icon = action.icon;
           const description = action.getDescription({ homeT, profileT });
@@ -76,7 +76,7 @@ export default async function DashboardPage() {
             <Card
               key={action.id}
               className={cn(
-                "glass-card border border-border/50 shadow-xl transition hover:translate-y-[-2px] hover:border-border",
+                "glass-card h-full border border-border/50 shadow-xl transition hover:translate-y-[-2px] hover:border-border",
                 action.mobileHidden && "hidden md:block",
               )}
             >
@@ -86,12 +86,12 @@ export default async function DashboardPage() {
                   <span className="font-semibold text-foreground">{navT(action.id)}</span>
                 </div>
                 <CardTitle className="text-xl">{navT(action.id)}</CardTitle>
-                <CardDescription className="text-sm leading-relaxed text-muted-foreground">
+                <CardDescription className="text-sm leading-relaxed text-muted-foreground text-pretty">
                   {description}
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <Button asChild className="w-full justify-center">
+                <Button asChild className="w-full justify-center" size="lg">
                   <Link href={href}>{navT(action.id)}</Link>
                 </Button>
               </CardContent>
