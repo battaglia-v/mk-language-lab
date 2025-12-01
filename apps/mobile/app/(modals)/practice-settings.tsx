@@ -303,7 +303,7 @@ const styles = StyleSheet.create({
     color: brandColors.navy,
   },
   subheading: {
-    color: 'rgba(16,24,40,0.65)',
+    color: 'rgba(247,248,251,0.65)',
   },
   content: {
     gap: spacingScale.lg,
@@ -352,10 +352,10 @@ const styles = StyleSheet.create({
     color: brandColors.navy,
   },
   modeDescription: {
-    color: 'rgba(16,24,40,0.65)',
+    color: 'rgba(247,248,251,0.65)',
   },
   modeHint: {
-    color: 'rgba(16,24,40,0.65)',
+    color: 'rgba(247,248,251,0.65)',
   },
   summaryRow: {
     flexDirection: 'row',
@@ -386,12 +386,12 @@ const styles = StyleSheet.create({
     color: brandColors.navy,
   },
   toggleDescription: {
-    color: 'rgba(16,24,40,0.65)',
+    color: 'rgba(247,248,251,0.65)',
   },
   toggleRowDisabled: {
     opacity: 0.5,
   },
   permissionHint: {
-    color: 'rgba(16,24,40,0.65)',
+    color: 'rgba(247,248,251,0.65)',
   },
 });

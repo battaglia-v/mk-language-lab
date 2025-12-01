@@ -175,14 +175,14 @@ const styles = StyleSheet.create({
     minHeight: 240,
     borderRadius: 28,
     borderWidth: 1,
-    borderColor: 'rgba(16,24,40,0.08)',
+    borderColor: 'rgba(247,248,251,0.08)',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 24,
     backgroundColor: '#fff',
   },
   emptyText: {
-    color: 'rgba(16,24,40,0.7)',
+    color: 'rgba(247,248,251,0.7)',
     textAlign: 'center',
   },
 });

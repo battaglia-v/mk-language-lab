@@ -4,7 +4,7 @@ import { brandColors } from '@mk/tokens';
 
 const tabIcons: Record<string, keyof typeof Ionicons.glyphMap> = {
   home: 'home',
-  practice: 'flash',
+  practice: 'school',
   translator: 'language',
   discover: 'compass',
   profile: 'person-circle',
@@ -16,10 +16,19 @@ export default function TabsLayout() {
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarActiveTintColor: brandColors.red,
-        tabBarInactiveTintColor: 'rgba(16,24,40,0.6)',
+        tabBarInactiveTintColor: 'rgba(247,248,251,0.6)',
         tabBarStyle: {
-          backgroundColor: '#fff',
-          borderTopColor: 'rgba(0,0,0,0.05)',
+          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+          borderTopWidth: 1,
+          borderTopColor: 'rgba(0,0,0,0.08)',
+          elevation: 8,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: -2 },
+          shadowOpacity: 0.1,
+          shadowRadius: 8,
+          paddingTop: 8,
+          paddingBottom: 8,
+          height: 70,
         },
         tabBarIcon: ({ color, size }) => (
           <Ionicons name={tabIcons[route.name] ?? 'ellipse'} size={size} color={color} />

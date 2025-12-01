@@ -81,13 +81,13 @@ const styles = StyleSheet.create({
     color: brandColors.goldDark,
   },
   timeLabel: {
-    color: 'rgba(16,24,40,0.6)',
+    color: 'rgba(247,248,251,0.6)',
   },
   title: {
     color: brandColors.navy,
   },
   summary: {
-    color: 'rgba(16,24,40,0.85)',
+    color: 'rgba(247,248,251,0.85)',
   },
   linkButton: {
     alignSelf: 'flex-start',
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     gap: spacingScale.xs,
   },
   emptyText: {
-    color: 'rgba(16,24,40,0.7)',
+    color: 'rgba(247,248,251,0.7)',
   },
   refreshText: {
     color: brandColors.navy,

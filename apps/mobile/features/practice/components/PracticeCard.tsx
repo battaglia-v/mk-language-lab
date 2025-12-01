@@ -93,7 +93,7 @@ export function PracticeCardContentView({
         value={value}
         editable={!disabled}
         onChangeText={onChangeValue}
-        placeholderTextColor="rgba(16,24,40,0.5)"
+        placeholderTextColor="rgba(247,248,251,0.5)"
       />
 
       <View style={styles.actionRow}>
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     gap: spacingScale.sm,
   },
   promptLabel: {
-    color: 'rgba(16,24,40,0.7)',
+    color: 'rgba(247,248,251,0.7)',
   },
   promptText: {
     color: brandColors.navy,
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     color: brandColors.navy,
   },
   translationHint: {
-    color: 'rgba(16,24,40,0.6)',
+    color: 'rgba(247,248,251,0.6)',
   },
   audioRow: {
     flexDirection: 'row',
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: 'rgba(16,24,40,0.2)',
+    borderColor: 'rgba(247,248,251,0.2)',
     borderRadius: spacingScale.md,
     padding: spacingScale.sm,
     backgroundColor: '#fff',

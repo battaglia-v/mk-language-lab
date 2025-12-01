@@ -124,7 +124,7 @@ export default async function LocaleHome({ params }: LocalePageProps) {
           <p className="text-xs uppercase tracking-[0.35em] text-amber-300 sm:text-sm">{navT("dashboard")}</p>
           <h2 className="text-xl font-semibold text-slate-50 sm:text-2xl">Build your session</h2>
           <p className="mx-auto max-w-2xl text-sm text-slate-200 sm:text-base">
-            Choose a focus area, keep navigation consistent across screen sizes, and jump directly into the tool you need.
+            Choose a focus area and jump directly into the tool you need.
           </p>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -140,7 +140,7 @@ export default async function LocaleHome({ params }: LocalePageProps) {
                     <Icon className="h-3.5 w-3.5 text-amber-300 sm:h-4 sm:w-4" aria-hidden />
                     <span className="font-semibold text-slate-50">{navT(feature.id)}</span>
                   </div>
-                  <CardTitle className="text-base text-slate-50 sm:text-lg">{feature.title}</CardTitle>
+                  <h3 className="text-base font-semibold leading-none text-slate-50 sm:text-lg">{feature.title}</h3>
                   <CardDescription className="text-sm leading-relaxed text-slate-200 text-pretty">
                     {feature.description}
                   </CardDescription>

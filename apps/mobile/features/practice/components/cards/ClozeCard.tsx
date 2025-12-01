@@ -105,11 +105,11 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   hint: {
-    color: 'rgba(16,24,40,0.7)',
+    color: 'rgba(247,248,251,0.7)',
   },
   input: {
     borderWidth: 1,
-    borderColor: 'rgba(16,24,40,0.15)',
+    borderColor: 'rgba(247,248,251,0.15)',
     borderRadius: spacingScale.lg,
     padding: spacingScale.sm,
     fontSize: 18,

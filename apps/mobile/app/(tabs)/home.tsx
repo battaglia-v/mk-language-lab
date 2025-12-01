@@ -327,7 +327,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   sectionCaption: {
-    color: 'rgba(16,24,40,0.6)',
+    color: 'rgba(247,248,251,0.6)',
   },
   appBar: {
     flexDirection: 'row',

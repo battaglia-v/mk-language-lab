@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     color: brandColors.navy,
   },
   subtitle: {
-    color: 'rgba(16,24,40,0.65)',
+    color: 'rgba(247,248,251,0.65)',
   },
   list: {
     gap: spacingScale.sm,
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     color: brandColors.navy,
   },
   entryMeta: {
-    color: 'rgba(16,24,40,0.65)',
+    color: 'rgba(247,248,251,0.65)',
   },
   resultText: {
     color: brandColors.navy,

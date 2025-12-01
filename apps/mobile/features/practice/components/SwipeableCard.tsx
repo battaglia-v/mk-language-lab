@@ -170,7 +170,7 @@ export function SwipeableCard({
           <NativeTypography variant="body" style={styles.previewLabel}>
             Next up
           </NativeTypography>
-          <NativeTypography variant="title" style={{ color: '#1c1e23' }}>
+          <NativeTypography variant="title" style={{ color: brandColors.text }}>
             {nextCard.prompt}
           </NativeTypography>
         </NativeCard>
@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
     transform: [{ scale: 0.96 }],
   },
   previewLabel: {
-    color: 'rgba(16,24,40,0.6)',
+    color: 'rgba(247,248,251,0.6)',
     marginBottom: spacingScale.xs,
   },
   animatedCard: {
@@ -275,7 +275,7 @@ const styles = StyleSheet.create({
     transform: [{ translateX: -50 }],
   },
   gestureHintText: {
-    color: '#1c1e23',
+    color: brandColors.text,
     fontWeight: '600',
     fontSize: 14,
   },

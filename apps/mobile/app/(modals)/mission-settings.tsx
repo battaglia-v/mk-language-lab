@@ -173,7 +173,7 @@ function ReminderWindowToggle({ preference, disabled, onToggle }: ReminderWindow
           onValueChange={handleToggle}
           disabled={disabled}
           thumbColor={preference.enabled ? brandColors.red : '#fff'}
-          trackColor={{ true: 'rgba(230,57,70,0.45)', false: 'rgba(16,24,40,0.25)' }}
+          trackColor={{ true: 'rgba(230,57,70,0.45)', false: 'rgba(247,248,251,0.25)' }}
         />
       </Pressable>
     </NativeCard>
@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
     color: brandColors.navy,
   },
   subheading: {
-    color: 'rgba(16,24,40,0.7)',
+    color: 'rgba(247,248,251,0.7)',
   },
   statusRow: {
     flexDirection: 'row',
@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   metaText: {
-    color: 'rgba(16,24,40,0.6)',
+    color: 'rgba(247,248,251,0.6)',
   },
   syncingText: {
     color: brandColors.red,
@@ -250,7 +250,7 @@ const styles = StyleSheet.create({
     color: brandColors.red,
   },
   sectionHint: {
-    color: 'rgba(16,24,40,0.6)',
+    color: 'rgba(247,248,251,0.6)',
   },
   windowList: {
     gap: spacingScale.sm,
@@ -276,10 +276,10 @@ const styles = StyleSheet.create({
     color: brandColors.goldDark,
   },
   windowDescription: {
-    color: 'rgba(16,24,40,0.65)',
+    color: 'rgba(247,248,251,0.65)',
   },
   summaryText: {
-    color: 'rgba(16,24,40,0.65)',
+    color: 'rgba(247,248,251,0.65)',
   },
   permissionHint: {
     color: brandColors.navy,
@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: 'rgba(16,24,40,0.1)',
+    borderTopColor: 'rgba(247,248,251,0.1)',
     paddingTop: spacingScale.sm,
   },
   closeButtonText: {

@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { Pressable, SafeAreaView, ScrollView, StyleSheet, View, Linking, Alert } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { NativeTypography, NativeCard, NativeStatPill, NativeButton } from '@mk/ui';
 import { brandColors, spacingScale } from '@mk/tokens';
@@ -132,20 +133,75 @@ export default function ProfileScreen() {
 
         {profile ? (
           <>
-            <NativeCard style={styles.statCard}>
-              <View style={styles.statRow}>
-                <NativeStatPill label="XP" value={`${profile.xp.total.toLocaleString()} total`} accent="green" />
-                <NativeStatPill label="Weekly XP" value={`${profile.xp.weekly}`} accent="gold" />
-              </View>
-              <View style={styles.statRow}>
-                <NativeStatPill label="Level" value={profile.level} />
-                <NativeStatPill label="Streak" value={`${profile.streakDays} days`} accent="red" />
-              </View>
-              <View style={styles.statRow}>
-                <NativeStatPill label="Quests active" value={`${profile.quests.active}`} />
-                <NativeStatPill label="Completed this week" value={`${profile.quests.completedThisWeek}`} accent="gold" />
-              </View>
-            </NativeCard>
+            <View style={styles.statsGrid}>
+              <LinearGradient
+                colors={['rgba(251, 146, 60, 0.3)', 'rgba(249, 115, 22, 0.1)']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={styles.gradientCard}
+              >
+                <NativeTypography variant="caption" style={styles.statLabel}>
+                  STREAK
+                </NativeTypography>
+                <NativeTypography variant="hero" style={styles.statValue}>
+                  {profile.streakDays}
+                </NativeTypography>
+                <NativeTypography variant="caption" style={styles.statCaption}>
+                  days
+                </NativeTypography>
+              </LinearGradient>
+
+              <LinearGradient
+                colors={['rgba(14, 165, 233, 0.3)', 'rgba(14, 165, 233, 0.1)']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={styles.gradientCard}
+              >
+                <NativeTypography variant="caption" style={styles.statLabel}>
+                  ACTIVE QUESTS
+                </NativeTypography>
+                <NativeTypography variant="hero" style={styles.statValue}>
+                  {profile.quests.active}
+                </NativeTypography>
+                <NativeTypography variant="caption" style={styles.statCaption}>
+                  {profile.quests.completedThisWeek} completed this week
+                </NativeTypography>
+              </LinearGradient>
+
+              <LinearGradient
+                colors={['rgba(251, 191, 36, 0.3)', 'rgba(251, 191, 36, 0.1)']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={styles.gradientCard}
+              >
+                <NativeTypography variant="caption" style={styles.statLabel}>
+                  WEEKLY XP
+                </NativeTypography>
+                <NativeTypography variant="hero" style={styles.statValue}>
+                  {profile.xp.weekly.toLocaleString()}
+                </NativeTypography>
+                <NativeTypography variant="caption" style={styles.statCaption}>
+                  {profile.xp.total.toLocaleString()} total XP
+                </NativeTypography>
+              </LinearGradient>
+
+              <LinearGradient
+                colors={['rgba(16, 185, 129, 0.3)', 'rgba(16, 185, 129, 0.1)']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={styles.gradientCard}
+              >
+                <NativeTypography variant="caption" style={styles.statLabel}>
+                  LEVEL
+                </NativeTypography>
+                <NativeTypography variant="hero" style={styles.statValue}>
+                  {profile.level}
+                </NativeTypography>
+                <NativeTypography variant="caption" style={styles.statCaption}>
+                  Next: {parseInt(profile.level) + 1}
+                </NativeTypography>
+              </LinearGradient>
+            </View>
 
             <View style={styles.badgesSection}>
               <View style={styles.badgesHeader}>
@@ -236,8 +292,36 @@ const styles = StyleSheet.create({
   accountCard: { gap: spacingScale.sm },
   accountTitle: { color: brandColors.text },
   signInCta: { color: brandColors.accent },
-  statCard: { gap: spacingScale.sm },
-  statRow: { flexDirection: 'row', gap: spacingScale.sm, flexWrap: 'wrap' },
+  statsGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: spacingScale.sm,
+    marginBottom: spacingScale.md,
+  },
+  gradientCard: {
+    flex: 1,
+    minWidth: '47%',
+    padding: spacingScale.md,
+    borderRadius: spacingScale.lg,
+    borderWidth: 1,
+    borderColor: 'rgba(247,248,251,0.15)',
+    gap: spacingScale.xs,
+  },
+  statLabel: {
+    color: 'rgba(247,248,251,0.7)',
+    fontSize: 11,
+    fontWeight: '600',
+    letterSpacing: 0.5,
+  },
+  statValue: {
+    color: brandColors.text,
+    fontSize: 32,
+    fontWeight: '700',
+  },
+  statCaption: {
+    color: 'rgba(247,248,251,0.7)',
+    fontSize: 12,
+  },
   badgesSection: { gap: spacingScale.sm },
   badgesHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   badgesTitle: { color: brandColors.text },
@@ -246,8 +330,8 @@ const styles = StyleSheet.create({
   badgePressable: { borderRadius: spacingScale.md },
   badgeCard: { gap: spacingScale.xs },
   badgeLabel: { color: brandColors.text },
-  badgeDescription: { color: 'rgba(16,24,40,0.7)' },
-  badgeMeta: { color: 'rgba(16,24,40,0.6)' },
+  badgeDescription: { color: 'rgba(247,248,251,0.7)' },
+  badgeMeta: { color: 'rgba(247,248,251,0.6)' },
   adminCard: { gap: spacingScale.sm },
   adminHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   adminTitle: { color: brandColors.navy },

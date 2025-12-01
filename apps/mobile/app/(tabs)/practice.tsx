@@ -1,34 +1,25 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
-import { Modal, Pressable, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Modal, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { brandColors, spacingScale } from '@mk/tokens';
 import {
   NativeButton,
   NativeCard,
-  NativeProgressRing,
-  NativeStatPill,
   NativeTypography,
 } from '@mk/ui';
 import { CardStack } from '../../features/practice/components';
 import {
   useMobileQuickPracticeSession,
-  type PracticeDeckMode,
   type QuickPracticeCompletionSummary,
 } from '../../features/practice/useMobileQuickPracticeSession';
-import { PRACTICE_DIFFICULTIES, getPracticeDifficultyPreset } from '@mk/practice';
+import { getPracticeDifficultyPreset } from '@mk/practice';
 import { usePracticeCompletionQueue } from '../../features/practice/usePracticeCompletionQueue';
 import { SESSION_TARGET } from '@mk/practice';
 import { useQueryHydration } from '../../lib/queryClient';
 
 const HEART_SLOTS = 5;
 const XP_PER_CARD = 12;
-const PRACTICE_MODES: Array<{ key: PracticeDeckMode; label: string }> = [
-  { key: 'typing', label: 'Typing' },
-  { key: 'cloze', label: 'Cloze' },
-  { key: 'multipleChoice', label: 'Multiple choice' },
-  { key: 'listening', label: 'Listening' },
-];
 
 export default function PracticeScreen() {
   const router = useRouter();
@@ -58,16 +49,11 @@ export default function PracticeScreen() {
 
   const {
     isLoading,
-    categories,
     category,
-    setCategory,
     direction,
     setDirection,
     practiceMode,
-    setPracticeMode,
     difficulty,
-    setDifficulty,
-    timeRemaining,
     currentCard,
     handleResult,
     evaluateAnswer,
@@ -76,7 +62,6 @@ export default function PracticeScreen() {
     correctCount,
     totalAttempts,
     accuracy,
-    sessionProgress,
     showCompletionModal,
     setShowCompletionModal,
     showGameOverModal,
@@ -85,7 +70,6 @@ export default function PracticeScreen() {
     handleContinue,
   } = useMobileQuickPracticeSession({ onSessionComplete: handleSessionComplete });
   const difficultyPreset = getPracticeDifficultyPreset(difficulty);
-  const timerDuration = difficultyPreset.timerSeconds ?? null;
   const isRestoring = !isHydrated && isLoading;
 
   return (
@@ -137,7 +121,7 @@ export default function PracticeScreen() {
                   key={index}
                   name="heart"
                   size={24}
-                  color={index < hearts ? brandColors.red : 'rgba(16,24,40,0.15)'}
+                  color={index < hearts ? brandColors.red : 'rgba(247,248,251,0.15)'}
                 />
               ))}
             </View>
@@ -253,7 +237,7 @@ function ResultModal({
           <NativeTypography variant="title" style={{ color: brandColors.navy }}>
             {title}
           </NativeTypography>
-          <NativeTypography variant="body" style={{ color: 'rgba(16,24,40,0.8)' }}>
+          <NativeTypography variant="body" style={{ color: 'rgba(247,248,251,0.8)' }}>
             {description}
           </NativeTypography>
           <NativeButton style={styles.modalButton} onPress={onPrimary}>
@@ -319,7 +303,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  syncNotice: { color: 'rgba(16,24,40,0.6)', marginTop: -spacingScale.sm },
+  syncNotice: { color: 'rgba(247,248,251,0.6)', marginTop: -spacingScale.sm },
   progressCard: { gap: spacingScale.sm },
   progressRow: {
     flexDirection: 'row',
@@ -333,7 +317,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   progressLabel: {
-    color: 'rgba(16,24,40,0.6)',
+    color: 'rgba(247,248,251,0.6)',
     fontSize: 12,
   },
   heartsContainer: {
@@ -341,7 +325,7 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   accuracyHint: {
-    color: 'rgba(16,24,40,0.6)',
+    color: 'rgba(247,248,251,0.6)',
     textAlign: 'center',
     fontSize: 12,
   },
@@ -349,7 +333,7 @@ const styles = StyleSheet.create({
   directionButton: { flex: 1 },
   toggleText: { color: '#fff' },
   settingsHint: {
-    color: 'rgba(16,24,40,0.5)',
+    color: 'rgba(247,248,251,0.5)',
     textAlign: 'center',
     fontSize: 11,
   },

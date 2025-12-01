@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: 'rgba(16,24,40,0.15)',
+    borderColor: 'rgba(247,248,251,0.15)',
     borderRadius: spacingScale.lg,
     padding: spacingScale.sm,
     fontSize: 18,

@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
   dividerLine: {
     flex: 1,
     height: StyleSheet.hairlineWidth,
-    backgroundColor: 'rgba(16,24,40,0.1)',
+    backgroundColor: 'rgba(247,248,251,0.1)',
   },
   dividerLabel: {
     fontSize: 12,

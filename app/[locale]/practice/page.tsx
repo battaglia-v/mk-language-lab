@@ -175,9 +175,9 @@ export default function PracticePage() {
   return (
     <div className="space-y-4 sm:space-y-6 md:space-y-8">
       {/* Compact Hero Section */}
-      <section className="rounded-2xl border border-border/60 bg-black/30 p-3 sm:rounded-3xl sm:p-4 md:p-5">
+      <section className="rounded-2xl border border-border/60 bg-black/30 p-3 sm:rounded-3xl sm:p-4 md:p-5" data-testid="practice-hero">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
             <Button
               asChild
               variant="ghost"
@@ -189,29 +189,26 @@ export default function PracticePage() {
                 <span className="hidden sm:inline">{navT('backToDashboard')}</span>
               </Link>
             </Button>
-            <div className="space-y-0.5 sm:hidden">
-              <h1 className="text-lg font-semibold text-white">{t('title')}</h1>
-            </div>
           </div>
-          <div className="hidden space-y-1 text-balance sm:block">
-            <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{t('badge')}</p>
-            <h1 className="text-2xl font-semibold text-white md:text-3xl">{t('title')}</h1>
-            <p className="max-w-2xl text-xs text-muted-foreground md:text-sm">{t('subtitle')}</p>
+          <div className="flex-1 space-y-1 text-balance sm:text-right">
+            <p className="hidden text-[11px] uppercase tracking-[0.35em] text-muted-foreground sm:block">{t('badge')}</p>
+            <h1 className="text-lg font-semibold text-white sm:text-2xl md:text-3xl">{t('title')}</h1>
+            <p className="hidden max-w-2xl text-xs text-muted-foreground sm:inline-block sm:text-right md:text-sm">{t('subtitle')}</p>
           </div>
         </div>
 
         {/* Progress Stats */}
         {reviewedCount > 0 && (
           <div className="mt-3 flex flex-wrap items-center gap-2 sm:mt-4">
-            <div className="flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary">
+            <div className="flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary" data-testid="practice-stat">
               <TrendingUp className="h-3.5 w-3.5" aria-hidden="true" />
               <span>{t('drills.reviewedCount', { count: reviewedCount })}</span>
             </div>
-            <div className="rounded-full border border-border/60 bg-black/40 px-3 py-1.5 text-xs font-medium text-white">
+            <div className="rounded-full border border-border/60 bg-black/40 px-3 py-1.5 text-xs font-medium text-white" data-testid="practice-stat">
               {t('drills.accuracyLabel')}: <span className="text-primary">{accuracy}%</span>
             </div>
             {streak > 2 && (
-              <div className="flex items-center gap-1.5 rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-300">
+              <div className="flex items-center gap-1.5 rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-300" data-testid="practice-stat">
                 <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
                 <span>{t('drills.streakLabel', { count: streak })}</span>
               </div>
@@ -220,8 +217,8 @@ export default function PracticePage() {
         )}
       </section>
 
-      <div className="space-y-4 rounded-2xl border border-border/60 bg-black/30 p-4 sm:rounded-3xl sm:p-5 md:p-7">
-        <div className="flex flex-wrap gap-2">
+      <div className="space-y-4 rounded-2xl border border-border/60 bg-black/30 p-4 sm:rounded-3xl sm:p-5 md:p-7" data-testid="practice-workspace">
+        <div className="flex flex-wrap gap-2" data-testid="practice-panels">
           <DeckToggle
             label={t('savedDeck.badge')}
             count={savedDeck.length}

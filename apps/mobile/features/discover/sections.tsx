@@ -190,17 +190,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: spacingScale.sm,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'rgba(16,24,40,0.1)',
+    borderBottomColor: 'rgba(247,248,251,0.1)',
     paddingBottom: spacingScale.sm,
   },
   eventTitle: {
     color: brandColors.navy,
   },
   eventMeta: {
-    color: 'rgba(16,24,40,0.65)',
+    color: 'rgba(247,248,251,0.65)',
   },
   eventDescription: {
-    color: 'rgba(16,24,40,0.8)',
+    color: 'rgba(247,248,251,0.8)',
   },
   eventButton: {
     alignSelf: 'flex-start',

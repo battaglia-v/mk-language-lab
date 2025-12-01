@@ -703,7 +703,7 @@
     "openAction": "Open workspace",
     "cards": {
       "translate": {
-        "title": "Quick Translator",
+        "title": "Starter Deck",
         "description": "Translate text with history."
       },
       "tasks": {
@@ -716,7 +716,7 @@
       }
     },
     "translation": {
-      "tabLabel": "Translation",
+      "tabLabel": "Translation History",
       "description": "Move between Macedonian and English with structured prompts and phrase packs.",
       "cards": {
         "translate": {
@@ -769,7 +769,7 @@
       }
     },
     "savedDeck": {
-      "badge": "Translator deck",
+      "badge": "Saved Phrases",
       "title": "Practicing saved phrases",
       "description": "Quick Practice will use the phrases you saved in the translator.",
       "emptyDescription": "Save at least one translation to unlock this custom deck.",
