@@ -27,6 +27,8 @@
 
 ### 1. Enable Branch Protection (REQUIRED for blocking bad deploys)
 
+#### Quick Setup (2 minutes)
+
 **Go to GitHub Repository Settings:**
 1. Navigate to: `Settings` → `Branches` → `Branch protection rules`
 2. Click **"Add rule"** for `main` branch
@@ -39,6 +41,65 @@
 4. Repeat for `develop` branch if you use it
 
 **Result:** PRs cannot be merged if E2E tests fail.
+
+#### Detailed Branch Protection Setup Guide
+
+**Step 1: Navigate to Branch Protection Settings**
+1. Go to your repository on GitHub
+2. Click **Settings** (top navigation bar)
+3. In the left sidebar, click **Branches**
+4. Click the **"Add rule"** button
+
+**Step 2: Configure Branch Name Pattern**
+- In **Branch name pattern** field, enter: `main`
+- This rule will apply only to the `main` branch
+
+**Step 3: Require Pull Request Reviews (Recommended)**
+- ☑️ Check **"Require a pull request before merging"**
+- Set **"Required number of approvals"**: `1` (for solo projects) or `2` (for teams)
+- ☑️ Check **"Dismiss stale pull request approvals when new commits are pushed"**
+- ☑️ Check **"Require review from Code Owners"** (optional - if you have CODEOWNERS file)
+
+**Step 4: Select Required Status Checks**
+- ☑️ Check **"Require status checks to pass before merging"**
+- ☑️ Check **"Require branches to be up to date before merging"**
+- Click **"Add checks"** and select:
+  - `test` (from e2e.yml - E2E Tests)
+  - `ci-success` (if using comprehensive CI workflow)
+  - `lint` (if available)
+  - `type-check` (if available)
+
+**Step 5: Force Push & Deletion Protection**
+- ☑️ Check **"Do not allow force pushes"**
+- ☑️ Check **"Do not allow deletions"**
+
+**Step 6: Additional Security (Optional)**
+- ☑️ Check **"Require linear history"** (prevents merge commits, cleaner history)
+- ☑️ Check **"Require signed commits"** (enforces GPG signing for production security)
+- ☑️ Check **"Do not allow bypassing the above settings"** (admin cannot override)
+
+**Step 7: Save the Rule**
+- Click **"Create"** button to enable branch protection
+
+**Your Configuration Summary:**
+```
+Branch: main
+├─ Require pull request before merging
+├─ Require 1+ approvals
+├─ Dismiss stale reviews on new commits
+├─ Require status checks to pass:
+│  └─ test (E2E Tests)
+├─ Require up-to-date branches
+├─ Block force pushes
+├─ Block deletions
+└─ Admin cannot bypass
+```
+
+**After setup, what happens:**
+- ✅ Direct pushes to `main` are blocked
+- ✅ PRs cannot be merged if tests fail
+- ✅ PRs cannot be merged without approval (if enabled)
+- ✅ `main` branch cannot be force-pushed or deleted
 
 ### 2. Configure GitHub Secrets (REQUIRED for CI tests)
 
@@ -175,11 +236,69 @@ npx playwright show-report    # View HTML report locally
 git commit -m "docs: update readme [skip ci]"
 ```
 
+## Reminder Cron Workflow Setup
+
+### Overview
+The reminder-cron workflow (`reminder-cron.yml`) is a **fallback smoke test** for the reminder delivery system. Vercel's native cron (configured in `vercel.json`) is the primary mechanism. This workflow serves as a safety check and can be triggered manually via `workflow_dispatch`.
+
+### Configuration Requirements
+
+For the reminder-cron workflow to run successfully on production (`main` branch), you need to configure:
+
+**Required Secrets:**
+- `CRON_SECRET` - Secret token for authenticating cron requests
+- One of the following URL sources (for `REMINDER_CRON_BASE_URL`):
+  - `REMINDER_CRON_BASE_URL` - Direct cron endpoint URL
+  - OR `NEXT_PUBLIC_APP_URL` - Application base URL (fallback)
+  - OR `EXPO_PUBLIC_API_BASE_URL` - API base URL (fallback)
+
+### Setup Steps
+
+1. **Go to Settings → Secrets and variables → Actions**
+
+2. **Add `CRON_SECRET`:**
+   - Name: `CRON_SECRET`
+   - Value: Your cron authentication secret (same as in `vercel.json`)
+
+3. **Add URL Configuration (choose one or more):**
+   - Option A: Add `REMINDER_CRON_BASE_URL` with your cron endpoint URL
+   - Option B: Ensure `NEXT_PUBLIC_APP_URL` is configured (will be used as fallback)
+   - Option C: Ensure `EXPO_PUBLIC_API_BASE_URL` is configured (will be used as fallback)
+
+4. **To test the workflow:**
+   - Go to **Actions** tab
+   - Select **Reminder Cron Smoke** workflow
+   - Click **Run workflow** button
+   - Monitor the job execution
+
+### Understanding the Prerequisite Check
+
+The workflow has a prerequisite check (`Determine cron prerequisites` step) that:
+- Ensures the workflow runs on the `main` branch only (production-only)
+- Validates that `CRON_SECRET` is configured
+- Validates that at least one URL source is available for `REMINDER_CRON_BASE_URL`
+
+**If prerequisites fail:**
+- The workflow skips the actual cron invocation
+- Check the job logs for the skip reason
+- Ensure all required secrets are configured
+- Verify you're running on the `main` branch
+
+### Debugging
+
+**To see what values are being used (for debugging):**
+- Look at the "Determine cron prerequisites" step in the workflow logs
+- The step outputs whether each secret is present (without revealing values)
+- If missing, configure the corresponding secret in Settings → Secrets
+
 ## Summary
 
 ✅ **Ready to deploy:** Yes, all tests pass
 ⚠️ **Protected from bad deploys:** No, need branch protection
 🔒 **Will prevent future breaks:** Yes, after setup
 📊 **Test coverage:** Excellent (63 comprehensive tests)
+🔔 **Reminder workflow:** Ready (after configuring secrets)
 
-**Next Step:** Enable branch protection rules to block merging failed PRs.
+**Next Steps:**
+1. Enable branch protection rules to block merging failed PRs
+2. Configure reminder-cron secrets if using reminder delivery features

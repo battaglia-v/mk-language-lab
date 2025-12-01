@@ -39,12 +39,18 @@ jobs:
         run: |
           reason=""
 
+          # Debug: show what we're checking (without exposing secrets)
+          echo "Checking prerequisites..."
+          echo "  Ref: ${GITHUB_REF_NAME}"
+          echo "  CRON_SECRET present: $([ -z "${CRON_SECRET}" ] && echo 'NO' || echo 'YES')"
+          echo "  REMINDER_CRON_BASE_URL present: $([ -z "${REMINDER_CRON_BASE_URL}" ] && echo 'NO' || echo 'YES')"
+
           if [ "${GITHUB_REF_NAME}" != "main" ]; then
             reason="workflow is running on ref ${GITHUB_REF_NAME:-unknown}, but cron smoke is production-only"
           elif [ -z "${CRON_SECRET}" ]; then
             reason="missing CRON_SECRET secret"
           elif [ -z "${REMINDER_CRON_BASE_URL}" ]; then
-            reason="missing REMINDER_CRON_BASE_URL secret"
+            reason="missing REMINDER_CRON_BASE_URL secret or fallback URLs (NEXT_PUBLIC_APP_URL, EXPO_PUBLIC_API_BASE_URL)"
           fi
 
           if [ -n "$reason" ]; then
