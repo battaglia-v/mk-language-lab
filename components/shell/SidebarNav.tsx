@@ -44,6 +44,7 @@ export function SidebarNav({ isOpen, onNavigate }: SidebarNavProps) {
               <Link
                 key={item.id}
                 href={href}
+                prefetch={true}
                 className={cn(
                   "group icon-gap flex items-center rounded-2xl px-3 py-3 text-sm font-semibold transition justify-center xl:justify-start",
                   active

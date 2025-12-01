@@ -41,6 +41,7 @@ export function MobileTabNav() {
             {accentItem && AccentIcon ? (
               <Link
                 href={buildHref(accentItem.path)}
+                prefetch={true}
                 aria-current={isNavItemActive(pathname, buildHref(accentItem.path)) ? "page" : undefined}
                 className={cn(
                   "relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-amber-300 via-primary to-amber-500 text-slate-900 shadow-xl transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--mk-bg)]",
@@ -85,6 +86,7 @@ function NavRail({ items, t, pathname, buildHref, label }: NavRailProps) {
           <li key={item.id} className="flex-1">
             <Link
               href={href}
+              prefetch={true}
               aria-current={active ? "page" : undefined}
               className={cn(
                 "group flex flex-col items-center justify-center gap-1.5 rounded-2xl px-2 py-2 text-[11px] font-semibold transition-all duration-200",
