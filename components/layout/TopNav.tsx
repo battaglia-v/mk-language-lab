@@ -7,7 +7,6 @@ import { cn } from '@/lib/utils';
 import { AjvarLogo } from '@/components/AjvarLogo';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { UserMenu } from '@/components/auth/UserMenu';
-import { CommandMenuLazy } from '@/components/CommandMenuLazy';
 import type { MissionStatus } from '@mk/api-client';
 import { useMissionStatusResource } from '@/hooks/useMissionStatus';
 import type { MissionLoadState } from '@/hooks/useMissionStatus';
@@ -44,7 +43,6 @@ export interface TopNavProps {
  * - Responsive mobile hamburger menu
  * - Language switcher
  * - User menu
- * - Command menu (search)
  * - Sticky positioning
  * - Proper ARIA labels for accessibility
  *
@@ -102,7 +100,6 @@ export function TopNav({
           </Link>
 
           <div className="flex items-center gap-2 lg:gap-3">
-            <CommandMenuLazy />
             <LanguageSwitcher />
             <UserMenu />
           </div>

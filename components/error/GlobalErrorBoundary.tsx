@@ -2,7 +2,8 @@
 
 import * as Sentry from "@sentry/nextjs";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import SupportForm from "@/components/support/SupportForm";
 
 interface ErrorBoundaryProps {
   error: Error & { digest?: string };
@@ -10,6 +11,8 @@ interface ErrorBoundaryProps {
 }
 
 export default function GlobalErrorBoundary({ error, reset }: ErrorBoundaryProps) {
+  const [isSupportModalOpen, setIsSupportModalOpen] = useState(false);
+
   useEffect(() => {
     // Log the error to Sentry
     Sentry.captureException(error);
@@ -54,10 +57,26 @@ export default function GlobalErrorBoundary({ error, reset }: ErrorBoundaryProps
           </Link>
         </div>
 
-        <p className="text-center text-xs text-muted-foreground">
-          If this problem persists, please contact support.
-        </p>
+        <div className="flex justify-center">
+          <button
+            onClick={() => setIsSupportModalOpen(true)}
+            className="text-sm text-primary hover:underline font-medium"
+          >
+            Contact Support
+          </button>
+        </div>
       </div>
+
+      {/* Support Form Modal */}
+      <SupportForm
+        open={isSupportModalOpen}
+        onOpenChange={setIsSupportModalOpen}
+        errorDetails={{
+          message: error.message,
+          digest: error.digest,
+          stack: error.stack,
+        }}
+      />
     </div>
   );
 }

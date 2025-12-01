@@ -1413,5 +1413,21 @@
       "subtitle": "See what your classmates unlocked this week.",
       "empty": "No community highlights yet."
     }
+  },
+  "support": {
+    "title": "Contact Support",
+    "subtitle": "Report an issue or get help",
+    "name": "Your Name",
+    "email": "Your Email",
+    "subject": "Subject",
+    "description": "Description",
+    "errorDetails": "Error Details",
+    "submit": "Send Support Request",
+    "cancel": "Cancel",
+    "sending": "Sending...",
+    "success": "Support request sent successfully!",
+    "error": "Failed to send support request. Please try again.",
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address"
   }
 }

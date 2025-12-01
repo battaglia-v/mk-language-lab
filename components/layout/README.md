@@ -115,7 +115,6 @@ interface TopNavProps {
 - **Mobile hamburger menu** with smooth animations
 - **Keyboard navigation** (Escape key closes mobile menu)
 - **Active link highlighting** with proper ARIA attributes
-- **Integrated search** via CommandMenu
 - **Language switcher** for EN/MK
 - **User menu** with authentication actions
 - **Skip to content link** for accessibility

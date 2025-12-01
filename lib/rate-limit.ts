@@ -33,6 +33,15 @@ export const wordOfDayRateLimit = redis ? new Ratelimit({
   prefix: '@upstash/ratelimit/wotd',
 }) : null;
 
+// Support API - Strict limits to prevent spam
+// 5 requests per hour per IP
+export const supportRateLimit = redis ? new Ratelimit({
+  redis,
+  limiter: Ratelimit.slidingWindow(5, '1 h'),
+  analytics: true,
+  prefix: '@upstash/ratelimit/support',
+}) : null;
+
 /**
  * Helper function to apply rate limiting to an API route
  * Returns true if request should proceed, false if rate limited

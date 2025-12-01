@@ -208,11 +208,11 @@ export default function PracticeAudioAdminPage() {
   }, [entries]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 px-4 sm:px-6">
       <header className="space-y-2">
         <p className="text-xs font-semibold uppercase tracking-[0.4em] text-muted-foreground">Practice audio</p>
-        <h1 className="text-3xl font-semibold">Audio library</h1>
-        <p className="text-sm text-muted-foreground max-w-2xl">
+        <h1 className="text-2xl sm:text-3xl font-semibold">Audio library</h1>
+        <p className="text-xs sm:text-sm text-muted-foreground max-w-2xl">
           Upload and validate human-recorded clips for Quick Practice prompts. Entries sync to Prisma and power the
           Quick Practice HUD plus mobile cache worker.
         </p>
@@ -227,20 +227,20 @@ export default function PracticeAudioAdminPage() {
         </Button>
       </div>
 
-      <section className="grid gap-4 md:grid-cols-3">
+      <section className="grid gap-4 grid-cols-1 sm:grid-cols-3">
         <Card className="p-4">
           <p className="text-xs uppercase tracking-wide text-muted-foreground">Total clips</p>
-          <p className="text-2xl font-semibold">{stats.total}</p>
+          <p className="text-xl sm:text-2xl font-semibold">{stats.total}</p>
         </Card>
         <Card className="p-4">
           <p className="text-xs uppercase tracking-wide text-muted-foreground">Published / Draft</p>
-          <p className="text-2xl font-semibold">
+          <p className="text-xl sm:text-2xl font-semibold">
             {stats.published} <span className="text-sm text-muted-foreground">/ {stats.unpublished}</span>
           </p>
         </Card>
         <Card className="p-4">
           <p className="text-xs uppercase tracking-wide text-muted-foreground">Human vs TTS</p>
-          <p className="text-2xl font-semibold">
+          <p className="text-xl sm:text-2xl font-semibold">
             {stats.human} <span className="text-sm text-muted-foreground">/ {stats.tts}</span>
           </p>
         </Card>
@@ -248,20 +248,21 @@ export default function PracticeAudioAdminPage() {
 
       <Card className="overflow-hidden">
         <div className="max-h-[480px] overflow-auto">
-          <table className="min-w-full text-left text-sm">
-            <thead className="bg-muted/40 text-xs uppercase tracking-wide text-muted-foreground">
-              <tr>
-                <th className="px-4 py-3">Prompt</th>
-                <th className="px-4 py-3">Status</th>
-                <th className="px-4 py-3">Speaker</th>
-                <th className="px-4 py-3">Speed</th>
-                <th className="px-4 py-3">Source</th>
-                <th className="px-4 py-3">Duration</th>
-                <th className="px-4 py-3">Updated</th>
-                <th className="px-4 py-3">Links</th>
-              </tr>
-            </thead>
-            <tbody>
+          <div className="hidden md:block">
+            <table className="min-w-full text-left text-sm">
+              <thead className="bg-muted/40 text-xs uppercase tracking-wide text-muted-foreground">
+                <tr>
+                  <th className="px-4 py-3">Prompt</th>
+                  <th className="px-4 py-3">Status</th>
+                  <th className="px-4 py-3">Speaker</th>
+                  <th className="px-4 py-3">Speed</th>
+                  <th className="px-4 py-3">Source</th>
+                  <th className="px-4 py-3">Duration</th>
+                  <th className="px-4 py-3">Updated</th>
+                  <th className="px-4 py-3">Links</th>
+                </tr>
+              </thead>
+              <tbody>
               {entries.map((entry, index) => (
                 <tr key={entry.id} className={index % 2 === 0 ? 'bg-background' : 'bg-muted/10'}>
                   <td className="px-4 py-3 font-mono text-xs">{entry.promptId}</td>
@@ -291,15 +292,67 @@ export default function PracticeAudioAdminPage() {
                   </td>
                 </tr>
               ))}
-              {!isLoading && entries.length === 0 ? (
-                <tr>
-                  <td className="px-4 py-6 text-center text-sm text-muted-foreground" colSpan={8}>
-                    No audio clips yet. Uploads will appear here after the storage pipeline is wired up.
-                  </td>
-                </tr>
-              ) : null}
-            </tbody>
-          </table>
+                {!isLoading && entries.length === 0 ? (
+                  <tr>
+                    <td className="px-4 py-6 text-center text-sm text-muted-foreground" colSpan={8}>
+                      No audio clips yet. Uploads will appear here after the storage pipeline is wired up.
+                    </td>
+                  </tr>
+                ) : null}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile Card View */}
+          <div className="md:hidden space-y-4 p-4">
+            {entries.map((entry) => (
+              <Card key={entry.id} className="p-4 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-xs font-semibold">{entry.promptId}</span>
+                  <Badge variant={entry.status === 'published' ? 'default' : 'secondary'}>
+                    {entry.status}
+                  </Badge>
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div>
+                    <span className="text-muted-foreground">Speaker:</span> {entry.speaker ?? '—'}
+                  </div>
+                  <div>
+                    <span className="text-muted-foreground">Speed:</span> {entry.speed ?? 'normal'}
+                  </div>
+                  <div>
+                    <span className="text-muted-foreground">Source:</span> {entry.sourceType ?? 'human'}
+                  </div>
+                  <div>
+                    <span className="text-muted-foreground">Duration:</span>{' '}
+                    {entry.duration ? `${entry.duration.toFixed(1)}s` : '—'}
+                  </div>
+                </div>
+                <div className="text-xs text-muted-foreground">
+                  Updated: {entry.updatedAt ? new Date(entry.updatedAt).toLocaleDateString() : '—'}
+                </div>
+                <div className="flex gap-2 pt-2">
+                  <Button asChild size="sm" variant="outline" className="flex-1">
+                    <a href={entry.cdnUrl} target="_blank" rel="noreferrer">
+                      Primary
+                    </a>
+                  </Button>
+                  {entry.slowUrl && (
+                    <Button asChild size="sm" variant="outline" className="flex-1">
+                      <a href={entry.slowUrl} target="_blank" rel="noreferrer">
+                        Slow
+                      </a>
+                    </Button>
+                  )}
+                </div>
+              </Card>
+            ))}
+            {!isLoading && entries.length === 0 && (
+              <p className="text-center text-sm text-muted-foreground py-8">
+                No audio clips yet. Uploads will appear here after the storage pipeline is wired up.
+              </p>
+            )}
+          </div>
         </div>
         <Separator />
         <div className="flex items-center justify-between p-4 text-xs text-muted-foreground">

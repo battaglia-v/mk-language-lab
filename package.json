@@ -84,6 +84,7 @@
     "react-dom": "19.2.0",
     "react-native-svg": "^15.2.0",
     "react-native-web": "^0.21.0",
+    "resend": "^6.5.2",
     "swr": "^2.3.6",
     "tailwind-merge": "^3.3.1",
     "tamagui": "^1.137.1",

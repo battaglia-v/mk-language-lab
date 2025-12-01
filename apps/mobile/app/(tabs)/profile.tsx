@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { Pressable, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
+import { Pressable, SafeAreaView, ScrollView, StyleSheet, View, Linking, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { NativeTypography, NativeCard, NativeStatPill, NativeButton } from '@mk/ui';
 import { brandColors, spacingScale } from '@mk/tokens';
@@ -49,6 +49,16 @@ export default function ProfileScreen() {
   const handleManageBadges = useCallback(() => {
     router.push('/(modals)/mission-settings');
   }, [router]);
+
+  const handleOpenAdmin = useCallback(async () => {
+    const adminUrl = 'https://mk-language-lab.vercel.app/admin';
+    const canOpen = await Linking.canOpenURL(adminUrl);
+    if (canOpen) {
+      await Linking.openURL(adminUrl);
+    } else {
+      Alert.alert('Error', 'Unable to open admin panel');
+    }
+  }, []);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -178,6 +188,29 @@ export default function ProfileScreen() {
                 </View>
               )}
             </View>
+
+            {authUser?.role === 'admin' && (
+              <NativeCard style={styles.adminCard}>
+                <View style={styles.adminHeader}>
+                  <NativeTypography variant="title" style={styles.adminTitle}>
+                    Admin Panel
+                  </NativeTypography>
+                </View>
+                <NativeTypography variant="body" style={styles.body}>
+                  Access the admin dashboard to manage content, vocabulary, and user data.
+                </NativeTypography>
+                <NativeButton onPress={handleOpenAdmin}>
+                  <View style={styles.adminButtonContent}>
+                    <NativeTypography variant="body" style={styles.adminButtonText}>
+                      Open Admin Panel
+                    </NativeTypography>
+                    <NativeTypography variant="body" style={styles.externalLinkIcon}>
+                      →
+                    </NativeTypography>
+                  </View>
+                </NativeButton>
+              </NativeCard>
+            )}
           </>
         ) : (
           <NativeCard style={styles.warningCard}>
@@ -215,4 +248,10 @@ const styles = StyleSheet.create({
   badgeLabel: { color: brandColors.text },
   badgeDescription: { color: 'rgba(16,24,40,0.7)' },
   badgeMeta: { color: 'rgba(16,24,40,0.6)' },
+  adminCard: { gap: spacingScale.sm },
+  adminHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  adminTitle: { color: brandColors.navy },
+  adminButtonContent: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: spacingScale.xs },
+  adminButtonText: { color: brandColors.cream },
+  externalLinkIcon: { color: brandColors.cream, fontSize: 18 },
 });
