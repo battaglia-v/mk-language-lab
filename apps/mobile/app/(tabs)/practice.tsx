@@ -91,35 +91,18 @@ export default function PracticeScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
+        {/* Simplified Header */}
         <View style={styles.headerRow}>
-          <View style={{ flex: 1 }}>
-            <NativeTypography variant="hero" style={styles.hero}>
-              Quick Practice
-            </NativeTypography>
-            <NativeTypography variant="body" style={styles.subtitle}>
-              Swipe through prompts, keep your hearts, and reach the XP goal.
-            </NativeTypography>
-          </View>
-          <View style={styles.toolbar}>
-            <NativeButton
-              variant="ghost"
-              style={styles.toolbarButton}
-              onPress={() => router.push('/(modals)/practice-settings')}
-            >
-              <NativeTypography variant="body" style={styles.toolbarButtonText}>
-                Session settings
-              </NativeTypography>
-            </NativeButton>
-            <NativeButton
-              variant="ghost"
-              style={styles.toolbarButton}
-              onPress={() => router.push('/(modals)/translator-history')}
-            >
-              <NativeTypography variant="body" style={styles.toolbarButtonText}>
-                Translator inbox
-              </NativeTypography>
-            </NativeButton>
-          </View>
+          <NativeTypography variant="hero" style={styles.hero}>
+            Practice
+          </NativeTypography>
+          <NativeButton
+            variant="ghost"
+            style={styles.settingsButton}
+            onPress={() => router.push('/(modals)/practice-settings')}
+          >
+            <Ionicons name="settings-outline" size={24} color={brandColors.navy} />
+          </NativeButton>
         </View>
 
         {isRestoring ? (
@@ -137,41 +120,40 @@ export default function PracticeScreen() {
           />
         ) : null}
 
+        {/* Simplified Progress Card - Only Essential Info */}
         <NativeCard style={styles.progressCard}>
-          <View style={styles.hudRow}>
-            <NativeProgressRing
-              progress={sessionProgress / 100}
-              value={`${correctCount}/${5}`}
-              label="Goal"
-            />
-            <View style={styles.hudStats}>
-              <NativeStatPill label="Accuracy" value={`${accuracy || 0}%`} accent="green" />
-              <NativeStatPill label="Attempts" value={`${totalAttempts}`} accent="gold" />
-              <NativeStatPill label="Mode" value={practiceMode} accent="red" />
-              <NativeStatPill label="Difficulty" value={difficultyPreset.label} accent="gold" />
+          <View style={styles.progressRow}>
+            <View style={styles.progressInfo}>
+              <NativeTypography variant="title" style={styles.progressValue}>
+                {correctCount} / {SESSION_TARGET}
+              </NativeTypography>
+              <NativeTypography variant="caption" style={styles.progressLabel}>
+                Correct answers
+              </NativeTypography>
+            </View>
+            <View style={styles.heartsContainer}>
+              {Array.from({ length: HEART_SLOTS }, (_, index) => (
+                <Ionicons
+                  key={index}
+                  name="heart"
+                  size={24}
+                  color={index < hearts ? brandColors.red : 'rgba(16,24,40,0.15)'}
+                />
+              ))}
             </View>
           </View>
-          <View style={styles.heartsRow}>
-            {Array.from({ length: HEART_SLOTS }, (_, index) => (
-              <Ionicons
-                key={index}
-                name="heart"
-                size={20}
-                color={index < hearts ? brandColors.red : 'rgba(16,24,40,0.2)'}
-              />
-            ))}
-          </View>
-          <NativeTypography variant="caption" style={styles.timerLabel}>
-            {timerDuration
-              ? `Timer: ${(timeRemaining ?? timerDuration).toString()}s remaining`
-              : 'Timer off for Casual runs'}
-          </NativeTypography>
+          {accuracy > 0 && (
+            <NativeTypography variant="caption" style={styles.accuracyHint}>
+              {accuracy}% accuracy • {totalAttempts} attempts
+            </NativeTypography>
+          )}
         </NativeCard>
 
-        <View style={styles.toggleRow}>
+        {/* Direction Toggle - Only Essential Control */}
+        <View style={styles.directionToggle}>
           <NativeButton
             variant={direction === 'enToMk' ? 'primary' : 'secondary'}
-            style={styles.toggleButton}
+            style={styles.directionButton}
             onPress={() => setDirection('enToMk')}
           >
             <NativeTypography variant="body" style={styles.toggleText}>
@@ -180,7 +162,7 @@ export default function PracticeScreen() {
           </NativeButton>
           <NativeButton
             variant={direction === 'mkToEn' ? 'primary' : 'secondary'}
-            style={styles.toggleButton}
+            style={styles.directionButton}
             onPress={() => setDirection('mkToEn')}
           >
             <NativeTypography variant="body" style={styles.toggleText}>
@@ -189,74 +171,10 @@ export default function PracticeScreen() {
           </NativeButton>
         </View>
 
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.modeRow}
-        >
-          {PRACTICE_MODES.map((mode) => (
-            <NativeButton
-              key={mode.key}
-              variant={practiceMode === mode.key ? 'primary' : 'secondary'}
-              style={styles.modeChip}
-              onPress={() => setPracticeMode(mode.key)}
-            >
-              <NativeTypography variant="body" style={styles.modeText}>
-                {mode.label}
-              </NativeTypography>
-            </NativeButton>
-          ))}
-        </ScrollView>
-
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.difficultyRow}
-        >
-          {PRACTICE_DIFFICULTIES.map((preset) => {
-            const isSelected = difficulty === preset.id;
-            return (
-              <NativeButton
-                key={preset.id}
-                variant={isSelected ? 'primary' : 'secondary'}
-                style={styles.difficultyButton}
-                onPress={() => setDifficulty(preset.id)}
-              >
-                <NativeTypography
-                  variant="body"
-                  style={[styles.difficultyText, !isSelected && styles.difficultyTextUnselected]}
-                >
-                  {preset.label} · {Math.round(preset.xpMultiplier * 100)}% XP
-                </NativeTypography>
-                <NativeTypography
-                  variant="caption"
-                  style={[styles.difficultyHint, !isSelected && styles.difficultyHintUnselected]}
-                >
-                  {preset.timerSeconds ? `${preset.timerSeconds}s timer` : 'No timer'}
-                </NativeTypography>
-              </NativeButton>
-            );
-          })}
-        </ScrollView>
-
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.categoryRow}
-        >
-          {categories.map((item) => (
-            <NativeButton
-              key={item}
-              variant={category === item ? 'primary' : 'secondary'}
-              style={styles.categoryButton}
-              onPress={() => setCategory(item)}
-            >
-              <NativeTypography variant="body" style={styles.categoryText}>
-                {item === 'all' ? 'All topics' : item}
-              </NativeTypography>
-            </NativeButton>
-          ))}
-        </ScrollView>
+        {/* Current Settings Hint */}
+        <NativeTypography variant="caption" style={styles.settingsHint}>
+          {practiceMode} • {difficultyPreset.label} • {category === 'all' ? 'All topics' : category}
+        </NativeTypography>
 
         <View style={styles.cardSection}>
           <CardStack
@@ -387,59 +305,54 @@ function SyncBanner({ pendingCount, isSyncing, lastError, onSync }: SyncBannerPr
 
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: brandColors.cream },
-  container: { padding: spacingScale.xl, gap: spacingScale.lg },
-  headerRow: { gap: spacingScale.sm },
-  hero: { color: brandColors.navy },
-  subtitle: { color: 'rgba(16,24,40,0.8)' },
-  syncNotice: { color: 'rgba(16,24,40,0.6)' },
-  toolbar: { gap: spacingScale.xs },
-  toolbarButton: { borderColor: 'rgba(16,24,40,0.2)', paddingVertical: spacingScale.xs },
-  toolbarButtonText: { color: brandColors.navy },
-  progressCard: { gap: spacingScale.md },
-  hudRow: { flexDirection: 'row', gap: spacingScale.lg, alignItems: 'center' },
-  hudStats: { flex: 1, gap: spacingScale.sm },
-  heartsRow: {
+  container: { padding: spacingScale.lg, gap: spacingScale.md },
+  headerRow: {
     flexDirection: 'row',
-    gap: spacingScale.xs,
-    justifyContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: spacingScale.xs,
   },
-  timerLabel: {
+  hero: { color: brandColors.navy, fontSize: 32 },
+  settingsButton: {
+    width: 44,
+    height: 44,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  syncNotice: { color: 'rgba(16,24,40,0.6)', marginTop: -spacingScale.sm },
+  progressCard: { gap: spacingScale.sm },
+  progressRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  progressInfo: { gap: 2 },
+  progressValue: {
+    color: brandColors.navy,
+    fontSize: 28,
+    fontWeight: '700',
+  },
+  progressLabel: {
+    color: 'rgba(16,24,40,0.6)',
+    fontSize: 12,
+  },
+  heartsContainer: {
+    flexDirection: 'row',
+    gap: 6,
+  },
+  accuracyHint: {
     color: 'rgba(16,24,40,0.6)',
     textAlign: 'center',
+    fontSize: 12,
   },
-  toggleRow: { flexDirection: 'row', gap: spacingScale.sm },
-  toggleButton: { flex: 1 },
+  directionToggle: { flexDirection: 'row', gap: spacingScale.sm },
+  directionButton: { flex: 1 },
   toggleText: { color: '#fff' },
-  modeRow: {
-    flexDirection: 'row',
-    gap: spacingScale.sm,
-    paddingVertical: spacingScale.xs,
+  settingsHint: {
+    color: 'rgba(16,24,40,0.5)',
+    textAlign: 'center',
+    fontSize: 11,
   },
-  modeChip: {
-    minWidth: 140,
-  },
-  modeText: { color: '#fff' },
-  difficultyRow: {
-    flexDirection: 'row',
-    gap: spacingScale.sm,
-    paddingVertical: spacingScale.xs,
-  },
-  difficultyButton: {
-    minWidth: 200,
-    alignItems: 'flex-start',
-    gap: spacingScale.xs,
-  },
-  difficultyText: { color: '#fff' },
-  difficultyTextUnselected: { color: brandColors.navy },
-  difficultyHint: { color: 'rgba(255,255,255,0.85)' },
-  difficultyHintUnselected: { color: 'rgba(16,24,40,0.7)' },
-  categoryRow: {
-    flexDirection: 'row',
-    gap: spacingScale.sm,
-    paddingVertical: spacingScale.xs,
-  },
-  categoryButton: {},
-  categoryText: { color: '#fff' },
   cardSection: { gap: spacingScale.sm },
   cardActions: {
     flexDirection: 'row',
