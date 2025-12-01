@@ -59,12 +59,6 @@ export function SidebarNav({ isOpen, onNavigate }: SidebarNavProps) {
             );
           })}
         </nav>
-        <div className="mt-auto hidden px-6 pb-8 xl:block">
-          <div className="rounded-2xl border border-sidebar-border/60 bg-sidebar-accent/70 p-4 text-sm text-sidebar-foreground">
-            <p className="text-xs uppercase tracking-[0.3em] text-sidebar-foreground/70">{t("roadmap")}</p>
-            <p className="mt-2 font-semibold text-sidebar-primary-foreground">{t("roadmapBlurb")}</p>
-          </div>
-        </div>
       </div>
       {isOpen ? (
         <button

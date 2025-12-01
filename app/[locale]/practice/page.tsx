@@ -153,12 +153,16 @@ export default function PracticePage() {
 
   useEffect(() => {
     const handler = (event: KeyboardEvent) => {
-      if (event.key === ' ') {
+      // Don't intercept if user is typing in an input field
+      const target = event.target as HTMLElement;
+      const isInputField = target?.tagName === 'INPUT' || target?.tagName === 'TEXTAREA';
+
+      if (event.key === ' ' && !isInputField) {
         event.preventDefault();
         toggleReveal();
-      } else if (event.key === 'ArrowRight') {
+      } else if (event.key === 'ArrowRight' && !isInputField) {
         goNext();
-      } else if (event.key === 'ArrowLeft') {
+      } else if (event.key === 'ArrowLeft' && !isInputField) {
         goPrevious();
       }
     };
