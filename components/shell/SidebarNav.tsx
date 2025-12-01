@@ -27,9 +27,9 @@ export function SidebarNav({ isOpen, onNavigate }: SidebarNavProps) {
         )}
       >
         <div className="flex items-center justify-between gap-3 border-b border-sidebar-border px-6 py-5 xl:px-6">
-          <div className="flex flex-col">
-            <p className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground">{t("label")}</p>
-            <p className="text-xl font-semibold mk-gradient xl:text-2xl">македонски</p>
+          <div className="flex flex-col xl:flex">
+            <p className="hidden text-[10px] uppercase tracking-[0.4em] text-muted-foreground xl:block">{t("label")}</p>
+            <p className="hidden text-xl font-semibold mk-gradient xl:block xl:text-2xl">македонски</p>
           </div>
           <span className="hidden rounded-full border border-sidebar-border px-3 py-1 text-[11px] text-sidebar-foreground/70 xl:inline-flex">
             lab

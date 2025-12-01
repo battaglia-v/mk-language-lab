@@ -35,7 +35,7 @@ export default async function ProfilePage() {
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary/80">{t('title')}</p>
               <h1 className="text-3xl font-bold text-white md:text-4xl">{t('description')}</h1>
               <p className="text-sm text-slate-300">
-                Track your streak, quests, and badges across every device with the new glass dashboard.
+                Track your streak, quests, and badges across every device.
               </p>
             </div>
           </div>

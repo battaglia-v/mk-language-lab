@@ -370,7 +370,7 @@ export default function TasksPage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary/80">{t('title')}</p>
                 <h1 className="text-3xl font-bold md:text-4xl text-white">{t('subtitle')}</h1>
                 <p className="text-sm text-slate-300">
-                  Arrange study tasks, quests, and reminders on a glassy kanban that syncs with the rest of the dashboard.
+                  Organize your study tasks, quests, and reminders.
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">
