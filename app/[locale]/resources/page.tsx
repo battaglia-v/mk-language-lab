@@ -158,22 +158,22 @@ export default function ResourcesPage() {
 
       <div className={cn('lab-grid', isDesktop && !panelCollapsed && 'has-panel')} data-testid="resources-workspace">
         <div className="space-y-4">
-          <div className="space-y-4 rounded-3xl border border-border/60 bg-black/30 card-padding-lg md:p-7">
+          <div className="space-y-3.5 rounded-2xl border border-border/60 bg-black/30 p-4 sm:space-y-4 sm:rounded-3xl sm:p-5 md:p-7">
             <div className="flex flex-col gap-3 md:flex-row md:items-center">
               <div className="relative flex-1">
-                <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground sm:left-4" />
                 <Input
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder={t('searchPlaceholder')}
-                  className="h-12 rounded-2xl border-border/60 bg-transparent pl-12 text-sm"
+                  className="min-h-[44px] rounded-2xl border-border/60 bg-transparent pl-10 text-sm sm:h-12 sm:pl-12"
                 />
               </div>
               {data?.pdf ? (
                 <Button
                   asChild
                   variant="outline"
-                  className="h-12 rounded-full border-border/60 px-4 text-sm font-semibold text-muted-foreground hover:text-foreground"
+                  className="min-h-[44px] rounded-full border-border/60 px-4 text-sm font-semibold text-muted-foreground hover:text-foreground sm:h-12"
                 >
                   <a href={data.pdf.url} target="_blank" rel="noreferrer">
                     <span className="inline-flex items-center gap-2">
@@ -184,29 +184,28 @@ export default function ResourcesPage() {
                 </Button>
               ) : null}
             </div>
-            <p className="mt-2 text-xs text-muted-foreground">{updatedLabel}</p>
-            <div className="mt-4 flex flex-wrap gap-2 lg:hidden">
+            <p className="text-xs text-muted-foreground">{updatedLabel}</p>
+            <div className="flex flex-wrap gap-2 lg:hidden">
               <Button
                 type="button"
                 variant="outline"
-                className="inline-flex items-center gap-2 rounded-full border-border/60 text-sm font-semibold text-muted-foreground"
+                className="inline-flex min-h-[44px] items-center gap-2 rounded-full border-border/60 px-4 text-sm font-semibold text-muted-foreground"
                 onClick={() => setIsPanelDrawerOpen(true)}
               >
                 <PanelLeftOpen className="h-4 w-4" aria-hidden="true" />
                 {t('openAction')}
               </Button>
-              {panelCollapsed && !isDesktop ? null : null}
             </div>
           </div>
 
-          <section className="space-y-4 rounded-3xl border border-border/60 bg-black/30 card-padding-lg md:p-7">
+          <section className="space-y-4 rounded-2xl border border-border/60 bg-black/30 p-4 sm:rounded-3xl sm:p-5 md:p-7">
             <div className="card-grid two">
               {loading
                 ? Array.from({ length: 6 }).map((_, index) => <ResourceSkeleton key={`resource-skeleton-${index}`} />)
                 : filtered.map((resource) => <ResourceCard key={resource.id} resource={resource} />)}
             </div>
             {!loading && !filtered.length ? (
-              <div className="rounded-3xl border border-dashed border-border/60 bg-black/30 card-padding text-sm text-muted-foreground">
+              <div className="rounded-2xl border border-dashed border-border/60 bg-black/30 p-4 text-xs text-muted-foreground sm:rounded-3xl sm:p-5 sm:text-sm">
                 {t('emptyState')}
               </div>
             ) : null}
@@ -222,7 +221,7 @@ export default function ResourcesPage() {
                   type="button"
                   variant="ghost"
                   size="icon-sm"
-                  className="rounded-full border border-border/60 text-muted-foreground"
+                  className="min-h-[44px] min-w-[44px] rounded-full border border-border/60 text-muted-foreground"
                   onClick={() => setPanelCollapsed(true)}
                   aria-label={translateT('contextCollapse')}
                 >
@@ -241,7 +240,7 @@ export default function ResourcesPage() {
               <Button
                 type="button"
                 variant="outline"
-                className="inline-flex items-center gap-2 rounded-full border-border/60 text-sm font-semibold text-muted-foreground"
+                className="inline-flex min-h-[44px] items-center gap-2 rounded-full border-border/60 px-4 text-sm font-semibold text-muted-foreground"
                 onClick={() => setPanelCollapsed(false)}
               >
                 <PanelLeftOpen className="h-4 w-4" aria-hidden="true" />
@@ -255,14 +254,14 @@ export default function ResourcesPage() {
       {!isDesktop && isPanelDrawerOpen ? (
         <div className="fixed inset-0 z-40 flex flex-col bg-black/40 lg:hidden" role="dialog" aria-modal>
           <button type="button" className="flex-1" aria-label={translateT('contextCollapse')} onClick={() => setIsPanelDrawerOpen(false)} />
-          <div className="rounded-t-3xl border border-border/50 bg-background/90 card-padding shadow-2xl backdrop-blur">
+          <div className="rounded-t-2xl border border-border/50 bg-background/90 p-4 shadow-2xl backdrop-blur sm:rounded-t-3xl sm:p-5">
             <div className="mb-4 flex items-center justify-between gap-2">
               <p className="text-sm font-semibold text-white">{t('openAction')}</p>
               <Button
                 type="button"
                 variant="ghost"
                 size="icon-sm"
-                className="rounded-full border border-border/60 text-muted-foreground"
+                className="min-h-[44px] min-w-[44px] rounded-full border border-border/60 text-muted-foreground"
                 onClick={() => setIsPanelDrawerOpen(false)}
                 aria-label={translateT('contextCollapse')}
               >
@@ -300,14 +299,14 @@ function PanelFilters({ sections, sectionFilter, onSelect, emptyLabel }: PanelFi
           key={section.id}
           type="button"
           className={cn(
-            'flex w-full items-center justify-between rounded-2xl border px-4 py-3 text-left text-sm transition',
+            'flex w-full min-h-[44px] items-center justify-between rounded-xl border px-3.5 py-2.5 text-left text-sm transition sm:rounded-2xl sm:px-4 sm:py-3',
             sectionFilter === section.title
               ? 'border-primary bg-primary/10 text-white'
               : 'border-border/60 text-muted-foreground hover:text-foreground',
           )}
           onClick={() => onSelect(section.title)}
         >
-          <span className="text-left leading-snug">{section.title}</span>
+          <span className="text-left text-xs leading-snug sm:text-sm">{section.title}</span>
           <span className="text-xs">{section.count}</span>
         </button>
       ))}
@@ -326,14 +325,14 @@ function ResourceCard({ resource }: ResourceCardProps) {
       href={resource.url}
       target="_blank"
       rel="noreferrer"
-      className="group flex h-full flex-col justify-between rounded-3xl border border-border/60 bg-black/30 card-padding text-left transition hover:border-primary hover:bg-black/40"
+      className="group flex h-full min-h-[140px] flex-col justify-between rounded-2xl border border-border/60 bg-black/30 p-4 text-left transition hover:border-primary hover:bg-black/40 sm:rounded-3xl sm:p-5"
     >
       <div>
-        <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">{resource.section}</p>
-        <h3 className="mt-2 text-lg font-semibold leading-snug text-white break-words">{resource.title}</h3>
-        <p className="mt-2 text-sm text-muted-foreground break-words">{resource.summary}</p>
+        <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground sm:text-xs sm:tracking-[0.3em]">{resource.section}</p>
+        <h3 className="mt-1.5 text-base font-semibold leading-snug text-white break-words sm:mt-2 sm:text-lg">{resource.title}</h3>
+        <p className="mt-1.5 text-xs text-muted-foreground break-words sm:mt-2 sm:text-sm">{resource.summary}</p>
       </div>
-      <div className="mt-6 flex items-center justify-between text-xs text-muted-foreground">
+      <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground sm:mt-6">
         <span>{resource.format ?? 'link'}</span>
         <ExternalLink className="h-4 w-4 text-muted-foreground transition group-hover:text-primary" aria-hidden="true" />
       </div>
