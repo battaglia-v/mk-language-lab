@@ -59,7 +59,7 @@
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tabs": "^1.1.13",
     "@sentry/nextjs": "^10.23.0",
-    "@tamagui/colors": "^1.137.1",
+    "@tamagui/colors": "^1.138.6",
     "@tamagui/themes": "^1.137.1",
     "@tanstack/react-query": "^5.62.0",
     "@types/papaparse": "^5.5.0",
