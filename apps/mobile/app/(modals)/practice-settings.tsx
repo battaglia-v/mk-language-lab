@@ -6,14 +6,28 @@ import { brandColors, spacingScale } from '@mk/tokens';
 import { useNotifications } from '../../lib/notifications';
 import type { ReminderWindowId } from '../../lib/notifications/constants';
 
+const DIRECTIONS = [
+  { key: 'enToMk' as const, label: 'EN → MK', description: 'Translate English to Macedonian' },
+  { key: 'mkToEn' as const, label: 'MK → EN', description: 'Translate Macedonian to English' },
+];
+
+const PRACTICE_MODES = [
+  { key: 'typing', label: 'Typing', description: 'Type the full translation' },
+  { key: 'cloze', label: 'Fill blanks', description: 'Complete missing words' },
+  { key: 'multipleChoice', label: 'Multiple choice', description: 'Choose the correct answer' },
+  { key: 'listening', label: 'Listening', description: 'Type what you hear' },
+] as const;
+
 const DIFFICULTY_MODES = [
-  { key: 'casual', label: 'Casual', description: 'No timers, focus on accuracy.' },
-  { key: 'focus', label: 'Focus', description: 'Timers on, standard XP rewards.' },
-  { key: 'blitz', label: 'Blitz', description: 'Rapid fire drills with XP multipliers.' },
+  { key: 'casual', label: 'Casual', description: 'No timers, focus on accuracy' },
+  { key: 'focus', label: 'Focus', description: 'Timers on, standard XP' },
+  { key: 'blitz', label: 'Blitz', description: 'Rapid fire with XP boost' },
 ] as const;
 
 export default function PracticeSettingsModal() {
   const router = useRouter();
+  const [direction, setDirection] = useState<(typeof DIRECTIONS)[number]['key']>('mkToEn');
+  const [practiceMode, setPracticeMode] = useState<(typeof PRACTICE_MODES)[number]['key']>('typing');
   const [selectedMode, setSelectedMode] = useState<(typeof DIFFICULTY_MODES)[number]['key']>('focus');
   const [audioPrompts, setAudioPrompts] = useState(true);
   const [hintsEnabled, setHintsEnabled] = useState(true);
@@ -26,11 +40,6 @@ export default function PracticeSettingsModal() {
     isRegisteringToken: remindersRegistering,
     requestPermission: requestReminderPermission,
   } = useNotifications();
-
-  const selectedDetails = useMemo(
-    () => DIFFICULTY_MODES.find((mode) => mode.key === selectedMode)?.description ?? '',
-    [selectedMode]
-  );
 
   const reminderStatusCopy = useMemo(
     () =>
@@ -57,41 +66,90 @@ export default function PracticeSettingsModal() {
         <NativeCard style={styles.card}>
           <View style={styles.header}>
             <NativeTypography variant="title" style={styles.heading}>
-              Session Settings
+              Practice Settings
             </NativeTypography>
             <NativeTypography variant="caption" style={styles.subheading}>
-              Tune timers, hints, and audio helpers before the next run.
+              Configure direction, mode, difficulty, and helpers.
             </NativeTypography>
           </View>
 
           <ScrollView contentContainerStyle={styles.content}>
+            {/* Direction Section */}
             <View style={styles.section}>
               <NativeTypography variant="eyebrow" style={styles.label}>
-                Mode
+                Translation Direction
+              </NativeTypography>
+              <View style={styles.directionRow}>
+                {DIRECTIONS.map((dir) => (
+                  <Pressable
+                    key={dir.key}
+                    onPress={() => setDirection(dir.key)}
+                    style={[
+                      styles.directionButton,
+                      direction === dir.key && styles.directionButtonActive,
+                    ]}
+                  >
+                    <NativeTypography variant="body" style={styles.directionLabel}>
+                      {dir.label}
+                    </NativeTypography>
+                  </Pressable>
+                ))}
+              </View>
+              <NativeTypography variant="caption" style={styles.modeHint}>
+                {DIRECTIONS.find((d) => d.key === direction)?.description}
+              </NativeTypography>
+            </View>
+
+            {/* Practice Mode Section */}
+            <View style={styles.section}>
+              <NativeTypography variant="eyebrow" style={styles.label}>
+                Practice Mode
+              </NativeTypography>
+              <View style={styles.modeGrid}>
+                {PRACTICE_MODES.map((mode) => (
+                  <Pressable
+                    key={mode.key}
+                    onPress={() => setPracticeMode(mode.key)}
+                    style={[
+                      styles.modeCard,
+                      practiceMode === mode.key && styles.modeCardActive,
+                    ]}
+                  >
+                    <NativeTypography variant="body" style={styles.modeLabel}>
+                      {mode.label}
+                    </NativeTypography>
+                    <NativeTypography variant="caption" style={styles.modeDescription}>
+                      {mode.description}
+                    </NativeTypography>
+                  </Pressable>
+                ))}
+              </View>
+            </View>
+
+            {/* Difficulty Section */}
+            <View style={styles.section}>
+              <NativeTypography variant="eyebrow" style={styles.label}>
+                Difficulty
               </NativeTypography>
               <View style={styles.modeGrid}>
                 {DIFFICULTY_MODES.map((mode) => (
-                  <NativeCard
+                  <Pressable
                     key={mode.key}
+                    onPress={() => setSelectedMode(mode.key)}
                     style={[
                       styles.modeCard,
                       selectedMode === mode.key && styles.modeCardActive,
                     ]}
                   >
-                    <Pressable onPress={() => setSelectedMode(mode.key)} android_ripple={{ color: 'rgba(0,0,0,0.08)' }}>
-                      <NativeTypography variant="body" style={styles.modeLabel}>
-                        {mode.label}
-                      </NativeTypography>
-                      <NativeTypography variant="caption" style={styles.modeDescription}>
-                        {mode.description}
-                      </NativeTypography>
-                    </Pressable>
-                  </NativeCard>
+                    <NativeTypography variant="body" style={styles.modeLabel}>
+                      {mode.label}
+                    </NativeTypography>
+                    <NativeTypography variant="caption" style={styles.modeDescription}>
+                      {mode.description}
+                    </NativeTypography>
+                  </Pressable>
                 ))}
               </View>
-              <NativeTypography variant="caption" style={styles.modeHint}>
-                {selectedDetails}
-              </NativeTypography>
             </View>
 
             <View style={styles.section}>
@@ -145,12 +203,20 @@ export default function PracticeSettingsModal() {
 
             <View style={styles.section}>
               <NativeTypography variant="eyebrow" style={styles.label}>
-                Summary
+                Current Settings
               </NativeTypography>
               <View style={styles.summaryRow}>
-                <NativeStatPill label="Mode" value={selectedMode} accent="gold" />
-                <NativeStatPill label="Audio" value={audioPrompts ? 'On' : 'Off'} accent="green" />
-                <NativeStatPill label="Hints" value={hintsEnabled ? 'Enabled' : 'Off'} accent="red" />
+                <NativeStatPill
+                  label="Direction"
+                  value={DIRECTIONS.find((d) => d.key === direction)?.label ?? ''}
+                  accent="red"
+                />
+                <NativeStatPill
+                  label="Mode"
+                  value={PRACTICE_MODES.find((m) => m.key === practiceMode)?.label ?? ''}
+                  accent="gold"
+                />
+                <NativeStatPill label="Difficulty" value={selectedMode} accent="green" />
               </View>
             </View>
           </ScrollView>
@@ -158,12 +224,7 @@ export default function PracticeSettingsModal() {
           <View style={styles.footer}>
             <NativeButton onPress={() => router.back()}>
               <NativeTypography variant="body" style={styles.primaryButtonText}>
-                Save & Continue
-              </NativeTypography>
-            </NativeButton>
-            <NativeButton variant="ghost" onPress={() => router.back()}>
-              <NativeTypography variant="body" style={styles.secondaryButtonText}>
-                Cancel
+                Done
               </NativeTypography>
             </NativeButton>
           </View>
@@ -252,6 +313,28 @@ const styles = StyleSheet.create({
   },
   label: {
     color: brandColors.red,
+  },
+  directionRow: {
+    flexDirection: 'row',
+    gap: spacingScale.sm,
+  },
+  directionButton: {
+    flex: 1,
+    paddingVertical: spacingScale.md,
+    paddingHorizontal: spacingScale.sm,
+    backgroundColor: 'rgba(16,24,40,0.04)',
+    borderRadius: spacingScale.lg,
+    borderWidth: 2,
+    borderColor: 'transparent',
+    alignItems: 'center',
+  },
+  directionButtonActive: {
+    borderColor: brandColors.red,
+    backgroundColor: brandColors.cream,
+  },
+  directionLabel: {
+    color: brandColors.navy,
+    fontWeight: '600',
   },
   modeGrid: {
     gap: spacingScale.sm,
