@@ -11,9 +11,9 @@ type Params = { id: string };
  *
  * Get all tags for a specific Instagram post
  */
-export async function GET(_request: NextRequest, context: { params: Params }) {
+export async function GET(_request: NextRequest, context: { params: Promise<Params> }) {
   try {
-    const { id } = context.params;
+    const { id } = await context.params;
 
     const postTags = await prisma.postTag.findMany({
       where: {
@@ -44,7 +44,7 @@ export async function GET(_request: NextRequest, context: { params: Params }) {
  *
  * Add a tag to an Instagram post (admin only)
  */
-export async function POST(request: NextRequest, context: { params: Params }) {
+export async function POST(request: NextRequest, context: { params: Promise<Params> }) {
   try {
     // Check authentication (in a real app, you'd check for admin role)
     const session = await auth();
@@ -55,7 +55,7 @@ export async function POST(request: NextRequest, context: { params: Params }) {
       );
     }
 
-    const { id } = context.params;
+    const { id } = await context.params;
     const body = await request.json() as { tagId: string };
 
     if (!body.tagId) {
@@ -113,7 +113,7 @@ export async function POST(request: NextRequest, context: { params: Params }) {
  *
  * Remove a tag from an Instagram post (admin only)
  */
-export async function DELETE(request: NextRequest, context: { params: Params }) {
+export async function DELETE(request: NextRequest, context: { params: Promise<Params> }) {
   try {
     // Check authentication (in a real app, you'd check for admin role)
     const session = await auth();
@@ -124,7 +124,7 @@ export async function DELETE(request: NextRequest, context: { params: Params }) 
       );
     }
 
-    const { id } = context.params;
+    const { id } = await context.params;
     const { searchParams } = new URL(request.url);
     const tagId = searchParams.get('tagId');
 

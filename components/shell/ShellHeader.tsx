@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { Menu, ArrowLeft } from "lucide-react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { Button } from "@/components/ui/button";
-import { CommandMenuLazy } from "@/components/CommandMenuLazy";
 import { buildLocalizedHref } from "./navItems";
 import { UserMenu } from "@/components/auth/UserMenu";
 
@@ -87,13 +86,6 @@ export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
           </Link>
         </div>
         <div className="flex items-center gap-2">
-          <div className="hidden sm:flex items-center gap-2 rounded-full border border-border/60 bg-transparent px-3 py-1.5 text-xs text-muted-foreground">
-            <span className="font-semibold text-foreground">⌘K</span>
-            <span className="text-muted-foreground">/</span>
-            <span className="font-semibold text-foreground">Ctrl+K</span>
-            <span className="text-muted-foreground">{navT("quickActions")}</span>
-          </div>
-          <CommandMenuLazy />
           <LanguageSwitcher />
           <UserMenu />
         </div>

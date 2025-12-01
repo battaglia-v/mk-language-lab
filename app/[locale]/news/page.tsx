@@ -234,28 +234,28 @@ export default function NewsPage() {
   const showEmpty = !hasResults && !isLoading && !error;
 
   return (
-    <div className="section-container section-container-xl section-spacing-lg space-y-8">
-      <section className="glass-card rounded-3xl card-padding-lg md:p-8" data-testid="news-hero">
-        <div className="space-y-6">
-          <header className="space-y-3 text-white">
+    <div className="section-container section-container-xl section-spacing-lg space-y-6 sm:space-y-8">
+      <section className="glass-card rounded-2xl p-4 sm:rounded-3xl sm:p-6 md:p-8" data-testid="news-hero">
+        <div className="space-y-4 sm:space-y-6">
+          <header className="space-y-2 text-white sm:space-y-3">
             <div
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-primary"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-primary sm:gap-2 sm:px-3 sm:text-[11px]"
               aria-hidden="true"
             >
-              <Newspaper className="h-3.5 w-3.5" aria-hidden="true" />
+              <Newspaper className="h-3 w-3 sm:h-3.5 sm:w-3.5" aria-hidden="true" />
               {t('title')}
             </div>
-            <div className="space-y-2">
-              <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">{t('title')}</h1>
-              <p className="text-sm text-slate-300 md:text-base">{t('subtitle')}</p>
-              <p className="text-xs text-slate-400 md:text-sm">
+            <div className="space-y-1.5 sm:space-y-2">
+              <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl md:text-4xl">{t('title')}</h1>
+              <p className="text-xs text-slate-300 sm:text-sm md:text-base">{t('subtitle')}</p>
+              <p className="text-xs text-slate-400">
                 {t('sourceLabel')} · {meta?.count ?? 0}/{meta?.total ?? 0}
               </p>
             </div>
           </header>
 
-          <div className="space-y-4">
-            <div className="flex flex-wrap gap-2">
+          <div className="space-y-3.5 sm:space-y-4">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {sourceFilters.map((filter) => (
                 <FilterChip key={filter.id} active={source === filter.id} onClick={() => setSource(filter.id)}>
                   {filter.label}
@@ -274,10 +274,10 @@ export default function NewsPage() {
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder={t('searchPlaceholder')}
-                  className="h-11 rounded-2xl border border-white/10 bg-background/80 pl-10 text-sm text-white placeholder:text-slate-400"
+                  className="min-h-[44px] rounded-2xl border border-white/10 bg-background/80 pl-10 text-sm text-white placeholder:text-slate-400"
                 />
               </div>
-              <div className="flex flex-wrap items-center gap-3 text-xs text-slate-300 md:text-sm">
+              <div className="flex flex-wrap items-center gap-2 text-xs text-slate-300 sm:gap-3 sm:text-sm">
                 {isLoading ? (
                   <span className="inline-flex items-center gap-1.5">
                     <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -295,7 +295,7 @@ export default function NewsPage() {
                   variant="ghost"
                   size="sm"
                   onClick={handleRefresh}
-                  className="gap-1.5 rounded-full border border-white/10 text-white hover:bg-white/10"
+                  className="min-h-[44px] gap-1.5 rounded-full border border-white/10 px-4 text-white hover:bg-white/10"
                 >
                   <RefreshCcw className="h-3.5 w-3.5" />
                   {t('refresh')}
@@ -308,12 +308,12 @@ export default function NewsPage() {
 
       {error && (
         <Alert variant="destructive" className="glass-card border border-destructive/50 text-red-100">
-          <AlertTitle>{t('error')}</AlertTitle>
-          <AlertDescription className="text-red-100/90">{error}</AlertDescription>
+          <AlertTitle className="text-sm sm:text-base">{t('error')}</AlertTitle>
+          <AlertDescription className="text-xs text-red-100/90 sm:text-sm">{error}</AlertDescription>
           <Button
             variant="outline"
             size="sm"
-            className="mt-4 rounded-full border-white/20 text-white hover:bg-white/10"
+            className="mt-3 min-h-[44px] rounded-full border-white/20 px-4 text-sm text-white hover:bg-white/10 sm:mt-4"
             onClick={handleRefresh}
           >
             {t('retry')}

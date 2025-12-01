@@ -132,15 +132,15 @@ export default function ResourcesPage() {
     : '';
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <section className="lab-hero" data-testid="resources-hero">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-col gap-3 sm:gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
             <Button
               asChild
               variant="ghost"
               size="sm"
-              className="inline-flex items-center gap-2 rounded-full border border-border/60 text-muted-foreground"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-border/60 px-4 text-sm text-muted-foreground"
             >
               <Link href={`/${locale}/translate`} aria-label={navT('backToDashboard')}>
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
@@ -150,8 +150,8 @@ export default function ResourcesPage() {
           </div>
           <div className="space-y-1 text-balance">
             <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{t('badge')}</p>
-            <h1 className="mt-2 text-3xl font-semibold text-white">{t('title')}</h1>
-            <p className="mt-1 max-w-2xl text-sm text-muted-foreground">{t('subtitle')}</p>
+            <h1 className="mt-2 text-2xl font-semibold text-white sm:text-3xl">{t('title')}</h1>
+            <p className="mt-1 max-w-2xl text-xs text-muted-foreground sm:text-sm">{t('subtitle')}</p>
           </div>
         </div>
       </section>

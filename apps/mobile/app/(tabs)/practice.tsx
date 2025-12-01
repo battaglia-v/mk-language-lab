@@ -1,7 +1,7 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
-import { Modal, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
+import { Modal, Pressable, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { brandColors, spacingScale } from '@mk/tokens';
 import {
   NativeButton,

@@ -167,23 +167,23 @@ export default function TranslatePage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <section className="lab-hero" data-testid="translate-hero">
-        <div className="flex flex-wrap items-center justify-between gap-6">
+        <div className="flex flex-wrap items-center justify-between gap-4 sm:gap-6">
           <div>
             <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{t('badge')}</p>
-            <div className="mt-2 flex flex-wrap items-end gap-3">
-              <span className="title-gradient text-4xl lowercase">македонски</span>
-              <span className="text-sm text-muted-foreground">MK LANGUAGE LAB · {locale.toUpperCase()}</span>
+            <div className="mt-2 flex flex-wrap items-end gap-2 sm:gap-3">
+              <span className="title-gradient text-2xl lowercase sm:text-3xl md:text-4xl">македонски</span>
+              <span className="text-xs text-muted-foreground sm:text-sm">MK LANGUAGE LAB · {locale.toUpperCase()}</span>
             </div>
-            <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white md:text-4xl">{t('title')}</h1>
-            <p className="mt-2 max-w-2xl text-sm text-muted-foreground">{t('subtitle')}</p>
+            <h1 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:mt-3 sm:text-3xl md:text-4xl">{t('title')}</h1>
+            <p className="mt-1.5 max-w-2xl text-xs text-muted-foreground sm:mt-2 sm:text-sm">{t('subtitle')}</p>
           </div>
         <Button
           type="button"
           variant="ghost"
           size="sm"
-          className="rounded-full border border-white/10 bg-[#161927] text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333]"
+          className="min-h-[44px] rounded-full border border-white/10 bg-[#161927] px-4 text-xs text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333] sm:text-sm"
           onClick={() => setPanelCollapsed((prev) => !prev)}
           aria-label={panelCollapsed ? t('contextExpand') : t('contextCollapse')}
         >
@@ -211,7 +211,7 @@ export default function TranslatePage() {
             swapLabel={t('swapDirections')}
           />
           <form
-            className="rounded-[28px] border border-white/5 bg-[#0c0f1d]/80 p-5 shadow-[var(--shadow-soft)] backdrop-blur md:p-7"
+            className="rounded-2xl border border-white/5 bg-[#0c0f1d]/80 p-4 shadow-[var(--shadow-soft)] backdrop-blur sm:rounded-[28px] sm:p-5 md:p-7"
             onSubmit={(event: FormEvent<HTMLFormElement>) => {
               event.preventDefault();
               void handleTranslate(event);
@@ -225,22 +225,22 @@ export default function TranslatePage() {
               aria-label={t('inputLabel')}
               aria-describedby="translate-character-count"
               maxLength={MAX_CHARACTERS}
-              className="min-h-[140px] resize-none rounded-2xl border border-white/10 bg-[#0f1326] px-4 py-3 text-base shadow-inner placeholder:text-muted-foreground"
+              className="min-h-[120px] resize-none rounded-2xl border border-white/10 bg-[#0f1326] px-3.5 py-3 text-sm shadow-inner placeholder:text-muted-foreground sm:min-h-[140px] sm:px-4 sm:text-base"
             />
-            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
+            <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground sm:mt-4 sm:gap-3">
               <span id="translate-character-count">{characterCount}</span>
               <div className="flex items-center gap-2">
                 <Button
                   type="button"
                   variant="ghost"
-                  className="rounded-full bg-[#161927] px-4 text-xs text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333] hover:text-white"
+                  className="min-h-[44px] rounded-full bg-[#161927] px-4 text-xs text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333] hover:text-white"
                   onClick={handleClear}
                 >
                   {t('clearButton')}
                 </Button>
                 <Button
                   type="submit"
-                  className="rounded-full bg-[var(--mk-accent)] px-7 text-[#0b0a03] shadow-[0_18px_48px_rgba(0,0,0,0.5)] transition hover:bg-[#ffe253]"
+                  className="min-h-[44px] rounded-full bg-[var(--mk-accent)] px-5 text-sm text-[#0b0a03] shadow-[0_18px_48px_rgba(0,0,0,0.5)] transition hover:bg-[#ffe253] sm:px-7"
                   disabled={isTranslating}
                 >
                   {isTranslating ? (
@@ -256,8 +256,8 @@ export default function TranslatePage() {
             </div>
           </form>
 
-          <section className="space-y-4 rounded-[28px] border border-white/5 bg-[#0c0f1d]/80 p-5 shadow-[var(--shadow-soft)] backdrop-blur md:p-7">
-            <div className="flex flex-wrap items-center gap-3">
+          <section className="space-y-3.5 rounded-2xl border border-white/5 bg-[#0c0f1d]/80 p-4 shadow-[var(--shadow-soft)] backdrop-blur sm:space-y-4 sm:rounded-[28px] sm:p-5 md:p-7">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
               <div>
                 <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{t('resultLabel')}</p>
                 <p className="text-xs text-muted-foreground">
@@ -267,7 +267,7 @@ export default function TranslatePage() {
               <Button
                 type="button"
                 variant="ghost"
-                className="ml-auto rounded-full bg-[#161927] px-4 text-xs text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333] hover:text-white"
+                className="ml-auto min-h-[44px] rounded-full bg-[#161927] px-4 text-xs text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333] hover:text-white"
                 onClick={handleCopy}
               >
                 {copiedState === 'copied' ? (
@@ -282,15 +282,15 @@ export default function TranslatePage() {
               </Button>
             </div>
             <div
-              className="min-h-[200px] rounded-2xl border border-white/10 bg-[#0f1326] px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_16px_40px_rgba(0,0,0,0.55)]"
+              className="min-h-[180px] rounded-2xl border border-white/10 bg-[#0f1326] px-3.5 py-3.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_16px_40px_rgba(0,0,0,0.55)] sm:min-h-[200px] sm:px-4 sm:py-4"
               aria-live="polite"
             >
               {isTranslating ? (
                 <StreamingSkeleton />
               ) : translatedText ? (
-                <p className="whitespace-pre-wrap text-base leading-relaxed text-white">{streamedText}</p>
+                <p className="whitespace-pre-wrap text-sm leading-relaxed text-white sm:text-base">{streamedText}</p>
               ) : (
-                <p className="text-sm text-muted-foreground">{t('resultPlaceholder')}</p>
+                <p className="text-xs text-muted-foreground sm:text-sm">{t('resultPlaceholder')}</p>
               )}
             </div>
             {currentPayload ? (
@@ -298,7 +298,7 @@ export default function TranslatePage() {
                 type="button"
                 variant={isCurrentSaved ? 'secondary' : 'default'}
                 className={cn(
-                  'w-full rounded-2xl border border-white/10 px-5 py-4 text-base shadow-[0_16px_40px_rgba(0,0,0,0.55)]',
+                  'w-full min-h-[48px] rounded-2xl border border-white/10 px-4 py-3 text-sm shadow-[0_16px_40px_rgba(0,0,0,0.55)] sm:min-h-[52px] sm:px-5 sm:py-4 sm:text-base',
                   isCurrentSaved
                     ? 'bg-[#161927] text-white hover:bg-[#1f2333]'
                     : 'bg-[var(--mk-accent)] text-[#0b0a03] hover:bg-[#ffe253]',
@@ -404,8 +404,8 @@ type DirectionToggleProps = {
 
 function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel }: DirectionToggleProps) {
   return (
-    <div className="rounded-[26px] border border-white/5 bg-[#0c0f1d]/80 p-5 shadow-[var(--shadow-soft)] backdrop-blur md:p-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
+    <div className="rounded-2xl border border-white/5 bg-[#0c0f1d]/80 p-4 shadow-[var(--shadow-soft)] backdrop-blur sm:rounded-[26px] sm:p-5 md:p-6">
+      <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-muted-foreground">{label}</p>
         </div>
@@ -413,7 +413,7 @@ function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel
           type="button"
           variant="ghost"
           size="sm"
-          className="rounded-full bg-[#161927] px-4 text-xs text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333] hover:text-white"
+          className="min-h-[44px] rounded-full bg-[#161927] px-4 text-xs text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333] hover:text-white"
           onClick={onSwap}
           aria-label={swapLabel}
         >
@@ -422,7 +422,7 @@ function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel
         </Button>
       </div>
       <div
-        className="mt-4 flex flex-1 flex-wrap gap-2 rounded-2xl border border-white/10 bg-gradient-to-r from-[#2b1216] via-[#131525] to-[#103420] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_18px_40px_rgba(0,0,0,0.55)]"
+        className="mt-3 flex flex-1 flex-wrap gap-1.5 rounded-2xl border border-white/10 bg-gradient-to-r from-[#2b1216] via-[#131525] to-[#103420] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_18px_40px_rgba(0,0,0,0.55)] sm:mt-4 sm:gap-2"
         role="radiogroup"
         aria-label={label}
       >
@@ -434,7 +434,7 @@ function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel
               key={option.id}
               type="button"
               className={cn(
-                'touch-target flex flex-1 items-center justify-center gap-2 rounded-[18px] px-4 py-2 text-sm font-semibold transition md:text-base',
+                'touch-target flex min-h-[44px] flex-1 items-center justify-center gap-2 rounded-[16px] px-3 py-2 text-xs font-semibold transition sm:rounded-[18px] sm:px-4 sm:text-sm md:text-base',
                 isActive
                   ? isFirst
                     ? 'bg-gradient-to-r from-[#7c1f2d] to-[#b23542] text-white shadow-[0_18px_36px_rgba(0,0,0,0.55)]'
@@ -447,7 +447,7 @@ function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel
               aria-checked={isActive}
               aria-label={option.label}
             >
-              <span className="text-[12px] md:text-sm">{option.label}</span>
+              <span>{option.label}</span>
             </button>
           );
         })}
@@ -555,7 +555,7 @@ function SavedList({
                   type="button"
                   size="sm"
                   variant="ghost"
-                  className="rounded-full border border-white/12 bg-[#161927] px-4 text-xs font-semibold text-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333]"
+                  className="min-h-[44px] rounded-full border border-white/12 bg-[#161927] px-4 text-xs font-semibold text-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333]"
                   onClick={() => onLoad(phrase)}
                 >
                   {loadLabel}
@@ -565,7 +565,7 @@ function SavedList({
                   variant="ghost"
                   size="icon-sm"
                   aria-label={removeLabel}
-                  className="rounded-full border border-white/10 bg-[#161927] text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333]"
+                  className="min-h-[44px] min-w-[44px] rounded-full border border-white/10 bg-[#161927] text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333]"
                   onClick={() => onRemove(phrase.id)}
                 >
                   <Trash2 className="h-4 w-4" aria-hidden="true" />
