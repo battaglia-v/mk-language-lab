@@ -6,12 +6,15 @@ import Animated, {
   useSharedValue,
   withSpring,
   withTiming,
+  interpolate,
+  Extrapolation,
 } from 'react-native-reanimated';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import * as Haptics from 'expo-haptics';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { NativeCard, NativeTypography } from '@mk/ui';
 import type { PracticeCardContent, PracticeEvaluationResult } from '@mk/practice';
-import { spacingScale } from '@mk/tokens';
+import { brandColors, spacingScale } from '@mk/tokens';
 import { PracticeCardContentView } from './PracticeCard';
 
 type SwipeableCardProps = {
@@ -136,6 +139,22 @@ export function SwipeableCard({
     ],
   }));
 
+  // Gesture hint overlays that fade in/out based on swipe direction
+  const rightHintStyle = useAnimatedStyle(() => {
+    const opacity = interpolate(translateX.value, [0, SWIPE_THRESHOLD / 2], [0, 0.9], Extrapolation.CLAMP);
+    return { opacity };
+  });
+
+  const leftHintStyle = useAnimatedStyle(() => {
+    const opacity = interpolate(translateX.value, [0, -SWIPE_THRESHOLD / 2], [0, 0.9], Extrapolation.CLAMP);
+    return { opacity };
+  });
+
+  const upHintStyle = useAnimatedStyle(() => {
+    const opacity = interpolate(translateY.value, [0, -SWIPE_THRESHOLD * 0.4], [0, 0.9], Extrapolation.CLAMP);
+    return { opacity };
+  });
+
   if (!card) {
     return (
       <NativeCard style={styles.emptyCard}>
@@ -158,6 +177,28 @@ export function SwipeableCard({
       ) : null}
       <GestureDetector gesture={panGesture}>
         <Animated.View style={[styles.animatedCard, animatedStyle]}>
+          {/* Gesture Hints */}
+          <Animated.View style={[styles.gestureHint, styles.gestureHintRight, rightHintStyle]} pointerEvents="none">
+            <Ionicons name="checkmark-circle" size={48} color={brandColors.green} />
+            <NativeTypography variant="body" style={styles.gestureHintText}>
+              Submit
+            </NativeTypography>
+          </Animated.View>
+
+          <Animated.View style={[styles.gestureHint, styles.gestureHintLeft, leftHintStyle]} pointerEvents="none">
+            <Ionicons name="close-circle" size={48} color={brandColors.red} />
+            <NativeTypography variant="body" style={styles.gestureHintText}>
+              Skip
+            </NativeTypography>
+          </Animated.View>
+
+          <Animated.View style={[styles.gestureHint, styles.gestureHintUp, upHintStyle]} pointerEvents="none">
+            <Ionicons name="eye" size={32} color={brandColors.gold} />
+            <NativeTypography variant="caption" style={styles.gestureHintText}>
+              Reveal
+            </NativeTypography>
+          </Animated.View>
+
           <NativeCard style={styles.interactiveCard}>
             <PracticeCardContentView
               card={card}
@@ -205,5 +246,37 @@ const styles = StyleSheet.create({
   emptyCard: {
     padding: spacingScale.lg,
     alignItems: 'center',
+  },
+  gestureHint: {
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: spacingScale.xs,
+    padding: spacingScale.md,
+    borderRadius: 16,
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  gestureHintRight: {
+    top: '40%',
+    right: spacingScale.lg,
+  },
+  gestureHintLeft: {
+    top: '40%',
+    left: spacingScale.lg,
+  },
+  gestureHintUp: {
+    top: spacingScale.lg,
+    left: '50%',
+    transform: [{ translateX: -50 }],
+  },
+  gestureHintText: {
+    color: '#1c1e23',
+    fontWeight: '600',
+    fontSize: 14,
   },
 });
