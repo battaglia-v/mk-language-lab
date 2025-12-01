@@ -767,7 +767,18 @@
           "title": "Речникови патеки",
           "description": "Истражувај тематски сетови што го прошируваат активниот речник."
         }
-      }
+      },
+      "wordInputLabel": "Испрати го твојот превод",
+      "wordInputPlaceholder": "Внеси англиски или македонски збор",
+      "wordInputHelper": "Притисни Enter или Испрати за да го провериш одговорот.",
+      "submitWord": "Испрати",
+      "revealAnswer": "Прикажи одговор",
+      "feedbackCorrect": "Одлично! Точно е.",
+      "feedbackIncorrectTitle": "Не е сосема точно",
+      "feedbackIncorrect": "Точниот одговор е: {answer}",
+      "reviewedCount": "{count, plural, =1 {Прегледана 1 картичка} other {Прегледани # картички}}",
+      "accuracyLabel": "Точност",
+      "streakLabel": "{count, plural, =1 {1 подред} other {# подред}}"
     },
     "speaking": {
       "tabLabel": "Говор",

@@ -748,7 +748,11 @@
       "submitWord": "Submit",
       "revealAnswer": "Reveal answer",
       "feedbackCorrect": "Great job! You got it right.",
-      "feedbackIncorrect": "Keep going — the correct answer is {answer}."
+      "feedbackIncorrectTitle": "Not quite right",
+      "feedbackIncorrect": "The correct answer is: {answer}",
+      "reviewedCount": "{count, plural, =1 {Reviewed 1 card} other {Reviewed # cards}}",
+      "accuracyLabel": "Accuracy",
+      "streakLabel": "{count, plural, =1 {1 in a row} other {# in a row}}"
     },
     "speaking": {
       "tabLabel": "Speaking",

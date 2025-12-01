@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { FormEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { ArrowLeft, ArrowRight, Keyboard } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
@@ -34,6 +34,9 @@ export default function PracticePage() {
   const [revealed, setRevealed] = useState(false);
   const [guess, setGuess] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
+  const [reviewedCount, setReviewedCount] = useState(0);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [streak, setStreak] = useState(0);
 
   useEffect(() => {
     setHistorySnapshot(readTranslatorHistory(32));
@@ -124,6 +127,14 @@ export default function PracticePage() {
       const isCorrect = attempt === expected;
       setFeedback(isCorrect ? 'correct' : 'incorrect');
       setRevealed(true);
+      setReviewedCount((prev) => prev + 1);
+
+      if (isCorrect) {
+        setCorrectAnswers((prev) => prev + 1);
+        setStreak((prev) => prev + 1);
+      } else {
+        setStreak(0);
+      }
     },
     [currentCard, deck.length, guess]
   );
@@ -155,37 +166,54 @@ export default function PracticePage() {
     return () => window.removeEventListener('keydown', handler);
   }, [goNext, goPrevious, toggleReveal]);
 
+  const accuracy = reviewedCount > 0 ? Math.round((correctAnswers / reviewedCount) * 100) : 0;
+
   return (
-    <div className="space-y-6 sm:space-y-8 md:space-y-10">
-      <section className="lab-hero rounded-2xl border border-border/60 bg-black/30 p-4 sm:rounded-3xl sm:p-6">
-        <div className="flex flex-col gap-3 sm:gap-4 md:flex-row md:items-center md:justify-between">
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+    <div className="space-y-4 sm:space-y-6 md:space-y-8">
+      {/* Compact Hero Section */}
+      <section className="rounded-2xl border border-border/60 bg-black/30 p-3 sm:rounded-3xl sm:p-4 md:p-5">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center justify-between gap-3">
             <Button
               asChild
               variant="ghost"
               size="sm"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-border/60 px-4 text-sm text-muted-foreground"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-border/60 px-3 text-sm text-muted-foreground hover:text-white sm:px-4"
             >
               <Link href={`/${locale}/translate`} aria-label={navT('backToDashboard')}>
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-                {navT('backToDashboard')}
+                <span className="hidden sm:inline">{navT('backToDashboard')}</span>
               </Link>
             </Button>
-            <div className="hidden sm:inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-1 text-xs text-muted-foreground">
-              <Keyboard className="h-3.5 w-3.5" aria-hidden="true" />
-              <span>{navT('flashcardShortcuts')}</span>
+            <div className="space-y-0.5 sm:hidden">
+              <h1 className="text-lg font-semibold text-white">{t('title')}</h1>
             </div>
           </div>
-          <div className="space-y-1 text-balance">
+          <div className="hidden space-y-1 text-balance sm:block">
             <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{t('badge')}</p>
-            <h1 className="mt-2 text-2xl font-semibold text-white sm:text-3xl">{t('title')}</h1>
-            <p className="mt-1 max-w-2xl text-xs text-muted-foreground sm:text-sm">{t('subtitle')}</p>
-          </div>
-          <div className="hidden max-w-full flex-wrap items-center gap-2 rounded-full border border-border/60 px-4 py-2 text-xs text-muted-foreground sm:inline-flex">
-            <Keyboard className="h-4 w-4" aria-hidden="true" />
-            <span className="whitespace-normal">Space · ← →</span>
+            <h1 className="text-2xl font-semibold text-white md:text-3xl">{t('title')}</h1>
+            <p className="max-w-2xl text-xs text-muted-foreground md:text-sm">{t('subtitle')}</p>
           </div>
         </div>
+
+        {/* Progress Stats */}
+        {reviewedCount > 0 && (
+          <div className="mt-3 flex flex-wrap items-center gap-2 sm:mt-4">
+            <div className="flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary">
+              <TrendingUp className="h-3.5 w-3.5" aria-hidden="true" />
+              <span>{t('drills.reviewedCount', { count: reviewedCount })}</span>
+            </div>
+            <div className="rounded-full border border-border/60 bg-black/40 px-3 py-1.5 text-xs font-medium text-white">
+              {t('drills.accuracyLabel')}: <span className="text-primary">{accuracy}%</span>
+            </div>
+            {streak > 2 && (
+              <div className="flex items-center gap-1.5 rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-300">
+                <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
+                <span>{t('drills.streakLabel', { count: streak })}</span>
+              </div>
+            )}
+          </div>
+        )}
       </section>
 
       <div className="space-y-4 rounded-2xl border border-border/60 bg-black/30 p-4 sm:rounded-3xl sm:p-5 md:p-7">
@@ -220,18 +248,23 @@ export default function PracticePage() {
           </Alert>
         ) : (
           <div className="space-y-4">
-            <div className="rounded-2xl border border-border/60 bg-black/40 p-4 sm:rounded-3xl sm:p-5 md:p-8">
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-300 rounded-2xl border border-border/60 bg-gradient-to-br from-black/50 to-black/30 p-4 shadow-xl backdrop-blur-sm sm:rounded-3xl sm:p-5 md:p-8">
               <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                <span>{currentCard?.direction === 'en-mk' ? 'EN → MK' : 'MK → EN'}</span>
-                <span>
+                <span className="font-semibold">{currentCard?.direction === 'en-mk' ? 'EN → MK' : 'MK → EN'}</span>
+                <span className="rounded-full bg-muted/20 px-2.5 py-1 font-bold">
                   {safeIndex + 1} / {total}
                 </span>
               </div>
             <div className="mt-4 space-y-3 sm:mt-6 sm:space-y-4">
-              <p className="text-xl font-semibold text-white sm:text-2xl">{currentCard?.source}</p>
-              <p className={cn('text-base text-primary transition-opacity sm:text-lg', revealed ? 'opacity-100' : 'opacity-0')}>
-                {currentCard?.target}
-              </p>
+              <p className="text-xl font-semibold leading-tight text-white sm:text-2xl md:text-3xl">{currentCard?.source}</p>
+              <div className={cn(
+                'rounded-xl border border-primary/20 bg-primary/5 p-3 transition-all duration-300',
+                revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
+              )}>
+                <p className="text-base font-medium text-primary sm:text-lg">
+                  {currentCard?.target}
+                </p>
+              </div>
             </div>
 
               <form onSubmit={handleSubmitGuess} className="mt-4 space-y-3 sm:mt-6">
@@ -247,7 +280,11 @@ export default function PracticePage() {
                     placeholder={t('drills.wordInputPlaceholder')}
                     className="flex-1 min-h-[44px] rounded-2xl border border-primary/50 bg-white/5 text-sm text-white placeholder:text-slate-400 sm:text-base"
                   />
-                  <Button type="submit" className="min-h-[44px] rounded-2xl px-6" disabled={!deck.length || !guess.trim()}>
+                  <Button
+                    type="submit"
+                    className="min-h-[44px] rounded-2xl px-6 font-semibold shadow-lg transition-all hover:scale-105 disabled:hover:scale-100"
+                    disabled={!deck.length || !guess.trim()}
+                  >
                     {t('drills.submitWord')}
                   </Button>
                 </div>
@@ -258,29 +295,60 @@ export default function PracticePage() {
                 <div
                   role="status"
                   className={cn(
-                    'rounded-2xl border px-4 py-3 text-sm shadow',
+                    'animate-in slide-in-from-top-2 fade-in duration-300 rounded-2xl border px-4 py-3 text-sm shadow-lg',
                     feedback === 'correct'
-                      ? 'border-emerald-300/60 bg-emerald-500/10 text-emerald-100'
-                      : 'border-amber-300/60 bg-amber-500/10 text-amber-50'
+                      ? 'border-emerald-400/60 bg-emerald-500/15 text-emerald-50'
+                      : 'border-amber-400/60 bg-amber-500/15 text-amber-50'
                   )}
                 >
-                  {feedback === 'correct'
-                    ? t('drills.feedbackCorrect')
-                    : t('drills.feedbackIncorrect', { answer: currentCard?.target })}
+                  <div className="flex items-start gap-2">
+                    {feedback === 'correct' ? (
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-400" aria-hidden="true" />
+                    ) : (
+                      <XCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-400" aria-hidden="true" />
+                    )}
+                    <div className="flex-1">
+                      <p className="font-medium">
+                        {feedback === 'correct' ? t('drills.feedbackCorrect') : t('drills.feedbackIncorrectTitle')}
+                      </p>
+                      {feedback === 'incorrect' && (
+                        <p className="mt-1 text-xs opacity-90">
+                          {t('drills.feedbackIncorrect', { answer: currentCard?.target })}
+                        </p>
+                      )}
+                    </div>
+                  </div>
                 </div>
               )}
             </form>
 
             <div className="mt-4 grid gap-2.5 sm:mt-6 sm:gap-3 sm:grid-cols-3">
-              <Button variant="outline" className="min-h-[44px] rounded-full" onClick={goPrevious}>
+              <Button
+                variant="outline"
+                className="min-h-[44px] rounded-full font-medium transition-all hover:scale-105"
+                onClick={goPrevious}
+                disabled={!deck.length}
+              >
                 <ArrowLeft className="mr-2 h-4 w-4" aria-hidden="true" />
-                Prev
+                <span className="hidden sm:inline">Prev</span>
+                <span className="sm:hidden">←</span>
               </Button>
-              <Button variant="secondary" className="min-h-[44px] rounded-full" onClick={toggleReveal}>
+              <Button
+                variant="secondary"
+                className="min-h-[44px] rounded-full font-medium transition-all hover:scale-105"
+                onClick={toggleReveal}
+                disabled={!deck.length}
+              >
                 {t('drills.revealAnswer')}
               </Button>
-              <Button variant="outline" className="min-h-[44px] rounded-full" onClick={goNext}>
-                Next
+              <Button
+                variant="outline"
+                className="min-h-[44px] rounded-full font-medium transition-all hover:scale-105"
+                onClick={goNext}
+                disabled={!deck.length}
+              >
+                <span className="hidden sm:inline">Next</span>
+                <span className="sm:hidden">→</span>
                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </Button>
             </div>
@@ -308,15 +376,20 @@ function DeckToggle({ label, count, active, disabled, onClick }: DeckToggleProps
       disabled={disabled}
       onClick={onClick}
       className={cn(
-        'flex w-full min-h-[44px] min-w-0 flex-1 flex-wrap items-center justify-between gap-2 rounded-full border px-4 py-2 text-xs font-semibold transition sm:w-auto sm:flex-initial sm:text-sm lg:flex-none',
+        'group flex w-full min-h-[44px] min-w-0 flex-1 flex-wrap items-center justify-between gap-2 rounded-full border px-4 py-2 text-xs font-semibold transition-all sm:w-auto sm:flex-initial sm:text-sm lg:flex-none',
         active
-          ? 'border-primary bg-primary/10 text-white'
-          : 'border-border/60 text-muted-foreground hover:text-foreground',
-        disabled && 'opacity-50',
+          ? 'border-primary bg-primary/15 text-white shadow-md'
+          : 'border-border/60 text-muted-foreground hover:border-primary/40 hover:text-white hover:bg-primary/5',
+        disabled && 'opacity-40 cursor-not-allowed hover:border-border/60 hover:text-muted-foreground hover:bg-transparent',
       )}
     >
       <span>{label}</span>
-      <span className="text-xs text-muted-foreground">{count}</span>
+      <span className={cn(
+        'rounded-full px-2 py-0.5 text-xs font-bold transition-colors',
+        active ? 'bg-primary/30 text-primary-foreground' : 'bg-muted/50 text-muted-foreground group-hover:bg-primary/20'
+      )}>
+        {count}
+      </span>
     </button>
   );
 }
