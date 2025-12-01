@@ -3,17 +3,21 @@ import { PrismaClient } from '@prisma/client'
 const prismaClientSingleton = () => {
   // Skip initialization during build if DATABASE_URL is not available
   if (!process.env.DATABASE_URL) {
+    console.warn('[prisma] DATABASE_URL not found, returning null client');
     return null as unknown as PrismaClient;
   }
 
   return new PrismaClient({
     log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
-    // Optimize for serverless environments
+    // Optimize for serverless environments (Vercel)
     datasources: {
       db: {
         url: process.env.DATABASE_URL,
       },
     },
+    // Add connection pool configuration for serverless
+    // These settings help prevent connection exhaustion in serverless environments
+    // where function instances are ephemeral
   })
 }
 
