@@ -100,7 +100,7 @@ export function useProfileSummaryQuery<TData = ProfileSummary>({
     enabled: enabled ?? true,
     select,
     initialData: useFixtures ? getLocalProfileSummary() : undefined,
-    retry: (failureCount, error: any) => {
+    retry: (failureCount, error: Error) => {
       // Don't retry auth errors
       if (error?.message?.includes('401') || error?.message?.includes('403')) {
         return false;
