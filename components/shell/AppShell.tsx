@@ -12,12 +12,12 @@ export function AppShell({ children }: { children: ReactNode }) {
   return (
     <div className="app-shell">
       <SidebarNav isOpen={sidebarOpen} onNavigate={() => setSidebarOpen(false)} />
-      <div className="app-shell-main lg:ml-[72px] xl:ml-72">
+      <div className="app-shell-main lg:ml-[72px] 2xl:ml-64">
         <div className="app-shell-scroll">
           <ShellHeader onToggleSidebar={() => setSidebarOpen((prev) => !prev)} />
           <main
             id="main-content"
-            className="mx-auto w-full max-w-5xl space-y-6 md:space-y-8 pb-[140px] lg:pb-0 rounded-[24px] border border-white/10 bg-[color-mix(in_srgb,var(--mk-bg-surface)_92%,transparent)] px-4 py-5 shadow-[var(--shadow-soft)] sm:px-6 md:px-8 md:py-6"
+            className="mx-auto w-full max-w-5xl space-y-6 md:space-y-8 pb-24 lg:pb-0 rounded-[24px] border border-white/10 bg-[color-mix(in_srgb,var(--mk-bg-surface)_92%,transparent)] px-4 py-5 shadow-[var(--shadow-soft)] sm:px-6 md:px-8 md:py-6"
             role="main"
           >
             {children}

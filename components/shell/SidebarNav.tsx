@@ -22,20 +22,20 @@ export function SidebarNav({ isOpen, onNavigate }: SidebarNavProps) {
     <>
       <div
         className={cn(
-          "fixed inset-y-0 left-0 z-40 w-72 bg-sidebar text-sidebar-foreground border-r border-sidebar-border transition-transform duration-300 ease-out lg:w-[72px] xl:w-72 lg:translate-x-0",
+          "fixed inset-y-0 left-0 z-40 w-64 max-w-[85vw] bg-sidebar text-sidebar-foreground border-r border-sidebar-border transition-transform duration-300 ease-out lg:w-[72px] 2xl:w-64 lg:translate-x-0",
           isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0",
         )}
       >
-        <div className="flex items-center justify-between gap-3 border-b border-sidebar-border px-6 py-5 xl:px-6">
-          <div className="flex flex-col xl:flex">
-            <p className="hidden text-[10px] uppercase tracking-[0.4em] text-muted-foreground xl:block">{t("label")}</p>
-            <p className="hidden text-xl font-semibold mk-gradient xl:block xl:text-2xl">македонски</p>
+        <div className="flex items-center justify-between gap-3 border-b border-sidebar-border px-6 py-5 2xl:px-6">
+          <div className="flex flex-col 2xl:flex">
+            <p className="hidden text-[10px] uppercase tracking-[0.4em] text-muted-foreground 2xl:block">{t("label")}</p>
+            <p className="hidden text-xl font-semibold mk-gradient 2xl:block 2xl:text-2xl">македонски</p>
           </div>
-          <span className="hidden rounded-full border border-sidebar-border px-3 py-1 text-[11px] text-sidebar-foreground/70 xl:inline-flex">
+          <span className="hidden rounded-full border border-sidebar-border px-3 py-1 text-[11px] text-sidebar-foreground/70 2xl:inline-flex">
             lab
           </span>
         </div>
-        <nav className="flex flex-col gap-2 px-2 py-6 xl:px-4" aria-label={t("label")}>
+        <nav className="flex flex-col gap-2 px-2 py-6 2xl:px-4" aria-label={t("label")}>
           {shellNavItems.map((item) => {
             const Icon = item.icon;
             const href = buildHref(item.path);
@@ -46,7 +46,7 @@ export function SidebarNav({ isOpen, onNavigate }: SidebarNavProps) {
                 href={href}
                 prefetch={true}
                 className={cn(
-                  "group icon-gap flex items-center rounded-2xl px-3 py-3 text-sm font-semibold transition justify-center xl:justify-start",
+                  "group icon-gap flex items-center rounded-2xl px-3 py-3 text-sm font-semibold transition justify-center 2xl:justify-start",
                   active
                     ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-lg"
                     : "bg-transparent text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
@@ -55,7 +55,7 @@ export function SidebarNav({ isOpen, onNavigate }: SidebarNavProps) {
                 aria-current={active ? "page" : undefined}
               >
                 <Icon className="icon-base" aria-hidden="true" />
-                <span className="hidden xl:inline">{t(item.id)}</span>
+                <span className="hidden 2xl:inline">{t(item.id)}</span>
               </Link>
             );
           })}

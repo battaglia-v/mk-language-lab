@@ -14,7 +14,9 @@ export function MobileTabNav() {
   const primaryActionId: (typeof shellNavItems)[number]["id"] = "practice";
   const accentItem = shellNavItems.find((item) => item.id === primaryActionId);
   const AccentIcon = accentItem?.icon;
-  const supportingItems = shellNavItems.filter((item) => item.id !== primaryActionId);
+  const supportingItems = shellNavItems.filter(
+    (item) => item.id !== primaryActionId && item.id !== "profile"
+  );
   const midpoint = Math.ceil(supportingItems.length / 2);
   const leadingItems = supportingItems.slice(0, midpoint);
   const trailingItems = supportingItems.slice(midpoint);
@@ -29,7 +31,7 @@ export function MobileTabNav() {
     >
       <div className="mx-auto max-w-xl px-4 pb-4 pt-3">
         <div className="relative overflow-hidden rounded-3xl border border-white/12 bg-[color-mix(in_srgb,var(--mk-bg-surface)_92%,#05060f_82%)] shadow-[0_-14px_40px_rgba(0,0,0,0.55)] backdrop-blur-xl">
-          <div className="flex items-end justify-between gap-2 px-2 pb-3 pt-4">
+          <div className="flex items-end justify-between gap-3 px-3 pb-3 pt-4">
             <NavRail
               items={leadingItems}
               t={t}
@@ -44,12 +46,15 @@ export function MobileTabNav() {
                 prefetch={true}
                 aria-current={isNavItemActive(pathname, buildHref(accentItem.path)) ? "page" : undefined}
                 className={cn(
-                  "relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-amber-300 via-primary to-amber-500 text-slate-900 shadow-xl transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--mk-bg)]",
+                  "relative flex h-16 w-16 flex-col items-center justify-center gap-1 rounded-full bg-gradient-to-br from-amber-300 via-primary to-amber-500 text-slate-900 shadow-xl transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--mk-bg)]",
                   "hover:scale-[1.03] active:scale-[0.98]",
                 )}
               >
                 <span className="sr-only">{t(accentItem.id)}</span>
-                <AccentIcon className="h-6 w-6" aria-hidden="true" />
+                <AccentIcon className="h-5 w-5" aria-hidden="true" />
+                <span className="text-[9px] font-bold uppercase tracking-wider leading-none">
+                  {t(accentItem.id)}
+                </span>
               </Link>
             ) : null}
 
@@ -77,7 +82,7 @@ type NavRailProps = {
 
 function NavRail({ items, t, pathname, buildHref, label }: NavRailProps) {
   return (
-    <ul className="flex flex-1 items-center justify-evenly gap-1" role="list" aria-label={`${t("label")}-${label}`}>
+    <ul className="flex flex-1 items-center justify-around gap-2" role="list" aria-label={`${t("label")}-${label}`}>
       {items.map((item) => {
         const Icon = item.icon;
         const href = buildHref(item.path);
