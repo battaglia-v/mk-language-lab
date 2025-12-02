@@ -124,7 +124,7 @@ export default function DiscoverPage() {
     <div className="section-container section-container-xl section-spacing-lg">
       <div className="mb-4 flex flex-wrap items-center gap-3">
         <Link
-          href={`/${locale}/translate`}
+          href={`/${locale}/dashboard`}
           className="inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-1.5 text-xs text-muted-foreground"
           aria-label={navT('backToDashboard')}
         >

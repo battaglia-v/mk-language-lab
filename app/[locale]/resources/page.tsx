@@ -142,7 +142,7 @@ export default function ResourcesPage() {
               size="sm"
               className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-border/60 px-4 text-sm text-muted-foreground"
             >
-              <Link href={`/${locale}/translate`} aria-label={navT('backToDashboard')}>
+              <Link href={`/${locale}/dashboard`} aria-label={navT('backToDashboard')}>
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                 {navT('backToDashboard')}
               </Link>

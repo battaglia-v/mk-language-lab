@@ -184,7 +184,7 @@ export default function PracticePage() {
               size="sm"
               className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-border/60 px-3 text-sm text-muted-foreground hover:text-white sm:px-4"
             >
-              <Link href={`/${locale}/translate`} aria-label={navT('backToDashboard')}>
+              <Link href={`/${locale}/dashboard`} aria-label={navT('backToDashboard')}>
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                 <span className="hidden sm:inline">{navT('backToDashboard')}</span>
               </Link>

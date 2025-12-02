@@ -1,6 +1,7 @@
 'use client';
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
+import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import {
   Copy,
@@ -13,6 +14,7 @@ import {
   PanelRightClose,
   PanelLeftOpen,
   Trash2,
+  ArrowLeft,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -34,6 +36,7 @@ const MAX_CHARACTERS = 1800;
 
 export default function TranslatePage() {
   const t = useTranslations('translate');
+  const navT = useTranslations('nav');
   const locale = useLocale();
   const { addToast } = useToast();
   const directionOptions: TranslationDirectionOption[] = useMemo(
@@ -170,14 +173,27 @@ export default function TranslatePage() {
     <div className="space-y-4 sm:space-y-6">
       <section className="lab-hero" data-testid="translate-hero">
         <div className="flex flex-wrap items-center justify-between gap-4 sm:gap-6">
-          <div>
-            <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{t('badge')}</p>
-            <div className="mt-2 flex flex-wrap items-end gap-2 sm:gap-3">
-              <span className="title-gradient text-2xl lowercase sm:text-3xl md:text-4xl">македонски</span>
-              <span className="text-xs text-muted-foreground sm:text-sm">MK LANGUAGE LAB · {locale.toUpperCase()}</span>
+          <div className="space-y-3">
+            <Button
+              asChild
+              variant="ghost"
+              size="sm"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-white/10 bg-[#161927] px-4 text-xs text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333] sm:text-sm"
+            >
+              <Link href={`/${locale}/dashboard`} aria-label={navT('backToDashboard')}>
+                <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+                {navT('backToDashboard')}
+              </Link>
+            </Button>
+            <div>
+              <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{t('badge')}</p>
+              <div className="mt-2 flex flex-wrap items-end gap-2 sm:gap-3">
+                <span className="title-gradient text-2xl lowercase sm:text-3xl md:text-4xl">македонски</span>
+                <span className="text-xs text-muted-foreground sm:text-sm">MK LANGUAGE LAB · {locale.toUpperCase()}</span>
+              </div>
+              <h1 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:mt-3 sm:text-3xl md:text-4xl">{t('title')}</h1>
+              <p className="mt-1.5 max-w-2xl text-xs text-muted-foreground sm:mt-2 sm:text-sm">{t('subtitle')}</p>
             </div>
-            <h1 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:mt-3 sm:text-3xl md:text-4xl">{t('title')}</h1>
-            <p className="mt-1.5 max-w-2xl text-xs text-muted-foreground sm:mt-2 sm:text-sm">{t('subtitle')}</p>
           </div>
         <Button
           type="button"

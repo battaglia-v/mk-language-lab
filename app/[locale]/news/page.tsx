@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
@@ -10,7 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { FilterChip } from '@/components/ui/filter-chip';
 import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
-import { ExternalLink, Loader2, Newspaper, PlayCircle, RefreshCcw, Search, Video, Clock3 } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Loader2, Newspaper, PlayCircle, RefreshCcw, Search, Video, Clock3 } from 'lucide-react';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
 const SOURCE_IDS = ['all', 'time-mk', 'meta-mk'] as const;
@@ -71,6 +72,7 @@ function NewsSkeletonCard() {
 
 export default function NewsPage() {
   const t = useTranslations('news');
+  const navT = useTranslations('nav');
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -237,6 +239,19 @@ export default function NewsPage() {
     <div className="section-container section-container-xl section-spacing-lg space-y-6 sm:space-y-8">
       <section className="glass-card rounded-2xl p-4 sm:rounded-3xl sm:p-6 md:p-8" data-testid="news-hero">
         <div className="space-y-4 sm:space-y-6">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+            <Button
+              asChild
+              variant="ghost"
+              size="sm"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-border/60 px-4 text-sm text-muted-foreground"
+            >
+              <Link href={`/${locale}/dashboard`} aria-label={navT('backToDashboard')}>
+                <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+                {navT('backToDashboard')}
+              </Link>
+            </Button>
+          </div>
           <header className="space-y-2 text-white sm:space-y-3">
             <div
               className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-primary sm:gap-2 sm:px-3 sm:text-[11px]"
