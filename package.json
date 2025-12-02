@@ -74,7 +74,7 @@
     "expo-router": "^3.5.23",
     "googleapis": "^165.0.0",
     "lucide-react": "^0.553.0",
-    "next": "16.0.1",
+    "next": "16.0.6",
     "next-auth": "^5.0.0-beta.30",
     "next-intl": "^4.5.7",
     "openai": "^6.7.0",
