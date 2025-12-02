@@ -10,9 +10,10 @@ const prismaClientSingleton = () => {
   // Add connection pool configuration for serverless environments
   // These settings help prevent connection exhaustion in serverless environments
   // where function instances are ephemeral
-  const datasourceUrl = process.env.DATABASE_URL +
-    (process.env.DATABASE_URL.includes('?') ? '&' : '?') +
-    'connection_limit=10&pool_timeout=10&connect_timeout=10';
+  const baseUrl = process.env.DATABASE_URL;
+  const hasParams = baseUrl.includes('?');
+  const poolParams = 'connection_limit=10&pool_timeout=10&connect_timeout=10';
+  const datasourceUrl = `${baseUrl}${hasParams ? '&' : '?'}${poolParams}`;
 
   return new PrismaClient({
     log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
