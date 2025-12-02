@@ -7,20 +7,15 @@ const prismaClientSingleton = () => {
     return null as unknown as PrismaClient;
   }
 
-  // Add connection pool configuration for serverless environments
-  // These settings help prevent connection exhaustion in serverless environments
-  // where function instances are ephemeral
-  const baseUrl = process.env.DATABASE_URL;
-  const hasParams = baseUrl.includes('?');
-  const poolParams = 'connection_limit=10&pool_timeout=10&connect_timeout=10';
-  const datasourceUrl = `${baseUrl}${hasParams ? '&' : '?'}${poolParams}`;
-
+  // Note: Neon pooler already handles connection pooling
+  // Don't add connection_limit parameters to pooled connections
+  // Just use the DATABASE_URL as-is
   return new PrismaClient({
     log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
     // Optimize for serverless environments (Vercel)
     datasources: {
       db: {
-        url: datasourceUrl,
+        url: process.env.DATABASE_URL,
       },
     },
   })
