@@ -10,10 +10,21 @@ import {
   getLeagueTierFromStreak,
 } from '@mk/gamification';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60; // Cache for 60 seconds
 
 const FALLBACK_PROFILE = fallbackProfileSummary as ProfileSummary;
 const XP_PER_REVIEW = 12;
+const QUERY_TIMEOUT_MS = 10000; // 10 seconds
+
+// Timeout wrapper for database queries
+function withTimeout<T>(promise: Promise<T>, timeoutMs: number, queryName: string): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<T>((_, reject) =>
+      setTimeout(() => reject(new Error(`Query ${queryName} timed out after ${timeoutMs}ms`)), timeoutMs)
+    ),
+  ]);
+}
 
 export async function GET() {
   const session = await auth().catch(() => null);
@@ -30,7 +41,12 @@ export async function GET() {
       },
     });
   } catch (error) {
-    console.error('[api.profile.summary] Falling back to empty payload', error);
+    console.error('[api.profile.summary] Error building profile', {
+      userId: session.user.id,
+      timestamp: new Date().toISOString(),
+      error: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+    });
     const safeProgress = getLevelProgress(0);
     const fallbackPayload: ProfileSummary = {
       name: session.user.name ?? 'Learner',
@@ -76,46 +92,91 @@ async function buildProfileSummary(userId: string): Promise<ProfileSummary> {
   const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
   const twentyEightDaysAgo = new Date(now.getTime() - 28 * 24 * 60 * 60 * 1000);
 
-  const [
-    user,
-    gameProgress,
-    journeys,
-    recentAttempts,
-    userBadges,
-    weeklyQuests,
-    currency,
-  ] = await Promise.all([
-    prisma.user.findUnique({ where: { id: userId }, select: { name: true } }),
-    prisma.gameProgress.findUnique({ where: { userId } }),
-    prisma.journeyProgress.findMany({
-      where: { userId },
-      orderBy: [{ isActive: 'desc' }, { updatedAt: 'desc' }],
-    }),
-    prisma.exerciseAttempt.findMany({
-      where: {
-        userId,
-        attemptedAt: { gte: twentyEightDaysAgo },
-      },
-      select: { attemptedAt: true },
-    }),
-    prisma.userBadge.findMany({
-      where: { userId },
-      include: { badge: true },
-      orderBy: { createdAt: 'desc' },
-      take: 20,
-    }),
-    prisma.userQuestProgress.findMany({
-      where: {
-        userId,
-        updatedAt: { gte: sevenDaysAgo },
-      },
-    }),
-    prisma.currency.upsert({
-      where: { userId },
-      create: { userId },
-      update: {},
-    }),
+  // Execute all queries with timeouts and graceful degradation
+  const results = await Promise.allSettled([
+    withTimeout(
+      prisma.user.findUnique({ where: { id: userId }, select: { name: true } }),
+      QUERY_TIMEOUT_MS,
+      'user'
+    ),
+    withTimeout(
+      prisma.gameProgress.findUnique({ where: { userId } }),
+      QUERY_TIMEOUT_MS,
+      'gameProgress'
+    ),
+    withTimeout(
+      prisma.journeyProgress.findMany({
+        where: { userId },
+        orderBy: [{ isActive: 'desc' }, { updatedAt: 'desc' }],
+      }),
+      QUERY_TIMEOUT_MS,
+      'journeys'
+    ),
+    withTimeout(
+      prisma.exerciseAttempt.findMany({
+        where: {
+          userId,
+          attemptedAt: { gte: twentyEightDaysAgo },
+        },
+        select: { attemptedAt: true },
+        take: 1000, // Limit to prevent slow queries (max ~35 attempts/day)
+        orderBy: { attemptedAt: 'desc' },
+      }),
+      QUERY_TIMEOUT_MS,
+      'recentAttempts'
+    ),
+    withTimeout(
+      prisma.userBadge.findMany({
+        where: { userId },
+        include: { badge: true },
+        orderBy: { createdAt: 'desc' },
+        take: 20,
+      }),
+      QUERY_TIMEOUT_MS,
+      'userBadges'
+    ),
+    withTimeout(
+      prisma.userQuestProgress.findMany({
+        where: {
+          userId,
+          updatedAt: { gte: sevenDaysAgo },
+        },
+      }),
+      QUERY_TIMEOUT_MS,
+      'weeklyQuests'
+    ),
+    withTimeout(
+      prisma.currency.upsert({
+        where: { userId },
+        create: { userId },
+        update: {},
+      }),
+      QUERY_TIMEOUT_MS,
+      'currency'
+    ),
   ]);
+
+  // Log any failed queries
+  results.forEach((result, index) => {
+    const queryNames = ['user', 'gameProgress', 'journeys', 'recentAttempts', 'userBadges', 'weeklyQuests', 'currency'];
+    if (result.status === 'rejected') {
+      console.error(`[api.profile.summary] Query ${queryNames[index]} failed:`, result.reason);
+    }
+  });
+
+  // Extract results with fallbacks for failed queries
+  const user = results[0].status === 'fulfilled' ? results[0].value : null;
+  const gameProgress = results[1].status === 'fulfilled' ? results[1].value : null;
+  const journeys = results[2].status === 'fulfilled' ? results[2].value : [];
+  const recentAttempts = results[3].status === 'fulfilled' ? results[3].value : [];
+  const userBadges = results[4].status === 'fulfilled' ? results[4].value : [];
+  const weeklyQuests = results[5].status === 'fulfilled' ? results[5].value : [];
+  const currency = results[6].status === 'fulfilled' ? results[6].value : { gems: 0, coins: 0, userId };
+
+  // If critical queries fail, throw error to trigger fallback response
+  if (!user || !gameProgress) {
+    throw new Error('Critical queries (user or gameProgress) failed');
+  }
 
   const xpTotal = gameProgress?.xp ?? 0;
   const weeklyAttempts = recentAttempts.filter((attempt) => attempt.attemptedAt >= sevenDaysAgo);

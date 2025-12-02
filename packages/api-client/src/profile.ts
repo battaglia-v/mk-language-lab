@@ -100,6 +100,15 @@ export function useProfileSummaryQuery<TData = ProfileSummary>({
     enabled: enabled ?? true,
     select,
     initialData: useFixtures ? getLocalProfileSummary() : undefined,
+    retry: (failureCount, error: any) => {
+      // Don't retry auth errors
+      if (error?.message?.includes('401') || error?.message?.includes('403')) {
+        return false;
+      }
+      // Retry up to 3 times for other errors (including 503)
+      return failureCount < 3;
+    },
+    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 10000), // Exponential backoff: 1s, 2s, 4s (max 10s)
   });
 }
 

@@ -495,6 +495,7 @@ model UserQuestProgress {
   @@unique([userId, questId])
   @@index([userId, status])
   @@index([questId, status])
+  @@index([userId, updatedAt])
 }
 
 // Badge - achievements and cosmetics
@@ -535,6 +536,7 @@ model UserBadge {
   @@unique([userId, badgeId])
   @@index([userId, isEquipped])
   @@index([badgeId])
+  @@index([userId, createdAt])
 }
 
 // Currency - tracks gems, coins, or other in-app currency
