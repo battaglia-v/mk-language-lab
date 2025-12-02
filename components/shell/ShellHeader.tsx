@@ -23,6 +23,9 @@ export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
 
   const section = pathname.replace(`/${locale}`, "").split("/")[1] || "dashboard";
 
+  // Pages that handle their own back navigation - don't show header back button
+  const pagesWithOwnBackButton = ["practice", "resources", "notifications", "profile", "news", "discover", "translate"];
+
   const backKey =
     section === "discover" || section === "lesson" || section === "daily-lessons"
       ? "lessons"
@@ -30,16 +33,6 @@ export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
 
   const backLabel = (() => {
     switch (backKey) {
-      case "practice":
-        return navT("practice");
-      case "resources":
-        return navT("resources");
-      case "notifications":
-        return navT("notifications");
-      case "profile":
-        return navT("profile");
-      case "news":
-        return navT("news");
       case "lessons":
         return navT("lessons");
       default:
@@ -49,9 +42,12 @@ export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
 
   const backHref = backKey === "lessons"
     ? buildHref("/discover")
-    : buildHref(backKey === "dashboard" ? "/dashboard" : `/${backKey}`);
+    : buildHref("/dashboard");
 
-  const backTarget = section === "dashboard" ? null : { label: backLabel, href: backHref };
+  // Only show back button for sections that don't have their own back navigation
+  const backTarget = (section === "dashboard" || pagesWithOwnBackButton.includes(section))
+    ? null
+    : { label: backLabel, href: backHref };
 
   return (
     <header className="mx-auto mb-6 max-w-6xl shell-surface nav-toolbar px-4 md:px-6 text-white">
