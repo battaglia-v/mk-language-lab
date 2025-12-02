@@ -173,27 +173,26 @@ export default function PracticePage() {
   const accuracy = reviewedCount > 0 ? Math.round((correctAnswers / reviewedCount) * 100) : 0;
 
   return (
-    <div className="space-y-4 sm:space-y-6 md:space-y-8">
-      {/* Compact Hero Section */}
-      <section className="rounded-2xl border border-border/60 bg-black/30 p-3 sm:rounded-3xl sm:p-4 md:p-5" data-testid="practice-hero">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3">
+    <div className="space-y-4 sm:space-y-6">
+      <section className="lab-hero" data-testid="practice-hero">
+        <div className="flex flex-col gap-3 sm:gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
             <Button
               asChild
               variant="ghost"
               size="sm"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-border/60 px-3 text-sm text-muted-foreground hover:text-white sm:px-4"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-border/60 px-4 text-sm text-muted-foreground"
             >
               <Link href={`/${locale}/dashboard`} aria-label={navT('backToDashboard')}>
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-                <span className="hidden sm:inline">{navT('backToDashboard')}</span>
+                {navT('backToDashboard')}
               </Link>
             </Button>
           </div>
-          <div className="flex-1 space-y-1 text-balance sm:text-right">
-            <p className="hidden text-[11px] uppercase tracking-[0.35em] text-muted-foreground sm:block">{t('badge')}</p>
-            <h1 className="text-lg font-semibold text-white sm:text-2xl md:text-3xl">{t('title')}</h1>
-            <p className="hidden max-w-2xl text-xs text-muted-foreground sm:inline-block sm:text-right md:text-sm">{t('subtitle')}</p>
+          <div className="space-y-1 text-balance lg:text-right">
+            <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{t('badge')}</p>
+            <h1 className="text-2xl font-semibold text-white sm:text-3xl">{t('title')}</h1>
+            <p className="max-w-2xl text-xs text-muted-foreground sm:text-sm">{t('subtitle')}</p>
           </div>
         </div>
 
@@ -204,7 +203,7 @@ export default function PracticePage() {
               <TrendingUp className="h-3.5 w-3.5" aria-hidden="true" />
               <span>{t('drills.reviewedCount', { count: reviewedCount })}</span>
             </div>
-            <div className="rounded-full border border-border/60 bg-black/40 px-3 py-1.5 text-xs font-medium text-white" data-testid="practice-stat">
+            <div className="rounded-full border border-border/60 bg-muted/20 px-3 py-1.5 text-xs font-medium text-white" data-testid="practice-stat">
               {t('drills.accuracyLabel')}: <span className="text-primary">{accuracy}%</span>
             </div>
             {streak > 2 && (
@@ -217,7 +216,7 @@ export default function PracticePage() {
         )}
       </section>
 
-      <div className="space-y-4 rounded-2xl border border-border/60 bg-black/30 p-4 sm:rounded-3xl sm:p-5 md:p-7" data-testid="practice-workspace">
+      <div className="glass-card space-y-4 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-7" data-testid="practice-workspace">
         <div className="flex flex-wrap gap-2" data-testid="practice-panels">
           <DeckToggle
             label={t('savedDeck.badge')}
@@ -242,14 +241,14 @@ export default function PracticePage() {
         </div>
 
         {!deck.length ? (
-          <Alert className="rounded-2xl border border-border/60 bg-black/40">
+          <Alert className="rounded-2xl border border-border/60 bg-muted/20">
             <AlertDescription className="text-sm text-muted-foreground">
               {t('savedDeck.emptyDescription')}
             </AlertDescription>
           </Alert>
         ) : (
           <div className="space-y-4">
-            <div className="animate-in fade-in slide-in-from-bottom-4 duration-300 rounded-2xl border border-border/60 bg-gradient-to-br from-black/50 to-black/30 p-4 shadow-xl backdrop-blur-sm sm:rounded-3xl sm:p-5 md:p-8">
+            <div className="glass-card animate-in fade-in slide-in-from-bottom-4 duration-300 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-8">
               <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-muted-foreground">
                 <span className="font-semibold">{currentCard?.direction === 'en-mk' ? 'EN → MK' : 'MK → EN'}</span>
                 <span className="rounded-full bg-muted/20 px-2.5 py-1 font-bold">
@@ -279,7 +278,7 @@ export default function PracticePage() {
                     value={guess}
                     onChange={(event) => setGuess(event.target.value)}
                     placeholder={t('drills.wordInputPlaceholder')}
-                    className="flex-1 min-h-[44px] rounded-2xl border border-primary/50 bg-white/5 text-sm text-white placeholder:text-slate-400 sm:text-base"
+                    className="flex-1 min-h-[44px] rounded-2xl border border-primary/50 bg-white/5 text-sm text-white placeholder:text-muted-foreground sm:text-base"
                   />
                   <Button
                     type="submit"
@@ -289,7 +288,7 @@ export default function PracticePage() {
                     {t('drills.submitWord')}
                   </Button>
                 </div>
-                <p className="text-xs text-slate-300">{t('drills.wordInputHelper')}</p>
+                <p className="text-xs text-muted-foreground">{t('drills.wordInputHelper')}</p>
               </div>
 
               {feedback && (

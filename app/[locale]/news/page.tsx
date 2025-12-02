@@ -47,7 +47,7 @@ const SKELETON_PLACEHOLDERS = Array.from({ length: 6 }, (_, index) => index);
 
 function NewsSkeletonCard() {
   return (
-    <Card className="glass-card overflow-hidden border border-white/10">
+    <Card className="glass-card overflow-hidden border border-border/60">
       <Skeleton className="aspect-video w-full rounded-none" />
       <CardHeader className="space-y-3">
         <Skeleton className="h-4 w-24 rounded-full" />
@@ -254,7 +254,7 @@ export default function NewsPage() {
           </div>
           <header className="space-y-2 text-white sm:space-y-3">
             <div
-              className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-primary sm:gap-2 sm:px-3 sm:text-[11px]"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-muted/20 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-primary sm:gap-2 sm:px-3 sm:text-[11px]"
               aria-hidden="true"
             >
               <Newspaper className="h-3 w-3 sm:h-3.5 sm:w-3.5" aria-hidden="true" />
@@ -262,8 +262,8 @@ export default function NewsPage() {
             </div>
             <div className="space-y-1.5 sm:space-y-2">
               <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl md:text-4xl">{t('title')}</h1>
-              <p className="text-xs text-slate-300 sm:text-sm md:text-base">{t('subtitle')}</p>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-muted-foreground sm:text-sm md:text-base">{t('subtitle')}</p>
+              <p className="text-xs text-muted-foreground">
                 {t('sourceLabel')} · {meta?.count ?? 0}/{meta?.total ?? 0}
               </p>
             </div>
@@ -284,15 +284,15 @@ export default function NewsPage() {
 
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="relative w-full sm:max-w-md">
-                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                 <Input
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder={t('searchPlaceholder')}
-                  className="min-h-[44px] rounded-2xl border border-white/10 bg-background/80 pl-10 text-sm text-white placeholder:text-slate-400"
+                  className="min-h-[44px] rounded-2xl border border-border/60 bg-background/80 pl-10 text-sm text-white placeholder:text-muted-foreground"
                 />
               </div>
-              <div className="flex flex-wrap items-center gap-2 text-xs text-slate-300 sm:gap-3 sm:text-sm">
+              <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground sm:gap-3 sm:text-sm">
                 {isLoading ? (
                   <span className="inline-flex items-center gap-1.5">
                     <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -310,7 +310,7 @@ export default function NewsPage() {
                   variant="ghost"
                   size="sm"
                   onClick={handleRefresh}
-                  className="min-h-[44px] gap-1.5 rounded-full border border-white/10 px-4 text-white hover:bg-white/10"
+                  className="min-h-[44px] gap-1.5 rounded-full border border-border/60 px-4 text-white"
                 >
                   <RefreshCcw className="h-3.5 w-3.5" />
                   {t('refresh')}
@@ -328,7 +328,7 @@ export default function NewsPage() {
           <Button
             variant="outline"
             size="sm"
-            className="mt-3 min-h-[44px] rounded-full border-white/20 px-4 text-sm text-white hover:bg-white/10 sm:mt-4"
+            className="mt-3 min-h-[44px] rounded-full border-border/60 px-4 text-sm text-white sm:mt-4"
             onClick={handleRefresh}
           >
             {t('retry')}
@@ -337,9 +337,9 @@ export default function NewsPage() {
       )}
 
       {!error && meta?.errors && meta.errors.length > 0 && (
-        <Alert className="glass-card border border-white/20 text-slate-200">
+        <Alert className="glass-card border border-border/60 text-foreground">
           <AlertTitle>{t('error')}</AlertTitle>
-          <AlertDescription className="text-slate-300">{meta.errors.join(' • ')}</AlertDescription>
+          <AlertDescription className="text-muted-foreground">{meta.errors.join(' • ')}</AlertDescription>
         </Alert>
       )}
 
@@ -352,8 +352,8 @@ export default function NewsPage() {
       )}
 
       {showEmpty && (
-        <Card className="glass-card border border-white/10">
-          <CardContent className="py-10 text-center text-sm text-slate-300">{t('noResults')}</CardContent>
+        <Card className="glass-card border border-border/60">
+          <CardContent className="py-10 text-center text-sm text-muted-foreground">{t('noResults')}</CardContent>
         </Card>
       )}
 
@@ -378,7 +378,7 @@ export default function NewsPage() {
                 className="group h-full"
               >
                 <Card
-                  className="glass-card flex h-full flex-col overflow-hidden border border-white/10 bg-background/40 transition-shadow hover:border-primary/40 hover:shadow-2xl"
+                  className="glass-card flex h-full flex-col overflow-hidden border border-border/60 bg-background/40 transition-shadow hover:border-primary/40 hover:shadow-2xl"
                   data-testid="news-card"
                 >
                   <div className="relative aspect-video w-full overflow-hidden bg-muted">
@@ -403,7 +403,7 @@ export default function NewsPage() {
                       {item.title}
                     </CardTitle>
                     {item.description && (
-                      <CardDescription className="line-clamp-3 text-sm text-slate-300">
+                      <CardDescription className="line-clamp-3 text-sm text-muted-foreground">
                         {item.description}
                       </CardDescription>
                     )}
@@ -414,7 +414,7 @@ export default function NewsPage() {
                         <Badge
                           key={`${item.id}-${category}`}
                           variant="outline"
-                          className="rounded-full border-white/20 px-2 text-[11px] text-slate-200"
+                          className="rounded-full border-border/60 px-2 text-[11px] text-foreground"
                         >
                           {category}
                         </Badge>
@@ -429,7 +429,7 @@ export default function NewsPage() {
                         </Badge>
                       )}
                     </div>
-                    <div className="flex items-center justify-between text-xs text-slate-400">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
                       {publishedLabel && (
                         <span className="inline-flex items-center gap-1.5">
                           <Clock3 className="h-3.5 w-3.5" />

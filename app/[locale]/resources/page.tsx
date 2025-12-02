@@ -158,7 +158,7 @@ export default function ResourcesPage() {
 
       <div className={cn('lab-grid', isDesktop && !panelCollapsed && 'has-panel')} data-testid="resources-workspace">
         <div className="space-y-4">
-          <div className="space-y-3.5 rounded-2xl border border-border/60 bg-black/30 p-4 sm:space-y-4 sm:rounded-3xl sm:p-5 md:p-7">
+          <div className="glass-card space-y-3.5 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-7 sm:space-y-4">
             <div className="flex flex-col gap-3 md:flex-row md:items-center">
               <div className="relative flex-1">
                 <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground sm:left-4" />
@@ -198,14 +198,14 @@ export default function ResourcesPage() {
             </div>
           </div>
 
-          <section className="space-y-4 rounded-2xl border border-border/60 bg-black/30 p-4 sm:rounded-3xl sm:p-5 md:p-7">
+          <section className="glass-card space-y-4 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-7">
             <div className="card-grid two">
               {loading
                 ? Array.from({ length: 6 }).map((_, index) => <ResourceSkeleton key={`resource-skeleton-${index}`} />)
                 : filtered.map((resource) => <ResourceCard key={resource.id} resource={resource} />)}
             </div>
             {!loading && !filtered.length ? (
-              <div className="rounded-2xl border border-dashed border-border/60 bg-black/30 p-4 text-xs text-muted-foreground sm:rounded-3xl sm:p-5 sm:text-sm">
+              <div className="rounded-2xl border border-dashed border-border/60 bg-muted/20 p-4 text-xs text-muted-foreground sm:rounded-3xl sm:p-5 sm:text-sm">
                 {t('emptyState')}
               </div>
             ) : null}
@@ -325,7 +325,7 @@ function ResourceCard({ resource }: ResourceCardProps) {
       href={resource.url}
       target="_blank"
       rel="noreferrer"
-      className="group flex h-full min-h-[140px] flex-col justify-between rounded-2xl border border-border/60 bg-black/30 p-4 text-left transition hover:border-primary hover:bg-black/40 sm:rounded-3xl sm:p-5"
+      className="glass-card group flex h-full min-h-[140px] flex-col justify-between rounded-2xl sm:rounded-3xl p-4 sm:p-5 text-left transition hover:border-primary"
     >
       <div>
         <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground sm:text-xs sm:tracking-[0.3em]">{resource.section}</p>
@@ -342,7 +342,7 @@ function ResourceCard({ resource }: ResourceCardProps) {
 
 function ResourceSkeleton() {
   return (
-    <div className="rounded-3xl border border-border/60 bg-black/30 card-padding">
+    <div className="glass-card rounded-3xl card-padding">
       <Skeleton className="h-3 w-16" />
       <Skeleton className="mt-3 h-5 w-40" />
       <Skeleton className="mt-2 h-4 w-full" />

@@ -178,7 +178,7 @@ export default function TranslatePage() {
               asChild
               variant="ghost"
               size="sm"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-white/10 bg-[#161927] px-4 text-xs text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333] sm:text-sm"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-border/60 px-4 text-xs text-muted-foreground sm:text-sm"
             >
               <Link href={`/${locale}/dashboard`} aria-label={navT('backToDashboard')}>
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
@@ -199,7 +199,7 @@ export default function TranslatePage() {
           type="button"
           variant="ghost"
           size="sm"
-          className="min-h-[44px] rounded-full border border-white/10 bg-[#161927] px-4 text-xs text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333] sm:text-sm"
+          className="min-h-[44px] rounded-full border border-border/60 px-4 text-xs text-muted-foreground sm:text-sm"
           onClick={() => setPanelCollapsed((prev) => !prev)}
           aria-label={panelCollapsed ? t('contextExpand') : t('contextCollapse')}
         >
@@ -227,7 +227,7 @@ export default function TranslatePage() {
             swapLabel={t('swapDirections')}
           />
           <form
-            className="rounded-2xl border border-white/5 bg-[#0c0f1d]/80 p-4 shadow-[var(--shadow-soft)] backdrop-blur sm:rounded-[28px] sm:p-5 md:p-7"
+            className="glass-card rounded-2xl sm:rounded-[28px] p-4 sm:p-5 md:p-7"
             onSubmit={(event: FormEvent<HTMLFormElement>) => {
               event.preventDefault();
               void handleTranslate(event);
@@ -241,7 +241,7 @@ export default function TranslatePage() {
               aria-label={t('inputLabel')}
               aria-describedby="translate-character-count"
               maxLength={MAX_CHARACTERS}
-              className="min-h-[120px] resize-none rounded-2xl border border-white/10 bg-[#0f1326] px-3.5 py-3 text-sm shadow-inner placeholder:text-muted-foreground sm:min-h-[140px] sm:px-4 sm:text-base"
+              className="min-h-[120px] resize-none rounded-2xl border border-border/60 bg-background/50 px-3.5 py-3 text-sm shadow-inner placeholder:text-muted-foreground sm:min-h-[140px] sm:px-4 sm:text-base"
             />
             <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground sm:mt-4 sm:gap-3">
               <span id="translate-character-count">{characterCount}</span>
@@ -249,14 +249,14 @@ export default function TranslatePage() {
                 <Button
                   type="button"
                   variant="ghost"
-                  className="min-h-[44px] rounded-full bg-[#161927] px-4 text-xs text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333] hover:text-white"
+                  className="min-h-[44px] rounded-full border border-border/60 px-4 text-xs text-muted-foreground"
                   onClick={handleClear}
                 >
                   {t('clearButton')}
                 </Button>
                 <Button
                   type="submit"
-                  className="min-h-[44px] rounded-full bg-[var(--mk-accent)] px-5 text-sm text-[#0b0a03] shadow-[0_18px_48px_rgba(0,0,0,0.5)] transition hover:bg-[#ffe253] sm:px-7"
+                  className="min-h-[44px] rounded-full px-5 text-sm sm:px-7"
                   disabled={isTranslating}
                 >
                   {isTranslating ? (
@@ -272,7 +272,7 @@ export default function TranslatePage() {
             </div>
           </form>
 
-          <section className="space-y-3.5 rounded-2xl border border-white/5 bg-[#0c0f1d]/80 p-4 shadow-[var(--shadow-soft)] backdrop-blur sm:space-y-4 sm:rounded-[28px] sm:p-5 md:p-7">
+          <section className="glass-card space-y-3.5 rounded-2xl sm:rounded-[28px] p-4 sm:p-5 md:p-7 sm:space-y-4">
             <div className="flex flex-wrap items-center gap-2 sm:gap-3">
               <div>
                 <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{t('resultLabel')}</p>
@@ -283,7 +283,7 @@ export default function TranslatePage() {
               <Button
                 type="button"
                 variant="ghost"
-                className="ml-auto min-h-[44px] rounded-full bg-[#161927] px-4 text-xs text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333] hover:text-white"
+                className="ml-auto min-h-[44px] rounded-full border border-border/60 px-4 text-xs text-muted-foreground"
                 onClick={handleCopy}
               >
                 {copiedState === 'copied' ? (
@@ -298,7 +298,7 @@ export default function TranslatePage() {
               </Button>
             </div>
             <div
-              className="min-h-[180px] rounded-2xl border border-white/10 bg-[#0f1326] px-3.5 py-3.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_16px_40px_rgba(0,0,0,0.55)] sm:min-h-[200px] sm:px-4 sm:py-4"
+              className="min-h-[180px] rounded-2xl border border-border/60 bg-background/50 px-3.5 py-3.5 shadow-inner sm:min-h-[200px] sm:px-4 sm:py-4"
               aria-live="polite"
             >
               {isTranslating ? (
@@ -313,12 +313,7 @@ export default function TranslatePage() {
               <Button
                 type="button"
                 variant={isCurrentSaved ? 'secondary' : 'default'}
-                className={cn(
-                  'w-full min-h-[48px] rounded-2xl border border-white/10 px-4 py-3 text-sm shadow-[0_16px_40px_rgba(0,0,0,0.55)] sm:min-h-[52px] sm:px-5 sm:py-4 sm:text-base',
-                  isCurrentSaved
-                    ? 'bg-[#161927] text-white hover:bg-[#1f2333]'
-                    : 'bg-[var(--mk-accent)] text-[#0b0a03] hover:bg-[#ffe253]',
-                )}
+                className="w-full min-h-[48px] rounded-2xl px-4 py-3 text-sm sm:min-h-[52px] sm:px-5 sm:py-4 sm:text-base"
                 onClick={isCurrentSaved ? handleRemove : handleSave}
               >
                 <span className="flex items-center justify-center gap-2">
@@ -344,7 +339,7 @@ export default function TranslatePage() {
               <div
                 role="tablist"
                 aria-label={t('contextPanelLabel')}
-                className="inline-flex items-center rounded-full border border-white/10 bg-[#111627] p-1 shadow-[0_18px_40px_rgba(0,0,0,0.55)]"
+                className="inline-flex items-center rounded-full border border-border/60 bg-muted/20 p-1"
               >
                 <PanelToggleButton
                   icon={History}
@@ -363,7 +358,7 @@ export default function TranslatePage() {
                 type="button"
                 variant="ghost"
                 size="icon-sm"
-                className="rounded-full border border-white/10 bg-[#161927] text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333]"
+                className="rounded-full border border-border/60 text-muted-foreground"
                 onClick={() => setPanelCollapsed(true)}
                 aria-label={t('contextCollapse')}
               >
@@ -420,7 +415,7 @@ type DirectionToggleProps = {
 
 function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel }: DirectionToggleProps) {
   return (
-    <div className="rounded-2xl border border-white/5 bg-[#0c0f1d]/80 p-4 shadow-[var(--shadow-soft)] backdrop-blur sm:rounded-[26px] sm:p-5 md:p-6">
+    <div className="glass-card rounded-2xl sm:rounded-[26px] p-4 sm:p-5 md:p-6">
       <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-muted-foreground">{label}</p>
@@ -429,7 +424,7 @@ function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel
           type="button"
           variant="ghost"
           size="sm"
-          className="min-h-[44px] rounded-full bg-[#161927] px-4 text-xs text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333] hover:text-white"
+          className="min-h-[44px] rounded-full border border-border/60 px-4 text-xs text-muted-foreground"
           onClick={onSwap}
           aria-label={swapLabel}
         >
@@ -438,7 +433,7 @@ function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel
         </Button>
       </div>
       <div
-        className="mt-3 flex flex-1 flex-wrap gap-1.5 rounded-2xl border border-white/10 bg-gradient-to-r from-[#2b1216] via-[#131525] to-[#103420] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_18px_40px_rgba(0,0,0,0.55)] sm:mt-4 sm:gap-2"
+        className="mt-3 flex flex-1 flex-wrap gap-1.5 rounded-2xl border border-border/60 bg-gradient-to-r from-[#2b1216] via-[#131525] to-[#103420] p-1 sm:mt-4 sm:gap-2"
         role="radiogroup"
         aria-label={label}
       >
@@ -488,8 +483,8 @@ function PanelToggleButton({ icon: Icon, label, active, onClick }: PanelToggleBu
       className={cn(
         'touch-target flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold transition',
         active
-          ? 'border border-white/10 bg-[var(--mk-accent)] text-[#0b0a03] shadow-[0_12px_32px_rgba(0,0,0,0.55)]'
-          : 'border border-transparent text-muted-foreground hover:border-white/10 hover:text-white',
+          ? 'border border-border/60 bg-primary text-primary-foreground'
+          : 'border border-transparent text-muted-foreground hover:border-border/60 hover:text-white',
       )}
       onClick={onClick}
     >
@@ -528,7 +523,7 @@ function SavedList({
 }: SavedListProps) {
   if (!phrases.length) {
     return (
-      <div className="rounded-2xl border border-dashed border-white/12 bg-[#0c0f1d]/60 p-5 text-sm text-muted-foreground shadow-[var(--shadow-soft)]">
+      <div className="rounded-2xl border border-dashed border-border/60 bg-muted/20 p-5 text-sm text-muted-foreground">
         <p className="text-base font-semibold text-white">{emptyTitle}</p>
         <p className="mt-2">{emptyDescription}</p>
       </div>
@@ -553,7 +548,7 @@ function SavedList({
         {phrases.map((phrase) => (
           <li
             key={phrase.id}
-            className="rounded-2xl border border-white/10 bg-[#0c0f1d]/80 p-4 shadow-[var(--shadow-soft)]"
+            className="glass-card rounded-2xl p-4"
           >
             <div className="flex items-start justify-between gap-3">
               <div>
@@ -571,7 +566,7 @@ function SavedList({
                   type="button"
                   size="sm"
                   variant="ghost"
-                  className="min-h-[44px] rounded-full border border-white/12 bg-[#161927] px-4 text-xs font-semibold text-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333]"
+                  className="min-h-[44px] rounded-full border border-border/60 px-4 text-xs font-semibold text-foreground"
                   onClick={() => onLoad(phrase)}
                 >
                   {loadLabel}
@@ -581,7 +576,7 @@ function SavedList({
                   variant="ghost"
                   size="icon-sm"
                   aria-label={removeLabel}
-                  className="min-h-[44px] min-w-[44px] rounded-full border border-white/10 bg-[#161927] text-muted-foreground shadow-[0_12px_34px_rgba(0,0,0,0.55)] hover:bg-[#1f2333]"
+                  className="min-h-[44px] min-w-[44px] rounded-full border border-border/60 text-muted-foreground"
                   onClick={() => onRemove(phrase.id)}
                 >
                   <Trash2 className="h-4 w-4" aria-hidden="true" />
