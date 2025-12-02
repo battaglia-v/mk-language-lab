@@ -20,14 +20,7 @@ jobs:
     env:
       GITHUB_REF_NAME: ${{ github.ref_name }}
       CRON_SECRET: ${{ secrets.CRON_SECRET }}
-      REMINDER_CRON_BASE_URL: ${{
-        secrets.REMINDER_CRON_BASE_URL ||
-        vars.REMINDER_CRON_BASE_URL ||
-        secrets.NEXT_PUBLIC_APP_URL ||
-        vars.NEXT_PUBLIC_APP_URL ||
-        secrets.EXPO_PUBLIC_API_BASE_URL ||
-        vars.EXPO_PUBLIC_API_BASE_URL
-      }}
+      REMINDER_CRON_BASE_URL: ${{ secrets.REMINDER_CRON_BASE_URL || vars.REMINDER_CRON_BASE_URL || secrets.NEXT_PUBLIC_APP_URL || vars.NEXT_PUBLIC_APP_URL || secrets.EXPO_PUBLIC_API_BASE_URL || vars.EXPO_PUBLIC_API_BASE_URL }}
       REMINDER_CRON_ERROR_BUDGET: ${{ secrets.REMINDER_CRON_ERROR_BUDGET || vars.REMINDER_CRON_ERROR_BUDGET || '3' }}
       NEXT_PUBLIC_APP_URL: ${{ secrets.NEXT_PUBLIC_APP_URL || vars.NEXT_PUBLIC_APP_URL }}
       EXPO_PUBLIC_API_BASE_URL: ${{ secrets.EXPO_PUBLIC_API_BASE_URL || vars.EXPO_PUBLIC_API_BASE_URL }}
