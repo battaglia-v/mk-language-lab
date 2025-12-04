@@ -161,9 +161,7 @@ export async function GET() {
       activityHeatmap: [],
     };
 
-    const requestDuration = Date.now() - requestStart;
-
-    // Log fallback usage for monitoring
+    // Log fallback usage for monitoring (reuse requestDuration from catch block)
     console.warn('[api.profile.summary] Using fallback profile data', {
       userId: session.user.id,
       duration: requestDuration,
@@ -208,7 +206,7 @@ async function buildProfileSummary(userId: string): Promise<{ profile: ProfileSu
       prisma.journeyProgress.findMany({
         where: {
           userId,
-          isComplete: false // Only fetch active journeys for profile
+          isActive: true // Only fetch active journeys for profile
         },
         orderBy: [{ isActive: 'desc' }, { updatedAt: 'desc' }],
         take: 10 // Limit to 10 most recent active journeys
