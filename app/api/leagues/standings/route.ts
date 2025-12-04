@@ -2,12 +2,10 @@ import { NextResponse } from 'next/server';
 import { unstable_cache } from 'next/cache';
 import prisma from '@/lib/prisma';
 import { auth } from '@/lib/auth';
-import fallbackStandings from '@/data/league-standings.json';
 import type { LeagueStandings } from '@mk/api-client';
 import { getLeagueTierFromStreak } from '@mk/gamification';
 import type { GameProgress, Prisma } from '@prisma/client';
 
-const FALLBACK_STANDINGS = fallbackStandings as LeagueStandings;
 const TIER_ORDER: Record<string, number> = {
   bronze: 1,
   silver: 2,
@@ -66,20 +64,12 @@ export async function GET() {
       },
     });
   } catch (error) {
-    console.error('[api.leagues.standings] Falling back to fixture payload', error);
-    const fallback = {
-      ...FALLBACK_STANDINGS,
-      members: FALLBACK_STANDINGS.members.map((member) => ({
-        ...member,
-        isCurrentUser: member.isCurrentUser || member.name.toLowerCase().includes('you'),
-      })),
-    } satisfies LeagueStandings;
-    return NextResponse.json(fallback, {
-      headers: {
-        'Cache-Control': 'public, s-maxage=120',
-        'x-league-source': 'fallback',
-      },
-    });
+    console.error('[api.leagues.standings] Error fetching league standings', error);
+    // Return error instead of dummy fallback data
+    return NextResponse.json(
+      { error: 'Failed to load league standings' },
+      { status: 500 }
+    );
   }
 }
 

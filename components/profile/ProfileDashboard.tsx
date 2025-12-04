@@ -9,7 +9,6 @@ import { ProfileHeader } from './ProfileHeader';
 import { QuestsSection } from './QuestsSection';
 import { BadgesSection } from './BadgesSection';
 import { StatsSection } from './StatsSection';
-import { BadgeShopPreview } from './BadgeShopPreview';
 import { LeagueStandingsCard } from './LeagueStandingsCard';
 import { ProfileActivityMap } from './ProfileActivityMap';
 import { Button } from '@/components/ui/button';
@@ -133,9 +132,10 @@ export function ProfileDashboard({ className, dataTestId }: ProfileDashboardProp
         </div>
 
         <div className="space-y-5 lg:col-span-5">
-          <LeagueStandingsCard data={leagueStandings} isLoading={isLeagueLoading} error={leagueError} />
-
-          <BadgeShopPreview />
+          {/* Only show league standings if we have real data (not fallback) */}
+          {leagueStandings && !leagueError && (
+            <LeagueStandingsCard data={leagueStandings} isLoading={isLeagueLoading} error={leagueError} />
+          )}
 
           <BadgesSection badges={profile.badges} />
         </div>

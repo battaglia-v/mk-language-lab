@@ -9,6 +9,12 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@mk/analytics": "*",
+    "@mk/api-client": "*",
+    "@mk/gamification": "*",
+    "@mk/practice": "*",
+    "@mk/tokens": "*",
+    "@mk/ui": "*",
     "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-navigation/bottom-tabs": "^7.8.4",
     "@react-navigation/native": "^7.1.19",
@@ -31,6 +37,7 @@
     "expo-secure-store": "~15.0.7",
     "expo-status-bar": "~3.0.8",
     "expo-task-manager": "~14.0.8",
+    "expo-updates": "~29.0.13",
     "expo-web-browser": "^15.0.9",
     "react": "19.1.0",
     "react-native": "0.81.5",
