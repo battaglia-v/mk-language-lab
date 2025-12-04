@@ -60,6 +60,9 @@ body {
   color: var(--mk-text);
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 .section-container {
@@ -499,4 +502,59 @@ body {
   .card-grid.three {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+}
+
+/* Button group alignment utilities */
+.button-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.button-group-start {
+  justify-content: flex-start;
+}
+
+.button-group-center {
+  justify-content: center;
+}
+
+.button-group-between {
+  justify-content: space-between;
+}
+
+.button-group-end {
+  justify-content: flex-end;
+}
+
+/* Ensure buttons in flex containers are baseline-aligned */
+.button-group > * {
+  align-self: center;
+}
+
+/* Text readability improvements */
+.text-readable {
+  max-width: 65ch;
+  line-height: 1.7;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Improved contrast for muted text on dark backgrounds */
+.text-muted-readable {
+  color: rgba(247, 248, 251, 0.85);
+}
+
+/* Consistent card text */
+.card-text {
+  color: var(--mk-text);
+  line-height: var(--line-height-base);
+}
+
+.card-text-muted {
+  color: rgba(247, 248, 251, 0.80);
+  line-height: var(--line-height-base);
 }
