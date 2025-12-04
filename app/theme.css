@@ -51,7 +51,7 @@
   --popover: #07070f;
   --popover-foreground: var(--mk-text);
   --primary: var(--mk-accent);
-  --primary-foreground: #0b0a03;
+  --primary-foreground: #000000; /* Pure black for maximum contrast on yellow buttons */
   --secondary: var(--mk-accent-3);
   --secondary-foreground: #02150c;
   --muted: var(--mk-bg-panel-muted);
