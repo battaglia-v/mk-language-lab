@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { unstable_cache } from 'next/cache';
 import prisma from '@/lib/prisma';
 import { auth } from '@/lib/auth';
 import fallbackStandings from '@/data/league-standings.json';
@@ -17,6 +18,39 @@ const TIER_ORDER: Record<string, number> = {
 
 export const revalidate = 60;
 
+// Cached query wrappers for league data
+const getCachedLeagues = unstable_cache(
+  async () => {
+    return prisma.league.findMany();
+  },
+  ['leagues-list'],
+  { revalidate: 3600, tags: ['leagues'] } // 1 hour cache - static reference data
+);
+
+const getCachedLeagueStandings = unstable_cache(
+  async (leagueId: string) => {
+    return prisma.leagueMembership.findMany({
+      where: { leagueId },
+      include: { user: { select: { name: true, image: true } } },
+      orderBy: [{ rank: 'asc' }, { updatedAt: 'desc' }],
+      take: 20,
+    });
+  },
+  ['league-standings'],
+  { revalidate: 120, tags: ['leagues'] } // 2 min cache
+);
+
+const getCachedMemberProgress = unstable_cache(
+  async (memberIds: string[]) => {
+    return prisma.gameProgress.findMany({
+      where: { userId: { in: memberIds } },
+      select: { userId: true, streak: true, xp: true },
+    });
+  },
+  ['member-progress'],
+  { revalidate: 60, tags: ['leagues'] } // 1 min cache
+);
+
 export async function GET() {
   const session = await auth().catch(() => null);
   if (!session?.user?.id) {
@@ -27,7 +61,7 @@ export async function GET() {
     const standings = await buildLeagueStandings(session.user.id);
     return NextResponse.json(standings, {
       headers: {
-        'Cache-Control': 'public, s-maxage=60',
+        'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120',
         'x-league-source': 'prisma',
       },
     });
@@ -59,7 +93,7 @@ async function buildLeagueStandings(userId: string): Promise<LeagueStandings> {
 
   const [gameProgress, leagues] = await Promise.all([
     prisma.gameProgress.findUnique({ where: { userId } }),
-    prisma.league.findMany(),
+    getCachedLeagues(), // Cached: 1 hour
   ]);
 
   const streakDays = gameProgress?.streak ?? 0;
@@ -74,22 +108,14 @@ async function buildLeagueStandings(userId: string): Promise<LeagueStandings> {
     Prisma.LeagueMembershipGetPayload<{
       include: { user: { select: { name: true; image: true } } };
     }>
-  > = await prisma.leagueMembership.findMany({
-    where: { leagueId: targetLeague.id },
-    include: { user: { select: { name: true, image: true } } },
-    orderBy: [{ rank: 'asc' }, { updatedAt: 'desc' }],
-    take: 20,
-  });
+  > = await getCachedLeagueStandings(targetLeague.id); // Cached: 2 min
 
   const memberIds = standings.map((entry) => entry.userId);
   if (!memberIds.includes(userId)) {
     memberIds.push(userId);
   }
 
-  const progressRecords: Pick<GameProgress, 'userId' | 'streak' | 'xp'>[] = await prisma.gameProgress.findMany({
-    where: { userId: { in: memberIds } },
-    select: { userId: true, streak: true, xp: true },
-  });
+  const progressRecords: Pick<GameProgress, 'userId' | 'streak' | 'xp'>[] = await getCachedMemberProgress(memberIds); // Cached: 1 min
 
   const streakMap = new Map(progressRecords.map((entry) => [entry.userId, entry.streak]));
   const xpMap = new Map(progressRecords.map((entry) => [entry.userId, entry.xp]));

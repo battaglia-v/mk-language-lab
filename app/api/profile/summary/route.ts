@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { unstable_cache } from 'next/cache';
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import fallbackProfileSummary from '@/data/profile-summary.json';
@@ -14,19 +15,84 @@ export const revalidate = 60; // Cache for 60 seconds
 
 const FALLBACK_PROFILE = fallbackProfileSummary as ProfileSummary;
 const XP_PER_REVIEW = 12;
-const QUERY_TIMEOUT_MS = 10000; // 10 seconds
+const CRITICAL_QUERY_TIMEOUT_MS = 5000; // 5 seconds for critical queries
+const OPTIONAL_QUERY_TIMEOUT_MS = 3000; // 3 seconds for optional queries
 
-// Timeout wrapper for database queries
+// Timeout wrapper for database queries with performance logging
 function withTimeout<T>(promise: Promise<T>, timeoutMs: number, queryName: string): Promise<T> {
+  const startTime = Date.now();
+
   return Promise.race([
-    promise,
+    promise.then((result) => {
+      const duration = Date.now() - startTime;
+
+      // Log slow queries (> 1 second)
+      if (duration > 1000) {
+        console.warn(`[api.profile.summary] Slow query: ${queryName} took ${duration}ms`);
+      }
+
+      return result;
+    }),
     new Promise<T>((_, reject) =>
-      setTimeout(() => reject(new Error(`Query ${queryName} timed out after ${timeoutMs}ms`)), timeoutMs)
+      setTimeout(() => {
+        console.error(`[api.profile.summary] Query timeout: ${queryName} exceeded ${timeoutMs}ms`);
+        reject(new Error(`Query ${queryName} timed out after ${timeoutMs}ms`));
+      }, timeoutMs)
     ),
   ]);
 }
 
+// Cached query wrappers for expensive operations
+const getCachedUser = unstable_cache(
+  async (userId: string) => {
+    return prisma.user.findUnique({
+      where: { id: userId },
+      select: { name: true }
+    });
+  },
+  ['user-profile'],
+  { revalidate: 300, tags: ['profile'] } // 5 min cache
+);
+
+const getCachedGameProgress = unstable_cache(
+  async (userId: string) => {
+    return prisma.gameProgress.findUnique({ where: { userId } });
+  },
+  ['game-progress'],
+  { revalidate: 60, tags: ['profile'] } // 1 min cache
+);
+
+const getCachedUserBadges = unstable_cache(
+  async (userId: string) => {
+    return prisma.userBadge.findMany({
+      where: { userId },
+      include: { badge: true },
+      orderBy: { createdAt: 'desc' },
+      take: 20,
+    });
+  },
+  ['user-badges'],
+  { revalidate: 900, tags: ['profile'] } // 15 min cache
+);
+
+const getCachedExerciseAttempts = unstable_cache(
+  async (userId: string, twentyEightDaysAgo: Date) => {
+    return prisma.exerciseAttempt.findMany({
+      where: {
+        userId,
+        attemptedAt: { gte: twentyEightDaysAgo },
+      },
+      select: { attemptedAt: true }, // Only select needed field for heatmap
+      take: 500, // Reduced from 1000 - sufficient for 28 days (~18 attempts/day max)
+      orderBy: { attemptedAt: 'desc' },
+    });
+  },
+  ['exercise-attempts-heatmap'],
+  { revalidate: 300, tags: ['profile'] } // 5 min cache
+);
+
 export async function GET() {
+  const requestStart = Date.now();
   const session = await auth().catch(() => null);
 
   if (!session?.user?.id) {
@@ -34,15 +100,32 @@ export async function GET() {
   }
 
   try {
-    const payload = await buildProfileSummary(session.user.id);
+    const { profile: payload, completeness } = await buildProfileSummary(session.user.id);
+    const requestDuration = Date.now() - requestStart;
+
+    // Log successful request with performance metrics
+    console.log('[api.profile.summary] Request successful', {
+      userId: session.user.id,
+      duration: requestDuration,
+      completeness: `${completeness}%`,
+      source: 'prisma',
+      timestamp: new Date().toISOString(),
+    });
+
     return NextResponse.json(payload, {
       headers: {
         'x-profile-source': 'prisma',
+        'x-profile-completeness': `${completeness}%`,
+        'x-response-time': `${requestDuration}ms`,
+        'Cache-Control': 'public, s-maxage=30, stale-while-revalidate=60',
       },
     });
   } catch (error) {
+    const requestDuration = Date.now() - requestStart;
+
     console.error('[api.profile.summary] Error building profile', {
       userId: session.user.id,
+      duration: requestDuration,
       timestamp: new Date().toISOString(),
       error: error instanceof Error ? error.message : String(error),
       stack: error instanceof Error ? error.stack : undefined,
@@ -78,61 +161,69 @@ export async function GET() {
       activityHeatmap: [],
     };
 
+    const requestDuration = Date.now() - requestStart;
+
+    // Log fallback usage for monitoring
+    console.warn('[api.profile.summary] Using fallback profile data', {
+      userId: session.user.id,
+      duration: requestDuration,
+      timestamp: new Date().toISOString(),
+      reason: 'Database queries failed',
+      source: 'fallback',
+    });
+
     return NextResponse.json(fallbackPayload, {
       headers: {
-        'x-profile-source': 'empty',
+        'x-profile-source': 'fallback',
+        'x-profile-completeness': '0%',
+        'x-response-time': `${requestDuration}ms`,
+        'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120',
       },
-      status: 503,
+      status: 200, // Return 200 instead of 503 to avoid error state in UI
     });
   }
 }
 
-async function buildProfileSummary(userId: string): Promise<ProfileSummary> {
+async function buildProfileSummary(userId: string): Promise<{ profile: ProfileSummary; completeness: number }> {
   const now = new Date();
   const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
   const twentyEightDaysAgo = new Date(now.getTime() - 28 * 24 * 60 * 60 * 1000);
 
   // Execute all queries with timeouts and graceful degradation
+  // Use cached versions for expensive queries (user, gameProgress, badges, attempts)
+  // Critical queries: user, gameProgress (5s timeout)
+  // Optional queries: everything else (3s timeout)
   const results = await Promise.allSettled([
     withTimeout(
-      prisma.user.findUnique({ where: { id: userId }, select: { name: true } }),
-      QUERY_TIMEOUT_MS,
+      getCachedUser(userId), // Cached: 5 min
+      CRITICAL_QUERY_TIMEOUT_MS, // 5s - critical
       'user'
     ),
     withTimeout(
-      prisma.gameProgress.findUnique({ where: { userId } }),
-      QUERY_TIMEOUT_MS,
+      getCachedGameProgress(userId), // Cached: 1 min
+      CRITICAL_QUERY_TIMEOUT_MS, // 5s - critical
       'gameProgress'
     ),
     withTimeout(
       prisma.journeyProgress.findMany({
-        where: { userId },
+        where: {
+          userId,
+          isComplete: false // Only fetch active journeys for profile
+        },
         orderBy: [{ isActive: 'desc' }, { updatedAt: 'desc' }],
+        take: 10 // Limit to 10 most recent active journeys
       }),
-      QUERY_TIMEOUT_MS,
+      OPTIONAL_QUERY_TIMEOUT_MS, // 3s - optional
       'journeys'
     ),
     withTimeout(
-      prisma.exerciseAttempt.findMany({
-        where: {
-          userId,
-          attemptedAt: { gte: twentyEightDaysAgo },
-        },
-        select: { attemptedAt: true },
-        take: 1000, // Limit to prevent slow queries (max ~35 attempts/day)
-        orderBy: { attemptedAt: 'desc' },
-      }),
-      QUERY_TIMEOUT_MS,
+      getCachedExerciseAttempts(userId, twentyEightDaysAgo), // Cached: 5 min
+      OPTIONAL_QUERY_TIMEOUT_MS, // 3s - optional
       'recentAttempts'
     ),
     withTimeout(
-      prisma.userBadge.findMany({
-        where: { userId },
-        include: { badge: true },
-        orderBy: { createdAt: 'desc' },
-        take: 20,
-      }),
-      QUERY_TIMEOUT_MS,
+      getCachedUserBadges(userId), // Cached: 15 min
+      OPTIONAL_QUERY_TIMEOUT_MS, // 3s - optional
       'userBadges'
     ),
     withTimeout(
@@ -142,7 +233,7 @@ async function buildProfileSummary(userId: string): Promise<ProfileSummary> {
           updatedAt: { gte: sevenDaysAgo },
         },
       }),
-      QUERY_TIMEOUT_MS,
+      OPTIONAL_QUERY_TIMEOUT_MS, // 3s - optional
       'weeklyQuests'
     ),
     withTimeout(
@@ -151,18 +242,25 @@ async function buildProfileSummary(userId: string): Promise<ProfileSummary> {
         create: { userId },
         update: {},
       }),
-      QUERY_TIMEOUT_MS,
+      OPTIONAL_QUERY_TIMEOUT_MS, // 3s - optional
       'currency'
     ),
   ]);
 
-  // Log any failed queries
+  // Log any failed queries and calculate completeness
+  const queryNames = ['user', 'gameProgress', 'journeys', 'recentAttempts', 'userBadges', 'weeklyQuests', 'currency'];
+  let successfulQueries = 0;
+
   results.forEach((result, index) => {
-    const queryNames = ['user', 'gameProgress', 'journeys', 'recentAttempts', 'userBadges', 'weeklyQuests', 'currency'];
-    if (result.status === 'rejected') {
+    if (result.status === 'fulfilled') {
+      successfulQueries++;
+    } else {
       console.error(`[api.profile.summary] Query ${queryNames[index]} failed:`, result.reason);
     }
   });
+
+  const completeness = Math.round((successfulQueries / results.length) * 100);
+  console.log(`[api.profile.summary] Profile completeness: ${completeness}% (${successfulQueries}/${results.length} queries succeeded)`);
 
   // Extract results with fallbacks for failed queries
   const user = results[0].status === 'fulfilled' ? results[0].value : null;
@@ -220,39 +318,42 @@ async function buildProfileSummary(userId: string): Promise<ProfileSummary> {
   const leagueTier = getLeagueTierFromStreak(streakDays);
 
   return {
-    name: user?.name ?? FALLBACK_PROFILE.name,
-    level,
-    xp: {
-      total: xpTotal,
-      weekly: weeklyXp,
+    profile: {
+      name: user?.name ?? FALLBACK_PROFILE.name,
+      level,
+      xp: {
+        total: xpTotal,
+        weekly: weeklyXp,
+      },
+      xpProgress: {
+        percentComplete: xpProgress.percentComplete,
+        xpInCurrentLevel: xpProgress.xpInCurrentLevel,
+        xpForNextLevel: xpProgress.xpForNextLevel,
+      },
+      streakDays,
+      quests: {
+        active: questsActive,
+        completedThisWeek: questsCompleted,
+      },
+      hearts: {
+        current: heartSnapshot.currentHearts,
+        max: MAX_HEARTS,
+        minutesUntilNext: heartSnapshot.minutesUntilNextHeart,
+        isFull: heartSnapshot.isFullyRegenerated,
+      },
+      currency: {
+        gems: currency.gems,
+        coins: currency.coins,
+      },
+      league: {
+        tier: leagueTier,
+        nextTier: getNextTier(leagueTier),
+        daysUntilNextTier: getDaysUntilNextTier(leagueTier, streakDays),
+      },
+      badges,
+      activityHeatmap: buildActivityHeatmap({ attempts: recentAttempts, now }),
     },
-    xpProgress: {
-      percentComplete: xpProgress.percentComplete,
-      xpInCurrentLevel: xpProgress.xpInCurrentLevel,
-      xpForNextLevel: xpProgress.xpForNextLevel,
-    },
-    streakDays,
-    quests: {
-      active: questsActive,
-      completedThisWeek: questsCompleted,
-    },
-    hearts: {
-      current: heartSnapshot.currentHearts,
-      max: MAX_HEARTS,
-      minutesUntilNext: heartSnapshot.minutesUntilNextHeart,
-      isFull: heartSnapshot.isFullyRegenerated,
-    },
-    currency: {
-      gems: currency.gems,
-      coins: currency.coins,
-    },
-    league: {
-      tier: leagueTier,
-      nextTier: getNextTier(leagueTier),
-      daysUntilNextTier: getDaysUntilNextTier(leagueTier, streakDays),
-    },
-    badges,
-    activityHeatmap: buildActivityHeatmap({ attempts: recentAttempts, now }),
+    completeness,
   };
 }
 
