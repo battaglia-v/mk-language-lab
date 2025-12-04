@@ -191,11 +191,13 @@ export default function PracticePage() {
               </Link>
             </Button>
           </div>
-          <div className="space-y-1 text-balance lg:text-right">
-            <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{t('badge')}</p>
-            <h1 className="text-2xl font-semibold text-white sm:text-3xl">{t('title')}</h1>
-            <p className="max-w-2xl text-xs text-muted-foreground sm:text-sm">{t('subtitle')}</p>
-          </div>
+          <header className="page-header lg:text-right">
+            <div className="page-header-content">
+              <p className="page-header-badge">{t('badge')}</p>
+              <h1 className="page-header-title">{t('title')}</h1>
+              <p className="page-header-subtitle">{t('subtitle')}</p>
+            </div>
+          </header>
         </div>
 
         {/* Progress Stats */}

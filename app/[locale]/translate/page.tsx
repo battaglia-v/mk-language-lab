@@ -173,28 +173,28 @@ export default function TranslatePage() {
     <div className="space-y-4 sm:space-y-6">
       <section className="lab-hero" data-testid="translate-hero">
         <div className="flex flex-wrap items-center justify-between gap-4 sm:gap-6">
-          <div className="space-y-3">
+          <header className="page-header">
             <Button
               asChild
               variant="ghost"
               size="sm"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-border/60 px-4 text-xs text-muted-foreground sm:text-sm"
+              className="inline-flex min-h-[44px] w-fit items-center gap-2 rounded-full border border-border/60 px-4 text-xs text-muted-foreground sm:text-sm"
             >
               <Link href={`/${locale}/dashboard`} aria-label={navT('backToDashboard')}>
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                 {navT('backToDashboard')}
               </Link>
             </Button>
-            <div>
-              <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{t('badge')}</p>
-              <div className="mt-2 flex flex-wrap items-end gap-2 sm:gap-3">
+            <div className="page-header-content">
+              <p className="page-header-badge">{t('badge')}</p>
+              <div className="flex flex-wrap items-end gap-2 sm:gap-3">
                 <span className="title-gradient text-2xl lowercase sm:text-3xl md:text-4xl">македонски</span>
                 <span className="text-xs text-muted-foreground sm:text-sm">MK LANGUAGE LAB · {locale.toUpperCase()}</span>
               </div>
-              <h1 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:mt-3 sm:text-3xl md:text-4xl">{t('title')}</h1>
-              <p className="mt-1.5 max-w-2xl text-xs text-muted-foreground sm:mt-2 sm:text-sm">{t('subtitle')}</p>
+              <h1 className="page-header-title">{t('title')}</h1>
+              <p className="page-header-subtitle">{t('subtitle')}</p>
             </div>
-          </div>
+          </header>
         <Button
           type="button"
           variant="ghost"

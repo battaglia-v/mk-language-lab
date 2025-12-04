@@ -61,11 +61,13 @@ export default async function DashboardPage() {
 
   return (
     <section className="mx-auto flex w-full max-w-5xl flex-col gap-8 sm:gap-10">
-      <div className="space-y-3 text-balance">
-        <p className="text-sm uppercase tracking-[0.35em] text-muted-foreground">{navT("home")}</p>
-        <h1 className="text-3xl font-bold tracking-tight md:text-4xl">{navT("dashboard")}</h1>
-        <p className="max-w-3xl text-base text-muted-foreground md:text-lg">{homeT("subtitle")}</p>
-      </div>
+      <header className="page-header">
+        <div className="page-header-content">
+          <p className="page-header-badge">{navT("home")}</p>
+          <h1 className="page-header-title">{navT("dashboard")}</h1>
+          <p className="page-header-subtitle">{homeT("subtitle")}</p>
+        </div>
+      </header>
 
       <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2">
         {ACTIONS.map((action) => {
