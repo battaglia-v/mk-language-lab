@@ -145,10 +145,15 @@ export class CircuitBreaker {
   }
 
   getStats() {
+    const successCount = this.requestHistory.filter((r) => r.success).length;
+    const failureCount = this.requestHistory.filter((r) => !r.success).length;
     return {
+      name: this.name,
       state: this.state,
-      failureRate: this.getFailureRate(),
+      failureRate: Math.round(this.getFailureRate()),
       requestCount: this.requestHistory.length,
+      successCount,
+      failureCount,
       openedAt: this.openedAt,
       halfOpenAttempts: this.halfOpenAttempts,
     };
