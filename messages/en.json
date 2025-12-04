@@ -1028,7 +1028,7 @@
     "badge": "Privacy & Data Protection",
     "title": "Privacy Policy",
     "subtitle": "How we protect and handle your personal information",
-    "lastUpdated": "Last updated: November 8, 2024",
+    "lastUpdated": "Last updated: December 3, 2024",
     "introduction": "The Macedonian Learning App is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your personal information when you use our educational web application. We are transparent about our data practices and comply with applicable data protection laws, including the General Data Protection Regulation (GDPR).",
     "section1": {
       "title": "Information We Collect",
@@ -1100,7 +1100,17 @@
       "content": "If you have any questions about this Privacy Policy or wish to exercise your data rights, please contact us at:"
     },
     "viewTerms": "View Terms of Service",
-    "backHome": "Back to Home"
+    "backHome": "Back to Home",
+    "section7": {
+      "title": "Mobile App Data Collection",
+      "content": "Our Android mobile app collects and stores data locally on your device to provide offline functionality and enhanced features:",
+      "items": [
+        "Device Permissions: Optional notifications permission for daily practice reminders. Optional storage permission for caching audio files to enable offline practice.",
+        "Locally Stored Data: Practice progress and statistics stored on your device. Cached audio files for offline vocabulary practice. User preferences and app settings. All data follows the same privacy principles as our web app.",
+        "Third-Party Mobile Services: Expo Push Notifications for optional practice reminders (fully user-controlled). Google Cloud Translation API for translation features. OpenAI API for AI tutor conversations.",
+        "Data Sync: Your practice progress syncs with your account when online. You can disable sync in settings to keep data local-only. Offline mode allows full practice functionality without an internet connection."
+      ]
+    }
   },
   "terms": {
     "badge": "Legal Terms",

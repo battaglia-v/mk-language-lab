@@ -13,6 +13,7 @@ export default function PrivacyPolicyPage() {
     { icon: Eye, title: t('section3.title'), content: t('section3.content'), items: t.raw('section3.items') as string[] },
     { icon: Globe, title: t('section4.title'), content: t('section4.content') },
     { icon: Shield, title: t('section5.title'), content: t('section5.content'), items: t.raw('section5.items') as string[] },
+    { icon: Globe, title: t('section7.title'), content: t('section7.content'), items: t.raw('section7.items') as string[] },
   ];
 
   return (
