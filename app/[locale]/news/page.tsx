@@ -239,30 +239,25 @@ export default function NewsPage() {
     <div className="section-container section-container-xl section-spacing-lg space-y-6 sm:space-y-8">
       <section className="glass-card rounded-2xl p-4 sm:rounded-3xl sm:p-6 md:p-8" data-testid="news-hero">
         <div className="space-y-4 sm:space-y-6">
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+          <header className="page-header">
             <Button
               asChild
               variant="ghost"
               size="sm"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-border/60 px-4 text-sm text-muted-foreground"
+              className="inline-flex min-h-[44px] w-fit items-center gap-2 rounded-full border border-border/60 px-4 text-sm text-muted-foreground"
             >
               <Link href={`/${locale}/dashboard`} aria-label={navT('backToDashboard')}>
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                 {navT('backToDashboard')}
               </Link>
             </Button>
-          </div>
-          <header className="space-y-2 text-white sm:space-y-3">
-            <div
-              className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-muted/20 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-primary sm:gap-2 sm:px-3 sm:text-[11px]"
-              aria-hidden="true"
-            >
-              <Newspaper className="h-3 w-3 sm:h-3.5 sm:w-3.5" aria-hidden="true" />
-              {t('title')}
-            </div>
-            <div className="space-y-1.5 sm:space-y-2">
-              <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl md:text-4xl">{t('title')}</h1>
-              <p className="text-xs text-muted-foreground sm:text-sm md:text-base">{t('subtitle')}</p>
+            <div className="page-header-content">
+              <p className="page-header-badge">
+                <Newspaper className="inline h-3 w-3 mr-1.5" aria-hidden="true" />
+                {t('title')}
+              </p>
+              <h1 className="page-header-title">{t('title')}</h1>
+              <p className="page-header-subtitle">{t('subtitle')}</p>
               <p className="text-xs text-muted-foreground">
                 {t('sourceLabel')} · {meta?.count ?? 0}/{meta?.total ?? 0}
               </p>
