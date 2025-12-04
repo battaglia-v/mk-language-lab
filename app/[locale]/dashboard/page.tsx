@@ -67,7 +67,7 @@ export default async function DashboardPage() {
         <p className="max-w-3xl text-base text-muted-foreground md:text-lg">{homeT("subtitle")}</p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2">
         {ACTIONS.map((action) => {
           const Icon = action.icon;
           const description = action.getDescription({ homeT, profileT });
@@ -76,22 +76,22 @@ export default async function DashboardPage() {
             <Card
               key={action.id}
               className={cn(
-                "glass-card h-full border border-border/50 shadow-xl transition hover:translate-y-[-2px] hover:border-border",
-                action.mobileHidden && "hidden md:block",
+                "glass-card flex h-full flex-col border border-border/50 shadow-xl transition hover:translate-y-[-2px] hover:border-border",
+                action.mobileHidden && "hidden md:flex",
               )}
             >
-              <CardHeader className="space-y-2">
-                <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-black/40 px-3 py-1 text-xs text-muted-foreground">
+              <CardHeader className="flex-1 space-y-3">
+                <div className="inline-flex w-fit items-center gap-2 rounded-full border border-border/60 bg-black/40 px-3 py-1.5 text-xs text-muted-foreground">
                   <Icon className="h-4 w-4 text-primary" aria-hidden />
                   <span className="font-semibold text-foreground">{navT(action.id)}</span>
                 </div>
-                <CardTitle className="text-xl">{navT(action.id)}</CardTitle>
-                <CardDescription className="text-sm leading-relaxed text-muted-foreground text-pretty">
+                <CardTitle className="text-xl font-bold">{navT(action.id)}</CardTitle>
+                <CardDescription className="text-sm leading-relaxed text-card-text-muted">
                   {description}
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <Button asChild className="w-full justify-center" size="lg">
+              <CardContent className="pt-0">
+                <Button asChild className="w-full justify-center font-bold !text-black" size="lg">
                   <Link href={href}>{navT(action.id)}</Link>
                 </Button>
               </CardContent>
