@@ -18,9 +18,13 @@ export default function AboutPage() {
     <div className="page-shell">
       <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6 text-white">
         <section data-testid="about-hero" className="glass-card rounded-3xl p-6 md:p-8 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-primary/80">{t('title')}</p>
-          <h1 className="mt-3 text-3xl font-bold md:text-5xl">{t('subtitle')}</h1>
-          <p className="mt-4 text-sm text-slate-300 max-w-3xl mx-auto">{t('description')}</p>
+          <header className="page-header mx-auto">
+            <div className="page-header-content">
+              <p className="page-header-badge">{t('title')}</p>
+              <h1 className="page-header-title">{t('subtitle')}</h1>
+              <p className="page-header-subtitle mx-auto">{t('description')}</p>
+            </div>
+          </header>
         </section>
 
         <section data-testid="about-features">

@@ -32,13 +32,15 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
                 {navT('backToDashboard')}
               </Link>
             </div>
-            <div className="space-y-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary/80">{t('title')}</p>
-              <h1 className="text-3xl font-bold text-white md:text-4xl">{t('description')}</h1>
-              <p className="text-sm text-slate-300">
-                Track your streak, quests, and badges across every device.
-              </p>
-            </div>
+            <header className="page-header">
+              <div className="page-header-content">
+                <p className="page-header-badge">{t('title')}</p>
+                <h1 className="page-header-title">{t('description')}</h1>
+                <p className="page-header-subtitle">
+                  Track your streak, quests, and badges across every device.
+                </p>
+              </div>
+            </header>
           </div>
         </section>
 

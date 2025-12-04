@@ -148,11 +148,13 @@ export default function ResourcesPage() {
               </Link>
             </Button>
           </div>
-          <div className="space-y-1 text-balance">
-            <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{t('badge')}</p>
-            <h1 className="mt-2 text-2xl font-semibold text-white sm:text-3xl">{t('title')}</h1>
-            <p className="mt-1 max-w-2xl text-xs text-muted-foreground sm:text-sm">{t('subtitle')}</p>
-          </div>
+          <header className="page-header">
+            <div className="page-header-content">
+              <p className="page-header-badge">{t('badge')}</p>
+              <h1 className="page-header-title">{t('title')}</h1>
+              <p className="page-header-subtitle">{t('subtitle')}</p>
+            </div>
+          </header>
         </div>
       </section>
 
