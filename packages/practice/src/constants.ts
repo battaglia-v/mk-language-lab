@@ -1,5 +1,5 @@
 export const ALL_CATEGORIES = 'all';
-export const SESSION_TARGET = 5;
+export const SESSION_TARGET = 20; // Number of correct answers to complete a session
 export const INITIAL_HEARTS = 5;
 
 export type PracticeDifficultyId = 'casual' | 'focus' | 'blitz';
