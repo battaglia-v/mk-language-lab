@@ -40,7 +40,7 @@ export function LeagueStandingsCard({ data, isLoading, error }: LeagueStandingsC
 
   return (
     <section className="glass-card rounded-3xl p-6 md:p-8 text-white" data-testid="league-standings">
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-4">
         <div>
           <div className="flex items-center gap-3 text-sm uppercase tracking-[0.3em] text-primary/80">
             <Trophy className="h-5 w-5 text-primary" aria-hidden />
@@ -52,8 +52,8 @@ export function LeagueStandingsCard({ data, isLoading, error }: LeagueStandingsC
           </p>
           <p className="text-xs text-slate-400">{t('streakLabel', { days: data.streakDays })}</p>
         </div>
-        <div className="min-w-[200px]">
-          <div className="flex items-center justify-between text-xs text-slate-200">
+        <div className="w-full">
+          <div className="flex items-center justify-between text-xs text-slate-200 flex-wrap gap-2">
             <span>{t('promotionLabel', { cutoff: data.promotionCutoff })}</span>
             {data.demotionCutoff ? <span>{t('demotionLabel', { cutoff: data.demotionCutoff })}</span> : null}
           </div>

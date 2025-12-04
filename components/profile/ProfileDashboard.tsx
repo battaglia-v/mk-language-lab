@@ -132,8 +132,8 @@ export function ProfileDashboard({ className, dataTestId }: ProfileDashboardProp
         </div>
 
         <div className="space-y-5 lg:col-span-5">
-          {/* Only show league standings if we have real data (not fallback) */}
-          {leagueStandings && !leagueError && (
+          {/* Only show league standings if we have real data (not fallback) and members */}
+          {leagueStandings && !leagueError && leagueStandings.members.length > 0 && (
             <LeagueStandingsCard data={leagueStandings} isLoading={isLeagueLoading} error={leagueError} />
           )}
 

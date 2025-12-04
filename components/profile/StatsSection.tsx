@@ -29,11 +29,6 @@ export function StatsSection({ xp, xpProgress, streakDays, quests, hearts, curre
         <StatCard title={t('weeklyXP')} value={xp.weekly.toLocaleString()} accent="from-emerald-400/30 to-emerald-500/10">
           <p className="text-xs text-slate-200">{t('totalXPCaption', { value: xp.total.toLocaleString() })}</p>
         </StatCard>
-        <StatCard title={t('hearts')} value={`${hearts.current}/${hearts.max}`} accent="from-rose-400/30 to-rose-500/10">
-          <p className="text-xs text-slate-200">
-            {hearts.isFull ? t('heartsFull') : t('heartsNext', { minutes: hearts.minutesUntilNext })}
-          </p>
-        </StatCard>
         <div className="rounded-2xl border border-white/15 bg-white/5 p-4">
           <div className="flex items-center justify-between">
             <p className="text-xs font-semibold uppercase tracking-wide text-white/70">{t('xpProgress')}</p>

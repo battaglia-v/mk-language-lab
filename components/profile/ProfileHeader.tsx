@@ -50,20 +50,11 @@ export function ProfileHeader({
         </div>
       </div>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-4 space-y-1">
+      <div className="mt-6">
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-4 space-y-1 max-w-sm">
           <p className="text-sm uppercase tracking-wide text-slate-300">{t('dayStreak')}</p>
           <p className="text-3xl font-bold">{streakDays}</p>
           <p className="text-xs text-slate-300">{t('league.status', { tier: league.tier })}</p>
-        </div>
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-4 space-y-1">
-          <p className="text-sm uppercase tracking-wide text-slate-300">{t('hearts')}</p>
-          <p className="text-3xl font-bold">
-            {hearts.current}/{hearts.max}
-          </p>
-          <p className="text-xs text-slate-300">
-            {hearts.isFull ? t('heartsFull') : t('heartsNext', { minutes: hearts.minutesUntilNext })}
-          </p>
         </div>
       </div>
     </section>
