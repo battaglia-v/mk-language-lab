@@ -32,7 +32,7 @@ export default function SignUpPage() {
     trackEvent(AnalyticsEvents.SIGNIN_INITIATED, {
       provider: 'google',
     });
-    signIn('google', { callbackUrl: '/' });
+    signIn('google', { callbackUrl: '/en' });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -109,8 +109,8 @@ export default function SignUpPage() {
         throw new Error('Registration successful but sign-in failed. Please try signing in manually.');
       }
 
-      // Redirect to home page
-      router.push('/');
+      // Redirect to home page with default locale
+      router.push('/en');
       router.refresh();
     } catch (err) {
       setFieldErrors({ general: err instanceof Error ? err.message : 'An error occurred during registration' });
@@ -124,7 +124,7 @@ export default function SignUpPage() {
       <div className="w-full max-w-md space-y-6">
         <div className="flex justify-start">
           <Button variant="ghost" size="sm" asChild>
-            <Link href="/">
+            <Link href="/en">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Home
             </Link>
@@ -294,7 +294,7 @@ export default function SignUpPage() {
             <div className="text-center text-xs text-muted-foreground">
               <p>
                 By creating an account, you agree to our{' '}
-                <Link href="/about" className="underline hover:text-foreground">
+                <Link href="/en/about" className="underline hover:text-foreground">
                   Terms of Service
                 </Link>
               </p>

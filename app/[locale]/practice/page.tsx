@@ -42,11 +42,13 @@ export default function PracticePage() {
     setHistorySnapshot(readTranslatorHistory(32));
   }, []);
 
+  // Allow users to explicitly choose their deck without auto-switching
   useEffect(() => {
-    if (phrases.length && deckType === 'curated') {
-      setDeckType('saved');
-    } else if (!phrases.length && deckType === 'saved') {
+    // Only auto-switch away from disabled decks (empty decks)
+    if (!phrases.length && deckType === 'saved') {
       setDeckType(historySnapshot.length ? 'history' : 'curated');
+    } else if (!historySnapshot.length && deckType === 'history') {
+      setDeckType(phrases.length ? 'saved' : 'curated');
     }
   }, [deckType, historySnapshot.length, phrases.length]);
 
