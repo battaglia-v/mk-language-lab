@@ -49,18 +49,18 @@ export default function TranslatePage() {
   const directionOptions: TranslationDirectionOption[] = useMemo(
     () => [
       {
-        id: 'mk-en',
-        sourceLang: 'mk',
-        targetLang: 'en',
-        label: t('directions.mk_en'),
-        placeholder: t('inputPlaceholder.mk_en'),
-      },
-      {
         id: 'en-mk',
         sourceLang: 'en',
         targetLang: 'mk',
         label: t('directions.en_mk'),
         placeholder: t('inputPlaceholder.en_mk'),
+      },
+      {
+        id: 'mk-en',
+        sourceLang: 'mk',
+        targetLang: 'en',
+        label: t('directions.mk_en'),
+        placeholder: t('inputPlaceholder.mk_en'),
       },
     ],
     [t],

@@ -88,7 +88,7 @@ const MACEDONIAN_POS_DICT: Record<string, 'noun' | 'verb' | 'adjective' | 'adver
 
   // Common adverbs
   'многу': 'adverb', 'малку': 'adverb', 'брзо': 'adverb', 'бавно': 'adverb',
-  'добро': 'adverb', 'лошо': 'adverb', 'сега': 'adverb', 'потоа': 'adverb',
+  'лошо': 'adverb', 'сега': 'adverb', 'потоа': 'adverb',
   'тука': 'adverb', 'таму': 'adverb', 'овде': 'adverb', 'каде': 'adverb',
   'кога': 'adverb', 'како': 'adverb', 'зошто': 'adverb', 'секогаш': 'adverb',
 
