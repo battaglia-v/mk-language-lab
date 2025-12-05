@@ -172,19 +172,39 @@ export default function TranslatePage() {
   return (
     <div className="space-y-4 sm:space-y-6">
       <section className="lab-hero" data-testid="translate-hero">
-        <div className="flex flex-wrap items-center justify-between gap-4 sm:gap-6">
-          <header className="page-header">
+        <div className="flex flex-col gap-3 sm:gap-4">
+          <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4">
             <Button
               asChild
               variant="ghost"
               size="sm"
-              className="inline-flex min-h-[44px] w-fit items-center gap-2 rounded-full border border-border/60 px-4 text-xs text-muted-foreground sm:text-sm"
+              className="inline-flex min-h-[44px] w-fit items-center gap-2 rounded-full border border-border/60 px-4 text-sm text-muted-foreground"
             >
               <Link href={`/${locale}/dashboard`} aria-label={navT('backToDashboard')}>
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                 {navT('backToDashboard')}
               </Link>
             </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              className="min-h-[44px] rounded-full border border-border/60 px-4 text-sm text-muted-foreground"
+              onClick={() => setPanelCollapsed((prev) => !prev)}
+              aria-label={panelCollapsed ? t('contextExpand') : t('contextCollapse')}
+            >
+              {panelCollapsed ? (
+                <span className="inline-flex items-center gap-2">
+                  <PanelLeftOpen className="h-4 w-4" aria-hidden="true" /> {t('contextExpand')}
+                </span>
+              ) : (
+                <span className="inline-flex items-center gap-2">
+                  <PanelRightClose className="h-4 w-4" aria-hidden="true" /> {t('contextCollapse')}
+                </span>
+              )}
+            </Button>
+          </div>
+          <header className="page-header">
             <div className="page-header-content">
               <p className="page-header-badge">{t('badge')}</p>
               <div className="flex flex-wrap items-end gap-2 sm:gap-3">
@@ -195,24 +215,6 @@ export default function TranslatePage() {
               <p className="page-header-subtitle">{t('subtitle')}</p>
             </div>
           </header>
-        <Button
-          type="button"
-          variant="ghost"
-          size="sm"
-          className="min-h-[44px] rounded-full border border-border/60 px-4 text-xs text-muted-foreground sm:text-sm"
-          onClick={() => setPanelCollapsed((prev) => !prev)}
-          aria-label={panelCollapsed ? t('contextExpand') : t('contextCollapse')}
-        >
-            {panelCollapsed ? (
-              <span className="inline-flex items-center gap-2">
-                <PanelLeftOpen className="h-4 w-4" aria-hidden="true" /> {t('contextExpand')}
-              </span>
-            ) : (
-              <span className="inline-flex items-center gap-2">
-                <PanelRightClose className="h-4 w-4" aria-hidden="true" /> {t('contextCollapse')}
-              </span>
-            )}
-          </Button>
         </div>
       </section>
 
