@@ -8,11 +8,15 @@ import { brandColors, brandNames } from "@mk/tokens";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 export const viewport: Viewport = {
@@ -124,9 +128,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark notranslate overflow-x-hidden" translate="no">
+    <html lang="en" className="dark notranslate overflow-x-hidden" translate="no" suppressHydrationWarning>
       <head>
         <meta name="google" content="notranslate" />
+        <style dangerouslySetInnerHTML={{ __html: 'body{visibility:hidden;opacity:0}body.ready{visibility:visible;opacity:1;transition:opacity 0.15s}' }} />
+        <script dangerouslySetInnerHTML={{ __html: 'if(typeof window!=="undefined"){document.addEventListener("DOMContentLoaded",()=>{document.body.classList.add("ready")})}' }} />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden theme-dark bg-[var(--mk-bg)] text-[var(--mk-text)]`}

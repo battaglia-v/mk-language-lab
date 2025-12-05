@@ -237,8 +237,8 @@ export default function NewsPage() {
 
   return (
     <div className="section-container section-container-xl section-spacing-lg space-y-6 sm:space-y-8">
-      <section className="glass-card rounded-2xl p-4 sm:rounded-3xl sm:p-6 md:p-8" data-testid="news-hero">
-        <div className="space-y-4 sm:space-y-6">
+      <section className="lab-hero" data-testid="news-hero">
+        <div className="flex flex-col gap-3 sm:gap-4">
           <Button
             asChild
             variant="ghost"
@@ -263,8 +263,11 @@ export default function NewsPage() {
               </p>
             </div>
           </header>
+        </div>
+      </section>
 
-          <div className="space-y-3.5 sm:space-y-4">
+      <section className="glass-card rounded-2xl p-4 sm:rounded-3xl sm:p-6 md:p-7" data-testid="news-filters">
+        <div className="space-y-3.5 sm:space-y-4">
             <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {sourceFilters.map((filter) => (
                 <FilterChip key={filter.id} active={source === filter.id} onClick={() => setSource(filter.id)}>
@@ -313,7 +316,6 @@ export default function NewsPage() {
               </div>
             </div>
           </div>
-        </div>
       </section>
 
       {error && (
