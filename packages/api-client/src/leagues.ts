@@ -65,7 +65,8 @@ export function useLeagueStandingsQuery<TData = LeagueStandings>({
     staleTime,
     enabled: enabled ?? true,
     select,
-    initialData: baseUrl ? undefined : DEV_FIXTURE_STANDINGS,
+    // Only use fixture data in development/testing, not in production
+    initialData: process.env.NODE_ENV === 'development' && !baseUrl ? DEV_FIXTURE_STANDINGS : undefined,
   });
 }
 

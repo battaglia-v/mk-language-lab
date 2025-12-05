@@ -57,10 +57,10 @@ export function LeagueStandingsCard({ data, isLoading, error }: LeagueStandingsC
             <span>{t('promotionLabel', { cutoff: data.promotionCutoff })}</span>
             {data.demotionCutoff ? <span>{t('demotionLabel', { cutoff: data.demotionCutoff })}</span> : null}
           </div>
-          <div className="mt-2 h-2 w-full rounded-full bg-white/10">
+          <div className="mt-2 h-2 w-full rounded-full bg-white/10 overflow-hidden">
             <div
               className="h-full rounded-full bg-gradient-to-r from-primary to-amber-300"
-              style={{ width: `${data.progressPercent}%` }}
+              style={{ width: `${Math.min(100, data.progressPercent)}%` }}
             />
           </div>
           <p className="mt-2 text-xs text-slate-200/80">{t('progressLabel', { percent: data.progressPercent })}</p>
