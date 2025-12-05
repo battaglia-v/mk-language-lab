@@ -236,7 +236,7 @@ export default function NewsPage() {
   const showEmpty = !hasResults && !isLoading && !error;
 
   return (
-    <div className="section-container section-container-xl section-spacing-lg space-y-6 sm:space-y-8">
+    <div className="space-y-4 sm:space-y-6">
       <section className="lab-hero" data-testid="news-hero">
         <div className="flex flex-col gap-3 sm:gap-4">
           <Button
