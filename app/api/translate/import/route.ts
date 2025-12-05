@@ -160,6 +160,7 @@ export async function POST(request: NextRequest) {
     // Handle file upload (multipart/form-data)
     if (contentType.includes('multipart/form-data')) {
       const formData = await request.formData();
+      // @ts-ignore - FormData.get() exists at runtime but TypeScript types are incomplete
       const file = formData.get('file');
 
       if (!file || !(file instanceof File)) {
