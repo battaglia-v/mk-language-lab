@@ -712,6 +712,7 @@
     "readerImportFileHint": "Only .txt files are supported (max 1MB)",
     "readerImporting": "Importing…",
     "readerDifficultyLabel": "Difficulty",
+    "readerDifficultyBasic": "Basic",
     "readerDifficultyBeginner": "Beginner",
     "readerDifficultyIntermediate": "Intermediate",
     "readerDifficultyAdvanced": "Advanced",
@@ -723,7 +724,15 @@
     "readerPosAdjective": "Adjective",
     "readerPosAdverb": "Adverb",
     "readerPosOther": "Other",
-    "retryButton": "Retry"
+    "retryButton": "Retry",
+    "readerHintTitle": "Tip: Use the Reader for word-by-word translations",
+    "readerHintDescription": "The Reader tab breaks down longer texts word-by-word, making it easier to understand each part. Perfect for learning from articles and stories!",
+    "readerHintTryNow": "Try Reader now",
+    "readerEmptyTitle": "Word-by-Word Learning",
+    "readerEmptyDescription": "Paste any text to see each word's translation, part of speech, and difficulty level. Perfect for understanding stories, articles, or conversations!",
+    "readerEmptyExamplesLabel": "Try an example",
+    "readerEmptyExample1": "English example",
+    "readerEmptyExample2": "Macedonian example"
   },
   "practiceHub": {
     "badge": "Daily practice",

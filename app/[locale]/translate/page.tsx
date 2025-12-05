@@ -15,6 +15,10 @@ import {
   PanelLeftOpen,
   Trash2,
   ArrowLeft,
+  Languages,
+  BookOpen,
+  X,
+  Lightbulb,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -93,6 +97,8 @@ export default function TranslatePage() {
   const [panel, setPanel] = useState<'history' | 'saved'>('history');
   const [panelCollapsed, setPanelCollapsed] = useState(false);
   const [streamedText, setStreamedText] = useState('');
+  const [showReaderHint, setShowReaderHint] = useState(false);
+  const [readerHintDismissed, setReaderHintDismissed] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const { phrases, savePhrase, deletePhrase, clearAll, findMatchingPhrase } = useSavedPhrases();
@@ -113,6 +119,29 @@ export default function TranslatePage() {
   }, [directionId, inputText, translatedText]);
   const savedMatch = currentPayload ? findMatchingPhrase(currentPayload) : undefined;
   const isCurrentSaved = Boolean(savedMatch);
+
+  // Check if we should show the Reader hint
+  useEffect(() => {
+    const dismissed = localStorage.getItem('reader-hint-dismissed');
+    if (dismissed) {
+      setReaderHintDismissed(true);
+      return;
+    }
+
+    // Show hint if translated text is long (>100 words)
+    if (translatedText && !isTranslating) {
+      const wordCount = translatedText.trim().split(/\s+/).length;
+      if (wordCount > 100) {
+        setShowReaderHint(true);
+      }
+    }
+  }, [translatedText, isTranslating]);
+
+  const handleDismissReaderHint = () => {
+    setShowReaderHint(false);
+    setReaderHintDismissed(true);
+    localStorage.setItem('reader-hint-dismissed', 'true');
+  };
 
   useEffect(() => {
     if (isTranslating) {
@@ -218,9 +247,15 @@ export default function TranslatePage() {
       </section>
 
       <Tabs defaultValue="translate" className="w-full">
-        <TabsList className="w-fit mb-4">
-          <TabsTrigger value="translate">{t('translateTab')}</TabsTrigger>
-          <TabsTrigger value="reader">{t('readerTab')}</TabsTrigger>
+        <TabsList className="w-fit mb-6 p-1.5 bg-muted/40 backdrop-blur-sm border border-border/60">
+          <TabsTrigger value="translate" className="gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-600/90 data-[state=active]:to-emerald-600/90 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-200">
+            <Languages className="h-4 w-4" aria-hidden="true" />
+            {t('translateTab')}
+          </TabsTrigger>
+          <TabsTrigger value="reader" className="gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-500 data-[state=active]:to-primary data-[state=active]:text-slate-900 data-[state=active]:shadow-lg transition-all duration-200">
+            <BookOpen className="h-4 w-4" aria-hidden="true" />
+            {t('readerTab')}
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="translate" className="mt-0">
@@ -317,6 +352,45 @@ export default function TranslatePage() {
                 <p className="text-xs text-muted-foreground sm:text-sm">{t('resultPlaceholder')}</p>
               )}
             </div>
+            {showReaderHint && !readerHintDismissed && (
+              <div className="rounded-2xl border border-primary/30 bg-gradient-to-r from-primary/10 to-amber-500/10 p-4 backdrop-blur-sm">
+                <div className="flex items-start gap-3">
+                  <Lightbulb className="h-5 w-5 text-primary shrink-0 mt-0.5" aria-hidden="true" />
+                  <div className="flex-1 space-y-2">
+                    <p className="text-sm font-medium text-foreground">
+                      💡 {t('readerHintTitle')}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {t('readerHintDescription')}
+                    </p>
+                    <Button
+                      type="button"
+                      size="sm"
+                      className="mt-2 bg-gradient-to-r from-amber-500 to-primary text-slate-900 hover:from-amber-600 hover:to-primary/90"
+                      onClick={() => {
+                        const tabsList = document.querySelector('[role="tablist"]');
+                        const readerTab = tabsList?.querySelector('[value="reader"]') as HTMLButtonElement;
+                        readerTab?.click();
+                        handleDismissReaderHint();
+                      }}
+                    >
+                      <BookOpen className="h-4 w-4 mr-2" aria-hidden="true" />
+                      {t('readerHintTryNow')}
+                    </Button>
+                  </div>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon-sm"
+                    className="shrink-0 text-muted-foreground hover:text-foreground"
+                    onClick={handleDismissReaderHint}
+                    aria-label="Dismiss hint"
+                  >
+                    <X className="h-4 w-4" aria-hidden="true" />
+                  </Button>
+                </div>
+              </div>
+            )}
             {currentPayload ? (
               <Button
                 type="button"

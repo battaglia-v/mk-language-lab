@@ -2,10 +2,11 @@
 
 import { FormEvent, useRef, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
-import { Loader2, Eye, EyeOff, RefreshCw, Upload } from 'lucide-react';
+import { Loader2, Eye, EyeOff, RefreshCw, Upload, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 import {
   useReaderWorkspace,
@@ -161,7 +162,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
               type="submit"
               size="default"
               disabled={!inputText.trim() || isAnalyzing}
-              className="font-semibold"
+              className="font-semibold bg-gradient-to-r from-amber-500 to-primary text-slate-900 hover:from-amber-600 hover:to-primary/90 shadow-lg"
             >
               {isAnalyzing ? (
                 <>
@@ -195,7 +196,76 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
         </Alert>
       )}
 
-      {analyzedData && (
+      {isAnalyzing && (
+        <div className="glass-card rounded-2xl sm:rounded-[28px] p-5 sm:p-6 md:p-8 space-y-6">
+          <div className="flex items-center gap-3">
+            <Skeleton className="h-6 w-24" />
+            <Skeleton className="h-8 w-32 rounded-lg" />
+          </div>
+          <div className="space-y-3">
+            <div className="flex flex-wrap gap-2">
+              <Skeleton className="h-8 w-20 rounded-sm" />
+              <Skeleton className="h-8 w-16 rounded-sm" />
+              <Skeleton className="h-8 w-24 rounded-sm" />
+              <Skeleton className="h-8 w-28 rounded-sm" />
+              <Skeleton className="h-8 w-20 rounded-sm" />
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Skeleton className="h-8 w-24 rounded-sm" />
+              <Skeleton className="h-8 w-20 rounded-sm" />
+              <Skeleton className="h-8 w-32 rounded-sm" />
+              <Skeleton className="h-8 w-16 rounded-sm" />
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Skeleton className="h-8 w-28 rounded-sm" />
+              <Skeleton className="h-8 w-24 rounded-sm" />
+              <Skeleton className="h-8 w-20 rounded-sm" />
+              <Skeleton className="h-8 w-36 rounded-sm" />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {!analyzedData && !isAnalyzing && !errorMessage && (
+        <div className="glass-card rounded-2xl sm:rounded-[28px] p-8 sm:p-10 md:p-12 text-center space-y-6">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-amber-500/20 to-primary/20 mb-2">
+            <Sparkles className="h-8 w-8 text-primary" aria-hidden="true" />
+          </div>
+          <div className="space-y-2">
+            <h3 className="text-xl font-semibold">{t('readerEmptyTitle')}</h3>
+            <p className="text-sm text-muted-foreground max-w-md mx-auto">
+              {t('readerEmptyDescription')}
+            </p>
+          </div>
+          <div className="space-y-2">
+            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+              {t('readerEmptyExamplesLabel')}
+            </p>
+            <div className="flex flex-wrap gap-2 justify-center">
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => setInputText("Hello, my name is John. I am learning Macedonian and I love the beautiful language and culture.")}
+                className="text-xs"
+              >
+                {t('readerEmptyExample1')}
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => setInputText("Здраво, јас сум Јован. Јас учам македонски и го сакам прекрасниот јазик и култура.")}
+                className="text-xs"
+              >
+                {t('readerEmptyExample2')}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {analyzedData && !isAnalyzing && (
         <div className="glass-card rounded-2xl sm:rounded-[28px] p-5 sm:p-6 md:p-8 space-y-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
@@ -219,7 +289,10 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
               variant={revealMode === 'hidden' ? 'default' : 'outline'}
               size="default"
               onClick={handleToggleReveal}
-              className="w-full sm:w-auto"
+              className={cn(
+                "w-full sm:w-auto font-semibold",
+                revealMode === 'hidden' && "bg-gradient-to-r from-green-600/90 to-emerald-600/90 hover:from-green-700 hover:to-emerald-700"
+              )}
             >
               {revealMode === 'hidden' ? (
                 <>
