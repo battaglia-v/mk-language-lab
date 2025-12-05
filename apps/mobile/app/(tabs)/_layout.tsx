@@ -6,6 +6,7 @@ const tabIcons: Record<string, keyof typeof Ionicons.glyphMap> = {
   home: 'home',
   practice: 'school',
   translator: 'language',
+  reader: 'book',
   discover: 'compass',
   profile: 'person-circle',
 };
@@ -38,6 +39,7 @@ export default function TabsLayout() {
       <Tabs.Screen name="home" options={{ title: 'Home' }} />
       <Tabs.Screen name="practice" options={{ title: 'Practice' }} />
       <Tabs.Screen name="translator" options={{ title: 'Translator' }} />
+      <Tabs.Screen name="reader" options={{ title: 'Reader' }} />
       <Tabs.Screen name="discover" options={{ title: 'Discover' }} />
       <Tabs.Screen name="profile" options={{ title: 'Profile' }} />
     </Tabs>
