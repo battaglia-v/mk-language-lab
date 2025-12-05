@@ -207,10 +207,6 @@ export default function TranslatePage() {
           <header className="page-header">
             <div className="page-header-content">
               <p className="page-header-badge">{t('badge')}</p>
-              <div className="flex flex-wrap items-end gap-2 sm:gap-3">
-                <span className="title-gradient text-2xl lowercase sm:text-3xl md:text-4xl">македонски</span>
-                <span className="text-xs text-muted-foreground sm:text-sm">MK LANGUAGE LAB · {locale.toUpperCase()}</span>
-              </div>
               <h1 className="page-header-title">{t('title')}</h1>
               <p className="page-header-subtitle">{t('subtitle')}</p>
             </div>
