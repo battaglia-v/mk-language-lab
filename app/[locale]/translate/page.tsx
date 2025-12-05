@@ -21,6 +21,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   useTranslatorWorkspace,
   type TranslationDirectionOption,
@@ -31,6 +32,8 @@ import { useSavedPhrases } from '@/components/translate/useSavedPhrases';
 import { useToast } from '@/components/ui/toast';
 import { cn } from '@/lib/utils';
 import type { SavedPhraseRecord } from '@/lib/saved-phrases';
+import { ReaderWorkspace } from '@/components/reader/ReaderWorkspace';
+import type { ReaderDirectionOption } from '@/components/translate/useReaderWorkspace';
 
 const MAX_CHARACTERS = 1800;
 
@@ -214,9 +217,16 @@ export default function TranslatePage() {
         </div>
       </section>
 
-      <div className={cn('lab-grid', !panelCollapsed && 'has-panel')} data-testid="translate-workspace">
-        <div className="space-y-4">
-          <DirectionToggle
+      <Tabs defaultValue="translate" className="w-full">
+        <TabsList className="w-fit mb-4">
+          <TabsTrigger value="translate">{t('translateTab')}</TabsTrigger>
+          <TabsTrigger value="reader">{t('readerTab')}</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="translate" className="mt-0">
+          <div className={cn('lab-grid', !panelCollapsed && 'has-panel')} data-testid="translate-workspace">
+            <div className="space-y-4">
+              <DirectionToggle
             options={directionOptions}
             activeId={directionId}
             onChange={setDirectionId}
@@ -398,6 +408,15 @@ export default function TranslatePage() {
           </aside>
         ) : null}
       </div>
+        </TabsContent>
+
+        <TabsContent value="reader" className="mt-0">
+          <ReaderWorkspace
+            directionOptions={directionOptions as ReaderDirectionOption[]}
+            defaultDirectionId={directionId}
+          />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }

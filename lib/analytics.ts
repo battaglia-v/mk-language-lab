@@ -35,6 +35,15 @@ export const AnalyticsEvents = {
   TRANSLATION_FAILED: 'translation_failed',
   TRANSLATION_COPIED: 'translation_copied',
 
+  // Reader events
+  READER_ANALYSIS_REQUESTED: 'reader_analysis_requested',
+  READER_ANALYSIS_SUCCESS: 'reader_analysis_success',
+  READER_ANALYSIS_FAILED: 'reader_analysis_failed',
+  READER_WORD_CLICKED: 'reader_word_clicked',
+  READER_REVEAL_TOGGLED: 'reader_reveal_toggled',
+  READER_IMPORT_SUCCESS: 'reader_import_success',
+  READER_IMPORT_FAILED: 'reader_import_failed',
+
   // News events
   NEWS_ARTICLE_CLICKED: 'news_article_clicked',
   NEWS_VIDEO_CLICKED: 'news_video_clicked',
