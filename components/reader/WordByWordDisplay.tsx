@@ -42,26 +42,35 @@ function WordToken({ word, revealMode, isRevealed, onToggleReveal }: WordTokenPr
     <TooltipProvider delayDuration={300}>
       <Tooltip>
         <TooltipTrigger asChild>
-          <button
-            type="button"
+          <span
             onClick={onToggleReveal}
             className={cn(
-              'inline-flex flex-col items-center gap-1 px-1.5 py-1 mx-0.5 my-1',
-              'rounded-md cursor-pointer',
-              'transition-all duration-200',
+              'inline-block relative cursor-pointer',
+              'px-1 py-0.5',
+              'transition-all duration-150',
               'border-b-2',
               borderColor,
-              'hover:bg-background/60 hover:scale-105 active:scale-95',
-              'min-w-[44px] min-h-[44px]', // Touch target
-              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
+              'hover:bg-primary/10 rounded-sm',
+              'select-none',
+              showTranslation && 'pb-6'
             )}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                onToggleReveal();
+              }
+            }}
             aria-label={`${word.original}: ${word.translation}`}
           >
-            <span className="text-base font-medium">{word.original}</span>
+            <span className="font-normal">{word.original}</span>
             {showTranslation && (
-              <span className="text-xs text-muted-foreground">{word.translation}</span>
+              <span className="absolute left-1 top-full mt-0.5 text-sm text-primary/80 font-medium whitespace-nowrap">
+                {word.translation}
+              </span>
             )}
-          </button>
+          </span>
         </TooltipTrigger>
         <TooltipContent
           side="top"
@@ -108,11 +117,11 @@ export function WordByWordDisplay({ data, revealMode }: WordByWordDisplayProps) 
 
   return (
     <div
-      className="min-h-[200px] rounded-xl bg-background/30 p-4 leading-relaxed"
+      className="min-h-[300px] rounded-2xl bg-background/50 p-6 sm:p-8 leading-relaxed border border-border/30"
       role="region"
       aria-label="Word by word translation"
     >
-      <div className="flex flex-wrap items-center">
+      <div className="flex flex-wrap items-start gap-1 text-xl sm:text-2xl leading-loose">
         {data.tokens.map((token) => {
           if (!token.isWord) {
             // Render punctuation and spaces as-is
