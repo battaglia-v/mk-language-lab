@@ -74,10 +74,37 @@ function WordToken({ word, revealMode, isRevealed, onToggleReveal }: WordTokenPr
         </TooltipTrigger>
         <TooltipContent
           side="top"
-          className="glass-card max-w-xs p-3 space-y-1"
+          className="glass-card max-w-sm p-3 space-y-2"
         >
           <p className="font-semibold text-sm">{word.original}</p>
-          <p className="text-muted-foreground text-sm">{word.translation}</p>
+
+          {/* Primary translation */}
+          <div className="space-y-1">
+            <p className="text-muted-foreground text-sm font-medium">{word.translation}</p>
+
+            {/* Alternative translations if available */}
+            {word.alternativeTranslations && word.alternativeTranslations.length > 0 && (
+              <div className="pt-1 border-t border-border/30">
+                <p className="text-xs text-muted-foreground/70 mb-1">
+                  {t('readerAlsoMeans')}:
+                </p>
+                <div className="flex flex-wrap gap-1">
+                  {word.alternativeTranslations.map((alt, idx) => (
+                    <span
+                      key={idx}
+                      className="text-xs px-2 py-0.5 rounded-md bg-primary/10 text-primary/90 border border-primary/20"
+                    >
+                      {alt}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-xs text-muted-foreground/60 mt-1.5 italic">
+                  {t('readerCheckFullTranslation')}
+                </p>
+              </div>
+            )}
+          </div>
+
           <div className="flex items-center gap-2 pt-1">
             <span className={cn(
               'text-xs px-2 py-0.5 rounded-full',

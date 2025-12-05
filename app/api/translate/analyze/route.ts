@@ -113,6 +113,42 @@ function tokenizeText(text: string): Array<{ token: string; isWord: boolean; ind
   return tokens;
 }
 
+// Common words with multiple meanings based on context
+const MULTI_MEANING_WORDS: Record<string, { primary: string; alternatives: string[] }> = {
+  // Macedonian words
+  'да': { primary: 'yes', alternatives: ['to', 'that', 'so that'] },
+  'не': { primary: 'no', alternatives: ['not', 'don\'t'] },
+  'се': { primary: 'oneself', alternatives: ['is', 'are', 'themselves'] },
+  'си': { primary: 'yourself', alternatives: ['are', 'you are'] },
+  'го': { primary: 'him', alternatives: ['it', 'the'] },
+  'ја': { primary: 'her', alternatives: ['it', 'the'] },
+  'ги': { primary: 'them', alternatives: ['the'] },
+  'и': { primary: 'and', alternatives: ['to her', 'also'] },
+  'на': { primary: 'on', alternatives: ['to', 'of', 'at'] },
+  'во': { primary: 'in', alternatives: ['into', 'at'] },
+  'од': { primary: 'from', alternatives: ['of', 'off'] },
+  'за': { primary: 'for', alternatives: ['about', 'to'] },
+  'со': { primary: 'with', alternatives: ['by'] },
+  'по': { primary: 'after', alternatives: ['by', 'along', 'on'] },
+  'до': { primary: 'to', alternatives: ['until', 'by', 'next to'] },
+
+  // English words
+  'to': { primary: 'да', alternatives: ['кон', 'до'] },
+  'the': { primary: '', alternatives: ['тој', 'таа', 'тоа'] },
+  'for': { primary: 'за', alternatives: ['за време на'] },
+  'of': { primary: 'од', alternatives: ['на'] },
+  'in': { primary: 'во', alternatives: ['внатре'] },
+  'on': { primary: 'на', alternatives: ['врз'] },
+  'at': { primary: 'на', alternatives: ['во', 'кај'] },
+  'by': { primary: 'од', alternatives: ['со', 'покрај', 'до'] },
+};
+
+// Get alternative translations for a word
+function getAlternativeTranslations(word: string): string[] | undefined {
+  const normalized = word.toLowerCase();
+  return MULTI_MEANING_WORDS[normalized]?.alternatives;
+}
+
 // Calculate text difficulty metrics
 function calculateTextDifficulty(words: string[]): {
   level: 'beginner' | 'intermediate' | 'advanced';
@@ -264,17 +300,19 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Build word analysis objects
+    // Build word analysis objects with alternative translations
     const wordAnalysis = wordTokens.map((token, idx) => {
       const word = token.token;
       const translation = translatedWords[idx] || word;
       const pos = detectPartOfSpeech(word, sourceLang || 'en');
       const difficulty = calculateDifficulty(word);
+      const alternativeTranslations = getAlternativeTranslations(word);
 
       return {
         id: `word-${token.index}`,
         original: word,
         translation,
+        ...(alternativeTranslations && { alternativeTranslations }),
         pos,
         difficulty,
         index: token.index,

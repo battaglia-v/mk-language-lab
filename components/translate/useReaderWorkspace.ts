@@ -8,6 +8,8 @@ export type WordAnalysis = {
   id: string;
   original: string;
   translation: string;
+  alternativeTranslations?: string[]; // Additional possible translations
+  contextualMeaning?: string; // The most contextually appropriate translation
   pos: 'noun' | 'verb' | 'adjective' | 'adverb' | 'other';
   difficulty: 'basic' | 'intermediate' | 'advanced';
   index: number;

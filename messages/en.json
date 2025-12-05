@@ -732,7 +732,9 @@
     "readerEmptyDescription": "Paste any text to see each word's translation, part of speech, and difficulty level. Perfect for understanding stories, articles, or conversations!",
     "readerEmptyExamplesLabel": "Try an example",
     "readerEmptyExample1": "English example",
-    "readerEmptyExample2": "Macedonian example"
+    "readerEmptyExample2": "Macedonian example",
+    "readerAlsoMeans": "Also means",
+    "readerCheckFullTranslation": "Check the full translation below to see which meaning fits this context"
   },
   "practiceHub": {
     "badge": "Daily practice",

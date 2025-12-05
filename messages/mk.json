@@ -756,7 +756,9 @@
     "readerEmptyDescription": "Залепи било какв текст за да го видиш преводот на секој збор, граматичката улога и нивото на тежина. Совршено за разбирање приказни, статии или разговори!",
     "readerEmptyExamplesLabel": "Пробај пример",
     "readerEmptyExample1": "Пример на англиски",
-    "readerEmptyExample2": "Пример на македонски"
+    "readerEmptyExample2": "Пример на македонски",
+    "readerAlsoMeans": "Исто така значи",
+    "readerCheckFullTranslation": "Провери го целосниот превод подолу за да видиш кое значење одговара во овој контекст"
   },
   "practiceHub": {
     "badge": "Дневна рутина",
