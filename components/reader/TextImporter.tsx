@@ -116,15 +116,17 @@ export function TextImporter({ onImportURL, onImportFile, isImporting }: TextImp
           <TabsContent value="file" className="space-y-4 mt-4">
             <div className="space-y-2">
               <Label htmlFor="file-input">{t('readerImportFileLabel')}</Label>
-              <Input
-                id="file-input"
-                ref={fileInputRef}
-                type="file"
-                accept=".txt,text/plain"
-                onChange={(e) => void handleFileSelect(e)}
-                disabled={isImporting}
-                className="cursor-pointer"
-              />
+              <div className="relative">
+                <Input
+                  id="file-input"
+                  ref={fileInputRef}
+                  type="file"
+                  accept=".txt,.pdf,text/plain,application/pdf"
+                  onChange={(e) => void handleFileSelect(e)}
+                  disabled={isImporting}
+                  className="cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 file:cursor-pointer"
+                />
+              </div>
               <p className="text-xs text-muted-foreground">
                 {t('readerImportFileHint')}
               </p>

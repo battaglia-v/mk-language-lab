@@ -46,13 +46,13 @@ function WordToken({ word, revealMode, isRevealed, onToggleReveal }: WordTokenPr
             onClick={onToggleReveal}
             className={cn(
               'inline-block relative cursor-pointer',
-              'px-1 py-0.5',
+              'px-1.5 py-0.5',
               'transition-all duration-150',
               'border-b-2',
               borderColor,
               'hover:bg-primary/10 rounded-sm',
               'select-none',
-              showTranslation && 'pb-6'
+              showTranslation && 'pb-7 mb-1'
             )}
             role="button"
             tabIndex={0}
@@ -66,7 +66,7 @@ function WordToken({ word, revealMode, isRevealed, onToggleReveal }: WordTokenPr
           >
             <span className="font-normal">{word.original}</span>
             {showTranslation && (
-              <span className="absolute left-1 top-full mt-0.5 text-sm text-primary/80 font-medium whitespace-nowrap">
+              <span className="absolute left-1.5 top-full mt-1 text-xs text-primary font-medium whitespace-nowrap z-10">
                 {word.translation}
               </span>
             )}
@@ -121,7 +121,7 @@ export function WordByWordDisplay({ data, revealMode }: WordByWordDisplayProps) 
       role="region"
       aria-label="Word by word translation"
     >
-      <div className="flex flex-wrap items-start gap-1 text-xl sm:text-2xl leading-loose">
+      <div className="flex flex-wrap items-start gap-1 text-xl sm:text-2xl leading-loose" style={{ lineHeight: '2.5rem' }}>
         {data.tokens.map((token) => {
           if (!token.isWord) {
             // Render punctuation and spaces as-is

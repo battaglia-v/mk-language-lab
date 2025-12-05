@@ -6,6 +6,16 @@ import {
 } from '@/lib/errors';
 import { translateRateLimit, checkRateLimit } from '@/lib/rate-limit';
 
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
+// Use dynamic import for pdf-parse since it's CommonJS
+const getPdfParse = async () => {
+  const pdfParse = await import('pdf-parse');
+  // @ts-ignore - pdf-parse has complex module exports
+  return pdfParse.default || pdfParse;
+};
+
 const MAX_FILE_SIZE = 1024 * 1024; // 1MB
 const MAX_TEXT_LENGTH = 50000; // 50k characters
 
@@ -173,22 +183,45 @@ export async function POST(request: NextRequest) {
       }
 
       // Check file type
-      if (!file.type.includes('text/plain') && !file.name.endsWith('.txt')) {
-        throw new ValidationError('Only .txt files are supported');
+      const isPDF = file.type.includes('application/pdf') || file.name.endsWith('.pdf');
+      const isTxt = file.type.includes('text/plain') || file.name.endsWith('.txt');
+
+      if (!isPDF && !isTxt) {
+        throw new ValidationError('Only .txt and .pdf files are supported');
       }
 
-      // Read file content
-      const text = await file.text();
+      let text: string;
 
-      if (!text || text.trim().length === 0) {
-        throw new ValidationError('File is empty');
+      // Handle PDF files
+      if (isPDF) {
+        try {
+          const pdfParse = await getPdfParse();
+          const arrayBuffer = await file.arrayBuffer();
+          const buffer = Buffer.from(arrayBuffer);
+          const data = await pdfParse(buffer);
+          text = data.text;
+
+          if (!text || text.trim().length === 0) {
+            throw new ValidationError('No text content found in PDF');
+          }
+        } catch (error) {
+          console.error('PDF parsing error:', error);
+          throw new ValidationError('Failed to parse PDF file. Please ensure it contains extractable text.');
+        }
+      } else {
+        // Handle text files
+        text = await file.text();
+
+        if (!text || text.trim().length === 0) {
+          throw new ValidationError('File is empty');
+        }
       }
 
       if (text.length > MAX_TEXT_LENGTH) {
         throw new ValidationError(`File content exceeds maximum length of ${MAX_TEXT_LENGTH} characters`);
       }
 
-      const wordCount = text.split(/\s+/).filter(w => w.length > 0).length;
+      const wordCount = text.trim().split(/\s+/).filter(w => w.length > 0).length;
 
       return NextResponse.json({
         text: text.trim(),

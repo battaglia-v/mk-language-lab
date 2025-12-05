@@ -709,7 +709,7 @@
     "readerImportURLLabel": "Enter URL",
     "readerImportURLHint": "Paste a link to an article or webpage",
     "readerImportFileLabel": "Choose a file",
-    "readerImportFileHint": "Only .txt files are supported (max 1MB)",
+    "readerImportFileHint": "Supports .txt and .pdf files (max 1MB)",
     "readerImporting": "Importing…",
     "readerDifficultyLabel": "Difficulty",
     "readerDifficultyBasic": "Basic",

@@ -733,7 +733,7 @@
     "readerImportURLLabel": "Внеси URL",
     "readerImportURLHint": "Залепи врска до статија или веб-страница",
     "readerImportFileLabel": "Избери датотека",
-    "readerImportFileHint": "Се поддржуваат само .txt датотеки (макс 1MB)",
+    "readerImportFileHint": "Се поддржуваат .txt и .pdf датотеки (макс 1MB)",
     "readerImporting": "Се вчитува…",
     "readerDifficultyLabel": "Тешкотија",
     "readerDifficultyBasic": "Основно",
