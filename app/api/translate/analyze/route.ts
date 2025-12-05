@@ -59,22 +59,84 @@ const getTranslator = () => {
   return translator;
 };
 
-// Simple POS tagging based on word patterns
+// Dictionary of common Macedonian words with POS
+const MACEDONIAN_POS_DICT: Record<string, 'noun' | 'verb' | 'adjective' | 'adverb' | 'other'> = {
+  // Common particles and conjunctions (truly "other")
+  'и': 'other', 'на': 'other', 'во': 'other', 'од': 'other', 'за': 'other',
+  'со': 'other', 'по': 'other', 'до': 'other', 'над': 'other', 'под': 'other',
+  'да': 'other', 'не': 'other', 'ли': 'other', 'ќе': 'other', 'би': 'other',
+  'се': 'other', 'си': 'other', 'го': 'other', 'ја': 'other', 'ги': 'other',
+  'ми': 'other', 'ти': 'other', 'му': 'other', 'ѝ': 'other', 'им': 'other',
+
+  // Common verbs (excluding се and си which are more commonly pronouns)
+  'сум': 'verb', 'е': 'verb', 'сме': 'verb', 'сте': 'verb',
+  'бев': 'verb', 'беше': 'verb', 'бевме': 'verb', 'бевте': 'verb', 'беа': 'verb',
+  'има': 'verb', 'имам': 'verb', 'имаш': 'verb', 'имаме': 'verb', 'имате': 'verb', 'имаат': 'verb',
+  'сакам': 'verb', 'сакаш': 'verb', 'сака': 'verb', 'сакаме': 'verb', 'сакате': 'verb', 'сакаат': 'verb',
+  'можам': 'verb', 'можеш': 'verb', 'може': 'verb', 'можеме': 'verb', 'можете': 'verb', 'можат': 'verb',
+  'знам': 'verb', 'знаеш': 'verb', 'знае': 'verb', 'знаеме': 'verb', 'знаете': 'verb', 'знаат': 'verb',
+  'дојдам': 'verb', 'дојдеш': 'verb', 'дојде': 'verb', 'дојдеме': 'verb', 'дојдете': 'verb', 'дојдат': 'verb',
+  'одам': 'verb', 'одиш': 'verb', 'оди': 'verb', 'одиме': 'verb', 'одите': 'verb', 'одат': 'verb',
+
+  // Common adjectives
+  'добар': 'adjective', 'добра': 'adjective', 'добро': 'adjective', 'добри': 'adjective',
+  'голем': 'adjective', 'голема': 'adjective', 'големо': 'adjective', 'големи': 'adjective',
+  'мал': 'adjective', 'мала': 'adjective', 'мало': 'adjective', 'мали': 'adjective',
+  'убав': 'adjective', 'убава': 'adjective', 'убаво': 'adjective', 'убави': 'adjective',
+  'нов': 'adjective', 'нова': 'adjective', 'ново': 'adjective', 'нови': 'adjective',
+  'стар': 'adjective', 'стара': 'adjective', 'старо': 'adjective', 'стари': 'adjective',
+
+  // Common adverbs
+  'многу': 'adverb', 'малку': 'adverb', 'брзо': 'adverb', 'бавно': 'adverb',
+  'добро': 'adverb', 'лошо': 'adverb', 'сега': 'adverb', 'потоа': 'adverb',
+  'тука': 'adverb', 'таму': 'adverb', 'овде': 'adverb', 'каде': 'adverb',
+  'кога': 'adverb', 'како': 'adverb', 'зошто': 'adverb', 'секогаш': 'adverb',
+
+  // Common greetings and nouns
+  'здраво': 'noun', 'денот': 'noun', 'ноќта': 'noun', 'утрото': 'noun',
+  'човек': 'noun', 'жена': 'noun', 'дете': 'noun', 'куќа': 'noun',
+  'град': 'noun', 'село': 'noun', 'работа': 'noun', 'време': 'noun',
+};
+
+// Simple POS tagging based on word patterns and dictionary
 function detectPartOfSpeech(word: string, lang: 'mk' | 'en'): 'noun' | 'verb' | 'adjective' | 'adverb' | 'other' {
   const lowerWord = word.toLowerCase();
 
   if (lang === 'en') {
     // English patterns
     if (lowerWord.endsWith('ly')) return 'adverb';
-    if (lowerWord.endsWith('ing') || lowerWord.endsWith('ed') || lowerWord.endsWith('s')) return 'verb';
+    if (lowerWord.endsWith('ing') || lowerWord.endsWith('ed')) return 'verb';
     if (lowerWord.endsWith('ive') || lowerWord.endsWith('ous') || lowerWord.endsWith('ful')) return 'adjective';
     // Common verbs
-    if (['is', 'are', 'was', 'were', 'be', 'been', 'have', 'has', 'had', 'do', 'does', 'did'].includes(lowerWord)) return 'verb';
+    if (['is', 'are', 'was', 'were', 'be', 'been', 'have', 'has', 'had', 'do', 'does', 'did',
+         'can', 'could', 'will', 'would', 'shall', 'should', 'may', 'might', 'must'].includes(lowerWord)) return 'verb';
+    // Common particles
+    if (['the', 'a', 'an', 'and', 'or', 'but', 'if', 'to', 'of', 'in', 'on', 'at', 'by', 'for', 'with'].includes(lowerWord)) return 'other';
+    // Default to noun for English content words
+    return 'noun';
   } else if (lang === 'mk') {
-    // Macedonian patterns
-    if (lowerWord.endsWith('а') || lowerWord.endsWith('е') || lowerWord.endsWith('о')) return 'noun';
-    if (lowerWord.endsWith('ува') || lowerWord.endsWith('ам') || lowerWord.endsWith('им')) return 'verb';
-    if (lowerWord.endsWith('ен') || lowerWord.endsWith('на') || lowerWord.endsWith('но')) return 'adjective';
+    // Check dictionary first
+    if (MACEDONIAN_POS_DICT[lowerWord]) {
+      return MACEDONIAN_POS_DICT[lowerWord];
+    }
+
+    // Macedonian verb patterns (more comprehensive)
+    if (lowerWord.match(/(ува|ира|ам|аш|а|аме|ате|аат|им|иш|и|име|ите|ат|ев|еше|евме|евте|еја)$/)) {
+      return 'verb';
+    }
+
+    // Macedonian adjective patterns
+    if (lowerWord.match(/(ен|на|но|ни|ски|ска|ско|ски|лив|лива|ливо|ливи)$/)) {
+      return 'adjective';
+    }
+
+    // Macedonian adverb patterns (often end in -о or -ски)
+    if (lowerWord.match(/(ски|ишки|ешки)$/)) {
+      return 'adverb';
+    }
+
+    // Default to noun for Macedonian content words (most unmarked words are nouns)
+    return 'noun';
   }
 
   return 'other';
