@@ -140,28 +140,28 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
           className="min-h-[160px] resize-none rounded-2xl border border-border/60 bg-background/50 px-3.5 py-3 text-sm shadow-inner placeholder:text-muted-foreground sm:min-h-[200px] sm:px-4 sm:text-base"
         />
 
-        <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground sm:mt-4 sm:gap-3">
-          <span id="reader-character-count">{characterCount}</span>
-          <div className="flex flex-wrap gap-2">
+        <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:mt-5">
+          <span id="reader-character-count" className="text-xs text-muted-foreground">{characterCount}</span>
+          <div className="flex flex-wrap gap-2 sm:gap-3">
+            <Button
+              type="button"
+              variant="outline"
+              size="default"
+              onClick={handleClear}
+              disabled={!inputText && !analyzedData}
+            >
+              {t('clearButton')}
+            </Button>
             <TextImporter
               onImportURL={handleImportFromURL}
               onImportFile={handleImportFromFile}
               isImporting={isImporting}
             />
             <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              onClick={handleClear}
-              disabled={!inputText && !analyzedData}
-              className="min-h-[44px]"
-            >
-              {t('clearButton')}
-            </Button>
-            <Button
               type="submit"
+              size="default"
               disabled={!inputText.trim() || isAnalyzing}
-              className="min-h-[44px] font-bold"
+              className="font-semibold"
             >
               {isAnalyzing ? (
                 <>
@@ -196,18 +196,18 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
       )}
 
       {analyzedData && (
-        <div className="glass-card rounded-2xl sm:rounded-[28px] p-4 sm:p-5 md:p-7 space-y-4">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-semibold text-muted-foreground">
-                {t('readerDifficultyLabel')}:
+        <div className="glass-card rounded-2xl sm:rounded-[28px] p-5 sm:p-6 md:p-8 space-y-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-3">
+              <span className="text-sm font-medium text-muted-foreground/80">
+                {t('readerDifficultyLabel')}
               </span>
               <span
                 className={cn(
-                  'inline-flex items-center rounded-full px-3 py-1 text-xs font-bold',
-                  analyzedData.difficulty.level === 'beginner' && 'bg-green-600/20 text-green-400',
-                  analyzedData.difficulty.level === 'intermediate' && 'bg-yellow-600/20 text-yellow-400',
-                  analyzedData.difficulty.level === 'advanced' && 'bg-red-600/20 text-red-400'
+                  'inline-flex items-center rounded-lg px-3.5 py-1.5 text-xs font-semibold border',
+                  analyzedData.difficulty.level === 'beginner' && 'bg-green-600/15 text-green-400 border-green-600/30',
+                  analyzedData.difficulty.level === 'intermediate' && 'bg-yellow-600/15 text-yellow-400 border-yellow-600/30',
+                  analyzedData.difficulty.level === 'advanced' && 'bg-red-600/15 text-red-400 border-red-600/30'
                 )}
               >
                 {t(`readerDifficulty${analyzedData.difficulty.level.charAt(0).toUpperCase() + analyzedData.difficulty.level.slice(1)}`)}
@@ -216,10 +216,10 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
 
             <Button
               type="button"
-              variant="outline"
-              size="sm"
+              variant={revealMode === 'hidden' ? 'default' : 'outline'}
+              size="default"
               onClick={handleToggleReveal}
-              className="min-h-[44px]"
+              className="w-full sm:w-auto"
             >
               {revealMode === 'hidden' ? (
                 <>
