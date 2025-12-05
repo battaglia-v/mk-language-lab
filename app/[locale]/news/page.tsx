@@ -239,18 +239,18 @@ export default function NewsPage() {
     <div className="section-container section-container-xl section-spacing-lg space-y-6 sm:space-y-8">
       <section className="glass-card rounded-2xl p-4 sm:rounded-3xl sm:p-6 md:p-8" data-testid="news-hero">
         <div className="space-y-4 sm:space-y-6">
+          <Button
+            asChild
+            variant="ghost"
+            size="sm"
+            className="inline-flex min-h-[44px] w-fit items-center gap-2 rounded-full border border-border/60 px-4 text-sm text-muted-foreground"
+          >
+            <Link href={`/${locale}/dashboard`} aria-label={navT('backToDashboard')}>
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+              {navT('backToDashboard')}
+            </Link>
+          </Button>
           <header className="page-header">
-            <Button
-              asChild
-              variant="ghost"
-              size="sm"
-              className="inline-flex min-h-[44px] w-fit items-center gap-2 rounded-full border border-border/60 px-4 text-sm text-muted-foreground"
-            >
-              <Link href={`/${locale}/dashboard`} aria-label={navT('backToDashboard')}>
-                <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-                {navT('backToDashboard')}
-              </Link>
-            </Button>
             <div className="page-header-content">
               <p className="page-header-badge">
                 <Newspaper className="inline h-3 w-3 mr-1.5" aria-hidden="true" />

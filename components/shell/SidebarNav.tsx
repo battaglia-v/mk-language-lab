@@ -22,11 +22,11 @@ export function SidebarNav({ isOpen, onNavigate }: SidebarNavProps) {
     <>
       <div
         className={cn(
-          "fixed inset-y-0 left-0 z-40 w-64 max-w-[85vw] bg-sidebar text-sidebar-foreground border-r border-sidebar-border transition-transform duration-300 ease-out lg:w-[72px] 2xl:w-64 lg:translate-x-0",
+          "fixed inset-y-0 left-0 z-40 w-64 max-w-[85vw] bg-sidebar text-sidebar-foreground border-r border-sidebar-border transition-transform duration-300 ease-out lg:w-20 2xl:w-64 lg:translate-x-0",
           isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0",
         )}
       >
-        <div className="flex items-center justify-between gap-3 border-b border-sidebar-border px-6 py-5 2xl:px-6">
+        <div className="flex items-center justify-between gap-3 border-b border-sidebar-border px-6 py-5 lg:justify-center 2xl:px-6 2xl:justify-between">
           <div className="flex flex-col 2xl:flex">
             <p className="hidden text-[10px] uppercase tracking-[0.4em] text-muted-foreground 2xl:block">{t("label")}</p>
             <p className="hidden text-xl font-semibold mk-gradient 2xl:block 2xl:text-2xl">македонски</p>
@@ -46,7 +46,7 @@ export function SidebarNav({ isOpen, onNavigate }: SidebarNavProps) {
                 href={href}
                 prefetch={true}
                 className={cn(
-                  "group icon-gap flex items-center rounded-2xl px-3 py-3 text-sm font-semibold transition justify-center 2xl:justify-start",
+                  "group icon-gap flex items-center rounded-2xl px-3 py-3.5 text-sm font-semibold transition justify-center 2xl:justify-start min-h-[44px]",
                   active
                     ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-lg"
                     : "bg-transparent text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",

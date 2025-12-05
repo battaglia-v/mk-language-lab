@@ -177,21 +177,19 @@ export default function PracticePage() {
   return (
     <div className="space-y-4 sm:space-y-6">
       <section className="lab-hero" data-testid="practice-hero">
-        <div className="flex flex-col gap-3 sm:gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-            <Button
-              asChild
-              variant="ghost"
-              size="sm"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-border/60 px-4 text-sm text-muted-foreground"
-            >
-              <Link href={`/${locale}/dashboard`} aria-label={navT('backToDashboard')}>
-                <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-                {navT('backToDashboard')}
-              </Link>
-            </Button>
-          </div>
-          <header className="page-header lg:text-right">
+        <div className="flex flex-col gap-3 sm:gap-4">
+          <Button
+            asChild
+            variant="ghost"
+            size="sm"
+            className="inline-flex min-h-[44px] w-fit items-center gap-2 rounded-full border border-border/60 px-4 text-sm text-muted-foreground"
+          >
+            <Link href={`/${locale}/dashboard`} aria-label={navT('backToDashboard')}>
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+              {navT('backToDashboard')}
+            </Link>
+          </Button>
+          <header className="page-header">
             <div className="page-header-content">
               <p className="page-header-badge">{t('badge')}</p>
               <h1 className="page-header-title">{t('title')}</h1>
