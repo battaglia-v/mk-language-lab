@@ -100,18 +100,36 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     }
 
     let isCancelled = false;
-    const cacheKey = 'quick-practice-prompts-v2'; // Changed key to invalidate old cache
+    const cacheKey = 'quick-practice-prompts-v3'; // Versioned cache key
+    const CACHE_VERSION = 3; // Increment to invalidate old caches
+    const CACHE_MAX_AGE = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
     const cached = window.sessionStorage.getItem(cacheKey);
 
     if (cached) {
       try {
-        const parsed = JSON.parse(cached) as PracticeItem[];
-        const normalized = normalizePracticeItems(parsed);
-        cachedPromptsRef.current = normalized;
-        setPromptSource(normalized);
-        setPromptStatus('cached');
+        const parsed = JSON.parse(cached) as {
+          version?: number;
+          timestamp?: number;
+          data: PracticeItem[];
+        };
+
+        // Validate cache version and age
+        const isValidVersion = parsed.version === CACHE_VERSION;
+        const now = Date.now();
+        const isNotExpired = parsed.timestamp ? now - parsed.timestamp < CACHE_MAX_AGE : false;
+
+        if (isValidVersion && isNotExpired && Array.isArray(parsed.data) && parsed.data.length > 0) {
+          const normalized = normalizePracticeItems(parsed.data);
+          cachedPromptsRef.current = normalized;
+          setPromptSource(normalized);
+          setPromptStatus('cached');
+        } else {
+          // Clear invalid cache
+          window.sessionStorage.removeItem(cacheKey);
+        }
       } catch (error) {
         console.error('Failed to restore cached practice prompts', error);
+        window.sessionStorage.removeItem(cacheKey);
       }
     }
 
@@ -135,7 +153,15 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
           setPromptSource(normalized);
           setPromptStatus('ready');
           cachedPromptsRef.current = normalized;
-          window.sessionStorage.setItem(cacheKey, JSON.stringify(normalized));
+          // Store with version and timestamp for cache validation
+          window.sessionStorage.setItem(
+            cacheKey,
+            JSON.stringify({
+              version: CACHE_VERSION,
+              timestamp: Date.now(),
+              data: normalized,
+            })
+          );
           return;
         }
 
