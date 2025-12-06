@@ -69,10 +69,10 @@ export function DeckCard({ deck, onDelete, onArchive }: DeckCardProps) {
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-8 w-8 p-0 flex-shrink-0 text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                className="h-8 w-8 p-0 flex-shrink-0 text-foreground/70 hover:text-foreground hover:bg-accent/10 border border-border/40 hover:border-border/60"
                 aria-label="Deck options"
               >
-                <MoreVertical className="h-4 w-4" />
+                <MoreVertical className="h-5 w-5" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">
