@@ -15,10 +15,12 @@ import {
   deleteDeckCard,
 } from '@/lib/custom-decks';
 import type { CustomDeck, CustomDeckCard } from '@prisma/client';
-import type { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 
 type PageProps = {
-  params: Params;
+  params: {
+    deckId: string;
+    locale: string;
+  };
 };
 
 export default function DeckEditorPage({ params }: PageProps) {
@@ -31,7 +33,7 @@ export default function DeckEditorPage({ params }: PageProps) {
   const [updatingCardId, setUpdatingCardId] = useState<string | null>(null);
   const [deletingCardId, setDeletingCardId] = useState<string | null>(null);
 
-  const deckId = params.deckId as string;
+  const deckId = params.deckId;
 
   const loadDeck = async () => {
     setIsLoading(true);
