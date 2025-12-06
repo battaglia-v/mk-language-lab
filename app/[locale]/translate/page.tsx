@@ -202,7 +202,7 @@ export default function TranslatePage() {
   };
 
   return (
-    <div className="w-full min-w-0 space-y-5 sm:space-y-7">
+    <div className="w-full min-w-0 space-y-4 sm:space-y-6">
       <section className="lab-hero" data-testid="translate-hero">
         <div className="flex flex-col gap-3 sm:gap-4">
           <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4">
@@ -270,7 +270,7 @@ export default function TranslatePage() {
             swapLabel={t('swapDirections')}
           />
           <form
-            className="glass-card w-full min-w-0 rounded-2xl sm:rounded-[28px] p-5 sm:p-6 md:p-8"
+            className="glass-card w-full min-w-0 rounded-2xl sm:rounded-[28px] p-4 sm:p-5 md:p-6"
             onSubmit={(event: FormEvent<HTMLFormElement>) => {
               event.preventDefault();
               void handleTranslate(event);
@@ -315,7 +315,7 @@ export default function TranslatePage() {
             </div>
           </form>
 
-          <section className="glass-card w-full min-w-0 space-y-3.5 rounded-2xl sm:rounded-[28px] p-5 sm:p-6 md:p-8 sm:space-y-4">
+          <section className="glass-card w-full min-w-0 space-y-3.5 rounded-2xl sm:rounded-[28px] p-4 sm:p-5 md:p-6 sm:space-y-4">
             <div className="flex flex-wrap items-center gap-2 sm:gap-3">
               <div className="min-w-0 flex-1">
                 <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground break-words">{t('resultLabel')}</p>

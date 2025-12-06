@@ -18,7 +18,7 @@
   --content-reading: 896px;
 
   /* Button sizing */
-  --button-height-sm: 2.5rem;
+  --button-height-sm: 2.75rem;  /* 44px - accessibility compliant touch target */
   --button-height-md: 3rem;
   --button-height-lg: 3.5rem;
   --button-pad-x-sm: 0.9rem;

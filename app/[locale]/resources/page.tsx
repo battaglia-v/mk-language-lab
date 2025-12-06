@@ -158,7 +158,7 @@ export default function ResourcesPage() {
 
       <div className={cn('lab-grid w-full min-w-0', isDesktop && !panelCollapsed && 'has-panel')} data-testid="resources-workspace">
         <div className="space-y-4">
-          <div className="glass-card w-full min-w-0 space-y-3.5 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 sm:space-y-4">
+          <div className="glass-card w-full min-w-0 space-y-3.5 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 sm:space-y-4">
             <div className="flex flex-col gap-3 md:flex-row md:items-center">
               <div className="relative flex-1 min-w-0">
                 <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground sm:left-4" />
@@ -198,7 +198,7 @@ export default function ResourcesPage() {
             </div>
           </div>
 
-          <section className="glass-card w-full min-w-0 space-y-4 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8">
+          <section className="glass-card w-full min-w-0 space-y-4 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6">
             <div className="card-grid two">
               {loading
                 ? Array.from({ length: 6 }).map((_, index) => <ResourceSkeleton key={`resource-skeleton-${index}`} />)

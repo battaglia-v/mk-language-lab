@@ -187,7 +187,7 @@ export default function PracticePage() {
   const accuracy = reviewedCount > 0 ? Math.round((correctAnswers / reviewedCount) * 100) : 0;
 
   return (
-    <div className="w-full min-w-0 space-y-5 sm:space-y-7">
+    <div className="w-full min-w-0 space-y-4 sm:space-y-6">
       <section className="lab-hero" data-testid="practice-hero">
         <div className="flex flex-col gap-3 sm:gap-4">
           <Button
@@ -230,7 +230,7 @@ export default function PracticePage() {
         )}
       </section>
 
-      <div className="glass-card space-y-4 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8" data-testid="practice-workspace">
+      <div className="glass-card space-y-4 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6" data-testid="practice-workspace">
         <div className="flex flex-wrap items-center justify-between gap-2 w-full min-w-0">
           <div className="flex flex-wrap gap-2 sm:gap-3 w-full sm:w-auto min-w-0" data-testid="practice-panels">
             <DeckToggle
@@ -270,7 +270,7 @@ export default function PracticePage() {
         {customDecks.length > 0 && (
           <div className="border-t border-border/40 pt-4 space-y-3 w-full min-w-0">
             <h3 className="text-sm font-semibold text-foreground">Your Custom Decks</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 w-full">
               {customDecks.map((deck) => (
                 <Link
                   key={deck.id}
@@ -300,7 +300,7 @@ export default function PracticePage() {
           </Alert>
         ) : (
           <div className="space-y-4">
-            <div className="glass-card animate-in fade-in slide-in-from-bottom-4 duration-300 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-9">
+            <div className="glass-card animate-in fade-in slide-in-from-bottom-4 duration-300 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6">
               <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-muted-foreground">
                 <span className="font-semibold">{currentCard?.direction === 'en-mk' ? 'EN → MK' : 'MK → EN'}</span>
                 <span className="rounded-full bg-muted/20 px-2.5 py-1 font-bold">
@@ -319,8 +319,8 @@ export default function PracticePage() {
               </div>
             </div>
 
-              <form onSubmit={handleSubmitGuess} className="mt-4 space-y-3 sm:mt-6 w-full min-w-0">
-                <div className="space-y-2 w-full min-w-0">
+              <form onSubmit={handleSubmitGuess} className="mt-4 space-y-2.5 sm:mt-6 w-full min-w-0">
+                <div className="space-y-1.5 w-full min-w-0">
                   <label className="text-xs font-semibold text-white sm:text-sm" htmlFor="practice-guess">
                     {t('drills.wordInputLabel')}
                   </label>
@@ -330,7 +330,7 @@ export default function PracticePage() {
                     value={guess}
                     onChange={(event) => setGuess(event.target.value)}
                     placeholder={t('drills.wordInputPlaceholder')}
-                    className="flex-1 min-h-[44px] min-w-0 rounded-2xl border border-primary/50 bg-white/5 text-sm text-white placeholder:text-muted-foreground sm:text-base"
+                    className="flex-1 min-h-[44px] min-w-0 rounded-2xl border border-primary/50 bg-white/5 text-base text-white placeholder:text-muted-foreground"
                   />
                   <Button
                     type="submit"

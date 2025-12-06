@@ -52,6 +52,13 @@
   --touch-target-size: 44px;
   --safe-area-top: env(safe-area-inset-top, 0px);
   --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+
+  /* Mobile spacing system */
+  --mobile-page-gap: 1rem;          /* 16px - between page sections */
+  --mobile-section-gap: 0.75rem;    /* 12px - within sections */
+  --mobile-card-padding: 1rem;      /* 16px - card internal padding */
+  --mobile-card-gap: 0.75rem;       /* 12px - between cards */
+  --mobile-element-gap: 0.5rem;     /* 8px - between small elements */
 }
 
 body {

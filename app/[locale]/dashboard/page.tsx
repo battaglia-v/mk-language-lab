@@ -60,7 +60,7 @@ export default async function DashboardPage() {
   const profileT = await getTranslations("shell");
 
   return (
-    <section className="mx-auto flex w-full max-w-5xl flex-col gap-9 sm:gap-11">
+    <section className="mx-auto flex w-full max-w-5xl flex-col gap-6 sm:gap-8">
       <header className="page-header">
         <div className="page-header-content">
           <p className="page-header-badge">{navT("home")}</p>
