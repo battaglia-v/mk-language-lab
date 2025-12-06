@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import { Loader2 } from 'lucide-react';
 import { DeckEditorHeader } from '@/components/practice/decks/DeckEditorHeader';
 import { CardForm } from '@/components/practice/decks/CardForm';
@@ -16,15 +16,9 @@ import {
 } from '@/lib/custom-decks';
 import type { CustomDeck, CustomDeckCard } from '@prisma/client';
 
-type PageProps = {
-  params: {
-    deckId: string;
-    locale: string;
-  };
-};
-
-export default function DeckEditorPage({ params }: PageProps) {
+export default function DeckEditorPage() {
   const router = useRouter();
+  const params = useParams();
   const { addToast } = useToast();
   const [deck, setDeck] = useState<CustomDeck | null>(null);
   const [cards, setCards] = useState<CustomDeckCard[]>([]);
@@ -33,7 +27,7 @@ export default function DeckEditorPage({ params }: PageProps) {
   const [updatingCardId, setUpdatingCardId] = useState<string | null>(null);
   const [deletingCardId, setDeletingCardId] = useState<string | null>(null);
 
-  const deckId = params.deckId;
+  const deckId = params?.deckId as string;
 
   const loadDeck = async () => {
     setIsLoading(true);
