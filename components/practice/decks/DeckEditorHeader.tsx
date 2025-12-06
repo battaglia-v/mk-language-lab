@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useLocale } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -15,6 +16,7 @@ type DeckEditorHeaderProps = {
 };
 
 export function DeckEditorHeader({ deck, onUpdate, cardCount }: DeckEditorHeaderProps) {
+  const locale = useLocale();
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [name, setName] = useState(deck.name);
@@ -55,7 +57,7 @@ export function DeckEditorHeader({ deck, onUpdate, cardCount }: DeckEditorHeader
         size="sm"
         className="inline-flex w-fit items-center gap-2"
       >
-        <Link href="/practice/decks">
+        <Link href={`/${locale}/practice/decks`}>
           <ArrowLeft className="h-4 w-4" />
           Back to Decks
         </Link>
@@ -150,7 +152,7 @@ export function DeckEditorHeader({ deck, onUpdate, cardCount }: DeckEditorHeader
             </Button>
             {cardCount > 0 && (
               <Button asChild className="gap-2">
-                <Link href={`/practice?practiceFixture=custom-deck-${deck.id}`}>
+                <Link href={`/${locale}/practice?practiceFixture=custom-deck-${deck.id}`}>
                   <Play className="h-4 w-4" />
                   Practice
                 </Link>

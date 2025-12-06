@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useLocale } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -25,6 +26,7 @@ type CreateDeckDialogProps = {
 
 export function CreateDeckDialog({ onDeckCreated }: CreateDeckDialogProps) {
   const router = useRouter();
+  const locale = useLocale();
   const { addToast } = useToast();
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -73,7 +75,7 @@ export function CreateDeckDialog({ onDeckCreated }: CreateDeckDialogProps) {
       }
 
       // Navigate to the deck editor
-      router.push(`/practice/decks/${deck.id}`);
+      router.push(`/${locale}/practice/decks/${deck.id}`);
     } catch (error) {
       console.error('Failed to create deck:', error);
       addToast({

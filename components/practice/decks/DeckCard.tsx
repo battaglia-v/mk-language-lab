@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useLocale } from 'next-intl';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -22,6 +23,7 @@ type DeckCardProps = {
 };
 
 export function DeckCard({ deck, onDelete, onArchive }: DeckCardProps) {
+  const locale = useLocale();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const lastUpdated = new Date(deck.updatedAt).toLocaleDateString(undefined, {
@@ -47,7 +49,7 @@ export function DeckCard({ deck, onDelete, onArchive }: DeckCardProps) {
         <div className="mb-4 flex items-start justify-between gap-2">
           <div className="flex-1 min-w-0">
             <Link
-              href={`/practice/decks/${deck.id}`}
+              href={`/${locale}/practice/decks/${deck.id}`}
               className="block group"
             >
               <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors truncate">
@@ -75,14 +77,14 @@ export function DeckCard({ deck, onDelete, onArchive }: DeckCardProps) {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">
               <DropdownMenuItem asChild>
-                <Link href={`/practice/decks/${deck.id}`} className="flex items-center gap-2">
+                <Link href={`/${locale}/practice/decks/${deck.id}`} className="flex items-center gap-2">
                   <Edit className="h-4 w-4" />
                   Edit deck
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link
-                  href={`/practice?practiceFixture=custom-deck-${deck.id}`}
+                  href={`/${locale}/practice?practiceFixture=custom-deck-${deck.id}`}
                   className="flex items-center gap-2"
                 >
                   <Play className="h-4 w-4" />
