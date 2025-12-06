@@ -58,9 +58,17 @@ export function QuestsSection() {
             {error.message}
           </p>
         ) : quests.length === 0 ? (
-          <p className="rounded-2xl border border-dashed border-white/20 bg-white/5 p-8 text-center text-slate-200">
-            {t('empty')}
-          </p>
+          <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-8 text-center">
+            <div className="mx-auto max-w-md space-y-3">
+              <h3 className="text-xl font-semibold text-white">Daily & Weekly Quests</h3>
+              <p className="text-sm text-slate-200">
+                Complete challenges to earn XP and gems. Check back soon for your first quests!
+              </p>
+              <div className="inline-flex items-center gap-2 rounded-full bg-primary/20 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-primary">
+                Coming Soon
+              </div>
+            </div>
+          </div>
         ) : (
           quests.map((quest: Quest) => (
             <article
