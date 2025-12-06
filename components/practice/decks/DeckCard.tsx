@@ -69,7 +69,7 @@ export function DeckCard({ deck, onDelete, onArchive }: DeckCardProps) {
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-8 w-8 p-0 flex-shrink-0"
+                className="h-8 w-8 p-0 flex-shrink-0 text-muted-foreground hover:text-foreground hover:bg-muted/50"
                 aria-label="Deck options"
               >
                 <MoreVertical className="h-4 w-4" />
