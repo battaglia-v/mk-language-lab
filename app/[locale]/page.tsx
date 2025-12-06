@@ -76,7 +76,7 @@ export default async function LocaleHome({ params }: LocalePageProps) {
     "w-full justify-center bg-emerald-500 text-slate-950 shadow-[0_18px_50px_-25px_rgba(16,185,129,0.65)] hover:bg-emerald-400 hover:shadow-[0_20px_60px_-20px_rgba(16,185,129,0.8)] active:bg-emerald-600";
 
   return (
-    <div className="mx-auto flex w-full min-w-0 max-w-5xl flex-col gap-8 px-4 py-6 sm:gap-12 sm:py-10 sm:px-6 md:gap-14 lg:px-0">
+    <div className="mx-auto flex w-full min-w-0 flex-col gap-8 px-0 py-6 sm:gap-12 sm:py-10 md:gap-14">
       <section className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 px-5 py-8 shadow-2xl sm:rounded-3xl sm:px-10 sm:py-10">
         <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-transparent to-emerald-500/10" aria-hidden />
         <div className="relative space-y-5 text-slate-50 sm:space-y-7">
