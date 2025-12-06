@@ -12,28 +12,28 @@ type StatCardProps = {
 function StatCard({ icon: Icon, label, value, accent, subtext }: StatCardProps) {
   return (
     <div className={cn(
-      "relative overflow-hidden rounded-2xl border border-border/40 bg-gradient-to-br from-background/80 to-background/60 p-4",
+      "relative overflow-hidden rounded-2xl border border-border/40 bg-gradient-to-br from-background/80 to-background/60 p-3",
       "backdrop-blur-sm transition-all duration-200 hover:border-border/60 hover:shadow-lg"
     )}>
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex-1 space-y-1">
-          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+      <div className="flex items-start justify-between gap-2">
+        <div className="flex-1 space-y-1 min-w-0">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground whitespace-nowrap overflow-hidden text-ellipsis">
             {label}
           </p>
-          <p className="text-2xl font-bold text-foreground">
+          <p className="text-xl md:text-2xl font-bold text-foreground">
             {value}
           </p>
           {subtext && (
-            <p className="text-xs text-muted-foreground">
+            <p className="text-[10px] text-muted-foreground">
               {subtext}
             </p>
           )}
         </div>
         <div className={cn(
-          "flex h-10 w-10 items-center justify-center rounded-full",
+          "flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full",
           accent
         )}>
-          <Icon className="h-5 w-5" />
+          <Icon className="h-4 w-4" />
         </div>
       </div>
     </div>
