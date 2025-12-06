@@ -8,7 +8,6 @@ import { CardForm } from '@/components/practice/decks/CardForm';
 import { CardList } from '@/components/practice/decks/CardList';
 import { useToast } from '@/components/ui/use-toast';
 import {
-  fetchDeckWithCards,
   updateDeck,
   createDeckCard,
   updateDeckCard,

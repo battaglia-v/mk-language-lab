@@ -4,7 +4,7 @@ import { ArrowRight, BookOpen, CircleUserRound, Languages, LayoutDashboard, News
 import { locales } from "@/i18n";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
 import { buildLocalizedHref } from "@/components/shell/navItems";
 
 const featureIconMap = {

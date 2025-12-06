@@ -2,7 +2,7 @@
 
 import { FormEvent, useRef, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
-import { Loader2, Eye, EyeOff, RefreshCw, Upload, Sparkles } from 'lucide-react';
+import { Loader2, Eye, EyeOff, RefreshCw, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Alert, AlertDescription } from '@/components/ui/alert';

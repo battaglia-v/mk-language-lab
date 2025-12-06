@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { Pressable, SafeAreaView, ScrollView, StyleSheet, View, Linking, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
-import { NativeTypography, NativeCard, NativeStatPill, NativeButton } from '@mk/ui';
+import { NativeTypography, NativeCard, NativeButton } from '@mk/ui';
 import { brandColors, spacingScale } from '@mk/tokens';
 import { useProfileSummaryQuery, getLocalProfileSummary } from '@mk/api-client';
 import { getApiBaseUrl } from '../../lib/api';

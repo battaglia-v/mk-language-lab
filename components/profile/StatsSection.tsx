@@ -11,7 +11,7 @@ type StatsSectionProps = {
   league: { tier: string; nextTier?: string | null; daysUntilNextTier?: number | null };
 };
 
-export function StatsSection({ xp, xpProgress, streakDays, quests, hearts, currency, league }: StatsSectionProps) {
+export function StatsSection({ xp, xpProgress, streakDays, quests, currency, league }: StatsSectionProps) {
   const t = useTranslations('profile.stats');
 
   return (

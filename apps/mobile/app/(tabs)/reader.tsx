@@ -46,12 +46,6 @@ const directionOptions: DirectionOption[] = [
 
 const MAX_CHARS = 5000;
 
-const difficultyColors = {
-  beginner: brandColors.success,
-  intermediate: brandColors.warning,
-  advanced: brandColors.danger,
-};
-
 const difficultyLabels = {
   beginner: 'Beginner',
   intermediate: 'Intermediate',

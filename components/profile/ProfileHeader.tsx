@@ -18,7 +18,6 @@ export function ProfileHeader({
   xp,
   streakDays,
   xpProgress,
-  hearts,
   league,
   className,
 }: ProfileHeaderProps) {
