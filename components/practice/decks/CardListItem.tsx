@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Edit, Trash2, ChevronDown, ChevronUp } from 'lucide-react';
 import type { CustomDeckCard } from '@prisma/client';
 import { CardForm } from './CardForm';
+import { DeleteCardDialog } from './DeleteCardDialog';
 
 type CardListItemProps = {
   card: CustomDeckCard;
@@ -35,10 +36,15 @@ export function CardListItem({
 }: CardListItemProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   const handleUpdate = async (data: Parameters<CardListItemProps['onUpdate']>[1]) => {
     await onUpdate(card.id, data);
     setIsEditing(false);
+  };
+
+  const handleDelete = async () => {
+    await onDelete(card.id);
   };
 
   if (isEditing) {
@@ -65,8 +71,9 @@ export function CardListItem({
   const hasExtras = hasAlternates || card.notes;
 
   return (
-    <Card className="overflow-hidden border-border/60 bg-card/80 transition-all hover:border-border">
-      <div className="p-4">
+    <>
+      <Card className="overflow-hidden border-border/60 bg-card/80 transition-all hover:border-border">
+        <div className="p-4">
         {/* Main Content */}
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1 min-w-0 space-y-2">
@@ -111,7 +118,7 @@ export function CardListItem({
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => onDelete(card.id)}
+              onClick={() => setShowDeleteDialog(true)}
               disabled={isUpdating || isDeleting}
               className="h-8 w-8 p-0 text-destructive hover:text-destructive"
               aria-label="Delete card"
@@ -181,7 +188,18 @@ export function CardListItem({
             )}
           </>
         )}
-      </div>
-    </Card>
+        </div>
+      </Card>
+
+      <DeleteCardDialog
+        open={showDeleteDialog}
+        onOpenChange={setShowDeleteDialog}
+        onConfirm={handleDelete}
+        cardContent={{
+          macedonian: card.macedonian,
+          english: card.english,
+        }}
+      />
+    </>
   );
 }
