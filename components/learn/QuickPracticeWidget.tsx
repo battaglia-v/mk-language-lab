@@ -427,18 +427,11 @@ export function QuickPracticeWidget({
           isMobileViewport={isMobileViewport}
           streak={streak}
           hearts={hearts}
-          level={level}
           xp={xp}
-          accuracyBadgeLabel={accuracyBadge.label}
-          accuracyValueLabel={accuracyValueLabel}
-          categoryValue={categoryValue}
-          categoryLabelText={categoryLabelText}
           difficultyName={selectedDifficultyOption.label}
           difficultyLabelText={difficultyLabelText}
           inlineProgressLabel={inlineProgressLabel}
           progressValueLabel={progressValueLabel}
-          heartsValueLabel={heartsValueLabel}
-          accuracyShortLabel={accuracyShortLabel}
         />
 
         <div className={cn('px-6 md:px-10', isModalVariant ? 'pt-2' : 'pt-1')}>
@@ -456,9 +449,6 @@ export function QuickPracticeWidget({
               (currentItem?.audioClipUrl ? { url: currentItem.audioClipUrl, autoplay: true } : undefined)
             }
             audioLabel={audioLabel}
-            progressValueLabel={progressValueLabel}
-            hearts={hearts}
-            accuracyShortLabel={accuracyShortLabel}
           />
         </div>
 
@@ -466,9 +456,6 @@ export function QuickPracticeWidget({
           isModalVariant={isModalVariant}
           isInputFocused={isInputFocused}
           setIsInputFocused={setIsInputFocused}
-          categories={categories}
-          category={category}
-          setCategory={setCategory}
           direction={direction}
           setDirection={setDirection}
           practiceMode={practiceMode}
@@ -478,9 +465,6 @@ export function QuickPracticeWidget({
           difficultyOptions={difficultyOptions}
           difficultyLabelText={difficultyLabelText}
           selectedDifficultyLabel={selectedDifficultyOption.label}
-          selectedDifficultyDescription={selectedDifficultyOption.description}
-          categoryLabelText={categoryLabelText}
-          categoryValue={categoryValue}
           answer={answer}
           setAnswer={setAnswer}
           placeholder={placeholder}
@@ -492,8 +476,6 @@ export function QuickPracticeWidget({
           isPrimaryDisabled={isPrimaryDisabled}
           isSubmitting={isSubmitting}
           onSubmit={submitAnswer}
-          isActionMenuOpen={isActionMenuOpen}
-          setIsActionMenuOpen={setIsActionMenuOpen}
           onRevealAnswer={revealAnswer}
           onReset={resetSession}
           feedback={feedback}

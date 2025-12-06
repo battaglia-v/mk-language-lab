@@ -104,26 +104,26 @@ export function CardListItem({
           </div>
 
           {/* Actions */}
-          <div className="flex gap-1 flex-shrink-0">
+          <div className="flex gap-2 flex-shrink-0">
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setIsEditing(true)}
               disabled={isUpdating || isDeleting}
-              className="h-8 w-8 p-0"
+              className="h-9 w-9 p-0 text-foreground hover:text-foreground hover:bg-accent/20 border border-border/50 hover:border-border"
               aria-label="Edit card"
             >
-              <Edit className="h-4 w-4" />
+              <Edit className="h-5 w-5" />
             </Button>
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setShowDeleteDialog(true)}
               disabled={isUpdating || isDeleting}
-              className="h-8 w-8 p-0 text-destructive hover:text-destructive"
+              className="h-9 w-9 p-0 text-destructive hover:text-destructive hover:bg-destructive/10 border border-destructive/30 hover:border-destructive/50"
               aria-label="Delete card"
             >
-              <Trash2 className="h-4 w-4" />
+              <Trash2 className="h-5 w-5" />
             </Button>
           </div>
         </div>

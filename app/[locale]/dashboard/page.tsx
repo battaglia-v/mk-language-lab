@@ -79,7 +79,7 @@ export default async function DashboardPage() {
   const profileT = await getTranslations("shell");
 
   return (
-    <section className="mx-auto flex w-full max-w-5xl flex-col gap-6 sm:gap-8">
+    <section className="mx-auto flex w-full max-w-5xl flex-col gap-4 sm:gap-5">
       <header className="page-header">
         <div className="page-header-content">
           <p className="page-header-badge">{navT("home")}</p>
@@ -96,7 +96,7 @@ export default async function DashboardPage() {
         t={(key: string, values?: Record<string, string | number>) => homeT(key, values)}
       />
 
-      <div className="grid grid-cols-1 gap-6 sm:gap-7 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2">
         {ACTIONS.map((action) => {
           const Icon = action.icon;
           const description = action.getDescription({ homeT, profileT });
@@ -105,27 +105,27 @@ export default async function DashboardPage() {
             <Card
               key={action.id}
               className={cn(
-                "group relative overflow-hidden flex h-full flex-col border border-border/50 shadow-lg transition-all duration-200 hover:translate-y-[-2px] hover:border-border/70 hover:shadow-xl",
+                "group relative overflow-hidden flex h-full flex-col border border-border/50 shadow-sm transition-all duration-200",
                 action.mobileHidden && "hidden md:flex",
               )}
             >
               <div className={cn(
-                "absolute inset-0 bg-gradient-to-br opacity-50 transition-opacity duration-200 group-hover:opacity-70",
+                "absolute inset-0 bg-gradient-to-br opacity-40",
                 action.gradientFrom,
                 action.gradientTo
               )} />
-              <CardHeader className="relative flex-1 space-y-3">
-                <div className="inline-flex w-fit items-center gap-2 rounded-full border border-border/40 bg-background/60 backdrop-blur-sm px-3 py-1.5 text-xs">
-                  <Icon className={cn("h-4 w-4", action.accentColor)} aria-hidden />
+              <CardHeader className="relative flex-1 space-y-2">
+                <div className="inline-flex w-fit items-center gap-1.5 rounded-full border border-border/40 bg-background/60 backdrop-blur-sm px-2.5 py-1 text-xs">
+                  <Icon className={cn("h-3.5 w-3.5", action.accentColor)} aria-hidden />
                   <span className="font-semibold text-foreground">{navT(action.id)}</span>
                 </div>
-                <CardTitle className="text-xl font-bold text-foreground">{navT(action.id)}</CardTitle>
+                <CardTitle className="text-lg font-bold text-foreground">{navT(action.id)}</CardTitle>
                 <CardDescription className="text-sm leading-relaxed text-muted-foreground">
                   {description}
                 </CardDescription>
               </CardHeader>
               <CardContent className="relative pt-0">
-                <Button asChild className="w-full justify-center font-bold !text-black transition-all duration-200 hover:scale-[1.02]" size="lg">
+                <Button asChild className="w-full justify-center font-bold !text-black" size="default">
                   <Link href={href}>{navT(action.id)}</Link>
                 </Button>
               </CardContent>

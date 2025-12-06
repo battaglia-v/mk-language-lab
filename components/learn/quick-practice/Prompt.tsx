@@ -1,7 +1,5 @@
 import type { ReactNode } from 'react';
-import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
-import { Heart, Sparkles, Zap } from 'lucide-react';
 import type { PracticeAudioClip } from '@/components/learn/quick-practice/types';
 
 type QuickPracticePromptProps = {
@@ -15,9 +13,6 @@ type QuickPracticePromptProps = {
   isModalVariant: boolean;
   audioClip?: PracticeAudioClip | { url: string };
   audioLabel: string;
-  progressValueLabel: string;
-  hearts: number;
-  accuracyShortLabel: string;
 };
 
 export function QuickPracticePrompt({
@@ -31,47 +26,26 @@ export function QuickPracticePrompt({
   isModalVariant,
   audioClip,
   audioLabel,
-  progressValueLabel,
-  hearts,
-  accuracyShortLabel,
 }: QuickPracticePromptProps) {
   return (
     <div
       className={cn(
-        'relative space-y-3 rounded-3xl border border-border/50 bg-gradient-to-br from-background/85 via-card/80 to-muted/70 p-4 shadow-lg transition-all duration-200 md:p-6',
-        isInputFocused && 'ring-2 ring-primary/20 shadow-primary/20',
+        'relative space-y-2 rounded-xl border border-border/50 bg-card/50 p-3 transition-all duration-200 md:p-4',
+        isInputFocused && 'ring-2 ring-primary/20',
       )}
     >
-      <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-        <span className="inline-flex items-center gap-1">
-          <Sparkles className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+      <div className="flex items-center justify-between gap-2">
+        <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
           {label}
         </span>
-        <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold normal-case">
-          <Badge
-            variant="secondary"
-            className="border-none bg-background/70 text-[11px] font-semibold text-foreground"
-          >
-            {categoryLabel}
-          </Badge>
-          <span className="inline-flex items-center gap-1 rounded-full bg-background/80 px-2 py-1 text-foreground">
-            <Sparkles className="h-3 w-3 text-primary" aria-hidden="true" />
-            {progressValueLabel}
-          </span>
-          <span className="inline-flex items-center gap-1 rounded-full bg-background/80 px-2 py-1 text-foreground">
-            <Heart className="h-3 w-3 text-[var(--brand-red)]" aria-hidden="true" />
-            {hearts}
-          </span>
-          <span className="inline-flex items-center gap-1 rounded-full bg-background/80 px-2 py-1 text-foreground">
-            <Zap className="h-3 w-3 text-yellow-500" aria-hidden="true" />
-            {accuracyShortLabel}
-          </span>
-        </div>
+        <span className="text-xs font-medium text-muted-foreground">
+          {categoryLabel}
+        </span>
       </div>
       <p
         className={cn(
           'break-words font-bold leading-tight text-slate-900 dark:text-white',
-          isModalVariant ? 'text-4xl' : 'text-2xl md:text-3xl',
+          isModalVariant ? 'text-3xl md:text-4xl' : 'text-2xl md:text-3xl',
         )}
       >
         {content}
@@ -82,8 +56,8 @@ export function QuickPracticePrompt({
         </p>
       ) : null}
       {audioClip?.url ? (
-        <div className="space-y-2 rounded-2xl border border-border/60 bg-background/80 p-3">
-          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{audioLabel}</p>
+        <div className="space-y-2 rounded-lg border border-border/50 bg-background/60 p-2.5">
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{audioLabel}</p>
           <audio
             controls
             preload="metadata"
