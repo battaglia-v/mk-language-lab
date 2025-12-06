@@ -60,7 +60,7 @@ export default async function DashboardPage() {
   const profileT = await getTranslations("shell");
 
   return (
-    <section className="mx-auto flex w-full max-w-5xl flex-col gap-8 sm:gap-10">
+    <section className="mx-auto flex w-full max-w-5xl flex-col gap-9 sm:gap-11">
       <header className="page-header">
         <div className="page-header-content">
           <p className="page-header-badge">{navT("home")}</p>
@@ -69,7 +69,7 @@ export default async function DashboardPage() {
         </div>
       </header>
 
-      <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 sm:gap-7 md:grid-cols-2">
         {ACTIONS.map((action) => {
           const Icon = action.icon;
           const description = action.getDescription({ homeT, profileT });

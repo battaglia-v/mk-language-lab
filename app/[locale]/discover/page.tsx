@@ -185,7 +185,7 @@ export default function DiscoverPage() {
               {t('categories.title')}
             </h2>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-3">
             {categoryFilters.map((filter) => (
               <FilterChip
                 key={filter.id}

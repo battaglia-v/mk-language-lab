@@ -202,7 +202,7 @@ export default function TranslatePage() {
   };
 
   return (
-    <div className="space-y-4 sm:space-y-6">
+    <div className="space-y-5 sm:space-y-7">
       <section className="lab-hero" data-testid="translate-hero">
         <div className="flex flex-col gap-3 sm:gap-4">
           <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4">
@@ -270,7 +270,7 @@ export default function TranslatePage() {
             swapLabel={t('swapDirections')}
           />
           <form
-            className="glass-card rounded-2xl sm:rounded-[28px] p-4 sm:p-5 md:p-7"
+            className="glass-card rounded-2xl sm:rounded-[28px] p-5 sm:p-6 md:p-8"
             onSubmit={(event: FormEvent<HTMLFormElement>) => {
               event.preventDefault();
               void handleTranslate(event);
@@ -286,7 +286,7 @@ export default function TranslatePage() {
               maxLength={MAX_CHARACTERS}
               className="min-h-[120px] resize-none rounded-2xl border border-border/60 bg-background/50 px-3.5 py-3 text-sm shadow-inner placeholder:text-muted-foreground sm:min-h-[140px] sm:px-4 sm:text-base"
             />
-            <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground sm:mt-4 sm:gap-3">
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground sm:mt-4 sm:gap-3">
               <span id="translate-character-count">{characterCount}</span>
               <div className="flex items-center gap-2">
                 <Button
@@ -315,7 +315,7 @@ export default function TranslatePage() {
             </div>
           </form>
 
-          <section className="glass-card space-y-3.5 rounded-2xl sm:rounded-[28px] p-4 sm:p-5 md:p-7 sm:space-y-4">
+          <section className="glass-card space-y-3.5 rounded-2xl sm:rounded-[28px] p-5 sm:p-6 md:p-8 sm:space-y-4">
             <div className="flex flex-wrap items-center gap-2 sm:gap-3">
               <div>
                 <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">{t('resultLabel')}</p>
@@ -506,7 +506,7 @@ type DirectionToggleProps = {
 
 function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel }: DirectionToggleProps) {
   return (
-    <div className="glass-card rounded-2xl sm:rounded-[26px] p-4 sm:p-5 md:p-6">
+    <div className="glass-card rounded-2xl sm:rounded-[26px] p-5 sm:p-6 md:p-7">
       <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-muted-foreground">{label}</p>

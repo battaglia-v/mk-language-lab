@@ -187,7 +187,7 @@ export default function PracticePage() {
   const accuracy = reviewedCount > 0 ? Math.round((correctAnswers / reviewedCount) * 100) : 0;
 
   return (
-    <div className="space-y-4 sm:space-y-6">
+    <div className="space-y-5 sm:space-y-7">
       <section className="lab-hero" data-testid="practice-hero">
         <div className="flex flex-col gap-3 sm:gap-4">
           <Button
@@ -230,9 +230,9 @@ export default function PracticePage() {
         )}
       </section>
 
-      <div className="glass-card space-y-4 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-7" data-testid="practice-workspace">
+      <div className="glass-card space-y-4 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8" data-testid="practice-workspace">
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <div className="flex flex-wrap gap-2" data-testid="practice-panels">
+          <div className="flex flex-wrap gap-3" data-testid="practice-panels">
             <DeckToggle
               label={t('savedDeck.badge')}
               count={savedDeck.length}
@@ -300,14 +300,14 @@ export default function PracticePage() {
           </Alert>
         ) : (
           <div className="space-y-4">
-            <div className="glass-card animate-in fade-in slide-in-from-bottom-4 duration-300 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-8">
+            <div className="glass-card animate-in fade-in slide-in-from-bottom-4 duration-300 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-9">
               <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-muted-foreground">
                 <span className="font-semibold">{currentCard?.direction === 'en-mk' ? 'EN → MK' : 'MK → EN'}</span>
                 <span className="rounded-full bg-muted/20 px-2.5 py-1 font-bold">
                   {safeIndex + 1} / {total}
                 </span>
               </div>
-            <div className="mt-4 space-y-3 sm:mt-6 sm:space-y-4">
+            <div className="mt-5 space-y-4 sm:mt-7 sm:space-y-5">
               <p className="text-xl font-semibold leading-tight text-white sm:text-2xl md:text-3xl">{currentCard?.source}</p>
               <div className={cn(
                 'rounded-xl border border-primary/20 bg-primary/5 p-3 transition-all duration-300',
@@ -324,7 +324,7 @@ export default function PracticePage() {
                   <label className="text-xs font-semibold text-white sm:text-sm" htmlFor="practice-guess">
                     {t('drills.wordInputLabel')}
                   </label>
-                <div className="flex flex-col gap-2 sm:flex-row">
+                <div className="flex flex-col gap-3 sm:flex-row">
                   <Input
                     id="practice-guess"
                     value={guess}
@@ -428,7 +428,7 @@ function DeckToggle({ label, count, active, disabled, onClick }: DeckToggleProps
       disabled={disabled}
       onClick={onClick}
       className={cn(
-        'group flex w-full min-h-[44px] min-w-0 flex-1 flex-wrap items-center justify-between gap-2 rounded-full border px-4 py-2 text-xs font-semibold transition-all sm:w-auto sm:flex-initial sm:text-sm lg:flex-none',
+        'group flex w-full min-h-[48px] min-w-0 flex-1 flex-wrap items-center justify-between gap-3 rounded-full border px-5 py-2.5 text-xs font-semibold transition-all sm:w-auto sm:flex-initial sm:text-sm lg:flex-none',
         active
           ? 'border-primary bg-primary/15 text-white shadow-md'
           : 'border-border/60 text-muted-foreground hover:border-primary/40 hover:text-white hover:bg-primary/5',

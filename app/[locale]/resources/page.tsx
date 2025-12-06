@@ -132,7 +132,7 @@ export default function ResourcesPage() {
     : '';
 
   return (
-    <div className="space-y-4 sm:space-y-6">
+    <div className="space-y-5 sm:space-y-7">
       <section className="lab-hero" data-testid="resources-hero">
         <div className="flex flex-col gap-3 sm:gap-4">
           <Button
@@ -158,7 +158,7 @@ export default function ResourcesPage() {
 
       <div className={cn('lab-grid', isDesktop && !panelCollapsed && 'has-panel')} data-testid="resources-workspace">
         <div className="space-y-4">
-          <div className="glass-card space-y-3.5 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-7 sm:space-y-4">
+          <div className="glass-card space-y-3.5 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 sm:space-y-4">
             <div className="flex flex-col gap-3 md:flex-row md:items-center">
               <div className="relative flex-1">
                 <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground sm:left-4" />
@@ -185,7 +185,7 @@ export default function ResourcesPage() {
               ) : null}
             </div>
             <p className="text-xs text-muted-foreground">{updatedLabel}</p>
-            <div className="flex flex-wrap gap-2 lg:hidden">
+            <div className="flex flex-wrap gap-3 lg:hidden">
               <Button
                 type="button"
                 variant="outline"
@@ -198,7 +198,7 @@ export default function ResourcesPage() {
             </div>
           </div>
 
-          <section className="glass-card space-y-4 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-7">
+          <section className="glass-card space-y-4 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8">
             <div className="card-grid two">
               {loading
                 ? Array.from({ length: 6 }).map((_, index) => <ResourceSkeleton key={`resource-skeleton-${index}`} />)
@@ -236,7 +236,7 @@ export default function ResourcesPage() {
               />
             </aside>
           ) : (
-            <div className="hidden lg:flex lg:flex-col lg:items-start lg:gap-2">
+            <div className="hidden lg:flex lg:flex-col lg:items-start lg:gap-3">
               <Button
                 type="button"
                 variant="outline"
@@ -325,7 +325,7 @@ function ResourceCard({ resource }: ResourceCardProps) {
       href={resource.url}
       target="_blank"
       rel="noreferrer"
-      className="glass-card group flex h-full min-h-[140px] flex-col justify-between rounded-2xl sm:rounded-3xl p-4 sm:p-5 text-left transition hover:border-primary"
+      className="glass-card group flex h-full min-h-[140px] flex-col justify-between rounded-2xl sm:rounded-3xl p-5 sm:p-6 text-left transition hover:border-primary"
     >
       <div>
         <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground sm:text-xs sm:tracking-[0.3em]">{resource.section}</p>
