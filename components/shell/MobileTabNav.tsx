@@ -25,11 +25,13 @@ export function MobileTabNav() {
 
   return (
     <nav
-      className="lg:hidden fixed bottom-0 left-0 right-0 z-50 text-white w-full"
+      className="lg:hidden fixed bottom-0 left-0 right-0 z-50 text-white w-full pointer-events-none"
       aria-label={t("label")}
-      style={{ paddingBottom: "max(env(safe-area-inset-bottom, 0px), 0.5rem)" }}
+      style={{
+        paddingBottom: "max(env(safe-area-inset-bottom, 0px), 0.5rem)",
+      }}
     >
-      <div className="mx-auto w-full max-w-3xl px-4 pb-4 pt-3">
+      <div className="mx-auto w-full max-w-3xl px-4 pb-4 pt-3 pointer-events-auto">
         <div className="relative w-full overflow-hidden rounded-3xl border border-white/12 bg-[color-mix(in_srgb,var(--mk-bg-surface)_92%,#05060f_82%)] shadow-[0_-14px_40px_rgba(0,0,0,0.55)] backdrop-blur-xl">
           <div className="flex items-end justify-between gap-3 px-3 pb-3 pt-4 min-w-0">
             <NavRail

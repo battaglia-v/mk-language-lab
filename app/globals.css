@@ -47,8 +47,8 @@
   --gap-cozy: clamp(1rem, 2.5vw, 1.25rem);
   --text-sm-mobile: clamp(0.95rem, 0.6vw + 0.88rem, 1rem);
   --text-xs-mobile: clamp(0.85rem, 0.5vw + 0.8rem, 0.92rem);
-  --mobile-nav-height: 56px;
-  --mobile-nav-height-max: 64px;
+  --mobile-nav-height: 140px;
+  --mobile-nav-height-max: 160px;
   --touch-target-size: 44px;
   --safe-area-top: env(safe-area-inset-top, 0px);
   --safe-area-bottom: env(safe-area-inset-bottom, 0px);
