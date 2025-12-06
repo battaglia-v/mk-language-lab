@@ -10,6 +10,8 @@ import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import { useSavedPhrases } from '@/components/translate/useSavedPhrases';
 import { readTranslatorHistory } from '@/lib/translator-history';
+import { fetchUserDecks } from '@/lib/custom-decks';
+import type { CustomDeckSummary } from '@/lib/custom-decks';
 
 const curatedDeck = [
   { id: 'c1', source: 'Како си?', target: 'How are you?' },
@@ -29,6 +31,7 @@ export default function PracticePage() {
   const locale = useLocale();
   const { phrases } = useSavedPhrases();
   const [historySnapshot, setHistorySnapshot] = useState(() => readTranslatorHistory(32));
+  const [customDecks, setCustomDecks] = useState<CustomDeckSummary[]>([]);
   const [deckType, setDeckType] = useState<DeckType>('curated');
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
@@ -40,6 +43,15 @@ export default function PracticePage() {
 
   useEffect(() => {
     setHistorySnapshot(readTranslatorHistory(32));
+  }, []);
+
+  useEffect(() => {
+    fetchUserDecks({ archived: false })
+      .then((decks) => setCustomDecks(decks))
+      .catch((error) => {
+        console.error('Failed to load custom decks:', error);
+        setCustomDecks([]);
+      });
   }, []);
 
   // Allow users to explicitly choose their deck without auto-switching
@@ -219,28 +231,66 @@ export default function PracticePage() {
       </section>
 
       <div className="glass-card space-y-4 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-7" data-testid="practice-workspace">
-        <div className="flex flex-wrap gap-2" data-testid="practice-panels">
-          <DeckToggle
-            label={t('savedDeck.badge')}
-            count={savedDeck.length}
-            active={deckType === 'saved'}
-            disabled={!savedDeck.length}
-            onClick={() => setDeckType('saved')}
-          />
-          <DeckToggle
-            label={t('translation.tabLabel')}
-            count={historyDeck.length}
-            active={deckType === 'history'}
-            disabled={!historyDeck.length}
-            onClick={() => setDeckType('history')}
-          />
-          <DeckToggle
-            label={t('cards.translate.title')}
-            count={curatedFlashcards.length}
-            active={deckType === 'curated'}
-            onClick={() => setDeckType('curated')}
-          />
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="flex flex-wrap gap-2" data-testid="practice-panels">
+            <DeckToggle
+              label={t('savedDeck.badge')}
+              count={savedDeck.length}
+              active={deckType === 'saved'}
+              disabled={!savedDeck.length}
+              onClick={() => setDeckType('saved')}
+            />
+            <DeckToggle
+              label={t('translation.tabLabel')}
+              count={historyDeck.length}
+              active={deckType === 'history'}
+              disabled={!historyDeck.length}
+              onClick={() => setDeckType('history')}
+            />
+            <DeckToggle
+              label={t('cards.translate.title')}
+              count={curatedFlashcards.length}
+              active={deckType === 'curated'}
+              onClick={() => setDeckType('curated')}
+            />
+          </div>
+          <Button
+            asChild
+            variant="outline"
+            size="sm"
+            className="text-sm"
+          >
+            <Link href={`/${locale}/practice/decks`}>
+              Manage Custom Decks
+            </Link>
+          </Button>
         </div>
+
+        {/* Custom Decks Section */}
+        {customDecks.length > 0 && (
+          <div className="border-t border-border/40 pt-4 space-y-3">
+            <h3 className="text-sm font-semibold text-foreground">Your Custom Decks</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+              {customDecks.map((deck) => (
+                <Link
+                  key={deck.id}
+                  href={`/${locale}/practice?practiceFixture=custom-deck-${deck.id}`}
+                  className="flex items-center justify-between p-3 rounded-lg border border-border/60 bg-card/60 hover:bg-card hover:border-primary/40 transition-all group"
+                >
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors truncate">
+                      {deck.name}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {deck.cardCount} {deck.cardCount === 1 ? 'card' : 'cards'}
+                    </p>
+                  </div>
+                  <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
         {!deck.length ? (
           <Alert className="rounded-2xl border border-border/60 bg-muted/20">

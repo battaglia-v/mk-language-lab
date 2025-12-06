@@ -22,6 +22,7 @@ import { formatCategory } from '@/components/learn/quick-practice/utils';
 import type { PracticeItem, PracticeDifficultyId } from '@/components/learn/quick-practice/types';
 import type { QuickPracticeSessionOptions } from '@/components/learn/quick-practice/useQuickPracticeSession';
 import { getSavedPhrasePracticePrompts } from '@/lib/saved-phrases';
+import { fetchDeckCards } from '@/lib/custom-decks';
 import { useToast } from '@/components/ui/use-toast';
 
 type QuickPracticeWidgetProps = {
@@ -52,8 +53,12 @@ export function QuickPracticeWidget({
 
   const fixtureKey = searchParams?.get('practiceFixture');
   const isSavedFixture = fixtureKey === 'saved-phrases';
+  const isCustomDeckFixture = fixtureKey?.startsWith('custom-deck-') ?? false;
+  const customDeckId = isCustomDeckFixture ? fixtureKey?.replace('custom-deck-', '') : null;
   const [savedFixturePrompts, setSavedFixturePrompts] = useState<PracticeItem[] | null>(null);
   const [savedFixtureState, setSavedFixtureState] = useState<'idle' | 'loading' | 'ready' | 'empty'>('idle');
+  const [customDeckPrompts, setCustomDeckPrompts] = useState<PracticeItem[] | null>(null);
+  const [customDeckState, setCustomDeckState] = useState<'idle' | 'loading' | 'ready' | 'empty' | 'error'>('idle');
   const forcedPromptIdParam = searchParams?.get('practicePromptId');
   const promptsOverride = useMemo<PracticeItem[] | undefined>(() => {
     if (!fixtureKey) return undefined;
@@ -63,8 +68,11 @@ export function QuickPracticeWidget({
     if (fixtureKey === 'saved-phrases') {
       return savedFixtureState === 'ready' ? savedFixturePrompts ?? undefined : undefined;
     }
+    if (isCustomDeckFixture) {
+      return customDeckState === 'ready' ? customDeckPrompts ?? undefined : undefined;
+    }
     return undefined;
-  }, [fixtureKey, savedFixturePrompts, savedFixtureState]);
+  }, [fixtureKey, savedFixturePrompts, savedFixtureState, isCustomDeckFixture, customDeckPrompts, customDeckState]);
   useEffect(() => {
     if (!isSavedFixture) {
       setSavedFixtureState('idle');
@@ -76,6 +84,31 @@ export function QuickPracticeWidget({
     setSavedFixturePrompts(prompts);
     setSavedFixtureState(prompts.length ? 'ready' : 'empty');
   }, [isSavedFixture]);
+
+  useEffect(() => {
+    if (!isCustomDeckFixture || !customDeckId) {
+      setCustomDeckState('idle');
+      setCustomDeckPrompts(null);
+      return;
+    }
+
+    setCustomDeckState('loading');
+
+    fetchDeckCards(customDeckId)
+      .then((prompts) => {
+        setCustomDeckPrompts(prompts);
+        setCustomDeckState(prompts.length ? 'ready' : 'empty');
+      })
+      .catch((error) => {
+        console.error('Failed to load custom deck:', error);
+        setCustomDeckState('error');
+        addToast({
+          title: 'Error loading deck',
+          description: 'Failed to load custom deck. Please try again.',
+          type: 'error',
+        });
+      });
+  }, [isCustomDeckFixture, customDeckId, addToast]);
   const sessionOptions = useMemo<QuickPracticeSessionOptions | undefined>(() => {
     if (isSavedFixture) {
       if (savedFixtureState !== 'ready' || !savedFixturePrompts?.length) {
@@ -86,6 +119,15 @@ export function QuickPracticeWidget({
         initialPromptId: forcedPromptIdParam ?? savedFixturePrompts[0]?.id ?? null,
       };
     }
+    if (isCustomDeckFixture) {
+      if (customDeckState !== 'ready' || !customDeckPrompts?.length) {
+        return undefined;
+      }
+      return {
+        prompts: customDeckPrompts,
+        initialPromptId: forcedPromptIdParam ?? customDeckPrompts[0]?.id ?? null,
+      };
+    }
     if (!promptsOverride && !forcedPromptIdParam) {
       return undefined;
     }
@@ -93,7 +135,7 @@ export function QuickPracticeWidget({
       prompts: promptsOverride,
       initialPromptId: forcedPromptIdParam ?? promptsOverride?.[0]?.id ?? null,
     };
-  }, [forcedPromptIdParam, isSavedFixture, promptsOverride, savedFixturePrompts, savedFixtureState]);
+  }, [forcedPromptIdParam, isSavedFixture, isCustomDeckFixture, promptsOverride, savedFixturePrompts, savedFixtureState, customDeckPrompts, customDeckState]);
 
   const {
     categories,
@@ -325,6 +367,29 @@ export function QuickPracticeWidget({
         >
           <div className="space-y-2">
             <p className="text-base font-semibold text-foreground">{t('practiceSavedDeckTitle')}</p>
+            <p className="text-sm text-muted-foreground">{message}</p>
+          </div>
+        </div>
+      );
+    }
+
+    if (isCustomDeckFixture && customDeckState !== 'ready') {
+      let message = 'Loading custom deck...';
+      if (customDeckState === 'empty') {
+        message = 'This deck has no cards yet. Add cards to start practicing.';
+      } else if (customDeckState === 'error') {
+        message = 'Failed to load custom deck. Please try again.';
+      }
+      return (
+        <div
+          className={cn(
+            'rounded-[32px] border border-border/60 bg-background/80 p-6 text-left',
+            extraClassName,
+            isModalVariant ? '' : 'flex-1'
+          )}
+        >
+          <div className="space-y-2">
+            <p className="text-base font-semibold text-foreground">Custom Deck</p>
             <p className="text-sm text-muted-foreground">{message}</p>
           </div>
         </div>

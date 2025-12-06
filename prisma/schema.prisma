@@ -63,6 +63,7 @@ model User {
   leagueMemberships    LeagueMembership[]
   notifications        Notification[]
   reminderSettings     ReminderSettings?
+  customDecks          CustomDeck[]
 }
 
 model VerificationToken {
@@ -413,6 +414,45 @@ enum PracticeAudioStatus {
 enum PracticeAudioSource {
   human
   tts
+}
+
+// Custom Deck - user-created practice decks
+model CustomDeck {
+  id          String          @id @default(cuid())
+  userId      String
+  name        String
+  description String?         @db.Text
+  category    String?
+  isArchived  Boolean         @default(false)
+  cardCount   Int             @default(0)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  user  User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cards CustomDeckCard[]
+
+  @@index([userId, isArchived])
+  @@index([userId, createdAt])
+}
+
+// Custom Deck Card - individual cards in a custom deck
+model CustomDeckCard {
+  id                   String   @id @default(cuid())
+  deckId               String
+  macedonian           String
+  english              String
+  macedonianAlternates String[] @default([])
+  englishAlternates    String[] @default([])
+  category             String?
+  notes                String?  @db.Text
+  orderIndex           Int
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  deck CustomDeck @relation(fields: [deckId], references: [id], onDelete: Cascade)
+
+  @@index([deckId, orderIndex])
+  @@index([deckId, createdAt])
 }
 
 // Game Progress - gamification data (streak, XP, level, hearts)
