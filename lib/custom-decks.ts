@@ -1,5 +1,3 @@
-'use client';
-
 import type { PracticeItem } from '@mk/api-client';
 import type { CustomDeck, CustomDeckCard } from '@prisma/client';
 
