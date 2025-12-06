@@ -90,6 +90,16 @@
       "weeklyLessons": "{count} лекции оваа недела",
       "translatorDirection": "{direction} режим на превод"
     },
+    "statsOverview": "Твој напредок",
+    "wordsLearned": "Научени зборови",
+    "currentStreak": "Тековна серија",
+    "todayGoal": "Денешна цел",
+    "lastPractice": "Последна вежба",
+    "dayStreak": "дена серија",
+    "keepItUp": "Продолжи така!",
+    "noPracticeYet": "Почни денес",
+    "dailyGoalProgress": "Напредок кон дневната цел",
+    "today": "Денес",
     "actionCards": {
       "continue": {
         "title": "Продолжи лекција",

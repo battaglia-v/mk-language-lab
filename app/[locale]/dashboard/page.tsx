@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { buildLocalizedHref } from "@/components/shell/navItems";
+import { StatsOverview } from "@/components/dashboard/StatsOverview";
 
 type Translator = Awaited<ReturnType<typeof getTranslations>>;
 
@@ -14,6 +15,9 @@ type ActionConfig = {
   icon: LucideIcon;
   path: string;
   mobileHidden?: boolean;
+  gradientFrom: string;
+  gradientTo: string;
+  accentColor: string;
   getDescription: (deps: { homeT: Translator; profileT: Translator }) => string;
 };
 
@@ -22,12 +26,18 @@ const ACTIONS: ActionConfig[] = [
     id: "translate",
     icon: Languages,
     path: "/translate",
+    gradientFrom: "from-blue-500/10",
+    gradientTo: "to-cyan-500/5",
+    accentColor: "text-blue-400",
     getDescription: ({ homeT }) => homeT("translateFeatureDescription"),
   },
   {
     id: "practice",
     icon: Sparkles,
     path: "/practice",
+    gradientFrom: "from-amber-500/10",
+    gradientTo: "to-yellow-500/5",
+    accentColor: "text-amber-400",
     getDescription: ({ homeT }) => homeT("actionCards.continue.description"),
   },
   {
@@ -35,6 +45,9 @@ const ACTIONS: ActionConfig[] = [
     icon: Newspaper,
     path: "/news",
     mobileHidden: true,
+    gradientFrom: "from-purple-500/10",
+    gradientTo: "to-pink-500/5",
+    accentColor: "text-purple-400",
     getDescription: ({ homeT }) => homeT("newsFeatureDescription"),
   },
   {
@@ -42,6 +55,9 @@ const ACTIONS: ActionConfig[] = [
     icon: BookOpen,
     path: "/resources",
     mobileHidden: true,
+    gradientFrom: "from-green-500/10",
+    gradientTo: "to-emerald-500/5",
+    accentColor: "text-green-400",
     getDescription: ({ homeT }) => homeT("resourcesFeatureDescription"),
   },
   {
@@ -49,6 +65,9 @@ const ACTIONS: ActionConfig[] = [
     icon: CircleUserRound,
     path: "/profile",
     mobileHidden: true,
+    gradientFrom: "from-slate-500/10",
+    gradientTo: "to-gray-500/5",
+    accentColor: "text-slate-400",
     getDescription: ({ profileT }) => profileT("profile"),
   },
 ];
@@ -69,6 +88,14 @@ export default async function DashboardPage() {
         </div>
       </header>
 
+      <StatsOverview
+        wordsLearned={127}
+        streakDays={3}
+        todayProgress={60}
+        lastPractice={homeT("today")}
+        t={(key: string, values?: Record<string, string | number>) => homeT(key, values)}
+      />
+
       <div className="grid grid-cols-1 gap-6 sm:gap-7 md:grid-cols-2">
         {ACTIONS.map((action) => {
           const Icon = action.icon;
@@ -78,22 +105,27 @@ export default async function DashboardPage() {
             <Card
               key={action.id}
               className={cn(
-                "glass-card flex h-full flex-col border border-border/50 shadow-xl transition hover:translate-y-[-2px] hover:border-border",
+                "group relative overflow-hidden flex h-full flex-col border border-border/50 shadow-lg transition-all duration-200 hover:translate-y-[-2px] hover:border-border/70 hover:shadow-xl",
                 action.mobileHidden && "hidden md:flex",
               )}
             >
-              <CardHeader className="flex-1 space-y-3">
-                <div className="inline-flex w-fit items-center gap-2 rounded-full border border-border/60 bg-black/40 px-3 py-1.5 text-xs text-muted-foreground">
-                  <Icon className="h-4 w-4 text-primary" aria-hidden />
+              <div className={cn(
+                "absolute inset-0 bg-gradient-to-br opacity-50 transition-opacity duration-200 group-hover:opacity-70",
+                action.gradientFrom,
+                action.gradientTo
+              )} />
+              <CardHeader className="relative flex-1 space-y-3">
+                <div className="inline-flex w-fit items-center gap-2 rounded-full border border-border/40 bg-background/60 backdrop-blur-sm px-3 py-1.5 text-xs">
+                  <Icon className={cn("h-4 w-4", action.accentColor)} aria-hidden />
                   <span className="font-semibold text-foreground">{navT(action.id)}</span>
                 </div>
-                <CardTitle className="text-xl font-bold">{navT(action.id)}</CardTitle>
-                <CardDescription className="text-sm leading-relaxed text-card-text-muted">
+                <CardTitle className="text-xl font-bold text-foreground">{navT(action.id)}</CardTitle>
+                <CardDescription className="text-sm leading-relaxed text-muted-foreground">
                   {description}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="pt-0">
-                <Button asChild className="w-full justify-center font-bold !text-black" size="lg">
+              <CardContent className="relative pt-0">
+                <Button asChild className="w-full justify-center font-bold !text-black transition-all duration-200 hover:scale-[1.02]" size="lg">
                   <Link href={href}>{navT(action.id)}</Link>
                 </Button>
               </CardContent>

@@ -163,8 +163,9 @@ export function QuickPracticeControls({
         >
           <div
             className={cn(
-              'rounded-3xl border border-border/60 bg-background/80 p-3 shadow-inner transition-all duration-200 md:p-4',
-              isShaking && 'ring-2 ring-[var(--brand-red)]/40'
+              'rounded-3xl border border-border/60 bg-background/80 p-4 shadow-inner transition-all duration-200 md:p-5 lg:p-6',
+              isShaking && 'ring-2 ring-[var(--brand-red)]/40',
+              isInputFocused && 'border-primary/40 ring-2 ring-primary/20 scale-[1.01]'
             )}
           >
             <div className="flex items-start gap-2">
@@ -178,7 +179,7 @@ export function QuickPracticeControls({
                 }}
                 placeholder={placeholder}
                 className={cn(
-                  'h-auto min-h-[48px] flex-1 border-0 bg-transparent px-0 text-base font-medium text-foreground placeholder:text-muted-foreground md:text-lg',
+                  'h-auto min-h-[52px] flex-1 border-0 bg-transparent px-0 text-base font-medium text-foreground placeholder:text-muted-foreground md:min-h-[56px] md:text-xl lg:min-h-[64px] lg:text-2xl',
                   'focus-visible:ring-0 focus-visible:outline-none'
                 )}
                 aria-label={placeholder}
@@ -226,8 +227,7 @@ export function QuickPracticeControls({
               type="submit"
               size="lg"
               className={cn(
-                'w-full rounded-2xl bg-gradient-to-r from-primary to-secondary text-base font-semibold text-white shadow-lg transition-all duration-200',
-                isInputFocused ? 'h-11' : 'h-12',
+                'w-full rounded-2xl bg-gradient-to-r from-primary to-secondary text-base font-semibold text-white shadow-lg transition-all duration-200 h-12',
                 'hover:-translate-y-0.5 hover:shadow-xl disabled:opacity-60 disabled:hover:translate-y-0',
                 'flex items-center justify-center gap-2'
               )}
@@ -307,13 +307,13 @@ export function QuickPracticeControls({
             )}
           </div>
 
-          <div className="hidden md:grid md:grid-cols-2 md:gap-3">
+          <div className="hidden md:grid md:grid-cols-2 md:gap-3 lg:gap-4">
             <Button
               type="submit"
               size={isModalVariant ? 'lg' : 'default'}
               className={cn(
                 'w-full gap-2 rounded-2xl bg-gradient-to-r from-primary to-secondary font-semibold shadow-lg transition-all duration-200',
-                'text-white hover:-translate-y-0.5 hover:shadow-xl h-12 disabled:opacity-60 disabled:hover:translate-y-0',
+                'text-white hover:-translate-y-0.5 hover:shadow-xl h-11 md:h-12 lg:h-13 disabled:opacity-60 disabled:hover:translate-y-0',
                 'flex items-center justify-center gap-2'
               )}
               disabled={isPrimaryDisabled}

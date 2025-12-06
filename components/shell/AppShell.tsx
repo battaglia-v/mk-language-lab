@@ -19,7 +19,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             id="main-content"
             className="mx-auto w-full min-w-0 max-w-7xl space-y-7 md:space-y-9 lg:pb-0 px-4 py-6 sm:px-6 md:px-8 md:py-6"
             role="main"
-            style={{ paddingBottom: 'calc(var(--mobile-nav-height) + env(safe-area-inset-bottom, 0px) + 2rem)' }}
+            style={{ paddingBottom: 'calc(var(--mobile-nav-height) + env(safe-area-inset-bottom, 0px) + 1rem)' }}
           >
             {children}
           </main>

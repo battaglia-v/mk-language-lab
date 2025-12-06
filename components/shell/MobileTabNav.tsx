@@ -44,12 +44,12 @@ export function MobileTabNav() {
       className="lg:hidden fixed bottom-0 left-0 right-0 z-50 text-white w-full pointer-events-none"
       aria-label={t("label")}
       style={{
-        paddingBottom: "max(env(safe-area-inset-bottom, 0px), 0.5rem)",
+        paddingBottom: "env(safe-area-inset-bottom, 0px)",
       }}
     >
-      <div className="mx-auto w-full max-w-3xl px-4 pb-4 pt-3 pointer-events-auto">
-        <div className="relative w-full overflow-hidden rounded-3xl border border-white/12 bg-[color-mix(in_srgb,var(--mk-bg-surface)_92%,#05060f_82%)] shadow-[0_-14px_40px_rgba(0,0,0,0.55)] backdrop-blur-xl">
-          <div className="flex items-end justify-between gap-3 px-3 pb-3 pt-4 min-w-0">
+      <div className="mx-auto w-full max-w-3xl pointer-events-auto">
+        <div className="relative w-full overflow-hidden rounded-t-3xl border-t border-x border-white/10 bg-[color-mix(in_srgb,var(--mk-bg-surface)_95%,#05060f_85%)] shadow-[0_-8px_32px_rgba(0,0,0,0.4)] backdrop-blur-lg">
+          <div className="flex items-end justify-between gap-2.5 px-3 pb-2.5 pt-3 min-w-0">
             <NavRail
               items={leadingItems}
               t={t}
@@ -66,14 +66,14 @@ export function MobileTabNav() {
                 aria-current={isNavItemActive(pathname, buildHref(accentItem.path)) ? "page" : undefined}
                 aria-label={t(accentItem.id)}
                 className={cn(
-                  "relative flex h-16 w-16 min-w-[4rem] flex-shrink-0 flex-col items-center justify-center gap-1 rounded-full bg-gradient-to-br from-amber-300 via-primary to-amber-500 text-slate-900 shadow-xl transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--mk-bg)]",
+                  "relative flex h-14 w-14 min-w-[3.5rem] flex-shrink-0 flex-col items-center justify-center gap-0.5 rounded-full bg-gradient-to-br from-amber-300 via-primary to-amber-500 text-slate-900 shadow-lg transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--mk-bg)]",
                   "hover:scale-[1.03] active:scale-[0.98]",
                 )}
               >
                 <span className="sr-only">{t(accentItem.id)}</span>
-                <AccentIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
+                <AccentIcon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
                 {!isNarrowViewport && (
-                  <span className="text-[9px] font-bold uppercase tracking-wider leading-none">
+                  <span className="text-[8px] font-bold uppercase tracking-wider leading-none">
                     {t(accentItem.id)}
                   </span>
                 )}
@@ -121,24 +121,24 @@ function NavRail({ items, t, pathname, buildHref, label, isNarrowViewport }: Nav
               aria-current={active ? "page" : undefined}
               aria-label={isNarrowViewport ? itemLabel : undefined}
               className={cn(
-                "group flex flex-col items-center justify-center rounded-2xl text-[11px] font-semibold transition-all duration-200 min-w-0",
-                isNarrowViewport ? "px-1.5 py-2.5 gap-0" : "px-2 py-2 gap-1.5",
+                "group flex flex-col items-center justify-center rounded-2xl text-[10px] font-semibold transition-all duration-200 min-w-0",
+                isNarrowViewport ? "px-1.5 py-2 gap-0" : "px-2 py-1.5 gap-1",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--mk-bg)]",
                 active
-                  ? "bg-sidebar-primary/90 text-sidebar-primary-foreground shadow-lg ring-1 ring-sidebar-ring/40"
+                  ? "bg-sidebar-primary/90 text-sidebar-primary-foreground shadow-md ring-1 ring-sidebar-ring/40"
                   : "text-white/75 hover:bg-white/5 hover:text-white",
               )}
             >
               <Icon
                 className={cn(
                   "flex-shrink-0",
-                  isNarrowViewport ? "h-7 w-7" : "h-6 w-6",
+                  isNarrowViewport ? "h-5 w-5" : "h-5 w-5",
                   active ? "text-primary" : "text-white/80"
                 )}
                 aria-hidden="true"
               />
               {!isNarrowViewport && (
-                <span className="text-[11px] leading-tight text-center max-w-full whitespace-nowrap overflow-hidden text-ellipsis">
+                <span className="text-[10px] leading-tight text-center max-w-full whitespace-nowrap overflow-hidden text-ellipsis">
                   {itemLabel}
                 </span>
               )}

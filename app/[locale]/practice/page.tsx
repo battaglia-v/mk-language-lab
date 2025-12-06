@@ -25,6 +25,8 @@ export default function PracticePage() {
   const [historySnapshot, setHistorySnapshot] = useState(() => readTranslatorHistory(32));
   const [customDecks, setCustomDecks] = useState<CustomDeckSummary[]>([]);
   const [curatedDeck, setCuratedDeck] = useState<Flashcard[]>([]);
+  const [customDeckCards, setCustomDeckCards] = useState<Flashcard[]>([]);
+  const [activeCustomDeckId, setActiveCustomDeckId] = useState<string | null>(null);
   const [deckType, setDeckType] = useState<DeckType>('curated');
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
@@ -36,6 +38,35 @@ export default function PracticePage() {
 
   useEffect(() => {
     setHistorySnapshot(readTranslatorHistory(32));
+
+    // Check for custom deck in URL
+    const params = new URLSearchParams(window.location.search);
+    const fixtureParam = params.get('practiceFixture');
+    if (fixtureParam?.startsWith('custom-deck-')) {
+      const deckId = fixtureParam.replace('custom-deck-', '');
+      setActiveCustomDeckId(deckId);
+
+      // Fetch custom deck cards
+      fetch(`/api/decks/${deckId}/cards`)
+        .then((res) => {
+          if (!res.ok) throw new Error('Failed to fetch deck');
+          return res.json();
+        })
+        .then((data) => {
+          const flashcards: Flashcard[] = data.cards.map((card: any) => ({
+            id: card.id,
+            source: card.macedonian,
+            target: card.english,
+            direction: 'mk-en' as const,
+          }));
+          setCustomDeckCards(flashcards);
+        })
+        .catch((error) => {
+          console.error('Failed to load custom deck:', error);
+          setCustomDeckCards([]);
+          setActiveCustomDeckId(null);
+        });
+    }
   }, []);
 
   useEffect(() => {
@@ -105,7 +136,10 @@ export default function PracticePage() {
 
   const curatedFlashcards: Flashcard[] = curatedDeck;
 
-  const deck = deckType === 'saved' ? savedDeck : deckType === 'history' ? historyDeck : curatedFlashcards;
+  // If a custom deck is active, use it; otherwise use the selected deck type
+  const deck = activeCustomDeckId && customDeckCards.length > 0
+    ? customDeckCards
+    : deckType === 'saved' ? savedDeck : deckType === 'history' ? historyDeck : curatedFlashcards;
   const total = deck.length || 1;
   const safeIndex = deck.length ? Math.min(index, deck.length - 1) : 0;
   const currentCard = deck[safeIndex];

@@ -90,6 +90,16 @@
       "weeklyLessons": "{count} lessons this week",
       "translatorDirection": "{direction} translate mode"
     },
+    "statsOverview": "Your Progress",
+    "wordsLearned": "Words Learned",
+    "currentStreak": "Current Streak",
+    "todayGoal": "Today's Goal",
+    "lastPractice": "Last Practice",
+    "dayStreak": "day streak",
+    "keepItUp": "Keep it up!",
+    "noPracticeYet": "Start today",
+    "dailyGoalProgress": "Daily Goal Progress",
+    "today": "Today",
     "actionCards": {
       "continue": {
         "title": "Continue lesson",
