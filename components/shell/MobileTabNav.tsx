@@ -94,7 +94,7 @@ function NavRail({ items, t, pathname, buildHref, label }: NavRailProps) {
               prefetch={true}
               aria-current={active ? "page" : undefined}
               className={cn(
-                "group flex flex-col items-center justify-center gap-1.5 rounded-2xl px-2 py-2 text-[11px] font-semibold transition-all duration-200",
+                "group flex flex-col items-center justify-center gap-1.5 rounded-2xl px-1.5 py-2 text-[11px] font-semibold transition-all duration-200",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--mk-bg)]",
                 active
                   ? "bg-sidebar-primary/90 text-sidebar-primary-foreground shadow-lg ring-1 ring-sidebar-ring/40"
@@ -102,7 +102,7 @@ function NavRail({ items, t, pathname, buildHref, label }: NavRailProps) {
               )}
             >
               <Icon className={cn("h-5 w-5", active ? "text-primary" : "text-white/80")} aria-hidden="true" />
-              <span className="text-[11px] leading-tight text-center text-balance">{t(item.id)}</span>
+              <span className="text-[10px] leading-tight text-center w-full truncate">{t(item.id)}</span>
             </Link>
           </li>
         );
