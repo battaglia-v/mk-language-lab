@@ -13,14 +13,6 @@ import { readTranslatorHistory } from '@/lib/translator-history';
 import { fetchUserDecks } from '@/lib/custom-decks';
 import type { CustomDeckSummary } from '@/lib/custom-decks';
 
-const curatedDeck = [
-  { id: 'c1', source: 'Како си?', target: 'How are you?' },
-  { id: 'c2', source: 'Од каде си?', target: 'Where are you from?' },
-  { id: 'c3', source: 'Благодарам многу.', target: 'Thank you very much.' },
-  { id: 'c4', source: 'Сакам кафе.', target: 'I would like coffee.' },
-  { id: 'c5', source: 'Колку чини ова?', target: 'How much is this?' },
-];
-
 type Flashcard = { id: string; source: string; target: string; direction: 'mk-en' | 'en-mk' };
 
 type DeckType = 'saved' | 'history' | 'curated';
@@ -32,6 +24,7 @@ export default function PracticePage() {
   const { phrases } = useSavedPhrases();
   const [historySnapshot, setHistorySnapshot] = useState(() => readTranslatorHistory(32));
   const [customDecks, setCustomDecks] = useState<CustomDeckSummary[]>([]);
+  const [curatedDeck, setCuratedDeck] = useState<Flashcard[]>([]);
   const [deckType, setDeckType] = useState<DeckType>('curated');
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
@@ -51,6 +44,30 @@ export default function PracticePage() {
       .catch((error) => {
         console.error('Failed to load custom decks:', error);
         setCustomDecks([]);
+      });
+
+    // Load curated deck from vocabulary database
+    fetch('/api/practice/prompts')
+      .then((res) => res.json())
+      .then((prompts) => {
+        const flashcards = prompts.map((prompt: any, index: number) => ({
+          id: prompt.id || `prompt-${index}`,
+          source: prompt.macedonian,
+          target: prompt.english,
+          direction: 'mk-en' as const,
+        }));
+        setCuratedDeck(flashcards);
+      })
+      .catch((error) => {
+        console.error('Failed to load curated deck:', error);
+        // Fallback to 5 items if API fails
+        setCuratedDeck([
+          { id: 'c1', source: 'Како си?', target: 'How are you?', direction: 'mk-en' },
+          { id: 'c2', source: 'Од каде си?', target: 'Where are you from?', direction: 'mk-en' },
+          { id: 'c3', source: 'Благодарам многу.', target: 'Thank you very much.', direction: 'mk-en' },
+          { id: 'c4', source: 'Сакам кафе.', target: 'I would like coffee.', direction: 'mk-en' },
+          { id: 'c5', source: 'Колку чини ова?', target: 'How much is this?', direction: 'mk-en' },
+        ]);
       });
   }, []);
 
@@ -86,10 +103,7 @@ export default function PracticePage() {
     [historySnapshot],
   );
 
-  const curatedFlashcards: Flashcard[] = useMemo(
-    () => curatedDeck.map((card) => ({ ...card, direction: 'mk-en' })),
-    [],
-  );
+  const curatedFlashcards: Flashcard[] = curatedDeck;
 
   const deck = deckType === 'saved' ? savedDeck : deckType === 'history' ? historyDeck : curatedFlashcards;
   const total = deck.length || 1;
