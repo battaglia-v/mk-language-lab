@@ -1,8 +1,8 @@
-import { Dispatch, FormEvent, PointerEvent, RefObject, SetStateAction, useRef } from 'react';
+import { Dispatch, FormEvent, PointerEvent, RefObject, SetStateAction, useRef, useState } from 'react';
 import { RefreshCcw, Eye, Settings, Check, XCircle, Loader2, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 import type { PracticeDirection, PracticeDrillMode, PracticeDifficultyId, PracticeDifficultyPreset } from '@/components/learn/quick-practice/types';
 
@@ -76,6 +76,7 @@ export function QuickPracticeControls({
   promptNotice,
 }: QuickPracticeControlsProps) {
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   const focusInput = () => {
     if (inputRef.current) {
@@ -160,17 +161,17 @@ export function QuickPracticeControls({
             </Button>
           )}
 
-          <Sheet>
-            <SheetTrigger asChild>
+          <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
+            <DialogTrigger asChild>
               <Button type="button" variant="outline" size="icon" className="rounded-xl">
                 <Settings className="h-4 w-4" />
               </Button>
-            </SheetTrigger>
-            <SheetContent side="bottom" className="h-[80vh]">
-              <SheetHeader>
-                <SheetTitle>Practice Settings</SheetTitle>
-              </SheetHeader>
-              <div className="mt-4 space-y-4 overflow-y-auto">
+            </DialogTrigger>
+            <DialogContent className="max-h-[85vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle>Practice Settings</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4">
                 <div className="space-y-2">
                   <h3 className="text-sm font-semibold">{difficultyLabelText}</h3>
                   <div className="space-y-1.5">
@@ -240,15 +241,18 @@ export function QuickPracticeControls({
                 <Button
                   type="button"
                   variant="outline"
-                  onClick={onReset}
+                  onClick={() => {
+                    onReset();
+                    setIsSettingsOpen(false);
+                  }}
                   disabled={!isReady && !answer}
                   className="w-full"
                 >
                   {translate('practiceReset')}
                 </Button>
               </div>
-            </SheetContent>
-          </Sheet>
+            </DialogContent>
+          </Dialog>
         </div>
       </form>
 
