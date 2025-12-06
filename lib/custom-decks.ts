@@ -147,14 +147,22 @@ export async function updateDeck(
  * Delete a deck and all its cards
  */
 export async function deleteDeck(deckId: string): Promise<void> {
+  console.log('[deleteDeck] Attempting to delete deck:', deckId);
+
   const response = await fetch(`/api/decks/${deckId}`, {
     method: 'DELETE',
     credentials: 'include',
   });
 
+  console.log('[deleteDeck] Response status:', response.status);
+
   if (!response.ok) {
-    throw new Error(`Failed to delete deck: ${response.status}`);
+    const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+    console.error('[deleteDeck] Failed:', response.status, errorData);
+    throw new Error(errorData.error || `Failed to delete deck: ${response.status}`);
   }
+
+  console.log('[deleteDeck] Deck deleted successfully');
 }
 
 /**
@@ -220,12 +228,20 @@ export async function updateDeckCard(
  * Delete a card from a deck
  */
 export async function deleteDeckCard(deckId: string, cardId: string): Promise<void> {
+  console.log('[deleteDeckCard] Attempting to delete card:', { deckId, cardId });
+
   const response = await fetch(`/api/decks/${deckId}/cards/${cardId}`, {
     method: 'DELETE',
     credentials: 'include',
   });
 
+  console.log('[deleteDeckCard] Response status:', response.status);
+
   if (!response.ok) {
-    throw new Error(`Failed to delete card: ${response.status}`);
+    const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+    console.error('[deleteDeckCard] Failed:', response.status, errorData);
+    throw new Error(errorData.error || `Failed to delete card: ${response.status}`);
   }
+
+  console.log('[deleteDeckCard] Card deleted successfully');
 }

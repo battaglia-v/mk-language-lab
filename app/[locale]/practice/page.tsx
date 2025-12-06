@@ -378,11 +378,11 @@ export default function PracticePage() {
                     value={guess}
                     onChange={(event) => setGuess(event.target.value)}
                     placeholder={t('drills.wordInputPlaceholder')}
-                    className="flex-1 min-h-[44px] min-w-0 rounded-2xl border border-primary/50 bg-white/5 text-base text-white placeholder:text-muted-foreground"
+                    className="flex-[3] min-h-[44px] min-w-0 rounded-2xl border border-primary/50 bg-white/5 text-base text-white placeholder:text-muted-foreground"
                   />
                   <Button
                     type="submit"
-                    className="min-h-[44px] w-full sm:w-auto rounded-2xl px-6 font-semibold shadow-lg transition-all hover:scale-105 disabled:hover:scale-100"
+                    className="min-h-[44px] w-full sm:w-auto sm:flex-[1] sm:max-w-[120px] rounded-2xl px-6 font-semibold shadow-lg transition-all hover:scale-105 disabled:hover:scale-100"
                     disabled={!deck.length || !guess.trim()}
                   >
                     {t('drills.submitWord')}
