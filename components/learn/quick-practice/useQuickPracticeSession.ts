@@ -100,7 +100,7 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     }
 
     let isCancelled = false;
-    const cacheKey = 'quick-practice-prompts';
+    const cacheKey = 'quick-practice-prompts-v2'; // Changed key to invalidate old cache
     const cached = window.sessionStorage.getItem(cacheKey);
 
     if (cached) {
