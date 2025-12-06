@@ -24,7 +24,7 @@ export async function GET(request: NextRequest, context: RouteContext) {
     const { deckId } = await context.params;
     console.log('[api.decks.deckId.GET] Looking for deck:', { deckId, userId: session.user.id });
 
-    const deck = await prisma.customDeck.findUnique({
+    const deck = await prisma.customDeck.findFirst({
       where: {
         id: deckId,
         userId: session.user.id,

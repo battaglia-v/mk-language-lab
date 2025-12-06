@@ -78,6 +78,14 @@ export default function DecksPage() {
     <div className="container mx-auto py-8 px-4 max-w-7xl">
       {/* Header */}
       <div className="mb-8">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => router.push('/practice')}
+          className="mb-4"
+        >
+          ← Back to Practice
+        </Button>
         <div className="flex items-center justify-between mb-4">
           <div>
             <h1 className="text-3xl font-bold text-foreground">My Custom Decks</h1>
