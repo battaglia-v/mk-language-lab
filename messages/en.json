@@ -648,7 +648,7 @@
     "clearButton": "Clear",
     "resultLabel": "Translation",
     "resultEmptyTitle": "Your translation will appear here",
-    "resultEmptyDescription": "Start typing on the left and press Translate to preview the Macedonian or English version.",
+    "resultEmptyDescription": "Type text and press Translate to see the result.",
     "resultPlaceholder": "Your translation will appear here.",
     "copyButton": "Copy",
     "copied": "Copied!",
