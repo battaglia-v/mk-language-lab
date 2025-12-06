@@ -17,7 +17,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <ShellHeader onToggleSidebar={() => setSidebarOpen((prev) => !prev)} />
           <main
             id="main-content"
-            className="mx-auto w-full min-w-0 max-w-5xl space-y-7 md:space-y-9 pb-24 lg:pb-0 px-5 py-6 sm:px-7 md:px-8 md:py-6"
+            className="mx-auto w-full min-w-0 max-w-5xl space-y-7 md:space-y-9 pb-36 lg:pb-0 px-5 py-6 sm:px-7 md:px-8 md:py-6"
             role="main"
           >
             {children}
