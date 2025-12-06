@@ -1,4 +1,4 @@
-export type TranslateLanguage = 'mk' | 'en';
+import type { TranslateLanguage } from './types';
 
 export type TranslateTextParams = {
   text: string;

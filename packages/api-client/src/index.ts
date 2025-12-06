@@ -1,3 +1,4 @@
+export * from './types';
 export * from './practice';
 export * from './news';
 export * from './mission';
