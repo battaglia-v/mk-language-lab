@@ -8,7 +8,7 @@ export type CustomDeckWithCards = {
   cards: CustomDeckCard[];
 };
 
-export type CustomDeckSummary = Omit<CustomDeck, 'description'> & {
+export type CustomDeckSummary = CustomDeck & {
   cardCount: number;
 };
 
