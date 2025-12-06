@@ -30,7 +30,14 @@ export default function DeckEditorPage() {
   const deckId = params?.deckId as string;
 
   const loadDeck = async () => {
+    if (!deckId) {
+      console.error('[DeckEditor] No deckId available');
+      return;
+    }
+
     setIsLoading(true);
+    console.log('[DeckEditor] Loading deck:', deckId);
+
     try {
       // Fetch deck with raw cards from database
       const response = await fetch(`/api/decks/${deckId}`, {
@@ -38,10 +45,13 @@ export default function DeckEditorPage() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to fetch deck');
+        const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+        console.error('[DeckEditor] Deck fetch failed:', response.status, errorData);
+        throw new Error(errorData.error || 'Failed to fetch deck');
       }
 
       const data = await response.json();
+      console.log('[DeckEditor] Deck fetched:', data);
 
       // data.deck contains the deck metadata
       // data.cards are PracticeItems, but we need CustomDeckCards
@@ -52,25 +62,32 @@ export default function DeckEditorPage() {
 
       if (cardsResponse.ok) {
         const cardsData = await cardsResponse.json();
+        console.log('[DeckEditor] Cards fetched:', cardsData.cards?.length || 0);
         setCards(cardsData.cards || []);
+      } else {
+        console.warn('[DeckEditor] Cards fetch failed, using empty array');
+        setCards([]);
       }
 
       setDeck(data.deck);
     } catch (error) {
-      console.error('Failed to load deck:', error);
+      console.error('[DeckEditor] Failed to load deck:', error);
       addToast({
         title: 'Error',
-        description: 'Failed to load deck. Please try again.',
+        description: error instanceof Error ? error.message : 'Failed to load deck. Please try again.',
         type: 'error',
       });
-      router.push('/practice/decks');
+      const locale = params?.locale as string || 'en';
+      router.push(`/${locale}/practice/decks`);
     } finally {
       setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    loadDeck();
+    if (deckId) {
+      loadDeck();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deckId]);
 
