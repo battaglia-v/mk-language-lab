@@ -16,11 +16,13 @@ export async function GET(request: NextRequest, context: RouteContext) {
   const session = await auth().catch(() => null);
 
   if (!session?.user?.id) {
+    console.log('[api.decks.deckId.GET] No session or user ID');
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
   try {
     const { deckId } = await context.params;
+    console.log('[api.decks.deckId.GET] Looking for deck:', { deckId, userId: session.user.id });
 
     const deck = await prisma.customDeck.findUnique({
       where: {
@@ -37,8 +39,26 @@ export async function GET(request: NextRequest, context: RouteContext) {
     });
 
     if (!deck) {
+      // Check if deck exists with different owner
+      const anyDeck = await prisma.customDeck.findUnique({
+        where: { id: deckId },
+        select: { userId: true },
+      });
+
+      if (anyDeck) {
+        console.log('[api.decks.deckId.GET] Deck exists but wrong owner:', {
+          deckId,
+          deckOwner: anyDeck.userId,
+          currentUser: session.user.id
+        });
+      } else {
+        console.log('[api.decks.deckId.GET] Deck does not exist:', deckId);
+      }
+
       return NextResponse.json({ error: 'Deck not found' }, { status: 404 });
     }
+
+    console.log('[api.decks.deckId.GET] Deck found:', { deckId, cardCount: deck.cards.length });
 
     const { cards, ...deckData } = deck;
     const practiceItems = convertDeckCardsToPracticeItems(cards);
