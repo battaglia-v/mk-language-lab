@@ -13,12 +13,6 @@ export function BadgesSection({ badges }: BadgesSectionProps) {
     <section className="glass-card rounded-3xl p-6 md:p-8 text-white" data-testid="profile-badges">
       <div className="flex items-center justify-between gap-4">
         <h2 className="text-2xl font-semibold">{t('title')}</h2>
-        <Link
-          href="/shop"
-          className="text-sm font-semibold text-primary hover:text-primary/80"
-        >
-          {t('shopLink')} →
-        </Link>
       </div>
 
       <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
