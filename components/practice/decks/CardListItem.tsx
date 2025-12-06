@@ -61,7 +61,7 @@ export function CardListItem({
   }
 
   const hasAlternates =
-    card.macedonianAlternates.length > 0 || card.englishAlternates.length > 0;
+    (card.macedonianAlternates?.length ?? 0) > 0 || (card.englishAlternates?.length ?? 0) > 0;
   const hasExtras = hasAlternates || card.notes;
 
   return (
@@ -145,24 +145,24 @@ export function CardListItem({
 
             {showDetails && (
               <div className="mt-3 space-y-3 border-t border-border/40 pt-3">
-                {card.macedonianAlternates.length > 0 && (
+                {(card.macedonianAlternates?.length ?? 0) > 0 && (
                   <div>
                     <p className="text-xs font-semibold text-muted-foreground mb-1">
                       Macedonian Alternates
                     </p>
                     <p className="text-sm text-foreground">
-                      {card.macedonianAlternates.join(', ')}
+                      {card.macedonianAlternates?.join(', ')}
                     </p>
                   </div>
                 )}
 
-                {card.englishAlternates.length > 0 && (
+                {(card.englishAlternates?.length ?? 0) > 0 && (
                   <div>
                     <p className="text-xs font-semibold text-muted-foreground mb-1">
                       English Alternates
                     </p>
                     <p className="text-sm text-foreground">
-                      {card.englishAlternates.join(', ')}
+                      {card.englishAlternates?.join(', ')}
                     </p>
                   </div>
                 )}
