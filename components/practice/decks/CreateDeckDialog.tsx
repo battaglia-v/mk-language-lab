@@ -49,11 +49,18 @@ export function CreateDeckDialog({ onDeckCreated }: CreateDeckDialogProps) {
     setIsSubmitting(true);
 
     try {
+      console.log('[CreateDeckDialog] Creating deck:', { name, description, category });
       const deck = await createDeck({
         name: name.trim(),
         description: description.trim() || undefined,
         category: category.trim() || undefined,
       });
+
+      console.log('[CreateDeckDialog] Deck created:', deck);
+
+      if (!deck || !deck.id) {
+        throw new Error('Deck created but invalid response');
+      }
 
       addToast({
         title: 'Deck created',
@@ -70,17 +77,16 @@ export function CreateDeckDialog({ onDeckCreated }: CreateDeckDialogProps) {
       // Refresh the page or call callback
       if (onDeckCreated) {
         onDeckCreated();
-      } else {
-        router.refresh();
       }
 
       // Navigate to the deck editor
+      console.log('[CreateDeckDialog] Navigating to:', `/${locale}/practice/decks/${deck.id}`);
       router.push(`/${locale}/practice/decks/${deck.id}`);
     } catch (error) {
-      console.error('Failed to create deck:', error);
+      console.error('[CreateDeckDialog] Failed to create deck:', error);
       addToast({
         title: 'Error',
-        description: 'Failed to create deck. Please try again.',
+        description: error instanceof Error ? error.message : 'Failed to create deck. Please try again.',
         type: 'error',
       });
     } finally {

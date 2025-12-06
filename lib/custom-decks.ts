@@ -102,10 +102,19 @@ export async function createDeck(data: {
   });
 
   if (!response.ok) {
-    throw new Error(`Failed to create deck: ${response.status}`);
+    const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+    console.error('[createDeck] API error:', response.status, errorData);
+    throw new Error(errorData.error || `Failed to create deck: ${response.status}`);
   }
 
   const result = await response.json();
+  console.log('[createDeck] Success:', result);
+
+  if (!result.deck || !result.deck.id) {
+    console.error('[createDeck] Invalid response:', result);
+    throw new Error('Deck created but no ID returned');
+  }
+
   return result.deck;
 }
 
