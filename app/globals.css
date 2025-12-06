@@ -129,12 +129,57 @@ body {
 }
 
 @layer base {
+  html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
   * {
     @apply border-border outline-ring/30;
+    box-sizing: border-box;
+  }
+  *::before,
+  *::after {
+    box-sizing: border-box;
   }
   body {
     @apply bg-background text-foreground antialiased;
     min-height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+  }
+  /* Global text wrapping to prevent horizontal overflow */
+  *,
+  p,
+  li,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  span,
+  div {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  /* Prevent images and media from causing overflow */
+  img,
+  video,
+  canvas,
+  svg,
+  iframe {
+    max-width: 100%;
+    height: auto;
+  }
+  /* Handle code blocks and preformatted text */
+  pre,
+  code {
+    max-width: 100%;
+    overflow-x: auto;
+    word-wrap: normal;
   }
   h1,
   h2,
@@ -216,6 +261,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: clamp(1.25rem, 2vw, 2rem);
+  overflow-x: hidden;
+  min-width: 0;
 }
 
 .glass-panel {
@@ -242,6 +289,9 @@ body {
   display: flex;
   min-height: 100vh;
   background: var(--mk-bg);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .app-shell-main {
@@ -249,22 +299,26 @@ body {
   min-height: 100vh;
   position: relative;
   z-index: 0;
+  width: 100%;
+  max-width: 100%;
   padding: var(--space-gutter);
   padding-top: calc(var(--space-section-sm) / 2 + var(--safe-area-top));
   padding-bottom: calc(var(--space-section-sm) / 2 + var(--safe-area-bottom));
   display: flex;
   justify-content: center;
+  overflow-x: hidden;
 }
 
 .app-shell-scroll {
   min-height: 100vh;
   scroll-padding-top: calc(var(--mobile-nav-height) + var(--safe-area-top));
-  width: min(100%, var(--content-max));
+  width: 100%;
   max-width: var(--content-max);
   padding-inline: var(--content-padding);
   display: flex;
   flex-direction: column;
   gap: clamp(1.25rem, 2vw, 2rem);
+  overflow-x: hidden;
 }
 
 .lab-hero {
@@ -281,6 +335,9 @@ body {
   display: grid;
   gap: var(--gap-cozy);
   grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .section-container {
@@ -402,6 +459,9 @@ body {
   gap: var(--gap-cozy);
   grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
   align-items: stretch;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .safe-top {
@@ -475,10 +535,28 @@ body {
 
   .app-shell-main {
     padding-inline: var(--space-gutter);
+    overflow-x: hidden;
   }
 
   .section-heading {
     font-size: clamp(1.15rem, 3vw, 1.5rem);
+  }
+
+  /* Ensure all containers are properly constrained on small screens */
+  .section-container,
+  .page-shell-content,
+  .app-shell-scroll {
+    padding-inline: max(var(--space-gutter), env(safe-area-inset-left));
+    padding-inline-end: max(var(--space-gutter), env(safe-area-inset-right));
+  }
+
+  /* Prevent horizontal overflow on very small screens */
+  body,
+  .app-shell,
+  .app-shell-main,
+  .app-shell-scroll {
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 }
 
@@ -599,4 +677,54 @@ body {
   color: rgba(247, 248, 251, 0.80);
   line-height: var(--line-height-base);
   max-width: 48rem;
+}
+
+/* Mobile responsive utilities */
+.w-full {
+  width: 100%;
+}
+
+.max-w-full {
+  max-width: 100%;
+}
+
+.min-w-0 {
+  min-width: 0;
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+/* Ensure all containers constrain width properly on mobile */
+.section-container,
+.page-shell-content,
+.lab-hero,
+.glass-panel,
+.glass-card,
+.context-panel {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Fix potential clamp() overflow issues on very small screens */
+@media (max-width: 360px) {
+  :root {
+    --space-gutter: 0.875rem;
+    --space-gutter-wide: 1rem;
+    --card-padding: 1rem;
+    --card-padding-lg: 1.25rem;
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 5vw, 1.85rem);
+  }
+
+  .page-header-title {
+    font-size: clamp(1.25rem, 5vw, 1.5rem);
+  }
 }

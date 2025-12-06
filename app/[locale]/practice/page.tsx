@@ -187,7 +187,7 @@ export default function PracticePage() {
   const accuracy = reviewedCount > 0 ? Math.round((correctAnswers / reviewedCount) * 100) : 0;
 
   return (
-    <div className="space-y-5 sm:space-y-7">
+    <div className="w-full min-w-0 space-y-5 sm:space-y-7">
       <section className="lab-hero" data-testid="practice-hero">
         <div className="flex flex-col gap-3 sm:gap-4">
           <Button
@@ -231,8 +231,8 @@ export default function PracticePage() {
       </section>
 
       <div className="glass-card space-y-4 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8" data-testid="practice-workspace">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <div className="flex flex-wrap gap-3" data-testid="practice-panels">
+        <div className="flex flex-wrap items-center justify-between gap-2 w-full min-w-0">
+          <div className="flex flex-wrap gap-2 sm:gap-3 w-full sm:w-auto min-w-0" data-testid="practice-panels">
             <DeckToggle
               label={t('savedDeck.badge')}
               count={savedDeck.length}
@@ -268,17 +268,17 @@ export default function PracticePage() {
 
         {/* Custom Decks Section */}
         {customDecks.length > 0 && (
-          <div className="border-t border-border/40 pt-4 space-y-3">
+          <div className="border-t border-border/40 pt-4 space-y-3 w-full min-w-0">
             <h3 className="text-sm font-semibold text-foreground">Your Custom Decks</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 w-full">
               {customDecks.map((deck) => (
                 <Link
                   key={deck.id}
                   href={`/${locale}/practice?practiceFixture=custom-deck-${deck.id}`}
-                  className="flex items-center justify-between p-3 rounded-lg border border-border/60 bg-card/60 hover:bg-card hover:border-primary/40 transition-all group"
+                  className="flex items-center justify-between p-3 rounded-lg border border-border/60 bg-card/60 hover:bg-card hover:border-primary/40 transition-all group min-w-0"
                 >
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors truncate">
+                    <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors truncate break-words">
                       {deck.name}
                     </p>
                     <p className="text-xs text-muted-foreground">
@@ -307,34 +307,34 @@ export default function PracticePage() {
                   {safeIndex + 1} / {total}
                 </span>
               </div>
-            <div className="mt-5 space-y-4 sm:mt-7 sm:space-y-5">
-              <p className="text-xl font-semibold leading-tight text-white sm:text-2xl md:text-3xl">{currentCard?.source}</p>
+            <div className="mt-5 space-y-4 sm:mt-7 sm:space-y-5 w-full min-w-0">
+              <p className="text-xl font-semibold leading-tight text-white break-words sm:text-2xl md:text-3xl">{currentCard?.source}</p>
               <div className={cn(
-                'rounded-xl border border-primary/20 bg-primary/5 p-3 transition-all duration-300',
+                'rounded-xl border border-primary/20 bg-primary/5 p-3 transition-all duration-300 w-full min-w-0',
                 revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
               )}>
-                <p className="text-base font-medium text-primary sm:text-lg">
+                <p className="text-base font-medium text-primary break-words sm:text-lg">
                   {currentCard?.target}
                 </p>
               </div>
             </div>
 
-              <form onSubmit={handleSubmitGuess} className="mt-4 space-y-3 sm:mt-6">
-                <div className="space-y-2">
+              <form onSubmit={handleSubmitGuess} className="mt-4 space-y-3 sm:mt-6 w-full min-w-0">
+                <div className="space-y-2 w-full min-w-0">
                   <label className="text-xs font-semibold text-white sm:text-sm" htmlFor="practice-guess">
                     {t('drills.wordInputLabel')}
                   </label>
-                <div className="flex flex-col gap-3 sm:flex-row">
+                <div className="flex flex-col gap-3 sm:flex-row w-full min-w-0">
                   <Input
                     id="practice-guess"
                     value={guess}
                     onChange={(event) => setGuess(event.target.value)}
                     placeholder={t('drills.wordInputPlaceholder')}
-                    className="flex-1 min-h-[44px] rounded-2xl border border-primary/50 bg-white/5 text-sm text-white placeholder:text-muted-foreground sm:text-base"
+                    className="flex-1 min-h-[44px] min-w-0 rounded-2xl border border-primary/50 bg-white/5 text-sm text-white placeholder:text-muted-foreground sm:text-base"
                   />
                   <Button
                     type="submit"
-                    className="min-h-[44px] rounded-2xl px-6 font-semibold shadow-lg transition-all hover:scale-105 disabled:hover:scale-100"
+                    className="min-h-[44px] w-full sm:w-auto rounded-2xl px-6 font-semibold shadow-lg transition-all hover:scale-105 disabled:hover:scale-100"
                     disabled={!deck.length || !guess.trim()}
                   >
                     {t('drills.submitWord')}
@@ -374,34 +374,34 @@ export default function PracticePage() {
               )}
             </form>
 
-            <div className="mt-4 grid gap-2.5 sm:mt-6 sm:gap-3 sm:grid-cols-3">
+            <div className="mt-4 grid grid-cols-3 gap-2 sm:mt-6 sm:gap-3 w-full min-w-0">
               <Button
                 variant="outline"
-                className="min-h-[44px] rounded-full font-medium transition-all hover:scale-105"
+                className="min-h-[44px] min-w-0 rounded-full font-medium transition-all hover:scale-105"
                 onClick={goPrevious}
                 disabled={!deck.length}
               >
-                <ArrowLeft className="mr-2 h-4 w-4" aria-hidden="true" />
-                <span className="hidden sm:inline">Prev</span>
+                <ArrowLeft className="mr-1 sm:mr-2 h-4 w-4 flex-shrink-0" aria-hidden="true" />
+                <span className="hidden sm:inline truncate">Prev</span>
                 <span className="sm:hidden">←</span>
               </Button>
               <Button
                 variant="secondary"
-                className="min-h-[44px] rounded-full font-medium transition-all hover:scale-105"
+                className="min-h-[44px] min-w-0 rounded-full font-medium transition-all hover:scale-105 truncate"
                 onClick={toggleReveal}
                 disabled={!deck.length}
               >
-                {t('drills.revealAnswer')}
+                <span className="truncate">{t('drills.revealAnswer')}</span>
               </Button>
               <Button
                 variant="outline"
-                className="min-h-[44px] rounded-full font-medium transition-all hover:scale-105"
+                className="min-h-[44px] min-w-0 rounded-full font-medium transition-all hover:scale-105"
                 onClick={goNext}
                 disabled={!deck.length}
               >
-                <span className="hidden sm:inline">Next</span>
+                <span className="hidden sm:inline truncate">Next</span>
                 <span className="sm:hidden">→</span>
-                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                <ArrowRight className="ml-1 sm:ml-2 h-4 w-4 flex-shrink-0" aria-hidden="true" />
               </Button>
             </div>
             </div>
@@ -428,16 +428,16 @@ function DeckToggle({ label, count, active, disabled, onClick }: DeckToggleProps
       disabled={disabled}
       onClick={onClick}
       className={cn(
-        'group flex w-full min-h-[48px] min-w-0 flex-1 flex-wrap items-center justify-between gap-3 rounded-full border px-5 py-2.5 text-xs font-semibold transition-all sm:w-auto sm:flex-initial sm:text-sm lg:flex-none',
+        'group flex min-h-[48px] min-w-0 items-center justify-between gap-2 rounded-full border px-4 py-2.5 text-xs font-semibold transition-all sm:px-5 sm:gap-3 sm:text-sm',
         active
           ? 'border-primary bg-primary/15 text-white shadow-md'
           : 'border-border/60 text-muted-foreground hover:border-primary/40 hover:text-white hover:bg-primary/5',
         disabled && 'opacity-40 cursor-not-allowed hover:border-border/60 hover:text-muted-foreground hover:bg-transparent',
       )}
     >
-      <span>{label}</span>
+      <span className="truncate min-w-0">{label}</span>
       <span className={cn(
-        'rounded-full px-2 py-0.5 text-xs font-bold transition-colors',
+        'rounded-full px-2 py-0.5 text-xs font-bold transition-colors flex-shrink-0',
         active ? 'bg-primary/30 text-primary-foreground' : 'bg-muted/50 text-muted-foreground group-hover:bg-primary/20'
       )}>
         {count}

@@ -132,7 +132,7 @@ export default function ResourcesPage() {
     : '';
 
   return (
-    <div className="space-y-5 sm:space-y-7">
+    <div className="w-full min-w-0 space-y-5 sm:space-y-7">
       <section className="lab-hero" data-testid="resources-hero">
         <div className="flex flex-col gap-3 sm:gap-4">
           <Button
@@ -156,11 +156,11 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      <div className={cn('lab-grid', isDesktop && !panelCollapsed && 'has-panel')} data-testid="resources-workspace">
+      <div className={cn('lab-grid w-full min-w-0', isDesktop && !panelCollapsed && 'has-panel')} data-testid="resources-workspace">
         <div className="space-y-4">
-          <div className="glass-card space-y-3.5 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 sm:space-y-4">
+          <div className="glass-card w-full min-w-0 space-y-3.5 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 sm:space-y-4">
             <div className="flex flex-col gap-3 md:flex-row md:items-center">
-              <div className="relative flex-1">
+              <div className="relative flex-1 min-w-0">
                 <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground sm:left-4" />
                 <Input
                   value={query}
@@ -198,7 +198,7 @@ export default function ResourcesPage() {
             </div>
           </div>
 
-          <section className="glass-card space-y-4 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8">
+          <section className="glass-card w-full min-w-0 space-y-4 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8">
             <div className="card-grid two">
               {loading
                 ? Array.from({ length: 6 }).map((_, index) => <ResourceSkeleton key={`resource-skeleton-${index}`} />)
@@ -254,7 +254,7 @@ export default function ResourcesPage() {
       {!isDesktop && isPanelDrawerOpen ? (
         <div className="fixed inset-0 z-40 flex flex-col bg-black/40 lg:hidden" role="dialog" aria-modal>
           <button type="button" className="flex-1" aria-label={translateT('contextCollapse')} onClick={() => setIsPanelDrawerOpen(false)} />
-          <div className="rounded-t-2xl border border-border/50 bg-background/90 p-4 shadow-2xl backdrop-blur sm:rounded-t-3xl sm:p-5">
+          <div className="w-full min-w-0 rounded-t-2xl border border-border/50 bg-background/90 p-4 shadow-2xl backdrop-blur sm:rounded-t-3xl sm:p-5">
             <div className="mb-4 flex items-center justify-between gap-2">
               <p className="text-sm font-semibold text-white">{t('openAction')}</p>
               <Button
@@ -293,7 +293,7 @@ type PanelFiltersProps = {
 
 function PanelFilters({ sections, sectionFilter, onSelect, emptyLabel }: PanelFiltersProps) {
   return (
-    <div className="space-y-2">
+    <div className="w-full min-w-0 space-y-2">
       {sections.map((section) => (
         <button
           key={section.id}
@@ -306,7 +306,7 @@ function PanelFilters({ sections, sectionFilter, onSelect, emptyLabel }: PanelFi
           )}
           onClick={() => onSelect(section.title)}
         >
-          <span className="text-left text-xs leading-snug sm:text-sm">{section.title}</span>
+          <span className="text-left text-xs leading-snug break-words sm:text-sm">{section.title}</span>
           <span className="text-xs">{section.count}</span>
         </button>
       ))}
@@ -325,7 +325,7 @@ function ResourceCard({ resource }: ResourceCardProps) {
       href={resource.url}
       target="_blank"
       rel="noreferrer"
-      className="glass-card group flex h-full min-h-[140px] flex-col justify-between rounded-2xl sm:rounded-3xl p-5 sm:p-6 text-left transition hover:border-primary"
+      className="glass-card group flex h-full min-h-[140px] min-w-0 flex-col justify-between rounded-2xl sm:rounded-3xl p-5 sm:p-6 text-left transition hover:border-primary"
     >
       <div>
         <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground sm:text-xs sm:tracking-[0.3em]">{resource.section}</p>

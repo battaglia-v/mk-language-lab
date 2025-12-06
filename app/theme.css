@@ -12,7 +12,7 @@
   --line-height-relaxed: 1.8;
 
   /* Layout guardrails */
-  --content-padding: clamp(1rem, 3vw, 1.5rem);
+  --content-padding: clamp(0.875rem, 3vw, 1.5rem);
   --content-max: 1200px;
   --content-wide: 1120px;
   --content-reading: 896px;

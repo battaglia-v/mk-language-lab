@@ -50,38 +50,38 @@ export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
     : { label: backLabel, href: backHref };
 
   return (
-    <header className="mx-auto mb-6 max-w-6xl shell-surface nav-toolbar px-4 md:px-6 text-white">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-3">
+    <header className="mx-auto mb-6 w-full max-w-full shell-surface nav-toolbar px-3 sm:px-4 md:px-6 text-white">
+      <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <button
             type="button"
             onClick={onToggleSidebar}
-            className="touch-target inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-2 text-sm text-muted-foreground lg:hidden"
+            className="touch-target inline-flex min-h-[44px] items-center gap-2 rounded-full border border-border/60 px-3 py-2 text-sm text-muted-foreground lg:hidden"
           >
-            <Menu className="h-4 w-4" aria-hidden="true" />
-            {localeT("menu")}
+            <Menu className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
+            <span className="whitespace-nowrap">{localeT("menu")}</span>
           </button>
           {backTarget ? (
             <Button
               asChild
               variant="ghost"
               size="sm"
-              className="hidden items-center gap-2 rounded-full border border-border/60 px-3 text-muted-foreground sm:inline-flex"
+              className="hidden min-h-[44px] max-w-[200px] items-center gap-2 rounded-full border border-border/60 px-3 text-muted-foreground sm:inline-flex"
             >
               <Link href={backTarget.href} aria-label={navT("backToDashboard")}>
-                <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-                {navT("backToSection", { section: backTarget.label })}
+                <ArrowLeft className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
+                <span className="truncate">{navT("backToSection", { section: backTarget.label })}</span>
               </Link>
             </Button>
           ) : null}
-          <Link href={buildHref("/dashboard")} className="flex items-center gap-3" aria-label={t("full")}>
-            <span className="title-gradient text-2xl lowercase">македонски</span>
-            <span className="hidden text-[11px] uppercase tracking-[0.35em] text-muted-foreground md:inline">
+          <Link href={buildHref("/dashboard")} className="flex items-center gap-2 sm:gap-3" aria-label={t("full")}>
+            <span className="title-gradient text-xl sm:text-2xl lowercase whitespace-nowrap">македонски</span>
+            <span className="hidden text-[11px] uppercase tracking-[0.35em] text-muted-foreground whitespace-nowrap md:inline">
               MK LANGUAGE LAB
             </span>
           </Link>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-shrink-0 items-center gap-2">
           <LanguageSwitcher />
           <UserMenu />
         </div>
