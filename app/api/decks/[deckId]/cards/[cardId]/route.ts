@@ -32,7 +32,7 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
     const { macedonian, english, macedonianAlternates, englishAlternates, category, notes } = body;
 
     // Verify deck ownership
-    const deck = await prisma.customDeck.findUnique({
+    const deck = await prisma.customDeck.findFirst({
       where: {
         id: deckId,
         userId: session.user.id,
@@ -44,7 +44,7 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
     }
 
     // Verify card exists in this deck
-    const existingCard = await prisma.customDeckCard.findUnique({
+    const existingCard = await prisma.customDeckCard.findFirst({
       where: {
         id: cardId,
         deckId,
@@ -114,7 +114,7 @@ export async function DELETE(request: NextRequest, context: RouteContext) {
     const { deckId, cardId } = await context.params;
 
     // Verify deck ownership
-    const deck = await prisma.customDeck.findUnique({
+    const deck = await prisma.customDeck.findFirst({
       where: {
         id: deckId,
         userId: session.user.id,
@@ -126,7 +126,7 @@ export async function DELETE(request: NextRequest, context: RouteContext) {
     }
 
     // Verify card exists in this deck
-    const existingCard = await prisma.customDeckCard.findUnique({
+    const existingCard = await prisma.customDeckCard.findFirst({
       where: {
         id: cardId,
         deckId,

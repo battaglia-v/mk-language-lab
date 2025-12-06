@@ -90,7 +90,7 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
     const { name, description, category, isArchived } = body;
 
     // Verify deck ownership
-    const existingDeck = await prisma.customDeck.findUnique({
+    const existingDeck = await prisma.customDeck.findFirst({
       where: {
         id: deckId,
         userId: session.user.id,
@@ -144,7 +144,7 @@ export async function DELETE(request: NextRequest, context: RouteContext) {
     const { deckId } = await context.params;
 
     // Verify deck ownership
-    const existingDeck = await prisma.customDeck.findUnique({
+    const existingDeck = await prisma.customDeck.findFirst({
       where: {
         id: deckId,
         userId: session.user.id,

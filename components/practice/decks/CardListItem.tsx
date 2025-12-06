@@ -48,8 +48,8 @@ export function CardListItem({
         initialData={{
           macedonian: card.macedonian,
           english: card.english,
-          macedonianAlternates: card.macedonianAlternates.join(', '),
-          englishAlternates: card.englishAlternates.join(', '),
+          macedonianAlternates: card.macedonianAlternates?.join(', ') ?? '',
+          englishAlternates: card.englishAlternates?.join(', ') ?? '',
           category: card.category || '',
           notes: card.notes || '',
         }}

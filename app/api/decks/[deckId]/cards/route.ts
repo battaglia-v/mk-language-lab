@@ -23,7 +23,7 @@ export async function GET(request: NextRequest, context: RouteContext) {
     const { deckId } = await context.params;
 
     // Verify deck ownership
-    const deck = await prisma.customDeck.findUnique({
+    const deck = await prisma.customDeck.findFirst({
       where: {
         id: deckId,
         userId: session.user.id,
@@ -85,7 +85,7 @@ export async function POST(request: NextRequest, context: RouteContext) {
     }
 
     // Verify deck ownership
-    const deck = await prisma.customDeck.findUnique({
+    const deck = await prisma.customDeck.findFirst({
       where: {
         id: deckId,
         userId: session.user.id,
