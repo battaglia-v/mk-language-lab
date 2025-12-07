@@ -9,7 +9,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
   
   // Validate that the incoming `locale` parameter is valid
   if (!locale || !locales.includes(locale as Locale)) {
-    locale = 'mk'; // Default to Macedonian
+    locale = 'en'; // Default to English
   }
 
   return {

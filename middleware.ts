@@ -7,7 +7,7 @@ const intlMiddleware = createMiddleware({
   locales,
 
   // Used when no locale matches
-  defaultLocale: 'mk',
+  defaultLocale: 'en',
 
   // Locale detection based on user preference
   localeDetection: true

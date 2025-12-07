@@ -70,6 +70,26 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  /* Enable :active states on iOS Safari */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Fix :active pseudo-class on iOS Safari */
+/* iOS Safari requires explicit cursor: pointer to trigger :active states */
+button,
+a,
+[role="button"],
+[tabindex]:not([tabindex="-1"]) {
+  cursor: pointer;
+  /* Enable touch callout for better iOS behavior */
+  -webkit-touch-callout: none;
+}
+
+/* Force :active state to work on iOS by adding touch-action */
+button:active,
+a:active,
+[role="button"]:active {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
 }
 
 .section-container {
