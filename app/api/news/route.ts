@@ -480,6 +480,25 @@ function truncatePreview(text: string, maxLength: number): string {
   return `${trimmed}…`;
 }
 
+/**
+ * Validate that an image URL is accessible
+ */
+async function validateImageUrl(imageUrl: string, signal: AbortSignal): Promise<boolean> {
+  try {
+    const response = await fetch(imageUrl, {
+      method: 'HEAD',
+      cache: 'no-store',
+      headers: {
+        'User-Agent': USER_AGENT,
+      },
+      signal,
+    });
+    return response.ok;
+  } catch {
+    return false;
+  }
+}
+
 async function fetchArticlePreview(url: string, signal: AbortSignal): Promise<ArticlePreviewResult> {
   try {
     const response = await fetch(url, {
@@ -509,7 +528,15 @@ async function fetchArticlePreview(url: string, signal: AbortSignal): Promise<Ar
       extractMetaContent(html, 'property', 'og:image') ??
       extractMetaContent(html, 'name', 'twitter:image') ??
       extractFirstImageSource(html);
-    const image = normalizePotentialUrl(imageCandidate, finalUrl);
+    let image = normalizePotentialUrl(imageCandidate, finalUrl);
+
+    // Validate image URL accessibility (especially important for time.mk)
+    if (image) {
+      const isValid = await validateImageUrl(image, signal);
+      if (!isValid) {
+        image = null;
+      }
+    }
 
     return { preview, image };
   } catch (error) {
@@ -673,11 +700,21 @@ export async function GET(request: NextRequest) {
 
     await enrichPreviews(payloadItems, abortController.signal);
 
+    // Filter out time.mk articles without valid images (Option 1: prevent broken images)
+    const filteredItems = payloadItems.filter((item) => {
+      // Keep all non-time.mk articles
+      if (item.sourceId !== 'time-mk') {
+        return true;
+      }
+      // For time.mk, only keep articles with valid images
+      return item.image !== null;
+    });
+
     return NextResponse.json(
       {
-        items: payloadItems,
+        items: filteredItems,
         meta: {
-          count: payloadItems.length,
+          count: filteredItems.length,
           total: combinedItems.length,
           fetchedAt: new Date().toISOString(),
           errors,
