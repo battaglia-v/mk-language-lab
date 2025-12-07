@@ -158,7 +158,6 @@ export function LeaderboardCard({
           <p className="text-sm text-destructive">{error}</p>
         </div>
       ) : data && data.leaderboard.length > 0 ? (
-        // @ts-expect-error - framer-motion type compatibility issue with Next.js 16
         <motion.div
           variants={staggerContainer}
           initial="initial"
@@ -208,7 +207,6 @@ function LeaderboardRow({
   };
 
   return (
-    // @ts-expect-error - framer-motion type compatibility issue with Next.js 16
     <motion.div
       variants={staggerItem}
       className={cn(

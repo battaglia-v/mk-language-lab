@@ -75,12 +75,10 @@ export function HeartCounter({
 
   return (
     <div className={cn("inline-flex items-center gap-1", className)}>
-      {/* @ts-expect-error framer-motion type compatibility issue with Next.js 16 */}
       <AnimatePresence mode="popLayout">
         {Array.from({ length: maxHearts }).map((_, index) => {
           const isFilled = index < clampedHearts;
           return (
-            // @ts-expect-error framer-motion type compatibility issue with Next.js 16
             <motion.div
               key={index}
               variants={scaleIn}
@@ -127,7 +125,6 @@ export function HeartCounterLarge({
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm text-muted-foreground">Hearts</p>
-          {/* @ts-expect-error framer-motion type compatibility issue with Next.js 16 */}
           <motion.p
             className="text-4xl font-bold text-foreground"
             key={hearts}
@@ -144,7 +141,6 @@ export function HeartCounterLarge({
           {Array.from({ length: maxHearts }).map((_, index) => {
             const isFilled = index < clampedHearts;
             return (
-              // @ts-expect-error framer-motion type compatibility issue with Next.js 16
               <motion.div
                 key={index}
                 initial={{ scale: 0 }}
@@ -208,7 +204,6 @@ export function HeartCounterLarge({
  */
 export function HeartLossIndicator() {
   return (
-    // @ts-expect-error framer-motion type compatibility issue with Next.js 16
     <motion.div
       initial={{ scale: 0, opacity: 0 }}
       animate={{
@@ -228,7 +223,6 @@ export function HeartLossIndicator() {
  */
 export function HeartGainIndicator() {
   return (
-    // @ts-expect-error framer-motion type compatibility issue with Next.js 16
     <motion.div
       initial={{ scale: 0, opacity: 0, y: 50 }}
       animate={{

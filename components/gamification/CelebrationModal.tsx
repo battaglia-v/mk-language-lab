@@ -75,7 +75,6 @@ export function CelebrationModal({
       {open && (
         <>
           {/* Backdrop */}
-          {/* @ts-expect-error - framer-motion type compatibility issue with Next.js 16 */}
           <motion.div onClick={onClose} className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
             variants={modalBackdrop}
             initial="initial"
@@ -87,7 +86,6 @@ export function CelebrationModal({
           {showConfetti && <Confetti />}
 
           {/* Modal */}
-          {/* @ts-expect-error - framer-motion type compatibility issue with Next.js 16 */}
           <motion.div
             variants={fadeInUp}
             initial="initial"
@@ -107,7 +105,6 @@ export function CelebrationModal({
             {/* Content */}
             <div className="flex flex-col items-center p-6 pt-12 text-center">
               {/* Icon */}
-              {/* @ts-expect-error - framer-motion type compatibility issue with Next.js 16 */}
               <motion.div
                 variants={celebrationPop}
                 initial="initial"
@@ -118,7 +115,6 @@ export function CelebrationModal({
               </motion.div>
 
               {/* Title */}
-              {/* @ts-expect-error - framer-motion type compatibility issue with Next.js 16 */}
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -130,7 +126,6 @@ export function CelebrationModal({
 
               {/* Description */}
               {description && (
-                // @ts-expect-error - framer-motion type compatibility issue with Next.js 16
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -143,7 +138,6 @@ export function CelebrationModal({
 
               {/* XP Badge */}
               {xpAwarded && (
-                // @ts-expect-error - framer-motion type compatibility issue with Next.js 16
                 <motion.div
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
@@ -156,7 +150,6 @@ export function CelebrationModal({
               )}
 
               {/* Action Buttons */}
-              {/* @ts-expect-error - framer-motion type compatibility issue with Next.js 16 */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

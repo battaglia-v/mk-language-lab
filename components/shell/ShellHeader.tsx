@@ -42,7 +42,7 @@ export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
 
   const backHref = backKey === "lessons"
     ? buildHref("/discover")
-    : buildHref("/dashboard");
+    : buildHref("/learn");
 
   // Only show back button for sections that don't have their own back navigation
   const backTarget = (section === "dashboard" || pagesWithOwnBackButton.includes(section))
@@ -74,7 +74,7 @@ export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
               </Link>
             </Button>
           ) : null}
-          <Link href={buildHref("/dashboard")} className="flex items-center gap-2 sm:gap-3" aria-label={t("full")}>
+          <Link href={buildHref("/learn")} className="flex items-center gap-2 sm:gap-3" aria-label={t("full")}>
             <span className="title-gradient text-xl sm:text-2xl lowercase whitespace-nowrap">македонски</span>
             <span className="hidden text-[11px] uppercase tracking-[0.35em] text-muted-foreground whitespace-nowrap md:inline">
               MK LANGUAGE LAB

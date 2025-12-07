@@ -108,7 +108,6 @@ export function ProgressRing({
       {/* Center content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         {showPercentage && (
-          // @ts-expect-error framer-motion type compatibility issue with Next.js 16
           <motion.span
             className="text-2xl font-bold text-foreground"
             initial={{ opacity: 0, scale: 0.8 }}
