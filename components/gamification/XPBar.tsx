@@ -119,7 +119,7 @@ export function XPBar({
       duration: 0.8,
       ease: "easeOut",
     });
-    return controls.stop;
+    return () => controls.stop();
   }, [currentXP, motionXP]);
 
   if (compact) {
