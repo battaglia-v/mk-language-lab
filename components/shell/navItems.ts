@@ -1,7 +1,7 @@
-import { LayoutDashboard, Languages, Sparkles, Newspaper, BookOpen, CircleUserRound } from "lucide-react";
+import { Home, Languages, Sparkles, Newspaper, BookOpen, CircleUserRound } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
-type NavItemId = "dashboard" | "translate" | "practice" | "news" | "resources" | "profile";
+type NavItemId = "learn" | "translate" | "practice" | "news" | "resources" | "profile";
 
 export type ShellNavItem = {
   id: NavItemId;
@@ -10,7 +10,7 @@ export type ShellNavItem = {
 };
 
 export const shellNavItems: ShellNavItem[] = [
-  { id: "dashboard", path: "/dashboard", icon: LayoutDashboard },
+  { id: "learn", path: "/learn", icon: Home },
   { id: "translate", path: "/translate", icon: Languages },
   { id: "practice", path: "/practice", icon: Sparkles },
   { id: "news", path: "/news", icon: Newspaper },

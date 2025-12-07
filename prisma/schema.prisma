@@ -465,6 +465,10 @@ model GameProgress {
   hearts           Int       @default(5) // current heart count (max 5)
   lastPracticeDate DateTime? // last date user practiced (for streak calculation)
   streakUpdatedAt  DateTime? // last time streak was updated
+  dailyGoalXP      Int       @default(20) // daily XP target
+  todayXP          Int       @default(0) // resets daily at midnight
+  longestStreak    Int       @default(0) // all-time best streak
+  totalLessons     Int       @default(0) // total lessons completed
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
 
@@ -652,7 +656,10 @@ model LeagueMembership {
   userId    String
   leagueId  String
   joinedAt  DateTime @default(now())
-  rank      Int? // current rank within league
+  rank      Int?     @default(0) // current rank within league
+  weeklyXP  Int      @default(0) // XP earned this week (resets weekly)
+  promoted  Boolean  @default(false) // promoted to next league
+  relegated Boolean  @default(false) // relegated to lower league
   updatedAt DateTime @updatedAt
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -661,6 +668,7 @@ model LeagueMembership {
   @@unique([userId, leagueId])
   @@index([leagueId, rank])
   @@index([userId])
+  @@index([leagueId, weeklyXP])
 }
 
 // Notification - inbox messages for reminder intelligence

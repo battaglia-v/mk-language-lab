@@ -98,3 +98,88 @@ body.theme-dark {
   background: var(--mk-bg);
   color: var(--mk-text);
 }
+
+/* ========================================
+   LIGHT THEME (Default)
+   ======================================== */
+.theme-light {
+  color-scheme: light;
+
+  /* Light theme colors */
+  --mk-bg: #f7f8fb;
+  --mk-bg-surface: #ffffff;
+  --mk-bg-panel: #f0f2f7;
+  --mk-bg-panel-muted: #e8eaf0;
+  --mk-bg-card: #ffffff;
+  --mk-border: #e0e3e9;
+  --mk-border-strong: #cbd0db;
+  --mk-border-soft: #eef0f4;
+  --mk-text: #0b0b12;
+  --mk-text-muted: rgba(11, 11, 18, 0.65);
+
+  /* Keep accent colors (they work for both themes) */
+  --mk-accent: #f6d83b;
+  --mk-accent-2: #f4b400;
+  --mk-accent-3: #34d399;
+  --mk-success: #3ecf8e;
+  --mk-warning: #f4c84a;
+  --mk-danger: #ff7878;
+  --mk-gradient: linear-gradient(115deg, #f6d83b, #f4b400, #34d399);
+  --mk-surface-glow: linear-gradient(145deg, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0));
+
+  /* Shadcn/UI mappings for light theme */
+  --background: var(--mk-bg);
+  --foreground: var(--mk-text);
+  --card: var(--mk-bg-card);
+  --card-foreground: var(--mk-text);
+  --popover: #ffffff;
+  --popover-foreground: var(--mk-text);
+  --primary: var(--mk-accent);
+  --primary-foreground: #000000;
+  --secondary: var(--mk-accent-3);
+  --secondary-foreground: #02150c;
+  --muted: var(--mk-bg-panel-muted);
+  --muted-foreground: var(--mk-text-muted);
+  --accent: var(--mk-accent);
+  --accent-foreground: #0c0a14;
+  --destructive: var(--mk-danger);
+  --destructive-foreground: #ffffff;
+  --border: var(--mk-border);
+  --input: var(--mk-border);
+  --ring: var(--mk-accent-2);
+
+  /* Sidebar for light theme */
+  --sidebar: rgba(255, 255, 255, 0.98);
+  --sidebar-foreground: rgba(11, 11, 18, 0.85);
+  --sidebar-primary: rgba(246, 216, 59, 0.12);
+  --sidebar-primary-foreground: #8b7500;
+  --sidebar-accent: rgba(11, 11, 18, 0.04);
+  --sidebar-accent-foreground: var(--mk-text);
+  --sidebar-border: rgba(0, 0, 0, 0.08);
+  --sidebar-ring: var(--mk-accent);
+
+  /* Light theme shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --shadow-focus: 0 0 0 3px rgba(246, 216, 59, 0.35);
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --panel-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  /* Reader - Part of Speech colors (adjusted for light theme) */
+  --pos-noun: #2563eb;       /* darker blue */
+  --pos-verb: #059669;       /* darker teal/green */
+  --pos-adjective: #d97706;  /* darker yellow/orange */
+  --pos-adverb: #7c3aed;     /* darker purple */
+  --pos-other: #64748b;      /* darker gray */
+}
+
+body.theme-light {
+  background: var(--mk-bg);
+  color: var(--mk-text);
+}
+
+/* Default to light theme */
+:root:not(.theme-dark) {
+  color-scheme: light;
+}
