@@ -116,6 +116,7 @@ vi.mock('lucide-react', () => {
     Loader2: Icon,
     Trophy: Icon,
     XIcon: Icon,
+    Settings: Icon,
   };
 });
 

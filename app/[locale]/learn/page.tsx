@@ -11,6 +11,10 @@ import { Button } from "@/components/ui/button";
 import { Languages, Sparkles, Newspaper, BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+// Force dynamic rendering to ensure fresh data and proper auth checks
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function LearnPage() {
   const locale = await getLocale();
   const t = await getTranslations("learn");
@@ -54,7 +58,10 @@ export default async function LearnPage() {
     }
   }
 
-  const dailyGoalProgress = (gameProgress.todayXP / gameProgress.dailyGoalXP) * 100;
+  // Calculate daily goal progress with safety check
+  const dailyGoalProgress = gameProgress.dailyGoalXP > 0
+    ? Math.min((gameProgress.todayXP / gameProgress.dailyGoalXP) * 100, 100)
+    : 0;
 
   // Quick actions
   const quickActions = [
