@@ -185,6 +185,7 @@ export default function ResourcesPage() {
       )}
 
       {/* Resource Cards Grid - Mobile First */}
+      {/* @ts-expect-error - framer-motion type compatibility issue with Next.js 16 */}
       <motion.div
         variants={staggerContainer}
         initial="initial"
@@ -196,6 +197,7 @@ export default function ResourcesPage() {
               <Skeleton key={index} className="h-32 rounded-xl" />
             ))
           : filtered.map((resource) => (
+              // @ts-expect-error - framer-motion type compatibility issue with Next.js 16
               <motion.a
                 key={resource.id}
                 href={resource.url}

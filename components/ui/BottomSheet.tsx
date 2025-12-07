@@ -89,6 +89,7 @@ export function BottomSheet({
       {open && (
         <>
           {/* Backdrop */}
+          {/* @ts-expect-error - framer-motion type compatibility issue with Next.js 16 */}
           <motion.div
             variants={modalBackdrop}
             initial="initial"
@@ -100,6 +101,7 @@ export function BottomSheet({
           />
 
           {/* Bottom Sheet */}
+          {/* @ts-expect-error - framer-motion type compatibility issue with Next.js 16 */}
           <motion.div
             variants={bottomSheet}
             initial="initial"

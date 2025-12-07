@@ -79,11 +79,6 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Apply light theme class to html by default */
-html:not(.theme-dark) {
-  @apply theme-light;
-}
-
 /* Fix :active pseudo-class on iOS Safari */
 /* iOS Safari requires explicit cursor: pointer to trigger :active states */
 button,

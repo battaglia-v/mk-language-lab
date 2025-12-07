@@ -106,17 +106,15 @@ export default function TranslatePage() {
     if (isCurrentSaved && savedMatch) {
       deletePhrase(savedMatch.id);
       addToast({
-        variant: 'default',
+        type: 'info',
         description: t('phraseUnsaved'),
       });
     } else {
-      const saved = savePhrase(currentPayload);
-      if (saved) {
-        addToast({
-          variant: 'success',
-          description: t('phraseSaved'),
-        });
-      }
+      savePhrase(currentPayload);
+      addToast({
+        type: 'success',
+        description: t('phraseSaved'),
+      });
     }
   };
 
@@ -369,7 +367,7 @@ export default function TranslatePage() {
                   <p className="text-sm font-medium text-foreground">{phrase.sourceText}</p>
                   <p className="text-sm text-muted-foreground">{phrase.translatedText}</p>
                   <p className="text-xs text-muted-foreground">
-                    {new Date(phrase.savedAt).toLocaleString()}
+                    {new Date(phrase.createdAt).toLocaleString()}
                   </p>
                 </div>
                 <Button
