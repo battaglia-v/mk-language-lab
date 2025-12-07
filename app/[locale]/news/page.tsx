@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
@@ -380,12 +381,20 @@ export default function NewsPage() {
                 >
                   <div className="relative aspect-video w-full overflow-hidden bg-muted">
                     {item.image ? (
-                      <div
-                        className="h-full w-full bg-cover bg-center"
-                        style={{ backgroundImage: `url(${item.image})` }}
-                        aria-hidden="true"
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        onError={(e) => {
+                          // Hide image on error and show fallback
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                        }}
                       />
-                    ) : (
+                    ) : null}
+                    {!item.image && (
                       <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-muted via-muted/80 to-muted">
                         <Newspaper className="h-8 w-8 text-muted-foreground" />
                       </div>

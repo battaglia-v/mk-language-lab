@@ -41,6 +41,79 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: '**.meta.mk',
       },
+      // Macedonian news source domains (time.mk aggregates from these)
+      {
+        protocol: 'https',
+        hostname: '360stepeni.mk',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.360stepeni.mk',
+      },
+      {
+        protocol: 'https',
+        hostname: 'zurnal.mk',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.zurnal.mk',
+      },
+      {
+        protocol: 'https',
+        hostname: 'libertas.mk',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.libertas.mk',
+      },
+      {
+        protocol: 'https',
+        hostname: 'novamakedonija.com.mk',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.novamakedonija.com.mk',
+      },
+      {
+        protocol: 'https',
+        hostname: 'sportstation.mk',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.sportstation.mk',
+      },
+      {
+        protocol: 'https',
+        hostname: 'plusinfo.mk',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.plusinfo.mk',
+      },
+      {
+        protocol: 'https',
+        hostname: 'trn.mk',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.trn.mk',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ekonomskivestnik.com.mk',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.ekonomskivestnik.com.mk',
+      },
+      {
+        protocol: 'https',
+        hostname: 'vistinomer.mk',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.vistinomer.mk',
+      },
       {
         protocol: 'https',
         hostname: 'img.youtube.com',
