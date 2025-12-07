@@ -104,7 +104,7 @@ export function XPPopUpContainer({
         className
       )}
     >
-      <AnimatePresence mode="popLayout">
+      <AnimatePresence>
         {notifications.map((notification) => (
           <XPPopUp
             key={notification.id}
