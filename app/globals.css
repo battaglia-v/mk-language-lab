@@ -760,3 +760,45 @@ a:active,
     font-size: clamp(1.25rem, 5vw, 1.5rem);
   }
 }
+
+/* Mobile Navigation Animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.mobile-nav-mounted {
+  animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hardware acceleration for smooth animations */
+.nav-item,
+.nav-accent-button {
+  will-change: transform;
+}
+
+.nav-item:active,
+.nav-accent-button:active {
+  transition-duration: 0.1s;
+}
