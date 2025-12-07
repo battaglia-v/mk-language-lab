@@ -382,22 +382,19 @@ export default function NewsPage() {
                   <div className="relative aspect-video w-full overflow-hidden bg-muted">
                     {item.image ? (
                       <>
-                        <Image
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                           src={item.image}
                           alt={item.title}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          unoptimized={false}
+                          className="h-full w-full object-cover"
+                          loading="lazy"
                           onError={(e) => {
                             // Hide image and show fallback on error
                             const target = e.currentTarget;
-                            if (target && target.parentElement) {
-                              target.style.display = 'none';
-                              const fallback = target.parentElement.querySelector('.image-fallback') as HTMLElement;
-                              if (fallback) {
-                                fallback.style.display = 'flex';
-                              }
+                            target.style.display = 'none';
+                            const fallback = target.parentElement?.querySelector('.image-fallback') as HTMLElement;
+                            if (fallback) {
+                              fallback.style.display = 'flex';
                             }
                           }}
                         />
