@@ -1,0 +1,95 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { auth } from '@/lib/auth';
+import prisma from '@/lib/prisma';
+
+/**
+ * Record practice session and update user progress
+ * POST /api/practice/record
+ */
+export async function POST(request: NextRequest) {
+  try {
+    const session = await auth();
+
+    if (!session?.user?.id) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
+
+    const body = await request.json();
+    const { correctCount, totalCount } = body;
+
+    if (typeof correctCount !== 'number' || typeof totalCount !== 'number') {
+      return NextResponse.json(
+        { error: 'Invalid request body' },
+        { status: 400 }
+      );
+    }
+
+    // Calculate XP earned (12 XP per correct answer)
+    const xpEarned = correctCount * 12;
+
+    // Update or create GameProgress
+    const gameProgress = await prisma.gameProgress.upsert({
+      where: { userId: session.user.id },
+      create: {
+        userId: session.user.id,
+        xp: xpEarned,
+        level: 'beginner',
+        streak: 1,
+        hearts: 5,
+        lastPracticeDate: new Date(),
+        streakUpdatedAt: new Date(),
+      },
+      update: {
+        xp: {
+          increment: xpEarned,
+        },
+        lastPracticeDate: new Date(),
+        // Update streak logic
+        streakUpdatedAt: new Date(),
+      },
+    });
+
+    // Calculate streak
+    const now = new Date();
+    const lastPractice = gameProgress.lastPracticeDate;
+
+    if (lastPractice) {
+      const diffTime = Math.abs(now.getTime() - lastPractice.getTime());
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+      let newStreak = gameProgress.streak;
+
+      if (diffDays === 0) {
+        // Same day, keep streak
+        newStreak = gameProgress.streak;
+      } else if (diffDays === 1) {
+        // Next day, increment streak
+        newStreak = gameProgress.streak + 1;
+      } else {
+        // Missed days, reset streak
+        newStreak = 1;
+      }
+
+      await prisma.gameProgress.update({
+        where: { userId: session.user.id },
+        data: { streak: newStreak },
+      });
+    }
+
+    return NextResponse.json({
+      success: true,
+      xpEarned,
+      totalXp: gameProgress.xp + xpEarned,
+      streak: gameProgress.streak,
+    });
+  } catch (error) {
+    console.error('[api.practice.record] Error:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}

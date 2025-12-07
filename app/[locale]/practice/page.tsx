@@ -199,11 +199,26 @@ export default function PracticePage() {
       if (isCorrect) {
         setCorrectAnswers((prev) => prev + 1);
         setStreak((prev) => prev + 1);
+
+        // Save progress to database every 5 correct answers
+        const newCorrectCount = correctAnswers + 1;
+        if (newCorrectCount % 5 === 0) {
+          fetch('/api/practice/record', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              correctCount: 5,
+              totalCount: 5,
+            }),
+          }).catch((error) => {
+            console.error('Failed to record practice:', error);
+          });
+        }
       } else {
         setStreak(0);
       }
     },
-    [currentCard, deck.length, guess]
+    [currentCard, deck.length, guess, correctAnswers]
   );
 
   useEffect(() => {

@@ -118,7 +118,7 @@ export default async function DashboardPage() {
           if (diffDays === 0) {
             lastPractice = homeT("today") as string;
           } else if (diffDays === 1) {
-            lastPractice = homeT("yesterday") as string || "Yesterday";
+            lastPractice = "Yesterday";
           } else {
             lastPractice = `${diffDays} days ago`;
           }
