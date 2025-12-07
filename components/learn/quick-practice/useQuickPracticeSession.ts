@@ -427,6 +427,19 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
           const computedAccuracy = Math.round((nextCorrectCount / nextTotalAttempts) * 100);
           finalizeTalismans(nextCorrectCount, nextTotalAttempts);
           setShowCompletionModal(true);
+
+          // Record practice session to database
+          fetch('/api/practice/record', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              correctCount: nextCorrectCount,
+              totalCount: nextTotalAttempts,
+            }),
+          }).catch((error) => {
+            console.error('[QuickPractice] Failed to record session:', error);
+          });
+
           trackEvent(AnalyticsEvents.PRACTICE_COMPLETED, {
             direction,
             category: category === ALL_CATEGORIES ? 'all' : category,
