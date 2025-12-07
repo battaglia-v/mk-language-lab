@@ -1,10 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import { Ratelimit } from '@upstash/ratelimit';
+import { Redis } from '@upstash/redis';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 300; // Cache for 5 minutes
 
 type Params = { id: string };
+
+// Initialize Redis client for rate limiting
+const redis = process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
+  ? Redis.fromEnv()
+  : null;
+
+// Rate limiter: 30 requests per 10 seconds (generous for sequential client requests)
+const postTagsRateLimit = redis ? new Ratelimit({
+  redis,
+  limiter: Ratelimit.slidingWindow(30, '10 s'),
+  analytics: true,
+  prefix: '@upstash/ratelimit/post-tags',
+}) : null;
 
 /**
  * GET /api/instagram/posts/[id]/tags
@@ -14,6 +30,31 @@ type Params = { id: string };
 export async function GET(_request: NextRequest, context: { params: Promise<Params> }) {
   try {
     const { id } = await context.params;
+
+    // Apply rate limiting
+    if (postTagsRateLimit) {
+      const ip = _request.headers.get('x-forwarded-for') ||
+                 _request.headers.get('x-real-ip') ||
+                 'anonymous';
+
+      const { success, limit, remaining, reset } = await postTagsRateLimit.limit(ip);
+
+      if (!success) {
+        const retryAfter = Math.ceil((reset - Date.now()) / 1000);
+        return NextResponse.json(
+          { error: 'Too many requests', retryAfter },
+          {
+            status: 429,
+            headers: {
+              'X-RateLimit-Limit': limit.toString(),
+              'X-RateLimit-Remaining': remaining.toString(),
+              'X-RateLimit-Reset': reset.toString(),
+              'Retry-After': retryAfter.toString(),
+            }
+          }
+        );
+      }
+    }
 
     const postTags = await prisma.postTag.findMany({
       where: {
@@ -26,10 +67,17 @@ export async function GET(_request: NextRequest, context: { params: Promise<Para
 
     const tags = postTags.map((pt) => pt.tag);
 
-    return NextResponse.json({
-      tags,
-      count: tags.length,
-    });
+    return NextResponse.json(
+      {
+        tags,
+        count: tags.length,
+      },
+      {
+        headers: {
+          'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+        }
+      }
+    );
   } catch (error) {
     console.error('Error fetching post tags:', error);
     return NextResponse.json(

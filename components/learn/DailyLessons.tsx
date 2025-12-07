@@ -192,31 +192,37 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
     void fetchTags();
   }, []);
 
-  // Fetch tags for each post
+  // Fetch tags for all posts in a single batch request
   useEffect(() => {
+    const controller = new AbortController();
+
     const fetchPostTags = async () => {
       if (posts.length === 0) return;
 
-      const newPostTags = new Map<string, Tag[]>();
+      try {
+        const response = await fetch('/api/instagram/posts/tags/batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ postIds: posts.map(p => p.id) }),
+          signal: controller.signal,
+        });
 
-      await Promise.all(
-        posts.map(async (post) => {
-          try {
-            const response = await fetch(`/api/instagram/posts/${post.id}/tags`);
-            if (response.ok) {
-              const data = await response.json() as { tags: Tag[] };
-              newPostTags.set(post.id, data.tags);
-            }
-          } catch (err) {
-            console.error(`Error fetching tags for post ${post.id}:`, err);
-          }
-        })
-      );
-
-      setPostTags(newPostTags);
+        if (response.ok) {
+          const data = await response.json() as { tagsByPost: Record<string, Tag[]> };
+          const newPostTags = new Map(Object.entries(data.tagsByPost));
+          setPostTags(newPostTags);
+        }
+      } catch (err) {
+        if ((err as Error).name !== 'AbortError') {
+          console.error('Error fetching post tags:', err);
+        }
+      }
     };
 
     void fetchPostTags();
+
+    // Cleanup: abort in-flight requests on unmount
+    return () => controller.abort();
   }, [posts]);
 
   // Toggle tag selection
