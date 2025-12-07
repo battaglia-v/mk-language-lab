@@ -52,7 +52,6 @@ function XPPopUp({ notification, onComplete }: XPPopUpProps) {
   }, [onComplete]);
 
   return (
-    // @ts-expect-error - framer-motion type compatibility issue with Next.js 16
     <motion.div
       key={notification.id}
       variants={xpPopUp}
@@ -128,7 +127,6 @@ export function QuickXPBadge({
   className?: string;
 }) {
   return (
-    // @ts-expect-error - framer-motion type compatibility issue with Next.js 16
     <motion.div
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}

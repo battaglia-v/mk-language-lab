@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { ringProgress } from "@/lib/animations";
 
 interface ProgressRingProps {
   /**
@@ -88,11 +87,18 @@ export function ProgressRing({
           fill="none"
           strokeLinecap="round"
           strokeDasharray={circumference}
-          strokeDashoffset={circumference * (1 - clampedProgress / 100)}
-          variants={ringProgress}
-          initial="initial"
-          animate="animate"
-          custom={clampedProgress}
+          animate={{
+            strokeDashoffset: circumference * (1 - clampedProgress / 100),
+            opacity: 1,
+          }}
+          initial={{
+            strokeDashoffset: circumference,
+            opacity: 0,
+          }}
+          transition={{
+            duration: 0.8,
+            ease: "easeOut",
+          }}
           style={{
             filter: clampedProgress > 0 ? "drop-shadow(0 0 4px currentColor)" : "none",
           }}

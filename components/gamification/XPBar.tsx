@@ -98,8 +98,17 @@ export function XPBar({
   showValues = true,
   compact = false,
 }: XPBarProps) {
-  const progress = (currentXP / xpForNextLevel) * 100;
-  const clampedProgress = Math.min(Math.max(progress, 0), 100);
+  // Safety check to prevent NaN/Infinity
+  const progress = xpForNextLevel > 0
+    ? (currentXP / xpForNextLevel) * 100
+    : 0;
+  const clampedProgress = Math.min(
+    Math.max(
+      isNaN(progress) || !isFinite(progress) ? 0 : progress,
+      0
+    ),
+    100
+  );
 
   // Animated XP counter
   const motionXP = useMotionValue(0);
@@ -154,9 +163,8 @@ export function XPBar({
           )}
         </div>
         {showValues && (
-          // @ts-ignore framer-motion type compatibility issue with Next.js 16
           <motion.span className="text-sm font-medium text-muted-foreground">
-            {displayXP} / {xpForNextLevel} XP
+            {Math.round(motionXP.get())} / {xpForNextLevel} XP
           </motion.span>
         )}
       </div>
