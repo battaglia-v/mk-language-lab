@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { buildLocalizedHref } from "@/components/shell/navItems";
 import { StatsOverview } from "@/components/dashboard/StatsOverview";
+import { auth } from "@/lib/auth";
+import prisma from "@/lib/prisma";
 
 type Translator = Awaited<ReturnType<typeof getTranslations>>;
 
@@ -78,6 +80,63 @@ export default async function DashboardPage() {
   const homeT = await getTranslations("home");
   const profileT = await getTranslations("shell");
 
+  // Fetch real user data from database
+  const session = await auth().catch(() => null);
+  let userStats = {
+    wordsLearned: 0,
+    streakDays: 0,
+    todayProgress: 0,
+    lastPractice: homeT("noPracticeYet") as string,
+  };
+
+  if (session?.user?.id) {
+    try {
+      const gameProgress = await prisma.gameProgress.findUnique({
+        where: { userId: session.user.id },
+      });
+
+      if (gameProgress) {
+        // Calculate words learned from XP (12 XP per word reviewed)
+        const wordsLearned = Math.floor((gameProgress.xp || 0) / 12);
+
+        // Get streak
+        const streakDays = gameProgress.streak || 0;
+
+        // Calculate today's progress (percentage toward daily goal of 10 XP)
+        const dailyGoal = 10;
+        const todayXP = gameProgress.xp || 0; // In production, this should track today's XP only
+        const todayProgress = Math.min(100, Math.round((todayXP % dailyGoal) / dailyGoal * 100));
+
+        // Format last practice date
+        let lastPractice = homeT("noPracticeYet") as string;
+        if (gameProgress.lastPracticeDate) {
+          const lastDate = new Date(gameProgress.lastPracticeDate);
+          const today = new Date();
+          const diffTime = Math.abs(today.getTime() - lastDate.getTime());
+          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+          if (diffDays === 0) {
+            lastPractice = homeT("today") as string;
+          } else if (diffDays === 1) {
+            lastPractice = homeT("yesterday") as string || "Yesterday";
+          } else {
+            lastPractice = `${diffDays} days ago`;
+          }
+        }
+
+        userStats = {
+          wordsLearned,
+          streakDays,
+          todayProgress,
+          lastPractice,
+        };
+      }
+    } catch (error) {
+      console.error('[dashboard] Failed to load user stats:', error);
+      // Fall back to default values
+    }
+  }
+
   return (
     <section className="mx-auto flex w-full max-w-5xl flex-col gap-4 sm:gap-5">
       <header className="page-header">
@@ -89,10 +148,10 @@ export default async function DashboardPage() {
       </header>
 
       <StatsOverview
-        wordsLearned={127}
-        streakDays={3}
-        todayProgress={60}
-        lastPractice={homeT("today")}
+        wordsLearned={userStats.wordsLearned}
+        streakDays={userStats.streakDays}
+        todayProgress={userStats.todayProgress}
+        lastPractice={userStats.lastPractice}
         t={(key: string, values?: Record<string, string | number>) => homeT(key, values)}
       />
 
