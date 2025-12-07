@@ -450,7 +450,7 @@ function parseFeed(xml: string, source: NewsSource): NewsItem[] {
   return items;
 }
 
-const PREVIEW_FETCH_LIMIT = 10;
+const PREVIEW_FETCH_LIMIT = 30;
 const PREVIEW_MAX_LENGTH = 260;
 
 function extractMetaContent(html: string, attribute: 'property' | 'name', value: string): string | null {
@@ -521,7 +521,13 @@ async function fetchArticlePreview(url: string, signal: AbortSignal): Promise<Ar
 }
 
 async function enrichPreviews(items: NewsItem[], signal: AbortSignal): Promise<void> {
-  const candidates = items.filter((item) => !item.description || !item.image).slice(0, PREVIEW_FETCH_LIMIT);
+  // Prioritize time.mk items since they don't have images in RSS feed
+  const needEnrichment = items.filter((item) => !item.description || !item.image);
+  const timeMkItems = needEnrichment.filter((item) => item.sourceId === 'time-mk');
+  const otherItems = needEnrichment.filter((item) => item.sourceId !== 'time-mk');
+
+  // Take all time.mk items that need images, then fill remaining slots with others
+  const candidates = [...timeMkItems, ...otherItems].slice(0, PREVIEW_FETCH_LIMIT);
   const requestCache = new Map<string, ArticlePreviewResult>();
 
   const tasks = candidates.map((item) => async () => {
