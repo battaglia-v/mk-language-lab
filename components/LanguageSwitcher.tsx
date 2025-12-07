@@ -73,13 +73,13 @@ export default function LanguageSwitcher() {
         <Button
           variant="outline"
           size="sm"
-          className="gap-2 px-2 sm:px-3"
+          className="gap-2 px-2 sm:px-3 justify-center items-center"
           disabled={isPending}
           aria-label={t('language')}
         >
-          <Languages className="h-4 w-4" />
-          <span className="sm:hidden">{currentLanguage.flag}</span>
-          <span className="hidden sm:inline">{currentLanguage.name}</span>
+          <Languages className="h-4 w-4 flex-shrink-0" />
+          <span className="sm:hidden flex-shrink-0">{currentLanguage.flag}</span>
+          <span className="hidden sm:inline text-center flex-1">{currentLanguage.name}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" sideOffset={6} className="min-w-[180px]">

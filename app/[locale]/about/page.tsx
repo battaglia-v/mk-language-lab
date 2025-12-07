@@ -63,13 +63,25 @@ export default function AboutPage() {
                 </CardHeader>
                 <CardContent className="space-y-4 text-sm text-slate-200">
                   <p>{member.bio}</p>
+                  {member.id === 'vincent' && (
+                    <div className="flex flex-wrap justify-center gap-2 text-xs">
+                      <a
+                        href="https://www.linkedin.com/in/vincentvinnybattaglia/"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="rounded-full border border-primary/40 px-3 py-1 text-primary hover:bg-primary/10"
+                      >
+                        LinkedIn
+                      </a>
+                    </div>
+                  )}
                   {member.id === 'andri' && (
                     <div className="flex flex-wrap justify-center gap-2 text-xs">
                       <a
                         href="https://macedonianlanguagecorner.com"
                         target="_blank"
                         rel="noreferrer"
-                        className="rounded-full border border-primary/40 px-3 py-1 text-primary"
+                        className="rounded-full border border-primary/40 px-3 py-1 text-primary hover:bg-primary/10"
                       >
                         {t('andriWebsite')}
                       </a>
@@ -77,7 +89,7 @@ export default function AboutPage() {
                         href="https://instagram.com/macedonianlanguagecorner"
                         target="_blank"
                         rel="noreferrer"
-                        className="rounded-full border border-primary/40 px-3 py-1 text-primary"
+                        className="rounded-full border border-primary/40 px-3 py-1 text-primary hover:bg-primary/10"
                       >
                         {t('andriInstagram')}
                       </a>
@@ -85,7 +97,7 @@ export default function AboutPage() {
                         href="https://youtube.com/@macedonianlanguagecorner"
                         target="_blank"
                         rel="noreferrer"
-                        className="rounded-full border border-primary/40 px-3 py-1 text-primary"
+                        className="rounded-full border border-primary/40 px-3 py-1 text-primary hover:bg-primary/10"
                       >
                         {t('andriYouTube')}
                       </a>

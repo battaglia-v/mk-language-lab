@@ -21,6 +21,7 @@ export default function Footer() {
   ];
 
   const supportLinks = [
+    { label: t('about'), href: `/${locale}/about`, external: false },
     { label: t('privacy'), href: `/${locale}/privacy`, external: false },
     { label: t('terms'), href: `/${locale}/terms`, external: false },
     { label: t('contact'), href: 'mailto:macedonianlanguagelab@gmail.com?subject=Macedonian%20Language%20Lab', external: true },
@@ -101,20 +102,20 @@ export default function Footer() {
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
               {t('support')}
             </p>
-            <ul className="mt-3 space-y-2 text-sm leading-relaxed">
+            <ul className="mt-3 space-y-2.5 text-sm leading-relaxed">
               {supportLinks.map((link) => (
                 <li key={link.href}>
                   {link.external ? (
                     <a
                       href={link.href}
-                      className="text-white/80 transition-colors hover:text-[var(--brand-gold)]"
+                      className="text-white/90 font-medium transition-colors hover:text-[var(--brand-gold)] hover:underline"
                     >
                       {link.label}
                     </a>
                   ) : (
                     <Link
                       href={link.href}
-                      className="text-white/80 transition-colors hover:text-[var(--brand-gold)]"
+                      className="text-white/90 font-medium transition-colors hover:text-[var(--brand-gold)] hover:underline"
                     >
                       {link.label}
                     </Link>
