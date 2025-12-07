@@ -7,6 +7,7 @@ const withNextIntl = createNextIntlPlugin('./i18n.ts');
 
 const nextConfig: NextConfig = {
   images: {
+    unoptimized: false,
     remotePatterns: [
       {
         protocol: 'https',
@@ -113,6 +114,32 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: '**.vistinomer.mk',
+      },
+      // Additional common Macedonian news and CDN domains
+      {
+        protocol: 'https',
+        hostname: '**.wp.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.wordpress.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.cloudfront.net',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.cdninstagram.com',
+      },
+      // Catch-all for .mk domains
+      {
+        protocol: 'https',
+        hostname: '**.mk',
+      },
+      {
+        protocol: 'http',
+        hostname: '**.mk',
       },
       {
         protocol: 'https',

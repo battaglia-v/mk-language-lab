@@ -381,20 +381,31 @@ export default function NewsPage() {
                 >
                   <div className="relative aspect-video w-full overflow-hidden bg-muted">
                     {item.image ? (
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        onError={(e) => {
-                          // Hide image on error and show fallback
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                        }}
-                      />
-                    ) : null}
-                    {!item.image && (
+                      <>
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          unoptimized={false}
+                          onError={(e) => {
+                            // Hide image and show fallback on error
+                            const target = e.currentTarget;
+                            if (target && target.parentElement) {
+                              target.style.display = 'none';
+                              const fallback = target.parentElement.querySelector('.image-fallback') as HTMLElement;
+                              if (fallback) {
+                                fallback.style.display = 'flex';
+                              }
+                            }
+                          }}
+                        />
+                        <div className="image-fallback hidden h-full w-full items-center justify-center bg-gradient-to-br from-muted via-muted/80 to-muted">
+                          <Newspaper className="h-8 w-8 text-muted-foreground" />
+                        </div>
+                      </>
+                    ) : (
                       <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-muted via-muted/80 to-muted">
                         <Newspaper className="h-8 w-8 text-muted-foreground" />
                       </div>
