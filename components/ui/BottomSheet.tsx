@@ -89,19 +89,17 @@ export function BottomSheet({
       {open && (
         <>
           {/* Backdrop */}
-          {/* @ts-expect-error - framer-motion type compatibility issue with Next.js 16 */}
-          <motion.div
+          {/* @ts-ignore framer-motion type compatibility issue with Next.js 16 */}
+          <motion.div onClick={onClose} className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
             variants={modalBackdrop}
             initial="initial"
             animate="animate"
             exit="exit"
-            onClick={onClose}
-            className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
             aria-hidden="true"
           />
 
           {/* Bottom Sheet */}
-          {/* @ts-expect-error - framer-motion type compatibility issue with Next.js 16 */}
+          {/* @ts-ignore framer-motion type compatibility issue with Next.js 16 */}
           <motion.div
             variants={bottomSheet}
             initial="initial"

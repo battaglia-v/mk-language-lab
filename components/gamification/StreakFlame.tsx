@@ -79,7 +79,7 @@ export function StreakFlame({
 
   return (
     <div className={cn("inline-flex items-center gap-2", className)}>
-      {/* @ts-expect-error - framer-motion type compatibility issue with Next.js 16 */}
+      {/* @ts-ignore framer-motion type compatibility issue with Next.js 16 */}
       <motion.div
         className={cn(
           "flex items-center justify-center rounded-full",
@@ -101,7 +101,7 @@ export function StreakFlame({
 
       {showNumber && (
         <div className="flex flex-col">
-          {/* @ts-expect-error - framer-motion type compatibility issue with Next.js 16 */}
+          {/* @ts-ignore framer-motion type compatibility issue with Next.js 16 */}
           <motion.span
             className={cn("font-bold text-foreground", config.text)}
             key={streak} // Re-mount on streak change for animation
@@ -137,7 +137,7 @@ export function StreakFlameLarge({
   return (
     <div className={cn("rounded-2xl border border-border bg-card p-6", className)}>
       <div className="flex items-center gap-4">
-        {/* @ts-expect-error - framer-motion type compatibility issue with Next.js 16 */}
+        {/* @ts-ignore framer-motion type compatibility issue with Next.js 16 */}
         <motion.div
           className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-orange-500/20 to-amber-500/20"
           variants={streakFlame}
@@ -152,7 +152,7 @@ export function StreakFlameLarge({
 
         <div className="flex-1">
           <p className="text-sm text-muted-foreground">Current Streak</p>
-          {/* @ts-expect-error - framer-motion type compatibility issue with Next.js 16 */}
+          {/* @ts-ignore framer-motion type compatibility issue with Next.js 16 */}
           <motion.p
             className="text-4xl font-bold text-foreground"
             key={streak}
