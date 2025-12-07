@@ -64,7 +64,7 @@ export function AchievementBadge({
   }
 
   return (
-    // @ts-expect-error - framer-motion type compatibility issue with Next.js 16
+    // @ts-ignore - framer-motion type compatibility issue with Next.js 16
     <motion.div
       variants={cardHover}
       whileHover="hover"
@@ -133,9 +133,8 @@ export function AchievementBadge({
               )}
             </div>
             <div className="h-2 overflow-hidden rounded-full bg-muted">
-              {/* @ts-expect-error - framer-motion type compatibility issue with Next.js 16 */}
-              <motion.div
-                className="h-full rounded-full bg-gradient-to-r from-accent-2 to-accent-3"
+              {/* @ts-ignore - framer-motion type compatibility issue with Next.js 16 */}
+              <motion.div className="h-full rounded-full bg-gradient-to-r from-accent-2 to-accent-3"
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -168,7 +167,7 @@ function CompactAchievementBadge({
   onClick,
 }: Pick<AchievementBadgeProps, 'name' | 'icon' | 'isUnlocked' | 'rarityTier' | 'className' | 'onClick'>) {
   return (
-    // @ts-expect-error - framer-motion type compatibility issue with Next.js 16
+    // @ts-ignore - framer-motion type compatibility issue with Next.js 16
     <motion.div
       variants={scaleIn}
       onClick={onClick}

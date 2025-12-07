@@ -5,7 +5,7 @@
  * and daily goal tracking for the gamification system.
  */
 
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 
 /**
  * XP Award Reasons - determines how much XP is awarded

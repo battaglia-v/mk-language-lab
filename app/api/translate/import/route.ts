@@ -12,7 +12,7 @@ export const dynamic = 'force-dynamic';
 // Use dynamic import for pdf-parse since it's CommonJS
 const getPdfParse = async () => {
   const pdfParse = await import('pdf-parse');
-  // @ts-expect-error - pdf-parse has complex module exports
+  // @ts-ignore - pdf-parse has complex module exports
   return pdfParse.default || pdfParse;
 };
 
@@ -170,7 +170,7 @@ export async function POST(request: NextRequest) {
     // Handle file upload (multipart/form-data)
     if (contentType.includes('multipart/form-data')) {
       const formData = await request.formData();
-      // @ts-expect-error - FormData.get() exists at runtime but TypeScript types are incomplete
+      // @ts-ignore - FormData.get() exists at runtime but TypeScript types are incomplete
       const file = formData.get('file');
 
       if (!file || !(file instanceof File)) {

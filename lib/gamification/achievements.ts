@@ -5,7 +5,7 @@
  * and tracking progress towards achievements.
  */
 
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 import { awardXP, XP_AWARDS } from './xp';
 
 /**
