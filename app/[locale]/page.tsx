@@ -9,6 +9,9 @@ import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/
 import { buildLocalizedHref } from "@/components/shell/navItems";
 import { auth } from "@/lib/auth";
 
+// Force dynamic rendering to prevent caching issues with auth
+export const dynamic = 'force-dynamic';
+
 const featureIconMap = {
   translate: Languages,
   practice: Sparkles,
@@ -26,12 +29,16 @@ export default async function LocaleHome({ params }: LocalePageProps) {
   const { locale } = await params;
   const safeLocale = locales.includes(locale as (typeof locales)[number]) ? locale : locales[0];
 
-  // Redirect authenticated users to the Learn page
+  // Check authentication
   const session = await auth().catch(() => null);
+
+  // Redirect authenticated users to the Learn page BEFORE any rendering
   if (session?.user) {
     redirect(`/${safeLocale}/learn`);
+    return null; // TypeScript safety - this line never executes
   }
 
+  // Only fetch translations for unauthenticated users
   const navT = await getTranslations("nav");
   const homeT = await getTranslations("home");
 
