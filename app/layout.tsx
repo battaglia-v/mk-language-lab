@@ -131,8 +131,6 @@ export default function RootLayout({
     <html lang="en" className="dark notranslate overflow-x-hidden" translate="no" suppressHydrationWarning>
       <head>
         <meta name="google" content="notranslate" />
-        <style dangerouslySetInnerHTML={{ __html: 'body{visibility:hidden;opacity:0}body.ready{visibility:visible;opacity:1;transition:opacity 0.15s}' }} />
-        <script dangerouslySetInnerHTML={{ __html: 'if(typeof window!=="undefined"){document.addEventListener("DOMContentLoaded",()=>{document.body.classList.add("ready")})}' }} />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden theme-dark bg-[var(--mk-bg)] text-[var(--mk-text)]`}
