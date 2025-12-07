@@ -421,7 +421,7 @@ export default function TranslatePage() {
               <div
                 role="tablist"
                 aria-label={t('contextPanelLabel')}
-                className="inline-flex items-center rounded-full border border-border/60 bg-muted/20 p-1"
+                className="inline-flex items-center rounded-full border border-border/60 bg-muted/20 p-1 max-w-full min-w-0"
               >
                 <PanelToggleButton
                   icon={History}
@@ -572,7 +572,7 @@ function PanelToggleButton({ icon: Icon, label, active, onClick }: PanelToggleBu
       role="tab"
       aria-selected={active}
       className={cn(
-        'touch-target flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold transition whitespace-nowrap',
+        'touch-target flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold transition max-w-[200px] min-w-0',
         active
           ? 'border border-border/60 bg-primary text-primary-foreground'
           : 'border border-transparent text-muted-foreground hover:border-border/60 hover:text-white',
@@ -580,7 +580,7 @@ function PanelToggleButton({ icon: Icon, label, active, onClick }: PanelToggleBu
       onClick={onClick}
     >
       <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
-      {label}
+      <span className="truncate">{label}</span>
     </button>
   );
 }
