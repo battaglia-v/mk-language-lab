@@ -270,7 +270,7 @@ export async function getUserAchievementProgress(userId: string) {
   const progress = Object.entries(ACHIEVEMENTS).map(([key, achievement]) => {
     const isUnlocked = unlockedBadgeNames.has(achievement.name);
     let currentValue = 0;
-    let targetValue = achievement.condition.value;
+    const targetValue = achievement.condition.value;
 
     if (gameProgress) {
       switch (achievement.condition.type) {

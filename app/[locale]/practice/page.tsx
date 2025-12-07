@@ -54,12 +54,15 @@ export default function PracticePage() {
           return res.json();
         })
         .then((data) => {
-          const flashcards: Flashcard[] = data.cards.map((card: any) => ({
-            id: card.id,
-            source: card.macedonian,
-            target: card.english,
-            direction: 'mk-en' as const,
-          }));
+          const flashcards: Flashcard[] = data.cards.map((card: unknown) => {
+            const c = card as { id: string; macedonian: string; english: string };
+            return {
+              id: c.id,
+              source: c.macedonian,
+              target: c.english,
+              direction: 'mk-en' as const,
+            };
+          });
           setCustomDeckCards(flashcards);
         })
         .catch((error) => {
@@ -82,12 +85,15 @@ export default function PracticePage() {
     fetch('/api/practice/prompts')
       .then((res) => res.json())
       .then((prompts) => {
-        const flashcards = prompts.map((prompt: any, index: number) => ({
-          id: prompt.id || `prompt-${index}`,
-          source: prompt.macedonian,
-          target: prompt.english,
-          direction: 'mk-en' as const,
-        }));
+        const flashcards = prompts.map((prompt: unknown, index: number) => {
+          const p = prompt as { id?: string; macedonian: string; english: string };
+          return {
+            id: p.id || `prompt-${index}`,
+            source: p.macedonian,
+            target: p.english,
+            direction: 'mk-en' as const,
+          };
+        });
         setCuratedDeck(flashcards);
       })
       .catch((error) => {
@@ -268,12 +274,15 @@ export default function PracticePage() {
         return res.json();
       })
       .then((data) => {
-        const flashcards: Flashcard[] = data.cards.map((card: any) => ({
-          id: card.id,
-          source: card.macedonian,
-          target: card.english,
-          direction: 'mk-en' as const,
-        }));
+        const flashcards: Flashcard[] = data.cards.map((card: unknown) => {
+          const c = card as { id: string; macedonian: string; english: string };
+          return {
+            id: c.id,
+            source: c.macedonian,
+            target: c.english,
+            direction: 'mk-en' as const,
+          };
+        });
         setCustomDeckCards(flashcards);
       })
       .catch((error) => {

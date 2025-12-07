@@ -89,7 +89,7 @@ export function BottomSheet({
       {open && (
         <>
           {/* Backdrop */}
-          {/* @ts-ignore framer-motion type compatibility issue with Next.js 16 */}
+          {/* @ts-expect-error framer-motion type compatibility issue with Next.js 16 */}
           <motion.div onClick={onClose} className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
             variants={modalBackdrop}
             initial="initial"
@@ -99,7 +99,7 @@ export function BottomSheet({
           />
 
           {/* Bottom Sheet */}
-          {/* @ts-ignore framer-motion type compatibility issue with Next.js 16 */}
+          {/* @ts-expect-error framer-motion type compatibility issue with Next.js 16 */}
           <motion.div
             variants={bottomSheet}
             initial="initial"
@@ -167,14 +167,14 @@ export function BottomSheetTrigger({
 /**
  * Bottom sheet with list items (common pattern)
  */
-export function BottomSheetList({
+export function BottomSheetList<T>({
   items,
   onItemClick,
   renderItem,
 }: {
-  items: any[];
-  onItemClick?: (item: any) => void;
-  renderItem: (item: any) => React.ReactNode;
+  items: T[];
+  onItemClick?: (item: T) => void;
+  renderItem: (item: T) => React.ReactNode;
 }) {
   return (
     <div className="space-y-2">

@@ -17,7 +17,7 @@ const API_BASE_URL =
 function resolveProjectId(): string | undefined {
   return (
     Constants.easConfig?.projectId ??
-    // @ts-ignore – `extra.eas` only exists at runtime after Expo config loads.
+    // @ts-expect-error – `extra.eas` only exists at runtime after Expo config loads.
     Constants.expoConfig?.extra?.eas?.projectId ??
     Constants.expoConfig?.projectId
   );
