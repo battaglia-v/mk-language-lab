@@ -1,13 +1,14 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import Link from 'next/link';
-import { useLocale, useTranslations } from 'next-intl';
-import { ExternalLink, Search, PanelRightClose, PanelLeftOpen, ArrowLeft } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { ExternalLink, Search } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
+import { staggerContainer, staggerItem } from '@/lib/animations';
 
 type ResourceFile = {
   updatedAt: string;
@@ -36,15 +37,9 @@ type FlatResource = {
 
 export default function ResourcesPage() {
   const t = useTranslations('resources');
-  const translateT = useTranslations('translate');
-  const navT = useTranslations('nav');
-  const locale = useLocale();
   const [query, setQuery] = useState('');
   const [data, setData] = useState<ResourceFile | null>(null);
   const [loading, setLoading] = useState(true);
-  const [panelCollapsed, setPanelCollapsed] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
-  const [isPanelDrawerOpen, setIsPanelDrawerOpen] = useState(false);
   const [sectionFilter, setSectionFilter] = useState<string | null>(null);
 
   useEffect(() => {
@@ -90,263 +85,166 @@ export default function ResourcesPage() {
     [data],
   );
 
-  useEffect(() => {
-    const media = window.matchMedia('(min-width: 1024px)');
-    const handleChange = () => {
-      setIsDesktop(media.matches);
-    };
-
-    handleChange();
-    media.addEventListener('change', handleChange);
-
-    return () => media.removeEventListener('change', handleChange);
-  }, []);
-
-  useEffect(() => {
-    if (isDesktop) {
-      setPanelCollapsed(false);
-      setIsPanelDrawerOpen(false);
-    } else {
-      setPanelCollapsed(true);
-    }
-  }, [isDesktop]);
-
   const filtered = useMemo(() => {
-    const term = query.trim().toLowerCase();
-    return resources.filter((resource) => {
-      const matchesSection = !sectionFilter || resource.section === sectionFilter;
-      if (!matchesSection) return false;
-      if (!term) return true;
-      return (
-        resource.title.toLowerCase().includes(term) ||
-        resource.summary.toLowerCase().includes(term) ||
-        resource.section.toLowerCase().includes(term)
-      );
-    });
-  }, [query, resources, sectionFilter]);
+    let result = resources;
 
-  const updatedLabel = data
-    ? t('updatedOn', {
-        date: new Date(data.updatedAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }),
-      })
+    // Filter by section
+    if (sectionFilter) {
+      result = result.filter((r) => r.section === sectionFilter);
+    }
+
+    // Filter by search query
+    if (query) {
+      const lowerQuery = query.toLowerCase();
+      result = result.filter(
+        (r) =>
+          r.title.toLowerCase().includes(lowerQuery) ||
+          r.summary.toLowerCase().includes(lowerQuery) ||
+          r.section.toLowerCase().includes(lowerQuery),
+      );
+    }
+
+    return result;
+  }, [resources, sectionFilter, query]);
+
+  const updatedLabel = data?.updatedAt
+    ? `${t('updated', { default: 'Last updated' })}: ${new Date(data.updatedAt).toLocaleDateString()}`
     : '';
 
   return (
-    <div className="w-full min-w-0 space-y-5 sm:space-y-7">
-      <section className="lab-hero" data-testid="resources-hero">
-        <div className="flex flex-col gap-3 sm:gap-4">
-          <Button
-            asChild
-            variant="ghost"
-            size="sm"
-            className="inline-flex min-h-[44px] w-fit items-center gap-2 rounded-full border border-border/60 px-4 text-sm text-muted-foreground"
-          >
-            <Link href={`/${locale}/dashboard`} aria-label={navT('backToDashboard')}>
-              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-              {navT('backToDashboard')}
-            </Link>
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-3 pb-24 sm:gap-4 sm:pb-6">
+      {/* Compact Header - Mobile First */}
+      <header className="flex items-center justify-between gap-3">
+        <div>
+          <h1 className="text-2xl font-bold text-foreground sm:text-3xl">{t('title', { default: 'Resources' })}</h1>
+          <p className="text-sm text-muted-foreground">{t('subtitle', { default: 'Learning materials and guides' })}</p>
+        </div>
+        {data?.pdf && (
+          <Button asChild variant="outline" size="sm" className="hidden sm:flex">
+            <a href={data.pdf.url} target="_blank" rel="noreferrer">
+              <ExternalLink className="mr-2 h-4 w-4" />
+              {data.pdf.label}
+            </a>
           </Button>
-          <header className="page-header">
-            <div className="page-header-content">
-              <p className="page-header-badge">{t('badge')}</p>
-              <h1 className="page-header-title">{t('title')}</h1>
-              <p className="page-header-subtitle">{t('subtitle')}</p>
-            </div>
-          </header>
-        </div>
-      </section>
+        )}
+      </header>
 
-      <div className={cn('lab-grid w-full min-w-0', isDesktop && !panelCollapsed && 'has-panel')} data-testid="resources-workspace">
-        <div className="space-y-4">
-          <div className="glass-card w-full min-w-0 space-y-3.5 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 sm:space-y-4">
-            <div className="flex flex-col gap-3 md:flex-row md:items-center">
-              <div className="relative flex-1 min-w-0">
-                <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground sm:left-4" />
-                <Input
-                  value={query}
-                  onChange={(event) => setQuery(event.target.value)}
-                  placeholder={t('searchPlaceholder')}
-                  className="min-h-[44px] rounded-2xl border-border/60 bg-transparent pl-10 text-sm sm:h-12 sm:pl-12"
-                />
-              </div>
-              {data?.pdf ? (
-                <Button
-                  asChild
-                  variant="outline"
-                  className="min-h-[44px] rounded-full border-border/60 px-4 text-sm font-semibold text-muted-foreground hover:text-foreground sm:h-12"
-                >
-                  <a href={data.pdf.url} target="_blank" rel="noreferrer">
-                    <span className="inline-flex items-center gap-2">
-                      {data.pdf.label}
-                      <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                    </span>
-                  </a>
-                </Button>
-              ) : null}
-            </div>
-            <p className="text-xs text-muted-foreground">{updatedLabel}</p>
-            <div className="flex flex-wrap gap-3 lg:hidden">
-              <Button
-                type="button"
-                variant="outline"
-                className="inline-flex min-h-[44px] items-center gap-2 rounded-full border-border/60 px-4 text-sm font-semibold text-muted-foreground"
-                onClick={() => setIsPanelDrawerOpen(true)}
-              >
-                <PanelLeftOpen className="h-4 w-4" aria-hidden="true" />
-                {t('openAction')}
-              </Button>
-            </div>
-          </div>
-
-          <section className="glass-card w-full min-w-0 space-y-4 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6">
-            <div className="card-grid two">
-              {loading
-                ? Array.from({ length: 6 }).map((_, index) => <ResourceSkeleton key={`resource-skeleton-${index}`} />)
-                : filtered.map((resource) => <ResourceCard key={resource.id} resource={resource} />)}
-            </div>
-            {!loading && !filtered.length ? (
-              <div className="rounded-2xl border border-dashed border-border/60 bg-muted/20 p-4 text-xs text-muted-foreground sm:rounded-3xl sm:p-5 sm:text-sm">
-                {t('emptyState')}
-              </div>
-            ) : null}
-          </section>
-        </div>
-
-        {isDesktop ? (
-          !panelCollapsed ? (
-            <aside className="context-panel space-y-4">
-              <div className="flex items-center justify-between">
-                <p className="text-sm font-semibold text-white">{t('openAction')}</p>
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="icon-sm"
-                  className="min-h-[44px] min-w-[44px] rounded-full border border-border/60 text-muted-foreground"
-                  onClick={() => setPanelCollapsed(true)}
-                  aria-label={translateT('contextCollapse')}
-                >
-                  <PanelRightClose className="h-4 w-4" aria-hidden="true" />
-                </Button>
-              </div>
-              <PanelFilters
-                sections={sections}
-                sectionFilter={sectionFilter}
-                onSelect={(title) => setSectionFilter((current) => (current === title ? null : title))}
-                emptyLabel={t('emptyState')}
-              />
-            </aside>
-          ) : (
-            <div className="hidden lg:flex lg:flex-col lg:items-start lg:gap-3">
-              <Button
-                type="button"
-                variant="outline"
-                className="inline-flex min-h-[44px] items-center gap-2 rounded-full border-border/60 px-4 text-sm font-semibold text-muted-foreground"
-                onClick={() => setPanelCollapsed(false)}
-              >
-                <PanelLeftOpen className="h-4 w-4" aria-hidden="true" />
-                {t('openAction')}
-              </Button>
-            </div>
-          )
-        ) : null}
+      {/* Search Bar */}
+      <div className="relative">
+        <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+        <Input
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder={t('searchPlaceholder', { default: 'Search resources...' })}
+          className="h-12 rounded-xl pl-10"
+        />
       </div>
 
-      {!isDesktop && isPanelDrawerOpen ? (
-        <div className="fixed inset-0 z-40 flex flex-col bg-black/40 lg:hidden" role="dialog" aria-modal>
-          <button type="button" className="flex-1" aria-label={translateT('contextCollapse')} onClick={() => setIsPanelDrawerOpen(false)} />
-          <div className="w-full min-w-0 rounded-t-2xl border border-border/50 bg-background/90 p-4 shadow-2xl backdrop-blur sm:rounded-t-3xl sm:p-5">
-            <div className="mb-4 flex items-center justify-between gap-2">
-              <p className="text-sm font-semibold text-white">{t('openAction')}</p>
-              <Button
-                type="button"
-                variant="ghost"
-                size="icon-sm"
-                className="min-h-[44px] min-w-[44px] rounded-full border border-border/60 text-muted-foreground"
-                onClick={() => setIsPanelDrawerOpen(false)}
-                aria-label={translateT('contextCollapse')}
-              >
-                <PanelRightClose className="h-4 w-4" aria-hidden="true" />
-              </Button>
-            </div>
-            <PanelFilters
-              sections={sections}
-              sectionFilter={sectionFilter}
-              onSelect={(title) => {
-                setSectionFilter((current) => (current === title ? null : title));
-                setIsPanelDrawerOpen(false);
-              }}
-              emptyLabel={t('emptyState')}
-            />
-          </div>
-        </div>
-      ) : null}
-    </div>
-  );
-}
-
-type PanelFiltersProps = {
-  sections: { id: string; title: string; count: number }[];
-  sectionFilter: string | null;
-  onSelect: (title: string) => void;
-  emptyLabel: string;
-};
-
-function PanelFilters({ sections, sectionFilter, onSelect, emptyLabel }: PanelFiltersProps) {
-  return (
-    <div className="w-full min-w-0 space-y-2">
-      {sections.map((section) => (
+      {/* Horizontal Scrollable Filter Chips - Mobile First */}
+      <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
         <button
-          key={section.id}
-          type="button"
+          onClick={() => setSectionFilter(null)}
           className={cn(
-            'flex w-full min-h-[44px] items-center justify-between rounded-xl border px-3.5 py-2.5 text-left text-sm transition sm:rounded-2xl sm:px-4 sm:py-3',
-            sectionFilter === section.title
-              ? 'border-primary bg-primary/10 text-white'
-              : 'border-border/60 text-muted-foreground hover:text-foreground',
+            'inline-flex h-9 items-center gap-2 whitespace-nowrap rounded-full border px-4 text-sm font-medium transition-colors',
+            !sectionFilter
+              ? 'border-primary bg-primary text-primary-foreground'
+              : 'border-border bg-background text-foreground hover:bg-muted',
           )}
-          onClick={() => onSelect(section.title)}
         >
-          <span className="text-left text-xs leading-snug break-words sm:text-sm">{section.title}</span>
-          <span className="text-xs">{section.count}</span>
+          All
+          {!sectionFilter && (
+            <span className="rounded-full bg-primary-foreground/20 px-2 py-0.5 text-xs">
+              {resources.length}
+            </span>
+          )}
         </button>
-      ))}
-      {sections.length === 0 ? <p className="text-xs text-muted-foreground">{emptyLabel}</p> : null}
-    </div>
-  );
-}
-
-type ResourceCardProps = {
-  resource: FlatResource;
-};
-
-function ResourceCard({ resource }: ResourceCardProps) {
-  return (
-    <a
-      href={resource.url}
-      target="_blank"
-      rel="noreferrer"
-      className="glass-card group flex h-full min-h-[140px] min-w-0 flex-col justify-between rounded-2xl sm:rounded-3xl p-5 sm:p-6 text-left transition hover:border-primary"
-    >
-      <div>
-        <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground sm:text-xs sm:tracking-[0.3em]">{resource.section}</p>
-        <h3 className="mt-1.5 text-base font-semibold leading-snug text-white break-words sm:mt-2 sm:text-lg">{resource.title}</h3>
-        <p className="mt-1.5 text-xs text-muted-foreground break-words sm:mt-2 sm:text-sm">{resource.summary}</p>
+        {sections.map((section) => (
+          <button
+            key={section.id}
+            onClick={() => setSectionFilter(section.title)}
+            className={cn(
+              'inline-flex h-9 items-center gap-2 whitespace-nowrap rounded-full border px-4 text-sm font-medium transition-colors',
+              sectionFilter === section.title
+                ? 'border-primary bg-primary text-primary-foreground'
+                : 'border-border bg-background text-foreground hover:bg-muted',
+            )}
+          >
+            {section.title}
+            {sectionFilter === section.title && (
+              <span className="rounded-full bg-primary-foreground/20 px-2 py-0.5 text-xs">
+                {section.count}
+              </span>
+            )}
+          </button>
+        ))}
       </div>
-      <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground sm:mt-6">
-        <span>{resource.format ?? 'link'}</span>
-        <ExternalLink className="h-4 w-4 text-muted-foreground transition group-hover:text-primary" aria-hidden="true" />
-      </div>
-    </a>
-  );
-}
 
-function ResourceSkeleton() {
-  return (
-    <div className="glass-card rounded-3xl card-padding">
-      <Skeleton className="h-3 w-16" />
-      <Skeleton className="mt-3 h-5 w-40" />
-      <Skeleton className="mt-2 h-4 w-full" />
-      <Skeleton className="mt-2 h-4 w-3/4" />
+      {/* Updated Label */}
+      {updatedLabel && (
+        <p className="text-xs text-muted-foreground">{updatedLabel}</p>
+      )}
+
+      {/* Resource Cards Grid - Mobile First */}
+      <motion.div
+        variants={staggerContainer}
+        initial="initial"
+        animate="animate"
+        className="grid gap-3 sm:grid-cols-2 sm:gap-4"
+      >
+        {loading
+          ? Array.from({ length: 6 }).map((_, index) => (
+              <Skeleton key={index} className="h-32 rounded-xl" />
+            ))
+          : filtered.map((resource) => (
+              <motion.a
+                key={resource.id}
+                href={resource.url}
+                target="_blank"
+                rel="noreferrer"
+                variants={staggerItem}
+                className={cn(
+                  'group relative flex flex-col gap-2 rounded-xl border border-border bg-card p-3 transition-all hover:border-primary/50 hover:bg-card/80 sm:p-4',
+                )}
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <h3 className="text-sm font-semibold text-foreground group-hover:text-primary sm:text-base">
+                    {resource.title}
+                  </h3>
+                  <ExternalLink className="h-4 w-4 flex-shrink-0 text-muted-foreground group-hover:text-primary" />
+                </div>
+                <p className="line-clamp-2 text-xs text-muted-foreground sm:text-sm">
+                  {resource.summary}
+                </p>
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <span className="rounded-full bg-muted px-2 py-0.5">{resource.section}</span>
+                  {resource.format && (
+                    <span className="rounded-full bg-muted px-2 py-0.5">{resource.format}</span>
+                  )}
+                </div>
+              </motion.a>
+            ))}
+      </motion.div>
+
+      {/* Empty State */}
+      {!loading && filtered.length === 0 && (
+        <div className="rounded-xl border border-dashed border-border bg-muted/20 p-8 text-center">
+          <p className="text-sm text-muted-foreground">
+            {query
+              ? t('noResults', { default: 'No resources found matching your search.' })
+              : t('emptyState', { default: 'No resources available.' })}
+          </p>
+        </div>
+      )}
+
+      {/* Mobile PDF Download Button */}
+      {data?.pdf && (
+        <Button asChild className="sm:hidden" size="lg">
+          <a href={data.pdf.url} target="_blank" rel="noreferrer">
+            <ExternalLink className="mr-2 h-4 w-4" />
+            {data.pdf.label}
+          </a>
+        </Button>
+      )}
     </div>
   );
 }
