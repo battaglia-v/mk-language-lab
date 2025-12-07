@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { ArrowRight, BookOpen, CircleUserRound, Languages, LayoutDashboard, Newspaper, Sparkles } from "lucide-react";
@@ -6,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
 import { buildLocalizedHref } from "@/components/shell/navItems";
+import { auth } from "@/lib/auth";
 
 const featureIconMap = {
   translate: Languages,
@@ -23,6 +25,12 @@ type LocalePageProps = {
 export default async function LocaleHome({ params }: LocalePageProps) {
   const { locale } = await params;
   const safeLocale = locales.includes(locale as (typeof locales)[number]) ? locale : locales[0];
+
+  // Redirect authenticated users to the Learn page
+  const session = await auth().catch(() => null);
+  if (session?.user) {
+    redirect(`/${safeLocale}/learn`);
+  }
 
   const navT = await getTranslations("nav");
   const homeT = await getTranslations("home");
