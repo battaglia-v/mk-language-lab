@@ -2,7 +2,7 @@ import NextAuth from 'next-auth';
 import Google from 'next-auth/providers/google';
 import Facebook from 'next-auth/providers/facebook';
 import Credentials from 'next-auth/providers/credentials';
-import * as Sentry from '@sentry/nextjs';
+// import * as Sentry from '@sentry/nextjs'; // Disabled - Sentry temporarily removed
 import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 import prisma from '@/lib/prisma';
@@ -25,14 +25,15 @@ function reportAuthConfigurationIssue(message: string, extra?: Record<string, un
     console.error('[AUTH CONFIG]', message, extra ?? '');
   }
 
-  try {
-    Sentry.captureMessage(message, {
-      level: 'error',
-      ...details,
-    });
-  } catch (error) {
-    console.error('[AUTH CONFIG] Failed to report issue to Sentry', error);
-  }
+  // Sentry disabled
+  // try {
+  //   Sentry.captureMessage(message, {
+  //     level: 'error',
+  //     ...details,
+  //   });
+  // } catch (error) {
+  //   console.error('[AUTH CONFIG] Failed to report issue to Sentry', error);
+  // }
 }
 
 const providers = [];
@@ -271,11 +272,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       console.error('[AUTH ERROR]', error.name, error.message);
       console.error('[AUTH ERROR STACK]', error.stack);
 
-      try {
-        Sentry.captureException(error);
-      } catch (captureError) {
-        console.error('[AUTH LOGGER] Failed to capture error in Sentry', captureError);
-      }
+      // Sentry disabled
+      // try {
+      //   Sentry.captureException(error);
+      // } catch (captureError) {
+      //   console.error('[AUTH LOGGER] Failed to capture error in Sentry', captureError);
+      // }
     },
     warn(code) {
       console.warn('[AUTH WARN]', code);
