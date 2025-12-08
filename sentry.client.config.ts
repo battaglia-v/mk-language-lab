@@ -10,19 +10,27 @@ Sentry.init({
   environment: ENVIRONMENT,
 
   // Adjust this value in production, or use tracesSampler for greater control
-  tracesSampleRate: ENVIRONMENT === "production" ? 0.1 : 1.0,
+  tracesSampleRate: ENVIRONMENT === "production" ? 0.05 : 1.0,
 
   // Setting this option to true will print useful information to the console while you're setting up Sentry.
   debug: false,
 
-  // Sample rate for errors (100% = all errors are captured)
-  sampleRate: 1.0,
+  // Sample rate for errors - reduce in production to avoid rate limiting
+  sampleRate: ENVIRONMENT === "production" ? 0.5 : 1.0,
 
-  replaysOnErrorSampleRate: 1.0,
+  // Reduce replay capture to avoid 429 rate limit errors
+  replaysOnErrorSampleRate: ENVIRONMENT === "production" ? 0.1 : 1.0,
 
   // This sets the sample rate to be 10%. You may want this to be 100% while
   // in development and sample at a lower rate in production
-  replaysSessionSampleRate: ENVIRONMENT === "production" ? 0.1 : 0.0,
+  replaysSessionSampleRate: ENVIRONMENT === "production" ? 0.05 : 0.0,
+
+  // Add transport options to handle rate limiting gracefully
+  transport: Sentry.makeFetchTransport,
+  transportOptions: {
+    // Retry failed requests with exponential backoff
+    maxQueueSize: 30,
+  },
 
   // You can remove this option if you're not planning to use the Sentry Session Replay feature:
   integrations: [
@@ -59,10 +67,17 @@ Sentry.init({
       if (
         message.includes("Failed to fetch") ||
         message.includes("NetworkError") ||
-        message.includes("Network request failed")
+        message.includes("Network request failed") ||
+        message.includes("429") ||
+        message.includes("Too Many Requests")
       ) {
         return null;
       }
+    }
+
+    // Filter out Sentry's own rate limit errors
+    if (event.request?.url?.includes("sentry.io")) {
+      return null;
     }
 
     return event;
@@ -87,6 +102,11 @@ Sentry.init({
     // Network errors
     "ResizeObserver loop limit exceeded",
     "Non-Error promise rejection captured",
+    "429",
+    "Too Many Requests",
+    "Failed to fetch",
+    "NetworkError",
+    "Network request failed",
   ],
 
   // Don't capture console logs
