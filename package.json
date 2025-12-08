@@ -104,7 +104,7 @@
     "resend": "^6.5.2",
     "swr": "^2.3.6",
     "tailwind-merge": "^3.3.1",
-    "tamagui": "^1.137.1",
+    "tamagui": "^1.139.2",
     "zod": "^4.1.12"
   },
   "devDependencies": {
