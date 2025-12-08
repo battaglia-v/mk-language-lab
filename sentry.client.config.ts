@@ -25,13 +25,6 @@ Sentry.init({
   // in development and sample at a lower rate in production
   replaysSessionSampleRate: ENVIRONMENT === "production" ? 0.05 : 0.0,
 
-  // Add transport options to handle rate limiting gracefully
-  transport: Sentry.makeFetchTransport,
-  transportOptions: {
-    // Retry failed requests with exponential backoff
-    maxQueueSize: 30,
-  },
-
   // You can remove this option if you're not planning to use the Sentry Session Replay feature:
   integrations: [
     Sentry.replayIntegration({
