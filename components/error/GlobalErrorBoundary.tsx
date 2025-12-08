@@ -1,6 +1,6 @@
 "use client";
 
-import * as Sentry from "@sentry/nextjs";
+// import * as Sentry from "@sentry/nextjs"; // Disabled - Sentry temporarily removed
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import SupportForm from "@/components/support/SupportForm";
@@ -14,8 +14,9 @@ export default function GlobalErrorBoundary({ error, reset }: ErrorBoundaryProps
   const [isSupportModalOpen, setIsSupportModalOpen] = useState(false);
 
   useEffect(() => {
-    // Log the error to Sentry
-    Sentry.captureException(error);
+    // Log the error to Sentry - Disabled temporarily
+    // Sentry.captureException(error);
+    console.error("[Global Error Boundary]", error);
   }, [error]);
 
   return (
