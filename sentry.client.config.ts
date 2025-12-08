@@ -3,27 +3,30 @@ import * as Sentry from "@sentry/nextjs";
 const SENTRY_DSN = process.env.NEXT_PUBLIC_SENTRY_DSN;
 const ENVIRONMENT = process.env.NODE_ENV || "development";
 
-Sentry.init({
-  dsn: SENTRY_DSN,
+// Temporarily disable Sentry in production to debug 429 errors
+if (ENVIRONMENT === "production") {
+  console.log("[Sentry] Disabled in production to prevent 429 errors");
+} else {
+  Sentry.init({
+    dsn: SENTRY_DSN,
 
-  // Set environment (production, staging, development)
-  environment: ENVIRONMENT,
+    // Set environment (production, staging, development)
+    environment: ENVIRONMENT,
 
   // Adjust this value in production, or use tracesSampler for greater control
-  tracesSampleRate: ENVIRONMENT === "production" ? 0.05 : 1.0,
+  tracesSampleRate: 1.0,
 
   // Setting this option to true will print useful information to the console while you're setting up Sentry.
   debug: false,
 
-  // Sample rate for errors - reduce in production to avoid rate limiting
-  sampleRate: ENVIRONMENT === "production" ? 0.5 : 1.0,
+  // Sample rate for errors
+  sampleRate: 1.0,
 
-  // Reduce replay capture to avoid 429 rate limit errors
-  replaysOnErrorSampleRate: ENVIRONMENT === "production" ? 0.1 : 1.0,
+  // Replay capture rates
+  replaysOnErrorSampleRate: 1.0,
 
-  // This sets the sample rate to be 10%. You may want this to be 100% while
-  // in development and sample at a lower rate in production
-  replaysSessionSampleRate: ENVIRONMENT === "production" ? 0.05 : 0.0,
+  // Session replay sample rate
+  replaysSessionSampleRate: 0.0,
 
   // You can remove this option if you're not planning to use the Sentry Session Replay feature:
   integrations: [
@@ -110,3 +113,4 @@ Sentry.init({
     return breadcrumb;
   },
 });
+}
