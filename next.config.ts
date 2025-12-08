@@ -214,5 +214,5 @@ const pwaConfig = withPWA({
   register: false,
 });
 
-// Wrap the config with PWA, next-intl, and Sentry
-export default withSentryConfig(withNextIntl(pwaConfig(nextConfig)), sentryWebpackPluginOptions);
+// Wrap the config with PWA and next-intl (Sentry temporarily disabled)
+export default withNextIntl(pwaConfig(nextConfig));
