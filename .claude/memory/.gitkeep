@@ -1,0 +1,5 @@
+# This folder stores agent memory and progress tracking
+# Files in this folder help Claude Code agents:
+# - Continue work across multiple sessions
+# - Track progress on complex tasks
+# - Maintain context within token limits
