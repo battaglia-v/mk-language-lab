@@ -13,6 +13,7 @@ export function MobileTabNav() {
   const pathname = usePathname();
   const [isNarrowViewport, setIsNarrowViewport] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
 
   // Track viewport width for adaptive layout
   useEffect(() => {
@@ -23,7 +24,15 @@ export function MobileTabNav() {
 
     checkWidth();
     window.addEventListener('resize', checkWidth);
-    return () => window.removeEventListener('resize', checkWidth);
+    const onScroll = () => {
+      setHasScrolled(window.scrollY > 4);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => {
+      window.removeEventListener('resize', checkWidth);
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
   const primaryActionId: (typeof shellNavItems)[number]["id"] = "practice";
@@ -46,11 +55,17 @@ export function MobileTabNav() {
       )}
       aria-label={t("label")}
       style={{
-        paddingBottom: "env(safe-area-inset-bottom, 0px)",
+        paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 6px)",
       }}
     >
       <div className="mx-auto w-full max-w-[520px] px-3 pointer-events-auto">
-        <div className="relative isolate w-full overflow-hidden rounded-[24px] border border-white/12 bg-[#0a0d1a]/95 shadow-[0_-10px_32px_rgba(0,0,0,0.45)] backdrop-blur-2xl ring-1 ring-white/6">
+        <div className={cn(
+          "relative isolate w-full overflow-hidden rounded-[22px] border bg-[#0a0d1a]/95 backdrop-blur-2xl ring-1",
+          "transition-shadow duration-200",
+          hasScrolled
+            ? "border-white/14 ring-white/10 shadow-[0_-16px_42px_rgba(0,0,0,0.6)]"
+            : "border-white/12 ring-white/6 shadow-[0_-10px_32px_rgba(0,0,0,0.45)]"
+        )}>
           <div
             className="pointer-events-none absolute inset-0 opacity-35"
             style={{
