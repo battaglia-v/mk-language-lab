@@ -105,6 +105,8 @@ export default function TranslatePage() {
   const pasteLabel = t('paste', { default: 'Paste' }) || 'Paste';
   const historyLabel = t('history', { default: 'History' }) || 'History';
   const savedLabel = t('saved', { default: 'Saved' }) || 'Saved';
+  const historyCount = history.length;
+  const savedCount = phrases.length;
   const counterTone = (() => {
     const ratio = inputText.length / MAX_CHARACTERS;
     if (ratio >= 0.92) return 'text-red-200';
@@ -190,6 +192,9 @@ export default function TranslatePage() {
                 >
                   <History className="h-4 w-4" aria-hidden="true" />
                   <span>{historyLabel}</span>
+                  <span className="flex min-w-[1.75rem] items-center justify-center rounded-full bg-white/10 px-1.5 text-[11px] font-semibold leading-[16px] text-white/90">
+                    {historyCount}
+                  </span>
                 </Button>
               </TooltipTrigger>
               <TooltipContent side="bottom" align="center" className="text-sm">
@@ -206,6 +211,9 @@ export default function TranslatePage() {
                 >
                   <Save className="h-4 w-4" aria-hidden="true" />
                   <span>{savedLabel}</span>
+                  <span className="flex min-w-[1.75rem] items-center justify-center rounded-full bg-white/10 px-1.5 text-[11px] font-semibold leading-[16px] text-white/90">
+                    {savedCount}
+                  </span>
                 </Button>
               </TooltipTrigger>
               <TooltipContent side="bottom" align="center" className="text-sm">
@@ -215,6 +223,9 @@ export default function TranslatePage() {
           </div>
         </header>
       </TooltipProvider>
+      <p className="text-xs text-white/60 sm:hidden">
+        {t('historyTooltip', { default: 'History: recent translations' })} · {t('savedTooltip', { default: 'Saved: your phrases' })}
+      </p>
 
       {/* Link to Reader */}
       <Link
