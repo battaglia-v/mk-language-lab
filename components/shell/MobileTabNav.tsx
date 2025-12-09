@@ -55,7 +55,7 @@ export function MobileTabNav() {
       )}
       aria-label={t("label")}
       style={{
-        paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 10px)",
+        paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 12px)",
       }}
     >
       <div className="mx-auto w-full max-w-[520px] px-3 pointer-events-auto">
@@ -67,7 +67,7 @@ export function MobileTabNav() {
             : "border-white/12 ring-white/6 shadow-[0_-10px_32px_rgba(0,0,0,0.45)]"
         )}
         style={{
-          marginBottom: '6px',
+          marginBottom: '8px',
           background: isNarrowViewport ? '#0a0d1a' : undefined,
         }}>
           <div

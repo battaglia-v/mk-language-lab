@@ -747,10 +747,10 @@ a:active,
 @media (max-width: 360px) {
   :root {
     --space-gutter: 0.75rem;
-    --space-gutter-wide: 0.9rem;
-    --card-padding: 0.9rem;
-    --card-padding-lg: 1.1rem;
-    --radius-card: 18px;
+    --space-gutter-wide: 0.85rem;
+    --card-padding: 0.85rem;
+    --card-padding-lg: 1rem;
+    --radius-card: 16px;
     --radius: 14px;
   }
 
@@ -760,6 +760,24 @@ a:active,
 
   .page-header-title {
     font-size: clamp(1.25rem, 5vw, 1.5rem);
+  }
+}
+
+/* Ultra-narrow mobile page containers */
+@media (max-width: 400px) {
+  .page-shell-content,
+  .section-container,
+  .lab-hero,
+  .glass-panel,
+  .glass-card,
+  .context-panel {
+    padding-left: max(10px, var(--space-gutter) - 2px);
+    padding-right: max(10px, var(--space-gutter) - 2px);
+  }
+
+  .glass-card,
+  .card {
+    border-radius: 16px;
   }
 }
 
