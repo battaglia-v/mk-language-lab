@@ -121,7 +121,7 @@ export default function TranslatePage() {
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-3 pb-24 sm:gap-4 sm:pb-6">
       {/* Compact Header */}
-      <header className="flex items-center justify-between gap-3">
+      <header className="flex flex-col gap-3 rounded-2xl border border-white/8 bg-white/5 p-3 shadow-[0_10px_30px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between sm:p-4">
         <div>
           <h1 className="text-2xl font-bold text-foreground sm:text-3xl">
             {t('title', { default: 'Translate' })}
@@ -130,12 +130,12 @@ export default function TranslatePage() {
             {t('subtitle', { default: 'English ↔ Macedonian' })}
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 sm:justify-end">
           <Button
             variant="outline"
             size="sm"
             onClick={() => setHistoryOpen(true)}
-            className="gap-2"
+            className="gap-2 border-white/15 bg-white/10 text-foreground hover:border-primary/50 hover:bg-primary/10"
           >
             <History className="h-4 w-4" />
             <span className="hidden sm:inline">{t('history', { default: 'History' })}</span>
@@ -144,7 +144,7 @@ export default function TranslatePage() {
             variant="outline"
             size="sm"
             onClick={() => setSavedOpen(true)}
-            className="gap-2"
+            className="gap-2 border-white/15 bg-white/10 text-foreground hover:border-primary/50 hover:bg-primary/10"
           >
             <BookmarkCheck className="h-4 w-4" />
             <span className="hidden sm:inline">{t('saved', { default: 'Saved' })}</span>
@@ -155,26 +155,25 @@ export default function TranslatePage() {
       {/* Link to Reader */}
       <Link
         href={`/${locale}/reader`}
-        className="flex items-center gap-2 rounded-xl border border-border bg-card p-3 text-sm transition-colors hover:bg-muted"
+        className="flex items-center gap-3 rounded-2xl border border-white/8 bg-white/5 p-3 text-sm text-foreground shadow-[0_10px_30px_rgba(0,0,0,0.35)] transition-colors hover:border-primary/40 hover:bg-primary/5 sm:p-4"
       >
-        <BookOpen className="h-4 w-4 text-muted-foreground" />
+        <BookOpen className="h-4 w-4 text-white/80" />
         <span className="text-foreground">
           {t('tryReader', { default: 'Try Reader mode for longer texts' })}
         </span>
       </Link>
 
       {/* Direction Toggle */}
-      <div className="flex items-center justify-center gap-2 rounded-xl border border-border bg-card p-2">
+      <div className="flex flex-col gap-2 rounded-2xl border border-white/8 bg-white/5 p-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.35)] sm:flex-row sm:items-center">
         {directionOptions.map((option, index) => (
-          <>
+          <div key={option.id} className="flex w-full flex-1 items-center gap-2">
             <button
-              key={option.id}
               onClick={() => setDirectionId(option.id)}
               className={cn(
-                'flex-1 rounded-lg px-4 py-2 text-sm font-medium transition-colors',
+                'flex-1 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all',
                 directionId === option.id
-                  ? 'bg-primary text-primary-foreground'
-                  : 'text-muted-foreground hover:text-foreground',
+                  ? 'bg-white text-slate-900 shadow-[0_8px_24px_rgba(0,0,0,0.25)]'
+                  : 'border border-transparent text-white/75 hover:border-white/15 hover:bg-white/5 hover:text-white',
               )}
             >
               {option.label}
@@ -182,13 +181,13 @@ export default function TranslatePage() {
             {index === 0 && (
               <button
                 onClick={handleSwapDirections}
-                className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white/80 transition-colors hover:border-primary/60 hover:bg-primary/10 hover:text-primary"
                 aria-label={t('swapDirections', { default: 'Swap languages' })}
               >
                 <RefreshCw className="h-4 w-4" />
               </button>
             )}
-          </>
+          </div>
         ))}
       </div>
 
@@ -200,16 +199,16 @@ export default function TranslatePage() {
         }}
         className="space-y-3"
       >
-        <div className="rounded-xl border border-border bg-card p-4">
+        <div className="rounded-2xl border border-white/8 bg-white/5 p-4 shadow-[0_12px_36px_rgba(0,0,0,0.45)]">
           <Textarea
             ref={textareaRef}
             value={inputText}
             onChange={(e) => setInputText(e.target.value.slice(0, MAX_CHARACTERS))}
             placeholder={selectedDirection?.placeholder}
             maxLength={MAX_CHARACTERS}
-            className="min-h-[140px] resize-none border-0 bg-transparent p-0 text-base focus-visible:ring-0"
+            className="min-h-[160px] resize-none border-0 bg-transparent p-0 text-base text-foreground caret-primary placeholder:text-white/60 focus-visible:ring-0"
           />
-          <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
+          <div className="mt-3 flex items-center justify-between text-xs text-white/60">
             <span>{characterCount}</span>
             <Button
               type="button"
@@ -217,6 +216,7 @@ export default function TranslatePage() {
               size="sm"
               onClick={handleClear}
               disabled={!inputText}
+              className="text-white/80 hover:text-primary"
             >
               {t('clearButton', { default: 'Clear' })}
             </Button>
@@ -227,7 +227,7 @@ export default function TranslatePage() {
         <Button
           type="submit"
           size="lg"
-          className="w-full bg-gradient-to-r from-accent-2 to-accent-3 text-lg font-bold text-black hover:opacity-90"
+          className="w-full bg-gradient-to-r from-[#ffe16a] via-primary to-[#f4c542] text-lg font-bold text-slate-950 shadow-[0_18px_40px_rgba(0,0,0,0.45)] hover:brightness-[0.97]"
           disabled={isTranslating || !inputText.trim()}
         >
           {isTranslating ? (
@@ -250,7 +250,7 @@ export default function TranslatePage() {
 
       {/* Result */}
       {translatedText && (
-        <div className="space-y-3 rounded-xl border border-border bg-card p-4">
+        <div className="space-y-3 rounded-2xl border border-white/8 bg-white/5 p-4 shadow-[0_12px_36px_rgba(0,0,0,0.45)]">
           <div className="flex items-start justify-between gap-3">
             <div className="flex-1">
               <p className="text-xs text-muted-foreground">

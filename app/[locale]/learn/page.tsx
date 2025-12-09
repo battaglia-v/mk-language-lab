@@ -103,7 +103,7 @@ export default async function LearnPage() {
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 pb-24 sm:gap-5 sm:pb-6">
       {/* Compact Header with Stats */}
-      <header className="flex items-center justify-between gap-4 rounded-2xl border border-border bg-card p-4">
+      <header className="flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
         <div className="flex items-center gap-3">
           <StreakFlameCompact streak={gameProgress.streak} />
           <HeartCounter hearts={gameProgress.hearts} variant="compact" size="sm" />
@@ -120,7 +120,7 @@ export default async function LearnPage() {
       </header>
 
       {/* Daily Goal Ring */}
-      <Card>
+      <Card className="border-white/8 bg-white/5 shadow-[0_12px_36px_rgba(0,0,0,0.45)]">
         <CardHeader className="pb-4">
           <CardTitle className="text-xl">{t("dailyGoal", { default: "Daily Goal" })}</CardTitle>
           <CardDescription>
@@ -209,18 +209,21 @@ export default async function LearnPage() {
                 key={action.id}
                 href={`/${locale}${action.path}`}
                 className={cn(
-                  "group relative flex flex-col items-center gap-2 rounded-xl border border-border bg-card p-4 transition-all hover:scale-[1.02] hover:border-border/80 active:scale-[0.98]"
+                  "group relative flex flex-col items-start gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 shadow-[0_10px_30px_rgba(0,0,0,0.35)] transition-all",
+                  "hover:-translate-y-0.5 hover:border-primary/40 active:translate-y-0"
                 )}
               >
                 <div
                   className={cn(
-                    "absolute inset-0 rounded-xl bg-gradient-to-br opacity-0 transition-opacity group-hover:opacity-100",
+                    "absolute inset-0 rounded-2xl bg-gradient-to-br opacity-70 transition-opacity group-hover:opacity-100",
                     action.gradientFrom,
                     action.gradientTo
                   )}
                 />
-                <Icon className={cn("relative h-6 w-6", action.accentColor)} />
-                <span className="relative text-sm font-medium text-foreground">
+                <div className="relative z-10 flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 text-white">
+                  <Icon className={cn("h-5 w-5", action.accentColor)} />
+                </div>
+                <span className="relative z-10 text-sm font-semibold text-foreground">
                   {navT(action.id)}
                 </span>
               </Link>
@@ -230,7 +233,7 @@ export default async function LearnPage() {
       </div>
 
       {/* Stats Overview */}
-      <Card>
+      <Card className="border-white/8 bg-white/5 shadow-[0_12px_36px_rgba(0,0,0,0.45)]">
         <CardHeader>
           <CardTitle>{t("yourProgress", { default: "Your Progress" })}</CardTitle>
         </CardHeader>
