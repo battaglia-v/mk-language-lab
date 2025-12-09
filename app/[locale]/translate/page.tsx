@@ -20,6 +20,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { BottomSheet, BottomSheetList } from '@/components/ui/BottomSheet';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import {
   useTranslatorWorkspace,
   type TranslationDirectionOption,
@@ -101,6 +102,9 @@ export default function TranslatePage() {
   const isCurrentSaved = Boolean(savedMatch);
 
   const characterCount = `${inputText.length} / ${MAX_CHARACTERS}`;
+  const pasteLabel = t('paste', { default: 'Paste' }) || 'Paste';
+  const historyLabel = t('history', { default: 'History' }) || 'History';
+  const savedLabel = t('saved', { default: 'Saved' }) || 'Saved';
   const counterTone = (() => {
     const ratio = inputText.length / MAX_CHARACTERS;
     if (ratio >= 0.92) return 'text-red-200';
@@ -165,36 +169,52 @@ export default function TranslatePage() {
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-3 pb-24 sm:gap-4 sm:pb-6">
       {/* Compact Header */}
-      <header className="flex flex-col gap-3 rounded-2xl border border-white/8 bg-white/5 p-3 shadow-[0_10px_30px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between sm:p-4">
-        <div>
-          <h1 className="text-2xl font-bold text-foreground sm:text-3xl">
-            {t('title', { default: 'Translate' })}
-          </h1>
-          <p className="text-sm text-muted-foreground">
-            {t('subtitle', { default: 'English ↔ Macedonian' })}
-          </p>
-        </div>
-        <div className="flex gap-2 sm:justify-end">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setHistoryOpen(true)}
-            className="gap-2 border-white/15 bg-white/10 text-foreground hover:border-primary/50 hover:bg-primary/10"
-          >
-            <History className="h-4 w-4" />
-            <span>{t('history', { default: 'History' })}</span>
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setSavedOpen(true)}
-            className="gap-2 border-white/15 bg-white/10 text-foreground hover:border-primary/50 hover:bg-primary/10"
-          >
-            <Save className="h-4 w-4" />
-            <span>{t('saved', { default: 'Saved' })}</span>
-          </Button>
-        </div>
-      </header>
+      <TooltipProvider delayDuration={120}>
+        <header className="flex flex-col gap-3 rounded-2xl border border-white/8 bg-white/5 p-3 shadow-[0_10px_30px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between sm:p-4">
+          <div>
+            <h1 className="text-2xl font-bold text-foreground sm:text-3xl">
+              {t('title', { default: 'Translate' })}
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              {t('subtitle', { default: 'English ↔ Macedonian' })}
+            </p>
+          </div>
+          <div className="flex gap-2 sm:justify-end">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setHistoryOpen(true)}
+                  className="gap-2 border-white/15 bg-white/10 text-foreground hover:border-primary/50 hover:bg-primary/10"
+                >
+                  <History className="h-4 w-4" aria-hidden="true" />
+                  <span>{historyLabel}</span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent side="bottom" align="center" className="text-sm">
+                {t('historyTooltip', { default: 'View your recent translations' })}
+              </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setSavedOpen(true)}
+                  className="gap-2 border-white/15 bg-white/10 text-foreground hover:border-primary/50 hover:bg-primary/10"
+                >
+                  <Save className="h-4 w-4" aria-hidden="true" />
+                  <span>{savedLabel}</span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent side="bottom" align="center" className="text-sm">
+                {t('savedTooltip', { default: 'Open your saved phrases' })}
+              </TooltipContent>
+            </Tooltip>
+          </div>
+        </header>
+      </TooltipProvider>
 
       {/* Link to Reader */}
       <Link
@@ -253,7 +273,7 @@ export default function TranslatePage() {
               className="h-9 gap-2 rounded-full border border-white/10 bg-white/5 text-white/80 hover:border-primary/60 hover:bg-primary/10 hover:text-primary"
             >
               <ClipboardPaste className="h-4 w-4" />
-              <span>{t('paste', { default: 'Paste' })}</span>
+              <span>{pasteLabel}</span>
             </Button>
             <Button
               type="button"
