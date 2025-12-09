@@ -171,7 +171,7 @@ export default function TranslatePage() {
   };
 
   return (
-    <div className="mx-auto flex w-full max-w-3xl flex-col gap-3 pb-24 sm:gap-4 sm:pb-6">
+    <div className="mx-auto flex w-full max-w-3xl flex-col gap-3 pb-24 px-3 sm:gap-4 sm:px-4 sm:pb-6">
       {/* Compact Header */}
       <TooltipProvider delayDuration={120}>
         <header className="flex flex-col gap-3 rounded-2xl border border-white/8 bg-white/5 p-3 shadow-[0_10px_30px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between sm:p-4">

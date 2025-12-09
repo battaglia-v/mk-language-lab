@@ -102,7 +102,7 @@ export default async function LearnPage() {
   ];
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 pb-24 sm:gap-5 sm:pb-6">
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 pb-24 px-3 sm:gap-5 sm:px-4 sm:pb-6">
       {/* Compact Header with Stats */}
       <header className="flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
         <div className="flex items-center gap-3">

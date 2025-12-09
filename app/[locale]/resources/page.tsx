@@ -112,7 +112,7 @@ export default function ResourcesPage() {
     : '';
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-3 pb-24 sm:gap-4 sm:pb-6">
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-3 pb-24 px-3 sm:gap-4 sm:px-4 sm:pb-6">
       {/* Compact Header - Mobile First */}
       <header className="flex items-center justify-between gap-3">
         <div>
