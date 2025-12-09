@@ -55,7 +55,7 @@ export function MobileTabNav() {
       )}
       aria-label={t("label")}
       style={{
-        paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 12px)",
+        paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 14px)",
       }}
     >
       <div className="mx-auto w-full max-w-[520px] px-3 pointer-events-auto">
@@ -63,13 +63,20 @@ export function MobileTabNav() {
           "relative isolate w-full overflow-hidden rounded-[22px] border bg-[#0a0d1a]/95 backdrop-blur-2xl ring-1",
           "transition-shadow duration-200",
           hasScrolled
-            ? "border-white/14 ring-white/10 shadow-[0_-16px_42px_rgba(0,0,0,0.6)]"
-            : "border-white/12 ring-white/6 shadow-[0_-10px_32px_rgba(0,0,0,0.45)]"
+            ? "border-white/14 ring-white/10"
+            : "border-white/12 ring-white/6"
         )}
         style={{
-          marginBottom: '8px',
+          marginBottom: '12px',
           background: isNarrowViewport ? '#0a0d1a' : undefined,
+          boxShadow: hasScrolled
+            ? "0 -18px 44px rgba(0,0,0,0.55), 0 -2px 10px rgba(0,0,0,0.28)"
+            : "0 -12px 30px rgba(0,0,0,0.38), 0 -2px 8px rgba(0,0,0,0.22)",
         }}>
+          <div
+            className="pointer-events-none absolute -inset-x-10 bottom-[-14px] h-12 rounded-full bg-primary/12 blur-3xl opacity-70"
+            aria-hidden="true"
+          />
           <div
             className="pointer-events-none absolute inset-0 opacity-35"
             style={{
