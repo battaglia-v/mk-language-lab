@@ -50,7 +50,7 @@ export function MobileTabNav() {
       }}
     >
       <div className="mx-auto w-full max-w-[520px] px-3 pointer-events-auto">
-        <div className="relative isolate w-full overflow-hidden rounded-[26px] border border-white/10 bg-[#0a0d1a]/95 shadow-[0_-10px_32px_rgba(0,0,0,0.45)] backdrop-blur-2xl ring-1 ring-white/5">
+        <div className="relative isolate w-full overflow-hidden rounded-[24px] border border-white/12 bg-[#0a0d1a]/95 shadow-[0_-10px_32px_rgba(0,0,0,0.45)] backdrop-blur-2xl ring-1 ring-white/6">
           <div
             className="pointer-events-none absolute inset-0 opacity-35"
             style={{
@@ -59,7 +59,7 @@ export function MobileTabNav() {
             }}
           />
 
-          <div className="relative flex items-center justify-between gap-1.5 px-3 py-2.5 min-w-0">
+          <div className="relative flex items-center justify-between gap-1.5 px-3 py-2 min-w-0">
             <NavRail
               items={leadingItems}
               t={t}
@@ -76,7 +76,7 @@ export function MobileTabNav() {
                 aria-current={isNavItemActive(pathname, buildHref(accentItem.path)) ? "page" : undefined}
                 aria-label={t(accentItem.id)}
                 className={cn(
-                  "nav-accent-button group relative flex h-14 w-14 min-w-[3.5rem] flex-shrink-0 flex-col items-center justify-center rounded-2xl transition-all duration-200",
+                  "nav-accent-button group relative flex h-[52px] w-[52px] min-w-[3.25rem] flex-shrink-0 flex-col items-center justify-center rounded-2xl transition-all duration-200",
                   "bg-gradient-to-br from-[#ffe16a] via-primary to-[#f1b700]",
                   "shadow-[0_10px_26px_rgba(0,0,0,0.42),0_2px_10px_rgba(0,0,0,0.3)] ring-1 ring-white/40",
                   "hover:-translate-y-[2px] active:translate-y-[1px]",
@@ -140,7 +140,7 @@ function NavRail({ items, t, pathname, buildHref, label, isNarrowViewport }: Nav
               href={href}
               prefetch={true}
               aria-current={active ? "page" : undefined}
-              aria-label={isNarrowViewport ? itemLabel : undefined}
+              aria-label={itemLabel}
               className={cn(
                 "nav-item group relative flex flex-col items-center justify-center rounded-2xl transition-all duration-200 min-w-0",
                 isNarrowViewport ? "px-2 py-2" : "px-2.5 py-2.5 gap-1",
@@ -166,7 +166,7 @@ function NavRail({ items, t, pathname, buildHref, label, isNarrowViewport }: Nav
                 <span className={cn(
                   "relative z-10 text-[11px] font-semibold leading-tight text-center max-w-full whitespace-nowrap overflow-hidden text-ellipsis transition-all duration-200",
                   active
-                    ? "text-white"
+                    ? "bg-gradient-to-r from-white via-white to-primary bg-clip-text text-transparent drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)]"
                     : "text-white/70 group-hover:text-white"
                 )}>
                   {itemLabel}

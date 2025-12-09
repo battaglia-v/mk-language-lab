@@ -13,6 +13,8 @@ import {
   Trash2,
   RefreshCw,
   BookOpen,
+  ClipboardPaste,
+  Save,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -99,6 +101,13 @@ export default function TranslatePage() {
   const isCurrentSaved = Boolean(savedMatch);
 
   const characterCount = `${inputText.length} / ${MAX_CHARACTERS}`;
+  const counterTone = (() => {
+    const ratio = inputText.length / MAX_CHARACTERS;
+    if (ratio >= 0.92) return 'text-red-200';
+    if (ratio >= 0.75) return 'text-amber-200';
+    if (ratio > 0.4) return 'text-white/75';
+    return 'text-white/65';
+  })();
 
   const handleSaveToggle = () => {
     if (!currentPayload) return;
@@ -114,6 +123,41 @@ export default function TranslatePage() {
       addToast({
         type: 'success',
         description: t('phraseSaved'),
+      });
+    }
+  };
+
+  const handlePaste = async () => {
+    try {
+      if (!navigator?.clipboard?.readText) {
+        addToast({
+          type: 'error',
+          description: t('pasteUnavailable', { default: 'Clipboard access is blocked in this browser.' }),
+        });
+        return;
+      }
+
+      const clip = await navigator.clipboard.readText();
+      if (!clip) {
+        addToast({
+          type: 'info',
+          description: t('pasteEmpty', { default: 'Clipboard is empty.' }),
+        });
+        return;
+      }
+
+      const next = clip.slice(0, MAX_CHARACTERS);
+      setInputText(next);
+      textareaRef.current?.focus();
+      addToast({
+        type: 'success',
+        description: t('pasted', { default: 'Pasted text from clipboard.' }),
+      });
+    } catch (error) {
+      console.error('[translate] paste failed', error);
+      addToast({
+        type: 'error',
+        description: t('pasteError', { default: 'Unable to read clipboard. Check permissions and try again.' }),
       });
     }
   };
@@ -138,7 +182,7 @@ export default function TranslatePage() {
             className="gap-2 border-white/15 bg-white/10 text-foreground hover:border-primary/50 hover:bg-primary/10"
           >
             <History className="h-4 w-4" />
-            <span className="hidden sm:inline">{t('history', { default: 'History' })}</span>
+            <span>{t('history', { default: 'History' })}</span>
           </Button>
           <Button
             variant="outline"
@@ -146,8 +190,8 @@ export default function TranslatePage() {
             onClick={() => setSavedOpen(true)}
             className="gap-2 border-white/15 bg-white/10 text-foreground hover:border-primary/50 hover:bg-primary/10"
           >
-            <BookmarkCheck className="h-4 w-4" />
-            <span className="hidden sm:inline">{t('saved', { default: 'Saved' })}</span>
+            <Save className="h-4 w-4" />
+            <span>{t('saved', { default: 'Saved' })}</span>
           </Button>
         </div>
       </header>
@@ -200,6 +244,28 @@ export default function TranslatePage() {
         className="space-y-3"
       >
         <div className="rounded-2xl border border-white/8 bg-white/5 p-4 shadow-[0_12px_36px_rgba(0,0,0,0.45)]">
+          <div className="mb-3 flex items-center justify-end gap-2">
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={handlePaste}
+              className="h-9 gap-2 rounded-full border border-white/10 bg-white/5 text-white/80 hover:border-primary/60 hover:bg-primary/10 hover:text-primary"
+            >
+              <ClipboardPaste className="h-4 w-4" />
+              <span>{t('paste', { default: 'Paste' })}</span>
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={handleClear}
+              disabled={!inputText}
+              className="h-9 rounded-full border border-white/10 bg-white/5 px-4 text-white/80 hover:border-primary/60 hover:bg-primary/10 hover:text-primary disabled:opacity-50"
+            >
+              {t('clearButton', { default: 'Clear' })}
+            </Button>
+          </div>
           <Textarea
             ref={textareaRef}
             value={inputText}
@@ -209,17 +275,10 @@ export default function TranslatePage() {
             className="min-h-[160px] resize-none border-0 bg-transparent p-0 text-base text-foreground caret-primary placeholder:text-white/60 focus-visible:ring-0"
           />
           <div className="mt-3 flex items-center justify-between text-xs text-white/60">
-            <span>{characterCount}</span>
-            <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              onClick={handleClear}
-              disabled={!inputText}
-              className="text-white/80 hover:text-primary"
-            >
-              {t('clearButton', { default: 'Clear' })}
-            </Button>
+            <span className={cn('font-medium transition-colors', counterTone)}>{characterCount}</span>
+            <span className="text-white/60">
+              {t('charactersLabel', { default: 'Characters used' })}
+            </span>
           </div>
         </div>
 

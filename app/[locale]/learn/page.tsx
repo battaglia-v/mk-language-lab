@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
@@ -70,32 +71,32 @@ export default async function LearnPage() {
       id: "translate",
       icon: Languages,
       path: "/translate",
-      gradientFrom: "from-blue-500/10",
-      gradientTo: "to-cyan-500/5",
+      gradientFrom: "from-sky-500/16",
+      gradientTo: "to-blue-500/8",
       accentColor: "text-blue-400",
     },
     {
       id: "practice",
       icon: Sparkles,
       path: "/practice",
-      gradientFrom: "from-amber-500/10",
-      gradientTo: "to-yellow-500/5",
+      gradientFrom: "from-amber-400/18",
+      gradientTo: "to-orange-400/10",
       accentColor: "text-amber-400",
     },
     {
       id: "news",
       icon: Newspaper,
       path: "/news",
-      gradientFrom: "from-purple-500/10",
-      gradientTo: "to-pink-500/5",
+      gradientFrom: "from-purple-400/16",
+      gradientTo: "to-pink-400/10",
       accentColor: "text-purple-400",
     },
     {
       id: "resources",
       icon: BookOpen,
       path: "/resources",
-      gradientFrom: "from-green-500/10",
-      gradientTo: "to-emerald-500/5",
+      gradientFrom: "from-emerald-400/16",
+      gradientTo: "to-teal-400/8",
       accentColor: "text-green-400",
     },
   ];
@@ -202,16 +203,17 @@ export default async function LearnPage() {
           {t("quickActions", { default: "Quick Actions" })}
         </h2>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {quickActions.map((action) => {
+          {quickActions.map((action, index) => {
             const Icon = action.icon;
             return (
               <Link
                 key={action.id}
                 href={`/${locale}${action.path}`}
                 className={cn(
-                  "group relative flex flex-col items-start gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 shadow-[0_10px_30px_rgba(0,0,0,0.35)] transition-all",
+                  "group relative flex flex-col items-start gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 shadow-[0_10px_30px_rgba(0,0,0,0.35)] transition-all quick-action-animate",
                   "hover:-translate-y-0.5 hover:border-primary/40 active:translate-y-0"
                 )}
+                style={{ ["--qa-delay" as keyof CSSProperties]: `${index * 60}ms` }}
               >
                 <div
                   className={cn(
