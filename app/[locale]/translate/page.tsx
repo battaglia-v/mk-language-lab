@@ -107,6 +107,8 @@ export default function TranslatePage() {
   const savedLabel = t('saved', { default: 'Saved' }) || 'Saved';
   const historyCount = history.length;
   const savedCount = phrases.length;
+  const historyCountLabel = historyCount > 99 ? '99+' : historyCount;
+  const savedCountLabel = savedCount > 99 ? '99+' : savedCount;
   const counterTone = (() => {
     const ratio = inputText.length / MAX_CHARACTERS;
     if (ratio >= 0.92) return 'text-red-200';
@@ -193,7 +195,7 @@ export default function TranslatePage() {
                   <History className="h-4 w-4" aria-hidden="true" />
                   <span>{historyLabel}</span>
                   <span className="flex min-w-[1.75rem] items-center justify-center rounded-full bg-white/10 px-1.5 text-[11px] font-semibold leading-[16px] text-white/90">
-                    {historyCount}
+                    {historyCountLabel}
                   </span>
                 </Button>
               </TooltipTrigger>
@@ -212,7 +214,7 @@ export default function TranslatePage() {
                   <Save className="h-4 w-4" aria-hidden="true" />
                   <span>{savedLabel}</span>
                   <span className="flex min-w-[1.75rem] items-center justify-center rounded-full bg-white/10 px-1.5 text-[11px] font-semibold leading-[16px] text-white/90">
-                    {savedCount}
+                    {savedCountLabel}
                   </span>
                 </Button>
               </TooltipTrigger>

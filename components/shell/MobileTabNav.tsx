@@ -55,7 +55,7 @@ export function MobileTabNav() {
       )}
       aria-label={t("label")}
       style={{
-        paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 6px)",
+        paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 10px)",
       }}
     >
       <div className="mx-auto w-full max-w-[520px] px-3 pointer-events-auto">
@@ -65,12 +65,18 @@ export function MobileTabNav() {
           hasScrolled
             ? "border-white/14 ring-white/10 shadow-[0_-16px_42px_rgba(0,0,0,0.6)]"
             : "border-white/12 ring-white/6 shadow-[0_-10px_32px_rgba(0,0,0,0.45)]"
-        )}>
+        )}
+        style={{
+          marginBottom: '6px',
+          background: isNarrowViewport ? '#0a0d1a' : undefined,
+        }}>
           <div
             className="pointer-events-none absolute inset-0 opacity-35"
             style={{
               background:
-                "radial-gradient(circle at 18% 18%, rgba(255,255,255,0.06), transparent 42%), radial-gradient(circle at 82% 6%, rgba(246,216,59,0.09), transparent 38%)",
+                isNarrowViewport
+                  ? "radial-gradient(circle at 18% 18%, rgba(255,255,255,0.04), transparent 38%)"
+                  : "radial-gradient(circle at 18% 18%, rgba(255,255,255,0.06), transparent 42%), radial-gradient(circle at 82% 6%, rgba(246,216,59,0.09), transparent 38%)",
             }}
           />
 

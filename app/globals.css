@@ -746,10 +746,12 @@ a:active,
 /* Fix potential clamp() overflow issues on very small screens */
 @media (max-width: 360px) {
   :root {
-    --space-gutter: 0.875rem;
-    --space-gutter-wide: 1rem;
-    --card-padding: 1rem;
-    --card-padding-lg: 1.25rem;
+    --space-gutter: 0.75rem;
+    --space-gutter-wide: 0.9rem;
+    --card-padding: 0.9rem;
+    --card-padding-lg: 1.1rem;
+    --radius-card: 18px;
+    --radius: 14px;
   }
 
   h1 {
