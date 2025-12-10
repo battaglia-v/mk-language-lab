@@ -21,6 +21,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { BottomSheet, BottomSheetList } from '@/components/ui/BottomSheet';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Skeleton } from '@/components/ui/skeleton';
 import {
   useTranslatorWorkspace,
   type TranslationDirectionOption,
@@ -109,6 +110,7 @@ export default function TranslatePage() {
   const savedCount = phrases.length;
   const historyCountLabel = historyCount > 99 ? '99+' : historyCount;
   const savedCountLabel = savedCount > 99 ? '99+' : savedCount;
+  const showLoadingSkeleton = isTranslating && !translatedText;
   const counterTone = (() => {
     const ratio = inputText.length / MAX_CHARACTERS;
     if (ratio >= 0.92) return 'text-red-200';
@@ -338,6 +340,20 @@ export default function TranslatePage() {
         <Alert variant="destructive">
           <AlertDescription>{errorMessage}</AlertDescription>
         </Alert>
+      )}
+
+      {showLoadingSkeleton && (
+        <div className="space-y-3 rounded-2xl border border-white/8 bg-white/5 p-4 shadow-[0_12px_36px_rgba(0,0,0,0.45)]">
+          <div className="flex items-center justify-between gap-2">
+            <Skeleton className="h-4 w-24 rounded-lg bg-white/10" />
+            <Skeleton className="h-8 w-16 rounded-full bg-white/15" />
+          </div>
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-5/6 bg-white/10" />
+            <Skeleton className="h-4 w-full bg-white/10" />
+            <Skeleton className="h-4 w-4/5 bg-white/10" />
+          </div>
+        </div>
       )}
 
       {/* Result */}
