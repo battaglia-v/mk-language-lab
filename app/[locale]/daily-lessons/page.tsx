@@ -23,9 +23,8 @@ export default async function DailyLessonsPage() {
   const t = await getTranslations('dailyLessons');
 
   return (
-    <div className="page-shell">
-      <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6">
-        <section className="glass-card rounded-3xl card-padding-lg md:p-8" data-testid="daily-lessons-hero">
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-5 pb-24 px-3 pt-6 sm:gap-6 sm:px-4 sm:pb-10 sm:pt-8">
+      <section className="glass-card rounded-3xl card-padding-lg md:p-8" data-testid="daily-lessons-hero">
           <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
             <div className="space-y-3">
               <Badge
@@ -52,8 +51,7 @@ export default async function DailyLessonsPage() {
           </div>
         </section>
 
-        <DailyLessons limit={24} className="rounded-[32px]" dataTestId="daily-lessons-feed" />
-      </div>
+      <DailyLessons limit={24} className="rounded-[32px]" dataTestId="daily-lessons-feed" />
     </div>
   );
 }

@@ -121,8 +121,8 @@ export default function DiscoverPage() {
   }, [loadFeed]);
 
   return (
-    <div className="section-container section-container-xl section-spacing-lg">
-      <div className="mb-4 flex flex-wrap items-center gap-3">
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 pb-24 px-3 pt-6 sm:gap-10 sm:px-4 sm:pb-12 sm:pt-8">
+      <div className="flex flex-wrap items-center gap-3">
         <Link
           href={`/${locale}/dashboard`}
           className="inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-1.5 text-xs text-muted-foreground"
@@ -136,21 +136,21 @@ export default function DiscoverPage() {
           <span>{navT('lessonsPathHint')}</span>
         </div>
       </div>
-      <section className="rounded-3xl border border-white/10 bg-gradient-to-b from-primary/10 via-background to-background p-8 text-foreground shadow-lg">
-        <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+      <section className="rounded-3xl border border-white/10 bg-gradient-to-b from-primary/10 via-background to-background p-6 text-foreground shadow-lg sm:p-8">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="space-y-4">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/30 px-4 py-1 text-xs uppercase tracking-wide text-muted-foreground">
               <Sparkles className="h-3.5 w-3.5 text-primary" aria-hidden />
               {t('hero.badge')}
             </div>
             <div className="space-y-3">
-              <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+              <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
                 {t('hero.title')}
               </h1>
-              <p className="text-base text-muted-foreground sm:text-lg">{t('hero.subtitle')}</p>
+              <p className="text-sm text-muted-foreground sm:text-lg">{t('hero.subtitle')}</p>
             </div>
           </div>
-          <div className="space-y-4 rounded-2xl bg-background/60 p-6 shadow-inner lg:max-w-sm">
+          <div className="space-y-4 rounded-2xl bg-background/60 p-5 shadow-inner lg:max-w-sm">
             <p className="text-sm font-medium text-muted-foreground">{t('hero.systemsTitle')}</p>
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
@@ -176,6 +176,17 @@ export default function DiscoverPage() {
           </div>
         </div>
       </section>
+
+      {isRefreshing && feed && (
+        <div className="space-y-2 rounded-2xl border border-white/8 bg-white/5 p-4 shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
+          <Skeleton className="h-3 w-28 bg-white/10" />
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+            <Skeleton className="h-4 bg-white/10" />
+            <Skeleton className="h-4 bg-white/10" />
+            <Skeleton className="h-4 bg-white/10" />
+          </div>
+        </div>
+      )}
 
       <section aria-labelledby="discover-categories" className="space-y-6">
         <div className="flex flex-wrap items-center justify-between gap-4">
