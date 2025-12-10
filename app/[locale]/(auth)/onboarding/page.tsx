@@ -176,7 +176,7 @@ export default function OnboardingPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[var(--brand-red,#e63946)]/5 via-white to-[var(--brand-plum,#7a4988)]/5">
-      <div className="mx-auto max-w-4xl px-6 py-12 sm:px-8 lg:px-12">
+      <div className="mx-auto flex w-full max-w-4xl flex-col gap-6 px-3 pb-24 pt-10 sm:px-5 sm:pb-16 sm:pt-12 lg:px-8">
         {/* Header */}
         <div className="mb-8 text-center">
           <div className="mb-4 inline-flex items-center justify-center gap-2 text-[var(--brand-red,#e63946)]">
