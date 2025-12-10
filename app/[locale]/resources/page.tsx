@@ -191,38 +191,50 @@ export default function ResourcesPage() {
         animate="animate"
         className="grid gap-3 sm:grid-cols-2 sm:gap-4"
       >
-        {loading
-          ? Array.from({ length: 6 }).map((_, index) => (
-              <Skeleton key={index} className="h-32 rounded-xl" />
-            ))
-          : filtered.map((resource) => (
-              <motion.a
-                key={resource.id}
-                href={resource.url}
-                target="_blank"
-                rel="noreferrer"
-                variants={staggerItem}
-                className={cn(
-                  'group relative flex flex-col gap-2 rounded-xl border border-border bg-card p-3 transition-all hover:border-primary/50 hover:bg-card/80 sm:p-4',
+        {loading ? (
+          Array.from({ length: 6 }).map((_, index) => (
+            <div
+              key={index}
+              className="rounded-xl border border-white/10 bg-white/5 p-3 shadow-[0_10px_30px_rgba(0,0,0,0.35)] sm:p-4"
+            >
+              <Skeleton className="h-4 w-24 bg-white/10" />
+              <div className="mt-3 space-y-2">
+                <Skeleton className="h-3 w-full bg-white/10" />
+                <Skeleton className="h-3 w-5/6 bg-white/10" />
+                <Skeleton className="h-3 w-2/3 bg-white/10" />
+              </div>
+            </div>
+          ))
+        ) : (
+          filtered.map((resource) => (
+            <motion.a
+              key={resource.id}
+              href={resource.url}
+              target="_blank"
+              rel="noreferrer"
+              variants={staggerItem}
+              className={cn(
+                'group relative flex flex-col gap-2 rounded-xl border border-border bg-card p-3 transition-all hover:border-primary/50 hover:bg-card/80 sm:p-4',
+              )}
+            >
+              <div className="flex items-start justify-between gap-2">
+                <h3 className="text-sm font-semibold text-foreground group-hover:text-primary sm:text-base">
+                  {resource.title}
+                </h3>
+                <ExternalLink className="h-4 w-4 flex-shrink-0 text-muted-foreground group-hover:text-primary" />
+              </div>
+              <p className="line-clamp-2 text-xs text-muted-foreground sm:text-sm">
+                {resource.summary}
+              </p>
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <span className="rounded-full bg-muted px-2 py-0.5">{resource.section}</span>
+                {resource.format && (
+                  <span className="rounded-full bg-muted px-2 py-0.5">{resource.format}</span>
                 )}
-              >
-                <div className="flex items-start justify-between gap-2">
-                  <h3 className="text-sm font-semibold text-foreground group-hover:text-primary sm:text-base">
-                    {resource.title}
-                  </h3>
-                  <ExternalLink className="h-4 w-4 flex-shrink-0 text-muted-foreground group-hover:text-primary" />
-                </div>
-                <p className="line-clamp-2 text-xs text-muted-foreground sm:text-sm">
-                  {resource.summary}
-                </p>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <span className="rounded-full bg-muted px-2 py-0.5">{resource.section}</span>
-                  {resource.format && (
-                    <span className="rounded-full bg-muted px-2 py-0.5">{resource.format}</span>
-                  )}
-                </div>
-              </motion.a>
-            ))}
+              </div>
+            </motion.a>
+          ))
+        )}
       </motion.div>
 
       {/* Empty State */}
