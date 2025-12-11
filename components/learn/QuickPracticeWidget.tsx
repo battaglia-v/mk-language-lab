@@ -249,6 +249,7 @@ export function QuickPracticeWidget({
   const difficultyLabelText = t('practiceDifficultyLabel');
   const talismansEmptyText = t('practiceTalismansEmpty');
   const audioLabel = t('practiceAudioPromptLabel');
+  const audioComingSoonLabel = t('practiceAudioComingSoon');
   const isReady = Boolean(currentItem) && !isLoadingPrompts && hasAvailablePrompts;
   const progressValueLabel = `${normalizedCorrect}/${SESSION_TARGET}`;
   const resolvedPromptNotice =
@@ -424,6 +425,8 @@ export function QuickPracticeWidget({
               (currentItem?.audioClipUrl ? { url: currentItem.audioClipUrl, autoplay: true } : undefined)
             }
             audioLabel={audioLabel}
+            audioComingSoonLabel={audioComingSoonLabel}
+            showAudioComingSoon={true}
           />
         </div>
 

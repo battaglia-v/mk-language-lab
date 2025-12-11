@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { Volume2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { PracticeAudioClip } from '@/components/learn/quick-practice/types';
 
@@ -13,6 +14,8 @@ type QuickPracticePromptProps = {
   isModalVariant: boolean;
   audioClip?: PracticeAudioClip | { url: string };
   audioLabel: string;
+  audioComingSoonLabel?: string;
+  showAudioComingSoon?: boolean;
 };
 
 export function QuickPracticePrompt({
@@ -26,6 +29,8 @@ export function QuickPracticePrompt({
   isModalVariant,
   audioClip,
   audioLabel,
+  audioComingSoonLabel = 'Audio Coming Soon',
+  showAudioComingSoon = true,
 }: QuickPracticePromptProps) {
   return (
     <div
@@ -74,6 +79,11 @@ export function QuickPracticePrompt({
               Your browser does not support the audio element.
             </audio>
           ) : null}
+        </div>
+      ) : showAudioComingSoon ? (
+        <div className="flex items-center gap-2 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2">
+          <Volume2 className="h-4 w-4 text-amber-500" aria-hidden="true" />
+          <span className="text-xs font-medium text-amber-500">{audioComingSoonLabel}</span>
         </div>
       ) : null}
     </div>

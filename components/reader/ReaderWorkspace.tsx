@@ -310,7 +310,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
           label={t('directionsGroupLabel')}
           swapLabel={t('swapDirections')}
         />
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-2.5">
+        <div className="grid grid-cols-3 gap-2 sm:gap-2.5">
           <Button
             type="button"
             variant={revealMode === 'hidden' ? 'default' : 'outline'}
@@ -336,6 +336,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
             size="sm"
             onClick={() => setFocusMode((prev) => !prev)}
             className="w-full rounded-lg min-h-[40px] text-xs sm:text-sm"
+            title={t('readerFocusTooltip', { default: 'Focus mode highlights one word at a time for easier learning' })}
           >
             <Focus className="h-3.5 w-3.5" aria-hidden="true" />
             <span className="ml-1.5">
@@ -350,9 +351,9 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
             size="sm"
             disabled={!analyzedData}
             onClick={() => void handleCopyTranslation()}
-            className="col-span-2 sm:col-span-1 w-full rounded-lg min-h-[40px] text-xs sm:text-sm"
+            className="w-full rounded-lg min-h-[40px] text-xs sm:text-sm"
           >
-            {copied ? t('copied', { default: 'Copied' }) : t('readerCopyTranslation', { default: 'Copy full translation' })}
+            {copied ? t('copied', { default: 'Copied' }) : t('readerCopyTranslation', { default: 'Copy translation' })}
           </Button>
         </div>
       </div>
@@ -611,8 +612,8 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
           <WordByWordDisplay data={analyzedData} revealMode={revealMode} focusMode={focusMode} />
 
           {sentences.length > 0 && (
-            <div className="space-y-3 rounded-2xl border border-border/40 bg-white/3 p-4 sm:p-5">
-              <div className="flex items-center justify-between gap-2">
+            <div className="space-y-4 rounded-2xl border border-border/40 bg-white/3 p-4 sm:p-6">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-center gap-2">
                   <Sparkles className="h-4 w-4 text-primary" aria-hidden="true" />
                   <p className="text-sm font-semibold">
@@ -624,23 +625,23 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                 </span>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {sentences.map((sentence) => {
                   const saved = isSavedSentence(sentence.id);
                   return (
                     <div
                       key={sentence.id}
-                      className="rounded-xl bg-[#0c1224]/80 border border-border/40 p-3 sm:p-4 shadow-inner space-y-2"
+                      className="rounded-xl bg-[#0c1224]/80 border border-border/40 p-4 sm:p-5 shadow-inner space-y-3"
                     >
-                      <p className="text-base font-semibold text-foreground leading-relaxed">{sentence.text}</p>
-                      <p className="text-sm text-primary/90">{sentence.translation}</p>
-                      <div className="flex flex-wrap gap-2">
+                      <p className="text-base sm:text-lg font-semibold text-foreground leading-relaxed">{sentence.text}</p>
+                      <p className="text-sm sm:text-base text-primary/90 leading-relaxed">{sentence.translation}</p>
+                      <div className="flex flex-wrap gap-2 pt-1">
                         <Button
                           type="button"
                           size="sm"
                           variant={saved ? 'secondary' : 'outline'}
                           onClick={() => toggleSaveSentence(sentence)}
-                          className="rounded-full"
+                          className="rounded-full min-h-[44px] px-4"
                         >
                           {saved ? (
                             <BookmarkCheck className="h-4 w-4" aria-hidden="true" />
@@ -658,7 +659,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                           size="sm"
                           variant="ghost"
                           onClick={() => void handleCopySentence(sentence)}
-                          className="rounded-full"
+                          className="rounded-full min-h-[44px] px-4"
                         >
                           <CopyIcon className="h-4 w-4" aria-hidden="true" />
                           <span className="ml-2">
@@ -672,7 +673,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                           size="sm"
                           variant="ghost"
                           onClick={() => handleListen(sentence.text)}
-                          className="rounded-full"
+                          className="rounded-full min-h-[44px] px-4"
                         >
                           <Volume2 className="h-4 w-4" aria-hidden="true" />
                           <span className="ml-2">{t('readerListen', { default: 'Listen' })}</span>

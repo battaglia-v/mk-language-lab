@@ -396,13 +396,16 @@ export default function NewsPage() {
                         />
                       </picture>
                     ) : null}
-                    {/* Fallback icon - always present, hidden when image loads successfully */}
+                    {/* Fallback - styled with source branding when images fail to load */}
                     <div 
                       data-fallback
-                      className="absolute inset-0 items-center justify-center bg-gradient-to-br from-slate-700 via-slate-600 to-slate-700"
+                      className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-slate-800/95 via-slate-700/90 to-slate-800/95"
                       style={{ display: item.image ? 'none' : 'flex' }}
                     >
-                      <Newspaper className="h-12 w-12 text-slate-400" />
+                      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-sm">
+                        <Newspaper className="h-8 w-8 text-slate-300" />
+                      </div>
+                      <span className="text-xs font-medium text-slate-400">{item.sourceName}</span>
                     </div>
                     <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent" />
                     <Badge variant="secondary" className="absolute left-4 bottom-3 text-[11px] bg-black/50 text-white backdrop-blur">

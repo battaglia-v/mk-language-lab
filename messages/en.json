@@ -262,6 +262,7 @@
     "practiceTalismansEmpty": "Maintain 100% accuracy or a 10-card streak to unlock talismans.",
     "practiceTalismanMultiplier": "+{value}% XP boost",
     "practiceAudioPromptLabel": "Audio prompt",
+    "practiceAudioComingSoon": "Audio Coming Soon",
     "practiceSavedDeckTitle": "Saved phrases deck",
     "practiceSavedDeckLoading": "Loading your translator phrases…",
     "practiceSavedDeckEmpty": "Save translator results to unlock this deck.",
@@ -890,7 +891,7 @@
         }
       },
       "wordInputLabel": "Submit your translation",
-      "wordInputPlaceholder": "Type the English or Macedonian word",
+      "wordInputPlaceholder": "Type your answer...",
       "wordInputHelper": "Press Enter or tap Submit to check your answer.",
       "submitWord": "Submit",
       "revealAnswer": "Reveal answer",

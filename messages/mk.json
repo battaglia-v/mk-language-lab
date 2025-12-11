@@ -262,6 +262,7 @@
     "practiceTalismansEmpty": "Заработи талисман со 100% точност или серија од 10.",
     "practiceTalismanMultiplier": "+{value}% XP бонус",
     "practiceAudioPromptLabel": "Аудио задача",
+    "practiceAudioComingSoon": "Аудио наскоро",
     "practiceSavedDeckTitle": "Сет од зачувани фрази",
     "practiceSavedDeckLoading": "Се вчитуваат фразите од преведувачот…",
     "practiceSavedDeckEmpty": "Зачувај преводи за да го отклучиш овој сет.",
@@ -916,7 +917,7 @@
         }
       },
       "wordInputLabel": "Испрати го твојот превод",
-      "wordInputPlaceholder": "Внеси англиски или македонски збор",
+      "wordInputPlaceholder": "Внеси одговор...",
       "wordInputHelper": "Притисни Enter или Испрати за да го провериш одговорот.",
       "submitWord": "Испрати",
       "revealAnswer": "Прикажи одговор",

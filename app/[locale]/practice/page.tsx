@@ -640,35 +640,35 @@ export default function PracticePage() {
               )}
             </form>
 
-            <div className="mt-4 grid grid-cols-4 gap-3 sm:mt-6 sm:grid-cols-5 sm:gap-4 w-full min-w-0">
+            <div className="mt-4 grid grid-cols-4 gap-2 sm:mt-6 sm:grid-cols-5 sm:gap-4 w-full min-w-0">
               <Button
                 variant="outline"
                 className="min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105"
                 onClick={goPrevious}
                 disabled={!deck.length}
+                aria-label="Previous card"
               >
-                <ArrowLeft className="mr-1 sm:mr-2 h-4 w-4 flex-shrink-0" aria-hidden="true" />
-                <span className="hidden sm:inline truncate">Prev</span>
-                <span className="sm:hidden">←</span>
+                <ArrowLeft className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
+                <span className="sr-only sm:not-sr-only sm:ml-2">Prev</span>
               </Button>
               <Button
                 variant="secondary"
-                className="col-span-2 sm:col-span-3 min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105"
+                className="col-span-2 sm:col-span-3 min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105 px-2 sm:px-4"
                 onClick={toggleReveal}
                 disabled={!deck.length}
               >
-                <Eye className="mr-2 h-4 w-4" aria-hidden="true" />
-                <span className="text-sm sm:text-base">{t('drills.revealAnswer')}</span>
+                <Eye className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
+                <span className="ml-1.5 sm:ml-2 text-xs sm:text-base truncate">{t('drills.revealAnswer')}</span>
               </Button>
               <Button
                 variant="outline"
                 className="min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105"
                 onClick={goNext}
                 disabled={!deck.length}
+                aria-label="Next card"
               >
-                <span className="hidden sm:inline truncate">Next</span>
-                <span className="sm:hidden">→</span>
-                <ArrowRight className="ml-1 sm:ml-2 h-4 w-4 flex-shrink-0" aria-hidden="true" />
+                <span className="sr-only sm:not-sr-only sm:mr-2">Next</span>
+                <ArrowRight className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
               </Button>
             </div>
             <p className="text-center text-xs text-muted-foreground sm:text-left">

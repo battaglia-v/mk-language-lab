@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { ReaderWorkspace } from '@/components/reader/ReaderWorkspace';
 import type { ReaderDirectionOption } from '@/components/translate/useReaderWorkspace';
@@ -18,14 +18,6 @@ import type { ReaderDirectionOption } from '@/components/translate/useReaderWork
  */
 export default function ReaderPage() {
   const t = useTranslations('translate');
-  // Visible version badge to verify deploy; update when pushing reader UI changes.
-  const readerVersion = 'Reader UI 1.2.1 • cache-bust';
-
-  const handleCacheRefresh = useCallback(() => {
-    const url = new URL(window.location.href);
-    url.searchParams.set('v', Date.now().toString());
-    window.location.href = url.toString();
-  }, []);
 
   const directionOptions: ReaderDirectionOption[] = useMemo(
     () => [
@@ -66,18 +58,7 @@ export default function ReaderPage() {
               Import &amp; Analyze
             </span>
           </div>
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-full border border-white/20 bg-black/30 px-3 py-1 text-[11px] font-semibold text-foreground/80">
-              {readerVersion}
-            </span>
-            <button
-              type="button"
-              onClick={handleCacheRefresh}
-              className="rounded-full border border-primary/50 bg-primary/10 px-3 py-1 text-[11px] font-semibold text-primary shadow-sm hover:border-primary/70 hover:bg-primary/15"
-            >
-              Reload latest
-            </button>
-          </div>
+          {/* Version badge removed for production - enable via feature flag if needed for debugging */}
         </div>
         <p className="text-sm text-muted-foreground sm:text-base max-w-3xl">
           {t('readerEmptyDescription', {

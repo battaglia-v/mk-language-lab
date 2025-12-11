@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useCallback, useMemo, useRef, useState } from 'react';
+import { FormEvent, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import {
@@ -39,7 +39,6 @@ export default function TranslatePage() {
   const locale = useLocale();
   const { addToast } = useToast();
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-  const translateVersion = 'Translate UI 1.1.0 • cache-bust';
 
   const [historyOpen, setHistoryOpen] = useState(false);
   const [savedOpen, setSavedOpen] = useState(false);
@@ -176,12 +175,6 @@ export default function TranslatePage() {
     }
   };
 
-  const handleCacheRefresh = useCallback(() => {
-    const url = new URL(window.location.href);
-    url.searchParams.set('v', Date.now().toString());
-    window.location.href = url.toString();
-  }, []);
-
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-3 pb-24 px-3 sm:gap-4 sm:px-4 sm:pb-6">
       {/* Back Navigation */}
@@ -207,20 +200,7 @@ export default function TranslatePage() {
             <p className="text-sm text-muted-foreground">
               {t('subtitle', { default: 'English ↔ Macedonian' })}
             </p>
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-semibold text-white/80">
-                {translateVersion}
-              </span>
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                onClick={handleCacheRefresh}
-                className="h-8 rounded-full border border-primary/50 bg-primary/10 px-3 text-[11px] font-semibold text-primary hover:border-primary/70 hover:bg-primary/15"
-              >
-                Reload latest
-              </Button>
-            </div>
+            {/* Version badge removed for production */}
           </div>
           <div className="flex gap-2 sm:justify-end">
             <Tooltip>

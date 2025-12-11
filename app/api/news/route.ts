@@ -655,7 +655,7 @@ export async function GET(request: NextRequest) {
   }
 
   const abortController = new AbortController();
-  const timeout = setTimeout(() => abortController.abort(), 8000);
+  const timeout = setTimeout(() => abortController.abort(), 15000); // Increased timeout to 15s
 
   try {
     const results = await Promise.all(
@@ -664,7 +664,11 @@ export async function GET(request: NextRequest) {
           const items = await fetchFeed(source, abortController.signal);
           return { source, items };
         } catch (error) {
-          return { source, items: [], error: (error as Error).message };
+          // Return empty results on abort or other errors - don't propagate
+          const errorMessage = (error as Error).name === 'AbortError' 
+            ? `${source.name}: Request timed out` 
+            : (error as Error).message;
+          return { source, items: [], error: errorMessage };
         }
       })
     );
@@ -698,7 +702,17 @@ export async function GET(request: NextRequest) {
 
     const payloadItems = (limitedItems.length > 0 ? limitedItems : FALLBACK_ITEMS).map((item) => ({ ...item }));
 
-    await enrichPreviews(payloadItems, abortController.signal);
+    // Wrap enrichPreviews in try-catch to handle abort gracefully
+    try {
+      await enrichPreviews(payloadItems, abortController.signal);
+    } catch (error) {
+      // If enrichment times out, continue with whatever data we have
+      if ((error as Error).name !== 'AbortError') {
+        console.error('Error enriching previews:', error);
+      }
+      // Add timeout warning to errors array
+      errors.push('Preview enrichment timed out - some images may be missing');
+    }
 
     // Filter out time.mk articles without valid images (Option 1: prevent broken images)
     const filteredItems = payloadItems.filter((item) => {
@@ -724,6 +738,26 @@ export async function GET(request: NextRequest) {
       {
         headers: {
           'Cache-Control': 'public, s-maxage=180, stale-while-revalidate=300',
+        },
+      }
+    );
+  } catch (error) {
+    // Handle any unexpected errors gracefully - return fallback data
+    console.error('News API error:', error);
+    return NextResponse.json(
+      {
+        items: FALLBACK_ITEMS,
+        meta: {
+          count: FALLBACK_ITEMS.length,
+          total: FALLBACK_ITEMS.length,
+          fetchedAt: new Date().toISOString(),
+          errors: [(error as Error).message || 'Failed to fetch news'],
+        },
+        sources: NEWS_SOURCES,
+      },
+      {
+        headers: {
+          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120',
         },
       }
     );
