@@ -439,7 +439,6 @@ export function QuickPracticeWidget({
           setDifficulty={setDifficulty}
           difficultyOptions={difficultyOptions}
           difficultyLabelText={difficultyLabelText}
-          selectedDifficultyLabel={selectedDifficultyOption.label}
           answer={answer}
           setAnswer={setAnswer}
           placeholder={placeholder}
