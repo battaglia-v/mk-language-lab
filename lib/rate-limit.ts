@@ -42,6 +42,15 @@ export const supportRateLimit = redis ? new Ratelimit({
   prefix: '@upstash/ratelimit/support',
 }) : null;
 
+// Tutor API - Strict limits due to expensive OpenAI API calls
+// 15 requests per minute per IP
+export const tutorRateLimit = redis ? new Ratelimit({
+  redis,
+  limiter: Ratelimit.slidingWindow(15, '60 s'),
+  analytics: true,
+  prefix: '@upstash/ratelimit/tutor',
+}) : null;
+
 /**
  * Helper function to apply rate limiting to an API route
  * Returns true if request should proceed, false if rate limited

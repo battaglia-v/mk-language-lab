@@ -6,6 +6,7 @@ import {
   RateLimitError,
   createErrorResponse,
 } from '@/lib/errors';
+import { tutorRateLimit, checkRateLimit } from '@/lib/rate-limit';
 
 type TutorMessage = {
   role: 'user' | 'assistant';
@@ -105,6 +106,25 @@ Format your responses clearly with examples, and always use Cyrillic script (not
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting - protect expensive OpenAI API
+    const ip = request.headers.get('x-forwarded-for') ?? request.headers.get('x-real-ip') ?? '127.0.0.1';
+    const { success, limit, reset, remaining } = await checkRateLimit(tutorRateLimit, ip);
+
+    if (!success) {
+      return NextResponse.json(
+        { error: 'Rate limit exceeded. Please try again later.' },
+        {
+          status: 429,
+          headers: {
+            'X-RateLimit-Limit': limit.toString(),
+            'X-RateLimit-Remaining': remaining.toString(),
+            'X-RateLimit-Reset': reset.toString(),
+            'Retry-After': Math.ceil((reset - Date.now()) / 1000).toString(),
+          }
+        }
+      );
+    }
+
     const { messages } = await request.json();
 
     if (!messages || !Array.isArray(messages)) {

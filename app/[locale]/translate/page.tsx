@@ -4,6 +4,7 @@ import { FormEvent, useCallback, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import {
+  ArrowLeft,
   Copy,
   Check,
   Loader2,
@@ -34,6 +35,7 @@ const MAX_CHARACTERS = 1800;
 
 export default function TranslatePage() {
   const t = useTranslations('translate');
+  const navT = useTranslations('nav');
   const locale = useLocale();
   const { addToast } = useToast();
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -182,6 +184,19 @@ export default function TranslatePage() {
 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-3 pb-24 px-3 sm:gap-4 sm:px-4 sm:pb-6">
+      {/* Back Navigation */}
+      <Button
+        asChild
+        variant="ghost"
+        size="sm"
+        className="inline-flex min-h-[44px] w-fit items-center gap-2 rounded-full border border-border/60 px-4 text-sm text-muted-foreground"
+      >
+        <Link href={`/${locale}/dashboard`} aria-label={navT('backToDashboard')}>
+          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+          {navT('backToDashboard')}
+        </Link>
+      </Button>
+
       {/* Compact Header */}
       <TooltipProvider delayDuration={120}>
         <header className="flex flex-col gap-3 rounded-2xl border border-white/8 bg-white/5 p-3 shadow-[0_10px_30px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between sm:p-4">

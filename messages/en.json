@@ -926,6 +926,195 @@
       }
     }
   },
+  "journeyDetail": {
+    "badge": "Journey Overview",
+    "backLabel": "Back to journeys",
+    "activeBadge": "Active Journey",
+    "setActive": "Set as active",
+    "clearActive": "Clear active",
+    "focusTitle": "What you'll focus on",
+    "stepsTitle": "Suggested first steps",
+    "practiceTitle": "Recommended practice",
+    "practiceDescription": "Start these tools to support your journey.",
+    "practiceCta": "Open practice hub",
+    "extras": {
+      "header": {
+        "title": "Continue practicing",
+        "description": "Add a focused activity or bookmark a resource to stay on track."
+      },
+      "exercisesTitle": "Focused exercises",
+      "resourcesTitle": "Additional resources",
+      "timeLabel": "{minutes} min",
+      "openLink": "Open link",
+      "family": {
+        "exercises": [
+          {
+            "title": "15-minute greeting drill",
+            "description": "Set a timer and rotate greetings, follow-up questions, and closing phrases in Macedonian. Record yourself once and note expressions that still sound unnatural.",
+            "time": "15"
+          },
+          {
+            "title": "Family story journal",
+            "description": "Write a short family anecdote in English, then translate it to Macedonian. Highlight three phrases you want the tutor to check for tone.",
+            "time": "20"
+          },
+          {
+            "title": "Tone scale exercise",
+            "description": "Say the same sentence in informal, neutral, and respectful variants. Note which suffixes and particles change.",
+            "time": "10"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Family phrase set",
+            "description": "Open the phrases module pre-filtered for family topics.",
+            "href": "/practice?section=translation&card=quick-phrases&journey=family"
+          },
+          {
+            "title": "Kinship terms table",
+            "description": "Review Macedonian kinship terms and note which differ from your everyday usage.",
+            "href": "/resources?section=reference&q=kinship"
+          },
+          {
+            "title": "Warm message reminder",
+            "description": "Use the translator to draft heartfelt messages before your next call.",
+            "href": "/translate?journey=family"
+          }
+        ]
+      },
+      "travel": {
+        "exercises": [
+          {
+            "title": "Transport role-play",
+            "description": "Write three questions for the Skopje bus station, then answer as the ticket counter. Swap roles and note which words you're missing.",
+            "time": "18"
+          },
+          {
+            "title": "Check-in checklist",
+            "description": "List all the details you want to confirm at an apartment. Translate the list and practice with a polite introduction.",
+            "time": "15"
+          },
+          {
+            "title": "Market dialogue",
+            "description": "Compose a short conversation for buying vegetables. Focus on quantities, prices, and polite expressions.",
+            "time": "12"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Travel task board",
+            "description": "Load the task board with travel cards you can move through the week.",
+            "href": "/tasks?journey=travel"
+          },
+          {
+            "title": "Transport playlist",
+            "description": "Open the library filtered for transport, lodging, and navigation.",
+            "href": "/resources?section=travel"
+          },
+          {
+            "title": "Restaurant prep set",
+            "description": "Refresh ordering and tipping phrases in the phrases module before dinner.",
+            "href": "/practice?section=phrases&journey=travel"
+          }
+        ]
+      },
+      "culture": {
+        "exercises": [
+          {
+            "title": "Culture summary",
+            "description": "Pick one article from the spotlight and summarize it with one paragraph in English and one in Macedonian.",
+            "time": "25"
+          },
+          {
+            "title": "Listening lab",
+            "description": "Shadow a 2-minute culture podcast clip, noting pronunciation wins and phrases for the tutor.",
+            "time": "20"
+          },
+          {
+            "title": "Three journal questions",
+            "description": "Answer three questions connecting the topic to your experience. Share one answer with the tutor for feedback.",
+            "time": "18"
+          }
+        ],
+        "resources": [
+          {
+            "title": "Culture shelf in library",
+            "description": "Open the curated culture and history resources in the library.",
+            "href": "/resources?section=culture"
+          },
+          {
+            "title": "Pronunciation lab",
+            "description": "Use the pronunciation module to imitate rhythms from cultural audio clips.",
+            "href": "/practice?section=pronunciation&journey=culture"
+          },
+          {
+            "title": "Culture tutor prompts",
+            "description": "When chat returns, load the culture prompts to start the conversation.",
+            "href": "/tutor"
+          }
+        ]
+      }
+    },
+    "previewTitle": "Full guide",
+    "comingSoon": "Personalized scheduling and progress tracking are in development.",
+    "previewCta": "Build your journey",
+    "goals": {
+      "family": {
+        "title": "Family Conversations",
+        "intro": "Connect with relatives through warm greetings, everyday stories, and supportive responses.",
+        "focus": [
+          "Crafting natural greetings and follow-up questions",
+          "Responding to personal stories with empathy",
+          "Switching between informal and respectful tone"
+        ],
+        "steps": [
+          "Review the phrase set for introductions and family topics.",
+          "Translate three family anecdotes in the practice space.",
+          "Ask the tutor for a role-play to practice phone calls."
+        ],
+        "practice": {
+          "phrases": "Refresh greetings and warm check-ins before your next conversation.",
+          "tutor": "Ask the tutor to role-play family calls and help with tone."
+        }
+      },
+      "travel": {
+        "title": "Travel Preparation",
+        "intro": "Feel ready for transport, lodging, and dining with confident phrases.",
+        "focus": [
+          "Key verbs and nouns for transport and directions",
+          "Questions for hotels, rentals, and reservations",
+          "Etiquette for cafés, markets, and street encounters"
+        ],
+        "steps": [
+          "Do a translation exercise focused on transport vocabulary.",
+          "Browse the travel lists in the library and save favorites.",
+          "Ask the tutor to simulate ordering at a restaurant."
+        ],
+        "practice": {
+          "tasks": "Work through a set of transport tasks to cement key words.",
+          "tutor": "Have the tutor simulate booking and check-in before you leave."
+        }
+      },
+      "culture": {
+        "title": "Cultural Literacy",
+        "intro": "Combine language learning with media, history, and cultural topics.",
+        "focus": [
+          "Exploring headlines with grammar in context",
+          "Listening to podcasts to imitate pronunciation and rhythm",
+          "Journaling reflections in Macedonian for deeper retention"
+        ],
+        "steps": [
+          "Pick a featured article and summarize it in English and Macedonian.",
+          "Shadow a three-minute audio clip and note pronunciation progress.",
+          "Ask the tutor for journal prompts related to the article."
+        ],
+        "practice": {
+          "translate": "Translate current headlines to spot grammar and phrases.",
+          "pronunciation": "Work on pronunciation with the lab to imitate new sounds."
+        }
+      }
+    }
+  },
   "resources": {
     "title": "Resources",
     "badge": "Handpicked by Андри · MLC",
