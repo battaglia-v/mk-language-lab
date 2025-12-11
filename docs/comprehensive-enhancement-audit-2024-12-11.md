@@ -21,6 +21,8 @@
 | Email verification flow | ✅ Fixed | Registration now requires email verification; added `/api/auth/verify-email` and `/api/auth/resend-verification` |
 | Self-service account deletion | ✅ Fixed | Added `/api/user/delete` with password verification, confirmation phrase, and cascade deletion |
 | Streak freeze/repair | ✅ Fixed | Added `/api/user/streak` with freeze (50 gems) and repair (100 gems) functionality |
+| Admin user management | ✅ Fixed | Added `/api/admin/users` with search, pagination, sorting; `/api/admin/users/[userId]` for details, role updates, and deletion |
+| Admin analytics dashboard | ✅ Fixed | Added `/api/admin/analytics` with daily registrations, active users, exercise stats, leaderboards, and level distribution |
 
 ---
 
