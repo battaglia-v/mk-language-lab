@@ -301,14 +301,63 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
 
   return (
     <div className="space-y-5 sm:space-y-6">
-      <DirectionToggle
-        options={directionOptions}
-        activeId={directionId}
-        onChange={setDirectionId}
-        onSwap={handleSwapDirections}
-        label={t('directionsGroupLabel')}
-        swapLabel={t('swapDirections')}
-      />
+      <div className="rounded-2xl border border-border/40 bg-white/5 p-4 sm:p-5 shadow-[0_14px_40px_rgba(0,0,0,0.25)] space-y-3">
+        <div className="flex flex-col gap-3">
+          <DirectionToggle
+            options={directionOptions}
+            activeId={directionId}
+            onChange={setDirectionId}
+            onSwap={handleSwapDirections}
+            label={t('directionsGroupLabel')}
+            swapLabel={t('swapDirections')}
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
+            <Button
+              type="button"
+              variant={revealMode === 'hidden' ? 'default' : 'outline'}
+              size="lg"
+              onClick={handleToggleReveal}
+              className="w-full rounded-xl min-h-[48px]"
+            >
+              {revealMode === 'hidden' ? (
+                <>
+                  <Eye className="h-4 w-4" aria-hidden="true" />
+                  <span className="ml-2 text-sm font-semibold">{t('readerRevealShow')}</span>
+                </>
+              ) : (
+                <>
+                  <EyeOff className="h-4 w-4" aria-hidden="true" />
+                  <span className="ml-2 text-sm font-semibold">{t('readerRevealHide')}</span>
+                </>
+              )}
+            </Button>
+            <Button
+              type="button"
+              variant={focusMode ? 'default' : 'secondary'}
+              size="lg"
+              onClick={() => setFocusMode((prev) => !prev)}
+              className="w-full rounded-xl min-h-[48px]"
+            >
+              <Focus className="h-4 w-4" aria-hidden="true" />
+              <span className="ml-2 text-sm font-semibold">
+                {focusMode
+                  ? t('readerFocusOff', { default: 'Exit focus' })
+                  : t('readerFocusOn', { default: 'Focus mode' })}
+              </span>
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              size="lg"
+              disabled={!analyzedData}
+              onClick={() => void handleCopyTranslation()}
+              className="w-full rounded-xl min-h-[48px]"
+            >
+              {copied ? t('copied', { default: 'Copied' }) : t('readerCopyTranslation', { default: 'Copy translation' })}
+            </Button>
+          </div>
+        </div>
+      </div>
 
       {recentHistory.length > 0 && (
         <div className="rounded-2xl border border-border/40 bg-white/5 px-3 py-3 sm:px-4 sm:py-3">
@@ -349,7 +398,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
       )}
 
       <form
-        className="glass-card rounded-2xl sm:rounded-[28px] p-4 sm:p-6 md:p-7 bg-gradient-to-b from-card/90 via-card/70 to-muted/40 border border-border/40 shadow-[0_24px_80px_rgba(0,0,0,0.28)]"
+        className="rounded-2xl sm:rounded-[28px] p-4 sm:p-6 md:p-7 bg-white/5 border border-border/40 shadow-[0_18px_48px_rgba(0,0,0,0.25)]"
         onSubmit={(event: FormEvent<HTMLFormElement>) => {
           event.preventDefault();
           void handleAnalyze(event);
@@ -357,10 +406,15 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
       >
         <div className="flex flex-col gap-3">
           <div className="flex items-center justify-between flex-wrap gap-2">
-            <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              {t('readerInputLabel', { default: 'Paste text to analyze' })}
-            </span>
-            <span id="reader-character-count" className="rounded-full bg-muted px-3 py-1 text-[11px] font-semibold text-muted-foreground/90">
+            <div className="flex flex-col">
+              <span className="text-sm font-semibold text-foreground">
+                {t('readerInputLabel', { default: 'Paste text to analyze' })}
+              </span>
+              <span className="text-xs text-muted-foreground">
+                {t('readerInputHelper', { default: 'Paste or type up to 5000 characters. Use Reader mode for long-form text.' })}
+              </span>
+            </div>
+            <span id="reader-character-count" className="rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold text-muted-foreground/90">
               {characterCount}
             </span>
           </div>
@@ -373,7 +427,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
             aria-label={t('readerInputLabel')}
             aria-describedby="reader-character-count"
             maxLength={MAX_CHARACTERS}
-            className="min-h-[180px] resize-none rounded-2xl border border-border/40 bg-white/5 px-3.5 py-3.5 text-base font-medium shadow-inner placeholder:text-muted-foreground sm:min-h-[220px] sm:px-4 sm:text-base focus-visible:ring-2 focus-visible:ring-primary/40"
+            className="min-h-[200px] resize-none rounded-2xl border border-white/10 bg-black/30 px-3.5 py-3.5 text-base font-medium shadow-inner placeholder:text-muted-foreground sm:min-h-[240px] sm:px-4 sm:text-base focus-visible:ring-2 focus-visible:ring-primary/40"
           />
 
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
@@ -384,7 +438,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                 size="sm"
                 onClick={handleClear}
                 disabled={!inputText && !analyzedData}
-                className="rounded-full border border-border/60"
+                className="rounded-full border border-border/60 min-h-[44px]"
               >
                 {t('clearButton')}
               </Button>
@@ -398,7 +452,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
               type="submit"
               size="lg"
               disabled={!inputText.trim() || isAnalyzing}
-              className="w-full sm:w-auto rounded-full px-6 font-semibold bg-gradient-to-r from-amber-500 to-primary text-slate-900 hover:from-amber-600 hover:to-primary/90 shadow-lg"
+              className="w-full sm:w-auto rounded-xl px-6 font-semibold min-h-[48px] bg-gradient-to-r from-amber-500 to-primary text-slate-900 hover:from-amber-600 hover:to-primary/90 shadow-lg"
             >
               {isAnalyzing ? (
                 <>
@@ -502,98 +556,71 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
       )}
 
       {analyzedData && !isAnalyzing && (
-        <div className="glass-card rounded-2xl sm:rounded-[28px] p-5 sm:p-6 md:p-8 space-y-6">
+        <div className="rounded-2xl sm:rounded-[28px] p-5 sm:p-6 md:p-8 space-y-6 bg-white/5 border border-border/40 shadow-[0_18px_48px_rgba(0,0,0,0.25)]">
           <div className="space-y-3">
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-              <span className="text-sm font-semibold text-muted-foreground/80">
-                {t('readerDifficultyLabel')}
-              </span>
-              <span
-                className={cn(
-                  'inline-flex items-center rounded-full px-3.5 py-1.5 text-xs font-semibold border shadow-sm',
-                  analyzedData.difficulty.level === 'beginner' && 'bg-green-600/12 text-green-400 border-green-600/30',
-                  analyzedData.difficulty.level === 'intermediate' && 'bg-yellow-600/12 text-yellow-400 border-yellow-600/30',
-                  analyzedData.difficulty.level === 'advanced' && 'bg-red-600/12 text-red-400 border-red-600/30'
-                )}
-              >
-                {t(`readerDifficulty${analyzedData.difficulty.level.charAt(0).toUpperCase() + analyzedData.difficulty.level.slice(1)}`)}
-              </span>
-              <span className="inline-flex items-center gap-1 rounded-full bg-white/5 px-3 py-1 text-xs font-semibold text-foreground/80 border border-border/40">
-                {t('readerFullTranslation', { default: 'Full translation' })} · {analyzedData.metadata.wordCount} {t('readerWords', { default: 'words' })}
-              </span>
-              <span className="inline-flex items-center gap-1 rounded-full bg-white/5 px-3 py-1 text-xs font-semibold text-foreground/80 border border-border/40">
-                <Clock3 className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-                {t('readerSessionTime', { default: 'Session' })}: {elapsedLabel}
-              </span>
-              <span className="inline-flex items-center gap-1 rounded-full bg-white/5 px-3 py-1 text-xs font-semibold text-foreground/80 border border-border/40">
-                <span role="img" aria-hidden="true">🔥</span>
-                {streak} {t('readerStreak', { default: 'day streak' })}
-              </span>
-            </div>
-
-            <div className="flex flex-wrap gap-2">
-              <Button
-                type="button"
-                variant={focusMode ? 'default' : 'outline'}
-                size="default"
-                onClick={() => setFocusMode((prev) => !prev)}
-                className="rounded-full font-semibold"
-              >
-                <Focus className="h-4 w-4" aria-hidden="true" />
-                <span className="ml-2">
-                  {focusMode
-                    ? t('readerFocusOff', { default: 'Exit focus' })
-                    : t('readerFocusOn', { default: 'Focus mode' })}
-                </span>
-              </Button>
-              <Button
-                type="button"
-                variant={revealMode === 'hidden' ? 'default' : 'outline'}
-                size="default"
-                onClick={handleToggleReveal}
-                className={cn(
-                  "font-semibold rounded-full",
-                  revealMode === 'hidden' && "bg-gradient-to-r from-green-600/90 to-emerald-600/90 hover:from-green-700 hover:to-emerald-700"
-                )}
-              >
-                {revealMode === 'hidden' ? (
-                  <>
-                    <Eye className="h-4 w-4" aria-hidden="true" />
-                    <span className="ml-2">{t('readerRevealShow')}</span>
-                  </>
-                ) : (
-                  <>
-                    <EyeOff className="h-4 w-4" aria-hidden="true" />
-                    <span className="ml-2">{t('readerRevealHide')}</span>
-                  </>
-                )}
-              </Button>
-              <Button
-                type="button"
-                variant="secondary"
-                size="default"
-                onClick={() => void handleCopyTranslation()}
-                className="rounded-full"
-              >
-                {copied ? t('copied', { default: 'Copied' }) : t('readerCopyTranslation', { default: 'Copy translation' })}
-              </Button>
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
+              <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2">
+                <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
+                  {t('readerDifficultyLabel')}
+                </p>
+                <p
+                  className={cn(
+                    'mt-1 inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold border shadow-sm',
+                    analyzedData.difficulty.level === 'beginner' && 'bg-green-600/12 text-green-400 border-green-600/30',
+                    analyzedData.difficulty.level === 'intermediate' && 'bg-yellow-600/12 text-yellow-400 border-yellow-600/30',
+                    analyzedData.difficulty.level === 'advanced' && 'bg-red-600/12 text-red-400 border-red-600/30'
+                  )}
+                >
+                  {t(`readerDifficulty${analyzedData.difficulty.level.charAt(0).toUpperCase() + analyzedData.difficulty.level.slice(1)}`)}
+                </p>
+              </div>
+              <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2">
+                <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
+                  {t('readerWords', { default: 'Words' })}
+                </p>
+                <p className="mt-1 text-sm font-semibold text-foreground">
+                  {analyzedData.metadata.wordCount}
+                </p>
+              </div>
+              <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2">
+                <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
+                  {t('readerSentences', { default: 'Sentences' })}
+                </p>
+                <p className="mt-1 text-sm font-semibold text-foreground">
+                  {analyzedData.metadata.sentenceCount}
+                </p>
+              </div>
+              <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2">
+                <p className="text-[11px] uppercase tracking-wide text-muted-foreground flex items-center gap-1">
+                  <Clock3 className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+                  {t('readerSessionTime', { default: 'Session' })}
+                </p>
+                <p className="mt-1 text-sm font-semibold text-foreground">{elapsedLabel}</p>
+              </div>
             </div>
           </div>
 
           <WordByWordDisplay data={analyzedData} revealMode={revealMode} focusMode={focusMode} />
 
           <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
-            <div className="rounded-xl border border-border/40 bg-white/4 px-4 py-3">
+            <div className="rounded-xl border border-border/40 bg-white/5 px-4 py-3">
               <p className="text-xs uppercase tracking-wide text-muted-foreground">{t('readerWords', { default: 'Words' })}</p>
               <p className="text-lg font-semibold text-foreground">{analyzedData.metadata.wordCount}</p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-white/4 px-4 py-3">
+            <div className="rounded-xl border border-border/40 bg-white/5 px-4 py-3">
               <p className="text-xs uppercase tracking-wide text-muted-foreground">{t('readerSentences', { default: 'Sentences' })}</p>
               <p className="text-lg font-semibold text-foreground">{analyzedData.metadata.sentenceCount}</p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-white/4 px-4 py-3 sm:col-span-1">
+            <div className="rounded-xl border border-border/40 bg-white/5 px-4 py-3 sm:col-span-1">
               <p className="text-xs uppercase tracking-wide text-muted-foreground">{t('readerSource', { default: 'Source' })}</p>
               <p className="text-sm font-semibold text-foreground">{selectedDirection?.label}</p>
+            </div>
+            <div className="rounded-xl border border-border/40 bg-white/5 px-4 py-3">
+              <p className="text-xs uppercase tracking-wide text-muted-foreground flex items-center gap-1">
+                <span role="img" aria-hidden="true">🔥</span>
+                {t('readerStreak', { default: 'Day streak' })}
+              </p>
+              <p className="mt-1 text-lg font-semibold text-foreground">{streak}</p>
             </div>
           </div>
 

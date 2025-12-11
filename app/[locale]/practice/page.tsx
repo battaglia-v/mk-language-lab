@@ -1,22 +1,58 @@
 'use client';
 
 import Link from 'next/link';
-import { FormEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, TrendingUp } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, TrendingUp, Eye, Volume2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { useSavedPhrases } from '@/components/translate/useSavedPhrases';
 import { readTranslatorHistory } from '@/lib/translator-history';
 import { fetchUserDecks } from '@/lib/custom-decks';
 import { CustomDecksDropdown } from '@/components/practice/CustomDecksDropdown';
 import type { CustomDeckSummary } from '@/lib/custom-decks';
+import type { PracticeAudioClip } from '@mk/api-client';
 
-type Flashcard = { id: string; source: string; target: string; direction: 'mk-en' | 'en-mk' };
+type Flashcard = {
+  id: string;
+  source: string;
+  target: string;
+  direction: 'mk-en' | 'en-mk';
+  category?: string | null;
+  difficulty?: 'beginner' | 'intermediate' | 'advanced' | 'mixed' | string;
+  audioClip?: PracticeAudioClip | null;
+};
 
 type DeckType = 'saved' | 'history' | 'curated' | 'custom';
+
+type PromptResponse = {
+  id?: string;
+  macedonian: string;
+  english: string;
+  category?: string | null;
+  difficulty?: string | null;
+  audioClip?: PracticeAudioClip | null;
+};
+
+const normalizeDifficulty = (value?: string | null): Flashcard['difficulty'] => {
+  const normalized = value?.toLowerCase();
+  if (normalized === 'beginner' || normalized === 'intermediate' || normalized === 'advanced') {
+    return normalized;
+  }
+  return 'mixed';
+};
+
+const formatDifficultyLabel = (value?: Flashcard['difficulty']) => {
+  if (!value) return 'Mixed';
+  const normalized = value.toString().toLowerCase();
+  if (normalized === 'beginner') return 'Beginner';
+  if (normalized === 'intermediate') return 'Intermediate';
+  if (normalized === 'advanced') return 'Advanced';
+  return 'Mixed';
+};
 
 export default function PracticePage() {
   const t = useTranslations('practiceHub');
@@ -29,6 +65,7 @@ export default function PracticePage() {
   const [customDeckCards, setCustomDeckCards] = useState<Flashcard[]>([]);
   const [activeCustomDeckId, setActiveCustomDeckId] = useState<string | null>(null);
   const [deckType, setDeckType] = useState<DeckType>('curated');
+  const [difficultyFilter, setDifficultyFilter] = useState<'all' | 'beginner' | 'intermediate' | 'advanced'>('all');
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
   const [guess, setGuess] = useState('');
@@ -36,6 +73,8 @@ export default function PracticePage() {
   const [reviewedCount, setReviewedCount] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [streak, setStreak] = useState(0);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
 
   useEffect(() => {
     setHistorySnapshot(readTranslatorHistory(32));
@@ -61,6 +100,9 @@ export default function PracticePage() {
               source: c.macedonian,
               target: c.english,
               direction: 'mk-en' as const,
+              category: undefined,
+              difficulty: 'custom',
+              audioClip: null,
             };
           });
           setCustomDeckCards(flashcards);
@@ -84,27 +126,27 @@ export default function PracticePage() {
     // Load curated deck from vocabulary database
     fetch('/api/practice/prompts')
       .then((res) => res.json())
-      .then((prompts) => {
-        const flashcards = prompts.map((prompt: unknown, index: number) => {
-          const p = prompt as { id?: string; macedonian: string; english: string };
-          return {
-            id: p.id || `prompt-${index}`,
-            source: p.macedonian,
-            target: p.english,
-            direction: 'mk-en' as const,
-          };
-        });
+      .then((prompts: PromptResponse[]) => {
+        const flashcards = prompts.map((prompt, index) => ({
+          id: prompt.id || `prompt-${index}`,
+          source: prompt.macedonian,
+          target: prompt.english,
+          direction: 'mk-en' as const,
+          category: prompt.category ?? undefined,
+          difficulty: normalizeDifficulty(prompt.difficulty),
+          audioClip: prompt.audioClip ?? null,
+        }));
         setCuratedDeck(flashcards);
       })
       .catch((error) => {
         console.error('Failed to load curated deck:', error);
         // Fallback to 5 items if API fails
         setCuratedDeck([
-          { id: 'c1', source: 'Како си?', target: 'How are you?', direction: 'mk-en' },
-          { id: 'c2', source: 'Од каде си?', target: 'Where are you from?', direction: 'mk-en' },
-          { id: 'c3', source: 'Благодарам многу.', target: 'Thank you very much.', direction: 'mk-en' },
-          { id: 'c4', source: 'Сакам кафе.', target: 'I would like coffee.', direction: 'mk-en' },
-          { id: 'c5', source: 'Колку чини ова?', target: 'How much is this?', direction: 'mk-en' },
+          { id: 'c1', source: 'Како си?', target: 'How are you?', direction: 'mk-en', difficulty: 'mixed' },
+          { id: 'c2', source: 'Од каде си?', target: 'Where are you from?', direction: 'mk-en', difficulty: 'mixed' },
+          { id: 'c3', source: 'Благодарам многу.', target: 'Thank you very much.', direction: 'mk-en', difficulty: 'mixed' },
+          { id: 'c4', source: 'Сакам кафе.', target: 'I would like coffee.', direction: 'mk-en', difficulty: 'mixed' },
+          { id: 'c5', source: 'Колку чини ова?', target: 'How much is this?', direction: 'mk-en', difficulty: 'mixed' },
         ]);
       });
   }, []);
@@ -126,6 +168,9 @@ export default function PracticePage() {
         source: phrase.directionId === 'en-mk' ? phrase.sourceText : phrase.translatedText,
         target: phrase.directionId === 'en-mk' ? phrase.translatedText : phrase.sourceText,
         direction: phrase.directionId,
+        category: undefined,
+        difficulty: 'saved',
+        audioClip: null,
       })),
     [phrases],
   );
@@ -137,11 +182,21 @@ export default function PracticePage() {
         source: entry.directionId === 'en-mk' ? entry.sourceText : entry.translatedText,
         target: entry.directionId === 'en-mk' ? entry.translatedText : entry.sourceText,
         direction: entry.directionId,
+        category: undefined,
+        difficulty: 'history',
+        audioClip: null,
       })),
     [historySnapshot],
   );
 
   const curatedFlashcards: Flashcard[] = curatedDeck;
+  const filteredCuratedDeck = useMemo(
+    () =>
+      difficultyFilter === 'all'
+        ? curatedFlashcards
+        : curatedFlashcards.filter((card) => card.difficulty === difficultyFilter),
+    [curatedFlashcards, difficultyFilter],
+  );
 
   // Determine which deck to use based on deckType and activeCustomDeckId
   const deck = deckType === 'custom' && customDeckCards.length > 0
@@ -150,10 +205,30 @@ export default function PracticePage() {
     ? savedDeck
     : deckType === 'history'
     ? historyDeck
-    : curatedFlashcards;
+    : filteredCuratedDeck;
   const total = deck.length || 1;
   const safeIndex = deck.length ? Math.min(index, deck.length - 1) : 0;
   const currentCard = deck[safeIndex];
+
+  const stopAudio = useCallback(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+    setIsPlayingAudio(false);
+  }, []);
+
+  useEffect(() => {
+    if (
+      deckType === 'curated' &&
+      difficultyFilter !== 'all' &&
+      filteredCuratedDeck.length === 0 &&
+      curatedFlashcards.length > 0
+    ) {
+      setDifficultyFilter('all');
+    }
+  }, [curatedFlashcards.length, deckType, difficultyFilter, filteredCuratedDeck.length]);
 
   useEffect(() => {
     if (safeIndex !== index) {
@@ -162,11 +237,23 @@ export default function PracticePage() {
     }
   }, [index, safeIndex]);
 
+  useEffect(
+    () => () => {
+      stopAudio();
+    },
+    [stopAudio],
+  );
+
+  useEffect(() => {
+    stopAudio();
+  }, [stopAudio, currentCard?.id]);
+
   const resetCardState = useCallback(() => {
+    stopAudio();
     setGuess('');
     setFeedback(null);
     setRevealed(false);
-  }, []);
+  }, [stopAudio]);
 
   const goNext = useCallback(() => {
     if (!deck.length) return;
@@ -185,6 +272,23 @@ export default function PracticePage() {
     setRevealed((prev) => !prev);
     setFeedback(null);
   }, [deck.length]);
+
+  const handlePlayAudio = useCallback(
+    (mode: 'normal' | 'slow' = 'normal') => {
+      const clip = currentCard?.audioClip;
+      if (!clip?.url) return;
+
+      stopAudio();
+      const src = mode === 'slow' && clip.slowUrl ? clip.slowUrl : clip.url;
+      const audio = new Audio(src);
+      audioRef.current = audio;
+      setIsPlayingAudio(true);
+      audio.onended = () => setIsPlayingAudio(false);
+      audio.onerror = () => setIsPlayingAudio(false);
+      void audio.play().catch(() => setIsPlayingAudio(false));
+    },
+    [currentCard?.audioClip, stopAudio],
+  );
 
   const handleSubmitGuess = useCallback(
     (event: FormEvent<HTMLFormElement>) => {
@@ -281,6 +385,9 @@ export default function PracticePage() {
             source: c.macedonian,
             target: c.english,
             direction: 'mk-en' as const,
+            category: undefined,
+            difficulty: 'custom',
+            audioClip: null,
           };
         });
         setCustomDeckCards(flashcards);
@@ -381,6 +488,35 @@ export default function PracticePage() {
           </div>
         </div>
 
+        <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-border/60 bg-muted/10 px-3 py-2">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+            {t('drills.difficultyLabel', { default: 'Difficulty' })}
+          </span>
+          {[
+            { value: 'all', label: t('drills.allLevels', { default: 'All' }) },
+            { value: 'beginner', label: t('drills.difficultyBeginner', { default: 'Beginner' }) },
+            { value: 'intermediate', label: t('drills.difficultyIntermediate', { default: 'Intermediate' }) },
+            { value: 'advanced', label: t('drills.difficultyAdvanced', { default: 'Advanced' }) },
+          ].map((option) => (
+            <Button
+              key={option.value}
+              type="button"
+              size="sm"
+              variant={difficultyFilter === option.value ? 'secondary' : 'ghost'}
+              className="h-9 rounded-full px-3 text-xs font-semibold"
+              onClick={() => setDifficultyFilter(option.value as typeof difficultyFilter)}
+              disabled={deckType !== 'curated'}
+            >
+              {option.label}
+            </Button>
+          ))}
+          {deckType !== 'curated' && (
+            <span className="text-[11px] text-muted-foreground">
+              {t('drills.difficultyFilterHelper', { default: 'Switch to the curated deck to apply filters.' })}
+            </span>
+          )}
+        </div>
+
         {!deck.length ? (
           <Alert className="rounded-2xl border border-border/60 bg-muted/20">
             <AlertDescription className="text-sm text-muted-foreground">
@@ -396,6 +532,47 @@ export default function PracticePage() {
                   {safeIndex + 1} / {total}
                 </span>
               </div>
+            <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+              {currentCard?.difficulty && (
+                <Badge variant="outline" className="border-primary/40 bg-primary/10 text-primary">
+                  {formatDifficultyLabel(currentCard.difficulty)}
+                </Badge>
+              )}
+              {currentCard?.category && (
+                <Badge variant="secondary" className="bg-white/10 text-white">
+                  {currentCard.category}
+                </Badge>
+              )}
+              {currentCard?.audioClip?.url && (
+                <div className="flex flex-wrap items-center gap-2">
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="outline"
+                    className="h-9 rounded-full border-white/20 bg-white/5 text-white hover:border-primary/50 hover:text-primary"
+                    onClick={() => handlePlayAudio('normal')}
+                  >
+                    <Volume2 className="h-4 w-4" aria-hidden="true" />
+                    <span className="text-sm font-semibold">
+                      {isPlayingAudio
+                        ? t('drills.playingAudio', { default: 'Playing…' })
+                        : t('drills.listenButton', { default: 'Listen' })}
+                    </span>
+                  </Button>
+                  {currentCard.audioClip?.slowUrl ? (
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="ghost"
+                      className="h-9 rounded-full border border-white/15 bg-white/5 text-white hover:border-primary/50 hover:text-primary"
+                      onClick={() => handlePlayAudio('slow')}
+                    >
+                      {t('drills.slowButton', { default: 'Slow' })}
+                    </Button>
+                  ) : null}
+                </div>
+              )}
+            </div>
             <div className="mt-5 space-y-4 sm:mt-7 sm:space-y-5 w-full min-w-0">
               <p className="text-xl font-semibold leading-tight text-white break-words sm:text-2xl md:text-3xl">{currentCard?.source}</p>
               <div className={cn(
@@ -463,7 +640,7 @@ export default function PracticePage() {
               )}
             </form>
 
-            <div className="mt-4 grid grid-cols-3 gap-3 sm:mt-6 sm:gap-4 w-full min-w-0">
+            <div className="mt-4 grid grid-cols-4 gap-3 sm:mt-6 sm:grid-cols-5 sm:gap-4 w-full min-w-0">
               <Button
                 variant="outline"
                 className="min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105"
@@ -476,11 +653,12 @@ export default function PracticePage() {
               </Button>
               <Button
                 variant="secondary"
-                className="min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105 truncate"
+                className="col-span-2 sm:col-span-3 min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105"
                 onClick={toggleReveal}
                 disabled={!deck.length}
               >
-                <span className="truncate">{t('drills.revealAnswer')}</span>
+                <Eye className="mr-2 h-4 w-4" aria-hidden="true" />
+                <span className="text-sm sm:text-base">{t('drills.revealAnswer')}</span>
               </Button>
               <Button
                 variant="outline"
@@ -493,6 +671,9 @@ export default function PracticePage() {
                 <ArrowRight className="ml-1 sm:ml-2 h-4 w-4 flex-shrink-0" aria-hidden="true" />
               </Button>
             </div>
+            <p className="text-center text-xs text-muted-foreground sm:text-left">
+              {t('drills.revealHelper', { default: 'Reveal the answer without marking your attempt wrong.' })}
+            </p>
             </div>
             <p className="text-xs text-muted-foreground">{t('translation.description')}</p>
           </div>

@@ -1,30 +1,16 @@
 import { NextResponse } from 'next/server';
 import practiceVocabulary from '@/data/practice-vocabulary.json';
-import practiceAudio from '@/data/practice-audio.json';
 import prisma from '@/lib/prisma';
 import type { PracticeItem, PracticeAudioClip } from '@mk/api-client';
 import type { PracticeAudio } from '@prisma/client';
 
-type PracticeAudioFixture = {
-  promptId: string;
-  cdnUrl: string;
-  slowUrl?: string | null;
-  waveform?: number[];
-  duration?: number;
-  autoplay?: boolean;
-  speaker?: string;
-  sourceType?: 'human' | 'tts' | 'unknown';
-};
-
-function clipFromRecord(
-  clip: PracticeAudioFixture | PracticeAudio
-): PracticeAudioClip {
+function clipFromRecord(clip: PracticeAudio): PracticeAudioClip {
   return {
     url: clip.cdnUrl,
     slowUrl: clip.slowUrl ?? undefined,
-    waveform: (clip.waveform as number[] | undefined) ?? undefined,
+    waveform: (clip.waveform as number[] | null) ?? undefined,
     duration: clip.duration ?? undefined,
-    autoplay: 'autoplay' in clip ? clip.autoplay ?? true : true,
+    autoplay: true,
     speaker: clip.speaker ?? undefined,
     sourceType:
       clip.sourceType && clip.sourceType !== 'human'
@@ -33,12 +19,7 @@ function clipFromRecord(
   };
 }
 
-const FALLBACK_AUDIO_INDEX = (practiceAudio as PracticeAudioFixture[]).reduce<
-  Record<string, PracticeAudioClip>
->((acc, clip) => {
-  acc[clip.promptId] = clipFromRecord(clip);
-  return acc;
-}, {});
+const FALLBACK_AUDIO_INDEX: Record<string, PracticeAudioClip> = {};
 
 async function getAudioIndex(): Promise<Record<string, PracticeAudioClip>> {
   try {
@@ -80,6 +61,7 @@ export async function GET() {
         macedonian: item.macedonian,
         english: item.english,
         category: item.category ?? undefined,
+        difficulty: item.difficulty ?? 'mixed',
         audioClip: audioIndex[id] ?? null,
       };
     });
@@ -93,6 +75,7 @@ export async function GET() {
       return {
         ...item,
         id,
+        difficulty: item.difficulty ?? 'mixed',
         audioClip: audioIndex[id] ?? null,
       };
     });

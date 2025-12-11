@@ -103,7 +103,8 @@ export default function TranslatePage() {
   const isCurrentSaved = Boolean(savedMatch);
 
   const characterCount = `${inputText.length} / ${MAX_CHARACTERS}`;
-  const pasteLabel = t('paste', { default: 'Paste' }) || 'Paste';
+  const pasteLabel = t('paste', { default: 'Paste text' }) || 'Paste text';
+  const pasteHelper = t('pasteHelper', { default: 'Paste and translate instantly.' });
   const historyLabel = t('history', { default: 'History' }) || 'History';
   const savedLabel = t('saved', { default: 'Saved' }) || 'Saved';
   const historyCount = history.length;
@@ -118,6 +119,8 @@ export default function TranslatePage() {
     if (ratio > 0.4) return 'text-white/75';
     return 'text-white/65';
   })();
+  const sourceLabel = t('inputLabel', { default: 'Source text' });
+  const inputHelper = t('inputHelper', { default: 'Paste or type up to 1800 characters.' });
 
   const handleSaveToggle = () => {
     if (!currentPayload) return;
@@ -243,13 +246,27 @@ export default function TranslatePage() {
       </Link>
 
       {/* Direction Toggle */}
-      <div className="flex flex-col gap-2 rounded-2xl border border-white/8 bg-white/5 p-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.35)] sm:flex-row sm:items-center">
-        {directionOptions.map((option, index) => (
-          <div key={option.id} className="flex w-full flex-1 items-center gap-2">
+      <div className="rounded-2xl border border-white/8 bg-white/5 p-3 shadow-[0_10px_30px_rgba(0,0,0,0.35)] sm:p-4">
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
+            {t('directionsGroupLabel', { default: 'Translation direction' })}
+          </p>
+          <button
+            onClick={handleSwapDirections}
+            className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-xs font-semibold text-white/80 transition-colors hover:border-primary/60 hover:bg-primary/10 hover:text-primary sm:text-sm"
+            aria-label={t('swapDirections', { default: 'Swap languages' })}
+          >
+            <RefreshCw className="h-4 w-4" />
+            <span className="hidden sm:inline">{t('swapDirections', { default: 'Swap languages' })}</span>
+          </button>
+        </div>
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+          {directionOptions.map((option) => (
             <button
+              key={option.id}
               onClick={() => setDirectionId(option.id)}
               className={cn(
-                'flex-1 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all',
+                'flex-1 rounded-xl px-4 py-3 text-sm font-semibold transition-all',
                 directionId === option.id
                   ? 'bg-white text-slate-900 shadow-[0_8px_24px_rgba(0,0,0,0.25)]'
                   : 'border border-transparent text-white/75 hover:border-white/15 hover:bg-white/5 hover:text-white',
@@ -257,17 +274,8 @@ export default function TranslatePage() {
             >
               {option.label}
             </button>
-            {index === 0 && (
-              <button
-                onClick={handleSwapDirections}
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white/80 transition-colors hover:border-primary/60 hover:bg-primary/10 hover:text-primary"
-                aria-label={t('swapDirections', { default: 'Swap languages' })}
-              >
-                <RefreshCw className="h-4 w-4" />
-              </button>
-            )}
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {/* Input Form */}
@@ -278,28 +286,39 @@ export default function TranslatePage() {
         }}
         className="space-y-3"
       >
-        <div className="rounded-2xl border border-white/8 bg-white/5 p-4 shadow-[0_12px_36px_rgba(0,0,0,0.45)]">
-          <div className="mb-3 flex items-center justify-end gap-2">
-            <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              onClick={handlePaste}
-              className="h-9 gap-2 rounded-full border border-white/10 bg-white/5 text-white/80 hover:border-primary/60 hover:bg-primary/10 hover:text-primary"
-            >
-              <ClipboardPaste className="h-4 w-4" />
-              <span>{pasteLabel}</span>
-            </Button>
-            <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              onClick={handleClear}
-              disabled={!inputText}
-              className="h-9 rounded-full border border-white/10 bg-white/5 px-4 text-white/80 hover:border-primary/60 hover:bg-primary/10 hover:text-primary disabled:opacity-50"
-            >
-              {t('clearButton', { default: 'Clear' })}
-            </Button>
+        <div className="rounded-2xl border border-white/8 bg-white/5 p-4 shadow-[0_12px_36px_rgba(0,0,0,0.45)] sm:p-5">
+          <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
+                {sourceLabel}
+              </p>
+              <p className="text-sm text-white/70">{inputHelper}</p>
+            </div>
+            <div className="flex flex-wrap items-center justify-end gap-2">
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                onClick={handlePaste}
+                className="h-10 gap-2 rounded-full border border-white/10 bg-white/10 px-4 text-white/90 hover:border-primary/60 hover:bg-primary/10 hover:text-primary"
+              >
+                <ClipboardPaste className="h-4 w-4" />
+                <div className="flex flex-col leading-tight text-left">
+                  <span className="text-sm font-semibold">{pasteLabel}</span>
+                  <span className="text-[11px] text-white/70">{pasteHelper}</span>
+                </div>
+              </Button>
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                onClick={handleClear}
+                disabled={!inputText}
+                className="h-10 rounded-full border border-white/10 bg-white/10 px-4 text-white/80 hover:border-primary/60 hover:bg-primary/10 hover:text-primary disabled:opacity-50"
+              >
+                {t('clearButton', { default: 'Clear' })}
+              </Button>
+            </div>
           </div>
           <Textarea
             ref={textareaRef}
@@ -307,13 +326,11 @@ export default function TranslatePage() {
             onChange={(e) => setInputText(e.target.value.slice(0, MAX_CHARACTERS))}
             placeholder={selectedDirection?.placeholder}
             maxLength={MAX_CHARACTERS}
-            className="min-h-[160px] resize-none border-0 bg-transparent p-0 text-base text-foreground caret-primary placeholder:text-white/60 focus-visible:ring-0"
+            className="min-h-[180px] resize-none rounded-2xl border border-white/10 bg-black/20 p-3 text-base text-foreground caret-primary placeholder:text-white/60 focus-visible:ring-2 focus-visible:ring-primary/40"
           />
           <div className="mt-3 flex items-center justify-between text-xs text-white/60">
             <span className={cn('font-medium transition-colors', counterTone)}>{characterCount}</span>
-            <span className="text-white/60">
-              {t('charactersLabel', { default: 'Characters used' })}
-            </span>
+            <span className="text-white/60">{t('charactersLabel', { default: 'Characters used' })}</span>
           </div>
         </div>
 

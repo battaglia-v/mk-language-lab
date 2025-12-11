@@ -1,6 +1,5 @@
 import { useQuery, type UseQueryOptions } from '@tanstack/react-query';
 import practiceVocabulary from '../../../data/practice-vocabulary.json';
-import practiceAudio from '../../../data/practice-audio.json';
 
 export type ClozeContext = {
   sentence: string;
@@ -28,6 +27,7 @@ export type PracticeItem = {
   contextEn?: ClozeContext;
   audioClipUrl?: string;
   audioClip?: PracticeAudioClip | null;
+  difficulty?: 'beginner' | 'intermediate' | 'advanced' | 'mixed' | string;
 };
 
 export type PracticeDirection = 'mkToEn' | 'enToMk';
@@ -51,36 +51,7 @@ type PracticeApiConfig = {
   fetcher?: typeof fetch;
 };
 
-type PracticeAudioRecord = {
-  id: string;
-  promptId: string;
-  language: string;
-  speaker?: string;
-  speed?: string;
-  variant?: string;
-  duration?: number;
-  sourceType?: 'human' | 'tts' | 'unknown';
-  cdnUrl: string;
-  slowUrl?: string | null;
-  waveform?: number[];
-  autoplay?: boolean;
-};
-
-const FALLBACK_AUDIO_MAP = (practiceAudio as PracticeAudioRecord[]).reduce<Record<string, PracticeAudioClip>>(
-  (acc, clip) => {
-    acc[clip.promptId] = {
-      url: clip.cdnUrl,
-      slowUrl: clip.slowUrl ?? undefined,
-      waveform: clip.waveform ?? undefined,
-      duration: clip.duration ?? undefined,
-      autoplay: clip.autoplay ?? true,
-      speaker: clip.speaker ?? undefined,
-      sourceType: clip.sourceType ?? 'human',
-    };
-    return acc;
-  },
-  {}
-);
+const FALLBACK_AUDIO_MAP: Record<string, PracticeAudioClip> = {};
 
 const FALLBACK_PROMPTS: PracticeItem[] = enrichWithAudio(
   (practiceVocabulary as PracticeItem[]).map((item, index) => ({
@@ -95,6 +66,7 @@ function enrichWithAudio(items: PracticeItem[]): PracticeItem[] {
     return {
       ...item,
       id,
+      difficulty: item.difficulty ?? 'mixed',
       audioClip: item.audioClip ?? FALLBACK_AUDIO_MAP[id] ?? null,
     };
   });

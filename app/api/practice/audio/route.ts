@@ -1,21 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
-import practiceAudio from '@/data/practice-audio.json';
 import type { PracticeAudio } from '@prisma/client';
-
-type PracticeAudioFixture = {
-  id: string;
-  promptId: string;
-  language?: string;
-  speaker?: string | null;
-  speed?: string | null;
-  variant?: string | null;
-  duration?: number | null;
-  sourceType?: 'human' | 'tts';
-  cdnUrl: string;
-  slowUrl?: string | null;
-  waveform?: number[] | null;
-};
 
 type PracticeAudioResponse = {
   id: string;
@@ -36,24 +21,7 @@ type PracticeAudioResponse = {
   publishedAt: Date | null;
 };
 
-const FALLBACK_AUDIO: PracticeAudioResponse[] = (practiceAudio as PracticeAudioFixture[]).map((clip) => ({
-  id: clip.id,
-  promptId: clip.promptId,
-  language: clip.language ?? 'mk',
-  speaker: clip.speaker ?? null,
-  speed: clip.speed ?? null,
-  variant: clip.variant ?? null,
-  duration: clip.duration ?? null,
-  status: 'published',
-  sourceType: clip.sourceType === 'tts' ? 'tts' : 'human',
-  cdnUrl: clip.cdnUrl,
-  slowUrl: clip.slowUrl ?? null,
-  waveform: clip.waveform ?? null,
-  notes: null,
-  createdAt: null,
-  updatedAt: null,
-  publishedAt: null,
-}));
+const FALLBACK_AUDIO: PracticeAudioResponse[] = [];
 
 function serializeRecord(record: PracticeAudio): PracticeAudioResponse {
   return {
