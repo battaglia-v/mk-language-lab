@@ -300,62 +300,60 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
   };
 
   return (
-    <div className="space-y-5 sm:space-y-6">
-      <div className="rounded-2xl border border-border/40 bg-white/5 p-4 sm:p-5 shadow-[0_14px_40px_rgba(0,0,0,0.25)] space-y-3">
-        <div className="flex flex-col gap-3">
-          <DirectionToggle
-            options={directionOptions}
-            activeId={directionId}
-            onChange={setDirectionId}
-            onSwap={handleSwapDirections}
-            label={t('directionsGroupLabel')}
-            swapLabel={t('swapDirections')}
-          />
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
-            <Button
-              type="button"
-              variant={revealMode === 'hidden' ? 'default' : 'outline'}
-              size="lg"
-              onClick={handleToggleReveal}
-              className="w-full rounded-xl min-h-[48px]"
-            >
-              {revealMode === 'hidden' ? (
-                <>
-                  <Eye className="h-4 w-4" aria-hidden="true" />
-                  <span className="ml-2 text-sm font-semibold">{t('readerRevealShow')}</span>
-                </>
-              ) : (
-                <>
-                  <EyeOff className="h-4 w-4" aria-hidden="true" />
-                  <span className="ml-2 text-sm font-semibold">{t('readerRevealHide')}</span>
-                </>
-              )}
-            </Button>
-            <Button
-              type="button"
-              variant={focusMode ? 'default' : 'secondary'}
-              size="lg"
-              onClick={() => setFocusMode((prev) => !prev)}
-              className="w-full rounded-xl min-h-[48px]"
-            >
-              <Focus className="h-4 w-4" aria-hidden="true" />
-              <span className="ml-2 text-sm font-semibold">
-                {focusMode
-                  ? t('readerFocusOff', { default: 'Exit focus' })
-                  : t('readerFocusOn', { default: 'Focus mode' })}
-              </span>
-            </Button>
-            <Button
-              type="button"
-              variant="outline"
-              size="lg"
-              disabled={!analyzedData}
-              onClick={() => void handleCopyTranslation()}
-              className="w-full rounded-xl min-h-[48px]"
-            >
-              {copied ? t('copied', { default: 'Copied' }) : t('readerCopyTranslation', { default: 'Copy translation' })}
-            </Button>
-          </div>
+    <div className="space-y-5 sm:space-y-6 pb-28">
+      <div className="rounded-2xl border border-border/40 bg-white/5 p-4 sm:p-5 shadow-[0_14px_40px_rgba(0,0,0,0.25)] space-y-4">
+        <DirectionToggle
+          options={directionOptions}
+          activeId={directionId}
+          onChange={setDirectionId}
+          onSwap={handleSwapDirections}
+          label={t('directionsGroupLabel')}
+          swapLabel={t('swapDirections')}
+        />
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
+          <Button
+            type="button"
+            variant={revealMode === 'hidden' ? 'default' : 'outline'}
+            size="lg"
+            onClick={handleToggleReveal}
+            className="w-full rounded-xl min-h-[48px]"
+          >
+            {revealMode === 'hidden' ? (
+              <>
+                <Eye className="h-4 w-4" aria-hidden="true" />
+                <span className="ml-2 text-sm font-semibold">{t('readerRevealShow')}</span>
+              </>
+            ) : (
+              <>
+                <EyeOff className="h-4 w-4" aria-hidden="true" />
+                <span className="ml-2 text-sm font-semibold">{t('readerRevealHide')}</span>
+              </>
+            )}
+          </Button>
+          <Button
+            type="button"
+            variant={focusMode ? 'default' : 'secondary'}
+            size="lg"
+            onClick={() => setFocusMode((prev) => !prev)}
+            className="w-full rounded-xl min-h-[48px]"
+          >
+            <Focus className="h-4 w-4" aria-hidden="true" />
+            <span className="ml-2 text-sm font-semibold">
+              {focusMode
+                ? t('readerFocusOff', { default: 'Exit focus' })
+                : t('readerFocusOn', { default: 'Focus mode' })}
+            </span>
+          </Button>
+          <Button
+            type="button"
+            variant="outline"
+            size="lg"
+            disabled={!analyzedData}
+            onClick={() => void handleCopyTranslation()}
+            className="w-full rounded-xl min-h-[48px]"
+          >
+            {copied ? t('copied', { default: 'Copied' }) : t('readerCopyTranslation', { default: 'Copy full translation' })}
+          </Button>
         </div>
       </div>
 
@@ -430,12 +428,12 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
             className="min-h-[200px] resize-none rounded-2xl border border-white/10 bg-black/30 px-3.5 py-3.5 text-base font-medium shadow-inner placeholder:text-muted-foreground sm:min-h-[240px] sm:px-4 sm:text-base focus-visible:ring-2 focus-visible:ring-primary/40"
           />
 
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex flex-wrap gap-2 sm:gap-3">
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex flex-wrap gap-2 sm:gap-3">
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
                 onClick={handleClear}
                 disabled={!inputText && !analyzedData}
                 className="rounded-full border border-border/60 min-h-[44px]"
@@ -602,21 +600,21 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
 
           <WordByWordDisplay data={analyzedData} revealMode={revealMode} focusMode={focusMode} />
 
-          <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
-            <div className="rounded-xl border border-border/40 bg-white/5 px-4 py-3">
-              <p className="text-xs uppercase tracking-wide text-muted-foreground">{t('readerWords', { default: 'Words' })}</p>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
+            <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2">
+              <p className="text-[11px] uppercase tracking-wide text-muted-foreground">{t('readerWords', { default: 'Words' })}</p>
               <p className="text-lg font-semibold text-foreground">{analyzedData.metadata.wordCount}</p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-white/5 px-4 py-3">
-              <p className="text-xs uppercase tracking-wide text-muted-foreground">{t('readerSentences', { default: 'Sentences' })}</p>
+            <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2">
+              <p className="text-[11px] uppercase tracking-wide text-muted-foreground">{t('readerSentences', { default: 'Sentences' })}</p>
               <p className="text-lg font-semibold text-foreground">{analyzedData.metadata.sentenceCount}</p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-white/5 px-4 py-3 sm:col-span-1">
-              <p className="text-xs uppercase tracking-wide text-muted-foreground">{t('readerSource', { default: 'Source' })}</p>
+            <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2 sm:col-span-1">
+              <p className="text-[11px] uppercase tracking-wide text-muted-foreground">{t('readerSource', { default: 'Source' })}</p>
               <p className="text-sm font-semibold text-foreground">{selectedDirection?.label}</p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-white/5 px-4 py-3">
-              <p className="text-xs uppercase tracking-wide text-muted-foreground flex items-center gap-1">
+            <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2">
+              <p className="text-[11px] uppercase tracking-wide text-muted-foreground flex items-center gap-1">
                 <span role="img" aria-hidden="true">🔥</span>
                 {t('readerStreak', { default: 'Day streak' })}
               </p>
@@ -644,11 +642,11 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                   return (
                     <div
                       key={sentence.id}
-                      className="rounded-xl bg-[#0c1224]/80 border border-border/40 p-3 sm:p-4 shadow-inner"
+                      className="rounded-xl bg-[#0c1224]/80 border border-border/40 p-3 sm:p-4 shadow-inner space-y-2"
                     >
                       <p className="text-base font-semibold text-foreground leading-relaxed">{sentence.text}</p>
-                      <p className="mt-1 text-sm text-primary/90">{sentence.translation}</p>
-                      <div className="mt-3 flex flex-wrap gap-2">
+                      <p className="text-sm text-primary/90">{sentence.translation}</p>
+                      <div className="flex flex-wrap gap-2">
                         <Button
                           type="button"
                           size="sm"

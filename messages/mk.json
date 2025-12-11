@@ -801,7 +801,20 @@
     "readerEmptyExample1": "Пример на англиски",
     "readerEmptyExample2": "Пример на македонски",
     "readerAlsoMeans": "Исто така значи",
-    "readerCheckFullTranslation": "Провери го целосниот превод подолу за да видиш кое значење одговара во овој контекст"
+    "readerCheckFullTranslation": "Провери го целосниот превод подолу за да видиш кое значење одговара во овој контекст",
+    "readerShowAllTranslations": "Прикажи ги сите преводи",
+    "readerCopyTranslation": "Копирај цел превод",
+    "readerSave": "Зачувај",
+    "readerSaved": "Зачувано",
+    "readerCopy": "Копирај",
+    "readerListen": "Слушај",
+    "readerDrill": "Зачувај, слушни или копирај за подоцнежно повторување.",
+    "readerSentences": "Реченици",
+    "readerSource": "Извор",
+    "readerStreak": "Серија денови",
+    "readerSessionTime": "Сесија",
+    "readerWords": "Зборови",
+    "readerInputHelper": "Напиши или залепи до 5000 знаци. Користи Reader за подолг текст."
   },
   "practiceHub": {
     "badge": "Дневна рутина",

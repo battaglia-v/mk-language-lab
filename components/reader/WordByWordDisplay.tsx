@@ -28,49 +28,32 @@ function WordToken({ word, revealMode, isRevealed, onToggleReveal }: WordTokenPr
   const t = useTranslations('translate');
   const showTranslation = revealMode === 'revealed' || isRevealed;
 
-  // Get POS color class
-  const posColorMap: Record<string, string> = {
-    noun: 'border-[var(--pos-noun)]',
-    verb: 'border-[var(--pos-verb)]',
-    adjective: 'border-[var(--pos-adjective)]',
-    adverb: 'border-[var(--pos-adverb)]',
-    other: 'border-[var(--pos-other)]',
-  };
-
-  const borderColor = posColorMap[word.pos] || posColorMap.other;
-
   return (
     <TooltipProvider delayDuration={300}>
       <Tooltip>
         <TooltipTrigger asChild>
-          <span
+          <button
             onClick={onToggleReveal}
             className={cn(
-              'inline-block relative cursor-pointer rounded-lg',
-              'px-2 py-1',
-              'transition-all duration-150',
-              'border-b-2 bg-white/2 hover:bg-white/6',
-              borderColor,
-              'select-none',
-              showTranslation && 'pb-8 mb-1'
+              'relative cursor-pointer select-none text-left',
+              'rounded-xl border border-white/10 bg-white/5 shadow-sm',
+              'px-3 py-2 min-w-[96px] max-w-[48%] sm:max-w-[32%]',
+              'transition-all duration-150 hover:border-primary/40 hover:bg-white/10',
+              showTranslation && 'ring-1 ring-primary/40'
             )}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                onToggleReveal();
-              }
-            }}
             aria-label={`${word.original}: ${word.translation}`}
           >
-            <span className="font-normal">{word.original}</span>
-            {showTranslation && (
-              <span className="absolute left-1.5 top-full mt-1 text-[11px] text-primary font-semibold whitespace-nowrap z-10 bg-background/95 px-2 py-1 rounded-full shadow">
+            <span className="block text-base font-semibold text-white leading-snug">{word.original}</span>
+            {showTranslation ? (
+              <span className="mt-1 block text-[12px] font-semibold text-primary leading-tight">
                 {word.translation}
               </span>
+            ) : (
+              <span className="mt-1 block text-[11px] text-muted-foreground">
+                {t('readerRevealShow')}
+              </span>
             )}
-          </span>
+          </button>
         </TooltipTrigger>
         <TooltipContent
           side="top"
@@ -144,16 +127,15 @@ export function WordByWordDisplay({ data, revealMode, focusMode = false }: WordB
 
   return (
     <div
-      className="min-h-[300px] rounded-2xl bg-gradient-to-b from-[#0e1324] via-[#0b1020] to-[#0a0f1b] p-6 sm:p-8 leading-relaxed border border-border/30 shadow-[0_18px_48px_rgba(0,0,0,0.32)]"
+      className="min-h-[300px] rounded-2xl bg-gradient-to-b from-[#0e1324] via-[#0b1020] to-[#0a0f1b] p-4 sm:p-6 leading-relaxed border border-border/30 shadow-[0_18px_36px_rgba(0,0,0,0.28)]"
       role="region"
       aria-label="Word by word translation"
     >
       <div
         className={cn(
-          "flex flex-wrap items-start gap-1.5 leading-loose",
-          focusMode ? "text-[22px] sm:text-[24px]" : "text-[20px] sm:text-[22px]"
+          "flex flex-wrap items-start gap-2",
+          focusMode ? "text-lg sm:text-xl" : "text-base sm:text-lg"
         )}
-        style={{ lineHeight: focusMode ? '2.8rem' : '2.6rem' }}
       >
         {data.tokens.map((token) => {
           if (!token.isWord) {
@@ -161,7 +143,7 @@ export function WordByWordDisplay({ data, revealMode, focusMode = false }: WordB
             return (
               <span
                 key={`punct-${token.index}`}
-                className="whitespace-pre-wrap"
+                className="whitespace-pre-wrap text-foreground"
               >
                 {token.token}
               </span>

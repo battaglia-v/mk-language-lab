@@ -10,7 +10,7 @@ import { StreakFlameCompact } from "@/components/gamification/StreakFlame";
 import { HeartCounter } from "@/components/gamification/HeartCounter";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Languages, Sparkles, Newspaper, BookOpen } from "lucide-react";
+import { Languages, Sparkles, Newspaper, BookOpen, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Force dynamic rendering to ensure fresh data and proper auth checks
@@ -98,6 +98,14 @@ export default async function LearnPage() {
       gradientFrom: "from-emerald-400/16",
       gradientTo: "to-teal-400/8",
       accentColor: "text-green-400",
+    },
+    {
+      id: "about",
+      icon: Info,
+      path: "/about",
+      gradientFrom: "from-slate-300/14",
+      gradientTo: "to-slate-500/8",
+      accentColor: "text-slate-200",
     },
   ];
 
