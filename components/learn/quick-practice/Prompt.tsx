@@ -30,21 +30,19 @@ export function QuickPracticePrompt({
   return (
     <div
       className={cn(
-        'relative space-y-2 rounded-xl border border-border/50 bg-card/50 p-3 transition-all duration-200 md:p-4',
-        isInputFocused && 'ring-2 ring-primary/20',
+        'relative space-y-3 rounded-2xl border border-white/10 bg-gradient-to-b from-white/6 via-white/4 to-transparent p-4 shadow-[0_12px_34px_rgba(0,0,0,0.35)] transition-all duration-200 md:p-5',
+        isInputFocused && 'ring-2 ring-primary/25',
       )}
     >
-      <div className="flex items-center justify-between gap-2">
-        <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+      <div className="flex items-center justify-between gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+        <span>
           {label}
         </span>
-        <span className="text-xs font-medium text-muted-foreground">
-          {categoryLabel}
-        </span>
+        <span className="rounded-full bg-white/5 px-2 py-1 text-[11px] font-semibold text-foreground/80">{categoryLabel}</span>
       </div>
       <p
         className={cn(
-          'break-words font-bold leading-tight text-slate-900 dark:text-white',
+          'break-words font-bold leading-tight text-slate-50',
           isModalVariant ? 'text-3xl md:text-4xl' : 'text-2xl md:text-3xl',
         )}
       >

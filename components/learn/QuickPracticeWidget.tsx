@@ -402,7 +402,7 @@ export function QuickPracticeWidget({
           'relative overflow-hidden transition-all duration-500',
           isModalVariant
             ? 'border border-border/40 rounded-2xl bg-gradient-to-br from-card/85 via-card/70 to-muted/40 backdrop-blur supports-[backdrop-filter]:backdrop-blur-xl shadow-2xl'
-            : 'flex-1 flex flex-col',
+            : 'flex-1 flex flex-col gap-4 rounded-[24px] border border-border/50 bg-gradient-to-b from-[#0c1222] via-[#0a101c] to-[#060913] p-4 shadow-[0_20px_60px_rgba(0,0,0,0.35)] sm:p-6',
           extraClassName
         )}
       >
@@ -434,7 +434,7 @@ export function QuickPracticeWidget({
           progressValueLabel={progressValueLabel}
         />
 
-        <div className={cn('px-6 md:px-10', isModalVariant ? 'pt-2' : 'pt-1')}>
+        <div className={cn('px-1 sm:px-2 md:px-4', isModalVariant ? 'pt-2' : 'pt-1')}>
           <QuickPracticePrompt
             label={promptLabel}
             content={promptContent}
@@ -632,4 +632,3 @@ export function QuickPracticeWidget({
     </>
   );
 }
-

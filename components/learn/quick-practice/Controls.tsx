@@ -106,13 +106,13 @@ export function QuickPracticeControls({
   };
 
   return (
-    <div className={cn('flex flex-col gap-2', isModalVariant ? 'px-6 pb-4 md:px-10 md:pb-6 lg:px-12' : 'pb-3 md:pb-4')}>
-      <form ref={formRef} className="space-y-2" onSubmit={handleSubmit}>
+    <div className={cn('flex flex-col gap-3', isModalVariant ? 'px-6 pb-4 md:px-10 md:pb-6 lg:px-12' : 'px-1 sm:px-2 md:px-4 pb-4')}>
+      <form ref={formRef} className="space-y-3" onSubmit={handleSubmit}>
         <div
           className={cn(
-            'rounded-xl border-2 border-border/80 bg-background/90 p-3 transition-all duration-200',
+            'rounded-2xl border border-white/10 bg-white/5 px-4 py-3.5 shadow-[0_10px_28px_rgba(0,0,0,0.28)] transition-all duration-200',
             isShaking && 'ring-2 ring-[var(--brand-red)]/40',
-            isInputFocused && 'border-primary/60 ring-2 ring-primary/30'
+            isInputFocused && 'border-primary/50 ring-2 ring-primary/25 bg-white/8'
           )}
         >
           <Input
@@ -122,17 +122,17 @@ export function QuickPracticeControls({
             onFocus={() => setIsInputFocused(true)}
             onBlur={() => setTimeout(() => setIsInputFocused(false), 100)}
             placeholder={placeholder}
-            className="h-auto min-h-[44px] border-0 bg-transparent px-0 text-sm font-medium placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:outline-none md:text-base"
+            className="h-auto min-h-[50px] border-0 bg-transparent px-0 text-base font-semibold placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:outline-none md:text-lg"
             aria-label={placeholder}
             disabled={!isReady}
           />
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="space-y-2">
           <Button
             type="submit"
-            size="default"
-            className="flex-1 min-w-[140px] rounded-xl font-semibold"
+            size="lg"
+            className="w-full rounded-2xl bg-gradient-to-r from-primary to-primary/90 text-base font-semibold shadow-[0_12px_26px_rgba(0,0,0,0.28)]"
             disabled={isPrimaryDisabled}
             onPointerDown={handleTouchSubmit}
           >
@@ -146,20 +146,33 @@ export function QuickPracticeControls({
             )}
           </Button>
 
-          {hasAvailablePrompts && (
-            <Button type="button" variant="outline" size="default" onClick={onNextPrompt} className="rounded-xl">
-              <RefreshCcw className="mr-1.5 h-3.5 w-3.5" />
-              {translate('nextPrompt')}
-            </Button>
-          )}
+          <div className="flex flex-wrap items-center gap-2">
+            {hasAvailablePrompts && (
+              <Button
+                type="button"
+                variant="secondary"
+                size="lg"
+                onClick={onNextPrompt}
+                className="flex-1 min-w-[140px] rounded-2xl bg-white/8 text-foreground"
+              >
+                <RefreshCcw className="mr-2 h-4 w-4" />
+                {translate('nextPrompt')}
+              </Button>
+            )}
 
-          {isReady && (
-            <Button type="button" variant="ghost" size="default" onClick={onRevealAnswer} className="rounded-xl">
-              <Eye className="mr-1.5 h-3.5 w-3.5" />
-              <span className="hidden sm:inline">{translate('practiceRevealAnswer')}</span>
-              <span className="sm:hidden">Reveal</span>
-            </Button>
-          )}
+            {isReady && (
+              <Button
+                type="button"
+                variant="outline"
+                size="lg"
+                onClick={onRevealAnswer}
+                className="flex-1 min-w-[120px] rounded-2xl"
+              >
+                <Eye className="mr-2 h-4 w-4" />
+                {translate('practiceRevealAnswer')}
+              </Button>
+            )}
+          </div>
 
           <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
             <DialogTrigger asChild>
