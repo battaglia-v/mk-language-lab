@@ -50,44 +50,29 @@ export function MobileTabNav() {
   return (
     <nav
       className={cn(
-        "lg:hidden fixed bottom-0 left-0 right-0 z-50 w-full pointer-events-none",
+        "lg:hidden fixed inset-x-0 bottom-0 z-50 w-full border-t border-white/10 bg-[#070a14]/90 backdrop-blur-xl supports-[backdrop-filter]:bg-[#070a14]/82",
         mounted && "mobile-nav-mounted"
       )}
       aria-label={t("label")}
       style={{
-        paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 14px)",
+        paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 12px)",
+        paddingTop: "12px",
       }}
     >
-      <div className="mx-auto w-full max-w-[520px] px-3 pointer-events-auto">
-        <div className={cn(
-          "relative isolate w-full overflow-hidden rounded-[22px] border bg-[#0a0d1a]/95 backdrop-blur-2xl ring-1",
-          "transition-shadow duration-200",
-          hasScrolled
-            ? "border-white/14 ring-white/10"
-            : "border-white/12 ring-white/6"
-        )}
-        style={{
-          marginBottom: '12px',
-          background: isNarrowViewport ? '#0a0d1a' : undefined,
-          boxShadow: hasScrolled
-            ? "0 -18px 44px rgba(0,0,0,0.55), 0 -2px 10px rgba(0,0,0,0.28)"
-            : "0 -12px 30px rgba(0,0,0,0.38), 0 -2px 8px rgba(0,0,0,0.22)",
-        }}>
-          <div
-            className="pointer-events-none absolute -inset-x-10 bottom-[-14px] h-12 rounded-full bg-primary/12 blur-3xl opacity-70"
-            aria-hidden="true"
-          />
-          <div
-            className="pointer-events-none absolute inset-0 opacity-35"
-            style={{
-              background:
-                isNarrowViewport
-                  ? "radial-gradient(circle at 18% 18%, rgba(255,255,255,0.04), transparent 38%)"
-                  : "radial-gradient(circle at 18% 18%, rgba(255,255,255,0.06), transparent 42%), radial-gradient(circle at 82% 6%, rgba(246,216,59,0.09), transparent 38%)",
-            }}
-          />
+      <div className="mx-auto w-full max-w-[640px] px-4">
+        <div
+          className={cn(
+            "relative flex min-h-[var(--mobile-nav-height)] items-center justify-between gap-1.5 rounded-2xl border border-white/10 bg-white/[0.04] px-3 py-2",
+            "shadow-[0_-10px_28px_rgba(0,0,0,0.34)] ring-1 ring-white/8 backdrop-blur-2xl transition-shadow duration-200",
+            hasScrolled && "border-white/14 ring-white/12 shadow-[0_-14px_36px_rgba(0,0,0,0.46)]"
+          )}
+          style={{
+            background: isNarrowViewport ? '#070a14' : undefined,
+          }}
+        >
+          <div className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/8" aria-hidden="true" />
 
-          <div className="relative flex items-center justify-between gap-1.5 px-3 py-2 min-w-0">
+          <div className="relative flex min-w-0 flex-1 items-center justify-between gap-1.5">
             <NavRail
               items={leadingItems}
               t={t}
@@ -106,9 +91,9 @@ export function MobileTabNav() {
                 className={cn(
                   "nav-accent-button group relative flex h-[52px] w-[52px] min-w-[3.25rem] flex-shrink-0 flex-col items-center justify-center rounded-2xl transition-all duration-200",
                   "bg-gradient-to-br from-[#ffe16a] via-primary to-[#f1b700]",
-                  "shadow-[0_10px_26px_rgba(0,0,0,0.42),0_2px_10px_rgba(0,0,0,0.3)] ring-1 ring-white/40",
-                  "hover:-translate-y-[2px] active:translate-y-[1px]",
-                  "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/35 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0d1a]"
+                  "shadow-[0_8px_24px_rgba(0,0,0,0.34),0_2px_8px_rgba(0,0,0,0.28)] ring-1 ring-white/40",
+                  "hover:-translate-y-[1px] active:translate-y-[0px]",
+                  "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/35 focus-visible:ring-offset-2 focus-visible:ring-offset-[#070a14]"
                 )}
               >
                 {isNavItemActive(pathname, buildHref(accentItem.path)) && (
@@ -172,7 +157,7 @@ function NavRail({ items, t, pathname, buildHref, label, isNarrowViewport }: Nav
               className={cn(
                 "nav-item group relative flex flex-col items-center justify-center rounded-2xl transition-all duration-200 min-w-0",
                 isNarrowViewport ? "px-2 py-2" : "px-2.5 py-2.5 gap-1",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0d1a]",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#070a14]",
                 active
                   ? "bg-white/6 text-white shadow-[0_6px_18px_rgba(0,0,0,0.35)] ring-1 ring-white/10"
                   : "text-white/70 hover:bg-white/4 hover:text-white",

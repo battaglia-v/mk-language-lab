@@ -2,7 +2,18 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { ExternalLink, Search } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+import {
+  BookOpen,
+  Clapperboard,
+  ExternalLink,
+  FileText,
+  Globe2,
+  Headphones,
+  Mic2,
+  Newspaper,
+  Search,
+} from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -33,6 +44,22 @@ type FlatResource = {
   summary: string;
   section: string;
   format?: string;
+};
+
+type ResourceFormat = 'website' | 'podcast' | 'video' | 'audio' | 'article' | 'pdf';
+
+const formatIcons: Record<ResourceFormat, LucideIcon> = {
+  website: Globe2,
+  podcast: Mic2,
+  video: Clapperboard,
+  audio: Headphones,
+  article: Newspaper,
+  pdf: FileText,
+};
+
+const getResourceIcon = (format?: string) => {
+  const normalized = format?.toLowerCase() as ResourceFormat | undefined;
+  return (normalized && formatIcons[normalized]) || BookOpen;
 };
 
 export default function ResourcesPage() {
@@ -214,23 +241,34 @@ export default function ResourcesPage() {
               rel="noreferrer"
               variants={staggerItem}
               className={cn(
-                'group relative flex flex-col gap-2 rounded-xl border border-border bg-card p-3 transition-all hover:border-primary/50 hover:bg-card/80 sm:p-4',
+                'group relative flex gap-3 rounded-xl border border-border bg-card p-3 transition-all hover:border-primary/50 hover:bg-card/80 sm:gap-4 sm:p-4',
               )}
             >
-              <div className="flex items-start justify-between gap-2">
-                <h3 className="text-sm font-semibold text-foreground group-hover:text-primary sm:text-base">
-                  {resource.title}
-                </h3>
-                <ExternalLink className="h-4 w-4 flex-shrink-0 text-muted-foreground group-hover:text-primary" />
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary ring-1 ring-primary/15">
+                {(() => {
+                  const ResourceIcon = getResourceIcon(resource.format);
+                  return <ResourceIcon className="h-5 w-5" strokeWidth={2.2} aria-hidden="true" />;
+                })()}
               </div>
-              <p className="line-clamp-2 text-xs text-muted-foreground sm:text-sm">
-                {resource.summary}
-              </p>
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <span className="rounded-full bg-muted px-2 py-0.5">{resource.section}</span>
-                {resource.format && (
-                  <span className="rounded-full bg-muted px-2 py-0.5">{resource.format}</span>
-                )}
+
+              <div className="flex min-w-0 flex-1 flex-col gap-2">
+                <div className="flex min-w-0 items-start gap-2">
+                  <h3 className="min-w-0 text-sm font-semibold leading-tight text-foreground line-clamp-2 group-hover:text-primary sm:text-base">
+                    {resource.title}
+                  </h3>
+                  <ExternalLink className="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-foreground group-hover:text-primary" aria-hidden="true" />
+                </div>
+                <p className="line-clamp-2 text-xs text-muted-foreground sm:text-sm">
+                  {resource.summary}
+                </p>
+                <div className="flex flex-wrap items-center gap-2 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+                  <span className="rounded-full bg-muted px-2 py-1">{resource.section}</span>
+                  {resource.format && (
+                    <span className="rounded-full bg-muted px-2 py-1">
+                      {resource.format}
+                    </span>
+                  )}
+                </div>
               </div>
             </motion.a>
           ))
