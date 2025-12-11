@@ -106,11 +106,11 @@ export function QuickPracticeControls({
   };
 
   return (
-    <div className={cn('flex flex-col gap-3', isModalVariant ? 'px-6 pb-4 md:px-10 md:pb-6 lg:px-12' : 'px-1 sm:px-2 md:px-4 pb-4')}>
+    <div className={cn('flex flex-col gap-4', isModalVariant ? 'px-6 pb-4 md:px-10 md:pb-6 lg:px-12' : 'px-2 sm:px-4 pb-5')}>
       <form ref={formRef} className="space-y-3" onSubmit={handleSubmit}>
         <div
           className={cn(
-            'rounded-2xl border border-white/10 bg-white/5 px-4 py-3.5 shadow-[0_10px_28px_rgba(0,0,0,0.28)] transition-all duration-200',
+            'rounded-3xl border border-white/10 bg-white/6 px-4 py-4 shadow-[0_14px_30px_rgba(0,0,0,0.26)] transition-all duration-200',
             isShaking && 'ring-2 ring-[var(--brand-red)]/40',
             isInputFocused && 'border-primary/50 ring-2 ring-primary/25 bg-white/8'
           )}
@@ -122,7 +122,7 @@ export function QuickPracticeControls({
             onFocus={() => setIsInputFocused(true)}
             onBlur={() => setTimeout(() => setIsInputFocused(false), 100)}
             placeholder={placeholder}
-            className="h-auto min-h-[50px] border-0 bg-transparent px-0 text-base font-semibold placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:outline-none md:text-lg"
+            className="h-auto min-h-[60px] border-0 bg-transparent px-1 text-lg font-semibold placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:outline-none md:text-xl"
             aria-label={placeholder}
             disabled={!isReady}
           />
@@ -132,7 +132,7 @@ export function QuickPracticeControls({
           <Button
             type="submit"
             size="lg"
-            className="w-full rounded-2xl bg-gradient-to-r from-primary to-primary/90 text-base font-semibold shadow-[0_12px_26px_rgba(0,0,0,0.28)]"
+            className="w-full rounded-2xl bg-gradient-to-r from-primary to-primary/90 py-3.5 text-base font-semibold shadow-[0_14px_28px_rgba(0,0,0,0.28)]"
             disabled={isPrimaryDisabled}
             onPointerDown={handleTouchSubmit}
           >

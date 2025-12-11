@@ -14,6 +14,7 @@ import {
 type WordByWordDisplayProps = {
   data: AnalyzedTextData;
   revealMode: 'hidden' | 'revealed';
+  focusMode?: boolean;
 };
 
 type WordTokenProps = {
@@ -126,7 +127,7 @@ function WordToken({ word, revealMode, isRevealed, onToggleReveal }: WordTokenPr
   );
 }
 
-export function WordByWordDisplay({ data, revealMode }: WordByWordDisplayProps) {
+export function WordByWordDisplay({ data, revealMode, focusMode = false }: WordByWordDisplayProps) {
   const [revealedWords, setRevealedWords] = useState<Set<string>>(new Set());
 
   const handleToggleWord = (wordId: string) => {
@@ -147,7 +148,13 @@ export function WordByWordDisplay({ data, revealMode }: WordByWordDisplayProps) 
       role="region"
       aria-label="Word by word translation"
     >
-      <div className="flex flex-wrap items-start gap-1.5 text-[20px] sm:text-[22px] leading-loose" style={{ lineHeight: '2.6rem' }}>
+      <div
+        className={cn(
+          "flex flex-wrap items-start gap-1.5 leading-loose",
+          focusMode ? "text-[22px] sm:text-[24px]" : "text-[20px] sm:text-[22px]"
+        )}
+        style={{ lineHeight: focusMode ? '2.8rem' : '2.6rem' }}
+      >
         {data.tokens.map((token) => {
           if (!token.isWord) {
             // Render punctuation and spaces as-is

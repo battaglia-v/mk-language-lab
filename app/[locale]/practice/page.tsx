@@ -337,41 +337,41 @@ export default function PracticePage() {
         )}
       </section>
 
-      <div className="glass-card space-y-4 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6" data-testid="practice-workspace">
-        <div className="flex flex-wrap items-center gap-2 w-full min-w-0">
-          <div className="flex flex-wrap gap-2 sm:gap-3 flex-1 min-w-0" data-testid="practice-panels">
-            <DeckToggle
-              label={t('savedDeck.badge')}
-              count={savedDeck.length}
-              active={deckType === 'saved'}
-              disabled={!savedDeck.length}
-              onClick={() => {
-                setDeckType('saved');
-                setActiveCustomDeckId(null);
-                resetCardState();
-              }}
-            />
-            <DeckToggle
-              label={t('translation.tabLabel')}
-              count={historyDeck.length}
-              active={deckType === 'history'}
-              disabled={!historyDeck.length}
-              onClick={() => {
-                setDeckType('history');
-                setActiveCustomDeckId(null);
-                resetCardState();
-              }}
-            />
-            <DeckToggle
-              label={t('cards.translate.title')}
-              count={curatedFlashcards.length}
-              active={deckType === 'curated'}
-              onClick={() => {
-                setDeckType('curated');
-                setActiveCustomDeckId(null);
-                resetCardState();
-              }}
-            />
+      <div className="glass-card space-y-5 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-7" data-testid="practice-workspace">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3" data-testid="practice-panels">
+          <DeckToggle
+            label={t('savedDeck.badge')}
+            count={savedDeck.length}
+            active={deckType === 'saved'}
+            disabled={!savedDeck.length}
+            onClick={() => {
+              setDeckType('saved');
+              setActiveCustomDeckId(null);
+              resetCardState();
+            }}
+          />
+          <DeckToggle
+            label={t('translation.tabLabel')}
+            count={historyDeck.length}
+            active={deckType === 'history'}
+            disabled={!historyDeck.length}
+            onClick={() => {
+              setDeckType('history');
+              setActiveCustomDeckId(null);
+              resetCardState();
+            }}
+          />
+          <DeckToggle
+            label={t('cards.translate.title')}
+            count={curatedFlashcards.length}
+            active={deckType === 'curated'}
+            onClick={() => {
+              setDeckType('curated');
+              setActiveCustomDeckId(null);
+              resetCardState();
+            }}
+          />
+          <div className="w-full">
             <CustomDecksDropdown
               decks={customDecks}
               activeCustomDeckId={activeCustomDeckId}
@@ -389,7 +389,7 @@ export default function PracticePage() {
           </Alert>
         ) : (
           <div className="space-y-4">
-            <div className="glass-card animate-in fade-in slide-in-from-bottom-4 duration-300 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6">
+            <div className="glass-card animate-in fade-in slide-in-from-bottom-4 duration-300 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-7 space-y-2">
               <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-muted-foreground">
                 <span className="font-semibold">{currentCard?.direction === 'en-mk' ? 'EN → MK' : 'MK → EN'}</span>
                 <span className="rounded-full bg-muted/20 px-2.5 py-1 font-bold">
@@ -419,11 +419,11 @@ export default function PracticePage() {
                     value={guess}
                     onChange={(event) => setGuess(event.target.value)}
                     placeholder={t('drills.wordInputPlaceholder')}
-                    className="flex-[3] min-h-[44px] min-w-0 rounded-2xl border border-primary/50 bg-white/5 text-base text-white placeholder:text-muted-foreground"
+                    className="flex-[3] min-h-[54px] min-w-0 rounded-3xl border border-primary/40 bg-white/8 px-4 text-lg text-white placeholder:text-muted-foreground"
                   />
                   <Button
                     type="submit"
-                    className="min-h-[44px] w-full sm:w-auto sm:flex-[1] sm:max-w-[120px] rounded-2xl px-6 font-semibold shadow-lg transition-all hover:scale-105 disabled:hover:scale-100"
+                    className="min-h-[54px] w-full sm:w-auto sm:flex-[1] sm:max-w-[140px] rounded-3xl px-6 text-base font-semibold shadow-lg transition-all hover:scale-105 disabled:hover:scale-100"
                     disabled={!deck.length || !guess.trim()}
                   >
                     {t('drills.submitWord')}
@@ -463,10 +463,10 @@ export default function PracticePage() {
               )}
             </form>
 
-            <div className="mt-4 grid grid-cols-3 gap-2 sm:mt-6 sm:gap-3 w-full min-w-0">
+            <div className="mt-4 grid grid-cols-3 gap-3 sm:mt-6 sm:gap-4 w-full min-w-0">
               <Button
                 variant="outline"
-                className="min-h-[44px] min-w-0 rounded-full font-medium transition-all hover:scale-105"
+                className="min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105"
                 onClick={goPrevious}
                 disabled={!deck.length}
               >
@@ -476,7 +476,7 @@ export default function PracticePage() {
               </Button>
               <Button
                 variant="secondary"
-                className="min-h-[44px] min-w-0 rounded-full font-medium transition-all hover:scale-105 truncate"
+                className="min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105 truncate"
                 onClick={toggleReveal}
                 disabled={!deck.length}
               >
@@ -484,7 +484,7 @@ export default function PracticePage() {
               </Button>
               <Button
                 variant="outline"
-                className="min-h-[44px] min-w-0 rounded-full font-medium transition-all hover:scale-105"
+                className="min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105"
                 onClick={goNext}
                 disabled={!deck.length}
               >
@@ -517,18 +517,20 @@ function DeckToggle({ label, count, active, disabled, onClick }: DeckToggleProps
       disabled={disabled}
       onClick={onClick}
       className={cn(
-        'group flex min-h-[48px] min-w-0 items-center justify-between gap-2 rounded-full border px-4 py-2.5 text-xs font-semibold transition-all sm:px-5 sm:gap-3 sm:text-sm',
+        'group flex h-full w-full min-h-[68px] min-w-0 flex-col items-start justify-between gap-1.5 rounded-2xl border px-4 py-3 text-sm font-semibold transition-all sm:px-5 sm:py-4',
         active
-          ? 'border-primary bg-primary/15 text-white shadow-md'
+          ? 'border-primary/70 bg-primary/15 text-white shadow-md ring-1 ring-primary/25'
           : 'border-border/60 text-muted-foreground hover:border-primary/40 hover:text-white hover:bg-primary/5',
-        disabled && 'opacity-40 cursor-not-allowed hover:border-border/60 hover:text-muted-foreground hover:bg-transparent',
+        disabled && 'opacity-45 cursor-not-allowed hover:border-border/60 hover:text-muted-foreground hover:bg-transparent',
       )}
     >
-      <span className="truncate min-w-0">{label}</span>
-      <span className={cn(
-        'rounded-full px-2 py-0.5 text-xs font-bold transition-colors flex-shrink-0',
-        active ? 'bg-primary/30 text-primary-foreground' : 'bg-muted/50 text-muted-foreground group-hover:bg-primary/20'
-      )}>
+      <span className="truncate min-w-0 text-left leading-tight">{label}</span>
+      <span
+        className={cn(
+          'rounded-full px-2.5 py-0.5 text-xs font-bold transition-colors flex-shrink-0',
+          active ? 'bg-primary/30 text-primary-foreground' : 'bg-muted/60 text-muted-foreground group-hover:bg-primary/15'
+        )}
+      >
         {count}
       </span>
     </button>

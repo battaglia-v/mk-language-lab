@@ -290,12 +290,12 @@ export default function ResourcesPage() {
       {data?.pdf && (
         <Button
           asChild
-          className="sm:hidden w-full whitespace-normal break-words text-sm leading-snug px-4 py-3 h-auto min-h-[48px]"
+          className="sm:hidden w-full whitespace-normal break-words text-sm leading-relaxed px-4 py-3 h-auto min-h-[52px] justify-start text-left gap-2 rounded-xl"
           size="lg"
         >
-          <a href={data.pdf.url} target="_blank" rel="noreferrer">
-            <ExternalLink className="mr-2 h-4 w-4" />
-            {data.pdf.label}
+          <a href={data.pdf.url} target="_blank" rel="noreferrer" className="flex items-start gap-2 w-full">
+            <ExternalLink className="mt-0.5 h-4 w-4 flex-shrink-0" />
+            <span className="text-left break-words">{data.pdf.label}</span>
           </a>
         </Button>
       )}

@@ -55,14 +55,14 @@ export function MobileTabNav() {
       )}
       aria-label={t("label")}
       style={{
-        paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 8px)",
-        paddingTop: "8px",
+        paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 6px)",
+        paddingTop: "6px",
       }}
     >
       <div className="mx-auto w-full max-w-[640px] px-4">
         <div
           className={cn(
-            "relative flex min-h-[60px] items-center justify-between gap-1.5 rounded-2xl border border-white/10 bg-white/[0.04] px-2.5 py-1.5",
+            "relative flex min-h-[56px] items-center justify-between gap-1 rounded-2xl border border-white/10 bg-white/[0.04] px-2 py-1",
             "shadow-[0_-10px_28px_rgba(0,0,0,0.34)] ring-1 ring-white/8 backdrop-blur-2xl transition-shadow duration-200",
             hasScrolled && "border-white/14 ring-white/12 shadow-[0_-14px_36px_rgba(0,0,0,0.46)]"
           )}
@@ -89,7 +89,7 @@ export function MobileTabNav() {
                 aria-current={isNavItemActive(pathname, buildHref(accentItem.path)) ? "page" : undefined}
                 aria-label={t(accentItem.id)}
                 className={cn(
-                  "nav-accent-button group relative flex h-[48px] w-[48px] min-w-[3rem] flex-shrink-0 flex-col items-center justify-center rounded-2xl transition-all duration-200",
+                  "nav-accent-button group relative flex h-[46px] w-[46px] min-w-[2.85rem] flex-shrink-0 flex-col items-center justify-center rounded-2xl transition-all duration-200",
                   "bg-gradient-to-br from-[#ffe16a] via-primary to-[#f1b700]",
                   "shadow-[0_8px_24px_rgba(0,0,0,0.34),0_2px_8px_rgba(0,0,0,0.28)] ring-1 ring-white/40",
                   "hover:-translate-y-[1px] active:translate-y-[0px]",
@@ -156,7 +156,7 @@ function NavRail({ items, t, pathname, buildHref, label, isNarrowViewport }: Nav
               aria-label={itemLabel}
               className={cn(
                 "nav-item group relative flex flex-col items-center justify-center rounded-2xl transition-all duration-200 min-w-0",
-                isNarrowViewport ? "px-1.5 py-1.5" : "px-2 py-2 gap-1",
+                isNarrowViewport ? "px-1.5 py-1.5" : "px-1.5 py-1.5 gap-1",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#070a14]",
                 active
                   ? "bg-white/6 text-white shadow-[0_6px_18px_rgba(0,0,0,0.35)] ring-1 ring-white/10"

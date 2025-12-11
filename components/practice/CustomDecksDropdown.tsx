@@ -42,11 +42,11 @@ export function CustomDecksDropdown({
           type="button"
           disabled={disabled}
           className={cn(
-            'group flex min-h-[48px] min-w-0 items-center justify-between gap-2 rounded-full border px-4 py-2.5 text-xs font-semibold transition-all sm:px-5 sm:gap-3 sm:text-sm',
+            'group flex h-full w-full min-h-[68px] min-w-0 flex-col items-start justify-between gap-1.5 rounded-2xl border px-4 py-3 text-sm font-semibold transition-all sm:px-5 sm:py-4',
             isActive
-              ? 'border-primary bg-primary/15 text-white shadow-md'
+              ? 'border-primary/70 bg-primary/15 text-white shadow-md ring-1 ring-primary/25'
               : 'border-border/60 text-muted-foreground hover:border-primary/40 hover:text-white hover:bg-primary/5',
-            disabled && 'opacity-40 cursor-not-allowed hover:border-border/60 hover:text-muted-foreground hover:bg-transparent',
+            disabled && 'opacity-45 cursor-not-allowed hover:border-border/60 hover:text-muted-foreground hover:bg-transparent',
           )}
         >
           <span className="flex items-center gap-2 truncate min-w-0">
@@ -57,8 +57,8 @@ export function CustomDecksDropdown({
           </span>
           <div className="flex items-center gap-2 flex-shrink-0">
             <span className={cn(
-              'rounded-full px-2 py-0.5 text-xs font-bold transition-colors',
-              isActive ? 'bg-primary/30 text-primary-foreground' : 'bg-muted/50 text-muted-foreground group-hover:bg-primary/20'
+              'rounded-full px-2.5 py-0.5 text-xs font-bold transition-colors',
+              isActive ? 'bg-primary/30 text-primary-foreground' : 'bg-muted/60 text-muted-foreground group-hover:bg-primary/15'
             )}>
               {activeDeck ? activeDeck.cardCount : decks.length}
             </span>
