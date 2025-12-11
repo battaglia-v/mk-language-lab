@@ -35,22 +35,24 @@ function WordToken({ word, revealMode, isRevealed, onToggleReveal }: WordTokenPr
           <button
             onClick={onToggleReveal}
             className={cn(
-              'relative cursor-pointer select-none text-left',
+              'relative inline-flex cursor-pointer select-none flex-col text-left',
               'rounded-xl border border-white/10 bg-white/5 shadow-sm',
-              'px-3 py-2 min-w-[96px] max-w-[48%] sm:max-w-[32%]',
-              'transition-all duration-150 hover:border-primary/40 hover:bg-white/10',
+              'px-2.5 py-2 min-w-[72px] max-w-[180px]',
+              'transition-all duration-150 hover:border-primary/50 hover:bg-white/10',
               showTranslation && 'ring-1 ring-primary/40'
             )}
             aria-label={`${word.original}: ${word.translation}`}
           >
-            <span className="block text-base font-semibold text-white leading-snug">{word.original}</span>
+            <span className="block text-base font-semibold text-white leading-tight break-words">
+              {word.original}
+            </span>
             {showTranslation ? (
-              <span className="mt-1 block text-[12px] font-semibold text-primary leading-tight">
+              <span className="mt-1 inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-semibold text-primary leading-tight">
                 {word.translation}
               </span>
             ) : (
-              <span className="mt-1 block text-[11px] text-muted-foreground">
-                {t('readerRevealShow')}
+              <span className="mt-1 inline-flex items-center rounded-full bg-white/8 px-2 py-0.5 text-[11px] font-semibold text-muted-foreground leading-tight">
+                {t('readerRevealHint', { default: 'Tap to reveal' })}
               </span>
             )}
           </button>
@@ -127,13 +129,13 @@ export function WordByWordDisplay({ data, revealMode, focusMode = false }: WordB
 
   return (
     <div
-      className="min-h-[300px] rounded-2xl bg-gradient-to-b from-[#0e1324] via-[#0b1020] to-[#0a0f1b] p-4 sm:p-6 leading-relaxed border border-border/30 shadow-[0_18px_36px_rgba(0,0,0,0.28)]"
+      className="min-h-[240px] rounded-2xl bg-gradient-to-b from-[#0e1324] via-[#0b1020] to-[#0a0f1b] p-4 sm:p-6 leading-relaxed border border-border/30 shadow-[0_18px_36px_rgba(0,0,0,0.28)]"
       role="region"
       aria-label="Word by word translation"
     >
       <div
         className={cn(
-          "flex flex-wrap items-start gap-2",
+          "flex flex-wrap items-start gap-2.5 sm:gap-3",
           focusMode ? "text-lg sm:text-xl" : "text-base sm:text-lg"
         )}
       >
@@ -170,30 +172,6 @@ export function WordByWordDisplay({ data, revealMode, focusMode = false }: WordB
             />
           );
         })}
-      </div>
-
-      <div className="mt-4 pt-4 border-t border-border/30 text-xs text-muted-foreground space-y-1">
-        <p>
-          <strong>{data.metadata.wordCount}</strong> words • <strong>{data.metadata.sentenceCount}</strong> sentences
-        </p>
-        <div className="flex flex-wrap gap-4 mt-2">
-          <div className="flex items-center gap-2">
-            <span className="inline-block w-8 h-0.5 border-b-2 border-[var(--pos-noun)]" />
-            <span>Noun</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="inline-block w-8 h-0.5 border-b-2 border-[var(--pos-verb)]" />
-            <span>Verb</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="inline-block w-8 h-0.5 border-b-2 border-[var(--pos-adjective)]" />
-            <span>Adjective</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="inline-block w-8 h-0.5 border-b-2 border-[var(--pos-adverb)]" />
-            <span>Adverb</span>
-          </div>
-        </div>
       </div>
     </div>
   );

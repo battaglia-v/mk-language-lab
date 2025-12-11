@@ -218,6 +218,14 @@ export default function PracticeAudioAdminPage() {
         </p>
       </header>
 
+      <Alert className="border-amber-500/40 bg-amber-500/10">
+        <AlertTitle>Audio hidden for learners</AlertTitle>
+        <AlertDescription className="text-sm">
+          No sample or fake clips are shipped. The practice app will keep audio buttons disabled until real teacher
+          recordings are uploaded here.
+        </AlertDescription>
+      </Alert>
+
       <UploadPracticeAudioForm onUploaded={() => mutate()} />
 
       <div className="flex flex-wrap gap-3">

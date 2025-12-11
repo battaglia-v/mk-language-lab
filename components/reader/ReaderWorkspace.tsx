@@ -555,15 +555,15 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
 
       {analyzedData && !isAnalyzing && (
         <div className="rounded-2xl sm:rounded-[28px] p-5 sm:p-6 md:p-8 space-y-6 bg-white/5 border border-border/40 shadow-[0_18px_48px_rgba(0,0,0,0.25)]">
-          <div className="space-y-3">
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
-              <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2">
-                <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
-                  {t('readerDifficultyLabel')}
-                </p>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-5 sm:gap-3">
+            <div className="col-span-2 rounded-xl border border-border/40 bg-white/5 px-3 py-2.5">
+              <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
+                {t('readerDifficultyLabel')}
+              </p>
+              <div className="mt-2 flex items-center justify-between gap-2">
                 <p
                   className={cn(
-                    'mt-1 inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold border shadow-sm',
+                    'inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold border shadow-sm',
                     analyzedData.difficulty.level === 'beginner' && 'bg-green-600/12 text-green-400 border-green-600/30',
                     analyzedData.difficulty.level === 'intermediate' && 'bg-yellow-600/12 text-yellow-400 border-yellow-600/30',
                     analyzedData.difficulty.level === 'advanced' && 'bg-red-600/12 text-red-400 border-red-600/30'
@@ -571,56 +571,44 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                 >
                   {t(`readerDifficulty${analyzedData.difficulty.level.charAt(0).toUpperCase() + analyzedData.difficulty.level.slice(1)}`)}
                 </p>
-              </div>
-              <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2">
-                <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
-                  {t('readerWords', { default: 'Words' })}
-                </p>
-                <p className="mt-1 text-sm font-semibold text-foreground">
-                  {analyzedData.metadata.wordCount}
-                </p>
-              </div>
-              <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2">
-                <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
-                  {t('readerSentences', { default: 'Sentences' })}
-                </p>
-                <p className="mt-1 text-sm font-semibold text-foreground">
-                  {analyzedData.metadata.sentenceCount}
-                </p>
-              </div>
-              <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2">
-                <p className="text-[11px] uppercase tracking-wide text-muted-foreground flex items-center gap-1">
-                  <Clock3 className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-                  {t('readerSessionTime', { default: 'Session' })}
-                </p>
-                <p className="mt-1 text-sm font-semibold text-foreground">{elapsedLabel}</p>
+                <span className="rounded-full border border-border/50 px-2.5 py-1 text-[11px] font-semibold text-muted-foreground">
+                  {selectedDirection?.label}
+                </span>
               </div>
             </div>
-          </div>
-
-          <WordByWordDisplay data={analyzedData} revealMode={revealMode} focusMode={focusMode} />
-
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
-            <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2">
-              <p className="text-[11px] uppercase tracking-wide text-muted-foreground">{t('readerWords', { default: 'Words' })}</p>
-              <p className="text-lg font-semibold text-foreground">{analyzedData.metadata.wordCount}</p>
+            <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2.5">
+              <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
+                {t('readerWords', { default: 'Words' })}
+              </p>
+              <p className="mt-1 text-sm font-semibold text-foreground">
+                {analyzedData.metadata.wordCount}
+              </p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2">
-              <p className="text-[11px] uppercase tracking-wide text-muted-foreground">{t('readerSentences', { default: 'Sentences' })}</p>
-              <p className="text-lg font-semibold text-foreground">{analyzedData.metadata.sentenceCount}</p>
+            <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2.5">
+              <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
+                {t('readerSentences', { default: 'Sentences' })}
+              </p>
+              <p className="mt-1 text-sm font-semibold text-foreground">
+                {analyzedData.metadata.sentenceCount}
+              </p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2 sm:col-span-1">
-              <p className="text-[11px] uppercase tracking-wide text-muted-foreground">{t('readerSource', { default: 'Source' })}</p>
-              <p className="text-sm font-semibold text-foreground">{selectedDirection?.label}</p>
+            <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2.5">
+              <p className="text-[11px] uppercase tracking-wide text-muted-foreground flex items-center gap-1">
+                <Clock3 className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+                {t('readerSessionTime', { default: 'Session' })}
+              </p>
+              <p className="mt-1 text-sm font-semibold text-foreground">{elapsedLabel}</p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2">
+            <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2.5">
               <p className="text-[11px] uppercase tracking-wide text-muted-foreground flex items-center gap-1">
                 <span role="img" aria-hidden="true">🔥</span>
                 {t('readerStreak', { default: 'Day streak' })}
               </p>
-              <p className="mt-1 text-lg font-semibold text-foreground">{streak}</p>
+              <p className="mt-1 text-sm font-semibold text-foreground">{streak}</p>
             </div>
           </div>
+
+          <WordByWordDisplay data={analyzedData} revealMode={revealMode} focusMode={focusMode} />
 
           {sentences.length > 0 && (
             <div className="space-y-3 rounded-2xl border border-border/40 bg-white/3 p-4 sm:p-5">

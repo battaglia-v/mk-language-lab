@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { ArrowRight, BookOpen, CircleUserRound, Languages, LayoutDashboard, Newspaper, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, CircleUserRound, Info, Languages, LayoutDashboard, Newspaper, Sparkles } from "lucide-react";
 import { locales } from "@/i18n";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -117,6 +117,17 @@ export default async function LocaleHome({ params }: LocalePageProps) {
               <Link href={practiceHref} className="gap-2">
                 {homeT("actionCards.continue.cta")}
                 <Sparkles className="h-4 w-4" aria-hidden />
+              </Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="min-h-[44px] border-white/20 text-slate-100 sm:w-auto"
+            >
+              <Link href={`/${safeLocale}/about`} className="gap-2">
+                <Info className="h-4 w-4" aria-hidden />
+                {navT("about")}
               </Link>
             </Button>
           </div>
