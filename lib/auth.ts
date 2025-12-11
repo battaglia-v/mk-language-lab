@@ -17,8 +17,6 @@ let authSecret =
   (process.env.NODE_ENV === 'production' ? undefined : 'development-auth-secret');
 
 function reportAuthConfigurationIssue(message: string, extra?: Record<string, unknown>) {
-  const details = extra ? { extra } : undefined;
-
   if (process.env.NODE_ENV !== 'production') {
     console.warn('[AUTH CONFIG]', message, extra ?? '');
   } else {

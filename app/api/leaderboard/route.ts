@@ -112,6 +112,9 @@ async function getGlobalLeaderboard(period: string, limit: number) {
  * Get friends leaderboard
  */
 async function getFriendsLeaderboard(userId: string, period: string, limit: number) {
+  void userId;
+  void period;
+  void limit;
   // TODO: Implement friendship system
   // For now, return empty array
   return [];

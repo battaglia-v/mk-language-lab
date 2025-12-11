@@ -12,6 +12,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Languages, Sparkles, Newspaper, BookOpen, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { WordOfTheDay } from "@/components/learn/WordOfTheDay";
 
 // Force dynamic rendering to ensure fresh data and proper auth checks
 export const dynamic = 'force-dynamic';
@@ -128,55 +129,58 @@ export default async function LearnPage() {
         </div>
       </header>
 
-      {/* Daily Goal Ring */}
-      <Card className="border-white/8 bg-white/5 shadow-[0_12px_36px_rgba(0,0,0,0.45)]">
-        <CardHeader className="pb-4">
-          <CardTitle className="text-xl">{t("dailyGoal", { default: "Daily Goal" })}</CardTitle>
-          <CardDescription>
-            {t("dailyGoalDescription", {
-              default: "Complete your daily goal to maintain your streak!",
-            })}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
-          <ProgressRing progress={dailyGoalProgress} size={120} strokeWidth={10}>
-            <div className="flex flex-col items-center">
-              <span className="text-2xl font-bold text-foreground">
-                {gameProgress.todayXP}
-              </span>
-              <span className="text-xs text-muted-foreground">
-                / {gameProgress.dailyGoalXP} XP
-              </span>
+      {/* Daily Goal + Word of the Day */}
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Card className="border-white/8 bg-white/5 shadow-[0_12px_36px_rgba(0,0,0,0.45)]">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-xl">{t("dailyGoal", { default: "Daily Goal" })}</CardTitle>
+            <CardDescription>
+              {t("dailyGoalDescription", {
+                default: "Complete your daily goal to maintain your streak!",
+              })}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+            <ProgressRing progress={dailyGoalProgress} size={120} strokeWidth={10}>
+              <div className="flex flex-col items-center">
+                <span className="text-2xl font-bold text-foreground">
+                  {gameProgress.todayXP}
+                </span>
+                <span className="text-xs text-muted-foreground">
+                  / {gameProgress.dailyGoalXP} XP
+                </span>
+              </div>
+            </ProgressRing>
+            <div className="flex-1 text-center sm:text-left">
+              {dailyGoalProgress >= 100 ? (
+                <>
+                  <p className="text-lg font-semibold text-success">
+                    🎉 {t("goalComplete", { default: "Goal Complete!" })}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {t("goalCompleteMessage", {
+                      default: "Great work! Your streak is safe for today.",
+                    })}
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="text-lg font-semibold text-foreground">
+                    {t("keepGoing", { default: "Keep going!" })}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {t("xpRemaining", {
+                      default: `${gameProgress.dailyGoalXP - gameProgress.todayXP} XP to complete your goal`,
+                      xp: gameProgress.dailyGoalXP - gameProgress.todayXP,
+                    })}
+                  </p>
+                </>
+              )}
             </div>
-          </ProgressRing>
-          <div className="flex-1 text-center sm:text-left">
-            {dailyGoalProgress >= 100 ? (
-              <>
-                <p className="text-lg font-semibold text-success">
-                  🎉 {t("goalComplete", { default: "Goal Complete!" })}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {t("goalCompleteMessage", {
-                    default: "Great work! Your streak is safe for today.",
-                  })}
-                </p>
-              </>
-            ) : (
-              <>
-                <p className="text-lg font-semibold text-foreground">
-                  {t("keepGoing", { default: "Keep going!" })}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {t("xpRemaining", {
-                    default: `${gameProgress.dailyGoalXP - gameProgress.todayXP} XP to complete your goal`,
-                    xp: gameProgress.dailyGoalXP - gameProgress.todayXP,
-                  })}
-                </p>
-              </>
-            )}
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+        <WordOfTheDay />
+      </div>
 
       {/* Current Lesson / Start Learning */}
       <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-secondary/5">

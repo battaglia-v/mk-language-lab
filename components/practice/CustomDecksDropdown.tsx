@@ -31,7 +31,6 @@ export function CustomDecksDropdown({
   const locale = useLocale();
   const [isOpen, setIsOpen] = useState(false);
 
-  const totalCards = decks.reduce((sum, deck) => sum + deck.cardCount, 0);
   const isActive = activeCustomDeckId !== null;
   const activeDeck = decks.find((d) => d.id === activeCustomDeckId);
 

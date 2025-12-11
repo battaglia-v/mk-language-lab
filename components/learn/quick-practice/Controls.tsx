@@ -20,7 +20,6 @@ export type QuickPracticeControlsProps = {
   setDifficulty: Dispatch<SetStateAction<PracticeDifficultyId>>;
   difficultyOptions: PracticeDifficultyPreset[];
   difficultyLabelText: string;
-  selectedDifficultyLabel: string;
   answer: string;
   setAnswer: Dispatch<SetStateAction<string>>;
   placeholder: string;
@@ -54,7 +53,6 @@ export function QuickPracticeControls({
   setDifficulty,
   difficultyOptions,
   difficultyLabelText,
-  selectedDifficultyLabel,
   answer,
   setAnswer,
   placeholder,

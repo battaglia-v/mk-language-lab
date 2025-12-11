@@ -6,7 +6,7 @@
  */
 
 import prisma from '@/lib/prisma';
-import { awardXP, XP_AWARDS } from './xp';
+import { awardXP } from './xp';
 
 /**
  * Achievement definitions

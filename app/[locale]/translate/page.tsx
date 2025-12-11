@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
+import { FormEvent, useCallback, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import {
@@ -34,10 +34,10 @@ const MAX_CHARACTERS = 1800;
 
 export default function TranslatePage() {
   const t = useTranslations('translate');
-  const navT = useTranslations('nav');
   const locale = useLocale();
   const { addToast } = useToast();
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const translateVersion = 'Translate UI 1.1.0 • cache-bust';
 
   const [historyOpen, setHistoryOpen] = useState(false);
   const [savedOpen, setSavedOpen] = useState(false);
@@ -72,7 +72,6 @@ export default function TranslatePage() {
     detectedLanguage,
     isTranslating,
     errorMessage,
-    isRetryable,
     copiedState,
     history,
     handleTranslate,
@@ -90,7 +89,7 @@ export default function TranslatePage() {
     historyLimit: 12,
   });
 
-  const { phrases, savePhrase, deletePhrase, clearAll, findMatchingPhrase } = useSavedPhrases();
+  const { phrases, savePhrase, deletePhrase, findMatchingPhrase } = useSavedPhrases();
 
   const currentPayload = useMemo(() => {
     const source = inputText.trim();
@@ -175,18 +174,38 @@ export default function TranslatePage() {
     }
   };
 
+  const handleCacheRefresh = useCallback(() => {
+    const url = new URL(window.location.href);
+    url.searchParams.set('v', Date.now().toString());
+    window.location.href = url.toString();
+  }, []);
+
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-3 pb-24 px-3 sm:gap-4 sm:px-4 sm:pb-6">
       {/* Compact Header */}
       <TooltipProvider delayDuration={120}>
         <header className="flex flex-col gap-3 rounded-2xl border border-white/8 bg-white/5 p-3 shadow-[0_10px_30px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between sm:p-4">
-          <div>
+          <div className="space-y-1.5">
             <h1 className="text-2xl font-bold text-foreground sm:text-3xl">
               {t('title', { default: 'Translate' })}
             </h1>
             <p className="text-sm text-muted-foreground">
               {t('subtitle', { default: 'English ↔ Macedonian' })}
             </p>
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-semibold text-white/80">
+                {translateVersion}
+              </span>
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                onClick={handleCacheRefresh}
+                className="h-8 rounded-full border border-primary/50 bg-primary/10 px-3 text-[11px] font-semibold text-primary hover:border-primary/70 hover:bg-primary/15"
+              >
+                Reload latest
+              </Button>
+            </div>
           </div>
           <div className="flex gap-2 sm:justify-end">
             <Tooltip>

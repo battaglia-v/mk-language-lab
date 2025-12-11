@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion, useMotionValue, animate } from "framer-motion";
 import { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { progressFill } from "@/lib/animations";
@@ -112,7 +112,6 @@ export function XPBar({
 
   // Animated XP counter
   const motionXP = useMotionValue(0);
-  const displayXP = useTransform(motionXP, (latest) => Math.round(latest));
 
   useEffect(() => {
     const controls = animate(motionXP, currentXP, {

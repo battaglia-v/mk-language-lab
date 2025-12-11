@@ -24,7 +24,6 @@ interface AchievementBadgeProps {
   targetValue?: number;
   xpReward: number;
   rarityTier: RarityTier;
-  category: string;
   className?: string;
   variant?: 'default' | 'compact';
   onClick?: () => void;
@@ -54,7 +53,6 @@ export function AchievementBadge({
   targetValue,
   xpReward,
   rarityTier,
-  category,
   className,
   variant = 'default',
   onClick,

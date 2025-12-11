@@ -17,7 +17,7 @@ import { QuickPracticeHeader } from '@/components/learn/quick-practice/Header';
 import { QuickPracticePrompt } from '@/components/learn/quick-practice/Prompt';
 import { QuickPracticeControls } from '@/components/learn/quick-practice/Controls';
 import { useQuickPracticeSession } from '@/components/learn/quick-practice/useQuickPracticeSession';
-import { ALL_CATEGORIES, SESSION_TARGET, PRACTICE_DIFFICULTIES, INITIAL_HEARTS } from '@/components/learn/quick-practice/constants';
+import { ALL_CATEGORIES, SESSION_TARGET, PRACTICE_DIFFICULTIES } from '@/components/learn/quick-practice/constants';
 import { formatCategory } from '@/components/learn/quick-practice/utils';
 import type { PracticeItem, PracticeDifficultyId } from '@/components/learn/quick-practice/types';
 import type { QuickPracticeSessionOptions } from '@/components/learn/quick-practice/useQuickPracticeSession';
@@ -138,9 +138,7 @@ export function QuickPracticeWidget({
   }, [forcedPromptIdParam, isSavedFixture, isCustomDeckFixture, promptsOverride, savedFixturePrompts, savedFixtureState, customDeckPrompts, customDeckState]);
 
   const {
-    categories,
     category,
-    setCategory,
     direction,
     setDirection,
     practiceMode,
@@ -173,11 +171,12 @@ export function QuickPracticeWidget({
     handleReveal: revealAnswer,
     handleReset: resetSession,
     handleContinue: continueSession,
-    isActionMenuOpen,
-    setIsActionMenuOpen,
+    // action menu controls not used in this layout
+    // isActionMenuOpen,
+    // setIsActionMenuOpen,
     streak,
     xp,
-    level,
+    // level,
     activeTalismans,
     talismanMultiplier,
     promptStatus,
@@ -241,8 +240,6 @@ export function QuickPracticeWidget({
   const selectedDifficultyOption =
     difficultyOptions.find((option) => option.id === difficulty) ?? difficultyOptions[0];
 
-  const accuracyBadge = getAccuracyBadge(accuracy);
-  const accuracyValueLabel = t('practiceAccuracy', { value: accuracy });
   const normalizedCorrect = Math.min(correctCount, SESSION_TARGET);
   const inlineProgressLabel = t('practiceInlineProgress', {
     current: normalizedCorrect,
@@ -254,29 +251,8 @@ export function QuickPracticeWidget({
   const audioLabel = t('practiceAudioPromptLabel');
   const isReady = Boolean(currentItem) && !isLoadingPrompts && hasAvailablePrompts;
   const progressValueLabel = `${normalizedCorrect}/${SESSION_TARGET}`;
-  const accuracyShortLabel = `${accuracy}%`;
-  const heartsValueLabel = `${hearts}/${INITIAL_HEARTS}`;
   const resolvedPromptNotice =
     promptNotice ?? (promptStatus === 'ready' && !hasAvailablePrompts ? t('practiceEmptyCategory') : null);
-
-  // Helper function to get accuracy badge color and label
-  function getAccuracyBadge(accuracyValue: number) {
-    if (accuracyValue >= 90) {
-      return {
-        color: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20',
-        label: t('practiceAccuracyExcellent'),
-      };
-    } else if (accuracyValue >= 70) {
-      return {
-        color: 'bg-amber-500/10 text-amber-600 border-amber-500/20',
-        label: t('practiceAccuracyGood'),
-      };
-    }
-    return {
-      color: 'bg-blue-500/10 text-blue-600 border-blue-500/20',
-      label: t('practiceAccuracyNeedsWork'),
-    };
-  }
 
   // Progress based on correct answers (5 correct = 100%)
   const completionModalElement = (
@@ -307,7 +283,6 @@ export function QuickPracticeWidget({
   const summarySubtitle = description ?? t('quickPracticeDescription');
   const isPrimaryDisabled = !isReady || !answer.trim() || isSubmitting;
   const headerTitle = title ?? t('quickPractice');
-  const categoryLabelText = t('practiceCategoryLabel');
   const clozeTranslationLabel = t('practiceClozeTranslationLabel');
   useEffect(() => {
     const updateViewport = () => {
