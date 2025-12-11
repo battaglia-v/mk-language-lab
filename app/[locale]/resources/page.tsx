@@ -288,7 +288,11 @@ export default function ResourcesPage() {
 
       {/* Mobile PDF Download Button */}
       {data?.pdf && (
-        <Button asChild className="sm:hidden" size="lg">
+        <Button
+          asChild
+          className="sm:hidden w-full whitespace-normal break-words text-sm leading-snug px-4 py-3 h-auto min-h-[48px]"
+          size="lg"
+        >
           <a href={data.pdf.url} target="_blank" rel="noreferrer">
             <ExternalLink className="mr-2 h-4 w-4" />
             {data.pdf.label}
