@@ -19,6 +19,8 @@
 | @ts-nocheck comments | ✅ Fixed | Removed 8 ineffective @ts-nocheck comments from API routes |
 | Password reset flow | ✅ Fixed | Implemented `/api/auth/forgot-password` and `/api/auth/reset-password` with secure token generation and email delivery |
 | Email verification flow | ✅ Fixed | Registration now requires email verification; added `/api/auth/verify-email` and `/api/auth/resend-verification` |
+| Self-service account deletion | ✅ Fixed | Added `/api/user/delete` with password verification, confirmation phrase, and cascade deletion |
+| Streak freeze/repair | ✅ Fixed | Added `/api/user/streak` with freeze (50 gems) and repair (100 gems) functionality |
 
 ---
 
