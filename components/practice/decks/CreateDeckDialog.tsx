@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -27,6 +27,7 @@ type CreateDeckDialogProps = {
 export function CreateDeckDialog({ onDeckCreated }: CreateDeckDialogProps) {
   const router = useRouter();
   const locale = useLocale();
+  const t = useTranslations('deckForm');
   const { addToast } = useToast();
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -39,8 +40,8 @@ export function CreateDeckDialog({ onDeckCreated }: CreateDeckDialogProps) {
 
     if (!name.trim()) {
       addToast({
-        title: 'Name required',
-        description: 'Please enter a name for your deck.',
+        title: t('nameRequired'),
+        description: t('nameRequiredDesc'),
         type: 'error',
       });
       return;
@@ -63,8 +64,8 @@ export function CreateDeckDialog({ onDeckCreated }: CreateDeckDialogProps) {
       }
 
       addToast({
-        title: 'Deck created',
-        description: `"${deck.name}" has been created successfully.`,
+        title: t('deckCreated'),
+        description: t('deckCreatedDesc', { name: deck.name }),
         type: 'success',
       });
 
@@ -85,8 +86,8 @@ export function CreateDeckDialog({ onDeckCreated }: CreateDeckDialogProps) {
     } catch (error) {
       console.error('[CreateDeckDialog] Failed to create deck:', error);
       addToast({
-        title: 'Error',
-        description: error instanceof Error ? error.message : 'Failed to create deck. Please try again.',
+        title: t('error'),
+        description: error instanceof Error ? error.message : t('createError'),
         type: 'error',
       });
     } finally {
@@ -99,26 +100,26 @@ export function CreateDeckDialog({ onDeckCreated }: CreateDeckDialogProps) {
       <DialogTrigger asChild>
         <Button className="gap-2">
           <Plus className="h-4 w-4" />
-          Create Deck
+          {t('createDeck')}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[500px]">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
-            <DialogTitle>Create New Deck</DialogTitle>
+            <DialogTitle>{t('createNewDeck')}</DialogTitle>
             <DialogDescription>
-              Create a custom practice deck with your own vocabulary cards.
+              {t('createNewDeckDesc')}
             </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-4 py-4">
             <div className="space-y-2">
               <Label htmlFor="name">
-                Deck Name <span className="text-destructive">*</span>
+                {t('deckName')} <span className="text-destructive">*</span>
               </Label>
               <Input
                 id="name"
-                placeholder="e.g., Travel Phrases"
+                placeholder={t('deckNamePlaceholder')}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 maxLength={100}
@@ -128,10 +129,10 @@ export function CreateDeckDialog({ onDeckCreated }: CreateDeckDialogProps) {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="description">Description (optional)</Label>
+              <Label htmlFor="description">{t('descriptionOptional')}</Label>
               <Textarea
                 id="description"
-                placeholder="What will you practice with this deck?"
+                placeholder={t('descriptionPlaceholder')}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 rows={3}
@@ -140,10 +141,10 @@ export function CreateDeckDialog({ onDeckCreated }: CreateDeckDialogProps) {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="category">Category (optional)</Label>
+              <Label htmlFor="category">{t('categoryOptional')}</Label>
               <Input
                 id="category"
-                placeholder="e.g., Travel, Food, Business"
+                placeholder={t('categoryPlaceholder')}
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
                 maxLength={50}
@@ -158,16 +159,16 @@ export function CreateDeckDialog({ onDeckCreated }: CreateDeckDialogProps) {
               onClick={() => setOpen(false)}
               disabled={isSubmitting}
             >
-              Cancel
+              {t('cancel')}
             </Button>
             <Button type="submit" disabled={isSubmitting || !name.trim()}>
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Creating...
+                  {t('creating')}
                 </>
               ) : (
-                'Create Deck'
+                t('createDeck')
               )}
             </Button>
           </DialogFooter>

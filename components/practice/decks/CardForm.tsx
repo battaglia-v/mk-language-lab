@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -35,10 +36,11 @@ type CardFormProps = {
 export function CardForm({
   onSubmit,
   initialData,
-  submitLabel = 'Add Card',
+  submitLabel,
   isSubmitting = false,
   onCancel,
 }: CardFormProps) {
+  const t = useTranslations('deckForm');
   const [formData, setFormData] = useState<CardFormData>({
     macedonian: initialData?.macedonian || '',
     english: initialData?.english || '',
@@ -96,11 +98,11 @@ export function CardForm({
           {/* Macedonian */}
           <div className="space-y-2">
             <Label htmlFor="macedonian">
-              Macedonian <span className="text-destructive">*</span>
+              {t('macedonian')} <span className="text-destructive">*</span>
             </Label>
             <Input
               id="macedonian"
-              placeholder="e.g., здраво"
+              placeholder={t('macedonianPlaceholder')}
               value={formData.macedonian}
               onChange={(e) => setFormData({ ...formData, macedonian: e.target.value })}
               required
@@ -111,11 +113,11 @@ export function CardForm({
           {/* English */}
           <div className="space-y-2">
             <Label htmlFor="english">
-              English <span className="text-destructive">*</span>
+              {t('english')} <span className="text-destructive">*</span>
             </Label>
             <Input
               id="english"
-              placeholder="e.g., hello"
+              placeholder={t('englishPlaceholder')}
               value={formData.english}
               onChange={(e) => setFormData({ ...formData, english: e.target.value })}
               required
@@ -128,44 +130,44 @@ export function CardForm({
           {/* Macedonian Alternates */}
           <div className="space-y-2">
             <Label htmlFor="macedonianAlternates">
-              Macedonian Alternates (optional)
+              {t('macedonianAlternatesOptional')}
             </Label>
             <Input
               id="macedonianAlternates"
-              placeholder="Comma-separated: здраво, добар ден"
+              placeholder={t('macedonianAlternatesPlaceholder')}
               value={formData.macedonianAlternates}
               onChange={(e) => setFormData({ ...formData, macedonianAlternates: e.target.value })}
               disabled={isSubmitting}
             />
             <p className="text-xs text-muted-foreground">
-              Alternative translations accepted as correct
+              {t('alternatesHint')}
             </p>
           </div>
 
           {/* English Alternates */}
           <div className="space-y-2">
             <Label htmlFor="englishAlternates">
-              English Alternates (optional)
+              {t('englishAlternatesOptional')}
             </Label>
             <Input
               id="englishAlternates"
-              placeholder="Comma-separated: hello, hi, hey"
+              placeholder={t('englishAlternatesPlaceholder')}
               value={formData.englishAlternates}
               onChange={(e) => setFormData({ ...formData, englishAlternates: e.target.value })}
               disabled={isSubmitting}
             />
             <p className="text-xs text-muted-foreground">
-              Alternative translations accepted as correct
+              {t('alternatesHint')}
             </p>
           </div>
         </div>
 
         {/* Category */}
         <div className="space-y-2">
-          <Label htmlFor="category">Category (optional)</Label>
+          <Label htmlFor="category">{t('categoryOptional')}</Label>
           <Input
             id="category"
-            placeholder="e.g., Greetings, Travel, Food"
+            placeholder={t('categoryPlaceholder')}
             value={formData.category}
             onChange={(e) => setFormData({ ...formData, category: e.target.value })}
             disabled={isSubmitting}
@@ -175,10 +177,10 @@ export function CardForm({
 
         {/* Notes */}
         <div className="space-y-2">
-          <Label htmlFor="notes">Personal Notes (optional)</Label>
+          <Label htmlFor="notes">{t('notesOptional')}</Label>
           <Textarea
             id="notes"
-            placeholder="Add mnemonics, usage tips, or anything to help you remember..."
+            placeholder={t('notesPlaceholder')}
             value={formData.notes}
             onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
             disabled={isSubmitting}
@@ -196,19 +198,19 @@ export function CardForm({
               onClick={onCancel}
               disabled={isSubmitting}
             >
-              Cancel
+              {t('cancel')}
             </Button>
           )}
           <Button type="submit" disabled={!isValid || isSubmitting}>
             {isSubmitting ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Saving...
+                {t('saving')}
               </>
             ) : (
               <>
                 <Plus className="mr-2 h-4 w-4" />
-                {submitLabel}
+                {submitLabel || t('addCard')}
               </>
             )}
           </Button>

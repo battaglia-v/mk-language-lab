@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -17,6 +17,7 @@ type DeckEditorHeaderProps = {
 
 export function DeckEditorHeader({ deck, onUpdate, cardCount }: DeckEditorHeaderProps) {
   const locale = useLocale();
+  const t = useTranslations('deckForm');
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [name, setName] = useState(deck.name);
@@ -67,22 +68,22 @@ export function DeckEditorHeader({ deck, onUpdate, cardCount }: DeckEditorHeader
       {isEditing ? (
         <div className="space-y-4 rounded-2xl border border-border/60 bg-card/80 p-6">
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-foreground">Deck Name</label>
+            <label className="text-sm font-semibold text-foreground">{t('deckName')}</label>
             <Input
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Deck name"
+              placeholder={t('deckNamePlaceholder')}
               maxLength={100}
               disabled={isSaving}
             />
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-foreground">Description</label>
+            <label className="text-sm font-semibold text-foreground">{t('description')}</label>
             <Textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="What will you practice with this deck?"
+              placeholder={t('descriptionPlaceholder')}
               rows={3}
               maxLength={500}
               disabled={isSaving}
@@ -90,11 +91,11 @@ export function DeckEditorHeader({ deck, onUpdate, cardCount }: DeckEditorHeader
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-foreground">Category</label>
+            <label className="text-sm font-semibold text-foreground">{t('category')}</label>
             <Input
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              placeholder="e.g., Travel, Food, Business"
+              placeholder={t('categoryPlaceholder')}
               maxLength={50}
               disabled={isSaving}
             />
@@ -103,17 +104,17 @@ export function DeckEditorHeader({ deck, onUpdate, cardCount }: DeckEditorHeader
           <div className="flex gap-2">
             <Button onClick={handleSave} disabled={isSaving || !name.trim()}>
               {isSaving ? (
-                <>Saving...</>
+                <>{t('saving')}</>
               ) : (
                 <>
                   <Save className="mr-2 h-4 w-4" />
-                  Save Changes
+                  {t('saveChanges')}
                 </>
               )}
             </Button>
             <Button variant="outline" onClick={handleCancel} disabled={isSaving}>
               <X className="mr-2 h-4 w-4" />
-              Cancel
+              {t('cancel')}
             </Button>
           </div>
         </div>
