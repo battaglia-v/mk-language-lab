@@ -19,7 +19,7 @@ import type { ReaderDirectionOption } from '@/components/translate/useReaderWork
 export default function ReaderPage() {
   const t = useTranslations('translate');
   // Visible version badge to verify deploy; update when pushing reader UI changes.
-  const readerVersion = 'Reader UI 1.1 • 1c98f3f';
+  const readerVersion = 'Reader UI 1.1.1 • c2aeb89';
 
   const directionOptions: ReaderDirectionOption[] = useMemo(
     () => [
