@@ -82,4 +82,3 @@ export async function GET() {
     return NextResponse.json(prompts);
   }
 }
-// @ts-nocheck

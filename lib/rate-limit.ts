@@ -51,6 +51,15 @@ export const tutorRateLimit = redis ? new Ratelimit({
   prefix: '@upstash/ratelimit/tutor',
 }) : null;
 
+// Auth API - Strict limits to prevent brute force and spam registration
+// 5 requests per minute per IP for registration and login
+export const authRateLimit = redis ? new Ratelimit({
+  redis,
+  limiter: Ratelimit.slidingWindow(5, '60 s'),
+  analytics: true,
+  prefix: '@upstash/ratelimit/auth',
+}) : null;
+
 /**
  * Helper function to apply rate limiting to an API route
  * Returns true if request should proceed, false if rate limited

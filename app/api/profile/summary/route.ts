@@ -468,4 +468,3 @@ function buildActivityHeatmap({
 
   return entries;
 }
-// @ts-nocheck

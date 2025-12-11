@@ -146,17 +146,48 @@ async function checkAchievementCondition(
       return gameProgress.xp >= condition.value;
 
     case 'weekend_practice':
-      // Check if user practiced on both Saturday and Sunday
-      // This would require additional tracking in practice sessions
-      return false; // TODO: Implement weekend tracking
+      // Check if user has practiced on both Saturday and Sunday in the same week
+      const weekendAttempts = await prisma.exerciseAttempt.findMany({
+        where: {
+          userId,
+          attemptedAt: {
+            gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), // Last 7 days
+          },
+        },
+        select: { attemptedAt: true },
+      });
+      const weekendDays = new Set(
+        weekendAttempts
+          .map((a) => a.attemptedAt.getDay())
+          .filter((day) => day === 0 || day === 6) // Sunday = 0, Saturday = 6
+      );
+      return weekendDays.size >= 2; // Must have practiced on both Saturday AND Sunday
 
     case 'early_morning_practice':
       // Check if user practiced before 8 AM
-      return false; // TODO: Implement time-based tracking
+      const earlyAttempts = await prisma.exerciseAttempt.findFirst({
+        where: {
+          userId,
+        },
+        select: { attemptedAt: true },
+        orderBy: { attemptedAt: 'desc' },
+      });
+      if (!earlyAttempts) return false;
+      const earlyHour = earlyAttempts.attemptedAt.getHours();
+      return earlyHour < 8;
 
     case 'late_night_practice':
       // Check if user practiced after 10 PM
-      return false; // TODO: Implement time-based tracking
+      const lateAttempts = await prisma.exerciseAttempt.findFirst({
+        where: {
+          userId,
+        },
+        select: { attemptedAt: true },
+        orderBy: { attemptedAt: 'desc' },
+      });
+      if (!lateAttempts) return false;
+      const lateHour = lateAttempts.attemptedAt.getHours();
+      return lateHour >= 22;
 
     default:
       return false;

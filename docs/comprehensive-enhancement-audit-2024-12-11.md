@@ -13,6 +13,10 @@
 | News page "operation aborted" error | ✅ Fixed | Added proper error handling and catch block in `/api/news/route.ts`, increased timeout to 15s, fallback to cached/static data on timeout |
 | AI Audio quality poor | ✅ Fixed | Added "Audio Coming Soon" badge in Quick Practice UI; audio buttons remain hidden until teacher uploads real clips via Admin |
 | Documentation sprawl | ✅ Fixed | Consolidated 20+ MD files from root into `docs/` structure, created unified `docs/AGENT_INSTRUCTIONS.md` |
+| Auth rate limiting missing | ✅ Fixed | Added Upstash rate limit (5 req/min) to `/api/auth/register` and credentials sign-in |
+| Time-based achievements not working | ✅ Fixed | Implemented weekend, early morning, and late night practice achievements in `lib/gamification/achievements.ts` |
+| Skip navigation link | ✅ Verified | Already implemented in locale layout with `#main-content` target |
+| @ts-nocheck comments | ✅ Fixed | Removed 8 ineffective @ts-nocheck comments from API routes |
 
 ---
 

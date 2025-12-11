@@ -1,7 +1,8 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import prisma from '@/lib/prisma';
 import { z } from 'zod';
+import { authRateLimit, checkRateLimit } from '@/lib/rate-limit';
 
 // Validation schema for registration
 const registerSchema = z.object({
@@ -10,7 +11,26 @@ const registerSchema = z.object({
   password: z.string().min(8, 'Password must be at least 8 characters'),
 });
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
+  // Rate limiting - prevent spam registration
+  const ip = request.headers.get('x-forwarded-for') ?? request.headers.get('x-real-ip') ?? '127.0.0.1';
+  const { success, limit: rateLimitMax, reset, remaining } = await checkRateLimit(authRateLimit, `register:${ip}`);
+
+  if (!success) {
+    return NextResponse.json(
+      { error: 'Too many registration attempts. Please try again later.' },
+      {
+        status: 429,
+        headers: {
+          'X-RateLimit-Limit': rateLimitMax.toString(),
+          'X-RateLimit-Remaining': remaining.toString(),
+          'X-RateLimit-Reset': reset.toString(),
+          'Retry-After': Math.ceil((reset - Date.now()) / 1000).toString(),
+        },
+      }
+    );
+  }
+
   try {
     const body = await request.json();
 

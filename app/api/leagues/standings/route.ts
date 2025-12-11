@@ -169,4 +169,3 @@ function getProgressPercent(streak: number, min: number, max: number | null): nu
   const progress = streak - min;
   return Math.max(0, Math.min(100, Math.round((progress / range) * 100)));
 }
-// @ts-nocheck
