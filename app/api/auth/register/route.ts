@@ -3,6 +3,8 @@ import bcrypt from 'bcryptjs';
 import prisma from '@/lib/prisma';
 import { z } from 'zod';
 import { authRateLimit, checkRateLimit } from '@/lib/rate-limit';
+import { createEmailVerificationToken } from '@/lib/tokens';
+import { sendVerificationEmail } from '@/lib/email';
 
 // Validation schema for registration
 const registerSchema = z.object({
@@ -60,21 +62,28 @@ export async function POST(request: NextRequest) {
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    // Create user
+    // Create user (email not verified until they confirm)
     const user = await prisma.user.create({
       data: {
         name,
         email,
         password: hashedPassword,
-        emailVerified: new Date(), // Auto-verify for now; can add email verification later
+        emailVerified: null, // Requires verification
         role: 'user',
       },
     });
+
+    // Send verification email
+    const token = await createEmailVerificationToken(email);
+    if (token) {
+      await sendVerificationEmail(email, token, name);
+    }
 
     // Return success (without sensitive data)
     return NextResponse.json(
       {
         success: true,
+        message: 'Account created. Please check your email to verify your account.',
         user: {
           id: user.id,
           name: user.name,
