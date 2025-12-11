@@ -45,14 +45,13 @@ function WordToken({ word, revealMode, isRevealed, onToggleReveal }: WordTokenPr
           <span
             onClick={onToggleReveal}
             className={cn(
-              'inline-block relative cursor-pointer',
-              'px-1.5 py-0.5',
+              'inline-block relative cursor-pointer rounded-lg',
+              'px-2 py-1',
               'transition-all duration-150',
-              'border-b-2',
+              'border-b-2 bg-white/2 hover:bg-white/6',
               borderColor,
-              'hover:bg-primary/10 rounded-sm',
               'select-none',
-              showTranslation && 'pb-7 mb-1'
+              showTranslation && 'pb-8 mb-1'
             )}
             role="button"
             tabIndex={0}
@@ -66,7 +65,7 @@ function WordToken({ word, revealMode, isRevealed, onToggleReveal }: WordTokenPr
           >
             <span className="font-normal">{word.original}</span>
             {showTranslation && (
-              <span className="absolute left-1.5 top-full mt-1 text-xs text-primary font-medium whitespace-nowrap z-10">
+              <span className="absolute left-1.5 top-full mt-1 text-[11px] text-primary font-semibold whitespace-nowrap z-10 bg-background/95 px-2 py-1 rounded-full shadow">
                 {word.translation}
               </span>
             )}
@@ -144,11 +143,11 @@ export function WordByWordDisplay({ data, revealMode }: WordByWordDisplayProps) 
 
   return (
     <div
-      className="min-h-[300px] rounded-2xl bg-background/50 p-6 sm:p-8 leading-relaxed border border-border/30"
+      className="min-h-[300px] rounded-2xl bg-gradient-to-b from-[#0e1324] via-[#0b1020] to-[#0a0f1b] p-6 sm:p-8 leading-relaxed border border-border/30 shadow-[0_18px_48px_rgba(0,0,0,0.32)]"
       role="region"
       aria-label="Word by word translation"
     >
-      <div className="flex flex-wrap items-start gap-1 text-xl sm:text-2xl leading-loose" style={{ lineHeight: '2.5rem' }}>
+      <div className="flex flex-wrap items-start gap-1.5 text-[20px] sm:text-[22px] leading-loose" style={{ lineHeight: '2.6rem' }}>
         {data.tokens.map((token) => {
           if (!token.isWord) {
             // Render punctuation and spaces as-is
