@@ -18,6 +18,8 @@ import type { ReaderDirectionOption } from '@/components/translate/useReaderWork
  */
 export default function ReaderPage() {
   const t = useTranslations('translate');
+  // Visible version badge to verify deploy; update when pushing reader UI changes.
+  const readerVersion = 'Reader UI 1.1 • 1c98f3f';
 
   const directionOptions: ReaderDirectionOption[] = useMemo(
     () => [
@@ -43,18 +45,23 @@ export default function ReaderPage() {
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-5 pb-24 sm:gap-6 sm:pb-10">
       {/* Header */}
       <header className="space-y-3 rounded-2xl border border-border/40 bg-gradient-to-br from-primary/10 via-background/70 to-secondary/10 p-5 sm:p-6 shadow-[0_20px_60px_rgba(0,0,0,0.25)]">
-        <div className="flex flex-wrap items-center gap-3">
-          <h1 className="text-3xl font-bold text-foreground sm:text-4xl">
-            {t('title', { default: 'Reader' })}
-          </h1>
-          <span className="rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">
-            Word-by-Word
-          </span>
-          <span className="rounded-full bg-white/8 px-3 py-1 text-xs font-semibold text-foreground/80">
-            Smart Reveal
-          </span>
-          <span className="rounded-full bg-white/8 px-3 py-1 text-xs font-semibold text-foreground/80">
-            Import &amp; Analyze
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div className="flex flex-wrap items-center gap-3">
+            <h1 className="text-3xl font-bold text-foreground sm:text-4xl">
+              {t('title', { default: 'Reader' })}
+            </h1>
+            <span className="rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">
+              Word-by-Word
+            </span>
+            <span className="rounded-full bg-white/8 px-3 py-1 text-xs font-semibold text-foreground/80">
+              Smart Reveal
+            </span>
+            <span className="rounded-full bg-white/8 px-3 py-1 text-xs font-semibold text-foreground/80">
+              Import &amp; Analyze
+            </span>
+          </div>
+          <span className="rounded-full border border-white/20 bg-black/30 px-3 py-1 text-[11px] font-semibold text-foreground/80">
+            {readerVersion}
           </span>
         </div>
         <p className="text-sm text-muted-foreground sm:text-base max-w-3xl">
