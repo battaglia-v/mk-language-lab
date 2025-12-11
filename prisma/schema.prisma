@@ -64,6 +64,8 @@ model User {
   notifications        Notification[]
   reminderSettings     ReminderSettings?
   customDecks          CustomDeck[]
+  friendRequestsSent     Friendship[] @relation("FriendRequestsSent")
+  friendRequestsReceived Friendship[] @relation("FriendRequestsReceived")
 }
 
 model VerificationToken {
@@ -689,4 +691,27 @@ model Notification {
 
   @@index([userId, isRead, createdAt])
   @@index([type, scheduledFor])
+}
+
+// Friendship - social connections between users
+model Friendship {
+  id          String           @id @default(cuid())
+  requesterId String
+  addresseeId String
+  status      FriendshipStatus @default(PENDING)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  requester User @relation("FriendRequestsSent", fields: [requesterId], references: [id], onDelete: Cascade)
+  addressee User @relation("FriendRequestsReceived", fields: [addresseeId], references: [id], onDelete: Cascade)
+
+  @@unique([requesterId, addresseeId])
+  @@index([addresseeId, status])
+  @@index([requesterId, status])
+}
+
+enum FriendshipStatus {
+  PENDING
+  ACCEPTED
+  BLOCKED
 }
