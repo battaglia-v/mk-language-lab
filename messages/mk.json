@@ -20,6 +20,7 @@
     "news": "Вести",
     "notifications": "Известувања",
     "profile": "Профил",
+    "about": "За нас",
     "collapse": "Собери",
     "expand": "Прошири странично мени",
     "toggleSettings": "Поставки",
@@ -1265,6 +1266,7 @@
     "instagram": "Инстаграм",
     "youtube": "Јутјуб",
     "allLinks": "Види ги сите врски",
+    "about": "За нас",
     "privacy": "Приватност",
     "terms": "Услови",
     "contact": "Контакт",
@@ -1277,6 +1279,7 @@
   "userMenu": {
     "signIn": "Најави се",
     "profile": "Профил",
+    "about": "За нас",
     "socialHeader": "Македонски Јазичен Кут",
     "socialSubtitle": "Следи ја Андри, твојата македонска наставничка",
     "instagram": "Инстаграм",

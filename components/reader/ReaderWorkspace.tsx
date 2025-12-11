@@ -52,8 +52,8 @@ type DirectionToggleProps = {
 
 function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel }: DirectionToggleProps) {
   return (
-    <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-      <div className="inline-flex items-center gap-1.5 rounded-2xl bg-muted p-1.5" role="group" aria-label={label}>
+    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+      <div className="inline-flex items-center gap-1 rounded-xl bg-muted p-1" role="group" aria-label={label}>
         {options.map((option) => {
           const isActive = option.id === activeId;
           const bgClass = option.sourceLang === 'mk' ? 'bg-red-600/90' : 'bg-green-600/90';
@@ -63,7 +63,7 @@ function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel
               type="button"
               onClick={() => onChange(option.id)}
               className={cn(
-                'min-h-[44px] rounded-xl px-4 py-2 text-sm font-semibold transition-all',
+                'min-h-[36px] rounded-lg px-2.5 py-1.5 text-xs font-semibold transition-all sm:min-h-[40px] sm:px-3.5 sm:py-2 sm:text-sm',
                 isActive
                   ? `${bgClass} text-white shadow-md`
                   : 'text-muted-foreground hover:text-foreground'
@@ -80,11 +80,11 @@ function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel
         variant="ghost"
         size="sm"
         onClick={onSwap}
-        className="min-h-[44px] rounded-full border border-border/60 px-4"
+        className="min-h-[36px] rounded-full border border-border/60 px-2.5 sm:min-h-[40px] sm:px-3.5"
         aria-label={swapLabel}
       >
-        <RefreshCw className="h-4 w-4" aria-hidden="true" />
-        <span className="ml-2">{swapLabel}</span>
+        <RefreshCw className="h-3.5 w-3.5" aria-hidden="true" />
+        <span className="ml-1.5 text-xs sm:text-sm">{swapLabel}</span>
       </Button>
     </div>
   );
@@ -301,7 +301,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
 
   return (
     <div className="space-y-5 sm:space-y-6 pb-28">
-      <div className="rounded-2xl border border-border/40 bg-white/5 p-4 sm:p-5 shadow-[0_14px_40px_rgba(0,0,0,0.25)] space-y-4">
+      <div className="rounded-xl border border-border/30 bg-white/5 p-3 sm:p-4 shadow-[0_14px_40px_rgba(0,0,0,0.25)] space-y-3">
         <DirectionToggle
           options={directionOptions}
           activeId={directionId}
@@ -310,35 +310,35 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
           label={t('directionsGroupLabel')}
           swapLabel={t('swapDirections')}
         />
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-2.5">
           <Button
             type="button"
             variant={revealMode === 'hidden' ? 'default' : 'outline'}
-            size="lg"
+            size="sm"
             onClick={handleToggleReveal}
-            className="w-full rounded-xl min-h-[48px]"
+            className="w-full rounded-lg min-h-[40px] text-xs sm:text-sm"
           >
             {revealMode === 'hidden' ? (
               <>
-                <Eye className="h-4 w-4" aria-hidden="true" />
-                <span className="ml-2 text-sm font-semibold">{t('readerRevealShow')}</span>
+                <Eye className="h-3.5 w-3.5" aria-hidden="true" />
+                <span className="ml-1.5">{t('readerRevealShow')}</span>
               </>
             ) : (
               <>
-                <EyeOff className="h-4 w-4" aria-hidden="true" />
-                <span className="ml-2 text-sm font-semibold">{t('readerRevealHide')}</span>
+                <EyeOff className="h-3.5 w-3.5" aria-hidden="true" />
+                <span className="ml-1.5">{t('readerRevealHide')}</span>
               </>
             )}
           </Button>
           <Button
             type="button"
             variant={focusMode ? 'default' : 'secondary'}
-            size="lg"
+            size="sm"
             onClick={() => setFocusMode((prev) => !prev)}
-            className="w-full rounded-xl min-h-[48px]"
+            className="w-full rounded-lg min-h-[40px] text-xs sm:text-sm"
           >
-            <Focus className="h-4 w-4" aria-hidden="true" />
-            <span className="ml-2 text-sm font-semibold">
+            <Focus className="h-3.5 w-3.5" aria-hidden="true" />
+            <span className="ml-1.5">
               {focusMode
                 ? t('readerFocusOff', { default: 'Exit focus' })
                 : t('readerFocusOn', { default: 'Focus mode' })}
@@ -347,10 +347,10 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
           <Button
             type="button"
             variant="outline"
-            size="lg"
+            size="sm"
             disabled={!analyzedData}
             onClick={() => void handleCopyTranslation()}
-            className="w-full rounded-xl min-h-[48px]"
+            className="col-span-2 sm:col-span-1 w-full rounded-lg min-h-[40px] text-xs sm:text-sm"
           >
             {copied ? t('copied', { default: 'Copied' }) : t('readerCopyTranslation', { default: 'Copy full translation' })}
           </Button>
@@ -358,35 +358,35 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
       </div>
 
       {recentHistory.length > 0 && (
-        <div className="rounded-2xl border border-border/40 bg-white/5 px-3 py-3 sm:px-4 sm:py-3">
-          <div className="flex items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
-              <History className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
-              <span className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+        <div className="rounded-xl border border-border/30 bg-white/5 px-3 py-2.5 sm:px-4 sm:py-3">
+          <div className="flex items-center justify-between gap-2 mb-2">
+            <div className="flex items-center gap-1.5">
+              <History className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
+              <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
                 {t('readerRecent', { default: 'Recent reads' })}
               </span>
             </div>
-            <span className="text-[11px] text-muted-foreground">
+            <span className="text-[10px] text-muted-foreground">
               {t('readerTapToLoad', { default: 'Tap to reopen' })}
             </span>
           </div>
-          <div className="mt-2 flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+          <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide -mx-1 px-1">
             {recentHistory.map((entry) => (
               <button
                 key={entry.id}
                 type="button"
                 onClick={() => handleHistoryLoad(entry)}
-                className="min-w-[210px] max-w-[260px] flex-1 rounded-2xl border border-border/30 bg-[#0c1224]/70 px-3 py-2 text-left shadow-inner transition-colors hover:border-primary/50 hover:bg-[#0f152a]"
+                className="flex-shrink-0 w-[160px] sm:w-[180px] rounded-xl border border-border/30 bg-[#0c1224]/70 px-2.5 py-2 text-left shadow-inner transition-colors hover:border-primary/50 hover:bg-[#0f152a] active:scale-[0.98]"
               >
-                <p className="line-clamp-2 text-xs font-semibold text-foreground/90">
+                <p className="line-clamp-2 text-[11px] font-medium text-foreground/90 leading-snug">
                   {entry.sourceText}
                 </p>
-                <div className="mt-1 flex items-center gap-2 text-[10px] text-muted-foreground">
-                  <span className="rounded-full bg-white/5 px-2 py-0.5 border border-border/50">
+                <div className="mt-1.5 flex items-center gap-1.5 text-[9px] text-muted-foreground">
+                  <span className="rounded bg-white/5 px-1.5 py-0.5 border border-border/40">
                     {entry.analyzedData.metadata.wordCount} {t('readerWords', { default: 'words' })}
                   </span>
-                  <span className="rounded-full bg-white/5 px-2 py-0.5 border border-border/50">
-                    {t('readerSentences', { default: 'Sentences' })}: {entry.analyzedData.metadata.sentenceCount}
+                  <span className="rounded bg-white/5 px-1.5 py-0.5 border border-border/40">
+                    {entry.analyzedData.metadata.sentenceCount} sent.
                   </span>
                 </div>
               </button>
@@ -396,23 +396,23 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
       )}
 
       <form
-        className="rounded-2xl sm:rounded-[28px] p-4 sm:p-6 md:p-7 bg-white/5 border border-border/40 shadow-[0_18px_48px_rgba(0,0,0,0.25)]"
+        className="rounded-2xl sm:rounded-[28px] p-3 sm:p-5 md:p-6 bg-white/5 border border-border/40 shadow-[0_18px_48px_rgba(0,0,0,0.25)]"
         onSubmit={(event: FormEvent<HTMLFormElement>) => {
           event.preventDefault();
           void handleAnalyze(event);
         }}
       >
-        <div className="flex flex-col gap-3">
-          <div className="flex items-center justify-between flex-wrap gap-2">
-            <div className="flex flex-col">
+        <div className="flex flex-col gap-2.5 sm:gap-3">
+          <div className="flex items-start justify-between gap-2">
+            <div className="flex flex-col gap-0.5 min-w-0">
               <span className="text-sm font-semibold text-foreground">
                 {t('readerInputLabel', { default: 'Paste text to analyze' })}
               </span>
-              <span className="text-xs text-muted-foreground">
-                {t('readerInputHelper', { default: 'Paste or type up to 5000 characters. Use Reader mode for long-form text.' })}
+              <span className="text-[11px] text-muted-foreground line-clamp-2 sm:line-clamp-none">
+                {t('readerInputHelper', { default: 'Paste or type up to 5000 characters.' })}
               </span>
             </div>
-            <span id="reader-character-count" className="rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold text-muted-foreground/90">
+            <span id="reader-character-count" className="flex-shrink-0 rounded-full bg-white/10 px-2.5 py-0.5 text-[10px] font-semibold text-muted-foreground/90">
               {characterCount}
             </span>
           </div>
@@ -425,43 +425,43 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
             aria-label={t('readerInputLabel')}
             aria-describedby="reader-character-count"
             maxLength={MAX_CHARACTERS}
-            className="min-h-[200px] resize-none rounded-2xl border border-white/10 bg-black/30 px-3.5 py-3.5 text-base font-medium shadow-inner placeholder:text-muted-foreground sm:min-h-[240px] sm:px-4 sm:text-base focus-visible:ring-2 focus-visible:ring-primary/40"
+            className="min-h-[140px] resize-none rounded-xl border border-white/10 bg-black/30 px-3 py-3 text-[15px] font-medium shadow-inner placeholder:text-muted-foreground sm:min-h-[200px] sm:px-4 sm:text-base focus-visible:ring-2 focus-visible:ring-primary/40"
           />
 
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex flex-wrap gap-2 sm:gap-3">
+            <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex gap-2">
                 <Button
                   type="button"
                   variant="ghost"
                   size="sm"
-                onClick={handleClear}
-                disabled={!inputText && !analyzedData}
-                className="rounded-full border border-border/60 min-h-[44px]"
+                  onClick={handleClear}
+                  disabled={!inputText && !analyzedData}
+                  className="rounded-full border border-border/60 min-h-[40px] px-3 text-xs"
+                >
+                  {t('clearButton')}
+                </Button>
+                <TextImporter
+                  onImportURL={handleImportFromURL}
+                  onImportFile={handleImportFromFile}
+                  isImporting={isImporting}
+                />
+              </div>
+              <Button
+                type="submit"
+                size="lg"
+                disabled={!inputText.trim() || isAnalyzing}
+                className="w-full sm:w-auto rounded-xl px-5 font-semibold min-h-[44px] bg-gradient-to-r from-amber-500 to-primary text-slate-900 hover:from-amber-600 hover:to-primary/90 shadow-lg"
               >
-                {t('clearButton')}
+                {isAnalyzing ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                    <span className="ml-2">{t('readerAnalyzing')}</span>
+                  </>
+                ) : (
+                  t('readerAnalyzeButton')
+                )}
               </Button>
-              <TextImporter
-                onImportURL={handleImportFromURL}
-                onImportFile={handleImportFromFile}
-                isImporting={isImporting}
-              />
             </div>
-            <Button
-              type="submit"
-              size="lg"
-              disabled={!inputText.trim() || isAnalyzing}
-              className="w-full sm:w-auto rounded-xl px-6 font-semibold min-h-[48px] bg-gradient-to-r from-amber-500 to-primary text-slate-900 hover:from-amber-600 hover:to-primary/90 shadow-lg"
-            >
-              {isAnalyzing ? (
-                <>
-                  <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-                  <span className="ml-2">{t('readerAnalyzing')}</span>
-                </>
-              ) : (
-                t('readerAnalyzeButton')
-              )}
-            </Button>
-          </div>
         </div>
       </form>
 

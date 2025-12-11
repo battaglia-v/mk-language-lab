@@ -36,22 +36,22 @@ function WordToken({ word, revealMode, isRevealed, onToggleReveal }: WordTokenPr
             onClick={onToggleReveal}
             className={cn(
               'relative inline-flex cursor-pointer select-none flex-col text-left',
-              'rounded-xl border border-white/10 bg-white/5 shadow-sm',
-              'px-2.5 py-2 min-w-[72px] max-w-[180px]',
-              'transition-all duration-150 hover:border-primary/50 hover:bg-white/10',
+              'rounded-lg border border-white/10 bg-white/5 shadow-sm',
+              'px-2 py-1.5 min-w-[56px] max-w-[140px] sm:px-2.5 sm:py-2 sm:min-w-[72px] sm:max-w-[180px]',
+              'transition-all duration-150 hover:border-primary/50 hover:bg-white/10 active:scale-[0.97]',
               showTranslation && 'ring-1 ring-primary/40'
             )}
             aria-label={`${word.original}: ${word.translation}`}
           >
-            <span className="block text-base font-semibold text-white leading-tight break-words">
+            <span className="block text-sm font-semibold text-white leading-tight break-words sm:text-base">
               {word.original}
             </span>
             {showTranslation ? (
-              <span className="mt-1 inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-semibold text-primary leading-tight">
+              <span className="mt-0.5 inline-flex items-center gap-1 rounded bg-primary/10 px-1.5 py-0.5 text-[10px] font-semibold text-primary leading-tight sm:mt-1 sm:rounded-full sm:px-2 sm:text-[11px]">
                 {word.translation}
               </span>
             ) : (
-              <span className="mt-1 inline-flex items-center rounded-full bg-white/8 px-2 py-0.5 text-[11px] font-semibold text-muted-foreground leading-tight">
+              <span className="mt-0.5 inline-flex items-center rounded bg-white/8 px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground leading-tight sm:mt-1 sm:rounded-full sm:px-2 sm:text-[11px]">
                 {t('readerRevealHint', { default: 'Tap to reveal' })}
               </span>
             )}
@@ -129,14 +129,14 @@ export function WordByWordDisplay({ data, revealMode, focusMode = false }: WordB
 
   return (
     <div
-      className="min-h-[240px] rounded-2xl bg-gradient-to-b from-[#0e1324] via-[#0b1020] to-[#0a0f1b] p-4 sm:p-6 leading-relaxed border border-border/30 shadow-[0_18px_36px_rgba(0,0,0,0.28)]"
+      className="min-h-[180px] rounded-xl bg-gradient-to-b from-[#0e1324] via-[#0b1020] to-[#0a0f1b] p-3 sm:p-5 leading-relaxed border border-border/30 shadow-[0_18px_36px_rgba(0,0,0,0.28)] sm:min-h-[240px] sm:rounded-2xl"
       role="region"
       aria-label="Word by word translation"
     >
       <div
         className={cn(
-          "flex flex-wrap items-start gap-2.5 sm:gap-3",
-          focusMode ? "text-lg sm:text-xl" : "text-base sm:text-lg"
+          "flex flex-wrap items-start gap-1.5 sm:gap-2.5",
+          focusMode ? "text-base sm:text-xl" : "text-sm sm:text-lg"
         )}
       >
         {data.tokens.map((token) => {

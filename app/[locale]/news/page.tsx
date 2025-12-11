@@ -378,34 +378,32 @@ export default function NewsPage() {
                   className="glass-card flex h-full flex-col overflow-hidden border border-border/60 bg-background/40 transition-shadow hover:border-primary/40 hover:shadow-2xl"
                   data-testid="news-card"
                 >
-                  <div className="relative aspect-video w-full overflow-hidden bg-muted">
+                  <div className="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800">
                     {item.image ? (
-                      <>
+                      <picture>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={item.image}
                           alt={item.title}
-                          className="h-full w-full object-cover"
+                          className="h-full w-full object-cover transition-opacity duration-300"
                           loading="lazy"
                           onError={(e) => {
-                            // Hide image and show fallback on error
-                            const target = e.currentTarget;
-                            target.style.display = 'none';
-                            const fallback = target.parentElement?.querySelector('.image-fallback') as HTMLElement;
-                            if (fallback) {
-                              fallback.style.display = 'flex';
-                            }
+                            // Hide broken image and show fallback
+                            e.currentTarget.style.display = 'none';
+                            const fallback = e.currentTarget.parentElement?.parentElement?.querySelector('[data-fallback]');
+                            if (fallback) (fallback as HTMLElement).style.display = 'flex';
                           }}
                         />
-                        <div className="image-fallback hidden h-full w-full items-center justify-center bg-gradient-to-br from-muted via-muted/80 to-muted">
-                          <Newspaper className="h-8 w-8 text-muted-foreground" />
-                        </div>
-                      </>
-                    ) : (
-                      <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-muted via-muted/80 to-muted">
-                        <Newspaper className="h-8 w-8 text-muted-foreground" />
-                      </div>
-                    )}
+                      </picture>
+                    ) : null}
+                    {/* Fallback icon - always present, hidden when image loads successfully */}
+                    <div 
+                      data-fallback
+                      className="absolute inset-0 items-center justify-center bg-gradient-to-br from-slate-700 via-slate-600 to-slate-700"
+                      style={{ display: item.image ? 'none' : 'flex' }}
+                    >
+                      <Newspaper className="h-12 w-12 text-slate-400" />
+                    </div>
                     <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent" />
                     <Badge variant="secondary" className="absolute left-4 bottom-3 text-[11px] bg-black/50 text-white backdrop-blur">
                       {item.sourceName}
