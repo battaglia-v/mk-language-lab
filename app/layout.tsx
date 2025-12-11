@@ -1,23 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SentryInit } from "@/components/SentryInit";
 import { Analytics } from "@vercel/analytics/react";
 import { brandColors, brandNames } from "@mk/tokens";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-  preload: true,
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-  preload: true,
-});
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -133,7 +118,7 @@ export default function RootLayout({
         <meta name="google" content="notranslate" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden theme-dark bg-[var(--mk-bg)] text-[var(--mk-text)]`}
+        className="antialiased overflow-x-hidden theme-dark bg-[var(--mk-bg)] text-[var(--mk-text)]"
       >
         <SentryInit />
         {children}

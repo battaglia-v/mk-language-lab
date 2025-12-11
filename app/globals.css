@@ -36,6 +36,8 @@
 }
 
 :root {
+  --font-geist-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-geist-mono: "JetBrains Mono", "SFMono-Regular", ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --space-gutter: clamp(0.875rem, 2.5vw, 1.25rem);
   --space-gutter-wide: clamp(1rem, 3vw, 1.5rem);
   --space-section-sm: clamp(1rem, 2.5vw, 1.75rem);
