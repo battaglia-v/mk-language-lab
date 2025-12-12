@@ -15,6 +15,7 @@ import {
   Copy as CopyIcon,
   Clock3,
   History,
+  Languages,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -537,7 +538,10 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                 type="button"
                 variant="outline"
                 size="sm"
-                onClick={() => setInputText("Hello, my name is John. I am learning Macedonian and I love the beautiful language and culture.")}
+                onClick={() => {
+                  setDirectionId('en-mk');
+                  setInputText("Hello, my name is John. I am learning Macedonian and I love the beautiful language and culture.");
+                }}
                 className="text-xs"
               >
                 {t('readerEmptyExample1')}
@@ -546,7 +550,10 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                 type="button"
                 variant="outline"
                 size="sm"
-                onClick={() => setInputText("Здраво, јас сум Јован. Јас учам македонски и го сакам прекрасниот јазик и култура.")}
+                onClick={() => {
+                  setDirectionId('mk-en');
+                  setInputText("Здраво, јас сум Јован. Јас учам македонски и го сакам прекрасниот јазик и култура.");
+                }}
                 className="text-xs"
               >
                 {t('readerEmptyExample2')}
@@ -612,6 +619,41 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
           </div>
 
           <WordByWordDisplay data={analyzedData} revealMode={revealMode} focusMode={focusMode} />
+
+          {/* Full Natural Translation - prominent placement */}
+          <div className="rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/8 to-primary/3 p-4 sm:p-5 space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Languages className="h-4 w-4 text-primary" aria-hidden="true" />
+                <p className="text-sm font-semibold text-primary">{t('readerFullTranslation')}</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => handleListen(analyzedData.fullTranslation)}
+                  className="rounded-full h-8 w-8 p-0"
+                  aria-label={t('readerListen', { default: 'Listen' })}
+                >
+                  <Volume2 className="h-4 w-4" aria-hidden="true" />
+                </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => {
+                    void navigator.clipboard.writeText(analyzedData.fullTranslation);
+                  }}
+                  className="rounded-full h-8 w-8 p-0"
+                  aria-label={t('readerCopy', { default: 'Copy' })}
+                >
+                  <CopyIcon className="h-4 w-4" aria-hidden="true" />
+                </Button>
+              </div>
+            </div>
+            <p className="text-base sm:text-lg leading-relaxed text-foreground">{analyzedData.fullTranslation}</p>
+          </div>
 
           {sentences.length > 0 && (
             <div className="space-y-4 rounded-2xl border border-border/40 bg-white/3 p-4 sm:p-6">
@@ -687,11 +729,6 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
               </div>
             </div>
           )}
-
-          <div className="pt-4 border-t border-border/50">
-            <p className="text-xs text-muted-foreground mb-2">{t('readerFullTranslation')}:</p>
-            <p className="text-sm leading-relaxed text-foreground/90">{analyzedData.fullTranslation}</p>
-          </div>
         </div>
       )}
     </div>

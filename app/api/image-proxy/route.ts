@@ -49,18 +49,23 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid url format' }, { status: 400 });
   }
 
-  // Only allow HTTPS
-  if (parsedUrl.protocol !== 'https:') {
-    return NextResponse.json({ error: 'Only HTTPS URLs are allowed' }, { status: 400 });
+  // Upgrade HTTP to HTTPS for security, or accept HTTPS
+  if (parsedUrl.protocol === 'http:') {
+    parsedUrl.protocol = 'https:';
+  } else if (parsedUrl.protocol !== 'https:') {
+    return NextResponse.json({ error: 'Only HTTP/HTTPS URLs are allowed' }, { status: 400 });
   }
 
-  // Validate domain is in allowlist
+  const secureUrl = parsedUrl.toString();
+
+  // Validate domain is in allowlist (use original URL for domain check)
   if (!isAllowedDomain(url)) {
     return NextResponse.json({ error: 'Domain not allowed' }, { status: 403 });
   }
 
   try {
-    const response = await fetch(url, {
+    // Try HTTPS first
+    let response = await fetch(secureUrl, {
       headers: {
         'User-Agent':
           'Mozilla/5.0 (compatible; MKLanguageLab/1.0; +https://mk-language-lab.vercel.app)',
@@ -69,6 +74,19 @@ export async function GET(request: NextRequest) {
       },
       cache: 'no-store',
     });
+
+    // If HTTPS fails, fall back to HTTP for domains that don't support HTTPS
+    if (!response.ok && url.startsWith('http://')) {
+      response = await fetch(url, {
+        headers: {
+          'User-Agent':
+            'Mozilla/5.0 (compatible; MKLanguageLab/1.0; +https://mk-language-lab.vercel.app)',
+          Accept: 'image/*',
+          Referer: new URL(url).origin,
+        },
+        cache: 'no-store',
+      });
+    }
 
     if (!response.ok) {
       return NextResponse.json(

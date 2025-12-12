@@ -445,7 +445,7 @@ export default function PracticePage() {
       </section>
 
       <div className="glass-card space-y-5 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-7" data-testid="practice-workspace">
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3" data-testid="practice-panels">
+        <div className="grid grid-cols-1 gap-2 min-[400px]:grid-cols-2 sm:grid-cols-4 sm:gap-3" data-testid="practice-panels">
           <DeckToggle
             label={t('savedDeck.badge')}
             count={savedDeck.length}
@@ -698,14 +698,14 @@ function DeckToggle({ label, count, active, disabled, onClick }: DeckToggleProps
       disabled={disabled}
       onClick={onClick}
       className={cn(
-        'group flex h-full w-full min-h-[68px] min-w-0 flex-col items-start justify-between gap-1.5 rounded-2xl border px-4 py-3 text-sm font-semibold transition-all sm:px-5 sm:py-4',
+        'group flex h-full w-full min-h-[68px] min-w-0 flex-col items-start justify-between gap-1.5 rounded-2xl border px-3 py-3 text-sm font-semibold transition-all min-[400px]:px-4 sm:px-5 sm:py-4',
         active
           ? 'border-primary/70 bg-primary/15 text-white shadow-md ring-1 ring-primary/25'
           : 'border-border/60 text-muted-foreground hover:border-primary/40 hover:text-white hover:bg-primary/5',
         disabled && 'opacity-45 cursor-not-allowed hover:border-border/60 hover:text-muted-foreground hover:bg-transparent',
       )}
     >
-      <span className="truncate min-w-0 text-left leading-tight">{label}</span>
+      <span className="min-w-0 text-left leading-tight text-[13px] min-[400px]:text-sm line-clamp-2">{label}</span>
       <span
         className={cn(
           'rounded-full px-2.5 py-0.5 text-xs font-bold transition-colors flex-shrink-0',
