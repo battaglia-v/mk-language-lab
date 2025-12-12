@@ -6,6 +6,8 @@ import withPWA from '@ducanh2912/next-pwa';
 const withNextIntl = createNextIntlPlugin('./i18n.ts');
 
 const nextConfig: NextConfig = {
+  // Enable gzip compression for API routes when not using Vercel Edge
+  compress: true,
   images: {
     unoptimized: false,
     remotePatterns: [
@@ -159,6 +161,39 @@ const nextConfig: NextConfig = {
     // assets (Vercel's build environment does not allow outbound TLS without
     // explicitly opting in, which caused deployments to fail).
     turbopackUseSystemTlsCerts: true,
+  },
+  // Add security and performance headers
+  async headers() {
+    return [
+      {
+        // API routes - add cache hints and security headers
+        source: '/api/:path*',
+        headers: [
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'Vary',
+            value: 'Accept-Encoding',
+          },
+        ],
+      },
+      {
+        // Static assets - enable long-term caching
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
   },
 };
 
