@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatElapsedTime } from '../../apps/mobile/lib/formatTime';
+import { formatElapsedTime } from '@/lib/format-time';
 
 describe('formatElapsedTime', () => {
   it('formats 0 seconds as 0:00', () => {

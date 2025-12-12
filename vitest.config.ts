@@ -8,7 +8,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, '.'),
-      'react-native': path.resolve(__dirname, 'vitest.react-native.stub.ts'),
       '@mk/practice': path.resolve(__dirname, 'packages/practice/src'),
     },
   },

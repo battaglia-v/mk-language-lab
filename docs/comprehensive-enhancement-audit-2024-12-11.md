@@ -104,15 +104,18 @@ This audit identifies **47 enhancement opportunities** across authentication, ga
 | **Focus trapping in modals** | Ensure Tab key stays within open dialogs |
 | **Color contrast on badges** | Some badge colors may fail WCAG AA |
 
-### 3.2 Mobile App Improvements
+### 3.2 PWA Mobile Improvements
 
 | Feature | Current State | Enhancement |
 |---------|--------------|-------------|
-| **Offline Mode** | Audio caching only | Full lesson/practice offline support |
+| **Offline Mode** | Service Worker caching | Full lesson/practice offline support via PWA cache |
 | **Deep Linking** | Not implemented | Share specific lessons/achievements via URL |
-| **Haptic Feedback** | None | Add vibration for XP gains, streaks |
-| **Pull-to-Refresh** | Missing | Add to all list views |
+| **Haptic Feedback** | ✅ Implemented | `lib/haptics.ts` with Vibration API for Android PWA |
+| **Pull-to-Refresh** | ✅ Implemented | `hooks/use-pull-to-refresh.ts` and `PullToRefresh.tsx` component |
+| **Reduced Motion** | ✅ Implemented | `hooks/use-reduced-motion.ts` respects prefers-reduced-motion |
 | **Background Sync** | None | Sync progress when app regains connectivity |
+
+> **Note:** As of December 2024, we are using a PWA-only approach (no React Native/Expo). The `apps/mobile` folder has been removed.
 
 ### 3.3 Performance Optimizations
 

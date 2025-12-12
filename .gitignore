@@ -53,13 +53,6 @@ android/
 ios/
 out/
 
-# Expo / React Native
-apps/mobile/.expo
-apps/mobile/.expo-shared
-apps/mobile/android
-apps/mobile/ios
-apps/mobile/web-build
-
 # Test files with potential secrets
 test-*.mjs
 test-*.js

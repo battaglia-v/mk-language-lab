@@ -4,17 +4,27 @@
 
 MK Language Lab (Македонски) is a modern, multilingual learning platform for Macedonian language learners. Built with cutting-edge technologies, it provides AI-powered conversations, interactive practice modules, translation tools, and curated news content.
 
+**Important:** This is a **PWA (Progressive Web App) only** project. We are NOT using React Native or Expo. All mobile features should be implemented using web technologies (Service Workers, Vibration API, etc.).
+
 ## Tech Stack & Architecture
 
 ### Core Technologies
 - **Framework:** Next.js 15 (App Router) with TypeScript 5
 - **UI:** React 19, Tailwind CSS 4, shadcn/ui components
+- **Mobile:** PWA with Service Workers (no React Native)
 - **Database:** Prisma ORM (SQLite for dev, PostgreSQL for production)
 - **AI/APIs:** OpenAI GPT-4o-mini, Google Cloud Translate API
 - **Localization:** next-intl with English and Macedonian support
 - **Testing:** Vitest (unit tests), Playwright (E2E tests)
 - **Monitoring:** Sentry for error tracking, Vercel Analytics
 - **Deployment:** Vercel with edge runtime support
+
+### PWA Mobile Features
+Located in `lib/` and `hooks/`:
+- **Haptic Feedback:** `lib/haptics.ts` - Uses Vibration API for Android PWA
+- **Pull-to-Refresh:** `hooks/use-pull-to-refresh.ts` and `components/ui/PullToRefresh.tsx`
+- **Reduced Motion:** `hooks/use-reduced-motion.ts` - Respects prefers-reduced-motion
+- **Offline Support:** Service Worker via `@ducanh2912/next-pwa`
 
 ### Project Structure
 ```
