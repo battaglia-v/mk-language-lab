@@ -4,6 +4,9 @@ import bcrypt from 'bcryptjs';
 import { authRateLimit, checkRateLimit } from '@/lib/rate-limit';
 import { verifyPasswordResetToken, consumePasswordResetToken } from '@/lib/tokens';
 import prisma from '@/lib/prisma';
+import { createScopedLogger } from '@/lib/logger';
+
+const log = createScopedLogger('api.auth.reset-password');
 
 const resetPasswordSchema = z.object({
   token: z.string().min(1, 'Token is required'),
@@ -64,14 +67,14 @@ export async function POST(request: NextRequest) {
     // Consume (delete) the token
     await consumePasswordResetToken(token);
 
-    console.log('[RESET_PASSWORD] Password reset successful for:', email);
+    log.info('Password reset successful', { email });
 
     return NextResponse.json({
       success: true,
       message: 'Password has been reset successfully. You can now sign in.',
     });
   } catch (error) {
-    console.error('[RESET_PASSWORD ERROR]', error);
+    log.error('Password reset failed', { error });
     return NextResponse.json(
       { error: 'An error occurred. Please try again.' },
       { status: 500 }

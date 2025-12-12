@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import prisma from '@/lib/prisma';
 import { auth } from '@/lib/auth';
+import { createScopedLogger } from '@/lib/logger';
+
+const log = createScopedLogger('api.user.streak');
 
 const STREAK_FREEZE_COST = 50; // gems to freeze streak for 1 day
 const STREAK_REPAIR_COST = 100; // gems to repair a lost streak
@@ -51,7 +54,7 @@ export async function GET(request: NextRequest) {
       canRepair: streakLost && (currency?.gems ?? 0) >= STREAK_REPAIR_COST,
     });
   } catch (error) {
-    console.error('[STREAK STATUS ERROR]', error);
+    log.error('Failed to get streak status', { error });
     return NextResponse.json(
       { error: 'Failed to get streak status' },
       { status: 500 }
@@ -144,7 +147,7 @@ export async function POST(request: NextRequest) {
         }),
       ]);
 
-      console.log('[STREAK] Freeze used:', { userId: session.user.id, streak: gameProgress.streak });
+      log.info('Streak frozen', { userId: session.user.id, streak: gameProgress.streak });
 
       return NextResponse.json({
         success: true,
@@ -202,7 +205,7 @@ export async function POST(request: NextRequest) {
         }),
       ]);
 
-      console.log('[STREAK] Repair used:', { userId: session.user.id, streak: gameProgress.streak });
+      log.info('Streak repaired', { userId: session.user.id, streak: gameProgress.streak });
 
       return NextResponse.json({
         success: true,
@@ -214,7 +217,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
   } catch (error) {
-    console.error('[STREAK ACTION ERROR]', error);
+    log.error('Failed to process streak action', { error });
     return NextResponse.json(
       { error: 'Failed to process streak action' },
       { status: 500 }
