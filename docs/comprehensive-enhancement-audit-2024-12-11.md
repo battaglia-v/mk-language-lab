@@ -25,6 +25,7 @@
 | Admin analytics dashboard | ✅ Fixed | Added `/api/admin/analytics` with daily registrations, active users, exercise stats, leaderboards, and level distribution |
 | Friends system | ✅ Fixed | Added Friendship schema model, `/api/user/friends` for send/accept/reject requests, `/api/user/friends/leaderboard` for friend rankings, `/api/user/friends/search` to find users |
 | GDPR data export | ✅ Fixed | Added `/api/user/export` with password verification; exports profile, progress, badges, currency, exercises, journeys, friendships, custom decks as JSON |
+| Achievement push notifications | ✅ Fixed | Added `lib/achievement-notifications.ts` with Expo push integration; sends push + in-app notifications on badge unlock with rarity-based emojis |
 
 ---
 
