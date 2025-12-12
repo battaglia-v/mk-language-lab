@@ -8,6 +8,7 @@ import Animated, {
   withTiming,
   interpolate,
   Extrapolation,
+  useReducedMotion,
 } from 'react-native-reanimated';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -43,6 +44,7 @@ export function SwipeableCard({
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [revealedAnswer, setRevealedAnswer] = useState<string | null>(null);
   const [isRevealed, setIsRevealed] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
@@ -61,11 +63,17 @@ export function SwipeableCard({
   const animateOut = useCallback(
     (direction: 'left' | 'right', callback: () => void) => {
       const targetX = direction === 'right' ? SCREEN_WIDTH : -SCREEN_WIDTH;
+      // Skip animation when reduced motion is preferred
+      if (prefersReducedMotion) {
+        translateX.value = targetX;
+        callback();
+        return;
+      }
       translateX.value = withTiming(targetX, { duration: 220 }, () => {
         runOnJS(callback)();
       });
     },
-    [translateX]
+    [prefersReducedMotion, translateX]
   );
 
   const handleReveal = useCallback(() => {
@@ -97,13 +105,24 @@ export function SwipeableCard({
             onAdvance();
           });
         } else {
-          translateX.value = withSpring(0);
-          translateY.value = withSpring(0);
+          // Skip spring animation when reduced motion is preferred
+          if (prefersReducedMotion) {
+            translateX.value = 0;
+            translateY.value = 0;
+          } else {
+            translateX.value = withSpring(0);
+            translateY.value = withSpring(0);
+          }
         }
       }
     },
-    [animateOut, card, inputValue, onAdvance, submitAnswer, translateX, translateY]
+    [animateOut, card, inputValue, onAdvance, prefersReducedMotion, submitAnswer, translateX, translateY]
   );
+
+  const handleSkipWithAnimation = useCallback(() => {
+    onSkip();
+    animateOut('left', () => {});
+  }, [animateOut, onSkip]);
 
   const panGesture = useMemo(() => {
     return Gesture.Pan()
@@ -118,18 +137,25 @@ export function SwipeableCard({
           return;
         }
         if (event.translationX < -SWIPE_THRESHOLD) {
-          runOnJS(onSkip)();
-          animateOut('left', () => {});
+          runOnJS(handleSkipWithAnimation)();
           return;
         }
         if (event.translationY < -SWIPE_THRESHOLD * 0.6) {
           runOnJS(handleReveal)();
         }
-        translateX.value = withSpring(0);
-        translateY.value = withSpring(0);
-        rotateZ.value = withSpring(0);
+        // Reset position - use instant values for reduced motion
+        // Note: prefersReducedMotion is available in worklets from useReducedMotion
+        if (prefersReducedMotion) {
+          translateX.value = 0;
+          translateY.value = 0;
+          rotateZ.value = 0;
+        } else {
+          translateX.value = withSpring(0);
+          translateY.value = withSpring(0);
+          rotateZ.value = withSpring(0);
+        }
       });
-  }, [animateOut, handleReveal, handleSubmit, onSkip, rotateZ, translateX, translateY]);
+  }, [handleReveal, handleSkipWithAnimation, handleSubmit, prefersReducedMotion, rotateZ, translateX, translateY]);
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [

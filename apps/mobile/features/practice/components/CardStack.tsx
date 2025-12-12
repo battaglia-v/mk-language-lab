@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
+  AccessibilityInfo,
   Animated,
   Dimensions,
   PanResponder,
@@ -31,6 +32,18 @@ type CardStackProps = {
 export function CardStack({ card, isLoading, onResult, onEvaluateAnswer }: CardStackProps) {
   const position = useRef(new Animated.ValueXY()).current;
   const cardKey = useMemo(() => (card ? `${card.id}-${card.type}` : 'empty'), [card]);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    // Check initial reduced motion preference
+    AccessibilityInfo.isReduceMotionEnabled().then(setPrefersReducedMotion);
+    // Listen for changes
+    const subscription = AccessibilityInfo.addEventListener(
+      'reduceMotionChanged',
+      setPrefersReducedMotion
+    );
+    return () => subscription.remove();
+  }, []);
 
   useEffect(() => {
     position.setValue({ x: 0, y: 0 });
@@ -50,21 +63,32 @@ export function CardStack({ card, isLoading, onResult, onEvaluateAnswer }: CardS
     (direction: SwipeDirection) => {
       const x = direction === 'right' ? SCREEN_WIDTH : direction === 'left' ? -SCREEN_WIDTH : 0;
       const y = direction === 'up' ? -SCREEN_WIDTH : 0;
+      // Skip animation when reduced motion is preferred
+      if (prefersReducedMotion) {
+        position.setValue({ x, y });
+        handleSwipeComplete(direction);
+        return;
+      }
       Animated.timing(position, {
         toValue: { x, y },
         duration: SWIPE_OUT_DURATION,
         useNativeDriver: true,
       }).start(() => handleSwipeComplete(direction));
     },
-    [handleSwipeComplete, position]
+    [handleSwipeComplete, position, prefersReducedMotion]
   );
 
   const resetPosition = useCallback(() => {
+    // Skip animation when reduced motion is preferred
+    if (prefersReducedMotion) {
+      position.setValue({ x: 0, y: 0 });
+      return;
+    }
     Animated.spring(position, {
       toValue: { x: 0, y: 0 },
       useNativeDriver: true,
     }).start();
-  }, [position]);
+  }, [position, prefersReducedMotion]);
 
   // Track if we've passed the threshold to provide haptic feedback once
   const hasTriggeredHaptic = useRef(false);
