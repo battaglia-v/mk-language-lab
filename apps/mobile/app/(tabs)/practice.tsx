@@ -18,6 +18,7 @@ import { usePracticeCompletionQueue } from '../../features/practice/usePracticeC
 import { SESSION_TARGET } from '@mk/practice';
 import { useQueryHydration } from '../../lib/queryClient';
 import { triggerHaptic } from '../../lib/haptics';
+import { DirectionToggle } from '../../components/ui/DirectionToggle';
 
 const HEART_SLOTS = 5;
 const XP_PER_CARD = 12;
@@ -163,26 +164,11 @@ export default function PracticeScreen() {
         </NativeCard>
 
         {/* Direction Toggle - Only Essential Control */}
-        <View style={styles.directionToggle}>
-          <NativeButton
-            variant={direction === 'enToMk' ? 'primary' : 'secondary'}
-            style={styles.directionButton}
-            onPress={() => setDirection('enToMk')}
-          >
-            <NativeTypography variant="body" style={styles.toggleText}>
-              EN → MK
-            </NativeTypography>
-          </NativeButton>
-          <NativeButton
-            variant={direction === 'mkToEn' ? 'primary' : 'secondary'}
-            style={styles.directionButton}
-            onPress={() => setDirection('mkToEn')}
-          >
-            <NativeTypography variant="body" style={styles.toggleText}>
-              MK → EN
-            </NativeTypography>
-          </NativeButton>
-        </View>
+        <DirectionToggle
+          direction={direction}
+          onDirectionChange={setDirection}
+          testID="practice-direction-toggle"
+        />
 
         {/* Current Settings Hint */}
         <NativeTypography variant="caption" style={styles.settingsHint}>
@@ -358,9 +344,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 12,
   },
-  directionToggle: { flexDirection: 'row', gap: spacingScale.sm },
-  directionButton: { flex: 1 },
-  toggleText: { color: '#fff' },
   settingsHint: {
     color: 'rgba(247,248,251,0.5)',
     textAlign: 'center',

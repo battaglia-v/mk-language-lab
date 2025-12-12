@@ -18,16 +18,17 @@ import {
 import { analyzeText, AnalyzeTextError, type TranslateLanguage, type AnalyzedTextData } from '@mk/api-client';
 import { getApiBaseUrl } from '../../lib/api';
 import { authenticatedFetch } from '../../lib/auth';
+import { DirectionToggle, type DirectionOption } from '../../components/ui/DirectionToggle';
 
-type DirectionOption = {
-  id: 'mk-en' | 'en-mk';
-  label: string;
+type ReaderDirectionId = 'mk-en' | 'en-mk';
+
+interface ReaderDirectionOption extends DirectionOption<ReaderDirectionId> {
   placeholder: string;
   sourceLang: TranslateLanguage;
   targetLang: TranslateLanguage;
-};
+}
 
-const directionOptions: DirectionOption[] = [
+const directionOptions: ReaderDirectionOption[] = [
   {
     id: 'en-mk',
     label: 'EN → MK',
@@ -139,17 +140,12 @@ export default function ReaderScreen() {
         </View>
 
         {/* Direction Toggle */}
-        <View style={styles.directionToggle}>
-          {directionOptions.map((option) => (
-            <NativeButton
-              key={option.id}
-              title={option.label}
-              onPress={() => setDirectionId(option.id)}
-              variant={directionId === option.id ? 'primary' : 'secondary'}
-              style={styles.directionButton}
-            />
-          ))}
-        </View>
+        <DirectionToggle
+          direction={directionId}
+          onDirectionChange={setDirectionId}
+          options={directionOptions}
+          testID="reader-direction-toggle"
+        />
 
         {/* Input Card */}
         <NativeCard style={styles.inputCard}>
@@ -294,13 +290,6 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     color: brandColors.textMuted,
-  },
-  directionToggle: {
-    flexDirection: 'row',
-    gap: spacingScale[2],
-  },
-  directionButton: {
-    flex: 1,
   },
   inputCard: {
     padding: spacingScale[4],
