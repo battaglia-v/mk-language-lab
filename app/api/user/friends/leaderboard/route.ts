@@ -1,17 +1,14 @@
 import { NextResponse } from 'next/server';
+import { unstable_cache } from 'next/cache';
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 
-// GET /api/user/friends/leaderboard - Get friend leaderboard
-export async function GET() {
-  try {
-    const session = await auth();
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+// Revalidate every 60 seconds
+export const revalidate = 60;
 
-    const userId = session.user.id;
-
+// Cached query for friend leaderboard data (per user)
+const getCachedFriendLeaderboard = unstable_cache(
+  async (userId: string) => {
     // Get all accepted friendships
     const friendships = await prisma.friendship.findMany({
       where: {
@@ -54,6 +51,25 @@ export async function GET() {
       },
     });
 
+    return { usersWithProgress, friendIds };
+  },
+  ['friend-leaderboard'],
+  { revalidate: 300, tags: ['friends', 'leaderboard'] } // 5 minute cache
+);
+
+// GET /api/user/friends/leaderboard - Get friend leaderboard
+export async function GET() {
+  try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const userId = session.user.id;
+
+    // Fetch cached friend leaderboard data
+    const { usersWithProgress, friendIds } = await getCachedFriendLeaderboard(userId);
+
     // Transform and sort by today's XP (or total XP as fallback)
     type UserWithProgress = (typeof usersWithProgress)[number];
     interface LeaderboardEntry {
@@ -95,11 +111,19 @@ export async function GET() {
     const currentUserRank =
       rankedLeaderboard.find((u: RankedEntry) => u.isCurrentUser)?.rank ?? 0;
 
-    return NextResponse.json({
-      leaderboard: rankedLeaderboard,
-      currentUserRank,
-      friendCount: friendIds.length,
-    });
+    return NextResponse.json(
+      {
+        leaderboard: rankedLeaderboard,
+        currentUserRank,
+        friendCount: friendIds.length,
+      },
+      {
+        headers: {
+          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+          'x-leaderboard-source': 'cached',
+        },
+      }
+    );
   } catch (error) {
     console.error('[api.user.friends.leaderboard] GET error:', error);
     return NextResponse.json(
