@@ -6,11 +6,10 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { AnalyzedTextData, WordAnalysis } from '@/components/translate/useReaderWorkspace';
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
 
 type WordByWordDisplayProps = {
@@ -30,114 +29,120 @@ type WordTokenProps = {
 
 function WordToken({ word, revealMode, isRevealed, onToggleReveal, isFocused = false, focusMode = false }: WordTokenProps) {
   const t = useTranslations('translate');
+  const [isOpen, setIsOpen] = useState(false);
   // In focus mode, show translation for the focused word
   const showTranslation = revealMode === 'revealed' || isRevealed || (focusMode && isFocused);
 
+  const handleClick = () => {
+    onToggleReveal();
+    // Keep popover open on first click to show details
+    if (!showTranslation) {
+      setIsOpen(true);
+    }
+  };
+
   return (
-    <TooltipProvider delayDuration={300}>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <button
-            onClick={onToggleReveal}
-            className={cn(
-              'relative inline-flex cursor-pointer select-none flex-col text-left',
-              'rounded-lg border border-white/10 bg-white/5 shadow-sm',
-              'px-2 py-1.5 min-w-[56px] max-w-[140px] sm:px-2.5 sm:py-2 sm:min-w-[72px] sm:max-w-[180px]',
-              'transition-all duration-200 hover:border-primary/50 hover:bg-white/10 active:scale-[0.97]',
-              showTranslation && 'ring-1 ring-primary/40',
-              // Focus mode styling
-              focusMode && !isFocused && 'opacity-40 scale-95',
-              focusMode && isFocused && 'ring-2 ring-primary scale-105 bg-primary/10 shadow-lg shadow-primary/20'
-            )}
-            aria-label={`${word.original}: ${word.translation}`}
-          >
-            <span className="block text-sm font-semibold text-white leading-tight break-words sm:text-base">
-              {word.original}
-            </span>
-            {showTranslation ? (
-              <span className="mt-0.5 inline-flex items-center gap-1 rounded bg-primary/10 px-1.5 py-0.5 text-[10px] font-semibold text-primary leading-tight sm:mt-1 sm:rounded-full sm:px-2 sm:text-[11px]">
-                {word.translation}
-              </span>
-            ) : (
-              <span className="mt-0.5 inline-flex items-center rounded bg-white/8 px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground leading-tight sm:mt-1 sm:rounded-full sm:px-2 sm:text-[11px]">
-                {t('readerRevealHint', { default: 'Tap to reveal' })}
-              </span>
-            )}
-          </button>
-        </TooltipTrigger>
-        <TooltipContent
-          side="top"
-          className="glass-card max-w-sm p-3 space-y-2"
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
+      <PopoverTrigger asChild>
+        <button
+          onClick={handleClick}
+          className={cn(
+            'relative inline-flex cursor-pointer select-none flex-col items-start text-left',
+            'rounded-xl border-2 border-white/15 bg-gradient-to-b from-white/10 to-white/5 shadow-md',
+            'px-3 py-2 min-w-[64px] max-w-[160px] sm:px-3.5 sm:py-2.5 sm:min-w-[80px] sm:max-w-[200px]',
+            'transition-all duration-200 hover:border-primary/60 hover:bg-white/15 hover:shadow-lg active:scale-[0.98]',
+            showTranslation && 'ring-2 ring-primary/50 border-primary/40 bg-primary/5',
+            // Focus mode styling
+            focusMode && !isFocused && 'opacity-30 scale-90 blur-[0.5px]',
+            focusMode && isFocused && 'ring-2 ring-primary scale-110 bg-primary/15 shadow-xl shadow-primary/25 border-primary/60'
+          )}
+          aria-label={`${word.original}: ${word.translation}`}
         >
-          <div className="flex items-center gap-2">
-            <p className="font-semibold text-sm">{word.original}</p>
-            {word.hasMultipleMeanings && (
-              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30">
-                {t('readerMultipleMeanings', { default: 'context-dependent' })}
+          <span className="block text-base font-bold text-white leading-snug tracking-wide break-words sm:text-lg">
+            {word.original}
+          </span>
+          {showTranslation ? (
+            <span className="mt-1 inline-flex items-center gap-1 rounded-full bg-primary/20 px-2.5 py-1 text-xs font-semibold text-primary leading-tight sm:text-sm">
+              {word.translation}
+            </span>
+          ) : (
+            <span className="mt-1 inline-flex items-center rounded-full bg-white/10 px-2.5 py-1 text-xs font-medium text-muted-foreground/70 leading-tight">
+              {t('readerRevealHint', { default: 'Tap to reveal' })}
+            </span>
+          )}
+        </button>
+      </PopoverTrigger>
+      <PopoverContent
+        side="top"
+        align="center"
+        sideOffset={8}
+        className="w-72 sm:w-80 p-4 space-y-3 bg-card/95 backdrop-blur-xl border-border/60 shadow-2xl"
+      >
+        <div className="flex items-center gap-2 flex-wrap">
+          <p className="font-bold text-base text-foreground">{word.original}</p>
+          {word.hasMultipleMeanings && (
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 font-medium">
+              {t('readerMultipleMeanings', { default: 'context-dependent' })}
+            </span>
+          )}
+        </div>
+
+        {/* Primary translation with context indicator */}
+        <div className="space-y-2">
+          <div className="flex items-center gap-2 flex-wrap">
+            <p className="text-foreground text-base font-semibold">{word.translation}</p>
+            {word.contextualMeaning && (
+              <span className="text-xs text-primary font-medium bg-primary/10 px-2 py-0.5 rounded-full">
+                ✓ {t('readerInContext', { default: 'in this context' })}
               </span>
             )}
           </div>
 
-          {/* Primary translation with context indicator */}
-          <div className="space-y-1">
-            <div className="flex items-center gap-1.5">
-              <p className="text-muted-foreground text-sm font-medium">{word.translation}</p>
-              {word.contextualMeaning && (
-                <span className="text-[10px] text-primary/70">
-                  ✓ {t('readerInContext', { default: 'in this context' })}
-                </span>
-              )}
-            </div>
+          {/* Context hint for multi-meaning words */}
+          {word.contextHint && (
+            <p className="text-sm text-amber-400 bg-amber-500/15 px-3 py-2 rounded-lg border border-amber-500/25 leading-relaxed">
+              💡 {word.contextHint}
+            </p>
+          )}
 
-            {/* Context hint for multi-meaning words */}
-            {word.contextHint && (
-              <p className="text-xs text-amber-400/80 italic bg-amber-500/10 px-2 py-1 rounded border border-amber-500/20">
-                💡 {word.contextHint}
+          {/* Alternative translations if available */}
+          {word.alternativeTranslations && word.alternativeTranslations.length > 0 && (
+            <div className="pt-2 border-t border-border/40 space-y-2">
+              <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
+                {t('readerAlsoMeans', { default: 'Can also mean' })}
               </p>
-            )}
-
-            {/* Alternative translations if available */}
-            {word.alternativeTranslations && word.alternativeTranslations.length > 0 && (
-              <div className="pt-1.5 border-t border-border/30">
-                <p className="text-xs text-muted-foreground/70 mb-1.5">
-                  {t('readerAlsoMeans', { default: 'Can also mean' })}:
-                </p>
-                <div className="flex flex-wrap gap-1">
-                  {word.alternativeTranslations.map((alt, idx) => (
-                    <span
-                      key={idx}
-                      className="text-xs px-2 py-0.5 rounded-md bg-muted/30 text-muted-foreground border border-border/30"
-                    >
-                      {alt}
-                    </span>
-                  ))}
-                </div>
-                <p className="text-xs text-muted-foreground/60 mt-2 italic">
-                  {t('readerCheckFullTranslation', { default: 'Check full translation for context' })}
-                </p>
+              <div className="flex flex-wrap gap-1.5">
+                {word.alternativeTranslations.map((alt, idx) => (
+                  <span
+                    key={idx}
+                    className="text-sm px-2.5 py-1 rounded-lg bg-muted/50 text-muted-foreground border border-border/40"
+                  >
+                    {alt}
+                  </span>
+                ))}
               </div>
-            )}
-          </div>
+            </div>
+          )}
+        </div>
 
-          <div className="flex items-center gap-2 pt-1">
-            <span className={cn(
-              'text-xs px-2 py-0.5 rounded-full',
-              'bg-background/80 border border-border/50'
-            )}>
-              {t(`readerPos${word.pos.charAt(0).toUpperCase() + word.pos.slice(1)}`)}
-            </span>
-            <span className={cn(
-              'text-xs px-2 py-0.5 rounded-full',
-              word.difficulty === 'basic' && 'bg-green-600/20 text-green-400',
-              word.difficulty === 'intermediate' && 'bg-yellow-600/20 text-yellow-400',
-              word.difficulty === 'advanced' && 'bg-red-600/20 text-red-400'
-            )}>
-              {t(`readerDifficulty${word.difficulty.charAt(0).toUpperCase() + word.difficulty.slice(1)}`)}
-            </span>
-          </div>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+        <div className="flex items-center gap-2 pt-2 border-t border-border/30">
+          <span className={cn(
+            'text-xs px-2.5 py-1 rounded-full font-medium',
+            'bg-background border border-border/60'
+          )}>
+            {t(`readerPos${word.pos.charAt(0).toUpperCase() + word.pos.slice(1)}`)}
+          </span>
+          <span className={cn(
+            'text-xs px-2.5 py-1 rounded-full font-medium',
+            word.difficulty === 'basic' && 'bg-green-500/20 text-green-400 border border-green-500/30',
+            word.difficulty === 'intermediate' && 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30',
+            word.difficulty === 'advanced' && 'bg-red-500/20 text-red-400 border border-red-500/30'
+          )}>
+            {t(`readerDifficulty${word.difficulty.charAt(0).toUpperCase() + word.difficulty.slice(1)}`)}
+          </span>
+        </div>
+      </PopoverContent>
+    </Popover>
   );
 }
 
