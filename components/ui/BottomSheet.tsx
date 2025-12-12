@@ -2,10 +2,11 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useId } from "react";
 import { cn } from "@/lib/utils";
 import { modalBackdrop, bottomSheet } from "@/lib/animations";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { useFocusTrap } from "@/hooks/use-focus-trap";
 
 interface BottomSheetProps {
   /**
@@ -86,6 +87,9 @@ export function BottomSheet({
   };
 
   const prefersReducedMotion = useReducedMotion();
+  const focusTrapRef = useFocusTrap<HTMLDivElement>(open);
+  const titleId = useId();
+  const descriptionId = useId();
 
   // Reduced motion variants - instant transitions
   const reducedBackdrop = {
@@ -115,6 +119,11 @@ export function BottomSheet({
 
           {/* Bottom Sheet */}
           <motion.div
+            ref={focusTrapRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={title ? titleId : undefined}
+            aria-describedby={description ? descriptionId : undefined}
             variants={prefersReducedMotion ? reducedSheet : bottomSheet}
             initial="initial"
             animate="animate"
@@ -132,10 +141,10 @@ export function BottomSheet({
               <div className="flex items-center justify-between border-b border-border px-4 py-3">
                 <div className="flex-1 pr-4">
                   {title && (
-                    <h2 className="text-lg font-semibold text-foreground">{title}</h2>
+                    <h2 id={titleId} className="text-lg font-semibold text-foreground">{title}</h2>
                   )}
                   {description && (
-                    <p className="text-sm text-muted-foreground">{description}</p>
+                    <p id={descriptionId} className="text-sm text-muted-foreground">{description}</p>
                   )}
                 </div>
                 {showCloseButton && (

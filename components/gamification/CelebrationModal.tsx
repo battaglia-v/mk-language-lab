@@ -10,13 +10,14 @@
  * Respects prefers-reduced-motion for accessibility.
  */
 
-import { useEffect } from 'react';
+import { useEffect, useId } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Trophy, Star, Zap, TrendingUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { modalBackdrop, celebrationPop, fadeInUp } from '@/lib/animations';
 import { Button } from '@/components/ui/button';
 import { useReducedMotion } from '@/hooks/use-reduced-motion';
+import { useFocusTrap } from '@/hooks/use-focus-trap';
 
 export type CelebrationType = 'achievement' | 'level_up' | 'lesson_complete' | 'streak_milestone' | 'xp_bonus';
 
@@ -72,6 +73,9 @@ export function CelebrationModal({
 
   const defaultIcon = getDefaultIcon(type);
   const prefersReducedMotion = useReducedMotion();
+  const focusTrapRef = useFocusTrap<HTMLDivElement>(open);
+  const titleId = useId();
+  const descriptionId = useId();
 
   // Reduced motion variants - instant transitions
   const reducedBackdrop = {
@@ -105,6 +109,11 @@ export function CelebrationModal({
 
           {/* Modal */}
           <motion.div
+            ref={focusTrapRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={titleId}
+            aria-describedby={description ? descriptionId : undefined}
             variants={prefersReducedMotion ? reducedFadeIn : fadeInUp}
             initial="initial"
             animate="animate"
@@ -134,6 +143,7 @@ export function CelebrationModal({
 
               {/* Title */}
               <motion.h2
+                id={titleId}
                 initial={{ opacity: prefersReducedMotion ? 1 : 0, y: prefersReducedMotion ? 0 : 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={prefersReducedMotion ? instantTransition : { delay: 0.2, duration: 0.4 }}
@@ -145,6 +155,7 @@ export function CelebrationModal({
               {/* Description */}
               {description && (
                 <motion.p
+                  id={descriptionId}
                   initial={{ opacity: prefersReducedMotion ? 1 : 0, y: prefersReducedMotion ? 0 : 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={prefersReducedMotion ? instantTransition : { delay: 0.3, duration: 0.4 }}
