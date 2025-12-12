@@ -62,7 +62,7 @@
     "@tamagui/sheet": "^1.138.6",
     "@tamagui/slider": "^1.138.6",
     "@tamagui/switch": "^1.138.6",
-    "@tamagui/tabs": "^1.138.6",
+    "@tamagui/tabs": "^1.139.4",
     "@tamagui/text": "^1.138.6",
     "@tamagui/themes": "^1.137.1",
     "@tamagui/toggle-group": "^1.138.6",
