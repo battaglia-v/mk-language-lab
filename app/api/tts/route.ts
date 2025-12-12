@@ -154,7 +154,8 @@ export async function POST(request: NextRequest) {
     console.error('[TTS API] Error:', error);
 
     if (error instanceof ValidationError) {
-      return createErrorResponse(error);
+      const { response, status } = createErrorResponse(error);
+      return NextResponse.json(response, { status });
     }
 
     if (error instanceof TTSConfigError) {

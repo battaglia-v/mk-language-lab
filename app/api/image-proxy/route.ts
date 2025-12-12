@@ -14,6 +14,23 @@ const ALLOWED_DOMAINS = new Set([
   'alfa.mk',
   'telma.mk',
   'mia.mk',
+  // Additional domains for images referenced in news articles
+  'sdk.mk',
+  'skopje1.mk',
+  'sdk.mk',
+  'denesen.mk',
+  'lokalno.mk',
+  'a1on.mk',
+  'sitel.com.mk',
+  'vecer.mk',
+  'slobodenpecat.mk',
+  'faktor.mk',
+  'netpress.com.mk',
+  'makfax.com.mk',
+  'kurir.mk',
+  'off.net.mk',
+  'prizma.mk',
+  'portalb.mk',
 ]);
 
 const CACHE_MAX_AGE = 86400; // 24 hours in seconds
