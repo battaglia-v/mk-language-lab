@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Flame } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { streakFlame } from "@/lib/animations";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 interface StreakFlameProps {
   /**
@@ -77,6 +78,15 @@ export function StreakFlame({
     return 1;
   };
 
+  const prefersReducedMotion = useReducedMotion();
+
+  // Reduced motion variant - static display
+  const reducedMotionVariant = {
+    initial: { scale: 1, rotate: 0 },
+    idle: { scale: 1, rotate: 0 },
+    celebrate: { scale: 1, rotate: 0 },
+  };
+
   return (
     <div className={cn("inline-flex items-center gap-2", className)}>
       <motion.div
@@ -85,7 +95,7 @@ export function StreakFlame({
           config.container,
           streak > 0 && "bg-accent/10"
         )}
-        variants={streakFlame}
+        variants={prefersReducedMotion ? reducedMotionVariant : streakFlame}
         animate={celebrate ? "celebrate" : streak > 0 ? "idle" : "initial"}
         style={{
           scale: getFlameScale(),
@@ -103,9 +113,9 @@ export function StreakFlame({
           <motion.span
             className={cn("font-bold text-foreground", config.text)}
             key={streak} // Re-mount on streak change for animation
-            initial={{ scale: celebrate ? 1.5 : 1, opacity: celebrate ? 0 : 1 }}
+            initial={{ scale: prefersReducedMotion ? 1 : (celebrate ? 1.5 : 1), opacity: prefersReducedMotion ? 1 : (celebrate ? 0 : 1) }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: prefersReducedMotion ? 0.01 : 0.3 }}
           >
             {streak}
           </motion.span>

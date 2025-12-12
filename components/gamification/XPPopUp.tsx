@@ -5,6 +5,7 @@
  *
  * Floating XP notification that appears when users earn experience points.
  * Automatically animates upward and fades out.
+ * Respects prefers-reduced-motion for accessibility.
  *
  * Usage:
  * ```tsx
@@ -22,6 +23,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Zap } from 'lucide-react';
 import { xpPopUp } from '@/lib/animations';
 import { cn } from '@/lib/utils';
+import { useReducedMotion } from '@/hooks/use-reduced-motion';
 
 export interface XPNotification {
   id: number | string;
@@ -41,20 +43,28 @@ interface XPPopUpProps {
  */
 function XPPopUp({ notification, onComplete }: XPPopUpProps) {
   const { amount, reason, icon } = notification;
+  const prefersReducedMotion = useReducedMotion();
+
+  // Reduced motion variant - simple fade
+  const reducedMotionVariant = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: 0.1 } },
+    exit: { opacity: 0, transition: { duration: 0.1 } },
+  };
 
   useEffect(() => {
-    // Auto-remove after animation completes (800ms from xpPopUp variant)
+    // Auto-remove after animation completes (shorter if reduced motion)
     const timer = setTimeout(() => {
       onComplete();
-    }, 1000);
+    }, prefersReducedMotion ? 1500 : 1000);
 
     return () => clearTimeout(timer);
-  }, [onComplete]);
+  }, [onComplete, prefersReducedMotion]);
 
   return (
     <motion.div
       key={notification.id}
-      variants={xpPopUp}
+      variants={prefersReducedMotion ? reducedMotionVariant : xpPopUp}
       initial="initial"
       animate="animate"
       exit="exit"

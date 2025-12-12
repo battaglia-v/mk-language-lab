@@ -4,6 +4,7 @@ import { motion, useMotionValue, animate } from "framer-motion";
 import { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { progressFill } from "@/lib/animations";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 interface XPBarProps {
   /**
@@ -110,16 +111,22 @@ export function XPBar({
     100
   );
 
+  const prefersReducedMotion = useReducedMotion();
+
   // Animated XP counter
-  const motionXP = useMotionValue(0);
+  const motionXP = useMotionValue(prefersReducedMotion ? currentXP : 0);
 
   useEffect(() => {
+    if (prefersReducedMotion) {
+      motionXP.set(currentXP);
+      return;
+    }
     const controls = animate(motionXP, currentXP, {
       duration: 0.8,
       ease: "easeOut",
     });
     return () => controls.stop();
-  }, [currentXP, motionXP]);
+  }, [currentXP, motionXP, prefersReducedMotion]);
 
   if (compact) {
     return (
@@ -127,9 +134,9 @@ export function XPBar({
         <span className="text-sm font-bold text-accent">Lv {level}</span>
         <div className="relative h-2 flex-1 overflow-hidden rounded-full bg-muted">
           <motion.div className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-accent-2 to-accent-3"
-            initial={{ width: 0 }}
+            initial={{ width: prefersReducedMotion ? `${clampedProgress}%` : 0 }}
             animate={{ width: `${clampedProgress}%` }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: prefersReducedMotion ? 0.01 : 0.6, ease: "easeOut" }}
             style={{
               boxShadow: "0 0 10px var(--mk-accent-2)",
             }}
@@ -149,9 +156,9 @@ export function XPBar({
         <div className="flex items-center gap-2">
           <motion.span
             className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-xs font-bold text-accent-foreground"
-            initial={{ scale: 0 }}
+            initial={{ scale: prefersReducedMotion ? 1 : 0 }}
             animate={{ scale: 1 }}
-            transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            transition={prefersReducedMotion ? { duration: 0.01 } : { type: "spring", stiffness: 260, damping: 20 }}
           >
             {level}
           </motion.span>
@@ -177,20 +184,23 @@ export function XPBar({
             transformOrigin: "left",
             boxShadow: "0 0 12px var(--mk-accent-2)",
           }}
+          transition={prefersReducedMotion ? { duration: 0.01 } : undefined}
         />
 
-        {/* Shine effect */}
-        <motion.div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-          animate={{
-            x: ["-100%", "200%"],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            repeatDelay: 3,
-            ease: "easeInOut",
-          }}
-        />
+        {/* Shine effect - skip if reduced motion preferred */}
+        {!prefersReducedMotion && (
+          <motion.div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+            animate={{
+              x: ["-100%", "200%"],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              repeatDelay: 3,
+              ease: "easeInOut",
+            }}
+          />
+        )}
       </div>
     </div>
   );

@@ -7,6 +7,7 @@
  * lesson completions, and other milestone events.
  *
  * Includes confetti animation and engaging visuals.
+ * Respects prefers-reduced-motion for accessibility.
  */
 
 import { useEffect } from 'react';
@@ -15,6 +16,7 @@ import { X, Trophy, Star, Zap, TrendingUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { modalBackdrop, celebrationPop, fadeInUp } from '@/lib/animations';
 import { Button } from '@/components/ui/button';
+import { useReducedMotion } from '@/hooks/use-reduced-motion';
 
 export type CelebrationType = 'achievement' | 'level_up' | 'lesson_complete' | 'streak_milestone' | 'xp_bonus';
 
@@ -69,6 +71,22 @@ export function CelebrationModal({
   }, [open, onClose]);
 
   const defaultIcon = getDefaultIcon(type);
+  const prefersReducedMotion = useReducedMotion();
+
+  // Reduced motion variants - instant transitions
+  const reducedBackdrop = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: 0.01 } },
+    exit: { opacity: 0, transition: { duration: 0.01 } },
+  };
+
+  const reducedFadeIn = {
+    initial: { opacity: 1 },
+    animate: { opacity: 1, transition: { duration: 0.01 } },
+    exit: { opacity: 0, transition: { duration: 0.01 } },
+  };
+
+  const instantTransition = { duration: 0.01 };
 
   return (
     <AnimatePresence>
@@ -76,18 +94,18 @@ export function CelebrationModal({
         <>
           {/* Backdrop */}
           <motion.div onClick={onClose} className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
-            variants={modalBackdrop}
+            variants={prefersReducedMotion ? reducedBackdrop : modalBackdrop}
             initial="initial"
             animate="animate"
             exit="exit"
           />
 
-          {/* Confetti */}
-          {showConfetti && <Confetti />}
+          {/* Confetti - skip if reduced motion preferred */}
+          {showConfetti && !prefersReducedMotion && <Confetti />}
 
           {/* Modal */}
           <motion.div
-            variants={fadeInUp}
+            variants={prefersReducedMotion ? reducedFadeIn : fadeInUp}
             initial="initial"
             animate="animate"
             exit="exit"
@@ -106,7 +124,7 @@ export function CelebrationModal({
             <div className="flex flex-col items-center p-6 pt-12 text-center">
               {/* Icon */}
               <motion.div
-                variants={celebrationPop}
+                variants={prefersReducedMotion ? reducedFadeIn : celebrationPop}
                 initial="initial"
                 animate="animate"
                 className="mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-accent-2 to-accent-3 text-5xl shadow-lg"
@@ -116,9 +134,9 @@ export function CelebrationModal({
 
               {/* Title */}
               <motion.h2
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: prefersReducedMotion ? 1 : 0, y: prefersReducedMotion ? 0 : 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.4 }}
+                transition={prefersReducedMotion ? instantTransition : { delay: 0.2, duration: 0.4 }}
                 className="mb-2 text-2xl font-bold text-foreground sm:text-3xl"
               >
                 {title}
@@ -127,9 +145,9 @@ export function CelebrationModal({
               {/* Description */}
               {description && (
                 <motion.p
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: prefersReducedMotion ? 1 : 0, y: prefersReducedMotion ? 0 : 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.4 }}
+                  transition={prefersReducedMotion ? instantTransition : { delay: 0.3, duration: 0.4 }}
                   className="mb-4 text-sm text-muted-foreground"
                 >
                   {description}
@@ -139,9 +157,9 @@ export function CelebrationModal({
               {/* XP Badge */}
               {xpAwarded && (
                 <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
+                  initial={{ scale: prefersReducedMotion ? 1 : 0, opacity: prefersReducedMotion ? 1 : 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.4, duration: 0.3, type: 'spring' }}
+                  transition={prefersReducedMotion ? instantTransition : { delay: 0.4, duration: 0.3, type: 'spring' }}
                   className="mb-6 flex items-center gap-2 rounded-full bg-accent/10 px-4 py-2"
                 >
                   <Star className="h-5 w-5 text-accent" fill="currentColor" />
@@ -151,9 +169,9 @@ export function CelebrationModal({
 
               {/* Action Buttons */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: prefersReducedMotion ? 1 : 0, y: prefersReducedMotion ? 0 : 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.4 }}
+                transition={prefersReducedMotion ? instantTransition : { delay: 0.5, duration: 0.4 }}
                 className="flex w-full flex-col gap-2 sm:flex-row"
               >
                 {actionButton && (

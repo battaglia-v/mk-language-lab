@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 interface ProgressRingProps {
   /**
@@ -56,6 +57,8 @@ export function ProgressRing({
   const circumference = 2 * Math.PI * radius;
   const center = size / 2;
 
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <div
       className={cn("relative inline-flex items-center justify-center", className)}
@@ -91,12 +94,15 @@ export function ProgressRing({
             strokeDashoffset: circumference * (1 - clampedProgress / 100),
             opacity: 1,
           }}
-          initial={{
+          initial={prefersReducedMotion ? {
+            strokeDashoffset: circumference * (1 - clampedProgress / 100),
+            opacity: 1,
+          } : {
             strokeDashoffset: circumference,
             opacity: 0,
           }}
           transition={{
-            duration: 0.8,
+            duration: prefersReducedMotion ? 0.01 : 0.8,
             ease: "easeOut",
           }}
           style={{
@@ -110,9 +116,9 @@ export function ProgressRing({
         {showPercentage && (
           <motion.span
             className="text-2xl font-bold text-foreground"
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: prefersReducedMotion ? 1 : 0, scale: prefersReducedMotion ? 1 : 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, delay: 0.2 }}
+            transition={{ duration: prefersReducedMotion ? 0.01 : 0.3, delay: prefersReducedMotion ? 0 : 0.2 }}
           >
             {Math.round(clampedProgress)}%
           </motion.span>

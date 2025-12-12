@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 import { useEffect, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { modalBackdrop, bottomSheet } from "@/lib/animations";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 interface BottomSheetProps {
   /**
@@ -84,13 +85,28 @@ export function BottomSheet({
     auto: "max-h-[90vh]",
   };
 
+  const prefersReducedMotion = useReducedMotion();
+
+  // Reduced motion variants - instant transitions
+  const reducedBackdrop = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: 0.01 } },
+    exit: { opacity: 0, transition: { duration: 0.01 } },
+  };
+
+  const reducedSheet = {
+    initial: { y: 0, opacity: 1 },
+    animate: { y: 0, opacity: 1, transition: { duration: 0.01 } },
+    exit: { y: 0, opacity: 0, transition: { duration: 0.01 } },
+  };
+
   return (
     <AnimatePresence>
       {open && (
         <>
           {/* Backdrop */}
           <motion.div onClick={onClose} className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
-            variants={modalBackdrop}
+            variants={prefersReducedMotion ? reducedBackdrop : modalBackdrop}
             initial="initial"
             animate="animate"
             exit="exit"
@@ -99,7 +115,7 @@ export function BottomSheet({
 
           {/* Bottom Sheet */}
           <motion.div
-            variants={bottomSheet}
+            variants={prefersReducedMotion ? reducedSheet : bottomSheet}
             initial="initial"
             animate="animate"
             exit="exit"
