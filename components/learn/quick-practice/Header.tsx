@@ -1,4 +1,4 @@
-import { Flame, Heart, Zap } from 'lucide-react';
+import { Flame, Heart, RotateCcw, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 type QuickPracticeHeaderProps = {
@@ -14,6 +14,8 @@ type QuickPracticeHeaderProps = {
   difficultyLabelText: string;
   inlineProgressLabel: string;
   progressValueLabel: string;
+  reviewMistakesMode?: boolean;
+  reviewMistakesLabel?: string;
 };
 
 export function QuickPracticeHeader({
@@ -29,6 +31,8 @@ export function QuickPracticeHeader({
   difficultyLabelText,
   inlineProgressLabel,
   progressValueLabel,
+  reviewMistakesMode = false,
+  reviewMistakesLabel,
 }: QuickPracticeHeaderProps) {
   const shouldCollapseHud = isMobileViewport && isInputFocused;
 
@@ -37,10 +41,18 @@ export function QuickPracticeHeader({
       {/* Title section */}
       <div className="flex flex-col gap-1.5">
         <div className="flex items-center justify-between gap-2">
-          <h2 className={cn('text-base font-semibold text-foreground md:text-xl', isModalVariant && 'md:text-2xl')}>
-            {title}
-          </h2>
-          {summarySubtitle && (
+          <div className="flex items-center gap-2">
+            <h2 className={cn('text-base font-semibold text-foreground md:text-xl', isModalVariant && 'md:text-2xl')}>
+              {title}
+            </h2>
+            {reviewMistakesMode && (
+              <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-600 dark:text-amber-400">
+                <RotateCcw className="h-3 w-3" />
+                {reviewMistakesLabel ?? 'Reviewing Mistakes'}
+              </span>
+            )}
+          </div>
+          {summarySubtitle && !reviewMistakesMode && (
             <span className="text-xs font-medium text-primary">
               {summarySubtitle}
             </span>

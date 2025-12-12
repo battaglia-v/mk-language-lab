@@ -290,7 +290,9 @@
     "practiceProgressCount": "{current}/{target} correct",
     "practiceGameOverTitle": "Out of Hearts!",
     "practiceGameOverMessage": "You ran out of hearts. Review your mistakes and try again!",
-    "practiceTryAgain": "Try Again"
+    "practiceTryAgain": "Try Again",
+    "practiceReviewMistakes": "Review {count, plural, one {# Mistake} other {# Mistakes}}",
+    "practiceReviewingMistakes": "Reviewing Mistakes"
   },
   "learnVocabulary": {
     "back": "Back to Learn Hub",

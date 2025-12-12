@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import { Heart, RefreshCcw } from 'lucide-react';
+import { Heart, RefreshCcw, RotateCcw } from 'lucide-react';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -17,6 +17,8 @@ type GameOverModalProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onReset: () => void;
+  onReviewMistakes?: () => void;
+  wrongAnswerCount?: number;
   stats: {
     correctCount: number;
     totalAttempts: number;
@@ -24,9 +26,10 @@ type GameOverModalProps = {
   };
 };
 
-export function QuickPracticeGameOverModal({ open, onOpenChange, onReset, stats }: GameOverModalProps) {
+export function QuickPracticeGameOverModal({ open, onOpenChange, onReset, onReviewMistakes, wrongAnswerCount = 0, stats }: GameOverModalProps) {
   const t = useTranslations('learn');
   const badge = getAccuracyBadge(stats.accuracy);
+  const hasWrongAnswers = wrongAnswerCount > 0 && onReviewMistakes;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -66,7 +69,13 @@ export function QuickPracticeGameOverModal({ open, onOpenChange, onReset, stats 
           <p className="text-center text-sm text-muted-foreground">{t('practiceGameOverHint')}</p>
         </div>
 
-        <DialogFooter>
+        <DialogFooter className="flex-col gap-2 sm:flex-col">
+          {hasWrongAnswers && (
+            <Button onClick={onReviewMistakes} variant="secondary" className="w-full gap-2">
+              <RotateCcw className="h-4 w-4" />
+              {t('practiceReviewMistakes', { count: wrongAnswerCount })}
+            </Button>
+          )}
           <Button onClick={onReset} className="w-full gap-2">
             <RefreshCcw className="h-4 w-4" />
             {t('practiceTryAgain')}

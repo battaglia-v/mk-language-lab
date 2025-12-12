@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import { RefreshCcw, Trophy } from 'lucide-react';
+import { RefreshCcw, RotateCcw, Trophy } from 'lucide-react';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -17,6 +17,8 @@ type CompletionModalProps = {
   sessionProgress: number;
   onRestart: () => void;
   onContinue: () => void;
+  onReviewMistakes?: () => void;
+  wrongAnswerCount?: number;
   difficultyLabel: string;
   difficultyDescription: string;
   talismans: QuickPracticeTalisman[];
@@ -43,6 +45,8 @@ export function QuickPracticeCompletionModal({
   sessionProgress,
   onRestart,
   onContinue,
+  onReviewMistakes,
+  wrongAnswerCount = 0,
   difficultyLabel,
   difficultyDescription,
   talismans,
@@ -52,6 +56,7 @@ export function QuickPracticeCompletionModal({
   const t = useTranslations('learn');
   const badge = getAccuracyBadge(accuracy);
   const bonusPercent = Math.round((talismanMultiplier - 1) * 100);
+  const hasWrongAnswers = wrongAnswerCount > 0 && onReviewMistakes;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -162,6 +167,12 @@ export function QuickPracticeCompletionModal({
         </div>
 
         <DialogFooter className="relative z-10 flex-col gap-2 sm:flex-col">
+          {hasWrongAnswers && (
+            <Button onClick={onReviewMistakes} variant="secondary" size="lg" className="w-full gap-2">
+              <RotateCcw className="h-4 w-4" />
+              {t('practiceReviewMistakes', { count: wrongAnswerCount })}
+            </Button>
+          )}
           <Button onClick={onRestart} size="lg" className="w-full gap-2">
             <RefreshCcw className="h-4 w-4" />
             {t('practiceStartNewSession')}

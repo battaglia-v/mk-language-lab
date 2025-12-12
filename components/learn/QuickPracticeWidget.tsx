@@ -171,6 +171,7 @@ export function QuickPracticeWidget({
     handleReveal: revealAnswer,
     handleReset: resetSession,
     handleContinue: continueSession,
+    handleReviewMistakes: reviewMistakes,
     // action menu controls not used in this layout
     // isActionMenuOpen,
     // setIsActionMenuOpen,
@@ -182,6 +183,8 @@ export function QuickPracticeWidget({
     promptStatus,
     promptNotice,
     isLoadingPrompts,
+    wrongAnswers,
+    reviewMistakesMode,
   } = useQuickPracticeSession(sessionOptions);
 
   const promptLabel = isClozeMode
@@ -266,6 +269,8 @@ export function QuickPracticeWidget({
       sessionProgress={sessionProgress}
       onRestart={resetSession}
       onContinue={continueSession}
+      onReviewMistakes={wrongAnswers.length > 0 ? reviewMistakes : undefined}
+      wrongAnswerCount={wrongAnswers.length}
       difficultyLabel={selectedDifficultyOption.label}
       difficultyDescription={selectedDifficultyOption.description}
       talismans={activeTalismans}
@@ -278,6 +283,8 @@ export function QuickPracticeWidget({
       open={showGameOverModal}
       onOpenChange={setShowGameOverModal}
       onReset={resetSession}
+      onReviewMistakes={wrongAnswers.length > 0 ? reviewMistakes : undefined}
+      wrongAnswerCount={wrongAnswers.length}
       stats={{ correctCount, totalAttempts, accuracy }}
     />
   );
@@ -408,6 +415,8 @@ export function QuickPracticeWidget({
           difficultyLabelText={difficultyLabelText}
           inlineProgressLabel={inlineProgressLabel}
           progressValueLabel={progressValueLabel}
+          reviewMistakesMode={reviewMistakesMode}
+          reviewMistakesLabel={t('practiceReviewingMistakes')}
         />
 
         <div className={cn('px-1 sm:px-2 md:px-4', isModalVariant ? 'pt-2' : 'pt-1')}>

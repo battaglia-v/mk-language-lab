@@ -17,6 +17,14 @@ import {
 } from '@mk/practice';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 import { useGameProgress } from '@/hooks/useGameProgress';
+import {
+  recordPracticeResult,
+  addWrongAnswer,
+  readWrongAnswers,
+  clearWrongAnswers,
+  getDueCards,
+  type WrongAnswerRecord,
+} from '@/lib/spaced-repetition';
 import type {
   ClozeContext,
   PracticeDirection,
@@ -225,6 +233,8 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isCategoryMenuOpen, setIsCategoryMenuOpen] = useState(false);
   const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
+  const [wrongAnswers, setWrongAnswers] = useState<WrongAnswerRecord[]>([]);
+  const [reviewMistakesMode, setReviewMistakesMode] = useState(false);
 
   const categoryButtonRef = useRef<HTMLButtonElement | null>(null);
   const categoryMenuRef = useRef<HTMLDivElement | null>(null);
@@ -587,6 +597,12 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     setTalismanMultiplier(1);
     totalAttemptsRef.current = 0;
     correctCountRef.current = 0;
+    // Clear wrong answers for new session (unless in review mode)
+    if (!reviewMistakesMode) {
+      clearWrongAnswers();
+      setWrongAnswers([]);
+    }
+    setReviewMistakesMode(false);
     if (timerDuration) {
       setTimeRemaining(timerDuration);
       timerExpiredRef.current = false;
@@ -599,6 +615,42 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
       drillMode: practiceMode,
     });
   };
+
+  // Start review mistakes mode - practice only wrong answers from this session
+  const handleReviewMistakes = () => {
+    const mistakes = readWrongAnswers();
+    if (mistakes.length === 0) return;
+
+    setReviewMistakesMode(true);
+    setWrongAnswers(mistakes);
+    setAnswer('');
+    setFeedback(null);
+    setTotalAttempts(0);
+    setCorrectCount(0);
+    setIsCelebrating(false);
+    setRevealedAnswer('');
+    setShowCompletionModal(false);
+    setShowGameOverModal(false);
+    setHearts(INITIAL_HEARTS);
+    currentStreakRef.current = 0;
+    bestStreakRef.current = 0;
+    setPerfectEligible(true);
+    setActiveTalismans([]);
+    setTalismanMultiplier(1);
+    totalAttemptsRef.current = 0;
+    correctCountRef.current = 0;
+
+    trackEvent(AnalyticsEvents.PRACTICE_SESSION_NEW, {
+      direction,
+      category: 'review-mistakes',
+      drillMode: practiceMode,
+    });
+  };
+
+  // Get due cards from SRS for prioritized practice
+  const getDueForReview = useCallback(() => {
+    return getDueCards();
+  }, []);
 
   const handleContinue = () => {
     setShowCompletionModal(false);
@@ -615,18 +667,30 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     if (!currentItem || !answer.trim() || isSubmitting) return;
     setIsSubmitting(true);
 
+    const startTime = Date.now();
     const evaluation = evaluatePracticeAnswer(answer, currentItem, direction);
     if (!evaluation) {
       setIsSubmitting(false);
       return;
     }
     const { isCorrect, expectedAnswer } = evaluation;
+    const responseTime = Date.now() - startTime;
     const analyticsPayload = {
       direction,
       category: category === ALL_CATEGORIES ? 'all' : category,
       drillMode: practiceMode,
       difficulty,
     };
+
+    // Record result for spaced repetition
+    const itemId = currentItem.id ?? currentItem.macedonian;
+    recordPracticeResult(
+      itemId,
+      currentItem.macedonian,
+      currentItem.english,
+      isCorrect,
+      responseTime
+    );
 
     try {
       applyAttempt(isCorrect ? 'correct' : 'incorrect');
@@ -643,6 +707,22 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
         if (autoAdvanceTimeoutRef.current) clearTimeout(autoAdvanceTimeoutRef.current);
         autoAdvanceTimeoutRef.current = setTimeout(handleNext, 1500);
       } else {
+        // Track wrong answer for review mode
+        const wrongRecord: WrongAnswerRecord = {
+          id: itemId,
+          macedonian: currentItem.macedonian,
+          english: currentItem.english,
+          userAnswer: answer,
+          expectedAnswer,
+          direction,
+          timestamp: new Date().toISOString(),
+        };
+        addWrongAnswer(wrongRecord);
+        setWrongAnswers((prev) => {
+          const filtered = prev.filter((r) => r.id !== itemId);
+          return [...filtered, wrongRecord];
+        });
+
         setFeedback('incorrect');
         setRevealedAnswer(expectedAnswer);
         setIsCelebrating(false);
@@ -697,6 +777,7 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     handleReveal,
     handleReset,
     handleContinue,
+    handleReviewMistakes,
     timeRemaining,
     activeTalismans,
     talismanMultiplier,
@@ -713,6 +794,10 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     xp,
     level,
     SESSION_TARGET,
+    // SRS and review mode
+    wrongAnswers,
+    reviewMistakesMode,
+    getDueForReview,
   };
 }
 

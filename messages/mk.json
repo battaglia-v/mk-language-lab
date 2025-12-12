@@ -290,7 +290,9 @@
     "practiceProgressCount": "{current}/{target} точни",
     "practiceGameOverTitle": "Нема повеќе срца!",
     "practiceGameOverMessage": "Останавте без срца. Прегледајте ги грешките и обидете се повторно!",
-    "practiceTryAgain": "Обиди се повторно"
+    "practiceTryAgain": "Обиди се повторно",
+    "practiceReviewMistakes": "Прегледај {count, plural, one {# грешка} other {# грешки}}",
+    "practiceReviewingMistakes": "Преглед на грешки"
   },
   "learnVocabulary": {
     "back": "Назад до центарот за учење",

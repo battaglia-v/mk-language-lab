@@ -178,7 +178,7 @@ function tokenizeText(text: string): Array<{ token: string; isWord: boolean; ind
 // Common words with multiple meanings based on context
 // Each entry has all possible meanings - context determines which is primary
 const MULTI_MEANING_WORDS: Record<string, { meanings: string[]; contextHint?: string }> = {
-  // Macedonian particles and function words (high ambiguity)
+  // ========== MACEDONIAN PARTICLES & FUNCTION WORDS ==========
   'да': { 
     meanings: ['yes', 'to', 'that', 'so that', 'let'],
     contextHint: '"Да" before verbs means "to"; alone means "yes"'
@@ -188,18 +188,27 @@ const MULTI_MEANING_WORDS: Record<string, { meanings: string[]; contextHint?: st
     contextHint: '"Не" before verbs means "not"; alone means "no"'
   },
   'се': { 
-    meanings: ['oneself', 'each other', 'is', 'are', '-self'],
+    meanings: ['oneself', 'each other', 'is', 'are', '-self', 'all'],
     contextHint: 'Reflexive pronoun or part of reflexive verb'
   },
   'си': { 
-    meanings: ['yourself', 'your own', 'are', 'home'],
+    meanings: ['yourself', 'your own', 'are', 'home', 'still'],
     contextHint: 'Dative reflexive or informal "you are"'
   },
+  
+  // ========== PRONOUNS (CLITICS) ==========
   'го': { meanings: ['him', 'it (masc.)', 'the'] },
   'ја': { meanings: ['her', 'it (fem.)', 'the'] },
   'ги': { meanings: ['them', 'the (plural)'] },
   'ме': { meanings: ['me', 'myself'] },
   'те': { meanings: ['you (acc.)', 'yourself'] },
+  'ни': { meanings: ['us', 'our', 'to us'] },
+  'ви': { meanings: ['you (pl.)', 'your', 'to you'] },
+  'му': { meanings: ['him', 'to him', 'his'] },
+  'ѝ': { meanings: ['her', 'to her', 'hers'] },
+  'им': { meanings: ['them', 'to them', 'their'] },
+  
+  // ========== PREPOSITIONS ==========
   'и': { 
     meanings: ['and', 'to her', 'also', 'too', 'her (dat.)'],
     contextHint: 'Most commonly "and"; "to her" when before verb'
@@ -214,10 +223,31 @@ const MULTI_MEANING_WORDS: Record<string, { meanings: string[]; contextHint?: st
   'со': { meanings: ['with', 'by', 'using'] },
   'по': { meanings: ['after', 'by', 'along', 'per', 'more'] },
   'до': { meanings: ['to', 'until', 'by', 'next to', 'up to'] },
+  'кон': { meanings: ['towards', 'to', 'against'] },
+  'низ': { meanings: ['through', 'across', 'down'] },
+  'над': { meanings: ['above', 'over', 'more than'] },
+  'под': { meanings: ['under', 'below', 'beneath'] },
+  'пред': { meanings: ['before', 'in front of', 'ago'] },
+  'зад': { meanings: ['behind', 'after', 'back'] },
+  'меѓу': { meanings: ['between', 'among', 'amongst'] },
+  'без': { meanings: ['without', 'lacking'] },
+  'при': { meanings: ['at', 'by', 'near', 'during'] },
+  'кај': { meanings: ['at', 'by', 'to (someone)', 'near'] },
+  'околу': { meanings: ['around', 'about', 'approximately'] },
+  'преку': { meanings: ['through', 'over', 'via', 'across'] },
+  'покрај': { meanings: ['beside', 'next to', 'besides', 'despite'] },
+  'помеѓу': { meanings: ['between', 'among'] },
+  'спрема': { meanings: ['towards', 'according to', 'compared to'] },
+  'спроти': { meanings: ['opposite', 'against', 'compared to'] },
+  
+  // ========== VERB AUXILIARIES & PARTICLES ==========
   'е': { 
     meanings: ['is', 'it is', 'he/she is'],
     contextHint: 'Third person singular of "to be"'
   },
+  'сум': { meanings: ['am', 'I am'] },
+  'сме': { meanings: ['are', 'we are'] },
+  'сте': { meanings: ['are', 'you (pl.) are'] },
   'ќе': { 
     meanings: ['will', 'shall', 'going to'],
     contextHint: 'Future tense marker - always before the verb'
@@ -226,21 +256,47 @@ const MULTI_MEANING_WORDS: Record<string, { meanings: string[]; contextHint?: st
     meanings: ['would', 'could', 'might'],
     contextHint: 'Conditional mood marker'
   },
+  'беше': { meanings: ['was', 'were', 'used to be'] },
+  'бил': { meanings: ['was', 'has been', 'apparently was'] },
+  'била': { meanings: ['was (fem.)', 'has been', 'apparently was'] },
+  'биле': { meanings: ['were', 'have been', 'apparently were'] },
+  
+  // ========== QUESTION WORDS ==========
   'што': { 
     meanings: ['what', 'that', 'which', 'why'],
     contextHint: 'Interrogative or relative pronoun'
   },
-  'кој': { meanings: ['who', 'which', 'that'] },
+  'кој': { meanings: ['who', 'which', 'that', 'which one'] },
   'која': { meanings: ['who (fem.)', 'which (fem.)', 'that'] },
   'кое': { meanings: ['what', 'which (neut.)', 'that'] },
+  'кои': { meanings: ['who (pl.)', 'which (pl.)', 'that'] },
+  'чиј': { meanings: ['whose', "whose (masc.)"] },
+  'чија': { meanings: ['whose (fem.)'] },
+  'чие': { meanings: ['whose (neut.)'] },
   'како': { meanings: ['how', 'like', 'as', 'what'] },
   'каде': { meanings: ['where', 'wherever'] },
   'кога': { meanings: ['when', 'whenever'] },
   'зошто': { meanings: ['why', 'because'] },
+  'колку': { meanings: ['how much', 'how many', 'as much as'] },
+  'дали': { meanings: ['whether', 'if', 'do/does (question)'] },
+  
+  // ========== CONJUNCTIONS ==========
   'ама': { meanings: ['but', 'however', 'yet'] },
   'или': { meanings: ['or', 'either'] },
   'ако': { meanings: ['if', 'whether'] },
   'дека': { meanings: ['that', 'because'] },
+  'бидејќи': { meanings: ['because', 'since', 'as'] },
+  'затоа': { meanings: ['therefore', 'because of that', 'so'] },
+  'иако': { meanings: ['although', 'even though', 'though'] },
+  'додека': { meanings: ['while', 'until', 'as long as'] },
+  'штом': { meanings: ['as soon as', 'once', 'when'] },
+  'откако': { meanings: ['after', 'since', 'once'] },
+  'пред да': { meanings: ['before'] },
+  'за да': { meanings: ['in order to', 'so that'] },
+  'туку': { meanings: ['but', 'rather', 'instead'] },
+  'ниту': { meanings: ['neither', 'nor', 'not even'] },
+  
+  // ========== ADVERBS ==========
   'само': { meanings: ['only', 'just', 'merely'] },
   'уште': { meanings: ['still', 'yet', 'more', 'another'] },
   'веќе': { meanings: ['already', 'now', 'anymore'] },
@@ -248,16 +304,149 @@ const MULTI_MEANING_WORDS: Record<string, { meanings: string[]; contextHint?: st
   'така': { meanings: ['so', 'thus', 'like that', 'in that way'] },
   'тука': { meanings: ['here', 'at this place'] },
   'таму': { meanings: ['there', 'at that place'] },
+  'овде': { meanings: ['here', 'in this place'] },
+  'онде': { meanings: ['there', 'over there'] },
+  'сега': { meanings: ['now', 'currently', 'at the moment'] },
+  'потоа': { meanings: ['then', 'after that', 'afterwards'] },
+  'тогаш': { meanings: ['then', 'at that time'] },
+  'секогаш': { meanings: ['always', 'every time'] },
+  'никогаш': { meanings: ['never', 'not ever'] },
+  'понекогаш': { meanings: ['sometimes', 'occasionally'] },
+  'често': { meanings: ['often', 'frequently'] },
+  'ретко': { meanings: ['rarely', 'seldom'] },
+  'многу': { meanings: ['very', 'much', 'a lot', 'many'] },
+  'малку': { meanings: ['a little', 'few', 'slightly'] },
+  'доста': { meanings: ['enough', 'quite', 'rather', 'fairly'] },
+  'речиси': { meanings: ['almost', 'nearly', 'virtually'] },
+  'скоро': { meanings: ['soon', 'almost', 'nearly'] },
+  'веднаш': { meanings: ['immediately', 'right away', 'at once'] },
+  'бавно': { meanings: ['slowly', 'slow'] },
+  'брзо': { meanings: ['quickly', 'fast', 'soon'] },
+  'добро': { meanings: ['well', 'good', 'fine', 'okay'] },
+  'лошо': { meanings: ['badly', 'bad', 'poorly'] },
+  'можеби': { meanings: ['maybe', 'perhaps', 'possibly'] },
+  'сигурно': { meanings: ['surely', 'certainly', 'probably'] },
+  'навистина': { meanings: ['really', 'truly', 'indeed'] },
+  'всушност': { meanings: ['actually', 'in fact', 'really'] },
+  'инаку': { meanings: ['otherwise', 'else', 'anyway'] },
+  'барем': { meanings: ['at least', 'even'] },
+  'дури': { meanings: ['even', 'until', 'as far as'] },
+  'значи': { meanings: ['means', 'so', 'therefore', 'that is'] },
   
-  // Common verbs with multiple senses
-  'има': { meanings: ['has', 'there is', 'there are', 'have'] },
-  'нема': { meanings: ['has not', 'there is no', "doesn't have"] },
-  'може': { meanings: ['can', 'may', 'is possible', 'could'] },
-  'треба': { meanings: ['must', 'should', 'need to', 'have to'] },
-  'сака': { meanings: ['wants', 'loves', 'likes', 'wishes'] },
+  // ========== COMMON VERBS WITH MULTIPLE SENSES ==========
+  'има': { 
+    meanings: ['has', 'there is', 'there are', 'have'],
+    contextHint: '"Има" can mean possession (has) or existence (there is)'
+  },
+  'нема': { 
+    meanings: ['has not', 'there is no', "doesn't have", 'lacks'],
+    contextHint: 'Negative of има - no possession or non-existence'
+  },
+  'може': { 
+    meanings: ['can', 'may', 'is possible', 'could'],
+    contextHint: 'Expresses ability or permission'
+  },
+  'треба': { 
+    meanings: ['must', 'should', 'need to', 'have to', 'needs'],
+    contextHint: 'Expresses necessity or obligation'
+  },
+  'сака': { 
+    meanings: ['wants', 'loves', 'likes', 'wishes'],
+    contextHint: '"Сака" can mean desire (want) or affection (love)'
+  },
   'знае': { meanings: ['knows', 'knows how to', 'is aware'] },
+  'мисли': { meanings: ['thinks', 'believes', 'intends'] },
+  'гледа': { meanings: ['looks', 'sees', 'watches'] },
+  'чека': { meanings: ['waits', 'expects', 'awaits'] },
+  'бара': { meanings: ['asks', 'looks for', 'requests', 'searches'] },
+  'зема': { meanings: ['takes', 'gets', 'receives'] },
+  'дава': { meanings: ['gives', 'offers', 'provides'] },
+  'прави': { meanings: ['does', 'makes', 'creates'] },
+  'држи': { meanings: ['holds', 'keeps', 'maintains'] },
+  'носи': { meanings: ['carries', 'brings', 'wears'] },
+  'води': { meanings: ['leads', 'guides', 'takes (someone)'] },
+  'паѓа': { meanings: ['falls', 'drops', 'happens'] },
+  'станува': { meanings: ['becomes', 'gets up', 'happens'] },
+  'останува': { meanings: ['stays', 'remains', 'is left'] },
+  'оди': { meanings: ['goes', 'walks', 'works (functions)'] },
+  'доаѓа': { meanings: ['comes', 'arrives'] },
+  'заминува': { meanings: ['leaves', 'departs', 'goes away'] },
+  'враќа': { meanings: ['returns', 'gives back'] },
+  'почнува': { meanings: ['starts', 'begins'] },
+  'завршува': { meanings: ['finishes', 'ends', 'completes'] },
+  'продолжува': { meanings: ['continues', 'goes on', 'extends'] },
+  'работи': { meanings: ['works', 'operates', 'functions'] },
+  'живее': { meanings: ['lives', 'resides', 'is alive'] },
+  'помага': { meanings: ['helps', 'assists', 'aids'] },
+  'покажува': { meanings: ['shows', 'points', 'demonstrates'] },
+  'кажува': { meanings: ['tells', 'says', 'narrates'] },
+  'вели': { meanings: ['says', 'tells', 'states'] },
+  'зборува': { meanings: ['speaks', 'talks'] },
+  'прашува': { meanings: ['asks', 'questions'] },
+  'одговара': { meanings: ['answers', 'responds', 'suits'] },
+  'чита': { meanings: ['reads'] },
+  'пишува': { meanings: ['writes'] },
+  'учи': { meanings: ['learns', 'studies', 'teaches'] },
+  'игра': { meanings: ['plays', 'acts'] },
+  'јаде': { meanings: ['eats'] },
+  'пие': { meanings: ['drinks'] },
+  'спие': { meanings: ['sleeps'] },
   
-  // English words with multiple Macedonian translations
+  // ========== COMMON NOUNS WITH MULTIPLE MEANINGS ==========
+  'време': { meanings: ['time', 'weather', 'period'] },
+  'работа': { meanings: ['work', 'job', 'thing', 'matter'] },
+  'место': { meanings: ['place', 'spot', 'position', 'instead'] },
+  'начин': { meanings: ['way', 'manner', 'method'] },
+  'страна': { meanings: ['side', 'page', 'country', 'direction'] },
+  'крај': { meanings: ['end', 'edge', 'region', 'by'] },
+  'почеток': { meanings: ['beginning', 'start', 'origin'] },
+  'дел': { meanings: ['part', 'piece', 'portion'] },
+  'пат': { meanings: ['road', 'time (occasion)', 'way', 'path'] },
+  'ден': { meanings: ['day', 'daytime'] },
+  'ноќ': { meanings: ['night', 'nighttime'] },
+  'година': { meanings: ['year', 'age'] },
+  'час': { meanings: ['hour', 'class', 'lesson', "o'clock"] },
+  'глава': { meanings: ['head', 'chapter', 'mind'] },
+  'рака': { meanings: ['hand', 'arm'] },
+  'нога': { meanings: ['leg', 'foot'] },
+  'око': { meanings: ['eye', 'around'] },
+  'свет': { meanings: ['world', 'light', 'candle'] },
+  'земја': { meanings: ['land', 'country', 'earth', 'ground'] },
+  'човек': { meanings: ['person', 'man', 'human'] },
+  
+  // ========== DEMONSTRATIVES ==========
+  'овој': { meanings: ['this', 'this one (masc.)'] },
+  'оваа': { meanings: ['this', 'this one (fem.)'] },
+  'ова': { meanings: ['this', 'this one (neut.)'] },
+  'овие': { meanings: ['these'] },
+  'тој': { meanings: ['that', 'he', 'that one (masc.)'] },
+  'таа': { meanings: ['that', 'she', 'that one (fem.)'] },
+  'тоа': { meanings: ['that', 'it', 'that one (neut.)'] },
+  'тие': { meanings: ['those', 'they'] },
+  'оној': { meanings: ['that (far)', 'that one over there'] },
+  'онаа': { meanings: ['that (far, fem.)'] },
+  'она': { meanings: ['that (far, neut.)'] },
+  'оние': { meanings: ['those (far)', 'those over there'] },
+  
+  // ========== NUMBERS & QUANTIFIERS ==========
+  'еден': { meanings: ['one', 'a', 'an', 'some'] },
+  'една': { meanings: ['one (fem.)', 'a', 'an'] },
+  'едно': { meanings: ['one (neut.)', 'a', 'an'] },
+  'неколку': { meanings: ['several', 'a few', 'some'] },
+  'сите': { meanings: ['all', 'everyone', 'everything'] },
+  'секој': { meanings: ['every', 'each', 'everyone'] },
+  'некој': { meanings: ['someone', 'somebody', 'some'] },
+  'никој': { meanings: ['no one', 'nobody', 'none'] },
+  'нешто': { meanings: ['something', 'anything'] },
+  'ништо': { meanings: ['nothing', 'anything'] },
+  'друг': { meanings: ['other', 'another', 'different'] },
+  'друга': { meanings: ['other (fem.)', 'another'] },
+  'друго': { meanings: ['other (neut.)', 'something else'] },
+  'ист': { meanings: ['same', 'identical'] },
+  'иста': { meanings: ['same (fem.)'] },
+  'исто': { meanings: ['same (neut.)', 'also', 'too'] },
+  
+  // ========== ENGLISH WORDS WITH MULTIPLE MACEDONIAN TRANSLATIONS ==========
   'to': { meanings: ['да', 'кон', 'до', 'на'] },
   'the': { meanings: ['(no equivalent)', 'тој/таа/тоа', '-от/-та/-то'] },
   'for': { meanings: ['за', 'за време на', 'бидејќи'] },
@@ -272,6 +461,70 @@ const MULTI_MEANING_WORDS: Record<string, { meanings: string[]; contextHint?: st
   'make': { meanings: ['прави', 'создава', 'тера'] },
   'take': { meanings: ['зема', 'носи', 'трае'] },
   'have': { meanings: ['има', 'мора', 'примил'] },
+  'be': { meanings: ['сум/е', 'биде', 'постои'] },
+  'do': { meanings: ['прави', 'работи'] },
+  'go': { meanings: ['оди', 'заминува', 'патува'] },
+  'come': { meanings: ['доаѓа', 'стигнува'] },
+  'see': { meanings: ['гледа', 'види', 'разбира'] },
+  'know': { meanings: ['знае', 'познава'] },
+  'think': { meanings: ['мисли', 'смета', 'размислува'] },
+  'want': { meanings: ['сака', 'посакува'] },
+  'give': { meanings: ['дава', 'подарува'] },
+  'use': { meanings: ['користи', 'употребува'] },
+  'find': { meanings: ['наоѓа', 'открива'] },
+  'tell': { meanings: ['кажува', 'раскажува'] },
+  'ask': { meanings: ['прашува', 'бара', 'моли'] },
+  'work': { meanings: ['работа', 'работи', 'функционира'] },
+  'feel': { meanings: ['чувствува', 'се чувствува'] },
+  'try': { meanings: ['се обидува', 'проба'] },
+  'leave': { meanings: ['заминува', 'остава', 'напушта'] },
+  'call': { meanings: ['вика', 'телефонира', 'нарекува'] },
+  'keep': { meanings: ['чува', 'задржува', 'продолжува'] },
+  'let': { meanings: ['дозволува', 'остава', 'нека'] },
+  'put': { meanings: ['става', 'поставува'] },
+  'mean': { meanings: ['значи', 'мисли', 'намерава'] },
+  'set': { meanings: ['поставува', 'подесува', 'намества'] },
+  'turn': { meanings: ['свртува', 'вртење', 'ред'] },
+  'run': { meanings: ['трча', 'работи', 'управува'] },
+  'still': { meanings: ['уште', 'сепак', 'мирен'] },
+  'just': { meanings: ['само', 'токму', 'праведен'] },
+  'well': { meanings: ['добро', 'па', 'бунар'] },
+  'back': { meanings: ['назад', 'грб', 'позади'] },
+  'right': { meanings: ['десно', 'точно', 'право'] },
+  'out': { meanings: ['надвор', 'вон'] },
+  'up': { meanings: ['горе', 'нагоре'] },
+  'down': { meanings: ['долу', 'надолу'] },
+  'off': { meanings: ['од', 'исклучено', 'далеку'] },
+  'over': { meanings: ['над', 'преку', 'завршено'] },
+  'even': { meanings: ['дури', 'рамен', 'парен'] },
+  'like': { meanings: ['како', 'сака', 'слично'] },
+  'about': { meanings: ['за', 'околу', 'приближно'] },
+  'after': { meanings: ['после', 'по', 'според'] },
+  'before': { meanings: ['пред', 'претходно'] },
+  'through': { meanings: ['низ', 'преку'] },
+  'between': { meanings: ['меѓу', 'помеѓу'] },
+  'each': { meanings: ['секој', 'секоја'] },
+  'both': { meanings: ['двата', 'обата', 'двете'] },
+  'few': { meanings: ['неколку', 'малку'] },
+  'more': { meanings: ['повеќе', 'уште'] },
+  'most': { meanings: ['најмногу', 'повеќето'] },
+  'other': { meanings: ['друг', 'друга', 'друго'] },
+  'some': { meanings: ['некои', 'малку', 'неколку'] },
+  'such': { meanings: ['таков', 'толку'] },
+  'no': { meanings: ['не', 'никаков'] },
+  'only': { meanings: ['само', 'единствен'] },
+  'same': { meanings: ['ист', 'иста', 'исто'] },
+  'so': { meanings: ['така', 'толку', 'значи'] },
+  'than': { meanings: ['од', 'отколку'] },
+  'very': { meanings: ['многу', 'истиот'] },
+  'when': { meanings: ['кога', 'штом'] },
+  'where': { meanings: ['каде', 'во кој'] },
+  'why': { meanings: ['зошто', 'поради'] },
+  'how': { meanings: ['како', 'колку'] },
+  'all': { meanings: ['сите', 'сè', 'целиот'] },
+  'if': { meanings: ['ако', 'дали'] },
+  'then': { meanings: ['тогаш', 'потоа'] },
+  'now': { meanings: ['сега', 'веднаш'] },
 };
 
 // Find the best contextual meaning by checking which alternative appears in full translation
@@ -321,12 +574,6 @@ function getAlternativeTranslations(word: string): string[] | undefined {
   const normalized = word.toLowerCase();
   const entry = MULTI_MEANING_WORDS[normalized];
   return entry ? entry.meanings.slice(1) : undefined;
-}
-
-// Get alternative translations for a word
-function getAlternativeTranslations(word: string): string[] | undefined {
-  const normalized = word.toLowerCase();
-  return MULTI_MEANING_WORDS[normalized]?.alternatives;
 }
 
 // Calculate text difficulty metrics
