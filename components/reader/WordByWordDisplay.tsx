@@ -49,7 +49,8 @@ function WordToken({ word, revealMode, isRevealed, onToggleReveal, isFocused = f
           className={cn(
             'relative inline-flex cursor-pointer select-none flex-col items-start text-left',
             'rounded-xl border-2 border-white/15 bg-gradient-to-b from-white/10 to-white/5 shadow-md',
-            'px-3 py-2 min-w-[64px] max-w-[160px] sm:px-3.5 sm:py-2.5 sm:min-w-[80px] sm:max-w-[200px]',
+            // Improved touch targets - minimum 44px height for accessibility
+            'px-3 py-2.5 min-w-[64px] max-w-[140px] min-h-[44px] sm:px-3.5 sm:py-2.5 sm:min-w-[80px] sm:max-w-[180px]',
             'transition-all duration-200 hover:border-primary/60 hover:bg-white/15 hover:shadow-lg active:scale-[0.98]',
             showTranslation && 'ring-2 ring-primary/50 border-primary/40 bg-primary/5',
             // Focus mode styling
@@ -62,21 +63,23 @@ function WordToken({ word, revealMode, isRevealed, onToggleReveal, isFocused = f
             {word.original}
           </span>
           {showTranslation ? (
-            <span className="mt-1 inline-flex items-center gap-1 rounded-full bg-primary/20 px-2.5 py-1 text-xs font-semibold text-primary leading-tight sm:text-sm">
+            <span className="mt-1 inline-flex items-center gap-1 rounded-full bg-primary/20 px-2 py-0.5 text-[11px] font-semibold text-primary leading-tight sm:px-2.5 sm:py-1 sm:text-sm">
               {word.translation}
             </span>
           ) : (
-            <span className="mt-1 inline-flex items-center rounded-full bg-white/10 px-2.5 py-1 text-xs font-medium text-muted-foreground/70 leading-tight">
-              {t('readerRevealHint', { default: 'Tap to reveal' })}
+            <span className="mt-1 inline-flex items-center rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-medium text-muted-foreground/70 leading-tight sm:px-2.5 sm:py-1 sm:text-xs">
+              {t('readerRevealHint', { default: 'Tap' })}
             </span>
           )}
         </button>
       </PopoverTrigger>
       <PopoverContent
-        side="top"
+        side="bottom"
         align="center"
         sideOffset={8}
-        className="w-72 sm:w-80 p-4 space-y-3 bg-card/95 backdrop-blur-xl border-border/60 shadow-2xl"
+        avoidCollisions={true}
+        collisionPadding={16}
+        className="w-[calc(100vw-32px)] max-w-[320px] sm:w-80 p-3 sm:p-4 space-y-2.5 sm:space-y-3 bg-card/95 backdrop-blur-xl border-border/60 shadow-2xl rounded-xl max-h-[60vh] overflow-y-auto"
       >
         <div className="flex items-center gap-2 flex-wrap">
           <p className="font-bold text-base text-foreground">{word.original}</p>

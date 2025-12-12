@@ -375,23 +375,26 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
           label={t('directionsGroupLabel')}
           swapLabel={t('swapDirections')}
         />
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-2.5">
+        {/* Action buttons - improved alignment for mobile */}
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start">
           <Button
             type="button"
             variant={revealMode === 'hidden' ? 'default' : 'outline'}
             size="sm"
             onClick={handleToggleReveal}
-            className="h-10 rounded-lg text-xs sm:text-sm gap-1.5"
+            className="h-11 min-w-[120px] flex-1 sm:flex-none rounded-lg text-xs sm:text-sm gap-1.5"
           >
             {revealMode === 'hidden' ? (
               <>
                 <Eye className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
-                <span className="truncate">{t('readerRevealShow')}</span>
+                <span className="hidden xs:inline">{t('readerRevealShow')}</span>
+                <span className="xs:hidden">{t('readerRevealShowShort', { default: 'Reveal all' })}</span>
               </>
             ) : (
               <>
                 <EyeOff className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
-                <span className="truncate">{t('readerRevealHide')}</span>
+                <span className="hidden xs:inline">{t('readerRevealHide')}</span>
+                <span className="xs:hidden">{t('readerRevealHideShort', { default: 'Hide all' })}</span>
               </>
             )}
           </Button>
@@ -400,14 +403,14 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
             variant={focusMode ? 'default' : 'secondary'}
             size="sm"
             onClick={() => setFocusMode((prev) => !prev)}
-            className="h-10 rounded-lg text-xs sm:text-sm gap-1.5"
+            className="h-11 min-w-[110px] flex-1 sm:flex-none rounded-lg text-xs sm:text-sm gap-1.5"
             title={t('readerFocusTooltip', { default: 'Focus mode highlights one word at a time for easier learning' })}
           >
             <Focus className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
-            <span className="truncate">
+            <span>
               {focusMode
                 ? t('readerFocusOff', { default: 'Exit focus' })
-                : t('readerFocusOn', { default: 'Focus mode' })}
+                : t('readerFocusOnShort', { default: 'Focus' })}
             </span>
           </Button>
           <Button
@@ -416,10 +419,11 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
             size="sm"
             disabled={!analyzedData}
             onClick={() => void handleCopyTranslation()}
-            className="col-span-2 sm:col-span-1 h-10 rounded-lg text-xs sm:text-sm gap-1.5"
+            className="h-11 min-w-[100px] flex-1 sm:flex-none rounded-lg text-xs sm:text-sm gap-1.5"
           >
-            <span className="truncate">
-              {copied ? t('copied', { default: 'Copied' }) : t('readerCopyTranslation', { default: 'Copy translation' })}
+            <CopyIcon className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
+            <span>
+              {copied ? t('copied', { default: 'Copied' }) : t('readerCopyShort', { default: 'Copy' })}
             </span>
           </Button>
         </div>

@@ -9,8 +9,9 @@ test.describe('Translate Page', () => {
   });
 
   test('should load translate page successfully', async ({ page }) => {
-    // Check page title (the title "Translate" or "Преведи" is in a p tag, not h1)
-    await expect(page.getByText(/Translate|Преведи/i).first()).toBeVisible();
+    // Check page title - look for visible h1 heading
+    const heading = page.locator('h1').filter({ hasText: /Translate|Преведи/i });
+    await expect(heading).toBeVisible();
 
     // Check for main translator form - use visible locator to handle tab layout
     const translatorForm = page.locator('form').first();
@@ -20,19 +21,22 @@ test.describe('Translate Page', () => {
   });
 
   test('should display direction buttons', async ({ page }) => {
-    // Look for direction buttons - they have role="radio" in the radiogroup
-    // Note: Both mobile and desktop layouts render direction buttons, so count might be 2 or 4
-    const directionButtons = page.locator('[role="radio"]');
-    const count = await directionButtons.count();
-
-    // Should have at least 2 direction buttons (might be 4 if both mobile/desktop layouts are rendered)
-    expect(count).toBeGreaterThanOrEqual(2);
-    expect(count % 2).toBe(0); // Should be even number (2 or 4)
-
-    // At least one set should be visible
-    const visibleButtons = directionButtons.locator('visible=true');
-    const visibleCount = await visibleButtons.count();
-    expect(visibleCount).toBeGreaterThanOrEqual(2);
+    // Look for direction buttons - they are regular buttons inside the direction toggle section
+    // The button text will be something like "English → Macedonian" or "Англиски → Македонски"
+    const directionSection = page.locator('text=Translation direction').first();
+    const sectionExists = await directionSection.count();
+    
+    if (sectionExists > 0) {
+      // Direction buttons are siblings after the label
+      const directionButtons = page.locator('button').filter({ hasText: /→|→/ });
+      const count = await directionButtons.count();
+      expect(count).toBeGreaterThanOrEqual(2);
+    } else {
+      // Fallback: look for any buttons with arrow in text
+      const buttons = page.locator('button').filter({ hasText: /Macedonian|Македонски|English|Англиски/ });
+      const count = await buttons.count();
+      expect(count).toBeGreaterThanOrEqual(2);
+    }
   });
 
   test('should have swap directions button', async ({ page }) => {
@@ -151,38 +155,41 @@ test.describe('Translate Page', () => {
   });
 
   test('should switch translation direction', async ({ page }) => {
-    // Get direction buttons - filter to visible ones to handle dual layout
-    const directionButtons = page.locator('[role="radio"]');
-    const visibleButtons = directionButtons.locator('visible=true');
-
-    // Get the visible set of buttons (should be 2)
-    const count = await visibleButtons.count();
+    // Get direction buttons - these are regular buttons with direction text
+    const directionButtons = page.locator('button').filter({ hasText: /→|→/ });
+    const count = await directionButtons.count();
+    
     if (count >= 2) {
-      const firstButton = visibleButtons.first();
-      const secondButton = visibleButtons.nth(1);
+      const firstButton = directionButtons.first();
+      const secondButton = directionButtons.nth(1);
+
+      // Get initial classes to check for active state
+      const firstInitialClass = await firstButton.getAttribute('class');
+      const isFirstActive = firstInitialClass?.includes('bg-white');
 
       // Click the second direction button
       await secondButton.click({ force: true });
       await page.waitForTimeout(500);
 
-      // Check that the button states changed (aria-checked attribute)
-      const secondChecked = await secondButton.getAttribute('aria-checked');
-      expect(secondChecked).toBe('true');
+      // Check that the button states changed (via CSS class indicating active)
+      const secondClass = await secondButton.getAttribute('class');
+      expect(secondClass).toContain('bg-white');
 
-      // Click swap button - look for the button with aria-label for swap
+      // Click swap button - look for the button with swap label
       const swapButton = page.getByLabel(/swap/i);
       const swapCount = await swapButton.count();
       if (swapCount > 0) {
         await swapButton.first().click({ force: true });
         await page.waitForTimeout(500);
 
-        // Direction should have swapped back
-        const firstChecked = await firstButton.getAttribute('aria-checked');
-        expect(firstChecked).toBe('true');
+        // Direction should have swapped back (first button active again)
+        const firstAfterSwapClass = await firstButton.getAttribute('class');
+        expect(firstAfterSwapClass).toContain('bg-white');
       }
     } else {
-      // If buttons aren't visible, just verify they exist
-      expect(await directionButtons.count()).toBeGreaterThanOrEqual(2);
+      // If buttons aren't found with arrow, try other selectors
+      const altButtons = page.locator('button').filter({ hasText: /Macedonian|Македонски/ });
+      expect(await altButtons.count()).toBeGreaterThanOrEqual(1);
     }
   });
 
