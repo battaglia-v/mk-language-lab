@@ -590,17 +590,17 @@ export default function PracticePage() {
                   <label className="text-xs font-semibold text-white sm:text-sm" htmlFor="practice-guess">
                     {t('drills.wordInputLabel')}
                   </label>
-                <div className="flex flex-col gap-3 sm:flex-row w-full min-w-0">
+                <div className="flex flex-col items-center gap-3 sm:flex-row w-full min-w-0">
                   <Input
                     id="practice-guess"
                     value={guess}
                     onChange={(event) => setGuess(event.target.value)}
                     placeholder={t('drills.wordInputPlaceholder')}
-                    className="flex-[3] min-h-[54px] min-w-0 rounded-3xl border border-primary/40 bg-white/8 px-4 text-lg text-white placeholder:text-muted-foreground"
+                    className="flex-[3] min-h-[54px] min-w-0 rounded-3xl border border-primary/40 bg-white/8 px-4 text-lg text-white placeholder:text-muted-foreground w-full"
                   />
                   <Button
                     type="submit"
-                    className="min-h-[54px] w-full sm:w-auto sm:flex-[1] sm:max-w-[140px] rounded-3xl px-6 text-base font-semibold shadow-lg transition-all hover:scale-105 disabled:hover:scale-100"
+                    className="min-h-[54px] w-full max-w-[200px] sm:w-auto sm:flex-[1] sm:max-w-[140px] rounded-3xl px-6 text-base font-semibold shadow-lg transition-all hover:scale-105 disabled:hover:scale-100"
                     disabled={!deck.length || !guess.trim()}
                   >
                     {t('drills.submitWord')}
@@ -643,13 +643,13 @@ export default function PracticePage() {
             <div className="mt-4 grid grid-cols-4 gap-2 sm:mt-6 sm:grid-cols-5 sm:gap-4 w-full min-w-0">
               <Button
                 variant="outline"
-                className="min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105"
+                className="min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105 gap-1.5"
                 onClick={goPrevious}
                 disabled={!deck.length}
                 aria-label="Previous card"
               >
-                <ArrowLeft className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
-                <span className="sr-only sm:not-sr-only sm:ml-2">Prev</span>
+                <ArrowLeft className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
+                <span className="hidden sm:inline">Prev</span>
               </Button>
               <Button
                 variant="secondary"
@@ -662,13 +662,13 @@ export default function PracticePage() {
               </Button>
               <Button
                 variant="outline"
-                className="min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105"
+                className="min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105 gap-1.5"
                 onClick={goNext}
                 disabled={!deck.length}
                 aria-label="Next card"
               >
-                <span className="sr-only sm:not-sr-only sm:mr-2">Next</span>
-                <ArrowRight className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
+                <span className="hidden sm:inline">Next</span>
+                <ArrowRight className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
               </Button>
             </div>
             <p className="text-center text-xs text-muted-foreground sm:text-left">
