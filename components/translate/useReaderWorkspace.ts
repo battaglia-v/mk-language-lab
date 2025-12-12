@@ -10,6 +10,8 @@ export type WordAnalysis = {
   translation: string;
   alternativeTranslations?: string[]; // Additional possible translations
   contextualMeaning?: string; // The most contextually appropriate translation
+  contextHint?: string; // Explanation of why word has multiple meanings
+  hasMultipleMeanings?: boolean; // Flag for words with context-dependent translations
   pos: 'noun' | 'verb' | 'adjective' | 'adverb' | 'other';
   difficulty: 'basic' | 'intermediate' | 'advanced';
   index: number;

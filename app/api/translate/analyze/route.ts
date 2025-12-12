@@ -176,34 +176,152 @@ function tokenizeText(text: string): Array<{ token: string; isWord: boolean; ind
 }
 
 // Common words with multiple meanings based on context
-const MULTI_MEANING_WORDS: Record<string, { primary: string; alternatives: string[] }> = {
-  // Macedonian words
-  'да': { primary: 'yes', alternatives: ['to', 'that', 'so that'] },
-  'не': { primary: 'no', alternatives: ['not', 'don\'t'] },
-  'се': { primary: 'oneself', alternatives: ['is', 'are', 'themselves'] },
-  'си': { primary: 'yourself', alternatives: ['are', 'you are'] },
-  'го': { primary: 'him', alternatives: ['it', 'the'] },
-  'ја': { primary: 'her', alternatives: ['it', 'the'] },
-  'ги': { primary: 'them', alternatives: ['the'] },
-  'и': { primary: 'and', alternatives: ['to her', 'also'] },
-  'на': { primary: 'on', alternatives: ['to', 'of', 'at'] },
-  'во': { primary: 'in', alternatives: ['into', 'at'] },
-  'од': { primary: 'from', alternatives: ['of', 'off'] },
-  'за': { primary: 'for', alternatives: ['about', 'to'] },
-  'со': { primary: 'with', alternatives: ['by'] },
-  'по': { primary: 'after', alternatives: ['by', 'along', 'on'] },
-  'до': { primary: 'to', alternatives: ['until', 'by', 'next to'] },
-
-  // English words
-  'to': { primary: 'да', alternatives: ['кон', 'до'] },
-  'the': { primary: '', alternatives: ['тој', 'таа', 'тоа'] },
-  'for': { primary: 'за', alternatives: ['за време на'] },
-  'of': { primary: 'од', alternatives: ['на'] },
-  'in': { primary: 'во', alternatives: ['внатре'] },
-  'on': { primary: 'на', alternatives: ['врз'] },
-  'at': { primary: 'на', alternatives: ['во', 'кај'] },
-  'by': { primary: 'од', alternatives: ['со', 'покрај', 'до'] },
+// Each entry has all possible meanings - context determines which is primary
+const MULTI_MEANING_WORDS: Record<string, { meanings: string[]; contextHint?: string }> = {
+  // Macedonian particles and function words (high ambiguity)
+  'да': { 
+    meanings: ['yes', 'to', 'that', 'so that', 'let'],
+    contextHint: '"Да" before verbs means "to"; alone means "yes"'
+  },
+  'не': { 
+    meanings: ['no', 'not', "don't", "doesn't"],
+    contextHint: '"Не" before verbs means "not"; alone means "no"'
+  },
+  'се': { 
+    meanings: ['oneself', 'each other', 'is', 'are', '-self'],
+    contextHint: 'Reflexive pronoun or part of reflexive verb'
+  },
+  'си': { 
+    meanings: ['yourself', 'your own', 'are', 'home'],
+    contextHint: 'Dative reflexive or informal "you are"'
+  },
+  'го': { meanings: ['him', 'it (masc.)', 'the'] },
+  'ја': { meanings: ['her', 'it (fem.)', 'the'] },
+  'ги': { meanings: ['them', 'the (plural)'] },
+  'ме': { meanings: ['me', 'myself'] },
+  'те': { meanings: ['you (acc.)', 'yourself'] },
+  'и': { 
+    meanings: ['and', 'to her', 'also', 'too', 'her (dat.)'],
+    contextHint: 'Most commonly "and"; "to her" when before verb'
+  },
+  'на': { 
+    meanings: ['on', 'to', 'of', 'at', 'for'],
+    contextHint: 'Preposition with multiple uses depending on case'
+  },
+  'во': { meanings: ['in', 'into', 'at', 'inside'] },
+  'од': { meanings: ['from', 'of', 'off', 'than', 'by'] },
+  'за': { meanings: ['for', 'about', 'to', 'in order to'] },
+  'со': { meanings: ['with', 'by', 'using'] },
+  'по': { meanings: ['after', 'by', 'along', 'per', 'more'] },
+  'до': { meanings: ['to', 'until', 'by', 'next to', 'up to'] },
+  'е': { 
+    meanings: ['is', 'it is', 'he/she is'],
+    contextHint: 'Third person singular of "to be"'
+  },
+  'ќе': { 
+    meanings: ['will', 'shall', 'going to'],
+    contextHint: 'Future tense marker - always before the verb'
+  },
+  'би': { 
+    meanings: ['would', 'could', 'might'],
+    contextHint: 'Conditional mood marker'
+  },
+  'што': { 
+    meanings: ['what', 'that', 'which', 'why'],
+    contextHint: 'Interrogative or relative pronoun'
+  },
+  'кој': { meanings: ['who', 'which', 'that'] },
+  'која': { meanings: ['who (fem.)', 'which (fem.)', 'that'] },
+  'кое': { meanings: ['what', 'which (neut.)', 'that'] },
+  'како': { meanings: ['how', 'like', 'as', 'what'] },
+  'каде': { meanings: ['where', 'wherever'] },
+  'кога': { meanings: ['when', 'whenever'] },
+  'зошто': { meanings: ['why', 'because'] },
+  'ама': { meanings: ['but', 'however', 'yet'] },
+  'или': { meanings: ['or', 'either'] },
+  'ако': { meanings: ['if', 'whether'] },
+  'дека': { meanings: ['that', 'because'] },
+  'само': { meanings: ['only', 'just', 'merely'] },
+  'уште': { meanings: ['still', 'yet', 'more', 'another'] },
+  'веќе': { meanings: ['already', 'now', 'anymore'] },
+  'пак': { meanings: ['again', 'but', 'however', 'on the other hand'] },
+  'така': { meanings: ['so', 'thus', 'like that', 'in that way'] },
+  'тука': { meanings: ['here', 'at this place'] },
+  'таму': { meanings: ['there', 'at that place'] },
+  
+  // Common verbs with multiple senses
+  'има': { meanings: ['has', 'there is', 'there are', 'have'] },
+  'нема': { meanings: ['has not', 'there is no', "doesn't have"] },
+  'може': { meanings: ['can', 'may', 'is possible', 'could'] },
+  'треба': { meanings: ['must', 'should', 'need to', 'have to'] },
+  'сака': { meanings: ['wants', 'loves', 'likes', 'wishes'] },
+  'знае': { meanings: ['knows', 'knows how to', 'is aware'] },
+  
+  // English words with multiple Macedonian translations
+  'to': { meanings: ['да', 'кон', 'до', 'на'] },
+  'the': { meanings: ['(no equivalent)', 'тој/таа/тоа', '-от/-та/-то'] },
+  'for': { meanings: ['за', 'за време на', 'бидејќи'] },
+  'of': { meanings: ['од', 'на', 'за'] },
+  'in': { meanings: ['во', 'внатре', 'на'] },
+  'on': { meanings: ['на', 'врз', 'во'] },
+  'at': { meanings: ['на', 'во', 'кај'] },
+  'by': { meanings: ['од', 'со', 'покрај', 'до'] },
+  'with': { meanings: ['со', 'заедно со'] },
+  'from': { meanings: ['од', 'откако'] },
+  'get': { meanings: ['добива', 'станува', 'зема', 'стигнува'] },
+  'make': { meanings: ['прави', 'создава', 'тера'] },
+  'take': { meanings: ['зема', 'носи', 'трае'] },
+  'have': { meanings: ['има', 'мора', 'примил'] },
 };
+
+// Find the best contextual meaning by checking which alternative appears in full translation
+function findContextualMeaning(
+  word: string,
+  fullTranslation: string,
+  defaultTranslation: string
+): { primary: string; alternatives: string[]; contextHint?: string } | undefined {
+  const normalized = word.toLowerCase();
+  const entry = MULTI_MEANING_WORDS[normalized];
+  
+  if (!entry) return undefined;
+  
+  const fullTransLower = fullTranslation.toLowerCase();
+  
+  // Check which meaning appears in the full contextual translation
+  for (const meaning of entry.meanings) {
+    if (meaning && fullTransLower.includes(meaning.toLowerCase())) {
+      // Found matching meaning in context - use it as primary
+      const alternatives = entry.meanings.filter(m => m !== meaning && m);
+      return { 
+        primary: meaning, 
+        alternatives, 
+        contextHint: entry.contextHint 
+      };
+    }
+  }
+  
+  // If default translation matches one of our known meanings, prefer it
+  const defLower = defaultTranslation.toLowerCase();
+  if (entry.meanings.some(m => m.toLowerCase() === defLower)) {
+    const alternatives = entry.meanings.filter(m => m.toLowerCase() !== defLower && m);
+    return { 
+      primary: defaultTranslation, 
+      alternatives,
+      contextHint: entry.contextHint 
+    };
+  }
+  
+  // No context match found - return first meaning as primary with all others as alternatives
+  const [primary, ...alternatives] = entry.meanings.filter(m => m);
+  return { primary, alternatives, contextHint: entry.contextHint };
+}
+
+// Get alternative translations for a word (legacy function for compatibility)
+function getAlternativeTranslations(word: string): string[] | undefined {
+  const normalized = word.toLowerCase();
+  const entry = MULTI_MEANING_WORDS[normalized];
+  return entry ? entry.meanings.slice(1) : undefined;
+}
 
 // Get alternative translations for a word
 function getAlternativeTranslations(word: string): string[] | undefined {
@@ -303,7 +421,48 @@ export async function POST(request: NextRequest) {
 
     const translateClient = getTranslator();
 
-    // Translate words individually (in batches for efficiency)
+    // STEP 1: Get full text translation FIRST for context
+    // This gives us the contextual translation that Google uses sentence-level understanding
+    let fullTranslation = '';
+    if (translateClient) {
+      try {
+        const [translation] = await translateClient.translate(text, {
+          from: sourceLang,
+          to: targetLang,
+        });
+        fullTranslation = typeof translation === 'string' ? translation : String(translation);
+      } catch (error) {
+        console.error('Full translation failed:', error);
+        // Will fall back to word-by-word join later
+      }
+    } else {
+      // Fallback: get full translation from public API
+      try {
+        const params = new URLSearchParams({
+          client: 'gtx',
+          sl: sourceLang ?? 'auto',
+          tl: targetLang,
+          dt: 't',
+          q: text,
+        });
+        const response = await fetch(
+          `https://translate.googleapis.com/translate_a/single?${params.toString()}`,
+          { cache: 'no-store', signal: AbortSignal.timeout(10000) }
+        );
+        if (response.ok) {
+          const data = await response.json();
+          const segments = Array.isArray(data?.[0]) ? data[0] : [];
+          fullTranslation = segments
+            .map((segment: unknown) => (Array.isArray(segment) && typeof segment[0] === 'string' ? segment[0] : ''))
+            .join('')
+            .trim();
+        }
+      } catch {
+        // Will fall back to word-by-word join later
+      }
+    }
+
+    // STEP 2: Translate words individually (in batches for efficiency)
     const batchSize = 50;
     const translatedWords: string[] = [];
 
@@ -362,40 +521,47 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Build word analysis objects with alternative translations
+    // If full translation failed, use word-by-word fallback
+    if (!fullTranslation) {
+      fullTranslation = translatedWords.join(' ');
+    }
+
+    // STEP 3: Build word analysis with CONTEXT-AWARE translations
+    // Use the full sentence translation to pick the best meaning for ambiguous words
     const wordAnalysis = wordTokens.map((token, idx) => {
       const word = token.token;
-      const translation = translatedWords[idx] || word;
+      const rawTranslation = translatedWords[idx] || word;
       const pos = detectPartOfSpeech(word, sourceLang || 'en');
       const difficulty = calculateDifficulty(word);
-      const alternativeTranslations = getAlternativeTranslations(word);
+      
+      // Check if this word has multiple meanings and find the contextual one
+      const contextualInfo = findContextualMeaning(word, fullTranslation, rawTranslation);
+      
+      if (contextualInfo) {
+        // Word has multiple meanings - use context-aware primary with alternatives
+        return {
+          id: `word-${token.index}`,
+          original: word,
+          translation: contextualInfo.primary,
+          contextualMeaning: contextualInfo.primary, // Explicitly mark as context-derived
+          alternativeTranslations: contextualInfo.alternatives.length > 0 ? contextualInfo.alternatives : undefined,
+          contextHint: contextualInfo.contextHint,
+          pos,
+          difficulty,
+          index: token.index,
+          hasMultipleMeanings: true,
+        };
+      }
 
       return {
         id: `word-${token.index}`,
         original: word,
-        translation,
-        ...(alternativeTranslations && { alternativeTranslations }),
+        translation: rawTranslation,
         pos,
         difficulty,
         index: token.index,
       };
     });
-
-    // Get full text translation for reference
-    let fullTranslation = '';
-    if (translateClient) {
-      try {
-        const [translation] = await translateClient.translate(text, {
-          from: sourceLang,
-          to: targetLang,
-        });
-        fullTranslation = typeof translation === 'string' ? translation : String(translation);
-      } catch {
-        fullTranslation = translatedWords.join(' ');
-      }
-    } else {
-      fullTranslation = translatedWords.join(' ');
-    }
 
     // Calculate difficulty metrics
     const difficultyMetrics = calculateTextDifficulty(words);

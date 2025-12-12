@@ -69,30 +69,51 @@ function WordToken({ word, revealMode, isRevealed, onToggleReveal, isFocused = f
           side="top"
           className="glass-card max-w-sm p-3 space-y-2"
         >
-          <p className="font-semibold text-sm">{word.original}</p>
+          <div className="flex items-center gap-2">
+            <p className="font-semibold text-sm">{word.original}</p>
+            {word.hasMultipleMeanings && (
+              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30">
+                {t('readerMultipleMeanings', { default: 'context-dependent' })}
+              </span>
+            )}
+          </div>
 
-          {/* Primary translation */}
+          {/* Primary translation with context indicator */}
           <div className="space-y-1">
-            <p className="text-muted-foreground text-sm font-medium">{word.translation}</p>
+            <div className="flex items-center gap-1.5">
+              <p className="text-muted-foreground text-sm font-medium">{word.translation}</p>
+              {word.contextualMeaning && (
+                <span className="text-[10px] text-primary/70">
+                  ✓ {t('readerInContext', { default: 'in this context' })}
+                </span>
+              )}
+            </div>
+
+            {/* Context hint for multi-meaning words */}
+            {word.contextHint && (
+              <p className="text-xs text-amber-400/80 italic bg-amber-500/10 px-2 py-1 rounded border border-amber-500/20">
+                💡 {word.contextHint}
+              </p>
+            )}
 
             {/* Alternative translations if available */}
             {word.alternativeTranslations && word.alternativeTranslations.length > 0 && (
-              <div className="pt-1 border-t border-border/30">
-                <p className="text-xs text-muted-foreground/70 mb-1">
-                  {t('readerAlsoMeans')}:
+              <div className="pt-1.5 border-t border-border/30">
+                <p className="text-xs text-muted-foreground/70 mb-1.5">
+                  {t('readerAlsoMeans', { default: 'Can also mean' })}:
                 </p>
                 <div className="flex flex-wrap gap-1">
                   {word.alternativeTranslations.map((alt, idx) => (
                     <span
                       key={idx}
-                      className="text-xs px-2 py-0.5 rounded-md bg-primary/10 text-primary/90 border border-primary/20"
+                      className="text-xs px-2 py-0.5 rounded-md bg-muted/30 text-muted-foreground border border-border/30"
                     >
                       {alt}
                     </span>
                   ))}
                 </div>
-                <p className="text-xs text-muted-foreground/60 mt-1.5 italic">
-                  {t('readerCheckFullTranslation')}
+                <p className="text-xs text-muted-foreground/60 mt-2 italic">
+                  {t('readerCheckFullTranslation', { default: 'Check full translation for context' })}
                 </p>
               </div>
             )}
