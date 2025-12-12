@@ -58,8 +58,9 @@ export function ThemeToggle() {
         size="icon"
         className="h-9 w-9"
         disabled
+        aria-label="Theme toggle loading"
       >
-        <Sun className="h-4 w-4" />
+        <Sun className="h-4 w-4" aria-hidden="true" />
       </Button>
     );
   }
@@ -78,9 +79,9 @@ export function ThemeToggle() {
       title={`Current theme: ${theme} (Click to change)`}
     >
       {isDark ? (
-        <Moon className="h-4 w-4 transition-transform duration-200 rotate-0" />
+        <Moon className="h-4 w-4 transition-transform duration-200 rotate-0" aria-hidden="true" />
       ) : (
-        <Sun className="h-4 w-4 transition-transform duration-200 rotate-0" />
+        <Sun className="h-4 w-4 transition-transform duration-200 rotate-0" aria-hidden="true" />
       )}
       <span className="sr-only">Toggle theme</span>
     </Button>
@@ -126,11 +127,12 @@ export function ThemeToggleSimple() {
         "hover:bg-accent/10",
       )}
       title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+      aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
     >
       {theme === "dark" ? (
-        <Moon className="h-4 w-4" />
+        <Moon className="h-4 w-4" aria-hidden="true" />
       ) : (
-        <Sun className="h-4 w-4" />
+        <Sun className="h-4 w-4" aria-hidden="true" />
       )}
       <span className="sr-only">Toggle theme</span>
     </button>

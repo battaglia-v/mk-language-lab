@@ -44,7 +44,7 @@ export function UserMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center gap-2 rounded-full border border-white/10 bg-slate-900/70 p-0.5 shadow-lg shadow-black/30 transition focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-slate-900">
+        <button className="flex items-center gap-2 rounded-full border border-white/10 bg-slate-900/70 p-0.5 shadow-lg shadow-black/30 transition focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-slate-900" aria-label="Open user menu">
           <Avatar className="h-10 w-10">
             <AvatarImage src={session.user.image || undefined} alt={session.user.name || 'User'} />
             <AvatarFallback className="bg-primary text-primary-foreground">

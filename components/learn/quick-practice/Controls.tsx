@@ -174,8 +174,8 @@ export function QuickPracticeControls({
 
           <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
             <DialogTrigger asChild>
-              <Button type="button" variant="outline" size="icon" className="rounded-xl">
-                <Settings className="h-4 w-4" />
+              <Button type="button" variant="outline" size="icon" className="rounded-xl" aria-label="Open practice settings">
+                <Settings className="h-4 w-4" aria-hidden="true" />
               </Button>
             </DialogTrigger>
             <DialogContent className="max-h-[85vh] overflow-y-auto">
