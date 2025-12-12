@@ -278,12 +278,76 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
     }
   };
 
-  const handleListen = (text: string) => {
-    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = selectedDirection?.sourceLang === 'mk' ? 'mk-MK' : 'en-US';
-    window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(utterance);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const handleListen = async (text: string, lang?: 'mk' | 'en') => {
+    // Determine language from context or parameter
+    const language = lang ?? (selectedDirection?.sourceLang === 'mk' ? 'mk' : 'en');
+
+    // Stop any currently playing audio
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current = null;
+    }
+
+    setIsPlaying(true);
+
+    try {
+      const response = await fetch('/api/tts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text, language }),
+      });
+
+      if (!response.ok) {
+        // Fallback to browser TTS if API fails
+        console.warn('TTS API failed, falling back to browser speech');
+        if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.lang = language === 'mk' ? 'mk-MK' : 'en-US';
+          utterance.onend = () => setIsPlaying(false);
+          utterance.onerror = () => setIsPlaying(false);
+          window.speechSynthesis.cancel();
+          window.speechSynthesis.speak(utterance);
+        }
+        return;
+      }
+
+      const audioBlob = await response.blob();
+      const audioUrl = URL.createObjectURL(audioBlob);
+      const audio = new Audio(audioUrl);
+      audioRef.current = audio;
+
+      audio.onended = () => {
+        setIsPlaying(false);
+        URL.revokeObjectURL(audioUrl);
+        audioRef.current = null;
+      };
+
+      audio.onerror = () => {
+        setIsPlaying(false);
+        URL.revokeObjectURL(audioUrl);
+        audioRef.current = null;
+        // Fallback to browser TTS
+        if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.lang = language === 'mk' ? 'mk-MK' : 'en-US';
+          window.speechSynthesis.speak(utterance);
+        }
+      };
+
+      await audio.play();
+    } catch (error) {
+      console.error('TTS error:', error);
+      setIsPlaying(false);
+      // Fallback to browser TTS
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = language === 'mk' ? 'mk-MK' : 'en-US';
+        window.speechSynthesis.speak(utterance);
+      }
+    }
   };
 
   const elapsedLabel = formatElapsed(elapsedMs);
@@ -540,7 +604,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                 size="sm"
                 onClick={() => {
                   setDirectionId('en-mk');
-                  setInputText("Hello, my name is John. I am learning Macedonian and I love the beautiful language and culture.");
+                  setInputText("Good morning! How are you today? I'm going to the market to buy some fresh vegetables.");
                 }}
                 className="text-xs"
               >
@@ -552,7 +616,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                 size="sm"
                 onClick={() => {
                   setDirectionId('mk-en');
-                  setInputText("Здраво, јас сум Јован. Јас учам македонски и го сакам прекрасниот јазик и култура.");
+                  setInputText("Добро утро! Како си денес? Одам на пазар да купам свежо зеленчук.");
                 }}
                 className="text-xs"
               >
@@ -633,10 +697,15 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                   size="sm"
                   variant="ghost"
                   onClick={() => handleListen(analyzedData.fullTranslation)}
+                  disabled={isPlaying}
                   className="rounded-full h-8 w-8 p-0"
                   aria-label={t('readerListen', { default: 'Listen' })}
                 >
-                  <Volume2 className="h-4 w-4" aria-hidden="true" />
+                  {isPlaying ? (
+                    <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                  ) : (
+                    <Volume2 className="h-4 w-4" aria-hidden="true" />
+                  )}
                 </Button>
                 <Button
                   type="button"
@@ -717,9 +786,14 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                           size="sm"
                           variant="ghost"
                           onClick={() => handleListen(sentence.text)}
+                          disabled={isPlaying}
                           className="rounded-full min-h-[44px] px-4"
                         >
-                          <Volume2 className="h-4 w-4" aria-hidden="true" />
+                          {isPlaying ? (
+                            <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                          ) : (
+                            <Volume2 className="h-4 w-4" aria-hidden="true" />
+                          )}
                           <span className="ml-2">{t('readerListen', { default: 'Listen' })}</span>
                         </Button>
                       </div>
