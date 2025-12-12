@@ -19,6 +19,7 @@ import { SESSION_TARGET } from '@mk/practice';
 import { useQueryHydration } from '../../lib/queryClient';
 import { triggerHaptic } from '../../lib/haptics';
 import { DirectionToggle } from '../../components/ui/DirectionToggle';
+import { formatElapsedTime } from '../../lib/formatTime';
 
 const HEART_SLOTS = 5;
 const XP_PER_CARD = 12;
@@ -70,6 +71,7 @@ export default function PracticeScreen() {
     correctCount,
     totalAttempts,
     accuracy,
+    sessionElapsedSeconds,
     showCompletionModal,
     setShowCompletionModal,
     showGameOverModal,
@@ -143,6 +145,12 @@ export default function PracticeScreen() {
               </NativeTypography>
               <NativeTypography variant="caption" style={styles.progressLabel}>
                 Correct answers
+              </NativeTypography>
+            </View>
+            <View style={styles.timerContainer}>
+              <Ionicons name="time-outline" size={16} color="rgba(247,248,251,0.6)" />
+              <NativeTypography variant="caption" style={styles.timerText}>
+                {formatElapsedTime(sessionElapsedSeconds)}
               </NativeTypography>
             </View>
             <View style={styles.heartsContainer}>
@@ -334,6 +342,16 @@ const styles = StyleSheet.create({
   progressLabel: {
     color: 'rgba(247,248,251,0.6)',
     fontSize: 12,
+  },
+  timerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
+  timerText: {
+    color: 'rgba(247,248,251,0.6)',
+    fontSize: 14,
+    fontVariant: ['tabular-nums'],
   },
   heartsContainer: {
     flexDirection: 'row',

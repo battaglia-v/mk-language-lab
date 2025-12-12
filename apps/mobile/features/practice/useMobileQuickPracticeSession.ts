@@ -37,6 +37,7 @@ export type QuickPracticeCompletionSummary = {
   totalAttempts: number;
   accuracy: number;
   heartsRemaining: number;
+  sessionDurationSeconds: number;
 };
 
 type QuickPracticeSessionOptions = {
@@ -55,6 +56,7 @@ type QuickPracticeSession = {
   difficulty: PracticeDifficultyId;
   setDifficulty: (value: PracticeDifficultyId) => void;
   timeRemaining: number | null;
+  sessionElapsedSeconds: number;
   deckId: string;
   currentCard?: PracticeCardContent;
   nextCard?: PracticeCardContent;
@@ -103,6 +105,8 @@ export function useMobileQuickPracticeSession(options: QuickPracticeSessionOptio
   const heartPenalty = difficultyPreset.heartPenalty;
   const timerDuration = difficultyPreset.timerSeconds ?? null;
   const [timeRemaining, setTimeRemaining] = useState<number | null>(timerDuration);
+  const [sessionStartTime, setSessionStartTime] = useState<number | null>(null);
+  const [sessionElapsedSeconds, setSessionElapsedSeconds] = useState(0);
 
   const practiceItems = useMemo(
     () =>
@@ -134,6 +138,8 @@ export function useMobileQuickPracticeSession(options: QuickPracticeSessionOptio
     completionNotifiedRef.current = false;
     timerExpiredRef.current = false;
     setTimeRemaining(timerDuration);
+    setSessionStartTime(Date.now());
+    setSessionElapsedSeconds(0);
   }, [deck.length, practiceMode, direction, category, timerDuration]);
 
   useEffect(() => {
@@ -245,6 +251,8 @@ export function useMobileQuickPracticeSession(options: QuickPracticeSessionOptio
     setCurrentIndex(0);
     timerExpiredRef.current = false;
     setTimeRemaining(timerDuration);
+    setSessionStartTime(Date.now());
+    setSessionElapsedSeconds(0);
   }, [timerDuration]);
 
   const handleContinue = useCallback(() => {
@@ -256,6 +264,8 @@ export function useMobileQuickPracticeSession(options: QuickPracticeSessionOptio
     advanceCard();
     timerExpiredRef.current = false;
     setTimeRemaining(timerDuration);
+    setSessionStartTime(Date.now());
+    setSessionElapsedSeconds(0);
   }, [advanceCard, timerDuration]);
 
   useEffect(() => {
@@ -298,6 +308,19 @@ export function useMobileQuickPracticeSession(options: QuickPracticeSessionOptio
     timerDuration,
   ]);
 
+  // Session elapsed timer - counts up while practicing
+  useEffect(() => {
+    if (!sessionStartTime || showCompletionModal || showGameOverModal) {
+      return;
+    }
+
+    const intervalId = setInterval(() => {
+      setSessionElapsedSeconds(Math.floor((Date.now() - sessionStartTime) / 1000));
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [sessionStartTime, showCompletionModal, showGameOverModal]);
+
   useEffect(() => {
     if (correctCount < SESSION_TARGET || completionNotifiedRef.current) {
       return;
@@ -313,6 +336,7 @@ export function useMobileQuickPracticeSession(options: QuickPracticeSessionOptio
       totalAttempts,
       accuracy,
       heartsRemaining: hearts,
+      sessionDurationSeconds: sessionElapsedSeconds,
     });
   }, [
     accuracy,
@@ -325,6 +349,7 @@ export function useMobileQuickPracticeSession(options: QuickPracticeSessionOptio
     practiceMode,
     totalAttempts,
     difficulty,
+    sessionElapsedSeconds,
   ]);
 
   return {
@@ -339,6 +364,7 @@ export function useMobileQuickPracticeSession(options: QuickPracticeSessionOptio
     difficulty,
     setDifficulty,
     timeRemaining,
+    sessionElapsedSeconds,
     deckId,
     currentCard,
     nextCard,
