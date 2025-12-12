@@ -14,6 +14,14 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { ArrowLeft, ExternalLink, Loader2, Newspaper, PlayCircle, RefreshCcw, Search, Video, Clock3 } from 'lucide-react';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
+/**
+ * Proxy news images through our API to bypass CORS/hotlinking restrictions
+ */
+function getProxiedImageUrl(imageUrl: string | null): string | null {
+  if (!imageUrl) return null;
+  return `/api/image-proxy?url=${encodeURIComponent(imageUrl)}`;
+}
+
 const SOURCE_IDS = ['all', 'time-mk', 'meta-mk'] as const;
 
 type SourceId = (typeof SOURCE_IDS)[number];
@@ -383,7 +391,7 @@ export default function NewsPage() {
                       <picture>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
-                          src={item.image}
+                          src={getProxiedImageUrl(item.image) ?? ''}
                           alt={item.title}
                           className="h-full w-full object-cover transition-opacity duration-300"
                           loading="lazy"

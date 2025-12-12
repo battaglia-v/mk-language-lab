@@ -52,7 +52,7 @@ export default function AboutPage() {
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             {[
-              { id: 'vincent', name: '🇺🇸 Винсент Баталија', role: t('vincentRole'), bio: t('vincentBio') },
+              { id: 'vincent', name: '🇺🇸 Вини Баталија', role: t('vincentRole'), bio: t('vincentBio') },
               { id: 'andri', name: '🇲🇰 Андри', role: t('andriRole'), bio: t('andriBio') },
             ].map((member) => (
               <Card key={member.id} className="glass-card rounded-3xl p-6 text-center">
