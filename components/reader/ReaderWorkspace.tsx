@@ -310,23 +310,23 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
           label={t('directionsGroupLabel')}
           swapLabel={t('swapDirections')}
         />
-        <div className="grid grid-cols-3 gap-2 sm:gap-2.5">
+        <div className="flex flex-wrap gap-2 sm:grid sm:grid-cols-3 sm:gap-2.5">
           <Button
             type="button"
             variant={revealMode === 'hidden' ? 'default' : 'outline'}
             size="sm"
             onClick={handleToggleReveal}
-            className="w-full rounded-lg min-h-[40px] text-xs sm:text-sm"
+            className="flex-1 min-w-[100px] rounded-lg min-h-[40px] text-xs sm:text-sm whitespace-nowrap"
           >
             {revealMode === 'hidden' ? (
               <>
-                <Eye className="h-3.5 w-3.5" aria-hidden="true" />
-                <span className="ml-1.5">{t('readerRevealShow')}</span>
+                <Eye className="h-3.5 w-3.5 flex-shrink-0" aria-hidden="true" />
+                <span className="ml-1.5 truncate">{t('readerRevealShow')}</span>
               </>
             ) : (
               <>
-                <EyeOff className="h-3.5 w-3.5" aria-hidden="true" />
-                <span className="ml-1.5">{t('readerRevealHide')}</span>
+                <EyeOff className="h-3.5 w-3.5 flex-shrink-0" aria-hidden="true" />
+                <span className="ml-1.5 truncate">{t('readerRevealHide')}</span>
               </>
             )}
           </Button>
@@ -335,11 +335,11 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
             variant={focusMode ? 'default' : 'secondary'}
             size="sm"
             onClick={() => setFocusMode((prev) => !prev)}
-            className="w-full rounded-lg min-h-[40px] text-xs sm:text-sm"
+            className="flex-1 min-w-[100px] rounded-lg min-h-[40px] text-xs sm:text-sm whitespace-nowrap"
             title={t('readerFocusTooltip', { default: 'Focus mode highlights one word at a time for easier learning' })}
           >
-            <Focus className="h-3.5 w-3.5" aria-hidden="true" />
-            <span className="ml-1.5">
+            <Focus className="h-3.5 w-3.5 flex-shrink-0" aria-hidden="true" />
+            <span className="ml-1.5 truncate">
               {focusMode
                 ? t('readerFocusOff', { default: 'Exit focus' })
                 : t('readerFocusOn', { default: 'Focus mode' })}
@@ -351,9 +351,11 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
             size="sm"
             disabled={!analyzedData}
             onClick={() => void handleCopyTranslation()}
-            className="w-full rounded-lg min-h-[40px] text-xs sm:text-sm"
+            className="flex-1 min-w-[100px] rounded-lg min-h-[40px] text-xs sm:text-sm whitespace-nowrap"
           >
-            {copied ? t('copied', { default: 'Copied' }) : t('readerCopyTranslation', { default: 'Copy translation' })}
+            <span className="truncate">
+              {copied ? t('copied', { default: 'Copied' }) : t('readerCopyTranslation', { default: 'Copy translation' })}
+            </span>
           </Button>
         </div>
       </div>
@@ -382,11 +384,11 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                 <p className="line-clamp-2 text-[11px] font-medium text-foreground/90 leading-snug">
                   {entry.sourceText}
                 </p>
-                <div className="mt-1.5 flex items-center gap-1.5 text-[9px] text-muted-foreground">
-                  <span className="rounded bg-white/5 px-1.5 py-0.5 border border-border/40">
+                <div className="mt-1.5 flex flex-row flex-nowrap items-center gap-1.5 text-[9px] text-muted-foreground">
+                  <span className="flex-shrink-0 whitespace-nowrap rounded bg-white/5 px-1.5 py-0.5 border border-border/40">
                     {entry.analyzedData.metadata.wordCount} {t('readerWords', { default: 'words' })}
                   </span>
-                  <span className="rounded bg-white/5 px-1.5 py-0.5 border border-border/40">
+                  <span className="flex-shrink-0 whitespace-nowrap rounded bg-white/5 px-1.5 py-0.5 border border-border/40">
                     {entry.analyzedData.metadata.sentenceCount} sent.
                   </span>
                 </div>
