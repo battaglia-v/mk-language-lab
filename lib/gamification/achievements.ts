@@ -3,10 +3,36 @@
  *
  * Handles achievement unlocking, badge awarding,
  * and tracking progress towards achievements.
+ *
+ * Optimized with:
+ * - Category-based filtering for targeted checks
+ * - Batched database queries to reduce round-trips
+ * - Early exit when thresholds aren't met
+ * - Cached static data for achievement definitions
  */
 
 import prisma from '@/lib/prisma';
 import { awardXP } from './xp';
+
+// Types for achievement categories
+type AchievementCategory = 'streak' | 'lesson' | 'xp' | 'special';
+type ConditionType =
+  | 'streak'
+  | 'lessons_completed'
+  | 'total_xp'
+  | 'weekend_practice'
+  | 'early_morning_practice'
+  | 'late_night_practice';
+
+// Map condition types to categories for efficient filtering
+const CONDITION_TO_CATEGORY: Record<ConditionType, AchievementCategory> = {
+  streak: 'streak',
+  lessons_completed: 'lesson',
+  total_xp: 'xp',
+  weekend_practice: 'special',
+  early_morning_practice: 'special',
+  late_night_practice: 'special',
+};
 
 /**
  * Achievement definitions
@@ -123,71 +149,95 @@ export const ACHIEVEMENTS = {
 export type AchievementKey = keyof typeof ACHIEVEMENTS;
 
 /**
- * Check if user meets achievement condition
+ * Pre-fetched context data for achievement checks
+ * Batches all database queries upfront to avoid N+1 queries
  */
-async function checkAchievementCondition(
-  userId: string,
-  condition: { type: string; value: number }
-): Promise<boolean> {
-  const gameProgress = await prisma.gameProgress.findUnique({
-    where: { userId },
-  });
+interface AchievementContext {
+  gameProgress: {
+    streak: number;
+    totalLessons: number;
+    xp: number;
+  } | null;
+  weekendDays: Set<number>;
+  lastAttemptHour: number | null;
+}
 
-  if (!gameProgress) return false;
+/**
+ * Fetch all data needed for achievement checks in a single batch
+ * This replaces multiple individual queries with one efficient fetch
+ */
+async function fetchAchievementContext(userId: string): Promise<AchievementContext> {
+  // Batch fetch all required data in parallel
+  const [gameProgress, recentAttempts] = await Promise.all([
+    prisma.gameProgress.findUnique({
+      where: { userId },
+      select: { streak: true, totalLessons: true, xp: true },
+    }),
+    prisma.exerciseAttempt.findMany({
+      where: {
+        userId,
+        attemptedAt: {
+          gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), // Last 7 days
+        },
+      },
+      select: { attemptedAt: true },
+      orderBy: { attemptedAt: 'desc' },
+      take: 100, // Limit for efficiency
+    }),
+  ]);
+
+  // Process weekend days from attempts
+  const weekendDays = new Set(
+    recentAttempts
+      .map((a) => a.attemptedAt.getDay())
+      .filter((day) => day === 0 || day === 6) // Sunday = 0, Saturday = 6
+  );
+
+  // Get the hour of the most recent attempt
+  const lastAttemptHour = recentAttempts.length > 0 ? recentAttempts[0].attemptedAt.getHours() : null;
+
+  return {
+    gameProgress,
+    weekendDays,
+    lastAttemptHour,
+  };
+}
+
+/**
+ * Check if user meets achievement condition using pre-fetched context
+ * No database queries - uses cached context data
+ */
+function checkAchievementConditionSync(
+  context: AchievementContext,
+  condition: { type: string; value: number }
+): boolean {
+  const { gameProgress, weekendDays, lastAttemptHour } = context;
+
+  if (!gameProgress && ['streak', 'lessons_completed', 'total_xp'].includes(condition.type)) {
+    return false;
+  }
 
   switch (condition.type) {
     case 'streak':
-      return gameProgress.streak >= condition.value;
+      return (gameProgress?.streak ?? 0) >= condition.value;
 
     case 'lessons_completed':
-      return gameProgress.totalLessons >= condition.value;
+      return (gameProgress?.totalLessons ?? 0) >= condition.value;
 
     case 'total_xp':
-      return gameProgress.xp >= condition.value;
+      return (gameProgress?.xp ?? 0) >= condition.value;
 
     case 'weekend_practice':
-      // Check if user has practiced on both Saturday and Sunday in the same week
-      const weekendAttempts = await prisma.exerciseAttempt.findMany({
-        where: {
-          userId,
-          attemptedAt: {
-            gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), // Last 7 days
-          },
-        },
-        select: { attemptedAt: true },
-      });
-      const weekendDays = new Set(
-        weekendAttempts
-          .map((a) => a.attemptedAt.getDay())
-          .filter((day) => day === 0 || day === 6) // Sunday = 0, Saturday = 6
-      );
-      return weekendDays.size >= 2; // Must have practiced on both Saturday AND Sunday
+      // Must have practiced on both Saturday AND Sunday
+      return weekendDays.size >= 2;
 
     case 'early_morning_practice':
-      // Check if user practiced before 8 AM
-      const earlyAttempts = await prisma.exerciseAttempt.findFirst({
-        where: {
-          userId,
-        },
-        select: { attemptedAt: true },
-        orderBy: { attemptedAt: 'desc' },
-      });
-      if (!earlyAttempts) return false;
-      const earlyHour = earlyAttempts.attemptedAt.getHours();
-      return earlyHour < 8;
+      // Check if last attempt was before 8 AM
+      return lastAttemptHour !== null && lastAttemptHour < 8;
 
     case 'late_night_practice':
-      // Check if user practiced after 10 PM
-      const lateAttempts = await prisma.exerciseAttempt.findFirst({
-        where: {
-          userId,
-        },
-        select: { attemptedAt: true },
-        orderBy: { attemptedAt: 'desc' },
-      });
-      if (!lateAttempts) return false;
-      const lateHour = lateAttempts.attemptedAt.getHours();
-      return lateHour >= 22;
+      // Check if last attempt was after 10 PM
+      return lastAttemptHour !== null && lastAttemptHour >= 22;
 
     default:
       return false;
@@ -195,12 +245,75 @@ async function checkAchievementCondition(
 }
 
 /**
+ * Filter achievements by category for targeted checking
+ * Only checks relevant achievements based on the action that triggered the check
+ */
+function filterAchievementsByCategory(categories: AchievementCategory[] | null) {
+  const entries = Object.entries(ACHIEVEMENTS) as [
+    AchievementKey,
+    (typeof ACHIEVEMENTS)[AchievementKey],
+  ][];
+
+  if (!categories) {
+    return entries; // Check all if no filter specified
+  }
+
+  return entries.filter(([, achievement]) => {
+    const category = CONDITION_TO_CATEGORY[achievement.condition.type as ConditionType];
+    return categories.includes(category);
+  });
+}
+
+/**
+ * Quick eligibility check before running full achievement logic
+ * Returns true if user might have new achievements to unlock
+ */
+function hasEligibleAchievements(
+  context: AchievementContext,
+  existingBadgeNames: Set<string>,
+  categories: AchievementCategory[] | null
+): boolean {
+  const achievements = filterAchievementsByCategory(categories);
+
+  for (const [, achievement] of achievements) {
+    // Skip if already unlocked
+    if (existingBadgeNames.has(achievement.name)) continue;
+
+    // Quick threshold check for numeric achievements
+    const { gameProgress } = context;
+    if (gameProgress) {
+      switch (achievement.condition.type) {
+        case 'streak':
+          if (gameProgress.streak >= achievement.condition.value) return true;
+          break;
+        case 'lessons_completed':
+          if (gameProgress.totalLessons >= achievement.condition.value) return true;
+          break;
+        case 'total_xp':
+          if (gameProgress.xp >= achievement.condition.value) return true;
+          break;
+        default:
+          // Special achievements need full check
+          return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+/**
  * Check and unlock achievements for a user
+ * Optimized with batched queries and category filtering
  *
  * @param userId - User ID to check achievements for
+ * @param categories - Optional filter to only check specific achievement categories
  * @returns Array of newly unlocked achievements
  */
-export async function checkAchievements(userId: string) {
+export async function checkAchievements(
+  userId: string,
+  categories: AchievementCategory[] | null = null
+) {
   const unlockedAchievements: Array<{
     key: AchievementKey;
     name: string;
@@ -208,21 +321,32 @@ export async function checkAchievements(userId: string) {
     xpAwarded: number;
   }> = [];
 
-  // Get user's existing badges
-  const existingBadges = await prisma.userBadge.findMany({
-    where: { userId },
-    include: { badge: true },
-  });
+  // Batch fetch: existing badges and achievement context in parallel
+  const [existingBadges, context] = await Promise.all([
+    prisma.userBadge.findMany({
+      where: { userId },
+      select: { badge: { select: { name: true } } },
+    }),
+    fetchAchievementContext(userId),
+  ]);
 
   const existingBadgeNames = new Set(existingBadges.map((ub) => ub.badge.name));
 
-  // Check each achievement
-  for (const [key, achievement] of Object.entries(ACHIEVEMENTS)) {
+  // Early exit if no eligible achievements
+  if (!hasEligibleAchievements(context, existingBadgeNames, categories)) {
+    return unlockedAchievements;
+  }
+
+  // Get filtered achievements based on categories
+  const achievementsToCheck = filterAchievementsByCategory(categories);
+
+  // Process achievements - using sync condition checks (no DB queries)
+  for (const [key, achievement] of achievementsToCheck) {
     // Skip if user already has this badge
     if (existingBadgeNames.has(achievement.name)) continue;
 
-    // Check if condition is met
-    const conditionMet = await checkAchievementCondition(userId, achievement.condition);
+    // Check if condition is met (using pre-fetched context, no DB query)
+    const conditionMet = checkAchievementConditionSync(context, achievement.condition);
 
     if (conditionMet) {
       // Find or create the badge
@@ -365,23 +489,41 @@ export async function getUserAchievementCount(userId: string) {
 
 /**
  * Check achievements after specific actions
+ * Uses category filtering to only check relevant achievements
  */
 export async function checkAchievementsAfterLesson(userId: string) {
-  return checkAchievements(userId);
+  // After a lesson, check lesson achievements and special time-based ones
+  return checkAchievements(userId, ['lesson', 'special']);
 }
 
 export async function checkAchievementsAfterStreak(userId: string, streak: number) {
-  // Check milestone achievements (7, 30, 100)
-  if (streak === 7 || streak === 30 || streak === 100) {
-    return checkAchievements(userId);
+  // Only check on milestone streaks for efficiency
+  const milestones = [7, 30, 100];
+  if (!milestones.includes(streak)) {
+    return [];
   }
-  return [];
+  // Only check streak-related achievements
+  return checkAchievements(userId, ['streak']);
 }
 
 export async function checkAchievementsAfterXP(userId: string, totalXP: number) {
-  // Check XP milestone achievements (1000, 5000)
-  if (totalXP >= 1000 || totalXP >= 5000) {
-    return checkAchievements(userId);
+  // Only check on XP milestones for efficiency
+  const milestones = [1000, 5000];
+  const crossedMilestone = milestones.some(
+    (milestone) => totalXP >= milestone && totalXP - milestone < 100 // Just crossed or near
+  );
+
+  if (!crossedMilestone) {
+    return [];
   }
-  return [];
+  // Only check XP-related achievements
+  return checkAchievements(userId, ['xp']);
+}
+
+/**
+ * Check all achievements (full check, for profile/dashboard views)
+ * Use sparingly - prefer category-specific checks after actions
+ */
+export async function checkAllAchievements(userId: string) {
+  return checkAchievements(userId, null);
 }
