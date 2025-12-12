@@ -30,10 +30,10 @@ interface AchievementBadgeProps {
 }
 
 const RARITY_COLORS: Record<RarityTier, string> = {
-  common: 'border-gray-500 bg-gray-500/10 text-gray-600 dark:text-gray-400',
-  rare: 'border-blue-500 bg-blue-500/10 text-blue-600 dark:text-blue-400',
-  epic: 'border-purple-500 bg-purple-500/10 text-purple-600 dark:text-purple-400',
-  legendary: 'border-amber-500 bg-amber-500/10 text-amber-600 dark:text-amber-400',
+  common: 'border-gray-500 bg-gray-500/10 text-gray-700 dark:text-gray-300',
+  rare: 'border-blue-500 bg-blue-500/10 text-blue-700 dark:text-blue-300',
+  epic: 'border-purple-500 bg-purple-500/10 text-purple-700 dark:text-purple-300',
+  legendary: 'border-amber-500 bg-amber-500/10 text-amber-700 dark:text-amber-300',
 };
 
 const RARITY_GLOW: Record<RarityTier, string> = {

@@ -77,7 +77,7 @@ export function BadgeShopPreview({ className }: BadgeShopPreviewProps) {
     <section className={cn('glass-card rounded-3xl p-6 md:p-8 text-white', className)} data-testid="badge-shop">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-amber-300/80">{t('title')}</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-amber-200">{t('title')}</p>
           <h2 className="text-2xl font-semibold">{t('subtitle')}</h2>
           <p className="text-sm text-slate-200">{t('description')}</p>
         </div>
@@ -98,7 +98,7 @@ export function BadgeShopPreview({ className }: BadgeShopPreviewProps) {
           ))}
         </div>
       ) : error ? (
-        <div className="mt-6 rounded-2xl border border-destructive/40 bg-destructive/10 p-4 text-sm text-red-100">
+        <div className="mt-6 rounded-2xl border border-destructive/40 bg-destructive/10 p-4 text-sm text-red-200">
           {t('error.description')}
         </div>
       ) : (
@@ -117,7 +117,7 @@ export function BadgeShopPreview({ className }: BadgeShopPreviewProps) {
               <h3 className="text-base font-semibold">{badge.name}</h3>
               <p className="mt-1 text-xs text-slate-200 line-clamp-3">{badge.description}</p>
               <div className="mt-3 flex items-center justify-center gap-2 text-xs text-amber-200">
-                <Badge variant="outline" className="border-amber-200/40 bg-amber-200/10 text-amber-100">
+                <Badge variant="outline" className="border-amber-200/40 bg-amber-200/10 text-amber-200">
                   {t('rarity.' + badge.rarityTier, { defaultValue: badge.rarityTier })}
                 </Badge>
                 <span>·</span>

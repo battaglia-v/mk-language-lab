@@ -26,9 +26,9 @@ export function BadgesSection({ badges }: BadgesSectionProps) {
           >
             <div className="text-3xl mb-2">{badge.earnedAt ? '🏆' : '🔒'}</div>
             <h3 className="text-sm font-semibold leading-tight">{badge.label}</h3>
-            <p className="mt-1 text-xs text-slate-300 leading-snug">{badge.description}</p>
+            <p className="mt-1 text-xs text-slate-200 leading-snug">{badge.description}</p>
             {badge.earnedAt && (
-              <p className="mt-2 text-xs text-slate-400">{new Date(badge.earnedAt).toLocaleDateString()}</p>
+              <p className="mt-2 text-xs text-slate-300">{new Date(badge.earnedAt).toLocaleDateString()}</p>
             )}
           </article>
         ))}
