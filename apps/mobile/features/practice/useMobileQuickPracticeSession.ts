@@ -27,6 +27,15 @@ import { authenticatedFetch } from '../../lib/auth';
 
 export type PracticeDeckMode = PracticeCardKind;
 
+/** Record of a missed answer for review */
+export type MissedAnswer = {
+  cardId: string;
+  prompt: string;
+  correctAnswer: string;
+  userAnswer?: string;
+  direction: PracticeDirection;
+};
+
 export type QuickPracticeCompletionSummary = {
   deckId: string;
   category: string;
@@ -38,6 +47,7 @@ export type QuickPracticeCompletionSummary = {
   accuracy: number;
   heartsRemaining: number;
   sessionDurationSeconds: number;
+  missedAnswers: MissedAnswer[];
 };
 
 type QuickPracticeSessionOptions = {
@@ -61,7 +71,7 @@ type QuickPracticeSession = {
   currentCard?: PracticeCardContent;
   nextCard?: PracticeCardContent;
   evaluateAnswer: (value: string) => PracticeEvaluationResult | null;
-  handleResult: (result: 'correct' | 'incorrect' | 'skip') => void;
+  handleResult: (result: 'correct' | 'incorrect' | 'skip', userAnswer?: string) => void;
   submitAnswer: (value: string, options?: { autoAdvance?: boolean }) => PracticeEvaluationResult | null;
   skipCard: () => void;
   advanceCard: () => void;
@@ -71,6 +81,7 @@ type QuickPracticeSession = {
   totalAttempts: number;
   accuracy: number;
   sessionProgress: number;
+  missedAnswers: MissedAnswer[];
   showCompletionModal: boolean;
   setShowCompletionModal: (open: boolean) => void;
   showGameOverModal: boolean;
@@ -99,6 +110,7 @@ export function useMobileQuickPracticeSession(options: QuickPracticeSessionOptio
   const [correctCount, setCorrectCount] = useState(0);
   const [totalAttempts, setTotalAttempts] = useState(0);
   const [hearts, setHearts] = useState(INITIAL_HEARTS);
+  const [missedAnswers, setMissedAnswers] = useState<MissedAnswer[]>([]);
   const [showCompletionModal, setShowCompletionModal] = useState(false);
   const [showGameOverModal, setShowGameOverModal] = useState(false);
   const difficultyPreset = useMemo(() => getPracticeDifficultyPreset(difficulty), [difficulty]);
@@ -135,6 +147,7 @@ export function useMobileQuickPracticeSession(options: QuickPracticeSessionOptio
     setTotalAttempts(0);
     setCorrectCount(0);
     setHearts(INITIAL_HEARTS);
+    setMissedAnswers([]);
     completionNotifiedRef.current = false;
     timerExpiredRef.current = false;
     setTimeRemaining(timerDuration);
@@ -183,7 +196,7 @@ export function useMobileQuickPracticeSession(options: QuickPracticeSessionOptio
   );
 
   const applyResult = useCallback(
-    (result: 'correct' | 'incorrect') => {
+    (result: 'correct' | 'incorrect', userAnswer?: string) => {
       setTotalAttempts((prev) => prev + 1);
       if (result === 'correct') {
         setCorrectCount((prev) => {
@@ -195,6 +208,27 @@ export function useMobileQuickPracticeSession(options: QuickPracticeSessionOptio
         });
         return;
       }
+      // Track incorrect answer for review
+      if (currentCard) {
+        const prompt = direction === 'enToMk' ? currentCard.item.en : currentCard.item.mk;
+        const correctAnswer = direction === 'enToMk' ? currentCard.item.mk : currentCard.item.en;
+        setMissedAnswers((prev) => {
+          // Avoid duplicates for the same card
+          if (prev.some((m) => m.cardId === currentCard.id)) {
+            return prev;
+          }
+          return [
+            ...prev,
+            {
+              cardId: currentCard.id,
+              prompt,
+              correctAnswer,
+              userAnswer,
+              direction,
+            },
+          ];
+        });
+      }
       setHearts((prev) => {
         const next = Math.max(prev - heartPenalty, 0);
         if (next === 0) {
@@ -204,8 +238,11 @@ export function useMobileQuickPracticeSession(options: QuickPracticeSessionOptio
       });
     },
     [
+      currentCard,
+      direction,
       setCorrectCount,
       setHearts,
+      setMissedAnswers,
       setShowCompletionModal,
       setShowGameOverModal,
       setTotalAttempts,
@@ -214,12 +251,12 @@ export function useMobileQuickPracticeSession(options: QuickPracticeSessionOptio
   );
 
   const handleResult = useCallback(
-    (result: 'correct' | 'incorrect' | 'skip') => {
+    (result: 'correct' | 'incorrect' | 'skip', userAnswer?: string) => {
       if (result === 'skip') {
         skipCard();
         return;
       }
-      applyResult(result);
+      applyResult(result, userAnswer);
       advanceCard();
     },
     [advanceCard, applyResult, skipCard]
@@ -229,7 +266,7 @@ export function useMobileQuickPracticeSession(options: QuickPracticeSessionOptio
     (value: string, options?: { autoAdvance?: boolean }) => {
       const evaluation = evaluateAnswer(value);
       if (!evaluation) return null;
-      applyResult(evaluation.isCorrect ? 'correct' : 'incorrect');
+      applyResult(evaluation.isCorrect ? 'correct' : 'incorrect', value);
       if (options?.autoAdvance) {
         advanceCard();
       }
@@ -246,6 +283,7 @@ export function useMobileQuickPracticeSession(options: QuickPracticeSessionOptio
     setCorrectCount(0);
     setTotalAttempts(0);
     setHearts(INITIAL_HEARTS);
+    setMissedAnswers([]);
     setShowCompletionModal(false);
     setShowGameOverModal(false);
     setCurrentIndex(0);
@@ -260,6 +298,7 @@ export function useMobileQuickPracticeSession(options: QuickPracticeSessionOptio
     setCorrectCount(0);
     setTotalAttempts(0);
     setHearts(INITIAL_HEARTS);
+    setMissedAnswers([]);
     completionNotifiedRef.current = false;
     advanceCard();
     timerExpiredRef.current = false;
@@ -337,6 +376,7 @@ export function useMobileQuickPracticeSession(options: QuickPracticeSessionOptio
       accuracy,
       heartsRemaining: hearts,
       sessionDurationSeconds: sessionElapsedSeconds,
+      missedAnswers,
     });
   }, [
     accuracy,
@@ -345,6 +385,7 @@ export function useMobileQuickPracticeSession(options: QuickPracticeSessionOptio
     deckId,
     direction,
     hearts,
+    missedAnswers,
     onSessionComplete,
     practiceMode,
     totalAttempts,
@@ -379,6 +420,7 @@ export function useMobileQuickPracticeSession(options: QuickPracticeSessionOptio
     totalAttempts,
     accuracy,
     sessionProgress,
+    missedAnswers,
     showCompletionModal,
     setShowCompletionModal,
     showGameOverModal,

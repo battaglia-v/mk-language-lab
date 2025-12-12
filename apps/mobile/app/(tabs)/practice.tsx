@@ -20,6 +20,7 @@ import { useQueryHydration } from '../../lib/queryClient';
 import { triggerHaptic } from '../../lib/haptics';
 import { DirectionToggle } from '../../components/ui/DirectionToggle';
 import { formatElapsedTime } from '../../lib/formatTime';
+import { MissedAnswersReview } from '../../components/MissedAnswersReview';
 
 const HEART_SLOTS = 5;
 const XP_PER_CARD = 12;
@@ -72,6 +73,7 @@ export default function PracticeScreen() {
     totalAttempts,
     accuracy,
     sessionElapsedSeconds,
+    missedAnswers,
     showCompletionModal,
     setShowCompletionModal,
     showGameOverModal,
@@ -208,25 +210,29 @@ export default function PracticeScreen() {
       <ResultModal
         visible={showCompletionModal}
         title="Mission complete!"
-        description="You hit your target. Keep the streak alive or start a new run."
+        description={`You hit your target in ${formatElapsedTime(sessionElapsedSeconds)}. Keep the streak alive or start a new run.`}
         primaryLabel="Continue"
         secondaryLabel="Reset"
         onPrimary={handleContinue}
         onSecondary={handleReset}
         onClose={() => setShowCompletionModal(false)}
-      />
+      >
+        <MissedAnswersReview missedAnswers={missedAnswers} />
+      </ResultModal>
 
       <ResultModal
         visible={showGameOverModal}
         title="Out of hearts"
-        description="Review your answers and try again."
+        description="Review your mistakes and try again."
         primaryLabel="Reset"
         onPrimary={() => {
           handleReset();
           setShowGameOverModal(false);
         }}
         onClose={() => setShowGameOverModal(false)}
-      />
+      >
+        <MissedAnswersReview missedAnswers={missedAnswers} />
+      </ResultModal>
     </SafeAreaView>
   );
 }
@@ -240,6 +246,7 @@ type ResultModalProps = {
   onPrimary: () => void;
   onSecondary?: () => void;
   onClose: () => void;
+  children?: React.ReactNode;
 };
 
 function ResultModal({
@@ -251,6 +258,7 @@ function ResultModal({
   onPrimary,
   onSecondary,
   onClose,
+  children,
 }: ResultModalProps) {
   if (!visible) return null;
   return (
@@ -263,6 +271,7 @@ function ResultModal({
           <NativeTypography variant="body" style={{ color: 'rgba(247,248,251,0.8)' }}>
             {description}
           </NativeTypography>
+          {children}
           <NativeButton style={styles.modalButton} onPress={onPrimary}>
             <NativeTypography variant="body" style={styles.primaryText}>
               {primaryLabel}
