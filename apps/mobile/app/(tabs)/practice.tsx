@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import { Modal, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
@@ -17,6 +17,7 @@ import { getPracticeDifficultyPreset } from '@mk/practice';
 import { usePracticeCompletionQueue } from '../../features/practice/usePracticeCompletionQueue';
 import { SESSION_TARGET } from '@mk/practice';
 import { useQueryHydration } from '../../lib/queryClient';
+import { triggerHaptic } from '../../lib/haptics';
 
 const HEART_SLOTS = 5;
 const XP_PER_CARD = 12;
@@ -30,6 +31,12 @@ export default function PracticeScreen() {
       const preset = getPracticeDifficultyPreset(summary.difficulty);
       const xpEarned = summary.correctCount * XP_PER_CARD * preset.xpMultiplier;
       const streakDelta = summary.correctCount >= SESSION_TARGET ? 1 : 0;
+
+      // Trigger streak haptic when user hits target (contributes to streak)
+      if (streakDelta > 0) {
+        void triggerHaptic('streakUpdate');
+      }
+
       void completionQueue.queueCompletion({
         deckId: summary.deckId,
         category: summary.category,
@@ -71,6 +78,28 @@ export default function PracticeScreen() {
   } = useMobileQuickPracticeSession({ onSessionComplete: handleSessionComplete });
   const difficultyPreset = getPracticeDifficultyPreset(difficulty);
   const isRestoring = !isHydrated && isLoading;
+
+  // Track previous modal states to detect transitions
+  const prevCompletionModalRef = useRef(showCompletionModal);
+  const prevGameOverModalRef = useRef(showGameOverModal);
+
+  // Trigger haptic feedback when modals open
+  useEffect(() => {
+    if (showCompletionModal && !prevCompletionModalRef.current) {
+      // Session complete - XP earned! Trigger celebratory haptic
+      void triggerHaptic('xpGain');
+    }
+    prevCompletionModalRef.current = showCompletionModal;
+  }, [showCompletionModal]);
+
+  useEffect(() => {
+    if (showGameOverModal && !prevGameOverModalRef.current) {
+      // Game over - lost all hearts. Trigger error haptic
+      void triggerHaptic('error');
+    }
+    prevGameOverModalRef.current = showGameOverModal;
+  }, [showGameOverModal]);
+
 
   return (
     <SafeAreaView style={styles.safeArea}>

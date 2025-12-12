@@ -13,6 +13,7 @@ import { TypingCard } from './cards/TypingCard';
 import { ClozeCard } from './cards/ClozeCard';
 import { MultipleChoiceCard } from './cards/MultipleChoiceCard';
 import { ListeningCard } from './cards/ListeningCard';
+import { triggerHaptic } from '../../../lib/haptics';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SWIPE_THRESHOLD = SCREEN_WIDTH * 0.25;
@@ -65,14 +66,30 @@ export function CardStack({ card, isLoading, onResult, onEvaluateAnswer }: CardS
     }).start();
   }, [position]);
 
+  // Track if we've passed the threshold to provide haptic feedback once
+  const hasTriggeredHaptic = useRef(false);
+
   const panResponder = useMemo(
     () =>
       PanResponder.create({
         onMoveShouldSetPanResponder: (_, gesture) =>
           Math.abs(gesture.dx) > 8 || Math.abs(gesture.dy) > 8,
-        onPanResponderMove: Animated.event([null, { dx: position.x, dy: position.y }], {
-          useNativeDriver: false,
-        }),
+        onPanResponderGrant: () => {
+          hasTriggeredHaptic.current = false;
+        },
+        onPanResponderMove: (_, gesture) => {
+          position.setValue({ x: gesture.dx, y: gesture.dy });
+          // Trigger haptic when crossing threshold
+          if (!hasTriggeredHaptic.current) {
+            const crossedThreshold =
+              Math.abs(gesture.dx) > SWIPE_THRESHOLD ||
+              Math.abs(gesture.dy) > SWIPE_THRESHOLD;
+            if (crossedThreshold) {
+              hasTriggeredHaptic.current = true;
+              void triggerHaptic('selection');
+            }
+          }
+        },
         onPanResponderRelease: (_, gesture) => {
           if (gesture.dx > SWIPE_THRESHOLD) {
             forceSwipe('right');

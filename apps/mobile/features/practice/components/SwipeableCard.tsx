@@ -10,12 +10,12 @@ import Animated, {
   Extrapolation,
 } from 'react-native-reanimated';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import * as Haptics from 'expo-haptics';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { NativeCard, NativeTypography } from '@mk/ui';
 import type { PracticeCardContent, PracticeEvaluationResult } from '@mk/practice';
 import { brandColors, spacingScale } from '@mk/tokens';
 import { PracticeCardContentView } from './PracticeCard';
+import { triggerHaptic } from '../../../lib/haptics';
 
 type SwipeableCardProps = {
   card?: PracticeCardContent;
@@ -83,7 +83,7 @@ export function SwipeableCard({
       if (result.isCorrect) {
         setFeedback('correct');
         setRevealedAnswer(null);
-        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => undefined);
+        void triggerHaptic('correctAnswer');
         animateOut('right', () => {
           onAdvance();
         });
@@ -91,7 +91,7 @@ export function SwipeableCard({
         setFeedback('incorrect');
         setRevealedAnswer(result.expectedAnswer);
         setInputValue('');
-        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error).catch(() => undefined);
+        void triggerHaptic('incorrectAnswer');
         if (autoAdvance) {
           animateOut('left', () => {
             onAdvance();
