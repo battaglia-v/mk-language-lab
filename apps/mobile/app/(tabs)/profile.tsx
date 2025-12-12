@@ -1,5 +1,5 @@
-import { useCallback } from 'react';
-import { Pressable, SafeAreaView, ScrollView, StyleSheet, View, Linking, Alert } from 'react-native';
+import { useCallback, useState } from 'react';
+import { Pressable, RefreshControl, SafeAreaView, ScrollView, StyleSheet, View, Linking, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { NativeTypography, NativeCard, NativeButton } from '@mk/ui';
@@ -18,6 +18,7 @@ export default function ProfileScreen() {
     data,
     isLoading,
     error,
+    refetch: refetchProfile,
   } = useProfileSummaryQuery({
     baseUrl: apiBaseUrl ?? undefined,
     enabled: isApiConfigured,
@@ -61,9 +62,33 @@ export default function ProfileScreen() {
     }
   }, []);
 
+  // Pull-to-refresh state and handler
+  const [refreshing, setRefreshing] = useState(false);
+  const onRefresh = useCallback(async () => {
+    if (!isApiConfigured) return;
+    setRefreshing(true);
+    try {
+      await refetchProfile();
+    } finally {
+      setRefreshing(false);
+    }
+  }, [isApiConfigured, refetchProfile]);
+
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView
+        contentContainerStyle={styles.container}
+        refreshControl={
+          isApiConfigured ? (
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={() => void onRefresh()}
+              tintColor={brandColors.goldDark}
+              colors={[brandColors.goldDark]}
+            />
+          ) : undefined
+        }
+      >
         <NativeTypography variant="hero" style={styles.hero}>
           {profile?.name ?? 'Profile'}
         </NativeTypography>

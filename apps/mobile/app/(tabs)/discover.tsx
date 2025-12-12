@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
+import { RefreshControl, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { NativeCard, NativeTypography } from '@mk/ui';
 import { brandColors, spacingScale } from '@mk/tokens';
@@ -26,6 +26,7 @@ export default function DiscoverScreen() {
   const {
     data,
     error: discoverError,
+    refetch: refetchDiscover,
   } = useDiscoverFeedQuery({
     baseUrl: apiBaseUrl ?? undefined,
     enabled: isApiConfigured,
@@ -62,6 +63,19 @@ export default function DiscoverScreen() {
   const newsItems = newsData ?? (!isApiConfigured ? getLocalNewsFeed() : []);
   const isRestoring = isApiConfigured && !isHydrated && !data;
   const handleRefreshNews = isApiConfigured ? () => void refetchNews() : undefined;
+
+  // Pull-to-refresh state and handler
+  const [refreshing, setRefreshing] = useState(false);
+  const onRefresh = useCallback(async () => {
+    if (!isApiConfigured) return;
+    setRefreshing(true);
+    try {
+      await Promise.all([refetchDiscover(), refetchNews()]);
+    } finally {
+      setRefreshing(false);
+    }
+  }, [isApiConfigured, refetchDiscover, refetchNews]);
+
   const handleCardAction = useCallback(
     (card: DiscoverCard) => {
       openDiscoverTarget(router, card.ctaTarget, card.ctaUrl);
@@ -78,7 +92,19 @@ export default function DiscoverScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView
+        contentContainerStyle={styles.container}
+        refreshControl={
+          isApiConfigured ? (
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={() => void onRefresh()}
+              tintColor={brandColors.goldDark}
+              colors={[brandColors.goldDark]}
+            />
+          ) : undefined
+        }
+      >
         <NativeTypography variant="hero" style={styles.hero}>
           Discover
         </NativeTypography>

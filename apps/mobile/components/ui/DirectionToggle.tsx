@@ -26,6 +26,7 @@
 import { View, StyleSheet } from 'react-native';
 import { NativeButton, NativeTypography } from '@mk/ui';
 import { spacingScale } from '@mk/tokens';
+import { triggerHaptic } from '../../lib/haptics';
 
 /** Default direction type for practice screens */
 export type PracticeDirection = 'enToMk' | 'mkToEn';
@@ -86,7 +87,12 @@ export function DirectionToggle<T extends string = PracticeDirection>({
               size === 'large' && styles.buttonLarge,
               variant === 'vertical' && styles.buttonVertical,
             ]}
-            onPress={() => onDirectionChange(option.id)}
+            onPress={() => {
+              if (!isSelected) {
+                void triggerHaptic('selection');
+                onDirectionChange(option.id);
+              }
+            }}
             disabled={disabled}
             testID={`${testID}-${option.id}`}
           >

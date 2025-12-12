@@ -18,6 +18,8 @@ export type HapticPattern =
   | 'streakUpdate'
   | 'streakLost'
   | 'achievementUnlock'
+  | 'correctAnswer'
+  | 'incorrectAnswer'
   | 'success'
   | 'error'
   | 'warning'
@@ -154,6 +156,16 @@ export async function triggerHaptic(pattern: HapticPattern): Promise<void> {
       await impactHeavy();
       await new Promise((resolve) => setTimeout(resolve, 60));
       await impactHeavy();
+      break;
+
+    case 'correctAnswer':
+      // Quick success feedback for correct answers
+      await notificationSuccess();
+      break;
+
+    case 'incorrectAnswer':
+      // Gentle error feedback for wrong answers
+      await notificationError();
       break;
 
     case 'success':

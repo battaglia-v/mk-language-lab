@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Pressable, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
+import { Pressable, RefreshControl, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { NativeCard, NativeTypography } from '@mk/ui';
 import { brandColors, semanticColors, spacingScale } from '@mk/tokens';
@@ -44,6 +44,7 @@ export default function HomeScreen() {
     error,
     isLoading,
     isFetching,
+    refetch: refetchMission,
   } = useMissionStatusQuery({ baseUrl: apiBaseUrl ?? undefined, enabled: isApiConfigured, fetcher: authenticatedFetch });
   const mission = data ?? (!isApiConfigured ? getLocalMissionStatus() : null);
   const { scheduleMissionReminder } = useNotifications();
@@ -82,6 +83,18 @@ export default function HomeScreen() {
       }),
     []
   );
+
+  // Pull-to-refresh state and handler
+  const [refreshing, setRefreshing] = useState(false);
+  const onRefresh = useCallback(async () => {
+    if (!isApiConfigured) return;
+    setRefreshing(true);
+    try {
+      await Promise.all([refetchMission(), refetchDiscover(), refetchNews()]);
+    } finally {
+      setRefreshing(false);
+    }
+  }, [isApiConfigured, refetchMission, refetchDiscover, refetchNews]);
 
   const missionStats = mission ? mapMissionToHeroStats(mission) : null;
   const coachTips: CoachTip[] = mission?.coachTips ?? [];
@@ -151,7 +164,19 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.page}>
-        <ScrollView contentContainerStyle={styles.container}>
+        <ScrollView
+          contentContainerStyle={styles.container}
+          refreshControl={
+            isApiConfigured ? (
+              <RefreshControl
+                refreshing={refreshing}
+                onRefresh={() => void onRefresh()}
+                tintColor={brandColors.goldDark}
+                colors={[brandColors.goldDark]}
+              />
+            ) : undefined
+          }
+        >
           <HomeAppBar />
           {!isApiConfigured ? (
             <NativeCard style={styles.warningCard}>
