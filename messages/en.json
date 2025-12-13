@@ -914,7 +914,12 @@
       "feedbackIncorrect": "The correct answer is: {answer}",
       "reviewedCount": "{count, plural, =1 {Reviewed 1 card} other {Reviewed # cards}}",
       "accuracyLabel": "Accuracy",
-      "streakLabel": "{count, plural, =1 {1 in a row} other {# in a row}}"
+      "streakLabel": "{count, plural, =1 {1 in a row} other {# in a row}}",
+      "smartReview": "Smart Review",
+      "reviewMistakes": "Review Mistakes",
+      "clearMistakes": "Clear mistakes",
+      "dueCards": "{count, plural, =1 {1 card due} other {# cards due}}",
+      "noMistakes": "No mistakes to review! Keep practicing."
     },
     "speaking": {
       "tabLabel": "Speaking",
@@ -1368,7 +1373,10 @@
     },
     "footer": "A new word is featured each day to expand your vocabulary.",
     "loading": "Loading word of the day...",
-    "pronunciationFallback": "Pronunciation unavailable"
+    "pronunciationFallback": "Pronunciation unavailable",
+    "listenToWord": "Listen to pronunciation",
+    "listenToExample": "Listen to example sentence",
+    "stopSpeaking": "Stop audio"
   },
   "welcomeBanner": {
     "title": "Welcome to Macedonian Learning!",

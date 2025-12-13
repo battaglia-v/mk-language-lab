@@ -1,10 +1,11 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Sparkles, Loader2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Sparkles, Loader2, Volume2, VolumeX } from 'lucide-react';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
 type WordOfTheDayData = {
@@ -28,6 +29,47 @@ export function WordOfTheDay() {
     const value = t(key);
     return value === key ? fallback : value;
   };
+
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [ttsSupported, setTtsSupported] = useState(true);
+
+  useEffect(() => {
+    // Check if TTS is supported
+    if (typeof window !== 'undefined' && !window.speechSynthesis) {
+      setTtsSupported(false);
+    }
+  }, []);
+
+  const speakWord = useCallback((text: string, lang: 'mk' | 'en' = 'mk') => {
+    if (!window.speechSynthesis || !text) return;
+
+    // Cancel any ongoing speech
+    window.speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    // Macedonian uses Serbian or Slavic voices as fallback
+    utterance.lang = lang === 'mk' ? 'sr-RS' : 'en-US';
+    utterance.rate = 0.85;
+    utterance.pitch = 1;
+
+    utterance.onstart = () => setIsSpeaking(true);
+    utterance.onend = () => setIsSpeaking(false);
+    utterance.onerror = () => setIsSpeaking(false);
+
+    window.speechSynthesis.speak(utterance);
+
+    trackEvent(AnalyticsEvents.WORD_OF_DAY_LOADED, {
+      action: 'tts_played',
+      text: text.slice(0, 30),
+    });
+  }, []);
+
+  const stopSpeaking = useCallback(() => {
+    if (window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+    }
+    setIsSpeaking(false);
+  }, []);
 
   const loadingLabel = translateWithFallback('loading', 'Loading word of the day...');
   const pronunciationFallback = translateWithFallback(
@@ -121,9 +163,26 @@ export function WordOfTheDay() {
           <div className="flex items-center gap-2.5 md:gap-4">
             <span className="text-2xl md:text-4xl lg:text-[40px]">{word.icon}</span>
             <div className="flex-1 space-y-1.5 md:space-y-2.5">
-              <h4 className="text-xl md:text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
-                {word.macedonian}
-              </h4>
+              <div className="flex items-center gap-2">
+                <h4 className="text-xl md:text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
+                  {word.macedonian}
+                </h4>
+                {ttsSupported && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-8 w-8 md:h-10 md:w-10 rounded-full p-0 hover:bg-primary/10"
+                    onClick={() => isSpeaking ? stopSpeaking() : speakWord(word.macedonian, 'mk')}
+                    aria-label={isSpeaking ? t('stopSpeaking') : t('listenToWord')}
+                  >
+                    {isSpeaking ? (
+                      <VolumeX className="h-4 w-4 md:h-5 md:w-5 text-primary animate-pulse" />
+                    ) : (
+                      <Volume2 className="h-4 w-4 md:h-5 md:w-5 text-primary" />
+                    )}
+                  </Button>
+                )}
+              </div>
               <div className="flex items-baseline gap-1 md:gap-2">
                 <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60">
                   Pronunciation:
@@ -146,9 +205,26 @@ export function WordOfTheDay() {
 
         {/* Example Sentence */}
         <div className="space-y-1.5 md:space-y-2 rounded-xl bg-muted/40 p-3 md:p-4">
-          <p className="text-sm md:text-base font-medium text-foreground leading-relaxed">
-            {word.exampleMk}
-          </p>
+          <div className="flex items-start justify-between gap-2">
+            <p className="text-sm md:text-base font-medium text-foreground leading-relaxed flex-1">
+              {word.exampleMk}
+            </p>
+            {ttsSupported && (
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-7 w-7 shrink-0 rounded-full p-0 hover:bg-primary/10"
+                onClick={() => isSpeaking ? stopSpeaking() : speakWord(word.exampleMk, 'mk')}
+                aria-label={t('listenToExample')}
+              >
+                {isSpeaking ? (
+                  <VolumeX className="h-3.5 w-3.5 text-primary animate-pulse" />
+                ) : (
+                  <Volume2 className="h-3.5 w-3.5 text-muted-foreground hover:text-primary" />
+                )}
+              </Button>
+            )}
+          </div>
           <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
             {word.exampleEn}
           </p>

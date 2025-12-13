@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, TrendingUp, Eye, Volume2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, TrendingUp, Eye, Volume2, RotateCcw, Brain } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
@@ -13,6 +13,7 @@ import { useSavedPhrases } from '@/components/translate/useSavedPhrases';
 import { readTranslatorHistory } from '@/lib/translator-history';
 import { fetchUserDecks } from '@/lib/custom-decks';
 import { CustomDecksDropdown } from '@/components/practice/CustomDecksDropdown';
+import { readWrongAnswers, getDueCards, clearWrongAnswers, type WrongAnswerRecord, type SRSCardData } from '@/lib/spaced-repetition';
 import type { CustomDeckSummary } from '@/lib/custom-decks';
 import type { PracticeAudioClip } from '@mk/api-client';
 
@@ -26,7 +27,7 @@ type Flashcard = {
   audioClip?: PracticeAudioClip | null;
 };
 
-type DeckType = 'saved' | 'history' | 'curated' | 'custom';
+type DeckType = 'saved' | 'history' | 'curated' | 'custom' | 'mistakes' | 'srs';
 
 type PromptResponse = {
   id?: string;
@@ -75,6 +76,37 @@ export default function PracticePage() {
   const [streak, setStreak] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+  
+  // SRS and Mistakes deck state
+  const [mistakesDeck, setMistakesDeck] = useState<Flashcard[]>([]);
+  const [srsDueDeck, setSrsDueDeck] = useState<Flashcard[]>([]);
+
+  // Load mistakes and SRS due cards
+  useEffect(() => {
+    const wrongAnswers = readWrongAnswers();
+    const mistakes: Flashcard[] = wrongAnswers.map((wa: WrongAnswerRecord) => ({
+      id: wa.id,
+      source: wa.direction === 'mkToEn' ? wa.macedonian : wa.english,
+      target: wa.direction === 'mkToEn' ? wa.english : wa.macedonian,
+      direction: wa.direction === 'mkToEn' ? 'mk-en' : 'en-mk',
+      category: 'mistakes',
+      difficulty: 'review',
+      audioClip: null,
+    }));
+    setMistakesDeck(mistakes);
+
+    const dueCards = getDueCards();
+    const srsFlashcards: Flashcard[] = dueCards.map((card: SRSCardData) => ({
+      id: card.id,
+      source: card.macedonian,
+      target: card.english,
+      direction: 'mk-en' as const,
+      category: 'srs',
+      difficulty: 'review',
+      audioClip: null,
+    }));
+    setSrsDueDeck(srsFlashcards);
+  }, [reviewedCount]); // Refresh after reviews
 
   useEffect(() => {
     setHistorySnapshot(readTranslatorHistory(32));
@@ -205,6 +237,10 @@ export default function PracticePage() {
     ? savedDeck
     : deckType === 'history'
     ? historyDeck
+    : deckType === 'mistakes'
+    ? mistakesDeck
+    : deckType === 'srs'
+    ? srsDueDeck
     : filteredCuratedDeck;
   const total = deck.length || 1;
   const safeIndex = deck.length ? Math.min(index, deck.length - 1) : 0;
@@ -445,6 +481,64 @@ export default function PracticePage() {
       </section>
 
       <div className="glass-card space-y-5 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-7" data-testid="practice-workspace">
+        {/* SRS & Mistakes Badges */}
+        {(srsDueDeck.length > 0 || mistakesDeck.length > 0) && (
+          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-primary/30 bg-primary/5 px-3 py-2.5">
+            {srsDueDeck.length > 0 && (
+              <Button
+                variant={deckType === 'srs' ? 'secondary' : 'ghost'}
+                size="sm"
+                className="h-9 gap-2 rounded-full px-4 text-xs font-semibold"
+                onClick={() => {
+                  setDeckType('srs');
+                  setActiveCustomDeckId(null);
+                  resetCardState();
+                }}
+              >
+                <Brain className="h-3.5 w-3.5" aria-hidden="true" />
+                <span>{t('drills.smartReview')}</span>
+                <Badge variant="outline" className="ml-1 bg-primary/10 px-1.5 text-[10px] font-bold">
+                  {srsDueDeck.length}
+                </Badge>
+              </Button>
+            )}
+            {mistakesDeck.length > 0 && (
+              <Button
+                variant={deckType === 'mistakes' ? 'secondary' : 'ghost'}
+                size="sm"
+                className="h-9 gap-2 rounded-full px-4 text-xs font-semibold"
+                onClick={() => {
+                  setDeckType('mistakes');
+                  setActiveCustomDeckId(null);
+                  resetCardState();
+                }}
+              >
+                <RotateCcw className="h-3.5 w-3.5" aria-hidden="true" />
+                <span>{t('drills.reviewMistakes')}</span>
+                <Badge variant="outline" className="ml-1 bg-destructive/10 text-destructive px-1.5 text-[10px] font-bold">
+                  {mistakesDeck.length}
+                </Badge>
+              </Button>
+            )}
+            {deckType === 'mistakes' && mistakesDeck.length > 0 && (
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-8 gap-1.5 text-xs text-muted-foreground hover:text-foreground"
+                onClick={() => {
+                  clearWrongAnswers();
+                  setMistakesDeck([]);
+                  setDeckType('curated');
+                  resetCardState();
+                }}
+              >
+                <XCircle className="h-3.5 w-3.5" aria-hidden="true" />
+                {t('drills.clearMistakes')}
+              </Button>
+            )}
+          </div>
+        )}
+
         <div className="grid grid-cols-1 gap-2 min-[400px]:grid-cols-2 sm:grid-cols-4 sm:gap-3" data-testid="practice-panels">
           <DeckToggle
             label={t('savedDeck.badge')}
