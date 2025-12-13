@@ -963,7 +963,20 @@
       "timeSpent": "Поминато време",
       "bestStreak": "Најдолга серија",
       "continueLabel": "Продолжи",
-      "startNew": "Започни нова сесија"
+      "startNew": "Започни нова сесија",
+      "favorites": "Омилени",
+      "favorite": "Зачувај",
+      "unfavorite": "Зачувано",
+      "listenTTS": "Слушај",
+      "stopAudio": "Стоп"
+    },
+    "streakCalendar": {
+      "title": "Активност на вежбање",
+      "currentStreak": "{count, plural, =1 {1 ден серија} other {# дена серија}}",
+      "activeDays": "{count, plural, =1 {1 активен ден} other {# активни денови}}",
+      "cardsReviewed": "{count, plural, =1 {1 картичка прегледана} other {# картички прегледани}}",
+      "less": "Помалку",
+      "more": "Повеќе"
     },
     "speaking": {
       "tabLabel": "Говор",

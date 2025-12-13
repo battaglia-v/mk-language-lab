@@ -937,7 +937,20 @@
       "timeSpent": "Time Spent",
       "bestStreak": "Best Streak",
       "continueLabel": "Continue",
-      "startNew": "Start New Session"
+      "startNew": "Start New Session",
+      "favorites": "Favorites",
+      "favorite": "Save",
+      "unfavorite": "Saved",
+      "listenTTS": "Listen",
+      "stopAudio": "Stop"
+    },
+    "streakCalendar": {
+      "title": "Practice Activity",
+      "currentStreak": "{count, plural, =1 {1 day streak} other {# day streak}}",
+      "activeDays": "{count, plural, =1 {1 active day} other {# active days}}",
+      "cardsReviewed": "{count, plural, =1 {1 card reviewed} other {# cards reviewed}}",
+      "less": "Less",
+      "more": "More"
     },
     "speaking": {
       "tabLabel": "Speaking",

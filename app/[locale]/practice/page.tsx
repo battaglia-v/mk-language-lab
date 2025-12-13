@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, TrendingUp, Eye, Volume2, RotateCcw, Brain, Lightbulb, SkipForward, Keyboard, Trophy, Clock } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, TrendingUp, Eye, Volume2, VolumeX, RotateCcw, Brain, Lightbulb, SkipForward, Keyboard, Trophy, Clock, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
@@ -22,6 +22,9 @@ import { readTranslatorHistory } from '@/lib/translator-history';
 import { fetchUserDecks } from '@/lib/custom-decks';
 import { CustomDecksDropdown } from '@/components/practice/CustomDecksDropdown';
 import { readWrongAnswers, getDueCards, clearWrongAnswers, type WrongAnswerRecord, type SRSCardData } from '@/lib/spaced-repetition';
+import { readFavorites, toggleFavorite, isFavorite, type FavoriteItem } from '@/lib/favorites';
+import { recordPracticeSession } from '@/lib/practice-activity';
+import { PracticeStreakCalendar } from '@/components/gamification/PracticeStreakCalendar';
 import type { CustomDeckSummary } from '@/lib/custom-decks';
 import type { PracticeAudioClip } from '@mk/api-client';
 
@@ -33,9 +36,11 @@ type Flashcard = {
   category?: string | null;
   difficulty?: 'beginner' | 'intermediate' | 'advanced' | 'mixed' | string;
   audioClip?: PracticeAudioClip | null;
+  /** Macedonian text for TTS */
+  macedonian?: string;
 };
 
-type DeckType = 'saved' | 'history' | 'curated' | 'custom' | 'mistakes' | 'srs';
+type DeckType = 'saved' | 'history' | 'curated' | 'custom' | 'mistakes' | 'srs' | 'favorites';
 
 type PromptResponse = {
   id?: string;
@@ -98,6 +103,45 @@ export default function PracticePage() {
   // SRS and Mistakes deck state
   const [mistakesDeck, setMistakesDeck] = useState<Flashcard[]>([]);
   const [srsDueDeck, setSrsDueDeck] = useState<Flashcard[]>([]);
+  const [favoritesDeck, setFavoritesDeck] = useState<Flashcard[]>([]);
+  const [currentCardFavorited, setCurrentCardFavorited] = useState(false);
+  
+  // TTS state
+  const [isSpeakingTTS, setIsSpeakingTTS] = useState(false);
+  const [ttsSupported, setTtsSupported] = useState(true);
+  
+  // Check TTS support
+  useEffect(() => {
+    if (typeof window !== 'undefined' && !window.speechSynthesis) {
+      setTtsSupported(false);
+    }
+  }, []);
+  
+  // TTS speak function
+  const speakText = useCallback((text: string, lang: 'mk' | 'en' = 'mk') => {
+    if (!window.speechSynthesis || !text) return;
+    
+    // Cancel any ongoing speech
+    window.speechSynthesis.cancel();
+    
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang === 'mk' ? 'sr-RS' : 'en-US';
+    utterance.rate = 0.85;
+    utterance.pitch = 1;
+    
+    utterance.onstart = () => setIsSpeakingTTS(true);
+    utterance.onend = () => setIsSpeakingTTS(false);
+    utterance.onerror = () => setIsSpeakingTTS(false);
+    
+    window.speechSynthesis.speak(utterance);
+  }, []);
+  
+  const stopTTS = useCallback(() => {
+    if (window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+    }
+    setIsSpeakingTTS(false);
+  }, []);
 
   // Load mistakes and SRS due cards
   useEffect(() => {
@@ -110,6 +154,7 @@ export default function PracticePage() {
       category: 'mistakes',
       difficulty: 'review',
       audioClip: null,
+      macedonian: wa.macedonian,
     }));
     setMistakesDeck(mistakes);
 
@@ -122,8 +167,23 @@ export default function PracticePage() {
       category: 'srs',
       difficulty: 'review',
       audioClip: null,
+      macedonian: card.macedonian,
     }));
     setSrsDueDeck(srsFlashcards);
+    
+    // Load favorites
+    const favorites = readFavorites();
+    const favoritesFlashcards: Flashcard[] = favorites.map((fav: FavoriteItem) => ({
+      id: fav.id,
+      source: fav.macedonian,
+      target: fav.english,
+      direction: 'mk-en' as const,
+      category: fav.category || 'favorites',
+      difficulty: 'favorites',
+      audioClip: null,
+      macedonian: fav.macedonian,
+    }));
+    setFavoritesDeck(favoritesFlashcards);
   }, [reviewedCount]); // Refresh after reviews
 
   useEffect(() => {
@@ -259,6 +319,8 @@ export default function PracticePage() {
     ? mistakesDeck
     : deckType === 'srs'
     ? srsDueDeck
+    : deckType === 'favorites'
+    ? favoritesDeck
     : filteredCuratedDeck;
   const total = deck.length || 1;
   const safeIndex = deck.length ? Math.min(index, deck.length - 1) : 0;
@@ -395,6 +457,10 @@ export default function PracticePage() {
 
   useEffect(() => {
     resetCardState();
+    // Check if current card is favorited
+    if (currentCard?.id) {
+      setCurrentCardFavorited(isFavorite(currentCard.id));
+    }
   }, [resetCardState, currentCard?.id]);
 
   useEffect(() => {
@@ -410,13 +476,6 @@ export default function PracticePage() {
     goNext();
   }, [goNext]);
 
-  // End session manually
-  const endSession = useCallback(() => {
-    if (reviewedCount > 0) {
-      setShowSummary(true);
-    }
-  }, [reviewedCount]);
-
   // Calculate session time
   const getSessionDuration = useCallback(() => {
     const elapsed = Date.now() - sessionStartTime;
@@ -424,6 +483,47 @@ export default function PracticePage() {
     const seconds = Math.floor((elapsed % 60000) / 1000);
     return { minutes, seconds, total: elapsed };
   }, [sessionStartTime]);
+
+  // End session manually
+  const endSession = useCallback(() => {
+    if (reviewedCount > 0) {
+      // Record the practice session for streak tracking
+      const duration = getSessionDuration();
+      recordPracticeSession(reviewedCount, correctAnswers, Math.floor(duration.total / 1000));
+      setShowSummary(true);
+    }
+  }, [reviewedCount, correctAnswers, getSessionDuration]);
+  
+  // Toggle favorite for current card
+  const handleToggleFavorite = useCallback(() => {
+    if (!currentCard) return;
+    
+    const macedonianText = currentCard.macedonian || (currentCard.direction === 'mk-en' ? currentCard.source : currentCard.target);
+    const englishText = currentCard.direction === 'mk-en' ? currentCard.target : currentCard.source;
+    
+    const isFav = toggleFavorite({
+      id: currentCard.id,
+      macedonian: macedonianText,
+      english: englishText,
+      category: currentCard.category || undefined,
+    });
+    
+    setCurrentCardFavorited(isFav);
+    
+    // Refresh favorites deck
+    const favorites = readFavorites();
+    const favoritesFlashcards: Flashcard[] = favorites.map((fav: FavoriteItem) => ({
+      id: fav.id,
+      source: fav.macedonian,
+      target: fav.english,
+      direction: 'mk-en' as const,
+      category: fav.category || 'favorites',
+      difficulty: 'favorites',
+      audioClip: null,
+      macedonian: fav.macedonian,
+    }));
+    setFavoritesDeck(favoritesFlashcards);
+  }, [currentCard]);
 
   useEffect(() => {
     const handler = (event: KeyboardEvent) => {
@@ -582,8 +682,11 @@ export default function PracticePage() {
       </section>
 
       <div className="glass-card space-y-5 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-7" data-testid="practice-workspace">
-        {/* SRS & Mistakes Badges */}
-        {(srsDueDeck.length > 0 || mistakesDeck.length > 0) && (
+        {/* Practice Streak Calendar */}
+        <PracticeStreakCalendar weeks={8} />
+        
+        {/* SRS, Mistakes & Favorites Badges */}
+        {(srsDueDeck.length > 0 || mistakesDeck.length > 0 || favoritesDeck.length > 0) && (
           <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-primary/30 bg-primary/5 px-3 py-2.5">
             {srsDueDeck.length > 0 && (
               <Button
@@ -600,6 +703,24 @@ export default function PracticePage() {
                 <span>{t('drills.smartReview')}</span>
                 <Badge variant="outline" className="ml-1 bg-primary/10 px-1.5 text-[10px] font-bold">
                   {srsDueDeck.length}
+                </Badge>
+              </Button>
+            )}
+            {favoritesDeck.length > 0 && (
+              <Button
+                variant={deckType === 'favorites' ? 'secondary' : 'ghost'}
+                size="sm"
+                className="h-9 gap-2 rounded-full px-4 text-xs font-semibold"
+                onClick={() => {
+                  setDeckType('favorites');
+                  setActiveCustomDeckId(null);
+                  resetCardState();
+                }}
+              >
+                <Heart className="h-3.5 w-3.5" aria-hidden="true" />
+                <span>{t('drills.favorites', { default: 'Favorites' })}</span>
+                <Badge variant="outline" className="ml-1 bg-pink-500/10 text-pink-400 px-1.5 text-[10px] font-bold">
+                  {favoritesDeck.length}
                 </Badge>
               </Button>
             )}
@@ -790,6 +911,55 @@ export default function PracticePage() {
                 <Badge variant="secondary" className="bg-white/10 text-white">
                   {currentCard.category}
                 </Badge>
+              )}
+              {/* TTS Button - for all cards */}
+              {ttsSupported && currentCard && (
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="ghost"
+                  className={cn(
+                    'h-8 gap-1.5 rounded-full px-2.5 text-xs',
+                    isSpeakingTTS ? 'text-primary' : 'text-muted-foreground hover:text-primary'
+                  )}
+                  onClick={() => {
+                    if (isSpeakingTTS) {
+                      stopTTS();
+                    } else {
+                      const textToSpeak = currentCard.macedonian || (currentCard.direction === 'mk-en' ? currentCard.source : currentCard.target);
+                      speakText(textToSpeak, 'mk');
+                    }
+                  }}
+                  aria-label={isSpeakingTTS ? t('drills.stopAudio', { default: 'Stop' }) : t('drills.listenTTS', { default: 'Listen' })}
+                >
+                  {isSpeakingTTS ? (
+                    <VolumeX className="h-4 w-4" aria-hidden="true" />
+                  ) : (
+                    <Volume2 className="h-4 w-4" aria-hidden="true" />
+                  )}
+                  <span className="hidden sm:inline">
+                    {isSpeakingTTS ? t('drills.stopAudio', { default: 'Stop' }) : t('drills.listenTTS', { default: 'Listen' })}
+                  </span>
+                </Button>
+              )}
+              {/* Favorite Button */}
+              {currentCard && (
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="ghost"
+                  className={cn(
+                    'h-8 gap-1.5 rounded-full px-2.5 text-xs',
+                    currentCardFavorited ? 'text-pink-400' : 'text-muted-foreground hover:text-pink-400'
+                  )}
+                  onClick={handleToggleFavorite}
+                  aria-label={currentCardFavorited ? t('drills.unfavorite', { default: 'Remove from favorites' }) : t('drills.favorite', { default: 'Add to favorites' })}
+                >
+                  <Heart className={cn('h-4 w-4', currentCardFavorited && 'fill-current')} aria-hidden="true" />
+                  <span className="hidden sm:inline">
+                    {currentCardFavorited ? t('drills.unfavorite', { default: 'Saved' }) : t('drills.favorite', { default: 'Save' })}
+                  </span>
+                </Button>
               )}
               {currentCard?.audioClip?.url && (
                 <div className="flex flex-wrap items-center gap-2">
