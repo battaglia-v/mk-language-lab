@@ -24,7 +24,8 @@ const VIDEO_URL_REGEX = /(https?:\/\/(?:www\.)?(?:youtube\.com\/watch\?v=[^"'\s<
 
 const USER_AGENT = 'mk-language-lab/1.0 (+https://github.com/battaglia-v/mk-language-lab)';
 const CACHE_TTL_MS = 5 * 60 * 1000;
-const CONCURRENCY_LIMIT = 4;
+const CONCURRENCY_LIMIT = 8; // Increased from 4 for faster image enrichment
+const ARTICLE_FETCH_TIMEOUT_MS = 6000; // 6 second timeout per article fetch
 
 const HTML_ENTITIES: Record<string, string> = {
   amp: '&',
@@ -482,13 +483,22 @@ function truncatePreview(text: string, maxLength: number): string {
 
 async function fetchArticlePreview(url: string, signal: AbortSignal): Promise<ArticlePreviewResult> {
   try {
+    // Create a combined signal that aborts on either parent signal or individual timeout
+    const timeoutSignal = AbortSignal.timeout(ARTICLE_FETCH_TIMEOUT_MS);
+    const combinedController = new AbortController();
+    
+    // Abort if either signal fires
+    const onAbort = () => combinedController.abort();
+    signal.addEventListener('abort', onAbort, { once: true });
+    timeoutSignal.addEventListener('abort', onAbort, { once: true });
+
     const response = await fetch(url, {
       cache: 'no-store',
       headers: {
         'User-Agent': USER_AGENT,
         Accept: 'text/html,application/xhtml+xml;q=0.9,*/*;q=0.8',
       },
-      signal,
+      signal: combinedController.signal,
     });
 
     if (!response.ok) {
