@@ -193,6 +193,20 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        // Digital Asset Links for Android TWA verification
+        source: '/.well-known/assetlinks.json',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/json',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600',
+          },
+        ],
+      },
     ];
   },
 };
