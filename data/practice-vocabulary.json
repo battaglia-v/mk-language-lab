@@ -2349,5 +2349,1578 @@
     "english": "flower",
     "category": "nature",
     "macedonian": "цвет"
+  },
+  {
+    "english": "office",
+    "category": "work",
+    "macedonian": "канцеларија",
+    "contextMk": {
+      "sentence": "Работам во {{blank}} во центар.",
+      "translation": "I work in an office in the center."
+    },
+    "contextEn": {
+      "sentence": "The new {{blank}} has big windows.",
+      "translation": "Новата канцеларија има големи прозорци."
+    }
+  },
+  {
+    "english": "meeting",
+    "category": "work",
+    "macedonian": "состанок",
+    "contextMk": {
+      "sentence": "Имаме важен {{blank}} утре.",
+      "translation": "We have an important meeting tomorrow."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} starts at 9 AM.",
+      "translation": "Состанокот започнува во 9 часот."
+    }
+  },
+  {
+    "english": "boss",
+    "category": "work",
+    "macedonian": "шеф",
+    "contextMk": {
+      "sentence": "Мојот {{blank}} е многу фер.",
+      "translation": "My boss is very fair."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} approved my vacation request.",
+      "translation": "Шефот го одобри моето барање за одмор."
+    }
+  },
+  {
+    "english": "salary",
+    "category": "work",
+    "macedonian": "плата",
+    "contextMk": {
+      "sentence": "Добив зголемување на {{blank}}.",
+      "translation": "I got a salary increase."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is paid monthly.",
+      "translation": "Платата се исплаќа месечно."
+    }
+  },
+  {
+    "english": "colleague",
+    "category": "work",
+    "macedonian": "колега",
+    "contextMk": {
+      "sentence": "Мојата {{blank}} ми помогна со проектот.",
+      "translation": "My colleague helped me with the project."
+    },
+    "contextEn": {
+      "sentence": "I had lunch with my {{blank}}.",
+      "translation": "Ручав со мојот колега."
+    }
+  },
+  {
+    "english": "project",
+    "category": "work",
+    "macedonian": "проект",
+    "contextMk": {
+      "sentence": "Завршивме голем {{blank}} оваа недела.",
+      "translation": "We finished a big project this week."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} deadline is next month.",
+      "translation": "Рокот за проектот е следниот месец."
+    }
+  },
+  {
+    "english": "computer",
+    "category": "work",
+    "macedonian": "компјутер",
+    "contextMk": {
+      "sentence": "Работам на {{blank}} цел ден.",
+      "translation": "I work on a computer all day."
+    },
+    "contextEn": {
+      "sentence": "My {{blank}} needs an update.",
+      "translation": "Мојот компјутер има потреба од ажурирање."
+    }
+  },
+  {
+    "english": "email",
+    "category": "work",
+    "macedonian": "е-пошта",
+    "contextMk": {
+      "sentence": "Ти испратив {{blank}} со деталите.",
+      "translation": "I sent you an email with the details."
+    },
+    "contextEn": {
+      "sentence": "Please check your {{blank}}.",
+      "translation": "Ве молам проверете ја вашата е-пошта."
+    }
+  },
+  {
+    "english": "contract",
+    "category": "work",
+    "macedonian": "договор",
+    "contextMk": {
+      "sentence": "Потпишав нов {{blank}} вчера.",
+      "translation": "I signed a new contract yesterday."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is valid for one year.",
+      "translation": "Договорот важи една година."
+    }
+  },
+  {
+    "english": "interview",
+    "category": "work",
+    "macedonian": "интервју",
+    "contextMk": {
+      "sentence": "Имам {{blank}} за работа утре.",
+      "translation": "I have a job interview tomorrow."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} went really well.",
+      "translation": "Интервјуто помина многу добро."
+    }
+  },
+  {
+    "english": "deadline",
+    "category": "work",
+    "macedonian": "рок",
+    "contextMk": {
+      "sentence": "{{blank}} е до петок.",
+      "translation": "The deadline is by Friday."
+    },
+    "contextEn": {
+      "sentence": "We need to meet the {{blank}}.",
+      "translation": "Треба да го испочитуваме рокот."
+    }
+  },
+  {
+    "english": "report",
+    "category": "work",
+    "macedonian": "извештај",
+    "contextMk": {
+      "sentence": "Напишав {{blank}} за продажбата.",
+      "translation": "I wrote a report about the sales."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is due tomorrow.",
+      "translation": "Извештајот треба да биде готов утре."
+    }
+  },
+  {
+    "english": "task",
+    "category": "work",
+    "macedonian": "задача",
+    "contextMk": {
+      "sentence": "Оваа {{blank}} е многу важна.",
+      "translation": "This task is very important."
+    },
+    "contextEn": {
+      "sentence": "I finished all my {{blank}}s today.",
+      "translation": "Ги завршив сите мои задачи денес."
+    }
+  },
+  {
+    "english": "promotion",
+    "category": "work",
+    "macedonian": "унапредување",
+    "contextMk": {
+      "sentence": "Добив {{blank}} по две години.",
+      "translation": "I got a promotion after two years."
+    },
+    "contextEn": {
+      "sentence": "She deserves a {{blank}}.",
+      "translation": "Таа заслужува унапредување."
+    }
+  },
+  {
+    "english": "resume",
+    "category": "work",
+    "macedonian": "биографија",
+    "contextMk": {
+      "sentence": "Ја ажурирав мојата {{blank}}.",
+      "translation": "I updated my resume."
+    },
+    "contextEn": {
+      "sentence": "Please send your {{blank}} by email.",
+      "translation": "Ве молам испратете ја вашата биографија по е-пошта."
+    }
+  },
+  {
+    "english": "team",
+    "category": "work",
+    "macedonian": "тим",
+    "contextMk": {
+      "sentence": "Нашиот {{blank}} работи одлично заедно.",
+      "translation": "Our team works great together."
+    },
+    "contextEn": {
+      "sentence": "I joined a new {{blank}} last month.",
+      "translation": "Се приклучив на нов тим минатиот месец."
+    }
+  },
+  {
+    "english": "vacation",
+    "category": "work",
+    "macedonian": "одмор",
+    "contextMk": {
+      "sentence": "Одам на {{blank}} следната недела.",
+      "translation": "I'm going on vacation next week."
+    },
+    "contextEn": {
+      "sentence": "Everyone needs a {{blank}} sometimes.",
+      "translation": "Секој понекогаш има потреба од одмор."
+    }
+  },
+  {
+    "english": "passport",
+    "category": "travel",
+    "macedonian": "пасош",
+    "contextMk": {
+      "sentence": "Не заборавај го {{blank}}.",
+      "translation": "Don't forget your passport."
+    },
+    "contextEn": {
+      "sentence": "My {{blank}} expires next year.",
+      "translation": "Мојот пасош истекува следната година."
+    }
+  },
+  {
+    "english": "suitcase",
+    "category": "travel",
+    "macedonian": "куфер",
+    "contextMk": {
+      "sentence": "Мојот {{blank}} е премногу тежок.",
+      "translation": "My suitcase is too heavy."
+    },
+    "contextEn": {
+      "sentence": "I packed my {{blank}} last night.",
+      "translation": "Го спакував мојот куфер синоќа."
+    }
+  },
+  {
+    "english": "hotel",
+    "category": "travel",
+    "macedonian": "хотел",
+    "contextMk": {
+      "sentence": "Резервиравме {{blank}} во центар.",
+      "translation": "We booked a hotel in the center."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} has a nice pool.",
+      "translation": "Хотелот има убав базен."
+    }
+  },
+  {
+    "english": "flight",
+    "category": "travel",
+    "macedonian": "лет",
+    "contextMk": {
+      "sentence": "Нашиот {{blank}} е во 6 часот.",
+      "translation": "Our flight is at 6 o'clock."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} was delayed by two hours.",
+      "translation": "Летот беше одложен за два часа."
+    }
+  },
+  {
+    "english": "ticket",
+    "category": "travel",
+    "macedonian": "билет",
+    "contextMk": {
+      "sentence": "Купив {{blank}} за воз.",
+      "translation": "I bought a train ticket."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} costs 20 euros.",
+      "translation": "Билетот чини 20 евра."
+    }
+  },
+  {
+    "english": "reservation",
+    "category": "travel",
+    "macedonian": "резервација",
+    "contextMk": {
+      "sentence": "Имам {{blank}} за вечера.",
+      "translation": "I have a dinner reservation."
+    },
+    "contextEn": {
+      "sentence": "Please confirm your {{blank}}.",
+      "translation": "Ве молам потврдете ја вашата резервација."
+    }
+  },
+  {
+    "english": "luggage",
+    "category": "travel",
+    "macedonian": "багаж",
+    "contextMk": {
+      "sentence": "Каде е мојот {{blank}}?",
+      "translation": "Where is my luggage?"
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} carousel is over there.",
+      "translation": "Лентата за багаж е таму."
+    }
+  },
+  {
+    "english": "departure",
+    "category": "travel",
+    "macedonian": "заминување",
+    "contextMk": {
+      "sentence": "{{blank}} е во 8 часот.",
+      "translation": "Departure is at 8 o'clock."
+    },
+    "contextEn": {
+      "sentence": "Check the {{blank}} time on your ticket.",
+      "translation": "Проверете го времето на заминување на вашиот билет."
+    }
+  },
+  {
+    "english": "arrival",
+    "category": "travel",
+    "macedonian": "пристигнување",
+    "contextMk": {
+      "sentence": "{{blank}} е закажано за попладне.",
+      "translation": "Arrival is scheduled for the afternoon."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} gate is A12.",
+      "translation": "Капијата за пристигнување е A12."
+    }
+  },
+  {
+    "english": "tourist",
+    "category": "travel",
+    "macedonian": "турист",
+    "contextMk": {
+      "sentence": "Многу {{blank}}и го посетуваат Охрид.",
+      "translation": "Many tourists visit Ohrid."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} asked for directions.",
+      "translation": "Туристот праша за насоки."
+    }
+  },
+  {
+    "english": "map",
+    "category": "travel",
+    "macedonian": "мапа",
+    "contextMk": {
+      "sentence": "Имаш ли {{blank}} на градот?",
+      "translation": "Do you have a city map?"
+    },
+    "contextEn": {
+      "sentence": "I found a restaurant on the {{blank}}.",
+      "translation": "Најдов ресторан на мапата."
+    }
+  },
+  {
+    "english": "guide",
+    "category": "travel",
+    "macedonian": "водич",
+    "contextMk": {
+      "sentence": "Нашиот {{blank}} знаеше многу.",
+      "translation": "Our guide knew a lot."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} showed us the old town.",
+      "translation": "Водичот ни го покажа стариот град."
+    }
+  },
+  {
+    "english": "souvenir",
+    "category": "travel",
+    "macedonian": "сувенир",
+    "contextMk": {
+      "sentence": "Купив {{blank}} за мајка ми.",
+      "translation": "I bought a souvenir for my mother."
+    },
+    "contextEn": {
+      "sentence": "This {{blank}} is from Skopje.",
+      "translation": "Овој сувенир е од Скопје."
+    }
+  },
+  {
+    "english": "beach",
+    "category": "travel",
+    "macedonian": "плажа",
+    "contextMk": {
+      "sentence": "Одиме на {{blank}} утре.",
+      "translation": "We're going to the beach tomorrow."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} was very crowded.",
+      "translation": "Плажата беше многу преполна."
+    }
+  },
+  {
+    "english": "museum",
+    "category": "travel",
+    "macedonian": "музеј",
+    "contextMk": {
+      "sentence": "Посетивме историски {{blank}}.",
+      "translation": "We visited a history museum."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is closed on Mondays.",
+      "translation": "Музејот е затворен во понеделник."
+    }
+  },
+  {
+    "english": "sun",
+    "category": "nature",
+    "macedonian": "сонце",
+    "contextMk": {
+      "sentence": "{{blank}} грее силно денес.",
+      "translation": "The sun is shining strongly today."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} sets at 8 PM.",
+      "translation": "Сонцето заоѓа во 8 часот."
+    }
+  },
+  {
+    "english": "moon",
+    "category": "nature",
+    "macedonian": "месечина",
+    "contextMk": {
+      "sentence": "{{blank}} е полна вечерва.",
+      "translation": "The moon is full tonight."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} looks beautiful.",
+      "translation": "Месечината изгледа прекрасно."
+    }
+  },
+  {
+    "english": "star",
+    "category": "nature",
+    "macedonian": "ѕвезда",
+    "contextMk": {
+      "sentence": "Видов паѓачка {{blank}}.",
+      "translation": "I saw a falling star."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}}s are bright tonight.",
+      "translation": "Ѕвездите се светли вечерва."
+    }
+  },
+  {
+    "english": "bird",
+    "category": "nature",
+    "macedonian": "птица",
+    "contextMk": {
+      "sentence": "{{blank}} пее на дрвото.",
+      "translation": "A bird is singing in the tree."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} flew away.",
+      "translation": "Птицата одлета."
+    }
+  },
+  {
+    "english": "fish",
+    "category": "nature",
+    "macedonian": "риба",
+    "contextMk": {
+      "sentence": "Фативме голема {{blank}}.",
+      "translation": "We caught a big fish."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} swims in the lake.",
+      "translation": "Рибата плива во езерото."
+    }
+  },
+  {
+    "english": "animal",
+    "category": "nature",
+    "macedonian": "животно",
+    "contextMk": {
+      "sentence": "Кое е твоето омилено {{blank}}?",
+      "translation": "What is your favorite animal?"
+    },
+    "contextEn": {
+      "sentence": "This {{blank}} is very friendly.",
+      "translation": "Ова животно е многу пријателско."
+    }
+  },
+  {
+    "english": "dog",
+    "category": "nature",
+    "macedonian": "куче",
+    "contextMk": {
+      "sentence": "Мојот {{blank}} сака да трча.",
+      "translation": "My dog loves to run."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is playing in the park.",
+      "translation": "Кучето си игра во паркот."
+    }
+  },
+  {
+    "english": "cat",
+    "category": "nature",
+    "macedonian": "мачка",
+    "contextMk": {
+      "sentence": "{{blank}} спие на креветот.",
+      "translation": "The cat is sleeping on the bed."
+    },
+    "contextEn": {
+      "sentence": "My {{blank}} is very lazy.",
+      "translation": "Мојата мачка е многу мрзелива."
+    }
+  },
+  {
+    "english": "garden",
+    "category": "nature",
+    "macedonian": "градина",
+    "contextMk": {
+      "sentence": "Имаме убава {{blank}} дома.",
+      "translation": "We have a beautiful garden at home."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} needs watering.",
+      "translation": "Градината има потреба од полевање."
+    }
+  },
+  {
+    "english": "grass",
+    "category": "nature",
+    "macedonian": "трева",
+    "contextMk": {
+      "sentence": "{{blank}} е зелена и мека.",
+      "translation": "The grass is green and soft."
+    },
+    "contextEn": {
+      "sentence": "Don't walk on the {{blank}}.",
+      "translation": "Не одете по тревата."
+    }
+  },
+  {
+    "english": "sky",
+    "category": "nature",
+    "macedonian": "небо",
+    "contextMk": {
+      "sentence": "{{blank}} е сино и чисто.",
+      "translation": "The sky is blue and clear."
+    },
+    "contextEn": {
+      "sentence": "Look at the beautiful {{blank}}.",
+      "translation": "Погледни го убавото небо."
+    }
+  },
+  {
+    "english": "cloud",
+    "category": "weather",
+    "macedonian": "облак",
+    "contextMk": {
+      "sentence": "Има многу {{blank}}ци на небото.",
+      "translation": "There are many clouds in the sky."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}}s look like cotton.",
+      "translation": "Облаците изгледаат како памук."
+    }
+  },
+  {
+    "english": "rain",
+    "category": "weather",
+    "macedonian": "дожд",
+    "contextMk": {
+      "sentence": "Почна да врне {{blank}}.",
+      "translation": "It started to rain."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} stopped.",
+      "translation": "Дождот престана."
+    }
+  },
+  {
+    "english": "snow",
+    "category": "weather",
+    "macedonian": "снег",
+    "contextMk": {
+      "sentence": "Паѓа {{blank}} надвор.",
+      "translation": "It's snowing outside."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is very deep.",
+      "translation": "Снегот е многу длабок."
+    }
+  },
+  {
+    "english": "wind",
+    "category": "weather",
+    "macedonian": "ветер",
+    "contextMk": {
+      "sentence": "{{blank}} дува силно.",
+      "translation": "The wind is blowing strongly."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is cold today.",
+      "translation": "Ветерот е студен денес."
+    }
+  },
+  {
+    "english": "storm",
+    "category": "weather",
+    "macedonian": "бура",
+    "contextMk": {
+      "sentence": "Доаѓа голема {{blank}}.",
+      "translation": "A big storm is coming."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} lasted all night.",
+      "translation": "Бурата траеше цела ноќ."
+    }
+  },
+  {
+    "english": "temperature",
+    "category": "weather",
+    "macedonian": "температура",
+    "contextMk": {
+      "sentence": "{{blank}} е 30 степени.",
+      "translation": "The temperature is 30 degrees."
+    },
+    "contextEn": {
+      "sentence": "What is the {{blank}} today?",
+      "translation": "Колку е температурата денес?"
+    }
+  },
+  {
+    "english": "fog",
+    "category": "weather",
+    "macedonian": "магла",
+    "contextMk": {
+      "sentence": "Има густа {{blank}} утрово.",
+      "translation": "There is thick fog this morning."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is lifting.",
+      "translation": "Маглата се крева."
+    }
+  },
+  {
+    "english": "ice",
+    "category": "weather",
+    "macedonian": "мраз",
+    "contextMk": {
+      "sentence": "Има {{blank}} на патот.",
+      "translation": "There is ice on the road."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is melting.",
+      "translation": "Мразот се топи."
+    }
+  },
+  {
+    "english": "sunny",
+    "category": "weather",
+    "macedonian": "сончево",
+    "contextMk": {
+      "sentence": "Денес е {{blank}} и топло.",
+      "translation": "Today is sunny and warm."
+    },
+    "contextEn": {
+      "sentence": "It's a {{blank}} day.",
+      "translation": "Сончев ден е."
+    }
+  },
+  {
+    "english": "cloudy",
+    "category": "weather",
+    "macedonian": "облачно",
+    "contextMk": {
+      "sentence": "Времето е {{blank}} денес.",
+      "translation": "The weather is cloudy today."
+    },
+    "contextEn": {
+      "sentence": "It looks {{blank}} outside.",
+      "translation": "Изгледа облачно надвор."
+    }
+  },
+  {
+    "english": "shop",
+    "category": "shopping",
+    "macedonian": "продавница",
+    "contextMk": {
+      "sentence": "Одам во {{blank}} за леб.",
+      "translation": "I'm going to the shop for bread."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} closes at 9 PM.",
+      "translation": "Продавницата се затвора во 9 часот."
+    }
+  },
+  {
+    "english": "price",
+    "category": "shopping",
+    "macedonian": "цена",
+    "contextMk": {
+      "sentence": "Колку е {{blank}}?",
+      "translation": "What is the price?"
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is too high.",
+      "translation": "Цената е превисока."
+    }
+  },
+  {
+    "english": "discount",
+    "category": "shopping",
+    "macedonian": "попуст",
+    "contextMk": {
+      "sentence": "Има ли некој {{blank}}?",
+      "translation": "Is there any discount?"
+    },
+    "contextEn": {
+      "sentence": "I got a 20% {{blank}}.",
+      "translation": "Добив попуст од 20%."
+    }
+  },
+  {
+    "english": "receipt",
+    "category": "shopping",
+    "macedonian": "сметка",
+    "contextMk": {
+      "sentence": "Може ли {{blank}}, ве молам?",
+      "translation": "Can I have the receipt, please?"
+    },
+    "contextEn": {
+      "sentence": "Keep your {{blank}}.",
+      "translation": "Чувајте ја сметката."
+    }
+  },
+  {
+    "english": "cash",
+    "category": "shopping",
+    "macedonian": "готовина",
+    "contextMk": {
+      "sentence": "Плаќам со {{blank}}.",
+      "translation": "I'm paying with cash."
+    },
+    "contextEn": {
+      "sentence": "Do you accept {{blank}}?",
+      "translation": "Дали примате готовина?"
+    }
+  },
+  {
+    "english": "card",
+    "category": "shopping",
+    "macedonian": "картичка",
+    "contextMk": {
+      "sentence": "Може ли со {{blank}}?",
+      "translation": "Can I pay with card?"
+    },
+    "contextEn": {
+      "sentence": "My {{blank}} was declined.",
+      "translation": "Мојата картичка беше одбиена."
+    }
+  },
+  {
+    "english": "customer",
+    "category": "shopping",
+    "macedonian": "купувач",
+    "contextMk": {
+      "sentence": "{{blank}}ot чека на каса.",
+      "translation": "The customer is waiting at the register."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} asked for help.",
+      "translation": "Купувачот побара помош."
+    }
+  },
+  {
+    "english": "sale",
+    "category": "shopping",
+    "macedonian": "распродажба",
+    "contextMk": {
+      "sentence": "Има голема {{blank}} денес.",
+      "translation": "There is a big sale today."
+    },
+    "contextEn": {
+      "sentence": "Everything is on {{blank}}.",
+      "translation": "Сè е на распродажба."
+    }
+  },
+  {
+    "english": "size",
+    "category": "shopping",
+    "macedonian": "големина",
+    "contextMk": {
+      "sentence": "Која {{blank}} носиш?",
+      "translation": "What size do you wear?"
+    },
+    "contextEn": {
+      "sentence": "This {{blank}} fits perfectly.",
+      "translation": "Оваа големина одговара совршено."
+    }
+  },
+  {
+    "english": "try on",
+    "category": "shopping",
+    "macedonian": "проба",
+    "contextMk": {
+      "sentence": "Може ли да направам {{blank}}?",
+      "translation": "Can I try it on?"
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} room is there.",
+      "translation": "Пробната соба е таму."
+    }
+  },
+  {
+    "english": "bus",
+    "category": "transport",
+    "macedonian": "автобус",
+    "contextMk": {
+      "sentence": "{{blank}} доаѓа за 5 минути.",
+      "translation": "The bus comes in 5 minutes."
+    },
+    "contextEn": {
+      "sentence": "I missed the {{blank}}.",
+      "translation": "Го пропуштив автобусот."
+    }
+  },
+  {
+    "english": "train",
+    "category": "transport",
+    "macedonian": "воз",
+    "contextMk": {
+      "sentence": "{{blank}} заминува во 3 часот.",
+      "translation": "The train leaves at 3 o'clock."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is always on time.",
+      "translation": "Возот е секогаш навреме."
+    }
+  },
+  {
+    "english": "taxi",
+    "category": "transport",
+    "macedonian": "такси",
+    "contextMk": {
+      "sentence": "Ќе повикам {{blank}}.",
+      "translation": "I'll call a taxi."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} driver was friendly.",
+      "translation": "Таксистот беше пријателски."
+    }
+  },
+  {
+    "english": "airplane",
+    "category": "transport",
+    "macedonian": "авион",
+    "contextMk": {
+      "sentence": "{{blank}} слетува во 6 часот.",
+      "translation": "The airplane lands at 6 o'clock."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is delayed.",
+      "translation": "Авионот е одложен."
+    }
+  },
+  {
+    "english": "car",
+    "category": "transport",
+    "macedonian": "кола",
+    "contextMk": {
+      "sentence": "Мојата {{blank}} е на паркинг.",
+      "translation": "My car is in the parking lot."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} needs fuel.",
+      "translation": "Колата има потреба од гориво."
+    }
+  },
+  {
+    "english": "bicycle",
+    "category": "transport",
+    "macedonian": "велосипед",
+    "contextMk": {
+      "sentence": "Возам {{blank}} на работа.",
+      "translation": "I ride a bicycle to work."
+    },
+    "contextEn": {
+      "sentence": "My {{blank}} has a flat tire.",
+      "translation": "Мојот велосипед има пробушена гума."
+    }
+  },
+  {
+    "english": "station",
+    "category": "transport",
+    "macedonian": "станица",
+    "contextMk": {
+      "sentence": "Автобуската {{blank}} е блиску.",
+      "translation": "The bus station is nearby."
+    },
+    "contextEn": {
+      "sentence": "Meet me at the {{blank}}.",
+      "translation": "Чекај ме на станицата."
+    }
+  },
+  {
+    "english": "stop",
+    "category": "transport",
+    "macedonian": "постојка",
+    "contextMk": {
+      "sentence": "Следната {{blank}} е моја.",
+      "translation": "The next stop is mine."
+    },
+    "contextEn": {
+      "sentence": "Wait at the bus {{blank}}.",
+      "translation": "Чекај на автобуската постојка."
+    }
+  },
+  {
+    "english": "traffic",
+    "category": "transport",
+    "macedonian": "сообраќај",
+    "contextMk": {
+      "sentence": "Има многу {{blank}} денес.",
+      "translation": "There is a lot of traffic today."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is terrible.",
+      "translation": "Сообраќајот е ужасен."
+    }
+  },
+  {
+    "english": "driver",
+    "category": "transport",
+    "macedonian": "возач",
+    "contextMk": {
+      "sentence": "{{blank}} вози многу брзо.",
+      "translation": "The driver drives very fast."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} stopped for us.",
+      "translation": "Возачот застана за нас."
+    }
+  },
+  {
+    "english": "city",
+    "category": "places",
+    "macedonian": "град",
+    "contextMk": {
+      "sentence": "Скопје е главен {{blank}}.",
+      "translation": "Skopje is the capital city."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} center is busy.",
+      "translation": "Центарот на градот е зафатен."
+    }
+  },
+  {
+    "english": "village",
+    "category": "places",
+    "macedonian": "село",
+    "contextMk": {
+      "sentence": "Моите баба и дедо живеат во {{blank}}.",
+      "translation": "My grandparents live in a village."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is very peaceful.",
+      "translation": "Селото е многу мирно."
+    }
+  },
+  {
+    "english": "street",
+    "category": "places",
+    "macedonian": "улица",
+    "contextMk": {
+      "sentence": "Живеам на оваа {{blank}}.",
+      "translation": "I live on this street."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is closed for repairs.",
+      "translation": "Улицата е затворена поради поправки."
+    }
+  },
+  {
+    "english": "square",
+    "category": "places",
+    "macedonian": "плоштад",
+    "contextMk": {
+      "sentence": "Ќе се сретнеме на {{blank}}.",
+      "translation": "We'll meet at the square."
+    },
+    "contextEn": {
+      "sentence": "The main {{blank}} is beautiful.",
+      "translation": "Главниот плоштад е убав."
+    }
+  },
+  {
+    "english": "park",
+    "category": "places",
+    "macedonian": "парк",
+    "contextMk": {
+      "sentence": "Трчам во {{blank}} секое утро.",
+      "translation": "I run in the park every morning."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is full of children.",
+      "translation": "Паркот е полн со деца."
+    }
+  },
+  {
+    "english": "church",
+    "category": "places",
+    "macedonian": "црква",
+    "contextMk": {
+      "sentence": "{{blank}} е многу стара.",
+      "translation": "The church is very old."
+    },
+    "contextEn": {
+      "sentence": "We visited the {{blank}} yesterday.",
+      "translation": "Ја посетивме црквата вчера."
+    }
+  },
+  {
+    "english": "hospital",
+    "category": "places",
+    "macedonian": "болница",
+    "contextMk": {
+      "sentence": "{{blank}} е на три минути одовде.",
+      "translation": "The hospital is three minutes from here."
+    },
+    "contextEn": {
+      "sentence": "She works at the {{blank}}.",
+      "translation": "Таа работи во болницата."
+    }
+  },
+  {
+    "english": "school",
+    "category": "places",
+    "macedonian": "училиште",
+    "contextMk": {
+      "sentence": "Децата се во {{blank}}.",
+      "translation": "The children are at school."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} starts at 8 AM.",
+      "translation": "Училиштето започнува во 8 часот."
+    }
+  },
+  {
+    "english": "library",
+    "category": "places",
+    "macedonian": "библиотека",
+    "contextMk": {
+      "sentence": "Учам во {{blank}}.",
+      "translation": "I study at the library."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} has many books.",
+      "translation": "Библиотеката има многу книги."
+    }
+  },
+  {
+    "english": "bank",
+    "category": "places",
+    "macedonian": "банка",
+    "contextMk": {
+      "sentence": "Одам во {{blank}} да извадам пари.",
+      "translation": "I'm going to the bank to withdraw money."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} opens at 9 AM.",
+      "translation": "Банката отвора во 9 часот."
+    }
+  },
+  {
+    "english": "pharmacy",
+    "category": "places",
+    "macedonian": "аптека",
+    "contextMk": {
+      "sentence": "Ми треба {{blank}} за лекови.",
+      "translation": "I need a pharmacy for medicine."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is open 24 hours.",
+      "translation": "Аптеката е отворена 24 часа."
+    }
+  },
+  {
+    "english": "restaurant",
+    "category": "places",
+    "macedonian": "ресторан",
+    "contextMk": {
+      "sentence": "Вечеравме во убав {{blank}}.",
+      "translation": "We had dinner at a nice restaurant."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} serves Macedonian food.",
+      "translation": "Ресторанот служи македонска храна."
+    }
+  },
+  {
+    "english": "market",
+    "category": "places",
+    "macedonian": "пазар",
+    "contextMk": {
+      "sentence": "Купувам зеленчук на {{blank}}.",
+      "translation": "I buy vegetables at the market."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is very busy on Saturdays.",
+      "translation": "Пазарот е многу зафатен во сабота."
+    }
+  },
+  {
+    "english": "apartment",
+    "category": "places",
+    "macedonian": "стан",
+    "contextMk": {
+      "sentence": "Изнајмив нов {{blank}}.",
+      "translation": "I rented a new apartment."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} has two bedrooms.",
+      "translation": "Станот има две спални."
+    }
+  },
+  {
+    "english": "building",
+    "category": "places",
+    "macedonian": "зграда",
+    "contextMk": {
+      "sentence": "Оваа {{blank}} е многу висока.",
+      "translation": "This building is very tall."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} was built last year.",
+      "translation": "Зградата беше изградена минатата година."
+    }
+  },
+  {
+    "english": "bridge",
+    "category": "places",
+    "macedonian": "мост",
+    "contextMk": {
+      "sentence": "Скопје има многу {{blank}}ови.",
+      "translation": "Skopje has many bridges."
+    },
+    "contextEn": {
+      "sentence": "The old {{blank}} is famous.",
+      "translation": "Стариот мост е познат."
+    }
+  },
+  {
+    "english": "border",
+    "category": "travel",
+    "macedonian": "граница",
+    "contextMk": {
+      "sentence": "Поминавме преку {{blank}}.",
+      "translation": "We crossed the border."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} control was quick.",
+      "translation": "Граничната контрола беше брза."
+    }
+  },
+  {
+    "english": "currency",
+    "category": "travel",
+    "macedonian": "валута",
+    "contextMk": {
+      "sentence": "Која {{blank}} користат таму?",
+      "translation": "What currency do they use there?"
+    },
+    "contextEn": {
+      "sentence": "I need to exchange {{blank}}.",
+      "translation": "Треба да разменам валута."
+    }
+  },
+  {
+    "english": "embassy",
+    "category": "travel",
+    "macedonian": "амбасада",
+    "contextMk": {
+      "sentence": "Отидов во {{blank}} за виза.",
+      "translation": "I went to the embassy for a visa."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is in the city center.",
+      "translation": "Амбасадата е во центарот."
+    }
+  },
+  {
+    "english": "visa",
+    "category": "travel",
+    "macedonian": "виза",
+    "contextMk": {
+      "sentence": "Ми треба {{blank}} за САД.",
+      "translation": "I need a visa for the USA."
+    },
+    "contextEn": {
+      "sentence": "My {{blank}} is valid for 3 months.",
+      "translation": "Мојата виза важи 3 месеци."
+    }
+  },
+  {
+    "english": "document",
+    "category": "work",
+    "macedonian": "документ",
+    "contextMk": {
+      "sentence": "Потпиши го овој {{blank}}.",
+      "translation": "Sign this document."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is ready.",
+      "translation": "Документот е готов."
+    }
+  },
+  {
+    "english": "printer",
+    "category": "work",
+    "macedonian": "печатар",
+    "contextMk": {
+      "sentence": "{{blank}}от не работи.",
+      "translation": "The printer is not working."
+    },
+    "contextEn": {
+      "sentence": "We need a new {{blank}}.",
+      "translation": "Ни треба нов печатар."
+    }
+  },
+  {
+    "english": "client",
+    "category": "work",
+    "macedonian": "клиент",
+    "contextMk": {
+      "sentence": "Нашиот {{blank}} е задоволен.",
+      "translation": "Our client is satisfied."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} signed the contract.",
+      "translation": "Клиентот го потпиша договорот."
+    }
+  },
+  {
+    "english": "manager",
+    "category": "work",
+    "macedonian": "менаџер",
+    "contextMk": {
+      "sentence": "{{blank}}от повика состанок.",
+      "translation": "The manager called a meeting."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} approved the budget.",
+      "translation": "Менаџерот го одобри буџетот."
+    }
+  },
+  {
+    "english": "spring",
+    "category": "weather",
+    "macedonian": "пролет",
+    "contextMk": {
+      "sentence": "{{blank}} е мојата омилена сезона.",
+      "translation": "Spring is my favorite season."
+    },
+    "contextEn": {
+      "sentence": "In {{blank}} the flowers bloom.",
+      "translation": "Напролет цветаат цвеќињата."
+    }
+  },
+  {
+    "english": "summer",
+    "category": "weather",
+    "macedonian": "лето",
+    "contextMk": {
+      "sentence": "{{blank}} е многу топло.",
+      "translation": "Summer is very hot."
+    },
+    "contextEn": {
+      "sentence": "We travel every {{blank}}.",
+      "translation": "Патуваме секое лето."
+    }
+  },
+  {
+    "english": "autumn",
+    "category": "weather",
+    "macedonian": "есен",
+    "contextMk": {
+      "sentence": "Листовите паѓаат во {{blank}}.",
+      "translation": "The leaves fall in autumn."
+    },
+    "contextEn": {
+      "sentence": "{{blank}} is beautiful in Macedonia.",
+      "translation": "Есента е убава во Македонија."
+    }
+  },
+  {
+    "english": "winter",
+    "category": "weather",
+    "macedonian": "зима",
+    "contextMk": {
+      "sentence": "{{blank}} е многу студена.",
+      "translation": "Winter is very cold."
+    },
+    "contextEn": {
+      "sentence": "I love {{blank}} sports.",
+      "translation": "Ги сакам зимските спортови."
+    }
+  },
+  {
+    "english": "leaf",
+    "category": "nature",
+    "macedonian": "лист",
+    "contextMk": {
+      "sentence": "{{blank}}овите се жолти.",
+      "translation": "The leaves are yellow."
+    },
+    "contextEn": {
+      "sentence": "A {{blank}} fell from the tree.",
+      "translation": "Лист падна од дрвото."
+    }
+  },
+  {
+    "english": "stone",
+    "category": "nature",
+    "macedonian": "камен",
+    "contextMk": {
+      "sentence": "Фрли {{blank}} во водата.",
+      "translation": "Throw a stone in the water."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is very heavy.",
+      "translation": "Каменот е многу тежок."
+    }
+  },
+  {
+    "english": "sand",
+    "category": "nature",
+    "macedonian": "песок",
+    "contextMk": {
+      "sentence": "Плажата има фин {{blank}}.",
+      "translation": "The beach has fine sand."
+    },
+    "contextEn": {
+      "sentence": "The children play in the {{blank}}.",
+      "translation": "Децата си играат во песокот."
+    }
+  },
+  {
+    "english": "wave",
+    "category": "nature",
+    "macedonian": "бран",
+    "contextMk": {
+      "sentence": "{{blank}}овите се големи денес.",
+      "translation": "The waves are big today."
+    },
+    "contextEn": {
+      "sentence": "I love the sound of {{blank}}s.",
+      "translation": "Го сакам звукот на брановите."
+    }
+  },
+  {
+    "english": "horse",
+    "category": "nature",
+    "macedonian": "коњ",
+    "contextMk": {
+      "sentence": "{{blank}}от трча брзо.",
+      "translation": "The horse runs fast."
+    },
+    "contextEn": {
+      "sentence": "I learned to ride a {{blank}}.",
+      "translation": "Научив да јавам коњ."
+    }
+  },
+  {
+    "english": "cow",
+    "category": "nature",
+    "macedonian": "крава",
+    "contextMk": {
+      "sentence": "{{blank}}та дава млеко.",
+      "translation": "The cow gives milk."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is in the field.",
+      "translation": "Кравата е на полето."
+    }
+  },
+  {
+    "english": "chicken",
+    "category": "nature",
+    "macedonian": "кокошка",
+    "contextMk": {
+      "sentence": "{{blank}}та снесе јајце.",
+      "translation": "The chicken laid an egg."
+    },
+    "contextEn": {
+      "sentence": "We have five {{blank}}s.",
+      "translation": "Имаме пет кокошки."
+    }
+  },
+  {
+    "english": "wallet",
+    "category": "shopping",
+    "macedonian": "паричник",
+    "contextMk": {
+      "sentence": "Го загубив {{blank}}.",
+      "translation": "I lost my wallet."
+    },
+    "contextEn": {
+      "sentence": "My {{blank}} is in my pocket.",
+      "translation": "Мојот паричник е во џебот."
+    }
+  },
+  {
+    "english": "bag",
+    "category": "shopping",
+    "macedonian": "торба",
+    "contextMk": {
+      "sentence": "Стави го во {{blank}}.",
+      "translation": "Put it in the bag."
+    },
+    "contextEn": {
+      "sentence": "This {{blank}} is too small.",
+      "translation": "Оваа торба е премала."
+    }
+  },
+  {
+    "english": "clothes",
+    "category": "shopping",
+    "macedonian": "облека",
+    "contextMk": {
+      "sentence": "Купив нова {{blank}}.",
+      "translation": "I bought new clothes."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} store is on the second floor.",
+      "translation": "Продавницата за облека е на вториот кат."
+    }
+  },
+  {
+    "english": "shoes",
+    "category": "shopping",
+    "macedonian": "чевли",
+    "contextMk": {
+      "sentence": "Овие {{blank}} се удобни.",
+      "translation": "These shoes are comfortable."
+    },
+    "contextEn": {
+      "sentence": "I need new {{blank}}.",
+      "translation": "Ми требаат нови чевли."
+    }
+  },
+  {
+    "english": "parking",
+    "category": "transport",
+    "macedonian": "паркинг",
+    "contextMk": {
+      "sentence": "Има ли слободен {{blank}}?",
+      "translation": "Is there free parking?"
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} is full.",
+      "translation": "Паркингот е полн."
+    }
+  },
+  {
+    "english": "fuel",
+    "category": "transport",
+    "macedonian": "гориво",
+    "contextMk": {
+      "sentence": "Ни треба {{blank}}.",
+      "translation": "We need fuel."
+    },
+    "contextEn": {
+      "sentence": "{{blank}} prices are high.",
+      "translation": "Цените на горивото се високи."
+    }
+  },
+  {
+    "english": "highway",
+    "category": "transport",
+    "macedonian": "автопат",
+    "contextMk": {
+      "sentence": "{{blank}}от е брз.",
+      "translation": "The highway is fast."
+    },
+    "contextEn": {
+      "sentence": "Take the {{blank}} to Skopje.",
+      "translation": "Земи го автопатот за Скопје."
+    }
+  },
+  {
+    "english": "crosswalk",
+    "category": "transport",
+    "macedonian": "пешачки премин",
+    "contextMk": {
+      "sentence": "Премини на {{blank}}.",
+      "translation": "Cross at the crosswalk."
+    },
+    "contextEn": {
+      "sentence": "Wait at the {{blank}}.",
+      "translation": "Чекај на пешачкиот премин."
+    }
+  },
+  {
+    "english": "experience",
+    "category": "work",
+    "macedonian": "искуство",
+    "contextMk": {
+      "sentence": "Имам пет години {{blank}}.",
+      "translation": "I have five years of experience."
+    },
+    "contextEn": {
+      "sentence": "{{blank}} is important for this job.",
+      "translation": "Искуството е важно за оваа работа."
+    }
+  },
+  {
+    "english": "training",
+    "category": "work",
+    "macedonian": "обука",
+    "contextMk": {
+      "sentence": "Имаме {{blank}} утре.",
+      "translation": "We have training tomorrow."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} was very useful.",
+      "translation": "Обуката беше многу корисна."
+    }
+  },
+  {
+    "english": "presentation",
+    "category": "work",
+    "macedonian": "презентација",
+    "contextMk": {
+      "sentence": "Подготвив {{blank}} за клиентите.",
+      "translation": "I prepared a presentation for the clients."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} starts at 10 AM.",
+      "translation": "Презентацијата започнува во 10 часот."
+    }
+  },
+  {
+    "english": "budget",
+    "category": "work",
+    "macedonian": "буџет",
+    "contextMk": {
+      "sentence": "Немаме доволно {{blank}}.",
+      "translation": "We don't have enough budget."
+    },
+    "contextEn": {
+      "sentence": "The {{blank}} was approved.",
+      "translation": "Буџетот беше одобрен."
+    }
+  },
+  {
+    "english": "goal",
+    "category": "work",
+    "macedonian": "цел",
+    "contextMk": {
+      "sentence": "Нашата {{blank}} е да растеме.",
+      "translation": "Our goal is to grow."
+    },
+    "contextEn": {
+      "sentence": "We reached our {{blank}}.",
+      "translation": "Ја постигнавме нашата цел."
+    }
   }
 ]
