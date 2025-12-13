@@ -50,12 +50,20 @@ const ALLOWED_DOMAINS = new Set([
   'republika.mk',
   'lider.mk',
   'kapital.mk',
+  'ekran.mk',
+  'sportstation.mk',
+  'trn.mk',
+  'topsport.mk',
+  'sportplus.mk',
+  'skopjeinfo.mk',
+  'vecer.press',
   
   // CDN and cloud hosting used by Macedonian news sites
   'cloudinary.com', // Cloudinary CDN (used by 24vesti and others)
   'wp.com',         // WordPress CDN
   'amazonaws.com',  // AWS S3/CloudFront (some news sites use this)
   'imgix.net',      // Imgix CDN
+  'your-objectstorage.com', // Hetzner object storage
 ]);
 
 const CACHE_MAX_AGE = 86400; // 24 hours in seconds
