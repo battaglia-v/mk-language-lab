@@ -657,7 +657,7 @@ a:active,
 
 /* Improved contrast for muted text on dark backgrounds */
 .text-muted-readable {
-  color: rgba(247, 248, 251, 0.85);
+  color: rgba(247, 248, 251, 0.90);
 }
 
 /* Consistent card text */
@@ -667,7 +667,7 @@ a:active,
 }
 
 .card-text-muted {
-  color: rgba(247, 248, 251, 0.80);
+  color: rgba(247, 248, 251, 0.88);
   line-height: var(--line-height-base);
 }
 
@@ -694,8 +694,8 @@ a:active,
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.35em;
-  color: var(--mk-text-muted);
-  font-weight: 500;
+  color: var(--mk-accent);
+  font-weight: 600;
 }
 
 .page-header-title {
@@ -708,7 +708,7 @@ a:active,
 
 .page-header-subtitle {
   font-size: clamp(0.875rem, 2vw, 1rem);
-  color: rgba(247, 248, 251, 0.80);
+  color: rgba(247, 248, 251, 0.88);
   line-height: var(--line-height-base);
   max-width: 48rem;
 }

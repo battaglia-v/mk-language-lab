@@ -35,7 +35,7 @@
   --mk-border-strong: #2e3246;
   --mk-border-soft: #1a1d2b;
   --mk-text: #f7f8fb;
-  --mk-text-muted: rgba(247, 248, 251, 0.82);
+  --mk-text-muted: rgba(247, 248, 251, 0.88);
   --mk-accent: #f6d83b;
   --mk-accent-2: #f4b400;
   --mk-accent-3: #34d399;
@@ -115,7 +115,7 @@ body.theme-dark {
   --mk-border-strong: #cbd0db;
   --mk-border-soft: #eef0f4;
   --mk-text: #0b0b12;
-  --mk-text-muted: rgba(11, 11, 18, 0.65);
+  --mk-text-muted: rgba(11, 11, 18, 0.72);
 
   /* Keep accent colors (they work for both themes) */
   --mk-accent: #f6d83b;
