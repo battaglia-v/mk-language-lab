@@ -904,6 +904,7 @@
       "wordInputHelper": "Press Enter or tap Submit to check your answer.",
       "submitWord": "Submit",
       "revealAnswer": "Reveal answer",
+      "revealAnswerShort": "Reveal",
       "revealHelper": "Reveal the answer without marking your attempt wrong.",
       "listenButton": "Listen",
       "playingAudio": "Playing…",

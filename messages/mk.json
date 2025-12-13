@@ -930,6 +930,7 @@
       "wordInputHelper": "Притисни Enter или Испрати за да го провериш одговорот.",
       "submitWord": "Испрати",
       "revealAnswer": "Прикажи одговор",
+      "revealAnswerShort": "Покажи",
       "revealHelper": "Прикажи го одговорот без да се смета за грешка.",
       "listenButton": "Слушни",
       "playingAudio": "Се репродуцира…",

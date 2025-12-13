@@ -653,12 +653,13 @@ export default function PracticePage() {
               </Button>
               <Button
                 variant="secondary"
-                className="col-span-2 sm:col-span-3 min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105 px-2 sm:px-4"
+                className="col-span-2 sm:col-span-3 min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105 px-3 sm:px-4"
                 onClick={toggleReveal}
                 disabled={!deck.length}
               >
                 <Eye className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
-                <span className="ml-1.5 sm:ml-2 text-xs sm:text-base truncate">{t('drills.revealAnswer')}</span>
+                <span className="ml-1.5 sm:ml-2 text-sm sm:text-base sm:hidden">{t('drills.revealAnswerShort')}</span>
+                <span className="ml-2 text-base hidden sm:inline">{t('drills.revealAnswer')}</span>
               </Button>
               <Button
                 variant="outline"
