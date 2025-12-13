@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 // Domains that allow proxying for our news aggregation feature
+// Time.MK is a news aggregator that links to articles from various Macedonian outlets.
+// Their og:image tags reference images hosted on the original source domains.
 const ALLOWED_DOMAINS = new Set([
+  // Primary news aggregators
   'time.mk',
   'meta.mk',
+  
+  // Major Macedonian news outlets
   '360stepeni.mk',
   'zurnal.mk',
   'libertas.mk',
@@ -14,10 +19,8 @@ const ALLOWED_DOMAINS = new Set([
   'alfa.mk',
   'telma.mk',
   'mia.mk',
-  // Additional domains for images referenced in news articles
   'sdk.mk',
   'skopje1.mk',
-  'sdk.mk',
   'denesen.mk',
   'lokalno.mk',
   'a1on.mk',
@@ -31,6 +34,28 @@ const ALLOWED_DOMAINS = new Set([
   'off.net.mk',
   'prizma.mk',
   'portalb.mk',
+  
+  // TV stations with news content
+  'tv21.tv',        // TV21 - includes mk.tv21.tv subdomain
+  '24.mk',          // 24 Vesti
+  'alsat.mk',       // Alsat-M
+  'kanal77.mk',     // Kanal 77
+  
+  // Additional news sources discovered from Time.MK aggregation
+  'sakamda.mk',
+  'inovativnost.mk',
+  'racin.mk',
+  'pressing.mk',
+  'fokus.mk',
+  'republika.mk',
+  'lider.mk',
+  'kapital.mk',
+  
+  // CDN and cloud hosting used by Macedonian news sites
+  'cloudinary.com', // Cloudinary CDN (used by 24vesti and others)
+  'wp.com',         // WordPress CDN
+  'amazonaws.com',  // AWS S3/CloudFront (some news sites use this)
+  'imgix.net',      // Imgix CDN
 ]);
 
 const CACHE_MAX_AGE = 86400; // 24 hours in seconds

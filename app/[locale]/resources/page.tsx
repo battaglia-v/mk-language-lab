@@ -134,8 +134,19 @@ export default function ResourcesPage() {
     return result;
   }, [resources, sectionFilter, query]);
 
+  // Format the updatedAt date in a readable format
+  const formatUpdatedDate = (isoDate: string): string => {
+    const date = new Date(isoDate);
+    // Use a readable format: "December 12, 2025"
+    return date.toLocaleDateString(undefined, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  };
+
   const updatedLabel = data?.updatedAt
-    ? `${t('updated', { default: 'Last updated' })}: ${new Date(data.updatedAt).toLocaleDateString()}`
+    ? t('updatedOn', { date: formatUpdatedDate(data.updatedAt) })
     : '';
 
   return (
@@ -206,9 +217,16 @@ export default function ResourcesPage() {
         ))}
       </div>
 
-      {/* Updated Label */}
+      {/* Updated Label - styled as a subtle badge */}
       {updatedLabel && (
-        <p className="text-xs text-muted-foreground">{updatedLabel}</p>
+        <div className="flex items-center gap-2">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-muted/50 px-3 py-1 text-xs text-muted-foreground">
+            <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {updatedLabel}
+          </span>
+        </div>
       )}
 
       {/* Resource Cards Grid - Mobile First */}
