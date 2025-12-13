@@ -33,7 +33,7 @@ export const config = {
     '/',
     '/(mk|en)/:path*',
     '/admin/:path*',
-    // Exclude API routes, auth routes, PWA files, icon routes, and static files
-    '/((?!api|auth|manifest.json|icon|apple-icon|opengraph-image|icon-.*\\.png|_next/static|_next/image|favicon.ico).*)'
+    // Exclude API routes, auth routes, PWA files, icon routes, .well-known, and static files
+    '/((?!api|auth|manifest.json|\\.well-known|icon|apple-icon|opengraph-image|icon-.*\\.png|_next/static|_next/image|favicon.ico).*)'
   ]
 };
