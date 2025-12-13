@@ -70,7 +70,7 @@ export default async function AdminLayout({
                   <Link
                     key={href}
                     href={href}
-                    className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors"
+                    className="flex items-center gap-1.5 text-foreground/80 hover:text-foreground transition-colors"
                   >
                     <Icon className="h-4 w-4" />
                     <span>{label}</span>

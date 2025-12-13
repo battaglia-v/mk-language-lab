@@ -12,7 +12,7 @@ export default function DiscoverAdminPage() {
       <header className="glass-card rounded-3xl p-6 md:p-8">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary/80">Discover</p>
         <h1 className="mt-2 text-3xl font-bold text-white">Feed editor</h1>
-        <p className="mt-2 text-sm text-slate-200">
+        <p className="mt-2 text-sm text-white/85">
           Adjust quests, community highlights, and event rails in one place. Changes sync instantly to the
           public /discover page.
         </p>

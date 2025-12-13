@@ -244,7 +244,7 @@ export default function TranslatePage() {
           </div>
         </header>
       </TooltipProvider>
-      <p className="text-xs text-white/60 sm:hidden">
+      <p className="text-xs text-white/75 sm:hidden">
         {t('historyTooltip', { default: 'History: recent translations' })} · {t('savedTooltip', { default: 'Saved: your phrases' })}
       </p>
 
@@ -262,7 +262,7 @@ export default function TranslatePage() {
       {/* Direction Toggle */}
       <div className="rounded-2xl border border-white/8 bg-white/5 p-3 shadow-[0_10px_30px_rgba(0,0,0,0.35)] sm:p-4">
         <div className="mb-3 flex items-center justify-between gap-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/85">
             {t('directionsGroupLabel', { default: 'Translation direction' })}
           </p>
           <button
@@ -283,7 +283,7 @@ export default function TranslatePage() {
                 'flex-1 rounded-xl px-4 py-3 text-sm font-semibold transition-all',
                 directionId === option.id
                   ? 'bg-white text-slate-900 shadow-[0_8px_24px_rgba(0,0,0,0.25)]'
-                  : 'border border-transparent text-white/75 hover:border-white/15 hover:bg-white/5 hover:text-white',
+                  : 'border border-transparent text-white/85 hover:border-white/15 hover:bg-white/5 hover:text-white',
               )}
             >
               {option.label}
@@ -303,10 +303,10 @@ export default function TranslatePage() {
         <div className="rounded-2xl border border-white/8 bg-white/5 p-4 shadow-[0_12px_36px_rgba(0,0,0,0.45)] sm:p-5">
           <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/85">
                 {sourceLabel}
               </p>
-              <p className="text-sm text-white/70">{inputHelper}</p>
+              <p className="text-sm text-white/80">{inputHelper}</p>
             </div>
             <div className="flex flex-wrap items-center justify-end gap-2">
               <Button
@@ -342,9 +342,9 @@ export default function TranslatePage() {
             maxLength={MAX_CHARACTERS}
             className="min-h-[180px] resize-none rounded-2xl border border-white/10 bg-black/20 p-3 text-base text-foreground caret-primary placeholder:text-white/60 focus-visible:ring-2 focus-visible:ring-primary/40"
           />
-          <div className="mt-3 flex items-center justify-between text-xs text-white/60">
+          <div className="mt-3 flex items-center justify-between text-xs text-white/75">
             <span className={cn('font-medium transition-colors', counterTone)}>{characterCount}</span>
-            <span className="text-white/60">{t('charactersLabel', { default: 'Characters used' })}</span>
+            <span className="text-white/75">{t('charactersLabel', { default: 'Characters used' })}</span>
           </div>
         </div>
 

@@ -183,10 +183,10 @@ export default function ResourcesPage() {
         <button
           onClick={() => setSectionFilter(null)}
           className={cn(
-            'inline-flex h-9 items-center gap-2 whitespace-nowrap rounded-full border px-4 text-sm font-medium transition-colors',
+            'inline-flex h-9 items-center justify-center gap-2 whitespace-nowrap rounded-full border px-4 text-sm font-semibold transition-colors',
             !sectionFilter
               ? 'border-primary bg-primary text-primary-foreground'
-              : 'border-border bg-background text-foreground hover:bg-muted',
+              : 'border-border/60 bg-white/5 text-foreground/90 hover:bg-primary/10 hover:border-primary/50 hover:text-primary',
           )}
         >
           All
@@ -201,10 +201,10 @@ export default function ResourcesPage() {
             key={section.id}
             onClick={() => setSectionFilter(section.title)}
             className={cn(
-              'inline-flex h-9 items-center gap-2 whitespace-nowrap rounded-full border px-4 text-sm font-medium transition-colors',
+              'inline-flex h-9 items-center justify-center gap-2 whitespace-nowrap rounded-full border px-4 text-sm font-semibold transition-colors',
               sectionFilter === section.title
                 ? 'border-primary bg-primary text-primary-foreground'
-                : 'border-border bg-background text-foreground hover:bg-muted',
+                : 'border-border/60 bg-white/5 text-foreground/90 hover:bg-primary/10 hover:border-primary/50 hover:text-primary',
             )}
           >
             {section.title}

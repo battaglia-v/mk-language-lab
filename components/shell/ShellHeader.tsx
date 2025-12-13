@@ -3,17 +3,13 @@
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
-import { Menu, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { Button } from "@/components/ui/button";
 import { buildLocalizedHref } from "./navItems";
 import { UserMenu } from "@/components/auth/UserMenu";
 
-export type ShellHeaderProps = {
-  onToggleSidebar: () => void;
-};
-
-export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
+export function ShellHeader() {
   const locale = useLocale();
   const t = useTranslations("brand");
   const localeT = useTranslations("shell");
@@ -53,14 +49,6 @@ export function ShellHeader({ onToggleSidebar }: ShellHeaderProps) {
     <header className="mx-auto mb-6 w-full shell-surface nav-toolbar px-3 sm:px-4 md:px-6 text-white">
       <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3">
         <div className="flex items-center gap-2 sm:gap-3">
-          <button
-            type="button"
-            onClick={onToggleSidebar}
-            className="touch-target inline-flex min-h-[44px] items-center gap-2 rounded-full border border-border/60 px-3 py-2 text-sm text-muted-foreground lg:hidden"
-          >
-            <Menu className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
-            <span className="whitespace-nowrap">{localeT("menu")}</span>
-          </button>
           {backTarget ? (
             <Button
               asChild

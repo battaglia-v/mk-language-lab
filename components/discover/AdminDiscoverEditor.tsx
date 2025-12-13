@@ -184,21 +184,21 @@ export function AdminDiscoverEditor() {
           {toast ? <p className="text-sm text-emerald-200">{toast}</p> : null}
         </div>
         {totals ? (
-          <dl className="mt-4 grid grid-cols-2 gap-4 text-sm text-slate-200 md:grid-cols-4">
+          <dl className="mt-4 grid grid-cols-2 gap-4 text-sm text-white/85 md:grid-cols-4">
             <div>
-              <dt className="uppercase tracking-wide text-white/60">Categories</dt>
+              <dt className="uppercase tracking-wide text-white/75">Categories</dt>
               <dd className="text-2xl font-semibold text-white">{totals.categories}</dd>
             </div>
             <div>
-              <dt className="uppercase tracking-wide text-white/60">Quests</dt>
+              <dt className="uppercase tracking-wide text-white/75">Quests</dt>
               <dd className="text-2xl font-semibold text-white">{totals.quests}</dd>
             </div>
             <div>
-              <dt className="uppercase tracking-wide text-white/60">Community</dt>
+              <dt className="uppercase tracking-wide text-white/75">Community</dt>
               <dd className="text-2xl font-semibold text-white">{totals.community}</dd>
             </div>
             <div>
-              <dt className="uppercase tracking-wide text-white/60">Events</dt>
+              <dt className="uppercase tracking-wide text-white/75">Events</dt>
               <dd className="text-2xl font-semibold text-white">{totals.events}</dd>
             </div>
           </dl>
@@ -319,7 +319,7 @@ function SectionEditor<TItem>({ title, description, items, onAdd, onRemove, rend
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h2 className="text-2xl font-semibold">{title}</h2>
-          <p className="text-sm text-slate-200">{description}</p>
+          <p className="text-sm text-white/85">{description}</p>
         </div>
         <Button 
           type="button" 
@@ -351,11 +351,11 @@ function SectionEditor<TItem>({ title, description, items, onAdd, onRemove, rend
                 <Trash2 className="icon-sm" /> Remove
               </Button>
             </div>
-            <div className="mt-4 space-y-4 text-sm text-slate-200">{render(item, index)}</div>
+            <div className="mt-4 space-y-4 text-sm text-white/85">{render(item, index)}</div>
           </article>
         ))}
         {items.length === 0 ? (
-          <p className="text-sm text-slate-300">No entries yet. Add one to get started.</p>
+          <p className="text-sm text-white/80">No entries yet. Add one to get started.</p>
         ) : null}
       </div>
     </section>
@@ -371,7 +371,7 @@ type InputFieldProps = {
 function InputField({ label, value, onChange }: InputFieldProps) {
   return (
     <label className="block text-sm">
-      <span className="text-xs uppercase tracking-wide text-white/70">{label}</span>
+      <span className="text-xs uppercase tracking-wide text-white/80">{label}</span>
       <Input
         className="mt-1 border-border/60 bg-transparent"
         value={value}
