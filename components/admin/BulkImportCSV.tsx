@@ -42,10 +42,11 @@ export function BulkImportCSV() {
   const [dragActive, setDragActive] = useState(false);
 
   const downloadTemplate = () => {
+    // Template uses Cyrillic script for Macedonian words
     const template = `macedonian,english,pronunciation,partOfSpeech,exampleMk,exampleEn,icon,category,difficulty,formality,usageContext,includeInWOTD
-zdravo,hello,ZDRAH-voh,greeting,Zdravo! Kako si?,Hello! How are you?,waving hand,greetings,beginner,neutral,Informal greeting with friends and family,false
-dobar den,good day,DOH-bar den,greeting,Dobar den! Kako ste?,Good day! How are you?,person in suit,greetings,beginner,formal,Formal greeting in professional or polite settings,false
-kniga,book,KNEE-gah,noun,Jas chitam kniga.,I am reading a book.,book,objects,beginner,neutral,Common word for physical or digital books,false`;
+здраво,hello,ZDRAH-voh,greeting,Здраво! Како си?,Hello! How are you?,waving hand,greetings,beginner,neutral,Informal greeting with friends and family,false
+добар ден,good day,DOH-bar den,greeting,Добар ден! Како сте?,Good day! How are you?,person in suit,greetings,beginner,formal,Formal greeting in professional or polite settings,false
+книга,book,KNEE-gah,noun,Јас читам книга.,I am reading a book.,book,objects,beginner,neutral,Common word for physical or digital books,false`;
 
     // Add UTF-8 BOM for proper encoding
     const BOM = '\uFEFF';

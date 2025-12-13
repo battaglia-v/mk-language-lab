@@ -164,7 +164,7 @@ export function AdminDiscoverEditor() {
         <div className="flex flex-wrap items-center gap-4">
           <Button
             type="button"
-            className="rounded-full px-6"
+            className="rounded-full px-6 bg-primary text-primary-foreground hover:bg-primary/90"
             onClick={handleSave}
             disabled={isSaving || !draft}
           >
@@ -173,7 +173,7 @@ export function AdminDiscoverEditor() {
           </Button>
           <Button
             type="button"
-            variant="outline"
+            variant="secondary"
             className="rounded-full px-6"
             onClick={resetDraft}
             disabled={!data}
@@ -321,7 +321,13 @@ function SectionEditor<TItem>({ title, description, items, onAdd, onRemove, rend
           <h2 className="text-2xl font-semibold">{title}</h2>
           <p className="text-sm text-slate-200">{description}</p>
         </div>
-        <Button type="button" onClick={onAdd} variant="outline" className="rounded-full" size="sm">
+        <Button 
+          type="button" 
+          onClick={onAdd} 
+          variant="secondary" 
+          className="rounded-full bg-white/10 hover:bg-white/20 text-white border-white/20" 
+          size="sm"
+        >
           <Plus className="icon-sm" />
           Add entry
         </Button>
@@ -339,7 +345,7 @@ function SectionEditor<TItem>({ title, description, items, onAdd, onRemove, rend
                 type="button"
                 variant="ghost"
                 size="sm"
-                className="text-xs text-muted-foreground hover:text-destructive"
+                className="text-xs text-red-300 hover:text-red-200 hover:bg-red-500/20"
                 onClick={() => onRemove(index)}
               >
                 <Trash2 className="icon-sm" /> Remove

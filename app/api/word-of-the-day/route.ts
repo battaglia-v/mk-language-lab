@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { wordOfDayRateLimit, checkRateLimit } from '@/lib/rate-limit';
-import { cyrillicToLatin } from '@/lib/transliterate';
+import { cyrillicToLatin, ensureCyrillic } from '@/lib/transliterate';
 import fallbackWords from '@/data/word-of-the-day.json';
 
 type WOTDWord = {
@@ -25,12 +25,16 @@ function getWordForToday(words: WOTDWord[]) {
 }
 
 function formatWordResponse(word: WOTDWord) {
+  // Ensure Macedonian text is in Cyrillic script (convert if Latin was imported)
+  const macedonianCyrillic = ensureCyrillic(word.macedonian);
+  const exampleMkCyrillic = word.exampleMk ? ensureCyrillic(word.exampleMk) : `${macedonianCyrillic}.`;
+  
   return {
-    macedonian: word.macedonian,
-    pronunciation: word.pronunciation || cyrillicToLatin(word.macedonian),
+    macedonian: macedonianCyrillic,
+    pronunciation: word.pronunciation || cyrillicToLatin(macedonianCyrillic),
     english: word.english,
     partOfSpeech: word.partOfSpeech || 'word',
-    exampleMk: word.exampleMk || `${word.macedonian}.`,
+    exampleMk: exampleMkCyrillic,
     exampleEn: word.exampleEn || word.english,
     icon: word.icon || '📝',
   };
