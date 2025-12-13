@@ -620,7 +620,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                 size="sm"
                 onClick={() => {
                   setDirectionId('mk-en');
-                  setInputText("Добро утро! Како си денес? Одам на пазар да купам свежо зеленчук.");
+                  setInputText("Добро утро! Како си денес? Одам на пазар да купам свеж зеленчук.");
                 }}
                 className="text-xs"
               >
