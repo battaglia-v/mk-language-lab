@@ -5,6 +5,21 @@
   },
   "buildCommand": "npm run build",
   "installCommand": "npm ci",
+  "headers": [
+    {
+      "source": "/.well-known/assetlinks.json",
+      "headers": [
+        { "key": "Content-Type", "value": "application/json" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/.well-known/assetlinks.json",
+      "destination": "/assetlinks.json"
+    }
+  ],
   "crons": [
     {
       "path": "/api/cron/reminders",

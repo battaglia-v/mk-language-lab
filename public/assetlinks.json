@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.mklanguage.twa",
+      "sha256_cert_fingerprints": [
+        "F1:F1:A2:E7:8E:EB:C2:C7:24:DC:0A:18:75:70:F8:FF:6B:0B:29:56:E3:8D:7D:1F:4C:81:5E:3E:C0:1B:5A:93"
+      ]
+    }
+  }
+]
