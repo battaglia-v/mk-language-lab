@@ -3,11 +3,12 @@
 import Link from 'next/link';
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, TrendingUp, Eye, Volume2, RotateCcw, Brain } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, TrendingUp, Eye, Volume2, RotateCcw, Brain, Lightbulb } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import { useSavedPhrases } from '@/components/translate/useSavedPhrases';
 import { readTranslatorHistory } from '@/lib/translator-history';
@@ -74,6 +75,7 @@ export default function PracticePage() {
   const [reviewedCount, setReviewedCount] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [streak, setStreak] = useState(0);
+  const [hint, setHint] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   
@@ -289,6 +291,7 @@ export default function PracticePage() {
     setGuess('');
     setFeedback(null);
     setRevealed(false);
+    setHint(null);
   }, [stopAudio]);
 
   const goNext = useCallback(() => {
@@ -399,6 +402,19 @@ export default function PracticePage() {
   }, [goNext, goPrevious, toggleReveal]);
 
   const accuracy = reviewedCount > 0 ? Math.round((correctAnswers / reviewedCount) * 100) : 0;
+  const progressPercent = total > 0 ? Math.round(((safeIndex + 1) / total) * 100) : 0;
+
+  // Generate hint - show first letter(s) and word length
+  const generateHint = useCallback(() => {
+    if (!currentCard?.target) return;
+    const target = currentCard.target.trim();
+    const words = target.split(/\s+/);
+    const hintParts = words.map((word) => {
+      if (word.length <= 2) return word[0] + '_'.repeat(word.length - 1);
+      return word.slice(0, 2) + '_'.repeat(word.length - 2);
+    });
+    setHint(hintParts.join(' '));
+  }, [currentCard?.target]);
 
   // Handler for selecting a custom deck from dropdown
   const handleSelectCustomDeck = useCallback((deckId: string) => {
@@ -619,6 +635,15 @@ export default function PracticePage() {
           </Alert>
         ) : (
           <div className="space-y-4">
+            {/* Progress Bar */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-xs text-muted-foreground">
+                <span className="font-medium">{t('drills.progressLabel', { current: safeIndex + 1, total })}</span>
+                <span className="font-bold text-primary">{progressPercent}%</span>
+              </div>
+              <Progress value={progressPercent} className="h-2" />
+            </div>
+
             <div className="glass-card animate-in fade-in slide-in-from-bottom-4 duration-300 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-7 space-y-2">
               <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-muted-foreground">
                 <span className="font-semibold">{currentCard?.direction === 'en-mk' ? 'EN → MK' : 'MK → EN'}</span>
@@ -681,9 +706,28 @@ export default function PracticePage() {
 
               <form onSubmit={handleSubmitGuess} className="mt-4 space-y-2.5 sm:mt-6 w-full min-w-0">
                 <div className="space-y-1.5 w-full min-w-0">
-                  <label className="text-xs font-semibold text-white sm:text-sm" htmlFor="practice-guess">
-                    {t('drills.wordInputLabel')}
-                  </label>
+                  <div className="flex items-center justify-between">
+                    <label className="text-xs font-semibold text-white sm:text-sm" htmlFor="practice-guess">
+                      {t('drills.wordInputLabel')}
+                    </label>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      className="h-8 gap-1.5 rounded-full px-3 text-xs text-muted-foreground hover:text-primary"
+                      onClick={generateHint}
+                      disabled={revealed || !!hint}
+                    >
+                      <Lightbulb className="h-3.5 w-3.5" aria-hidden="true" />
+                      {t('drills.hintButton')}
+                    </Button>
+                  </div>
+                  {hint && !revealed && (
+                    <div className="rounded-xl border border-amber-400/30 bg-amber-500/10 px-3 py-2 text-sm text-amber-200">
+                      <span className="font-medium">{t('drills.hintLabel')}: </span>
+                      <span className="font-mono tracking-wide">{hint}</span>
+                    </div>
+                  )}
                 <div className="flex flex-col items-center gap-3 sm:flex-row w-full min-w-0">
                   <Input
                     id="practice-guess"

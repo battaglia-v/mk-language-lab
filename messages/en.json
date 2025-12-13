@@ -919,7 +919,10 @@
       "reviewMistakes": "Review Mistakes",
       "clearMistakes": "Clear mistakes",
       "dueCards": "{count, plural, =1 {1 card due} other {# cards due}}",
-      "noMistakes": "No mistakes to review! Keep practicing."
+      "noMistakes": "No mistakes to review! Keep practicing.",
+      "progressLabel": "Card {current} of {total}",
+      "hintButton": "Hint",
+      "hintLabel": "Hint"
     },
     "speaking": {
       "tabLabel": "Speaking",

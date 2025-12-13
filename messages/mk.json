@@ -945,7 +945,10 @@
       "reviewMistakes": "Повтори грешки",
       "clearMistakes": "Исчисти грешки",
       "dueCards": "{count, plural, =1 {1 картичка доспева} other {# картички доспеваат}}",
-      "noMistakes": "Нема грешки за повторување! Продолжи со вежбање."
+      "noMistakes": "Нема грешки за повторување! Продолжи со вежбање.",
+      "progressLabel": "Картичка {current} од {total}",
+      "hintButton": "Помош",
+      "hintLabel": "Помош"
     },
     "speaking": {
       "tabLabel": "Говор",
