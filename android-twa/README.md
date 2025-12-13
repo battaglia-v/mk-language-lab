@@ -6,7 +6,7 @@ Open your terminal and run these commands:
 
 ```bash
 cd /Users/vbattaglia/mk-language-lab/android-twa
-bubblewrap init --manifest=twa-manifest.json
+bubblewrap init --manifest https://mklanguage.com/manifest.json
 ```
 
 When prompted:
@@ -14,7 +14,7 @@ When prompted:
 2. **"Do you agree to the Android SDK terms and conditions?"** → Type `y` and press Enter
 3. **Signing key prompts** → Follow the prompts to create a new signing key:
    - Key password: Create a strong password (save it securely!)
-   - Key alias: `mk-language-lab` (already set in config)
+   - Key alias: `mklanguage` (already set in config)
    - First and last name: Your name
    - Organization: Your organization name (or leave blank)
    - City, State, Country: Your location info
@@ -34,7 +34,7 @@ This creates:
 
 ## Step 3: Configure Digital Asset Links
 
-After building, Bubblewrap will display your app's SHA-256 fingerprint. You'll need to create:
+After building, Bubblewrap will display your app's SHA-256 fingerprint. You'll need to update:
 
 **File:** `public/.well-known/assetlinks.json`
 
@@ -43,7 +43,7 @@ After building, Bubblewrap will display your app's SHA-256 fingerprint. You'll n
   "relation": ["delegate_permission/common.handle_all_urls"],
   "target": {
     "namespace": "android_app",
-    "package_name": "com.mklanguagelab.app",
+    "package_name": "com.mklanguage.app",
     "sha256_cert_fingerprints": ["YOUR_SHA256_FINGERPRINT_HERE"]
   }
 }]
@@ -62,8 +62,8 @@ Or transfer the APK file to your Android device and install manually.
 ## Important Notes
 
 - **Save your keystore password** - You'll need it for all future builds
-- **Backup your keystore file** - `mk-language-lab.keystore` - losing this means you can't update the app
-- **Production URL** - Make sure your app is deployed to `mk-language-lab.vercel.app` before testing
+- **Backup your keystore file** - `mklanguage.keystore` - losing this means you can't update the app
+- **Production URL** - Make sure your app is deployed to `mklanguage.com` before testing
 
 ## Troubleshooting
 

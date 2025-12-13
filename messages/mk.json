@@ -948,7 +948,22 @@
       "noMistakes": "Нема грешки за повторување! Продолжи со вежбање.",
       "progressLabel": "Картичка {current} од {total}",
       "hintButton": "Помош",
-      "hintLabel": "Помош"
+      "hintLabel": "Помош",
+      "modeLabel": "Режим",
+      "modeTyping": "Пишување",
+      "modeMultipleChoice": "Избор",
+      "chooseAnswer": "Избери го точниот одговор",
+      "skip": "Прескокни",
+      "navigate": "Нав",
+      "endSession": "Заврши сесија",
+      "sessionComplete": "Сесијата е завршена!",
+      "sessionSummaryDesc": "Одлична работа! Еве како се снајде:",
+      "cardsReviewed": "Прегледани картички",
+      "correctCount": "Точни",
+      "timeSpent": "Поминато време",
+      "bestStreak": "Најдолга серија",
+      "continueLabel": "Продолжи",
+      "startNew": "Започни нова сесија"
     },
     "speaking": {
       "tabLabel": "Говор",

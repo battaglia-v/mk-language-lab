@@ -1,0 +1,77 @@
+{
+  "packageId": "com.mklanguage.app",
+  "host": "mklanguage.com",
+  "name": "Македонски • MK Language Lab",
+  "launcherName": "Македонски",
+  "display": "standalone",
+  "themeColor": "#ff5a2c",
+  "themeColorDark": "#080b12",
+  "navigationColor": "#080b12",
+  "navigationColorDark": "#080b12",
+  "navigationDividerColor": "#080b12",
+  "navigationDividerColorDark": "#080b12",
+  "backgroundColor": "#080b12",
+  "enableNotifications": true,
+  "startUrl": "/mk?source=twa",
+  "iconUrl": "https://mklanguage.com/icon-512.png",
+  "maskableIconUrl": "https://mklanguage.com/icon-512-maskable.png",
+  "shortcuts": [
+    {
+      "name": "Translate",
+      "shortName": "Translate",
+      "url": "/mk/translate?source=twa",
+      "chosenIconUrl": "https://mklanguage.com/icon-192.png"
+    },
+    {
+      "name": "Practice",
+      "shortName": "Practice",
+      "url": "/mk/practice?source=twa",
+      "chosenIconUrl": "https://mklanguage.com/icon-192.png"
+    },
+    {
+      "name": "News",
+      "shortName": "News",
+      "url": "/mk/news?source=twa",
+      "chosenIconUrl": "https://mklanguage.com/icon-192.png"
+    }
+  ],
+  "signing": {
+    "file": "./mklanguage.keystore",
+    "alias": "mklanguage"
+  },
+  "appVersionCode": 3,
+  "appVersionName": "2.0.1",
+  "splashScreenFadeOutDuration": 300,
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "orientation": "portrait",
+  "fingerprints": [],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": [],
+  "playBilling": {
+    "enabled": false
+  },
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "features": {
+    "locationDelegation": {
+      "enabled": false
+    },
+    "playBilling": {
+      "enabled": false
+    }
+  },
+  "fallbackType": "customtabs",
+  "enableWebShareTarget": true,
+  "webShareTarget": {
+    "action": "/mk/translate?source=share",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "text": "text"
+    }
+  },
+  "minSdkVersion": 23,
+  "signingMode": "new"
+}

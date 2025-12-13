@@ -3,12 +3,19 @@
 import Link from 'next/link';
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, TrendingUp, Eye, Volume2, RotateCcw, Brain, Lightbulb } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, TrendingUp, Eye, Volume2, RotateCcw, Brain, Lightbulb, SkipForward, Keyboard, Trophy, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 import { useSavedPhrases } from '@/components/translate/useSavedPhrases';
 import { readTranslatorHistory } from '@/lib/translator-history';
@@ -78,6 +85,15 @@ export default function PracticePage() {
   const [hint, setHint] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+  
+  // Practice mode: typing vs multiple choice
+  const [practiceMode, setPracticeMode] = useState<'typing' | 'multiple-choice'>('typing');
+  const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
+  
+  // Session summary modal
+  const [showSummary, setShowSummary] = useState(false);
+  const [sessionStartTime] = useState(() => Date.now());
+  const [sessionCompleted, setSessionCompleted] = useState(false);
   
   // SRS and Mistakes deck state
   const [mistakesDeck, setMistakesDeck] = useState<Flashcard[]>([]);
@@ -292,13 +308,20 @@ export default function PracticePage() {
     setFeedback(null);
     setRevealed(false);
     setHint(null);
+    setSelectedChoice(null);
   }, [stopAudio]);
 
   const goNext = useCallback(() => {
     if (!deck.length) return;
-    setIndex((previous) => (previous + 1) % deck.length);
+    const nextIndex = (index + 1) % deck.length;
+    // Check if we've completed the deck
+    if (nextIndex === 0 && reviewedCount > 0 && !sessionCompleted) {
+      setSessionCompleted(true);
+      setShowSummary(true);
+    }
+    setIndex(nextIndex);
     resetCardState();
-  }, [deck.length, resetCardState]);
+  }, [deck.length, index, resetCardState, reviewedCount, sessionCompleted]);
 
   const goPrevious = useCallback(() => {
     if (!deck.length) return;
@@ -382,6 +405,26 @@ export default function PracticePage() {
     return () => clearTimeout(timer);
   }, [feedback, goNext]);
 
+  // Skip card without penalty
+  const skipCard = useCallback(() => {
+    goNext();
+  }, [goNext]);
+
+  // End session manually
+  const endSession = useCallback(() => {
+    if (reviewedCount > 0) {
+      setShowSummary(true);
+    }
+  }, [reviewedCount]);
+
+  // Calculate session time
+  const getSessionDuration = useCallback(() => {
+    const elapsed = Date.now() - sessionStartTime;
+    const minutes = Math.floor(elapsed / 60000);
+    const seconds = Math.floor((elapsed % 60000) / 1000);
+    return { minutes, seconds, total: elapsed };
+  }, [sessionStartTime]);
+
   useEffect(() => {
     const handler = (event: KeyboardEvent) => {
       // Don't intercept if user is typing in an input field
@@ -395,14 +438,56 @@ export default function PracticePage() {
         goNext();
       } else if (event.key === 'ArrowLeft' && !isInputField) {
         goPrevious();
+      } else if (event.key === 'Escape') {
+        // Escape works even in input fields to skip
+        skipCard();
       }
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [goNext, goPrevious, toggleReveal]);
+  }, [goNext, goPrevious, toggleReveal, skipCard]);
 
   const accuracy = reviewedCount > 0 ? Math.round((correctAnswers / reviewedCount) * 100) : 0;
   const progressPercent = total > 0 ? Math.round(((safeIndex + 1) / total) * 100) : 0;
+
+  // Generate multiple choice options
+  const multipleChoiceOptions = useMemo(() => {
+    if (!currentCard || deck.length < 2) return [];
+    const correctAnswer = currentCard.target;
+    
+    // Get other answers from the deck (excluding current)
+    const otherAnswers = deck
+      .filter((card) => card.id !== currentCard.id)
+      .map((card) => card.target)
+      .filter((answer, idx, arr) => arr.indexOf(answer) === idx); // unique
+    
+    // Shuffle and pick 3 wrong answers
+    const shuffled = [...otherAnswers].sort(() => Math.random() - 0.5);
+    const wrongAnswers = shuffled.slice(0, 3);
+    
+    // Combine with correct answer and shuffle
+    const allOptions = [correctAnswer, ...wrongAnswers];
+    return allOptions.sort(() => Math.random() - 0.5);
+  }, [currentCard, deck]);
+
+  // Handle multiple choice selection
+  const handleChoiceSelect = useCallback((choice: string) => {
+    if (!currentCard || feedback) return;
+    
+    setSelectedChoice(choice);
+    const isCorrect = choice.trim().toLowerCase() === currentCard.target.trim().toLowerCase();
+    
+    setFeedback(isCorrect ? 'correct' : 'incorrect');
+    setRevealed(true);
+    setReviewedCount((prev) => prev + 1);
+
+    if (isCorrect) {
+      setCorrectAnswers((prev) => prev + 1);
+      setStreak((prev) => prev + 1);
+    } else {
+      setStreak(0);
+    }
+  }, [currentCard, feedback]);
 
   // Generate hint - show first letter(s) and word length
   const generateHint = useCallback(() => {
@@ -598,6 +683,50 @@ export default function PracticePage() {
           </div>
         </div>
 
+        {/* Practice Mode Toggle */}
+        <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-border/60 bg-muted/10 px-3 py-2">
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+              {t('drills.modeLabel', { default: 'Mode' })}
+            </span>
+            <Button
+              type="button"
+              size="sm"
+              variant={practiceMode === 'typing' ? 'secondary' : 'ghost'}
+              className="h-9 rounded-full px-3 text-xs font-semibold"
+              onClick={() => setPracticeMode('typing')}
+            >
+              {t('drills.modeTyping', { default: 'Typing' })}
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              variant={practiceMode === 'multiple-choice' ? 'secondary' : 'ghost'}
+              className="h-9 rounded-full px-3 text-xs font-semibold"
+              onClick={() => setPracticeMode('multiple-choice')}
+            >
+              {t('drills.modeMultipleChoice', { default: 'Multiple Choice' })}
+            </Button>
+          </div>
+          <div className="flex items-center gap-2">
+            <Button
+              type="button"
+              size="sm"
+              variant="ghost"
+              className="h-8 gap-1.5 rounded-full px-3 text-xs text-muted-foreground hover:text-primary"
+              onClick={endSession}
+              disabled={reviewedCount === 0}
+            >
+              <Trophy className="h-3.5 w-3.5" aria-hidden="true" />
+              {t('drills.endSession', { default: 'End Session' })}
+            </Button>
+            <div className="hidden sm:flex items-center gap-1.5 rounded-full border border-border/40 bg-muted/20 px-2.5 py-1.5 text-[10px] text-muted-foreground">
+              <Keyboard className="h-3 w-3" aria-hidden="true" />
+              <span>Space: {t('drills.revealAnswerShort', { default: 'Reveal' })} | Esc: {t('drills.skip', { default: 'Skip' })} | ←→: {t('drills.navigate', { default: 'Nav' })}</span>
+            </div>
+          </div>
+        </div>
+
         <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-border/60 bg-muted/10 px-3 py-2">
           <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
             {t('drills.difficultyLabel', { default: 'Difficulty' })}
@@ -704,79 +833,163 @@ export default function PracticePage() {
               </div>
             </div>
 
-              <form onSubmit={handleSubmitGuess} className="mt-4 space-y-2.5 sm:mt-6 w-full min-w-0">
-                <div className="space-y-1.5 w-full min-w-0">
+              {/* Practice Input Area - Typing or Multiple Choice */}
+              {practiceMode === 'typing' ? (
+                <form onSubmit={handleSubmitGuess} className="mt-4 space-y-2.5 sm:mt-6 w-full min-w-0">
+                  <div className="space-y-1.5 w-full min-w-0">
+                    <div className="flex items-center justify-between">
+                      <label className="text-xs font-semibold text-white sm:text-sm" htmlFor="practice-guess">
+                        {t('drills.wordInputLabel')}
+                      </label>
+                      <div className="flex items-center gap-2">
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          className="h-8 gap-1.5 rounded-full px-3 text-xs text-muted-foreground hover:text-primary"
+                          onClick={generateHint}
+                          disabled={revealed || !!hint}
+                        >
+                          <Lightbulb className="h-3.5 w-3.5" aria-hidden="true" />
+                          {t('drills.hintButton')}
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          className="h-8 gap-1.5 rounded-full px-3 text-xs text-muted-foreground hover:text-foreground"
+                          onClick={skipCard}
+                        >
+                          <SkipForward className="h-3.5 w-3.5" aria-hidden="true" />
+                          {t('drills.skip', { default: 'Skip' })}
+                        </Button>
+                      </div>
+                    </div>
+                    {hint && !revealed && (
+                      <div className="rounded-xl border border-amber-400/30 bg-amber-500/10 px-3 py-2 text-sm text-amber-200">
+                        <span className="font-medium">{t('drills.hintLabel')}: </span>
+                        <span className="font-mono tracking-wide">{hint}</span>
+                      </div>
+                    )}
+                  <div className="flex flex-col items-center gap-3 sm:flex-row w-full min-w-0">
+                    <Input
+                      id="practice-guess"
+                      value={guess}
+                      onChange={(event) => setGuess(event.target.value)}
+                      placeholder={t('drills.wordInputPlaceholder')}
+                      className="flex-[3] min-h-[54px] min-w-0 rounded-3xl border border-primary/40 bg-white/8 px-4 text-lg text-white placeholder:text-muted-foreground w-full"
+                    />
+                    <Button
+                      type="submit"
+                      className="min-h-[54px] w-full max-w-[200px] sm:w-auto sm:flex-[1] sm:max-w-[140px] rounded-3xl px-6 text-base font-semibold shadow-lg transition-all hover:scale-105 disabled:hover:scale-100"
+                      disabled={!deck.length || !guess.trim()}
+                    >
+                      {t('drills.submitWord')}
+                    </Button>
+                  </div>
+                  <p className="text-xs text-muted-foreground">{t('drills.wordInputHelper')}</p>
+                  {feedback && (
+                    <div
+                      role="status"
+                      className={cn(
+                        'animate-in slide-in-from-top-2 fade-in duration-300 rounded-2xl border px-4 py-3 text-sm shadow-lg',
+                        feedback === 'correct'
+                          ? 'border-emerald-400/60 bg-emerald-500/15 text-emerald-50'
+                          : 'border-amber-400/60 bg-amber-500/15 text-amber-50'
+                      )}
+                    >
+                      <div className="flex items-start gap-2">
+                        {feedback === 'correct' ? (
+                          <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-400" aria-hidden="true" />
+                        ) : (
+                          <XCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-400" aria-hidden="true" />
+                        )}
+                        <div className="flex-1">
+                          <p className="font-medium">
+                            {feedback === 'correct' ? t('drills.feedbackCorrect') : t('drills.feedbackIncorrectTitle')}
+                          </p>
+                          {feedback === 'incorrect' && (
+                            <p className="mt-1 text-xs opacity-90">
+                              {t('drills.feedbackIncorrect', { answer: currentCard?.target })}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </form>
+              ) : (
+                /* Multiple Choice Mode */
+                <div className="mt-4 space-y-3 sm:mt-6 w-full min-w-0">
                   <div className="flex items-center justify-between">
-                    <label className="text-xs font-semibold text-white sm:text-sm" htmlFor="practice-guess">
-                      {t('drills.wordInputLabel')}
-                    </label>
+                    <span className="text-xs font-semibold text-white sm:text-sm">
+                      {t('drills.chooseAnswer', { default: 'Choose the correct answer' })}
+                    </span>
                     <Button
                       type="button"
                       variant="ghost"
                       size="sm"
-                      className="h-8 gap-1.5 rounded-full px-3 text-xs text-muted-foreground hover:text-primary"
-                      onClick={generateHint}
-                      disabled={revealed || !!hint}
+                      className="h-8 gap-1.5 rounded-full px-3 text-xs text-muted-foreground hover:text-foreground"
+                      onClick={skipCard}
                     >
-                      <Lightbulb className="h-3.5 w-3.5" aria-hidden="true" />
-                      {t('drills.hintButton')}
+                      <SkipForward className="h-3.5 w-3.5" aria-hidden="true" />
+                      {t('drills.skip', { default: 'Skip' })}
                     </Button>
                   </div>
-                  {hint && !revealed && (
-                    <div className="rounded-xl border border-amber-400/30 bg-amber-500/10 px-3 py-2 text-sm text-amber-200">
-                      <span className="font-medium">{t('drills.hintLabel')}: </span>
-                      <span className="font-mono tracking-wide">{hint}</span>
-                    </div>
-                  )}
-                <div className="flex flex-col items-center gap-3 sm:flex-row w-full min-w-0">
-                  <Input
-                    id="practice-guess"
-                    value={guess}
-                    onChange={(event) => setGuess(event.target.value)}
-                    placeholder={t('drills.wordInputPlaceholder')}
-                    className="flex-[3] min-h-[54px] min-w-0 rounded-3xl border border-primary/40 bg-white/8 px-4 text-lg text-white placeholder:text-muted-foreground w-full"
-                  />
-                  <Button
-                    type="submit"
-                    className="min-h-[54px] w-full max-w-[200px] sm:w-auto sm:flex-[1] sm:max-w-[140px] rounded-3xl px-6 text-base font-semibold shadow-lg transition-all hover:scale-105 disabled:hover:scale-100"
-                    disabled={!deck.length || !guess.trim()}
-                  >
-                    {t('drills.submitWord')}
-                  </Button>
-                </div>
-                <p className="text-xs text-muted-foreground">{t('drills.wordInputHelper')}</p>
-              </div>
-
-              {feedback && (
-                <div
-                  role="status"
-                  className={cn(
-                    'animate-in slide-in-from-top-2 fade-in duration-300 rounded-2xl border px-4 py-3 text-sm shadow-lg',
-                    feedback === 'correct'
-                      ? 'border-emerald-400/60 bg-emerald-500/15 text-emerald-50'
-                      : 'border-amber-400/60 bg-amber-500/15 text-amber-50'
-                  )}
-                >
-                  <div className="flex items-start gap-2">
-                    {feedback === 'correct' ? (
-                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-400" aria-hidden="true" />
-                    ) : (
-                      <XCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-400" aria-hidden="true" />
-                    )}
-                    <div className="flex-1">
-                      <p className="font-medium">
-                        {feedback === 'correct' ? t('drills.feedbackCorrect') : t('drills.feedbackIncorrectTitle')}
-                      </p>
-                      {feedback === 'incorrect' && (
-                        <p className="mt-1 text-xs opacity-90">
-                          {t('drills.feedbackIncorrect', { answer: currentCard?.target })}
-                        </p>
-                      )}
-                    </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {multipleChoiceOptions.map((option, idx) => (
+                      <Button
+                        key={`${option}-${idx}`}
+                        type="button"
+                        variant="outline"
+                        className={cn(
+                          'min-h-[52px] rounded-2xl px-4 py-3 text-left text-sm font-medium transition-all',
+                          !feedback && 'hover:border-primary/60 hover:bg-primary/10',
+                          selectedChoice === option && feedback === 'correct' && 'border-emerald-400 bg-emerald-500/20 text-emerald-50',
+                          selectedChoice === option && feedback === 'incorrect' && 'border-amber-400 bg-amber-500/20 text-amber-50',
+                          feedback && option === currentCard?.target && 'border-emerald-400 bg-emerald-500/15',
+                          feedback && selectedChoice !== option && option !== currentCard?.target && 'opacity-50'
+                        )}
+                        onClick={() => handleChoiceSelect(option)}
+                        disabled={!!feedback}
+                      >
+                        <span className="mr-2 text-muted-foreground">{['A', 'B', 'C', 'D'][idx]}.</span>
+                        {option}
+                      </Button>
+                    ))}
                   </div>
+                  {feedback && (
+                    <div
+                      role="status"
+                      className={cn(
+                        'animate-in slide-in-from-top-2 fade-in duration-300 rounded-2xl border px-4 py-3 text-sm shadow-lg',
+                        feedback === 'correct'
+                          ? 'border-emerald-400/60 bg-emerald-500/15 text-emerald-50'
+                          : 'border-amber-400/60 bg-amber-500/15 text-amber-50'
+                      )}
+                    >
+                      <div className="flex items-start gap-2">
+                        {feedback === 'correct' ? (
+                          <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-400" aria-hidden="true" />
+                        ) : (
+                          <XCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-400" aria-hidden="true" />
+                        )}
+                        <div className="flex-1">
+                          <p className="font-medium">
+                            {feedback === 'correct' ? t('drills.feedbackCorrect') : t('drills.feedbackIncorrectTitle')}
+                          </p>
+                          {feedback === 'incorrect' && (
+                            <p className="mt-1 text-xs opacity-90">
+                              {t('drills.feedbackIncorrect', { answer: currentCard?.target })}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
-            </form>
 
             <div className="mt-4 grid grid-cols-4 gap-2 sm:mt-6 sm:grid-cols-5 sm:gap-4 w-full min-w-0">
               <Button
@@ -818,6 +1031,88 @@ export default function PracticePage() {
           </div>
         )}
       </div>
+
+      {/* Session Summary Modal */}
+      <Dialog open={showSummary} onOpenChange={setShowSummary}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-xl">
+              <Trophy className="h-6 w-6 text-primary" aria-hidden="true" />
+              {t('drills.sessionComplete', { default: 'Session Complete!' })}
+            </DialogTitle>
+            <DialogDescription>
+              {t('drills.sessionSummaryDesc', { default: 'Great work! Here\'s how you did:' })}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="rounded-xl border border-border/60 bg-muted/20 p-4 text-center">
+                <div className="text-3xl font-bold text-primary">{reviewedCount}</div>
+                <div className="text-xs text-muted-foreground mt-1">
+                  {t('drills.cardsReviewed', { default: 'Cards Reviewed' })}
+                </div>
+              </div>
+              <div className="rounded-xl border border-border/60 bg-muted/20 p-4 text-center">
+                <div className="text-3xl font-bold text-emerald-400">{accuracy}%</div>
+                <div className="text-xs text-muted-foreground mt-1">
+                  {t('drills.accuracyLabel', { default: 'Accuracy' })}
+                </div>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="rounded-xl border border-border/60 bg-muted/20 p-4 text-center">
+                <div className="text-3xl font-bold text-white">{correctAnswers}</div>
+                <div className="text-xs text-muted-foreground mt-1">
+                  {t('drills.correctCount', { default: 'Correct' })}
+                </div>
+              </div>
+              <div className="rounded-xl border border-border/60 bg-muted/20 p-4 text-center">
+                <div className="flex items-center justify-center gap-1 text-3xl font-bold text-white">
+                  <Clock className="h-5 w-5 text-muted-foreground" aria-hidden="true" />
+                  <span>{Math.floor(getSessionDuration().minutes)}:{String(getSessionDuration().seconds).padStart(2, '0')}</span>
+                </div>
+                <div className="text-xs text-muted-foreground mt-1">
+                  {t('drills.timeSpent', { default: 'Time Spent' })}
+                </div>
+              </div>
+            </div>
+            {streak > 2 && (
+              <div className="rounded-xl border border-emerald-400/40 bg-emerald-500/10 p-4 text-center">
+                <div className="text-2xl font-bold text-emerald-400">🔥 {streak}</div>
+                <div className="text-xs text-emerald-300/80 mt-1">
+                  {t('drills.bestStreak', { default: 'Best Streak' })}
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              className="flex-1"
+              onClick={() => {
+                setShowSummary(false);
+                setSessionCompleted(false);
+              }}
+            >
+              {t('drills.continueLabel', { default: 'Continue' })}
+            </Button>
+            <Button
+              className="flex-1"
+              onClick={() => {
+                setShowSummary(false);
+                setSessionCompleted(false);
+                setReviewedCount(0);
+                setCorrectAnswers(0);
+                setStreak(0);
+                setIndex(0);
+                resetCardState();
+              }}
+            >
+              {t('drills.startNew', { default: 'Start New Session' })}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

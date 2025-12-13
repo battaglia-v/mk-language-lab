@@ -922,7 +922,22 @@
       "noMistakes": "No mistakes to review! Keep practicing.",
       "progressLabel": "Card {current} of {total}",
       "hintButton": "Hint",
-      "hintLabel": "Hint"
+      "hintLabel": "Hint",
+      "modeLabel": "Mode",
+      "modeTyping": "Typing",
+      "modeMultipleChoice": "Multiple Choice",
+      "chooseAnswer": "Choose the correct answer",
+      "skip": "Skip",
+      "navigate": "Nav",
+      "endSession": "End Session",
+      "sessionComplete": "Session Complete!",
+      "sessionSummaryDesc": "Great work! Here's how you did:",
+      "cardsReviewed": "Cards Reviewed",
+      "correctCount": "Correct",
+      "timeSpent": "Time Spent",
+      "bestStreak": "Best Streak",
+      "continueLabel": "Continue",
+      "startNew": "Start New Session"
     },
     "speaking": {
       "tabLabel": "Speaking",
