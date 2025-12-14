@@ -122,7 +122,7 @@ export default function RootLayout({
       >
         <SentryInit />
         {children}
-        <Analytics />
+        <Analytics debug={false} />
       </body>
     </html>
   );
