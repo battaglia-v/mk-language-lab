@@ -310,18 +310,62 @@ export function getSRSStats(): SRSStats {
 
 /**
  * Get mastery level for a card (0-100%)
+ * 
+ * Mastery is calculated based on:
+ * - Interval length (longer = more mastery) - 40 points max
+ * - Success rate (higher = more mastery) - 40 points max
+ * - Ease factor (higher = easier recall) - 20 points max
  */
 export function getCardMastery(id: string): number {
   const data = readSRSData();
   const card = data[id];
   if (!card) return 0;
 
-  // Mastery based on interval and success rate
-  const intervalScore = Math.min(card.interval / 30, 1) * 50; // Max 50 points for 30+ day interval
+  // Interval score: 0-40 points (caps at 60 days)
+  const intervalScore = Math.min(card.interval / 60, 1) * 40;
+  
+  // Success rate score: 0-40 points
   const successRate = card.totalReviews > 0 ? card.correctCount / card.totalReviews : 0;
-  const successScore = successRate * 50; // Max 50 points for 100% success rate
+  const successScore = successRate * 40;
+  
+  // Ease factor score: 0-20 points (1.3 to 2.5 range)
+  const easeNormalized = (card.easeFactor - 1.3) / (2.5 - 1.3);
+  const easeScore = Math.min(Math.max(easeNormalized, 0), 1) * 20;
 
-  return Math.round(intervalScore + successScore);
+  return Math.round(intervalScore + successScore + easeScore);
+}
+
+/**
+ * Mastery level thresholds
+ */
+export const MASTERY_LEVELS = {
+  NEW: 0,           // Never reviewed
+  LEARNING: 25,     // Just started
+  FAMILIAR: 50,     // Getting comfortable
+  PRACTICED: 75,    // Usually correct
+  MASTERED: 90,     // Consistently correct over time
+} as const;
+
+/**
+ * Get mastery level label for a card
+ */
+export function getMasteryLabel(mastery: number): 'new' | 'learning' | 'familiar' | 'practiced' | 'mastered' {
+  if (mastery >= MASTERY_LEVELS.MASTERED) return 'mastered';
+  if (mastery >= MASTERY_LEVELS.PRACTICED) return 'practiced';
+  if (mastery >= MASTERY_LEVELS.FAMILIAR) return 'familiar';
+  if (mastery >= MASTERY_LEVELS.LEARNING) return 'learning';
+  return 'new';
+}
+
+/**
+ * Get mastery color for UI display
+ */
+export function getMasteryColor(mastery: number): string {
+  if (mastery >= MASTERY_LEVELS.MASTERED) return 'text-success';
+  if (mastery >= MASTERY_LEVELS.PRACTICED) return 'text-emerald-400';
+  if (mastery >= MASTERY_LEVELS.FAMILIAR) return 'text-sky-400';
+  if (mastery >= MASTERY_LEVELS.LEARNING) return 'text-amber-400';
+  return 'text-muted-foreground';
 }
 
 /**

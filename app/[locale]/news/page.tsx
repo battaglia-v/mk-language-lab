@@ -11,16 +11,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { FilterChip } from '@/components/ui/filter-chip';
 import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
+import { ProxiedNewsImage } from '@/components/news/ProxiedNewsImage';
 import { ArrowLeft, ExternalLink, Loader2, Newspaper, PlayCircle, RefreshCcw, Search, Video, Clock3 } from 'lucide-react';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
-
-/**
- * Proxy news images through our API to bypass CORS/hotlinking restrictions
- */
-function getProxiedImageUrl(imageUrl: string | null): string | null {
-  if (!imageUrl) return null;
-  return `/api/image-proxy?url=${encodeURIComponent(imageUrl)}`;
-}
 
 const SOURCE_IDS = ['all', 'time-mk', 'meta-mk'] as const;
 
@@ -278,11 +271,19 @@ export default function NewsPage() {
         <div className="space-y-4 sm:space-y-5">
             <div className="flex flex-wrap gap-2 sm:gap-2.5">
               {sourceFilters.map((filter) => (
-                <FilterChip key={filter.id} active={source === filter.id} onClick={() => setSource(filter.id)}>
+                <FilterChip key={filter.id} active={source === filter.id} onClick={() => {
+                  setSource(filter.id);
+                  trackEvent(AnalyticsEvents.NEWS_FILTER_CHANGED, { filterType: 'source', value: filter.id });
+                }}>
                   {filter.label}
                 </FilterChip>
               ))}
-              <FilterChip active={videosOnly} onClick={() => setVideosOnly((prev) => !prev)}>
+              <FilterChip active={videosOnly} onClick={() => {
+                setVideosOnly((prev) => {
+                  trackEvent(AnalyticsEvents.NEWS_FILTER_CHANGED, { filterType: 'videosOnly', value: !prev });
+                  return !prev;
+                });
+              }}>
                 <Video className="h-3.5 w-3.5" />
                 {t('videosOnly')}
               </FilterChip>
@@ -386,35 +387,13 @@ export default function NewsPage() {
                   className="glass-card flex h-full flex-col overflow-hidden border border-border/60 bg-background/40 transition-shadow hover:border-primary/40 hover:shadow-2xl"
                   data-testid="news-card"
                 >
-                  <div className="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800">
-                    {item.image ? (
-                      <picture>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={getProxiedImageUrl(item.image) ?? ''}
-                          alt={item.title}
-                          className="h-full w-full object-cover transition-opacity duration-300"
-                          loading="lazy"
-                          onError={(e) => {
-                            // Hide broken image and show fallback
-                            e.currentTarget.style.display = 'none';
-                            const fallback = e.currentTarget.parentElement?.parentElement?.querySelector('[data-fallback]');
-                            if (fallback) (fallback as HTMLElement).style.display = 'flex';
-                          }}
-                        />
-                      </picture>
-                    ) : null}
-                    {/* Fallback - styled with source branding when images fail to load */}
-                    <div 
-                      data-fallback
-                      className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-slate-800/95 via-slate-700/90 to-slate-800/95"
-                      style={{ display: item.image ? 'none' : 'flex' }}
-                    >
-                      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-sm">
-                        <Newspaper className="h-8 w-8 text-slate-300" />
-                      </div>
-                      <span className="text-xs font-medium text-slate-400">{item.sourceName}</span>
-                    </div>
+                  <div className="relative aspect-video w-full overflow-hidden">
+                    <ProxiedNewsImage
+                      imageUrl={item.image}
+                      alt={item.title}
+                      sourceName={item.sourceName}
+                      containerClassName="aspect-video"
+                    />
                     <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent" />
                     <Badge variant="secondary" className="absolute left-4 bottom-3 text-[11px] bg-black/50 text-white backdrop-blur">
                       {item.sourceName}
