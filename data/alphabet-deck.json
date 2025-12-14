@@ -1,0 +1,401 @@
+{
+  "meta": {
+    "id": "cyrillic-alphabet-v1",
+    "title": "Cyrillic Alphabet",
+    "titleMk": "Кирилица",
+    "description": "Master the 31 letters of the Macedonian Cyrillic alphabet",
+    "descriptionMk": "Совладај ги 31-те букви од македонската кирилица",
+    "level": "A1",
+    "category": "alphabet",
+    "version": "1.0.0",
+    "lastUpdated": "2025-01-01"
+  },
+  "items": [
+    {
+      "id": "alpha-001",
+      "letter": "А а",
+      "latinEquiv": "a",
+      "ipa": "/a/",
+      "audio": "/audio/letters/a.mp3",
+      "exampleWord": {
+        "mk": "авион",
+        "en": "airplane"
+      },
+      "notes": "Like 'a' in 'father'"
+    },
+    {
+      "id": "alpha-002",
+      "letter": "Б б",
+      "latinEquiv": "b",
+      "ipa": "/b/",
+      "audio": "/audio/letters/b.mp3",
+      "exampleWord": {
+        "mk": "баба",
+        "en": "grandmother"
+      },
+      "notes": "Like 'b' in 'boy'"
+    },
+    {
+      "id": "alpha-003",
+      "letter": "В в",
+      "latinEquiv": "v",
+      "ipa": "/v/",
+      "audio": "/audio/letters/v.mp3",
+      "exampleWord": {
+        "mk": "вода",
+        "en": "water"
+      },
+      "notes": "Like 'v' in 'very'"
+    },
+    {
+      "id": "alpha-004",
+      "letter": "Г г",
+      "latinEquiv": "g",
+      "ipa": "/ɡ/",
+      "audio": "/audio/letters/g.mp3",
+      "exampleWord": {
+        "mk": "град",
+        "en": "city"
+      },
+      "notes": "Like 'g' in 'go'"
+    },
+    {
+      "id": "alpha-005",
+      "letter": "Д д",
+      "latinEquiv": "d",
+      "ipa": "/d/",
+      "audio": "/audio/letters/d.mp3",
+      "exampleWord": {
+        "mk": "дете",
+        "en": "child"
+      },
+      "notes": "Like 'd' in 'dog'"
+    },
+    {
+      "id": "alpha-006",
+      "letter": "Ѓ ѓ",
+      "latinEquiv": "gj",
+      "ipa": "/ɟ/",
+      "audio": "/audio/letters/gj.mp3",
+      "exampleWord": {
+        "mk": "ѓавол",
+        "en": "devil"
+      },
+      "notes": "Soft 'g' - like 'j' in 'jeans' but softer"
+    },
+    {
+      "id": "alpha-007",
+      "letter": "Е е",
+      "latinEquiv": "e",
+      "ipa": "/ɛ/",
+      "audio": "/audio/letters/e.mp3",
+      "exampleWord": {
+        "mk": "езеро",
+        "en": "lake"
+      },
+      "notes": "Like 'e' in 'bet'"
+    },
+    {
+      "id": "alpha-008",
+      "letter": "Ж ж",
+      "latinEquiv": "ž",
+      "ipa": "/ʒ/",
+      "audio": "/audio/letters/zh.mp3",
+      "exampleWord": {
+        "mk": "жена",
+        "en": "woman"
+      },
+      "notes": "Like 's' in 'measure'"
+    },
+    {
+      "id": "alpha-009",
+      "letter": "З з",
+      "latinEquiv": "z",
+      "ipa": "/z/",
+      "audio": "/audio/letters/z.mp3",
+      "exampleWord": {
+        "mk": "земја",
+        "en": "country/earth"
+      },
+      "notes": "Like 'z' in 'zoo'"
+    },
+    {
+      "id": "alpha-010",
+      "letter": "Ѕ ѕ",
+      "latinEquiv": "dz",
+      "ipa": "/dz/",
+      "audio": "/audio/letters/dz.mp3",
+      "exampleWord": {
+        "mk": "ѕвезда",
+        "en": "star"
+      },
+      "notes": "Like 'ds' in 'adds' - unique to Macedonian"
+    },
+    {
+      "id": "alpha-011",
+      "letter": "И и",
+      "latinEquiv": "i",
+      "ipa": "/i/",
+      "audio": "/audio/letters/i.mp3",
+      "exampleWord": {
+        "mk": "игра",
+        "en": "game"
+      },
+      "notes": "Like 'ee' in 'see'"
+    },
+    {
+      "id": "alpha-012",
+      "letter": "Ј ј",
+      "latinEquiv": "j",
+      "ipa": "/j/",
+      "audio": "/audio/letters/j.mp3",
+      "exampleWord": {
+        "mk": "јаболко",
+        "en": "apple"
+      },
+      "notes": "Like 'y' in 'yes'"
+    },
+    {
+      "id": "alpha-013",
+      "letter": "К к",
+      "latinEquiv": "k",
+      "ipa": "/k/",
+      "audio": "/audio/letters/k.mp3",
+      "exampleWord": {
+        "mk": "куќа",
+        "en": "house"
+      },
+      "notes": "Like 'k' in 'kite'"
+    },
+    {
+      "id": "alpha-014",
+      "letter": "Л л",
+      "latinEquiv": "l",
+      "ipa": "/l/",
+      "audio": "/audio/letters/l.mp3",
+      "exampleWord": {
+        "mk": "луна",
+        "en": "moon"
+      },
+      "notes": "Like 'l' in 'love'"
+    },
+    {
+      "id": "alpha-015",
+      "letter": "Љ љ",
+      "latinEquiv": "lj",
+      "ipa": "/ʎ/",
+      "audio": "/audio/letters/lj.mp3",
+      "exampleWord": {
+        "mk": "љубов",
+        "en": "love"
+      },
+      "notes": "Soft 'l' - like 'lli' in 'million'"
+    },
+    {
+      "id": "alpha-016",
+      "letter": "М м",
+      "latinEquiv": "m",
+      "ipa": "/m/",
+      "audio": "/audio/letters/m.mp3",
+      "exampleWord": {
+        "mk": "мајка",
+        "en": "mother"
+      },
+      "notes": "Like 'm' in 'mother'"
+    },
+    {
+      "id": "alpha-017",
+      "letter": "Н н",
+      "latinEquiv": "n",
+      "ipa": "/n/",
+      "audio": "/audio/letters/n.mp3",
+      "exampleWord": {
+        "mk": "небо",
+        "en": "sky"
+      },
+      "notes": "Like 'n' in 'no'"
+    },
+    {
+      "id": "alpha-018",
+      "letter": "Њ њ",
+      "latinEquiv": "nj",
+      "ipa": "/ɲ/",
+      "audio": "/audio/letters/nj.mp3",
+      "exampleWord": {
+        "mk": "коњ",
+        "en": "horse"
+      },
+      "notes": "Soft 'n' - like 'ny' in 'canyon'"
+    },
+    {
+      "id": "alpha-019",
+      "letter": "О о",
+      "latinEquiv": "o",
+      "ipa": "/ɔ/",
+      "audio": "/audio/letters/o.mp3",
+      "exampleWord": {
+        "mk": "оган",
+        "en": "fire"
+      },
+      "notes": "Like 'o' in 'hot'"
+    },
+    {
+      "id": "alpha-020",
+      "letter": "П п",
+      "latinEquiv": "p",
+      "ipa": "/p/",
+      "audio": "/audio/letters/p.mp3",
+      "exampleWord": {
+        "mk": "птица",
+        "en": "bird"
+      },
+      "notes": "Like 'p' in 'pen'"
+    },
+    {
+      "id": "alpha-021",
+      "letter": "Р р",
+      "latinEquiv": "r",
+      "ipa": "/r/",
+      "audio": "/audio/letters/r.mp3",
+      "exampleWord": {
+        "mk": "река",
+        "en": "river"
+      },
+      "notes": "Rolled 'r' - like Spanish 'rr'"
+    },
+    {
+      "id": "alpha-022",
+      "letter": "С с",
+      "latinEquiv": "s",
+      "ipa": "/s/",
+      "audio": "/audio/letters/s.mp3",
+      "exampleWord": {
+        "mk": "сонце",
+        "en": "sun"
+      },
+      "notes": "Like 's' in 'sun'"
+    },
+    {
+      "id": "alpha-023",
+      "letter": "Т т",
+      "latinEquiv": "t",
+      "ipa": "/t/",
+      "audio": "/audio/letters/t.mp3",
+      "exampleWord": {
+        "mk": "татко",
+        "en": "father"
+      },
+      "notes": "Like 't' in 'top'"
+    },
+    {
+      "id": "alpha-024",
+      "letter": "Ќ ќ",
+      "latinEquiv": "kj",
+      "ipa": "/c/",
+      "audio": "/audio/letters/kj.mp3",
+      "exampleWord": {
+        "mk": "куќа",
+        "en": "house"
+      },
+      "notes": "Soft 'k' - like 'k' + 'y' together, unique to Macedonian"
+    },
+    {
+      "id": "alpha-025",
+      "letter": "У у",
+      "latinEquiv": "u",
+      "ipa": "/u/",
+      "audio": "/audio/letters/u.mp3",
+      "exampleWord": {
+        "mk": "учи",
+        "en": "learn"
+      },
+      "notes": "Like 'oo' in 'food'"
+    },
+    {
+      "id": "alpha-026",
+      "letter": "Ф ф",
+      "latinEquiv": "f",
+      "ipa": "/f/",
+      "audio": "/audio/letters/f.mp3",
+      "exampleWord": {
+        "mk": "фамилија",
+        "en": "family"
+      },
+      "notes": "Like 'f' in 'fun'"
+    },
+    {
+      "id": "alpha-027",
+      "letter": "Х х",
+      "latinEquiv": "h",
+      "ipa": "/x/",
+      "audio": "/audio/letters/h.mp3",
+      "exampleWord": {
+        "mk": "храна",
+        "en": "food"
+      },
+      "notes": "Like 'h' in 'hat' but slightly stronger"
+    },
+    {
+      "id": "alpha-028",
+      "letter": "Ц ц",
+      "latinEquiv": "c",
+      "ipa": "/ts/",
+      "audio": "/audio/letters/c.mp3",
+      "exampleWord": {
+        "mk": "цвет",
+        "en": "flower"
+      },
+      "notes": "Like 'ts' in 'cats'"
+    },
+    {
+      "id": "alpha-029",
+      "letter": "Ч ч",
+      "latinEquiv": "č",
+      "ipa": "/tʃ/",
+      "audio": "/audio/letters/ch.mp3",
+      "exampleWord": {
+        "mk": "човек",
+        "en": "person"
+      },
+      "notes": "Like 'ch' in 'church'"
+    },
+    {
+      "id": "alpha-030",
+      "letter": "Џ џ",
+      "latinEquiv": "dž",
+      "ipa": "/dʒ/",
+      "audio": "/audio/letters/dzh.mp3",
+      "exampleWord": {
+        "mk": "џеб",
+        "en": "pocket"
+      },
+      "notes": "Like 'j' in 'judge'"
+    },
+    {
+      "id": "alpha-031",
+      "letter": "Ш ш",
+      "latinEquiv": "š",
+      "ipa": "/ʃ/",
+      "audio": "/audio/letters/sh.mp3",
+      "exampleWord": {
+        "mk": "школо",
+        "en": "school"
+      },
+      "notes": "Like 'sh' in 'ship'"
+    }
+  ],
+  "uniqueLetters": {
+    "description": "Letters unique to Macedonian Cyrillic",
+    "letters": ["Ѓ ѓ", "Ѕ ѕ", "Ќ ќ"],
+    "notes": "These three letters don't exist in other Cyrillic alphabets"
+  },
+  "softLetters": {
+    "description": "Soft consonant pairs",
+    "pairs": [
+      {"hard": "Г г", "soft": "Ѓ ѓ"},
+      {"hard": "К к", "soft": "Ќ ќ"},
+      {"hard": "Л л", "soft": "Љ љ"},
+      {"hard": "Н н", "soft": "Њ њ"}
+    ]
+  }
+}

@@ -1,0 +1,395 @@
+{
+  "meta": {
+    "id": "survival-deck-v1",
+    "title": "Survival Phrases",
+    "titleMk": "Фрази за преживување",
+    "description": "Essential phrases for travelers and emergency situations",
+    "descriptionMk": "Основни фрази за патници и итни ситуации",
+    "level": "A1",
+    "category": "travel",
+    "version": "1.0.0",
+    "lastUpdated": "2025-01-01"
+  },
+  "items": [
+    {
+      "id": "surv-001",
+      "mk": "Каде е тоалетот?",
+      "en": "Where is the bathroom?",
+      "category": "navigation",
+      "audio": "/audio/survival/kade-e-toaletot.mp3",
+      "phonetic": "KAH-deh eh toh-ah-LEH-tot",
+      "urgency": "high",
+      "notes": "Essential for any traveler"
+    },
+    {
+      "id": "surv-002",
+      "mk": "Не разбирам.",
+      "en": "I don't understand.",
+      "category": "communication",
+      "audio": "/audio/survival/ne-razbiram.mp3",
+      "phonetic": "neh rahz-BEE-rahm",
+      "urgency": "high",
+      "notes": "Use this to ask for clarification"
+    },
+    {
+      "id": "surv-003",
+      "mk": "Зборувате ли англиски?",
+      "en": "Do you speak English?",
+      "category": "communication",
+      "audio": "/audio/survival/zboruvate-li-angliski.mp3",
+      "phonetic": "zboh-ROO-vah-teh lee ahng-LEES-kee",
+      "urgency": "high",
+      "notes": "Polite form (formal 'you')"
+    },
+    {
+      "id": "surv-004",
+      "mk": "Колку чини?",
+      "en": "How much does it cost?",
+      "category": "shopping",
+      "audio": "/audio/survival/kolku-cini.mp3",
+      "phonetic": "KOHL-koo CHEE-nee",
+      "urgency": "high",
+      "notes": "Essential for shopping and restaurants"
+    },
+    {
+      "id": "surv-005",
+      "mk": "Сметката, ве молам.",
+      "en": "The bill, please.",
+      "category": "restaurant",
+      "audio": "/audio/survival/smetkata-ve-molam.mp3",
+      "phonetic": "SMET-kah-tah veh MOH-lahm",
+      "urgency": "medium",
+      "notes": "Used in restaurants and cafes"
+    },
+    {
+      "id": "surv-006",
+      "mk": "Јас сум алергичен/а на...",
+      "en": "I am allergic to...",
+      "category": "health",
+      "audio": "/audio/survival/alergicen.mp3",
+      "phonetic": "yahs soom ah-lehr-GEE-chen/nah nah...",
+      "urgency": "critical",
+      "notes": "-ен for male, -a for female speakers"
+    },
+    {
+      "id": "surv-007",
+      "mk": "Повикајте лекар!",
+      "en": "Call a doctor!",
+      "category": "emergency",
+      "audio": "/audio/survival/povikajte-lekar.mp3",
+      "phonetic": "poh-VEE-kahy-teh LEH-kahr",
+      "urgency": "critical",
+      "notes": "Emergency phrase"
+    },
+    {
+      "id": "surv-008",
+      "mk": "Помош!",
+      "en": "Help!",
+      "category": "emergency",
+      "audio": "/audio/survival/pomos.mp3",
+      "phonetic": "POH-mosh",
+      "urgency": "critical",
+      "notes": "Universal emergency cry"
+    },
+    {
+      "id": "surv-009",
+      "mk": "Каде е болницата?",
+      "en": "Where is the hospital?",
+      "category": "emergency",
+      "audio": "/audio/survival/kade-e-bolnicata.mp3",
+      "phonetic": "KAH-deh eh bohl-NEE-tsah-tah",
+      "urgency": "critical",
+      "notes": "Medical emergency navigation"
+    },
+    {
+      "id": "surv-010",
+      "mk": "Ми е лошо.",
+      "en": "I feel sick.",
+      "category": "health",
+      "audio": "/audio/survival/mi-e-loso.mp3",
+      "phonetic": "mee eh LOH-shoh",
+      "urgency": "high",
+      "notes": "General feeling unwell"
+    },
+    {
+      "id": "surv-011",
+      "mk": "Каде е автобуската станица?",
+      "en": "Where is the bus station?",
+      "category": "navigation",
+      "audio": "/audio/survival/kade-e-avtobuska.mp3",
+      "phonetic": "KAH-deh eh ahv-toh-BOOS-kah-tah stah-NEE-tsah",
+      "urgency": "medium",
+      "notes": "For public transport"
+    },
+    {
+      "id": "surv-012",
+      "mk": "Каде е аеродромот?",
+      "en": "Where is the airport?",
+      "category": "navigation",
+      "audio": "/audio/survival/kade-e-aerodromot.mp3",
+      "phonetic": "KAH-deh eh ah-eh-roh-DROH-mot",
+      "urgency": "medium",
+      "notes": "For travelers"
+    },
+    {
+      "id": "surv-013",
+      "mk": "Сакам да резервирам соба.",
+      "en": "I want to book a room.",
+      "category": "accommodation",
+      "audio": "/audio/survival/sakam-da-rezerviram.mp3",
+      "phonetic": "SAH-kahm dah reh-zehr-VEE-rahm SOH-bah",
+      "urgency": "medium",
+      "notes": "Hotel booking"
+    },
+    {
+      "id": "surv-014",
+      "mk": "Еден билет до..., ве молам.",
+      "en": "One ticket to..., please.",
+      "category": "transport",
+      "audio": "/audio/survival/eden-bilet.mp3",
+      "phonetic": "EH-den bee-LET doh... veh MOH-lahm",
+      "urgency": "medium",
+      "notes": "For buying transport tickets"
+    },
+    {
+      "id": "surv-015",
+      "mk": "Се изгубив.",
+      "en": "I'm lost.",
+      "category": "navigation",
+      "audio": "/audio/survival/se-izgubiv.mp3",
+      "phonetic": "seh eez-GOO-beev",
+      "urgency": "high",
+      "notes": "Ask for directions after"
+    },
+    {
+      "id": "surv-016",
+      "mk": "Можете ли да ми помогнете?",
+      "en": "Can you help me?",
+      "category": "communication",
+      "audio": "/audio/survival/mozete-li-da-mi-pomognete.mp3",
+      "phonetic": "MOH-zheh-teh lee dah mee poh-MOHG-neh-teh",
+      "urgency": "high",
+      "notes": "Polite request for help"
+    },
+    {
+      "id": "surv-017",
+      "mk": "Чаша вода, ве молам.",
+      "en": "A glass of water, please.",
+      "category": "restaurant",
+      "audio": "/audio/survival/casa-voda.mp3",
+      "phonetic": "CHAH-shah VOH-dah veh MOH-lahm",
+      "urgency": "medium",
+      "notes": "Basic restaurant order"
+    },
+    {
+      "id": "surv-018",
+      "mk": "Јас сум вегетаријанец/ка.",
+      "en": "I am vegetarian.",
+      "category": "restaurant",
+      "audio": "/audio/survival/vegetarijanec.mp3",
+      "phonetic": "yahs soom veh-geh-tah-ree-YAH-nets/kah",
+      "urgency": "medium",
+      "notes": "-ец for male, -ка for female"
+    },
+    {
+      "id": "surv-019",
+      "mk": "Без месо, молам.",
+      "en": "Without meat, please.",
+      "category": "restaurant",
+      "audio": "/audio/survival/bez-meso.mp3",
+      "phonetic": "behz MEH-soh MOH-lahm",
+      "urgency": "medium",
+      "notes": "Dietary restriction"
+    },
+    {
+      "id": "surv-020",
+      "mk": "Се викам...",
+      "en": "My name is...",
+      "category": "introduction",
+      "audio": "/audio/survival/se-vikam.mp3",
+      "phonetic": "seh VEE-kahm...",
+      "urgency": "medium",
+      "notes": "Self-introduction"
+    },
+    {
+      "id": "surv-021",
+      "mk": "Јас сум од...",
+      "en": "I am from...",
+      "category": "introduction",
+      "audio": "/audio/survival/jas-sum-od.mp3",
+      "phonetic": "yahs soom ohd...",
+      "urgency": "medium",
+      "notes": "State your country"
+    },
+    {
+      "id": "surv-022",
+      "mk": "Каде е банкомат?",
+      "en": "Where is an ATM?",
+      "category": "money",
+      "audio": "/audio/survival/kade-e-bankomat.mp3",
+      "phonetic": "KAH-deh eh bahn-koh-MAHT",
+      "urgency": "medium",
+      "notes": "For getting cash"
+    },
+    {
+      "id": "surv-023",
+      "mk": "Примате ли картичка?",
+      "en": "Do you accept cards?",
+      "category": "money",
+      "audio": "/audio/survival/primate-li-karticka.mp3",
+      "phonetic": "PREE-mah-teh lee kahr-TEECH-kah",
+      "urgency": "medium",
+      "notes": "Credit/debit card payment"
+    },
+    {
+      "id": "surv-024",
+      "mk": "Wi-Fi лозинка?",
+      "en": "What's the Wi-Fi password?",
+      "category": "tech",
+      "audio": "/audio/survival/wifi-lozinka.mp3",
+      "phonetic": "wai-fai loh-ZEEN-kah",
+      "urgency": "low",
+      "notes": "Essential for connectivity"
+    },
+    {
+      "id": "surv-025",
+      "mk": "Може ли да ја полнам батеријата?",
+      "en": "Can I charge my phone?",
+      "category": "tech",
+      "audio": "/audio/survival/polnam-baterija.mp3",
+      "phonetic": "MOH-zheh lee dah yah POHL-nahm bah-teh-REE-yah-tah",
+      "urgency": "low",
+      "notes": "Ask to charge devices"
+    },
+    {
+      "id": "surv-026",
+      "mk": "Лево",
+      "en": "Left",
+      "category": "directions",
+      "audio": "/audio/survival/levo.mp3",
+      "phonetic": "LEH-voh",
+      "urgency": "high",
+      "notes": "Direction word"
+    },
+    {
+      "id": "surv-027",
+      "mk": "Десно",
+      "en": "Right",
+      "category": "directions",
+      "audio": "/audio/survival/desno.mp3",
+      "phonetic": "DEHS-noh",
+      "urgency": "high",
+      "notes": "Direction word"
+    },
+    {
+      "id": "surv-028",
+      "mk": "Право",
+      "en": "Straight",
+      "category": "directions",
+      "audio": "/audio/survival/pravo.mp3",
+      "phonetic": "PRAH-voh",
+      "urgency": "high",
+      "notes": "Direction word"
+    },
+    {
+      "id": "surv-029",
+      "mk": "Стоп",
+      "en": "Stop",
+      "category": "transport",
+      "audio": "/audio/survival/stop.mp3",
+      "phonetic": "stohp",
+      "urgency": "high",
+      "notes": "For taxi, bus, etc."
+    },
+    {
+      "id": "surv-030",
+      "mk": "Тука, ве молам.",
+      "en": "Here, please.",
+      "category": "transport",
+      "audio": "/audio/survival/tuka-ve-molam.mp3",
+      "phonetic": "TOO-kah veh MOH-lahm",
+      "urgency": "medium",
+      "notes": "Tell driver to stop here"
+    }
+  ],
+  "categories": {
+    "emergency": {
+      "en": "Emergency",
+      "mk": "Итни случаи",
+      "color": "#EF4444",
+      "icon": "alert-triangle"
+    },
+    "health": {
+      "en": "Health",
+      "mk": "Здравје",
+      "color": "#F97316",
+      "icon": "heart"
+    },
+    "navigation": {
+      "en": "Navigation",
+      "mk": "Навигација",
+      "color": "#3B82F6",
+      "icon": "map"
+    },
+    "communication": {
+      "en": "Communication",
+      "mk": "Комуникација",
+      "color": "#8B5CF6",
+      "icon": "message-circle"
+    },
+    "restaurant": {
+      "en": "Restaurant",
+      "mk": "Ресторан",
+      "color": "#10B981",
+      "icon": "utensils"
+    },
+    "shopping": {
+      "en": "Shopping",
+      "mk": "Купување",
+      "color": "#EC4899",
+      "icon": "shopping-bag"
+    },
+    "transport": {
+      "en": "Transport",
+      "mk": "Транспорт",
+      "color": "#06B6D4",
+      "icon": "bus"
+    },
+    "directions": {
+      "en": "Directions",
+      "mk": "Насоки",
+      "color": "#14B8A6",
+      "icon": "compass"
+    },
+    "money": {
+      "en": "Money",
+      "mk": "Пари",
+      "color": "#F59E0B",
+      "icon": "credit-card"
+    },
+    "tech": {
+      "en": "Technology",
+      "mk": "Технологија",
+      "color": "#6366F1",
+      "icon": "wifi"
+    },
+    "introduction": {
+      "en": "Introduction",
+      "mk": "Запознавање",
+      "color": "#A855F7",
+      "icon": "user"
+    },
+    "accommodation": {
+      "en": "Accommodation",
+      "mk": "Сместување",
+      "color": "#22C55E",
+      "icon": "home"
+    }
+  },
+  "emergencyNumbers": {
+    "police": "192",
+    "ambulance": "194",
+    "fire": "193",
+    "general": "112"
+  }
+}

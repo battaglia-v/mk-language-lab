@@ -1,0 +1,585 @@
+{
+  "meta": {
+    "id": "graded-readers-v1",
+    "title": "Graded Reading Library",
+    "titleMk": "Библиотека со градирани текстови",
+    "description": "Sentence-by-sentence reading practice at A1, A2, and B1 levels",
+    "version": "1.0.0",
+    "lastUpdated": "2025-01-01"
+  },
+  "texts": [
+    {
+      "id": "reader-a1-001",
+      "title": {
+        "mk": "Семејството на Ана",
+        "en": "Ana's Family"
+      },
+      "level": "A1",
+      "category": "family",
+      "estimatedMinutes": 3,
+      "wordCount": 85,
+      "xpReward": 20,
+      "sentences": [
+        {
+          "id": "s1",
+          "mk": "Јас се викам Ана.",
+          "en": "My name is Ana.",
+          "audio": "/audio/reader/a1-001/s1.mp3",
+          "vocabulary": [
+            {"word": "се викам", "meaning": "my name is", "pos": "verb phrase"}
+          ]
+        },
+        {
+          "id": "s2",
+          "mk": "Имам дваесет години.",
+          "en": "I am twenty years old.",
+          "audio": "/audio/reader/a1-001/s2.mp3",
+          "vocabulary": [
+            {"word": "дваесет", "meaning": "twenty", "pos": "number"},
+            {"word": "години", "meaning": "years", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s3",
+          "mk": "Живеам во Скопје со моето семејство.",
+          "en": "I live in Skopje with my family.",
+          "audio": "/audio/reader/a1-001/s3.mp3",
+          "vocabulary": [
+            {"word": "живеам", "meaning": "I live", "pos": "verb"},
+            {"word": "семејство", "meaning": "family", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s4",
+          "mk": "Моите родители се Марко и Лена.",
+          "en": "My parents are Marko and Lena.",
+          "audio": "/audio/reader/a1-001/s4.mp3",
+          "vocabulary": [
+            {"word": "родители", "meaning": "parents", "pos": "noun"},
+            {"word": "моите", "meaning": "my (plural)", "pos": "possessive"}
+          ]
+        },
+        {
+          "id": "s5",
+          "mk": "Татко ми е доктор.",
+          "en": "My father is a doctor.",
+          "audio": "/audio/reader/a1-001/s5.mp3",
+          "vocabulary": [
+            {"word": "татко", "meaning": "father", "pos": "noun"},
+            {"word": "доктор", "meaning": "doctor", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s6",
+          "mk": "Мајка ми е учителка.",
+          "en": "My mother is a teacher.",
+          "audio": "/audio/reader/a1-001/s6.mp3",
+          "vocabulary": [
+            {"word": "мајка", "meaning": "mother", "pos": "noun"},
+            {"word": "учителка", "meaning": "teacher (f)", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s7",
+          "mk": "Имам еден брат и една сестра.",
+          "en": "I have one brother and one sister.",
+          "audio": "/audio/reader/a1-001/s7.mp3",
+          "vocabulary": [
+            {"word": "брат", "meaning": "brother", "pos": "noun"},
+            {"word": "сестра", "meaning": "sister", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s8",
+          "mk": "Мојот брат се вика Петар.",
+          "en": "My brother's name is Petar.",
+          "audio": "/audio/reader/a1-001/s8.mp3",
+          "vocabulary": [
+            {"word": "мојот", "meaning": "my (masc.)", "pos": "possessive"}
+          ]
+        },
+        {
+          "id": "s9",
+          "mk": "Тој има осумнаесет години.",
+          "en": "He is eighteen years old.",
+          "audio": "/audio/reader/a1-001/s9.mp3",
+          "vocabulary": [
+            {"word": "осумнаесет", "meaning": "eighteen", "pos": "number"}
+          ]
+        },
+        {
+          "id": "s10",
+          "mk": "Мојата сестра се вика Марија.",
+          "en": "My sister's name is Marija.",
+          "audio": "/audio/reader/a1-001/s10.mp3",
+          "vocabulary": [
+            {"word": "мојата", "meaning": "my (fem.)", "pos": "possessive"}
+          ]
+        },
+        {
+          "id": "s11",
+          "mk": "Таа има петнаесет години.",
+          "en": "She is fifteen years old.",
+          "audio": "/audio/reader/a1-001/s11.mp3",
+          "vocabulary": [
+            {"word": "петнаесет", "meaning": "fifteen", "pos": "number"}
+          ]
+        },
+        {
+          "id": "s12",
+          "mk": "Ние сме среќно семејство.",
+          "en": "We are a happy family.",
+          "audio": "/audio/reader/a1-001/s12.mp3",
+          "vocabulary": [
+            {"word": "среќно", "meaning": "happy", "pos": "adjective"}
+          ]
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "question": {
+            "mk": "Колку години има Ана?",
+            "en": "How old is Ana?"
+          },
+          "options": [
+            {"mk": "18", "correct": false},
+            {"mk": "20", "correct": true},
+            {"mk": "15", "correct": false}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Што работи татко ѝ на Ана?",
+            "en": "What does Ana's father do?"
+          },
+          "options": [
+            {"mk": "Учител", "correct": false},
+            {"mk": "Доктор", "correct": true},
+            {"mk": "Студент", "correct": false}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reader-a2-001",
+      "title": {
+        "mk": "Еден ден во Охрид",
+        "en": "A Day in Ohrid"
+      },
+      "level": "A2",
+      "category": "travel",
+      "estimatedMinutes": 5,
+      "wordCount": 130,
+      "xpReward": 35,
+      "sentences": [
+        {
+          "id": "s1",
+          "mk": "Минатата сабота отидов во Охрид со мојата пријателка Јана.",
+          "en": "Last Saturday I went to Ohrid with my friend Jana.",
+          "audio": "/audio/reader/a2-001/s1.mp3",
+          "vocabulary": [
+            {"word": "минатата", "meaning": "last (fem.)", "pos": "adjective"},
+            {"word": "сабота", "meaning": "Saturday", "pos": "noun"},
+            {"word": "отидов", "meaning": "I went", "pos": "verb (past)"}
+          ],
+          "grammarNote": "Past tense: отидов (perfective of одам)"
+        },
+        {
+          "id": "s2",
+          "mk": "Тргнавме рано наутро со автобус.",
+          "en": "We left early in the morning by bus.",
+          "audio": "/audio/reader/a2-001/s2.mp3",
+          "vocabulary": [
+            {"word": "тргнавме", "meaning": "we left", "pos": "verb (past)"},
+            {"word": "рано", "meaning": "early", "pos": "adverb"},
+            {"word": "наутро", "meaning": "in the morning", "pos": "adverb"}
+          ]
+        },
+        {
+          "id": "s3",
+          "mk": "Патувањето траеше околу три часа.",
+          "en": "The journey lasted about three hours.",
+          "audio": "/audio/reader/a2-001/s3.mp3",
+          "vocabulary": [
+            {"word": "патувањето", "meaning": "the journey", "pos": "noun"},
+            {"word": "траеше", "meaning": "lasted", "pos": "verb (past)"},
+            {"word": "околу", "meaning": "about/around", "pos": "preposition"}
+          ]
+        },
+        {
+          "id": "s4",
+          "mk": "Кога пристигнавме, времето беше прекрасно.",
+          "en": "When we arrived, the weather was wonderful.",
+          "audio": "/audio/reader/a2-001/s4.mp3",
+          "vocabulary": [
+            {"word": "кога", "meaning": "when", "pos": "conjunction"},
+            {"word": "пристигнавме", "meaning": "we arrived", "pos": "verb (past)"},
+            {"word": "прекрасно", "meaning": "wonderful", "pos": "adjective"}
+          ]
+        },
+        {
+          "id": "s5",
+          "mk": "Прво отидовме да го видиме Охридското Езеро.",
+          "en": "First we went to see Lake Ohrid.",
+          "audio": "/audio/reader/a2-001/s5.mp3",
+          "vocabulary": [
+            {"word": "прво", "meaning": "first", "pos": "adverb"},
+            {"word": "езеро", "meaning": "lake", "pos": "noun"}
+          ],
+          "grammarNote": "Охридското - definite adjective form"
+        },
+        {
+          "id": "s6",
+          "mk": "Водата беше чиста и сина.",
+          "en": "The water was clean and blue.",
+          "audio": "/audio/reader/a2-001/s6.mp3",
+          "vocabulary": [
+            {"word": "вода", "meaning": "water", "pos": "noun"},
+            {"word": "чиста", "meaning": "clean", "pos": "adjective"},
+            {"word": "сина", "meaning": "blue", "pos": "adjective"}
+          ]
+        },
+        {
+          "id": "s7",
+          "mk": "Потоа прошетавме низ стариот дел од градот.",
+          "en": "Then we walked through the old part of the city.",
+          "audio": "/audio/reader/a2-001/s7.mp3",
+          "vocabulary": [
+            {"word": "потоа", "meaning": "then/after", "pos": "adverb"},
+            {"word": "прошетавме", "meaning": "we walked", "pos": "verb (past)"},
+            {"word": "стариот", "meaning": "the old", "pos": "adjective (def)"}
+          ]
+        },
+        {
+          "id": "s8",
+          "mk": "Ја посетивме црквата Свети Јован Канео.",
+          "en": "We visited the Church of St. John at Kaneo.",
+          "audio": "/audio/reader/a2-001/s8.mp3",
+          "vocabulary": [
+            {"word": "посетивме", "meaning": "we visited", "pos": "verb (past)"},
+            {"word": "црквата", "meaning": "the church", "pos": "noun (def)"}
+          ],
+          "culturalNote": "Iconic 13th-century church overlooking the lake"
+        },
+        {
+          "id": "s9",
+          "mk": "Гледката оттаму беше неверојатна.",
+          "en": "The view from there was incredible.",
+          "audio": "/audio/reader/a2-001/s9.mp3",
+          "vocabulary": [
+            {"word": "гледката", "meaning": "the view", "pos": "noun (def)"},
+            {"word": "оттаму", "meaning": "from there", "pos": "adverb"},
+            {"word": "неверојатна", "meaning": "incredible", "pos": "adjective"}
+          ]
+        },
+        {
+          "id": "s10",
+          "mk": "За ручек јадевме охридска пастрмка.",
+          "en": "For lunch we ate Ohrid trout.",
+          "audio": "/audio/reader/a2-001/s10.mp3",
+          "vocabulary": [
+            {"word": "ручек", "meaning": "lunch", "pos": "noun"},
+            {"word": "јадевме", "meaning": "we ate", "pos": "verb (past)"},
+            {"word": "пастрмка", "meaning": "trout", "pos": "noun"}
+          ],
+          "culturalNote": "Ohrid trout is a famous local specialty"
+        },
+        {
+          "id": "s11",
+          "mk": "Рибата беше многу вкусна!",
+          "en": "The fish was very delicious!",
+          "audio": "/audio/reader/a2-001/s11.mp3",
+          "vocabulary": [
+            {"word": "рибата", "meaning": "the fish", "pos": "noun (def)"},
+            {"word": "вкусна", "meaning": "delicious", "pos": "adjective"}
+          ]
+        },
+        {
+          "id": "s12",
+          "mk": "Навечер се вративме дома, уморни но среќни.",
+          "en": "In the evening we returned home, tired but happy.",
+          "audio": "/audio/reader/a2-001/s12.mp3",
+          "vocabulary": [
+            {"word": "навечер", "meaning": "in the evening", "pos": "adverb"},
+            {"word": "се вративме", "meaning": "we returned", "pos": "verb (past)"},
+            {"word": "уморни", "meaning": "tired", "pos": "adjective"}
+          ]
+        },
+        {
+          "id": "s13",
+          "mk": "Сакам да се вратам повторно!",
+          "en": "I want to go back again!",
+          "audio": "/audio/reader/a2-001/s13.mp3",
+          "vocabulary": [
+            {"word": "повторно", "meaning": "again", "pos": "adverb"}
+          ]
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "question": {
+            "mk": "Колку време траеше патувањето?",
+            "en": "How long did the journey take?"
+          },
+          "options": [
+            {"mk": "Два часа", "correct": false},
+            {"mk": "Три часа", "correct": true},
+            {"mk": "Четири часа", "correct": false}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Што јадеа за ручек?",
+            "en": "What did they eat for lunch?"
+          },
+          "options": [
+            {"mk": "Скара", "correct": false},
+            {"mk": "Пастрмка", "correct": true},
+            {"mk": "Пица", "correct": false}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reader-b1-001",
+      "title": {
+        "mk": "Македонските традиции за Велигден",
+        "en": "Macedonian Easter Traditions"
+      },
+      "level": "B1",
+      "category": "culture",
+      "estimatedMinutes": 7,
+      "wordCount": 180,
+      "xpReward": 50,
+      "sentences": [
+        {
+          "id": "s1",
+          "mk": "Велигден е еден од најважните празници во Македонија.",
+          "en": "Easter is one of the most important holidays in Macedonia.",
+          "audio": "/audio/reader/b1-001/s1.mp3",
+          "vocabulary": [
+            {"word": "најважните", "meaning": "the most important", "pos": "superlative adj"},
+            {"word": "празници", "meaning": "holidays", "pos": "noun"}
+          ],
+          "grammarNote": "Superlative: нај- + adjective + definite ending"
+        },
+        {
+          "id": "s2",
+          "mk": "Се слави според православниот календар, обично во април или мај.",
+          "en": "It is celebrated according to the Orthodox calendar, usually in April or May.",
+          "audio": "/audio/reader/b1-001/s2.mp3",
+          "vocabulary": [
+            {"word": "се слави", "meaning": "is celebrated", "pos": "passive verb"},
+            {"word": "според", "meaning": "according to", "pos": "preposition"},
+            {"word": "православниот", "meaning": "the Orthodox", "pos": "adjective (def)"}
+          ]
+        },
+        {
+          "id": "s3",
+          "mk": "Подготовките почнуваат со Великиот Пост, четириесет дена пред Велигден.",
+          "en": "Preparations begin with Lent, forty days before Easter.",
+          "audio": "/audio/reader/b1-001/s3.mp3",
+          "vocabulary": [
+            {"word": "подготовките", "meaning": "the preparations", "pos": "noun (def)"},
+            {"word": "почнуваат", "meaning": "begin", "pos": "verb"},
+            {"word": "пост", "meaning": "fast/Lent", "pos": "noun"}
+          ],
+          "culturalNote": "Великиот Пост = Great Lent, 40-day fasting period"
+        },
+        {
+          "id": "s4",
+          "mk": "За време на постот, верниците не јадат месо, млечни производи и јајца.",
+          "en": "During the fast, believers do not eat meat, dairy products, or eggs.",
+          "audio": "/audio/reader/b1-001/s4.mp3",
+          "vocabulary": [
+            {"word": "верниците", "meaning": "the believers", "pos": "noun (def)"},
+            {"word": "млечни производи", "meaning": "dairy products", "pos": "noun phrase"}
+          ]
+        },
+        {
+          "id": "s5",
+          "mk": "Во Велика Сабота, семејствата се собираат за да бојадисуваат јајца.",
+          "en": "On Holy Saturday, families gather to dye eggs.",
+          "audio": "/audio/reader/b1-001/s5.mp3",
+          "vocabulary": [
+            {"word": "се собираат", "meaning": "gather", "pos": "reflexive verb"},
+            {"word": "бојадисуваат", "meaning": "dye/paint", "pos": "verb"}
+          ]
+        },
+        {
+          "id": "s6",
+          "mk": "Првото јајце секогаш се бојадисува во црвена боја.",
+          "en": "The first egg is always dyed red.",
+          "audio": "/audio/reader/b1-001/s6.mp3",
+          "vocabulary": [
+            {"word": "првото", "meaning": "the first (neut)", "pos": "ordinal (def)"},
+            {"word": "боја", "meaning": "color", "pos": "noun"}
+          ],
+          "culturalNote": "Red symbolizes the blood of Christ"
+        },
+        {
+          "id": "s7",
+          "mk": "Ова јајце се чува во куќата цела година како заштита.",
+          "en": "This egg is kept in the house all year as protection.",
+          "audio": "/audio/reader/b1-001/s7.mp3",
+          "vocabulary": [
+            {"word": "се чува", "meaning": "is kept", "pos": "passive verb"},
+            {"word": "заштита", "meaning": "protection", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s8",
+          "mk": "На Велигден, по полноќната литургија, луѓето се поздравуваат со зборовите \"Христос воскресе!\"",
+          "en": "On Easter, after the midnight liturgy, people greet each other with the words \"Christ is risen!\"",
+          "audio": "/audio/reader/b1-001/s8.mp3",
+          "vocabulary": [
+            {"word": "полноќната", "meaning": "the midnight", "pos": "adjective (def)"},
+            {"word": "литургија", "meaning": "liturgy", "pos": "noun"},
+            {"word": "се поздравуваат", "meaning": "greet each other", "pos": "reciprocal verb"}
+          ]
+        },
+        {
+          "id": "s9",
+          "mk": "Одговорот е \"Навистина воскресе!\"",
+          "en": "The response is \"Truly He is risen!\"",
+          "audio": "/audio/reader/b1-001/s9.mp3",
+          "vocabulary": [
+            {"word": "одговорот", "meaning": "the response", "pos": "noun (def)"},
+            {"word": "навистина", "meaning": "truly", "pos": "adverb"}
+          ]
+        },
+        {
+          "id": "s10",
+          "mk": "Потоа следува празнична трпеза со традиционална храна.",
+          "en": "Then follows a festive table with traditional food.",
+          "audio": "/audio/reader/b1-001/s10.mp3",
+          "vocabulary": [
+            {"word": "празнична", "meaning": "festive", "pos": "adjective"},
+            {"word": "трпеза", "meaning": "table/feast", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s11",
+          "mk": "Најпопуларните јадења се печено јагне и велигденски колач.",
+          "en": "The most popular dishes are roasted lamb and Easter bread.",
+          "audio": "/audio/reader/b1-001/s11.mp3",
+          "vocabulary": [
+            {"word": "најпопуларните", "meaning": "the most popular", "pos": "superlative adj (def)"},
+            {"word": "јагне", "meaning": "lamb", "pos": "noun"},
+            {"word": "колач", "meaning": "bread/cake", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s12",
+          "mk": "Децата ги кршат јајцата едно со друго - победникот е оној чие јајце останува цело.",
+          "en": "Children crack eggs against each other - the winner is the one whose egg stays whole.",
+          "audio": "/audio/reader/b1-001/s12.mp3",
+          "vocabulary": [
+            {"word": "кршат", "meaning": "crack/break", "pos": "verb"},
+            {"word": "победникот", "meaning": "the winner", "pos": "noun (def)"},
+            {"word": "цело", "meaning": "whole", "pos": "adjective"}
+          ],
+          "culturalNote": "Traditional Easter game played by all ages"
+        },
+        {
+          "id": "s13",
+          "mk": "Овие традиции ги поврзуваат генерациите и ја чуваат македонската култура жива.",
+          "en": "These traditions connect generations and keep Macedonian culture alive.",
+          "audio": "/audio/reader/b1-001/s13.mp3",
+          "vocabulary": [
+            {"word": "поврзуваат", "meaning": "connect", "pos": "verb"},
+            {"word": "генерациите", "meaning": "the generations", "pos": "noun (def)"},
+            {"word": "жива", "meaning": "alive", "pos": "adjective"}
+          ]
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "question": {
+            "mk": "Колку дена трае Великиот Пост?",
+            "en": "How many days does Lent last?"
+          },
+          "options": [
+            {"mk": "30 дена", "correct": false},
+            {"mk": "40 дена", "correct": true},
+            {"mk": "50 дена", "correct": false}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Во која боја се бојадисува првото јајце?",
+            "en": "What color is the first egg dyed?"
+          },
+          "options": [
+            {"mk": "Сина", "correct": false},
+            {"mk": "Зелена", "correct": false},
+            {"mk": "Црвена", "correct": true}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Што е традиционалното велигденско јадење?",
+            "en": "What is the traditional Easter dish?"
+          },
+          "options": [
+            {"mk": "Пастрмка", "correct": false},
+            {"mk": "Јагне", "correct": true},
+            {"mk": "Пилешко", "correct": false}
+          ]
+        }
+      ]
+    }
+  ],
+  "levels": {
+    "A1": {
+      "description": "Beginner - Simple sentences, basic vocabulary",
+      "descriptionMk": "Почетник - Едноставни реченици, основен вокабулар",
+      "wordCountRange": "50-100",
+      "color": "#10B981"
+    },
+    "A2": {
+      "description": "Elementary - Connected sentences, common expressions",
+      "descriptionMk": "Основен - Поврзани реченици, чести изрази",
+      "wordCountRange": "100-150",
+      "color": "#3B82F6"
+    },
+    "B1": {
+      "description": "Intermediate - Complex sentences, abstract topics",
+      "descriptionMk": "Среден - Сложени реченици, апстрактни теми",
+      "wordCountRange": "150-250",
+      "color": "#8B5CF6"
+    }
+  },
+  "categories": {
+    "family": {
+      "en": "Family",
+      "mk": "Семејство",
+      "icon": "users"
+    },
+    "travel": {
+      "en": "Travel",
+      "mk": "Патување",
+      "icon": "plane"
+    },
+    "culture": {
+      "en": "Culture",
+      "mk": "Култура",
+      "icon": "landmark"
+    },
+    "food": {
+      "en": "Food",
+      "mk": "Храна",
+      "icon": "utensils"
+    },
+    "daily-life": {
+      "en": "Daily Life",
+      "mk": "Секојдневие",
+      "icon": "sun"
+    },
+    "nature": {
+      "en": "Nature",
+      "mk": "Природа",
+      "icon": "tree"
+    }
+  }
+}

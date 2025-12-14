@@ -1,0 +1,805 @@
+{
+  "meta": {
+    "id": "core-verbs-v1",
+    "title": "Core Verbs",
+    "titleMk": "Основни глаголи",
+    "description": "25 most essential Macedonian verbs with conjugations",
+    "descriptionMk": "25-те најважни македонски глаголи со конјугации",
+    "level": "A1-A2",
+    "category": "grammar",
+    "version": "1.0.0",
+    "lastUpdated": "2025-01-01"
+  },
+  "items": [
+    {
+      "id": "verb-001",
+      "infinitive": {
+        "mk": "сум",
+        "en": "to be"
+      },
+      "type": "irregular",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "сум",
+        "ti": "си",
+        "toj": "е",
+        "nie": "сме",
+        "vie": "сте",
+        "tie": "се"
+      },
+      "past": {
+        "jas": "бев",
+        "ti": "беше",
+        "toj": "беше",
+        "nie": "бевме",
+        "vie": "бевте",
+        "tie": "беа"
+      },
+      "example": {
+        "mk": "Јас сум студент.",
+        "en": "I am a student."
+      },
+      "notes": "Most important verb; used in many constructions"
+    },
+    {
+      "id": "verb-002",
+      "infinitive": {
+        "mk": "имам",
+        "en": "to have"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "имам",
+        "ti": "имаш",
+        "toj": "има",
+        "nie": "имаме",
+        "vie": "имате",
+        "tie": "имаат"
+      },
+      "past": {
+        "jas": "имав",
+        "ti": "имаше",
+        "toj": "имаше",
+        "nie": "имавме",
+        "vie": "имавте",
+        "tie": "имаа"
+      },
+      "example": {
+        "mk": "Имам две деца.",
+        "en": "I have two children."
+      },
+      "notes": "Also used in 'има' = 'there is/are'"
+    },
+    {
+      "id": "verb-003",
+      "infinitive": {
+        "mk": "сакам",
+        "en": "to want / to love"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "сакам",
+        "ti": "сакаш",
+        "toj": "сака",
+        "nie": "сакаме",
+        "vie": "сакате",
+        "tie": "сакаат"
+      },
+      "past": {
+        "jas": "сакав",
+        "ti": "сакаше",
+        "toj": "сакаше",
+        "nie": "сакавме",
+        "vie": "сакавте",
+        "tie": "сакаа"
+      },
+      "example": {
+        "mk": "Сакам да учам македонски.",
+        "en": "I want to learn Macedonian."
+      },
+      "notes": "Context determines 'want' vs 'love'"
+    },
+    {
+      "id": "verb-004",
+      "infinitive": {
+        "mk": "можам",
+        "en": "to be able to / can"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "можам",
+        "ti": "можеш",
+        "toj": "може",
+        "nie": "можеме",
+        "vie": "можете",
+        "tie": "можат"
+      },
+      "past": {
+        "jas": "можев",
+        "ti": "можеше",
+        "toj": "можеше",
+        "nie": "можевме",
+        "vie": "можевте",
+        "tie": "можеа"
+      },
+      "example": {
+        "mk": "Можам да зборувам малку.",
+        "en": "I can speak a little."
+      },
+      "notes": "Modal verb for ability"
+    },
+    {
+      "id": "verb-005",
+      "infinitive": {
+        "mk": "одам",
+        "en": "to go"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "одам",
+        "ti": "одиш",
+        "toj": "оди",
+        "nie": "одиме",
+        "vie": "одите",
+        "tie": "одат"
+      },
+      "past": {
+        "jas": "одев",
+        "ti": "одеше",
+        "toj": "одеше",
+        "nie": "одевме",
+        "vie": "одевте",
+        "tie": "одеа"
+      },
+      "example": {
+        "mk": "Одам на работа.",
+        "en": "I'm going to work."
+      },
+      "notes": "Perfective pair: отидам"
+    },
+    {
+      "id": "verb-006",
+      "infinitive": {
+        "mk": "правам",
+        "en": "to do / to make"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "правам",
+        "ti": "правиш",
+        "toj": "прави",
+        "nie": "правиме",
+        "vie": "правите",
+        "tie": "прават"
+      },
+      "past": {
+        "jas": "правев",
+        "ti": "правеше",
+        "toj": "правеше",
+        "nie": "правевме",
+        "vie": "правевте",
+        "tie": "правеа"
+      },
+      "example": {
+        "mk": "Што правиш?",
+        "en": "What are you doing?"
+      },
+      "notes": "Very common in daily speech"
+    },
+    {
+      "id": "verb-007",
+      "infinitive": {
+        "mk": "знам",
+        "en": "to know (fact)"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "знам",
+        "ti": "знаеш",
+        "toj": "знае",
+        "nie": "знаеме",
+        "vie": "знаете",
+        "tie": "знаат"
+      },
+      "past": {
+        "jas": "знаев",
+        "ti": "знаеше",
+        "toj": "знаеше",
+        "nie": "знаевме",
+        "vie": "знаевте",
+        "tie": "знаеа"
+      },
+      "example": {
+        "mk": "Не знам.",
+        "en": "I don't know."
+      },
+      "notes": "Use 'познавам' for knowing people"
+    },
+    {
+      "id": "verb-008",
+      "infinitive": {
+        "mk": "гледам",
+        "en": "to see / to watch"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "гледам",
+        "ti": "гледаш",
+        "toj": "гледа",
+        "nie": "гледаме",
+        "vie": "гледате",
+        "tie": "гледаат"
+      },
+      "past": {
+        "jas": "гледав",
+        "ti": "гледаше",
+        "toj": "гледаше",
+        "nie": "гледавме",
+        "vie": "гледавте",
+        "tie": "гледаа"
+      },
+      "example": {
+        "mk": "Гледам филм.",
+        "en": "I'm watching a movie."
+      },
+      "notes": "Perfective pair: видам"
+    },
+    {
+      "id": "verb-009",
+      "infinitive": {
+        "mk": "зборувам",
+        "en": "to speak / to talk"
+      },
+      "type": "regular-uva",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "зборувам",
+        "ti": "зборуваш",
+        "toj": "зборува",
+        "nie": "зборуваме",
+        "vie": "зборувате",
+        "tie": "зборуваат"
+      },
+      "past": {
+        "jas": "зборував",
+        "ti": "зборуваше",
+        "toj": "зборуваше",
+        "nie": "зборувавме",
+        "vie": "зборувавте",
+        "tie": "зборуваа"
+      },
+      "example": {
+        "mk": "Зборувам македонски.",
+        "en": "I speak Macedonian."
+      },
+      "notes": "-ува verbs are very common"
+    },
+    {
+      "id": "verb-010",
+      "infinitive": {
+        "mk": "јадам",
+        "en": "to eat"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "јадам",
+        "ti": "јадеш",
+        "toj": "јаде",
+        "nie": "јадеме",
+        "vie": "јадете",
+        "tie": "јадат"
+      },
+      "past": {
+        "jas": "јадев",
+        "ti": "јадеше",
+        "toj": "јадеше",
+        "nie": "јадевме",
+        "vie": "јадевте",
+        "tie": "јадеа"
+      },
+      "example": {
+        "mk": "Јадам појадок.",
+        "en": "I'm eating breakfast."
+      },
+      "notes": "Perfective pair: изедам"
+    },
+    {
+      "id": "verb-011",
+      "infinitive": {
+        "mk": "пијам",
+        "en": "to drink"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "пијам",
+        "ti": "пиеш",
+        "toj": "пие",
+        "nie": "пиеме",
+        "vie": "пиете",
+        "tie": "пијат"
+      },
+      "past": {
+        "jas": "пиев",
+        "ti": "пиеше",
+        "toj": "пиеше",
+        "nie": "пиевме",
+        "vie": "пиевте",
+        "tie": "пиеа"
+      },
+      "example": {
+        "mk": "Пијам кафе.",
+        "en": "I'm drinking coffee."
+      },
+      "notes": "Perfective pair: испијам"
+    },
+    {
+      "id": "verb-012",
+      "infinitive": {
+        "mk": "работам",
+        "en": "to work"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "работам",
+        "ti": "работиш",
+        "toj": "работи",
+        "nie": "работиме",
+        "vie": "работите",
+        "tie": "работат"
+      },
+      "past": {
+        "jas": "работев",
+        "ti": "работеше",
+        "toj": "работеше",
+        "nie": "работевме",
+        "vie": "работевте",
+        "tie": "работеа"
+      },
+      "example": {
+        "mk": "Работам од дома.",
+        "en": "I work from home."
+      },
+      "notes": "Common professional verb"
+    },
+    {
+      "id": "verb-013",
+      "infinitive": {
+        "mk": "живеам",
+        "en": "to live"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "живеам",
+        "ti": "живееш",
+        "toj": "живее",
+        "nie": "живееме",
+        "vie": "живеете",
+        "tie": "живеат"
+      },
+      "past": {
+        "jas": "живеев",
+        "ti": "живееше",
+        "toj": "живееше",
+        "nie": "живеевме",
+        "vie": "живеевте",
+        "tie": "живееа"
+      },
+      "example": {
+        "mk": "Живеам во Скопје.",
+        "en": "I live in Skopje."
+      },
+      "notes": "For residence, not 'to be alive'"
+    },
+    {
+      "id": "verb-014",
+      "infinitive": {
+        "mk": "учам",
+        "en": "to learn / to study"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "учам",
+        "ti": "учиш",
+        "toj": "учи",
+        "nie": "учиме",
+        "vie": "учите",
+        "tie": "учат"
+      },
+      "past": {
+        "jas": "учев",
+        "ti": "учеше",
+        "toj": "учеше",
+        "nie": "учевме",
+        "vie": "учевте",
+        "tie": "учеа"
+      },
+      "example": {
+        "mk": "Учам јазици.",
+        "en": "I'm learning languages."
+      },
+      "notes": "Perfective pair: научам"
+    },
+    {
+      "id": "verb-015",
+      "infinitive": {
+        "mk": "читам",
+        "en": "to read"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "читам",
+        "ti": "читаш",
+        "toj": "чита",
+        "nie": "читаме",
+        "vie": "читате",
+        "tie": "читаат"
+      },
+      "past": {
+        "jas": "читав",
+        "ti": "читаше",
+        "toj": "читаше",
+        "nie": "читавме",
+        "vie": "читавте",
+        "tie": "читаа"
+      },
+      "example": {
+        "mk": "Читам книга.",
+        "en": "I'm reading a book."
+      },
+      "notes": "Perfective pair: прочитам"
+    },
+    {
+      "id": "verb-016",
+      "infinitive": {
+        "mk": "пишувам",
+        "en": "to write"
+      },
+      "type": "regular-uva",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "пишувам",
+        "ti": "пишуваш",
+        "toj": "пишува",
+        "nie": "пишуваме",
+        "vie": "пишувате",
+        "tie": "пишуваат"
+      },
+      "past": {
+        "jas": "пишував",
+        "ti": "пишуваше",
+        "toj": "пишуваше",
+        "nie": "пишувавме",
+        "vie": "пишувавте",
+        "tie": "пишуваа"
+      },
+      "example": {
+        "mk": "Пишувам писмо.",
+        "en": "I'm writing a letter."
+      },
+      "notes": "Perfective pair: напишам"
+    },
+    {
+      "id": "verb-017",
+      "infinitive": {
+        "mk": "слушам",
+        "en": "to listen / to hear"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "слушам",
+        "ti": "слушаш",
+        "toj": "слуша",
+        "nie": "слушаме",
+        "vie": "слушате",
+        "tie": "слушаат"
+      },
+      "past": {
+        "jas": "слушав",
+        "ti": "слушаше",
+        "toj": "слушаше",
+        "nie": "слушавме",
+        "vie": "слушавте",
+        "tie": "слушаа"
+      },
+      "example": {
+        "mk": "Слушам музика.",
+        "en": "I'm listening to music."
+      },
+      "notes": "Context determines listen vs hear"
+    },
+    {
+      "id": "verb-018",
+      "infinitive": {
+        "mk": "доаѓам",
+        "en": "to come"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "доаѓам",
+        "ti": "доаѓаш",
+        "toj": "доаѓа",
+        "nie": "доаѓаме",
+        "vie": "доаѓате",
+        "tie": "доаѓаат"
+      },
+      "past": {
+        "jas": "доаѓав",
+        "ti": "доаѓаше",
+        "toj": "доаѓаше",
+        "nie": "доаѓавме",
+        "vie": "доаѓавте",
+        "tie": "доаѓаа"
+      },
+      "example": {
+        "mk": "Доаѓам утре.",
+        "en": "I'm coming tomorrow."
+      },
+      "notes": "Perfective pair: дојдам"
+    },
+    {
+      "id": "verb-019",
+      "infinitive": {
+        "mk": "мислам",
+        "en": "to think"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "мислам",
+        "ti": "мислиш",
+        "toj": "мисли",
+        "nie": "мислиме",
+        "vie": "мислите",
+        "tie": "мислат"
+      },
+      "past": {
+        "jas": "мислев",
+        "ti": "мислеше",
+        "toj": "мислеше",
+        "nie": "мислевме",
+        "vie": "мислевте",
+        "tie": "мислеа"
+      },
+      "example": {
+        "mk": "Мислам дека е добро.",
+        "en": "I think it's good."
+      },
+      "notes": "Use with 'дека' for opinions"
+    },
+    {
+      "id": "verb-020",
+      "infinitive": {
+        "mk": "разбирам",
+        "en": "to understand"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "разбирам",
+        "ti": "разбираш",
+        "toj": "разбира",
+        "nie": "разбираме",
+        "vie": "разбирате",
+        "tie": "разбираат"
+      },
+      "past": {
+        "jas": "разбирав",
+        "ti": "разбираше",
+        "toj": "разбираше",
+        "nie": "разбиравме",
+        "vie": "разбиравте",
+        "tie": "разбираа"
+      },
+      "example": {
+        "mk": "Не разбирам.",
+        "en": "I don't understand."
+      },
+      "notes": "Essential for learners"
+    },
+    {
+      "id": "verb-021",
+      "infinitive": {
+        "mk": "сакам",
+        "en": "to love"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "сакам",
+        "ti": "сакаш",
+        "toj": "сака",
+        "nie": "сакаме",
+        "vie": "сакате",
+        "tie": "сакаат"
+      },
+      "past": {
+        "jas": "сакав",
+        "ti": "сакаше",
+        "toj": "сакаше",
+        "nie": "сакавме",
+        "vie": "сакавте",
+        "tie": "сакаа"
+      },
+      "example": {
+        "mk": "Те сакам.",
+        "en": "I love you."
+      },
+      "notes": "Same verb as 'to want', context matters"
+    },
+    {
+      "id": "verb-022",
+      "infinitive": {
+        "mk": "земам",
+        "en": "to take"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "земам",
+        "ti": "земаш",
+        "toj": "зема",
+        "nie": "земаме",
+        "vie": "земате",
+        "tie": "земаат"
+      },
+      "past": {
+        "jas": "земав",
+        "ti": "земаше",
+        "toj": "земаше",
+        "nie": "земавме",
+        "vie": "земавте",
+        "tie": "земаа"
+      },
+      "example": {
+        "mk": "Земам такси.",
+        "en": "I'm taking a taxi."
+      },
+      "notes": "Perfective pair: земам (context)"
+    },
+    {
+      "id": "verb-023",
+      "infinitive": {
+        "mk": "давам",
+        "en": "to give"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "давам",
+        "ti": "даваш",
+        "toj": "дава",
+        "nie": "даваме",
+        "vie": "давате",
+        "tie": "даваат"
+      },
+      "past": {
+        "jas": "давав",
+        "ti": "даваше",
+        "toj": "даваше",
+        "nie": "давaвме",
+        "vie": "давaвте",
+        "tie": "даваа"
+      },
+      "example": {
+        "mk": "Ти го давам.",
+        "en": "I'm giving it to you."
+      },
+      "notes": "Perfective pair: дадам"
+    },
+    {
+      "id": "verb-024",
+      "infinitive": {
+        "mk": "стојам",
+        "en": "to stand / to stay"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "стојам",
+        "ti": "стоиш",
+        "toj": "стои",
+        "nie": "стоиме",
+        "vie": "стоите",
+        "tie": "стојат"
+      },
+      "past": {
+        "jas": "стоев",
+        "ti": "стоеше",
+        "toj": "стоеше",
+        "nie": "стоевме",
+        "vie": "стоевте",
+        "tie": "стоеа"
+      },
+      "example": {
+        "mk": "Стојам тука.",
+        "en": "I'm standing here."
+      },
+      "notes": "Can mean stay in place"
+    },
+    {
+      "id": "verb-025",
+      "infinitive": {
+        "mk": "седам",
+        "en": "to sit"
+      },
+      "type": "regular-a",
+      "aspect": "imperfective",
+      "present": {
+        "jas": "седам",
+        "ti": "седиш",
+        "toj": "седи",
+        "nie": "седиме",
+        "vie": "седите",
+        "tie": "седат"
+      },
+      "past": {
+        "jas": "седев",
+        "ti": "седеше",
+        "toj": "седеше",
+        "nie": "седевме",
+        "vie": "седевте",
+        "tie": "седеа"
+      },
+      "example": {
+        "mk": "Седни, молам.",
+        "en": "Sit down, please."
+      },
+      "notes": "Imperative: седни (singular)"
+    }
+  ],
+  "conjugationPatterns": {
+    "regular-a": {
+      "description": "Regular -а conjugation (most common)",
+      "endings": {
+        "present": ["-ам", "-аш", "-а", "-аме", "-ате", "-аат"],
+        "past": ["-ав", "-аше", "-аше", "-авме", "-авте", "-аа"]
+      }
+    },
+    "regular-i": {
+      "description": "Regular -и conjugation",
+      "endings": {
+        "present": ["-ам", "-иш", "-и", "-име", "-ите", "-ат"],
+        "past": ["-ев", "-еше", "-еше", "-евме", "-евте", "-еа"]
+      }
+    },
+    "regular-e": {
+      "description": "Regular -е conjugation",
+      "endings": {
+        "present": ["-ам", "-еш", "-е", "-еме", "-ете", "-ат"],
+        "past": ["-ев", "-еше", "-еше", "-евме", "-евте", "-еа"]
+      }
+    },
+    "regular-uva": {
+      "description": "Regular -ува conjugation",
+      "endings": {
+        "present": ["-увам", "-уваш", "-ува", "-уваме", "-увате", "-уваат"],
+        "past": ["-ував", "-уваше", "-уваше", "-увавме", "-увавте", "-уваа"]
+      }
+    }
+  },
+  "aspectPairs": {
+    "description": "Macedonian verbs come in imperfective/perfective pairs",
+    "examples": [
+      {"imperfective": "читам", "perfective": "прочитам", "meaning": "read"},
+      {"imperfective": "пишувам", "perfective": "напишам", "meaning": "write"},
+      {"imperfective": "одам", "perfective": "отидам", "meaning": "go"},
+      {"imperfective": "учам", "perfective": "научам", "meaning": "learn"},
+      {"imperfective": "гледам", "perfective": "видам", "meaning": "see"}
+    ]
+  }
+}
