@@ -59,7 +59,11 @@ function Toaster() {
   const { toasts, removeToast } = useToast()
 
   return (
-    <div className="fixed top-0 right-0 z-50 flex flex-col gap-2 p-4 w-full max-w-md pointer-events-none">
+    <div 
+      className="fixed top-0 right-0 z-[100] flex flex-col gap-2 p-4 w-full max-w-md pointer-events-none"
+      role="region"
+      aria-label="Notifications"
+    >
       {toasts.map((toast) => (
         <Toast key={toast.id} {...toast} onClose={() => removeToast(toast.id)} />
       ))}
@@ -103,7 +107,8 @@ function Toast({
       </div>
       <button
         onClick={onClose}
-        className="flex-shrink-0 rounded-md p-1 hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+        aria-label="Dismiss notification"
+        className="flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-md -m-2 hover:bg-black/5 dark:hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       >
         <X className="h-4 w-4" />
       </button>

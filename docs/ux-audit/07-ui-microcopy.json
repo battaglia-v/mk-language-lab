@@ -1,0 +1,654 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-12-14",
+    "description": "UI messaging and microcopy for MK Language Lab",
+    "languages": ["en", "mk"],
+    "notes": "All strings include Latin transliteration for accessibility"
+  },
+  "buttons": {
+    "primary": {
+      "continue": {
+        "en": "Continue",
+        "mk": "Продолжи",
+        "transliteration": "Prodolzhi",
+        "context": "Generic continue action"
+      },
+      "start": {
+        "en": "Start",
+        "mk": "Започни",
+        "transliteration": "Zapochni",
+        "context": "Begin a new lesson/session"
+      },
+      "submit": {
+        "en": "Submit",
+        "mk": "Поднеси",
+        "transliteration": "Podnesi",
+        "context": "Submit form or answer"
+      },
+      "check": {
+        "en": "Check",
+        "mk": "Провери",
+        "transliteration": "Proveri",
+        "context": "Check answer"
+      },
+      "save": {
+        "en": "Save",
+        "mk": "Зачувај",
+        "transliteration": "Zachuvaj",
+        "context": "Save changes"
+      },
+      "next": {
+        "en": "Next",
+        "mk": "Следно",
+        "transliteration": "Sledno",
+        "context": "Move to next item"
+      },
+      "finish": {
+        "en": "Finish",
+        "mk": "Заврши",
+        "transliteration": "Zavrshi",
+        "context": "Complete session"
+      },
+      "continueLearning": {
+        "en": "Continue Learning",
+        "mk": "Продолжи со учење",
+        "transliteration": "Prodolzhi so uchenje",
+        "context": "Main dashboard CTA"
+      },
+      "startLesson": {
+        "en": "Start Lesson",
+        "mk": "Започни лекција",
+        "transliteration": "Zapochni lektsija",
+        "context": "Begin a new lesson"
+      },
+      "practiceNow": {
+        "en": "Practice Now",
+        "mk": "Вежбај сега",
+        "transliteration": "Vezhbaj sega",
+        "context": "Quick practice action"
+      }
+    },
+    "secondary": {
+      "skip": {
+        "en": "Skip",
+        "mk": "Прескокни",
+        "transliteration": "Preskokni",
+        "context": "Skip current item"
+      },
+      "cancel": {
+        "en": "Cancel",
+        "mk": "Откажи",
+        "transliteration": "Otkazi",
+        "context": "Cancel action"
+      },
+      "back": {
+        "en": "Back",
+        "mk": "Назад",
+        "transliteration": "Nazad",
+        "context": "Go back"
+      },
+      "close": {
+        "en": "Close",
+        "mk": "Затвори",
+        "transliteration": "Zatvori",
+        "context": "Close modal/dialog"
+      },
+      "tryAgain": {
+        "en": "Try Again",
+        "mk": "Обиди се повторно",
+        "transliteration": "Obidi se povtorno",
+        "context": "Retry action"
+      },
+      "showHint": {
+        "en": "Show Hint",
+        "mk": "Покажи помош",
+        "transliteration": "Pokazi pomosh",
+        "context": "Request help"
+      },
+      "learnMore": {
+        "en": "Learn More",
+        "mk": "Дознај повеќе",
+        "transliteration": "Doznaj povekje",
+        "context": "Get more information"
+      },
+      "viewAll": {
+        "en": "View All",
+        "mk": "Види ги сите",
+        "transliteration": "Vidi gi site",
+        "context": "Show full list"
+      }
+    },
+    "destructive": {
+      "delete": {
+        "en": "Delete",
+        "mk": "Избриши",
+        "transliteration": "Izbrishi",
+        "context": "Delete item"
+      },
+      "reset": {
+        "en": "Reset",
+        "mk": "Ресетирај",
+        "transliteration": "Resetiraj",
+        "context": "Reset to default"
+      },
+      "remove": {
+        "en": "Remove",
+        "mk": "Отстрани",
+        "transliteration": "Otstrani",
+        "context": "Remove item"
+      }
+    }
+  },
+  "feedback": {
+    "success": {
+      "correct": {
+        "en": "Correct!",
+        "mk": "Точно!",
+        "transliteration": "Tochno!",
+        "context": "Answer was correct"
+      },
+      "excellent": {
+        "en": "Excellent!",
+        "mk": "Одлично!",
+        "transliteration": "Odlichno!",
+        "context": "High score answer"
+      },
+      "perfect": {
+        "en": "Perfect!",
+        "mk": "Совршено!",
+        "transliteration": "Sovrseno!",
+        "context": "100% score"
+      },
+      "greatJob": {
+        "en": "Great job!",
+        "mk": "Браво!",
+        "transliteration": "Bravo!",
+        "context": "General success"
+      },
+      "wellDone": {
+        "en": "Well done!",
+        "mk": "Добра работа!",
+        "transliteration": "Dobra rabota!",
+        "context": "Task completed"
+      },
+      "goalComplete": {
+        "en": "Daily goal achieved!",
+        "mk": "Дневната цел е постигната!",
+        "transliteration": "Dnevnata tsel e postignata!",
+        "context": "XP goal reached"
+      },
+      "streakMaintained": {
+        "en": "Streak maintained!",
+        "mk": "Низата е зачувана!",
+        "transliteration": "Nizata e zachuvana!",
+        "context": "Daily streak kept"
+      },
+      "levelUp": {
+        "en": "Level up!",
+        "mk": "Ново ниво!",
+        "transliteration": "Novo nivo!",
+        "context": "User leveled up"
+      },
+      "badgeEarned": {
+        "en": "Badge earned!",
+        "mk": "Значка освоена!",
+        "transliteration": "Znachka osvoena!",
+        "context": "Achievement unlocked"
+      },
+      "saved": {
+        "en": "Changes saved",
+        "mk": "Промените се зачувани",
+        "transliteration": "Promenite se zachuvani",
+        "context": "Save operation complete"
+      }
+    },
+    "error": {
+      "incorrect": {
+        "en": "Not quite right",
+        "mk": "Не е сосема точно",
+        "transliteration": "Ne e sosema tochno",
+        "context": "Answer was wrong"
+      },
+      "tryAgain": {
+        "en": "Try again!",
+        "mk": "Обиди се повторно!",
+        "transliteration": "Obidi se povtorno!",
+        "context": "Encourage retry"
+      },
+      "almostThere": {
+        "en": "Almost there!",
+        "mk": "Скоро!",
+        "transliteration": "Skoro!",
+        "context": "Partial success"
+      },
+      "networkError": {
+        "en": "Connection lost. Please try again.",
+        "mk": "Врската е изгубена. Обиди се повторно.",
+        "transliteration": "Vrskata e izgubena. Obidi se povtorno.",
+        "context": "Network failure"
+      },
+      "serverError": {
+        "en": "Something went wrong. Please try later.",
+        "mk": "Нешто не е во ред. Обиди се подоцна.",
+        "transliteration": "Neshto ne e vo red. Obidi se podocna.",
+        "context": "Server error"
+      },
+      "validationError": {
+        "en": "Please check your input",
+        "mk": "Провери го твојот внес",
+        "transliteration": "Proveri go tvojot vnes",
+        "context": "Form validation failed"
+      },
+      "loadError": {
+        "en": "Failed to load. Tap to retry.",
+        "mk": "Неуспешно вчитување. Допри за повторување.",
+        "transliteration": "Neuspeshno vchituvanje. Dopri za povtoruvanje.",
+        "context": "Content failed to load"
+      },
+      "saveFailed": {
+        "en": "Couldn't save. Please try again.",
+        "mk": "Не можеше да се зачува. Обиди се повторно.",
+        "transliteration": "Ne mozheshe da se zachuva. Obidi se povtorno.",
+        "context": "Save operation failed"
+      }
+    },
+    "encouragement": {
+      "keepGoing": {
+        "en": "Keep going!",
+        "mk": "Продолжи!",
+        "transliteration": "Prodolzhi!",
+        "context": "Motivate continuation"
+      },
+      "youCanDoIt": {
+        "en": "You can do it!",
+        "mk": "Ти можеш!",
+        "transliteration": "Ti mozhesh!",
+        "context": "Confidence boost"
+      },
+      "almostDone": {
+        "en": "Almost done!",
+        "mk": "Скоро готово!",
+        "transliteration": "Skoro gotovo!",
+        "context": "Near completion"
+      },
+      "oneMore": {
+        "en": "Just one more!",
+        "mk": "Уште само едно!",
+        "transliteration": "Ushte samo edno!",
+        "context": "One item remaining"
+      },
+      "dontGiveUp": {
+        "en": "Don't give up!",
+        "mk": "Не се откажувај!",
+        "transliteration": "Ne se otkavaj!",
+        "context": "After repeated failures"
+      },
+      "mistakesHelpLearn": {
+        "en": "Mistakes help you learn!",
+        "mk": "Грешките помагаат да научиш!",
+        "transliteration": "Greshkite pomagaat da nauchish!",
+        "context": "Normalize errors"
+      },
+      "practicesMakesPerfect": {
+        "en": "Practice makes perfect!",
+        "mk": "Со вежба се учи!",
+        "transliteration": "So vezhba se uchi!",
+        "context": "General encouragement"
+      },
+      "goodProgress": {
+        "en": "You're making good progress!",
+        "mk": "Напредуваш добро!",
+        "transliteration": "Napreduvash dobro!",
+        "context": "Progress acknowledgment"
+      }
+    }
+  },
+  "emptyStates": {
+    "noLessons": {
+      "title": {
+        "en": "No lessons yet",
+        "mk": "Сè уште нема лекции",
+        "transliteration": "Se ushte nema lektsii"
+      },
+      "description": {
+        "en": "Start your first lesson to begin learning!",
+        "mk": "Започни ја првата лекција за да почнеш да учиш!",
+        "transliteration": "Zapochni ja prvata lektsija za da pochnesh da uchish!"
+      },
+      "context": "No lessons completed"
+    },
+    "noSavedWords": {
+      "title": {
+        "en": "No saved words",
+        "mk": "Нема зачувани зборови",
+        "transliteration": "Nema zachuvani zborovi"
+      },
+      "description": {
+        "en": "Save words from the translator to practice later",
+        "mk": "Зачувај зборови од преведувачот за подоцнежно вежбање",
+        "transliteration": "Zachuvaj zborovi od preveduvachot za podocnezhno vezhbanje"
+      },
+      "context": "Empty vocabulary list"
+    },
+    "noNews": {
+      "title": {
+        "en": "No news available",
+        "mk": "Нема достапни вести",
+        "transliteration": "Nema dostapni vesti"
+      },
+      "description": {
+        "en": "Check back later for the latest Macedonian headlines",
+        "mk": "Провери подоцна за најновите македонски наслови",
+        "transliteration": "Proveri podocna za najnovite makedonski naslovi"
+      },
+      "context": "News feed empty"
+    },
+    "noRecentActivity": {
+      "title": {
+        "en": "No recent activity",
+        "mk": "Нема скорешна активност",
+        "transliteration": "Nema skoreshna aktivnost"
+      },
+      "description": {
+        "en": "Start practicing to see your activity here",
+        "mk": "Започни со вежби за да ја видиш активноста тука",
+        "transliteration": "Zapochni so vezhbi za da ja vidish aktivnosta tuka"
+      },
+      "context": "Activity feed empty"
+    },
+    "noWeakWords": {
+      "title": {
+        "en": "Great job!",
+        "mk": "Браво!",
+        "transliteration": "Bravo!"
+      },
+      "description": {
+        "en": "No words need review right now",
+        "mk": "Нема зборови за повторување моментално",
+        "transliteration": "Nema zborovi za povtoruvanje momentalno"
+      },
+      "context": "No words need review"
+    },
+    "noNotifications": {
+      "title": {
+        "en": "All caught up!",
+        "mk": "Сè е во ред!",
+        "transliteration": "Se e vo red!"
+      },
+      "description": {
+        "en": "You have no new notifications",
+        "mk": "Немаш нови известувања",
+        "transliteration": "Nemash novi izvestuvanja"
+      },
+      "context": "No notifications"
+    },
+    "searchNoResults": {
+      "title": {
+        "en": "No results found",
+        "mk": "Нема пронајдени резултати",
+        "transliteration": "Nema pronajdeni rezultati"
+      },
+      "description": {
+        "en": "Try a different search term",
+        "mk": "Пробај со друг термин за пребарување",
+        "transliteration": "Probaj so drug termin za prebaruvanje"
+      },
+      "context": "Search returned nothing"
+    }
+  },
+  "loading": {
+    "generic": {
+      "en": "Loading...",
+      "mk": "Се вчитува...",
+      "transliteration": "Se vchituva...",
+      "context": "Generic loading"
+    },
+    "lessons": {
+      "en": "Loading lessons...",
+      "mk": "Се вчитуваат лекции...",
+      "transliteration": "Se vchituvaat lektsii...",
+      "context": "Loading lesson content"
+    },
+    "progress": {
+      "en": "Syncing progress...",
+      "mk": "Се синхронизира прогресот...",
+      "transliteration": "Se sinhronizira progresot...",
+      "context": "Syncing user progress"
+    },
+    "audio": {
+      "en": "Loading audio...",
+      "mk": "Се вчитува аудио...",
+      "transliteration": "Se vchituva audio...",
+      "context": "Loading audio content"
+    },
+    "saving": {
+      "en": "Saving...",
+      "mk": "Се зачувува...",
+      "transliteration": "Se zachuvuva...",
+      "context": "Saving changes"
+    },
+    "processing": {
+      "en": "Processing...",
+      "mk": "Се обработува...",
+      "transliteration": "Se obrabotuva...",
+      "context": "Processing request"
+    }
+  },
+  "confirmations": {
+    "deleteItem": {
+      "title": {
+        "en": "Delete this item?",
+        "mk": "Избриши го ова?",
+        "transliteration": "Izbrishi go ova?"
+      },
+      "description": {
+        "en": "This action cannot be undone",
+        "mk": "Ова дејство не може да се поништи",
+        "transliteration": "Ova dejstvo ne mozhe da se ponishti"
+      },
+      "context": "Confirm deletion"
+    },
+    "exitLesson": {
+      "title": {
+        "en": "Exit lesson?",
+        "mk": "Напушти ја лекцијата?",
+        "transliteration": "Napushti ja lektsijata?"
+      },
+      "description": {
+        "en": "Your progress in this session will be saved",
+        "mk": "Твојот напредок во оваа сесија ќе се зачува",
+        "transliteration": "Tvojot napredok vo ovaa sesija kje se zachuva"
+      },
+      "context": "Confirm leaving lesson"
+    },
+    "resetProgress": {
+      "title": {
+        "en": "Reset progress?",
+        "mk": "Ресетирај го напредокот?",
+        "transliteration": "Resetiraj go napredokot?"
+      },
+      "description": {
+        "en": "All your learning data will be cleared",
+        "mk": "Сите твои податоци за учење ќе се избришат",
+        "transliteration": "Site tvoi podatotsi za uchenje kje se izbrishat"
+      },
+      "context": "Confirm progress reset"
+    },
+    "endSession": {
+      "title": {
+        "en": "End session?",
+        "mk": "Заврши ја сесијата?",
+        "transliteration": "Zavrshi ja sesijata?"
+      },
+      "description": {
+        "en": "You can continue later from where you left off",
+        "mk": "Можеш да продолжиш подоцна од каде што застана",
+        "transliteration": "Mozhesh da prodolzhish podocna od kade shto zastana"
+      },
+      "context": "Confirm ending practice session"
+    }
+  },
+  "achievements": {
+    "firstLesson": {
+      "title": {
+        "en": "First Steps",
+        "mk": "Први чекори",
+        "transliteration": "Prvi chekori"
+      },
+      "description": {
+        "en": "Complete your first lesson",
+        "mk": "Заврши ја твојата прва лекција",
+        "transliteration": "Zavrshi ja tvojata prva lektsija"
+      },
+      "context": "First lesson completed"
+    },
+    "weekStreak": {
+      "title": {
+        "en": "Week Warrior",
+        "mk": "Неделен борец",
+        "transliteration": "Nedelen borets"
+      },
+      "description": {
+        "en": "Maintain a 7-day streak",
+        "mk": "Одржи низа од 7 дена",
+        "transliteration": "Odrzi niza od 7 dena"
+      },
+      "context": "7-day streak achieved"
+    },
+    "vocabularyMaster": {
+      "title": {
+        "en": "Word Collector",
+        "mk": "Колекционер на зборови",
+        "transliteration": "Kolektsioner na zborovi"
+      },
+      "description": {
+        "en": "Learn 100 new words",
+        "mk": "Научи 100 нови зборови",
+        "transliteration": "Nauchi 100 novi zborovi"
+      },
+      "context": "100 words learned"
+    },
+    "perfectScore": {
+      "title": {
+        "en": "Perfection",
+        "mk": "Совршенство",
+        "transliteration": "Sovrsenstvo"
+      },
+      "description": {
+        "en": "Get 100% on a lesson",
+        "mk": "Добиј 100% на лекција",
+        "transliteration": "Dobij 100% na lektsija"
+      },
+      "context": "Perfect lesson score"
+    },
+    "nightOwl": {
+      "title": {
+        "en": "Night Owl",
+        "mk": "Ноќна птица",
+        "transliteration": "Nokjna ptitsa"
+      },
+      "description": {
+        "en": "Study after midnight",
+        "mk": "Учи по полноќ",
+        "transliteration": "Uchi po polnokj"
+      },
+      "context": "Late night study session"
+    },
+    "earlyBird": {
+      "title": {
+        "en": "Early Bird",
+        "mk": "Рана птица",
+        "transliteration": "Rana ptitsa"
+      },
+      "description": {
+        "en": "Study before 7 AM",
+        "mk": "Учи пред 7 наутро",
+        "transliteration": "Uchi pred 7 nautro"
+      },
+      "context": "Early morning study session"
+    }
+  },
+  "accessibility": {
+    "skipToContent": {
+      "en": "Skip to main content",
+      "mk": "Прескокни до главна содржина",
+      "transliteration": "Preskokni do glavna sodrzhina",
+      "context": "Skip link for screen readers"
+    },
+    "menuOpen": {
+      "en": "Open menu",
+      "mk": "Отвори мени",
+      "transliteration": "Otvori meni",
+      "context": "Menu toggle button"
+    },
+    "menuClose": {
+      "en": "Close menu",
+      "mk": "Затвори мени",
+      "transliteration": "Zatvori meni",
+      "context": "Menu close button"
+    },
+    "playAudio": {
+      "en": "Play audio",
+      "mk": "Пушти аудио",
+      "transliteration": "Pushti audio",
+      "context": "Audio play button"
+    },
+    "pauseAudio": {
+      "en": "Pause audio",
+      "mk": "Паузирај аудио",
+      "transliteration": "Pauziraj audio",
+      "context": "Audio pause button"
+    },
+    "volumeUp": {
+      "en": "Increase volume",
+      "mk": "Зголеми ја гласноста",
+      "transliteration": "Zgolemi ja glasnosta",
+      "context": "Volume up button"
+    },
+    "volumeDown": {
+      "en": "Decrease volume",
+      "mk": "Намали ја гласноста",
+      "transliteration": "Namali ja glasnosta",
+      "context": "Volume down button"
+    },
+    "expandSection": {
+      "en": "Expand section",
+      "mk": "Прошири секција",
+      "transliteration": "Proshiri sektsija",
+      "context": "Accordion expand"
+    },
+    "collapseSection": {
+      "en": "Collapse section",
+      "mk": "Собери секција",
+      "transliteration": "Soberi sektsija",
+      "context": "Accordion collapse"
+    },
+    "currentPage": {
+      "en": "Current page",
+      "mk": "Моментална страница",
+      "transliteration": "Momentalna stranitsa",
+      "context": "Navigation indicator"
+    },
+    "imageAlt": {
+      "newsPlaceholder": {
+        "en": "News article image",
+        "mk": "Слика од новинска статија",
+        "transliteration": "Slika od novinska statija",
+        "context": "Alt text for news images"
+      },
+      "profilePlaceholder": {
+        "en": "User profile picture",
+        "mk": "Профилна слика на корисник",
+        "transliteration": "Profilna slika na korisnik",
+        "context": "Alt text for profile images"
+      },
+      "badgeIcon": {
+        "en": "Achievement badge",
+        "mk": "Значка за достигнување",
+        "transliteration": "Znachka za dostignuvanje",
+        "context": "Alt text for badge icons"
+      }
+    }
+  }
+}

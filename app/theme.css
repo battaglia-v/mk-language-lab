@@ -83,6 +83,20 @@
   --shadow-focus: 0 0 0 3px rgba(246, 216, 59, 0.28);
   --shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.55);
   --panel-shadow: 0 26px 70px rgba(0, 0, 0, 0.7);
+
+  /* Z-index scale - standardized layering */
+  --z-dropdown: 40;
+  --z-sticky: 45;
+  --z-modal: 50;
+  --z-popover: 55;
+  --z-tooltip: 60;
+  --z-toast: 100;
+
+  /* Focus ring tokens */
+  --focus-ring-color: var(--ring);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+
   --icon-size: 20px;
   --icon-size-sm: 16px;
   --icon-stroke: 1.6;
@@ -144,38 +158,38 @@ body.theme-dark {
   --mk-border-strong: #cbd0db;
   --mk-border-soft: #eef0f4;
   --mk-text: #0b0b12;
-  --mk-text-muted: rgba(11, 11, 18, 0.72);
+  --mk-text-muted: rgba(11, 11, 18, 0.78);  /* Increased opacity for WCAG AA (was 0.72) */
 
   /* Keep accent colors (they work for both themes) */
-  --mk-accent: #f6d83b;
-  --mk-accent-2: #f4b400;
-  --mk-accent-3: #34d399;
-  --mk-success: #3ecf8e;
-  --mk-warning: #f4c84a;
-  --mk-danger: #ff7878;
+  --mk-accent: #d4a800;        /* Darkened for WCAG AA contrast on light bg (was #f6d83b) */
+  --mk-accent-2: #b89600;      /* Darkened for contrast (was #f4b400) */
+  --mk-accent-3: #059669;      /* Darkened teal for contrast (was #34d399) */
+  --mk-success: #059669;       /* Use darker green for success text */
+  --mk-warning: #b89600;       /* Darkened for contrast */
+  --mk-danger: #dc2626;        /* Standard red with good contrast */
   --mk-gradient: linear-gradient(115deg, #f6d83b, #f4b400, #34d399);
   --mk-surface-glow: linear-gradient(145deg, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0));
 
-  /* Shadcn/UI mappings for light theme */
+  /* Shadcn/UI mappings for light theme - using darker accents for text contrast */
   --background: var(--mk-bg);
   --foreground: var(--mk-text);
   --card: var(--mk-bg-card);
   --card-foreground: var(--mk-text);
   --popover: #ffffff;
   --popover-foreground: var(--mk-text);
-  --primary: var(--mk-accent);
+  --primary: #b89600;          /* Darker gold for buttons - WCAG AA on white */
   --primary-foreground: #000000;
-  --secondary: var(--mk-accent-3);
-  --secondary-foreground: #02150c;
+  --secondary: #059669;        /* Darker teal for secondary - WCAG AA on white */
+  --secondary-foreground: #ffffff;
   --muted: var(--mk-bg-panel-muted);
   --muted-foreground: var(--mk-text-muted);
   --accent: var(--mk-accent);
   --accent-foreground: #0c0a14;
-  --destructive: var(--mk-danger);
+  --destructive: #dc2626;      /* Standard red-600 for good contrast */
   --destructive-foreground: #ffffff;
   --border: var(--mk-border);
   --input: var(--mk-border);
-  --ring: var(--mk-accent-2);
+  --ring: #8b7500;             /* Darker ring for focus visibility */
 
   /* Sidebar for light theme */
   --sidebar: rgba(255, 255, 255, 0.98);

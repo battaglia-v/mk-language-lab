@@ -2,10 +2,19 @@ import { NextRequest, NextResponse } from 'next/server';
 import { imageCache, getCacheKey } from '@/lib/image-proxy-cache';
 
 // Timeout and size limits for image proxy
-const IMAGE_FETCH_TIMEOUT_MS = 6000; // 6 seconds - prevent hanging on slow servers
+const IMAGE_FETCH_TIMEOUT_MS = 12000; // 12 seconds - increased for slow Macedonian servers
 const MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024; // 10MB max image size
-const RETRY_ATTEMPTS = 2; // Number of retry attempts
 const RETRY_DELAY_MS = 500; // Delay between retries
+
+// Fetch strategies to try in order
+type FetchStrategy = 'origin-referer' | 'no-referer' | 'googlebot' | 'http-fallback';
+
+const FETCH_STRATEGIES: FetchStrategy[] = [
+  'origin-referer',
+  'no-referer', 
+  'googlebot',
+  'http-fallback',
+];
 
 // Domains that allow proxying for our news aggregation feature
 // Time.MK is a news aggregator that links to articles from various Macedonian outlets.
@@ -123,41 +132,108 @@ function getFallbackResponse(): NextResponse {
 }
 
 /**
- * Fetch image with retry logic
+ * Build fetch options for a specific strategy
  */
-async function fetchWithRetry(
+function buildFetchOptions(url: string, strategy: FetchStrategy): RequestInit {
+  const parsedUrl = new URL(url);
+  
+  const baseOptions: RequestInit = {
+    cache: 'no-store' as const,
+    signal: AbortSignal.timeout(IMAGE_FETCH_TIMEOUT_MS),
+  };
+
+  switch (strategy) {
+    case 'origin-referer':
+      return {
+        ...baseOptions,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+          'Accept-Language': 'mk,en;q=0.9',
+          'Referer': parsedUrl.origin + '/',
+          'Origin': parsedUrl.origin,
+        },
+      };
+
+    case 'no-referer':
+      return {
+        ...baseOptions,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+        },
+        referrerPolicy: 'no-referrer' as const,
+      };
+
+    case 'googlebot':
+      return {
+        ...baseOptions,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+          'Accept': 'image/*,*/*',
+        },
+      };
+
+    case 'http-fallback':
+      // This strategy uses HTTP instead of HTTPS - handled in the fetch logic
+      return {
+        ...baseOptions,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (compatible; MKLanguageLab/1.0; +https://mklanguage.com)',
+          'Accept': 'image/*',
+        },
+      };
+  }
+}
+
+/**
+ * Fetch image with multiple strategy fallbacks
+ */
+async function fetchWithStrategies(
   url: string,
-  options: RequestInit,
-  attempts: number = RETRY_ATTEMPTS
+  strategies: FetchStrategy[] = FETCH_STRATEGIES
 ): Promise<Response> {
   let lastError: Error | null = null;
+  const parsedUrl = new URL(url);
   
-  for (let i = 0; i < attempts; i++) {
+  for (const strategy of strategies) {
     try {
-      const response = await fetch(url, options);
+      const fetchUrl = strategy === 'http-fallback' && parsedUrl.protocol === 'https:'
+        ? url.replace('https://', 'http://')
+        : (parsedUrl.protocol === 'http:' ? url.replace('http://', 'https://') : url);
+      
+      const options = buildFetchOptions(url, strategy);
+      const response = await fetch(fetchUrl, options);
+      
       if (response.ok) {
+        // Log successful strategy for debugging
+        console.log(`[Image Proxy] Success with strategy: ${strategy} - ${parsedUrl.hostname}`);
         return response;
       }
-      // If not OK but not a network error, don't retry 4xx errors
-      if (response.status >= 400 && response.status < 500) {
+      
+      // Don't try more strategies for client errors (except 403 which might be referer-based)
+      if (response.status >= 400 && response.status < 500 && response.status !== 403) {
         throw new Error(`Client error: ${response.status}`);
       }
-      lastError = new Error(`HTTP ${response.status}`);
+      
+      lastError = new Error(`HTTP ${response.status} with strategy ${strategy}`);
     } catch (error) {
       lastError = error as Error;
-      // Don't retry on abort/timeout
+      
+      // Don't retry on abort/timeout - move to next strategy
       if (lastError.name === 'TimeoutError' || lastError.name === 'AbortError') {
-        throw lastError;
+        console.warn(`[Image Proxy] Timeout with strategy: ${strategy} - ${parsedUrl.hostname}`);
+        continue;
       }
     }
     
-    // Wait before retry (if not last attempt)
-    if (i < attempts - 1) {
-      await new Promise(resolve => setTimeout(resolve, RETRY_DELAY_MS * (i + 1)));
+    // Small delay before trying next strategy
+    if (strategies.indexOf(strategy) < strategies.length - 1) {
+      await new Promise(resolve => setTimeout(resolve, RETRY_DELAY_MS));
     }
   }
   
-  throw lastError || new Error('Failed to fetch after retries');
+  throw lastError || new Error('All fetch strategies failed');
 }
 
 export async function GET(request: NextRequest) {
@@ -175,16 +251,12 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid url format' }, { status: 400 });
   }
 
-  // Upgrade HTTP to HTTPS for security, or accept HTTPS
-  if (parsedUrl.protocol === 'http:') {
-    parsedUrl.protocol = 'https:';
-  } else if (parsedUrl.protocol !== 'https:') {
+  // Validate protocol (we'll handle http->https upgrade in fetch strategies)
+  if (parsedUrl.protocol !== 'http:' && parsedUrl.protocol !== 'https:') {
     return NextResponse.json({ error: 'Only HTTP/HTTPS URLs are allowed' }, { status: 400 });
   }
 
-  const secureUrl = parsedUrl.toString();
-
-  // Validate domain is in allowlist (use original URL for domain check)
+  // Validate domain is in allowlist
   if (!isAllowedDomain(url)) {
     console.warn(`[Image Proxy] Domain blocked: ${parsedUrl.hostname} - URL: ${url.slice(0, 100)}`);
     return getFallbackResponse();
@@ -208,37 +280,8 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    // Build fetch options
-    const fetchOptions: RequestInit = {
-      headers: {
-        'User-Agent':
-          'Mozilla/5.0 (compatible; MKLanguageLab/1.0; +https://mk-language-lab.vercel.app)',
-        Accept: 'image/*',
-        Referer: parsedUrl.origin,
-      },
-      cache: 'no-store' as const,
-      signal: AbortSignal.timeout(IMAGE_FETCH_TIMEOUT_MS),
-    };
-
-    // Try HTTPS first with retry logic
-    let response: Response;
-    try {
-      response = await fetchWithRetry(secureUrl, fetchOptions, RETRY_ATTEMPTS);
-    } catch {
-      // If HTTPS fails completely, try HTTP as last resort
-      if (url.startsWith('http://')) {
-        const httpOptions = {
-          ...fetchOptions,
-          signal: AbortSignal.timeout(IMAGE_FETCH_TIMEOUT_MS),
-        };
-        response = await fetch(url, httpOptions);
-        if (!response.ok) {
-          throw new Error(`HTTP fallback failed: ${response.status}`);
-        }
-      } else {
-        throw new Error('HTTPS fetch failed');
-      }
-    }
+    // Use multi-strategy fetch for better reliability
+    const response = await fetchWithStrategies(url);
 
     const contentType = response.headers.get('content-type');
     if (!contentType || !contentType.startsWith('image/')) {
