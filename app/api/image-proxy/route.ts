@@ -55,6 +55,7 @@ const ALLOWED_DOMAINS = new Set([
   'lider.mk',
   'kapital.mk',
   'ekran.mk',
+  'ipon.mk',         // IPON news
   'sportstation.mk',
   'trn.mk',
   'topsport.mk',
