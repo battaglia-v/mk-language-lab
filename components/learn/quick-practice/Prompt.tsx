@@ -3,6 +3,16 @@ import { Volume2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { PracticeAudioClip } from '@/components/learn/quick-practice/types';
 
+type MasteryLevel = 'new' | 'learning' | 'familiar' | 'practiced' | 'mastered';
+
+const MASTERY_CONFIG: Record<MasteryLevel, { label: string; color: string; bgColor: string }> = {
+  new: { label: 'New', color: 'text-slate-400', bgColor: 'bg-slate-500/20' },
+  learning: { label: 'Learning', color: 'text-amber-400', bgColor: 'bg-amber-500/20' },
+  familiar: { label: 'Familiar', color: 'text-sky-400', bgColor: 'bg-sky-500/20' },
+  practiced: { label: 'Practiced', color: 'text-violet-400', bgColor: 'bg-violet-500/20' },
+  mastered: { label: 'Mastered', color: 'text-emerald-400', bgColor: 'bg-emerald-500/20' },
+};
+
 type QuickPracticePromptProps = {
   label: string;
   content: ReactNode;
@@ -16,6 +26,8 @@ type QuickPracticePromptProps = {
   audioLabel: string;
   audioComingSoonLabel?: string;
   showAudioComingSoon?: boolean;
+  /** Optional mastery level for the current card */
+  masteryLevel?: MasteryLevel;
 };
 
 export function QuickPracticePrompt({
@@ -31,7 +43,10 @@ export function QuickPracticePrompt({
   audioLabel,
   audioComingSoonLabel = 'Audio Coming Soon',
   showAudioComingSoon = true,
+  masteryLevel,
 }: QuickPracticePromptProps) {
+  const masteryConfig = masteryLevel ? MASTERY_CONFIG[masteryLevel] : null;
+
   return (
     <div
       className={cn(
@@ -40,9 +55,20 @@ export function QuickPracticePrompt({
       )}
     >
       <div className="flex items-center justify-between gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-        <span>
-          {label}
-        </span>
+        <div className="flex items-center gap-2">
+          <span>{label}</span>
+          {masteryConfig && (
+            <span
+              className={cn(
+                'rounded-full px-2 py-0.5 text-[10px] font-semibold',
+                masteryConfig.bgColor,
+                masteryConfig.color,
+              )}
+            >
+              {masteryConfig.label}
+            </span>
+          )}
+        </div>
         <span className="rounded-full bg-white/5 px-2 py-1 text-[11px] font-semibold text-foreground/80">{categoryLabel}</span>
       </div>
       <p
