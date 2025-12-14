@@ -1,0 +1,390 @@
+[
+  {
+    "id": "definite-article-basics",
+    "titleMk": "Определен член - Основи",
+    "titleEn": "The Definite Article - Basics",
+    "descriptionMk": "Научи како да го користиш определениот член во македонскиот јазик",
+    "descriptionEn": "Learn how to use the definite article in Macedonian",
+    "difficulty": "beginner",
+    "tags": ["articles", "nouns", "basics"],
+    "totalXp": 60,
+    "grammarNote": {
+      "titleMk": "Определениот член",
+      "titleEn": "The Definite Article",
+      "contentMk": "Во македонскиот јазик, определениот член се додава на крајот од именката. За машки род се користат -от, -ов, -он. За женски род: -та, -ва, -на. За среден род: -то, -во, -но.",
+      "contentEn": "In Macedonian, the definite article is added to the end of the noun. For masculine nouns: -от, -ов, -он. For feminine: -та, -ва, -на. For neuter: -то, -во, -но.",
+      "examplesMk": [
+        "човек → човекот (the man)",
+        "жена → жената (the woman)", 
+        "дете → детето (the child)"
+      ],
+      "examplesEn": [
+        "човек → човекот (the man)",
+        "жена → жената (the woman)",
+        "дете → детето (the child)"
+      ]
+    },
+    "exercises": [
+      {
+        "id": "da-1",
+        "type": "fill-blank",
+        "instructionMk": "Додај го определениот член",
+        "instructionEn": "Add the definite article",
+        "sentenceMk": "Каде е ___?",
+        "translationEn": "Where is the book?",
+        "correctAnswers": ["книгата"],
+        "wordBank": ["книга", "книгата", "книгава"],
+        "xp": 10,
+        "hintMk": "Книга е женски род - додај -та",
+        "hintEn": "Книга is feminine - add -та"
+      },
+      {
+        "id": "da-2",
+        "type": "multiple-choice",
+        "instructionMk": "Избери го точниот облик",
+        "instructionEn": "Choose the correct form",
+        "questionMk": "Ми се допаѓа ___ (маса).",
+        "questionEn": "I like the table.",
+        "options": ["маса", "масата", "масава", "масана"],
+        "correctIndex": 1,
+        "xp": 10,
+        "hintMk": "Маса е женски род",
+        "hintEn": "Маса is feminine"
+      },
+      {
+        "id": "da-3",
+        "type": "fill-blank",
+        "instructionMk": "Додај го определениот член",
+        "instructionEn": "Add the definite article",
+        "sentenceMk": "___ е голем.",
+        "translationEn": "The house is big.",
+        "correctAnswers": ["Куќата"],
+        "xp": 10,
+        "hintMk": "Куќа е женски род",
+        "hintEn": "Куќа is feminine"
+      },
+      {
+        "id": "da-4",
+        "type": "multiple-choice",
+        "instructionMk": "Кој определен член е точен за среден род?",
+        "instructionEn": "Which definite article is correct for neuter nouns?",
+        "questionMk": "Избери го точниот определен член за зборот 'село'",
+        "questionEn": "Choose the correct definite article for the word 'село' (village)",
+        "options": ["селот", "селата", "селото", "селово"],
+        "correctIndex": 2,
+        "xp": 10,
+        "explanationMk": "Среден род добива -то на крајот",
+        "explanationEn": "Neuter nouns take -то at the end"
+      },
+      {
+        "id": "da-5",
+        "type": "sentence-builder",
+        "instructionMk": "Подреди ги зборовите",
+        "instructionEn": "Arrange the words to make a sentence",
+        "targetSentenceMk": "Детето играе во паркот",
+        "translationEn": "The child plays in the park",
+        "words": ["Детето", "играе", "во", "паркот"],
+        "xp": 15,
+        "explanationMk": "Забележи: и 'детето' и 'паркот' имаат определен член",
+        "explanationEn": "Notice: both 'детето' and 'паркот' have the definite article"
+      },
+      {
+        "id": "da-6",
+        "type": "error-correction",
+        "instructionMk": "Најди ја и поправи ја грешката",
+        "instructionEn": "Find and fix the error",
+        "sentenceWithErrorMk": "Мачката е на столата",
+        "translationEn": "The cat is on the chair",
+        "errorWord": "столата",
+        "correctedWord": "столот",
+        "errorPosition": 4,
+        "xp": 15,
+        "hintMk": "Стол е машки род, не женски",
+        "hintEn": "Стол is masculine, not feminine",
+        "explanationMk": "Стол е машки род, затоа добива -от: столот",
+        "explanationEn": "Стол is masculine, so it takes -от: столот"
+      }
+    ]
+  },
+  {
+    "id": "present-tense-sum",
+    "titleMk": "Сегашно време - сум (да бидам)",
+    "titleEn": "Present Tense - to be",
+    "descriptionMk": "Научи го глаголот 'сум' - најважниот глагол во македонскиот",
+    "descriptionEn": "Learn the verb 'сум' (to be) - the most important verb in Macedonian",
+    "difficulty": "beginner",
+    "tags": ["verbs", "present-tense", "basics"],
+    "totalXp": 60,
+    "grammarNote": {
+      "titleMk": "Глаголот 'сум'",
+      "titleEn": "The verb 'сум' (to be)",
+      "contentMk": "Глаголот 'сум' се менува според лицето: јас сум, ти си, тој/таа/тоа е, ние сме, вие сте, тие се.",
+      "contentEn": "The verb 'сум' conjugates by person: јас сум (I am), ти си (you are), тој/таа/тоа е (he/she/it is), ние сме (we are), вие сте (you are), тие се (they are).",
+      "examplesMk": [
+        "Јас сум студент. (I am a student.)",
+        "Ти си добар. (You are good.)",
+        "Тој е тука. (He is here.)"
+      ],
+      "examplesEn": [
+        "Јас сум студент. (I am a student.)",
+        "Ти си добар. (You are good.)",
+        "Тој е тука. (He is here.)"
+      ]
+    },
+    "exercises": [
+      {
+        "id": "pt-1",
+        "type": "fill-blank",
+        "instructionMk": "Дополни со правилната форма на 'сум'",
+        "instructionEn": "Fill in with the correct form of 'сум'",
+        "sentenceMk": "Јас ___ од Македонија.",
+        "translationEn": "I am from Macedonia.",
+        "correctAnswers": ["сум"],
+        "xp": 10
+      },
+      {
+        "id": "pt-2",
+        "type": "multiple-choice",
+        "instructionMk": "Избери ја правилната форма",
+        "instructionEn": "Choose the correct form",
+        "questionMk": "Тие ___ мои пријатели.",
+        "questionEn": "They are my friends.",
+        "options": ["сум", "си", "е", "се"],
+        "correctIndex": 3,
+        "xp": 10
+      },
+      {
+        "id": "pt-3",
+        "type": "fill-blank",
+        "instructionMk": "Дополни со правилната форма на 'сум'",
+        "instructionEn": "Fill in with the correct form of 'сум'",
+        "sentenceMk": "Ние ___ гладни.",
+        "translationEn": "We are hungry.",
+        "correctAnswers": ["сме"],
+        "xp": 10
+      },
+      {
+        "id": "pt-4",
+        "type": "multiple-choice",
+        "instructionMk": "Која форма е правилна за 'ти'?",
+        "instructionEn": "Which form is correct for 'ти' (you)?",
+        "questionMk": "Ти ___ многу добар!",
+        "questionEn": "You are very good!",
+        "options": ["сум", "си", "е", "сте"],
+        "correctIndex": 1,
+        "xp": 10,
+        "hintMk": "'Ти' е второ лице еднина",
+        "hintEn": "'Ти' is second person singular"
+      },
+      {
+        "id": "pt-5",
+        "type": "sentence-builder",
+        "instructionMk": "Подреди ги зборовите",
+        "instructionEn": "Arrange the words",
+        "targetSentenceMk": "Таа е моја сестра",
+        "translationEn": "She is my sister",
+        "words": ["Таа", "е", "моја", "сестра"],
+        "xp": 15
+      },
+      {
+        "id": "pt-6",
+        "type": "error-correction",
+        "instructionMk": "Најди ја грешката",
+        "instructionEn": "Find the error",
+        "sentenceWithErrorMk": "Вие сме добри луѓе",
+        "translationEn": "You are good people",
+        "errorWord": "сме",
+        "correctedWord": "сте",
+        "errorPosition": 1,
+        "xp": 15,
+        "hintMk": "'Вие' бара друга форма на глаголот",
+        "hintEn": "'Вие' requires a different verb form",
+        "explanationMk": "За 'вие' се користи 'сте', не 'сме'",
+        "explanationEn": "For 'вие' use 'сте', not 'сме'"
+      }
+    ]
+  },
+  {
+    "id": "negation-basics",
+    "titleMk": "Негација - Основи",
+    "titleEn": "Negation - Basics",
+    "descriptionMk": "Научи како да правиш негативни реченици",
+    "descriptionEn": "Learn how to make negative sentences",
+    "difficulty": "beginner",
+    "tags": ["negation", "verbs", "basics"],
+    "totalXp": 50,
+    "grammarNote": {
+      "titleMk": "Негација во македонскиот",
+      "titleEn": "Negation in Macedonian",
+      "contentMk": "За негација се користи 'не' пред глаголот. Негативните форми на 'сум' се: не сум, не си, не е (нема е), не сме, не сте, не се (нема се).",
+      "contentEn": "To negate, use 'не' before the verb. Negative forms of 'сум' are: не сум, не си, не е (нема е), не сме, не сте, не се (нема се).",
+      "examplesMk": [
+        "Не сум гладен. (I am not hungry.)",
+        "Тој не е дома. (He is not home.)",
+        "Не разбирам. (I don't understand.)"
+      ],
+      "examplesEn": [
+        "Не сум гладен. (I am not hungry.)",
+        "Тој не е дома. (He is not home.)",
+        "Не разбирам. (I don't understand.)"
+      ]
+    },
+    "exercises": [
+      {
+        "id": "neg-1",
+        "type": "fill-blank",
+        "instructionMk": "Направи негативна реченица",
+        "instructionEn": "Make the sentence negative",
+        "sentenceMk": "Јас ___ сум уморен.",
+        "translationEn": "I am not tired.",
+        "correctAnswers": ["не"],
+        "xp": 10
+      },
+      {
+        "id": "neg-2",
+        "type": "multiple-choice",
+        "instructionMk": "Избери ја негативната форма",
+        "instructionEn": "Choose the negative form",
+        "questionMk": "Тие ___ од Скопје.",
+        "questionEn": "They are not from Skopje.",
+        "options": ["се", "не е", "не сме", "не се"],
+        "correctIndex": 3,
+        "xp": 10
+      },
+      {
+        "id": "neg-3",
+        "type": "sentence-builder",
+        "instructionMk": "Подреди ги зборовите за негативна реченица",
+        "instructionEn": "Arrange words to make a negative sentence",
+        "targetSentenceMk": "Тој не е тука",
+        "translationEn": "He is not here",
+        "words": ["Тој", "не", "е", "тука"],
+        "xp": 15
+      },
+      {
+        "id": "neg-4",
+        "type": "fill-blank",
+        "instructionMk": "Дополни ја негацијата",
+        "instructionEn": "Complete the negation",
+        "sentenceMk": "Ние ___ разбираме.",
+        "translationEn": "We don't understand.",
+        "correctAnswers": ["не"],
+        "xp": 10
+      },
+      {
+        "id": "neg-5",
+        "type": "error-correction",
+        "instructionMk": "Поправи ја грешката во негацијата",
+        "instructionEn": "Fix the negation error",
+        "sentenceWithErrorMk": "Јас сум не тука",
+        "translationEn": "I am not here",
+        "errorWord": "сум",
+        "correctedWord": "не сум",
+        "errorPosition": 1,
+        "xp": 15,
+        "hintMk": "'Не' оди пред глаголот",
+        "hintEn": "'Не' goes before the verb",
+        "explanationMk": "Правилно: 'Јас не сум тука' - 'не' пред глаголот",
+        "explanationEn": "Correct: 'Јас не сум тука' - 'не' before the verb"
+      }
+    ]
+  },
+  {
+    "id": "plural-nouns",
+    "titleMk": "Множина на именки",
+    "titleEn": "Plural Nouns",
+    "descriptionMk": "Научи како да правиш множина на именки",
+    "descriptionEn": "Learn how to form plural nouns",
+    "difficulty": "beginner",
+    "tags": ["nouns", "plural", "basics"],
+    "totalXp": 60,
+    "grammarNote": {
+      "titleMk": "Множина во македонскиот",
+      "titleEn": "Plural in Macedonian",
+      "contentMk": "Машки род: -и или -ови (човек → луѓе, стол → столови). Женски род: -и (жена → жени). Среден род: -а или -иња (дете → деца, село → села).",
+      "contentEn": "Masculine: -и or -ови (човек → луѓе, стол → столови). Feminine: -и (жена → жени). Neuter: -а or -иња (дете → деца, село → села).",
+      "examplesMk": [
+        "книга → книги (books)",
+        "маж → мажи (men)",
+        "дете → деца (children)"
+      ],
+      "examplesEn": [
+        "книга → книги (books)",
+        "маж → мажи (men)",
+        "дете → деца (children)"
+      ]
+    },
+    "exercises": [
+      {
+        "id": "pl-1",
+        "type": "fill-blank",
+        "instructionMk": "Напиши ја множината",
+        "instructionEn": "Write the plural form",
+        "sentenceMk": "Една жена, две ___",
+        "translationEn": "One woman, two women",
+        "correctAnswers": ["жени"],
+        "xp": 10
+      },
+      {
+        "id": "pl-2",
+        "type": "multiple-choice",
+        "instructionMk": "Која е множината на 'маса'?",
+        "instructionEn": "What is the plural of 'маса' (table)?",
+        "questionMk": "Множина на 'маса':",
+        "questionEn": "Plural of 'маса':",
+        "options": ["масата", "масови", "маси", "масе"],
+        "correctIndex": 2,
+        "xp": 10
+      },
+      {
+        "id": "pl-3",
+        "type": "fill-blank",
+        "instructionMk": "Напиши ја множината",
+        "instructionEn": "Write the plural form",
+        "sentenceMk": "Едно село, многу ___",
+        "translationEn": "One village, many villages",
+        "correctAnswers": ["села"],
+        "xp": 10,
+        "hintMk": "Среден род на -о добива -а",
+        "hintEn": "Neuter nouns ending in -о take -а"
+      },
+      {
+        "id": "pl-4",
+        "type": "multiple-choice",
+        "instructionMk": "Која множина е правилна?",
+        "instructionEn": "Which plural is correct?",
+        "questionMk": "Множина на 'ден' (day):",
+        "questionEn": "Plural of 'ден' (day):",
+        "options": ["дени", "денови", "денова", "дена"],
+        "correctIndex": 1,
+        "xp": 10
+      },
+      {
+        "id": "pl-5",
+        "type": "sentence-builder",
+        "instructionMk": "Подреди ги зборовите",
+        "instructionEn": "Arrange the words",
+        "targetSentenceMk": "Имам многу книги",
+        "translationEn": "I have many books",
+        "words": ["Имам", "многу", "книги"],
+        "xp": 10
+      },
+      {
+        "id": "pl-6",
+        "type": "error-correction",
+        "instructionMk": "Поправи ја грешката",
+        "instructionEn": "Fix the error",
+        "sentenceWithErrorMk": "Има три децата во паркот",
+        "translationEn": "There are three children in the park",
+        "errorWord": "децата",
+        "correctedWord": "деца",
+        "errorPosition": 2,
+        "xp": 15,
+        "hintMk": "По број не се користи определен член",
+        "hintEn": "After a number, don't use the definite article",
+        "explanationMk": "По број (три) се користи множина без член: 'три деца'",
+        "explanationEn": "After a number (three), use plural without article: 'три деца'"
+      }
+    ]
+  }
+]

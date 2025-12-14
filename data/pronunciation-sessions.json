@@ -1,0 +1,243 @@
+[
+  {
+    "id": "greetings-session",
+    "title": "Greetings & Basics",
+    "titleMk": "Поздрави и Основи",
+    "description": "Practice pronouncing common greetings",
+    "descriptionMk": "Вежбајте изговор на вообичаени поздрави",
+    "difficulty": "beginner",
+    "xpReward": 80,
+    "words": [
+      {
+        "id": "zdravo",
+        "macedonian": "Здраво",
+        "transliteration": "Zdravo",
+        "english": "Hello",
+        "phonetic": "ZDRAH-voh",
+        "audioUrl": "/audio/pronunciation/zdravo.mp3"
+      },
+      {
+        "id": "dobro-utro",
+        "macedonian": "Добро утро",
+        "transliteration": "Dobro utro",
+        "english": "Good morning",
+        "phonetic": "DOH-broh OO-troh",
+        "audioUrl": "/audio/pronunciation/dobro-utro.mp3"
+      },
+      {
+        "id": "dobar-den",
+        "macedonian": "Добар ден",
+        "transliteration": "Dobar den",
+        "english": "Good day",
+        "phonetic": "DOH-bar den",
+        "audioUrl": "/audio/pronunciation/dobar-den.mp3"
+      },
+      {
+        "id": "dobra-vecher",
+        "macedonian": "Добра вечер",
+        "transliteration": "Dobra večer",
+        "english": "Good evening",
+        "phonetic": "DOH-bra VEH-cher",
+        "audioUrl": "/audio/pronunciation/dobra-vecher.mp3"
+      },
+      {
+        "id": "prijatno",
+        "macedonian": "Пријатно",
+        "transliteration": "Prijatno",
+        "english": "Nice (pleased to meet you)",
+        "phonetic": "pree-YAHT-noh",
+        "audioUrl": "/audio/pronunciation/prijatno.mp3"
+      },
+      {
+        "id": "blagodaram",
+        "macedonian": "Благодарам",
+        "transliteration": "Blagodaram",
+        "english": "Thank you",
+        "phonetic": "blah-goh-DAH-rahm",
+        "audioUrl": "/audio/pronunciation/blagodaram.mp3"
+      },
+      {
+        "id": "molam",
+        "macedonian": "Молам",
+        "transliteration": "Molam",
+        "english": "Please / You're welcome",
+        "phonetic": "MOH-lahm",
+        "audioUrl": "/audio/pronunciation/molam.mp3"
+      },
+      {
+        "id": "doviduvanje",
+        "macedonian": "Довидување",
+        "transliteration": "Doviđuvanje",
+        "english": "Goodbye",
+        "phonetic": "doh-vee-DOO-vah-nyeh",
+        "audioUrl": "/audio/pronunciation/doviduvanje.mp3"
+      }
+    ]
+  },
+  {
+    "id": "numbers-session",
+    "title": "Numbers 1-10",
+    "titleMk": "Броеви 1-10",
+    "description": "Master Macedonian number pronunciation",
+    "descriptionMk": "Научете го изговорот на броевите",
+    "difficulty": "beginner",
+    "xpReward": 100,
+    "words": [
+      {
+        "id": "eden",
+        "macedonian": "Еден",
+        "transliteration": "Eden",
+        "english": "One",
+        "phonetic": "EH-den",
+        "audioUrl": "/audio/pronunciation/eden.mp3"
+      },
+      {
+        "id": "dva",
+        "macedonian": "Два",
+        "transliteration": "Dva",
+        "english": "Two",
+        "phonetic": "dvah",
+        "audioUrl": "/audio/pronunciation/dva.mp3"
+      },
+      {
+        "id": "tri",
+        "macedonian": "Три",
+        "transliteration": "Tri",
+        "english": "Three",
+        "phonetic": "tree",
+        "audioUrl": "/audio/pronunciation/tri.mp3"
+      },
+      {
+        "id": "chetiri",
+        "macedonian": "Четири",
+        "transliteration": "Četiri",
+        "english": "Four",
+        "phonetic": "CHEH-tee-ree",
+        "audioUrl": "/audio/pronunciation/chetiri.mp3"
+      },
+      {
+        "id": "pet",
+        "macedonian": "Пет",
+        "transliteration": "Pet",
+        "english": "Five",
+        "phonetic": "pet",
+        "audioUrl": "/audio/pronunciation/pet.mp3"
+      },
+      {
+        "id": "shest",
+        "macedonian": "Шест",
+        "transliteration": "Šest",
+        "english": "Six",
+        "phonetic": "shest",
+        "audioUrl": "/audio/pronunciation/shest.mp3"
+      },
+      {
+        "id": "sedum",
+        "macedonian": "Седум",
+        "transliteration": "Sedum",
+        "english": "Seven",
+        "phonetic": "SEH-doom",
+        "audioUrl": "/audio/pronunciation/sedum.mp3"
+      },
+      {
+        "id": "osum",
+        "macedonian": "Осум",
+        "transliteration": "Osum",
+        "english": "Eight",
+        "phonetic": "OH-soom",
+        "audioUrl": "/audio/pronunciation/osum.mp3"
+      },
+      {
+        "id": "devet",
+        "macedonian": "Девет",
+        "transliteration": "Devet",
+        "english": "Nine",
+        "phonetic": "DEH-vet",
+        "audioUrl": "/audio/pronunciation/devet.mp3"
+      },
+      {
+        "id": "deset",
+        "macedonian": "Десет",
+        "transliteration": "Deset",
+        "english": "Ten",
+        "phonetic": "DEH-set",
+        "audioUrl": "/audio/pronunciation/deset.mp3"
+      }
+    ]
+  },
+  {
+    "id": "difficult-sounds-session",
+    "title": "Tricky Sounds",
+    "titleMk": "Тешки Гласови",
+    "description": "Practice Macedonian sounds that don't exist in English",
+    "descriptionMk": "Вежбајте гласови што не постојат во англискиот",
+    "difficulty": "intermediate",
+    "xpReward": 120,
+    "words": [
+      {
+        "id": "dzb-example",
+        "macedonian": "Ѕвезда",
+        "transliteration": "Dzvezda",
+        "english": "Star",
+        "phonetic": "DZVEZ-dah",
+        "audioUrl": "/audio/pronunciation/dzvezda.mp3"
+      },
+      {
+        "id": "kj-example",
+        "macedonian": "Ќерка",
+        "transliteration": "Ḱerka",
+        "english": "Daughter",
+        "phonetic": "KYEHR-kah",
+        "audioUrl": "/audio/pronunciation/kjerka.mp3"
+      },
+      {
+        "id": "gj-example",
+        "macedonian": "Ѓавол",
+        "transliteration": "Ǵavol",
+        "english": "Devil",
+        "phonetic": "GYAH-vol",
+        "audioUrl": "/audio/pronunciation/gavol.mp3"
+      },
+      {
+        "id": "lj-example",
+        "macedonian": "Љубов",
+        "transliteration": "Ljubov",
+        "english": "Love",
+        "phonetic": "LYOO-bov",
+        "audioUrl": "/audio/pronunciation/ljubov.mp3"
+      },
+      {
+        "id": "nj-example",
+        "macedonian": "Коњ",
+        "transliteration": "Konj",
+        "english": "Horse",
+        "phonetic": "konyh",
+        "audioUrl": "/audio/pronunciation/konj.mp3"
+      },
+      {
+        "id": "r-rolled",
+        "macedonian": "Река",
+        "transliteration": "Reka",
+        "english": "River",
+        "phonetic": "REH-kah (rolled r)",
+        "audioUrl": "/audio/pronunciation/reka.mp3"
+      },
+      {
+        "id": "ch-example",
+        "macedonian": "Човек",
+        "transliteration": "Čovek",
+        "english": "Person / Human",
+        "phonetic": "CHOH-vek",
+        "audioUrl": "/audio/pronunciation/chovek.mp3"
+      },
+      {
+        "id": "dzh-example",
+        "macedonian": "Џеб",
+        "transliteration": "Džeb",
+        "english": "Pocket",
+        "phonetic": "jeb",
+        "audioUrl": "/audio/pronunciation/dzeb.mp3"
+      }
+    ]
+  }
+]
