@@ -24,6 +24,7 @@ import type { QuickPracticeSessionOptions } from '@/components/learn/quick-pract
 import { getSavedPhrasePracticePrompts } from '@/lib/saved-phrases';
 import { fetchDeckCards } from '@/lib/custom-decks';
 import { useToast } from '@/components/ui/use-toast';
+import { getCardMastery, getMasteryLabel } from '@/lib/spaced-repetition';
 
 type QuickPracticeWidgetProps = {
   title?: string;
@@ -228,6 +229,14 @@ export function QuickPracticeWidget({
   const clozeTranslation = isClozeMode ? clozeContext?.translation : null;
   const categoryValue = currentItem?.category ? formatCategory(currentItem.category) : t('practiceAllCategories');
   const categoryLabel = `${t('practiceCategoryLabel')}: ${categoryValue}`;
+
+  // Calculate mastery level for current card
+  const currentMasteryLevel = useMemo(() => {
+    if (!currentItem?.id) return undefined;
+    const mastery = getCardMastery(currentItem.id);
+    return getMasteryLabel(mastery);
+  }, [currentItem?.id]);
+
   const difficultyOptions = useMemo(
     () =>
       PRACTICE_DIFFICULTIES.map((preset) => {
@@ -436,6 +445,7 @@ export function QuickPracticeWidget({
             audioLabel={audioLabel}
             audioComingSoonLabel={audioComingSoonLabel}
             showAudioComingSoon={true}
+            masteryLevel={currentMasteryLevel}
           />
         </div>
 
