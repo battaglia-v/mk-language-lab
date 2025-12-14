@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { imageCache, getCacheKey } from '@/lib/image-proxy-cache';
 
 // Timeout and size limits for image proxy
-const IMAGE_FETCH_TIMEOUT_MS = 8000; // 8 seconds - prevent hanging on slow servers
+const IMAGE_FETCH_TIMEOUT_MS = 6000; // 6 seconds - prevent hanging on slow servers
 const MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024; // 10MB max image size
+const RETRY_ATTEMPTS = 2; // Number of retry attempts
+const RETRY_DELAY_MS = 500; // Delay between retries
 
 // Domains that allow proxying for our news aggregation feature
 // Time.MK is a news aggregator that links to articles from various Macedonian outlets.
@@ -86,6 +89,9 @@ const ALLOWED_DOMAINS = new Set([
 const CACHE_MAX_AGE = 86400; // 24 hours in seconds
 const CACHE_STALE_WHILE_REVALIDATE = 604800; // 7 days
 
+// Base64 encoded minimal SVG placeholder (inline to avoid file I/O)
+const FALLBACK_SVG = `<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#1e293b"/><stop offset="50%" style="stop-color:#334155"/><stop offset="100%" style="stop-color:#1e293b"/></linearGradient></defs><rect width="800" height="450" fill="url(#bg)"/><g transform="translate(340, 165)"><rect x="0" y="0" width="120" height="120" rx="24" fill="rgba(255,255,255,0.1)"/><path d="M60 30 L90 70 L80 70 L80 90 L40 90 L40 70 L30 70 Z" fill="rgba(255,255,255,0.3)"/><circle cx="75" cy="45" r="8" fill="rgba(255,255,255,0.4)"/></g><text x="400" y="320" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-family="system-ui, sans-serif" font-size="14" font-weight="500">Macedonian News</text></svg>`;
+
 function isAllowedDomain(url: string): boolean {
   try {
     const hostname = new URL(url).hostname;
@@ -99,6 +105,59 @@ function isAllowedDomain(url: string): boolean {
   } catch {
     return false;
   }
+}
+
+/**
+ * Return the fallback SVG image response
+ */
+function getFallbackResponse(): NextResponse {
+  return new NextResponse(FALLBACK_SVG, {
+    status: 200,
+    headers: {
+      'Content-Type': 'image/svg+xml',
+      'Cache-Control': `public, max-age=${CACHE_MAX_AGE}, stale-while-revalidate=${CACHE_STALE_WHILE_REVALIDATE}`,
+      'X-Content-Type-Options': 'nosniff',
+      'X-Fallback': 'true',
+    },
+  });
+}
+
+/**
+ * Fetch image with retry logic
+ */
+async function fetchWithRetry(
+  url: string,
+  options: RequestInit,
+  attempts: number = RETRY_ATTEMPTS
+): Promise<Response> {
+  let lastError: Error | null = null;
+  
+  for (let i = 0; i < attempts; i++) {
+    try {
+      const response = await fetch(url, options);
+      if (response.ok) {
+        return response;
+      }
+      // If not OK but not a network error, don't retry 4xx errors
+      if (response.status >= 400 && response.status < 500) {
+        throw new Error(`Client error: ${response.status}`);
+      }
+      lastError = new Error(`HTTP ${response.status}`);
+    } catch (error) {
+      lastError = error as Error;
+      // Don't retry on abort/timeout
+      if (lastError.name === 'TimeoutError' || lastError.name === 'AbortError') {
+        throw lastError;
+      }
+    }
+    
+    // Wait before retry (if not last attempt)
+    if (i < attempts - 1) {
+      await new Promise(resolve => setTimeout(resolve, RETRY_DELAY_MS * (i + 1)));
+    }
+  }
+  
+  throw lastError || new Error('Failed to fetch after retries');
 }
 
 export async function GET(request: NextRequest) {
@@ -128,54 +187,70 @@ export async function GET(request: NextRequest) {
   // Validate domain is in allowlist (use original URL for domain check)
   if (!isAllowedDomain(url)) {
     console.warn(`[Image Proxy] Domain blocked: ${parsedUrl.hostname} - URL: ${url.slice(0, 100)}`);
-    return NextResponse.json({ error: 'Domain not allowed' }, { status: 403 });
+    return getFallbackResponse();
+  }
+
+  const cacheKey = getCacheKey(url);
+
+  // Check in-memory cache first
+  const cached = imageCache.get(cacheKey);
+  if (cached) {
+    return new NextResponse(cached.data, {
+      status: 200,
+      headers: {
+        'Content-Type': cached.contentType,
+        'Cache-Control': `public, max-age=${CACHE_MAX_AGE}, stale-while-revalidate=${CACHE_STALE_WHILE_REVALIDATE}`,
+        'X-Content-Type-Options': 'nosniff',
+        'Content-Security-Policy': "default-src 'none'",
+        'X-Cache': 'HIT',
+      },
+    });
   }
 
   try {
-    // Try HTTPS first with timeout to prevent hanging on slow servers
-    let response = await fetch(secureUrl, {
+    // Build fetch options
+    const fetchOptions: RequestInit = {
       headers: {
         'User-Agent':
           'Mozilla/5.0 (compatible; MKLanguageLab/1.0; +https://mk-language-lab.vercel.app)',
         Accept: 'image/*',
         Referer: parsedUrl.origin,
       },
-      cache: 'no-store',
+      cache: 'no-store' as const,
       signal: AbortSignal.timeout(IMAGE_FETCH_TIMEOUT_MS),
-    });
+    };
 
-    // If HTTPS fails, fall back to HTTP for domains that don't support HTTPS
-    if (!response.ok && url.startsWith('http://')) {
-      response = await fetch(url, {
-        headers: {
-          'User-Agent':
-            'Mozilla/5.0 (compatible; MKLanguageLab/1.0; +https://mk-language-lab.vercel.app)',
-          Accept: 'image/*',
-          Referer: new URL(url).origin,
-        },
-        cache: 'no-store',
-        signal: AbortSignal.timeout(IMAGE_FETCH_TIMEOUT_MS),
-      });
-    }
-
-    if (!response.ok) {
-      console.warn(`[Image Proxy] Failed to fetch: ${response.status} - ${url.slice(0, 100)}`);
-      return NextResponse.json(
-        { error: 'Failed to fetch image' },
-        { status: response.status }
-      );
+    // Try HTTPS first with retry logic
+    let response: Response;
+    try {
+      response = await fetchWithRetry(secureUrl, fetchOptions, RETRY_ATTEMPTS);
+    } catch {
+      // If HTTPS fails completely, try HTTP as last resort
+      if (url.startsWith('http://')) {
+        const httpOptions = {
+          ...fetchOptions,
+          signal: AbortSignal.timeout(IMAGE_FETCH_TIMEOUT_MS),
+        };
+        response = await fetch(url, httpOptions);
+        if (!response.ok) {
+          throw new Error(`HTTP fallback failed: ${response.status}`);
+        }
+      } else {
+        throw new Error('HTTPS fetch failed');
+      }
     }
 
     const contentType = response.headers.get('content-type');
     if (!contentType || !contentType.startsWith('image/')) {
-      return NextResponse.json({ error: 'URL did not return an image' }, { status: 400 });
+      console.warn(`[Image Proxy] Not an image: ${contentType} - ${url.slice(0, 100)}`);
+      return getFallbackResponse();
     }
 
     // Check content length to prevent fetching very large images
     const contentLength = response.headers.get('content-length');
     if (contentLength && parseInt(contentLength, 10) > MAX_IMAGE_SIZE_BYTES) {
       console.warn(`[Image Proxy] Image too large: ${contentLength} bytes - ${url.slice(0, 100)}`);
-      return NextResponse.json({ error: 'Image too large' }, { status: 413 });
+      return getFallbackResponse();
     }
 
     const buffer = await response.arrayBuffer();
@@ -183,8 +258,11 @@ export async function GET(request: NextRequest) {
     // Double-check buffer size in case content-length was missing/wrong
     if (buffer.byteLength > MAX_IMAGE_SIZE_BYTES) {
       console.warn(`[Image Proxy] Image too large after fetch: ${buffer.byteLength} bytes`);
-      return NextResponse.json({ error: 'Image too large' }, { status: 413 });
+      return getFallbackResponse();
     }
+
+    // Store in cache for future requests
+    imageCache.set(cacheKey, buffer, contentType);
 
     return new NextResponse(buffer, {
       status: 200,
@@ -194,16 +272,14 @@ export async function GET(request: NextRequest) {
         // Security headers
         'X-Content-Type-Options': 'nosniff',
         'Content-Security-Policy': "default-src 'none'",
+        'X-Cache': 'MISS',
       },
     });
   } catch (error) {
     const err = error as Error;
-    if (err.name === 'TimeoutError' || err.name === 'AbortError') {
-      console.warn(`[Image Proxy] Timeout fetching: ${url.slice(0, 100)}`);
-      return NextResponse.json({ error: 'Image fetch timeout' }, { status: 504 });
-    }
-    console.error('[Image Proxy] Error fetching image:', err.message, url.slice(0, 100));
-    return NextResponse.json({ error: 'Failed to fetch image' }, { status: 500 });
+    console.warn(`[Image Proxy] Error fetching: ${err.message} - ${url.slice(0, 80)}`);
+    // Always return fallback on any error - never break the UI
+    return getFallbackResponse();
   }
 }
 

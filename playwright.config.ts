@@ -12,9 +12,16 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
+  // Increase timeout for slower CI environments
+  timeout: 60000,
+  expect: {
+    timeout: 10000,
+  },
   use: {
     baseURL: 'http://localhost:3000',
     trace: 'on-first-retry',
+    // Take screenshot on failure for debugging
+    screenshot: 'only-on-failure',
   },
 
   projects: [
@@ -25,8 +32,11 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: 'npm run dev:webpack',
+    // Use production build for E2E tests to avoid Next.js Dev Tools interference
+    // Dev tools button causes selector conflicts in accessibility tests
+    command: process.env.E2E_DEV_MODE ? 'npm run dev:webpack' : 'npm run build && npm run start',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
+    timeout: 120000, // Allow 2 minutes for build
   },
 });

@@ -1,0 +1,18 @@
+<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b"/>
+      <stop offset="50%" style="stop-color:#334155"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+  <g transform="translate(340, 165)">
+    <rect x="0" y="0" width="120" height="120" rx="24" fill="rgba(255,255,255,0.1)"/>
+    <path d="M60 30 L90 70 L80 70 L80 90 L40 90 L40 70 L30 70 Z" fill="rgba(255,255,255,0.3)"/>
+    <circle cx="75" cy="45" r="8" fill="rgba(255,255,255,0.4)"/>
+  </g>
+  <text x="400" y="320" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-family="system-ui, sans-serif" font-size="14" font-weight="500">
+    Macedonian News
+  </text>
+</svg>

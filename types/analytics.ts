@@ -185,6 +185,19 @@ export interface ReaderSentenceViewEvent {
   };
 }
 
+export interface ReaderWordTapEvent {
+  eventName: 'reader_word_tap';
+  eventData: {
+    textId: string;
+    wordId: string;
+    word: string;
+    translation: string;
+    partOfSpeech?: string;
+    addedToDeck: boolean;
+    playedAudio: boolean;
+  };
+}
+
 export interface ReaderCompleteEvent {
   eventName: 'reader_complete';
   eventData: {
@@ -197,6 +210,41 @@ export interface ReaderCompleteEvent {
     translationsViewed: number;
     xpEarned: number;
     comprehensionScore?: number; // If quiz completed
+  };
+}
+
+// =============================================================================
+// NEWS EVENTS
+// =============================================================================
+
+export interface NewsPageViewEvent {
+  eventName: 'news_page_view';
+  eventData: {
+    source: 'all' | 'time-mk' | 'meta-mk';
+    articleCount: number;
+    hasVideoFilter: boolean;
+    searchQuery?: string;
+  };
+}
+
+export interface NewsArticleClickEvent {
+  eventName: 'news_article_click';
+  eventData: {
+    articleId: string;
+    source: string;
+    title: string;
+    hasVideo: boolean;
+    categories: string[];
+    position: number;
+  };
+}
+
+export interface NewsFilterChangeEvent {
+  eventName: 'news_filter_change';
+  eventData: {
+    filterType: 'source' | 'video' | 'search';
+    previousValue: string;
+    newValue: string;
   };
 }
 
@@ -400,7 +448,11 @@ export type AnalyticsEvent =
   | FlashcardReviewEvent
   | ReaderOpenEvent
   | ReaderSentenceViewEvent
+  | ReaderWordTapEvent
   | ReaderCompleteEvent
+  | NewsPageViewEvent
+  | NewsArticleClickEvent
+  | NewsFilterChangeEvent
   | TranslationRequestEvent
   | TranslationSaveEvent
   | StreakUpdateEvent
@@ -463,7 +515,13 @@ export const EVENT_NAMES = {
   // Reader
   READER_OPEN: 'reader_open',
   READER_SENTENCE_VIEW: 'reader_sentence_view',
+  READER_WORD_TAP: 'reader_word_tap',
   READER_COMPLETE: 'reader_complete',
+  
+  // News
+  NEWS_PAGE_VIEW: 'news_page_view',
+  NEWS_ARTICLE_CLICK: 'news_article_click',
+  NEWS_FILTER_CHANGE: 'news_filter_change',
   
   // Translator
   TRANSLATION_REQUEST: 'translation_request',

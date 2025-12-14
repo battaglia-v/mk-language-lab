@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 import type { AnalyzedTextData, WordAnalysis } from '@/components/translate/useReaderWorkspace';
 import {
   Popover,
@@ -35,6 +36,11 @@ function WordToken({ word, revealMode, isRevealed, onToggleReveal, isFocused = f
 
   const handleClick = () => {
     onToggleReveal();
+    // Track word tap for analytics
+    trackEvent(AnalyticsEvents.READER_WORD_CLICKED, {
+      partOfSpeech: word.pos,
+      hasMultipleMeanings: word.hasMultipleMeanings || false,
+    });
     // Keep popover open on first click to show details
     if (!showTranslation) {
       setIsOpen(true);

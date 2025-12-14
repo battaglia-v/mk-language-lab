@@ -1834,5 +1834,95 @@
     "error": "Failed to send support request. Please try again.",
     "required": "This field is required",
     "invalidEmail": "Please enter a valid email address"
+  },
+  "microcopy": {
+    "loading": {
+      "default": "Loading...",
+      "lesson": "Preparing your lesson...",
+      "translation": "Translating...",
+      "audio": "Loading audio...",
+      "news": "Fetching latest news...",
+      "progress": "Saving your progress...",
+      "analyzing": "Analyzing text..."
+    },
+    "empty": {
+      "savedWords": "No saved words yet",
+      "savedWordsHint": "Words you save while learning will appear here",
+      "noLessons": "Start your first lesson!",
+      "noLessonsHint": "Begin your Macedonian journey today",
+      "noReviews": "All caught up!",
+      "noReviewsHint": "No cards due for review. Great work!",
+      "noNews": "No news available",
+      "noNewsHint": "Check back later for the latest updates",
+      "noResults": "No results found",
+      "noResultsHint": "Try a different search term"
+    },
+    "success": {
+      "lessonComplete": "Lesson Complete!",
+      "goalReached": "Daily Goal Reached!",
+      "wordSaved": "Word saved to your deck",
+      "streakExtended": "Streak extended!",
+      "streakMilestone": "Amazing! {days} day streak!",
+      "perfectScore": "Perfect score!",
+      "levelUp": "Level Up!",
+      "badgeEarned": "New badge earned!",
+      "translationCopied": "Translation copied"
+    },
+    "errors": {
+      "generic": "Something went wrong",
+      "network": "Connection issue. Check your internet.",
+      "translationFailed": "Translation failed. Please try again.",
+      "audioFailed": "Couldn't play audio",
+      "saveFailed": "Couldn't save. Please try again.",
+      "sessionExpired": "Session expired. Please sign in again.",
+      "limitReached": "Daily limit reached"
+    },
+    "feedback": {
+      "correct": "Correct!",
+      "almostCorrect": "Almost!",
+      "incorrect": "Not quite",
+      "tryAgainHint": "The correct answer was:",
+      "goodJob": "Good job!",
+      "keepItUp": "Keep it up!",
+      "excellent": "Excellent!",
+      "amazing": "Amazing!",
+      "onFire": "You're on fire!"
+    },
+    "streakMessages": {
+      "current": "{days} day streak",
+      "lost": "Streak lost",
+      "protect": "Protect your streak!",
+      "freezeUsed": "Streak Freeze used",
+      "dontBreak": "Don't break your {days} day streak!"
+    },
+    "motivational": {
+      "welcomeBack": "Welcome back!",
+      "readyToLearn": "Ready to learn?",
+      "youGotThis": "You've got this!",
+      "almostThere": "Almost there!",
+      "greatProgress": "Great progress today!",
+      "seeYouTomorrow": "See you tomorrow!",
+      "consistencyIsKey": "Consistency is key"
+    },
+    "reader": {
+      "tapToDefine": "Tap any word to see its definition",
+      "addToDeck": "Add to Deck",
+      "playAudio": "Play Audio",
+      "difficulty": {
+        "a1": "Beginner",
+        "a2": "Elementary", 
+        "b1": "Intermediate",
+        "b2": "Upper Intermediate",
+        "c1": "Advanced"
+      }
+    },
+    "dashboard": {
+      "dailyGoal": "Daily Goal",
+      "xpToday": "{earned}/{goal} XP today",
+      "goalComplete": "Goal complete!",
+      "reviewDue": "{count} cards due for review",
+      "continueLesson": "Continue Lesson",
+      "startLesson": "Start Lesson"
+    }
   }
 }
