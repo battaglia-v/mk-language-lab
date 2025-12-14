@@ -1,12 +1,23 @@
 'use client';
 
 import Link from 'next/link';
+import { Languages, Sparkles, Newspaper, BookOpen, Info } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+// Icon map for serialization-safe icon passing from server components
+const iconMap: Record<string, LucideIcon> = {
+  Languages,
+  Sparkles,
+  Newspaper,
+  BookOpen,
+  Info,
+};
+
 interface QuickAction {
   id: string;
-  icon: LucideIcon;
+  /** Icon name (must match key in iconMap) - use string for RSC compatibility */
+  iconName: string;
   label: string;
   description?: string;
   href: string;
@@ -43,7 +54,7 @@ export function QuickActionsGrid({
       </h2>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
         {actions.map((action) => {
-          const Icon = action.icon;
+          const Icon = iconMap[action.iconName] || Info;
           return (
             <Link
               key={action.id}
