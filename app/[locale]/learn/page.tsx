@@ -3,7 +3,6 @@ import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { getLevelInfo } from "@/lib/gamification/xp";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Languages, Sparkles, Newspaper, BookOpen, Info } from "lucide-react";
 import { WordOfTheDay } from "@/components/learn/WordOfTheDay";
 import { 
   CompactStatBar, 
@@ -65,11 +64,11 @@ export default async function LearnPage() {
     ? Math.min((gameProgress.todayXP / gameProgress.dailyGoalXP) * 100, 100)
     : 0;
 
-  // Quick actions for the grid
+  // Quick actions for the grid - use iconName strings for RSC serialization
   const quickActions = [
     {
       id: "translate",
-      icon: Languages,
+      iconName: "Languages",
       label: navT("translate"),
       href: "/translate",
       gradientFrom: "from-sky-500/16",
@@ -78,7 +77,7 @@ export default async function LearnPage() {
     },
     {
       id: "practice",
-      icon: Sparkles,
+      iconName: "Sparkles",
       label: navT("practice"),
       href: "/practice",
       gradientFrom: "from-amber-400/18",
@@ -87,7 +86,7 @@ export default async function LearnPage() {
     },
     {
       id: "news",
-      icon: Newspaper,
+      iconName: "Newspaper",
       label: navT("news"),
       href: "/news",
       gradientFrom: "from-purple-400/16",
@@ -96,7 +95,7 @@ export default async function LearnPage() {
     },
     {
       id: "resources",
-      icon: BookOpen,
+      iconName: "BookOpen",
       label: navT("resources"),
       href: "/resources",
       gradientFrom: "from-emerald-400/16",
@@ -105,7 +104,7 @@ export default async function LearnPage() {
     },
     {
       id: "about",
-      icon: Info,
+      iconName: "Info",
       label: navT("about"),
       href: "/about",
       gradientFrom: "from-slate-300/14",

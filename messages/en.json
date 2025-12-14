@@ -210,6 +210,7 @@
     "totalXP": "Total XP",
     "dayStreak": "Day Streak",
     "level": "Level",
+    "cardsRemaining": "{count, plural, =0 {No cards to review} one {# card to review} other {# cards to review}}",
     "vocabulary": "Vocabulary",
     "vocabularyDesc": "Learn essential Macedonian words and phrases",
     "grammar": "Grammar",
