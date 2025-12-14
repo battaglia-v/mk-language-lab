@@ -1,0 +1,547 @@
+{
+  "meta": {
+    "id": "starter-deck-v1",
+    "title": "Starter Deck",
+    "titleMk": "Почетен Сет",
+    "description": "40 essential words to start your Macedonian journey",
+    "descriptionMk": "40 основни зборови за почеток на твоето македонско патување",
+    "level": "A1",
+    "category": "essentials",
+    "version": "1.0.0",
+    "lastUpdated": "2025-01-01"
+  },
+  "items": [
+    {
+      "id": "sd-001",
+      "mk": "здраво",
+      "en": "hello",
+      "category": "greetings",
+      "audio": "/audio/zdravo.mp3",
+      "example": {
+        "mk": "Здраво, како си?",
+        "en": "Hello, how are you?"
+      },
+      "notes": "Informal greeting, used with friends and family"
+    },
+    {
+      "id": "sd-002",
+      "mk": "добар ден",
+      "en": "good day",
+      "category": "greetings",
+      "audio": "/audio/dobar-den.mp3",
+      "example": {
+        "mk": "Добар ден, господине.",
+        "en": "Good day, sir."
+      },
+      "notes": "Formal greeting, used during daytime"
+    },
+    {
+      "id": "sd-003",
+      "mk": "добро утро",
+      "en": "good morning",
+      "category": "greetings",
+      "audio": "/audio/dobro-utro.mp3",
+      "example": {
+        "mk": "Добро утро! Како спа?",
+        "en": "Good morning! How did you sleep?"
+      },
+      "notes": "Used until around noon"
+    },
+    {
+      "id": "sd-004",
+      "mk": "добра вечер",
+      "en": "good evening",
+      "category": "greetings",
+      "audio": "/audio/dobra-vecer.mp3",
+      "example": {
+        "mk": "Добра вечер на сите!",
+        "en": "Good evening to everyone!"
+      },
+      "notes": "Used after sunset"
+    },
+    {
+      "id": "sd-005",
+      "mk": "лека ноќ",
+      "en": "good night",
+      "category": "greetings",
+      "audio": "/audio/leka-nokj.mp3",
+      "example": {
+        "mk": "Лека ноќ, сони убаво.",
+        "en": "Good night, sleep well."
+      },
+      "notes": "Said when going to bed"
+    },
+    {
+      "id": "sd-006",
+      "mk": "довидување",
+      "en": "goodbye",
+      "category": "greetings",
+      "audio": "/audio/doviduvanje.mp3",
+      "example": {
+        "mk": "Довидување, ќе се видиме утре.",
+        "en": "Goodbye, see you tomorrow."
+      },
+      "notes": "Formal farewell"
+    },
+    {
+      "id": "sd-007",
+      "mk": "ќао",
+      "en": "bye (informal)",
+      "category": "greetings",
+      "audio": "/audio/kjao.mp3",
+      "example": {
+        "mk": "Ќао, се чуеме!",
+        "en": "Bye, talk to you later!"
+      },
+      "notes": "Informal, from Italian 'ciao'"
+    },
+    {
+      "id": "sd-008",
+      "mk": "да",
+      "en": "yes",
+      "category": "basics",
+      "audio": "/audio/da.mp3",
+      "example": {
+        "mk": "Да, сакам кафе.",
+        "en": "Yes, I want coffee."
+      },
+      "notes": "Basic affirmative"
+    },
+    {
+      "id": "sd-009",
+      "mk": "не",
+      "en": "no",
+      "category": "basics",
+      "audio": "/audio/ne.mp3",
+      "example": {
+        "mk": "Не, благодарам.",
+        "en": "No, thank you."
+      },
+      "notes": "Basic negative"
+    },
+    {
+      "id": "sd-010",
+      "mk": "благодарам",
+      "en": "thank you",
+      "category": "politeness",
+      "audio": "/audio/blagodaram.mp3",
+      "example": {
+        "mk": "Благодарам многу!",
+        "en": "Thank you very much!"
+      },
+      "notes": "Formal thanks; 'фала' is informal"
+    },
+    {
+      "id": "sd-011",
+      "mk": "фала",
+      "en": "thanks",
+      "category": "politeness",
+      "audio": "/audio/fala.mp3",
+      "example": {
+        "mk": "Фала за помошта.",
+        "en": "Thanks for the help."
+      },
+      "notes": "Informal variant of благодарам"
+    },
+    {
+      "id": "sd-012",
+      "mk": "молам",
+      "en": "please / you're welcome",
+      "category": "politeness",
+      "audio": "/audio/molam.mp3",
+      "example": {
+        "mk": "Молам, седнете.",
+        "en": "Please, sit down."
+      },
+      "notes": "Dual meaning based on context"
+    },
+    {
+      "id": "sd-013",
+      "mk": "извинете",
+      "en": "excuse me / sorry",
+      "category": "politeness",
+      "audio": "/audio/izvinete.mp3",
+      "example": {
+        "mk": "Извинете, каде е банката?",
+        "en": "Excuse me, where is the bank?"
+      },
+      "notes": "Used for attention or apology"
+    },
+    {
+      "id": "sd-014",
+      "mk": "како си?",
+      "en": "how are you? (informal)",
+      "category": "phrases",
+      "audio": "/audio/kako-si.mp3",
+      "example": {
+        "mk": "Здраво! Како си денес?",
+        "en": "Hi! How are you today?"
+      },
+      "notes": "Informal, for friends"
+    },
+    {
+      "id": "sd-015",
+      "mk": "како сте?",
+      "en": "how are you? (formal)",
+      "category": "phrases",
+      "audio": "/audio/kako-ste.mp3",
+      "example": {
+        "mk": "Добар ден, како сте?",
+        "en": "Good day, how are you?"
+      },
+      "notes": "Formal, for elders/strangers"
+    },
+    {
+      "id": "sd-016",
+      "mk": "добро сум",
+      "en": "I'm fine",
+      "category": "phrases",
+      "audio": "/audio/dobro-sum.mp3",
+      "example": {
+        "mk": "Добро сум, а ти?",
+        "en": "I'm fine, and you?"
+      },
+      "notes": "Standard response to 'како си?'"
+    },
+    {
+      "id": "sd-017",
+      "mk": "јас",
+      "en": "I",
+      "category": "pronouns",
+      "audio": "/audio/jas.mp3",
+      "example": {
+        "mk": "Јас сум студент.",
+        "en": "I am a student."
+      },
+      "notes": "First person singular pronoun"
+    },
+    {
+      "id": "sd-018",
+      "mk": "ти",
+      "en": "you (informal)",
+      "category": "pronouns",
+      "audio": "/audio/ti.mp3",
+      "example": {
+        "mk": "Ти си добар пријател.",
+        "en": "You are a good friend."
+      },
+      "notes": "Singular informal 'you'"
+    },
+    {
+      "id": "sd-019",
+      "mk": "тој",
+      "en": "he",
+      "category": "pronouns",
+      "audio": "/audio/toj.mp3",
+      "example": {
+        "mk": "Тој е мој брат.",
+        "en": "He is my brother."
+      },
+      "notes": "Third person masculine singular"
+    },
+    {
+      "id": "sd-020",
+      "mk": "таа",
+      "en": "she",
+      "category": "pronouns",
+      "audio": "/audio/taa.mp3",
+      "example": {
+        "mk": "Таа е моја сестра.",
+        "en": "She is my sister."
+      },
+      "notes": "Third person feminine singular"
+    },
+    {
+      "id": "sd-021",
+      "mk": "ние",
+      "en": "we",
+      "category": "pronouns",
+      "audio": "/audio/nie.mp3",
+      "example": {
+        "mk": "Ние учиме македонски.",
+        "en": "We are learning Macedonian."
+      },
+      "notes": "First person plural"
+    },
+    {
+      "id": "sd-022",
+      "mk": "вие",
+      "en": "you (plural/formal)",
+      "category": "pronouns",
+      "audio": "/audio/vie.mp3",
+      "example": {
+        "mk": "Вие сте добредојдени.",
+        "en": "You are welcome."
+      },
+      "notes": "Plural or formal singular 'you'"
+    },
+    {
+      "id": "sd-023",
+      "mk": "тие",
+      "en": "they",
+      "category": "pronouns",
+      "audio": "/audio/tie.mp3",
+      "example": {
+        "mk": "Тие живеат во Скопје.",
+        "en": "They live in Skopje."
+      },
+      "notes": "Third person plural (all genders)"
+    },
+    {
+      "id": "sd-024",
+      "mk": "еден",
+      "en": "one",
+      "category": "numbers",
+      "audio": "/audio/eden.mp3",
+      "example": {
+        "mk": "Сакам еден леб.",
+        "en": "I want one bread."
+      },
+      "notes": "Masculine form; една (f), едно (n)"
+    },
+    {
+      "id": "sd-025",
+      "mk": "два",
+      "en": "two",
+      "category": "numbers",
+      "audio": "/audio/dva.mp3",
+      "example": {
+        "mk": "Имам два брата.",
+        "en": "I have two brothers."
+      },
+      "notes": "Masculine form; две (f/n)"
+    },
+    {
+      "id": "sd-026",
+      "mk": "три",
+      "en": "three",
+      "category": "numbers",
+      "audio": "/audio/tri.mp3",
+      "example": {
+        "mk": "Три кафиња, молам.",
+        "en": "Three coffees, please."
+      },
+      "notes": "Same form for all genders"
+    },
+    {
+      "id": "sd-027",
+      "mk": "вода",
+      "en": "water",
+      "category": "food",
+      "audio": "/audio/voda.mp3",
+      "example": {
+        "mk": "Сакам чаша вода.",
+        "en": "I want a glass of water."
+      },
+      "notes": "Feminine noun"
+    },
+    {
+      "id": "sd-028",
+      "mk": "кафе",
+      "en": "coffee",
+      "category": "food",
+      "audio": "/audio/kafe.mp3",
+      "example": {
+        "mk": "Едно кафе, молам.",
+        "en": "One coffee, please."
+      },
+      "notes": "Neuter noun; турско кафе is traditional"
+    },
+    {
+      "id": "sd-029",
+      "mk": "леб",
+      "en": "bread",
+      "category": "food",
+      "audio": "/audio/leb.mp3",
+      "example": {
+        "mk": "Лебот е свеж.",
+        "en": "The bread is fresh."
+      },
+      "notes": "Masculine noun"
+    },
+    {
+      "id": "sd-030",
+      "mk": "месо",
+      "en": "meat",
+      "category": "food",
+      "audio": "/audio/meso.mp3",
+      "example": {
+        "mk": "Не јадам месо.",
+        "en": "I don't eat meat."
+      },
+      "notes": "Neuter noun"
+    },
+    {
+      "id": "sd-031",
+      "mk": "ќе бидам",
+      "en": "I will be",
+      "category": "verbs",
+      "audio": "/audio/ke-bidam.mp3",
+      "example": {
+        "mk": "Ќе бидам дома вечерва.",
+        "en": "I will be home tonight."
+      },
+      "notes": "Future tense of 'to be'"
+    },
+    {
+      "id": "sd-032",
+      "mk": "сакам",
+      "en": "I want / I love",
+      "category": "verbs",
+      "audio": "/audio/sakam.mp3",
+      "example": {
+        "mk": "Сакам да учам јазици.",
+        "en": "I want to learn languages."
+      },
+      "notes": "Very common verb; context determines meaning"
+    },
+    {
+      "id": "sd-033",
+      "mk": "имам",
+      "en": "I have",
+      "category": "verbs",
+      "audio": "/audio/imam.mp3",
+      "example": {
+        "mk": "Имам три деца.",
+        "en": "I have three children."
+      },
+      "notes": "Essential possession verb"
+    },
+    {
+      "id": "sd-034",
+      "mk": "знам",
+      "en": "I know",
+      "category": "verbs",
+      "audio": "/audio/znam.mp3",
+      "example": {
+        "mk": "Не знам.",
+        "en": "I don't know."
+      },
+      "notes": "Common response; use 'познавам' for people"
+    },
+    {
+      "id": "sd-035",
+      "mk": "каде",
+      "en": "where",
+      "category": "questions",
+      "audio": "/audio/kade.mp3",
+      "example": {
+        "mk": "Каде живееш?",
+        "en": "Where do you live?"
+      },
+      "notes": "Location question word"
+    },
+    {
+      "id": "sd-036",
+      "mk": "што",
+      "en": "what",
+      "category": "questions",
+      "audio": "/audio/sto.mp3",
+      "example": {
+        "mk": "Што правиш?",
+        "en": "What are you doing?"
+      },
+      "notes": "Also used as relative pronoun 'that'"
+    },
+    {
+      "id": "sd-037",
+      "mk": "кој",
+      "en": "who",
+      "category": "questions",
+      "audio": "/audio/koj.mp3",
+      "example": {
+        "mk": "Кој е тоа?",
+        "en": "Who is that?"
+      },
+      "notes": "Masculine form; која (f), кое (n)"
+    },
+    {
+      "id": "sd-038",
+      "mk": "денес",
+      "en": "today",
+      "category": "time",
+      "audio": "/audio/denes.mp3",
+      "example": {
+        "mk": "Денес е убав ден.",
+        "en": "Today is a beautiful day."
+      },
+      "notes": "Time adverb"
+    },
+    {
+      "id": "sd-039",
+      "mk": "утре",
+      "en": "tomorrow",
+      "category": "time",
+      "audio": "/audio/utre.mp3",
+      "example": {
+        "mk": "Ќе се видиме утре.",
+        "en": "We'll see each other tomorrow."
+      },
+      "notes": "Time adverb"
+    },
+    {
+      "id": "sd-040",
+      "mk": "вчера",
+      "en": "yesterday",
+      "category": "time",
+      "audio": "/audio/vcera.mp3",
+      "example": {
+        "mk": "Вчера бев во Охрид.",
+        "en": "Yesterday I was in Ohrid."
+      },
+      "notes": "Time adverb"
+    }
+  ],
+  "categories": {
+    "greetings": {
+      "en": "Greetings",
+      "mk": "Поздрави",
+      "color": "#10B981"
+    },
+    "basics": {
+      "en": "Basics",
+      "mk": "Основи",
+      "color": "#3B82F6"
+    },
+    "politeness": {
+      "en": "Politeness",
+      "mk": "Учтивост",
+      "color": "#8B5CF6"
+    },
+    "phrases": {
+      "en": "Phrases",
+      "mk": "Фрази",
+      "color": "#EC4899"
+    },
+    "pronouns": {
+      "en": "Pronouns",
+      "mk": "Заменки",
+      "color": "#F59E0B"
+    },
+    "numbers": {
+      "en": "Numbers",
+      "mk": "Броеви",
+      "color": "#EF4444"
+    },
+    "food": {
+      "en": "Food & Drink",
+      "mk": "Храна и пијалаци",
+      "color": "#14B8A6"
+    },
+    "verbs": {
+      "en": "Verbs",
+      "mk": "Глаголи",
+      "color": "#6366F1"
+    },
+    "questions": {
+      "en": "Questions",
+      "mk": "Прашања",
+      "color": "#F97316"
+    },
+    "time": {
+      "en": "Time",
+      "mk": "Време",
+      "color": "#06B6D4"
+    }
+  }
+}

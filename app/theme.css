@@ -11,20 +11,22 @@
   --line-height-base: 1.6;
   --line-height-relaxed: 1.8;
 
-  /* Layout guardrails */
-  --content-padding: clamp(0.875rem, 3vw, 1.5rem);
-  --content-max: 1200px;
-  --content-wide: 1120px;
-  --content-reading: 896px;
+  /* Layout guardrails - UPDATED for wider, more spacious layouts */
+  --content-padding: clamp(1rem, 3vw, 2.5rem);
+  --content-max: 1280px;      /* was 1200px - more breathing room */
+  --content-wide: 1180px;     /* was 1120px */
+  --content-reading: 720px;   /* was 896px - narrower for better readability */
+  --content-narrow: 480px;    /* NEW: for focused content like forms */
 
-  /* Button sizing */
-  --button-height-sm: 2.75rem;  /* 44px - accessibility compliant touch target */
-  --button-height-md: 3rem;
-  --button-height-lg: 3.5rem;
-  --button-pad-x-sm: 0.9rem;
-  --button-pad-x-md: 1.15rem;
-  --button-pad-x-lg: 1.35rem;
-  --button-pad-y: 0.65rem;
+  /* Button sizing - UPDATED for WCAG AA touch targets */
+  --button-height-sm: 2.75rem;  /* 44px - minimum touch target */
+  --button-height-md: 3rem;     /* 48px - primary CTA */
+  --button-height-lg: 3.5rem;   /* 56px - hero CTA */
+  --button-pad-x-sm: 1rem;      /* was 0.9rem */
+  --button-pad-x-md: 1.5rem;    /* was 1.15rem */
+  --button-pad-x-lg: 2rem;      /* was 1.35rem */
+  --button-pad-y: 0.75rem;      /* was 0.65rem */
+  --touch-target-min: 44px;     /* NEW: explicit WCAG AA minimum */
 
   --mk-bg: #06060b;
   --mk-bg-surface: #0b0b12;
@@ -85,6 +87,33 @@
   --icon-size-sm: 16px;
   --icon-stroke: 1.6;
   --icon-gap: 10px;
+
+  /* Spacing scale (Batch 2) */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+
+  /* Component tokens (Batch 2) */
+  --card-radius: 1rem;          /* 16px */
+  --card-radius-lg: 1.25rem;    /* 20px */
+  --card-padding-default: var(--space-5);  /* 20px */
+  --card-padding-compact: var(--space-4);  /* 16px */
+  --card-gap: var(--space-4);              /* 16px */
+  --section-gap: var(--space-8);           /* 32px */
+  --page-gutter-mobile: var(--space-4);    /* 16px */
+  --page-gutter-desktop: var(--space-10);  /* 40px */
+
+  /* Progress ring sizes */
+  --progress-ring-sm: 3rem;     /* 48px */
+  --progress-ring-md: 5rem;     /* 80px */
+  --progress-ring-lg: 7.5rem;   /* 120px */
 
   /* Reader - Part of Speech colors */
   --pos-noun: #60a5fa;       /* blue */

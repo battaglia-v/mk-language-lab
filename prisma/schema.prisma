@@ -715,3 +715,149 @@ enum FriendshipStatus {
   ACCEPTED
   BLOCKED
 }
+
+// =====================================================
+// BATCH 7: NEW MODELS FOR ENHANCED UX
+// Added: Reader, Progress Tracking, Vocabulary, Analytics
+// =====================================================
+
+// ReaderText - Graded reading content for the Reader feature
+model ReaderText {
+  id            String          @id @default(cuid())
+  slug          String          @unique
+  level         ReaderLevel
+  category      String
+  titleEn       String
+  titleMk       String
+  wordCount     Int
+  estimatedMins Int
+  xpReward      Int             @default(20)
+  isPublished   Boolean         @default(true)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  sentences ReaderSentence[]
+  sessions  ReaderSession[]
+
+  @@index([level, isPublished])
+  @@index([category])
+}
+
+// ReaderSentence - Individual sentences within a reading text
+model ReaderSentence {
+  id          String   @id @default(cuid())
+  textId      String
+  orderIndex  Int
+  contentMk   String   @db.Text
+  contentEn   String   @db.Text
+  audioUrl    String?
+  vocabulary  Json?    // Array of {word, meaning, pos}
+  grammarNote String?
+  culturalNote String?
+  createdAt   DateTime @default(now())
+
+  text ReaderText @relation(fields: [textId], references: [id], onDelete: Cascade)
+
+  @@unique([textId, orderIndex])
+  @@index([textId])
+}
+
+// ReaderSession - User's reading session progress
+model ReaderSession {
+  id              String   @id @default(cuid())
+  userId          String
+  textId          String
+  currentSentence Int      @default(0)
+  sentencesRead   Int      @default(0)
+  totalSentences  Int
+  timeSpentSecs   Int      @default(0)
+  xpEarned        Int      @default(0)
+  completedAt     DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  text ReaderText @relation(fields: [textId], references: [id], onDelete: Cascade)
+
+  @@index([userId, textId])
+  @@index([userId, completedAt])
+}
+
+// DailyProgress - Track user's daily learning activity
+model DailyProgress {
+  id               String   @id @default(cuid())
+  userId           String
+  date             DateTime @db.Date
+  xpEarned         Int      @default(0)
+  xpGoal           Int      @default(50)
+  practiceMinutes  Int      @default(0)
+  lessonsCompleted Int      @default(0)
+  wordsLearned     Int      @default(0)
+  streakProtected  Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([userId, date])
+  @@index([userId, date])
+}
+
+// StreakFreeze - Consumable items to protect streaks
+model StreakFreeze {
+  id        String    @id @default(cuid())
+  userId    String
+  earnedAt  DateTime  @default(now())
+  usedAt    DateTime?
+  expiresAt DateTime?
+  source    String    // 'purchase' | 'quest_reward' | 'achievement'
+
+  @@index([userId, usedAt])
+}
+
+// VocabularyWord - User's personal vocabulary list
+model VocabularyWord {
+  id            String   @id @default(cuid())
+  userId        String
+  wordMk        String
+  wordEn        String
+  phonetic      String?
+  category      String?
+  notes         String?  @db.Text
+  audioUrl      String?
+  mastery       Int      @default(0) // 0-5 SRS level
+  nextReviewAt  DateTime?
+  timesReviewed Int      @default(0)
+  timesCorrect  Int      @default(0)
+  source        String?  // 'reader' | 'translator' | 'practice' | 'manual'
+  sourceId      String?  // ID of source content
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([userId, wordMk])
+  @@index([userId, mastery])
+  @@index([userId, nextReviewAt])
+}
+
+// AnalyticsEvent - Track user behavior for insights
+model AnalyticsEvent {
+  id          String   @id @default(cuid())
+  userId      String?
+  sessionId   String?
+  eventName   String
+  eventData   Json?
+  screenName  String?
+  deviceType  String?
+  locale      String?
+  createdAt   DateTime @default(now())
+
+  @@index([userId, eventName])
+  @@index([eventName, createdAt])
+  @@index([sessionId])
+}
+
+enum ReaderLevel {
+  A1
+  A2
+  B1
+  B2
+  C1
+}
+

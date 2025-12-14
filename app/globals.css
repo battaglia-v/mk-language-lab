@@ -55,12 +55,17 @@
   --safe-area-top: env(safe-area-inset-top, 0px);
   --safe-area-bottom: env(safe-area-inset-bottom, 0px);
 
-  /* Mobile spacing system */
-  --mobile-page-gap: 0.75rem;          /* 12px - between page sections (was 16px) */
-  --mobile-section-gap: 0.5rem;        /* 8px - within sections (was 12px) */
-  --mobile-card-padding: 0.75rem;      /* 12px - card internal padding (was 16px) */
-  --mobile-card-gap: 0.5rem;           /* 8px - between cards (was 12px) */
-  --mobile-element-gap: 0.375rem;      /* 6px - between small elements (was 8px) */
+  /* Mobile spacing system - UPDATED for better touch & readability */
+  --mobile-page-gap: 1rem;             /* 16px - between page sections */
+  --mobile-section-gap: 0.75rem;       /* 12px - within sections */
+  --mobile-card-padding: 1rem;         /* 16px - card internal padding */
+  --mobile-card-gap: 0.75rem;          /* 12px - between cards */
+  --mobile-element-gap: 0.5rem;        /* 8px - between small elements */
+  
+  /* Accessibility tokens */
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 2px;
+  --min-touch-target: 44px;            /* WCAG AA minimum */
 }
 
 /* Apply light theme by default */
