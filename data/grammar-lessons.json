@@ -386,5 +386,397 @@
         "explanationEn": "After a number (three), use plural without article: 'три деца'"
       }
     ]
+  },
+  {
+    "id": "prepositions-basics",
+    "titleMk": "Предлози - Основи",
+    "titleEn": "Prepositions - Basics",
+    "descriptionMk": "Научи ги основните предлози за место и насока",
+    "descriptionEn": "Learn basic prepositions for location and direction",
+    "difficulty": "beginner",
+    "tags": ["prepositions", "location", "basics"],
+    "totalXp": 60,
+    "grammarNote": {
+      "titleMk": "Предлози",
+      "titleEn": "Prepositions",
+      "contentMk": "Предлозите покажуваат односи меѓу зборовите. Најчести предлози за место: на (on), во (in), под (under), над (above), до (next to), пред (in front of), зад (behind).",
+      "contentEn": "Prepositions show relationships between words. Common prepositions for location: на (on), во (in), под (under), над (above), до (next to), пред (in front of), зад (behind).",
+      "examplesMk": [
+        "Книгата е на масата (The book is on the table)",
+        "Мачката е под столот (The cat is under the chair)",
+        "Паркот е до училиштето (The park is next to the school)"
+      ],
+      "examplesEn": [
+        "Книгата е на масата (The book is on the table)",
+        "Мачката е под столот (The cat is under the chair)",
+        "Паркот е до училиштето (The park is next to the school)"
+      ]
+    },
+    "exercises": [
+      {
+        "id": "prep-1",
+        "type": "fill-blank",
+        "instructionMk": "Избери го правилниот предлог",
+        "instructionEn": "Choose the correct preposition",
+        "sentenceMk": "Мачката е ___ масата.",
+        "translationEn": "The cat is on the table.",
+        "correctAnswers": ["на"],
+        "wordBank": ["на", "во", "под", "до"],
+        "xp": 10
+      },
+      {
+        "id": "prep-2",
+        "type": "multiple-choice",
+        "instructionMk": "Кој предлог е правилен?",
+        "instructionEn": "Which preposition is correct?",
+        "questionMk": "Живеам ___ Скопје.",
+        "questionEn": "I live in Skopje.",
+        "options": ["на", "во", "до", "под"],
+        "correctIndex": 1,
+        "xp": 10,
+        "explanationMk": "'Во' се користи за градови и држави",
+        "explanationEn": "'Во' is used for cities and countries"
+      },
+      {
+        "id": "prep-3",
+        "type": "fill-blank",
+        "instructionMk": "Пополни го празното место",
+        "instructionEn": "Fill in the blank",
+        "sentenceMk": "Кучето е ___ столот.",
+        "translationEn": "The dog is under the chair.",
+        "correctAnswers": ["под"],
+        "xp": 10
+      },
+      {
+        "id": "prep-4",
+        "type": "sentence-builder",
+        "instructionMk": "Подреди ги зборовите",
+        "instructionEn": "Arrange the words",
+        "targetSentenceMk": "Продавницата е до банката",
+        "translationEn": "The store is next to the bank",
+        "words": ["Продавницата", "е", "до", "банката"],
+        "xp": 15
+      },
+      {
+        "id": "prep-5",
+        "type": "multiple-choice",
+        "instructionMk": "Што значи 'зад'?",
+        "instructionEn": "What does 'зад' mean?",
+        "questionMk": "Преведи го предлогот 'зад'",
+        "questionEn": "Translate the preposition 'зад'",
+        "options": ["in front of", "behind", "above", "below"],
+        "correctIndex": 1,
+        "xp": 10
+      },
+      {
+        "id": "prep-6",
+        "type": "error-correction",
+        "instructionMk": "Поправи ја грешката",
+        "instructionEn": "Fix the error",
+        "sentenceWithErrorMk": "Автобусот е на автобуската станица",
+        "translationEn": "The bus is at the bus station",
+        "errorWord": "на",
+        "correctedWord": "во",
+        "errorPosition": 2,
+        "xp": 15,
+        "explanationMk": "За станици и затворени простори се користи 'во'",
+        "explanationEn": "For stations and enclosed spaces, use 'во'"
+      }
+    ]
+  },
+  {
+    "id": "question-words",
+    "titleMk": "Прашални зборови",
+    "titleEn": "Question Words",
+    "descriptionMk": "Научи како да поставуваш прашања на македонски",
+    "descriptionEn": "Learn how to ask questions in Macedonian",
+    "difficulty": "beginner",
+    "tags": ["questions", "wh-words", "basics"],
+    "totalXp": 60,
+    "grammarNote": {
+      "titleMk": "Прашални зборови",
+      "titleEn": "Question Words",
+      "contentMk": "Основни прашални зборови: Што? (What?), Кој? (Who?), Каде? (Where?), Кога? (When?), Зошто? (Why?), Како? (How?), Колку? (How many/much?)",
+      "contentEn": "Basic question words: Што? (What?), Кој? (Who?), Каде? (Where?), Кога? (When?), Зошто? (Why?), Како? (How?), Колку? (How many/much?)",
+      "examplesMk": [
+        "Што правиш? (What are you doing?)",
+        "Каде живееш? (Where do you live?)",
+        "Колку чини ова? (How much does this cost?)"
+      ],
+      "examplesEn": [
+        "Што правиш? (What are you doing?)",
+        "Каде живееш? (Where do you live?)",
+        "Колку чини ова? (How much does this cost?)"
+      ]
+    },
+    "exercises": [
+      {
+        "id": "qw-1",
+        "type": "multiple-choice",
+        "instructionMk": "Кој прашален збор е правилен?",
+        "instructionEn": "Which question word is correct?",
+        "questionMk": "___ се викаш?",
+        "questionEn": "What is your name?",
+        "options": ["Кој", "Што", "Каде", "Како"],
+        "correctIndex": 3,
+        "xp": 10,
+        "explanationMk": "'Како' се користи за име: 'Како се викаш?' = 'What is your name?'",
+        "explanationEn": "'Како' is used for names: 'Како се викаш?' = 'What is your name?'"
+      },
+      {
+        "id": "qw-2",
+        "type": "fill-blank",
+        "instructionMk": "Пополни го правилниот прашален збор",
+        "instructionEn": "Fill in the correct question word",
+        "sentenceMk": "___ е тоа?",
+        "translationEn": "What is that?",
+        "correctAnswers": ["Што"],
+        "wordBank": ["Што", "Кој", "Каде", "Кога"],
+        "xp": 10
+      },
+      {
+        "id": "qw-3",
+        "type": "multiple-choice",
+        "instructionMk": "Преведи: 'Where?'",
+        "instructionEn": "Translate: 'Where?'",
+        "questionMk": "Кој е македонскиот збор за 'Where?'",
+        "questionEn": "What is the Macedonian word for 'Where?'",
+        "options": ["Кога?", "Каде?", "Зошто?", "Колку?"],
+        "correctIndex": 1,
+        "xp": 10
+      },
+      {
+        "id": "qw-4",
+        "type": "sentence-builder",
+        "instructionMk": "Подреди ги зборовите за да направиш прашање",
+        "instructionEn": "Arrange the words to make a question",
+        "targetSentenceMk": "Кога доаѓа автобусот",
+        "translationEn": "When does the bus arrive?",
+        "words": ["Кога", "доаѓа", "автобусот"],
+        "xp": 15
+      },
+      {
+        "id": "qw-5",
+        "type": "fill-blank",
+        "instructionMk": "Пополни го правилниот прашален збор",
+        "instructionEn": "Fill in the correct question word",
+        "sentenceMk": "___ чини ова?",
+        "translationEn": "How much does this cost?",
+        "correctAnswers": ["Колку"],
+        "xp": 10
+      },
+      {
+        "id": "qw-6",
+        "type": "multiple-choice",
+        "instructionMk": "Кој прашален збор се користи за причина?",
+        "instructionEn": "Which question word is used for reason?",
+        "questionMk": "___ не дојде на забава?",
+        "questionEn": "Why didn't you come to the party?",
+        "options": ["Како", "Кога", "Зошто", "Каде"],
+        "correctIndex": 2,
+        "xp": 10,
+        "explanationMk": "'Зошто' значи 'Why' - се користи за причина",
+        "explanationEn": "'Зошто' means 'Why' - used for reason"
+      }
+    ]
+  },
+  {
+    "id": "negation-basics",
+    "titleMk": "Негација - Основи",
+    "titleEn": "Negation - Basics",
+    "descriptionMk": "Научи како да формираш негативни реченици",
+    "descriptionEn": "Learn how to form negative sentences",
+    "difficulty": "beginner",
+    "tags": ["negation", "verbs", "basics"],
+    "totalXp": 60,
+    "grammarNote": {
+      "titleMk": "Негација",
+      "titleEn": "Negation",
+      "contentMk": "Негацијата во македонскиот е едноставна - додај 'не' пред глаголот. За именки користи 'нема' (there is no) или 'немам' (I don't have).",
+      "contentEn": "Negation in Macedonian is simple - add 'не' before the verb. For nouns use 'нема' (there is no) or 'немам' (I don't have).",
+      "examplesMk": [
+        "Јас не зборувам англиски (I don't speak English)",
+        "Тој не работи денес (He doesn't work today)",
+        "Немам време (I don't have time)"
+      ],
+      "examplesEn": [
+        "Јас не зборувам англиски (I don't speak English)",
+        "Тој не работи денес (He doesn't work today)",
+        "Немам време (I don't have time)"
+      ]
+    },
+    "exercises": [
+      {
+        "id": "neg-1",
+        "type": "fill-blank",
+        "instructionMk": "Направи негативна реченица",
+        "instructionEn": "Make a negative sentence",
+        "sentenceMk": "Јас ___ сакам кафе.",
+        "translationEn": "I don't like coffee.",
+        "correctAnswers": ["не"],
+        "xp": 10
+      },
+      {
+        "id": "neg-2",
+        "type": "multiple-choice",
+        "instructionMk": "Која реченица е негативна?",
+        "instructionEn": "Which sentence is negative?",
+        "questionMk": "Избери ја негативната реченица:",
+        "questionEn": "Choose the negative sentence:",
+        "options": ["Имам куче", "Немам куче", "Сакам куче", "Гледам куче"],
+        "correctIndex": 1,
+        "xp": 10,
+        "explanationMk": "'Немам' = 'I don't have'",
+        "explanationEn": "'Немам' = 'I don't have'"
+      },
+      {
+        "id": "neg-3",
+        "type": "error-correction",
+        "instructionMk": "Поправи ја грешката во негацијата",
+        "instructionEn": "Fix the negation error",
+        "sentenceWithErrorMk": "Тој никако не работи не",
+        "translationEn": "He doesn't work",
+        "errorWord": "никако не работи не",
+        "correctedWord": "не работи",
+        "errorPosition": 1,
+        "xp": 15,
+        "explanationMk": "Во македонски се користи само едно 'не' пред глаголот",
+        "explanationEn": "In Macedonian, only one 'не' is used before the verb"
+      },
+      {
+        "id": "neg-4",
+        "type": "sentence-builder",
+        "instructionMk": "Подреди ги зборовите за негативна реченица",
+        "instructionEn": "Arrange words for a negative sentence",
+        "targetSentenceMk": "Ние не одиме на работа",
+        "translationEn": "We don't go to work",
+        "words": ["Ние", "не", "одиме", "на", "работа"],
+        "xp": 15
+      },
+      {
+        "id": "neg-5",
+        "type": "fill-blank",
+        "instructionMk": "Пополни го правилниот облик",
+        "instructionEn": "Fill in the correct form",
+        "sentenceMk": "___ пари.",
+        "translationEn": "There is no money.",
+        "correctAnswers": ["Нема"],
+        "wordBank": ["Нема", "Не", "Немам", "Не сум"],
+        "xp": 10
+      },
+      {
+        "id": "neg-6",
+        "type": "multiple-choice",
+        "instructionMk": "Како се вели 'I am not' на македонски?",
+        "instructionEn": "How do you say 'I am not' in Macedonian?",
+        "questionMk": "Преведи: 'I am not a student'",
+        "questionEn": "Translate: 'I am not a student'",
+        "options": ["Јас не сум студент", "Јас немам студент", "Јас нема студент", "Јас не имам студент"],
+        "correctIndex": 0,
+        "xp": 10,
+        "explanationMk": "'Не сум' = 'I am not'",
+        "explanationEn": "'Не сум' = 'I am not'"
+      }
+    ]
+  },
+  {
+    "id": "past-tense-intro",
+    "titleMk": "Минато време - Вовед",
+    "titleEn": "Past Tense - Introduction",
+    "descriptionMk": "Научи ги основите на минатото време",
+    "descriptionEn": "Learn the basics of the past tense",
+    "difficulty": "intermediate",
+    "tags": ["past-tense", "verbs", "conjugation"],
+    "totalXp": 75,
+    "grammarNote": {
+      "titleMk": "Минато време",
+      "titleEn": "Past Tense",
+      "contentMk": "Минатото определено свршено време се формира со л-форма + помошен глагол 'сум'. Пример: работил сум (I worked), работил си (you worked), работил (he worked).",
+      "contentEn": "The past definite tense is formed with the л-form + auxiliary verb 'сум'. Example: работил сум (I worked), работил си (you worked), работил (he worked).",
+      "examplesMk": [
+        "Јас работев вчера (I worked yesterday)",
+        "Тој дојде рано (He came early)",
+        "Ние јадевме во ресторан (We ate at a restaurant)"
+      ],
+      "examplesEn": [
+        "Јас работев вчера (I worked yesterday)",
+        "Тој дојде рано (He came early)",
+        "Ние јадевме во ресторан (We ate at a restaurant)"
+      ]
+    },
+    "exercises": [
+      {
+        "id": "pt-1",
+        "type": "multiple-choice",
+        "instructionMk": "Избери го правилното минато време",
+        "instructionEn": "Choose the correct past tense form",
+        "questionMk": "Јас ___ (работа) вчера.",
+        "questionEn": "I worked yesterday.",
+        "options": ["работам", "работев", "работа", "ќе работам"],
+        "correctIndex": 1,
+        "xp": 10,
+        "explanationMk": "'Работев' е минато време од 'работа'",
+        "explanationEn": "'Работев' is the past tense of 'работа' (to work)"
+      },
+      {
+        "id": "pt-2",
+        "type": "fill-blank",
+        "instructionMk": "Пополни го минатото време",
+        "instructionEn": "Fill in the past tense",
+        "sentenceMk": "Тој ___ на забава.",
+        "translationEn": "He went to a party.",
+        "correctAnswers": ["отиде", "оде"],
+        "xp": 10,
+        "hintMk": "Минато време од 'оди'",
+        "hintEn": "Past tense of 'оди' (to go)"
+      },
+      {
+        "id": "pt-3",
+        "type": "multiple-choice",
+        "instructionMk": "Кој глагол е во минато време?",
+        "instructionEn": "Which verb is in past tense?",
+        "questionMk": "Избери го глаголот во минато време:",
+        "questionEn": "Choose the verb in past tense:",
+        "options": ["читам", "читав", "ќе читам", "читај"],
+        "correctIndex": 1,
+        "xp": 10
+      },
+      {
+        "id": "pt-4",
+        "type": "sentence-builder",
+        "instructionMk": "Подреди ги зборовите",
+        "instructionEn": "Arrange the words",
+        "targetSentenceMk": "Вчера гледав филм",
+        "translationEn": "Yesterday I watched a movie",
+        "words": ["Вчера", "гледав", "филм"],
+        "xp": 15
+      },
+      {
+        "id": "pt-5",
+        "type": "error-correction",
+        "instructionMk": "Поправи ја грешката",
+        "instructionEn": "Fix the error",
+        "sentenceWithErrorMk": "Ние јадеме вчера во ресторан",
+        "translationEn": "We ate at a restaurant yesterday",
+        "errorWord": "јадеме",
+        "correctedWord": "јадевме",
+        "errorPosition": 1,
+        "xp": 15,
+        "explanationMk": "'Јадеме' е сегашно време, треба 'јадевме' за минато",
+        "explanationEn": "'Јадеме' is present tense, should be 'јадевме' for past"
+      },
+      {
+        "id": "pt-6",
+        "type": "fill-blank",
+        "instructionMk": "Стави го глаголот во минато време",
+        "instructionEn": "Put the verb in past tense",
+        "sentenceMk": "Тие ___ многу убаво.",
+        "translationEn": "They sang very beautifully.",
+        "correctAnswers": ["пееја", "пеeа"],
+        "xp": 15,
+        "hintMk": "Минато време од 'пее'",
+        "hintEn": "Past tense of 'пее' (to sing)"
+      }
+    ]
   }
 ]

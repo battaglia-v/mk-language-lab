@@ -2076,5 +2076,41 @@
     "audioPaused": "Audio paused",
     "recordingStarted": "Recording started",
     "recordingStopped": "Recording stopped"
+  },
+  "achievements": {
+    "badge": {
+      "title": "Badge Earned!",
+      "subtitle": "You unlocked a new badge"
+    },
+    "levelUp": {
+      "title": "Level Up!",
+      "subtitle": "You reached level {level}"
+    },
+    "streakMilestone": {
+      "title": "Streak Milestone!",
+      "subtitle": "{days} day streak achieved"
+    },
+    "xpBonus": {
+      "title": "Bonus XP!",
+      "subtitle": "You earned extra points"
+    },
+    "dailyGoal": {
+      "title": "Daily Goal Complete!",
+      "subtitle": "You reached your XP target"
+    },
+    "perfectScore": {
+      "title": "Perfect Score!",
+      "subtitle": "100% accuracy"
+    },
+    "firstComplete": {
+      "title": "First Steps!",
+      "subtitle": "You completed your first lesson"
+    },
+    "xpGained": "+{amount} XP",
+    "daysStreak": "{count, plural, one {# Day} other {# Days}}",
+    "keepItUp": "Keep it up!",
+    "amazing": "Amazing!",
+    "incredible": "Incredible!",
+    "unstoppable": "Unstoppable!"
   }
 }
