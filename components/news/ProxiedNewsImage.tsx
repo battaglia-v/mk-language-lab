@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, ImgHTMLAttributes } from 'react';
+import { useState, useCallback, useEffect, ImgHTMLAttributes } from 'react';
 import { Newspaper } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -17,15 +17,16 @@ interface ProxiedNewsImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>
 
 /**
  * Proxied News Image Component
- * 
+ *
  * Handles image loading through the proxy with automatic fallback
  * to a branded placeholder when images fail to load.
- * 
+ *
  * Features:
  * - Automatic proxy URL generation
  * - Graceful fallback on error
- * - Loading state handling
+ * - Loading state handling with skeleton
  * - Lazy loading support
+ * - No layout shift (explicit dimensions)
  */
 export function ProxiedNewsImage({
   imageUrl,
@@ -38,8 +39,14 @@ export function ProxiedNewsImage({
   const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  // Reset state when imageUrl changes
+  useEffect(() => {
+    setHasError(false);
+    setIsLoaded(false);
+  }, [imageUrl]);
+
   // Generate proxy URL - prefer new news/image endpoint for better caching
-  const proxyUrl = imageUrl 
+  const proxyUrl = imageUrl
     ? `/api/news/image?src=${encodeURIComponent(imageUrl)}`
     : null;
 
@@ -66,6 +73,9 @@ export function ProxiedNewsImage({
           src={proxyUrl}
           alt={alt}
           loading="lazy"
+          decoding="async"
+          width={800}
+          height={450}
           onError={handleError}
           onLoad={handleLoad}
           className={cn(
@@ -79,7 +89,12 @@ export function ProxiedNewsImage({
 
       {/* Loading skeleton - shown while image loads */}
       {proxyUrl && !showFallback && !isLoaded && (
-        <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800" />
+          <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-xl bg-white/5">
+            <Newspaper className="h-6 w-6 text-slate-500 animate-pulse" />
+          </div>
+        </div>
       )}
 
       {/* Fallback placeholder */}

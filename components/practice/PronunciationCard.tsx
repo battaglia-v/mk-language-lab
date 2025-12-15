@@ -12,6 +12,46 @@ import { usePronunciationScoring, getScoreColorClass, getScoreBgClass } from '@/
 import { cn } from '@/lib/utils';
 import { triggerHaptic } from '@/lib/haptics';
 
+// =============================================================================
+// AUDIO CONFIGURATION
+// =============================================================================
+
+/**
+ * Audio source types for pronunciation reference
+ * - 'native': Real Macedonian audio recordings (preferred)
+ * - 'tts': Web Speech API fallback (current default)
+ *
+ * TODO: When real Macedonian audio is available:
+ * 1. Upload MP3 files to cloud storage (Vercel Blob or S3)
+ * 2. Update pronunciation-sessions.json with CDN URLs
+ * 3. This component will automatically prefer native audio over TTS
+ */
+export type AudioSourceType = 'native' | 'tts';
+
+/**
+ * TTS Configuration for fallback pronunciation
+ *
+ * Note: Serbian (sr-RS) is used as the closest available voice to Macedonian.
+ * This is a temporary solution until native Macedonian audio is available.
+ *
+ * TODO: Consider alternatives:
+ * - Google Cloud Text-to-Speech with Macedonian voice
+ * - Azure Speech Services
+ * - Custom Macedonian voice model
+ */
+const TTS_CONFIG = {
+  /** Language code for TTS - Serbian is closest to Macedonian */
+  lang: 'sr-RS',
+  /** Speech rate (0.1-10, default 1) - slightly slower for learners */
+  rate: 0.85,
+  /** Pitch (0-2, default 1) */
+  pitch: 1,
+} as const;
+
+// =============================================================================
+// TYPES
+// =============================================================================
+
 export interface PronunciationWord {
   id: string;
   /** Macedonian word in Cyrillic */
@@ -183,7 +223,7 @@ export function PronunciationCard({
     }
   }, [scoringState, step]);
 
-  // TTS speak function as fallback
+  // TTS speak function as fallback when native audio is unavailable
   const speakWithTTS = useCallback((text: string) => {
     if (!window.speechSynthesis) {
       setAudioError(true);
@@ -193,10 +233,10 @@ export function PronunciationCard({
     window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
-    // Use Serbian as closest available to Macedonian
-    utterance.lang = 'sr-RS';
-    utterance.rate = 0.85;
-    utterance.pitch = 1;
+    // Use configured TTS settings (see TTS_CONFIG at top of file)
+    utterance.lang = TTS_CONFIG.lang;
+    utterance.rate = TTS_CONFIG.rate;
+    utterance.pitch = TTS_CONFIG.pitch;
 
     utterance.onstart = () => {
       setIsPlayingReference(true);
