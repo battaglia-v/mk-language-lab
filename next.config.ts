@@ -162,6 +162,42 @@ const nextConfig: NextConfig = {
     // explicitly opting in, which caused deployments to fail).
     turbopackUseSystemTlsCerts: true,
   },
+  // Optimize package imports for better tree-shaking
+  modularizeImports: {
+    'lucide-react': {
+      transform: 'lucide-react/dist/esm/icons/{{kebabCase member}}',
+    },
+  },
+  // Webpack configuration for bundle optimization
+  webpack: (config, { isServer }) => {
+    // Optimize chunks for better caching
+    if (!isServer) {
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          ...config.optimization?.splitChunks,
+          cacheGroups: {
+            ...((config.optimization?.splitChunks as { cacheGroups?: Record<string, unknown> })?.cacheGroups || {}),
+            // Separate vendor chunks for better caching
+            framerMotion: {
+              test: /[\\/]node_modules[\\/](framer-motion)[\\/]/,
+              name: 'framer-motion',
+              chunks: 'all',
+              priority: 30,
+            },
+            // Group small utility libraries
+            utils: {
+              test: /[\\/]node_modules[\\/](clsx|class-variance-authority|tailwind-merge)[\\/]/,
+              name: 'utils',
+              chunks: 'all',
+              priority: 20,
+            },
+          },
+        },
+      };
+    }
+    return config;
+  },
   // Add security and performance headers
   async headers() {
     return [
