@@ -2,7 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mic, Square, Play, Pause, RotateCcw, Volume2, Check, X, AlertCircle } from 'lucide-react';
+import { Mic, Square, Play, Pause, RotateCcw, Volume2, Check, X, AlertCircle, Volume1 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -106,6 +106,8 @@ export function PronunciationCard({
   const [isPlayingReference, setIsPlayingReference] = useState(false);
   const [isPlayingRecording, setIsPlayingRecording] = useState(false);
   const [recordingProgress, setRecordingProgress] = useState(0);
+  const [usingTTS, setUsingTTS] = useState(false);
+  const [audioError, setAudioError] = useState(false);
 
   const referenceAudioRef = useRef<HTMLAudioElement | null>(null);
   const recordingAudioRef = useRef<HTMLAudioElement | null>(null);
@@ -181,10 +183,47 @@ export function PronunciationCard({
     }
   }, [scoringState, step]);
 
-  // Play reference audio
+  // TTS speak function as fallback
+  const speakWithTTS = useCallback((text: string) => {
+    if (!window.speechSynthesis) {
+      setAudioError(true);
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    // Use Serbian as closest available to Macedonian
+    utterance.lang = 'sr-RS';
+    utterance.rate = 0.85;
+    utterance.pitch = 1;
+
+    utterance.onstart = () => {
+      setIsPlayingReference(true);
+      setUsingTTS(true);
+    };
+    utterance.onend = () => {
+      setIsPlayingReference(false);
+      setHasListened(true);
+    };
+    utterance.onerror = () => {
+      setIsPlayingReference(false);
+      setAudioError(true);
+    };
+
+    window.speechSynthesis.speak(utterance);
+  }, []);
+
+  // Play reference audio with TTS fallback
   const playReference = useCallback(() => {
-    if (!word.audioUrl) return;
-    
+    setAudioError(false);
+
+    // If no audio URL, use TTS directly
+    if (!word.audioUrl) {
+      speakWithTTS(word.macedonian);
+      return;
+    }
+
     if (referenceAudioRef.current) {
       referenceAudioRef.current.pause();
       referenceAudioRef.current.currentTime = 0;
@@ -193,18 +232,27 @@ export function PronunciationCard({
     const audio = new Audio(word.audioUrl);
     referenceAudioRef.current = audio;
 
-    audio.onplay = () => setIsPlayingReference(true);
+    audio.onplay = () => {
+      setIsPlayingReference(true);
+      setUsingTTS(false);
+    };
     audio.onended = () => {
       setIsPlayingReference(false);
       setHasListened(true);
     };
     audio.onpause = () => setIsPlayingReference(false);
-    audio.onerror = () => setIsPlayingReference(false);
+    audio.onerror = () => {
+      // Audio file failed to load - fall back to TTS
+      setIsPlayingReference(false);
+      speakWithTTS(word.macedonian);
+    };
 
     audio.play().catch(() => {
+      // Playback failed - fall back to TTS
       setIsPlayingReference(false);
+      speakWithTTS(word.macedonian);
     });
-  }, [word.audioUrl]);
+  }, [word.audioUrl, word.macedonian, speakWithTTS]);
 
   // Play recorded audio
   const playRecording = useCallback(() => {
@@ -361,16 +409,32 @@ export function PronunciationCard({
                 size="lg"
                 variant={hasListened ? "outline" : "default"}
                 onClick={playReference}
-                disabled={!word.audioUrl || isPlayingReference}
+                disabled={isPlayingReference}
                 className="min-h-[64px] min-w-[200px] rounded-full"
               >
                 {isPlayingReference ? (
                   <Pause className="h-6 w-6 mr-2" />
+                ) : usingTTS ? (
+                  <Volume1 className="h-6 w-6 mr-2" />
                 ) : (
                   <Volume2 className="h-6 w-6 mr-2" />
                 )}
                 {t.tapToListen}
               </Button>
+
+              {/* TTS indicator */}
+              {usingTTS && hasListened && (
+                <p className="text-xs text-muted-foreground/70">
+                  Using text-to-speech
+                </p>
+              )}
+
+              {/* Audio error message */}
+              {audioError && (
+                <p className="text-xs text-destructive">
+                  Audio unavailable
+                </p>
+              )}
 
               {hasListened && (
                 <motion.p
