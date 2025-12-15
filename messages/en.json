@@ -1975,6 +1975,25 @@
       "backToHome": "Back to Practice",
       "perfectScore": "Perfect! You practiced every word! 🎉",
       "keepPracticing": "Keep practicing to improve your accent!"
+    },
+    "recommendations": {
+      "sectionTitle": "Recommended for You",
+      "noRecommendations": "Great job! You're all caught up.",
+      "continueLesson": "Continue Lesson",
+      "reviewWords": "Review Words",
+      "pronunciation": "Pronunciation",
+      "grammar": "Grammar Drill",
+      "challenge": "Daily Challenge",
+      "streakProtection": "Protect Streak",
+      "newTopic": "New Topic",
+      "startNow": "Start Now",
+      "resume": "Resume",
+      "practice": "Practice",
+      "minutes": "min",
+      "xp": "XP",
+      "urgent": "Urgent",
+      "recommended": "Recommended",
+      "wordsToReview": "words"
     }
   }
 }
