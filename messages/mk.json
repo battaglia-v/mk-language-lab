@@ -2092,5 +2092,28 @@
         "action": "Обиди се повторно"
       }
     }
+  },
+  "accessibility": {
+    "skipToMainContent": "Прескокни до главната содржина",
+    "skipToNavigation": "Прескокни до навигацијата",
+    "loading": "Вчитување",
+    "loadingContent": "Вчитување содржина, ве молам почекајте",
+    "expandedRegion": "Проширено",
+    "collapsedRegion": "Собрано",
+    "menuOpen": "Менито е отворено",
+    "menuClosed": "Менито е затворено",
+    "dialogOpened": "Дијалогот е отворен",
+    "dialogClosed": "Дијалогот е затворен",
+    "itemSelected": "{item} избрано",
+    "pageLoaded": "Страницата е вчитана: {title}",
+    "formError": "Грешка: {message}",
+    "successMessage": "Успех: {message}",
+    "progressPercent": "{value} проценти завршено",
+    "currentOfTotal": "{current} од {total}",
+    "newNotifications": "{count, plural, one {# ново известување} other {# нови известувања}}",
+    "audioPlaying": "Аудио се репродуцира",
+    "audioPaused": "Аудио е паузирано",
+    "recordingStarted": "Снимањето започна",
+    "recordingStopped": "Снимањето запре"
   }
 }
