@@ -439,7 +439,10 @@
         "href": "/practice?section=speaking&card=pronunciation"
       }
     ],
-    "tryNow": "Jump into practice"
+    "tryNow": "Jump into practice",
+    "returnToJourney": "Back to journey",
+    "journeyDrillHeading": "Journey drill: {journey}",
+    "journeyDrillSubtitle": "Shadow the sentences to connect cultural content with pronunciation."
   },
   "learnGrammar": {
     "back": "Back to Learn Hub",
@@ -589,7 +592,16 @@
         "description": "Conversational videos with natural pacing and slang.",
         "href": "/resources?section=audio"
       }
-    ]
+    ],
+    "journeyPracticeHeading": "Practice set: {journey}",
+    "journeyPracticeSubtitle": "Use these prompts to warm up before your next session.",
+    "journeyPracticeNote": "Say each sentence aloud, then respond in Macedonian to continue the conversation.",
+    "journeyPracticeTable": {
+      "situation": "Scenario",
+      "macedonian": "Macedonian",
+      "english": "English",
+      "tip": "Tip"
+    }
   },
   "learnPronunciation": {
     "back": "Back to Learn Hub",
@@ -664,7 +676,9 @@
         "description": "Practice minimal pairs and connected speech with spoken shows.",
         "href": "/resources?section=audio"
       }
-    ]
+    ],
+    "journeyDrillHeading": "Journey drill: {journey}",
+    "journeyDrillSubtitle": "Shadow the sentences to connect cultural content with pronunciation."
   },
   "news": {
     "title": "News Feed",
@@ -701,7 +715,12 @@
     "comingSoonDescription": "We are finishing the conversational tutor experience. In the meantime, keep your streak alive with guided practice and translation decks.",
     "comingSoonPrimary": "Visit practice hub",
     "comingSoonSecondary": "Browse translator",
-    "emptyStateHeading": "How can I help you learn Macedonian?"
+    "emptyStateHeading": "How can I help you learn Macedonian?",
+    "journeyContextTitle": "Active Journey",
+    "journeyContextReview": "Review journey plan",
+    "journeyContextPractice": "Open recommended tool",
+    "journeyContextEmpty": "Set an active journey so the tutor can give personalized responses.",
+    "journeyContextCta": "Choose a journey"
   },
   "translate": {
     "title": "Translate",
@@ -869,7 +888,12 @@
     "readerStreak": "Day streak",
     "readerSessionTime": "Session",
     "readerWords": "Words",
-    "readerInputHelper": "Paste or type up to 5000 characters. Use Reader mode for long-form text."
+    "readerInputHelper": "Paste or type up to 5000 characters. Use Reader mode for long-form text.",
+    "journeyPracticeTitle": "Journey prompts: {journey}",
+    "journeyPracticeDescription": "Load a curated excerpt for translation and discussion with the tutor.",
+    "journeyPracticeLoad": "Load in translator",
+    "journeyPracticeSourceLabel": "Source language: {language}",
+    "journeyPracticePrompt": "Conversation prompt"
   },
   "practiceHub": {
     "badge": "Daily practice",
@@ -877,6 +901,8 @@
     "subtitle": "Choose a practice activity.",
     "ctaTranslate": "Open translator",
     "openAction": "Open workspace",
+    "recommendedBadge": "Journey pick",
+    "recommendedHint": "Selected for your journey",
     "cards": {
       "translate": {
         "title": "Starter Deck",
@@ -1033,7 +1059,12 @@
     "saved": {
       "tabLabel": "Saved",
       "description": "Your bookmarked items from practice sessions will surface here.",
-      "cards": {}
+      "cards": {
+        "journeys": {
+          "title": "Saved journeys",
+          "description": "Track articles and clips you bookmark for deeper learning."
+        }
+      }
     },
     "culture": {
       "tabLabel": "Culture",
@@ -1278,7 +1309,9 @@
     "done": "Done",
     "save": "Save",
     "saving": "Saving...",
-    "emptyColumnHint": "Drag tasks here"
+    "emptyColumnHint": "Drag tasks here",
+    "journeyPresetHeading": "Loaded journey set: {journey}",
+    "journeyPresetDescription": "Pre-filled tasks with journey scenarios to move cards around as you practice."
   },
   "about": {
     "title": "About",
@@ -1339,7 +1372,8 @@
         "translateDescription": "Launch the translation workspace",
         "newsDescription": "Browse the Macedonian news digest",
         "libraryDescription": "Explore the saved resource library",
-        "resourcesDescription": "Scan curated reference collections"
+        "resourcesDescription": "Scan curated reference collections",
+        "journeyDescription": "Return to the journey hub"
       }
     }
   },
@@ -1365,6 +1399,7 @@
   "userMenu": {
     "signIn": "Sign In",
     "profile": "Profile",
+    "about": "About",
     "socialHeader": "Macedonian Language Corner",
     "socialSubtitle": "Follow Andri, your Macedonian tutor",
     "instagram": "Instagram",
