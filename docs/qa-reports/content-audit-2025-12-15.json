@@ -1,0 +1,19 @@
+{
+  "timestamp": "2025-12-15T22:15:41.980Z",
+  "totalItemsScanned": 721,
+  "issuesFound": 1,
+  "issuesFixed": 0,
+  "entries": [
+    {
+      "feature": "grammar",
+      "contentId": "definite-article-basics/da-3",
+      "sentence": "___ е голема.",
+      "currentAnswer": "Куќата е голем",
+      "correctAnswer": "Куќата е голема",
+      "issue": "Masculine adjective \"голем\" used with feminine noun \"куќата\"",
+      "grammarRule": "adjective_agrees_with_noun_gender",
+      "fixApplied": false,
+      "notes": "Куќа is feminine, requires feminine adjective \"голема\""
+    }
+  ]
+}

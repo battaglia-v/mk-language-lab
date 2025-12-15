@@ -125,6 +125,34 @@ jobs:
           echo "### Largest files:" >> $GITHUB_STEP_SUMMARY
           find .next -type f -size +100k -exec ls -lh {} \; | awk '{print $5, $9}' | sort -hr | head -10 >> $GITHUB_STEP_SUMMARY
 
+  content-qa:
+    name: Content QA Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run content validation
+        run: npm run content:validate:ci
+
+      - name: Upload QA reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: content-qa-reports
+          path: docs/qa-reports/
+          retention-days: 30
+
   e2e:
     name: E2E Tests
     runs-on: ubuntu-latest
