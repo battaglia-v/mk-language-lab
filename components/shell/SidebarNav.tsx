@@ -5,6 +5,12 @@ import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { buildLocalizedHref, isNavItemActive, shellNavItems } from "./navItems";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export function SidebarNav() {
   const locale = useLocale();
@@ -30,28 +36,44 @@ export function SidebarNav() {
         </span>
       </div>
       <nav className="flex flex-col gap-2 px-2 py-6 2xl:px-4" aria-label={t("label")}>
-        {shellNavItems.map((item) => {
-          const Icon = item.icon;
-          const href = buildHref(item.path);
-          const active = isNavItemActive(pathname, href);
-          return (
-            <Link
-              key={item.id}
-              href={href}
-              prefetch={true}
-              className={cn(
-                "group icon-gap flex items-center rounded-2xl px-3 py-3.5 text-sm font-semibold transition justify-center 2xl:justify-start min-h-[44px]",
-                active
-                  ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-lg"
-                  : "bg-transparent text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-              )}
-              aria-current={active ? "page" : undefined}
-            >
-              <Icon className="icon-base" aria-hidden="true" />
-              <span className="hidden 2xl:inline">{t(item.id)}</span>
-            </Link>
-          );
-        })}
+        <TooltipProvider delayDuration={300}>
+          {shellNavItems.map((item) => {
+            const Icon = item.icon;
+            const href = buildHref(item.path);
+            const active = isNavItemActive(pathname, href);
+            const label = t(item.id);
+            
+            return (
+              <Tooltip key={item.id}>
+                <TooltipTrigger asChild>
+                  <Link
+                    href={href}
+                    prefetch={true}
+                    className={cn(
+                      "group icon-gap flex items-center rounded-2xl px-3 py-3.5 text-sm font-semibold transition justify-center 2xl:justify-start min-h-[44px]",
+                      active
+                        ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-lg"
+                        : "bg-transparent text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                    )}
+                    aria-current={active ? "page" : undefined}
+                    aria-label={label}
+                  >
+                    <Icon className="icon-base" aria-hidden="true" />
+                    <span className="hidden 2xl:inline">{label}</span>
+                  </Link>
+                </TooltipTrigger>
+                {/* Only show tooltip when sidebar is collapsed (< 2xl breakpoint) */}
+                <TooltipContent 
+                  side="right" 
+                  className="2xl:hidden font-medium"
+                  sideOffset={8}
+                >
+                  {label}
+                </TooltipContent>
+              </Tooltip>
+            );
+          })}
+        </TooltipProvider>
       </nav>
     </aside>
   );

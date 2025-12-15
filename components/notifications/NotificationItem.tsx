@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 
 type Notification = {
   id: string;
@@ -48,12 +49,14 @@ export function NotificationItem({ notification, onMarkAsRead }: NotificationIte
           <div className="flex items-start justify-between gap-2">
             <h3 className="font-semibold text-white">{notification.title}</h3>
             {!notification.isRead && (
-              <button
+              <Button
                 onClick={() => onMarkAsRead(notification.id)}
-                className="text-xs font-semibold uppercase tracking-wide text-primary hover:text-primary/80"
+                variant="ghost"
+                size="sm"
+                className="h-auto px-2 py-1 text-xs font-semibold uppercase tracking-wide text-primary hover:text-primary/80"
               >
                 {t('markRead')}
-              </button>
+              </Button>
             )}
           </div>
 
