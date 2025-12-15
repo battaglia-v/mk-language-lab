@@ -9,7 +9,8 @@ import {
   DailyGoalCard, 
   NextLessonCTA, 
   QuickActionsGrid,
-  GoalCompleteCard 
+  GoalCompleteCard,
+  SmartRecommendations 
 } from "@/components/dashboard";
 
 // Force dynamic rendering to ensure fresh data and proper auth checks
@@ -174,6 +175,16 @@ export default async function LearnPage() {
           reviewDue: t("cardsRemaining", { count: 0 }),
           lessonProgress: t("dailyGoal"),
         }}
+      />
+
+      {/* V2: Smart Recommendations */}
+      <SmartRecommendations
+        streak={gameProgress.streak}
+        todayXP={gameProgress.todayXP}
+        dailyGoalXP={gameProgress.dailyGoalXP}
+        totalLessons={gameProgress.totalLessons}
+        weakWordsCount={0}
+        maxDisplay={2}
       />
 
       {/* V2: Quick Actions Grid */}

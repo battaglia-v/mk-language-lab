@@ -681,6 +681,45 @@ export default function PracticePage() {
         )}
       </section>
 
+      {/* Practice Modes Navigation */}
+      <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+        <Link
+          href={`/${locale}/practice/pronunciation`}
+          className="group glass-card flex items-center gap-4 rounded-2xl p-4 transition-all hover:bg-primary/5 hover:border-primary/30"
+        >
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 shadow-lg shadow-violet-500/20">
+            <Volume2 className="h-6 w-6 text-white" aria-hidden="true" />
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+              {t('modes.pronunciation.title')}
+            </h3>
+            <p className="text-sm text-muted-foreground">
+              {t('modes.pronunciation.description')}
+            </p>
+          </div>
+          <ArrowRight className="ml-auto h-5 w-5 text-muted-foreground opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-1" aria-hidden="true" />
+        </Link>
+
+        <Link
+          href={`/${locale}/practice/grammar`}
+          className="group glass-card flex items-center gap-4 rounded-2xl p-4 transition-all hover:bg-primary/5 hover:border-primary/30"
+        >
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-500/20">
+            <Brain className="h-6 w-6 text-white" aria-hidden="true" />
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+              {t('modes.grammar.title')}
+            </h3>
+            <p className="text-sm text-muted-foreground">
+              {t('modes.grammar.description')}
+            </p>
+          </div>
+          <ArrowRight className="ml-auto h-5 w-5 text-muted-foreground opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-1" aria-hidden="true" />
+        </Link>
+      </section>
+
       <div className="glass-card space-y-5 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-7" data-testid="practice-workspace">
         {/* Practice Streak Calendar */}
         <PracticeStreakCalendar weeks={8} />

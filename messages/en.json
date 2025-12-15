@@ -968,6 +968,16 @@
       "listenTTS": "Listen",
       "stopAudio": "Stop"
     },
+    "modes": {
+      "pronunciation": {
+        "title": "Pronunciation Practice",
+        "description": "Perfect your accent with guided sessions"
+      },
+      "grammar": {
+        "title": "Grammar Drills",
+        "description": "Master Macedonian grammar patterns"
+      }
+    },
     "streakCalendar": {
       "title": "Practice Activity",
       "currentStreak": "{count, plural, =1 {1 day streak} other {# day streak}}",
@@ -1979,21 +1989,57 @@
     "recommendations": {
       "sectionTitle": "Recommended for You",
       "noRecommendations": "Great job! You're all caught up.",
-      "continueLesson": "Continue Lesson",
-      "reviewWords": "Review Words",
-      "pronunciation": "Pronunciation",
-      "grammar": "Grammar Drill",
-      "challenge": "Daily Challenge",
-      "streakProtection": "Protect Streak",
-      "newTopic": "New Topic",
-      "startNow": "Start Now",
-      "resume": "Resume",
-      "practice": "Practice",
-      "minutes": "min",
-      "xp": "XP",
-      "urgent": "Urgent",
-      "recommended": "Recommended",
-      "wordsToReview": "words"
+      "streakProtection": {
+        "title": "Protect Your Streak! 🔥",
+        "description": "You're on a {streak} day streak! Complete a quick practice to keep it going."
+      },
+      "reviewWords": {
+        "title": "Review Weak Words",
+        "description": "You have {count} words that need more practice."
+      },
+      "pronunciation": {
+        "title": "Pronunciation Practice",
+        "description": "Perfect your Macedonian accent with guided sessions."
+      },
+      "grammar": {
+        "title": "Grammar Drills",
+        "description": "Master key grammar patterns with interactive exercises."
+      },
+      "continueLesson": {
+        "title": "Continue Learning",
+        "description": "Pick up where you left off in your journey."
+      },
+      "newTopic": {
+        "title": "Start Your Journey",
+        "description": "Begin your Macedonian learning adventure with our first lesson."
+      },
+      "dailyChallenge": {
+        "title": "Daily Challenge",
+        "description": "Complete today's challenge for bonus XP."
+      },
+      "labels": {
+        "continueLesson": "Continue Lesson",
+        "reviewWords": "Review Words",
+        "pronunciation": "Pronunciation",
+        "grammar": "Grammar Drill",
+        "challenge": "Daily Challenge",
+        "streakProtection": "Protect Streak",
+        "newTopic": "New Topic"
+      },
+      "actions": {
+        "startNow": "Start Now",
+        "resume": "Resume",
+        "practice": "Practice"
+      },
+      "units": {
+        "minutes": "min",
+        "xp": "XP",
+        "wordsToReview": "words"
+      },
+      "badges": {
+        "urgent": "Urgent",
+        "recommended": "Recommended"
+      }
     },
     "emptyStates": {
       "lessons": {
@@ -2054,6 +2100,61 @@
       }
     }
   },
+  "recommendations": {
+    "sectionTitle": "Recommended for You",
+    "noRecommendations": "Great job! You're all caught up.",
+    "streakProtection": {
+      "title": "Protect Your Streak! 🔥",
+      "description": "You're on a {streak} day streak! Complete a quick practice to keep it going."
+    },
+    "reviewWords": {
+      "title": "Review Weak Words",
+      "description": "You have {count} words that need more practice."
+    },
+    "pronunciation": {
+      "title": "Pronunciation Practice",
+      "description": "Perfect your Macedonian accent with guided sessions."
+    },
+    "grammar": {
+      "title": "Grammar Drills",
+      "description": "Master key grammar patterns with interactive exercises."
+    },
+    "continueLesson": {
+      "title": "Continue Learning",
+      "description": "Pick up where you left off in your journey."
+    },
+    "newTopic": {
+      "title": "Start Your Journey",
+      "description": "Begin your Macedonian learning adventure with our first lesson."
+    },
+    "dailyChallenge": {
+      "title": "Daily Challenge",
+      "description": "Complete today's challenge for bonus XP."
+    },
+    "labels": {
+      "continueLesson": "Continue Lesson",
+      "reviewWords": "Review Words",
+      "pronunciation": "Pronunciation",
+      "grammar": "Grammar Drill",
+      "challenge": "Daily Challenge",
+      "streakProtection": "Protect Streak",
+      "newTopic": "New Topic"
+    },
+    "actions": {
+      "startNow": "Start Now",
+      "resume": "Resume",
+      "practice": "Practice"
+    },
+    "units": {
+      "minutes": "min",
+      "xp": "XP",
+      "wordsToReview": "words"
+    },
+    "badges": {
+      "urgent": "Urgent",
+      "recommended": "Recommended"
+    }
+  },
   "accessibility": {
     "skipToMainContent": "Skip to main content",
     "skipToNavigation": "Skip to navigation",
@@ -2112,5 +2213,82 @@
     "amazing": "Amazing!",
     "incredible": "Incredible!",
     "unstoppable": "Unstoppable!"
+  },
+  "pronunciation": {
+    "title": "Pronunciation Practice",
+    "subtitle": "Perfect your Macedonian accent with guided practice",
+    "backToPractice": "Back to Practice",
+    "selectSession": "Select a Session",
+    "phrases": "phrases",
+    "minutes": "min",
+    "difficulty": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1": {
+        "title": "Listen",
+        "description": "Hear the native pronunciation"
+      },
+      "step2": {
+        "title": "Record",
+        "description": "Record yourself repeating"
+      },
+      "step3": {
+        "title": "Compare",
+        "description": "Listen and improve"
+      }
+    },
+    "tips": {
+      "title": "Tips for Success",
+      "tip1": "Practice in a quiet environment for better recording quality",
+      "tip2": "Focus on one sound at a time before moving to full phrases",
+      "tip3": "Record multiple times and compare each attempt"
+    },
+    "backToSessions": "Back to Sessions",
+    "listenNative": "Listen to Native",
+    "startRecording": "Start Recording",
+    "stopRecording": "Stop Recording",
+    "playRecording": "Play Your Recording",
+    "tryAgain": "Try Again",
+    "nextPhrase": "Next Phrase",
+    "sessionComplete": "Session Complete!",
+    "greatWork": "Great work on your pronunciation practice!"
+  },
+  "grammar": {
+    "title": "Grammar Drills",
+    "subtitle": "Master Macedonian grammar through interactive exercises",
+    "backToPractice": "Back to Practice",
+    "selectLesson": "Select a Lesson",
+    "overallProgress": "Overall Progress",
+    "lessonsCompleted": "{completed} of {total} lessons completed",
+    "locked": "Complete previous lessons to unlock",
+    "exercises": "exercises",
+    "minutes": "min",
+    "exit": "Exit",
+    "exerciseProgress": "Exercise {current} of {total}",
+    "checkAnswer": "Check Answer",
+    "nextExercise": "Next",
+    "finishLesson": "Finish Lesson",
+    "correct": "Correct!",
+    "incorrect": "Not quite right",
+    "tryAgain": "Try Again",
+    "showAnswer": "Show Answer",
+    "lessonComplete": {
+      "title": "Lesson Complete!",
+      "score": "Your Score",
+      "xpEarned": "XP Earned",
+      "accuracy": "Accuracy",
+      "continueLearning": "Continue Learning",
+      "retryLesson": "Retry Lesson"
+    },
+    "exerciseTypes": {
+      "fillBlank": "Fill in the blank",
+      "multipleChoice": "Choose the correct answer",
+      "matching": "Match the pairs",
+      "translation": "Translate the sentence"
+    }
   }
 }
