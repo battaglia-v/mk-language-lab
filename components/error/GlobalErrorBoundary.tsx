@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import SupportForm from "@/components/support/SupportForm";
+import { Button } from "@/components/ui/button";
 
 interface ErrorBoundaryProps {
   error: Error & { digest?: string };
@@ -44,27 +45,32 @@ export default function GlobalErrorBoundary({ error, reset }: ErrorBoundaryProps
         )}
 
         <div className="flex flex-col gap-3">
-          <button
+          <Button
             onClick={reset}
-            className="w-full rounded-md bg-primary px-4 py-2 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            variant="default"
+            className="w-full"
           >
             Try Again
-          </button>
-          <Link
-            href="/"
-            className="w-full rounded-md border border-border bg-background px-4 py-2 text-center font-medium transition-colors hover:bg-accent"
+          </Button>
+          <Button
+            asChild
+            variant="outline"
+            className="w-full"
           >
-            Go to Home
-          </Link>
+            <Link href="/">
+              Go to Home
+            </Link>
+          </Button>
         </div>
 
         <div className="flex justify-center">
-          <button
+          <Button
             onClick={() => setIsSupportModalOpen(true)}
-            className="text-sm text-primary hover:underline font-medium"
+            variant="link"
+            className="text-sm"
           >
             Contact Support
-          </button>
+          </Button>
         </div>
       </div>
 

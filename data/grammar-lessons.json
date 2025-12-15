@@ -56,7 +56,7 @@
         "type": "fill-blank",
         "instructionMk": "Додај го определениот член",
         "instructionEn": "Add the definite article",
-        "sentenceMk": "___ е голем.",
+        "sentenceMk": "___ е голема.",
         "translationEn": "The house is big.",
         "correctAnswers": ["Куќата"],
         "xp": 10,
