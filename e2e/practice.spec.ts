@@ -17,6 +17,32 @@ test.describe('Practice Page', () => {
     await expect(practiceContent).toBeVisible();
   });
 
+  test('should display pronunciation practice mode card', async ({ page }) => {
+    // Check for pronunciation practice navigation card
+    const pronunciationCard = page.locator('a[href*="/practice/pronunciation"]');
+    await expect(pronunciationCard).toBeVisible();
+  });
+
+  test('should display grammar practice mode card', async ({ page }) => {
+    // Check for grammar practice navigation card
+    const grammarCard = page.locator('a[href*="/practice/grammar"]');
+    await expect(grammarCard).toBeVisible();
+  });
+
+  test('should navigate to pronunciation practice', async ({ page }) => {
+    const pronunciationCard = page.locator('a[href*="/practice/pronunciation"]').first();
+    await pronunciationCard.click();
+    await page.waitForLoadState('networkidle');
+    await expect(page).toHaveURL(/\/practice\/pronunciation/);
+  });
+
+  test('should navigate to grammar practice', async ({ page }) => {
+    const grammarCard = page.locator('a[href*="/practice/grammar"]').first();
+    await grammarCard.click();
+    await page.waitForLoadState('networkidle');
+    await expect(page).toHaveURL(/\/practice\/grammar/);
+  });
+
   test('should display practice activity section', async ({ page }) => {
     // Check for the practice activity card or section
     const practiceSection = page.locator('h3').filter({ hasText: /Activity|Активност/i }).first();

@@ -162,12 +162,9 @@ const nextConfig: NextConfig = {
     // explicitly opting in, which caused deployments to fail).
     turbopackUseSystemTlsCerts: true,
   },
-  // Optimize package imports for better tree-shaking
-  modularizeImports: {
-    'lucide-react': {
-      transform: 'lucide-react/dist/esm/icons/{{kebabCase member}}',
-    },
-  },
+  // Note: lucide-react modularizeImports removed - Turbopack doesn't support 
+  // the template helpers needed to strip "Icon" suffix from component names.
+  // Tree-shaking still works via ES modules.
   // Webpack configuration for bundle optimization
   webpack: (config, { isServer }) => {
     // Optimize chunks for better caching

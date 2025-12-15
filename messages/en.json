@@ -35,6 +35,7 @@
     "summaryLoading": "Syncing progress…",
     "summaryError": "Unable to load your mission summary.",
     "retry": "Retry",
+    "skip": "Skip",
     "continueButtonLabel": "Continue mission",
     "continueButtonSubtitle": "{earned}/{goal} XP today",
     "continueButtonFallback": "Jump back into Quick Practice",
@@ -2217,6 +2218,8 @@
   "pronunciation": {
     "title": "Pronunciation Practice",
     "subtitle": "Perfect your Macedonian accent with guided practice",
+    "description": "Perfect your Macedonian accent with guided practice",
+    "exerciseProgress": "Exercise {current} of {total}",
     "backToPractice": "Back to Practice",
     "selectSession": "Select a Session",
     "phrases": "phrases",
@@ -2260,6 +2263,8 @@
   "grammar": {
     "title": "Grammar Drills",
     "subtitle": "Master Macedonian grammar through interactive exercises",
+    "description": "Master Macedonian grammar through interactive exercises",
+    "lessons": "Lessons",
     "backToPractice": "Back to Practice",
     "selectLesson": "Select a Lesson",
     "overallProgress": "Overall Progress",
