@@ -116,6 +116,13 @@ export default function RootLayout({
     <html lang="en" className="dark notranslate overflow-x-hidden" translate="no" suppressHydrationWarning>
       <head>
         <meta name="google" content="notranslate" />
+        {/* Preconnect to external services for faster loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* DNS prefetch for API endpoints */}
+        <link rel="dns-prefetch" href="https://api.openai.com" />
+        <link rel="dns-prefetch" href="https://translation.googleapis.com" />
+        {/* Preload critical font if using Google Fonts */}
       </head>
       <body
         className="antialiased overflow-x-hidden theme-dark bg-[var(--mk-bg)] text-[var(--mk-text)]"
