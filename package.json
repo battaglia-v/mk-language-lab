@@ -32,7 +32,10 @@
     "agents:create-issues": "tsx scripts/create-agent-issues.ts",
     "i18n:check": "tsx scripts/sync-translations.ts --ci",
     "i18n:report": "tsx scripts/sync-translations.ts",
-    "i18n:fix": "tsx scripts/sync-translations.ts --fix"
+    "i18n:fix": "tsx scripts/sync-translations.ts --fix",
+    "content:validate": "tsx scripts/validate-content.ts",
+    "content:validate:ci": "tsx scripts/validate-content.ts --ci",
+    "content:validate:strict": "tsx scripts/validate-content.ts --strict"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

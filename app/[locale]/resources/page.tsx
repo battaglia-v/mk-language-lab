@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import { FilterChip } from '@/components/ui/filter-chip';
 import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
@@ -180,14 +181,10 @@ export default function ResourcesPage() {
 
       {/* Horizontal Scrollable Filter Chips - Mobile First */}
       <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-        <button
+        <FilterChip
+          active={!sectionFilter}
           onClick={() => setSectionFilter(null)}
-          className={cn(
-            'inline-flex h-9 items-center justify-center gap-2 whitespace-nowrap rounded-full border px-4 text-sm font-semibold transition-colors',
-            !sectionFilter
-              ? 'border-primary bg-primary text-primary-foreground'
-              : 'border-border/60 bg-white/5 text-foreground/90 hover:bg-primary/10 hover:border-primary/50 hover:text-primary',
-          )}
+          className="h-9 px-4 text-sm"
         >
           All
           {!sectionFilter && (
@@ -195,17 +192,13 @@ export default function ResourcesPage() {
               {resources.length}
             </span>
           )}
-        </button>
+        </FilterChip>
         {sections.map((section) => (
-          <button
+          <FilterChip
             key={section.id}
+            active={sectionFilter === section.title}
             onClick={() => setSectionFilter(section.title)}
-            className={cn(
-              'inline-flex h-9 items-center justify-center gap-2 whitespace-nowrap rounded-full border px-4 text-sm font-semibold transition-colors',
-              sectionFilter === section.title
-                ? 'border-primary bg-primary text-primary-foreground'
-                : 'border-border/60 bg-white/5 text-foreground/90 hover:bg-primary/10 hover:border-primary/50 hover:text-primary',
-            )}
+            className="h-9 px-4 text-sm"
           >
             {section.title}
             {sectionFilter === section.title && (
@@ -213,7 +206,7 @@ export default function ResourcesPage() {
                 {section.count}
               </span>
             )}
-          </button>
+          </FilterChip>
         ))}
       </div>
 

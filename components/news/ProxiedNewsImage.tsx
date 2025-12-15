@@ -38,9 +38,9 @@ export function ProxiedNewsImage({
   const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Generate proxy URL
+  // Generate proxy URL - prefer new news/image endpoint for better caching
   const proxyUrl = imageUrl 
-    ? `/api/image-proxy?url=${encodeURIComponent(imageUrl)}`
+    ? `/api/news/image?src=${encodeURIComponent(imageUrl)}`
     : null;
 
   const handleError = useCallback(() => {
@@ -101,5 +101,5 @@ export function ProxiedNewsImage({
  */
 export function getProxiedImageUrl(imageUrl: string | null): string | null {
   if (!imageUrl) return null;
-  return `/api/image-proxy?url=${encodeURIComponent(imageUrl)}`;
+  return `/api/news/image?src=${encodeURIComponent(imageUrl)}`;
 }

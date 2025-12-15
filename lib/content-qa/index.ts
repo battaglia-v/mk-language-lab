@@ -7,4 +7,8 @@
 
 export * from './types';
 export * from './grammar-rules';
-export { validateContentFile, auditAllContent } from './content-auditor';
+export { 
+  validateContentFile, 
+  auditAllContent,
+  formatAuditReportAsMarkdown 
+} from './content-auditor';
