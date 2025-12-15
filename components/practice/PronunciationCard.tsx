@@ -8,6 +8,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { useAudioRecorder } from '@/hooks/use-audio-recorder';
 import { useReducedMotion } from '@/hooks/use-reduced-motion';
+import { usePronunciationScoring, getScoreColorClass, getScoreBgClass } from '@/hooks/use-pronunciation-scoring';
 import { cn } from '@/lib/utils';
 import { triggerHaptic } from '@/lib/haptics';
 
@@ -25,6 +26,14 @@ export interface PronunciationWord {
   phonetic?: string;
 }
 
+/** Result of a pronunciation attempt */
+export interface PronunciationResult {
+  wordId: string;
+  score: number;
+  skipped: boolean;
+  xpEarned?: number;
+}
+
 interface PronunciationCardProps {
   /** Word to practice */
   word: PronunciationWord;
@@ -33,7 +42,7 @@ interface PronunciationCardProps {
   /** Total words in session */
   total: number;
   /** Callback when user completes this word */
-  onComplete: (result: { wordId: string; score: number; skipped: boolean }) => void;
+  onComplete: (result: PronunciationResult) => void;
   /** Callback to go to next word */
   onNext: () => void;
   /** Callback to skip */
@@ -55,12 +64,24 @@ interface PronunciationCardProps {
     next: string;
     micPermissionDenied: string;
     micNotSupported: string;
+    analyzing?: string;
+    scoreLabel?: string;
+    excellent?: string;
+    good?: string;
+    almostThere?: string;
+    trySlower?: string;
+    tryLouder?: string;
+    tooShort?: string;
+    tooLong?: string;
+    needsWork?: string;
+    gotIt?: string;
+    attemptsRemaining?: string;
   };
   /** Additional class name */
   className?: string;
 }
 
-type PracticeStep = 'listen' | 'record' | 'compare';
+type PracticeStep = 'listen' | 'record' | 'scoring' | 'compare';
 
 /**
  * PronunciationCard - Interactive pronunciation practice widget
@@ -93,6 +114,15 @@ export function PronunciationCard({
   const prefersReducedMotion = useReducedMotion();
   const maxRecordingDuration = 3; // seconds
 
+  // Pronunciation scoring hook
+  const {
+    state: scoringState,
+    score,
+    attemptNumber,
+    scoreRecording,
+    reset: resetScoring,
+  } = usePronunciationScoring();
+
   const {
     state: recorderState,
     audioUrl: recordedAudioUrl,
@@ -118,7 +148,7 @@ export function PronunciationCard({
         clearInterval(progressIntervalRef.current);
       }
       setRecordingProgress(100);
-      setStep('compare');
+      setStep('scoring');
     },
     onError: () => {
       triggerHaptic('error');
@@ -136,6 +166,20 @@ export function PronunciationCard({
       }
     };
   }, []);
+
+  // Trigger scoring when entering scoring step
+  useEffect(() => {
+    if (step === 'scoring' && recordedAudioUrl) {
+      scoreRecording(recordedAudioUrl, word.audioUrl);
+    }
+  }, [step, recordedAudioUrl, word.audioUrl, scoreRecording]);
+
+  // Move to compare step when scoring completes
+  useEffect(() => {
+    if (scoringState === 'complete' && step === 'scoring') {
+      setStep('compare');
+    }
+  }, [scoringState, step]);
 
   // Play reference audio
   const playReference = useCallback(() => {
@@ -196,20 +240,23 @@ export function PronunciationCard({
     stopRecording();
   }, [stopRecording]);
 
-  // Handle "Sounds Good" - mark as complete
+  // Handle "Sounds Good" / "Got It" - mark as complete with actual score
   const handleSoundsGood = useCallback(() => {
-    triggerHaptic('success');
-    onComplete({ wordId: word.id, score: 100, skipped: false });
+    const finalScore = score?.similarity ?? 100;
+    const finalXp = score?.xpReward ?? 10;
+    triggerHaptic(finalScore >= 90 ? 'success' : finalScore >= 70 ? 'medium' : 'light');
+    onComplete({ wordId: word.id, score: finalScore, skipped: false, xpEarned: finalXp });
     onNext();
-  }, [word.id, onComplete, onNext]);
+  }, [word.id, onComplete, onNext, score]);
 
   // Handle "Try Again"
   const handleTryAgain = useCallback(() => {
     triggerHaptic('light');
     resetRecorder();
+    resetScoring();
     setStep('record');
     setRecordingProgress(0);
-  }, [resetRecorder]);
+  }, [resetRecorder, resetScoring]);
 
   // Handle skip
   const handleSkip = useCallback(() => {
@@ -384,6 +431,23 @@ export function PronunciationCard({
             </motion.div>
           )}
 
+          {step === 'scoring' && (
+            <motion.div
+              key="scoring"
+              initial={prefersReducedMotion ? {} : { opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={prefersReducedMotion ? {} : { opacity: 0, scale: 0.95 }}
+              className="flex flex-col items-center gap-4 py-8"
+            >
+              <div className="relative">
+                <div className="h-16 w-16 rounded-full border-4 border-primary/30 border-t-primary animate-spin" />
+              </div>
+              <p className="text-muted-foreground">
+                {t.analyzing ?? 'Analyzing your pronunciation...'}
+              </p>
+            </motion.div>
+          )}
+
           {step === 'compare' && (
             <motion.div
               key="compare"
@@ -392,6 +456,61 @@ export function PronunciationCard({
               exit={prefersReducedMotion ? {} : { opacity: 0, y: -20 }}
               className="flex flex-col items-center gap-6"
             >
+              {/* Score display */}
+              {score && (
+                <motion.div
+                  initial={prefersReducedMotion ? {} : { scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  className="flex flex-col items-center gap-2"
+                >
+                  <div className={cn(
+                    "flex items-center justify-center w-20 h-20 rounded-full text-3xl font-bold",
+                    getScoreBgClass(score.similarity),
+                    getScoreColorClass(score.similarity)
+                  )}>
+                    {Math.round(score.similarity)}%
+                  </div>
+                  <p className={cn("text-sm font-medium", getScoreColorClass(score.similarity))}>
+                    {score.similarity >= 90
+                      ? (t.excellent ?? 'Excellent!')
+                      : score.similarity >= 70
+                      ? (t.good ?? 'Good!')
+                      : score.similarity >= 50
+                      ? (t.almostThere ?? 'Almost there!')
+                      : (t.needsWork ?? 'Keep practicing!')}
+                  </p>
+                  {/* Feedback hint */}
+                  {score.feedbackKey && score.similarity < 90 && (
+                    <p className="text-xs text-muted-foreground text-center max-w-[200px]">
+                      {score.feedbackKey === 'tooShort' && (t.tooShort ?? 'Try speaking a bit longer')}
+                      {score.feedbackKey === 'tooLong' && (t.tooLong ?? 'Try speaking a bit shorter')}
+                      {score.feedbackKey === 'tryLouder' && (t.tryLouder ?? 'Try speaking louder')}
+                      {score.feedbackKey === 'trySlower' && (t.trySlower ?? 'Try speaking slower')}
+                      {score.feedbackKey === 'needsWork' && null}
+                    </p>
+                  )}
+                  {/* XP earned */}
+                  {score.xpReward > 0 && (
+                    <motion.div
+                      initial={prefersReducedMotion ? {} : { y: 10, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.2 }}
+                      className="flex items-center gap-1 text-xs text-amber-600 dark:text-amber-400"
+                    >
+                      <span className="text-base">⭐</span>
+                      +{score.xpReward} XP
+                    </motion.div>
+                  )}
+                  {/* Attempts remaining hint */}
+                  {attemptNumber < 3 && score.similarity < 70 && (
+                    <p className="text-xs text-muted-foreground">
+                      {t.attemptsRemaining ?? `${3 - attemptNumber} attempts remaining`}
+                    </p>
+                  )}
+                </motion.div>
+              )}
+
               {/* Playback buttons */}
               <div className="flex gap-4">
                 {/* Reference audio */}
@@ -425,22 +544,30 @@ export function PronunciationCard({
 
               {/* Action buttons */}
               <div className="flex gap-3 w-full">
-                <Button
-                  variant="outline"
-                  onClick={handleTryAgain}
-                  className="flex-1 min-h-[48px]"
-                >
-                  <RotateCcw className="h-4 w-4 mr-2" />
-                  {t.tryAgain}
-                </Button>
+                {/* Show "Try Again" if there are attempts remaining and score is below passing */}
+                {attemptNumber < 3 && score && score.similarity < 70 && (
+                  <Button
+                    variant="outline"
+                    onClick={handleTryAgain}
+                    className="flex-1 min-h-[48px]"
+                  >
+                    <RotateCcw className="h-4 w-4 mr-2" />
+                    {t.tryAgain}
+                  </Button>
+                )}
 
                 <Button
                   variant="default"
                   onClick={handleSoundsGood}
-                  className="flex-1 min-h-[48px] bg-success hover:bg-success/90"
+                  className={cn(
+                    "flex-1 min-h-[48px]",
+                    score && score.similarity >= 70 
+                      ? "bg-success hover:bg-success/90" 
+                      : "bg-primary hover:bg-primary/90"
+                  )}
                 >
                   <Check className="h-4 w-4 mr-2" />
-                  {t.soundsGood}
+                  {score ? (t.gotIt ?? 'Got it') : t.soundsGood}
                 </Button>
               </div>
             </motion.div>
