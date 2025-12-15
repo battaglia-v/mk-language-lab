@@ -60,7 +60,7 @@
     "@tamagui/colors": "^1.137.1",
     "@tamagui/config": "^1.138.6",
     "@tamagui/portal": "^1.138.6",
-    "@tamagui/select": "^1.138.6",
+    "@tamagui/select": "^1.140.4",
     "@tamagui/separator": "^1.138.6",
     "@tamagui/shapes": "^1.138.6",
     "@tamagui/sheet": "^1.138.6",
