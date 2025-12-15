@@ -2053,5 +2053,28 @@
         "action": "Retry"
       }
     }
+  },
+  "accessibility": {
+    "skipToMainContent": "Skip to main content",
+    "skipToNavigation": "Skip to navigation",
+    "loading": "Loading",
+    "loadingContent": "Loading content, please wait",
+    "expandedRegion": "Expanded",
+    "collapsedRegion": "Collapsed",
+    "menuOpen": "Menu opened",
+    "menuClosed": "Menu closed",
+    "dialogOpened": "Dialog opened",
+    "dialogClosed": "Dialog closed",
+    "itemSelected": "{item} selected",
+    "pageLoaded": "Page loaded: {title}",
+    "formError": "Error: {message}",
+    "successMessage": "Success: {message}",
+    "progressPercent": "{value} percent complete",
+    "currentOfTotal": "{current} of {total}",
+    "newNotifications": "{count, plural, one {# new notification} other {# new notifications}}",
+    "audioPlaying": "Audio playing",
+    "audioPaused": "Audio paused",
+    "recordingStarted": "Recording started",
+    "recordingStopped": "Recording stopped"
   }
 }

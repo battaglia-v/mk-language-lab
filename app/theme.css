@@ -91,6 +91,7 @@
   --z-popover: 55;
   --z-tooltip: 60;
   --z-toast: 100;
+  --z-skip-link: 9999;
 
   /* Focus ring tokens */
   --focus-ring-color: var(--ring);
