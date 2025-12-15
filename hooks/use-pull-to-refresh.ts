@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback, RefObject } from 'react';
-import { useReducedMotion } from './use-reduced-motion';
+import { triggerHaptic } from '@/lib/haptics';
 
 interface PullToRefreshOptions {
   /** Callback when refresh is triggered */
@@ -12,6 +12,8 @@ interface PullToRefreshOptions {
   maxPullDistance?: number;
   /** Disable the pull-to-refresh behavior */
   disabled?: boolean;
+  /** Duration to show success state (default: 800ms) */
+  successDuration?: number;
 }
 
 interface PullToRefreshState {
@@ -19,6 +21,7 @@ interface PullToRefreshState {
   isRefreshing: boolean;
   pullDistance: number;
   canRelease: boolean;
+  justCompleted: boolean;
 }
 
 /**
@@ -50,6 +53,7 @@ export function usePullToRefresh<T extends HTMLElement = HTMLDivElement>(
     isRefreshing: boolean;
     canRelease: boolean;
     threshold: number;
+    justCompleted: boolean;
   };
 } {
   const {
@@ -57,23 +61,34 @@ export function usePullToRefresh<T extends HTMLElement = HTMLDivElement>(
     threshold = 80,
     maxPullDistance = 120,
     disabled = false,
+    successDuration = 800,
   } = options;
 
   const containerRef = useRef<T | null>(null);
   const startY = useRef(0);
   const currentY = useRef(0);
-  const prefersReducedMotion = useReducedMotion();
+  const successTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const [state, setState] = useState<PullToRefreshState>({
     isPulling: false,
     isRefreshing: false,
     pullDistance: 0,
     canRelease: false,
+    justCompleted: false,
   });
+
+  // Clean up timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (successTimeoutRef.current) {
+        clearTimeout(successTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleTouchStart = useCallback(
     (e: TouchEvent) => {
-      if (disabled || state.isRefreshing) return;
+      if (disabled || state.isRefreshing || state.justCompleted) return;
 
       const container = containerRef.current;
       if (!container) return;
@@ -84,9 +99,12 @@ export function usePullToRefresh<T extends HTMLElement = HTMLDivElement>(
       startY.current = e.touches[0].clientY;
       currentY.current = startY.current;
       
+      // Light haptic on start
+      triggerHaptic('light');
+      
       setState((prev) => ({ ...prev, isPulling: true, pullDistance: 0 }));
     },
-    [disabled, state.isRefreshing]
+    [disabled, state.isRefreshing, state.justCompleted]
   );
 
   const handleTouchMove = useCallback(
@@ -134,6 +152,9 @@ export function usePullToRefresh<T extends HTMLElement = HTMLDivElement>(
     if (disabled || !state.isPulling) return;
 
     if (state.canRelease) {
+      // Strong haptic on release
+      triggerHaptic('heavy');
+      
       setState((prev) => ({
         ...prev,
         isPulling: false,
@@ -143,13 +164,38 @@ export function usePullToRefresh<T extends HTMLElement = HTMLDivElement>(
 
       try {
         await onRefresh();
-      } finally {
-        // Animate back to 0
+        
+        // Success haptic
+        triggerHaptic('success');
+        
+        // Show success state briefly
+        setState((prev) => ({
+          ...prev,
+          isRefreshing: false,
+          justCompleted: true,
+        }));
+        
+        // Clear success state after duration
+        successTimeoutRef.current = setTimeout(() => {
+          setState({
+            isPulling: false,
+            isRefreshing: false,
+            pullDistance: 0,
+            canRelease: false,
+            justCompleted: false,
+          });
+        }, successDuration);
+      } catch {
+        // Error haptic
+        triggerHaptic('error');
+        
+        // Reset state on error
         setState({
           isPulling: false,
           isRefreshing: false,
           pullDistance: 0,
           canRelease: false,
+          justCompleted: false,
         });
       }
     } else {
@@ -159,9 +205,10 @@ export function usePullToRefresh<T extends HTMLElement = HTMLDivElement>(
         isRefreshing: false,
         pullDistance: 0,
         canRelease: false,
+        justCompleted: false,
       });
     }
-  }, [disabled, state.isPulling, state.canRelease, threshold, onRefresh]);
+  }, [disabled, state.isPulling, state.canRelease, threshold, onRefresh, successDuration]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -187,6 +234,7 @@ export function usePullToRefresh<T extends HTMLElement = HTMLDivElement>(
       isRefreshing: state.isRefreshing,
       canRelease: state.canRelease,
       threshold,
+      justCompleted: state.justCompleted,
     },
   };
 }
