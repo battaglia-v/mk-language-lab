@@ -2115,5 +2115,41 @@
     "audioPaused": "Аудио е паузирано",
     "recordingStarted": "Снимањето започна",
     "recordingStopped": "Снимањето запре"
+  },
+  "achievements": {
+    "badge": {
+      "title": "Значка освоена!",
+      "subtitle": "Ја отклучи новата значка"
+    },
+    "levelUp": {
+      "title": "Ново ниво!",
+      "subtitle": "Достигна ниво {level}"
+    },
+    "streakMilestone": {
+      "title": "Пресвртница!",
+      "subtitle": "Низа од {days} дена постигната"
+    },
+    "xpBonus": {
+      "title": "Бонус XP!",
+      "subtitle": "Заработи дополнителни поени"
+    },
+    "dailyGoal": {
+      "title": "Дневна цел завршена!",
+      "subtitle": "Ја постигна твојата XP цел"
+    },
+    "perfectScore": {
+      "title": "Перфектен резултат!",
+      "subtitle": "100% точност"
+    },
+    "firstComplete": {
+      "title": "Први чекори!",
+      "subtitle": "Ја заврши твојата прва лекција"
+    },
+    "xpGained": "+{amount} XP",
+    "daysStreak": "{count, plural, one {# Ден} other {# Дена}}",
+    "keepItUp": "Продолжи така!",
+    "amazing": "Неверојатно!",
+    "incredible": "Инкредибл!",
+    "unstoppable": "Незапирлив!"
   }
 }
