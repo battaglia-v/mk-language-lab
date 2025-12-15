@@ -35,6 +35,7 @@
     "summaryLoading": "Се синхронизира напредокот…",
     "summaryError": "Не може да се вчита статусот на мисијата.",
     "retry": "Обиди се повторно",
+    "skip": "Прескокни",
     "continueButtonLabel": "Продолжи ја мисијата",
     "continueButtonSubtitle": "{earned}/{goal} XP денес",
     "continueButtonFallback": "Продолжи со брзата практика",
@@ -2062,7 +2063,7 @@
       },
       "search": {
         "title": "Нема резултати",
-        "descriptionWithQuery": "Не најдовме ништо за „{query}". Обиди се со други клучни зборови.",
+        "descriptionWithQuery": "Не најдовме ништо за „{query}”. Обиди се со други клучни зборови.",
         "descriptionDefault": "Пребарувај зборови, лекции или теми.",
         "action": "Исчисти пребарување"
       },
@@ -2220,6 +2221,8 @@
   "pronunciation": {
     "title": "Вежби за изговор",
     "subtitle": "Усоврши го твојот македонски акцент со водени вежби",
+    "description": "Усоврши го твојот македонски акцент со водени вежби",
+    "exerciseProgress": "Вежба {current} од {total}",
     "backToPractice": "Назад кон вежби",
     "selectSession": "Избери сесија",
     "phrases": "фрази",
@@ -2263,6 +2266,8 @@
   "grammar": {
     "title": "Граматички вежби",
     "subtitle": "Совладај ја македонската граматика преку интерактивни вежби",
+    "description": "Совладај ја македонската граматика преку интерактивни вежби",
+    "lessons": "Лекции",
     "backToPractice": "Назад кон вежби",
     "selectLesson": "Избери лекција",
     "overallProgress": "Целокупен напредок",
