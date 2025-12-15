@@ -29,7 +29,10 @@
     "practice-audio:sync": "tsx scripts/practice-audio-sync.ts",
     "agents:launch": "tsx scripts/launch-sub-agents.ts",
     "agents:orchestrate": "tsx scripts/orchestrate-agents.ts",
-    "agents:create-issues": "tsx scripts/create-agent-issues.ts"
+    "agents:create-issues": "tsx scripts/create-agent-issues.ts",
+    "i18n:check": "tsx scripts/sync-translations.ts --ci",
+    "i18n:report": "tsx scripts/sync-translations.ts",
+    "i18n:fix": "tsx scripts/sync-translations.ts --fix"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
