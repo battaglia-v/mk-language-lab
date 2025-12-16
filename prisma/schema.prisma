@@ -66,6 +66,7 @@ model User {
   customDecks          CustomDeck[]
   friendRequestsSent     Friendship[] @relation("FriendRequestsSent")
   friendRequestsReceived Friendship[] @relation("FriendRequestsReceived")
+  subscription         Subscription?
 }
 
 model VerificationToken {
@@ -859,5 +860,58 @@ enum ReaderLevel {
   B1
   B2
   C1
+}
+
+// =====================================================
+// BATCH 8: SUBSCRIPTION & MONETIZATION
+// Added: Subscription management for Pro features
+// =====================================================
+
+// Subscription - tracks user's Pro subscription status
+model Subscription {
+  id            String              @id @default(cuid())
+  userId        String              @unique
+  status        SubscriptionStatus  @default(inactive)
+  source        SubscriptionSource  @default(none)
+  productId     String?             // e.g., "pro_monthly", "pro_yearly"
+  period        String?             // "monthly" | "yearly"
+  
+  // Purchase details
+  purchaseToken String?             // Google Play purchase token
+  orderId       String?             // Order ID from store
+  purchasedAt   DateTime?
+  expiresAt     DateTime?
+  
+  // Stripe fields (for web payments - future)
+  stripeCustomerId     String?
+  stripeSubscriptionId String?
+  
+  // Admin/promo grants
+  grantedBy     String?             // Admin user ID who granted
+  grantReason   String?             // Reason for promotional grant
+  
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([status])
+  @@index([source])
+  @@index([expiresAt])
+}
+
+enum SubscriptionStatus {
+  active
+  inactive
+  canceled
+  past_due
+  expired
+}
+
+enum SubscriptionSource {
+  none
+  google_play
+  stripe
+  promo
 }
 

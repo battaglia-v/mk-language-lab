@@ -62,6 +62,31 @@ export const AnalyticsEvents = {
   ONBOARDING_DAILY_GOAL_SELECTED: 'onboarding_daily_goal_selected',
   ONBOARDING_COMPLETED: 'onboarding_completed',
   ONBOARDING_FAILED: 'onboarding_failed',
+
+  // Monetization events
+  UPGRADE_MODAL_VIEWED: 'upgrade_modal_viewed',
+  UPGRADE_MODAL_DISMISSED: 'upgrade_modal_dismissed',
+  PURCHASE_STARTED: 'purchase_started',
+  PURCHASE_COMPLETED: 'purchase_completed',
+  PURCHASE_FAILED: 'purchase_failed',
+  PURCHASE_RESTORED: 'purchase_restored',
+  PRO_FEATURE_GATED: 'pro_feature_gated',
+  PRACTICE_LIMIT_REACHED: 'practice_limit_reached',
+
+  // Review events
+  REVIEW_PROMPT_SHOWN: 'review_prompt_shown',
+  REVIEW_ACCEPTED: 'review_accepted',
+  REVIEW_DECLINED: 'review_declined',
+
+  // Feedback events
+  FEEDBACK_FORM_OPENED: 'feedback_form_opened',
+  FEEDBACK_SUBMITTED: 'feedback_submitted',
+  ISSUE_REPORTED: 'issue_reported',
+
+  // Image loading events
+  IMAGE_LOAD_SUCCESS: 'image_load_success',
+  IMAGE_LOAD_FAILED: 'image_load_failed',
+  IMAGE_LOAD_RETRY: 'image_load_retry',
 } as const;
 
 export type AnalyticsEvent = typeof AnalyticsEvents[keyof typeof AnalyticsEvents];
