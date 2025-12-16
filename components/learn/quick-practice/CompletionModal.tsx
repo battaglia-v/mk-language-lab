@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
-import { RefreshCcw, RotateCcw, Trophy } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { RefreshCcw, RotateCcw, Trophy, Sparkles, TrendingUp, Star } from 'lucide-react';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -7,6 +8,38 @@ import { SESSION_TARGET } from '@mk/practice';
 import { brandColors } from '@mk/tokens';
 import { Badge } from '@/components/ui/badge';
 import type { QuickPracticeTalisman } from '@/components/learn/quick-practice/types';
+import {
+  recordCompletedSession,
+  shouldShowReviewPrompt,
+  triggerReviewFlow,
+  markReviewGiven,
+} from '@/lib/in-app-review';
+
+/**
+ * Get an encouraging message based on session performance
+ */
+function getEncouragementMessage(
+  accuracy: number,
+  correctCount: number,
+  t: (key: string, values?: Record<string, string | number>) => string
+): { message: string; icon: React.ReactNode } {
+  if (accuracy === 100) {
+    return {
+      message: t('sessionEndPerfectAccuracy'),
+      icon: <Trophy className="h-4 w-4 text-yellow-500" />,
+    };
+  }
+  if (accuracy >= 80) {
+    return {
+      message: t('sessionEndGoodAccuracy'),
+      icon: <TrendingUp className="h-4 w-4 text-green-500" />,
+    };
+  }
+  return {
+    message: t('sessionEndKeepPracticing'),
+    icon: <Sparkles className="h-4 w-4 text-blue-500" />,
+  };
+}
 
 type CompletionModalProps = {
   open: boolean;
@@ -57,6 +90,43 @@ export function QuickPracticeCompletionModal({
   const badge = getAccuracyBadge(accuracy);
   const bonusPercent = Math.round((talismanMultiplier - 1) * 100);
   const hasWrongAnswers = wrongAnswerCount > 0 && onReviewMistakes;
+  const encouragement = getEncouragementMessage(accuracy, correctCount, t);
+
+  const [showReviewPrompt, setShowReviewPrompt] = useState(false);
+  const [reviewFlowTriggered, setReviewFlowTriggered] = useState(false);
+
+  // Record session completion and check if we should show review prompt
+  useEffect(() => {
+    if (!open) {
+      setShowReviewPrompt(false);
+      setReviewFlowTriggered(false);
+      return;
+    }
+
+    // Record this session
+    recordCompletedSession({
+      accuracy,
+      correctCount,
+      totalAttempts,
+      hadErrors: wrongAnswerCount > 0,
+    });
+
+    // Check if we should show review prompt
+    const shouldShow = shouldShowReviewPrompt({
+      accuracy,
+      hadErrors: wrongAnswerCount > 0,
+    });
+
+    setShowReviewPrompt(shouldShow);
+  }, [open, accuracy, correctCount, totalAttempts, wrongAnswerCount]);
+
+  // Handle review button click
+  const handleReviewClick = async () => {
+    setReviewFlowTriggered(true);
+    await triggerReviewFlow();
+    markReviewGiven();
+    setShowReviewPrompt(false);
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -91,7 +161,38 @@ export function QuickPracticeCompletionModal({
           <DialogDescription className="text-center">
             {t('practiceSessionCompleteMessage', { target: SESSION_TARGET })}
           </DialogDescription>
+          {/* Encouragement message based on performance */}
+          <div className="mt-3 flex items-center justify-center gap-2 rounded-lg bg-muted/50 px-4 py-2.5">
+            {encouragement.icon}
+            <span className="text-sm font-medium text-foreground">{encouragement.message}</span>
+          </div>
         </DialogHeader>
+
+        {/* In-App Review Prompt - shown after positive sessions */}
+        {showReviewPrompt && !reviewFlowTriggered && (
+          <div className="relative z-10 mx-4 mt-4 animate-in fade-in-0 slide-in-from-bottom-2 duration-500">
+            <div className="rounded-xl border border-primary/30 bg-gradient-to-br from-primary/10 to-secondary/10 p-4">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 rounded-full bg-primary/20 p-2">
+                  <Star className="h-5 w-5 text-primary" />
+                </div>
+                <div className="flex-1 space-y-2">
+                  <h4 className="text-sm font-semibold text-foreground">{t('reviewPromptTitle')}</h4>
+                  <p className="text-xs text-muted-foreground">{t('reviewPromptMessage')}</p>
+                  <div className="flex gap-2 pt-1">
+                    <Button size="sm" onClick={handleReviewClick} className="flex-1 gap-1.5">
+                      <Star className="h-3.5 w-3.5" />
+                      {t('reviewPromptYes')}
+                    </Button>
+                    <Button size="sm" variant="ghost" onClick={() => setShowReviewPrompt(false)} className="flex-1">
+                      {t('reviewPromptLater')}
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="relative z-10 space-y-4 py-4">
           <div className="rounded-xl border border-border/40 bg-muted/30 p-4">
@@ -130,6 +231,10 @@ export function QuickPracticeCompletionModal({
           </div>
           <p className="mt-2 text-center text-sm text-muted-foreground">
             {t('practiceProgressSummary', { count: totalAttempts })}
+          </p>
+          {/* Streak hint */}
+          <p className="mt-1.5 text-center text-xs text-muted-foreground/80 italic">
+            {t('sessionEndStreakHint')}
           </p>
         </div>
 
