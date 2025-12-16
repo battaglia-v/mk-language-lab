@@ -100,9 +100,9 @@ export async function launchPurchaseFlow(productId: string): Promise<PurchaseRes
   }
   
   // Track purchase initiation
-  trackEvent(AnalyticsEvents.PRACTICE_MODAL_OPENED, {
-    action: 'purchase_started',
+  trackEvent(AnalyticsEvents.PURCHASE_STARTED, {
     productId,
+    source: 'google_play',
   });
   
   // Check if billing is available
