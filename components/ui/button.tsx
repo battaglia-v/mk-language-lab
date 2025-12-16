@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-[var(--icon-gap)] whitespace-nowrap rounded-[var(--radius-control)] border border-transparent font-semibold leading-tight tracking-tight shadow-[var(--shadow-sm)] transition-[background-color,border-color,box-shadow,color] duration-120 ease-out disabled:pointer-events-none disabled:opacity-60 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-[var(--icon-size)] [&_svg]:stroke-[var(--icon-stroke)] [&_svg]:shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] focus-visible:ring-offset-3 focus-visible:ring-offset-background focus-visible:shadow-[var(--shadow-focus)] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive text-[var(--font-size-sm)]",
+  "inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-[var(--icon-gap)] whitespace-nowrap rounded-[var(--radius-control)] border border-transparent font-semibold leading-[1] tracking-tight shadow-[var(--shadow-sm)] transition-[background-color,border-color,box-shadow,color,transform] duration-120 ease-out disabled:pointer-events-none disabled:opacity-60 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-[var(--icon-size)] [&_svg]:stroke-[var(--icon-stroke)] [&_svg]:shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] focus-visible:ring-offset-3 focus-visible:ring-offset-background focus-visible:shadow-[var(--shadow-focus)] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive text-[var(--font-size-sm)] text-center",
   {
     variants: {
       variant: {
@@ -21,11 +21,11 @@ const buttonVariants = cva(
       },
       size: {
         default:
-          "min-h-[var(--button-height-md)] rounded-[var(--radius-control)] px-[var(--button-pad-x-md)] py-[var(--button-pad-y)] has-[>svg]:px-[calc(var(--button-pad-x-md)-0.35rem)]",
+          "h-12 min-h-12 rounded-[var(--radius-control)] px-[var(--button-pad-x-md)] has-[>svg]:px-[calc(var(--button-pad-x-md)-0.35rem)]",
         sm:
-          "min-h-[var(--button-height-sm)] rounded-[calc(var(--radius-control)-2px)] gap-[calc(var(--icon-gap)-2px)] px-[var(--button-pad-x-sm)] py-[calc(var(--button-pad-y)-0.1rem)] has-[>svg]:px-[calc(var(--button-pad-x-sm)-0.25rem)]",
+          "h-11 min-h-11 rounded-[calc(var(--radius-control)-2px)] gap-[calc(var(--icon-gap)-2px)] px-[var(--button-pad-x-sm)] has-[>svg]:px-[calc(var(--button-pad-x-sm)-0.25rem)]",
         lg:
-          "min-h-[var(--button-height-lg)] rounded-[calc(var(--radius-control)+4px)] px-[var(--button-pad-x-lg)] py-[calc(var(--button-pad-y)+0.15rem)] text-[var(--font-size-lg)] has-[>svg]:px-[calc(var(--button-pad-x-lg)-0.45rem)]",
+          "h-14 min-h-14 rounded-[calc(var(--radius-control)+4px)] px-[var(--button-pad-x-lg)] text-[var(--font-size-lg)] has-[>svg]:px-[calc(var(--button-pad-x-lg)-0.45rem)]",
         icon: "size-12",
         "icon-sm": "h-11 w-11",
         "icon-lg": "size-14",

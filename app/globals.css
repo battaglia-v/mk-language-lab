@@ -244,13 +244,21 @@ a:active,
   button,
   .button-reset {
     font-size: var(--font-size-sm);
-    line-height: var(--line-height-tight);
+    line-height: 1;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: var(--icon-gap);
     min-height: var(--touch-target-size);
     vertical-align: middle;
+    text-align: center;
+  }
+  
+  /* Ensure gradient CTAs always have dark text for WCAG AA+ contrast */
+  .bg-gradient-to-r.from-primary,
+  .bg-gradient-to-br.from-primary,
+  .bg-primary {
+    color: var(--primary-foreground);
   }
   button,
   a,
@@ -304,23 +312,43 @@ a:active,
   min-width: 0;
 }
 
+/* Surface hierarchy system - 3 levels */
+.surface-primary {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+}
+
+.surface-secondary {
+  background: var(--surface-3);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-card);
+}
+
+.surface-utility {
+  background: var(--surface-utility);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm);
+}
+
 .glass-panel {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
   border-radius: var(--radius-panel);
 }
 
 .glass-card {
-  background: color-mix(in srgb, var(--card) 86%, transparent);
+  background: color-mix(in srgb, var(--card) 90%, transparent);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: var(--shadow-lg);
-  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(12px);
   border-radius: var(--radius-card);
 }
 
 .panel-muted {
-  background: rgba(16, 16, 24, 0.75);
+  background: rgba(16, 16, 24, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.04);
 }
 

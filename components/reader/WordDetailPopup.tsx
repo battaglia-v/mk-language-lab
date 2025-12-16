@@ -84,121 +84,196 @@ export function WordDetailPopup({
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
+          {/* Backdrop with subtle blur */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: prefersReducedMotion ? 0 : 0.15 }}
-            className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
+            transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
+            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-md"
             onClick={onClose}
           />
 
-          {/* Popup */}
+          {/* Popup with delightful entrance */}
           <motion.div
-            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.9, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.9, y: 10 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+            initial={prefersReducedMotion 
+              ? { opacity: 0 } 
+              : { opacity: 0, scale: 0.85, y: 20, rotateX: -5 }
+            }
+            animate={{ 
+              opacity: 1, 
+              scale: 1, 
+              y: 0, 
+              rotateX: 0,
+            }}
+            exit={prefersReducedMotion 
+              ? { opacity: 0 } 
+              : { opacity: 0, scale: 0.95, y: 10 }
+            }
+            transition={{ 
+              type: 'spring', 
+              stiffness: 350, 
+              damping: 30,
+              mass: 0.8,
+            }}
             className={cn(
               "fixed z-50 w-[calc(100%-2rem)] max-w-sm",
-              "rounded-2xl border border-border/60 bg-background/95 backdrop-blur-lg",
-              "shadow-[0_20px_60px_rgba(0,0,0,0.4)]",
+              "rounded-2xl border border-primary/20 bg-background/98 backdrop-blur-xl",
+              "shadow-[0_25px_80px_rgba(0,0,0,0.5),0_0_40px_rgba(246,216,59,0.1)]",
               "left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2",
+              "ring-1 ring-white/10",
               "sm:left-auto sm:top-auto sm:translate-x-0 sm:translate-y-0"
             )}
             style={position ? { left: position.x, top: position.y } : undefined}
           >
-            {/* Header */}
-            <div className="flex items-start justify-between border-b border-border/40 p-4">
-              <div className="space-y-1">
+            {/* Header with subtle glow */}
+            <motion.div 
+              initial={prefersReducedMotion ? {} : { opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.2 }}
+              className="flex items-start justify-between border-b border-border/40 p-4 relative overflow-hidden"
+            >
+              {/* Subtle gradient glow behind word */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5 pointer-events-none" />
+              
+              <div className="space-y-1 relative z-10">
                 <div className="flex items-center gap-2">
-                  <h3 className="text-xl font-bold text-foreground">
+                  <motion.h3 
+                    initial={prefersReducedMotion ? {} : { scale: 0.9 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 20, delay: 0.15 }}
+                    className="text-xl font-bold text-foreground"
+                  >
                     {word.original}
-                  </h3>
+                  </motion.h3>
                   {onPlayAudio && (
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-8 w-8 rounded-full hover:bg-primary/20"
-                      onClick={handlePlayAudio}
-                      aria-label={t.playAudio}
+                    <motion.div
+                      initial={prefersReducedMotion ? {} : { opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.25 }}
                     >
-                      <Volume2 className="h-4 w-4 text-primary" />
-                    </Button>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 rounded-full hover:bg-primary/20 hover:scale-110 transition-all"
+                        onClick={handlePlayAudio}
+                        aria-label={t.playAudio}
+                      >
+                        <Volume2 className="h-4 w-4 text-primary" />
+                      </Button>
+                    </motion.div>
                   )}
                 </div>
                 {word.phonetic && (
-                  <p className="text-sm text-muted-foreground">
+                  <motion.p 
+                    initial={prefersReducedMotion ? {} : { opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                    className="text-sm text-muted-foreground"
+                  >
                     {word.phonetic}
-                  </p>
+                  </motion.p>
                 )}
               </div>
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-8 w-8 rounded-full"
+                className="h-8 w-8 rounded-full relative z-10 hover:bg-white/10"
                 onClick={onClose}
               >
                 <X className="h-4 w-4" />
               </Button>
-            </div>
+            </motion.div>
 
-            {/* Content */}
+            {/* Content with staggered animations */}
             <div className="space-y-4 p-4">
               {/* Translation */}
-              <div className="space-y-1">
+              <motion.div 
+                initial={prefersReducedMotion ? {} : { opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15 }}
+                className="space-y-2"
+              >
                 <p className="text-lg font-medium text-foreground">
                   {word.translation}
                 </p>
                 <div className="flex flex-wrap items-center gap-2">
                   {word.partOfSpeech && (
-                    <Badge variant="outline" className="text-xs">
-                      <BookOpen className="mr-1 h-3 w-3" />
-                      {word.partOfSpeech}
-                    </Badge>
+                    <motion.div
+                      initial={prefersReducedMotion ? {} : { opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.2 }}
+                    >
+                      <Badge variant="outline" className="text-xs">
+                        <BookOpen className="mr-1 h-3 w-3" />
+                        {word.partOfSpeech}
+                      </Badge>
+                    </motion.div>
                   )}
                   {word.difficulty && (
-                    <Badge 
-                      variant="outline" 
-                      className={cn("text-xs", DIFFICULTY_COLORS[word.difficulty])}
+                    <motion.div
+                      initial={prefersReducedMotion ? {} : { opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.25 }}
                     >
-                      <Sparkles className="mr-1 h-3 w-3" />
-                      {word.difficulty}
-                    </Badge>
+                      <Badge 
+                        variant="outline" 
+                        className={cn("text-xs", DIFFICULTY_COLORS[word.difficulty])}
+                      >
+                        <Sparkles className="mr-1 h-3 w-3" />
+                        {word.difficulty}
+                      </Badge>
+                    </motion.div>
                   )}
                 </div>
-              </div>
+              </motion.div>
 
               {/* Examples */}
               {word.examples && word.examples.length > 0 && (
-                <div className="space-y-2 rounded-xl bg-white/5 p-3">
+                <motion.div 
+                  initial={prefersReducedMotion ? {} : { opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="space-y-2 rounded-xl bg-white/5 p-3 border border-white/5"
+                >
                   <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
                     Examples
                   </p>
                   {word.examples.map((example, idx) => (
-                    <p key={idx} className="text-sm italic text-foreground/80">
+                    <motion.p 
+                      key={idx} 
+                      initial={prefersReducedMotion ? {} : { opacity: 0, x: -5 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.35 + idx * 0.1 }}
+                      className="text-sm italic text-foreground/80"
+                    >
                       &ldquo;{example}&rdquo;
-                    </p>
+                    </motion.p>
                   ))}
-                </div>
+                </motion.div>
               )}
 
-              {/* Add to Deck button */}
+              {/* Add to Deck button with satisfying animation */}
               {onAddToDeck && (
-                <Button
-                  onClick={handleAddToDeck}
-                  disabled={isInDeck || isAddingToDeck}
-                  className={cn(
-                    "w-full min-h-[48px] rounded-xl",
-                    isInDeck 
-                      ? "bg-success/20 text-success" 
-                      : "bg-primary/20 text-primary hover:bg-primary/30"
-                  )}
+                <motion.div
+                  initial={prefersReducedMotion ? {} : { opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
                 >
-                  <Plus className="mr-2 h-4 w-4" />
-                  {isInDeck ? t.alreadyInDeck : t.addToDeck}
-                </Button>
+                  <Button
+                    onClick={handleAddToDeck}
+                    disabled={isInDeck || isAddingToDeck}
+                    className={cn(
+                      "w-full min-h-[48px] rounded-xl transition-all",
+                      isInDeck 
+                        ? "bg-success/20 text-success" 
+                        : "bg-primary text-[#0a0a0a] hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98]"
+                    )}
+                  >
+                    <Plus className="mr-2 h-4 w-4" />
+                    {isInDeck ? t.alreadyInDeck : t.addToDeck}
+                  </Button>
+                </motion.div>
               )}
             </div>
           </motion.div>

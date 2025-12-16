@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect, ImgHTMLAttributes } from 'react';
+import { useState, useCallback, useEffect, useRef, ImgHTMLAttributes } from 'react';
 import { Newspaper } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -13,16 +13,22 @@ interface ProxiedNewsImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>
   sourceName?: string;
   /** Additional class name for the container */
   containerClassName?: string;
+  /** Max retry attempts (default: 2) */
+  maxRetries?: number;
 }
+
+// Retry delays in ms (exponential backoff)
+const RETRY_DELAYS = [1000, 2000, 3000];
 
 /**
  * Proxied News Image Component
  *
- * Handles image loading through the proxy with automatic fallback
+ * Handles image loading through the server-side proxy with automatic fallback
  * to a branded placeholder when images fail to load.
  *
  * Features:
- * - Automatic proxy URL generation
+ * - Server-side proxy URL generation (never direct hotlink)
+ * - Automatic retry with exponential backoff
  * - Graceful fallback on error
  * - Loading state handling with skeleton
  * - Lazy loading support
@@ -34,32 +40,62 @@ export function ProxiedNewsImage({
   sourceName = 'News',
   containerClassName,
   className,
+  maxRetries = 2,
   ...imgProps
 }: ProxiedNewsImageProps) {
   const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
+  const retryTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Reset state when imageUrl changes
   useEffect(() => {
     setHasError(false);
     setIsLoaded(false);
+    setRetryCount(0);
+    
+    if (retryTimeoutRef.current) {
+      clearTimeout(retryTimeoutRef.current);
+      retryTimeoutRef.current = null;
+    }
   }, [imageUrl]);
 
-  // Generate proxy URL - prefer new news/image endpoint for better caching
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (retryTimeoutRef.current) {
+        clearTimeout(retryTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Generate proxy URL - always use server-side proxy
+  // The proxy fetches images server-side and caches them
   const proxyUrl = imageUrl
-    ? `/api/news/image?src=${encodeURIComponent(imageUrl)}`
+    ? `/api/news/image?src=${encodeURIComponent(imageUrl)}${retryCount > 0 ? `&retry=${retryCount}` : ''}`
     : null;
 
   const handleError = useCallback(() => {
-    setHasError(true);
-  }, []);
+    // Retry with exponential backoff
+    if (retryCount < maxRetries) {
+      const delay = RETRY_DELAYS[retryCount] || 2000;
+      retryTimeoutRef.current = setTimeout(() => {
+        setRetryCount(prev => prev + 1);
+      }, delay);
+    } else {
+      // Max retries reached, show fallback
+      setHasError(true);
+    }
+  }, [retryCount, maxRetries]);
 
   const handleLoad = useCallback(() => {
     setIsLoaded(true);
+    setHasError(false);
   }, []);
 
-  // Show fallback if no image URL or if loading failed
+  // Show fallback if no image URL or if all retries failed
   const showFallback = !imageUrl || hasError;
+  const isRetrying = retryCount > 0 && !isLoaded && !hasError;
 
   return (
     <div className={cn(
@@ -70,6 +106,7 @@ export function ProxiedNewsImage({
       {proxyUrl && !showFallback && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
+          key={`${imageUrl}-${retryCount}`} // Force re-render on retry
           src={proxyUrl}
           alt={alt}
           loading="lazy"
@@ -87,12 +124,15 @@ export function ProxiedNewsImage({
         />
       )}
 
-      {/* Loading skeleton - shown while image loads */}
+      {/* Loading skeleton - shown while image loads or retrying */}
       {proxyUrl && !showFallback && !isLoaded && (
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800" />
           <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-xl bg-white/5">
-            <Newspaper className="h-6 w-6 text-slate-500 animate-pulse" />
+            <Newspaper className={cn(
+              "h-6 w-6 text-slate-500",
+              isRetrying ? "animate-spin" : "animate-pulse"
+            )} />
           </div>
         </div>
       )}
