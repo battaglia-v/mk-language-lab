@@ -247,10 +247,14 @@ async function fetchWithStrategies(url: string): Promise<Response | null> {
 
 export async function GET(request: NextRequest) {
   const url = request.nextUrl.searchParams.get('src');
+  const retry = request.nextUrl.searchParams.get('retry');
   
   if (!url) {
     return NextResponse.json({ error: 'Missing src parameter' }, { status: 400 });
   }
+  
+  // On retry, skip memory cache to force re-fetch
+  const skipMemoryCache = retry && parseInt(retry, 10) > 0;
   
   // Validate URL
   let parsedUrl: URL;
@@ -266,19 +270,21 @@ export async function GET(request: NextRequest) {
     return getFallbackResponse();
   }
   
-  // 1. Check in-memory cache first (fastest)
+  // 1. Check in-memory cache first (fastest) - skip on retry
   const memoryCacheKey = getCacheKey(url);
-  const memoryCached = imageCache.get(memoryCacheKey);
-  if (memoryCached) {
-    return new NextResponse(memoryCached.data, {
-      status: 200,
-      headers: {
-        'Content-Type': memoryCached.contentType,
-        'Cache-Control': `public, max-age=${CONFIG.BROWSER_CACHE_MAX_AGE}, stale-while-revalidate=${CONFIG.STALE_WHILE_REVALIDATE}`,
-        'X-Content-Type-Options': 'nosniff',
-        'X-Image-Source': 'memory-cache',
-      },
-    });
+  if (!skipMemoryCache) {
+    const memoryCached = imageCache.get(memoryCacheKey);
+    if (memoryCached) {
+      return new NextResponse(memoryCached.data, {
+        status: 200,
+        headers: {
+          'Content-Type': memoryCached.contentType,
+          'Cache-Control': `public, max-age=${CONFIG.BROWSER_CACHE_MAX_AGE}, stale-while-revalidate=${CONFIG.STALE_WHILE_REVALIDATE}`,
+          'X-Content-Type-Options': 'nosniff',
+          'X-Image-Source': 'memory-cache',
+        },
+      });
+    }
   }
   
   // 2. Check persistent storage (if enabled)

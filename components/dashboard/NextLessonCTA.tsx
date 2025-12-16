@@ -98,7 +98,7 @@ export function NextLessonCTA({
         <Button
           asChild
           size="lg"
-          className="w-full min-h-[56px] rounded-2xl bg-gradient-to-r from-primary to-secondary text-lg font-bold shadow-lg hover:shadow-xl transition-all hover:scale-[1.02]"
+          className="w-full rounded-2xl bg-gradient-to-r from-primary to-secondary text-[#0a0a0a] text-lg font-bold shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]"
         >
           <Link href={`/${locale}/practice`}>
             <BookOpen className="mr-2 h-5 w-5" />
