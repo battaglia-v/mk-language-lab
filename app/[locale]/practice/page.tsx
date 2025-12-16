@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, TrendingUp, Eye, Volume2, VolumeX, RotateCcw, Brain, Lightbulb, SkipForward, Keyboard, Trophy, Clock, Heart } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, CheckCircle2, XCircle, TrendingUp, Eye, Volume2, VolumeX, RotateCcw, Brain, Lightbulb, SkipForward, Keyboard, Trophy, Clock, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
@@ -1200,20 +1200,20 @@ export default function PracticePage() {
                 </div>
               )}
 
-            <div className="mt-4 grid grid-cols-4 gap-2 sm:mt-6 sm:grid-cols-5 sm:gap-4 w-full min-w-0">
+            <div className="mt-4 flex items-center gap-2 sm:mt-6 sm:gap-3 w-full min-w-0">
               <Button
                 variant="outline"
-                className="min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105 gap-1.5"
+                className="min-h-[52px] w-[72px] sm:w-auto sm:min-w-[90px] rounded-2xl font-semibold transition-all hover:scale-105 gap-1"
                 onClick={goPrevious}
                 disabled={!deck.length}
                 aria-label="Previous card"
               >
-                <ArrowLeft className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
-                <span className="hidden sm:inline">Prev</span>
+                <ChevronLeft className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
+                <span className="text-xs sm:text-sm">Prev</span>
               </Button>
               <Button
                 variant="secondary"
-                className="col-span-2 sm:col-span-3 min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105 px-3 sm:px-4"
+                className="flex-1 min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105 px-3 sm:px-4"
                 onClick={toggleReveal}
                 disabled={!deck.length}
               >
@@ -1223,13 +1223,13 @@ export default function PracticePage() {
               </Button>
               <Button
                 variant="outline"
-                className="min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105 gap-1.5"
+                className="min-h-[52px] w-[72px] sm:w-auto sm:min-w-[90px] rounded-2xl font-semibold transition-all hover:scale-105 gap-1"
                 onClick={goNext}
                 disabled={!deck.length}
                 aria-label="Next card"
               >
-                <span className="hidden sm:inline">Next</span>
-                <ArrowRight className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
+                <span className="text-xs sm:text-sm">Next</span>
+                <ChevronRight className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
               </Button>
             </div>
             <p className="text-center text-xs text-muted-foreground sm:text-left">

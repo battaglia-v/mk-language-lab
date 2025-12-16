@@ -151,7 +151,7 @@ export function QuickPracticeControls({
                 variant="secondary"
                 size="lg"
                 onClick={onNextPrompt}
-                className="flex-1 min-w-[140px] rounded-2xl bg-white/8 text-foreground"
+                className="flex-1 min-w-[120px] rounded-2xl bg-white/8 text-foreground"
               >
                 <RefreshCcw className="mr-2 h-4 w-4" />
                 {translate('nextPrompt')}
@@ -164,20 +164,19 @@ export function QuickPracticeControls({
                 variant="outline"
                 size="lg"
                 onClick={onRevealAnswer}
-                className="flex-1 min-w-[120px] rounded-2xl"
+                className="flex-1 min-w-[100px] rounded-2xl"
               >
                 <Eye className="mr-2 h-4 w-4" />
                 {translate('practiceRevealAnswer')}
               </Button>
             )}
-          </div>
 
-          <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
-            <DialogTrigger asChild>
-              <Button type="button" variant="outline" size="icon" className="rounded-xl" aria-label="Open practice settings">
-                <Settings className="h-4 w-4" aria-hidden="true" />
-              </Button>
-            </DialogTrigger>
+            <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
+              <DialogTrigger asChild>
+                <Button type="button" variant="outline" size="icon" className="h-11 w-11 flex-shrink-0 rounded-xl" aria-label="Open practice settings">
+                  <Settings className="h-4 w-4" aria-hidden="true" />
+                </Button>
+              </DialogTrigger>
             <DialogContent className="max-h-[85vh] overflow-y-auto">
               <DialogHeader>
                 <DialogTitle>Practice Settings</DialogTitle>
@@ -263,7 +262,8 @@ export function QuickPracticeControls({
                 </Button>
               </div>
             </DialogContent>
-          </Dialog>
+            </Dialog>
+          </div>
         </div>
       </form>
 
