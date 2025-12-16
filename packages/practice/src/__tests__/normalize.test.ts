@@ -6,7 +6,7 @@ const cases: Array<{ input: string; expected: string }> = [
   { input: 'GoRDost!', expected: 'gordost' },
   { input: 'makedonski (lang)', expected: 'makedonski' },
   { input: 'multi   space', expected: 'multi space' },
-  { input: 'AccentÊd', expected: 'accentêd' },
+  { input: 'AccentÊd', expected: 'accented' }, // diacritics stripped for flexible matching
 ];
 
 describe('normalizeAnswer', () => {

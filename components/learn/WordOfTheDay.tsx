@@ -5,7 +5,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Sparkles, Loader2, Volume2, VolumeX } from 'lucide-react';
+import { Sparkles, Loader2, Volume2, VolumeX, Info } from 'lucide-react';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
 type WordOfTheDayData = {
@@ -183,7 +184,7 @@ export function WordOfTheDay() {
                   </Button>
                 )}
               </div>
-              <div className="flex items-baseline gap-1 md:gap-2">
+              <div className="flex items-center gap-1 md:gap-2 flex-wrap">
                 <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60">
                   Pronunciation:
                 </span>
@@ -192,6 +193,24 @@ export function WordOfTheDay() {
                     ? `[${word.pronunciation.trim()}]`
                     : pronunciationFallback}
                 </span>
+                {ttsSupported && (
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Badge
+                          variant="outline"
+                          className="ml-1 px-1.5 py-0 text-[9px] md:text-[10px] font-medium text-muted-foreground/70 border-muted-foreground/30 cursor-help"
+                        >
+                          <Info className="h-2.5 w-2.5 mr-0.5" />
+                          {t('ttsLabel')}
+                        </Badge>
+                      </TooltipTrigger>
+                      <TooltipContent side="bottom" className="max-w-[200px] text-center">
+                        <p className="text-xs">{t('ttsTooltip')}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                )}
               </div>
             </div>
           </div>

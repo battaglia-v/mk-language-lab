@@ -294,7 +294,25 @@
     "practiceGameOverMessage": "You ran out of hearts. Review your mistakes and try again!",
     "practiceTryAgain": "Try Again",
     "practiceReviewMistakes": "Review {count, plural, one {# Mistake} other {# Mistakes}}",
-    "practiceReviewingMistakes": "Reviewing Mistakes"
+    "practiceReviewingMistakes": "Reviewing Mistakes",
+    "practiceContinueLearning": "Continue Learning",
+    "reviewPromptTitle": "Enjoying Македонски?",
+    "reviewPromptMessage": "Your feedback helps us improve and reach more learners. Would you mind rating us on Google Play?",
+    "reviewPromptYes": "Rate App",
+    "reviewPromptLater": "Maybe Later",
+    "feedbackHintArticle": "Check the definite article! Remember: -от (m), -та (f), -то (n)",
+    "feedbackHintGender": "Check gender agreement! Feminine nouns often end in -а",
+    "feedbackHintConjugation": "Check your verb conjugation! Match the ending to the subject",
+    "feedbackHintSpelling": "Check your spelling carefully",
+    "feedbackHintDiacritics": "Almost! Check your diacritics and accents",
+    "feedbackHintCase": "Watch your capitalization!",
+    "sessionEndEncouragement1": "You practiced {count} words today! Keep up the great work! 🎉",
+    "sessionEndEncouragement2": "Great progress on your vocabulary! 💪",
+    "sessionEndEncouragement3": "Your dedication is paying off! 🌟",
+    "sessionEndStreakHint": "Come back tomorrow to keep your streak going!",
+    "sessionEndPerfectAccuracy": "Perfect accuracy! You're mastering this material! 🏆",
+    "sessionEndGoodAccuracy": "Solid session! A few more rounds and you'll have it! 📈",
+    "sessionEndKeepPracticing": "Practice makes progress! Keep at it! 💪"
   },
   "grammarExercise": {
     "checkAnswer": "Check Answer",
@@ -1477,7 +1495,11 @@
     "pronunciationFallback": "Pronunciation unavailable",
     "listenToWord": "Listen to pronunciation",
     "listenToExample": "Listen to example sentence",
-    "stopSpeaking": "Stop audio"
+    "stopSpeaking": "Stop audio",
+    "ttsLabel": "Synthesized",
+    "ttsTooltip": "Synthesized pronunciation (native audio coming soon)",
+    "nativeAudioLabel": "Native",
+    "nativeAudioTooltip": "Recorded by a native speaker"
   },
   "welcomeBanner": {
     "title": "Welcome to Macedonian Learning!",

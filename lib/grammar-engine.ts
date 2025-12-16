@@ -1,12 +1,19 @@
 /**
  * Grammar Exercise Types and Interfaces
- * 
+ *
  * Supports four exercise types:
  * 1. fill-blank: Fill in the missing word(s)
  * 2. multiple-choice: Choose the correct answer
  * 3. sentence-builder: Arrange words into correct order
  * 4. error-correction: Find and fix the mistake
  */
+
+import {
+  matchesAnyAnswer,
+  answersMatch,
+  analyzeAnswer,
+  type AnswerAnalysis,
+} from './unicode-normalize';
 
 /** Base exercise interface */
 interface BaseExercise {
@@ -138,54 +145,85 @@ export interface LessonResult {
 }
 
 /**
- * Validates user answer against exercise
+ * Validates user answer against exercise using Unicode-aware comparison
  */
 export function validateAnswer(
-  exercise: GrammarExercise, 
+  exercise: GrammarExercise,
   userAnswer: string | string[]
 ): boolean {
   switch (exercise.type) {
     case 'fill-blank': {
-      const answer = typeof userAnswer === 'string' ? userAnswer.trim().toLowerCase() : '';
-      return exercise.correctAnswers.some(
-        correct => correct.trim().toLowerCase() === answer
-      );
+      const answer = typeof userAnswer === 'string' ? userAnswer.trim() : '';
+      // Use Unicode-normalized matching for fill-in-blank
+      return matchesAnyAnswer(answer, exercise.correctAnswers);
     }
-    
+
     case 'multiple-choice': {
       const selectedIndex = typeof userAnswer === 'string' ? parseInt(userAnswer, 10) : -1;
       return selectedIndex === exercise.correctIndex;
     }
-    
+
     case 'sentence-builder': {
       const words = Array.isArray(userAnswer) ? userAnswer : [];
       const targetWords = exercise.targetSentenceMk.split(' ');
-      
-      // Check main target
-      if (words.length === targetWords.length && 
-          words.every((w, i) => w.toLowerCase() === targetWords[i].toLowerCase())) {
+
+      // Check main target with Unicode normalization
+      if (
+        words.length === targetWords.length &&
+        words.every((w, i) => answersMatch(w, targetWords[i]))
+      ) {
         return true;
       }
-      
+
       // Check alternatives
       if (exercise.alternativeOrders) {
-        return exercise.alternativeOrders.some(alt => 
-          words.length === alt.length && 
-          words.every((w, i) => w.toLowerCase() === alt[i].toLowerCase())
+        return exercise.alternativeOrders.some(
+          (alt) =>
+            words.length === alt.length &&
+            words.every((w, i) => answersMatch(w, alt[i]))
         );
       }
-      
+
       return false;
     }
-    
+
     case 'error-correction': {
-      const answer = typeof userAnswer === 'string' ? userAnswer.trim().toLowerCase() : '';
-      return answer === exercise.correctedWord.trim().toLowerCase();
+      const answer = typeof userAnswer === 'string' ? userAnswer.trim() : '';
+      // Use Unicode-normalized matching for error correction
+      return answersMatch(answer, exercise.correctedWord);
     }
-    
+
     default:
       return false;
   }
+}
+
+/**
+ * Validates answer and returns detailed analysis with feedback hints
+ */
+export function validateAnswerWithFeedback(
+  exercise: GrammarExercise,
+  userAnswer: string | string[]
+): { isCorrect: boolean; analysis?: AnswerAnalysis } {
+  const isCorrect = validateAnswer(exercise, userAnswer);
+
+  if (isCorrect) {
+    return { isCorrect: true };
+  }
+
+  // Provide detailed feedback for incorrect answers
+  if (exercise.type === 'fill-blank' && typeof userAnswer === 'string') {
+    // Analyze against the first correct answer for feedback
+    const analysis = analyzeAnswer(userAnswer.trim(), exercise.correctAnswers[0]);
+    return { isCorrect: false, analysis };
+  }
+
+  if (exercise.type === 'error-correction' && typeof userAnswer === 'string') {
+    const analysis = analyzeAnswer(userAnswer.trim(), exercise.correctedWord);
+    return { isCorrect: false, analysis };
+  }
+
+  return { isCorrect: false };
 }
 
 /**

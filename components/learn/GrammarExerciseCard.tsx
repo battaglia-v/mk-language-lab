@@ -6,16 +6,17 @@ import { Check, X, Lightbulb, HelpCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { 
-  type GrammarExercise, 
+import {
+  type GrammarExercise,
   type FillBlankExercise,
   type MultipleChoiceExercise,
   type SentenceBuilderExercise,
   type ErrorCorrectionExercise,
-  validateAnswer,
+  validateAnswerWithFeedback,
   calculateXP,
-  shuffleWords 
+  shuffleWords,
 } from '@/lib/grammar-engine';
+import { getFeedbackMessage, type AnswerAnalysis } from '@/lib/unicode-normalize';
 import { useReducedMotion } from '@/hooks/use-reduced-motion';
 import { triggerHaptic } from '@/lib/haptics';
 import { cn } from '@/lib/utils';
@@ -62,6 +63,7 @@ export function GrammarExerciseCard({
   const [attempts, setAttempts] = useState(0);
   const [showHint, setShowHint] = useState(false);
   const [result, setResult] = useState<'correct' | 'incorrect' | null>(null);
+  const [feedbackAnalysis, setFeedbackAnalysis] = useState<AnswerAnalysis | undefined>(undefined);
   
   const prefersReducedMotion = useReducedMotion();
   const instruction = locale === 'mk' ? exercise.instructionMk : exercise.instructionEn;
@@ -74,15 +76,17 @@ export function GrammarExerciseCard({
     setAttempts(0);
     setShowHint(false);
     setResult(null);
+    setFeedbackAnalysis(undefined);
   }, [exercise.id, exercise.type]);
 
   const handleCheck = useCallback(() => {
-    const isCorrect = validateAnswer(exercise, userAnswer);
+    const { isCorrect, analysis } = validateAnswerWithFeedback(exercise, userAnswer);
     const newAttempts = attempts + 1;
     setAttempts(newAttempts);
-    
+
     if (isCorrect) {
       setResult('correct');
+      setFeedbackAnalysis(undefined);
       triggerHaptic('success');
       const xpEarned = calculateXP(exercise.xp, newAttempts);
       // Delay completion to show feedback
@@ -97,13 +101,14 @@ export function GrammarExerciseCard({
       }, 1500);
     } else {
       setResult('incorrect');
+      setFeedbackAnalysis(analysis);
       triggerHaptic('error');
       // Show hint after first wrong attempt
       if (newAttempts === 1 && hint) {
         setShowHint(true);
       }
       // Reset result after showing feedback
-      setTimeout(() => setResult(null), 1000);
+      setTimeout(() => setResult(null), 1500);
     }
   }, [exercise, userAnswer, attempts, hint, onComplete]);
 
@@ -213,7 +218,11 @@ export function GrammarExerciseCard({
                 <>
                   <X className="h-5 w-5" />
                   <span className="font-medium">{t.incorrect}</span>
-                  <span className="text-sm opacity-80 ml-2">— {t.tryAgain}</span>
+                  <span className="text-sm opacity-80 ml-2">
+                    — {feedbackAnalysis?.mistakeType
+                      ? getFeedbackMessage(feedbackAnalysis.mistakeType, locale)
+                      : t.tryAgain}
+                  </span>
                 </>
               )}
             </motion.div>
