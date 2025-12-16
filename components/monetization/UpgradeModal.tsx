@@ -111,8 +111,7 @@ export function UpgradeModal({
   // Track modal view
   useEffect(() => {
     if (isOpen) {
-      trackEvent(AnalyticsEvents.PRACTICE_MODAL_OPENED, {
-        action: 'upgrade_modal_viewed',
+      trackEvent(AnalyticsEvents.UPGRADE_MODAL_VIEWED, {
         trigger: context?.trigger || 'unknown',
         featureId: context?.featureId || '',
       });
@@ -128,8 +127,7 @@ export function UpgradeModal({
 
     try {
       // Track purchase attempt
-      trackEvent(AnalyticsEvents.PRACTICE_MODAL_OPENED, {
-        action: 'purchase_attempted',
+      trackEvent(AnalyticsEvents.PURCHASE_STARTED, {
         productId: product.id,
         plan: selectedPlan,
       });
@@ -138,16 +136,14 @@ export function UpgradeModal({
         const result = await launchPurchaseFlow(product.id);
         
         if (result.success) {
-          trackEvent(AnalyticsEvents.PRACTICE_MODAL_OPENED, {
-            action: 'purchase_success',
+          trackEvent(AnalyticsEvents.PURCHASE_COMPLETED, {
             productId: product.id,
           });
           onPurchaseSuccess?.();
           onClose();
         } else {
           setError(result.error || 'Purchase failed');
-          trackEvent(AnalyticsEvents.PRACTICE_MODAL_OPENED, {
-            action: 'purchase_failed',
+          trackEvent(AnalyticsEvents.PURCHASE_FAILED, {
             error: result.errorCode || 'unknown',
           });
         }
@@ -343,4 +339,3 @@ export function UpgradeModal({
     </AnimatePresence>
   );
 }
-

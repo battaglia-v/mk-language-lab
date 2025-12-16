@@ -101,8 +101,7 @@ export function ReviewPrompt({
         setIsVisible(true);
         onShow?.();
         
-        trackEvent(AnalyticsEvents.PRACTICE_MODAL_OPENED, {
-          action: 'review_prompt_shown',
+        trackEvent(AnalyticsEvents.REVIEW_PROMPT_SHOWN, {
           accuracy: sessionData.accuracy,
         });
       }, 1500);
@@ -112,9 +111,7 @@ export function ReviewPrompt({
   }, [shouldCheck, sessionData, onShow]);
 
   const handleReview = useCallback(async () => {
-    trackEvent(AnalyticsEvents.PRACTICE_MODAL_OPENED, {
-      action: 'review_accepted',
-    });
+    trackEvent(AnalyticsEvents.REVIEW_ACCEPTED, {});
 
     // Trigger the native review flow
     await triggerReviewFlow();
@@ -133,9 +130,7 @@ export function ReviewPrompt({
   }, [onReview, onDismiss]);
 
   const handleLater = useCallback(() => {
-    trackEvent(AnalyticsEvents.PRACTICE_MODAL_OPENED, {
-      action: 'review_declined',
-    });
+    trackEvent(AnalyticsEvents.REVIEW_DECLINED, {});
 
     setIsVisible(false);
     onDismiss?.();
