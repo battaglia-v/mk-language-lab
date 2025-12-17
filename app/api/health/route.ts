@@ -7,6 +7,9 @@ export const dynamic = 'force-dynamic'; // Disable caching for health checks
 interface HealthCheck {
   status: 'healthy' | 'degraded' | 'unhealthy';
   timestamp: string;
+  gitSha: string;
+  buildTime: string;
+  env: string;
   checks: {
     database: {
       status: 'ok' | 'error';
@@ -79,6 +82,9 @@ export async function GET() {
   const response: HealthCheck = {
     status,
     timestamp: new Date().toISOString(),
+    gitSha: process.env.NEXT_PUBLIC_GIT_SHA || process.env.VERCEL_GIT_COMMIT_SHA || 'dev',
+    buildTime: process.env.BUILD_TIME || new Date().toISOString(),
+    env: process.env.NODE_ENV || 'development',
     checks,
   };
 
