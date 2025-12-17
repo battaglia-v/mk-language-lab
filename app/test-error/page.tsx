@@ -1,10 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { notFound } from "next/navigation";
 
+/**
+ * Test Error Boundary Page - For testing error handling
+ *
+ * GATED: Only available when NEXT_PUBLIC_ENABLE_DEV_PAGES=true or in development
+ */
 export default function TestErrorPage() {
   const [shouldThrow, setShouldThrow] = useState(false);
+
+  // Gate this page in production
+  useEffect(() => {
+    if (process.env.NEXT_PUBLIC_ENABLE_DEV_PAGES !== "true" && process.env.NODE_ENV === "production") {
+      notFound();
+    }
+  }, []);
 
   if (shouldThrow) {
     throw new Error("Test error for support system - This is a simulated error to test the error boundary and support form.");
