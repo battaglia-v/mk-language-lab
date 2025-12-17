@@ -57,7 +57,6 @@ export async function GET(request: NextRequest) {
       return NextResponse.json([]);
     }
 
-    // @ts-expect-error - Model may not exist until migration
     const editLogs = await prisma.contentEditLog.findMany({
       where: {
         contentType,
