@@ -877,6 +877,8 @@
     "readerFocusOnShort": "Фокус",
     "readerFocusOff": "Исклучи фокус",
     "readerFocusTooltip": "Фокус режимот истакнува еден збор истовремено за учење чекор по чекор. Користете стрелки или копчиња за навигација.",
+    "readerFocusPrev": "Претходен",
+    "readerFocusNext": "Следен",
     "readerCopyShort": "Копирај",
     "readerRecent": "Скорешни читања",
     "readerTapToLoad": "Допрете за повторно отворање",

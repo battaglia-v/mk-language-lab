@@ -161,67 +161,70 @@ export function RecommendationCard({
           config.gradient
         )} />
 
-        <CardContent className="relative flex items-center gap-4 p-4">
-          {/* Icon */}
-          <div className={cn(
-            "flex h-14 w-14 shrink-0 items-center justify-center rounded-xl",
-            "bg-background/80 shadow-sm"
-          )}>
-            <Icon className={cn(
-              "h-7 w-7",
-              isUrgent ? "text-destructive" : "text-primary"
-            )} />
-          </div>
-
-          {/* Content */}
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-1">
-              <h3 className="font-semibold text-foreground truncate">
-                {recommendation.title}
-              </h3>
-              {isUrgent && (
-                <Badge variant="destructive" className="text-xs">
-                  {t.urgent}
-                </Badge>
-              )}
-              {!isUrgent && recommendation.priority === 1 && (
-                <Badge variant="secondary" className="text-xs">
-                  {t.recommended}
-                </Badge>
-              )}
+        <CardContent className="relative flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:gap-4">
+          {/* Icon + Content Row */}
+          <div className="flex items-start gap-3 sm:flex-1 sm:items-center sm:gap-4">
+            {/* Icon */}
+            <div className={cn(
+              "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl sm:h-14 sm:w-14",
+              "bg-background/80 shadow-sm"
+            )}>
+              <Icon className={cn(
+                "h-5 w-5 sm:h-7 sm:w-7",
+                isUrgent ? "text-destructive" : "text-primary"
+              )} />
             </div>
 
-            <p className="text-sm text-muted-foreground line-clamp-2">
-              {recommendation.description}
-            </p>
+            {/* Content */}
+            <div className="flex-1 min-w-0">
+              <div className="flex flex-wrap items-center gap-2 mb-1">
+                <h3 className="font-semibold text-foreground text-sm sm:text-base line-clamp-1">
+                  {recommendation.title}
+                </h3>
+                {isUrgent && (
+                  <Badge variant="destructive" className="text-xs shrink-0">
+                    {t.urgent}
+                  </Badge>
+                )}
+                {!isUrgent && recommendation.priority === 1 && (
+                  <Badge variant="secondary" className="text-xs shrink-0">
+                    {t.recommended}
+                  </Badge>
+                )}
+              </div>
 
-            {/* Meta info */}
-            <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
-              {recommendation.estimatedMinutes && (
-                <span className="flex items-center gap-1">
-                  <Clock className="h-3 w-3" />
-                  {recommendation.estimatedMinutes} {t.minutes}
-                </span>
-              )}
-              {recommendation.xpReward && (
-                <span className="flex items-center gap-1 text-accent font-medium">
-                  +{recommendation.xpReward} {t.xp}
-                </span>
-              )}
-              {recommendation.metadata?.wordCount && (
-                <span className="flex items-center gap-1">
-                  {recommendation.metadata.wordCount} {t.wordsToReview}
-                </span>
-              )}
+              <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2">
+                {recommendation.description}
+              </p>
+
+              {/* Meta info - inline on mobile */}
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-2 text-xs text-muted-foreground">
+                {recommendation.estimatedMinutes && (
+                  <span className="flex items-center gap-1 whitespace-nowrap">
+                    <Clock className="h-3 w-3" />
+                    {recommendation.estimatedMinutes} {t.minutes}
+                  </span>
+                )}
+                {recommendation.xpReward && (
+                  <span className="flex items-center gap-1 text-accent font-medium whitespace-nowrap">
+                    +{recommendation.xpReward} {t.xp}
+                  </span>
+                )}
+                {recommendation.metadata?.wordCount && (
+                  <span className="flex items-center gap-1 whitespace-nowrap">
+                    {recommendation.metadata.wordCount} {t.wordsToReview}
+                  </span>
+                )}
+              </div>
             </div>
           </div>
 
-          {/* CTA */}
+          {/* CTA - full width on mobile */}
           <Button
             size="sm"
             variant={isUrgent ? "destructive" : "default"}
             onClick={() => onAction(recommendation)}
-            className="shrink-0"
+            className="w-full sm:w-auto shrink-0"
           >
             {getCtaText()}
             <ArrowRight className="h-4 w-4 ml-1" />
