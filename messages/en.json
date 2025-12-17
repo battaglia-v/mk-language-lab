@@ -968,9 +968,9 @@
           "description": "Dive into themed decks that expand your active word bank."
         }
       },
-      "wordInputLabel": "Submit your translation",
+      "wordInputLabel": "Your answer",
       "wordInputPlaceholder": "Type your answer...",
-      "wordInputHelper": "Press Enter or tap Submit to check your answer.",
+      "wordInputHelper": "Tap Submit to check.",
       "submitWord": "Submit",
       "revealAnswer": "Reveal answer",
       "revealAnswerShort": "Reveal",
@@ -994,7 +994,7 @@
       "hintLabel": "Hint",
       "modeLabel": "Mode",
       "modeTyping": "Typing",
-      "modeMultipleChoice": "Multiple Choice",
+      "modeMultipleChoice": "Pick one",
       "chooseAnswer": "Choose the correct answer",
       "skip": "Skip",
       "navigate": "Nav",
@@ -2057,7 +2057,7 @@
       "keepPracticing": "Keep practicing to improve your accent!"
     },
     "recommendations": {
-      "sectionTitle": "Recommended for You",
+      "sectionTitle": "Up next",
       "noRecommendations": "Great job! You're all caught up.",
       "streakProtection": {
         "title": "Protect Your Streak! 🔥",
@@ -2171,7 +2171,7 @@
     }
   },
   "recommendations": {
-    "sectionTitle": "Recommended for You",
+    "sectionTitle": "Up next",
     "noRecommendations": "Great job! You're all caught up.",
     "streakProtection": {
       "title": "Protect Your Streak! 🔥",
@@ -2320,7 +2320,7 @@
       "tip3": "Record multiple times and compare each attempt"
     },
     "backToSessions": "Back to Sessions",
-    "listenNative": "Listen to Native",
+    "listenNative": "Play audio",
     "startRecording": "Start Recording",
     "stopRecording": "Stop Recording",
     "playRecording": "Play Your Recording",
@@ -2335,7 +2335,7 @@
     "description": "Master Macedonian grammar through interactive exercises",
     "lessons": "Lessons",
     "backToPractice": "Back to Practice",
-    "selectLesson": "Select a Lesson",
+    "selectLesson": "Pick a lesson",
     "overallProgress": "Overall Progress",
     "lessonsCompleted": "{completed} of {total} lessons completed",
     "locked": "Complete previous lessons to unlock",

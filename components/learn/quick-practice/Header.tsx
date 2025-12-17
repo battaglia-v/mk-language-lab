@@ -61,14 +61,14 @@ export function QuickPracticeHeader({
       </div>
 
       {/* Main stats bar - always visible */}
-      <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-muted-foreground">
-        <span className="inline-flex items-center gap-1 text-foreground">
+      <div className="metadata-row text-xs font-medium text-muted-foreground">
+        <span className="metadata-item text-foreground">
           {progressValueLabel}
         </span>
-        <span className="text-muted-foreground">•</span>
-        <span className="inline-flex items-center gap-1 text-foreground">
+        <span className="card-meta-separator">•</span>
+        <span className="metadata-item text-foreground">
           <Heart className="h-3 w-3 fill-[var(--brand-red)] text-[var(--brand-red)]" aria-hidden="true" />
-          {hearts}/5
+          <span className="count-unit">{hearts}/5</span>
         </span>
       </div>
 
@@ -76,19 +76,19 @@ export function QuickPracticeHeader({
       {!shouldCollapseHud && (
         <div
           data-testid="practice-hud"
-          className="flex flex-wrap items-center gap-3 text-xs font-medium text-muted-foreground md:text-sm"
+          className="metadata-row gap-3 text-xs font-medium text-muted-foreground md:text-sm"
         >
-          <span className="inline-flex items-center gap-1">
+          <span className="metadata-item">
             <Flame className="h-3.5 w-3.5 text-orange-500" aria-hidden="true" />
-            {streak}
+            <span className="label-nowrap">{streak}</span>
           </span>
-          <span className="inline-flex items-center gap-1">
+          <span className="metadata-item">
             <Zap className="h-3.5 w-3.5 text-yellow-500" aria-hidden="true" />
-            {xp} XP
+            <span className="count-unit">{xp} XP</span>
           </span>
-          <span className="inline-flex items-center gap-1">
-            <span className="text-muted-foreground">{difficultyLabelText}:</span>
-            <span className="text-foreground">{difficultyName}</span>
+          <span className="metadata-item">
+            <span className="text-muted-foreground label-nowrap">{difficultyLabelText}:</span>
+            <span className="text-foreground label-nowrap">{difficultyName}</span>
           </span>
         </div>
       )}

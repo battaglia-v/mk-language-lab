@@ -18,15 +18,19 @@
   --content-reading: 720px;   /* was 896px - narrower for better readability */
   --content-narrow: 480px;    /* NEW: for focused content like forms */
 
-  /* Button sizing - UPDATED for WCAG AA touch targets */
-  --button-height-sm: 2.75rem;  /* 44px - minimum touch target */
-  --button-height-md: 3rem;     /* 48px - primary CTA */
+  /* Button sizing - Duolingo-like sizing for clear CTAs */
+  --button-height-sm: 2.75rem;  /* 44px - secondary/minor actions */
+  --button-height-md: 3.5rem;   /* 56px - PRIMARY CTA (was 48px) */
   --button-height-lg: 3.5rem;   /* 56px - hero CTA */
-  --button-pad-x-sm: 1rem;      /* was 0.9rem */
-  --button-pad-x-md: 1.5rem;    /* was 1.15rem */
-  --button-pad-x-lg: 2rem;      /* was 1.35rem */
-  --button-pad-y: 0.75rem;      /* was 0.65rem */
-  --touch-target-min: 44px;     /* NEW: explicit WCAG AA minimum */
+  --button-pad-x-sm: 1rem;
+  --button-pad-x-md: 1.5rem;
+  --button-pad-x-lg: 2rem;
+  --button-pad-y: 0.75rem;
+  --touch-target-min: 44px;     /* WCAG AA minimum */
+  
+  /* Input sizing - consistent with primary buttons */
+  --input-height: 3.5rem;       /* 56px - matches primary CTA height */
+  --input-height-sm: 2.75rem;   /* 44px - compact inputs */
 
   --mk-bg: #06060b;
   --mk-bg-surface: #0b0b12;
@@ -65,10 +69,12 @@
   --border: var(--mk-border);
   --input: var(--mk-border-soft);
   --ring: var(--mk-accent-2);
-  --radius: 18px;
-  --radius-control: 14px;
-  --radius-card: 22px;
-  --radius-panel: 24px;
+  /* Radii - Duolingo-like rounded corners */
+  --radius: 18px;             /* Default for buttons */
+  --radius-control: 18px;     /* Buttons/inputs (was 14px) */
+  --radius-card: 24px;        /* Cards (was 22px) */
+  --radius-panel: 24px;       /* Panels/modals */
+  --radius-chip: 9999px;      /* Pills/chips */
   --sidebar: rgba(6, 6, 11, 0.95);
   --sidebar-foreground: rgba(247, 248, 251, 0.8);
   --sidebar-primary: rgba(246, 216, 59, 0.16);

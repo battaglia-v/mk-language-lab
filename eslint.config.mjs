@@ -31,6 +31,25 @@ const eslintConfig = [
       "**/*.test.tsx",
     ],
   },
+  // Phase 9: Canonical Button System - prevent raw <button> usage
+  {
+    files: ["**/*.tsx"],
+    rules: {
+      "react/forbid-elements": ["warn", {
+        forbid: [{
+          element: "button",
+          message: "Use <Button> from @/components/ui/button instead of raw <button>. Exception: components/ui/button.tsx"
+        }]
+      }]
+    }
+  },
+  // Allow raw button only in the Button component itself
+  {
+    files: ["components/ui/button.tsx"],
+    rules: {
+      "react/forbid-elements": "off"
+    }
+  }
 ];
 
 export default eslintConfig;

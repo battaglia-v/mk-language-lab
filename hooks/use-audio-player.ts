@@ -80,7 +80,12 @@ interface UseAudioPlayerOptions {
   onEnded?: () => void;
   /** Callback on error */
   onError?: (errorType: AudioErrorType, message: string) => void;
+  /** Loading timeout in ms (default: 5000) - show error after this time if still loading */
+  loadingTimeoutMs?: number;
 }
+
+// Default loading timeout (5 seconds)
+const DEFAULT_LOADING_TIMEOUT_MS = 5000;
 
 /**
  * useAudioPlayer - Robust audio playback hook with explicit states
@@ -108,6 +113,7 @@ export function useAudioPlayer(options: UseAudioPlayerOptions = {}): AudioPlayer
     ttsRate = 0.85,
     onEnded,
     onError,
+    loadingTimeoutMs = DEFAULT_LOADING_TIMEOUT_MS,
   } = options;
 
   const [state, setState] = useState<AudioPlayerState>('idle');
@@ -122,6 +128,15 @@ export function useAudioPlayer(options: UseAudioPlayerOptions = {}): AudioPlayer
   const urlRef = useRef<string | undefined>(initialUrl);
   const lastTextRef = useRef<string>('');
   const progressIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const loadingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  
+  // Clear loading timeout
+  const clearLoadingTimeout = useCallback(() => {
+    if (loadingTimeoutRef.current) {
+      clearTimeout(loadingTimeoutRef.current);
+      loadingTimeoutRef.current = null;
+    }
+  }, []);
 
   // Clear progress interval
   const clearProgressInterval = useCallback(() => {
@@ -146,13 +161,14 @@ export function useAudioPlayer(options: UseAudioPlayerOptions = {}): AudioPlayer
   // Clean up audio element
   const cleanupAudio = useCallback(() => {
     clearProgressInterval();
+    clearLoadingTimeout();
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.src = '';
       audioRef.current.load();
       audioRef.current = null;
     }
-  }, [clearProgressInterval]);
+  }, [clearProgressInterval, clearLoadingTimeout]);
 
   // Stop TTS
   const stopTTS = useCallback(() => {
@@ -189,7 +205,8 @@ export function useAudioPlayer(options: UseAudioPlayerOptions = {}): AudioPlayer
     setErrorMessage(message);
     onError?.(type, message);
     clearProgressInterval();
-  }, [onError, clearProgressInterval]);
+    clearLoadingTimeout();
+  }, [onError, clearProgressInterval, clearLoadingTimeout]);
 
   // Speak text using TTS
   const speakTTS = useCallback((text: string, lang?: string) => {
@@ -373,13 +390,29 @@ export function useAudioPlayer(options: UseAudioPlayerOptions = {}): AudioPlayer
     }
   }, [initialUrl, load]);
 
+  // Loading timeout - show error if stuck in loading state for too long
+  useEffect(() => {
+    if (state === 'loading') {
+      loadingTimeoutRef.current = setTimeout(() => {
+        handleError('network', 'Audio not available yet. Please try again.');
+      }, loadingTimeoutMs);
+    } else {
+      clearLoadingTimeout();
+    }
+    
+    return () => {
+      clearLoadingTimeout();
+    };
+  }, [state, loadingTimeoutMs, handleError, clearLoadingTimeout]);
+
   // Cleanup on unmount
   useEffect(() => {
     return () => {
       cleanupAudio();
       stopTTS();
+      clearLoadingTimeout();
     };
-  }, [cleanupAudio, stopTTS]);
+  }, [cleanupAudio, stopTTS, clearLoadingTimeout]);
 
   return {
     state,

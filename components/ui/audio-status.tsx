@@ -1,9 +1,44 @@
 'use client';
 
-import { Volume2, VolumeX, Loader2, AlertCircle, RefreshCw, Play } from 'lucide-react';
+import { Volume2, VolumeX, Loader2, AlertCircle, RefreshCw, Play, User, Bot } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import type { AudioPlayerState, AudioErrorType } from '@/hooks/use-audio-player';
+
+/**
+ * AudioSourceBadge - Shows whether audio is Native or AI/TTS
+ */
+function AudioSourceBadge({ 
+  isNative, 
+  className 
+}: { 
+  isNative: boolean; 
+  className?: string;
+}) {
+  return (
+    <span
+      className={cn(
+        'inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide',
+        isNative
+          ? 'bg-green-500/10 text-green-500'
+          : 'bg-amber-500/10 text-amber-500',
+        className
+      )}
+    >
+      {isNative ? (
+        <>
+          <User className="h-3 w-3" aria-hidden="true" />
+          <span className="label-nowrap">Native</span>
+        </>
+      ) : (
+        <>
+          <Bot className="h-3 w-3" aria-hidden="true" />
+          <span className="label-nowrap">AI</span>
+        </>
+      )}
+    </span>
+  );
+}
 
 interface AudioStatusProps {
   /** Current audio state */
@@ -22,6 +57,8 @@ interface AudioStatusProps {
   className?: string;
   /** Compact mode (icon only) */
   compact?: boolean;
+  /** Show source badge (Native vs AI) */
+  showSourceBadge?: boolean;
   /** Translation strings */
   t?: {
     loading?: string;
@@ -56,13 +93,14 @@ export function AudioStatus({
   usingTTS,
   className,
   compact = false,
+  showSourceBadge = false,
   t,
 }: AudioStatusProps) {
   const labels = {
     loading: t?.loading ?? 'Loading audio...',
     playing: t?.playing ?? 'Playing',
     usingTTS: t?.usingTTS ?? 'Using text-to-speech',
-    error: t?.error ?? 'Audio unavailable',
+    error: t?.error ?? 'Audio not available yet',
     retry: t?.retry ?? 'Try again',
     tapToPlay: t?.tapToPlay ?? 'Tap to play',
   };
@@ -91,7 +129,12 @@ export function AudioStatus({
         className
       )}>
         <Volume2 className={cn("animate-pulse", compact ? "h-4 w-4" : "h-5 w-5")} aria-hidden="true" />
-        {!compact && <span>{usingTTS ? labels.usingTTS : labels.playing}</span>}
+        {!compact && (
+          <span className="metadata-row gap-2">
+            <span>{usingTTS ? labels.usingTTS : labels.playing}</span>
+            {showSourceBadge && <AudioSourceBadge isNative={!usingTTS} />}
+          </span>
+        )}
       </div>
     );
   }

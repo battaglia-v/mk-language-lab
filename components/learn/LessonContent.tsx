@@ -122,15 +122,15 @@ export default function LessonContent({
             )}
           </div>
 
-          <div className="flex items-center gap-4 text-sm">
-            <div className="flex items-center gap-2">
+          <div className="lesson-card-meta">
+            <span className="metadata-item">
               <Clock className="h-4 w-4 text-muted-foreground" />
-              <span>{lesson.estimatedMinutes} min</span>
-            </div>
-            <div className="flex items-center gap-2">
+              <span className="duration-display">{lesson.estimatedMinutes} min</span>
+            </span>
+            <span className="metadata-item">
               <Award className="h-4 w-4 text-muted-foreground" />
-              <span className="capitalize">{lesson.difficultyLevel}</span>
-            </div>
+              <span className="label-nowrap capitalize">{lesson.difficultyLevel}</span>
+            </span>
           </div>
 
           {/* Progress Bar */}
