@@ -4,6 +4,7 @@ import { useCallback, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { RecommendationList, type Recommendation } from './RecommendationCard';
+import { ROUTES, buildLocalizedRoute } from '@/lib/routes';
 
 interface SmartRecommendationsProps {
   /** Current user's streak days */
@@ -53,7 +54,7 @@ export function SmartRecommendations({
         metadata: {
           daysUntilStreakLoss: 1,
         },
-        href: `/${locale}/practice`,
+        href: buildLocalizedRoute(locale, ROUTES.PRACTICE),
       });
     }
 
@@ -69,7 +70,7 @@ export function SmartRecommendations({
         metadata: {
           wordCount: weakWordsCount,
         },
-        href: `/${locale}/practice`,
+        href: buildLocalizedRoute(locale, ROUTES.PRACTICE),
       });
     }
 
@@ -81,7 +82,7 @@ export function SmartRecommendations({
       estimatedMinutes: 10,
       xpReward: 25,
       priority: 3,
-      href: `/${locale}/practice/pronunciation`,
+      href: buildLocalizedRoute(locale, ROUTES.PRACTICE_PRONUNCIATION),
     });
 
     // Medium priority: Grammar drills
@@ -92,7 +93,7 @@ export function SmartRecommendations({
       estimatedMinutes: 15,
       xpReward: 30,
       priority: 4,
-      href: `/${locale}/practice/grammar`,
+      href: buildLocalizedRoute(locale, ROUTES.PRACTICE_GRAMMAR),
     });
 
     // Lower priority: Continue lesson (if they've started)
@@ -107,7 +108,7 @@ export function SmartRecommendations({
         metadata: {
           lessonId: 'next',
         },
-        href: `/${locale}/journey`,
+        href: buildLocalizedRoute(locale, ROUTES.DISCOVER),
       });
     }
 
@@ -120,7 +121,7 @@ export function SmartRecommendations({
         estimatedMinutes: 15,
         xpReward: 50,
         priority: 2,
-        href: `/${locale}/journey`,
+        href: buildLocalizedRoute(locale, ROUTES.DISCOVER),
       });
     }
 
@@ -132,7 +133,7 @@ export function SmartRecommendations({
       estimatedMinutes: 5,
       xpReward: 15,
       priority: 6,
-      href: `/${locale}/practice`,
+      href: buildLocalizedRoute(locale, ROUTES.PRACTICE),
     });
 
     return recs;

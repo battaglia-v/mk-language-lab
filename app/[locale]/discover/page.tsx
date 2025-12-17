@@ -124,7 +124,7 @@ export default function DiscoverPage() {
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 pb-24 px-3 pt-6 sm:gap-10 sm:px-4 sm:pb-12 sm:pt-8">
       <div className="flex flex-wrap items-center gap-3">
         <Link
-          href={`/${locale}/dashboard`}
+          href={`/${locale}/learn`}
           className="inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-1.5 text-xs text-muted-foreground"
           aria-label={navT('backToDashboard')}
         >
