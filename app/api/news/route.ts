@@ -11,12 +11,35 @@ const NEWS_SOURCES = [
     name: 'Time.mk',
     feedUrl: 'https://time.mk/rss/all',
     homepage: 'https://time.mk',
+    useProxy: true, // Time.mk blocks direct image loading
   },
   {
     id: 'meta-mk',
     name: 'Meta.mk',
     feedUrl: 'https://meta.mk/feed/',
     homepage: 'https://meta.mk',
+    useProxy: false,
+  },
+  {
+    id: 'sdk-mk',
+    name: 'SDK.mk',
+    feedUrl: 'https://sdk.mk/index.php/feed/',
+    homepage: 'https://sdk.mk',
+    useProxy: false,
+  },
+  {
+    id: 'makfax',
+    name: 'Makfax',
+    feedUrl: 'https://makfax.com.mk/feed/',
+    homepage: 'https://makfax.com.mk',
+    useProxy: false,
+  },
+  {
+    id: 'a1on',
+    name: 'A1on',
+    feedUrl: 'https://a1on.mk/feed/',
+    homepage: 'https://a1on.mk',
+    useProxy: false,
   },
 ] as const;
 
@@ -48,7 +71,19 @@ type NewsItem = {
   categories: string[];
   videos: string[];
   image: string | null;
+  imageProxy?: string | null; // Proxied URL for sources that need it
 };
+
+/**
+ * Get proxied image URL for sources that block direct loading
+ */
+function getProxiedImageUrl(imageUrl: string | null, source: NewsSource): string | null {
+  if (!imageUrl) return null;
+  if (!source.useProxy) return imageUrl;
+
+  // Return the proxy URL
+  return `/api/news/image?url=${encodeURIComponent(imageUrl)}`;
+}
 
 type ArticlePreviewResult = {
   preview: string | null;
@@ -445,6 +480,7 @@ function parseFeed(xml: string, source: NewsSource): NewsItem[] {
       categories,
       videos: Array.from(videosSet),
       image,
+      imageProxy: getProxiedImageUrl(image, source),
     });
   }
 

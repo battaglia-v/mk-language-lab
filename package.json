@@ -33,6 +33,7 @@
     "i18n:check": "tsx scripts/sync-translations.ts --ci",
     "i18n:report": "tsx scripts/sync-translations.ts",
     "i18n:fix": "tsx scripts/sync-translations.ts --fix",
+    "check:i18n": "tsx scripts/check-i18n-keys.ts",
     "content:validate": "tsx scripts/validate-content.ts",
     "content:validate:ci": "tsx scripts/validate-content.ts --ci",
     "content:validate:strict": "tsx scripts/validate-content.ts --strict"
