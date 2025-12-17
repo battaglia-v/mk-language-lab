@@ -201,15 +201,45 @@ function getFetchStrategies(url: URL): FetchStrategy[] {
   ];
 }
 
-async function fetchWithStrategies(url: string): Promise<Response | null> {
+// Structured logging for diagnostics
+interface ImageProxyLog {
+  event: string;
+  timestamp: string;
+  url: string;
+  hostname: string;
+  strategy: string;
+  statusCode?: number;
+  contentType?: string | null;
+  contentLength?: string | null;
+  success: boolean;
+  error?: string;
+  isHtmlBotBlock?: boolean;
+}
+
+function logImageProxy(data: ImageProxyLog) {
+  // Structured JSON logging for monitoring/debugging
+  console.log(JSON.stringify(data));
+}
+
+interface FetchResult {
+  response: Response | null;
+  successStrategy: string | null;
+  lastStatusCode: number | null;
+  lastContentType: string | null;
+}
+
+async function fetchWithStrategies(url: string): Promise<FetchResult> {
   const parsedUrl = new URL(url);
   const timeout = isSlowDomain(url) 
     ? CONFIG.SLOW_DOMAIN_TIMEOUT_MS 
     : CONFIG.FETCH_TIMEOUT_MS;
   
   const strategies = getFetchStrategies(parsedUrl);
+  let lastStatusCode: number | null = null;
+  let lastContentType: string | null = null;
   
   for (const strategy of strategies) {
+    const startTime = Date.now();
     try {
       const fetchUrl = strategy.transformUrl ? strategy.transformUrl(url) : url;
       
@@ -219,28 +249,54 @@ async function fetchWithStrategies(url: string): Promise<Response | null> {
         signal: AbortSignal.timeout(timeout),
       });
       
-      if (response.ok) {
-        console.log(`[NewsImage] ✓ Success: ${strategy.name} - ${parsedUrl.hostname}`);
-        return response;
+      lastStatusCode = response.status;
+      lastContentType = response.headers.get('content-type');
+      
+      // Check if response is an HTML bot-block page
+      const isHtmlBotBlock = lastContentType?.includes('text/html') ?? false;
+      
+      // Log every attempt for diagnostics
+      logImageProxy({
+        event: 'image_proxy_attempt',
+        timestamp: new Date().toISOString(),
+        url: url.slice(0, 100),
+        hostname: parsedUrl.hostname,
+        strategy: strategy.name,
+        statusCode: response.status,
+        contentType: lastContentType,
+        contentLength: response.headers.get('content-length'),
+        success: response.ok && !isHtmlBotBlock,
+        isHtmlBotBlock,
+      });
+      
+      if (response.ok && !isHtmlBotBlock) {
+        return { response, successStrategy: strategy.name, lastStatusCode, lastContentType };
       }
       
       // Don't try more strategies for client errors (except 403)
       if (response.status >= 400 && response.status < 500 && response.status !== 403) {
-        console.warn(`[NewsImage] Client error ${response.status}: ${parsedUrl.hostname}`);
         break;
       }
     } catch (error) {
       const err = error as Error;
-      if (err.name === 'TimeoutError' || err.name === 'AbortError') {
-        console.warn(`[NewsImage] Timeout: ${strategy.name} - ${parsedUrl.hostname}`);
-      }
+      const isTimeout = err.name === 'TimeoutError' || err.name === 'AbortError';
+      
+      logImageProxy({
+        event: 'image_proxy_attempt',
+        timestamp: new Date().toISOString(),
+        url: url.slice(0, 100),
+        hostname: parsedUrl.hostname,
+        strategy: strategy.name,
+        success: false,
+        error: isTimeout ? 'timeout' : err.message,
+      });
     }
     
     // Small delay before next strategy
     await new Promise(r => setTimeout(r, CONFIG.RETRY_DELAY_MS));
   }
   
-  return null;
+  return { response: null, successStrategy: null, lastStatusCode, lastContentType };
 }
 
 // ==================== Main Handler ====================
@@ -314,16 +370,37 @@ export async function GET(request: NextRequest) {
   
   // 3. Fetch from source
   try {
-    const response = await fetchWithStrategies(url);
+    const fetchResult = await fetchWithStrategies(url);
     
-    if (!response) {
-      console.warn(`[NewsImage] All strategies failed: ${parsedUrl.hostname}`);
+    if (!fetchResult.response) {
+      logImageProxy({
+        event: 'image_proxy_all_failed',
+        timestamp: new Date().toISOString(),
+        url: url.slice(0, 100),
+        hostname: parsedUrl.hostname,
+        strategy: 'all',
+        statusCode: fetchResult.lastStatusCode ?? undefined,
+        contentType: fetchResult.lastContentType,
+        success: false,
+      });
       return getFallbackResponse();
     }
     
+    const { response, successStrategy } = fetchResult;
     const contentType = response.headers.get('content-type');
+    
     if (!contentType || !contentType.startsWith('image/')) {
-      console.warn(`[NewsImage] Not an image: ${contentType} - ${url.slice(0, 80)}`);
+      logImageProxy({
+        event: 'image_proxy_not_image',
+        timestamp: new Date().toISOString(),
+        url: url.slice(0, 100),
+        hostname: parsedUrl.hostname,
+        strategy: successStrategy ?? 'unknown',
+        statusCode: response.status,
+        contentType,
+        success: false,
+        isHtmlBotBlock: contentType?.includes('text/html') ?? false,
+      });
       return getFallbackResponse();
     }
     
@@ -352,6 +429,19 @@ export async function GET(request: NextRequest) {
       });
     }
     
+    // Log successful fetch
+    logImageProxy({
+      event: 'image_proxy_success',
+      timestamp: new Date().toISOString(),
+      url: url.slice(0, 100),
+      hostname: parsedUrl.hostname,
+      strategy: successStrategy ?? 'unknown',
+      statusCode: response.status,
+      contentType,
+      contentLength: String(buffer.byteLength),
+      success: true,
+    });
+    
     return new NextResponse(buffer, {
       status: 200,
       headers: {
@@ -360,11 +450,26 @@ export async function GET(request: NextRequest) {
         'X-Content-Type-Options': 'nosniff',
         'Content-Security-Policy': "default-src 'none'",
         'X-Image-Source': 'origin',
+        // Debug headers for diagnostics
+        'X-Image-Debug': JSON.stringify({
+          strategy: successStrategy,
+          statusCode: response.status,
+          contentType,
+          bytesReturned: buffer.byteLength,
+        }),
       },
     });
   } catch (error) {
     const err = error as Error;
-    console.error(`[NewsImage] Fetch error: ${err.message} - ${url.slice(0, 80)}`);
+    logImageProxy({
+      event: 'image_proxy_error',
+      timestamp: new Date().toISOString(),
+      url: url.slice(0, 100),
+      hostname: parsedUrl.hostname,
+      strategy: 'fetch',
+      success: false,
+      error: err.message,
+    });
     return getFallbackResponse();
   }
 }

@@ -14,6 +14,7 @@ import { Trophy, TrendingUp, Flame, Crown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { staggerContainer, staggerItem } from '@/lib/animations';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Button } from '@/components/ui/button';
 
 export type LeaderboardType = 'global' | 'friends' | 'league';
 export type LeaderboardPeriod = 'week' | 'alltime';
@@ -110,18 +111,18 @@ export function LeaderboardCard({
       {showTypeToggle && (
         <div className="mb-3 flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
           {(['global', 'friends', 'league'] as LeaderboardType[]).map((t) => (
-            <button
+            <Button
               key={t}
+              variant={type === t ? 'default' : 'outline'}
+              size="sm"
               onClick={() => setType(t)}
               className={cn(
-                'whitespace-nowrap rounded-full border px-3 py-1.5 text-sm font-medium transition-colors',
-                type === t
-                  ? 'border-primary bg-primary text-primary-foreground'
-                  : 'border-border bg-background text-foreground hover:bg-muted'
+                'whitespace-nowrap rounded-full',
+                type === t ? '' : 'bg-background text-foreground hover:bg-muted'
               )}
             >
               {t.charAt(0).toUpperCase() + t.slice(1)}
-            </button>
+            </Button>
           ))}
         </div>
       )}
@@ -130,18 +131,20 @@ export function LeaderboardCard({
       {showPeriodToggle && (
         <div className="mb-4 flex gap-2">
           {(['week', 'alltime'] as LeaderboardPeriod[]).map((p) => (
-            <button
+            <Button
               key={p}
+              variant={period === p ? 'outline' : 'ghost'}
+              size="sm"
               onClick={() => setPeriod(p)}
               className={cn(
-                'flex-1 rounded-lg border px-3 py-2 text-sm font-medium transition-colors',
+                'flex-1',
                 period === p
                   ? 'border-primary bg-primary/10 text-primary'
                   : 'border-border bg-background text-foreground hover:bg-muted'
               )}
             >
               {p === 'week' ? 'This Week' : 'All Time'}
-            </button>
+            </Button>
           ))}
         </div>
       )}

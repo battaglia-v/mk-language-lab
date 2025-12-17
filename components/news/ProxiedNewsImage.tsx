@@ -20,6 +20,9 @@ interface ProxiedNewsImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>
 // Retry delays in ms (exponential backoff)
 const RETRY_DELAYS = [1000, 2000, 3000];
 
+// Maximum time to wait before showing fallback (prevents infinite skeleton)
+const MAX_LOADING_TIMEOUT_MS = 10000;
+
 /**
  * Proxied News Image Component
  *
@@ -33,6 +36,7 @@ const RETRY_DELAYS = [1000, 2000, 3000];
  * - Loading state handling with skeleton
  * - Lazy loading support
  * - No layout shift (explicit dimensions)
+ * - Max 10s timeout to prevent infinite skeleton (Phase 9)
  */
 export function ProxiedNewsImage({
   imageUrl,
@@ -47,6 +51,7 @@ export function ProxiedNewsImage({
   const [isLoaded, setIsLoaded] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
   const retryTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const maxTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Reset state when imageUrl changes
   useEffect(() => {
@@ -58,13 +63,39 @@ export function ProxiedNewsImage({
       clearTimeout(retryTimeoutRef.current);
       retryTimeoutRef.current = null;
     }
+    if (maxTimeoutRef.current) {
+      clearTimeout(maxTimeoutRef.current);
+      maxTimeoutRef.current = null;
+    }
   }, [imageUrl]);
+
+  // Max timeout - prevent infinite skeleton
+  // After 10s, show fallback regardless of retry state
+  useEffect(() => {
+    if (!imageUrl || isLoaded || hasError) return;
+    
+    maxTimeoutRef.current = setTimeout(() => {
+      if (!isLoaded) {
+        console.warn(`[ProxiedNewsImage] Max timeout reached for: ${imageUrl.slice(0, 50)}...`);
+        setHasError(true);
+      }
+    }, MAX_LOADING_TIMEOUT_MS);
+    
+    return () => {
+      if (maxTimeoutRef.current) {
+        clearTimeout(maxTimeoutRef.current);
+      }
+    };
+  }, [imageUrl, isLoaded, hasError]);
 
   // Cleanup on unmount
   useEffect(() => {
     return () => {
       if (retryTimeoutRef.current) {
         clearTimeout(retryTimeoutRef.current);
+      }
+      if (maxTimeoutRef.current) {
+        clearTimeout(maxTimeoutRef.current);
       }
     };
   }, []);

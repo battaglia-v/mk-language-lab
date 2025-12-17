@@ -535,10 +535,12 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
                           )}
                         </div>
                         {session?.user && (
-                          <button
+                          <Button
+                            variant="ghost"
+                            size="icon-sm"
                             onClick={(e) => void handleToggleSave(post, e)}
                             disabled={savingPostIds.has(post.id)}
-                            className="absolute left-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-black/60 backdrop-blur-sm transition-all hover:bg-black/80 disabled:opacity-50"
+                            className="absolute left-2 top-2 h-9 w-9 rounded-full bg-black/60 backdrop-blur-sm hover:bg-black/80"
                             aria-label={savedPostIds.has(post.id) ? 'Unsave post' : 'Save post'}
                           >
                             <Bookmark
@@ -548,7 +550,7 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
                                   : 'text-white'
                               }`}
                             />
-                          </button>
+                          </Button>
                         )}
                         {post.media_type === 'VIDEO' && (
                           <div className="absolute inset-0 flex items-center justify-center bg-black/20">
@@ -654,10 +656,12 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
                           )}
                         </div>
                         {session?.user && (
-                          <button
+                          <Button
+                            variant="ghost"
+                            size="icon-sm"
                             onClick={(e) => void handleToggleSave(post, e)}
                             disabled={savingPostIds.has(post.id)}
-                            className="absolute left-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-black/60 backdrop-blur-sm transition-all hover:bg-black/80 disabled:opacity-50"
+                            className="absolute left-2 top-2 h-9 w-9 rounded-full bg-black/60 backdrop-blur-sm hover:bg-black/80"
                             aria-label={savedPostIds.has(post.id) ? 'Unsave post' : 'Save post'}
                           >
                             <Bookmark
@@ -667,7 +671,7 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
                                   : 'text-white'
                               }`}
                             />
-                          </button>
+                          </Button>
                         )}
                         {post.media_type === 'VIDEO' && (
                           <div className="absolute inset-0 flex items-center justify-center bg-black/20">

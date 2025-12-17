@@ -46,30 +46,27 @@ export default function ExerciseSection({ exercises }: ExerciseSectionProps) {
           const isCorrectOption = exercise.correctAnswer === optionLetter;
 
           return (
-            <button
+            <Button
               key={index}
+              variant="choice"
               onClick={() => !isChecked && setAnswers(prev => ({ ...prev, [exercise.id]: optionLetter }))}
               disabled={isChecked}
-              className={cn(
-                'w-full p-4 text-left rounded-lg border-2 transition-all',
-                isSelected && !isChecked && 'border-primary bg-primary/10',
-                !isSelected && !isChecked && 'border-border hover:border-primary/50',
-                isChecked && isCorrectOption && 'border-green-500 bg-green-500/10',
-                isChecked && isSelected && !isCorrect && 'border-red-500 bg-red-500/10',
-                isChecked && 'cursor-not-allowed'
-              )}
+              data-selected={isSelected && !isChecked}
+              data-correct={isChecked && isCorrectOption}
+              data-incorrect={isChecked && isSelected && !isCorrect}
+              className="w-full h-auto min-h-14 p-4 justify-start text-left"
             >
-              <div className="flex items-center gap-3">
-                <span className="font-semibold text-muted-foreground">{optionLetter}.</span>
-                <span>{option}</span>
+              <div className="flex items-center gap-3 w-full">
+                <span className="font-semibold text-muted-foreground label-nowrap">{optionLetter}.</span>
+                <span className="flex-1">{option}</span>
                 {isChecked && isCorrectOption && (
-                  <CheckCircle className="h-5 w-5 text-green-500 ml-auto" />
+                  <CheckCircle className="h-5 w-5 text-green-500 ml-auto flex-shrink-0" />
                 )}
                 {isChecked && isSelected && !isCorrect && (
-                  <XCircle className="h-5 w-5 text-red-500 ml-auto" />
+                  <XCircle className="h-5 w-5 text-red-500 ml-auto flex-shrink-0" />
                 )}
               </div>
-            </button>
+            </Button>
           );
         })}
       </div>
@@ -163,11 +160,17 @@ export default function ExerciseSection({ exercises }: ExerciseSectionProps) {
             <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
               <Target className="h-5 w-5 text-primary" />
             </div>
-            <div className="flex-1">
-              <p className="text-sm text-muted-foreground mb-1">
-                Exercise {index + 1} · {exercise.type.replace('_', ' ')}
-              </p>
-              <p className="text-lg font-medium">{exercise.question}</p>
+            <div className="exercise-header flex-1 min-w-0">
+              <div className="exercise-meta">
+                <span className="metadata-item">
+                  <span className="label-nowrap">Exercise {index + 1}</span>
+                </span>
+                <span className="card-meta-separator">·</span>
+                <span className="mode-badge bg-primary/10 text-primary">
+                  {exercise.type.replace('_', ' ')}
+                </span>
+              </div>
+              <p className="exercise-title mt-1">{exercise.question}</p>
             </div>
           </div>
 
