@@ -24,7 +24,7 @@ export default async function NotificationsPage({ params }: { params: Promise<{ 
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-3">
             <Link
-              href={`/${locale}/dashboard`}
+              href={`/${locale}/learn`}
               className="inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-1.5 text-xs text-slate-300"
               aria-label={navT('backToDashboard')}
             >

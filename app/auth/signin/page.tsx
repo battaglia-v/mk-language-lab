@@ -18,7 +18,7 @@ function SignInContent() {
   const pathname = usePathname();
   const pathLocale = pathname?.split('/').filter(Boolean)[0];
   const resolvedLocale = locales.includes(pathLocale as Locale) ? (pathLocale as Locale) : 'mk';
-  const dashboardPath = `/${resolvedLocale}/dashboard`;
+  const dashboardPath = `/${resolvedLocale}/learn`;
   const callbackUrl = searchParams?.get('callbackUrl') || dashboardPath;
   const [isLoading, setIsLoading] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<{ email?: string; password?: string; general?: string }>({});

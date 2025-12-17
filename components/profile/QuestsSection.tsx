@@ -1,10 +1,12 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { getQuestRoute, buildLocalizedRoute } from '@/lib/routes';
 
 type Quest = {
   id: string;
@@ -122,13 +124,8 @@ export function QuestsSection() {
 }
 
 function QuestCTA({ category }: { category: string }) {
-  const destinations: Record<string, string> = {
-    practice: '/practice',
-    translation: '/translate',
-    social: '/discover',
-    lesson: '/discover',
-  };
-  const href = destinations[category] ?? '/practice';
+  const locale = useLocale();
+  const href = buildLocalizedRoute(locale, getQuestRoute(category));
   return (
     <Button asChild size="sm" variant="secondary">
       <Link href={href}>Start</Link>
