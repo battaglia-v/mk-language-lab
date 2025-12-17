@@ -1,5 +1,7 @@
 import { useTranslations } from 'next-intl';
+import { Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { StreakFlame } from '@/components/gamification/StreakFlame';
 
 type ProfileHeaderProps = {
   name: string;
@@ -49,10 +51,31 @@ export function ProfileHeader({
         </div>
       </div>
 
-      <div className="mt-6">
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-4 space-y-1 max-w-sm">
-          <p className="text-sm uppercase tracking-wide text-slate-300">{t('dayStreak')}</p>
-          <p className="text-3xl font-bold">{streakDays}</p>
+      {/* Streak + XP Badges Row */}
+      <div className="mt-6 flex flex-wrap items-center gap-4">
+        {/* Streak Badge with StreakFlame */}
+        <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-3">
+          <StreakFlame streak={streakDays} size="md" showNumber={false} />
+          <div>
+            <p className="text-2xl font-bold">{streakDays}</p>
+            <p className="text-xs text-slate-300">{t('dayStreak')}</p>
+          </div>
+        </div>
+
+        {/* XP Badge */}
+        <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/20">
+            <Star className="h-5 w-5 text-accent" fill="currentColor" />
+          </div>
+          <div>
+            <p className="text-2xl font-bold">{xp.total.toLocaleString()}</p>
+            <p className="text-xs text-slate-300">{t('totalXP')}</p>
+          </div>
+        </div>
+
+        {/* League Badge */}
+        <div className="rounded-2xl border border-white/10 bg-white/5 px-5 py-3">
+          <p className="text-lg font-semibold">{league.tier}</p>
           <p className="text-xs text-slate-300">{t('league.status', { tier: league.tier })}</p>
         </div>
       </div>

@@ -3,6 +3,7 @@
 
 export { CompactStatBar } from './CompactStatBar';
 export { DailyGoalCard } from './DailyGoalCard';
+export { DailyQuestsCard } from './DailyQuestsCard';
 export { GoalCompleteCard } from './GoalCompleteCard';
 export { NextLessonCTA } from './NextLessonCTA';
 export { QuickActionsGrid } from './QuickActionsGrid';

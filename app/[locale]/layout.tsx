@@ -7,6 +7,7 @@ import { SessionProvider } from '@/components/auth/SessionProvider';
 import type { ReactNode } from 'react';
 import { QueryProvider } from '@/components/providers/QueryProvider';
 import { ToasterProvider } from '@/components/ui/toast';
+import { XPNotificationProvider } from '@/components/providers/XPNotificationProvider';
 import { AppShell } from '@/components/shell/AppShell';
 import { SkipLink } from '@/components/ui/accessibility';
 
@@ -33,10 +34,12 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
       <NextIntlClientProvider messages={messages}>
         <QueryProvider>
           <ToasterProvider>
-            {/* Skip to main content link for keyboard navigation */}
-            <SkipLink />
+            <XPNotificationProvider>
+              {/* Skip to main content link for keyboard navigation */}
+              <SkipLink />
 
-            <AppShell>{children}</AppShell>
+              <AppShell>{children}</AppShell>
+            </XPNotificationProvider>
           </ToasterProvider>
         </QueryProvider>
       </NextIntlClientProvider>

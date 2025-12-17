@@ -239,7 +239,6 @@ async function fetchWithStrategies(url: string): Promise<FetchResult> {
   let lastContentType: string | null = null;
   
   for (const strategy of strategies) {
-    const startTime = Date.now();
     try {
       const fetchUrl = strategy.transformUrl ? strategy.transformUrl(url) : url;
       
