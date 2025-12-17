@@ -176,7 +176,7 @@ export default function TranslatePage() {
   };
 
   return (
-    <div className="mx-auto flex w-full max-w-3xl flex-col gap-3 pb-24 px-3 sm:gap-4 sm:px-4 sm:pb-6">
+    <div className="mx-auto flex w-full flex-col gap-3 pb-24 px-4 sm:max-w-3xl sm:gap-4 sm:pb-6">
       {/* Back Navigation */}
       <Button
         asChild
