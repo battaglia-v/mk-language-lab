@@ -34,6 +34,10 @@
     "i18n:report": "tsx scripts/sync-translations.ts",
     "i18n:fix": "tsx scripts/sync-translations.ts --fix",
     "check:i18n": "tsx scripts/check-i18n-keys.ts",
+    "check:i18n-rendered": "tsx scripts/check-i18n-rendered.ts",
+    "check:i18n-rendered:ci": "tsx scripts/check-i18n-rendered.ts --ci",
+    "test:e2e:mobile": "playwright test --project=mobile-chrome --project=mobile-safari",
+    "test:mobile-audit": "playwright test e2e/mobile-audit-comprehensive.spec.ts",
     "content:validate": "tsx scripts/validate-content.ts",
     "content:validate:ci": "tsx scripts/validate-content.ts --ci",
     "content:validate:strict": "tsx scripts/validate-content.ts --strict"

@@ -264,6 +264,23 @@ test.describe('Route Crawler - Error Boundary Check', () => {
   });
 });
 
+test.describe('Legacy Route Redirects', () => {
+  test('/translator/history redirects to /translate', async ({ page }) => {
+    // Navigate to the legacy route
+    const response = await page.goto(`${BASE_URL}/${LOCALE}/translator/history`, {
+      waitUntil: 'domcontentloaded',
+    });
+
+    // Should redirect (301) not 404
+    expect(response?.status()).not.toBe(404);
+
+    // Should end up at /translate with sheet=history param
+    const url = page.url();
+    expect(url).toContain('/translate');
+    expect(url).toContain('sheet=history');
+  });
+});
+
 // Summary report at the end
 test.afterAll(async () => {
   if (errors.length > 0) {
