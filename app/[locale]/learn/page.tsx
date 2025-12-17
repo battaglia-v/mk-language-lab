@@ -115,7 +115,7 @@ export default async function LearnPage() {
   ];
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 pb-24 px-3 sm:gap-5 sm:px-4 sm:pb-6">
+    <div className="mx-auto flex w-full flex-col gap-4 pb-24 px-4 sm:max-w-5xl sm:gap-5 sm:pb-6">
       {/* V2: Compact Header with Stats */}
       <CompactStatBar
         streak={gameProgress.streak}
