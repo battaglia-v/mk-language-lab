@@ -1,8 +1,10 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
+import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, Heart, X } from 'lucide-react';
+import { Star, Heart, X, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useReducedMotion } from '@/hooks/use-reduced-motion';
@@ -34,13 +36,18 @@ interface ReviewPromptProps {
   onDismiss?: () => void;
   /** Callback when user agrees to review */
   onReview?: () => void;
+  /** Callback when user wants to give feedback instead */
+  onFeedback?: () => void;
   /** Translations */
   t?: {
     title?: string;
     subtitle?: string;
     yesButton?: string;
+    notYetButton?: string;
     laterButton?: string;
     thankYou?: string;
+    feedbackTitle?: string;
+    feedbackSubtitle?: string;
   };
 }
 
@@ -49,13 +56,18 @@ interface ReviewPromptProps {
 // =====================================================
 
 /**
- * ReviewPrompt - In-app review prompt
+ * ReviewPrompt - In-app review prompt with feedback flow
  * 
  * Shows after positive learning moments (high accuracy, no errors).
  * Uses Google Play In-App Review API on Android.
  * 
+ * Flow:
+ * 1. "Enjoying MK Language Lab?" prompt appears
+ * 2. "Yes" -> triggers Google Play In-App Review
+ * 3. "Not yet" -> navigates to feedback form
+ * 
  * Trigger conditions:
- * - 3+ successful sessions
+ * - 3+ successful sessions OR 2-day streak
  * - Current session accuracy >= 70%
  * - No errors in current session
  * - Not prompted in last 30 days
@@ -67,19 +79,25 @@ export function ReviewPrompt({
   onShow,
   onDismiss,
   onReview,
+  onFeedback,
   t = {},
 }: ReviewPromptProps) {
   const prefersReducedMotion = useReducedMotion();
+  const router = useRouter();
+  const locale = useLocale();
   const [isVisible, setIsVisible] = useState(false);
-  const [hasReviewed, setHasReviewed] = useState(false);
+  const [state, setState] = useState<'prompt' | 'thankyou' | 'feedback'>('prompt');
 
   // Default translations
   const translations = {
     title: t.title || 'Enjoying MK Language Lab?',
     subtitle: t.subtitle || 'Your feedback helps us improve!',
-    yesButton: t.yesButton || 'Rate Us ⭐',
+    yesButton: t.yesButton || 'Yes!',
+    notYetButton: t.notYetButton || 'Not yet',
     laterButton: t.laterButton || 'Maybe Later',
-    thankYou: t.thankYou || 'Thank you for your support! 💛',
+    thankYou: t.thankYou || 'Thank you for your support!',
+    feedbackTitle: t.feedbackTitle || 'We\'d love to hear from you',
+    feedbackSubtitle: t.feedbackSubtitle || 'Help us make the app better',
   };
 
   // Check if we should show the prompt
@@ -110,7 +128,7 @@ export function ReviewPrompt({
     }
   }, [shouldCheck, sessionData, onShow]);
 
-  const handleReview = useCallback(async () => {
+  const handleYes = useCallback(async () => {
     trackEvent(AnalyticsEvents.REVIEW_ACCEPTED, {});
 
     // Trigger the native review flow
@@ -119,7 +137,7 @@ export function ReviewPrompt({
     // Mark as reviewed (even if user cancels in native dialog)
     markReviewGiven();
     
-    setHasReviewed(true);
+    setState('thankyou');
     onReview?.();
 
     // Auto-dismiss after showing thank you
@@ -129,8 +147,20 @@ export function ReviewPrompt({
     }, 2000);
   }, [onReview, onDismiss]);
 
+  const handleNotYet = useCallback(() => {
+    trackEvent(AnalyticsEvents.REVIEW_DECLINED, { action: 'feedback' });
+
+    // Navigate to feedback form
+    onFeedback?.();
+    setIsVisible(false);
+    onDismiss?.();
+    
+    // Navigate to feedback page
+    router.push(`/${locale}/feedback`);
+  }, [onFeedback, onDismiss, router, locale]);
+
   const handleLater = useCallback(() => {
-    trackEvent(AnalyticsEvents.REVIEW_DECLINED, {});
+    trackEvent(AnalyticsEvents.REVIEW_DECLINED, { action: 'later' });
 
     setIsVisible(false);
     onDismiss?.();
@@ -151,7 +181,7 @@ export function ReviewPrompt({
             "p-5"
           )}
         >
-          {hasReviewed ? (
+          {state === 'thankyou' ? (
             // Thank you state
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -170,7 +200,7 @@ export function ReviewPrompt({
               </p>
             </motion.div>
           ) : (
-            // Prompt state
+            // Prompt state - "Enjoying the app?" Yes / Not yet
             <>
               {/* Close button */}
               <button
@@ -208,17 +238,18 @@ export function ReviewPrompt({
                   </p>
                 </div>
 
-                {/* Buttons */}
+                {/* Buttons - Yes / Not yet */}
                 <div className="flex w-full gap-3">
                   <Button
                     variant="outline"
-                    onClick={handleLater}
+                    onClick={handleNotYet}
                     className="flex-1 h-11"
                   >
-                    {translations.laterButton}
+                    <MessageSquare className="mr-2 h-4 w-4" />
+                    {translations.notYetButton}
                   </Button>
                   <Button
-                    onClick={handleReview}
+                    onClick={handleYes}
                     className="flex-1 h-11 bg-gradient-to-r from-primary to-secondary text-[#0a0a0a] font-semibold"
                   >
                     {translations.yesButton}

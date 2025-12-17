@@ -231,6 +231,15 @@ model CurriculumLesson {
   audioUrl         String?
   videoUrl         String?
 
+  // Content review workflow fields
+  contentStatus  ContentStatus @default(draft)
+  lastEditedBy   String?       // User ID who last edited
+  lastEditedAt   DateTime?     // Timestamp of last edit
+  approvedBy     String?       // User ID who approved
+  approvedAt     DateTime?     // Timestamp of approval
+  publishedBy    String?       // User ID who published
+  publishedAt    DateTime?     // Timestamp of publication
+
   // Content sections
   vocabularyItems VocabularyItem[]
   grammarNotes    GrammarNote[]
@@ -242,8 +251,12 @@ model CurriculumLesson {
 
   activeInJourneys JourneyProgress[] @relation("CurrentLesson")
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@unique([moduleId, orderIndex])
   @@index([moduleId, orderIndex])
+  @@index([contentStatus])
 }
 
 // Track user progress per lesson
@@ -349,11 +362,20 @@ model WordOfTheDay {
   icon          String // emoji icon
   scheduledDate DateTime @unique // date this word should appear
   isActive      Boolean  @default(true)
+
+  // Content review workflow fields
+  contentStatus  ContentStatus @default(published) // Default to published for backward compat
+  lastEditedBy   String?       // User ID who last edited
+  lastEditedAt   DateTime?     // Timestamp of last edit
+  approvedBy     String?       // User ID who approved
+  approvedAt     DateTime?     // Timestamp of approval
+
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
   @@index([scheduledDate, isActive])
   @@index([isActive])
+  @@index([contentStatus])
 }
 
 // Practice Vocabulary - word bank for Quick Practice exercises
@@ -376,6 +398,13 @@ model PracticeVocabulary {
   scheduledDate DateTime? @unique // Date this word should appear as WOTD
   usageContext  String?   @db.Text // Usage context and situational notes
 
+  // Content review workflow fields
+  contentStatus  ContentStatus @default(published) // Default to published for backward compat
+  lastEditedBy   String?       // User ID who last edited
+  lastEditedAt   DateTime?     // Timestamp of last edit
+  approvedBy     String?       // User ID who approved
+  approvedAt     DateTime?     // Timestamp of approval
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -383,6 +412,7 @@ model PracticeVocabulary {
   @@index([category])
   @@index([includeInWOTD, scheduledDate])
   @@index([formality])
+  @@index([contentStatus])
 }
 
 model PracticeAudio {
@@ -399,6 +429,13 @@ model PracticeAudio {
   slowUrl     String?
   waveform    Json?
   notes       String?              @db.Text
+
+  // Content review workflow fields
+  lastEditedBy   String?       // User ID who last edited
+  lastEditedAt   DateTime?     // Timestamp of last edit
+  approvedBy     String?       // User ID who approved
+  approvedAt     DateTime?     // Timestamp of approval
+
   createdAt   DateTime             @default(now())
   updatedAt   DateTime             @updatedAt
   publishedAt DateTime?
@@ -913,5 +950,37 @@ enum SubscriptionSource {
   google_play
   stripe
   promo
+}
+
+// =====================================================
+// BATCH 9: CONTENT REVIEW WORKFLOW
+// Added: Content status tracking and edit history for Andri reviewer workflow
+// =====================================================
+
+// ContentStatus - workflow states for content items
+enum ContentStatus {
+  draft          // Initial state, not visible to learners
+  needs_review   // Submitted for review
+  approved       // Approved by reviewer, ready for publish
+  published      // Live and visible to learners
+}
+
+// ContentEditLog - audit trail for content changes
+model ContentEditLog {
+  id           String   @id @default(cuid())
+  contentType  String   // 'curriculum_lesson' | 'practice_vocabulary' | 'word_of_the_day' | 'practice_audio'
+  contentId    String   // ID of the content item
+  userId       String   // User who made the edit
+  action       String   // 'create' | 'update' | 'status_change' | 'approve' | 'publish'
+  changes      Json?    // JSON diff of field changes
+  previousStatus String? // Previous content status
+  newStatus    String?  // New content status
+  notes        String?  @db.Text // Optional notes about the change
+  createdAt    DateTime @default(now())
+
+  @@index([contentType, contentId])
+  @@index([userId])
+  @@index([createdAt])
+  @@index([action])
 }
 
