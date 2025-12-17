@@ -376,7 +376,7 @@ export function NativeAudioButton({
       {/* TTS indicator */}
       {isPlaying && usingTTS && (
         <p className="text-xs text-amber-400 text-center">
-          Using text-to-speech (native audio unavailable)
+          Synthesized audio
         </p>
       )}
     </div>
