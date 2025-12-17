@@ -11,6 +11,9 @@ export const dynamic = 'force-dynamic';
  * Fetch edit history for a specific content item.
  * Requires reviewer or admin role.
  * 
+ * Note: This endpoint requires the ContentEditLog model to be migrated.
+ * Until migration is applied, returns empty history.
+ * 
  * Query params:
  * - contentType: 'curriculum_lesson' | 'practice_vocabulary' | 'word_of_the_day' | 'practice_audio'
  * - contentId: ID of the content item
@@ -44,6 +47,17 @@ export async function GET(request: NextRequest) {
   }
 
   try {
+    // Check if ContentEditLog model exists (migration applied)
+    // For now, return empty array until migration is applied
+    // TODO: Remove this check after running prisma migrate
+    const hasContentEditLog = 'contentEditLog' in prisma;
+    
+    if (!hasContentEditLog) {
+      // Migration not yet applied - return empty history
+      return NextResponse.json([]);
+    }
+
+    // @ts-expect-error - Model may not exist until migration
     const editLogs = await prisma.contentEditLog.findMany({
       where: {
         contentType,
@@ -52,19 +66,30 @@ export async function GET(request: NextRequest) {
       orderBy: {
         createdAt: 'desc',
       },
-      take: 50, // Limit to last 50 entries
+      take: 50,
     });
 
     // Fetch user names for the logs
-    const userIds = [...new Set(editLogs.map((log) => log.userId))];
+    const userIds = [...new Set(editLogs.map((log: { userId: string }) => log.userId))];
     const users = await prisma.user.findMany({
-      where: { id: { in: userIds } },
+      where: { id: { in: userIds as string[] } },
       select: { id: true, name: true },
     });
     const userMap = new Map(users.map((u) => [u.id, u.name]));
 
     // Enrich logs with user names
-    const enrichedLogs = editLogs.map((log) => ({
+    interface EditLog {
+      id: string;
+      action: string;
+      userId: string;
+      changes: unknown;
+      previousStatus: string | null;
+      newStatus: string | null;
+      notes: string | null;
+      createdAt: Date;
+    }
+    
+    const enrichedLogs = editLogs.map((log: EditLog) => ({
       id: log.id,
       action: log.action,
       userId: log.userId,
@@ -79,10 +104,13 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(enrichedLogs);
   } catch (error) {
     console.error('[api.admin.content-history] Error:', error);
+    // If error is due to missing table, return empty array
+    if (error instanceof Error && error.message.includes('does not exist')) {
+      return NextResponse.json([]);
+    }
     return NextResponse.json(
       { error: 'Failed to fetch edit history' },
       { status: 500 }
     );
   }
 }
-
