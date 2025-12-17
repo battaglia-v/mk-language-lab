@@ -42,7 +42,7 @@ interface ContentStatusBadgeProps {
 interface ContentStatusTabsProps {
   activeStatus: ContentStatus | 'all';
   onStatusChange: (status: ContentStatus | 'all') => void;
-  counts?: Record<ContentStatus | 'all', number>;
+  counts?: Partial<Record<ContentStatus | 'all', number>>;
   className?: string;
 }
 

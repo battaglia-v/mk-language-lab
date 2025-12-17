@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { auth } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
 export const dynamic = 'force-dynamic';
@@ -55,7 +55,7 @@ export async function POST(request: Request) {
     // Track the feedback submission
     trackEvent(AnalyticsEvents.FEEDBACK_SUBMITTED, {
       type: data.type,
-      rating: data.rating,
+      rating: data.rating ?? 0,
       hasEmail: !!data.email,
       isAuthenticated: !!session?.user?.id,
     });
@@ -68,7 +68,7 @@ export async function POST(request: Request) {
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: 'Invalid feedback data', details: error.errors },
+        { error: 'Invalid feedback data', details: error.issues },
         { status: 400 }
       );
     }
@@ -112,7 +112,7 @@ export async function GET() {
     });
 
     // Parse the body JSON for each feedback item
-    const parsedFeedback = feedback.map((f) => ({
+    const parsedFeedback = feedback.map((f: { id: string; createdAt: Date; isRead: boolean; body: string }) => ({
       id: f.id,
       createdAt: f.createdAt,
       isRead: f.isRead,
