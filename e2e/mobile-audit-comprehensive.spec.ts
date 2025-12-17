@@ -18,11 +18,12 @@ import * as path from 'path';
 
 const BASE_URL = 'http://localhost:3000';
 
-// Mobile viewports to test
+// Mobile viewports to test - including smallest common viewport (320px)
 const VIEWPORTS = [
-  { name: 'Pixel7', width: 412, height: 915 },
+  { name: 'iPhone5SE', width: 320, height: 568 },  // Smallest supported viewport
   { name: 'SmallAndroid', width: 360, height: 800 },
   { name: 'iPhone13', width: 390, height: 844 },
+  { name: 'Pixel7', width: 412, height: 915 },
 ];
 
 // Routes to audit (critical and high priority)
