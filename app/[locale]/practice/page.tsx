@@ -1200,7 +1200,7 @@ export default function PracticePage() {
                 </div>
               )}
 
-            <div className="mt-4 flex items-center gap-2 sm:mt-6 sm:gap-3 w-full min-w-0">
+            <div className="mt-4 grid grid-cols-3 gap-2 sm:mt-6 sm:flex sm:items-center sm:gap-3 w-full min-w-0">
               <Button
                 variant="outline"
                 className="min-h-[52px] w-[72px] sm:w-auto sm:min-w-[90px] rounded-2xl font-semibold transition-all hover:scale-105 gap-1"
@@ -1209,17 +1209,16 @@ export default function PracticePage() {
                 aria-label="Previous card"
               >
                 <ChevronLeft className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
-                <span className="text-xs sm:text-sm">Prev</span>
+                <span className="hidden sm:inline text-sm">Prev</span>
               </Button>
               <Button
                 variant="secondary"
-                className="flex-1 min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105 px-3 sm:px-4"
+                className="min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105 sm:flex-1 px-3 sm:px-4"
                 onClick={toggleReveal}
                 disabled={!deck.length}
               >
                 <Eye className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
-                <span className="ml-1.5 sm:ml-2 text-sm sm:text-base sm:hidden">{t('drills.revealAnswerShort')}</span>
-                <span className="ml-2 text-base hidden sm:inline">{t('drills.revealAnswer')}</span>
+                <span className="hidden sm:inline ml-2 text-base">{t('drills.revealAnswer')}</span>
               </Button>
               <Button
                 variant="outline"
@@ -1228,7 +1227,7 @@ export default function PracticePage() {
                 disabled={!deck.length}
                 aria-label="Next card"
               >
-                <span className="text-xs sm:text-sm">Next</span>
+                <span className="hidden sm:inline text-sm">Next</span>
                 <ChevronRight className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
               </Button>
             </div>

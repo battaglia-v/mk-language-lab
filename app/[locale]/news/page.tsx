@@ -15,7 +15,7 @@ import { ProxiedNewsImage } from '@/components/news/ProxiedNewsImage';
 import { ArrowLeft, ExternalLink, Loader2, Newspaper, PlayCircle, RefreshCcw, Search, Video, Clock3 } from 'lucide-react';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
-const SOURCE_IDS = ['all', 'time-mk', 'meta-mk'] as const;
+const SOURCE_IDS = ['all', 'time-mk', 'meta-mk', 'sdk-mk', 'makfax', 'a1on'] as const;
 
 type SourceId = (typeof SOURCE_IDS)[number];
 
@@ -30,6 +30,7 @@ type NewsItem = {
   categories: string[];
   videos: string[];
   image: string | null;
+  imageProxy?: string | null; // Proxied URL for sources with hotlink protection
 };
 
 type NewsMeta = {
@@ -120,8 +121,11 @@ export default function NewsPage() {
   const sourceFilters = useMemo(
     () => [
       { id: 'all' as SourceId, label: t('sourceAll') },
-      { id: 'time-mk' as SourceId, label: t('sourceTime') },
-      { id: 'meta-mk' as SourceId, label: t('sourceMeta') },
+      { id: 'time-mk' as SourceId, label: 'Time.mk' },
+      { id: 'meta-mk' as SourceId, label: 'Meta.mk' },
+      { id: 'sdk-mk' as SourceId, label: 'SDK.mk' },
+      { id: 'makfax' as SourceId, label: 'Makfax' },
+      { id: 'a1on' as SourceId, label: 'A1on' },
     ],
     [t]
   );

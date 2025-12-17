@@ -592,14 +592,14 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
             <Sparkles className="h-8 w-8 text-primary" aria-hidden="true" />
           </div>
           <div className="space-y-2">
-            <h3 className="text-xl font-semibold">{t('readerEmptyTitle')}</h3>
+            <h3 className="text-xl font-semibold">{t('readerEmptyTitle', { default: 'Start Reading' })}</h3>
             <p className="text-sm text-muted-foreground max-w-md mx-auto">
-              {t('readerEmptyDescription')}
+              {t('readerEmptyDescription', { default: 'Enter any text in English or Macedonian to analyze it word by word.' })}
             </p>
           </div>
           <div className="space-y-2">
             <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-              {t('readerEmptyExamplesLabel')}
+              {t('readerEmptyExamplesLabel', { default: 'Try an example' })}
             </p>
             <div className="flex flex-wrap gap-2 justify-center">
               <Button
@@ -636,7 +636,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-5 sm:gap-3">
             <div className="col-span-2 rounded-xl border border-border/40 bg-white/5 px-3 py-2.5">
               <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
-                {t('readerDifficultyLabel')}
+                {t('readerDifficultyLabel', { default: 'Difficulty' })}
               </p>
               <div className="mt-2 flex items-center justify-between gap-2">
                 <p
@@ -647,7 +647,9 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                     analyzedData.difficulty.level === 'advanced' && 'bg-red-600/12 text-red-400 border-red-600/30'
                   )}
                 >
-                  {t(`readerDifficulty${analyzedData.difficulty.level.charAt(0).toUpperCase() + analyzedData.difficulty.level.slice(1)}`)}
+                  {t(`readerDifficulty${analyzedData.difficulty.level.charAt(0).toUpperCase() + analyzedData.difficulty.level.slice(1)}`, {
+                    default: analyzedData.difficulty.level.charAt(0).toUpperCase() + analyzedData.difficulty.level.slice(1)
+                  })}
                 </p>
                 <span className="rounded-full border border-border/50 px-2.5 py-1 text-[11px] font-semibold text-muted-foreground">
                   {selectedDirection?.label}
