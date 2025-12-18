@@ -800,7 +800,7 @@ export default function PracticePage() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 gap-2 min-[400px]:grid-cols-2 sm:grid-cols-4 sm:gap-3" data-testid="practice-panels">
+        <div className="grid grid-cols-1 gap-2 min-w-0 min-[400px]:grid-cols-2 sm:grid-cols-4 sm:gap-3" data-testid="practice-panels">
           <DeckToggle
             label={t('savedDeck.badge')}
             count={savedDeck.length}
@@ -844,7 +844,7 @@ export default function PracticePage() {
         </div>
 
         {/* Practice Mode Toggle */}
-        <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-border/60 bg-muted/10 px-3 py-2">
+        <div className="flex flex-wrap items-center justify-between gap-2 min-w-0 rounded-2xl border border-border/60 bg-muted/10 px-3 py-2">
           <div className="flex items-center gap-2">
             <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
               {t('drills.modeLabel', { default: 'Mode' })}
@@ -887,7 +887,7 @@ export default function PracticePage() {
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-border/60 bg-muted/10 px-3 py-2">
+        <div className="flex flex-wrap items-center gap-2 min-w-0 rounded-2xl border border-border/60 bg-muted/10 px-3 py-2">
           <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
             {t('drills.difficultyLabel', { default: 'Difficulty' })}
           </span>
@@ -1203,7 +1203,7 @@ export default function PracticePage() {
             <div className="mt-4 grid grid-cols-3 gap-2 sm:mt-6 sm:flex sm:items-center sm:gap-3 w-full min-w-0">
               <Button
                 variant="outline"
-                className="min-h-[52px] w-[72px] sm:w-auto sm:min-w-[90px] rounded-2xl font-semibold transition-all hover:scale-105 gap-1"
+                className="min-h-[52px] min-w-[80px] sm:w-auto sm:min-w-[90px] rounded-2xl font-semibold transition-all hover:scale-105 gap-1"
                 onClick={goPrevious}
                 disabled={!deck.length}
                 aria-label="Previous card"
@@ -1222,7 +1222,7 @@ export default function PracticePage() {
               </Button>
               <Button
                 variant="outline"
-                className="min-h-[52px] w-[72px] sm:w-auto sm:min-w-[90px] rounded-2xl font-semibold transition-all hover:scale-105 gap-1"
+                className="min-h-[52px] min-w-[80px] sm:w-auto sm:min-w-[90px] rounded-2xl font-semibold transition-all hover:scale-105 gap-1"
                 onClick={goNext}
                 disabled={!deck.length}
                 aria-label="Next card"

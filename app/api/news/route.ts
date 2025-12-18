@@ -737,15 +737,8 @@ export async function GET(request: NextRequest) {
       errors.push('Preview enrichment timed out - some images may be missing');
     }
 
-    // Filter out time.mk articles without valid images (Option 1: prevent broken images)
-    const filteredItems = payloadItems.filter((item) => {
-      // Keep all non-time.mk articles
-      if (item.sourceId !== 'time-mk') {
-        return true;
-      }
-      // For time.mk, only keep articles with valid images
-      return item.image !== null;
-    });
+    // Keep all articles - proxy will return fallback SVG for Time.mk if needed
+    const filteredItems = payloadItems;
 
     return NextResponse.json(
       {

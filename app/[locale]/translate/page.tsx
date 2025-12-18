@@ -202,7 +202,7 @@ export default function TranslatePage() {
             </p>
             {/* Version badge removed for production */}
           </div>
-          <div className="flex gap-2 sm:justify-end">
+          <div className="flex flex-wrap gap-2 min-w-0 sm:justify-end">
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button

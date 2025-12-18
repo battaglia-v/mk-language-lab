@@ -4,6 +4,11 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
 export function BuildInfo({ className }: { className?: string }) {
+  // Gate behind env var - hidden in production by default
+  if (process.env.NEXT_PUBLIC_SHOW_BUILD_INFO !== 'true') {
+    return null;
+  }
+
   const [expanded, setExpanded] = useState(false);
   const gitSha = process.env.NEXT_PUBLIC_GIT_SHA || 'dev';
   const shortSha = gitSha.slice(0, 7);

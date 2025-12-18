@@ -23,20 +23,6 @@ const RETRY_DELAYS = [1000, 2000, 3000];
 // Maximum time to wait before showing fallback (prevents infinite skeleton)
 const MAX_LOADING_TIMEOUT_MS = 10000;
 
-// Sources that block thumbnails - always show placeholder for these
-const BLOCKED_THUMBNAIL_SOURCES = ['time.mk', 'time.news.mk'];
-
-// Check if URL is from a blocked source
-function isBlockedSource(url: string | null): boolean {
-  if (!url) return false;
-  try {
-    const hostname = new URL(url).hostname.toLowerCase();
-    return BLOCKED_THUMBNAIL_SOURCES.some(s => hostname.includes(s));
-  } catch {
-    return false;
-  }
-}
-
 /**
  * Proxied News Image Component
  *
@@ -138,9 +124,8 @@ export function ProxiedNewsImage({
     setHasError(false);
   }, []);
 
-  // Show fallback if no image URL, blocked source, or all retries failed
-  const isBlocked = isBlockedSource(imageUrl);
-  const showFallback = !imageUrl || hasError || isBlocked;
+  // Show fallback if no image URL or all retries failed
+  const showFallback = !imageUrl || hasError;
   const isRetrying = retryCount > 0 && !isLoaded && !hasError;
 
   return (
