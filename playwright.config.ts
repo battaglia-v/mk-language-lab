@@ -30,6 +30,14 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
     {
+      name: 'mobile-320',
+      use: {
+        browserName: 'chromium',
+        viewport: { width: 320, height: 568 },
+        userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1',
+      },
+    },
+    {
       name: 'mobile-360',
       use: {
         ...devices['Pixel 5'],

@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PageContainer } from '@/components/layout';
 import { getReaderSample, getDifficultyColor } from '@/lib/reader-samples';
+import { ReaderQuizButton } from '@/components/reader/ReaderQuizButton';
 import { cn } from '@/lib/utils';
 
 interface ReadingSamplePageProps {
@@ -269,6 +270,19 @@ export default async function ReadingSamplePage({ params }: ReadingSamplePagePro
               </CardContent>
             </Card>
           )}
+
+          {/* Quiz CTA */}
+          <Card className="border-primary/30 bg-primary/5">
+            <CardContent className="pt-6 space-y-3">
+              <div className="text-center space-y-2">
+                <h3 className="text-lg font-semibold">Ready to Practice?</h3>
+                <p className="text-sm text-muted-foreground">
+                  Test your knowledge with a vocabulary quiz
+                </p>
+              </div>
+              <ReaderQuizButton sample={sample} />
+            </CardContent>
+          </Card>
         </TabsContent>
       </Tabs>
     </PageContainer>
