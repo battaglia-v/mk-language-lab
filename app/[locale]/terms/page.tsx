@@ -48,7 +48,7 @@ export default function TermsOfServicePage() {
   return (
     <div className="section-container section-container-xl section-spacing-lg">
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center mb-12">
+        <div className="sm:max-w-3xl mx-auto text-center mb-12">
           <Badge variant="outline" className="mb-4">
             <Scale className="h-3 w-3 mr-1" />
             {t('badge')}
@@ -61,7 +61,7 @@ export default function TermsOfServicePage() {
         </div>
 
         {/* Introduction */}
-        <div className="max-w-4xl mx-auto mb-8">
+        <div className="sm:max-w-4xl mx-auto mb-8">
           <Card className="bg-card/50 backdrop-blur border-border/50">
             <CardContent className="pt-6">
               <p className="text-base leading-relaxed">{t('introduction')}</p>
@@ -70,7 +70,7 @@ export default function TermsOfServicePage() {
         </div>
 
         {/* Main Sections */}
-        <div className="max-w-4xl mx-auto space-y-6">
+        <div className="sm:max-w-4xl mx-auto space-y-6">
           {sections.map((section, index) => {
             const Icon = section.icon;
             return (
@@ -139,7 +139,7 @@ export default function TermsOfServicePage() {
         </div>
 
         {/* Footer Navigation */}
-        <div className="max-w-4xl mx-auto mt-12 text-center">
+        <div className="sm:max-w-4xl mx-auto mt-12 text-center">
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
               href={`/${locale}/privacy`}

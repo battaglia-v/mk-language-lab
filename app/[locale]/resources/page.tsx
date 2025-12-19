@@ -21,6 +21,7 @@ import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 import { staggerContainer, staggerItem } from '@/lib/animations';
+import { PageContainer } from '@/components/layout';
 
 type ResourceFile = {
   updatedAt: string;
@@ -151,7 +152,7 @@ export default function ResourcesPage() {
     : '';
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-3 pb-24 px-3 sm:gap-4 sm:px-4 sm:pb-6">
+    <PageContainer size="xl" className="flex flex-col gap-3 pb-24 sm:gap-4 sm:pb-6">
       {/* Compact Header - Mobile First */}
       <header className="flex items-center justify-between gap-3">
         <div>
@@ -310,6 +311,6 @@ export default function ResourcesPage() {
           </a>
         </Button>
       )}
-    </div>
+    </PageContainer>
   );
 }

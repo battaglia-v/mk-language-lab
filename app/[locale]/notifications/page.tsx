@@ -4,6 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { ArrowLeft } from 'lucide-react';
 import { NotificationsInbox } from '@/components/notifications/NotificationsInbox';
 import { ReminderSettingsCard } from '@/components/notifications/ReminderSettingsCard';
+import { PageContainer } from '@/components/layout';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('notifications');
@@ -19,7 +20,7 @@ export default async function NotificationsPage({ params }: { params: Promise<{ 
   const { locale } = await params;
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-5 pb-24 px-3 pt-6 sm:gap-6 sm:px-4 sm:pb-10 sm:pt-8">
+    <PageContainer size="xl" className="flex flex-col gap-5 pb-24 pt-6 sm:gap-6 sm:pb-10 sm:pt-8">
       <section data-testid="notifications-hero" className="glass-card rounded-3xl card-padding-lg md:p-8">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-3">
@@ -42,6 +43,6 @@ export default async function NotificationsPage({ params }: { params: Promise<{ 
       <ReminderSettingsCard dataTestId="reminder-settings" />
 
       <NotificationsInbox className="rounded-[32px]" dataTestId="notifications-feed" />
-    </div>
+    </PageContainer>
   );
 }

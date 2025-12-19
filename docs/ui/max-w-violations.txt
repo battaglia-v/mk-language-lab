@@ -1,0 +1,128 @@
+# Max-Width Violations Report
+# Generated: 2024-12-18
+#
+# Pages with max-w-* classes that lack responsive prefixes (sm:, md:, lg:, etc.)
+# These need to be updated to follow the mobile-first layout contract.
+
+## HIGH PRIORITY (Page-level layouts)
+
+app/[locale]/notifications/page.tsx:22
+  <div className="mx-auto flex w-full max-w-5xl flex-col gap-5 pb-24 px-3 pt-6 sm:gap-6 sm:px-4 sm:pb-10 sm:pt-8">
+  FIX: Replace with <PageContainer size="xl">
+
+app/[locale]/resources/page.tsx:154
+  <div className="mx-auto flex w-full max-w-5xl flex-col gap-3 pb-24 px-3 sm:gap-4 sm:px-4 sm:pb-6">
+  FIX: Replace with <PageContainer size="xl">
+
+app/[locale]/daily-lessons/page.tsx:26
+  <div className="mx-auto flex w-full max-w-5xl flex-col gap-5 pb-24 px-3 pt-6 sm:gap-6 sm:px-4 sm:pb-10 sm:pt-8">
+  FIX: Replace with <PageContainer size="xl">
+
+app/[locale]/(auth)/onboarding/page.tsx:177
+  <div className="mx-auto flex w-full max-w-4xl flex-col gap-6 px-3 pb-24 pt-10 sm:px-5 sm:pb-16 sm:pt-12 lg:px-8">
+  FIX: Replace with <PageContainer size="lg">
+
+app/[locale]/feedback/page.tsx:111
+  <div className="mx-auto max-w-lg px-4 py-12">
+  FIX: Replace with <PageContainer size="sm">
+
+app/[locale]/feedback/page.tsx:139
+  <div className="mx-auto max-w-2xl px-4 py-8">
+  FIX: Replace with <PageContainer size="md">
+
+app/[locale]/practice/pronunciation/page.tsx:126
+  <div className="mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 pb-24 sm:pb-8">
+  FIX: Replace with <PageContainer size="lg">
+
+app/[locale]/practice/pronunciation/page.tsx:154
+  <div className="mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 pb-24 sm:pb-8">
+  FIX: Replace with <PageContainer size="lg">
+
+app/[locale]/practice/decks/page.tsx:78
+  <div className="mx-auto flex w-full max-w-4xl flex-col gap-5 pb-24 px-3 pt-6 sm:gap-6 sm:px-4 sm:pt-8 sm:pb-8">
+  FIX: Replace with <PageContainer size="lg">
+
+app/[locale]/practice/decks/[deckId]/page.tsx:200
+  <div className="container mx-auto py-8 px-4 max-w-5xl">
+  FIX: Replace with <PageContainer size="xl">
+
+app/[locale]/practice/decks/[deckId]/page.tsx:213
+  <div className="container mx-auto py-8 px-4 max-w-5xl">
+  FIX: Replace with <PageContainer size="xl">
+
+app/[locale]/practice/grammar/page.tsx:178
+  <div className="mx-auto flex w-full max-w-2xl flex-col items-center gap-6 px-4 pb-24 sm:pb-8">
+  FIX: Replace with <PageContainer size="md"> (inside exercise view)
+
+app/[locale]/practice/grammar/page.tsx:228
+  <div className="mx-auto flex w-full max-w-2xl flex-col gap-6 px-4 pb-24 sm:pb-8">
+  FIX: Replace with <PageContainer size="md"> (inside results view)
+
+app/[locale]/discover/page.tsx:124
+  <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 pb-24 px-3 pt-6 sm:gap-10 sm:px-4 sm:pb-12 sm:pt-8">
+  FIX: Replace with <PageContainer size="2xl">
+
+app/[locale]/test-sentry/page.tsx:74
+  <div className="mx-auto max-w-4xl space-y-8">
+  FIX: Replace with <PageContainer size="lg">
+
+## MEDIUM PRIORITY (Inner content constraints)
+
+app/[locale]/terms/page.tsx:51
+  <div className="max-w-3xl mx-auto text-center mb-12">
+  FIX: Add responsive prefix -> <div className="sm:max-w-3xl mx-auto text-center mb-12">
+
+app/[locale]/terms/page.tsx:64
+  <div className="max-w-4xl mx-auto mb-8">
+  FIX: Add responsive prefix -> <div className="sm:max-w-4xl mx-auto mb-8">
+
+app/[locale]/terms/page.tsx:73
+  <div className="max-w-4xl mx-auto space-y-6">
+  FIX: Add responsive prefix -> <div className="sm:max-w-4xl mx-auto space-y-6">
+
+app/[locale]/terms/page.tsx:142
+  <div className="max-w-4xl mx-auto mt-12 text-center">
+  FIX: Add responsive prefix -> <div className="sm:max-w-4xl mx-auto mt-12 text-center">
+
+app/[locale]/page.tsx:107
+  <p className="max-w-2xl break-words text-sm text-slate-200 sm:text-base md:text-lg">
+  FIX: Add responsive prefix -> <p className="sm:max-w-2xl break-words text-sm text-slate-200 sm:text-base md:text-lg">
+
+app/[locale]/page.tsx:152
+  <p className="mx-auto max-w-2xl break-words text-sm text-slate-200 sm:text-base">
+  FIX: Add responsive prefix -> <p className="mx-auto sm:max-w-2xl break-words text-sm text-slate-200 sm:text-base">
+
+app/[locale]/discover/page.tsx:153
+  <div className="space-y-4 rounded-2xl bg-background/60 p-5 shadow-inner lg:max-w-sm">
+  NOTE: This is lg:max-w-sm which is OK (has responsive prefix)
+
+## LOW PRIORITY (Already has responsive prefix or special cases)
+
+app/[locale]/news/page.tsx:293
+  <div className="relative w-full sm:max-w-md">
+  STATUS: ✅ OK - Has sm: prefix
+
+app/[locale]/practice/page.tsx:1094
+  className="min-h-[54px] w-full max-w-[200px] sm:w-auto sm:flex-[1] sm:max-w-[140px]"
+  STATUS: ✅ OK - Button with specific sizing needs
+
+app/[locale]/practice/page.tsx:1247
+  <DialogContent className="sm:max-w-md">
+  STATUS: ✅ OK - Has sm: prefix
+
+app/[locale]/reader/page.tsx:64
+  <p className="text-sm text-muted-foreground sm:text-base sm:max-w-3xl">
+  STATUS: ✅ OK - Has sm: prefix (already fixed)
+
+## SUMMARY
+
+Total violations: 25
+- High priority (page layouts): 15
+- Medium priority (inner constraints): 8
+- False positives (already fixed): 4
+
+Next steps:
+1. Replace page-level wrappers with PageContainer
+2. Add sm: prefix to inner content constraints
+3. Run e2e/mobile-width.spec.ts to verify
+4. Review screenshots in e2e/screenshots/mobile-width/

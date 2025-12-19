@@ -10,6 +10,7 @@ import { Archive, Loader2 } from 'lucide-react';
 import { fetchUserDecks, updateDeck } from '@/lib/custom-decks';
 import { useToast } from '@/components/ui/use-toast';
 import type { CustomDeckSummary } from '@/lib/custom-decks';
+import { PageContainer } from '@/components/layout';
 
 export default function DecksPage() {
   const router = useRouter();
@@ -75,7 +76,7 @@ export default function DecksPage() {
   };
 
   return (
-    <div className="mx-auto flex w-full max-w-4xl flex-col gap-5 pb-24 px-3 pt-6 sm:gap-6 sm:px-4 sm:pt-8 sm:pb-8">
+    <PageContainer size="lg" className="flex flex-col gap-5 pb-24 pt-6 sm:gap-6 sm:pt-8 sm:pb-8">
       {/* Header */}
       <div className="flex flex-col gap-3 sm:gap-4">
         <Button
@@ -135,6 +136,6 @@ export default function DecksPage() {
         onOpenChange={(open) => !open && setDeckToDelete(null)}
         onDeleted={handleDeleted}
       />
-    </div>
+    </PageContainer>
   );
 }

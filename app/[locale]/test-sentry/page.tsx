@@ -4,6 +4,7 @@ import * as Sentry from "@sentry/nextjs";
 import Link from "next/link";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { PageContainer } from "@/components/layout";
 
 /**
  * Test page for Sentry client-side error tracking
@@ -71,7 +72,7 @@ export default function TestSentryPage() {
 
   return (
     <div className="min-h-screen bg-background p-8">
-      <div className="mx-auto max-w-4xl space-y-8">
+      <PageContainer size="lg" className="space-y-8">
         <div className="space-y-4">
           <h1 className="text-4xl font-bold">Sentry Test Page</h1>
           <p className="text-muted-foreground">
@@ -162,7 +163,7 @@ export default function TestSentryPage() {
             {common("goHome")}
           </Link>
         </div>
-      </div>
+      </PageContainer>
     </div>
   );
 }

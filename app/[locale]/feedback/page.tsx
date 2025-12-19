@@ -20,6 +20,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 import { useReducedMotion } from '@/hooks/use-reduced-motion';
+import { PageContainer } from '@/components/layout';
 
 type FeedbackType = 'bug' | 'feature' | 'general' | 'content';
 
@@ -108,7 +109,7 @@ export default function FeedbackPage() {
   // Success state
   if (isSubmitted) {
     return (
-      <div className="mx-auto max-w-lg px-4 py-12">
+      <PageContainer size="sm" className="py-12">
         <motion.div
           initial={prefersReducedMotion ? {} : { scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -131,12 +132,12 @@ export default function FeedbackPage() {
             Back to Home
           </Button>
         </motion.div>
-      </div>
+      </PageContainer>
     );
   }
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-8">
+    <PageContainer size="md" className="py-8">
       {/* Header */}
       <div className="mb-8">
         <Button
@@ -264,7 +265,7 @@ export default function FeedbackPage() {
           )}
         </Button>
       </form>
-    </div>
+    </PageContainer>
   );
 }
 

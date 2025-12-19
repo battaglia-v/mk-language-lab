@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { ReaderWorkspace } from '@/components/reader/ReaderWorkspace';
 import type { ReaderDirectionOption } from '@/components/translate/useReaderWorkspace';
+import { PageContainer } from '@/components/layout';
 
 /**
  * Reader page - Word-by-word translation and analysis
@@ -40,7 +41,7 @@ export default function ReaderPage() {
   );
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-5 pb-24 sm:gap-6 sm:pb-10">
+    <PageContainer size="xl" className="flex flex-col gap-5 pb-24 sm:gap-6 sm:pb-10">
       {/* Header */}
       <header className="space-y-3 rounded-2xl border border-border/40 bg-gradient-to-br from-primary/10 via-background/70 to-secondary/10 p-5 sm:p-6 shadow-[0_20px_60px_rgba(0,0,0,0.25)]">
         <div className="flex flex-wrap items-start justify-between gap-3">
@@ -60,7 +61,7 @@ export default function ReaderPage() {
           </div>
           {/* Version badge removed for production - enable via feature flag if needed for debugging */}
         </div>
-        <p className="text-sm text-muted-foreground sm:text-base max-w-3xl">
+        <p className="text-sm text-muted-foreground sm:text-base sm:max-w-3xl">
           {t('readerEmptyDescription', {
             default: 'Paste any text to see each word\'s translation, part of speech, difficulty level, and a full translation. Tap to reveal words, copy the full translation, or import an article.'
           })}
@@ -72,6 +73,6 @@ export default function ReaderPage() {
         directionOptions={directionOptions}
         defaultDirectionId="en-mk"
       />
-    </div>
+    </PageContainer>
   );
 }

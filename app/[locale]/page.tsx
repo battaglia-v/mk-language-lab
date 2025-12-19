@@ -104,7 +104,7 @@ export default async function LocaleHome({ params }: LocalePageProps) {
           <div className="space-y-3 text-balance sm:space-y-4">
             <p className="break-words text-xs font-semibold text-amber-300 sm:text-sm">{homeT("learn")}</p>
             <h1 className="break-words text-balance text-2xl font-bold leading-tight sm:text-3xl md:text-4xl">{homeT("title")}</h1>
-            <p className="max-w-2xl break-words text-sm text-slate-200 sm:text-base md:text-lg">{homeT("subtitle")}</p>
+            <p className="sm:max-w-2xl break-words text-sm text-slate-200 sm:text-base md:text-lg">{homeT("subtitle")}</p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <Button asChild size="lg" className={`${primaryCtaClasses} min-h-[44px] sm:w-auto`}>
@@ -149,7 +149,7 @@ export default async function LocaleHome({ params }: LocalePageProps) {
         <div className="space-y-2 text-center sm:space-y-3">
           <p className="text-xs uppercase tracking-[0.2em] text-amber-300 sm:text-sm sm:tracking-[0.35em]">{navT("dashboard")}</p>
           <h2 className="break-words text-balance text-xl font-semibold text-slate-50 sm:text-2xl">Build your session</h2>
-          <p className="mx-auto max-w-2xl break-words text-sm text-slate-200 sm:text-base">
+          <p className="mx-auto sm:max-w-2xl break-words text-sm text-slate-200 sm:text-base">
             Choose a focus area and jump directly into the tool you need.
           </p>
         </div>

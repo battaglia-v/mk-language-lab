@@ -4,14 +4,15 @@ import prisma from "@/lib/prisma";
 import { getLevelInfo } from "@/lib/gamification/xp";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { WordOfTheDay } from "@/components/learn/WordOfTheDay";
-import { 
-  CompactStatBar, 
-  DailyGoalCard, 
-  NextLessonCTA, 
+import {
+  CompactStatBar,
+  DailyGoalCard,
+  NextLessonCTA,
   QuickActionsGrid,
   GoalCompleteCard,
-  SmartRecommendations 
+  SmartRecommendations
 } from "@/components/dashboard";
+import { PageContainer } from "@/components/layout";
 
 // Force dynamic rendering to ensure fresh data and proper auth checks
 export const dynamic = 'force-dynamic';
@@ -115,7 +116,7 @@ export default async function LearnPage() {
   ];
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 pb-24 px-3 sm:gap-5 sm:px-4 sm:pb-6">
+    <PageContainer size="xl" className="flex flex-col gap-4 pb-24 sm:gap-5 sm:pb-6">
       {/* V2: Compact Header with Stats */}
       <CompactStatBar
         streak={gameProgress.streak}
@@ -223,6 +224,6 @@ export default async function LearnPage() {
           </div>
         </CardContent>
       </Card>
-    </div>
+    </PageContainer>
   );
 }
