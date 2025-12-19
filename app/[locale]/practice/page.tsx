@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 import { useSavedPhrases } from '@/components/translate/useSavedPhrases';
+import { PageContainer } from '@/components/layout';
 import { readTranslatorHistory } from '@/lib/translator-history';
 import { fetchUserDecks } from '@/lib/custom-decks';
 import { CustomDecksDropdown } from '@/components/practice/CustomDecksDropdown';
@@ -638,7 +639,7 @@ export default function PracticePage() {
   }, [resetCardState]);
 
   return (
-    <div className="mx-auto flex w-full max-w-4xl flex-col gap-4 pb-24 px-3 sm:gap-5 sm:px-4 sm:pb-6">
+    <PageContainer size="lg" className="flex flex-col gap-4 pb-24 sm:gap-5 sm:pb-6">
       <section className="lab-hero" data-testid="practice-hero">
         <div className="flex flex-col gap-3 sm:gap-4">
           <Button
@@ -1322,7 +1323,7 @@ export default function PracticePage() {
           </div>
         </DialogContent>
       </Dialog>
-    </div>
+    </PageContainer>
   );
 }
 

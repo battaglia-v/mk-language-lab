@@ -30,6 +30,7 @@ import {
 import { useSavedPhrases } from '@/components/translate/useSavedPhrases';
 import { useToast } from '@/components/ui/toast';
 import { cn } from '@/lib/utils';
+import { PageContainer } from '@/components/layout';
 
 const MAX_CHARACTERS = 1800;
 
@@ -176,7 +177,7 @@ export default function TranslatePage() {
   };
 
   return (
-    <div className="mx-auto flex w-full max-w-3xl flex-col gap-3 pb-24 px-3 sm:gap-4 sm:px-4 sm:pb-6">
+    <PageContainer size="md" className="flex flex-col gap-3 pb-24 sm:gap-4 sm:pb-6">
       {/* Back Navigation */}
       <Button
         asChild
@@ -521,6 +522,6 @@ export default function TranslatePage() {
           </div>
         )}
       </BottomSheet>
-    </div>
+    </PageContainer>
   );
 }

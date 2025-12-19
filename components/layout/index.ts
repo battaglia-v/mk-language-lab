@@ -14,3 +14,6 @@ export type { TopNavProps } from './TopNav';
 
 export { PageLayout } from './PageLayout';
 export type { PageLayoutProps } from './PageLayout';
+
+export { PageContainer } from './PageContainer';
+export type { PageContainerProps, PageContainerSize } from './PageContainer';

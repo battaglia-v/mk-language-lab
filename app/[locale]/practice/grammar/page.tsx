@@ -11,6 +11,7 @@ import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import grammarLessonsData from '@/data/grammar-lessons.json';
 import { type GrammarLesson } from '@/lib/grammar-engine';
+import { PageContainer } from '@/components/layout';
 
 // Lazy load the exercise component
 import dynamic from 'next/dynamic';
@@ -174,7 +175,7 @@ export default function GrammarPracticePage() {
     const xpEarned = Object.values(exerciseResults).reduce((sum, r) => sum + r.xpEarned, 0);
 
     return (
-      <div className="mx-auto flex w-full max-w-2xl flex-col items-center gap-6 px-4 pb-24 sm:pb-8">
+      <PageContainer size="md" className="flex flex-col items-center gap-6 pb-24 sm:pb-8">
         <Card className="w-full border-accent/20 bg-gradient-to-br from-accent/10 to-accent/5">
           <CardHeader className="text-center">
             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-accent/20">
@@ -215,7 +216,7 @@ export default function GrammarPracticePage() {
             </div>
           </CardContent>
         </Card>
-      </div>
+      </PageContainer>
     );
   }
 
@@ -224,7 +225,7 @@ export default function GrammarPracticePage() {
     const progressPercent = ((currentExerciseIndex + 1) / activeLesson.exercises.length) * 100;
 
     return (
-      <div className="mx-auto flex w-full max-w-2xl flex-col gap-6 px-4 pb-24 sm:pb-8">
+      <PageContainer size="md" className="flex flex-col gap-6 pb-24 sm:pb-8">
         {/* Header */}
         <div className="flex items-center justify-between">
           <Button
@@ -252,13 +253,13 @@ export default function GrammarPracticePage() {
           onSkip={handleSkip}
           t={exerciseTranslations}
         />
-      </div>
+      </PageContainer>
     );
   }
 
   // Lesson selection view
   return (
-    <div className="mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 pb-24 sm:pb-8">
+    <PageContainer size="lg" className="flex flex-col gap-6 pb-24 sm:pb-8">
       {/* Header */}
       <div className="flex items-center gap-3">
         <Link href={`/${locale}/practice`}>
@@ -372,6 +373,6 @@ export default function GrammarPracticePage() {
           })}
         </div>
       </div>
-    </div>
+    </PageContainer>
   );
 }

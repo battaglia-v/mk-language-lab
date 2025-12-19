@@ -14,6 +14,7 @@ import {
   deleteDeckCard,
 } from '@/lib/custom-decks';
 import type { CustomDeck, CustomDeckCard } from '@prisma/client';
+import { PageContainer } from '@/components/layout';
 
 export default function DeckEditorPage() {
   const router = useRouter();
@@ -197,11 +198,11 @@ export default function DeckEditorPage() {
 
   if (isLoading) {
     return (
-      <div className="container mx-auto py-8 px-4 max-w-5xl">
+      <PageContainer size="xl" className="py-8">
         <div className="flex items-center justify-center py-12">
           <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
         </div>
-      </div>
+      </PageContainer>
     );
   }
 
@@ -210,7 +211,7 @@ export default function DeckEditorPage() {
   }
 
   return (
-    <div className="container mx-auto py-8 px-4 max-w-5xl">
+    <PageContainer size="xl" className="py-8">
       <DeckEditorHeader
         deck={deck}
         onUpdate={handleUpdateDeck}
@@ -240,6 +241,6 @@ export default function DeckEditorPage() {
           />
         </div>
       </div>
-    </div>
+    </PageContainer>
   );
 }

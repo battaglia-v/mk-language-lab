@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { FilterChip } from '@/components/ui/filter-chip';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
+import { PageContainer } from '@/components/layout';
 import type {
   DiscoverCard,
   DiscoverCardAccent,
@@ -121,7 +122,7 @@ export default function DiscoverPage() {
   }, [loadFeed]);
 
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 pb-24 px-3 pt-6 sm:gap-10 sm:px-4 sm:pb-12 sm:pt-8">
+    <PageContainer size="2xl" className="flex flex-col gap-8 pb-24 pt-6 sm:gap-10 sm:pb-12 sm:pt-8">
       <div className="flex flex-wrap items-center gap-3">
         <Link
           href={`/${locale}/learn`}
@@ -290,7 +291,7 @@ export default function DiscoverPage() {
         isLoading={isLoading && !feed}
         highlights={communityHighlights}
       />
-    </div>
+    </PageContainer>
   );
 }
 

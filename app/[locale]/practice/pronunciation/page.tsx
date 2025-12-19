@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import pronunciationSessionsData from '@/data/pronunciation-sessions.json';
+import { PageContainer } from '@/components/layout';
 
 // Match actual JSON structure
 interface PronunciationWord {
@@ -123,7 +124,7 @@ export default function PronunciationPracticePage() {
     }));
 
     return (
-      <div className="mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 pb-24 sm:pb-8">
+      <PageContainer size="lg" className="flex flex-col gap-6 pb-24 sm:pb-8">
         <div className="flex items-center gap-3">
           <Button
             variant="ghost"
@@ -145,13 +146,13 @@ export default function PronunciationPracticePage() {
           onHome={handleEndSession}
           t={sessionTranslations}
         />
-      </div>
+      </PageContainer>
     );
   }
 
   // Session selection view
   return (
-    <div className="mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 pb-24 sm:pb-8">
+    <PageContainer size="lg" className="flex flex-col gap-6 pb-24 sm:pb-8">
       {/* Header */}
       <div className="flex items-center gap-3">
         <Link href={`/${locale}/practice`}>
@@ -249,6 +250,6 @@ export default function PronunciationPracticePage() {
           <p>• {t('tips.tip3')}</p>
         </CardContent>
       </Card>
-    </div>
+    </PageContainer>
   );
 }
