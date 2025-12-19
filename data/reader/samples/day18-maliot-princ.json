@@ -1,0 +1,124 @@
+{
+  "id": "day18-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 18 – Малиот принц",
+  "title_en": "Day 18 – The Little Prince",
+  "difficulty": "B1",
+  "estimatedMinutes": 5,
+  "tags": ["–л form", "story", "narrative"],
+  "text_blocks_mk": [
+    {
+      "type": "p",
+      "value": "[TODO: Replace with exact text from PDF page 2 - The Little Prince reading passage]"
+    },
+    {
+      "type": "p",
+      "value": "[TODO: Add more paragraphs from the story as they appear in the PDF]"
+    }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Граматика: –л форма",
+      "title_en": "Grammar: The –л form",
+      "description_mk": "[TODO: Replace with exact explanation from PDF page 3]",
+      "description_en": "The –л form in Macedonian is used to express completed actions in the past, similar to the English simple past tense.",
+      "bullets": [
+        "[TODO: Add bullet points from PDF explaining the –л form]",
+        "[TODO: Add usage rules]",
+        "[TODO: Add formation patterns]"
+      ],
+      "examples": [
+        {
+          "mk": "[TODO: Add example from PDF]",
+          "en": "[TODO: Add English translation]",
+          "note": "Example of –л form usage"
+        },
+        {
+          "mk": "[TODO: Add another example]",
+          "en": "[TODO: Translation]",
+          "note": "Past tense with –л"
+        }
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "mk": "украсен/а",
+      "en": "decorated",
+      "pos": "adjective",
+      "note": ""
+    },
+    {
+      "mk": "зрно",
+      "en": "grain/seed",
+      "pos": "noun",
+      "note": ""
+    },
+    {
+      "mk": "гранче",
+      "en": "twig, small branch",
+      "pos": "noun",
+      "note": ""
+    },
+    {
+      "mk": "чудесно",
+      "en": "wonderful",
+      "pos": "adverb",
+      "note": ""
+    },
+    {
+      "mk": "раѓање",
+      "en": "birth",
+      "pos": "noun",
+      "note": ""
+    },
+    {
+      "mk": "бои",
+      "en": "colors",
+      "pos": "noun",
+      "note": ""
+    }
+  ],
+  "expressions": [
+    {
+      "mk": "којзнае каде...",
+      "en": "who knows where...",
+      "usage": "Used to express uncertainty about location",
+      "examples": [
+        {
+          "mk": "Тој е којзнае каде сега.",
+          "en": "Who knows where he is now."
+        }
+      ]
+    },
+    {
+      "mk": "којзнае кога...",
+      "en": "who knows when...",
+      "usage": "Used to express uncertainty about time",
+      "examples": [
+        {
+          "mk": "Којзнае кога ќе се врати.",
+          "en": "Who knows when he'll return."
+        }
+      ]
+    },
+    {
+      "mk": "којзнае зошто...",
+      "en": "who knows why...",
+      "usage": "Used to express uncertainty about reason",
+      "examples": [
+        {
+          "mk": "Којзнае зошто тоа се случи.",
+          "en": "Who knows why that happened."
+        }
+      ]
+    }
+  ],
+  "attribution": {
+    "handle": "@macedonianlanguagecorner",
+    "series": "30-Day Reading Challenge",
+    "day": "18",
+    "sourceTitle": "Малиот принц",
+    "author": "Antoine de Saint-Exupéry"
+  }
+}

@@ -1,10 +1,13 @@
 'use client';
 
 import { useMemo } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { ReaderWorkspace } from '@/components/reader/ReaderWorkspace';
 import type { ReaderDirectionOption } from '@/components/translate/useReaderWorkspace';
 import { PageContainer } from '@/components/layout';
+import { ReadingSampleCard } from '@/components/reader/ReadingSampleCard';
+import { getReaderSamplesByLocale } from '@/lib/reader-samples';
+import { BookOpen } from 'lucide-react';
 
 /**
  * Reader page - Word-by-word translation and analysis
@@ -19,6 +22,8 @@ import { PageContainer } from '@/components/layout';
  */
 export default function ReaderPage() {
   const t = useTranslations('translate');
+  const locale = useLocale();
+  const samples = useMemo(() => getReaderSamplesByLocale('mk'), []);
 
   const directionOptions: ReaderDirectionOption[] = useMemo(
     () => [
@@ -67,6 +72,30 @@ export default function ReaderPage() {
           })}
         </p>
       </header>
+
+      {/* Sample Readings Section */}
+      {samples.length > 0 && (
+        <section className="space-y-4">
+          <div className="flex items-center gap-3">
+            <BookOpen className="h-5 w-5 text-primary" />
+            <h2 className="text-xl font-semibold text-foreground sm:text-2xl">
+              Sample Readings
+            </h2>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Curated reading passages with grammar explanations and vocabulary
+          </p>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {samples.map((sample) => (
+              <ReadingSampleCard
+                key={sample.id}
+                sample={sample}
+                locale={locale}
+              />
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Reader Workspace */}
       <ReaderWorkspace
