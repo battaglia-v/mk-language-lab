@@ -231,6 +231,10 @@ model CurriculumLesson {
   audioUrl         String?
   videoUrl         String?
 
+  // LessonRunner migration fields
+  useLessonRunner      Boolean @default(false) // Enable new LessonRunner system
+  lessonRunnerConfig   String? @db.Text        // JSON config for step-based lessons
+
   // Content review workflow fields
   contentStatus  ContentStatus @default(draft)
   lastEditedBy   String?       // User ID who last edited

@@ -256,7 +256,7 @@ export function AnswerArea({
 }
 
 /**
- * FeedbackBanner - Shows correct/incorrect feedback
+ * FeedbackBanner - Shows correct/incorrect feedback with animation
  */
 export function FeedbackBanner({
   isCorrect,
@@ -269,8 +269,22 @@ export function FeedbackBanner({
   explanation?: string;
   className?: string;
 }) {
+  // Check for reduced motion preference
+  const prefersReducedMotion =
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const animation = prefersReducedMotion
+    ? {}
+    : {
+        initial: { opacity: 0, y: 10 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.3, ease: 'easeOut' },
+      };
+
   return (
     <div
+      {...animation}
       className={cn(
         'mt-4 rounded-xl border-2 p-4',
         isCorrect
