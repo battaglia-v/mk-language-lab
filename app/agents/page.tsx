@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { notFound } from "next/navigation"
 
 import { SubAgentMonitor } from "@/components/agents/sub-agent-monitor"
 import { Badge } from "@/components/ui/badge"
@@ -10,7 +11,16 @@ export const metadata: Metadata = {
   description: "Live telemetry for every MK Language Lab sub-agent task.",
 }
 
+/**
+ * Agent Mission Control - Internal dashboard for monitoring sub-agents
+ *
+ * GATED: Only available when ENABLE_DEV_PAGES=true or in development
+ */
 export default async function AgentsPage() {
+  // Gate this page in production
+  if (process.env.ENABLE_DEV_PAGES !== "true" && process.env.NODE_ENV === "production") {
+    notFound();
+  }
   const snapshot = getSubAgentSnapshot()
 
   return (

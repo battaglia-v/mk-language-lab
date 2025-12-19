@@ -1,0 +1,294 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2024-12-17",
+  "locales": ["en", "mk"],
+  "routes": {
+    "public": [
+      {
+        "path": "/[locale]",
+        "name": "Home",
+        "priority": "critical",
+        "mobileTest": true
+      },
+      {
+        "path": "/[locale]/learn",
+        "name": "Learn Dashboard",
+        "priority": "critical",
+        "mobileTest": true,
+        "notes": "Main dashboard with daily goal, recommendations, quick actions"
+      },
+      {
+        "path": "/[locale]/practice",
+        "name": "Practice Hub",
+        "priority": "critical",
+        "mobileTest": true
+      },
+      {
+        "path": "/[locale]/practice/pronunciation",
+        "name": "Pronunciation Practice",
+        "priority": "high",
+        "mobileTest": true
+      },
+      {
+        "path": "/[locale]/practice/grammar",
+        "name": "Grammar Practice",
+        "priority": "high",
+        "mobileTest": true
+      },
+      {
+        "path": "/[locale]/practice/decks",
+        "name": "Practice Decks",
+        "priority": "high",
+        "mobileTest": true
+      },
+      {
+        "path": "/[locale]/practice/decks/[deckId]",
+        "name": "Deck Detail",
+        "priority": "medium",
+        "mobileTest": true,
+        "dynamic": true
+      },
+      {
+        "path": "/[locale]/translate",
+        "name": "Translator",
+        "priority": "critical",
+        "mobileTest": true,
+        "notes": "Includes history bottom sheet - previously /translator/history"
+      },
+      {
+        "path": "/[locale]/reader",
+        "name": "Reader Mode",
+        "priority": "high",
+        "mobileTest": true
+      },
+      {
+        "path": "/[locale]/news",
+        "name": "News Feed",
+        "priority": "high",
+        "mobileTest": true,
+        "notes": "Check for image loading reliability"
+      },
+      {
+        "path": "/[locale]/resources",
+        "name": "Resources Library",
+        "priority": "high",
+        "mobileTest": true
+      },
+      {
+        "path": "/[locale]/discover",
+        "name": "Discover",
+        "priority": "high",
+        "mobileTest": true
+      },
+      {
+        "path": "/[locale]/daily-lessons",
+        "name": "Daily Lessons",
+        "priority": "high",
+        "mobileTest": true
+      },
+      {
+        "path": "/[locale]/lesson/[lessonId]",
+        "name": "Lesson Player",
+        "priority": "critical",
+        "mobileTest": true,
+        "dynamic": true,
+        "notes": "Check audio playback - TTS fallback"
+      },
+      {
+        "path": "/[locale]/profile",
+        "name": "User Profile",
+        "priority": "medium",
+        "mobileTest": true
+      },
+      {
+        "path": "/[locale]/notifications",
+        "name": "Notifications",
+        "priority": "medium",
+        "mobileTest": true
+      },
+      {
+        "path": "/[locale]/tasks",
+        "name": "Tasks Board",
+        "priority": "medium",
+        "mobileTest": true
+      },
+      {
+        "path": "/[locale]/feedback",
+        "name": "Feedback",
+        "priority": "low",
+        "mobileTest": true
+      },
+      {
+        "path": "/[locale]/about",
+        "name": "About",
+        "priority": "low",
+        "mobileTest": true
+      },
+      {
+        "path": "/[locale]/privacy",
+        "name": "Privacy Policy",
+        "priority": "low",
+        "mobileTest": false
+      },
+      {
+        "path": "/[locale]/terms",
+        "name": "Terms of Service",
+        "priority": "low",
+        "mobileTest": false
+      }
+    ],
+    "auth": [
+      {
+        "path": "/[locale]/sign-in",
+        "name": "Sign In",
+        "priority": "medium",
+        "mobileTest": true
+      },
+      {
+        "path": "/[locale]/(auth)/onboarding",
+        "name": "Onboarding",
+        "priority": "high",
+        "mobileTest": true
+      },
+      {
+        "path": "/auth/signin",
+        "name": "Auth Sign In",
+        "priority": "low",
+        "mobileTest": false
+      },
+      {
+        "path": "/auth/signup",
+        "name": "Auth Sign Up",
+        "priority": "low",
+        "mobileTest": false
+      },
+      {
+        "path": "/auth/signout",
+        "name": "Auth Sign Out",
+        "priority": "low",
+        "mobileTest": false
+      },
+      {
+        "path": "/auth/error",
+        "name": "Auth Error",
+        "priority": "low",
+        "mobileTest": false
+      }
+    ],
+    "admin": [
+      {
+        "path": "/admin",
+        "name": "Admin Dashboard",
+        "priority": "low",
+        "mobileTest": false,
+        "protected": true
+      },
+      {
+        "path": "/admin/signin",
+        "name": "Admin Sign In",
+        "priority": "low",
+        "mobileTest": false
+      },
+      {
+        "path": "/admin/word-of-the-day",
+        "name": "Admin WOTD",
+        "priority": "low",
+        "mobileTest": false,
+        "protected": true
+      },
+      {
+        "path": "/admin/practice-vocabulary",
+        "name": "Admin Practice Vocab",
+        "priority": "low",
+        "mobileTest": false,
+        "protected": true
+      },
+      {
+        "path": "/admin/practice-audio",
+        "name": "Admin Practice Audio",
+        "priority": "low",
+        "mobileTest": false,
+        "protected": true
+      },
+      {
+        "path": "/admin/discover",
+        "name": "Admin Discover",
+        "priority": "low",
+        "mobileTest": false,
+        "protected": true
+      }
+    ],
+    "utility": [
+      {
+        "path": "/offline",
+        "name": "Offline Page",
+        "priority": "medium",
+        "mobileTest": true
+      },
+      {
+        "path": "/[locale]/test-sentry",
+        "name": "Sentry Test",
+        "priority": "none",
+        "mobileTest": false,
+        "devOnly": true
+      }
+    ]
+  },
+  "mobileViewports": [
+    {
+      "name": "Pixel7",
+      "width": 412,
+      "height": 915,
+      "deviceScaleFactor": 2.625,
+      "userAgent": "Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
+    },
+    {
+      "name": "SmallAndroid",
+      "width": 360,
+      "height": 800,
+      "deviceScaleFactor": 3,
+      "userAgent": "Mozilla/5.0 (Linux; Android 12) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
+    },
+    {
+      "name": "iPhone13",
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 3,
+      "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1"
+    },
+    {
+      "name": "iPhoneSE",
+      "width": 375,
+      "height": 667,
+      "deviceScaleFactor": 2,
+      "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1"
+    }
+  ],
+  "checks": {
+    "overflow": {
+      "description": "Check for horizontal overflow (scrollWidth > innerWidth)",
+      "severity": "high"
+    },
+    "i18nKeys": {
+      "description": "Detect raw i18n keys visible in UI",
+      "pattern": "^[a-z][a-zA-Z0-9]*\\.[a-zA-Z0-9.]+$",
+      "severity": "high"
+    },
+    "brokenImages": {
+      "description": "Check for images that fail to load",
+      "severity": "medium"
+    },
+    "consoleErrors": {
+      "description": "Capture console errors and warnings",
+      "severity": "medium"
+    },
+    "networkErrors": {
+      "description": "Check for 4xx/5xx responses",
+      "severity": "high"
+    },
+    "audioAvailability": {
+      "description": "Verify audio plays or TTS fallback works",
+      "severity": "medium"
+    }
+  }
+}

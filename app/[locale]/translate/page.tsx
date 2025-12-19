@@ -177,7 +177,11 @@ export default function TranslatePage() {
   };
 
   return (
+<<<<<<< HEAD
     <PageContainer size="md" className="flex flex-col gap-3 pb-24 sm:gap-4 sm:pb-6">
+=======
+    <div className="mx-auto flex w-full flex-col gap-3 pb-24 px-4 sm:max-w-3xl sm:gap-4 sm:pb-6">
+>>>>>>> 51574487d50fe7ce96844f34da58f328c24ac6c0
       {/* Back Navigation */}
       <Button
         asChild
@@ -203,7 +207,7 @@ export default function TranslatePage() {
             </p>
             {/* Version badge removed for production */}
           </div>
-          <div className="flex gap-2 sm:justify-end">
+          <div className="flex flex-wrap gap-2 min-w-0 sm:justify-end">
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button

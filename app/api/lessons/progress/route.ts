@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { PrismaClient } from '@prisma/client';
+import { createScopedLogger } from '@/lib/logger';
 
 const prisma = new PrismaClient();
+const log = createScopedLogger('api.lessons.progress');
 
 export async function POST(request: NextRequest) {
   try {
@@ -115,7 +117,22 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true, progress: userProgress });
   } catch (error) {
-    console.error('Error updating lesson progress:', error);
+    log.error('Failed to update lesson progress', {
+      error,
+      lessonId: (await request.json().catch(() => ({}))).lessonId,
+      userId: (await auth())?.user?.id,
+    });
+
+    // Return appropriate error response
+    if (error instanceof Error) {
+      if (error.message.includes('Unique constraint')) {
+        return NextResponse.json(
+          { error: 'Progress already exists' },
+          { status: 409 }
+        );
+      }
+    }
+
     return NextResponse.json(
       { error: 'Failed to update progress' },
       { status: 500 }
@@ -151,7 +168,15 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ progress });
   } catch (error) {
-    console.error('Error fetching lesson progress:', error);
+    const { searchParams } = new URL(request.url);
+    const lessonId = searchParams.get('lessonId');
+
+    log.error('Failed to fetch lesson progress', {
+      error,
+      lessonId,
+      userId: (await auth())?.user?.id,
+    });
+
     return NextResponse.json(
       { error: 'Failed to fetch progress' },
       { status: 500 }

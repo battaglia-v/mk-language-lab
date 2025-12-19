@@ -169,8 +169,23 @@ export async function GET(request: NextRequest) {
   const accessToken = process.env.INSTAGRAM_ACCESS_TOKEN;
   const accountId = process.env.INSTAGRAM_BUSINESS_ACCOUNT_ID;
 
-  // Demo mode: Return mock data if credentials not set or set to "demo"
-  if (!accessToken || !accountId || accessToken === 'demo') {
+  // Return empty response if credentials not set in production
+  // Demo mode only works in development or when explicitly set to "demo"
+  if (!accessToken || !accountId) {
+    // In production, return empty state (not mock data)
+    if (process.env.NODE_ENV === 'production') {
+      return NextResponse.json({
+        items: [],
+        meta: {
+          count: 0,
+          fetchedAt: new Date().toISOString(),
+          cached: false,
+          source: 'unconfigured',
+        },
+      });
+    }
+
+    // In development, show mock data for testing
     const response: InstagramPostsResponse = {
       items: MOCK_POSTS.slice(0, limit),
       meta: {

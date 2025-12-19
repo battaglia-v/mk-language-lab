@@ -872,6 +872,8 @@
     "readerFocusOnShort": "Focus",
     "readerFocusOff": "Exit focus",
     "readerFocusTooltip": "Focus mode highlights one word at a time for step-by-step learning. Use arrow keys or buttons to navigate.",
+    "readerFocusPrev": "Previous",
+    "readerFocusNext": "Next",
     "readerCopyShort": "Copy",
     "readerRecent": "Recent reads",
     "readerTapToLoad": "Tap to reopen",

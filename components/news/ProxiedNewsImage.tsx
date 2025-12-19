@@ -124,7 +124,7 @@ export function ProxiedNewsImage({
     setHasError(false);
   }, []);
 
-  // Show fallback if no image URL or if all retries failed
+  // Show fallback if no image URL or all retries failed
   const showFallback = !imageUrl || hasError;
   const isRetrying = retryCount > 0 && !isLoaded && !hasError;
 

@@ -446,7 +446,7 @@ export function getAudioStateText(state: AudioPlayerState, t?: {
     loading: 'Loading audio...',
     playing: 'Playing',
     paused: 'Paused',
-    error: 'Audio unavailable',
+    error: 'Using synthesized voice',
     tapToPlay: 'Tap to play',
   };
   

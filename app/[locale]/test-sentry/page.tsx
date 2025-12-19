@@ -2,9 +2,13 @@
 
 import * as Sentry from "@sentry/nextjs";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
+<<<<<<< HEAD
 import { PageContainer } from "@/components/layout";
+=======
+import { notFound } from "next/navigation";
+>>>>>>> 51574487d50fe7ce96844f34da58f328c24ac6c0
 
 /**
  * Test page for Sentry client-side error tracking
@@ -12,9 +16,15 @@ import { PageContainer } from "@/components/layout";
  * This page provides buttons to test different types of errors and events.
  * Navigate to /test-sentry to use it.
  *
- * Note: This page should be removed or protected in production
+ * GATED: Only available when NEXT_PUBLIC_ENABLE_DEV_PAGES=true
  */
 export default function TestSentryPage() {
+  // Gate this page in production
+  useEffect(() => {
+    if (process.env.NEXT_PUBLIC_ENABLE_DEV_PAGES !== "true" && process.env.NODE_ENV === "production") {
+      notFound();
+    }
+  }, []);
   const [result, setResult] = useState<string>("");
   const common = useTranslations("common");
 
