@@ -9,34 +9,40 @@
   "text_blocks_mk": [
     {
       "type": "p",
-      "value": "[TODO: Replace with exact text from PDF page 2 - The Little Prince reading passage]"
-    },
-    {
-      "type": "p",
-      "value": "[TODO: Add more paragraphs from the story as they appear in the PDF]"
+      "value": "NOTE: Due to copyright, the story text from 'Малиот принц' must be manually added here from the original PDF. The infrastructure is ready - simply replace this placeholder with the reading passage paragraphs from @macedonianlanguagecorner's Day 18 material."
     }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Граматика: –л форма",
       "title_en": "Grammar: The –л form",
-      "description_mk": "[TODO: Replace with exact explanation from PDF page 3]",
-      "description_en": "The –л form in Macedonian is used to express completed actions in the past, similar to the English simple past tense.",
+      "description_mk": "Формата –л многу често се користи кога: говорникот лично НЕ бил сведок на дејството, информацијата е научена подоцна, заклучена или пренесена, тонот е наративен, описен или бајковит.",
+      "description_en": "The –л form is very often used when: the speaker did NOT personally witness the action, the information is learned later, inferred, or reported, the tone is narrative, descriptive, or fairy-tale–like.",
       "bullets": [
-        "[TODO: Add bullet points from PDF explaining the –л form]",
-        "[TODO: Add usage rules]",
-        "[TODO: Add formation patterns]"
+        "Формирање: Глаголска основа + –л (се менува според род и број)",
+        "Често се користи во приказни: 'Имало некогаш...'",
+        "Користи се за дејства што не сте ги виделе директно"
       ],
       "examples": [
         {
-          "mk": "[TODO: Add example from PDF]",
-          "en": "[TODO: Add English translation]",
-          "note": "Example of –л form usage"
+          "mk": "Имало некогаш...",
+          "en": "Once upon a time there was...",
+          "note": "Classic fairy-tale opening with –л form"
         },
         {
-          "mk": "[TODO: Add another example]",
-          "en": "[TODO: Translation]",
-          "note": "Past tense with –л"
+          "mk": "гледал од близу",
+          "en": "looked closely / observed from up close",
+          "note": "Non-witnessed past action"
+        },
+        {
+          "mk": "чувствувал дека",
+          "en": "felt that / sensed that",
+          "note": "Reported feeling or perception"
+        },
+        {
+          "mk": "можело да биде",
+          "en": "it could have been",
+          "note": "Inferred possibility in the past"
         }
       ]
     }
