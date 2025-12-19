@@ -14,12 +14,23 @@ const intlMiddleware = createMiddleware({
 });
 
 export default function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // Redirect legacy /translator/history to /translate with history sheet
+  if (pathname.match(/^\/(en|mk)\/translator\/history$/)) {
+    const locale = pathname.split('/')[1];
+    const url = request.nextUrl.clone();
+    url.pathname = `/${locale}/translate`;
+    url.searchParams.set('sheet', 'history');
+    return NextResponse.redirect(url, 301);
+  }
+
   // Add pathname header for all requests
   const response = NextResponse.next();
-  response.headers.set('x-pathname', request.nextUrl.pathname);
+  response.headers.set('x-pathname', pathname);
 
   // For admin routes, just return with the pathname header
-  if (request.nextUrl.pathname.startsWith('/admin')) {
+  if (pathname.startsWith('/admin')) {
     return response;
   }
 

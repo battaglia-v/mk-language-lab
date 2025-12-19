@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import { createScopedLogger } from '@/lib/logger';
+
+const log = createScopedLogger('api.practice.record');
 
 /**
  * Record practice session and update user progress
@@ -86,7 +89,23 @@ export async function POST(request: NextRequest) {
       streak: gameProgress.streak,
     });
   } catch (error) {
-    console.error('[api.practice.record] Error:', error);
+    log.error('Failed to record practice session', {
+      error,
+      correctCount: (await request.json().catch(() => ({}))).correctCount,
+      totalCount: (await request.json().catch(() => ({}))).totalCount,
+      userId: (await auth())?.user?.id,
+    });
+
+    // Return appropriate error response
+    if (error instanceof Error) {
+      if (error.message.includes('Unique constraint')) {
+        return NextResponse.json(
+          { error: 'Session already recorded' },
+          { status: 409 }
+        );
+      }
+    }
+
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

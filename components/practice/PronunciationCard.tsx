@@ -469,10 +469,10 @@ export function PronunciationCard({
                 </p>
               )}
 
-              {/* Audio error message */}
-              {audioError && (
-                <p className="text-xs text-destructive">
-                  Audio unavailable
+              {/* Audio error message - only show if TTS also failed */}
+              {audioError && !usingTTS && (
+                <p className="text-xs text-muted-foreground">
+                  Using synthesized audio
                 </p>
               )}
 

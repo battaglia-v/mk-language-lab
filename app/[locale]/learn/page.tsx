@@ -116,7 +116,11 @@ export default async function LearnPage() {
   ];
 
   return (
+<<<<<<< HEAD
     <PageContainer size="xl" className="flex flex-col gap-4 pb-24 sm:gap-5 sm:pb-6">
+=======
+    <div className="mx-auto flex w-full flex-col gap-4 pb-24 px-4 sm:max-w-5xl sm:gap-5 sm:pb-6">
+>>>>>>> 51574487d50fe7ce96844f34da58f328c24ac6c0
       {/* V2: Compact Header with Stats */}
       <CompactStatBar
         streak={gameProgress.streak}

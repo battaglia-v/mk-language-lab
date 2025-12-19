@@ -639,7 +639,11 @@ export default function PracticePage() {
   }, [resetCardState]);
 
   return (
+<<<<<<< HEAD
     <PageContainer size="lg" className="flex flex-col gap-4 pb-24 sm:gap-5 sm:pb-6">
+=======
+    <div className="mx-auto flex w-full flex-col gap-4 pb-24 px-4 sm:max-w-4xl sm:gap-5 sm:pb-6">
+>>>>>>> 51574487d50fe7ce96844f34da58f328c24ac6c0
       <section className="lab-hero" data-testid="practice-hero">
         <div className="flex flex-col gap-3 sm:gap-4">
           <Button
@@ -801,7 +805,7 @@ export default function PracticePage() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 gap-2 min-[400px]:grid-cols-2 sm:grid-cols-4 sm:gap-3" data-testid="practice-panels">
+        <div className="grid grid-cols-1 gap-2 min-w-0 min-[400px]:grid-cols-2 sm:grid-cols-4 sm:gap-3" data-testid="practice-panels">
           <DeckToggle
             label={t('savedDeck.badge')}
             count={savedDeck.length}
@@ -845,7 +849,7 @@ export default function PracticePage() {
         </div>
 
         {/* Practice Mode Toggle */}
-        <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-border/60 bg-muted/10 px-3 py-2">
+        <div className="flex flex-wrap items-center justify-between gap-2 min-w-0 rounded-2xl border border-border/60 bg-muted/10 px-3 py-2">
           <div className="flex items-center gap-2">
             <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
               {t('drills.modeLabel', { default: 'Mode' })}
@@ -888,7 +892,7 @@ export default function PracticePage() {
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-border/60 bg-muted/10 px-3 py-2">
+        <div className="flex flex-wrap items-center gap-2 min-w-0 rounded-2xl border border-border/60 bg-muted/10 px-3 py-2">
           <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
             {t('drills.difficultyLabel', { default: 'Difficulty' })}
           </span>
@@ -1201,35 +1205,34 @@ export default function PracticePage() {
                 </div>
               )}
 
-            <div className="mt-4 flex items-center gap-2 sm:mt-6 sm:gap-3 w-full min-w-0">
+            <div className="mt-4 grid grid-cols-3 gap-2 sm:mt-6 sm:flex sm:items-center sm:gap-3 w-full min-w-0">
               <Button
                 variant="outline"
-                className="min-h-[52px] w-[72px] sm:w-auto sm:min-w-[90px] rounded-2xl font-semibold transition-all hover:scale-105 gap-1"
+                className="min-h-[52px] min-w-[80px] sm:w-auto sm:min-w-[90px] rounded-2xl font-semibold transition-all hover:scale-105 gap-1"
                 onClick={goPrevious}
                 disabled={!deck.length}
                 aria-label="Previous card"
               >
                 <ChevronLeft className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
-                <span className="text-xs sm:text-sm">Prev</span>
+                <span className="hidden sm:inline text-sm">Prev</span>
               </Button>
               <Button
                 variant="secondary"
-                className="flex-1 min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105 px-3 sm:px-4"
+                className="min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105 sm:flex-1 px-3 sm:px-4"
                 onClick={toggleReveal}
                 disabled={!deck.length}
               >
                 <Eye className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
-                <span className="ml-1.5 sm:ml-2 text-sm sm:text-base sm:hidden">{t('drills.revealAnswerShort')}</span>
-                <span className="ml-2 text-base hidden sm:inline">{t('drills.revealAnswer')}</span>
+                <span className="hidden sm:inline ml-2 text-base">{t('drills.revealAnswer')}</span>
               </Button>
               <Button
                 variant="outline"
-                className="min-h-[52px] w-[72px] sm:w-auto sm:min-w-[90px] rounded-2xl font-semibold transition-all hover:scale-105 gap-1"
+                className="min-h-[52px] min-w-[80px] sm:w-auto sm:min-w-[90px] rounded-2xl font-semibold transition-all hover:scale-105 gap-1"
                 onClick={goNext}
                 disabled={!deck.length}
                 aria-label="Next card"
               >
-                <span className="text-xs sm:text-sm">Next</span>
+                <span className="hidden sm:inline text-sm">Next</span>
                 <ChevronRight className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
               </Button>
             </div>
