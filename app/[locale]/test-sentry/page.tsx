@@ -4,11 +4,8 @@ import * as Sentry from "@sentry/nextjs";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
-<<<<<<< HEAD
-import { PageContainer } from "@/components/layout";
-=======
 import { notFound } from "next/navigation";
->>>>>>> 51574487d50fe7ce96844f34da58f328c24ac6c0
+import { PageContainer } from "@/components/layout";
 
 /**
  * Test page for Sentry client-side error tracking
