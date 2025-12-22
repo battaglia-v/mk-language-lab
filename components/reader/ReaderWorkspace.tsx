@@ -168,6 +168,32 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
     }
   }, []);
 
+  // Check for quick analyze text from sessionStorage
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    // Check URL params
+    const urlParams = new URLSearchParams(window.location.search);
+    const shouldAnalyze = urlParams.get('analyze') === 'true';
+    
+    if (shouldAnalyze) {
+      try {
+        const quickAnalyzeText = sessionStorage.getItem('mkll:reader-quick-analyze');
+        if (quickAnalyzeText) {
+          setInputText(quickAnalyzeText);
+          // Clear the sessionStorage after loading
+          sessionStorage.removeItem('mkll:reader-quick-analyze');
+          // Trigger analysis automatically
+          setTimeout(() => {
+            handleAnalyze();
+          }, 500);
+        }
+      } catch (error) {
+        console.error('Failed to load quick analyze text', error);
+      }
+    }
+  }, [setInputText, handleAnalyze]);
+
   useEffect(() => {
     if (!analyzedData) {
       setElapsedMs(0);

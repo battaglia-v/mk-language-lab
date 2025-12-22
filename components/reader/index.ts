@@ -7,3 +7,4 @@ export { WordDetailPopup } from './WordDetailPopup';
 export { ReaderWorkspace } from './ReaderWorkspace';
 export { TextImporter } from './TextImporter';
 export { WordByWordDisplay } from './WordByWordDisplay';
+export { QuickAnalyzeButton } from './QuickAnalyzeButton';
