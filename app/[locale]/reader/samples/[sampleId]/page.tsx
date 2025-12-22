@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PageContainer } from '@/components/layout';
 import { getReaderSample, getDifficultyColor } from '@/lib/reader-samples';
 import { ReaderQuizButton } from '@/components/reader/ReaderQuizButton';
+import { QuickAnalyzeButton } from '@/components/reader/QuickAnalyzeButton';
 import { cn } from '@/lib/utils';
 
 interface ReadingSamplePageProps {
@@ -123,6 +124,19 @@ export default async function ReadingSamplePage({ params }: ReadingSamplePagePro
                 }
                 return null;
               })}
+            </CardContent>
+          </Card>
+
+          {/* Quick Analyze CTA */}
+          <Card className="border-primary/30 bg-primary/5">
+            <CardContent className="pt-6 space-y-3">
+              <div className="text-center space-y-2">
+                <h3 className="text-lg font-semibold">Analyze This Text</h3>
+                <p className="text-sm text-muted-foreground">
+                  Load this text into the reader workspace for word-by-word analysis
+                </p>
+              </div>
+              <QuickAnalyzeButton sample={sample} locale={locale} />
             </CardContent>
           </Card>
 
