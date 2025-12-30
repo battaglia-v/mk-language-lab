@@ -15,6 +15,7 @@ import { recordPracticeSession } from '@/lib/practice-activity';
 import { calculateXP, formatDifficultyLabel } from './types';
 import { XPAnimation } from '@/components/gamification/XPAnimation';
 import { addLocalXP, getLocalXP, isGoalComplete } from '@/lib/gamification/local-xp';
+import { Skeleton } from '@/components/ui/skeleton';
 import type { DeckType, PracticeMode, DifficultyFilter, Flashcard } from './types';
 
 type Props = { deckType: DeckType; mode: PracticeMode; difficulty: DifficultyFilter; customDeckId?: string };
@@ -151,7 +152,28 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
     setIsFav(toggleFavorite({ id: card.id, macedonian: mk, english: en, category: card.category || undefined }));
   };
 
-  if (!deck.length) return <div className="flex items-center justify-center h-[60vh] text-muted-foreground">Loading...</div>;
+  if (!deck.length) return (
+    <div className="fixed inset-0 z-50 flex flex-col bg-background">
+      <header className="flex items-center gap-3 border-b border-border/40 px-4 py-3 safe-top">
+        <Skeleton className="h-10 w-10 rounded-full" />
+        <Skeleton className="h-2 flex-1 rounded-full" />
+        <Skeleton className="h-4 w-12" />
+      </header>
+      <div className="flex-1 px-4 py-6">
+        <div className="mx-auto max-w-lg space-y-4">
+          <Skeleton className="h-4 w-20" />
+          <Skeleton className="h-10 w-full" />
+          <Skeleton className="h-24 w-full rounded-xl" />
+          <div className="grid grid-cols-2 gap-2">
+            <Skeleton className="h-14 rounded-xl" />
+            <Skeleton className="h-14 rounded-xl" />
+            <Skeleton className="h-14 rounded-xl" />
+            <Skeleton className="h-14 rounded-xl" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-background">
