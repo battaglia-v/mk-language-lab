@@ -13,6 +13,8 @@ import { usePracticeDecks } from './usePracticeDecks';
 import { isFavorite, toggleFavorite } from '@/lib/favorites';
 import { recordPracticeSession } from '@/lib/practice-activity';
 import { calculateXP, formatDifficultyLabel } from './types';
+import { XPAnimation } from '@/components/gamification/XPAnimation';
+import { addLocalXP, getLocalXP, isGoalComplete } from '@/lib/gamification/local-xp';
 import type { DeckType, PracticeMode, DifficultyFilter, Flashcard } from './types';
 
 type Props = { deckType: DeckType; mode: PracticeMode; difficulty: DifficultyFilter; customDeckId?: string };
@@ -36,6 +38,8 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
   const [hint, setHint] = useState<string | null>(null);
   const [isFav, setIsFav] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [showXP, setShowXP] = useState(false);
+  const [xpAmount, setXpAmount] = useState(0);
   const sessionStart = useRef(Date.now());
 
   // Load deck
@@ -86,6 +90,11 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
     if (isCorrect) {
       setCorrectAnswers((c) => c + 1);
       setStreak((s) => { const n = s + 1; if (n > maxStreak) setMaxStreak(n); return n; });
+      // Show XP animation and update local storage
+      const earned = 1;
+      setXpAmount(earned);
+      setShowXP(true);
+      addLocalXP(earned);
     } else {
       setStreak(0);
     }
@@ -146,13 +155,15 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-background">
+      {/* XP Animation */}
+      {showXP && <XPAnimation amount={xpAmount} onComplete={() => setShowXP(false)} />}
       {/* Header */}
       <header className="flex items-center gap-3 border-b border-border/40 px-4 py-3 safe-top">
         <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full p-0" onClick={endSession}>
           <X className="h-5 w-5" />
         </Button>
         <div className="flex-1">
-          <Progress value={progress} className="h-2" />
+          <Progress value={progress} className="h-2 transition-all duration-500" />
         </div>
         <span className="text-sm font-medium text-muted-foreground">{index + 1}/{total}</span>
       </header>
@@ -167,7 +178,7 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
 
           <p className="text-2xl font-bold text-foreground sm:text-3xl">{card?.source}</p>
 
-          <div className={cn('rounded-xl border border-primary/20 bg-primary/5 p-4 transition-all', revealed ? 'opacity-100' : 'opacity-0')}>
+          <div className={cn('rounded-xl border border-primary/20 bg-primary/5 p-4 transition-all duration-300', revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2')}>
             <p className="text-lg font-medium text-primary">{card?.target}</p>
           </div>
 
@@ -199,9 +210,9 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
               <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                 {choices.map((c, i) => (
                   <Button key={i} variant="outline" onClick={() => selectChoice(c)} disabled={!!feedback}
-                    className={cn('min-h-[52px] justify-start rounded-xl text-left',
-                      selectedChoice === c && feedback === 'correct' && 'border-emerald-400 bg-emerald-500/20',
-                      selectedChoice === c && feedback === 'incorrect' && 'border-amber-400 bg-amber-500/20',
+                    className={cn('min-h-[52px] justify-start rounded-xl text-left transition-all duration-200 active:scale-[0.98]',
+                      selectedChoice === c && feedback === 'correct' && 'border-emerald-400 bg-emerald-500/20 scale-[1.02]',
+                      selectedChoice === c && feedback === 'incorrect' && 'border-amber-400 bg-amber-500/20 animate-shake',
                       feedback && c === card?.target && 'border-emerald-400 bg-emerald-500/15'
                     )}>
                     <span className="mr-2 text-muted-foreground">{['A','B','C','D'][i]}.</span>{c}
