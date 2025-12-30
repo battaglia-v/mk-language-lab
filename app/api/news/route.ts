@@ -20,13 +20,14 @@ const NEWS_SOURCES = [
     homepage: 'https://meta.mk',
     useProxy: false,
   },
-  {
-    id: 'sdk-mk',
-    name: 'SDK.mk',
-    feedUrl: 'https://sdk.mk/index.php/feed/',
-    homepage: 'https://sdk.mk',
-    useProxy: false,
-  },
+  // SDK.mk RSS feed disabled (returns 404 as of Dec 2025)
+  // {
+  //   id: 'sdk-mk',
+  //   name: 'SDK.mk',
+  //   feedUrl: 'https://sdk.mk/index.php/feed/',
+  //   homepage: 'https://sdk.mk',
+  //   useProxy: false,
+  // },
   {
     id: 'makfax',
     name: 'Makfax',
