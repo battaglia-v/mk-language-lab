@@ -18,21 +18,21 @@ export function StatsSection({ xp, xpProgress, streakDays, quests, currency, lea
     <section className="glass-card rounded-3xl p-5 md:p-7 text-white" data-testid="profile-stats">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         <StatCard title={t('streak')} value={`${streakDays} ${t('days')}`} accent="from-orange-400/30 to-orange-500/10">
-          <p className="text-xs text-slate-200">{t('leagueTier', { tier: league.tier })}</p>
+          <p className="text-sm text-slate-200">{t('leagueTier', { tier: league.tier })}</p>
         </StatCard>
         <StatCard title={t('activeQuests')} value={quests.active.toString()} accent="from-sky-400/30 to-sky-500/10">
-          <p className="text-xs text-slate-200">{t('completedQuestsLabel', { count: quests.completedThisWeek })}</p>
+          <p className="text-sm text-slate-200">{t('completedQuestsLabel', { count: quests.completedThisWeek })}</p>
         </StatCard>
         <StatCard title={t('currency')} value={`${currency.gems.toLocaleString()} 💎`} accent="from-amber-400/30 to-amber-500/10">
-          <p className="text-xs text-slate-200">{t('currencyCaption')}</p>
+          <p className="text-sm text-slate-200">{t('currencyCaption')}</p>
         </StatCard>
         <StatCard title={t('weeklyXP')} value={xp.weekly.toLocaleString()} accent="from-emerald-400/30 to-emerald-500/10">
-          <p className="text-xs text-slate-200">{t('totalXPCaption', { value: xp.total.toLocaleString() })}</p>
+          <p className="text-sm text-slate-200">{t('totalXPCaption', { value: xp.total.toLocaleString() })}</p>
         </StatCard>
         <div className="rounded-2xl border border-white/15 bg-white/5 p-4">
           <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-wide text-white/70">{t('xpProgress')}</p>
-            <span className="text-sm text-white/90">{xpProgress.percentComplete}%</span>
+            <p className="text-sm font-semibold uppercase tracking-wide text-white/70">{t('xpProgress')}</p>
+            <span className="text-base text-white/90">{xpProgress.percentComplete}%</span>
           </div>
           <div className="mt-2 h-2 w-full rounded-full bg-white/10">
             <div
@@ -40,7 +40,7 @@ export function StatsSection({ xp, xpProgress, streakDays, quests, currency, lea
               style={{ width: `${xpProgress.percentComplete}%` }}
             />
           </div>
-          <p className="mt-2 text-xs text-slate-200">
+          <p className="mt-2 text-sm text-slate-200">
             {t('xpProgressDetail', {
               current: xpProgress.xpInCurrentLevel,
               goal: xpProgress.xpForNextLevel,
@@ -67,7 +67,7 @@ function StatCard({
     <article
       className={cn('rounded-2xl border border-white/15 bg-gradient-to-br p-4', accent)}
     >
-      <p className="text-xs font-semibold uppercase tracking-wide text-white/70">{title}</p>
+      <p className="text-sm font-semibold uppercase tracking-wide text-white/70">{title}</p>
       <p className="mt-2 text-3xl font-bold text-white">{value}</p>
       {children}
     </article>

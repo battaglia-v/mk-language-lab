@@ -178,27 +178,27 @@ export function RecommendationCard({
             {/* Content */}
             <div className="flex-1 min-w-0">
               <div className="flex flex-wrap items-center gap-2 mb-1">
-                <h3 className="font-semibold text-foreground text-sm sm:text-base line-clamp-1">
+                <h3 className="font-semibold text-foreground text-base sm:text-lg line-clamp-1">
                   {recommendation.title}
                 </h3>
                 {isUrgent && (
-                  <Badge variant="destructive" className="text-xs shrink-0">
+                  <Badge variant="destructive" className="text-sm shrink-0">
                     {t.urgent}
                   </Badge>
                 )}
                 {!isUrgent && recommendation.priority === 1 && (
-                  <Badge variant="secondary" className="text-xs shrink-0">
+                  <Badge variant="secondary" className="text-sm shrink-0">
                     {t.recommended}
                   </Badge>
                 )}
               </div>
 
-              <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2">
+              <p className="text-sm text-muted-foreground line-clamp-2">
                 {recommendation.description}
               </p>
 
               {/* Meta info - inline on mobile */}
-              <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-2 text-xs text-muted-foreground">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-2 text-sm text-muted-foreground">
                 {recommendation.estimatedMinutes && (
                   <span className="flex items-center gap-1 whitespace-nowrap">
                     <Clock className="h-3 w-3" />

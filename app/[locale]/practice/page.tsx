@@ -1091,7 +1091,7 @@ export default function PracticePage() {
                     />
                     <Button
                       type="submit"
-                      className="min-h-[54px] w-full max-w-[200px] sm:w-auto sm:flex-[1] sm:max-w-[140px] rounded-3xl px-6 text-base font-semibold shadow-lg transition-all hover:scale-105 disabled:hover:scale-100"
+                      className="min-h-[54px] w-full sm:w-auto sm:flex-1 rounded-3xl px-6 text-base font-semibold shadow-lg transition-all hover:scale-105 disabled:hover:scale-100"
                       disabled={!deck.length || !guess.trim()}
                     >
                       {t('drills.submitWord')}
@@ -1204,7 +1204,7 @@ export default function PracticePage() {
             <div className="mt-4 grid grid-cols-3 gap-2 sm:mt-6 sm:flex sm:items-center sm:gap-3 w-full min-w-0">
               <Button
                 variant="outline"
-                className="min-h-[52px] min-w-[80px] sm:w-auto sm:min-w-[90px] rounded-2xl font-semibold transition-all hover:scale-105 gap-1"
+                className="min-h-[52px] w-full sm:w-auto rounded-2xl font-semibold transition-all hover:scale-105 gap-1"
                 onClick={goPrevious}
                 disabled={!deck.length}
                 aria-label="Previous card"
@@ -1214,7 +1214,7 @@ export default function PracticePage() {
               </Button>
               <Button
                 variant="secondary"
-                className="min-h-[52px] min-w-0 rounded-2xl font-semibold transition-all hover:scale-105 sm:flex-1 px-3 sm:px-4"
+                className="min-h-[52px] w-full sm:flex-1 rounded-2xl font-semibold transition-all hover:scale-105 px-3 sm:px-4"
                 onClick={toggleReveal}
                 disabled={!deck.length}
               >
@@ -1223,7 +1223,7 @@ export default function PracticePage() {
               </Button>
               <Button
                 variant="outline"
-                className="min-h-[52px] min-w-[80px] sm:w-auto sm:min-w-[90px] rounded-2xl font-semibold transition-all hover:scale-105 gap-1"
+                className="min-h-[52px] w-full sm:w-auto rounded-2xl font-semibold transition-all hover:scale-105 gap-1"
                 onClick={goNext}
                 disabled={!deck.length}
                 aria-label="Next card"

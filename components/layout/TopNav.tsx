@@ -175,7 +175,7 @@ function MissionSummaryBanner({ mission, state, error, onRefresh, t, buildHref }
             <Flame className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
           </span>
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--brand-red)] sm:text-xs sm:tracking-[0.25em]">
+            <p className="text-xs font-semibold uppercase tracking-wide text-[var(--brand-red)]">
               {t('streakLabel')}
             </p>
             <p className="text-sm font-semibold text-foreground sm:text-base">
@@ -185,7 +185,7 @@ function MissionSummaryBanner({ mission, state, error, onRefresh, t, buildHref }
         </div>
 
         <div className="min-w-[140px] flex-1 sm:min-w-[180px]">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground sm:text-xs sm:tracking-[0.25em]">
+          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
             {t('xpLabel')}
           </p>
           <div className="mt-1.5 h-1.5 w-full rounded-full bg-[var(--surface-frosted)] sm:mt-2">
@@ -204,7 +204,7 @@ function MissionSummaryBanner({ mission, state, error, onRefresh, t, buildHref }
             <Heart className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
           </span>
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground sm:text-xs sm:tracking-[0.25em]">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               {t('heartsLabel')}
             </p>
             <p className="text-sm font-semibold text-foreground sm:text-base">
