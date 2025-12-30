@@ -37,15 +37,13 @@ export function CustomDecksDropdown({
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
-        <button
-          type="button"
+        <Button
+          variant="outline"
           disabled={disabled}
           className={cn(
-            'group flex h-full w-full min-h-[68px] min-w-0 flex-col items-start justify-between gap-1.5 rounded-2xl border px-4 py-3 text-sm font-semibold transition-all sm:px-5 sm:py-4',
-            isActive
-              ? 'border-primary/70 bg-primary/15 text-white shadow-md ring-1 ring-primary/25'
-              : 'border-border/60 text-muted-foreground hover:border-primary/40 hover:text-white hover:bg-primary/5',
-            disabled && 'opacity-45 cursor-not-allowed hover:border-border/60 hover:text-muted-foreground hover:bg-transparent',
+            'group flex h-auto w-full min-h-[60px] flex-col items-start justify-between gap-1 rounded-xl p-3 text-left',
+            isActive && 'border-primary/70 bg-primary/15 text-white ring-1 ring-primary/25',
+            disabled && 'opacity-40',
           )}
         >
           <span className="flex items-center gap-2 truncate min-w-0">
@@ -66,7 +64,7 @@ export function CustomDecksDropdown({
               isOpen && 'rotate-180'
             )} />
           </div>
-        </button>
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-64 max-h-[400px] overflow-y-auto">
         {decks.length === 0 ? (

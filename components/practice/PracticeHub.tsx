@@ -225,18 +225,18 @@ export function PracticeHub() {
 
 function DeckToggle({ label, count, active, disabled, onClick }: { label: string; count: number; active: boolean; disabled?: boolean; onClick: () => void }) {
   return (
-    <button
-      type="button"
+    <Button
+      variant="outline"
       disabled={disabled}
       onClick={onClick}
       className={cn(
-        'flex min-h-[60px] flex-col items-start justify-between gap-1 rounded-xl border p-3 text-left text-sm font-medium transition-all',
-        active ? 'border-primary/70 bg-primary/15 text-white' : 'border-border/60 text-muted-foreground hover:border-primary/40 hover:bg-primary/5',
-        disabled && 'opacity-40 cursor-not-allowed'
+        'flex h-auto min-h-[60px] flex-col items-start justify-between gap-1 rounded-xl p-3 text-left',
+        active && 'border-primary/70 bg-primary/15 text-white ring-1 ring-primary/25',
+        disabled && 'opacity-40'
       )}
     >
-      <span className="text-xs line-clamp-2">{label}</span>
+      <span className="text-xs line-clamp-2 font-medium">{label}</span>
       <Badge variant={active ? 'default' : 'secondary'} className="text-xs">{count}</Badge>
-    </button>
+    </Button>
   );
 }
