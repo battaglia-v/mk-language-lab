@@ -45,7 +45,7 @@ describe("shellNavItems", () => {
     const hrefs = shellNavItems.map(({ path }) => buildLocalizedHref("en", path, pathname));
 
     expect(new Set(hrefs).size).toBe(shellNavItems.length);
-    expect(hrefs).toContain("/en/profile");
+    expect(hrefs).toContain("/en/more");
   });
 
   it("can strip locales from nav paths for comparison", () => {

@@ -73,7 +73,7 @@ export function MobileTabNav() {
   const accentItem = shellNavItems.find((item) => item.id === primaryActionId);
   const AccentIcon = accentItem?.icon;
   const supportingItems = shellNavItems.filter(
-    (item) => item.id !== primaryActionId && item.id !== "profile"
+    (item) => item.id !== primaryActionId
   );
   const midpoint = Math.ceil(supportingItems.length / 2);
   const leadingItems = supportingItems.slice(0, midpoint);
