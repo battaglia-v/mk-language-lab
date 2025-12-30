@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { PrismaClient } from '@prisma/client';
-import LessonContent from '@/components/learn/LessonContent';
+import { LessonPageContent } from '@/components/learn/LessonPageContent';
 import { auth } from '@/lib/auth';
 
 const prisma = new PrismaClient();
@@ -18,7 +18,14 @@ export default async function LessonPage({ params }: LessonPageProps) {
 
   const lesson = await prisma.curriculumLesson.findUnique({
     where: { id: lessonId },
-    include: {
+    select: {
+      id: true,
+      title: true,
+      summary: true,
+      estimatedMinutes: true,
+      difficultyLevel: true,
+      useLessonRunner: true,
+      lessonRunnerConfig: true,
       vocabularyItems: {
         orderBy: { orderIndex: 'asc' },
       },
@@ -28,7 +35,11 @@ export default async function LessonPage({ params }: LessonPageProps) {
       exercises: {
         orderBy: { orderIndex: 'asc' },
       },
-      module: true,
+      module: {
+        select: { title: true },
+      },
+      moduleId: true,
+      orderIndex: true,
     },
   });
 
@@ -63,11 +74,13 @@ export default async function LessonPage({ params }: LessonPageProps) {
   });
 
   return (
-    <LessonContent
+    <LessonPageContent
       lesson={lesson}
       userProgress={userProgress}
       nextLesson={nextLesson}
       userId={session?.user?.id}
+      useLessonRunner={lesson.useLessonRunner}
+      lessonRunnerConfig={lesson.lessonRunnerConfig}
     />
   );
 }
