@@ -1,0 +1,31 @@
+{
+  "route": "/en/learn",
+  "viewport": "iPhone13",
+  "timestamp": "2025-12-30T15:55:44.314Z",
+  "overflow": {
+    "hasOverflow": false,
+    "elements": []
+  },
+  "i18nKeys": [
+    "nav.reader",
+    "nav.more",
+    "nav.reader",
+    "nav.reader",
+    "nav.more"
+  ],
+  "consoleErrors": [
+    "%c%s%c background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   Error: MISSING_MESSAGE: Could",
+    "IntlError: MISSING_MESSAGE: Could not resolve `nav.reader` in messages for locale `en`.\n    at getFallbackFromErrorAndNotify (http://localhost:3000/_next/static/chunks/node_modules_288bcfb3._.js:1370:",
+    "IntlError: MISSING_MESSAGE: Could not resolve `nav.more` in messages for locale `en`.\n    at getFallbackFromErrorAndNotify (http://localhost:3000/_next/static/chunks/node_modules_288bcfb3._.js:1370:23",
+    "IntlError: MISSING_MESSAGE: Could not resolve `nav.reader` in messages for locale `en`.\n    at getFallbackFromErrorAndNotify (http://localhost:3000/_next/static/chunks/node_modules_288bcfb3._.js:1370:",
+    "IntlError: MISSING_MESSAGE: Could not resolve `nav.more` in messages for locale `en`.\n    at getFallbackFromErrorAndNotify (http://localhost:3000/_next/static/chunks/node_modules_288bcfb3._.js:1370:23",
+    "IntlError: MISSING_MESSAGE: Could not resolve `nav.reader` in messages for locale `en`.\n    at getFallbackFromErrorAndNotify (http://localhost:3000/_next/static/chunks/node_modules_288bcfb3._.js:1370:",
+    "IntlError: MISSING_MESSAGE: Could not resolve `nav.more` in messages for locale `en`.\n    at getFallbackFromErrorAndNotify (http://localhost:3000/_next/static/chunks/node_modules_288bcfb3._.js:1370:23",
+    "IntlError: MISSING_MESSAGE: Could not resolve `nav.reader` in messages for locale `en`.\n    at getFallbackFromErrorAndNotify (http://localhost:3000/_next/static/chunks/node_modules_288bcfb3._.js:1370:",
+    "IntlError: MISSING_MESSAGE: Could not resolve `nav.more` in messages for locale `en`.\n    at getFallbackFromErrorAndNotify (http://localhost:3000/_next/static/chunks/node_modules_288bcfb3._.js:1370:23",
+    "IntlError: MISSING_MESSAGE: Could not resolve `nav.reader` in messages for locale `en`.\n    at getFallbackFromErrorAndNotify (http://localhost:3000/_next/static/chunks/node_modules_288bcfb3._.js:1370:"
+  ],
+  "networkErrors": [],
+  "brokenImages": [],
+  "screenshot": "iPhone13-LearnDashboard.png"
+}
