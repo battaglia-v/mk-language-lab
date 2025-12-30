@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { ArrowLeft, BookOpen, CheckCircle2, Lock, ChevronRight, Trophy } from 'lucide-react';
@@ -12,11 +12,12 @@ import { cn } from '@/lib/utils';
 import grammarLessonsData from '@/data/grammar-lessons.json';
 import { type GrammarLesson } from '@/lib/grammar-engine';
 import { PageContainer } from '@/components/layout';
+import type { LessonResults } from '@/lib/lesson-runner/types';
 
-// Lazy load the exercise component
+// Lazy load the lesson wrapper
 import dynamic from 'next/dynamic';
-const GrammarExerciseCard = dynamic(
-  () => import('@/components/learn/GrammarExerciseCard').then(mod => mod.GrammarExerciseCard),
+const GrammarLessonWrapper = dynamic(
+  () => import('@/components/learn/GrammarLessonWrapper').then(mod => ({ default: mod.GrammarLessonWrapper })),
   {
     ssr: false,
     loading: () => (
@@ -39,8 +40,7 @@ export default function GrammarPracticePage() {
   const locale = useLocale() as 'en' | 'mk';
   
   const [activeLesson, setActiveLesson] = useState<GrammarLesson | null>(null);
-  const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
-  const [exerciseResults, setExerciseResults] = useState<Record<string, { correct: boolean; xpEarned: number }>>({});
+  const [lessonResults, setLessonResults] = useState<LessonResults | null>(null);
   const [showResults, setShowResults] = useState(false);
   
   // Load progress from localStorage
@@ -77,102 +77,60 @@ export default function GrammarPracticePage() {
 
   const handleStartLesson = (lesson: GrammarLesson) => {
     setActiveLesson(lesson);
-    setCurrentExerciseIndex(0);
-    setExerciseResults({});
+    setLessonResults(null);
     setShowResults(false);
   };
 
-  const handleExerciseComplete = useCallback((result: {
-    exerciseId: string;
-    correct: boolean;
-    attempts: number;
-    xpEarned: number;
-    skipped: boolean;
-  }) => {
-    setExerciseResults(prev => ({
-      ...prev,
-      [result.exerciseId]: { correct: result.correct, xpEarned: result.xpEarned },
-    }));
-    
-    // Advance to next exercise or show results
+  const handleLessonComplete = useCallback((results: LessonResults) => {
     if (!activeLesson) return;
-    
-    if (currentExerciseIndex < activeLesson.exercises.length - 1) {
-      setCurrentExerciseIndex(prev => prev + 1);
-    } else {
-      // Lesson complete - calculate and save score
-      // Need to include this result in the count
-      const allResults = {
-        ...exerciseResults,
-        [result.exerciseId]: { correct: result.correct, xpEarned: result.xpEarned },
-      };
-      const correctCount = Object.values(allResults).filter(r => r.correct).length;
-      const totalCount = activeLesson.exercises.length;
-      const score = Math.round((correctCount / totalCount) * 100);
-      
-      const newProgress: LessonProgress = {
-        lessonId: activeLesson.id,
-        completed: true,
-        score,
-        completedAt: new Date().toISOString(),
-      };
-      
-      const updatedProgress = [
-        ...progress.filter(p => p.lessonId !== activeLesson.id),
-        newProgress,
-      ];
-      
-      setProgress(updatedProgress);
-      
-      try {
-        localStorage.setItem('grammar-progress', JSON.stringify(updatedProgress));
-      } catch {
-        // Ignore storage errors
-      }
-      
-      setShowResults(true);
+
+    // Store results
+    setLessonResults(results);
+
+    // Calculate score based on LessonRunner results
+    const correctCount = results.answers.filter(a => a.correct).length;
+    const totalCount = results.answers.length;
+    const score = Math.round((correctCount / totalCount) * 100);
+
+    // Save progress
+    const newProgress: LessonProgress = {
+      lessonId: activeLesson.id,
+      completed: true,
+      score,
+      completedAt: new Date().toISOString(),
+    };
+
+    const updatedProgress = [
+      ...progress.filter(p => p.lessonId !== activeLesson.id),
+      newProgress,
+    ];
+
+    setProgress(updatedProgress);
+
+    try {
+      localStorage.setItem('grammar-progress', JSON.stringify(updatedProgress));
+    } catch {
+      // Ignore storage errors
     }
-  }, [activeLesson, currentExerciseIndex, exerciseResults, progress]);
+
+    setShowResults(true);
+  }, [activeLesson, progress]);
 
   const handleBackToLessons = () => {
     setActiveLesson(null);
     setShowResults(false);
   };
 
-  const handleSkip = useCallback(() => {
-    if (!activeLesson) return;
-    if (currentExerciseIndex < activeLesson.exercises.length - 1) {
-      setCurrentExerciseIndex(prev => prev + 1);
-    }
-  }, [activeLesson, currentExerciseIndex]);
-
-  const currentExercise = activeLesson?.exercises[currentExerciseIndex];
-
   // Calculate overall progress
   const completedLessons = progress.filter(p => p.completed).length;
   const overallProgress = lessons.length > 0 ? (completedLessons / lessons.length) * 100 : 0;
 
-  // Exercise translations - must be before any conditional returns
-  const exerciseTranslations = useMemo(() => ({
-    checkAnswer: t('checkAnswer'),
-    tryAgain: t('tryAgain'),
-    skip: t('exit'),
-    next: t('nextExercise'),
-    correct: t('correct'),
-    incorrect: t('incorrect'),
-    showHint: t('showAnswer'),
-    tapToSelect: 'Tap to select',
-    arrangeWords: 'Arrange the words',
-    findError: 'Find the error',
-    fillBlank: t('exerciseTypes.fillBlank'),
-  }), [t]);
-
   // Results view
-  if (showResults && activeLesson) {
-    const correctCount = Object.values(exerciseResults).filter(r => r.correct).length;
-    const totalCount = activeLesson.exercises.length;
+  if (showResults && activeLesson && lessonResults) {
+    const correctCount = lessonResults.answers.filter(a => a.correct).length;
+    const totalCount = lessonResults.answers.length;
     const score = Math.round((correctCount / totalCount) * 100);
-    const xpEarned = Object.values(exerciseResults).reduce((sum, r) => sum + r.xpEarned, 0);
+    const xpEarned = lessonResults.xpEarned;
 
     return (
       <PageContainer size="md" className="flex flex-col items-center gap-6 pb-24 sm:pb-8">
@@ -221,39 +179,14 @@ export default function GrammarPracticePage() {
   }
 
   // Active lesson view
-  if (activeLesson && currentExercise) {
-    const progressPercent = ((currentExerciseIndex + 1) / activeLesson.exercises.length) * 100;
-
+  if (activeLesson && !showResults) {
     return (
-      <PageContainer size="md" className="flex flex-col gap-6 pb-24 sm:pb-8">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleBackToLessons}
-            className="gap-2"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            {t('exit')}
-          </Button>
-          <span className="text-sm text-muted-foreground">
-            {t('exerciseProgress', { current: currentExerciseIndex + 1, total: activeLesson.exercises.length })}
-          </span>
-        </div>
-
-        {/* Progress bar */}
-        <Progress value={progressPercent} className="h-2" />
-
-        {/* Exercise Card */}
-        <GrammarExerciseCard
-          exercise={currentExercise}
-          locale={locale}
-          onComplete={handleExerciseComplete}
-          onSkip={handleSkip}
-          t={exerciseTranslations}
-        />
-      </PageContainer>
+      <GrammarLessonWrapper
+        lesson={activeLesson}
+        onComplete={handleLessonComplete}
+        onExit={handleBackToLessons}
+        locale={locale}
+      />
     );
   }
 

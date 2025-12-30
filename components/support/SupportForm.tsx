@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useState, useMemo } from "react";
 import {
   Dialog,
   DialogContent,
@@ -14,6 +13,24 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+
+// Fallback translations for when component renders outside i18n context (e.g., error boundary)
+const fallbackTranslations: Record<string, string> = {
+  title: "Contact Support",
+  subtitle: "We're here to help. Fill out the form below and we'll get back to you as soon as possible.",
+  name: "Name",
+  email: "Email",
+  subject: "Subject",
+  description: "Description",
+  required: "This field is required",
+  invalidEmail: "Please enter a valid email",
+  errorDetails: "Error Details",
+  success: "Your message has been sent successfully!",
+  error: "Something went wrong. Please try again.",
+  cancel: "Cancel",
+  submit: "Submit",
+  sending: "Sending...",
+};
 
 interface ErrorDetails {
   message: string;
@@ -42,7 +59,8 @@ interface FormErrors {
 }
 
 export default function SupportForm({ open, onOpenChange, errorDetails }: SupportFormProps) {
-  const t = useTranslations("support");
+  // Use fallback translations - this component may render outside i18n context (error boundary)
+  const t = useMemo(() => (key: string) => fallbackTranslations[key] || key, []);
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",

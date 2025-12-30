@@ -30,11 +30,8 @@ test.describe('LessonRunner - Day 18 Quiz', () => {
     const firstChoice = page.locator('button[data-selected="false"]').first();
     await firstChoice.click();
 
-    // Click Check button
-    await page.getByRole('button', { name: /check/i }).click();
-
-    // Wait for feedback to appear
-    await expect(page.locator('text=/correct|not quite/i')).toBeVisible({ timeout: 3000 });
+    // Wait for feedback to appear (validation happens automatically after selection with slight delay)
+    await expect(page.getByText(/Not quite|Correct!/)).toBeVisible({ timeout: 5000 });
 
     // Click Continue button
     await page.getByRole('button', { name: /continue/i }).click();

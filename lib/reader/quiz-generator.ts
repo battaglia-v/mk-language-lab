@@ -22,11 +22,15 @@ export function generateQuizFromSample(
   const { maxQuestions = 10, includeGrammar = false } = options;
   const steps: Step[] = [];
 
+  // Defensive: ensure arrays exist and filter out undefined entries
+  const vocabulary = (sample.vocabulary || []).filter((v) => v && v.mk && v.en);
+  const expressions = (sample.expressions || []).filter((e) => e && e.mk && e.en);
+
   // 1. Vocabulary questions (MK → EN)
-  const vocabSteps = sample.vocabulary.map((vocab, index): MultipleChoiceStep => {
+  const vocabSteps = vocabulary.map((vocab, index): MultipleChoiceStep => {
     const distractors = generateDistractors(
       vocab.en,
-      sample.vocabulary.map((v) => v.en),
+      vocabulary.map((v) => v.en),
       3
     );
 
@@ -42,20 +46,22 @@ export function generateQuizFromSample(
 
   // Update correct index after shuffle
   vocabSteps.forEach((step) => {
-    step.correctIndex = step.choices.indexOf(
-      sample.vocabulary[parseInt(step.id.split('-')[2])].en
-    );
+    const idx = parseInt(step.id.split('-')[3]);
+    const vocabItem = vocabulary[idx];
+    if (vocabItem) {
+      step.correctIndex = step.choices.indexOf(vocabItem.en);
+    }
   });
 
   steps.push(...vocabSteps.slice(0, Math.min(5, vocabSteps.length)));
 
   // 2. Vocabulary questions (EN → MK) - reverse direction
-  const reverseVocabSteps = sample.vocabulary
+  const reverseVocabSteps = vocabulary
     .slice(0, 3)
     .map((vocab, index): MultipleChoiceStep => {
       const distractors = generateDistractors(
         vocab.mk,
-        sample.vocabulary.map((v) => v.mk),
+        vocabulary.map((v) => v.mk),
         3
       );
 
@@ -73,11 +79,11 @@ export function generateQuizFromSample(
   steps.push(...reverseVocabSteps);
 
   // 3. Expression questions
-  const expressionSteps = sample.expressions.map(
+  const expressionSteps = expressions.map(
     (expr, index): MultipleChoiceStep => {
       const distractors = generateDistractors(
         expr.en,
-        sample.expressions.map((e) => e.en),
+        expressions.map((e) => e.en),
         3
       );
 
