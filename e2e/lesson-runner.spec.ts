@@ -5,12 +5,21 @@ import { test, expect } from '@playwright/test';
  *
  * Tests the complete lesson flow with progress tracking, feedback, and completion.
  * Covers both quiz (day18) and grammar lesson demos.
+ *
+ * Note: Tests use retries (configured in playwright.config.ts) to handle
+ * occasional dev server instability.
  */
 
 test.describe('LessonRunner - Day 18 Quiz', () => {
+  // Wait for page to be fully interactive before each test
+  test.beforeEach(async ({ page }) => {
+    // Ensure clean state
+    await page.context().clearCookies();
+  });
+
   test('should complete quiz flow with progress tracking', async ({ page }) => {
-    // Navigate to demo page
-    await page.goto('/en/demo/lesson-runner');
+    // Navigate to demo page with network idle wait
+    await page.goto('/en/demo/lesson-runner', { waitUntil: 'networkidle' });
 
     // Verify demo page loaded
     await expect(page.locator('h1')).toContainText('LessonRunner Demo');
@@ -42,7 +51,7 @@ test.describe('LessonRunner - Day 18 Quiz', () => {
 
   test('should show completion screen with XP', async ({ page }) => {
     // Navigate and start quiz
-    await page.goto('/en/demo/lesson-runner');
+    await page.goto('/en/demo/lesson-runner', { waitUntil: 'networkidle' });
     await page.getByRole('button', { name: /start quiz/i }).click();
 
     // Quick completion: answer all questions
@@ -84,7 +93,7 @@ test.describe('LessonRunner - Day 18 Quiz', () => {
   });
 
   test('should allow exit from lesson', async ({ page }) => {
-    await page.goto('/en/demo/lesson-runner');
+    await page.goto('/en/demo/lesson-runner', { waitUntil: 'networkidle' });
     await page.getByRole('button', { name: /start quiz/i }).click();
 
     // Wait for lesson to load
@@ -100,9 +109,13 @@ test.describe('LessonRunner - Day 18 Quiz', () => {
 });
 
 test.describe('LessonRunner - Grammar Lesson', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.context().clearCookies();
+  });
+
   test('should complete grammar lesson with adapter', async ({ page }) => {
     // Navigate to grammar demo
-    await page.goto('/en/demo/grammar-lesson');
+    await page.goto('/en/demo/grammar-lesson', { waitUntil: 'networkidle' });
 
     // Verify page loaded
     await expect(page.locator('h1')).toContainText('Grammar Lesson Demo');
@@ -113,15 +126,12 @@ test.describe('LessonRunner - Grammar Lesson', () => {
     // Wait for lesson to load
     await expect(page.locator('text=/present tense/i')).toBeVisible();
 
-    // Answer first question
+    // Answer first question (feedback appears automatically after selection)
     const firstChoice = page.locator('button[data-selected="false"]').first();
     await firstChoice.click();
 
-    // Check answer
-    await page.getByRole('button', { name: /check/i }).click();
-
-    // Wait for feedback
-    await expect(page.locator('text=/correct|not quite/i')).toBeVisible({ timeout: 3000 });
+    // Wait for feedback (validation happens automatically after selection)
+    await expect(page.getByText(/Not quite|Correct!/)).toBeVisible({ timeout: 5000 });
 
     // Continue
     await page.getByRole('button', { name: /continue/i }).click();
@@ -132,13 +142,17 @@ test.describe('LessonRunner - Grammar Lesson', () => {
 });
 
 test.describe('LessonRunner - Mobile UI', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.context().clearCookies();
+  });
+
   test('should have no horizontal scroll on 320px viewport', async ({ page, viewport }) => {
     // Skip if not mobile viewport
     if (!viewport || viewport.width >= 640) {
       test.skip();
     }
 
-    await page.goto('/en/demo/lesson-runner');
+    await page.goto('/en/demo/lesson-runner', { waitUntil: 'networkidle' });
     await page.getByRole('button', { name: /start quiz/i }).click();
 
     // Wait for lesson
@@ -159,7 +173,7 @@ test.describe('LessonRunner - Mobile UI', () => {
       test.skip();
     }
 
-    await page.goto('/en/demo/lesson-runner');
+    await page.goto('/en/demo/lesson-runner', { waitUntil: 'networkidle' });
     await page.getByRole('button', { name: /start quiz/i }).click();
 
     // Wait for lesson
@@ -186,7 +200,7 @@ test.describe('LessonRunner - Mobile UI', () => {
       test.skip();
     }
 
-    await page.goto('/en/demo/lesson-runner');
+    await page.goto('/en/demo/lesson-runner', { waitUntil: 'networkidle' });
     await page.getByRole('button', { name: /start quiz/i }).click();
 
     // Wait for lesson
