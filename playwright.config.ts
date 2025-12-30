@@ -9,8 +9,11 @@ export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  // Retries help with flaky dev server issues
+  retries: process.env.CI ? 2 : 1,
+  // Limit workers to prevent dev server overload
+  // CI: 1 worker for stability, Local: 2 workers for speed with stability
+  workers: process.env.CI ? 1 : 2,
   reporter: 'html',
   // Increase timeout for slower CI environments
   timeout: 60000,
@@ -22,6 +25,8 @@ export default defineConfig({
     trace: 'on-first-retry',
     // Take screenshot on failure for debugging
     screenshot: 'only-on-failure',
+    // Add video on retry to help debug flaky tests
+    video: 'on-first-retry',
   },
 
   projects: [
