@@ -49,22 +49,13 @@ export default function ReaderPage() {
     <PageContainer size="xl" className="flex flex-col gap-5 pb-24 sm:gap-6 sm:pb-10">
       {/* Header */}
       <header className="space-y-3 rounded-2xl border border-border/40 bg-gradient-to-br from-primary/10 via-background/70 to-secondary/10 p-5 sm:p-6 shadow-[0_20px_60px_rgba(0,0,0,0.25)]">
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <div className="flex flex-wrap items-center gap-3">
-            <h1 className="text-3xl font-bold text-foreground sm:text-4xl">
-              {t('title', { default: 'Reader' })}
-            </h1>
-            <span className="rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">
-              Word-by-Word
-            </span>
-            <span className="rounded-full bg-white/8 px-3 py-1 text-xs font-semibold text-foreground/80">
-              Smart Reveal
-            </span>
-            <span className="rounded-full bg-white/8 px-3 py-1 text-xs font-semibold text-foreground/80">
-              Import &amp; Analyze
-            </span>
-          </div>
-          {/* Version badge removed for production - enable via feature flag if needed for debugging */}
+        <div className="flex items-center gap-3">
+          <h1 className="text-2xl font-bold text-foreground sm:text-3xl">
+            {t('title', { default: 'Reader' })}
+          </h1>
+          <span className="rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">
+            Word-by-Word
+          </span>
         </div>
         <p className="text-sm text-muted-foreground sm:text-base sm:max-w-3xl">
           {t('readerEmptyDescription', {
