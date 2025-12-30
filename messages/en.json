@@ -1027,7 +1027,15 @@
       "grammar": {
         "title": "Grammar Drills",
         "description": "Master Macedonian grammar patterns"
+      },
+      "cloze": {
+        "title": "Cloze",
+        "description": "Fill in the blank sentences"
       }
+    },
+    "cloze": {
+      "sessionComplete": "Session Complete",
+      "addMore": "+5 More"
     },
     "streakCalendar": {
       "title": "Practice Activity",
