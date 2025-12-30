@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { ArrowRight, Volume2, Brain, Heart, RotateCcw, Settings2, Sparkles } from 'lucide-react';
+import { ArrowRight, Volume2, Brain, Heart, RotateCcw, Settings2, Sparkles, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { BottomSheet } from '@/components/ui/BottomSheet';
@@ -159,6 +159,19 @@ export function PracticeHub() {
           <div className="flex-1 min-w-0">
             <h3 className="font-semibold text-foreground">{t('modes.grammar.title')}</h3>
             <p className="text-sm text-muted-foreground truncate">{t('modes.grammar.description')}</p>
+          </div>
+          <ArrowRight className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+        </Link>
+        <Link
+          href={`/${locale}/practice/cloze`}
+          className="group glass-card flex items-center gap-4 rounded-2xl p-4 transition-all hover:bg-primary/5 hover:border-primary/30"
+        >
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-600">
+            <FileText className="h-6 w-6 text-white" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="font-semibold text-foreground">{t('modes.cloze.title', { default: 'Cloze' })}</h3>
+            <p className="text-sm text-muted-foreground truncate">{t('modes.cloze.description', { default: 'Fill in the blank sentences' })}</p>
           </div>
           <ArrowRight className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
         </Link>
