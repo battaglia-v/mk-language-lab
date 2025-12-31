@@ -569,12 +569,12 @@ function findContextualMeaning(
   return { primary, alternatives, contextHint: entry.contextHint };
 }
 
-// Get alternative translations for a word (legacy function for compatibility)
-function getAlternativeTranslations(word: string): string[] | undefined {
-  const normalized = word.toLowerCase();
-  const entry = MULTI_MEANING_WORDS[normalized];
-  return entry ? entry.meanings.slice(1) : undefined;
-}
+// Legacy function for compatibility - available if needed
+// function getAlternativeTranslations(word: string): string[] | undefined {
+//   const normalized = word.toLowerCase();
+//   const entry = MULTI_MEANING_WORDS[normalized];
+//   return entry ? entry.meanings.slice(1) : undefined;
+// }
 
 // Calculate text difficulty metrics
 function calculateTextDifficulty(words: string[]): {
