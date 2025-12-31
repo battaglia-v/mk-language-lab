@@ -5,11 +5,14 @@ import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import { ArrowLeft, Check, X, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
 import { SegmentedControl } from '@/components/ui/SegmentedControl';
+import { LessonShell } from '@/components/shell/LessonShell';
+import { ChoiceButton } from '@/components/ui/ChoiceButton';
+import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { cn } from '@/lib/utils';
 import { getFillBlanksSession, generateQuestion, FILL_BLANK_XP, type FillBlankDifficulty } from '@/data/fill-blanks-seed';
 import { addLocalXP } from '@/lib/gamification/local-xp';
+import { triggerHaptic } from '@/lib/haptics';
 
 type Question = ReturnType<typeof generateQuestion>;
 
@@ -39,6 +42,7 @@ export default function FillBlanksPage() {
     setSelected(option);
     const isCorrect = option === questions[currentIndex].answer;
     setFeedback(isCorrect ? 'correct' : 'incorrect');
+    triggerHaptic(isCorrect ? 'success' : 'warning');
     if (isCorrect) {
       const xpEarned = questions[currentIndex].xp;
       setScore(s => ({ correct: s.correct + 1, xp: s.xp + xpEarned }));
@@ -60,10 +64,11 @@ export default function FillBlanksPage() {
   const question = questions[currentIndex];
   const isComplete = !started && score.xp > 0;
 
+  // Difficulty Selection Screen
   if (!started && !isComplete) {
     return (
-      <div className="flex flex-col min-h-[calc(100vh-4rem)] pb-24 sm:pb-6">
-        <header className="flex items-center gap-3 px-4 py-3 border-b border-border/50">
+      <div className="flex flex-col min-h-[100dvh] pb-24 sm:pb-6">
+        <header className="flex items-center gap-3 px-4 py-3 border-b border-border/50" style={{ paddingTop: 'var(--safe-area-top)' }}>
           <Button asChild variant="ghost" size="icon" className="h-10 w-10 rounded-full">
             <Link href={`/${locale}/practice`}><ArrowLeft className="h-5 w-5" /></Link>
           </Button>
@@ -83,18 +88,19 @@ export default function FillBlanksPage() {
             value={difficulty}
             onChange={(v) => setDifficulty(v as FillBlankDifficulty)}
           />
-          <Button size="lg" onClick={startSession} className="w-full max-w-xs bg-gradient-to-r from-primary to-amber-500 text-lg font-bold text-slate-950">
+          <PrimaryButton onClick={startSession} className="max-w-xs bg-gradient-to-r from-primary to-amber-500 text-slate-950" haptic="medium">
             Start Practice
-          </Button>
+          </PrimaryButton>
         </div>
       </div>
     );
   }
 
+  // Results Screen
   if (isComplete) {
     return (
-      <div className="flex flex-col min-h-[calc(100vh-4rem)] pb-24 sm:pb-6">
-        <header className="flex items-center gap-3 px-4 py-3 border-b border-border/50">
+      <div className="flex flex-col min-h-[100dvh] pb-24 sm:pb-6">
+        <header className="flex items-center gap-3 px-4 py-3 border-b border-border/50" style={{ paddingTop: 'var(--safe-area-top)' }}>
           <Button asChild variant="ghost" size="icon" className="h-10 w-10 rounded-full">
             <Link href={`/${locale}/practice`}><ArrowLeft className="h-5 w-5" /></Link>
           </Button>
@@ -110,55 +116,67 @@ export default function FillBlanksPage() {
             <span className="text-lg font-bold text-primary">+{score.xp} XP</span>
           </div>
           <div className="flex gap-3 w-full max-w-xs">
-            <Button variant="outline" className="flex-1" onClick={() => setScore({ correct: 0, xp: 0 })}>
+            <PrimaryButton variant="outline" fullWidth={false} className="flex-1" onClick={() => setScore({ correct: 0, xp: 0 })}>
               Change Difficulty
-            </Button>
-            <Button className="flex-1" onClick={startSession}>Play Again</Button>
+            </PrimaryButton>
+            <PrimaryButton fullWidth={false} className="flex-1" onClick={startSession}>
+              Play Again
+            </PrimaryButton>
           </div>
         </div>
       </div>
     );
   }
 
+  // Active Session - Uses LessonShell
   return (
-    <div className="flex flex-col min-h-[calc(100vh-4rem)] pb-24 sm:pb-6">
-      <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-sm border-b border-border/50 px-4 py-3">
-        <div className="flex items-center gap-3">
-          <Button asChild variant="ghost" size="icon" className="h-10 w-10 rounded-full">
-            <Link href={`/${locale}/practice`}><ArrowLeft className="h-5 w-5" /></Link>
-          </Button>
-          <div className="flex-1"><Progress value={progress} className="h-2" /></div>
-          <span className="text-sm font-medium tabular-nums">{currentIndex + 1}/{questions.length}</span>
-        </div>
-      </header>
+    <LessonShell
+      progress={progress}
+      current={currentIndex + 1}
+      total={questions.length}
+      xp={score.xp}
+      closeHref={`/${locale}/practice`}
+      footer={
+        feedback && (
+          <PrimaryButton
+            onClick={handleNext}
+            haptic="light"
+            variant={feedback === 'correct' ? 'success' : 'default'}
+          >
+            {currentIndex < questions.length - 1 ? 'Continue' : 'See Results'}
+          </PrimaryButton>
+        )
+      }
+    >
       <div className="flex-1 flex flex-col px-4 py-6">
         <div className="max-w-lg mx-auto w-full space-y-6">
+          {/* Question */}
           <div className="text-center space-y-3">
             <p className="text-2xl font-bold">{question?.questionText}</p>
             <p className="text-muted-foreground">{question?.translation}</p>
           </div>
+
+          {/* Answer Choices */}
           <div className="grid grid-cols-2 gap-3">
             {question?.options.map((option) => {
               const isAnswer = option === question.answer;
               const isSelected = option === selected;
               return (
-                <button
+                <ChoiceButton
                   key={option}
                   onClick={() => handleSelect(option)}
-                  disabled={!!feedback}
-                  className={cn(
-                    'rounded-xl border-2 p-4 text-lg font-medium transition-all',
-                    !feedback && 'border-border/50 hover:border-primary/50 hover:bg-primary/5',
-                    feedback && isAnswer && 'border-emerald-500 bg-emerald-500/10 text-emerald-400',
-                    feedback && isSelected && !isAnswer && 'border-red-500 bg-red-500/10 text-red-400',
-                    feedback && !isSelected && !isAnswer && 'opacity-50'
-                  )}
+                  state={feedback ? (isAnswer ? 'correct' : isSelected ? 'incorrect' : 'none') : 'none'}
+                  isAnswer={isAnswer}
+                  isSelected={isSelected}
+                  compact
                 >
                   {option}
-                </button>
+                </ChoiceButton>
               );
             })}
           </div>
+
+          {/* Feedback Message */}
           {feedback && (
             <div className={cn(
               'rounded-xl p-4 flex items-center gap-3 animate-feedback-correct',
@@ -172,13 +190,6 @@ export default function FillBlanksPage() {
           )}
         </div>
       </div>
-      {feedback && (
-        <div className="sticky bottom-0 border-t border-border/50 bg-background/95 backdrop-blur-sm px-4 py-3">
-          <Button size="lg" className="w-full" onClick={handleNext}>
-            {currentIndex < questions.length - 1 ? 'Next' : 'See Results'}
-          </Button>
-        </div>
-      )}
-    </div>
+    </LessonShell>
   );
 }
