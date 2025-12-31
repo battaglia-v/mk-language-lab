@@ -115,6 +115,10 @@
     "badge": "Free language learning",
     "ctaPrimary": "Start lesson",
     "ctaSecondary": "Sign in",
+    "guestSubtitle": "5 minutes a day to start speaking.",
+    "guestCta": "Start Learning",
+    "guestSignIn": "Already have an account?",
+    "guestSignInLink": "Sign in",
     "previewDuration": "5 minutes",
     "previewXP": "+10 XP",
     "benefitOne": "Quick daily lessons that fit your schedule",
@@ -1058,7 +1062,7 @@
         "title": "Word Sprint",
         "description": "Fill gaps at 3 difficulty levels",
         "time": "2–5 min",
-        "xp": "+8–20 XP"
+        "xp": "+2–5 XP/q"
       },
       "vocabulary": {
         "title": "Vocabulary",
@@ -1413,7 +1417,7 @@
     "subtitle": "MK Language Lab",
     "description": "A focused app for learning Macedonian through sentence-based practice, translation tools, and curated content.",
     "features": "Features",
-    "feature1": "Sentence-based practice with Word Gaps, Grammar drills, and vocabulary flashcards",
+    "feature1": "Sentence-based practice with Word Sprint, Grammar drills, and vocabulary flashcards",
     "feature2": "Translator with Macedonian ↔ English support and saved phrase practice",
     "feature3": "Interactive Reader with word-by-word translations",
     "feature4": "XP tracking with daily goals and streaks",
