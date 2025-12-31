@@ -16,11 +16,11 @@ import { MultipleChoiceInput } from './MultipleChoiceInput';
 import { WordBankInput } from './WordBankInput';
 import { TypedInput, isAnswerCorrect } from './TypedInput';
 import { SessionComplete } from './SessionComplete';
-import { type Difficulty, type WordSprintItem, SESSION_XP, DIFFICULTY_COLORS } from './types';
+import { type Difficulty, type WordSprintItem, type SessionLength, SESSION_XP, BASE_XP_PER_QUESTION, getComboMultiplier, DIFFICULTY_COLORS } from './types';
 import { getWordSprintSession, refreshItemOptions } from '@/content/word-sprint/sentences';
 
 type Props = {
-  initialCount?: number;
+  initialCount?: SessionLength;
   initialDifficulty?: Difficulty;
 };
 
@@ -30,6 +30,7 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
   const { data: authSession } = useSession();
 
   const [difficulty, setDifficulty] = useState<Difficulty | null>(initialDifficulty ?? null);
+  const [sessionLength, setSessionLength] = useState<SessionLength>(initialCount);
   const [showPicker, setShowPicker] = useState(!initialDifficulty);
   const [queue, setQueue] = useState<WordSprintItem[]>([]);
   const [index, setIndex] = useState(0);
@@ -37,19 +38,27 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [correctCount, setCorrectCount] = useState(0);
   const [totalAnswered, setTotalAnswered] = useState(0);
+  const [currentCombo, setCurrentCombo] = useState(0);
+  const [bestCombo, setBestCombo] = useState(0);
+  const [totalXP, setTotalXP] = useState(0);
   const [showXP, setShowXP] = useState(false);
+  const [earnedXP, setEarnedXP] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const sessionStart = useRef(Date.now());
 
-  const startSession = (diff: Difficulty) => {
+  const startSession = (diff: Difficulty, length: SessionLength) => {
     setDifficulty(diff);
+    setSessionLength(length);
     setShowPicker(false);
-    const items = getWordSprintSession(initialCount, diff).map(refreshItemOptions);
+    const items = getWordSprintSession(length, diff).map(refreshItemOptions);
     setQueue(items);
     setIndex(0);
     setCorrectCount(0);
     setTotalAnswered(0);
+    setCurrentCombo(0);
+    setBestCombo(0);
+    setTotalXP(0);
     setIsComplete(false);
     sessionStart.current = Date.now();
   };
@@ -65,13 +74,13 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
     setIsSpeaking(false);
   }, []);
 
-  const syncXPToServer = useCallback(async (xp: number, diff: Difficulty, correct: number, total: number) => {
+  const syncXPToServer = useCallback(async (xp: number, diff: Difficulty, correct: number, total: number, bestStreak: number) => {
     if (!authSession?.user) return;
     try {
       await fetch('/api/practice/complete', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ xp, mode: 'word-sprint', difficulty: diff, correct, total }),
+        body: JSON.stringify({ xp, mode: 'word-sprint', difficulty: diff, correct, total, bestStreak }),
       });
     } catch (e) {
       console.error('Failed to sync XP:', e);
@@ -82,20 +91,21 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
     if (index + 1 >= queue.length) {
       setIsComplete(true);
       if (difficulty) {
-        const xp = SESSION_XP[difficulty];
-        addLocalXP(xp);
-        syncXPToServer(xp, difficulty, correctCount, totalAnswered);
+        const finalXP = totalXP;
+        setEarnedXP(finalXP);
+        addLocalXP(finalXP);
+        syncXPToServer(finalXP, difficulty, correctCount, totalAnswered, bestCombo);
         setShowXP(true);
       }
       return;
     }
     setIndex((i) => i + 1);
     resetCard();
-  }, [index, queue.length, resetCard, difficulty, syncXPToServer, correctCount, totalAnswered]);
+  }, [index, queue.length, resetCard, difficulty, syncXPToServer, correctCount, totalAnswered, bestCombo, totalXP]);
 
   const handleAnswer = useCallback(
     (answer: string) => {
-      if (!card || feedback) return;
+      if (!card || feedback || !difficulty) return;
       setSelectedAnswer(answer);
       setTotalAnswered((c) => c + 1);
 
@@ -110,7 +120,24 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
 
       if (isCorrect) {
         setCorrectCount((c) => c + 1);
+
+        // Increase combo
+        setCurrentCombo((combo) => {
+          const newCombo = combo + 1;
+          setBestCombo((best) => Math.max(best, newCombo));
+
+          // Calculate XP with combo multiplier
+          const baseXP = BASE_XP_PER_QUESTION[difficulty];
+          const multiplier = getComboMultiplier(newCombo);
+          const xpEarned = baseXP * multiplier;
+          setTotalXP((total) => total + xpEarned);
+
+          return newCombo;
+        });
       } else {
+        // Reset combo on incorrect answer
+        setCurrentCombo(0);
+
         const reinsertAt = Math.min(index + 2 + Math.floor(Math.random() * 2), queue.length);
         const refreshedItem = refreshItemOptions(card);
         setQueue((q) => [...q.slice(0, reinsertAt), refreshedItem, ...q.slice(reinsertAt)]);
@@ -147,7 +174,12 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
   const goHarder = () => {
     if (!difficulty) return;
     const next: Difficulty = difficulty === 'easy' ? 'medium' : 'hard';
-    startSession(next);
+    startSession(next, sessionLength);
+  };
+
+  const playAgain = () => {
+    if (!difficulty) return;
+    startSession(difficulty, sessionLength);
   };
 
   const endSession = () => {
@@ -189,13 +221,16 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
   if (isComplete && difficulty) {
     return (
       <>
-        {showXP && <XPAnimation amount={SESSION_XP[difficulty]} onComplete={() => setShowXP(false)} />}
+        {showXP && <XPAnimation amount={earnedXP} onComplete={() => setShowXP(false)} />}
         <SessionComplete
           difficulty={difficulty}
           correctCount={correctCount}
           totalAnswered={totalAnswered}
+          totalXP={totalXP}
+          bestCombo={bestCombo}
           onAddMore={addMore}
           onHarder={goHarder}
+          onPlayAgain={playAgain}
           onFinish={endSession}
         />
       </>
@@ -210,6 +245,16 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
         </Button>
         <div className="flex-1"><Progress value={progress} className="h-2" /></div>
         <span className="text-sm font-medium text-muted-foreground">{index + 1}/{total}</span>
+        {difficulty && currentCombo > 0 && (
+          <span className={cn(
+            'text-sm font-bold px-3 py-1.5 rounded-full border-2 transition-all',
+            currentCombo >= 10 ? 'bg-purple-500/20 text-purple-400 border-purple-500/60 animate-pulse' :
+            currentCombo >= 5 ? 'bg-blue-500/20 text-blue-400 border-blue-500/60' :
+            'bg-primary/20 text-primary border-primary/40'
+          )}>
+            {currentCombo}x
+          </span>
+        )}
         {difficulty && (
           <span className={cn('text-xs font-bold px-2 py-1 rounded-full', DIFFICULTY_COLORS[difficulty].bg, DIFFICULTY_COLORS[difficulty].text)}>
             {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}

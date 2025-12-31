@@ -1,15 +1,18 @@
 'use client';
 
-import { Plus, ArrowUp, X } from 'lucide-react';
+import { Plus, ArrowUp, X, RotateCcw, Zap, Target, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { type Difficulty, SESSION_XP, DIFFICULTY_COLORS } from './types';
+import { type Difficulty, DIFFICULTY_COLORS } from './types';
 
 type Props = {
   difficulty: Difficulty;
   correctCount: number;
   totalAnswered: number;
+  totalXP: number;
+  bestCombo: number;
   onAddMore: () => void;
   onHarder: () => void;
+  onPlayAgain: () => void;
   onFinish: () => void;
 };
 
@@ -17,12 +20,14 @@ export function SessionComplete({
   difficulty,
   correctCount,
   totalAnswered,
+  totalXP,
+  bestCombo,
   onAddMore,
   onHarder,
+  onPlayAgain,
   onFinish,
 }: Props) {
   const accuracy = totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 100) : 0;
-  const xp = SESSION_XP[difficulty];
   const canGoHarder = difficulty !== 'hard';
   const nextDifficulty: Difficulty | null = difficulty === 'easy' ? 'medium' : difficulty === 'medium' ? 'hard' : null;
 
@@ -40,14 +45,43 @@ export function SessionComplete({
         <span className="text-lg font-semibold">Session Complete</span>
       </header>
       <div className="flex-1 flex flex-col items-center justify-center px-4 py-8">
-        <div className="text-center space-y-6 max-w-sm">
-          <div className="text-6xl font-bold text-primary">+{xp} XP</div>
-          <div className="text-xl text-muted-foreground">{accuracy}% accuracy</div>
+        <div className="text-center space-y-8 max-w-sm w-full">
+          {/* XP Display */}
+          <div>
+            <div className="text-6xl font-bold text-primary mb-2">+{totalXP} XP</div>
+            <div className="text-sm text-muted-foreground">Total earned this session</div>
+          </div>
+
+          {/* Stats Grid */}
+          <div className="grid grid-cols-3 gap-4 pt-4">
+            <div className="flex flex-col items-center gap-2 p-4 rounded-xl bg-muted/40">
+              <Target className="h-5 w-5 text-primary" />
+              <div className="text-2xl font-bold">{accuracy}%</div>
+              <div className="text-xs text-muted-foreground">Accuracy</div>
+            </div>
+            <div className="flex flex-col items-center gap-2 p-4 rounded-xl bg-muted/40">
+              <Trophy className="h-5 w-5 text-amber-500" />
+              <div className="text-2xl font-bold">{bestCombo}</div>
+              <div className="text-xs text-muted-foreground">Best Streak</div>
+            </div>
+            <div className="flex flex-col items-center gap-2 p-4 rounded-xl bg-muted/40">
+              <Zap className="h-5 w-5 text-emerald-500" />
+              <div className="text-2xl font-bold">{correctCount}</div>
+              <div className="text-xs text-muted-foreground">Correct</div>
+            </div>
+          </div>
+
           <p className="text-sm text-muted-foreground">
-            {correctCount} / {totalAnswered} correct
+            {correctCount} / {totalAnswered} correct answers
           </p>
-          <div className="flex flex-col gap-3 pt-4">
-            <Button onClick={onAddMore} size="lg" className="min-h-[52px] rounded-xl">
+
+          {/* Action Buttons */}
+          <div className="flex flex-col gap-3 pt-2">
+            <Button onClick={onPlayAgain} size="lg" className="min-h-[52px] rounded-xl">
+              <RotateCcw className="h-5 w-5 mr-2" />
+              Play Again
+            </Button>
+            <Button onClick={onAddMore} variant="outline" size="lg" className="min-h-[52px] rounded-xl">
               <Plus className="h-5 w-5 mr-2" />
               +5 More
             </Button>
@@ -68,7 +102,7 @@ export function SessionComplete({
               size="lg"
               className="min-h-[52px] rounded-xl"
             >
-              Finish
+              Back to Practice
             </Button>
           </div>
         </div>

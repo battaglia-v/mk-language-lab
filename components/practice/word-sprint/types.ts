@@ -31,6 +31,9 @@ export type SessionState = {
   correctCount: number;
   totalAnswered: number;
   startTime: number;
+  currentCombo: number;
+  bestCombo: number;
+  totalXP: number;
 };
 
 export type FeedbackState = {
@@ -38,12 +41,30 @@ export type FeedbackState = {
   correctAnswer: string;
 };
 
-// XP rewards by difficulty (awarded per session, not per question)
+// Base XP per correct answer (before combo multiplier)
+export const BASE_XP_PER_QUESTION: Record<Difficulty, number> = {
+  easy: 2,
+  medium: 3,
+  hard: 5,
+};
+
+// Session XP for completion (legacy, kept for backwards compatibility)
 export const SESSION_XP: Record<Difficulty, number> = {
   easy: 8,
   medium: 12,
   hard: 20,
 };
+
+// Combo thresholds for multipliers
+export function getComboMultiplier(combo: number): number {
+  if (combo >= 10) return 3;
+  if (combo >= 5) return 2;
+  return 1;
+}
+
+// Session length options
+export type SessionLength = 10 | 20;
+export const SESSION_LENGTH_OPTIONS: SessionLength[] = [10, 20];
 
 // Difficulty display colors
 export const DIFFICULTY_COLORS: Record<Difficulty, { bg: string; text: string; border: string }> = {

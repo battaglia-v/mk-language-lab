@@ -3,10 +3,11 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
-import { ArrowLeft, Target, Bell, Globe, Palette, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Target, Bell, Globe, Palette, ChevronRight, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PageContainer } from '@/components/layout';
 import { cn } from '@/lib/utils';
+import { clearAllLocalProgress } from '@/lib/local-storage-reset';
 
 const DAILY_GOAL_OPTIONS = [10, 20, 30, 50];
 
@@ -15,6 +16,8 @@ export default function SettingsPage() {
   const t = useTranslations('nav');
 
   const [dailyGoal, setDailyGoal] = useState(20);
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
+  const [resetComplete, setResetComplete] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem('mk-daily-goal');
@@ -26,6 +29,14 @@ export default function SettingsPage() {
   const handleGoalChange = (goal: number) => {
     setDailyGoal(goal);
     localStorage.setItem('mk-daily-goal', String(goal));
+  };
+
+  const handleResetProgress = () => {
+    clearAllLocalProgress();
+    setShowResetConfirm(false);
+    setResetComplete(true);
+    setDailyGoal(20);
+    setTimeout(() => setResetComplete(false), 3000);
   };
 
   const settingsGroups = [
@@ -57,7 +68,7 @@ export default function SettingsPage() {
       icon: Bell,
       description: 'Practice reminders',
       href: '#notifications',
-      badge: 'Coming soon',
+      badge: t('comingSoon'),
     },
     {
       title: 'Language',
@@ -70,7 +81,7 @@ export default function SettingsPage() {
       icon: Palette,
       description: 'Dark mode enabled',
       href: '#appearance',
-      badge: 'Coming soon',
+      badge: t('comingSoon'),
     },
   ];
 
@@ -128,6 +139,49 @@ export default function SettingsPage() {
 
             return <div key={group.title}>{content}</div>;
           })}
+        </div>
+
+        {/* Reset Progress Section */}
+        <div className="pt-6 border-t border-border/40">
+          <div className="flex items-center gap-4 rounded-xl border border-destructive/20 bg-destructive/5 p-4">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-destructive/10">
+              <RotateCcw className="h-5 w-5 text-destructive" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="font-semibold text-foreground">Reset Progress</p>
+              <p className="text-sm text-muted-foreground">Clear all local data and start fresh</p>
+            </div>
+            {!showResetConfirm ? (
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-destructive/40 text-destructive hover:bg-destructive/10"
+                onClick={() => setShowResetConfirm(true)}
+              >
+                Reset
+              </Button>
+            ) : (
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowResetConfirm(false)}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  variant="destructive"
+                  size="sm"
+                  onClick={handleResetProgress}
+                >
+                  Confirm
+                </Button>
+              </div>
+            )}
+          </div>
+          {resetComplete && (
+            <p className="mt-2 text-sm text-emerald-500 text-center">Progress reset successfully!</p>
+          )}
         </div>
       </div>
     </PageContainer>

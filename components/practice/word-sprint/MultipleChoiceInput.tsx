@@ -22,9 +22,12 @@ export function MultipleChoiceInput({
 }: Props) {
   const labels = ['A', 'B', 'C', 'D'];
 
+  // Limit to 2 choices for easy mode (A/B only)
+  const displayOptions = options.slice(0, 2);
+
   return (
-    <div className="grid grid-cols-2 gap-2">
-      {options.map((opt, i) => {
+    <div className="grid grid-cols-1 gap-2 max-w-md mx-auto">
+      {displayOptions.map((opt, i) => {
         const isSelected = selectedAnswer === opt;
         const isCorrectAnswer = opt === correctAnswer;
 
@@ -35,14 +38,14 @@ export function MultipleChoiceInput({
             onClick={() => onSelect(opt)}
             disabled={disabled || !!feedback}
             className={cn(
-              'min-h-[52px] justify-start rounded-xl text-left active:scale-[0.98]',
+              'min-h-[60px] justify-start rounded-xl text-left active:scale-[0.98] text-base',
               isSelected && feedback === 'correct' && 'border-emerald-400 bg-emerald-500/20',
               isSelected && feedback === 'incorrect' && 'border-amber-400 bg-amber-500/20 animate-shake',
               feedback && isCorrectAnswer && 'border-emerald-400 bg-emerald-500/15'
             )}
           >
-            <span className="mr-2 text-muted-foreground">{labels[i]}.</span>
-            {opt}
+            <span className="mr-3 text-lg font-bold text-muted-foreground">{labels[i]}.</span>
+            <span className="flex-1">{opt}</span>
           </Button>
         );
       })}

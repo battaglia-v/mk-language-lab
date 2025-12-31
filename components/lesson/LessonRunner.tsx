@@ -127,12 +127,11 @@ export function LessonRunner({
                 ))}
               </ul>
               <Button
-                variant="outline"
-                size="sm"
+                size="default"
                 onClick={skipStep}
-                className="mt-3"
+                className="mt-4"
               >
-                Skip this exercise
+                Continue
               </Button>
             </div>
           </div>

@@ -83,7 +83,7 @@ export interface TapWordsStep extends BaseStep {
 export interface PronounceStep extends BaseStep {
   type: 'PRONOUNCE';
   text: string; // Text to pronounce
-  audioUrl: string; // Reference audio URL
+  audioUrl?: string; // Reference audio URL (optional - TTS fallback available)
   locale: 'en' | 'mk';
   allowRecording?: boolean; // Whether user can record (default: true)
   allowSkip?: boolean; // Whether user can skip without recording (default: true)

@@ -72,9 +72,7 @@ export function validateStep(step: Step): ValidationResult {
       if (!step.text?.trim()) {
         errors.push({ stepId, field: 'text', message: 'Text to pronounce is required' });
       }
-      if (!step.audioUrl?.trim()) {
-        errors.push({ stepId, field: 'audioUrl', message: 'Reference audio URL is required' });
-      }
+      // audioUrl is optional - TTS fallback is available when missing
       break;
 
     case 'SUMMARY':

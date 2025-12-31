@@ -49,7 +49,7 @@ export default function AboutPage() {
           </div>
           <Card className="glass-card rounded-3xl p-6 text-center mx-auto max-w-md">
             <CardHeader>
-              <CardTitle className="text-2xl text-white">Vincent &quot;Vinny&quot; Battaglia</CardTitle>
+              <CardTitle className="text-2xl text-white">Vincent (&quot;Vinny&quot;) Battaglia</CardTitle>
               <p className="text-sm text-slate-300">{t('vincentRole')}</p>
             </CardHeader>
             <CardContent className="space-y-4 text-sm text-slate-200">
