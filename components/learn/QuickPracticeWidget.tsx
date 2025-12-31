@@ -3,7 +3,7 @@
 import { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
-import { Sparkles, PlayCircle, X } from 'lucide-react';
+import { Sparkles, PlayCircle, X, Loader2 } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -366,12 +366,8 @@ export function QuickPracticeWidget({
     }
 
     if (isCustomDeckFixture && customDeckState !== 'ready') {
-      let message = 'Loading custom deck...';
-      if (customDeckState === 'empty') {
-        message = 'This deck has no cards yet. Add cards to start practicing.';
-      } else if (customDeckState === 'error') {
-        message = 'Failed to load custom deck. Please try again.';
-      }
+      const isError = customDeckState === 'error';
+      const isEmpty = customDeckState === 'empty';
       return (
         <div
           className={cn(
@@ -380,9 +376,18 @@ export function QuickPracticeWidget({
             isModalVariant ? '' : 'flex-1'
           )}
         >
-          <div className="space-y-2">
-            <p className="text-base font-semibold text-foreground">Custom Deck</p>
-            <p className="text-sm text-muted-foreground">{message}</p>
+          <div className="space-y-3">
+            <p className="text-base font-semibold text-foreground">{t('practiceDeckTitle', { default: 'Custom Deck' })}</p>
+            {!isError && !isEmpty ? (
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Loader2 className="h-4 w-4 animate-spin" />
+                <span>{t('practiceDeckLoading', { default: 'Loading...' })}</span>
+              </div>
+            ) : isEmpty ? (
+              <p className="text-sm text-muted-foreground">{t('practiceDeckEmpty', { default: 'This deck has no cards yet.' })}</p>
+            ) : (
+              <p className="text-sm text-destructive">{t('practiceDeckError', { default: 'Failed to load deck.' })}</p>
+            )}
           </div>
         </div>
       );

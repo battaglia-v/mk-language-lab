@@ -13,7 +13,7 @@ export const starterPathNodes: LessonNode[] = [
     description: 'Learn basic Macedonian greetings',
     status: 'available',
     xpReward: 15,
-    href: '/practice/decks/starter',
+    href: '/practice/session?deck=curated&difficulty=beginner',
     contentId: 'greetings',
   },
   {
@@ -24,7 +24,7 @@ export const starterPathNodes: LessonNode[] = [
     description: 'Master the Cyrillic alphabet',
     status: 'locked',
     xpReward: 20,
-    href: '/practice/decks/alphabet',
+    href: '/practice/pronunciation',
     contentId: 'alphabet',
   },
   {
@@ -34,7 +34,7 @@ export const starterPathNodes: LessonNode[] = [
     description: 'Practice what you learned',
     status: 'locked',
     xpReward: 10,
-    href: '/practice',
+    href: '/practice/word-sprint',
   },
   {
     id: 'node-4',
@@ -44,7 +44,7 @@ export const starterPathNodes: LessonNode[] = [
     description: 'Count from one to ten',
     status: 'locked',
     xpReward: 15,
-    href: '/practice/decks/starter',
+    href: '/practice/session?deck=curated&difficulty=beginner',
     contentId: 'numbers',
   },
   {
@@ -65,7 +65,7 @@ export const starterPathNodes: LessonNode[] = [
     description: 'Test your progress',
     status: 'locked',
     xpReward: 30,
-    href: '/practice',
+    href: '/practice/word-sprint',
   },
   {
     id: 'node-7',
@@ -75,7 +75,7 @@ export const starterPathNodes: LessonNode[] = [
     description: 'Learn family vocabulary',
     status: 'locked',
     xpReward: 15,
-    href: '/practice/decks/starter',
+    href: '/practice/session?deck=curated&difficulty=intermediate',
     contentId: 'family',
   },
   {

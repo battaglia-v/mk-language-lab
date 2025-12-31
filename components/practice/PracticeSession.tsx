@@ -52,10 +52,17 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
   }, []);
   const sessionStart = useRef(Date.now());
 
-  // Load deck
+  // Load deck with fallback for auth failures
   useEffect(() => {
     if (customDeckId) {
-      loadCustomDeck(customDeckId).then(setDeck);
+      loadCustomDeck(customDeckId).then((cards) => {
+        if (cards.length > 0) {
+          setDeck(cards);
+        } else {
+          // Custom deck unavailable (auth failure or not found) - fall back to curated
+          setDeck(getDeck('curated', difficulty));
+        }
+      });
     } else {
       setDeck(getDeck(deckType, difficulty));
     }

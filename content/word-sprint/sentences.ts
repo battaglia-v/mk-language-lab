@@ -189,8 +189,19 @@ export function getWordSprintSession(count: number, difficulty?: Difficulty): Wo
 }
 
 export function refreshItemOptions(item: WordSprintItem): WordSprintItem {
-  const distractors = getDistractors(item.missing, item.tags[0] || 'common');
+  const category = item.tags[0] || 'common';
+
+  // For easy mode: only 2 choices (ensure correct answer is included)
+  if (item.difficulty === 'easy') {
+    const distractors = getDistractors(item.missing, category, 1);
+    const choices = [item.missing, ...distractors].sort(() => Math.random() - 0.5);
+    const wordBank = [...choices, ...getDistractors(item.missing, category, 4)].sort(() => Math.random() - 0.5);
+    return { ...item, choices, wordBank };
+  }
+
+  // For medium/hard mode: 4 choices
+  const distractors = getDistractors(item.missing, category);
   const choices = [...distractors, item.missing].sort(() => Math.random() - 0.5);
-  const wordBank = [...distractors, item.missing, ...getDistractors(item.missing, item.tags[0] || 'common', 3)].sort(() => Math.random() - 0.5);
+  const wordBank = [...distractors, item.missing, ...getDistractors(item.missing, category, 3)].sort(() => Math.random() - 0.5);
   return { ...item, choices, wordBank };
 }

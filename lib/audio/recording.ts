@@ -12,11 +12,67 @@ export interface RecordingOptions {
   audioBitsPerSecond?: number;
 }
 
+export interface MicAvailability {
+  available: boolean;
+  reason?: 'not-supported' | 'insecure-context' | 'no-devices' | 'unknown';
+  message?: string;
+}
+
+/**
+ * Check if microphone recording is available in the current environment
+ */
+export function checkMicrophoneAvailability(): MicAvailability {
+  // Check if running in a browser environment
+  if (typeof navigator === 'undefined' || typeof window === 'undefined') {
+    return {
+      available: false,
+      reason: 'not-supported',
+      message: 'Recording is not supported in this environment',
+    };
+  }
+
+  // Check if mediaDevices API exists
+  if (!navigator.mediaDevices) {
+    // Likely an insecure context (http instead of https)
+    if (window.location.protocol !== 'https:' && window.location.hostname !== 'localhost') {
+      return {
+        available: false,
+        reason: 'insecure-context',
+        message: 'Microphone access requires a secure connection (HTTPS)',
+      };
+    }
+
+    return {
+      available: false,
+      reason: 'not-supported',
+      message: 'Your browser does not support audio recording',
+    };
+  }
+
+  // Check if getUserMedia exists
+  if (!navigator.mediaDevices.getUserMedia) {
+    return {
+      available: false,
+      reason: 'not-supported',
+      message: 'Your browser does not support audio recording',
+    };
+  }
+
+  return { available: true };
+}
+
 /**
  * Request microphone permission from the user
  * Returns true if permission granted, false otherwise
  */
 export async function requestMicrophonePermission(): Promise<boolean> {
+  // First check if recording is available at all
+  const availability = checkMicrophoneAvailability();
+  if (!availability.available) {
+    console.error('Microphone not available:', availability.message);
+    return false;
+  }
+
   try {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     // Stop all tracks immediately after getting permission
