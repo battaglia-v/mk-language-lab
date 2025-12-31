@@ -3,30 +3,38 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { Volume2, Brain, Heart, RotateCcw, Settings2, FileText, Sparkles, ArrowRight, BarChart3 } from 'lucide-react';
+import { Volume2, Brain, FileText, Sparkles, Heart, Settings2, Clock, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { BottomSheet } from '@/components/ui/BottomSheet';
-import { PracticeStreakCalendar } from '@/components/gamification/PracticeStreakCalendar';
-import { TopGameBar } from '@/components/gamification/TopGameBar';
-import { ModeTileGrid, ContinueCTA, type ModeTile } from './ModeTileGrid';
-import { CustomDecksDropdown } from './CustomDecksDropdown';
 import { usePracticeDecks } from './usePracticeDecks';
 import { cn } from '@/lib/utils';
 import type { DeckType, PracticeMode, DifficultyFilter } from './types';
 
+type PracticeModeConfig = {
+  id: string;
+  href: string;
+  icon: typeof Volume2;
+  variant: 'default' | 'primary' | 'accent' | 'saved';
+  cardCount?: number;
+  disabled?: boolean;
+};
+
+/**
+ * PracticeHub - Duolingo-style practice mode selection
+ *
+ * Clean, focused UI with big playful cards. Settings hidden in bottom sheet.
+ */
 export function PracticeHub() {
   const t = useTranslations('practiceHub');
   const locale = useLocale();
   const {
-    savedDeck, historyDeck, curatedDeck, customDecks,
+    savedDeck, curatedDeck, customDecks,
     mistakesDeck, srsDueDeck, favoritesDeck,
     activeCustomDeckId, loadCustomDeck, clearCustomDeck, clearMistakes,
-    recommendedDeck, deckCounts, favoritesSRSCounts,
+    recommendedDeck, deckCounts,
   } = usePracticeDecks();
 
   const [settingsOpen, setSettingsOpen] = useState(false);
-  const [progressOpen, setProgressOpen] = useState(false);
   const [deckType, setDeckType] = useState<DeckType>(recommendedDeck);
   const [mode, setMode] = useState<PracticeMode>('multiple-choice');
   const [difficulty, setDifficulty] = useState<DifficultyFilter>('all');
@@ -36,192 +44,102 @@ export function PracticeHub() {
     clearCustomDeck();
   };
 
-  const handleCustomDeckSelect = (deckId: string) => {
-    loadCustomDeck(deckId);
-    setDeckType('custom');
-  };
-
-  const buildSessionUrl = () => {
-    const params = new URLSearchParams({
-      deck: deckType,
-      mode,
-      difficulty,
-      ...(activeCustomDeckId && { customDeckId: activeCustomDeckId }),
-    });
-    return `/${locale}/practice/session?${params.toString()}`;
-  };
-
-  const currentDeckCount = deckCounts[deckType] || curatedDeck.length;
-  const hasCardsToReview = currentDeckCount > 0;
-
-  // Build mode tiles
-  const modeTiles: ModeTile[] = [
+  // Practice mode cards configuration
+  const modes: PracticeModeConfig[] = [
     {
       id: 'pronunciation',
-      title: t('modes.pronunciation.title', { default: 'Pronunciation' }),
-      description: t('modes.pronunciation.description', { default: 'Perfect your accent' }),
-      href: `/practice/pronunciation`,
+      href: `/${locale}/practice/pronunciation`,
       icon: Volume2,
       variant: 'default',
     },
     {
       id: 'grammar',
-      title: t('modes.grammar.title', { default: 'Grammar' }),
-      description: t('modes.grammar.description', { default: 'Master patterns' }),
-      href: `/practice/grammar`,
+      href: `/${locale}/practice/grammar`,
       icon: Brain,
       variant: 'default',
     },
     {
-      id: 'fill-blanks',
-      title: t('modes.fillBlanks.title', { default: 'Fill Blanks' }),
-      description: t('modes.fillBlanks.description', { default: 'Complete the sentence' }),
-      href: `/practice/fill-blanks`,
+      id: 'fillBlanks',
+      href: `/${locale}/practice/fill-blanks`,
       icon: FileText,
       variant: 'primary',
-      badge: 'New',
     },
     {
       id: 'vocabulary',
-      title: t('modes.vocabulary.title', { default: 'Vocabulary' }),
-      description: t('modes.vocabulary.description', { default: 'Build word bank' }),
-      href: `/practice/session?deck=curated&mode=multiple-choice`,
+      href: `/${locale}/practice/session?deck=curated&mode=multiple-choice`,
       icon: Sparkles,
+      variant: 'accent',
       cardCount: curatedDeck.length,
+    },
+    {
+      id: 'saved',
+      href: `/${locale}/practice/session?deck=saved&mode=multiple-choice`,
+      icon: Heart,
+      variant: 'saved',
+      cardCount: savedDeck.length,
+      disabled: savedDeck.length === 0,
     },
   ];
 
   return (
-    <div className="flex flex-col gap-4 sm:gap-5">
-      {/* Top Game Bar - Streak/XP/Goal */}
-      <div className="flex items-center justify-between">
+    <div className="flex flex-col gap-6">
+      {/* Header */}
+      <header className="flex items-center justify-between">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-primary">
-            {t('badge')}
-          </p>
-          <h1 className="text-xl font-bold text-foreground sm:text-2xl">
-            {t('title')}
+          <h1 className="text-2xl font-bold text-foreground">
+            {t('hub.title')}
           </h1>
+          <p className="text-sm text-muted-foreground">
+            {t('hub.subtitle')}
+          </p>
         </div>
-        <TopGameBar compact />
+        <Button
+          variant="ghost"
+          size="sm"
+          className="h-9 gap-1.5 rounded-full text-muted-foreground"
+          onClick={() => setSettingsOpen(true)}
+        >
+          <Settings2 className="h-4 w-4" />
+          <span className="hidden sm:inline">{t('hub.settingsLink')}</span>
+        </Button>
+      </header>
+
+      {/* Practice Mode Cards - Full width, one per row */}
+      <div className="flex flex-col gap-3">
+        {modes.map((modeConfig) => (
+          <PracticeModeCard
+            key={modeConfig.id}
+            config={modeConfig}
+            t={t}
+          />
+        ))}
       </div>
 
-      {/* Dominant Continue CTA */}
-      <ContinueCTA
-        href={buildSessionUrl()}
-        label={t('drills.startSession', { default: 'Start Practice' })}
-        subtitle={`${currentDeckCount} ${t('drills.cardsAvailable', { default: 'cards ready' })}`}
-      />
-
-      {/* Smart Review Badges */}
-      {(srsDueDeck.length > 0 || mistakesDeck.length > 0 || favoritesDeck.length > 0) && (
-        <section className="flex flex-wrap gap-2">
-          {srsDueDeck.length > 0 && (
-            <Button
-              variant={deckType === 'srs' ? 'secondary' : 'outline'}
-              size="sm"
-              className="h-10 gap-2 rounded-full"
-              onClick={() => handleDeckSelect('srs')}
-            >
-              <Brain className="h-4 w-4" />
-              {t('drills.smartReview')}
-              <Badge variant="outline" className="ml-1">{srsDueDeck.length}</Badge>
-            </Button>
-          )}
-          {favoritesDeck.length > 0 && (
-            <Button
-              variant={deckType === 'favorites' ? 'secondary' : 'outline'}
-              size="sm"
-              className="h-10 gap-2 rounded-full"
-              onClick={() => handleDeckSelect('favorites')}
-            >
-              <Heart className="h-4 w-4" />
-              {t('drills.favorites', { default: 'Favorites' })}
-              {favoritesSRSCounts.due > 0 && (
-                <Badge variant="destructive" className="ml-1">{favoritesSRSCounts.due} {t('drills.due', { default: 'due' })}</Badge>
-              )}
-              {favoritesSRSCounts.due === 0 && favoritesSRSCounts.new_ > 0 && (
-                <Badge variant="secondary" className="ml-1">{favoritesSRSCounts.new_} {t('drills.new', { default: 'new' })}</Badge>
-              )}
-              {favoritesSRSCounts.due === 0 && favoritesSRSCounts.new_ === 0 && (
-                <Badge variant="outline" className="ml-1">{favoritesDeck.length}</Badge>
-              )}
-            </Button>
-          )}
-          {mistakesDeck.length > 0 && (
-            <Button
-              variant={deckType === 'mistakes' ? 'secondary' : 'outline'}
-              size="sm"
-              className="h-10 gap-2 rounded-full"
-              onClick={() => handleDeckSelect('mistakes')}
-            >
-              <RotateCcw className="h-4 w-4" />
-              {t('drills.reviewMistakes')}
-              <Badge variant="outline" className="ml-1">{mistakesDeck.length}</Badge>
-            </Button>
-          )}
-        </section>
-      )}
-
-      {/* Practice Modes - 2-column grid */}
-      <section>
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
-            Practice Modes
-          </h2>
-          <div className="flex gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-8 rounded-full"
-              onClick={() => setProgressOpen(true)}
-            >
-              <BarChart3 className="h-4 w-4 mr-1" />
-              Progress
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-8 rounded-full"
-              onClick={() => setSettingsOpen(true)}
-            >
-              <Settings2 className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
-        <ModeTileGrid tiles={modeTiles} />
-      </section>
-
-      {/* Progress BottomSheet - Stats & Deck Selection */}
-      <BottomSheet open={progressOpen} onClose={() => setProgressOpen(false)} title="Your Progress">
-        <div className="space-y-6">
-          {/* Streak Calendar */}
-          <PracticeStreakCalendar weeks={6} />
-
-          {/* Deck Selection */}
-          <div>
-            <h3 className="text-sm font-semibold mb-3">{t('drills.selectDeck', { default: 'Select Deck' })}</h3>
-            <div className="grid grid-cols-2 gap-2">
-              <DeckToggle label={t('cards.translate.title')} count={curatedDeck.length} active={deckType === 'curated'} onClick={() => handleDeckSelect('curated')} />
-              <DeckToggle label={t('savedDeck.badge')} count={savedDeck.length} active={deckType === 'saved'} disabled={!savedDeck.length} onClick={() => handleDeckSelect('saved')} />
-              <DeckToggle label={t('translation.tabLabel')} count={historyDeck.length} active={deckType === 'history'} disabled={!historyDeck.length} onClick={() => handleDeckSelect('history')} />
-              <CustomDecksDropdown decks={customDecks} activeCustomDeckId={activeCustomDeckId} onSelectDeck={handleCustomDeckSelect} disabled={!customDecks.length} />
-            </div>
-          </div>
-        </div>
-      </BottomSheet>
-
-      {/* Settings BottomSheet */}
-      <BottomSheet open={settingsOpen} onClose={() => setSettingsOpen(false)} title={t('drills.settings', { default: 'Practice Settings' })}>
+      {/* Settings Bottom Sheet */}
+      <BottomSheet
+        open={settingsOpen}
+        onClose={() => setSettingsOpen(false)}
+        title={t('drills.settings', { default: 'Practice Settings' })}
+      >
         <div className="space-y-6">
           {/* Mode Selection */}
           <div>
-            <h3 className="text-sm font-semibold mb-2">{t('drills.modeLabel', { default: 'Mode' })}</h3>
+            <h3 className="text-sm font-semibold mb-2">
+              {t('drills.modeLabel', { default: 'Mode' })}
+            </h3>
             <div className="flex gap-2">
-              <Button variant={mode === 'typing' ? 'secondary' : 'outline'} className="flex-1" onClick={() => setMode('typing')}>
+              <Button
+                variant={mode === 'typing' ? 'secondary' : 'outline'}
+                className="flex-1"
+                onClick={() => setMode('typing')}
+              >
                 {t('drills.modeTyping', { default: 'Typing' })}
               </Button>
-              <Button variant={mode === 'multiple-choice' ? 'secondary' : 'outline'} className="flex-1" onClick={() => setMode('multiple-choice')}>
+              <Button
+                variant={mode === 'multiple-choice' ? 'secondary' : 'outline'}
+                className="flex-1"
+                onClick={() => setMode('multiple-choice')}
+              >
                 {t('drills.modeMultipleChoice', { default: 'Multiple Choice' })}
               </Button>
             </div>
@@ -229,21 +147,74 @@ export function PracticeHub() {
 
           {/* Difficulty Selection */}
           <div>
-            <h3 className="text-sm font-semibold mb-2">{t('drills.difficultyLabel', { default: 'Difficulty' })}</h3>
+            <h3 className="text-sm font-semibold mb-2">
+              {t('drills.difficultyLabel', { default: 'Difficulty' })}
+            </h3>
             <div className="flex flex-wrap gap-2">
               {(['all', 'beginner', 'intermediate', 'advanced'] as const).map((d) => (
-                <Button key={d} variant={difficulty === d ? 'secondary' : 'outline'} size="sm" onClick={() => setDifficulty(d)} disabled={deckType !== 'curated'}>
-                  {d === 'all' ? t('drills.allLevels', { default: 'All' }) : t(`drills.difficulty${d.charAt(0).toUpperCase() + d.slice(1)}`, { default: d })}
+                <Button
+                  key={d}
+                  variant={difficulty === d ? 'secondary' : 'outline'}
+                  size="sm"
+                  onClick={() => setDifficulty(d)}
+                >
+                  {d === 'all'
+                    ? t('drills.allLevels', { default: 'All' })
+                    : t(`drills.difficulty${d.charAt(0).toUpperCase() + d.slice(1)}`, { default: d })}
                 </Button>
               ))}
             </div>
-            {deckType !== 'curated' && <p className="text-xs text-muted-foreground mt-2">{t('drills.difficultyFilterHelper')}</p>}
+          </div>
+
+          {/* Deck Selection */}
+          <div>
+            <h3 className="text-sm font-semibold mb-2">
+              {t('drills.selectDeck', { default: 'Select Deck' })}
+            </h3>
+            <div className="grid grid-cols-2 gap-2">
+              <DeckButton
+                label={t('cards.translate.title', { default: 'Starter Deck' })}
+                count={curatedDeck.length}
+                active={deckType === 'curated'}
+                onClick={() => handleDeckSelect('curated')}
+              />
+              <DeckButton
+                label={t('savedDeck.badge', { default: 'Saved' })}
+                count={savedDeck.length}
+                active={deckType === 'saved'}
+                disabled={!savedDeck.length}
+                onClick={() => handleDeckSelect('saved')}
+              />
+              {srsDueDeck.length > 0 && (
+                <DeckButton
+                  label={t('drills.smartReview', { default: 'Smart Review' })}
+                  count={srsDueDeck.length}
+                  active={deckType === 'srs'}
+                  onClick={() => handleDeckSelect('srs')}
+                />
+              )}
+              {mistakesDeck.length > 0 && (
+                <DeckButton
+                  label={t('drills.reviewMistakes', { default: 'Mistakes' })}
+                  count={mistakesDeck.length}
+                  active={deckType === 'mistakes'}
+                  onClick={() => handleDeckSelect('mistakes')}
+                />
+              )}
+            </div>
           </div>
 
           {/* Clear Mistakes */}
           {deckType === 'mistakes' && mistakesDeck.length > 0 && (
-            <Button variant="destructive" className="w-full" onClick={() => { clearMistakes(); handleDeckSelect('curated'); }}>
-              {t('drills.clearMistakes')}
+            <Button
+              variant="destructive"
+              className="w-full"
+              onClick={() => {
+                clearMistakes();
+                handleDeckSelect('curated');
+              }}
+            >
+              {t('drills.clearMistakes', { default: 'Clear mistakes' })}
             </Button>
           )}
         </div>
@@ -252,20 +223,120 @@ export function PracticeHub() {
   );
 }
 
-function DeckToggle({ label, count, active, disabled, onClick }: { label: string; count: number; active: boolean; disabled?: boolean; onClick: () => void }) {
+/**
+ * PracticeModeCard - Big playful card for each practice mode
+ */
+function PracticeModeCard({
+  config,
+  t,
+}: {
+  config: PracticeModeConfig;
+  t: ReturnType<typeof useTranslations<'practiceHub'>>;
+}) {
+  const Icon = config.icon;
+
+  const variantStyles = {
+    default: 'bg-white/5 border-white/10 hover:border-white/20 hover:bg-white/8',
+    primary: 'bg-gradient-to-br from-primary/20 to-primary/5 border-primary/30 hover:border-primary/50',
+    accent: 'bg-gradient-to-br from-amber-500/20 to-amber-500/5 border-amber-500/30 hover:border-amber-500/50',
+    saved: 'bg-gradient-to-br from-pink-500/20 to-pink-500/5 border-pink-500/30 hover:border-pink-500/50',
+  };
+
+  const iconStyles = {
+    default: 'bg-white/10 text-white/80',
+    primary: 'bg-primary/20 text-primary',
+    accent: 'bg-amber-500/20 text-amber-400',
+    saved: 'bg-pink-500/20 text-pink-400',
+  };
+
+  // Get translated strings
+  const title = t(`modes.${config.id}.title`, { default: config.id });
+  const description = t(`modes.${config.id}.description`, { default: '' });
+  const time = t(`modes.${config.id}.time`, { default: '2–5 min' });
+  const xp = t(`modes.${config.id}.xp`, { default: '+10 XP' });
+
+  const content = (
+    <div
+      className={cn(
+        'group flex items-center gap-4 rounded-2xl border p-4 transition-all duration-200',
+        'min-h-[80px] active:scale-[0.99]',
+        variantStyles[config.variant],
+        config.disabled && 'opacity-50 pointer-events-none'
+      )}
+    >
+      {/* Icon */}
+      <div
+        className={cn(
+          'flex h-12 w-12 shrink-0 items-center justify-center rounded-xl',
+          iconStyles[config.variant]
+        )}
+      >
+        <Icon className="h-6 w-6" />
+      </div>
+
+      {/* Content */}
+      <div className="flex-1 min-w-0">
+        <h3 className="font-semibold text-foreground truncate">{title}</h3>
+        <p className="text-sm text-muted-foreground line-clamp-1">{description}</p>
+      </div>
+
+      {/* Metadata: time + XP */}
+      <div className="flex flex-col items-end gap-1 shrink-0">
+        <span className="flex items-center gap-1 text-xs text-muted-foreground">
+          <Clock className="h-3 w-3" />
+          {time}
+        </span>
+        <span className="flex items-center gap-1 text-xs font-semibold text-primary">
+          <Zap className="h-3 w-3" />
+          {xp}
+        </span>
+        {config.cardCount !== undefined && config.cardCount > 0 && (
+          <span className="text-[10px] text-muted-foreground">
+            {config.cardCount} cards
+          </span>
+        )}
+      </div>
+    </div>
+  );
+
+  if (config.disabled) {
+    return content;
+  }
+
+  return <Link href={config.href}>{content}</Link>;
+}
+
+/**
+ * DeckButton - Compact deck selection button for settings sheet
+ */
+function DeckButton({
+  label,
+  count,
+  active,
+  disabled,
+  onClick,
+}: {
+  label: string;
+  count: number;
+  active: boolean;
+  disabled?: boolean;
+  onClick: () => void;
+}) {
   return (
     <Button
       variant="outline"
       disabled={disabled}
       onClick={onClick}
       className={cn(
-        'flex h-auto min-h-[60px] flex-col items-start justify-between gap-1 rounded-xl p-3 text-left',
-        active && 'border-primary/70 bg-primary/15 text-white ring-1 ring-primary/25',
+        'flex h-auto min-h-[52px] flex-col items-start justify-center gap-0.5 rounded-xl p-3 text-left',
+        active && 'border-primary/70 bg-primary/15 ring-1 ring-primary/25',
         disabled && 'opacity-40'
       )}
     >
-      <span className="text-xs line-clamp-2 font-medium">{label}</span>
-      <Badge variant={active ? 'default' : 'secondary'} className="text-xs">{count}</Badge>
+      <span className="text-sm font-medium line-clamp-1">{label}</span>
+      <span className={cn('text-xs', active ? 'text-primary' : 'text-muted-foreground')}>
+        {count} cards
+      </span>
     </Button>
   );
 }

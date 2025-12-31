@@ -111,7 +111,7 @@
     "dailyPracticeDesc": "Interactive quizzes",
     "resourcesTitle": "Resources",
     "resourcesDesc": "Curated materials",
-    "badge": "Language lab for curious learners",
+    "badge": "Learn Macedonian",
     "heroHighlightTranslate": "Translate Macedonian ↔ English instantly",
     "heroHighlightResources": "Browse curated study resources",
     "heroHighlightNews": "Catch up on Macedonian headlines",
@@ -1028,29 +1028,41 @@
     },
     "modes": {
       "pronunciation": {
-        "title": "Pronunciation Practice",
-        "description": "Perfect your accent with guided sessions"
+        "title": "Speaking",
+        "description": "Perfect your accent with native audio",
+        "time": "3–5 min",
+        "xp": "+15 XP"
       },
       "grammar": {
-        "title": "Grammar Drills",
-        "description": "Master Macedonian grammar patterns"
-      },
-      "cloze": {
-        "title": "Cloze",
-        "description": "Fill in the blank sentences"
-      },
-      "wordGaps": {
-        "title": "Word Gaps",
-        "description": "Fill in the missing words"
+        "title": "Grammar",
+        "description": "Master Macedonian patterns",
+        "time": "2–4 min",
+        "xp": "+10 XP"
       },
       "fillBlanks": {
         "title": "Fill Blanks",
-        "description": "Complete the sentence"
+        "description": "Complete sentences with the right word",
+        "time": "2–3 min",
+        "xp": "+10 XP"
       },
       "vocabulary": {
         "title": "Vocabulary",
-        "description": "Build your word bank"
+        "description": "Build your word bank with flashcards",
+        "time": "3–5 min",
+        "xp": "+12 XP"
+      },
+      "saved": {
+        "title": "Review Saved",
+        "description": "Practice phrases you saved from translator",
+        "time": "2–5 min",
+        "xp": "+10 XP"
       }
+    },
+    "hub": {
+      "title": "Practice",
+      "subtitle": "Pick a quick session (2–5 min)",
+      "settingsLink": "Settings",
+      "emptyDeck": "No cards yet"
     },
     "cloze": {
       "sessionComplete": "Session Complete",
