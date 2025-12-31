@@ -1,12 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { Flame, Zap, Play, BookOpen, ChevronRight, Lock, Check } from 'lucide-react';
+import { Flame, Zap, Play, BookOpen, ChevronRight, Lock, Check, GraduationCap, MessageCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import { getLocalXP } from '@/lib/gamification/local-xp';
-import type { LessonPath as LessonPathData } from '@/lib/learn/lesson-path-types';
+import type { LessonPath as LessonPathData, LessonNode } from '@/lib/learn/lesson-path-types';
+
+type TrackId = 'basics' | 'advanced';
 
 interface LearnPageClientProps {
   locale: string;
@@ -17,28 +19,22 @@ interface LearnPageClientProps {
   continueHref: string;
   nextLessonTitle: string;
   nextLessonSubtitle: string;
-  lessonPath: LessonPathData;
+  starterPath: LessonPathData;
+  advancedPath: LessonPathData;
 }
-
-// Unit 1 lessons for the path display
-const UNIT_1_LESSONS = [
-  { id: 'l1', title: 'Greetings', subtitle: 'Hello & Goodbye', xp: 10, href: '/practice/fill-blanks' },
-  { id: 'l2', title: 'Numbers', subtitle: 'Count to 10', xp: 10, href: '/practice/fill-blanks' },
-  { id: 'l3', title: 'Basics', subtitle: 'Common words', xp: 10, href: '/practice/fill-blanks' },
-  { id: 'l4', title: 'Phrases', subtitle: 'Daily expressions', xp: 10, href: '/practice/fill-blanks' },
-  { id: 'l5', title: 'Questions', subtitle: 'Ask & Answer', xp: 10, href: '/practice/fill-blanks' },
-];
 
 export function LearnPageClient({
   locale,
   streak: initialStreak,
   todayXP: initialTodayXP,
   dailyGoalXP,
-  totalLessons,
   continueHref,
+  starterPath,
+  advancedPath,
 }: LearnPageClientProps) {
   // Use local XP state for real-time updates
   const [localState, setLocalState] = useState({ todayXP: initialTodayXP, streak: initialStreak });
+  const [activeTrack, setActiveTrack] = useState<TrackId>('basics');
 
   useEffect(() => {
     const state = getLocalXP();
@@ -50,8 +46,8 @@ export function LearnPageClient({
   const goalProgress = dailyGoalXP > 0 ? Math.min(100, Math.round((todayXP / dailyGoalXP) * 100)) : 0;
   const isGoalComplete = todayXP >= dailyGoalXP;
 
-  // Determine completed lessons based on totalLessons
-  const completedLessonCount = Math.min(totalLessons, UNIT_1_LESSONS.length);
+  // Get current path based on selected track
+  const currentPath = activeTrack === 'basics' ? starterPath : advancedPath;
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-4rem)] pb-24 sm:pb-6">
@@ -120,39 +116,63 @@ export function LearnPageClient({
             <ChevronRight className="h-4 w-4 text-muted-foreground" />
           </Link>
 
+          {/* Track Switcher */}
+          <div className="flex gap-2 p-1 bg-muted/50 rounded-xl">
+            <button
+              onClick={() => setActiveTrack('basics')}
+              className={cn(
+                'flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg font-medium transition-all',
+                activeTrack === 'basics'
+                  ? 'bg-background text-foreground shadow-sm'
+                  : 'text-muted-foreground hover:text-foreground'
+              )}
+            >
+              <GraduationCap className="h-4 w-4" />
+              <span>Basics</span>
+            </button>
+            <button
+              onClick={() => setActiveTrack('advanced')}
+              className={cn(
+                'flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg font-medium transition-all',
+                activeTrack === 'advanced'
+                  ? 'bg-background text-foreground shadow-sm'
+                  : 'text-muted-foreground hover:text-foreground'
+              )}
+            >
+              <MessageCircle className="h-4 w-4" />
+              <span>Conversations</span>
+            </button>
+          </div>
+
           {/* Your Path Section */}
           <section className="space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-bold">Your path</h2>
-              <span className="text-sm text-muted-foreground">Unit 1: Basics</span>
+              <h2 className="text-lg font-bold">{currentPath.title}</h2>
+              <span className="text-sm text-muted-foreground">
+                {currentPath.completedCount}/{currentPath.totalCount} complete
+              </span>
             </div>
 
             {/* Lesson Cards */}
             <div className="space-y-2">
-              {UNIT_1_LESSONS.map((lesson, index) => {
-                const isCompleted = index < completedLessonCount;
-                const isNext = index === completedLessonCount;
-                const isLocked = index > completedLessonCount;
-
-                return (
-                  <LessonCard
-                    key={lesson.id}
-                    lesson={lesson}
-                    locale={locale}
-                    isCompleted={isCompleted}
-                    isNext={isNext}
-                    isLocked={isLocked}
-                    lessonNumber={index + 1}
-                  />
-                );
-              })}
+              {currentPath.nodes.map((node, index) => (
+                <LessonNodeCard
+                  key={node.id}
+                  node={node}
+                  locale={locale}
+                  lessonNumber={index + 1}
+                />
+              ))}
             </div>
 
             {/* Progress indicator */}
             <div className="flex items-center gap-3 pt-2">
-              <Progress value={(completedLessonCount / UNIT_1_LESSONS.length) * 100} className="h-2 flex-1" />
+              <Progress
+                value={(currentPath.completedCount / currentPath.totalCount) * 100}
+                className="h-2 flex-1"
+              />
               <span className="text-sm text-muted-foreground">
-                {completedLessonCount}/{UNIT_1_LESSONS.length}
+                {Math.round((currentPath.completedCount / currentPath.totalCount) * 100)}%
               </span>
             </div>
           </section>
@@ -231,36 +251,49 @@ function DailyGoalRing({
 }
 
 /**
- * Individual lesson card in the path
+ * Individual lesson node card in the path
  */
-function LessonCard({
-  lesson,
+function LessonNodeCard({
+  node,
   locale,
-  isCompleted,
-  isNext,
-  isLocked,
   lessonNumber,
 }: {
-  lesson: typeof UNIT_1_LESSONS[0];
+  node: LessonNode;
   locale: string;
-  isCompleted: boolean;
-  isNext: boolean;
-  isLocked: boolean;
   lessonNumber: number;
 }) {
+  const isCompleted = node.status === 'completed';
+  const isNext = node.status === 'available' || node.status === 'in_progress';
+  const isLocked = node.status === 'locked';
+
+  // Type-based styling
+  const getTypeStyle = () => {
+    switch (node.type) {
+      case 'checkpoint':
+        return 'border-purple-500/30 bg-purple-500/5';
+      case 'story':
+        return 'border-blue-500/30 bg-blue-500/5';
+      case 'review':
+        return 'border-amber-500/30 bg-amber-500/5';
+      default:
+        return '';
+    }
+  };
+
   const content = (
     <div
       className={cn(
         'flex items-center gap-4 rounded-xl border p-4 transition-all',
         isCompleted && 'border-emerald-500/30 bg-emerald-500/5',
         isNext && 'border-primary/50 bg-primary/5 shadow-md shadow-primary/10',
-        isLocked && 'border-border/30 bg-muted/10 opacity-60'
+        isLocked && 'border-border/30 bg-muted/10 opacity-60',
+        !isCompleted && !isNext && !isLocked && getTypeStyle()
       )}
     >
       {/* Lesson number / status */}
       <div
         className={cn(
-          'flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-bold',
+          'flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-bold text-sm',
           isCompleted && 'bg-emerald-500 text-white',
           isNext && 'bg-primary text-primary-foreground',
           isLocked && 'bg-muted text-muted-foreground'
@@ -271,15 +304,19 @@ function LessonCard({
 
       {/* Lesson info */}
       <div className="flex-1 min-w-0">
-        <p className={cn('font-semibold', isLocked && 'text-muted-foreground')}>{lesson.title}</p>
-        <p className="text-sm text-muted-foreground truncate">{lesson.subtitle}</p>
+        <p className={cn('font-semibold', isLocked && 'text-muted-foreground')}>
+          {node.title}
+        </p>
+        <p className="text-sm text-muted-foreground truncate">
+          {node.description || node.titleMk || ''}
+        </p>
       </div>
 
       {/* XP reward */}
       {!isCompleted && !isLocked && (
         <div className="flex items-center gap-1 text-sm">
           <Zap className="h-4 w-4 text-amber-500" />
-          <span className="font-medium text-amber-500">+{lesson.xp}</span>
+          <span className="font-medium text-amber-500">+{node.xpReward}</span>
         </div>
       )}
 
@@ -295,12 +332,12 @@ function LessonCard({
     </div>
   );
 
-  if (isLocked) {
+  if (isLocked || !node.href) {
     return content;
   }
 
   return (
-    <Link href={`/${locale}${lesson.href}`}>
+    <Link href={`/${locale}${node.href}`}>
       {content}
     </Link>
   );
