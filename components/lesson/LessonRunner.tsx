@@ -1,6 +1,6 @@
 'use client';
 
-import { X } from 'lucide-react';
+import { X, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   ExerciseLayout,
@@ -8,6 +8,7 @@ import {
 } from '@/components/learn/ExerciseLayout';
 import { useLessonRunner } from '@/lib/lesson-runner/useLessonRunner';
 import { calculateLessonXP } from '@/lib/xp/calculator';
+import { validateStep, getFallbackPrompt } from '@/lib/lesson-runner/validation';
 import type { LessonRunnerProps, Step, SummaryStep, LessonResults, StepAnswer } from '@/lib/lesson-runner/types';
 
 // Step Components
@@ -105,6 +106,39 @@ export function LessonRunner({
   // Render current step component
   const renderStep = () => {
     if (!currentStep) return null;
+
+    // Validate step before rendering
+    const validation = validateStep(currentStep);
+    if (!validation.isValid) {
+      return (
+        <div className="rounded-[var(--radius-card)] border border-amber-500/50 bg-amber-500/10 p-6 shadow-sm">
+          <div className="flex items-start gap-3">
+            <AlertTriangle className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
+            <div className="space-y-2">
+              <p className="font-medium text-amber-600 dark:text-amber-400">
+                Exercise has incomplete data
+              </p>
+              <p className="text-sm text-muted-foreground">
+                {getFallbackPrompt(currentStep.type)}
+              </p>
+              <ul className="text-xs text-muted-foreground space-y-1 mt-2">
+                {validation.errors.map((error, i) => (
+                  <li key={i}>• {error.message}</li>
+                ))}
+              </ul>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={skipStep}
+                className="mt-3"
+              >
+                Skip this exercise
+              </Button>
+            </div>
+          </div>
+        </div>
+      );
+    }
 
     const baseProps = {
       onAnswer: submitAnswer as (answer: StepAnswer) => void,
