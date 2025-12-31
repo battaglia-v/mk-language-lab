@@ -37,7 +37,7 @@ export function QuickAnalyzeButton({ sample, locale }: { sample: ReaderSample; l
       className="w-full gap-2 border-primary/30 bg-primary/5 hover:bg-primary/10"
     >
       <Sparkles className="h-5 w-5" />
-      {isLoading ? 'Loading...' : 'Quick Analyze Text'}
+      {isLoading ? 'Analyzing...' : 'Quick Analyze Text'}
     </Button>
   );
 }
