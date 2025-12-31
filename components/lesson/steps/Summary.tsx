@@ -19,7 +19,6 @@ export function Summary({
   step,
   onAnswer,
   feedback,
-  disabled = false,
 }: StepComponentProps<SummaryStep>) {
   const accuracy = step.totalSteps > 0
     ? Math.round((step.correctAnswers / step.totalSteps) * 100)

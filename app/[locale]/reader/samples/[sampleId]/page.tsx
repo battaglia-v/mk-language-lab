@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getTranslations } from 'next-intl/server';
+// Translations available via getTranslations if needed
 import Link from 'next/link';
 import { ArrowLeft, Clock, Tag, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -27,7 +27,6 @@ export default async function ReadingSamplePage({ params }: ReadingSamplePagePro
     notFound();
   }
 
-  const t = await getTranslations('reader');
   const title = locale === 'mk' ? sample.title_mk : sample.title_en;
 
   return (

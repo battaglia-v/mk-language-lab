@@ -212,12 +212,11 @@ export function DailyQuestsCard({ t = {}, className }: DailyQuestsCardProps) {
 /**
  * Individual quest item with progress bar
  */
-function QuestItem({ 
-  quest, 
-  translations 
-}: { 
-  quest: Quest; 
-  translations: { completed: string; xpReward: string } 
+function QuestItem({
+  quest,
+}: {
+  quest: Quest;
+  translations?: { completed: string; xpReward: string }
 }) {
   const prefersReducedMotion = useReducedMotion();
   const isCompleted = quest.status === 'completed' || quest.progressPercent >= 100;

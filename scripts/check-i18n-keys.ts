@@ -30,17 +30,13 @@ const SCAN_DIRS = [
 // File extensions to scan
 const EXTENSIONS = ['.tsx', '.ts', '.jsx', '.js'];
 
-// Patterns to extract translation keys
-const KEY_PATTERNS = [
-  // t('key') or t("key")
-  /\bt\s*\(\s*['"]([^'"]+)['"]/g,
-  // t('key', { ... })
-  /\bt\s*\(\s*['"]([^'"]+)['"]\s*,/g,
-  // useTranslations('namespace') - capture the namespace
-  /useTranslations\s*\(\s*['"]([^'"]+)['"]\s*\)/g,
-  // getTranslations('namespace')
-  /getTranslations\s*\(\s*['"]([^'"]+)['"]\s*\)/g,
-];
+// Patterns to extract translation keys (for future implementation)
+// const KEY_PATTERNS = [
+//   /\bt\s*\(\s*['"]([^'"]+)['"]/g,
+//   /\bt\s*\(\s*['"]([^'"]+)['"]\s*,/g,
+//   /useTranslations\s*\(\s*['"]([^'"]+)['"]\s*\)/g,
+//   /getTranslations\s*\(\s*['"]([^'"]+)['"]\s*\)/g,
+// ];
 
 interface TranslationUsage {
   key: string;

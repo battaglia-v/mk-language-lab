@@ -70,12 +70,9 @@ export function LessonRunner({
 
   const {
     currentStep,
-    currentIndex,
     currentFeedback,
     showFeedback,
     isEvaluating,
-    hasAnswered,
-    isLastStep,
     correctCount,
     totalSteps,
     progress,

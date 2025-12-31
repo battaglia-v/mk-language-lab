@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { 
   MessageSquare, 
@@ -55,7 +55,6 @@ export default function FeedbackPage() {
   const router = useRouter();
   const locale = useLocale();
   const prefersReducedMotion = useReducedMotion();
-  const t = useTranslations('feedback');
   
   const [feedbackType, setFeedbackType] = useState<FeedbackType | null>(null);
   const [message, setMessage] = useState('');

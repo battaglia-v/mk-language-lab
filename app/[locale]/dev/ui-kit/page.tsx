@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { BottomSheet } from '@/components/ui/BottomSheet';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Progress } from '@/components/ui/progress';
-import { Volume2, Play, Check, X, Loader2, Heart } from 'lucide-react';
+import { Play, Loader2, Heart } from 'lucide-react';
 
 export default function UIKitPage() {
   const [sheetOpen, setSheetOpen] = useState(false);

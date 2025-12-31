@@ -1,1 +1,8 @@
+# Run lint check (must pass with max 10 warnings)
+npm run lint
+
+# Run TypeScript type check
+npm run type-check
+
+# Run unit tests
 npm test

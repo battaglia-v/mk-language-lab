@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import type { ComponentType } from 'react';
-import { CardSkeleton, DashboardSkeleton, ListSkeleton } from '@/components/ui/loading-skeletons';
+import { CardSkeleton, DashboardSkeleton } from '@/components/ui/loading-skeletons';
 
 /**
  * Lazy-loaded component wrappers for heavy components
@@ -17,9 +17,10 @@ function CardLoadingFallback() {
   return <CardSkeleton />;
 }
 
-function ListLoadingFallback() {
-  return <ListSkeleton items={3} />;
-}
+// ListLoadingFallback available if needed
+// function ListLoadingFallback() {
+//   return <ListSkeleton items={3} />;
+// }
 
 function DashboardLoadingFallback() {
   return <DashboardSkeleton />;

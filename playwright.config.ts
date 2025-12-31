@@ -11,12 +11,12 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   // Retries help with flaky dev server issues
   retries: process.env.CI ? 2 : 1,
-  // Limit workers to prevent dev server overload
-  // CI: 1 worker for stability, Local: 2 workers for speed with stability
-  workers: process.env.CI ? 1 : 2,
+  // More workers now that CI only runs desktop project
+  // CI: 2 workers (faster), Local: 2 workers for speed with stability
+  workers: 2,
   reporter: 'html',
-  // Increase timeout for slower CI environments
-  timeout: 60000,
+  // Reasonable timeout for most tests
+  timeout: 45000,
   expect: {
     timeout: 10000,
   },

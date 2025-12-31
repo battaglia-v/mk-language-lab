@@ -25,7 +25,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { canPerformAction, getAvailableActions } from '@/lib/admin';
+import { getAvailableActions } from '@/lib/admin';
 
 // =====================================================
 // TYPES

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
-import { canPerformAction, isValidStatusTransition, checkReviewerOrAdmin } from '@/lib/admin';
+import { canPerformAction, checkReviewerOrAdmin } from '@/lib/admin';
 
 export const dynamic = 'force-dynamic';
 

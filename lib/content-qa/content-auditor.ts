@@ -5,14 +5,11 @@
  * Used for QA before deployment and ongoing content validation.
  */
 
-import type { ContentAuditEntry, ContentAuditReport, GrammarRuleId } from './types';
-import { 
-  NOUN_DICTIONARY, 
-  ADJECTIVE_DICTIONARY, 
-  getExpectedAdjectiveForm,
-  isDefiniteNoun 
+import type { ContentAuditEntry, ContentAuditReport } from './types';
+import {
+  NOUN_DICTIONARY,
+  ADJECTIVE_DICTIONARY,
 } from './grammar-rules';
-import type { Gender } from './types';
 
 // ==================== Content Scanners ====================
 
@@ -20,15 +17,6 @@ interface ScanResult {
   entries: ContentAuditEntry[];
   itemsScanned: number;
 }
-
-/**
- * Patterns for detecting adjective-noun pairs that need validation
- */
-const ADJECTIVE_PATTERN = Object.keys(ADJECTIVE_DICTIONARY).join('|');
-const NOUN_PATTERN = Object.keys(NOUN_DICTIONARY).map(n => {
-  const entry = NOUN_DICTIONARY[n];
-  return `${n}|${entry.definiteForm}`;
-}).join('|');
 
 /**
  * Check if a sentence has a gender agreement issue
@@ -52,7 +40,7 @@ function checkGenderAgreement(
       if (answer === nounEntry.definiteForm.toLowerCase() || answer === nounLemma) {
         if (nounEntry.gender === 'feminine') {
           // Check if adjective is masculine form (should be feminine)
-          for (const [adjLemma, adjParadigm] of Object.entries(ADJECTIVE_DICTIONARY)) {
+          for (const [_adjLemma, adjParadigm] of Object.entries(ADJECTIVE_DICTIONARY)) {
             if (adjective === adjParadigm.mascSingIndef.toLowerCase()) {
               // Found a masculine adjective with feminine noun - ERROR
               const correctAdj = nounEntry.definiteForm.toLowerCase() === answer
@@ -153,15 +141,15 @@ export function scanVocabularyContent(items: unknown[]): ScanResult {
     const i = item as Record<string, unknown>;
     itemsScanned++;
     
-    const mk = String(i.macedonian || i.mk || '');
-    const en = String(i.english || i.en || '');
+    const _mk = String(i.macedonian || i.mk || '');
+    const _en = String(i.english || i.en || '');
     
     // Check context sentences for agreement
     const contextMk = i.contextMk as Record<string, unknown> | undefined;
     if (contextMk?.sentence) {
-      const sentence = String(contextMk.sentence);
-      // Look for adjective-noun patterns in context sentences
-      // This is a simplified check - would need more sophisticated NLP for full coverage
+      const _sentence = String(contextMk.sentence);
+      // TODO: Look for adjective-noun patterns in context sentences
+      // Requires more sophisticated NLP for full coverage
     }
   }
   
@@ -185,8 +173,8 @@ export function scanFlashcardDeck(deck: unknown): ScanResult {
     // Check example sentences
     const example = i.example as Record<string, unknown> | undefined;
     if (example?.mk) {
-      const exampleMk = String(example.mk);
-      // Scan for agreement issues
+      const _exampleMk = String(example.mk);
+      // TODO: Scan for agreement issues
     }
   }
   
@@ -205,20 +193,20 @@ export function scanGradedReaders(data: unknown): ScanResult {
   
   for (const text of texts) {
     const t = text as Record<string, unknown>;
-    const textId = String(t.id || 'unknown');
+    const _textId = String(t.id || 'unknown');
     const sentences = (t.sentences as unknown[]) || [];
-    
+
     for (const sentence of sentences) {
       const s = sentence as Record<string, unknown>;
       itemsScanned++;
-      
-      const mk = String(s.mk || '');
-      // Scan sentence for agreement patterns
+
+      const _mk = String(s.mk || '');
+      // TODO: Scan sentence for agreement patterns
     }
-    
+
     // Also check comprehension questions
     const questions = (t.comprehensionQuestions as unknown[]) || [];
-    for (const q of questions) {
+    for (const _q of questions) {
       itemsScanned++;
       // Validate question content
     }
