@@ -1,0 +1,272 @@
+[
+  {
+    "id": "opinions-basic",
+    "titleEn": "Expressing Opinions",
+    "titleMk": "Изразување мислење",
+    "vocabulary": [
+      {"mk": "мислам", "en": "I think"},
+      {"mk": "верувам", "en": "I believe"},
+      {"mk": "според мене", "en": "in my opinion"},
+      {"mk": "сметам", "en": "I consider"},
+      {"mk": "чувствувам", "en": "I feel"},
+      {"mk": "ми се чини", "en": "it seems to me"}
+    ],
+    "patterns": [
+      {"mk": "Мислам дека...", "en": "I think that..."},
+      {"mk": "Според мене, ...", "en": "In my opinion, ..."},
+      {"mk": "Јас верувам дека...", "en": "I believe that..."}
+    ]
+  },
+  {
+    "id": "agree-disagree",
+    "titleEn": "Agreeing & Disagreeing",
+    "titleMk": "Согласување и несогласување",
+    "vocabulary": [
+      {"mk": "се согласувам", "en": "I agree"},
+      {"mk": "не се согласувам", "en": "I disagree"},
+      {"mk": "имаш право", "en": "you're right"},
+      {"mk": "точно", "en": "exactly"},
+      {"mk": "апсолутно", "en": "absolutely"},
+      {"mk": "не баш", "en": "not really"}
+    ],
+    "patterns": [
+      {"mk": "Се согласувам со тебе.", "en": "I agree with you."},
+      {"mk": "Не мислам така.", "en": "I don't think so."},
+      {"mk": "Имаш право, но...", "en": "You're right, but..."}
+    ]
+  },
+  {
+    "id": "connectors",
+    "titleEn": "Connecting Ideas",
+    "titleMk": "Поврзување идеи",
+    "vocabulary": [
+      {"mk": "меѓутоа", "en": "however"},
+      {"mk": "иако", "en": "although"},
+      {"mk": "затоа", "en": "therefore"},
+      {"mk": "освен тоа", "en": "besides"},
+      {"mk": "исто така", "en": "also"},
+      {"mk": "од друга страна", "en": "on the other hand"}
+    ],
+    "patterns": [
+      {"mk": "Иако е тешко, ...", "en": "Although it's difficult, ..."},
+      {"mk": "Затоа мислам дека...", "en": "Therefore I think that..."},
+      {"mk": "Од друга страна, ...", "en": "On the other hand, ..."}
+    ]
+  },
+  {
+    "id": "past-tense",
+    "titleEn": "Past Tense Stories",
+    "titleMk": "Раскази во минато време",
+    "vocabulary": [
+      {"mk": "еднаш", "en": "once"},
+      {"mk": "одамна", "en": "long ago"},
+      {"mk": "вчера", "en": "yesterday"},
+      {"mk": "минатата недела", "en": "last week"},
+      {"mk": "се случи", "en": "it happened"},
+      {"mk": "имало", "en": "there was (narrative)"}
+    ],
+    "patterns": [
+      {"mk": "Еднаш имало...", "en": "Once upon a time there was..."},
+      {"mk": "Се случи пред многу години.", "en": "It happened many years ago."},
+      {"mk": "Тогаш јас бев...", "en": "Back then I was..."}
+    ]
+  },
+  {
+    "id": "sequencing",
+    "titleEn": "Sequencing Events",
+    "titleMk": "Редоследно раскажување",
+    "vocabulary": [
+      {"mk": "прво", "en": "first"},
+      {"mk": "потоа", "en": "then"},
+      {"mk": "после тоа", "en": "after that"},
+      {"mk": "на крај", "en": "finally"},
+      {"mk": "претходно", "en": "previously"},
+      {"mk": "следно", "en": "next"}
+    ],
+    "patterns": [
+      {"mk": "Прво отидов во...", "en": "First I went to..."},
+      {"mk": "Потоа се случи...", "en": "Then it happened..."},
+      {"mk": "На крај завршивме со...", "en": "Finally we finished with..."}
+    ]
+  },
+  {
+    "id": "work-vocab",
+    "titleEn": "At Work",
+    "titleMk": "На работа",
+    "vocabulary": [
+      {"mk": "канцеларија", "en": "office"},
+      {"mk": "состанок", "en": "meeting"},
+      {"mk": "проект", "en": "project"},
+      {"mk": "рок", "en": "deadline"},
+      {"mk": "колега", "en": "colleague"},
+      {"mk": "шеф", "en": "boss"}
+    ],
+    "patterns": [
+      {"mk": "Работам во канцеларија.", "en": "I work in an office."},
+      {"mk": "Имам состанок во 10 часот.", "en": "I have a meeting at 10."},
+      {"mk": "Рокот е утре.", "en": "The deadline is tomorrow."}
+    ]
+  },
+  {
+    "id": "appointments",
+    "titleEn": "Making Appointments",
+    "titleMk": "Закажување состаноци",
+    "vocabulary": [
+      {"mk": "закажувам", "en": "to schedule"},
+      {"mk": "термин", "en": "appointment"},
+      {"mk": "слободен", "en": "available"},
+      {"mk": "зафатен", "en": "busy"},
+      {"mk": "откажувам", "en": "to cancel"},
+      {"mk": "потврдувам", "en": "to confirm"}
+    ],
+    "patterns": [
+      {"mk": "Сакам да закажам термин.", "en": "I want to schedule an appointment."},
+      {"mk": "Дали сте слободни во петок?", "en": "Are you available on Friday?"},
+      {"mk": "Морам да го откажам состанокот.", "en": "I have to cancel the meeting."}
+    ]
+  },
+  {
+    "id": "formal-informal",
+    "titleEn": "Formal vs Informal",
+    "titleMk": "Формално и неформално",
+    "vocabulary": [
+      {"mk": "Вие", "en": "you (formal)"},
+      {"mk": "ти", "en": "you (informal)"},
+      {"mk": "господине", "en": "sir"},
+      {"mk": "госпоѓо", "en": "madam"},
+      {"mk": "почитувани", "en": "dear (formal)"},
+      {"mk": "драг", "en": "dear (informal)"}
+    ],
+    "patterns": [
+      {"mk": "Како сте, господине?", "en": "How are you, sir?"},
+      {"mk": "Ве молам, седнете.", "en": "Please, have a seat. (formal)"},
+      {"mk": "Како си? Седни!", "en": "How are you? Sit down! (informal)"}
+    ]
+  },
+  {
+    "id": "travel-problems",
+    "titleEn": "Travel Issues",
+    "titleMk": "Патнички проблеми",
+    "vocabulary": [
+      {"mk": "задоцнување", "en": "delay"},
+      {"mk": "откажано", "en": "cancelled"},
+      {"mk": "изгубен багаж", "en": "lost luggage"},
+      {"mk": "пропуштен лет", "en": "missed flight"},
+      {"mk": "враќање пари", "en": "refund"},
+      {"mk": "алтернатива", "en": "alternative"}
+    ],
+    "patterns": [
+      {"mk": "Летот е задоцнет.", "en": "The flight is delayed."},
+      {"mk": "Мојот багаж е изгубен.", "en": "My luggage is lost."},
+      {"mk": "Дали има алтернативен лет?", "en": "Is there an alternative flight?"}
+    ]
+  },
+  {
+    "id": "complaints",
+    "titleEn": "Making Complaints",
+    "titleMk": "Поплаки",
+    "vocabulary": [
+      {"mk": "поплака", "en": "complaint"},
+      {"mk": "незадоволен", "en": "dissatisfied"},
+      {"mk": "неприфатливо", "en": "unacceptable"},
+      {"mk": "бараме", "en": "we demand"},
+      {"mk": "решение", "en": "solution"},
+      {"mk": "компензација", "en": "compensation"}
+    ],
+    "patterns": [
+      {"mk": "Сакам да поднесам поплака.", "en": "I want to file a complaint."},
+      {"mk": "Ова е неприфатливо.", "en": "This is unacceptable."},
+      {"mk": "Барам компензација.", "en": "I demand compensation."}
+    ]
+  },
+  {
+    "id": "problem-solving",
+    "titleEn": "Resolving Problems",
+    "titleMk": "Решавање проблеми",
+    "vocabulary": [
+      {"mk": "проблем", "en": "problem"},
+      {"mk": "решение", "en": "solution"},
+      {"mk": "помош", "en": "help"},
+      {"mk": "можност", "en": "option"},
+      {"mk": "предлог", "en": "suggestion"},
+      {"mk": "договор", "en": "agreement"}
+    ],
+    "patterns": [
+      {"mk": "Имам проблем со...", "en": "I have a problem with..."},
+      {"mk": "Дали можете да помогнете?", "en": "Can you help?"},
+      {"mk": "Кои се можностите?", "en": "What are the options?"}
+    ]
+  },
+  {
+    "id": "doctor-visit",
+    "titleEn": "At the Doctor",
+    "titleMk": "Кај доктор",
+    "vocabulary": [
+      {"mk": "симптоми", "en": "symptoms"},
+      {"mk": "болка", "en": "pain"},
+      {"mk": "треска", "en": "fever"},
+      {"mk": "преглед", "en": "examination"},
+      {"mk": "дијагноза", "en": "diagnosis"},
+      {"mk": "терапија", "en": "treatment"}
+    ],
+    "patterns": [
+      {"mk": "Ме боли тука.", "en": "It hurts here."},
+      {"mk": "Имам треска од вчера.", "en": "I've had a fever since yesterday."},
+      {"mk": "Која е дијагнозата?", "en": "What is the diagnosis?"}
+    ]
+  },
+  {
+    "id": "pharmacy",
+    "titleEn": "Pharmacy Visit",
+    "titleMk": "Во аптека",
+    "vocabulary": [
+      {"mk": "лек", "en": "medicine"},
+      {"mk": "рецепт", "en": "prescription"},
+      {"mk": "таблети", "en": "pills"},
+      {"mk": "сируп", "en": "syrup"},
+      {"mk": "доза", "en": "dose"},
+      {"mk": "несакани ефекти", "en": "side effects"}
+    ],
+    "patterns": [
+      {"mk": "Имате ли нешто за главоболка?", "en": "Do you have something for headache?"},
+      {"mk": "Колку често да го земам?", "en": "How often should I take it?"},
+      {"mk": "Дали има несакани ефекти?", "en": "Are there side effects?"}
+    ]
+  },
+  {
+    "id": "idioms",
+    "titleEn": "Common Idioms",
+    "titleMk": "Идиоми",
+    "vocabulary": [
+      {"mk": "да фатиш магла", "en": "to disappear quickly"},
+      {"mk": "да паднеш на нозе", "en": "to land on your feet"},
+      {"mk": "да имаш две леви раце", "en": "to be clumsy"},
+      {"mk": "од уста до уста", "en": "word of mouth"},
+      {"mk": "на прв поглед", "en": "at first glance"},
+      {"mk": "без пари", "en": "broke (no money)"}
+    ],
+    "patterns": [
+      {"mk": "Фати магла!", "en": "Get out of here!"},
+      {"mk": "Секогаш паѓа на нозе.", "en": "He always lands on his feet."},
+      {"mk": "На прв поглед изгледа добро.", "en": "At first glance it looks good."}
+    ]
+  },
+  {
+    "id": "colloquial",
+    "titleEn": "Colloquial Speech",
+    "titleMk": "Разговорен јазик",
+    "vocabulary": [
+      {"mk": "супер", "en": "great/super"},
+      {"mk": "екстра", "en": "awesome"},
+      {"mk": "готино", "en": "cool"},
+      {"mk": "баш", "en": "really/very"},
+      {"mk": "ајде", "en": "come on/let's go"},
+      {"mk": "нема врска", "en": "no problem/whatever"}
+    ],
+    "patterns": [
+      {"mk": "Ајде да одиме!", "en": "Let's go!"},
+      {"mk": "Баш е готино!", "en": "It's really cool!"},
+      {"mk": "Нема врска, ќе се справиме.", "en": "No problem, we'll manage."}
+    ]
+  }
+]
