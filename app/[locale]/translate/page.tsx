@@ -1,7 +1,6 @@
 'use client';
 
 import { FormEvent, useMemo, useRef, useState } from 'react';
-import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import {
   Copy,
@@ -12,16 +11,15 @@ import {
   BookmarkCheck,
   Trash2,
   ArrowLeftRight,
-  BookOpen,
   ClipboardPaste,
-  Save,
+  Volume2,
+  MoreHorizontal,
+  X,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { BottomSheet, BottomSheetList } from '@/components/ui/BottomSheet';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Skeleton } from '@/components/ui/skeleton';
 import { SegmentedControl } from '@/components/ui/SegmentedControl';
 import {
   useTranslatorWorkspace,
@@ -36,62 +34,42 @@ const MAX_CHARACTERS = 1800;
 
 export default function TranslatePage() {
   const t = useTranslations('translate');
-  const navT = useTranslations('nav');
   const locale = useLocale();
   const { addToast } = useToast();
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
+  const [moreOpen, setMoreOpen] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);
   const [savedOpen, setSavedOpen] = useState(false);
+  const [lastTranslatedInput, setLastTranslatedInput] = useState('');
+  const [isSpeaking, setIsSpeaking] = useState(false);
 
   const directionOptions: TranslationDirectionOption[] = useMemo(
     () => [
-      {
-        id: 'en-mk',
-        sourceLang: 'en',
-        targetLang: 'mk',
-        label: t('directions.en_mk'),
-        placeholder: t('inputPlaceholder.en_mk'),
-      },
-      {
-        id: 'mk-en',
-        sourceLang: 'mk',
-        targetLang: 'en',
-        label: t('directions.mk_en'),
-        placeholder: t('inputPlaceholder.mk_en'),
-      },
+      { id: 'en-mk', sourceLang: 'en', targetLang: 'mk', label: t('directions.en_mk'), placeholder: t('inputPlaceholder.en_mk') },
+      { id: 'mk-en', sourceLang: 'mk', targetLang: 'en', label: t('directions.mk_en'), placeholder: t('inputPlaceholder.mk_en') },
     ],
     [t],
   );
 
   const {
-    directionId,
-    setDirectionId,
-    selectedDirection,
-    inputText,
-    setInputText,
-    translatedText,
-    detectedLanguage,
-    isTranslating,
-    errorMessage,
-    copiedState,
-    history,
-    handleTranslate,
-    handleSwapDirections,
-    handleClear,
-    handleCopy,
-    handleHistoryLoad,
+    directionId, setDirectionId, selectedDirection, inputText, setInputText,
+    translatedText, isTranslating, errorMessage, copiedState, history,
+    handleTranslate: originalHandleTranslate, handleSwapDirections, handleClear, handleCopy, handleHistoryLoad,
   } = useTranslatorWorkspace({
     directionOptions,
     defaultDirectionId: 'en-mk',
-    messages: {
-      genericError: t('errorGeneric'),
-      copyError: t('copyError'),
-    },
+    messages: { genericError: t('errorGeneric'), copyError: t('copyError') },
     historyLimit: 12,
   });
 
   const { phrases, savePhrase, deletePhrase, findMatchingPhrase } = useSavedPhrases();
+
+  // Wrap translate to track last input
+  const handleTranslate = async (e: FormEvent<HTMLFormElement>) => {
+    await originalHandleTranslate(e);
+    setLastTranslatedInput(inputText.trim());
+  };
 
   const currentPayload = useMemo(() => {
     const source = inputText.trim();
@@ -102,153 +80,61 @@ export default function TranslatePage() {
 
   const savedMatch = currentPayload ? findMatchingPhrase(currentPayload) : undefined;
   const isCurrentSaved = Boolean(savedMatch);
-
-  const characterCount = `${inputText.length} / ${MAX_CHARACTERS}`;
-  const pasteLabel = t('paste', { default: 'Paste text' }) || 'Paste text';
-  const pasteHelper = t('pasteHelper', { default: 'Paste and translate instantly.' });
-  const historyLabel = t('history', { default: 'History' }) || 'History';
-  const savedLabel = t('saved', { default: 'Saved' }) || 'Saved';
-  const historyCount = history.length;
-  const savedCount = phrases.length;
-  const historyCountLabel = historyCount > 99 ? '99+' : historyCount;
-  const savedCountLabel = savedCount > 99 ? '99+' : savedCount;
-  const showLoadingSkeleton = isTranslating && !translatedText;
-  const counterTone = (() => {
-    const ratio = inputText.length / MAX_CHARACTERS;
-    if (ratio >= 0.92) return 'text-red-200';
-    if (ratio >= 0.75) return 'text-amber-200';
-    if (ratio > 0.4) return 'text-white/75';
-    return 'text-white/65';
-  })();
-  const sourceLabel = t('inputLabel', { default: 'Source text' });
-  const inputHelper = t('inputHelper', { default: 'Paste or type up to 1800 characters.' });
+  const inputChanged = inputText.trim() !== lastTranslatedInput && inputText.trim().length > 0;
+  const showStickyButton = inputChanged && !translatedText;
 
   const handleSaveToggle = () => {
     if (!currentPayload) return;
-
     if (isCurrentSaved && savedMatch) {
       deletePhrase(savedMatch.id);
-      addToast({
-        type: 'info',
-        description: t('phraseUnsaved'),
-      });
+      addToast({ type: 'info', description: t('phraseUnsaved') });
     } else {
       savePhrase(currentPayload);
-      addToast({
-        type: 'success',
-        description: t('phraseSaved'),
-      });
+      addToast({ type: 'success', description: t('phraseSaved') });
     }
+  };
+
+  const handleListen = () => {
+    if (!translatedText || !window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(translatedText);
+    u.lang = directionId === 'en-mk' ? 'sr-RS' : 'en-US';
+    u.rate = 0.85;
+    u.onstart = () => setIsSpeaking(true);
+    u.onend = () => setIsSpeaking(false);
+    window.speechSynthesis.speak(u);
   };
 
   const handlePaste = async () => {
     try {
       if (!navigator?.clipboard?.readText) {
-        addToast({
-          type: 'error',
-          description: t('pasteUnavailable', { default: 'Clipboard access is blocked in this browser.' }),
-        });
+        addToast({ type: 'error', description: t('pasteUnavailable', { default: 'Clipboard blocked.' }) });
         return;
       }
-
       const clip = await navigator.clipboard.readText();
       if (!clip) {
-        addToast({
-          type: 'info',
-          description: t('pasteEmpty', { default: 'Clipboard is empty.' }),
-        });
+        addToast({ type: 'info', description: t('pasteEmpty', { default: 'Clipboard empty.' }) });
         return;
       }
-
-      const next = clip.slice(0, MAX_CHARACTERS);
-      setInputText(next);
+      setInputText(clip.slice(0, MAX_CHARACTERS));
       textareaRef.current?.focus();
-      addToast({
-        type: 'success',
-        description: t('pasted', { default: 'Pasted text from clipboard.' }),
-      });
-    } catch (error) {
-      console.error('[translate] paste failed', error);
-      addToast({
-        type: 'error',
-        description: t('pasteError', { default: 'Unable to read clipboard. Check permissions and try again.' }),
-      });
+    } catch {
+      addToast({ type: 'error', description: t('pasteError', { default: 'Clipboard error.' }) });
     }
   };
 
   return (
-    <PageContainer size="md" className="flex flex-col gap-3 pb-24 sm:gap-4 sm:pb-6">
-      {/* Compact Header */}
-      <TooltipProvider delayDuration={120}>
-        <header className="flex flex-col gap-3 rounded-2xl border border-white/8 bg-white/5 p-3 shadow-[0_10px_30px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between sm:p-4">
-          <div className="space-y-1.5">
-            <h1 className="text-2xl font-bold text-foreground sm:text-3xl">
-              {t('title', { default: 'Translate' })}
-            </h1>
-            <p className="text-sm text-muted-foreground">
-              {t('subtitle', { default: 'English ↔ Macedonian' })}
-            </p>
-            {/* Version badge removed for production */}
-          </div>
-          <div className="flex flex-wrap gap-2 min-w-0 sm:justify-end">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setHistoryOpen(true)}
-                  className="gap-2 border-white/15 bg-white/10 text-foreground hover:border-primary/50 hover:bg-primary/10"
-                >
-                  <History className="h-4 w-4" aria-hidden="true" />
-                  <span>{historyLabel}</span>
-                  <span className="flex min-w-[1.75rem] items-center justify-center rounded-full bg-white/10 px-1.5 text-[11px] font-semibold leading-[16px] text-white/90">
-                    {historyCountLabel}
-                  </span>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="bottom" align="center" className="text-sm">
-                {t('historyTooltip', { default: 'View your recent translations' })}
-              </TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setSavedOpen(true)}
-                  className="gap-2 border-white/15 bg-white/10 text-foreground hover:border-primary/50 hover:bg-primary/10"
-                >
-                  <Save className="h-4 w-4" aria-hidden="true" />
-                  <span>{savedLabel}</span>
-                  <span className="flex min-w-[1.75rem] items-center justify-center rounded-full bg-white/10 px-1.5 text-[11px] font-semibold leading-[16px] text-white/90">
-                    {savedCountLabel}
-                  </span>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="bottom" align="center" className="text-sm">
-                {t('savedTooltip', { default: 'Open your saved phrases' })}
-              </TooltipContent>
-            </Tooltip>
-          </div>
-        </header>
-      </TooltipProvider>
-      <p className="text-xs text-white/75 sm:hidden">
-        {t('historyTooltip', { default: 'History: recent translations' })} · {t('savedTooltip', { default: 'Saved: your phrases' })}
-      </p>
+    <PageContainer size="md" className="flex flex-col gap-4 pb-28 sm:pb-6">
+      {/* Minimal Header */}
+      <header className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold">{t('title', { default: 'Translate' })}</h1>
+        <Button variant="ghost" size="icon" className="h-10 w-10 rounded-full" onClick={() => setMoreOpen(true)}>
+          <MoreHorizontal className="h-5 w-5" />
+        </Button>
+      </header>
 
-      {/* Link to Reader */}
-      <Link
-        href={`/${locale}/reader`}
-        className="flex items-center gap-3 rounded-2xl border border-white/8 bg-white/5 p-3 text-sm text-foreground shadow-[0_10px_30px_rgba(0,0,0,0.35)] transition-colors hover:border-primary/40 hover:bg-primary/5 sm:p-4"
-      >
-        <BookOpen className="h-4 w-4 text-white/80" />
-        <span className="text-foreground">
-          {t('tryReader', { default: 'Try Reader mode for longer texts' })}
-        </span>
-      </Link>
-
-      {/* Direction Toggle - Compact SegmentedControl */}
-      <div className="flex items-center justify-between gap-3 rounded-2xl border border-white/8 bg-white/5 p-3 shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
+      {/* Direction Toggle */}
+      <div className="flex items-center gap-2">
         <SegmentedControl
           options={directionOptions.map((opt) => ({ value: opt.id, label: opt.label }))}
           value={directionId}
@@ -257,254 +143,132 @@ export default function TranslatePage() {
         />
         <button
           onClick={handleSwapDirections}
-          className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/10 text-white/80 transition-colors hover:border-primary/60 hover:bg-primary/10 hover:text-primary"
-          aria-label={t('swapDirections', { default: 'Swap languages' })}
+          className="flex h-10 w-10 items-center justify-center rounded-xl border border-border/40 bg-muted/30 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          aria-label={t('swapDirections', { default: 'Swap' })}
         >
           <ArrowLeftRight className="h-4 w-4" />
         </button>
       </div>
 
-      {/* Input Form */}
-      <form
-        onSubmit={(e: FormEvent<HTMLFormElement>) => {
-          e.preventDefault();
-          void handleTranslate(e);
-        }}
-        className="space-y-3"
-      >
-        <div className="rounded-2xl border border-white/8 bg-white/5 p-4 shadow-[0_12px_36px_rgba(0,0,0,0.45)] sm:p-5">
-          <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/85">
-                {sourceLabel}
-              </p>
-              <p className="text-sm text-white/80">{inputHelper}</p>
-            </div>
-            <div className="flex flex-wrap items-center justify-end gap-2">
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                onClick={handlePaste}
-                className="h-10 gap-2 rounded-full border border-white/10 bg-white/10 px-3 sm:px-4 text-white/90 hover:border-primary/60 hover:bg-primary/10 hover:text-primary"
-              >
-                <ClipboardPaste className="h-4 w-4" />
-                <span className="hidden sm:inline text-sm font-semibold">{pasteLabel}</span>
-              </Button>
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                onClick={handleClear}
-                disabled={!inputText}
-                className="h-10 rounded-full border border-white/10 bg-white/10 px-4 text-white/80 hover:border-primary/60 hover:bg-primary/10 hover:text-primary disabled:opacity-50"
-              >
-                {t('clearButton', { default: 'Clear' })}
-              </Button>
-            </div>
-          </div>
+      {/* Input */}
+      <form onSubmit={(e) => { e.preventDefault(); void handleTranslate(e); }} className="space-y-3">
+        <div className="relative">
           <Textarea
             ref={textareaRef}
             value={inputText}
             onChange={(e) => setInputText(e.target.value.slice(0, MAX_CHARACTERS))}
             placeholder={selectedDirection?.placeholder}
             maxLength={MAX_CHARACTERS}
-            className="min-h-[180px] resize-none rounded-2xl border border-white/10 bg-black/20 p-3 text-base text-foreground caret-primary placeholder:text-white/60 focus-visible:ring-2 focus-visible:ring-primary/40"
+            className="min-h-[140px] resize-none rounded-2xl border-border/40 bg-muted/20 p-4 text-base placeholder:text-muted-foreground focus-visible:ring-primary/40"
           />
-          <div className="mt-3 flex items-center justify-between text-xs text-white/75">
-            <span className={cn('font-medium transition-colors', counterTone)}>{characterCount}</span>
-            <span className="text-white/75">{t('charactersLabel', { default: 'Characters used' })}</span>
+          <div className="absolute bottom-3 right-3 flex gap-1">
+            <Button type="button" variant="ghost" size="icon" className="h-8 w-8" onClick={handlePaste}>
+              <ClipboardPaste className="h-4 w-4" />
+            </Button>
+            {inputText && (
+              <Button type="button" variant="ghost" size="icon" className="h-8 w-8" onClick={handleClear}>
+                <X className="h-4 w-4" />
+              </Button>
+            )}
           </div>
         </div>
-
-        {/* Translate Button - Desktop: inline, Mobile: sticky footer */}
-        <div className="hidden sm:block">
-          <Button
-            type="submit"
-            size="lg"
-            className="w-full bg-gradient-to-r from-[#ffe16a] via-primary to-[#f4c542] text-lg font-bold text-slate-950 shadow-[0_18px_40px_rgba(0,0,0,0.45)] hover:brightness-[0.97]"
-            disabled={isTranslating || !inputText.trim()}
-          >
-            {isTranslating ? (
-              <>
-                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                {t('translatingStatus', { default: 'Translating...' })}
-              </>
-            ) : (
-              t('translateButton', { default: 'Translate' })
-            )}
-          </Button>
+        <div className="flex items-center justify-between text-xs text-muted-foreground px-1">
+          <span>{inputText.length}/{MAX_CHARACTERS}</span>
         </div>
-      </form>
 
-      {/* Mobile Sticky Translate Button */}
-      <div className="fixed bottom-[calc(var(--mobile-nav-height)+var(--safe-area-bottom))] left-0 right-0 z-40 border-t border-border/40 bg-background/95 px-4 py-3 backdrop-blur-lg sm:hidden">
+        {/* Desktop Translate Button */}
         <Button
-          type="button"
-          onClick={(e) => { e.preventDefault(); void handleTranslate(e as unknown as FormEvent<HTMLFormElement>); }}
+          type="submit"
           size="lg"
-          className="w-full min-h-[48px] bg-gradient-to-r from-[#ffe16a] via-primary to-[#f4c542] text-lg font-bold text-slate-950 shadow-lg hover:brightness-[0.97]"
+          className="hidden sm:flex w-full bg-gradient-to-r from-primary to-amber-500 text-lg font-bold text-slate-950"
           disabled={isTranslating || !inputText.trim()}
         >
-          {isTranslating ? (
-            <>
-              <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-              {t('translatingStatus', { default: 'Translating...' })}
-            </>
-          ) : (
-            t('translateButton', { default: 'Translate' })
-          )}
+          {isTranslating ? <><Loader2 className="mr-2 h-5 w-5 animate-spin" />{t('translatingStatus')}</> : t('translateButton')}
         </Button>
-      </div>
+      </form>
 
-      {/* Error Message */}
-      {errorMessage && (
-        <Alert variant="destructive">
-          <AlertDescription>{errorMessage}</AlertDescription>
-        </Alert>
-      )}
+      {/* Error */}
+      {errorMessage && <Alert variant="destructive"><AlertDescription>{errorMessage}</AlertDescription></Alert>}
 
-      {showLoadingSkeleton && (
-        <div className="space-y-3 rounded-2xl border border-white/8 bg-white/5 p-4 shadow-[0_12px_36px_rgba(0,0,0,0.45)]">
-          <div className="flex items-center justify-between gap-2">
-            <Skeleton className="h-4 w-24 rounded-lg bg-white/10" />
-            <Skeleton className="h-8 w-16 rounded-full bg-white/15" />
-          </div>
-          <div className="space-y-2">
-            <Skeleton className="h-4 w-5/6 bg-white/10" />
-            <Skeleton className="h-4 w-full bg-white/10" />
-            <Skeleton className="h-4 w-4/5 bg-white/10" />
-          </div>
-        </div>
-      )}
-
-      {/* Result */}
+      {/* Result Bubble */}
       {translatedText && (
-        <div className="space-y-3 rounded-2xl border border-white/8 bg-white/5 p-4 shadow-[0_12px_36px_rgba(0,0,0,0.45)]">
-          <div className="flex items-start justify-between gap-3">
-            <div className="flex-1">
-              <p className="text-xs text-muted-foreground">
-                {t('resultLabel', { default: 'Translation' })}
-              </p>
-              {detectedLanguage && (
-                <p className="text-xs text-muted-foreground">
-                  {t('detectedLanguage', { language: detectedLanguage })}
-                </p>
-              )}
-            </div>
-            <div className="flex gap-2">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleCopy}
-                className="gap-2"
-              >
-                {copiedState === 'copied' ? (
-                  <>
-                    <Check className="h-4 w-4" />
-                    <span className="hidden sm:inline">
-                      {t('copied', { default: 'Copied' })}
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="h-4 w-4" />
-                    <span className="hidden sm:inline">
-                      {t('copyButton', { default: 'Copy' })}
-                    </span>
-                  </>
-                )}
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleSaveToggle}
-                disabled={!currentPayload}
-                className="gap-2"
-              >
-                {isCurrentSaved ? (
-                  <>
-                    <BookmarkCheck className="h-4 w-4 text-primary" />
-                    <span className="hidden sm:inline">
-                      {t('saved', { default: 'Saved' })}
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    <BookmarkPlus className="h-4 w-4" />
-                    <span className="hidden sm:inline">
-                      {t('saveButton', { default: 'Save' })}
-                    </span>
-                  </>
-                )}
-              </Button>
-            </div>
+        <div className="rounded-2xl border border-primary/30 bg-primary/5 p-4 animate-feedback-correct">
+          <p className="text-base text-foreground whitespace-pre-wrap mb-4">{translatedText}</p>
+          <div className="flex items-center gap-2 border-t border-border/30 pt-3">
+            <Button variant="ghost" size="sm" onClick={handleCopy} className="gap-2 h-10 rounded-full">
+              {copiedState === 'copied' ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+              <span className="text-sm">{copiedState === 'copied' ? t('copied') : t('copyButton')}</span>
+            </Button>
+            <Button variant="ghost" size="sm" onClick={handleSaveToggle} disabled={!currentPayload} className="gap-2 h-10 rounded-full">
+              {isCurrentSaved ? <BookmarkCheck className="h-4 w-4 text-primary" /> : <BookmarkPlus className="h-4 w-4" />}
+              <span className="text-sm">{isCurrentSaved ? t('saved') : t('saveButton')}</span>
+            </Button>
+            <Button variant="ghost" size="sm" onClick={handleListen} className="gap-2 h-10 rounded-full">
+              <Volume2 className={cn('h-4 w-4', isSpeaking && 'text-primary animate-pulse')} />
+              <span className="text-sm">Listen</span>
+            </Button>
           </div>
-          <p className="whitespace-pre-wrap text-base text-foreground">{translatedText}</p>
         </div>
       )}
+
+      {/* Mobile Sticky Button - only when input changed */}
+      {showStickyButton && (
+        <div className="fixed bottom-[calc(var(--mobile-nav-height)+var(--safe-area-bottom))] left-0 right-0 z-40 border-t border-border/40 bg-background/95 px-4 py-3 backdrop-blur-lg sm:hidden">
+          <Button
+            type="button"
+            onClick={(e) => { e.preventDefault(); void handleTranslate(e as unknown as FormEvent<HTMLFormElement>); }}
+            size="lg"
+            className="w-full min-h-[48px] bg-gradient-to-r from-primary to-amber-500 text-lg font-bold text-slate-950"
+            disabled={isTranslating}
+          >
+            {isTranslating ? <><Loader2 className="mr-2 h-5 w-5 animate-spin" />{t('translatingStatus')}</> : t('translateButton')}
+          </Button>
+        </div>
+      )}
+
+      {/* More Menu Bottom Sheet */}
+      <BottomSheet open={moreOpen} onClose={() => setMoreOpen(false)} title="Options">
+        <div className="space-y-2">
+          <button onClick={() => { setMoreOpen(false); setHistoryOpen(true); }} className="flex w-full items-center gap-3 rounded-xl p-4 hover:bg-muted/30">
+            <History className="h-5 w-5" /><span className="flex-1 text-left font-medium">History</span>
+            <span className="text-sm text-muted-foreground">{history.length}</span>
+          </button>
+          <button onClick={() => { setMoreOpen(false); setSavedOpen(true); }} className="flex w-full items-center gap-3 rounded-xl p-4 hover:bg-muted/30">
+            <BookmarkPlus className="h-5 w-5" /><span className="flex-1 text-left font-medium">Saved Phrases</span>
+            <span className="text-sm text-muted-foreground">{phrases.length}</span>
+          </button>
+        </div>
+      </BottomSheet>
 
       {/* History Bottom Sheet */}
-      <BottomSheet
-        open={historyOpen}
-        onClose={() => setHistoryOpen(false)}
-        title={t('history', { default: 'Translation History' })}
-        description={t('historyDescription', { default: 'Your recent translations' })}
-      >
+      <BottomSheet open={historyOpen} onClose={() => setHistoryOpen(false)} title="History">
         {history.length === 0 ? (
-          <p className="text-center text-sm text-muted-foreground">
-            {t('historyEmpty', { default: 'No history yet' })}
-          </p>
+          <p className="text-center text-sm text-muted-foreground py-8">No history yet</p>
         ) : (
-          <BottomSheetList
-            items={history}
-            onItemClick={(item) => {
-              handleHistoryLoad(item);
-              setHistoryOpen(false);
-            }}
+          <BottomSheetList items={history} onItemClick={(item) => { handleHistoryLoad(item); setHistoryOpen(false); }}
             renderItem={(item) => (
               <div className="space-y-1">
-                <p className="text-sm font-medium text-foreground">{item.sourceText}</p>
+                <p className="text-sm font-medium">{item.sourceText}</p>
                 <p className="text-sm text-muted-foreground">{item.translatedText}</p>
-                <p className="text-xs text-muted-foreground">
-                  {new Date(item.timestamp).toLocaleString()}
-                </p>
               </div>
             )}
           />
         )}
       </BottomSheet>
 
-      {/* Saved Phrases Bottom Sheet */}
-      <BottomSheet
-        open={savedOpen}
-        onClose={() => setSavedOpen(false)}
-        title={t('saved', { default: 'Saved Phrases' })}
-        description={t('savedDescription', { default: 'Your bookmarked translations' })}
-      >
+      {/* Saved Bottom Sheet */}
+      <BottomSheet open={savedOpen} onClose={() => setSavedOpen(false)} title="Saved Phrases">
         {phrases.length === 0 ? (
-          <p className="text-center text-sm text-muted-foreground">
-            {t('savedEmpty', { default: 'No saved phrases yet' })}
-          </p>
+          <p className="text-center text-sm text-muted-foreground py-8">No saved phrases</p>
         ) : (
           <div className="space-y-2">
             {phrases.map((phrase) => (
-              <div
-                key={phrase.id}
-                className="flex items-start gap-3 rounded-lg border border-border bg-background p-3"
-              >
+              <div key={phrase.id} className="flex items-start gap-3 rounded-lg border border-border p-3">
                 <div className="flex-1 space-y-1">
-                  <p className="text-sm font-medium text-foreground">{phrase.sourceText}</p>
+                  <p className="text-sm font-medium">{phrase.sourceText}</p>
                   <p className="text-sm text-muted-foreground">{phrase.translatedText}</p>
-                  <p className="text-xs text-muted-foreground">
-                    {new Date(phrase.createdAt).toLocaleString()}
-                  </p>
                 </div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => deletePhrase(phrase.id)}
-                >
+                <Button variant="ghost" size="sm" onClick={() => deletePhrase(phrase.id)}>
                   <Trash2 className="h-4 w-4 text-destructive" />
                 </Button>
               </div>
