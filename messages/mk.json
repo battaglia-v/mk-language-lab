@@ -1017,7 +1017,14 @@
       "favorite": "Зачувај",
       "unfavorite": "Зачувано",
       "listenTTS": "Слушај",
-      "stopAudio": "Стоп"
+      "stopAudio": "Стоп",
+      "listen": "Слушај",
+      "cardsAvailable": "картички",
+      "settings": "Подесувања",
+      "startSession": "Почни вежбање",
+      "selectDeck": "Избери тест",
+      "due": "за преглед",
+      "new": "нови"
     },
     "modes": {
       "pronunciation": {

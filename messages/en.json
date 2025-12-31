@@ -1017,7 +1017,14 @@
       "favorite": "Save",
       "unfavorite": "Saved",
       "listenTTS": "Listen",
-      "stopAudio": "Stop"
+      "stopAudio": "Stop",
+      "listen": "Listen",
+      "cardsAvailable": "cards ready",
+      "settings": "Settings",
+      "startSession": "Start Practice",
+      "selectDeck": "Select Deck",
+      "due": "due",
+      "new": "new"
     },
     "modes": {
       "pronunciation": {
@@ -2016,7 +2023,7 @@
       "playAudio": "Play Audio",
       "difficulty": {
         "a1": "Beginner",
-        "a2": "Elementary", 
+        "a2": "Elementary",
         "b1": "Intermediate",
         "b2": "Upper Intermediate",
         "c1": "Advanced"
