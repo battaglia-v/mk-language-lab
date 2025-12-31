@@ -13,7 +13,7 @@ export const starterPathNodes: LessonNode[] = [
     description: 'Learn basic Macedonian greetings',
     status: 'available',
     xpReward: 15,
-    href: '/practice/session?deck=curated&difficulty=beginner',
+    href: '/practice/session?deck=curated&difficulty=all',
     contentId: 'greetings',
   },
   {
@@ -44,7 +44,7 @@ export const starterPathNodes: LessonNode[] = [
     description: 'Count from one to ten',
     status: 'locked',
     xpReward: 15,
-    href: '/practice/session?deck=curated&difficulty=beginner',
+    href: '/practice/session?deck=curated&difficulty=all',
     contentId: 'numbers',
   },
   {

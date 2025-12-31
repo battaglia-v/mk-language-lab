@@ -29,7 +29,8 @@ export default async function LocaleHome({ params }: LocalePageProps) {
   const homeT = await getTranslations("home");
 
   // Guest lesson link - goes directly to practice session
-  const startLessonHref = `/${safeLocale}/practice/session?deck=curated&difficulty=beginner`;
+  // Note: Using difficulty=all because vocabulary data defaults to 'mixed' difficulty
+  const startLessonHref = `/${safeLocale}/practice/session?deck=curated&difficulty=all`;
   const signInHref = `/${safeLocale}/auth/signin`;
 
   return (
