@@ -273,10 +273,14 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
             </div>
           )}
 
-          {/* Feedback */}
+          {/* Feedback - with entrance animation */}
           {feedback && (
-            <div className={cn('rounded-xl border px-4 py-3 flex items-start gap-2',
-              feedback === 'correct' ? 'border-emerald-400/60 bg-emerald-500/15 text-emerald-50' : 'border-amber-400/60 bg-amber-500/15 text-amber-50')}>
+            <div className={cn(
+              'rounded-xl border px-4 py-3 flex items-start gap-2',
+              feedback === 'correct'
+                ? 'border-emerald-400/60 bg-emerald-500/15 text-emerald-50 animate-feedback-correct'
+                : 'border-amber-400/60 bg-amber-500/15 text-amber-50 animate-feedback-incorrect'
+            )}>
               {feedback === 'correct' ? <CheckCircle2 className="h-5 w-5 text-emerald-400" /> : <XCircle className="h-5 w-5 text-amber-400" />}
               <div>
                 <p className="font-medium">{feedback === 'correct' ? t('drills.feedbackCorrect') : t('drills.feedbackIncorrectTitle')}</p>

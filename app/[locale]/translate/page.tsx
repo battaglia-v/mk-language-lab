@@ -11,7 +11,7 @@ import {
   BookmarkPlus,
   BookmarkCheck,
   Trash2,
-  RefreshCw,
+  ArrowLeftRight,
   BookOpen,
   ClipboardPaste,
   Save,
@@ -22,6 +22,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { BottomSheet, BottomSheetList } from '@/components/ui/BottomSheet';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Skeleton } from '@/components/ui/skeleton';
+import { SegmentedControl } from '@/components/ui/SegmentedControl';
 import {
   useTranslatorWorkspace,
   type TranslationDirectionOption,
@@ -246,37 +247,21 @@ export default function TranslatePage() {
         </span>
       </Link>
 
-      {/* Direction Toggle */}
-      <div className="rounded-2xl border border-white/8 bg-white/5 p-3 shadow-[0_10px_30px_rgba(0,0,0,0.35)] sm:p-4">
-        <div className="mb-3 flex items-center justify-between gap-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/85">
-            {t('directionsGroupLabel', { default: 'Translation direction' })}
-          </p>
-          <button
-            onClick={handleSwapDirections}
-            className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-xs font-semibold text-white/80 transition-colors hover:border-primary/60 hover:bg-primary/10 hover:text-primary sm:text-sm"
-            aria-label={t('swapDirections', { default: 'Swap languages' })}
-          >
-            <RefreshCw className="h-4 w-4" />
-            <span className="hidden sm:inline">{t('swapDirections', { default: 'Swap languages' })}</span>
-          </button>
-        </div>
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-          {directionOptions.map((option) => (
-            <button
-              key={option.id}
-              onClick={() => setDirectionId(option.id)}
-              className={cn(
-                'flex-1 rounded-xl px-4 py-3 text-sm font-semibold transition-all',
-                directionId === option.id
-                  ? 'bg-white text-slate-900 shadow-[0_8px_24px_rgba(0,0,0,0.25)]'
-                  : 'border border-transparent text-white/85 hover:border-white/15 hover:bg-white/5 hover:text-white',
-              )}
-            >
-              {option.label}
-            </button>
-          ))}
-        </div>
+      {/* Direction Toggle - Compact SegmentedControl */}
+      <div className="flex items-center justify-between gap-3 rounded-2xl border border-white/8 bg-white/5 p-3 shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
+        <SegmentedControl
+          options={directionOptions.map((opt) => ({ value: opt.id, label: opt.label }))}
+          value={directionId}
+          onChange={setDirectionId}
+          className="flex-1"
+        />
+        <button
+          onClick={handleSwapDirections}
+          className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/10 text-white/80 transition-colors hover:border-primary/60 hover:bg-primary/10 hover:text-primary"
+          aria-label={t('swapDirections', { default: 'Swap languages' })}
+        >
+          <ArrowLeftRight className="h-4 w-4" />
+        </button>
       </div>
 
       {/* Input Form */}
