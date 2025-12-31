@@ -4,18 +4,18 @@ test.use({ ...devices['Pixel 5'] });
 
 const locale = 'mk';
 
-// Updated: Profile removed from mobile nav (accessible via UserMenu in header)
+// Updated: New nav structure - Home | Translate | Practice | Reader | More
 const bottomNavDestinations = [
-  { path: '/dashboard', name: /Dashboard|Табла/i },
+  { path: '/learn', name: /Home|Дома/i },
   { path: '/translate', name: /Translate|Преведи/i },
-  { path: '/practice', name: /Practice|Вежбање/i },
-  { path: '/news', name: /News|Вести/i },
-  { path: '/resources', name: /Resources|Ресурси/i },
+  { path: '/practice', name: /Practice|Вежбај/i },
+  { path: '/reader', name: /Reader|Читач/i },
+  { path: '/more', name: /More|Повеќе/i },
 ];
 
 test.describe('Mobile tab navigation', () => {
-  test('displays exactly 5 navigation items (Profile removed)', async ({ page }) => {
-    await page.goto(`/${locale}/dashboard`);
+  test('displays exactly 5 navigation items', async ({ page }) => {
+    await page.goto(`/${locale}/learn`);
     await page.waitForLoadState('networkidle');
 
     const nav = page.locator('nav.fixed[aria-label]').first();
@@ -39,7 +39,7 @@ test.describe('Mobile tab navigation', () => {
   });
 
   test('Practice button has visible label', async ({ page }) => {
-    await page.goto(`/${locale}/dashboard`);
+    await page.goto(`/${locale}/learn`);
     await page.waitForLoadState('networkidle');
 
     const nav = page.locator('nav.fixed[aria-label]').first();
@@ -62,7 +62,7 @@ test.describe('Mobile tab navigation', () => {
   });
 
   test('verifies touch target sizes meet 44px minimum', async ({ page }) => {
-    await page.goto(`/${locale}/dashboard`);
+    await page.goto(`/${locale}/learn`);
     await page.waitForLoadState('networkidle');
 
     const nav = page.locator('nav.fixed[aria-label]').first();
@@ -81,7 +81,7 @@ test.describe('Mobile tab navigation', () => {
   });
 
   test('applies safe-area-inset for notched devices', async ({ page }) => {
-    await page.goto(`/${locale}/dashboard`);
+    await page.goto(`/${locale}/learn`);
     await page.waitForLoadState('networkidle');
 
     const nav = page.locator('nav.fixed[aria-label]').first();
@@ -91,14 +91,34 @@ test.describe('Mobile tab navigation', () => {
     expect(paddingBottom).toBeGreaterThan(10);
   });
 
-  test('Profile is NOT in mobile bottom nav', async ({ page }) => {
-    await page.goto(`/${locale}/dashboard`);
+  test('More tab navigates to More menu', async ({ page }) => {
+    await page.goto(`/${locale}/learn`);
     await page.waitForLoadState('networkidle');
 
     const nav = page.locator('nav.fixed[aria-label]').first();
+    const moreLink = nav.getByRole('link', { name: /More|Повеќе/i });
 
-    // Verify Profile link does not exist in bottom nav
-    const profileLink = nav.getByRole('link', { name: /Profile|Профил/i });
-    await expect(profileLink).not.toBeVisible();
+    await moreLink.click();
+    await page.waitForLoadState('networkidle');
+
+    // Should navigate to More page
+    await expect(page).toHaveURL(/\/more/);
+
+    // More page should have links to News, Resources, Profile
+    await expect(page.getByRole('link', { name: /News|Вести/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Resources|Ресурси/i })).toBeVisible();
+  });
+
+  test('Reader tab navigates to Reader page', async ({ page }) => {
+    await page.goto(`/${locale}/learn`);
+    await page.waitForLoadState('networkidle');
+
+    const nav = page.locator('nav.fixed[aria-label]').first();
+    const readerLink = nav.getByRole('link', { name: /Reader|Читач/i });
+
+    await readerLink.click();
+    await page.waitForLoadState('networkidle');
+
+    await expect(page).toHaveURL(/\/reader/);
   });
 });
