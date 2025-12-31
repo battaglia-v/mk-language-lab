@@ -3,14 +3,18 @@
 import { useMemo, useState } from 'react';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
-import { BookOpen, Wrench, BookmarkPlus, Zap, ChevronRight, Library, FileText } from 'lucide-react';
+import { BookOpen, Wrench, BookmarkPlus, Zap, ChevronRight, Library, FileText, Search, X } from 'lucide-react';
 import { PageContainer } from '@/components/layout';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ReadingSampleCard } from '@/components/reader/ReadingSampleCard';
-import { getReaderSamplesByLocale } from '@/lib/reader-samples';
+import { getReaderSamplesByLocale, type ReaderSample } from '@/lib/reader-samples';
 import { readFavorites } from '@/lib/favorites';
 import { cn } from '@/lib/utils';
+
+const DIFFICULTY_LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
+type DifficultyLevel = typeof DIFFICULTY_LEVELS[number];
 
 /**
  * Reader - Library | Workspace tabs
@@ -20,11 +24,51 @@ import { cn } from '@/lib/utils';
  */
 export default function ReaderPage() {
   const locale = useLocale();
-  const samples = useMemo(() => getReaderSamplesByLocale('mk'), []);
+  const allSamples = useMemo(() => getReaderSamplesByLocale('mk'), []);
   const [savedCount] = useState(() => {
     if (typeof window === 'undefined') return 0;
     return readFavorites().length;
   });
+
+  // Search and filter state
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedDifficulty, setSelectedDifficulty] = useState<DifficultyLevel | null>(null);
+
+  // Filter samples based on search and difficulty
+  const filteredSamples = useMemo(() => {
+    let result = allSamples;
+
+    // Filter by difficulty
+    if (selectedDifficulty) {
+      result = result.filter(sample => sample.difficulty === selectedDifficulty);
+    }
+
+    // Filter by search query (title and tags)
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase().trim();
+      result = result.filter(sample => {
+        const titleMatch = sample.title_en.toLowerCase().includes(query) ||
+                          sample.title_mk.toLowerCase().includes(query);
+        const tagMatch = sample.tags.some(tag => tag.toLowerCase().includes(query));
+        return titleMatch || tagMatch;
+      });
+    }
+
+    return result;
+  }, [allSamples, searchQuery, selectedDifficulty]);
+
+  // Get unique difficulties from available samples
+  const availableDifficulties = useMemo(() => {
+    const difficulties = new Set(allSamples.map(s => s.difficulty));
+    return DIFFICULTY_LEVELS.filter(d => difficulties.has(d));
+  }, [allSamples]);
+
+  const clearFilters = () => {
+    setSearchQuery('');
+    setSelectedDifficulty(null);
+  };
+
+  const hasActiveFilters = searchQuery.trim() || selectedDifficulty;
 
   return (
     <div className="min-h-screen pb-24 sm:pb-6">
@@ -70,22 +114,93 @@ export default function ReaderPage() {
               </Link>
             )}
 
+            {/* Search and Filter */}
+            <div className="space-y-3">
+              {/* Search Input */}
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder="Search readings..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-9 pr-9"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                )}
+              </div>
+
+              {/* Difficulty Filter Chips */}
+              {availableDifficulties.length > 1 && (
+                <div className="flex flex-wrap gap-2">
+                  {availableDifficulties.map((level) => (
+                    <button
+                      key={level}
+                      onClick={() => setSelectedDifficulty(selectedDifficulty === level ? null : level)}
+                      className={cn(
+                        'rounded-full px-3 py-1 text-xs font-medium transition-all',
+                        'border',
+                        selectedDifficulty === level
+                          ? level === 'A1' ? 'bg-emerald-500 text-white border-emerald-500'
+                          : level === 'A2' ? 'bg-blue-500 text-white border-blue-500'
+                          : level === 'B1' ? 'bg-purple-500 text-white border-purple-500'
+                          : 'bg-pink-500 text-white border-pink-500'
+                          : 'bg-transparent border-border hover:border-primary/50'
+                      )}
+                    >
+                      {level}
+                    </button>
+                  ))}
+                  {hasActiveFilters && (
+                    <button
+                      onClick={clearFilters}
+                      className="rounded-full px-3 py-1 text-xs font-medium text-muted-foreground hover:text-foreground"
+                    >
+                      Clear all
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
+
             {/* Reading List */}
             <section className="space-y-4">
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-semibold">Curated Readings</h2>
-                <span className="text-sm text-muted-foreground">{samples.length} texts</span>
+                <span className="text-sm text-muted-foreground">
+                  {filteredSamples.length === allSamples.length
+                    ? `${allSamples.length} texts`
+                    : `${filteredSamples.length} of ${allSamples.length}`}
+                </span>
               </div>
 
-              {samples.length > 0 ? (
+              {filteredSamples.length > 0 ? (
                 <div className="grid gap-4 sm:grid-cols-2">
-                  {samples.map((sample) => (
+                  {filteredSamples.map((sample) => (
                     <ReadingSampleCard
                       key={sample.id}
                       sample={sample}
                       locale={locale}
                     />
                   ))}
+                </div>
+              ) : hasActiveFilters ? (
+                <div className="text-center py-12 text-muted-foreground">
+                  <Search className="h-12 w-12 mx-auto mb-4 opacity-30" />
+                  <p>No readings match your filters.</p>
+                  <Button
+                    variant="link"
+                    onClick={clearFilters}
+                    className="mt-2"
+                  >
+                    Clear filters
+                  </Button>
                 </div>
               ) : (
                 <div className="text-center py-12 text-muted-foreground">
