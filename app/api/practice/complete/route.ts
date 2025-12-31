@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { xp, mode, difficulty, correct, total } = body;
+    const { xp, mode, difficulty, correct: _correct, total: _total } = body;
 
     if (typeof xp !== 'number' || xp < 0 || xp > 100) {
       return NextResponse.json(

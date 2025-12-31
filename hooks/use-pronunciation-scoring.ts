@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useMemo } from 'react';
 import {
   scorePronunciation,
   scorePronunciationFallback,
@@ -76,7 +76,19 @@ const DEFAULT_OPTIONS: Required<Omit<UsePronunciationScoringOptions, keyof Scori
 export function usePronunciationScoring(
   options: UsePronunciationScoringOptions = {}
 ): UsePronunciationScoringResult {
-  const opts = { ...DEFAULT_OPTIONS, ...options };
+  // Memoize merged options to prevent unnecessary re-renders
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- intentionally depend on individual props, not object reference
+  const opts = useMemo(() => ({ ...DEFAULT_OPTIONS, ...options }), [
+    options.maxAttempts,
+    options.expectedDuration,
+    options.onScoreComplete,
+    options.onError,
+    options.passingThreshold,
+    options.excellentThreshold,
+    options.analysisSegments,
+    options.minDurationRatio,
+    options.maxDurationRatio,
+  ]);
 
   const [state, setState] = useState<ScoringState>('idle');
   const [score, setScore] = useState<PronunciationScore | null>(null);

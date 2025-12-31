@@ -27,7 +27,7 @@ type Props = {
 export function WordSprintSession({ initialCount = 10, initialDifficulty }: Props) {
   const locale = useLocale();
   const router = useRouter();
-  const { data: session } = useSession();
+  const { data: authSession } = useSession();
 
   const [difficulty, setDifficulty] = useState<Difficulty | null>(initialDifficulty ?? null);
   const [showPicker, setShowPicker] = useState(!initialDifficulty);
@@ -66,7 +66,7 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
   }, []);
 
   const syncXPToServer = useCallback(async (xp: number, diff: Difficulty, correct: number, total: number) => {
-    if (!session?.user) return;
+    if (!authSession?.user) return;
     try {
       await fetch('/api/practice/complete', {
         method: 'POST',
@@ -76,7 +76,7 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
     } catch (e) {
       console.error('Failed to sync XP:', e);
     }
-  }, [session?.user]);
+  }, [authSession?.user]);
 
   const goNext = useCallback(() => {
     if (index + 1 >= queue.length) {
