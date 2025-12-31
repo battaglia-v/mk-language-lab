@@ -178,7 +178,7 @@ export function ContentStatusTabs({
 
 export function ContentWorkflowActions({
   contentId,
-  contentType,
+  contentType: _contentType, // Reserved for future content-specific actions
   currentStatus,
   userRole,
   onAction,
