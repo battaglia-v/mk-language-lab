@@ -113,7 +113,7 @@ Shows:
 
 ## What's Actually Left (Minor Polish)
 
-1. **Search in Reader Library** — Add search/filter for curated readings
+1. ~~**Search in Reader Library**~~ — ✅ DONE (commit `be57e50`)
 2. **Word Sprint content** — More advanced sentences
 3. **General UX polish** — Minor improvements
 
@@ -122,6 +122,8 @@ Shows:
 ## Commits This Session
 
 ```
+be57e50 feat: add search and difficulty filter to Reader Library
+849b590 docs: complete audit of P2-P5 - all items better than expected
 a329c55 docs: mark both P0 and P1 as FIXED in STATUS.md
 9a3770e docs: update P0 i18n status with investigation findings
 fb18144 fix: explicitly pass locale to getTranslations for i18n
