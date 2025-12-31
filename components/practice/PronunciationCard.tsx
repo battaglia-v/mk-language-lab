@@ -104,6 +104,8 @@ interface PronunciationCardProps {
     next: string;
     micPermissionDenied: string;
     micNotSupported: string;
+    practiceSilently?: string;
+    practiceSilentlyHint?: string;
     analyzing?: string;
     scoreLabel?: string;
     excellent?: string;
@@ -369,16 +371,78 @@ export function PronunciationCard({
 
   const recordButtonState = getRecordButtonState();
 
-  // Not supported fallback
+  // Handle "Practice silently" - mark as complete without recording
+  const handlePracticeSilently = useCallback(() => {
+    triggerHaptic('light');
+    // Award partial XP for silent practice (no score since no recording)
+    onComplete({ wordId: word.id, score: 0, skipped: false, xpEarned: 5 });
+    onNext();
+  }, [word.id, onComplete, onNext]);
+
+  // Not supported fallback - show "Practice silently" option
   if (!isSupported) {
     return (
-      <Card className={cn("border-destructive/50 bg-destructive/5", className)}>
-        <CardContent className="flex flex-col items-center gap-4 p-6 text-center">
-          <AlertCircle className="h-12 w-12 text-destructive" />
-          <p className="text-muted-foreground">{t.micNotSupported}</p>
-          <Button variant="outline" onClick={handleSkip}>
-            {t.skip}
+      <Card className={cn("border-amber-500/30 bg-amber-500/5", className)}>
+        {/* Progress bar */}
+        <div className="h-1 bg-muted">
+          <div
+            className="h-full bg-primary transition-all duration-300"
+            style={{ width: `${(position / total) * 100}%` }}
+          />
+        </div>
+        <CardContent className="flex flex-col items-center gap-6 p-6 text-center">
+          {/* Word display */}
+          <div className="space-y-2">
+            <h2 className="text-3xl font-bold text-foreground">
+              {word.macedonian}
+            </h2>
+            <p className="text-lg text-muted-foreground font-mono">
+              {word.transliteration}
+            </p>
+            <p className="text-sm text-muted-foreground">
+              {word.english}
+            </p>
+          </div>
+
+          {/* Listen button */}
+          <Button
+            size="lg"
+            variant="default"
+            onClick={playReference}
+            disabled={isPlayingReference}
+            className="min-h-[56px] min-w-[180px] rounded-full"
+          >
+            {isPlayingReference ? (
+              <Pause className="h-5 w-5 mr-2" />
+            ) : (
+              <Volume2 className="h-5 w-5 mr-2" />
+            )}
+            {t.tapToListen}
           </Button>
+
+          {/* Info message */}
+          <div className="flex items-start gap-2 text-sm text-amber-600 dark:text-amber-400">
+            <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
+            <span>{t.practiceSilentlyHint || 'Listen and repeat without recording (no XP)'}</span>
+          </div>
+
+          {/* Action buttons */}
+          <div className="flex gap-3 w-full max-w-xs">
+            <Button
+              variant="outline"
+              onClick={handleSkip}
+              className="flex-1"
+            >
+              {t.skip}
+            </Button>
+            <Button
+              onClick={handlePracticeSilently}
+              className="flex-1"
+              disabled={!hasListened}
+            >
+              {t.practiceSilently || 'I practiced'}
+            </Button>
+          </div>
         </CardContent>
       </Card>
     );
