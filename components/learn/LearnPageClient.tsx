@@ -91,25 +91,25 @@ export function LearnPageClient({
             </p>
           </div>
 
-          {/* Dominant Continue CTA */}
+          {/* Dominant Continue CTA - Compact horizontal layout */}
           <Link
             href={continueHref}
             className={cn(
-              'group flex flex-col items-center gap-4 rounded-2xl p-6',
-              'bg-gradient-to-br from-primary via-primary to-amber-500',
-              'text-primary-foreground shadow-xl shadow-primary/25',
-              'transition-all duration-200 hover:shadow-2xl hover:shadow-primary/30',
+              'group flex items-center gap-4 rounded-2xl p-4',
+              'bg-gradient-to-r from-primary to-amber-500',
+              'text-primary-foreground shadow-lg shadow-primary/20',
+              'transition-all duration-200 hover:shadow-xl hover:shadow-primary/25',
               'active:scale-[0.99]'
             )}
           >
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/20">
-              <Play className="h-8 w-8 ml-1" fill="currentColor" />
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/20">
+              <Play className="h-6 w-6 ml-0.5" fill="currentColor" />
             </div>
-            <div className="text-center">
-              <p className="text-xl font-bold">{nextLessonTitle}</p>
-              <p className="text-sm opacity-90">{nextLessonSubtitle}</p>
+            <div className="flex-1 min-w-0">
+              <p className="text-lg font-bold truncate">{nextLessonTitle}</p>
+              <p className="text-sm opacity-80 truncate">{nextLessonSubtitle}</p>
             </div>
-            <span className="text-lg font-bold">
+            <span className="shrink-0 rounded-xl bg-white/20 px-4 py-2 text-sm font-bold">
               {t('continue', { default: 'Continue' })}
             </span>
           </Link>
