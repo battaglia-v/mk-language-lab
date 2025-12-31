@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { Volume2, Brain, Heart, RotateCcw, Settings2, FileText, Sparkles, ArrowRight } from 'lucide-react';
+import { Volume2, Brain, Heart, RotateCcw, Settings2, FileText, Sparkles, ArrowRight, BarChart3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { BottomSheet } from '@/components/ui/BottomSheet';
@@ -26,6 +26,7 @@ export function PracticeHub() {
   } = usePracticeDecks();
 
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [progressOpen, setProgressOpen] = useState(false);
   const [deckType, setDeckType] = useState<DeckType>(recommendedDeck);
   const [mode, setMode] = useState<PracticeMode>('multiple-choice');
   const [difficulty, setDifficulty] = useState<DifficultyFilter>('all');
@@ -72,10 +73,10 @@ export function PracticeHub() {
       variant: 'default',
     },
     {
-      id: 'word-gaps',
-      title: t('modes.wordGaps.title', { default: 'Word Gaps' }),
-      description: t('modes.wordGaps.description', { default: 'Fill in the blank' }),
-      href: `/practice/word-gaps`,
+      id: 'fill-blanks',
+      title: t('modes.fillBlanks.title', { default: 'Fill Blanks' }),
+      description: t('modes.fillBlanks.description', { default: 'Complete the sentence' }),
+      href: `/practice/fill-blanks`,
       icon: FileText,
       variant: 'primary',
       badge: 'New',
@@ -168,36 +169,47 @@ export function PracticeHub() {
           <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
             Practice Modes
           </h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="h-8 rounded-full"
-            onClick={() => setSettingsOpen(true)}
-          >
-            <Settings2 className="h-4 w-4 mr-1" />
-            Settings
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="h-8 rounded-full"
+              onClick={() => setProgressOpen(true)}
+            >
+              <BarChart3 className="h-4 w-4 mr-1" />
+              Progress
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="h-8 rounded-full"
+              onClick={() => setSettingsOpen(true)}
+            >
+              <Settings2 className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
         <ModeTileGrid tiles={modeTiles} />
       </section>
 
-      {/* Streak Calendar */}
-      <section className="glass-card rounded-2xl p-4 sm:p-5">
-        <PracticeStreakCalendar weeks={8} />
-      </section>
+      {/* Progress BottomSheet - Stats & Deck Selection */}
+      <BottomSheet open={progressOpen} onClose={() => setProgressOpen(false)} title="Your Progress">
+        <div className="space-y-6">
+          {/* Streak Calendar */}
+          <PracticeStreakCalendar weeks={6} />
 
-      {/* Deck Selection */}
-      <section className="glass-card rounded-2xl p-4 sm:p-5">
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-3">
-          {t('drills.selectDeck', { default: 'Select Deck' })}
-        </h2>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-          <DeckToggle label={t('cards.translate.title')} count={curatedDeck.length} active={deckType === 'curated'} onClick={() => handleDeckSelect('curated')} />
-          <DeckToggle label={t('savedDeck.badge')} count={savedDeck.length} active={deckType === 'saved'} disabled={!savedDeck.length} onClick={() => handleDeckSelect('saved')} />
-          <DeckToggle label={t('translation.tabLabel')} count={historyDeck.length} active={deckType === 'history'} disabled={!historyDeck.length} onClick={() => handleDeckSelect('history')} />
-          <CustomDecksDropdown decks={customDecks} activeCustomDeckId={activeCustomDeckId} onSelectDeck={handleCustomDeckSelect} disabled={!customDecks.length} />
+          {/* Deck Selection */}
+          <div>
+            <h3 className="text-sm font-semibold mb-3">{t('drills.selectDeck', { default: 'Select Deck' })}</h3>
+            <div className="grid grid-cols-2 gap-2">
+              <DeckToggle label={t('cards.translate.title')} count={curatedDeck.length} active={deckType === 'curated'} onClick={() => handleDeckSelect('curated')} />
+              <DeckToggle label={t('savedDeck.badge')} count={savedDeck.length} active={deckType === 'saved'} disabled={!savedDeck.length} onClick={() => handleDeckSelect('saved')} />
+              <DeckToggle label={t('translation.tabLabel')} count={historyDeck.length} active={deckType === 'history'} disabled={!historyDeck.length} onClick={() => handleDeckSelect('history')} />
+              <CustomDecksDropdown decks={customDecks} activeCustomDeckId={activeCustomDeckId} onSelectDeck={handleCustomDeckSelect} disabled={!customDecks.length} />
+            </div>
+          </div>
         </div>
-      </section>
+      </BottomSheet>
 
       {/* Settings BottomSheet */}
       <BottomSheet open={settingsOpen} onClose={() => setSettingsOpen(false)} title={t('drills.settings', { default: 'Practice Settings' })}>
