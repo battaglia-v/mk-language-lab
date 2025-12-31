@@ -1,5 +1,9 @@
-import { WordGapsSession } from '@/components/practice/WordGapsSession';
+import { redirect } from 'next/navigation';
 
-export default function WordGapsPage() {
-  return <WordGapsSession />;
+export default function WordGapsPage({
+  params,
+}: {
+  params: { locale: string };
+}) {
+  redirect(`/${params.locale}/practice/word-sprint`);
 }
