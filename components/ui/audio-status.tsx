@@ -346,7 +346,7 @@ export function NativeAudioButton({
         {isLoading ? (
           <>
             <Loader2 className={cn(iconSize[size], "animate-spin")} aria-hidden="true" />
-            <span>Loading...</span>
+            <span>Preparing...</span>
           </>
         ) : isPlaying ? (
           <>

@@ -1038,6 +1038,14 @@
       "cloze": {
         "title": "Cloze",
         "description": "Fill in the blank sentences"
+      },
+      "wordGaps": {
+        "title": "Word Gaps",
+        "description": "Fill in the missing words"
+      },
+      "vocabulary": {
+        "title": "Vocabulary",
+        "description": "Build your word bank"
       }
     },
     "cloze": {
