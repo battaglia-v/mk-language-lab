@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, BookmarkPlus, Clock, Volume2, MoreHorizontal, Eye, EyeOff, ChevronDown, ChevronUp } from 'lucide-react';
+import { ArrowLeft, BookmarkPlus, Clock, Volume2, Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { BottomSheet } from '@/components/ui/BottomSheet';

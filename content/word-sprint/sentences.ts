@@ -89,7 +89,7 @@ export const sentences: WordSprintItem[] = [
 ];
 
 export function getWordSprintSession(count: number, difficulty?: Difficulty): WordSprintItem[] {
-  let items = difficulty ? sentences.filter(s => s.difficulty === difficulty) : [...sentences];
+  const items = difficulty ? sentences.filter(s => s.difficulty === difficulty) : [...sentences];
   return items.sort(() => Math.random() - 0.5).slice(0, Math.min(count, items.length));
 }
 

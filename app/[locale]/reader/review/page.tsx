@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { Volume2, Check, ChevronRight, Trophy, ArrowRight, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { SessionShell, SessionPrompt, SessionFeedback, SessionChoice } from '@/components/practice/SessionShell';
@@ -30,7 +30,6 @@ type Question = {
  * - reverse: See English, pick Macedonian from 4 options
  */
 export default function ReviewSessionPage() {
-  const t = useTranslations('reader');
   const locale = useLocale();
   const router = useRouter();
 

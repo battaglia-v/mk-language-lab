@@ -178,7 +178,7 @@ export function Summary({
           </p>
         ) : (
           <p className="text-sm font-medium text-muted-foreground">
-            Keep practicing! You're making progress.
+            Keep practicing! You&apos;re making progress.
           </p>
         )}
       </div>

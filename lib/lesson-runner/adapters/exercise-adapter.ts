@@ -6,7 +6,7 @@
  */
 
 import type { Step, MultipleChoiceStep, FillBlankStep } from '../types';
-import type { GrammarExercise, GrammarLesson } from '@/lib/grammar-engine';
+import type { GrammarExercise, GrammarLesson, SentenceBuilderExercise, ErrorCorrectionExercise } from '@/lib/grammar-engine';
 
 /**
  * Convert a single grammar exercise to a LessonRunner step
@@ -42,24 +42,41 @@ export function exerciseToStep(exercise: GrammarExercise, locale: 'en' | 'mk' = 
       return step;
     }
 
-    case 'sentence-builder':
-    case 'error-correction':
-      // TODO: These require custom step types or can be converted to fill-blank
+    case 'sentence-builder': {
+      // TODO: Sentence builder requires custom step type
       // For now, convert to fill-blank as a fallback
-      const fallbackStep: FillBlankStep = {
+      const sbExercise = exercise as SentenceBuilderExercise;
+      const sbStep: FillBlankStep = {
         id: exercise.id,
         type: 'FILL_BLANK',
         prompt: instruction,
-        correctAnswer: exercise.type === 'sentence-builder'
-          ? (exercise as any).targetSentenceMk
-          : (exercise as any).correctedWord,
+        correctAnswer: sbExercise.targetSentenceMk,
         explanation,
         caseSensitive: false,
       };
-      return fallbackStep;
+      return sbStep;
+    }
 
-    default:
-      throw new Error(`Unknown exercise type: ${(exercise as any).type}`);
+    case 'error-correction': {
+      // TODO: Error correction requires custom step type
+      // For now, convert to fill-blank as a fallback
+      const ecExercise = exercise as ErrorCorrectionExercise;
+      const ecStep: FillBlankStep = {
+        id: exercise.id,
+        type: 'FILL_BLANK',
+        prompt: instruction,
+        correctAnswer: ecExercise.correctedWord,
+        explanation,
+        caseSensitive: false,
+      };
+      return ecStep;
+    }
+
+    default: {
+      // This should never happen if all exercise types are handled
+      const _exhaustiveCheck: never = exercise;
+      throw new Error(`Unknown exercise type: ${(_exhaustiveCheck as GrammarExercise).type}`);
+    }
   }
 }
 

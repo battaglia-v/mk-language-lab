@@ -8,7 +8,7 @@ import {
 } from '@/components/learn/ExerciseLayout';
 import { useLessonRunner } from '@/lib/lesson-runner/useLessonRunner';
 import { calculateLessonXP } from '@/lib/xp/calculator';
-import type { LessonRunnerProps, Step } from '@/lib/lesson-runner/types';
+import type { LessonRunnerProps, Step, SummaryStep, LessonResults, StepAnswer } from '@/lib/lesson-runner/types';
 
 // Step Components
 import { MultipleChoice } from './steps/MultipleChoice';
@@ -40,7 +40,7 @@ export function LessonRunner({
   autoSave = false,
 }: LessonRunnerProps) {
   // Calculate XP and add Summary step
-  const handleRawComplete = (results: any) => {
+  const handleRawComplete = (results: Omit<LessonResults, 'xpEarned'>) => {
     const xpData = calculateLessonXP({
       totalSteps: results.totalSteps,
       correctAnswers: results.correctAnswers,
@@ -93,7 +93,7 @@ export function LessonRunner({
 
   // Update Summary step with actual values
   if (currentStep?.type === 'SUMMARY') {
-    const summaryStep = currentStep as any;
+    const summaryStep = currentStep as SummaryStep;
     const xpData = calculateLessonXP({
       totalSteps: totalSteps - 1, // Exclude summary step
       correctAnswers: correctCount,
@@ -109,29 +109,28 @@ export function LessonRunner({
   const renderStep = () => {
     if (!currentStep) return null;
 
-    const stepProps = {
-      step: currentStep as any,
-      onAnswer: submitAnswer,
+    const baseProps = {
+      onAnswer: submitAnswer as (answer: StepAnswer) => void,
       feedback: currentFeedback,
       disabled: isEvaluating,
     };
 
     switch (currentStep.type) {
       case 'MULTIPLE_CHOICE':
-        return <MultipleChoice {...stepProps} />;
+        return <MultipleChoice step={currentStep} {...baseProps} />;
       case 'FILL_BLANK':
-        return <FillBlank {...stepProps} />;
+        return <FillBlank step={currentStep} {...baseProps} />;
       case 'TAP_WORDS':
-        return <TapWords {...stepProps} />;
+        return <TapWords step={currentStep} {...baseProps} />;
       case 'PRONOUNCE':
-        return <Pronounce {...stepProps} />;
+        return <Pronounce step={currentStep} {...baseProps} />;
       case 'SUMMARY':
-        return <Summary {...stepProps} />;
+        return <Summary step={currentStep} {...baseProps} />;
       default:
         return (
           <div className="rounded-[var(--radius-card)] border border-border/50 bg-card/80 p-6 shadow-sm">
             <p className="text-destructive">
-              Unknown step type: {(currentStep as any).type}
+              Unknown step type: {(currentStep as Step).type}
             </p>
           </div>
         );

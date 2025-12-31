@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
+import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -16,7 +16,6 @@ import { PageContainer } from '@/components/layout';
  * This is the "tool" view, separate from the reading experience.
  */
 export default function ReaderAnalyzePage() {
-  const t = useTranslations('translate');
   const locale = useLocale();
 
   const directionOptions: ReaderDirectionOption[] = useMemo(
