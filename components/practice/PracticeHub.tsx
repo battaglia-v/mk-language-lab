@@ -3,11 +3,13 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { ArrowRight, Volume2, Brain, Heart, RotateCcw, Settings2, Sparkles, FileText } from 'lucide-react';
+import { Volume2, Brain, Heart, RotateCcw, Settings2, FileText, Sparkles, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { BottomSheet } from '@/components/ui/BottomSheet';
 import { PracticeStreakCalendar } from '@/components/gamification/PracticeStreakCalendar';
+import { TopGameBar } from '@/components/gamification/TopGameBar';
+import { ModeTileGrid, ContinueCTA, type ModeTile } from './ModeTileGrid';
 import { CustomDecksDropdown } from './CustomDecksDropdown';
 import { usePracticeDecks } from './usePracticeDecks';
 import { cn } from '@/lib/utils';
@@ -51,46 +53,64 @@ export function PracticeHub() {
   const currentDeckCount = deckCounts[deckType] || curatedDeck.length;
   const hasCardsToReview = currentDeckCount > 0;
 
+  // Build mode tiles
+  const modeTiles: ModeTile[] = [
+    {
+      id: 'pronunciation',
+      title: t('modes.pronunciation.title', { default: 'Pronunciation' }),
+      description: t('modes.pronunciation.description', { default: 'Perfect your accent' }),
+      href: `/practice/pronunciation`,
+      icon: Volume2,
+      variant: 'default',
+    },
+    {
+      id: 'grammar',
+      title: t('modes.grammar.title', { default: 'Grammar' }),
+      description: t('modes.grammar.description', { default: 'Master patterns' }),
+      href: `/practice/grammar`,
+      icon: Brain,
+      variant: 'default',
+    },
+    {
+      id: 'cloze',
+      title: t('modes.cloze.title', { default: 'Cloze' }),
+      description: t('modes.cloze.description', { default: 'Fill in the blank' }),
+      href: `/practice/cloze`,
+      icon: FileText,
+      variant: 'primary',
+      badge: 'New',
+    },
+    {
+      id: 'vocabulary',
+      title: t('modes.vocabulary.title', { default: 'Vocabulary' }),
+      description: t('modes.vocabulary.description', { default: 'Build word bank' }),
+      href: `/practice/session?deck=curated&mode=multiple-choice`,
+      icon: Sparkles,
+      cardCount: curatedDeck.length,
+    },
+  ];
+
   return (
     <div className="flex flex-col gap-4 sm:gap-5">
-      {/* Continue CTA - First and Prominent */}
-      <section className="glass-card rounded-2xl p-4 sm:p-5">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex-1">
-            <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-1">
-              {t('badge')}
-            </p>
-            <h1 className="text-xl font-bold text-foreground sm:text-2xl">
-              {t('title')}
-            </h1>
-            <p className="text-sm text-muted-foreground mt-1">
-              {currentDeckCount} {t('drills.cardsAvailable', { default: 'cards ready' })}
-            </p>
-          </div>
-          <div className="flex gap-2">
-            <Button
-              variant="outline"
-              size="lg"
-              className="min-h-[48px] rounded-xl"
-              onClick={() => setSettingsOpen(true)}
-            >
-              <Settings2 className="h-5 w-5" />
-              <span className="sr-only sm:not-sr-only sm:ml-2">{t('drills.settings', { default: 'Settings' })}</span>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              className="flex-1 sm:flex-none min-h-[48px] rounded-xl bg-gradient-to-r from-primary to-amber-500 text-lg font-bold shadow-lg"
-              disabled={!hasCardsToReview}
-            >
-              <Link href={buildSessionUrl()}>
-                <Sparkles className="h-5 w-5 mr-2" />
-                {t('drills.startSession', { default: 'Start Practice' })}
-              </Link>
-            </Button>
-          </div>
+      {/* Top Game Bar - Streak/XP/Goal */}
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-widest text-primary">
+            {t('badge')}
+          </p>
+          <h1 className="text-xl font-bold text-foreground sm:text-2xl">
+            {t('title')}
+          </h1>
         </div>
-      </section>
+        <TopGameBar compact />
+      </div>
+
+      {/* Dominant Continue CTA */}
+      <ContinueCTA
+        href={buildSessionUrl()}
+        label={t('drills.startSession', { default: 'Start Practice' })}
+        subtitle={`${currentDeckCount} ${t('drills.cardsAvailable', { default: 'cards ready' })}`}
+      />
 
       {/* Smart Review Badges */}
       {(srsDueDeck.length > 0 || mistakesDeck.length > 0 || favoritesDeck.length > 0) && (
@@ -142,47 +162,23 @@ export function PracticeHub() {
         </section>
       )}
 
-      {/* Practice Modes */}
-      <section className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <Link
-          href={`/${locale}/practice/pronunciation`}
-          className="group glass-card flex items-center gap-4 rounded-2xl p-4 transition-all hover:bg-primary/5 hover:border-primary/30"
-        >
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-purple-600">
-            <Volume2 className="h-6 w-6 text-white" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-foreground">{t('modes.pronunciation.title')}</h3>
-            <p className="text-sm text-muted-foreground truncate">{t('modes.pronunciation.description')}</p>
-          </div>
-          <ArrowRight className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-        </Link>
-        <Link
-          href={`/${locale}/practice/grammar`}
-          className="group glass-card flex items-center gap-4 rounded-2xl p-4 transition-all hover:bg-primary/5 hover:border-primary/30"
-        >
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600">
-            <Brain className="h-6 w-6 text-white" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-foreground">{t('modes.grammar.title')}</h3>
-            <p className="text-sm text-muted-foreground truncate">{t('modes.grammar.description')}</p>
-          </div>
-          <ArrowRight className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-        </Link>
-        <Link
-          href={`/${locale}/practice/cloze`}
-          className="group glass-card flex items-center gap-4 rounded-2xl p-4 transition-all hover:bg-primary/5 hover:border-primary/30"
-        >
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-600">
-            <FileText className="h-6 w-6 text-white" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-foreground">{t('modes.cloze.title', { default: 'Cloze' })}</h3>
-            <p className="text-sm text-muted-foreground truncate">{t('modes.cloze.description', { default: 'Fill in the blank sentences' })}</p>
-          </div>
-          <ArrowRight className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-        </Link>
+      {/* Practice Modes - 2-column grid */}
+      <section>
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
+            Practice Modes
+          </h2>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-8 rounded-full"
+            onClick={() => setSettingsOpen(true)}
+          >
+            <Settings2 className="h-4 w-4 mr-1" />
+            Settings
+          </Button>
+        </div>
+        <ModeTileGrid tiles={modeTiles} />
       </section>
 
       {/* Streak Calendar */}
