@@ -1,3 +1,5 @@
+import cafeConversation from '@/data/reader/samples/cafe-conversation.json';
+
 export interface ReaderSampleVocab {
   mk: string;
   en: string;
@@ -54,8 +56,10 @@ export interface ReaderSample {
   attribution: ReaderSampleAttribution;
 }
 
-// Reader samples will be populated as content is added
-const samples: Record<string, ReaderSample> = {};
+// Reader samples - add new samples here
+const samples: Record<string, ReaderSample> = {
+  'cafe-conversation': cafeConversation as ReaderSample,
+};
 
 export function getReaderSample(id: string): ReaderSample | null {
   return samples[id] || null;
