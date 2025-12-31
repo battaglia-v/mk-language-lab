@@ -45,9 +45,9 @@ const defaultTiles: Omit<ModeTile, 'href'>[] = [
     variant: 'default',
   },
   {
-    id: 'cloze',
-    title: 'Cloze',
-    description: 'Fill in blanks',
+    id: 'word-sprint',
+    title: 'Word Sprint',
+    description: 'Fill the gap',
     icon: FileText,
     variant: 'primary',
   },

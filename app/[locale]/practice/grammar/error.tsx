@@ -27,7 +27,7 @@ export default function GrammarError({
           </div>
           <CardTitle className="text-2xl">Something went wrong</CardTitle>
           <CardDescription>
-            We encountered an error while loading the grammar lesson. This has been reported and we're working on it.
+            We encountered an error while loading the grammar lesson. This has been reported and we&apos;re working on it.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

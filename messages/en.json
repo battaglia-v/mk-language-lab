@@ -1045,6 +1045,12 @@
         "time": "2–3 min",
         "xp": "+10 XP"
       },
+      "wordSprint": {
+        "title": "Word Sprint",
+        "description": "Fill gaps at 3 difficulty levels",
+        "time": "2–5 min",
+        "xp": "+8–20 XP"
+      },
       "vocabulary": {
         "title": "Vocabulary",
         "description": "Build your word bank with flashcards",
@@ -1067,6 +1073,23 @@
     "cloze": {
       "sessionComplete": "Session Complete",
       "addMore": "+5 More"
+    },
+    "wordSprint": {
+      "title": "Word Sprint",
+      "description": "Fill the gap",
+      "chooseDifficulty": "Choose Difficulty",
+      "selectChallenge": "Select your challenge level",
+      "sessionComplete": "Session Complete",
+      "addMore": "+5 More",
+      "finish": "Finish",
+      "harder": "Try Harder",
+      "continue": "Continue",
+      "correct": "Correct!",
+      "incorrect": "Not quite",
+      "answer": "Answer: {word}",
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
     },
     "streakCalendar": {
       "title": "Practice Activity",
