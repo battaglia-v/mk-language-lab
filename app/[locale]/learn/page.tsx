@@ -1,8 +1,7 @@
 import { getLocale } from "next-intl/server";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
-import { LearnHeader } from "@/components/learn/LearnHeader";
-import { LessonPath } from "@/components/learn/LessonPath";
+import { LearnPageClient } from "@/components/learn/LearnPageClient";
 import { createStarterPath } from "@/lib/learn/starter-path";
 import { getNextNode } from "@/lib/learn/lesson-path-types";
 
@@ -22,7 +21,6 @@ export default async function LearnPage() {
     totalLessons: 0,
   };
 
-  // Track completed node IDs (MVP: stored in a simple way, future: in DB)
   let completedNodeIds: string[] = [];
 
   if (session?.user?.id) {
@@ -39,8 +37,6 @@ export default async function LearnPage() {
           totalLessons: progress.totalLessons,
         };
 
-        // MVP: Mark nodes as completed based on totalLessons
-        // In production, this would come from a dedicated lesson progress table
         const completedCount = Math.min(progress.totalLessons, 10);
         completedNodeIds = Array.from(
           { length: completedCount },
@@ -52,26 +48,23 @@ export default async function LearnPage() {
     }
   }
 
-  // Create the lesson path with user's progress
   const starterPath = createStarterPath(completedNodeIds);
   const nextNode = getNextNode(starterPath);
-  const continueHref = nextNode?.href ? `/${locale}${nextNode.href}` : undefined;
+  const continueHref = nextNode?.href ? `/${locale}${nextNode.href}` : `/${locale}/practice`;
+  const nextLessonTitle = nextNode?.title || "Quick Practice";
+  const nextLessonSubtitle = nextNode?.description || "Build your streak";
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-4rem)] pb-24 sm:pb-6">
-      {/* Sticky header with streak + daily goal + Continue */}
-      <LearnHeader
-        streak={gameProgress.streak}
-        todayXP={gameProgress.todayXP}
-        dailyGoalXP={gameProgress.dailyGoalXP}
-        continueHref={continueHref}
-        locale={locale}
-      />
-
-      {/* Lesson Path */}
-      <div className="flex-1 pt-6">
-        <LessonPath path={starterPath} locale={locale} />
-      </div>
-    </div>
+    <LearnPageClient
+      locale={locale}
+      streak={gameProgress.streak}
+      todayXP={gameProgress.todayXP}
+      dailyGoalXP={gameProgress.dailyGoalXP}
+      totalLessons={gameProgress.totalLessons}
+      continueHref={continueHref}
+      nextLessonTitle={nextLessonTitle}
+      nextLessonSubtitle={nextLessonSubtitle}
+      lessonPath={starterPath}
+    />
   );
 }
