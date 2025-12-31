@@ -64,14 +64,13 @@ export function ReadingSampleCard({ sample, locale }: ReadingSampleCardProps) {
           </div>
         </div>
 
-        {/* CTA */}
+        {/* CTA - min 52px for touch target */}
         <Button
           asChild
-          className="w-full"
-          size="sm"
+          className="w-full min-h-[52px]"
         >
           <Link href={`/${locale}/reader/samples/${sample.id}`}>
-            Open sample
+            Start Reading
           </Link>
         </Button>
       </CardContent>
