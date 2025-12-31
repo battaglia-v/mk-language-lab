@@ -3,6 +3,7 @@ import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { LearnPageClient } from "@/components/learn/LearnPageClient";
 import { createStarterPath } from "@/lib/learn/starter-path";
+import { createAdvancedPath } from "@/lib/learn/advanced-path";
 import { getNextNode } from "@/lib/learn/lesson-path-types";
 
 export const dynamic = 'force-dynamic';
@@ -48,7 +49,13 @@ export default async function LearnPage() {
     }
   }
 
+  // Create both learning paths
   const starterPath = createStarterPath(completedNodeIds);
+
+  // For advanced path, filter completed IDs that start with 'adv-'
+  const advCompletedIds = completedNodeIds.filter(id => id.startsWith('adv-'));
+  const advancedPath = createAdvancedPath(advCompletedIds);
+
   const nextNode = getNextNode(starterPath);
   const continueHref = nextNode?.href ? `/${locale}${nextNode.href}` : `/${locale}/practice`;
   const nextLessonTitle = nextNode?.title || "Quick Practice";
@@ -64,7 +71,8 @@ export default async function LearnPage() {
       continueHref={continueHref}
       nextLessonTitle={nextLessonTitle}
       nextLessonSubtitle={nextLessonSubtitle}
-      lessonPath={starterPath}
+      starterPath={starterPath}
+      advancedPath={advancedPath}
     />
   );
 }
