@@ -1,9 +1,9 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
+import { useLocale } from 'next-intl';
 import Link from 'next/link';
-import { BookOpen, Wrench, BookmarkPlus, Zap, ChevronRight, Clock } from 'lucide-react';
+import { BookOpen, Wrench, BookmarkPlus, Zap, ChevronRight } from 'lucide-react';
 import { PageContainer } from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import { ReadingSampleCard } from '@/components/reader/ReadingSampleCard';
@@ -18,10 +18,9 @@ import { cn } from '@/lib/utils';
  * Analyze tool is accessible via icon, not front-and-center.
  */
 export default function ReaderPage() {
-  const t = useTranslations('translate');
   const locale = useLocale();
   const samples = useMemo(() => getReaderSamplesByLocale('mk'), []);
-  const [savedCount, setSavedCount] = useState(() => {
+  const [savedCount] = useState(() => {
     if (typeof window === 'undefined') return 0;
     return readFavorites().length;
   });

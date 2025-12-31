@@ -1,10 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { Flame, Zap, Target, Play, BookOpen, ChevronRight, Lock, Check } from 'lucide-react';
+import { Flame, Zap, Play, BookOpen, ChevronRight, Lock, Check } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Progress } from '@/components/ui/progress';
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { getLocalXP } from '@/lib/gamification/local-xp';
 import type { LessonPath as LessonPathData } from '@/lib/learn/lesson-path-types';
@@ -50,7 +49,6 @@ export function LearnPageClient({
   const streak = Math.max(localState.streak, initialStreak);
   const goalProgress = dailyGoalXP > 0 ? Math.min(100, Math.round((todayXP / dailyGoalXP) * 100)) : 0;
   const isGoalComplete = todayXP >= dailyGoalXP;
-  const xpToGoal = Math.max(0, dailyGoalXP - todayXP);
 
   // Determine completed lessons based on totalLessons
   const completedLessonCount = Math.min(totalLessons, UNIT_1_LESSONS.length);
