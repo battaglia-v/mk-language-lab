@@ -13,7 +13,23 @@
 ## 🎉 ALL PHASES + CONTENT EXPANSION COMPLETE
 
 ## In Progress ▶️
-- [ ] (none)
+- [x] P0 Live Regression Audit (Dec 31, 2024) ✅ **COMPLETE**
+
+### P0 Audit Steps
+1. [x] Fix signed-out Home i18n keys (`home.guestSubtitle`, `home.guestCta`, `home.guestSignIn`, `home.guestSignInLink`)
+   - Added to `messages/en.json` and `messages/mk.json`
+2. [x] Fix Start Today's Lesson -> /practice/decks/starter (guest fallback + stale id)
+   - **VERIFIED**: Already fixed - route is `/practice/session?deck=curated&difficulty=beginner`
+   - `PracticeSession.tsx` has fallback for custom deck failures (lines 57-68)
+   - No broken `/practice/decks/starter` references found
+3. [x] Make XP consistent (Word Sprint card vs mode screen)
+   - Updated `DifficultyPicker.tsx` to show per-difficulty XP: `+{BASE_XP_PER_QUESTION[d]} XP/q`
+   - Updated i18n `modes.wordSprint.xp` from "+8-20 XP" to "+2-5 XP/q" (en + mk)
+4. [x] Replace "Word Gaps" copy with "Word Sprint" everywhere
+   - Updated `about.feature1` in en.json and mk.json
+5. [x] Playwright test for Start Today's Lesson signed-out flow
+   - Added test suite `Homepage - Signed-Out Guest Flow` to `e2e/homepage.spec.ts`
+   - Tests: guest CTA navigation, sign-in link visibility
 
 ## Next (optional improvements) ⏭️
 - [ ] Add more reader samples

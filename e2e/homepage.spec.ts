@@ -132,7 +132,7 @@ test.describe('Homepage', () => {
       // Check for dropdown menu or language options
       const menu = page.locator('[role="menu"], [role="listbox"], [class*="dropdown"]');
       const menuVisible = await menu.count() > 0;
-      
+
       // Either menu is visible or we see language text
       const langText = page.getByText(/English|Македонски/i);
       expect(menuVisible || await langText.count() > 0).toBeTruthy();
@@ -140,5 +140,59 @@ test.describe('Homepage', () => {
       // Locale switcher might be hidden on mobile or not present
       expect(true).toBeTruthy();
     }
+  });
+});
+
+test.describe('Homepage - Signed-Out Guest Flow', () => {
+  test.beforeEach(async ({ context }) => {
+    // Clear cookies to ensure signed-out state
+    await context.clearCookies();
+  });
+
+  test('should display guest CTA and navigate to practice session', async ({ page }) => {
+    // Go to English homepage to test guest flow
+    await page.goto('/en');
+    await page.waitForLoadState('networkidle');
+
+    // Verify guest-specific content is displayed
+    const heading = page.getByRole('heading', { name: /Learn Macedonian/i }).first();
+    await expect(heading).toBeVisible();
+
+    // Check for guest subtitle
+    const subtitle = page.getByText(/5 minutes a day/i);
+    await expect(subtitle).toBeVisible();
+
+    // Find and click the "Start Learning" CTA button
+    const startButton = page.getByRole('link', { name: /Start Learning|Почни да учиш/i });
+    await expect(startButton).toBeVisible();
+
+    // Verify the href points to practice session
+    const href = await startButton.getAttribute('href');
+    expect(href).toContain('/practice/session');
+    expect(href).toContain('deck=curated');
+
+    // Click and verify navigation
+    await startButton.click();
+    await page.waitForURL('**/practice/session**');
+
+    // Verify practice session loads (has progress bar or card content)
+    const sessionContent = page.locator('main, [role="main"]').first();
+    await expect(sessionContent).toBeVisible();
+  });
+
+  test('should display sign-in link for returning users', async ({ page }) => {
+    await page.goto('/en');
+    await page.waitForLoadState('networkidle');
+
+    // Check for "Already have an account?" text and sign-in link
+    const signInPrompt = page.getByText(/Already have an account/i);
+    await expect(signInPrompt).toBeVisible();
+
+    const signInLink = page.getByRole('link', { name: /Sign in|Најави се/i });
+    await expect(signInLink).toBeVisible();
+
+    // Verify sign-in link points to auth
+    const href = await signInLink.getAttribute('href');
+    expect(href).toContain('/auth/signin');
   });
 });

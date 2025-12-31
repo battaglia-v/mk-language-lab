@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { X, Zap, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { type Difficulty, type SessionLength, DIFFICULTY_COLORS, SESSION_LENGTH_OPTIONS } from './types';
+import { type Difficulty, type SessionLength, DIFFICULTY_COLORS, SESSION_LENGTH_OPTIONS, BASE_XP_PER_QUESTION } from './types';
 
 type Props = {
   onSelect: (difficulty: Difficulty, length: SessionLength) => void;
@@ -66,7 +66,7 @@ export function DifficultyPicker({ onSelect, title = 'Word Sprint' }: Props) {
                   </div>
                   <span className={cn('text-sm font-bold flex items-center gap-1', selectedDifficulty === d ? 'opacity-100' : DIFFICULTY_COLORS[d].text)}>
                     <Zap className="h-3 w-3" />
-                    +2-5 XP/q
+                    +{BASE_XP_PER_QUESTION[d]} XP/q
                   </span>
                 </Button>
               ))}
