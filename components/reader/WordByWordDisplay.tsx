@@ -2,9 +2,10 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Heart } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
+import { isFavorite, addFavorite } from '@/lib/favorites';
 import type { AnalyzedTextData, WordAnalysis } from '@/components/translate/useReaderWorkspace';
 import {
   Popover,
@@ -31,8 +32,30 @@ type WordTokenProps = {
 function WordToken({ word, revealMode, isRevealed, onToggleReveal, isFocused = false, focusMode = false }: WordTokenProps) {
   const t = useTranslations('translate');
   const [isOpen, setIsOpen] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+
+  // Check if word is already saved
+  useEffect(() => {
+    setIsSaved(isFavorite(`word-${word.original}`));
+  }, [word.original]);
+
   // In focus mode, show translation for the focused word
   const showTranslation = revealMode === 'revealed' || isRevealed || (focusMode && isFocused);
+
+  const handleSaveWord = () => {
+    if (isSaved) return;
+    addFavorite({
+      id: `word-${word.original}`,
+      macedonian: word.original,
+      english: word.translation,
+      category: 'reader',
+    });
+    setIsSaved(true);
+    trackEvent(AnalyticsEvents.READER_WORD_CLICKED, {
+      action: 'saved_to_favorites',
+      partOfSpeech: word.pos,
+    });
+  };
 
   const handleClick = () => {
     onToggleReveal();
@@ -134,21 +157,37 @@ function WordToken({ word, revealMode, isRevealed, onToggleReveal, isFocused = f
           )}
         </div>
 
-        <div className="flex items-center gap-2 pt-2 border-t border-border/30">
-          <span className={cn(
-            'text-xs px-2.5 py-1 rounded-full font-medium',
-            'bg-background border border-border/60'
-          )}>
-            {t(`readerPos${word.pos.charAt(0).toUpperCase() + word.pos.slice(1)}`)}
-          </span>
-          <span className={cn(
-            'text-xs px-2.5 py-1 rounded-full font-medium',
-            word.difficulty === 'basic' && 'bg-green-500/20 text-green-400 border border-green-500/30',
-            word.difficulty === 'intermediate' && 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30',
-            word.difficulty === 'advanced' && 'bg-red-500/20 text-red-400 border border-red-500/30'
-          )}>
-            {t(`readerDifficulty${word.difficulty.charAt(0).toUpperCase() + word.difficulty.slice(1)}`)}
-          </span>
+        <div className="flex items-center justify-between gap-2 pt-2 border-t border-border/30">
+          <div className="flex items-center gap-2">
+            <span className={cn(
+              'text-xs px-2.5 py-1 rounded-full font-medium',
+              'bg-background border border-border/60'
+            )}>
+              {t(`readerPos${word.pos.charAt(0).toUpperCase() + word.pos.slice(1)}`)}
+            </span>
+            <span className={cn(
+              'text-xs px-2.5 py-1 rounded-full font-medium',
+              word.difficulty === 'basic' && 'bg-green-500/20 text-green-400 border border-green-500/30',
+              word.difficulty === 'intermediate' && 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30',
+              word.difficulty === 'advanced' && 'bg-red-500/20 text-red-400 border border-red-500/30'
+            )}>
+              {t(`readerDifficulty${word.difficulty.charAt(0).toUpperCase() + word.difficulty.slice(1)}`)}
+            </span>
+          </div>
+          <Button
+            type="button"
+            variant={isSaved ? 'secondary' : 'ghost'}
+            size="sm"
+            onClick={handleSaveWord}
+            disabled={isSaved}
+            className={cn(
+              'h-8 px-2.5 rounded-full',
+              isSaved && 'text-pink-400'
+            )}
+          >
+            <Heart className={cn('h-4 w-4', isSaved && 'fill-current')} />
+            <span className="ml-1.5 text-xs">{isSaved ? t('readerSaved', { default: 'Saved' }) : t('readerSave', { default: 'Save' })}</span>
+          </Button>
         </div>
       </PopoverContent>
     </Popover>
