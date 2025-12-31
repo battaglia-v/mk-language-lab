@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Trophy, Flame, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import confetti from 'canvas-confetti';
 
 type Props = {
   xpEarned: number;
@@ -16,11 +17,41 @@ type Props = {
 export function GoalCelebration({ xpEarned, dailyGoal, streak, onClose, className }: Props) {
   const [visible, setVisible] = useState(false);
 
+  const triggerConfetti = useCallback(() => {
+    const duration = 2000;
+    const end = Date.now() + duration;
+    const colors = ['#f6d83b', '#f59e0b', '#10b981', '#6366f1'];
+
+    (function frame() {
+      confetti({
+        particleCount: 3,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0, y: 0.6 },
+        colors,
+      });
+      confetti({
+        particleCount: 3,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1, y: 0.6 },
+        colors,
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    })();
+  }, []);
+
   useEffect(() => {
     // Slight delay for mount animation
-    const t = setTimeout(() => setVisible(true), 50);
+    const t = setTimeout(() => {
+      setVisible(true);
+      triggerConfetti();
+    }, 50);
     return () => clearTimeout(t);
-  }, []);
+  }, [triggerConfetti]);
 
   return (
     <div className={cn(

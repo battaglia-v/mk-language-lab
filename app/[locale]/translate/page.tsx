@@ -332,11 +332,33 @@ export default function TranslatePage() {
           </div>
         </div>
 
-        {/* Translate Button - Prominent */}
+        {/* Translate Button - Desktop: inline, Mobile: sticky footer */}
+        <div className="hidden sm:block">
+          <Button
+            type="submit"
+            size="lg"
+            className="w-full bg-gradient-to-r from-[#ffe16a] via-primary to-[#f4c542] text-lg font-bold text-slate-950 shadow-[0_18px_40px_rgba(0,0,0,0.45)] hover:brightness-[0.97]"
+            disabled={isTranslating || !inputText.trim()}
+          >
+            {isTranslating ? (
+              <>
+                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                {t('translatingStatus', { default: 'Translating...' })}
+              </>
+            ) : (
+              t('translateButton', { default: 'Translate' })
+            )}
+          </Button>
+        </div>
+      </form>
+
+      {/* Mobile Sticky Translate Button */}
+      <div className="fixed bottom-[calc(var(--mobile-nav-height)+var(--safe-area-bottom))] left-0 right-0 z-40 border-t border-border/40 bg-background/95 px-4 py-3 backdrop-blur-lg sm:hidden">
         <Button
-          type="submit"
+          type="button"
+          onClick={(e) => { e.preventDefault(); void handleTranslate(e as unknown as FormEvent<HTMLFormElement>); }}
           size="lg"
-          className="w-full bg-gradient-to-r from-[#ffe16a] via-primary to-[#f4c542] text-lg font-bold text-slate-950 shadow-[0_18px_40px_rgba(0,0,0,0.45)] hover:brightness-[0.97]"
+          className="w-full min-h-[48px] bg-gradient-to-r from-[#ffe16a] via-primary to-[#f4c542] text-lg font-bold text-slate-950 shadow-lg hover:brightness-[0.97]"
           disabled={isTranslating || !inputText.trim()}
         >
           {isTranslating ? (
@@ -348,7 +370,7 @@ export default function TranslatePage() {
             t('translateButton', { default: 'Translate' })
           )}
         </Button>
-      </form>
+      </div>
 
       {/* Error Message */}
       {errorMessage && (

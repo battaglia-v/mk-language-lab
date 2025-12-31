@@ -15,6 +15,7 @@ import { recordPracticeSession } from '@/lib/practice-activity';
 import { recordReview } from '@/lib/srs';
 import { calculateXP, formatDifficultyLabel } from './types';
 import { XPAnimation } from '@/components/gamification/XPAnimation';
+import { GoalCelebration } from '@/components/gamification/GoalCelebration';
 import { addLocalXP, getLocalXP, isGoalComplete } from '@/lib/gamification/local-xp';
 import { Skeleton } from '@/components/ui/skeleton';
 import type { DeckType, PracticeMode, DifficultyFilter, Flashcard } from './types';
@@ -42,6 +43,13 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [showXP, setShowXP] = useState(false);
   const [xpAmount, setXpAmount] = useState(0);
+  const [showGoalCelebration, setShowGoalCelebration] = useState(false);
+  const [goalWasCompleteAtStart, setGoalWasCompleteAtStart] = useState(false);
+
+  // Check if goal was already complete when session started
+  useEffect(() => {
+    setGoalWasCompleteAtStart(isGoalComplete());
+  }, []);
   const sessionStart = useRef(Date.now());
 
   // Load deck
@@ -102,11 +110,16 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
       const earned = 1;
       setXpAmount(earned);
       setShowXP(true);
+      const wasGoalComplete = isGoalComplete();
       addLocalXP(earned);
+      // Show celebration if goal was just completed
+      if (!wasGoalComplete && !goalWasCompleteAtStart && isGoalComplete()) {
+        setTimeout(() => setShowGoalCelebration(true), 800);
+      }
     } else {
       setStreak(0);
     }
-  }, [maxStreak, deckType, card?.id]);
+  }, [maxStreak, deckType, card?.id, goalWasCompleteAtStart]);
 
   const submitTyping = useCallback((e: React.FormEvent) => {
     e.preventDefault();
@@ -186,6 +199,14 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
     <div className="fixed inset-0 z-50 flex flex-col bg-background">
       {/* XP Animation */}
       {showXP && <XPAnimation amount={xpAmount} onComplete={() => setShowXP(false)} />}
+      {showGoalCelebration && (
+        <GoalCelebration
+          xpEarned={getLocalXP().todayXP}
+          dailyGoal={getLocalXP().dailyGoal}
+          streak={getLocalXP().streak}
+          onClose={() => setShowGoalCelebration(false)}
+        />
+      )}
       {/* Header */}
       <header className="flex items-center gap-3 border-b border-border/40 px-4 py-3 safe-top">
         <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full p-0" onClick={endSession}>
