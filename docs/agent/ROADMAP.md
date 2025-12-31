@@ -1,190 +1,246 @@
-# MKLanguage Mobile UX Roadmap (Duolingo/Clozemaster-style)
+# MKLanguage Roadmap: From Dashboard to Duolingo Loop
 
-## Product North Star
-Open app → 1 tap to start → complete a short lesson → clear feedback → XP earned → "Continue" to next.
-The app should feel like a learning game, not a dashboard of tools.
+## The Real Problem (Dec 31, 2024 Audit)
 
-## Key Product Pillars
-1) **Lesson Player** (core game loop)
-2) **Learn Path** (clear progression)
-3) **Practice Modes** (Word Sprint + speaking + grammar as workouts)
-4) **Reader** (MyLangReader-like: Library → Reading)
-5) **Advanced Conversations** (B1–C1 focus)
-6) **Trust/Polish** (no i18n leaks, accurate copy, consistent XP/goal)
+You built features, but not a Duolingo-style loop.
 
----
+Duolingo/Clozemaster don't feel good because of gradients/cards — they feel good because the user always has:
+- **One obvious primary CTA** ("Continue")
+- **Clear success/failure feedback**
+- **XP awarded immediately** with a celebration + next step
+- **A short loop with momentum** (no dead ends)
 
-# P0 — Core stability + no dead ends (Launch blockers)
-### Objective
-Nothing crashes. No "deck not found." Every exercise has prompt, success criteria, and a Continue path.
-
-### Checklist
-- [x] Fix `deck not found` everywhere:
-  - stale IDs migrate or fall back to default
-  - signed-out uses guest lesson/deck
-  - add a "Reset progress" option
-- [ ] Guarantee lesson loop everywhere:
-  - Prompt → Check → Feedback → Continue
-  - Skip is secondary
-- [ ] Exercise Contract validation:
-  - required: prompt, type, choices/answer, instructions
-  - invalid exercise gracefully skips (no dead-end)
-- [ ] Remove i18n key leaks and placeholder copy (no raw keys visible)
-- [ ] Replace "Loading…" with skeletons/spinners where needed
-- [ ] Ensure `npm run type-check` is clean
-
-### Acceptance Criteria
-- Start Today's Lesson works signed-out and signed-in.
-- No screen shows only "Skip" without a primary Continue/Check.
-- No missing prompt screens (or they auto-skip with friendly message).
-- Type-check passes.
+The current app is a toolbox/dashboard. The next plan: turn everything into a **tight loop product**.
 
 ---
 
-# P1 — Signed-out Home + Learn Path becomes the product
-### Objective
-Home is short, motivating, and 1-tap into learning. No dashboard feel.
+## Live Production Observations (Signed Out)
 
-### Checklist
-- [ ] Signed-out home redesign:
-  - above-the-fold: "Learn Macedonian" + 1-line value prop
-  - primary CTA: Start lesson
-  - secondary CTA: Sign in
-  - keep to ~1.5 screens height on mobile
-- [ ] Signed-in Learn:
-  - Path is central
-  - "Continue" is dominant
-  - goal ring/streak is secondary
-- [ ] Copy cleanup:
-  - remove marketing-y "curious learners" phrasing
-  - keep microcopy short and game-like
+### Home Page — BROKEN
+- Literally rendering translation keys: `home.guestSubtitle`, `home.guestCta`, etc.
+- Makes signed-out experience feel unfinished + dashboardy/placeholder
 
-### Acceptance Criteria
-- Signed-out user can start a guest lesson in one tap.
-- Home no longer reads like a dashboard/toolkit.
-- Learn Path is prominent and actionable.
+### Learn Page — Partial
+- Basics/Conversations switch + CTA exists
+- "Start today's lesson" present BUT clicking causes runtime error (deck not found)
 
----
+### Practice Hub — Functional but not Duolingo-like
+- Clean "pick a quick session" list with XP ranges
+- Structurally good, but "feel" is still dashboard list, not guided path + one obvious next action
 
-# P2 — Reader overhaul (MyLangReader-like but better)
-### Objective
-Reader becomes mobile-friendly and usable: minimal scrolling; Library → Reading Session.
+### Reader — Dashboard-like
+- Shows Library | Workspace tabs at top
+- Server-rendered page is basically a list + "Start Reading"
+- Primary impression is "catalog/dashboard", not "reading mode first"
 
-### IA / UX Spec
-- Reader has two top tabs: **Library** | **Workspace**
-- Library:
-  - search + difficulty filters
-  - short curated texts (level tag, time estimate, topic)
-  - saved texts section
-- Workspace (Reading Session):
-  - clean typography, focused reading
-  - tap word → bottom sheet: translation + save word/phrase + listen
-  - sentence translation reveal toggle (per sentence)
-- Move "Analyze text / tools" into a secondary Tools menu, not the main screen.
-
-### Checklist
-- [ ] Split Reader into Library and Workspace
-- [ ] Tap-to-lookup bottom sheet works reliably
-- [ ] Save word/phrase pipeline exists and is reviewable
-- [ ] Minimize scroll; remove giant card stacks
-
-### Acceptance Criteria
-- Reader feels like a reading app, not a long form/dashboard.
-- Word lookup is 1 tap and fast.
-- User can save words and access them later.
+### Translate — Minimal
+- Direction toggles, character counter, "Translate" button
+- "Analyze this text" flow still feels like big card stack (not mobile-first tool)
 
 ---
 
-# P3 — Word Sprint (Clozemaster energy)
-### Objective
-Word Sprint feels addictive, fast, and scalable with content and difficulty.
+## Phase Priorities
 
-### Word Sprint Definition
-- "Fill the missing word in real sentences."
-- Default session: 10 questions, ~3 minutes, +10 XP
+# P0 — Fix Broken Signed-Out Home (i18n + Structure)
+**Status:** MUST FIX
 
-### Checklist
-- [ ] Difficulty tiers that change gameplay:
-  - Easy: 2 choices (quick wins)
-  - Medium: 4 choices (default)
-  - Hard: typed answer (tolerant matching)
-- [ ] Categories + progression (food, travel, emotions, work, opinions…)
-- [ ] Smarter distractors (same category/part-of-speech-ish + length constraints)
-- [ ] Combo/multiplier + end-of-sprint summary
-- [ ] Mistakes queue + spaced resurfacing
-- [ ] Expand content (target 300+ sentences for MVP)
+### Why
+Home currently shows translation keys. This alone makes the signed-out experience feel unfinished.
+
+### Deliverables
+1. Fix i18n wiring so keys never leak to UI
+2. Replace hero copy and layout (not long, not dashboard)
+
+### Signed-Out Home Spec (Duolingo-ish)
+- **Hero:** "Learn Macedonian, the fun way."
+- **Subcopy:** "5 minutes a day. Real phrases. Daily speaking + word sprints."
+- **Primary CTA:** "Start a quick lesson" (guest flow)
+- **Secondary CTA:** "Sign in to save progress"
+- **Below fold:** 3 tiny value chips (NOT cards):
+  - "Daily XP + streaks"
+  - "Speaking practice"
+  - "Reader with word tap"
+- **No stats. No dashboards. No long feature lists.**
 
 ### Acceptance Criteria
-- Sprint has clear start → loop → finish with XP earned.
-- Hard mode feels meaningfully harder.
-- Content doesn't repeat constantly.
+- [ ] Home shows real strings (no `home.guestSubtitle` keys)
+- [ ] First screen fits on one phone viewport
+- [ ] One primary CTA
 
 ---
 
-# P4 — Speaking / Pronunciation becomes complete
-### Objective
-Speaking mode clearly indicates success and never dead-ends; recording works or has a clear fallback.
+# P1 — Fix "Start Today's Lesson" / Deck Not Found
+**Status:** MUST FIX
 
-### MVP Flow (works without fancy scoring)
-Prompt → record → playback → try again OR "I said it" → Continue → XP.
+### The Bug
+Clicking "Start Today's Lesson" → deck not found error
 
-### Checklist
-- [ ] Mic permission + device support detection
-- [ ] Clear recording state (timer, "recording…", stop)
-- [ ] Playback of user recording
-- [ ] "Listen to model" (TTS) if available; otherwise hide
-- [ ] Clear success gating:
-  - after recording >= N seconds OR silent practice confirm → Continue enabled
-- [ ] XP and end-of-lesson summary
+### Spec
+- App must have a single canonical "default deck/lesson" for guests AND signed-in
+- If deck missing, fallback automatically: `curated → starter → any available deck`
+- Add `/api/version` endpoint returning `{ commitHash, buildTime }` (show in Settings → "Build: …")
 
 ### Acceptance Criteria
-- User always knows what to do and whether they completed the step.
-- There is always a Continue path and XP reward.
+- [ ] Signed-out: "Start Today's Lesson" always starts a session
+- [ ] Signed-in: same
+- [ ] No dead ends: every error has fallback + "Continue"
 
 ---
 
-# P5 — Advanced Conversations (B1–C1) polish + content fit for advanced learners
-### Objective
-Serve advanced learners who struggle with complex conversation and rich vocabulary.
+# P2 — Speaking MVP: Measurable Success + Remove "Skip-Only" Vibes
+**Status:** HIGH PRIORITY
 
-### Content Principles
-- topic-based units, real-life conversation drills
-- connector phrases, nuance, storytelling, opinions
-- rich vocab + usage patterns, not just basic phrases
+### The Problem
+Speaking feels like "I said it… okay??" — unclear if user passed.
 
-### Units (example)
-1) Opinions & nuance (however/although/it depends)
-2) Storytelling & sequencing (past narration)
-3) Work & professional conversations
-4) Emotions & relationships
-5) Health and appointments
-6) News/culture discussion
-7) Debate club (take a stance)
-8) Paraphrasing / synonyms (say it another way)
+### Speaking Exercise Must Have
 
-### Checklist
-- [ ] Each advanced lesson includes:
-  - 6–10 vocab items
-  - 3 sentence patterns
-  - 1 short dialogue
-  - 1 respond prompt (typed or speaking)
-- [ ] Ensure progression + review integration (saved words feed into review)
+**Prompt:** Clear instruction every time
+- "Repeat this out loud"
+- "Answer in Macedonian (1 sentence)"
+
+**Buttons:**
+- Listen (native audio/TTS)
+- Record (big mic)
+- Play back my recording
+- Check (or "Continue" if scoring unavailable)
+- "Can't speak now" (silent fallback)
+
+**Scoring Tiers (MVP without heavy infra):**
+- **Tier A (best):** Browser SpeechRecognition → compare transcript similarity
+- **Tier B:** If unavailable → require minimum record length (>1.2s) + playback + user self-confirm
+
+**Result State:**
+- ✅ "Nice!" + highlight 1–2 words you "heard" (if transcript)
+- OR "Try again" with hint
+
+**XP:**
+- Award XP only on "Check/Continue", not on skip
+- On completion: mini "XP toast" + "Next" CTA
 
 ### Acceptance Criteria
-- Advanced track feels cohesive, not like random exercises.
-- It helps users speak about complex topics.
+- [ ] User always knows what to do
+- [ ] User always knows if they passed
+- [ ] XP granted predictably
+- [ ] No "only skip" situations
 
 ---
 
-# P6 — About / Trust / Branding cleanup
-### Objective
-Make About trustworthy and aligned with actual features.
+# P3 — Reader Overhaul: Library + Workspace Like a Real Mobile Tool
+**Status:** HIGH PRIORITY
 
-### Checklist
-- [ ] About name format: **Vincent ("Vinny") Battaglia**
-- [ ] Remove Andri until contributions exist
-- [ ] Feature list only includes features that work today
-- [ ] Add "Sources & licenses" section if using any CC-BY content
+### The Problem
+Reader is still perceived as a page with big blocks.
+
+### Make Reader Two-Mode Experience
+
+**1) Library (browse)**
+- Search
+- "Continue reading" at top
+- Curated categories (A1, A2, B1…)
+- Small cards, not huge panels
+
+**2) Workspace (reading)**
+- Full-screen reading (MyLangReader-like)
+- Tap word → bottom sheet with:
+  - translation
+  - lemma
+  - example sentence
+  - "Save"
+- Sticky top bar: back, title, audio, settings
+- Progress indicator
+
+**Move "Analyze text" OUT of main Reader landing:**
+- Put under Workspace as: "Import text" / "Paste text" / "Open from Translate"
 
 ### Acceptance Criteria
-- About page matches reality and builds trust.
+- [ ] Reader landing is short + browseable
+- [ ] Reading mode is immersive and usable one-handed
+- [ ] No "giant dashboard card"
+
+---
+
+# P4 — Word Sprint: Expand Content + Upgrade Difficulty
+**Status:** POLISH
+
+### Rename Options
+- "Gap Sprint" (short + accurate)
+- "Fill the Gap"
+- "Sentence Sprints" (closest to Clozemaster vibe)
+- "Fast Gaps"
+
+### Difficulty Model
+- **Easy:** missing 1 obvious word
+- **Medium:** 1–2 words, includes cases/articles
+- **Hard:** phrases, word order, clitics, prepositions, conjugations
+
+### Gameplay Polish (Clozemaster-y)
+- Combos: +2 XP if correct streak
+- Timer optional mode ("Sprint mode")
+- Show "You missed: ___" + quick explanation
+- "Save sentence" button
+
+### Content Expansion
+- Increase variety: dialogues, travel, emotions, opinions, work, family conflict, making plans, debating, storytelling
+- Add "Advanced conversation" sentences that match expressing nuance and opinions
+
+### Acceptance Criteria
+- [ ] Hard mode is genuinely hard
+- [ ] User can replay mistakes
+- [ ] Feels like game loop, not a form
+
+---
+
+# P5 — About Page + Trust Cleanup
+**Status:** POLISH
+
+### Name Format
+- Title: **Vincent Battaglia (Vinny)**
+- Body: casual tone fine, keep credibility
+- Remove Andri until real contributions exist
+
+### Feature Claims
+- Only list features that are truly live today
+- Matters for Play Store trust
+
+### Acceptance Criteria
+- [ ] About matches reality
+- [ ] No aspirational claims
+
+---
+
+## Global Rules (Always Follow)
+
+### Never Ship
+- i18n keys visible in UI
+- Dead ends (every error must have fallback CTA)
+- "Skip only" exercises without primary Continue/Check
+
+### Token Budget Mode (Prevent Context Errors)
+1. **"Input too long" fix:** Don't paste whole plan. Instead:
+   > "Open docs/agent/ROADMAP.md and docs/agent/STATUS.md and continue from the next unchecked item."
+
+2. **"Output exceeded 4096" fix:**
+   - Do not paste diffs
+   - Commit changes instead
+   - Print only: changed file list, what you ran, result summary
+
+### Resume Prompt (Safe for Tokens)
+```
+Open docs/agent/ROADMAP.md and docs/agent/STATUS.md. Continue from the next unchecked item.
+Priorities now:
+(1) Fix signed-out home i18n keys + redesign to single-CTA Duolingo-style landing.
+(2) Fix "Start today's lesson → deck not found" with robust deck fallback + no-dead-ends UX.
+(3) Speaking MVP: measurable success + XP award + Continue flow (no skip-only).
+Token budget mode: do not paste large diffs; commit and summarize.
+```
+
+---
+
+## Build Commands
+```bash
+npm run type-check    # Must pass before/after changes
+npm run test          # Unit tests
+npm run lint          # Linting
+npm run build         # Production build
+```
