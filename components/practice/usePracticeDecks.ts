@@ -6,6 +6,7 @@ import { readTranslatorHistory } from '@/lib/translator-history';
 import { fetchUserDecks } from '@/lib/custom-decks';
 import { readWrongAnswers, getDueCards, clearWrongAnswers, type WrongAnswerRecord, type SRSCardData } from '@/lib/spaced-repetition';
 import { readFavorites, type FavoriteItem } from '@/lib/favorites';
+import { getSRSCounts, getReviewQueue } from '@/lib/srs';
 import type { CustomDeckSummary } from '@/lib/custom-decks';
 import type { Flashcard, DeckType, DifficultyFilter } from './types';
 import { normalizeDifficulty } from './types';
@@ -31,6 +32,7 @@ export function usePracticeDecks() {
   const [mistakesDeck, setMistakesDeck] = useState<Flashcard[]>([]);
   const [srsDueDeck, setSrsDueDeck] = useState<Flashcard[]>([]);
   const [favoritesDeck, setFavoritesDeck] = useState<Flashcard[]>([]);
+  const [favoritesSRSCounts, setFavoritesSRSCounts] = useState({ due: 0, new_: 0, learned: 0 });
   const [isLoading, setIsLoading] = useState(true);
 
   // Load history on mount
@@ -67,7 +69,16 @@ export function usePracticeDecks() {
     setSrsDueDeck(srsFlashcards);
 
     const favorites = readFavorites();
-    const favoritesFlashcards: Flashcard[] = favorites.map((fav: FavoriteItem) => ({
+    const favoriteIds = favorites.map((f) => f.id);
+    const srsCounts = getSRSCounts(favoriteIds);
+    setFavoritesSRSCounts(srsCounts);
+
+    // Sort favorites by SRS priority (due first, then new)
+    const sortedIds = getReviewQueue(favoriteIds);
+    const idToFav = new Map(favorites.map((f) => [f.id, f]));
+    const sortedFavorites = sortedIds.map((id) => idToFav.get(id)!).filter(Boolean);
+
+    const favoritesFlashcards: Flashcard[] = sortedFavorites.map((fav: FavoriteItem) => ({
       id: fav.id,
       source: fav.macedonian,
       target: fav.english,
@@ -258,5 +269,8 @@ export function usePracticeDecks() {
       srs: srsDueDeck.length,
       favorites: favoritesDeck.length,
     },
+
+    // SRS counts for favorites
+    favoritesSRSCounts,
   };
 }

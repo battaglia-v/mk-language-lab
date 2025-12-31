@@ -20,7 +20,7 @@ export function PracticeHub() {
     savedDeck, historyDeck, curatedDeck, customDecks,
     mistakesDeck, srsDueDeck, favoritesDeck,
     activeCustomDeckId, loadCustomDeck, clearCustomDeck, clearMistakes,
-    recommendedDeck, deckCounts,
+    recommendedDeck, deckCounts, favoritesSRSCounts,
   } = usePracticeDecks();
 
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -116,7 +116,15 @@ export function PracticeHub() {
             >
               <Heart className="h-4 w-4" />
               {t('drills.favorites', { default: 'Favorites' })}
-              <Badge variant="outline" className="ml-1">{favoritesDeck.length}</Badge>
+              {favoritesSRSCounts.due > 0 && (
+                <Badge variant="destructive" className="ml-1">{favoritesSRSCounts.due} {t('drills.due', { default: 'due' })}</Badge>
+              )}
+              {favoritesSRSCounts.due === 0 && favoritesSRSCounts.new_ > 0 && (
+                <Badge variant="secondary" className="ml-1">{favoritesSRSCounts.new_} {t('drills.new', { default: 'new' })}</Badge>
+              )}
+              {favoritesSRSCounts.due === 0 && favoritesSRSCounts.new_ === 0 && (
+                <Badge variant="outline" className="ml-1">{favoritesDeck.length}</Badge>
+              )}
             </Button>
           )}
           {mistakesDeck.length > 0 && (

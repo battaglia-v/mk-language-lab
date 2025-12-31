@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils';
 import { usePracticeDecks } from './usePracticeDecks';
 import { isFavorite, toggleFavorite } from '@/lib/favorites';
 import { recordPracticeSession } from '@/lib/practice-activity';
+import { recordReview } from '@/lib/srs';
 import { calculateXP, formatDifficultyLabel } from './types';
 import { XPAnimation } from '@/components/gamification/XPAnimation';
 import { addLocalXP, getLocalXP, isGoalComplete } from '@/lib/gamification/local-xp';
@@ -88,6 +89,12 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
     setFeedback(isCorrect ? 'correct' : 'incorrect');
     setRevealed(true);
     setReviewedCount((c) => c + 1);
+
+    // Record SRS for favorites deck
+    if (deckType === 'favorites' && card?.id) {
+      recordReview(card.id, isCorrect);
+    }
+
     if (isCorrect) {
       setCorrectAnswers((c) => c + 1);
       setStreak((s) => { const n = s + 1; if (n > maxStreak) setMaxStreak(n); return n; });
@@ -99,7 +106,7 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
     } else {
       setStreak(0);
     }
-  }, [maxStreak]);
+  }, [maxStreak, deckType, card?.id]);
 
   const submitTyping = useCallback((e: React.FormEvent) => {
     e.preventDefault();
