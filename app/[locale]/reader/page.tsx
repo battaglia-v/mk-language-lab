@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ReadingSampleCard } from '@/components/reader/ReadingSampleCard';
-import { getReaderSamplesByLocale, type ReaderSample } from '@/lib/reader-samples';
+import { getReaderSamplesByLocale } from '@/lib/reader-samples';
 import { readFavorites } from '@/lib/favorites';
 import { cn } from '@/lib/utils';
 
@@ -127,12 +127,14 @@ export default function ReaderPage() {
                   className="pl-9 pr-9"
                 />
                 {searchQuery && (
-                  <button
+                  <Button
+                    variant="ghost"
+                    size="icon"
                     onClick={() => setSearchQuery('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 h-6 w-6 text-muted-foreground hover:text-foreground"
                   >
                     <X className="h-4 w-4" />
-                  </button>
+                  </Button>
                 )}
               </div>
 
@@ -140,30 +142,33 @@ export default function ReaderPage() {
               {availableDifficulties.length > 1 && (
                 <div className="flex flex-wrap gap-2">
                   {availableDifficulties.map((level) => (
-                    <button
+                    <Button
                       key={level}
+                      variant="outline"
+                      size="sm"
                       onClick={() => setSelectedDifficulty(selectedDifficulty === level ? null : level)}
                       className={cn(
-                        'rounded-full px-3 py-1 text-xs font-medium transition-all',
-                        'border',
+                        'rounded-full h-7 px-3 text-xs font-medium transition-all',
                         selectedDifficulty === level
-                          ? level === 'A1' ? 'bg-emerald-500 text-white border-emerald-500'
-                          : level === 'A2' ? 'bg-blue-500 text-white border-blue-500'
-                          : level === 'B1' ? 'bg-purple-500 text-white border-purple-500'
-                          : 'bg-pink-500 text-white border-pink-500'
-                          : 'bg-transparent border-border hover:border-primary/50'
+                          ? level === 'A1' ? 'bg-emerald-500 text-white border-emerald-500 hover:bg-emerald-600'
+                          : level === 'A2' ? 'bg-blue-500 text-white border-blue-500 hover:bg-blue-600'
+                          : level === 'B1' ? 'bg-purple-500 text-white border-purple-500 hover:bg-purple-600'
+                          : 'bg-pink-500 text-white border-pink-500 hover:bg-pink-600'
+                          : 'bg-transparent hover:border-primary/50'
                       )}
                     >
                       {level}
-                    </button>
+                    </Button>
                   ))}
                   {hasActiveFilters && (
-                    <button
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       onClick={clearFilters}
-                      className="rounded-full px-3 py-1 text-xs font-medium text-muted-foreground hover:text-foreground"
+                      className="rounded-full h-7 px-3 text-xs font-medium text-muted-foreground"
                     >
                       Clear all
-                    </button>
+                    </Button>
                   )}
                 </div>
               )}
