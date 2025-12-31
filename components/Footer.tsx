@@ -128,7 +128,7 @@ export default function Footer() {
 
         <div className="flex flex-col gap-2 border-t border-white/10 pt-4 text-xs text-white/70">
           <span className="text-center md:text-left">
-            {t('createdWith')}{' '}
+            {t('createdBy')}{' '}
             <a
               href="https://www.linkedin.com/in/vincentvinnybattaglia/"
               target="_blank"
@@ -136,15 +136,6 @@ export default function Footer() {
               className="font-semibold text-white hover:text-[var(--brand-gold)]"
             >
               {t('vini')}
-            </a>{' '}
-            {t('and')}{' '}
-            <a
-              href="https://macedonianlanguagecorner.com"
-              target="_blank"
-              rel="noreferrer"
-              className="font-semibold text-white hover:text-[var(--brand-gold)]"
-            >
-              {t('andri')}
             </a>
           </span>
           <span className="text-center text-[11px] uppercase tracking-[0.3em] text-white/60 md:text-left">
