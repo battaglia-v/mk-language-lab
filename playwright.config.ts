@@ -9,8 +9,8 @@ export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  // Retries help with flaky dev server issues
-  retries: process.env.CI ? 2 : 1,
+  // Retries help with flaky tests - reduced in CI for speed
+  retries: process.env.CI ? 1 : 1,
   // More workers now that CI only runs desktop project
   // CI: 2 workers (faster), Local: 2 workers for speed with stability
   workers: 2,
