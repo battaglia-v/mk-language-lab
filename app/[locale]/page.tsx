@@ -26,7 +26,8 @@ export default async function LocaleHome({ params }: LocalePageProps) {
     return null;
   }
 
-  const homeT = await getTranslations("home");
+  // Explicitly pass locale to ensure proper translation loading
+  const homeT = await getTranslations({ locale: safeLocale, namespace: "home" });
 
   // Guest lesson link - goes directly to practice session
   // Note: Using difficulty=all because vocabulary data defaults to 'mixed' difficulty
@@ -42,7 +43,7 @@ export default async function LocaleHome({ params }: LocalePageProps) {
             {homeT("title")}
           </h1>
           <p className="text-lg text-muted-foreground">
-            {homeT("guestSubtitle", { default: "5 minutes a day to start speaking." })}
+            {homeT("guestSubtitle")}
           </p>
         </div>
 
@@ -50,15 +51,15 @@ export default async function LocaleHome({ params }: LocalePageProps) {
         <Button asChild size="lg" className="w-full gap-2 text-lg min-h-[56px]">
           <Link href={startLessonHref}>
             <Play className="h-5 w-5" fill="currentColor" />
-            {homeT("guestCta", { default: "Start Learning" })}
+            {homeT("guestCta")}
           </Link>
         </Button>
 
         {/* Sign in link */}
         <p className="text-sm text-muted-foreground">
-          {homeT("guestSignIn", { default: "Already have an account?" })}{" "}
+          {homeT("guestSignIn")}{" "}
           <Link href={signInHref} className="font-medium text-primary hover:underline">
-            {homeT("guestSignInLink", { default: "Sign in" })}
+            {homeT("guestSignInLink")}
           </Link>
         </p>
       </div>
