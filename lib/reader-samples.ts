@@ -1,7 +1,3 @@
-import day18MaliotPrinc from '@/data/reader/samples/day18-maliot-princ.json';
-import day18MaliotPrincContinuation from '@/data/reader/samples/day18-maliot-princ-continuation.json';
-import day18MaliotPrincChapter9 from '@/data/reader/samples/day18-maliot-princ-chapter9.json';
-
 export interface ReaderSampleVocab {
   mk: string;
   en: string;
@@ -58,12 +54,8 @@ export interface ReaderSample {
   attribution: ReaderSampleAttribution;
 }
 
-// Type-safe sample imports
-const samples: Record<string, ReaderSample> = {
-  'day18-maliot-princ': day18MaliotPrinc as ReaderSample,
-  'day18-maliot-princ-continuation': day18MaliotPrincContinuation as ReaderSample,
-  'day18-maliot-princ-chapter9': day18MaliotPrincChapter9 as ReaderSample,
-};
+// Reader samples will be populated as content is added
+const samples: Record<string, ReaderSample> = {};
 
 export function getReaderSample(id: string): ReaderSample | null {
   return samples[id] || null;

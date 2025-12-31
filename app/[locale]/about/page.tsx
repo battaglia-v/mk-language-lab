@@ -10,8 +10,6 @@ export default function AboutPage() {
     t('feature2'),
     t('feature3'),
     t('feature4'),
-    t('feature5'),
-    t('feature6'),
   ];
 
   return (
@@ -45,68 +43,58 @@ export default function AboutPage() {
           </Card>
         </section>
 
-        <section data-testid="about-team" className="space-y-6">
+        <section data-testid="about-creator" className="space-y-6">
           <div className="text-center">
-            <h2 className="text-3xl font-semibold">{t('meetTheTeam')}</h2>
-            <p className="text-slate-300">{t('teamDescription')}</p>
+            <h2 className="text-3xl font-semibold">{t('author')}</h2>
           </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {[
-              { id: 'vincent', name: '🇺🇸 Вини', role: t('vincentRole'), bio: t('vincentBio') },
-              { id: 'andri', name: '🇲🇰 Андри', role: t('andriRole'), bio: t('andriBio') },
-            ].map((member) => (
-              <Card key={member.id} className="glass-card rounded-3xl p-6 text-center">
-                <CardHeader>
-                  <CardTitle className="text-2xl text-white">{t(member.id as 'vincent' | 'andri')}</CardTitle>
-                  <p className="text-3xl font-semibold text-white">{member.name}</p>
-                  <p className="text-sm text-slate-300">{member.role}</p>
-                </CardHeader>
-                <CardContent className="space-y-4 text-sm text-slate-200">
-                  <p>{member.bio}</p>
-                  {member.id === 'vincent' && (
-                    <div className="flex flex-wrap justify-center gap-2 text-xs">
-                      <a
-                        href="https://www.linkedin.com/in/vincentvinnybattaglia/"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="rounded-full border border-primary/40 px-3 py-1 text-primary hover:bg-primary/10"
-                      >
-                        LinkedIn
-                      </a>
-                    </div>
-                  )}
-                  {member.id === 'andri' && (
-                    <div className="flex flex-wrap justify-center gap-2 text-xs">
-                      <a
-                        href="https://macedonianlanguagecorner.com"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="rounded-full border border-primary/40 px-3 py-1 text-primary hover:bg-primary/10"
-                      >
-                        {t('andriWebsite')}
-                      </a>
-                      <a
-                        href="https://instagram.com/macedonianlanguagecorner"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="rounded-full border border-primary/40 px-3 py-1 text-primary hover:bg-primary/10"
-                      >
-                        {t('andriInstagram')}
-                      </a>
-                      <a
-                        href="https://youtube.com/@macedonianlanguagecorner"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="rounded-full border border-primary/40 px-3 py-1 text-primary hover:bg-primary/10"
-                      >
-                        {t('andriYouTube')}
-                      </a>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <Card className="glass-card rounded-3xl p-6 text-center mx-auto max-w-md">
+            <CardHeader>
+              <CardTitle className="text-2xl text-white">Vincent &quot;Vinny&quot; Battaglia</CardTitle>
+              <p className="text-sm text-slate-300">{t('vincentRole')}</p>
+            </CardHeader>
+            <CardContent className="space-y-4 text-sm text-slate-200">
+              <p>{t('vincentBio')}</p>
+              <div className="flex flex-wrap justify-center gap-2 text-xs">
+                <a
+                  href="https://www.linkedin.com/in/vincentvinnybattaglia/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-full border border-primary/40 px-3 py-1 text-primary hover:bg-primary/10"
+                >
+                  LinkedIn
+                </a>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        <section data-testid="about-credits" className="space-y-4">
+          <Card className="glass-card rounded-3xl p-6">
+            <CardHeader>
+              <CardTitle className="text-xl text-white">{t('creditsTitle')}</CardTitle>
+            </CardHeader>
+            <CardContent className="text-sm text-slate-300 space-y-2">
+              <p>{t('creditsContent')}</p>
+              <div className="flex flex-wrap gap-2 pt-2">
+                <a
+                  href="https://macedonianlanguagecorner.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-full border border-primary/40 px-3 py-1 text-primary hover:bg-primary/10 text-xs"
+                >
+                  Macedonian Language Corner
+                </a>
+                <a
+                  href="https://instagram.com/macedonianlanguagecorner"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-full border border-primary/40 px-3 py-1 text-primary hover:bg-primary/10 text-xs"
+                >
+                  @macedonianlanguagecorner
+                </a>
+              </div>
+            </CardContent>
+          </Card>
         </section>
       </div>
     </div>
