@@ -1,8 +1,10 @@
-# Current Status (Dec 31, 2024 - Production Audit)
+# Current Status (Dec 31, 2024 - Full Audit Complete)
 
-## Production Status: BOTH CRITICAL BUGS FIXED ✅
+## Production Status: ALL CRITICAL ITEMS ADDRESSED ✅
 
-As of Dec 31, 2024 23:30 UTC, both P0 and P1 bugs are resolved.
+As of Jan 1, 2025 00:00 UTC:
+- P0 and P1 bugs are fixed
+- P2-P5 audit reveals implementations are more complete than ROADMAP suggested
 
 ---
 
@@ -12,41 +14,115 @@ As of Dec 31, 2024 23:30 UTC, both P0 and P1 bugs are resolved.
 - **Root cause:** Difficulty filter mismatch (beginner vs mixed)
 - **Fix:** Changed `difficulty=beginner` to `difficulty=all`
 - **Commit:** `b6c4d46` (Dec 31, 2024)
-- **Files changed:** `app/[locale]/page.tsx`, `lib/learn/starter-path.ts`
 
 ### P0: Home i18n Keys Leaking — FIXED ✅
 - **Root cause:** `getTranslations("home")` wasn't receiving locale properly
 - **Fix:** Changed to `getTranslations({ locale: safeLocale, namespace: "home" })`
 - **Commit:** `fb18144` (Dec 31, 2024)
-- **Verified via curl:** Production site shows correct translations:
-  - "Learn Macedonian" ✅
-  - "5 minutes a day" ✅
-  - "Start Learning" ✅
-- **Note:** WebFetch tool gave false negatives by parsing React/JSON data instead of rendered HTML
+- **Verified via curl:** Production shows correct translations
 
 ---
 
-## Remaining Items (Polish)
+## Full Audit Results (P2-P5)
 
-### P2: Speaking MVP — Skip-Only Vibes
-- **Status:** Needs UX audit (not blocking)
-- **Spec:** See ROADMAP.md for full requirements
+### P2: Speaking MVP — ALREADY IMPLEMENTED ✅
 
-### P3: Reader — Dashboard-Like
-- **Status:** Needs UX audit (not blocking)
-- **Spec:** See ROADMAP.md for full requirements
+The ROADMAP concerns are outdated. Current implementation has:
 
-### P4: Word Sprint Content Expansion
-- **Status:** Optional enhancement
+| Feature | Status |
+|---------|--------|
+| Clear prompts | ✅ "Listen first", "Now your turn", "Hold to record" |
+| Listen (native audio/TTS) | ✅ With Serbian TTS fallback |
+| Record (big mic) | ✅ Press-and-hold, 3 sec max, progress bar |
+| Play back recording | ✅ "Play yours" button |
+| Check/Continue | ✅ "Got it" / "Sounds Good" |
+| Scoring | ✅ Similarity %, duration analysis |
+| Feedback | ✅ "Excellent!", "Good!", hints like "try slower" |
+| XP on completion | ✅ Shows XP earned, awards based on score |
+| "Can't speak now" | ✅ "Practice silently" option |
+| Skip (no XP) | ✅ Always visible |
 
-### P5: About Page Cleanup
-- **Status:** Optional enhancement
+**Key files:**
+- `components/practice/PronunciationCard.tsx`
+- `hooks/use-pronunciation-scoring.ts`
+- `app/[locale]/practice/pronunciation/page.tsx`
+
+### P3: Reader — ALREADY IMPLEMENTED ✅
+
+The "dashboard-like" concern is outdated. Current implementation has:
+
+| Feature | Status |
+|---------|--------|
+| Library/Workspace tabs | ✅ Done |
+| "Continue reading" | ✅ Recent reads history (last 6) |
+| Curated readings grid | ✅ ReadingSampleCard |
+| Word-by-word analysis | ✅ WordByWordDisplay |
+| Focus mode | ✅ Highlights one word at a time |
+| TTS audio | ✅ Listen buttons for sentences |
+| Save sentences | ✅ Bookmark feature |
+| Session timer | ✅ Elapsed time |
+| Streak tracking | ✅ Day streak |
+| Reveal/hide translations | ✅ Toggle button |
+| Import from URL/file | ✅ TextImporter |
+| Difficulty indicator | ✅ Beginner/Intermediate/Advanced |
+| Search in Library | ❌ Missing (minor) |
+
+**Key files:**
+- `app/[locale]/reader/page.tsx` (Library | Workspace tabs)
+- `components/reader/ReaderWorkspace.tsx` (full workspace)
+- `components/reader/WordByWordDisplay.tsx`
+
+### P4: Word Sprint — EXISTS ✅
+
+Implementation exists with:
+- Difficulty picker (easy/medium/hard)
+- Multiple input modes (word bank, typed, multiple choice)
+- Session complete screen
+- XP rewards
+
+**Key files:**
+- `app/[locale]/practice/word-sprint/page.tsx`
+- `components/practice/word-sprint/WordSprintSession.tsx`
+
+**Enhancement opportunity:** Content expansion for advanced difficulty.
+
+### P5: About Page — EXISTS ✅
+
+Shows:
+- Vincent ("Vinny") Battaglia as creator
+- Features list
+- Credits to Macedonian Language Corner
+- LinkedIn link
+
+**File:** `app/[locale]/about/page.tsx`
+
+---
+
+## Summary
+
+| Priority | Original Concern | Actual Status |
+|----------|------------------|---------------|
+| P0 | i18n keys leaking | ✅ FIXED |
+| P1 | Deck not found | ✅ FIXED |
+| P2 | Speaking skip-only vibes | ✅ Already comprehensive |
+| P3 | Reader dashboard-like | ✅ Already has Library/Workspace |
+| P4 | Word Sprint content | ✅ Exists, could expand content |
+| P5 | About page | ✅ Already correct |
+
+---
+
+## What's Actually Left (Minor Polish)
+
+1. **Search in Reader Library** — Add search/filter for curated readings
+2. **Word Sprint content** — More advanced sentences
+3. **General UX polish** — Minor improvements
 
 ---
 
 ## Commits This Session
 
 ```
+a329c55 docs: mark both P0 and P1 as FIXED in STATUS.md
 9a3770e docs: update P0 i18n status with investigation findings
 fb18144 fix: explicitly pass locale to getTranslations for i18n
 6eaa7a6 docs: mark P1 deck fix as deployed
@@ -64,12 +140,3 @@ npm run lint          # Linting
 npm run test          # Unit tests
 npm run build         # Production build
 ```
-
----
-
-## Notes for Agent
-
-1. **P0 and P1 are FIXED** — production is now functional
-2. **Test with curl, not WebFetch** — WebFetch parses React data incorrectly
-3. **P2-P5 are polish items** — work on them when time permits
-4. **See ROADMAP.md** for detailed specs on remaining items
