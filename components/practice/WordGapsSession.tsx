@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { CheckCircle2, XCircle, Volume2, X, Plus, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -15,7 +15,6 @@ import { Skeleton } from '@/components/ui/skeleton';
 type Props = { initialCount?: number; initialDifficulty?: Difficulty };
 
 export function WordGapsSession({ initialCount = 10, initialDifficulty }: Props) {
-  const t = useTranslations('practiceHub');
   const locale = useLocale();
   const router = useRouter();
 

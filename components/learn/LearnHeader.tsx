@@ -10,7 +10,7 @@ interface LearnHeaderProps {
   todayXP: number;
   dailyGoalXP: number;
   continueHref?: string;
-  locale: string;
+  locale?: string; // Optional, kept for API compatibility
 }
 
 export function LearnHeader({
@@ -18,7 +18,6 @@ export function LearnHeader({
   todayXP,
   dailyGoalXP,
   continueHref,
-  locale,
 }: LearnHeaderProps) {
   const goalProgress = dailyGoalXP > 0 ? Math.min(100, Math.round((todayXP / dailyGoalXP) * 100)) : 0;
   const isGoalComplete = todayXP >= dailyGoalXP;

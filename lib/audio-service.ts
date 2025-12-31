@@ -195,13 +195,13 @@ async function playTTS(
     };
 
     window.speechSynthesis.speak(utterance);
-    currentUtterance = utterance;
+    _currentUtterance = utterance;
   });
 }
 
 // Current playback references
 let currentAudio: HTMLAudioElement | null = null;
-let currentUtterance: SpeechSynthesisUtterance | null = null;
+let _currentUtterance: SpeechSynthesisUtterance | null = null;
 let currentSource: AudioSource = 'none';
 
 /**
@@ -218,7 +218,7 @@ export function stopAudio(): void {
     window.speechSynthesis.cancel();
   }
 
-  currentUtterance = null;
+  _currentUtterance = null;
   currentSource = 'none';
 }
 

@@ -8,13 +8,13 @@ import confetti from 'canvas-confetti';
 
 type Props = {
   xpEarned: number;
-  dailyGoal: number;
+  dailyGoal?: number; // Optional, kept for API compatibility
   streak: number;
   onClose: () => void;
   className?: string;
 };
 
-export function GoalCelebration({ xpEarned, dailyGoal, streak, onClose, className }: Props) {
+export function GoalCelebration({ xpEarned, streak, onClose, className }: Props) {
   const [visible, setVisible] = useState(false);
 
   const triggerConfetti = useCallback(() => {

@@ -17,7 +17,7 @@ export function ReaderQuizButton({ sample }: { sample: ReaderSample }) {
     return (
       <LessonRunner
         steps={steps}
-        onComplete={(results: LessonResults) => {
+        onComplete={(_results: LessonResults) => {
           setShowQuiz(false);
           // TODO: Save results to user progress
         }}

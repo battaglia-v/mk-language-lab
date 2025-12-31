@@ -5,7 +5,6 @@ import type {
   Step,
   StepAnswer,
   StepFeedback,
-  LessonRunnerState,
   LessonResults,
   ValidationResult,
 } from './types';

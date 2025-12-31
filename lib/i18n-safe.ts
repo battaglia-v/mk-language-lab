@@ -75,7 +75,7 @@ export function createSafeT(t: TranslateFunction, namespace?: string) {
       }
 
       return result;
-    } catch (error) {
+    } catch {
       logMissingKey(key, namespace);
       return fallback ?? '';
     }
@@ -104,7 +104,7 @@ export function validateTranslation(
     }
 
     return { valid: true, result };
-  } catch (error) {
+  } catch {
     return {
       valid: false,
       result: '',

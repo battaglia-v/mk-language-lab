@@ -14,8 +14,6 @@ import type {
   ValidationError,
   ValidationWarning,
   GrammarRule,
-  GrammarRuleId,
-  AdjectiveParadigm,
   AdjectiveDictionary,
   AgreementType,
 } from './types';
@@ -621,7 +619,7 @@ export const RULE_VERB_PERSON_AGREEMENT: GrammarRule = {
   id: 'verb_agrees_with_subject_person',
   name: 'Verb-Subject Person Agreement',
   description: 'Verb conjugation must match subject person (1st/2nd/3rd)',
-  validate(metadata: LinguisticMetadata): ValidationResult {
+  validate(_metadata: LinguisticMetadata): ValidationResult {
     // This is more complex and requires subject pronoun analysis
     // Simplified version for now
     return { valid: true, errors: [], warnings: [] };

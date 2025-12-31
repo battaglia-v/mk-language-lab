@@ -142,7 +142,7 @@ function log(
   if (data?.error) {
     entry.error = formatError(data.error);
     // Remove error from data to avoid duplication
-    const { error: _, ...restData } = data;
+    const { error: _err, ...restData } = data;
     if (Object.keys(restData).length > 0) {
       entry.data = restData;
     }

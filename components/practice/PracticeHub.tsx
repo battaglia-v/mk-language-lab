@@ -28,10 +28,10 @@ export function PracticeHub() {
   const t = useTranslations('practiceHub');
   const locale = useLocale();
   const {
-    savedDeck, curatedDeck, customDecks,
-    mistakesDeck, srsDueDeck, favoritesDeck,
-    activeCustomDeckId, loadCustomDeck, clearCustomDeck, clearMistakes,
-    recommendedDeck, deckCounts,
+    savedDeck, curatedDeck,
+    mistakesDeck, srsDueDeck,
+    clearCustomDeck, clearMistakes,
+    recommendedDeck,
   } = usePracticeDecks();
 
   const [settingsOpen, setSettingsOpen] = useState(false);

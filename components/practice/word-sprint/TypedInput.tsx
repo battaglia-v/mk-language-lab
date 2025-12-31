@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 
 type Props = {
-  correctAnswer: string;
+  correctAnswer?: string; // Optional, kept for API compatibility
   feedback: 'correct' | 'incorrect' | null;
   onSubmit: (answer: string) => void;
   disabled?: boolean;
@@ -27,7 +27,6 @@ export function isAnswerCorrect(input: string, expected: string): boolean {
 }
 
 export function TypedInput({
-  correctAnswer,
   feedback,
   onSubmit,
   disabled,
