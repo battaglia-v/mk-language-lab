@@ -314,7 +314,7 @@ export default function ReviewSessionPage() {
             {isRevealed ? (
               <p className="text-2xl font-bold">{currentQuestion.answer}</p>
             ) : (
-              <p className="text-muted-foreground">Tap "Show Answer" to reveal</p>
+              <p className="text-muted-foreground">Tap &quot;Show Answer&quot; to reveal</p>
             )}
           </div>
         )}

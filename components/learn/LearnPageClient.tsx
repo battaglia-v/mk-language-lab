@@ -109,7 +109,7 @@ export function LearnPageClient({
             )}
           >
             <Play className="h-6 w-6" fill="currentColor" />
-            <span className="text-xl font-bold">Start today's lesson</span>
+            <span className="text-xl font-bold">Start today&apos;s lesson</span>
           </Link>
 
           {/* Secondary CTA */}

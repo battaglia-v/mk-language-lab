@@ -1045,6 +1045,12 @@
         "time": "2–3 мин",
         "xp": "+10 ИП"
       },
+      "wordSprint": {
+        "title": "Спринт со зборови",
+        "description": "Пополни празнини на 3 нивоа",
+        "time": "2–5 мин",
+        "xp": "+8–20 ИП"
+      },
       "vocabulary": {
         "title": "Вокабулар",
         "description": "Прошири го вокабуларот со картички",
@@ -1067,6 +1073,23 @@
     "cloze": {
       "sessionComplete": "Сесијата заврши",
       "addMore": "+5 Повеќе"
+    },
+    "wordSprint": {
+      "title": "Спринт со зборови",
+      "description": "Пополни празнина",
+      "chooseDifficulty": "Избери тежина",
+      "selectChallenge": "Избери ниво на предизвик",
+      "sessionComplete": "Сесијата заврши",
+      "addMore": "+5 Повеќе",
+      "finish": "Заврши",
+      "harder": "Потешко",
+      "continue": "Продолжи",
+      "correct": "Точно!",
+      "incorrect": "Не сосема",
+      "answer": "Одговор: {word}",
+      "easy": "Лесно",
+      "medium": "Средно",
+      "hard": "Тешко"
     },
     "streakCalendar": {
       "title": "Активност на вежбање",

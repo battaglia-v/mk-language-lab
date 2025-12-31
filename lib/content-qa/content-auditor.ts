@@ -115,7 +115,12 @@ export function scanGrammarLessons(lessons: unknown[]): ScanResult {
       }
       
       // Special case: Check the specific "kukata e golem" issue
-      if (sentenceMk.includes('___ е голем') && translationEn.toLowerCase().includes('house')) {
+      // Use word boundary check to avoid false positive when "голема" contains "голем"
+      const hasIncorrectMascForm = /___\s+е\s+голем[^а]/i.test(sentenceMk) ||
+                                    sentenceMk.endsWith('голем') ||
+                                    sentenceMk.includes('голем.') ||
+                                    sentenceMk.includes('голем,');
+      if (hasIncorrectMascForm && translationEn.toLowerCase().includes('house')) {
         const expectedAnswer = correctAnswers[0] || '';
         if (expectedAnswer.toLowerCase().includes('куќа')) {
           entries.push({

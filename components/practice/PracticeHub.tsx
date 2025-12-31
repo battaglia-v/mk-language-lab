@@ -59,8 +59,8 @@ export function PracticeHub() {
       variant: 'default',
     },
     {
-      id: 'fillBlanks',
-      href: `/${locale}/practice/fill-blanks`,
+      id: 'wordSprint',
+      href: `/${locale}/practice/word-sprint`,
       icon: FileText,
       variant: 'primary',
     },
