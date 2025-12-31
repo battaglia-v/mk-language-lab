@@ -388,6 +388,28 @@ export const sentences: WordSprintItem[] = [
   createItem('ws-303', 'Одете лево', 'Go left', 'лево', 'medium', 'places'),
   createItem('ws-304', 'Продолжете право', 'Go straight', 'право', 'medium', 'places'),
   createItem('ws-305', 'Тоа е зад аголот', 'It is around the corner', 'аголот', 'hard', 'places'),
+
+  // Advanced Conversation - Opinions & Nuance (20)
+  createItem('ws-306', 'Мислам дека тоа е добра идеја', 'I think that is a good idea', 'Мислам', 'hard', 'common'),
+  createItem('ws-307', 'Не се согласувам со тебе', 'I don\'t agree with you', 'согласувам', 'hard', 'common'),
+  createItem('ws-308', 'Според мене, тоа е погрешно', 'In my opinion, that is wrong', 'погрешно', 'hard', 'common'),
+  createItem('ws-309', 'Би сакал да ти објаснам', 'I would like to explain to you', 'објаснам', 'hard', 'common'),
+  createItem('ws-310', 'Тоа зависи од ситуацијата', 'That depends on the situation', 'зависи', 'hard', 'common'),
+  createItem('ws-311', 'Имам поинакво мислење', 'I have a different opinion', 'поинакво', 'hard', 'common'),
+  createItem('ws-312', 'Можеби си во право', 'Maybe you are right', 'право', 'hard', 'common'),
+  createItem('ws-313', 'Не сум сигурен што да мислам', 'I\'m not sure what to think', 'сигурен', 'hard', 'emotions'),
+  createItem('ws-314', 'Ми се допаѓа твојата идеја', 'I like your idea', 'допаѓа', 'hard', 'emotions'),
+  createItem('ws-315', 'Треба да размислам за тоа', 'I need to think about that', 'размислам', 'hard', 'common'),
+  createItem('ws-316', 'Се извинувам, но не можам', 'I\'m sorry, but I can\'t', 'извинувам', 'hard', 'common'),
+  createItem('ws-317', 'Дали би можел да ми помогнеш?', 'Could you help me?', 'можел', 'hard', 'questions'),
+  createItem('ws-318', 'Би било убаво да дојдеш', 'It would be nice if you came', 'убаво', 'hard', 'common'),
+  createItem('ws-319', 'Се надевам дека ќе успееме', 'I hope we will succeed', 'надевам', 'hard', 'emotions'),
+  createItem('ws-320', 'Жал ми е што ти го кажав тоа', 'I\'m sorry I told you that', 'кажав', 'hard', 'emotions'),
+  createItem('ws-321', 'Признавам дека згрешив', 'I admit that I was wrong', 'згрешив', 'hard', 'common'),
+  createItem('ws-322', 'Се чувствувам посреќен сега', 'I feel happier now', 'посреќен', 'hard', 'emotions'),
+  createItem('ws-323', 'Тоа ме навредува', 'That offends me', 'навредува', 'hard', 'emotions'),
+  createItem('ws-324', 'Ценам го твоето мислење', 'I appreciate your opinion', 'Ценам', 'hard', 'common'),
+  createItem('ws-325', 'Се сложувам целосно', 'I completely agree', 'целосно', 'hard', 'common'),
 ];
 
 export function getWordSprintSession(count: number, difficulty?: Difficulty): WordSprintItem[] {
