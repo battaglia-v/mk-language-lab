@@ -1,0 +1,80 @@
+{
+  "id": "cafe-conversation",
+  "locale": "mk",
+  "title_mk": "Во кафуле",
+  "title_en": "At the Cafe",
+  "difficulty": "A1",
+  "estimatedMinutes": 3,
+  "tags": ["dialogue", "beginner", "food", "greetings"],
+  "text_blocks_mk": [
+    { "type": "p", "value": "Марија влегува во кафуле. Таа седнува на маса." },
+    { "type": "p", "value": "— Добар ден! Што сакате? — прашува келнерот." },
+    { "type": "p", "value": "— Добар ден! Јас сакам едно кафе, молам." },
+    { "type": "p", "value": "— Со млеко или без млеко?" },
+    { "type": "p", "value": "— Со малку млеко, молам." },
+    { "type": "p", "value": "— Дали сакате нешто за јадење?" },
+    { "type": "p", "value": "— Да, еден кроасан, молам." },
+    { "type": "p", "value": "— Во ред. Веднаш!" },
+    { "type": "p", "value": "Марија чека. По пет минути, келнерот доаѓа." },
+    { "type": "p", "value": "— Повелете! Кафе и кроасан." },
+    { "type": "p", "value": "— Благодарам многу!" },
+    { "type": "p", "value": "— Молам. Пријатно!" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Сакам + именка",
+      "title_en": "Сакам + noun (I want)",
+      "description_mk": "Глаголот 'сакам' се користи за изразување желба",
+      "description_en": "The verb 'сакам' is used to express wanting something",
+      "bullets": [
+        "Јас сакам = I want",
+        "Ти сакаш = You want",
+        "Тој/Таа сака = He/She wants"
+      ],
+      "examples": [
+        { "mk": "Јас сакам кафе", "en": "I want coffee" },
+        { "mk": "Дали сакате нешто?", "en": "Do you want something?", "note": "Formal 'you'" },
+        { "mk": "Таа сака чај", "en": "She wants tea" }
+      ]
+    },
+    {
+      "title_mk": "Со / Без",
+      "title_en": "With / Without",
+      "description_en": "Common prepositions for ordering food/drinks",
+      "examples": [
+        { "mk": "со млеко", "en": "with milk" },
+        { "mk": "без шеќер", "en": "without sugar" },
+        { "mk": "со малку млеко", "en": "with a little milk" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "кафуле", "en": "cafe, coffee shop", "pos": "noun" },
+    { "mk": "влегува", "en": "enters", "pos": "verb" },
+    { "mk": "седнува", "en": "sits down", "pos": "verb" },
+    { "mk": "маса", "en": "table", "pos": "noun" },
+    { "mk": "келнер", "en": "waiter", "pos": "noun" },
+    { "mk": "сакам", "en": "I want", "pos": "verb" },
+    { "mk": "кафе", "en": "coffee", "pos": "noun" },
+    { "mk": "млеко", "en": "milk", "pos": "noun" },
+    { "mk": "малку", "en": "a little", "pos": "adverb" },
+    { "mk": "јадење", "en": "food, eating", "pos": "noun" },
+    { "mk": "веднаш", "en": "right away", "pos": "adverb" },
+    { "mk": "чека", "en": "waits", "pos": "verb" },
+    { "mk": "доаѓа", "en": "comes", "pos": "verb" }
+  ],
+  "expressions": [
+    { "mk": "Добар ден!", "en": "Good day! (Hello)", "usage": "Formal greeting" },
+    { "mk": "Молам", "en": "Please / You're welcome", "usage": "Polite expression" },
+    { "mk": "Благодарам", "en": "Thank you", "usage": "Expression of gratitude" },
+    { "mk": "Во ред", "en": "Okay, alright", "usage": "Confirmation" },
+    { "mk": "Повелете!", "en": "Here you go!", "usage": "When serving/giving something" },
+    { "mk": "Пријатно!", "en": "Enjoy!", "usage": "Said when serving food/drinks" }
+  ],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "Everyday Conversations",
+    "day": "1",
+    "sourceTitle": "Original content"
+  }
+}
