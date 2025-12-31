@@ -55,11 +55,20 @@ Previous status claimed "All phases complete" — but live production audit reve
 - **Commit:** `b6c4d46` (Dec 31, 2024)
 - **Files changed:** `app/[locale]/page.tsx`, `lib/learn/starter-path.ts`
 
-### P0: Home i18n Keys Leaking — CRITICAL
-- **Symptom:** Signed-out home shows raw keys
-- **Root cause:** Unknown (keys exist, code looks correct)
+### P0: Home i18n Keys Leaking — IN PROGRESS
+- **Symptom:** Signed-out home shows raw keys like `home.guestSubtitle`
 - **Impact:** App looks broken to new visitors
-- **Fix:** Try production redeploy with `--force`, check deployment logs
+- **Attempted fixes:**
+  1. Force redeploy with `--force` — didn't fix
+  2. Explicitly pass locale to `getTranslations({ locale, namespace })` — didn't fix
+  3. Removed non-standard `{ default: "..." }` syntax — didn't fix
+- **Commit:** `fb18144` (Dec 31, 2024)
+- **Root cause:** Still investigating — messages exist in JSON, keys exist in i18n config, but translations not rendering
+- **Next steps:**
+  1. Check browser console for hydration errors
+  2. Check Vercel function logs for SSR errors
+  3. Test with `npm run build && npm run start` locally
+  4. Consider rolling back to simpler i18n setup
 
 ### P2: Speaking MVP — Skip-Only Vibes
 - **Status:** Needs UX audit (not blocking)
