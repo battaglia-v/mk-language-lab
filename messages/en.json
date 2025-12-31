@@ -1043,6 +1043,10 @@
         "title": "Word Gaps",
         "description": "Fill in the missing words"
       },
+      "fillBlanks": {
+        "title": "Fill Blanks",
+        "description": "Complete the sentence"
+      },
       "vocabulary": {
         "title": "Vocabulary",
         "description": "Build your word bank"
