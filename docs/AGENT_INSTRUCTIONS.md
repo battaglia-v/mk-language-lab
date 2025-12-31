@@ -99,7 +99,20 @@ npm run build            # Production build
 - **Components**: Use shadcn/ui primitives from `components/ui/`
 - **Styling**: Tailwind CSS classes, respect design tokens
 
-### 3.4 Critical Constraints
+### 3.4 Output Cap Rule (Content Expansion)
+
+When adding large content (sentences, vocabulary, etc.) to the codebase:
+
+1. **Do NOT print large datasets or diffs** in chat
+2. **Write directly to files** in the repo
+3. **In chat, output only:**
+   - File(s) changed
+   - Count of items added
+   - Sample of 3 items max
+   - Test command + result
+4. **Batch commits**: ~20 items per commit for content expansion
+
+### 3.5 Critical Constraints
 
 | ❌ NEVER | ✅ ALWAYS |
 |----------|-----------|
@@ -108,6 +121,7 @@ npm run build            # Production build
 | Commit secrets/credentials | Use environment variables |
 | Skip type checking | Ensure `npm run type-check` passes |
 | Ignore test failures | Fix or explain any test issues |
+| Print large datasets in chat | Write to files, report counts only |
 
 ---
 
