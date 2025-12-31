@@ -48,11 +48,12 @@ Previous status claimed "All phases complete" — but live production audit reve
 
 ## Production Bugs (Must Fix)
 
-### P1: "Start Today's Lesson" → Empty Deck — CRITICAL
+### P1: "Start Today's Lesson" → Empty Deck — FIXED ✅
 - **Root cause:** Difficulty filter mismatch (beginner vs mixed)
 - **Impact:** New users cannot start learning
-- **Fix:** Change `difficulty=beginner` to `difficulty=all` in home page
-- **File:** `app/[locale]/page.tsx:32`
+- **Fix:** Changed `difficulty=beginner` to `difficulty=all`
+- **Commit:** `b6c4d46` (Dec 31, 2024)
+- **Files changed:** `app/[locale]/page.tsx`, `lib/learn/starter-path.ts`
 
 ### P0: Home i18n Keys Leaking — CRITICAL
 - **Symptom:** Signed-out home shows raw keys
