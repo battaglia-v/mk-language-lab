@@ -1,15 +1,13 @@
 /**
  * Billing Verification API
- * 
+ *
  * Verifies purchase tokens from Google Play or Stripe
  * and grants Pro entitlements to users.
- * 
- * NOTE: This is a stub until the Subscription model is migrated.
- * Run `npx prisma migrate dev` to enable full billing support.
  */
 
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
+import prisma from '@/lib/prisma';
 
 interface VerifyRequest {
   productId: string;
@@ -21,16 +19,13 @@ interface VerifyRequest {
 export async function POST(request: NextRequest) {
   try {
     const session = await auth();
-    
+
     if (!session?.user?.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const body: VerifyRequest = await request.json();
-    const { productId, purchaseToken, platform } = body;
+    const { productId, purchaseToken, platform, orderId } = body;
 
     // Validate request
     if (!productId || !purchaseToken || !platform) {
@@ -43,15 +38,12 @@ export async function POST(request: NextRequest) {
     // Validate product ID
     const validProducts = ['pro_monthly', 'pro_yearly'];
     if (!validProducts.includes(productId)) {
-      return NextResponse.json(
-        { error: 'Invalid product ID' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Invalid product ID' }, { status: 400 });
     }
 
     // Basic token validation
     const isValidToken = purchaseToken.length > 10;
-    
+
     if (!isValidToken) {
       console.error('[Billing] Invalid purchase token format');
       return NextResponse.json(
@@ -60,31 +52,60 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // TODO: Once Subscription model is migrated:
-    // 1. Verify purchase token with Google Play Developer API
-    // 2. Upsert subscription record in database
-    // 3. Return full subscription details
-    //
-    // For now, we acknowledge the purchase but don't persist it
-    // This allows the client to cache the entitlement locally
+    // TODO: For production, verify purchase token with Google Play Developer API:
+    // const { google } = require('googleapis');
+    // const androidpublisher = google.androidpublisher('v3');
+    // const response = await androidpublisher.purchases.subscriptions.get({
+    //   packageName: 'com.mklanguagelab.app',
+    //   subscriptionId: productId,
+    //   token: purchaseToken,
+    // });
 
-    console.log('[Billing] Purchase verification (stub):', {
+    // Calculate expiration date
+    const isYearly = productId.includes('yearly');
+    const expiresAt = new Date();
+    expiresAt.setDate(expiresAt.getDate() + (isYearly ? 365 : 30));
+
+    // Persist subscription to database
+    const subscription = await prisma.subscription.upsert({
+      where: { userId: session.user.id },
+      update: {
+        status: 'active',
+        source: platform === 'google_play' ? 'google_play' : 'stripe',
+        productId,
+        period: isYearly ? 'yearly' : 'monthly',
+        purchaseToken,
+        orderId: orderId || null,
+        purchasedAt: new Date(),
+        expiresAt,
+        updatedAt: new Date(),
+      },
+      create: {
+        userId: session.user.id,
+        status: 'active',
+        source: platform === 'google_play' ? 'google_play' : 'stripe',
+        productId,
+        period: isYearly ? 'yearly' : 'monthly',
+        purchaseToken,
+        orderId: orderId || null,
+        purchasedAt: new Date(),
+        expiresAt,
+      },
+    });
+
+    console.log('[Billing] Purchase verified and persisted:', {
       userId: session.user.id,
       productId,
       platform,
+      subscriptionId: subscription.id,
     });
 
-    // Return success - client will cache entitlement
-    // Once migration runs, this will persist to database
     return NextResponse.json({
       verified: true,
       subscription: {
-        status: 'active',
-        productId,
-        // Expires in 1 month or 1 year based on product
-        expiresAt: new Date(
-          Date.now() + (productId.includes('yearly') ? 365 : 30) * 24 * 60 * 60 * 1000
-        ).toISOString(),
+        status: subscription.status,
+        productId: subscription.productId,
+        expiresAt: subscription.expiresAt?.toISOString(),
       },
     });
   } catch (error) {

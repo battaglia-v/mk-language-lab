@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 // Translations available via getTranslations if needed
 import Link from 'next/link';
-import { ArrowLeft, Clock, Tag, User } from 'lucide-react';
+import { ArrowLeft, Clock, Tag, User, Hand } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -10,6 +10,7 @@ import { PageContainer } from '@/components/layout';
 import { getReaderSample, getDifficultyColor } from '@/lib/reader-samples';
 import { ReaderQuizButton } from '@/components/reader/ReaderQuizButton';
 import { QuickAnalyzeButton } from '@/components/reader/QuickAnalyzeButton';
+import { TappableTextClient } from './TappableTextClient';
 import { cn } from '@/lib/utils';
 
 interface ReadingSamplePageProps {
@@ -101,17 +102,21 @@ export default async function ReadingSamplePage({ params }: ReadingSamplePagePro
           <Card>
             <CardHeader>
               <CardTitle>Reading</CardTitle>
-              <CardDescription>
-                {locale === 'mk' ? 'Прочитајте го текстот' : 'Read the text'}
+              <CardDescription className="flex items-center gap-2">
+                <Hand className="h-4 w-4" />
+                {locale === 'mk' ? 'Допрете збор за превод' : 'Tap any word for translation'}
               </CardDescription>
             </CardHeader>
             <CardContent className="prose prose-sm max-w-none dark:prose-invert">
               {sample.text_blocks_mk.map((block, idx) => {
                 if (block.type === 'p') {
                   return (
-                    <p key={idx} className="leading-relaxed">
-                      {block.value}
-                    </p>
+                    <TappableTextClient
+                      key={idx}
+                      text={block.value}
+                      vocabulary={sample.vocabulary}
+                      locale={locale}
+                    />
                   );
                 }
                 if (block.type === 'h2') {
@@ -119,6 +124,13 @@ export default async function ReadingSamplePage({ params }: ReadingSamplePagePro
                     <h2 key={idx} className="mt-6 text-xl font-semibold">
                       {block.value}
                     </h2>
+                  );
+                }
+                if (block.type === 'note') {
+                  return (
+                    <div key={idx} className="my-4 rounded-lg border border-amber-500/30 bg-amber-500/10 p-4 text-sm text-amber-200">
+                      <span className="font-medium">Note:</span> {block.value}
+                    </div>
                   );
                 }
                 return null;
