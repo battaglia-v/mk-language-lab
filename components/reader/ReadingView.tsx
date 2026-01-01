@@ -351,6 +351,11 @@ function WordLookupContent({
           <span className="text-xs">Practice</span>
         </Button>
       </div>
+
+      {/* Helper text */}
+      <p className="text-xs text-center text-muted-foreground">
+        Saved words appear in Practice.
+      </p>
     </div>
   );
 }

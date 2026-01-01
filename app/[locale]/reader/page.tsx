@@ -75,7 +75,7 @@ export default function ReaderPage() {
       {/* Header */}
       <header className="px-4 pt-6 pb-2 text-center">
         <h1 className="text-2xl font-bold">Reader</h1>
-        <p className="text-sm text-muted-foreground mt-1">Read real Macedonian, tap any word.</p>
+        <p className="text-sm text-muted-foreground mt-1">Read real Macedonian — tap any word.</p>
       </header>
 
       <PageContainer size="lg">
@@ -178,7 +178,7 @@ export default function ReaderPage() {
             {/* Reading List */}
             <section className="space-y-4">
               <div className="flex items-center justify-between">
-                <h2 className="text-lg font-semibold">Curated Readings</h2>
+                <h2 className="text-lg font-semibold">Short reads</h2>
                 <span className="text-sm text-muted-foreground">
                   {filteredSamples.length === allSamples.length
                     ? `${allSamples.length} texts`
@@ -224,13 +224,19 @@ export default function ReaderPage() {
               <FileText className="h-12 w-12 mx-auto mb-4 text-muted-foreground/30" />
               <h2 className="text-lg font-semibold mb-2">Reading Workspace</h2>
               <p className="text-sm text-muted-foreground mb-6">
-                Select a text from the Library or analyze your own
+                Paste text and break it down.
               </p>
               <div className="flex flex-col gap-3 max-w-xs mx-auto">
                 <Button asChild className="active:scale-[0.99]">
                   <Link href={`/${locale}/reader/analyze`}>
                     <Wrench className="h-4 w-4 mr-2" />
-                    Analyze text
+                    Paste text
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" className="active:scale-[0.99]">
+                  <Link href={`/${locale}/reader?tab=library`}>
+                    <BookOpen className="h-4 w-4 mr-2" />
+                    Browse stories
                   </Link>
                 </Button>
               </div>

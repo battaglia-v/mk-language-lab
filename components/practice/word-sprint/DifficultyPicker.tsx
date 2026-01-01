@@ -59,9 +59,9 @@ export function DifficultyPicker({ onSelect, title = 'Word Sprint' }: Props) {
                   <div>
                     <span className="font-semibold capitalize">{d}</span>
                     <span className="block text-xs opacity-70">
-                      {d === 'easy' && '2 choices (A/B)'}
+                      {d === 'easy' && 'Two choices'}
                       {d === 'medium' && 'Word bank'}
-                      {d === 'hard' && 'Type answer'}
+                      {d === 'hard' && 'Type the answer'}
                     </span>
                   </div>
                   <span className={cn('text-sm font-bold flex items-center gap-1', selectedDifficulty === d ? 'opacity-100' : DIFFICULTY_COLORS[d].text)}>
@@ -109,7 +109,7 @@ export function DifficultyPicker({ onSelect, title = 'Word Sprint' }: Props) {
             </Button>
             {!selectedDifficulty && (
               <p className="text-center text-sm text-muted-foreground">
-                Choose difficulty to start.
+                Choose difficulty and length to start.
               </p>
             )}
           </div>
