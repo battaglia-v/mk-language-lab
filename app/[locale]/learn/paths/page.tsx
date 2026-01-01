@@ -1,4 +1,4 @@
-import { getLocale, getTranslations } from "next-intl/server";
+import { getLocale } from "next-intl/server";
 import Link from "next/link";
 import { ChevronRight, BookOpen, Rocket, Globe, Trophy, Calendar, Boxes } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -95,7 +95,6 @@ const learningPaths: PathCard[] = [
 
 export default async function LearningPathsPage() {
   const locale = await getLocale();
-  const t = await getTranslations({ locale, namespace: "learn" });
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-4rem)] pb-24 sm:pb-6">

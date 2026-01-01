@@ -1,4 +1,3 @@
-import { getLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
