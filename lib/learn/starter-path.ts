@@ -14,7 +14,7 @@ export const starterPathNodes: LessonNode[] = [
     description: 'Learn the Cyrillic alphabet and basic pronunciation',
     status: 'available',
     xpReward: 20,
-    href: '/practice/pronunciation',
+    href: '/learn/lessons/alphabet',
     contentId: 'alphabet',
   },
   // Unit 2: Greetings & Introductions

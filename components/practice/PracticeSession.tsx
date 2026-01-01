@@ -10,6 +10,7 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { usePracticeDecks } from './usePracticeDecks';
+import { isTopicDeck, getTopicDeck } from '@/lib/topic-decks';
 import { isFavorite, toggleFavorite } from '@/lib/favorites';
 import { recordPracticeSession } from '@/lib/practice-activity';
 import { recordReview } from '@/lib/srs';
@@ -20,7 +21,8 @@ import { addLocalXP, getLocalXP, isGoalComplete } from '@/lib/gamification/local
 import { Skeleton } from '@/components/ui/skeleton';
 import type { DeckType, PracticeMode, DifficultyFilter, Flashcard } from './types';
 
-type Props = { deckType: DeckType; mode: PracticeMode; difficulty: DifficultyFilter; customDeckId?: string };
+// deckType can be a standard DeckType or a topic deck ID (e.g., household-v1)
+type Props = { deckType: DeckType | string; mode: PracticeMode; difficulty: DifficultyFilter; customDeckId?: string };
 
 export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Props) {
   const t = useTranslations('practiceHub');
@@ -54,6 +56,27 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
 
   // Load deck with fallback for auth failures
   useEffect(() => {
+    // Check if it's a topic deck first (e.g., household-v1, weather-seasons-v1)
+    if (isTopicDeck(deckType)) {
+      const topicDeck = getTopicDeck(deckType);
+      if (topicDeck && topicDeck.items.length > 0) {
+        const flashcards: Flashcard[] = topicDeck.items.map((item) => ({
+          id: item.id,
+          source: item.mk,
+          target: item.en,
+          direction: 'mk-en' as const,
+          category: item.category || topicDeck.meta.category,
+          difficulty: topicDeck.meta.level.toLowerCase(),
+          audioClip: null,
+          macedonian: item.mk,
+        }));
+        // Shuffle the deck for variety
+        const shuffled = [...flashcards].sort(() => Math.random() - 0.5);
+        setDeck(shuffled);
+        return;
+      }
+    }
+
     if (customDeckId) {
       loadCustomDeck(customDeckId).then((cards) => {
         if (cards.length > 0) {
@@ -64,7 +87,8 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
         }
       });
     } else {
-      setDeck(getDeck(deckType, difficulty));
+      // Cast to DeckType for standard decks (unknown types fall back to curated)
+      setDeck(getDeck(deckType as DeckType, difficulty));
     }
   }, [deckType, difficulty, customDeckId, getDeck, loadCustomDeck]);
 

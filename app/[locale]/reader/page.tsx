@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ReadingSampleCard } from '@/components/reader/ReadingSampleCard';
-import { getReaderSamplesByLocale } from '@/lib/reader-samples';
+import { getAllReaderSamples } from '@/lib/reader-samples';
 import { readFavorites } from '@/lib/favorites';
 import { cn } from '@/lib/utils';
 
@@ -24,7 +24,7 @@ type DifficultyLevel = typeof DIFFICULTY_LEVELS[number];
  */
 export default function ReaderPage() {
   const locale = useLocale();
-  const allSamples = useMemo(() => getReaderSamplesByLocale('mk'), []);
+  const allSamples = useMemo(() => getAllReaderSamples(), []);
   const [savedCount] = useState(() => {
     if (typeof window === 'undefined') return 0;
     return readFavorites().length;
@@ -175,10 +175,42 @@ export default function ReaderPage() {
               )}
             </div>
 
-            {/* Reading List */}
+            {/* 30-Day Challenge Section */}
+            {!hasActiveFilters && (
+              <section className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-lg font-semibold flex items-center gap-2">
+                    <span>30-Day Reading Challenge</span>
+                    <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">NEW</span>
+                  </h2>
+                  <Link href={`/${locale}/learn/paths/30day`} className="text-sm text-primary hover:underline">
+                    View all →
+                  </Link>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Read &ldquo;The Little Prince&rdquo; in Macedonian, one chapter at a time.
+                </p>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {allSamples
+                    .filter(s => s.tags.includes('30-day-challenge'))
+                    .slice(0, 4)
+                    .map((sample) => (
+                      <ReadingSampleCard
+                        key={sample.id}
+                        sample={sample}
+                        locale={locale}
+                      />
+                    ))}
+                </div>
+              </section>
+            )}
+
+            {/* All Readings */}
             <section className="space-y-4">
               <div className="flex items-center justify-between">
-                <h2 className="text-lg font-semibold">Short reads</h2>
+                <h2 className="text-lg font-semibold">
+                  {hasActiveFilters ? 'Search Results' : 'All Readings'}
+                </h2>
                 <span className="text-sm text-muted-foreground">
                   {filteredSamples.length === allSamples.length
                     ? `${allSamples.length} texts`
