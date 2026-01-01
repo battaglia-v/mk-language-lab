@@ -1,8 +1,13 @@
-# Current Status (Jan 1, 2025 - Session Complete)
+# Current Status (Dec 31, 2025)
 
 ## Production Status: ALL ITEMS COMPLETE ✅
 
 All critical bugs fixed, all polish items complete, zero lint warnings.
+
+### Grammar Lessons Expanded ✅
+- Removed duplicate "negation-basics" entry
+- Added 3 new lessons: Future Tense, Possessive Pronouns, Adjective Agreement
+- Total grammar lessons: 10 (was 7 unique)
 
 ---
 

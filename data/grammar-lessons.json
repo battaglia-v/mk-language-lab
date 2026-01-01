@@ -581,105 +581,6 @@
     ]
   },
   {
-    "id": "negation-basics",
-    "titleMk": "Негација - Основи",
-    "titleEn": "Negation - Basics",
-    "descriptionMk": "Научи како да формираш негативни реченици",
-    "descriptionEn": "Learn how to form negative sentences",
-    "difficulty": "beginner",
-    "tags": ["negation", "verbs", "basics"],
-    "totalXp": 60,
-    "grammarNote": {
-      "titleMk": "Негација",
-      "titleEn": "Negation",
-      "contentMk": "Негацијата во македонскиот е едноставна - додај 'не' пред глаголот. За именки користи 'нема' (there is no) или 'немам' (I don't have).",
-      "contentEn": "Negation in Macedonian is simple - add 'не' before the verb. For nouns use 'нема' (there is no) or 'немам' (I don't have).",
-      "examplesMk": [
-        "Јас не зборувам англиски (I don't speak English)",
-        "Тој не работи денес (He doesn't work today)",
-        "Немам време (I don't have time)"
-      ],
-      "examplesEn": [
-        "Јас не зборувам англиски (I don't speak English)",
-        "Тој не работи денес (He doesn't work today)",
-        "Немам време (I don't have time)"
-      ]
-    },
-    "exercises": [
-      {
-        "id": "neg-1",
-        "type": "fill-blank",
-        "instructionMk": "Направи негативна реченица",
-        "instructionEn": "Make a negative sentence",
-        "sentenceMk": "Јас ___ сакам кафе.",
-        "translationEn": "I don't like coffee.",
-        "correctAnswers": ["не"],
-        "xp": 10
-      },
-      {
-        "id": "neg-2",
-        "type": "multiple-choice",
-        "instructionMk": "Која реченица е негативна?",
-        "instructionEn": "Which sentence is negative?",
-        "questionMk": "Избери ја негативната реченица:",
-        "questionEn": "Choose the negative sentence:",
-        "options": ["Имам куче", "Немам куче", "Сакам куче", "Гледам куче"],
-        "correctIndex": 1,
-        "xp": 10,
-        "explanationMk": "'Немам' = 'I don't have'",
-        "explanationEn": "'Немам' = 'I don't have'"
-      },
-      {
-        "id": "neg-3",
-        "type": "error-correction",
-        "instructionMk": "Поправи ја грешката во негацијата",
-        "instructionEn": "Fix the negation error",
-        "sentenceWithErrorMk": "Тој никако не работи не",
-        "translationEn": "He doesn't work",
-        "errorWord": "никако не работи не",
-        "correctedWord": "не работи",
-        "errorPosition": 1,
-        "xp": 15,
-        "explanationMk": "Во македонски се користи само едно 'не' пред глаголот",
-        "explanationEn": "In Macedonian, only one 'не' is used before the verb"
-      },
-      {
-        "id": "neg-4",
-        "type": "sentence-builder",
-        "instructionMk": "Подреди ги зборовите за негативна реченица",
-        "instructionEn": "Arrange words for a negative sentence",
-        "targetSentenceMk": "Ние не одиме на работа",
-        "translationEn": "We don't go to work",
-        "words": ["Ние", "не", "одиме", "на", "работа"],
-        "xp": 15
-      },
-      {
-        "id": "neg-5",
-        "type": "fill-blank",
-        "instructionMk": "Пополни го правилниот облик",
-        "instructionEn": "Fill in the correct form",
-        "sentenceMk": "___ пари.",
-        "translationEn": "There is no money.",
-        "correctAnswers": ["Нема"],
-        "wordBank": ["Нема", "Не", "Немам", "Не сум"],
-        "xp": 10
-      },
-      {
-        "id": "neg-6",
-        "type": "multiple-choice",
-        "instructionMk": "Како се вели 'I am not' на македонски?",
-        "instructionEn": "How do you say 'I am not' in Macedonian?",
-        "questionMk": "Преведи: 'I am not a student'",
-        "questionEn": "Translate: 'I am not a student'",
-        "options": ["Јас не сум студент", "Јас немам студент", "Јас нема студент", "Јас не имам студент"],
-        "correctIndex": 0,
-        "xp": 10,
-        "explanationMk": "'Не сум' = 'I am not'",
-        "explanationEn": "'Не сум' = 'I am not'"
-      }
-    ]
-  },
-  {
     "id": "past-tense-intro",
     "titleMk": "Минато време - Вовед",
     "titleEn": "Past Tense - Introduction",
@@ -777,6 +678,84 @@
         "hintMk": "Минато време од 'пее'",
         "hintEn": "Past tense of 'пее' (to sing)"
       }
+    ]
+  },
+  {
+    "id": "future-tense-basics",
+    "titleMk": "Идно време - Основи",
+    "titleEn": "Future Tense - Basics",
+    "descriptionMk": "Научи како да зборуваш за иднината со ќе + глагол",
+    "descriptionEn": "Learn how to talk about the future with ќе + verb",
+    "difficulty": "beginner",
+    "tags": ["future-tense", "verbs", "basics"],
+    "totalXp": 60,
+    "grammarNote": {
+      "titleMk": "Идно време",
+      "titleEn": "Future Tense",
+      "contentMk": "Идното време се формира со честичката 'ќе' + сегашно време на глаголот. Пример: ќе одам (I will go), ќе читам (I will read), ќе работам (I will work).",
+      "contentEn": "The future tense is formed with the particle 'ќе' + present tense of the verb. Example: ќе одам (I will go), ќе читам (I will read), ќе работам (I will work).",
+      "examplesMk": ["Јас ќе одам дома (I will go home)", "Утре ќе учам (Tomorrow I will study)", "Тие ќе дојдат вечер (They will come tonight)"],
+      "examplesEn": ["Јас ќе одам дома (I will go home)", "Утре ќе учам (Tomorrow I will study)", "Тие ќе дојдат вечер (They will come tonight)"]
+    },
+    "exercises": [
+      {"id": "ft-1", "type": "fill-blank", "instructionMk": "Стави го глаголот во идно време", "instructionEn": "Put the verb in future tense", "sentenceMk": "Јас ___ (оди) на работа утре.", "translationEn": "I will go to work tomorrow.", "correctAnswers": ["ќе одам"], "xp": 10},
+      {"id": "ft-2", "type": "multiple-choice", "instructionMk": "Избери ја правилната форма", "instructionEn": "Choose the correct form", "questionMk": "Тој ___ книга вечер.", "questionEn": "He will read a book tonight.", "options": ["чита", "читаше", "ќе чита", "читај"], "correctIndex": 2, "xp": 10},
+      {"id": "ft-3", "type": "fill-blank", "instructionMk": "Пополни со идно време", "instructionEn": "Fill in with future tense", "sentenceMk": "Ние ___ (јаде) во ресторан.", "translationEn": "We will eat at a restaurant.", "correctAnswers": ["ќе јадеме"], "xp": 10},
+      {"id": "ft-4", "type": "sentence-builder", "instructionMk": "Подреди ги зборовите", "instructionEn": "Arrange the words", "targetSentenceMk": "Утре ќе патуваме во Охрид", "translationEn": "Tomorrow we will travel to Ohrid", "words": ["Утре", "ќе", "патуваме", "во", "Охрид"], "xp": 15},
+      {"id": "ft-5", "type": "error-correction", "instructionMk": "Поправи ја грешката", "instructionEn": "Fix the error", "sentenceWithErrorMk": "Јас ке одам на пазар", "translationEn": "I will go to the market", "errorWord": "ке", "correctedWord": "ќе", "errorPosition": 1, "xp": 15, "explanationMk": "Се пишува 'ќе', не 'ке'", "explanationEn": "It's written 'ќе', not 'ке'"},
+      {"id": "ft-6", "type": "multiple-choice", "instructionMk": "Кога се користи 'ќе'?", "instructionEn": "When do you use 'ќе'?", "questionMk": "Честичката 'ќе' се користи за:", "questionEn": "The particle 'ќе' is used for:", "options": ["минато време", "сегашно време", "идно време", "заповеден начин"], "correctIndex": 2, "xp": 10}
+    ]
+  },
+  {
+    "id": "possessive-pronouns",
+    "titleMk": "Присвојни заменки",
+    "titleEn": "Possessive Pronouns",
+    "descriptionMk": "Научи ги присвојните заменки: мој, твој, негов, нејзин...",
+    "descriptionEn": "Learn possessive pronouns: my, your, his, her...",
+    "difficulty": "beginner",
+    "tags": ["pronouns", "possessives", "basics"],
+    "totalXp": 60,
+    "grammarNote": {
+      "titleMk": "Присвојни заменки",
+      "titleEn": "Possessive Pronouns",
+      "contentMk": "Присвојните заменки се менуваат по род: мој/моја/мое, твој/твоја/твое, негов/негова/негово, нејзин/нејзина/нејзино, наш/наша/наше, ваш/ваша/ваше, нивен/нивна/нивно.",
+      "contentEn": "Possessive pronouns change by gender: мој/моја/мое (my), твој/твоја/твое (your), негов/негова/негово (his), нејзин/нејзина/нејзино (her), наш/наша/наше (our), ваш/ваша/ваше (your), нивен/нивна/нивно (their).",
+      "examplesMk": ["Ова е мој брат (This is my brother)", "Тоа е нејзина книга (That is her book)", "Нашата куќа е голема (Our house is big)"],
+      "examplesEn": ["Ова е мој брат (This is my brother)", "Тоа е нејзина книга (That is her book)", "Нашата куќа е голема (Our house is big)"]
+    },
+    "exercises": [
+      {"id": "pp-1", "type": "fill-blank", "instructionMk": "Избери ја правилната присвојна заменка", "instructionEn": "Choose the correct possessive pronoun", "sentenceMk": "Тоа е ___ (јас) куќа.", "translationEn": "That is my house.", "correctAnswers": ["моја"], "xp": 10, "hintMk": "Куќа е женски род", "hintEn": "Куќа is feminine"},
+      {"id": "pp-2", "type": "multiple-choice", "instructionMk": "Избери ја правилната форма", "instructionEn": "Choose the correct form", "questionMk": "___ татко е добар човек.", "questionEn": "My father is a good person.", "options": ["Мој", "Моја", "Мое", "Мои"], "correctIndex": 0, "xp": 10},
+      {"id": "pp-3", "type": "fill-blank", "instructionMk": "Пополни со правилна заменка", "instructionEn": "Fill in with correct pronoun", "sentenceMk": "Тоа е ___ (тој) автомобил.", "translationEn": "That is his car.", "correctAnswers": ["негов"], "xp": 10},
+      {"id": "pp-4", "type": "multiple-choice", "instructionMk": "Која заменка одговара на 'her'?", "instructionEn": "Which pronoun matches 'her'?", "questionMk": "___ дете е убаво.", "questionEn": "Her child is beautiful.", "options": ["негово", "нејзино", "нивно", "ваше"], "correctIndex": 1, "xp": 10, "hintMk": "Дете е среден род", "hintEn": "Дете is neuter"},
+      {"id": "pp-5", "type": "sentence-builder", "instructionMk": "Подреди ги зборовите", "instructionEn": "Arrange the words", "targetSentenceMk": "Нашите пријатели се тука", "translationEn": "Our friends are here", "words": ["Нашите", "пријатели", "се", "тука"], "xp": 15},
+      {"id": "pp-6", "type": "error-correction", "instructionMk": "Поправи ја грешката", "instructionEn": "Fix the error", "sentenceWithErrorMk": "Тоа е мој сестра", "translationEn": "That is my sister", "errorWord": "мој", "correctedWord": "моја", "errorPosition": 2, "xp": 15, "explanationMk": "Сестра е женски род, затоа 'моја'", "explanationEn": "Сестра is feminine, so use 'моја'"}
+    ]
+  },
+  {
+    "id": "adjective-agreement",
+    "titleMk": "Согласување на придавки",
+    "titleEn": "Adjective Agreement",
+    "descriptionMk": "Научи како придавките се менуваат по род и број",
+    "descriptionEn": "Learn how adjectives change by gender and number",
+    "difficulty": "beginner",
+    "tags": ["adjectives", "gender", "agreement"],
+    "totalXp": 60,
+    "grammarNote": {
+      "titleMk": "Согласување на придавки",
+      "titleEn": "Adjective Agreement",
+      "contentMk": "Придавките се менуваат по род и број. Машки: -∅ (убав), Женски: -а (убава), Среден: -о (убаво), Множина: -и (убави).",
+      "contentEn": "Adjectives change by gender and number. Masculine: -∅ (убав), Feminine: -а (убава), Neuter: -о (убаво), Plural: -и (убави).",
+      "examplesMk": ["убав човек (handsome man)", "убава жена (beautiful woman)", "убаво дете (beautiful child)", "убави луѓе (beautiful people)"],
+      "examplesEn": ["убав човек (handsome man)", "убава жена (beautiful woman)", "убаво дете (beautiful child)", "убави луѓе (beautiful people)"]
+    },
+    "exercises": [
+      {"id": "aa-1", "type": "fill-blank", "instructionMk": "Избери ја правилната форма", "instructionEn": "Choose the correct form", "sentenceMk": "Тоа е ___ (голем) куќа.", "translationEn": "That is a big house.", "correctAnswers": ["голема"], "xp": 10, "hintMk": "Куќа е женски род", "hintEn": "Куќа is feminine"},
+      {"id": "aa-2", "type": "multiple-choice", "instructionMk": "Која форма е правилна?", "instructionEn": "Which form is correct?", "questionMk": "___ дете играе надвор.", "questionEn": "The small child plays outside.", "options": ["мал", "мала", "мало", "мали"], "correctIndex": 2, "xp": 10},
+      {"id": "aa-3", "type": "fill-blank", "instructionMk": "Согласи ја придавката", "instructionEn": "Match the adjective", "sentenceMk": "Имам ___ (нов) автомобил.", "translationEn": "I have a new car.", "correctAnswers": ["нов"], "xp": 10},
+      {"id": "aa-4", "type": "multiple-choice", "instructionMk": "Која придавка одговара?", "instructionEn": "Which adjective fits?", "questionMk": "Тие се ___ луѓе.", "questionEn": "They are good people.", "options": ["добар", "добра", "добро", "добри"], "correctIndex": 3, "xp": 10, "explanationMk": "Луѓе е множина", "explanationEn": "Луѓе is plural"},
+      {"id": "aa-5", "type": "sentence-builder", "instructionMk": "Подреди ги зборовите", "instructionEn": "Arrange the words", "targetSentenceMk": "Ова е стара зграда", "translationEn": "This is an old building", "words": ["Ова", "е", "стара", "зграда"], "xp": 15},
+      {"id": "aa-6", "type": "error-correction", "instructionMk": "Поправи ја грешката", "instructionEn": "Fix the error", "sentenceWithErrorMk": "Тој е висок жена", "translationEn": "She is a tall woman", "errorWord": "висок", "correctedWord": "висока", "errorPosition": 2, "xp": 15, "explanationMk": "Жена е женски род, треба 'висока'", "explanationEn": "Жена is feminine, should be 'висока'"}
     ]
   }
 ]
