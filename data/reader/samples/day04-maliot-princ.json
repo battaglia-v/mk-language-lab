@@ -1,0 +1,44 @@
+{
+  "id": "day04-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 4: Чудно барање",
+  "title_en": "Day 4: A Strange Request",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "dialogue", "requests"],
+  "series": "30-Day Reading Challenge",
+  "day": 4,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Императив (заповеден начин)",
+      "title_en": "Imperative Mood (Commands)",
+      "description_en": "Making requests and giving commands",
+      "examples": [
+        { "mk": "Нацртај ми овца!", "en": "Draw me a sheep!" },
+        { "mk": "Те молам, нацртај!", "en": "Please, draw!" },
+        { "mk": "Дај ми...", "en": "Give me..." }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "овца", "en": "sheep", "pos": "noun" },
+    { "mk": "црта", "en": "draws", "pos": "verb" },
+    { "mk": "барање", "en": "request", "pos": "noun" },
+    { "mk": "чудно", "en": "strange", "pos": "adverb" },
+    { "mk": "изненаден", "en": "surprised", "pos": "adjective" },
+    { "mk": "кутија", "en": "box", "pos": "noun" }
+  ],
+  "expressions": [
+    { "mk": "Те молам", "en": "Please", "usage": "Polite request" },
+    { "mk": "Тоа не е тоа", "en": "That's not it", "usage": "Expressing dissatisfaction" }
+  ],
+  "audioUrl": null,
+  "attribution": {
+    "handle": "@macedonianlanguagecorner",
+    "series": "30-Day Reading Challenge",
+    "day": "4"
+  }
+}

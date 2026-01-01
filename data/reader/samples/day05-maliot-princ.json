@@ -1,0 +1,57 @@
+{
+  "id": "day05-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 5: Преглед - Недела 1",
+  "title_en": "Day 5: Review - Week 1",
+  "difficulty": "B1",
+  "estimatedMinutes": 15,
+  "tags": ["30-day-challenge", "review", "checkpoint"],
+  "series": "30-Day Reading Challenge",
+  "day": 5,
+  "text_blocks_mk": [
+    { "type": "h2", "value": "Преглед на Недела 1" },
+    { "type": "p", "value": "Оваа недела научивме за раскажувачот, неговиот цртеж, возрасните, пилотот во пустината и чудното барање за овца." }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Преглед: Минато неопределено време",
+      "title_en": "Review: Past Indefinite Tense",
+      "description_en": "The –л form for narrative and non-witnessed actions",
+      "examples": [
+        { "mk": "Имало некогаш...", "en": "Once upon a time..." },
+        { "mk": "Тој живеел сам.", "en": "He had lived alone." },
+        { "mk": "Никој не го разбрал.", "en": "Nobody had understood him." }
+      ]
+    },
+    {
+      "title_mk": "Преглед: Императив",
+      "title_en": "Review: Imperative",
+      "examples": [
+        { "mk": "Нацртај!", "en": "Draw!" },
+        { "mk": "Објасни ми!", "en": "Explain to me!" },
+        { "mk": "Погледни!", "en": "Look!" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "цртеж", "en": "drawing", "pos": "noun" },
+    { "mk": "змија", "en": "snake", "pos": "noun" },
+    { "mk": "возрасен", "en": "adult", "pos": "adjective" },
+    { "mk": "пустина", "en": "desert", "pos": "noun" },
+    { "mk": "пилот", "en": "pilot", "pos": "noun" },
+    { "mk": "овца", "en": "sheep", "pos": "noun" },
+    { "mk": "барање", "en": "request", "pos": "noun" },
+    { "mk": "разбира", "en": "understands", "pos": "verb" }
+  ],
+  "expressions": [
+    { "mk": "Имало некогаш", "en": "Once upon a time", "usage": "Story opener" },
+    { "mk": "Те молам", "en": "Please", "usage": "Polite request" },
+    { "mk": "далеку од сè", "en": "far from everything", "usage": "Isolation" }
+  ],
+  "audioUrl": null,
+  "attribution": {
+    "handle": "@macedonianlanguagecorner",
+    "series": "30-Day Reading Challenge",
+    "day": "5"
+  }
+}
