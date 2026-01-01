@@ -34,17 +34,13 @@ export default async function ReadingSamplePage({ params }: ReadingSamplePagePro
     <PageContainer size="content" className="flex flex-col gap-5 pb-24 sm:gap-6 sm:pb-10">
       {/* Header with back button */}
       <div className="flex flex-col gap-3">
-        <Button
-          asChild
-          variant="ghost"
-          size="sm"
-          className="w-fit gap-2"
+        <Link
+          href={`/${locale}/reader`}
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
-          <Link href={`/${locale}/reader`}>
-            <ArrowLeft className="h-4 w-4" />
-            Back to Reader
-          </Link>
-        </Button>
+          <ArrowLeft className="h-4 w-4" />
+          Back to Reader
+        </Link>
 
         <div className="space-y-2">
           <div className="flex flex-wrap items-center gap-2">

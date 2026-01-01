@@ -57,20 +57,39 @@ export default function AlphabetLessonPage() {
   const progress = Math.round((viewedLetters.size / alphabet.items.length) * 100);
 
   const speakLetter = (letter: AlphabetLetter) => {
-    if (!window.speechSynthesis) return;
-
-    window.speechSynthesis.cancel();
+    // Mark as viewed immediately (even if audio fails)
+    setViewedLetters(prev => new Set([...prev, letter.id]));
     setPlayingLetter(letter.id);
 
-    // Speak the letter itself
-    const utterance = new SpeechSynthesisUtterance(letter.letter.split(' ')[0]);
-    utterance.lang = 'sr-RS'; // Serbian is closest to Macedonian
-    utterance.rate = 0.7;
-    utterance.onend = () => setPlayingLetter(null);
-    window.speechSynthesis.speak(utterance);
+    // Try to play audio
+    if (window.speechSynthesis) {
+      window.speechSynthesis.cancel();
 
-    // Mark as viewed
-    setViewedLetters(prev => new Set([...prev, letter.id]));
+      // Speak the letter itself
+      const utterance = new SpeechSynthesisUtterance(letter.letter.split(' ')[0]);
+      // Try multiple language codes - not all browsers support sr-RS
+      utterance.lang = 'sr'; // Serbian (simpler code)
+      utterance.rate = 0.7;
+      utterance.onend = () => setPlayingLetter(null);
+      utterance.onerror = () => setPlayingLetter(null);
+
+      // Get available voices and try to find a Slavic one
+      const voices = window.speechSynthesis.getVoices();
+      const slavicVoice = voices.find(v =>
+        v.lang.startsWith('sr') ||
+        v.lang.startsWith('hr') ||
+        v.lang.startsWith('bs') ||
+        v.lang.startsWith('ru')
+      );
+      if (slavicVoice) {
+        utterance.voice = slavicVoice;
+      }
+
+      window.speechSynthesis.speak(utterance);
+    } else {
+      // No speech synthesis - just clear playing state after a delay
+      setTimeout(() => setPlayingLetter(null), 500);
+    }
   };
 
   const speakWord = (word: string) => {
