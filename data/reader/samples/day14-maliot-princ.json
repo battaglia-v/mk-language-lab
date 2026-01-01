@@ -4,21 +4,31 @@
   "title_mk": "Ден 14: Пијаницата",
   "title_en": "Day 14: The Drunkard",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "dialogue", "sadness", "philosophy"],
   "series": "30-Day Reading Challenge",
   "day": 14,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "На третата планета живееше тажен човек. Седеше сам, опкружен со празни шишиња." },
+    { "type": "p", "value": "„Што правиш?" праша момчето. „Пијам," одговори човекот." },
+    { "type": "p", "value": "„Зошто пиеш?" „Затоа што сакам да заборавам." „Што сакаш да заборавиш?"" },
+    { "type": "p", "value": "„Сакам да заборавам дека ме е срам." „Срам од што?" „Срам што пијам!"" },
+    { "type": "p", "value": "Момчето тргна понатаму, збунето. Овој човек бил заглавен во круг без излез." }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Причина со 'зошто/затоа што'",
       "title_en": "Cause with 'why/because'",
-      "description_en": "Explaining reasons",
+      "description_en": "Explaining reasons and causes",
+      "bullets": [
+        "Зошто? - Why? (question)",
+        "Затоа што... - Because... (answer)",
+        "Often paired in dialogue"
+      ],
       "examples": [
-        { "mk": "Зошто пиеш?", "en": "Why do you drink?" },
-        { "mk": "Затоа што сакам да заборавам.", "en": "Because I want to forget." }
+        { "mk": "Зошто пиеш?", "en": "Why do you drink?", "note": "Asking reason" },
+        { "mk": "Затоа што сакам да заборавам.", "en": "Because I want to forget.", "note": "Giving reason" },
+        { "mk": "Зошто си тажен? — Затоа што сум сам.", "en": "Why are you sad? — Because I'm alone.", "note": "Q&A pair" }
       ]
     }
   ],
@@ -28,12 +38,21 @@
     { "mk": "заборава", "en": "forgets", "pos": "verb" },
     { "mk": "шише", "en": "bottle", "pos": "noun" },
     { "mk": "тажен", "en": "sad", "pos": "adjective" },
-    { "mk": "круг", "en": "circle", "pos": "noun" }
+    { "mk": "круг", "en": "circle", "pos": "noun" },
+    { "mk": "збунет", "en": "confused", "pos": "adjective" },
+    { "mk": "излез", "en": "exit, way out", "pos": "noun" }
   ],
   "expressions": [
-    { "mk": "Зошто правиш така?", "en": "Why do you do that?", "usage": "Asking reason" },
-    { "mk": "Не разбирам", "en": "I don't understand", "usage": "Confusion" }
+    { "mk": "Зошто правиш така?", "en": "Why do you do that?", "usage": "Asking for reason" },
+    { "mk": "ме е срам", "en": "I'm ashamed", "usage": "Expressing shame" },
+    { "mk": "заглавен во круг", "en": "stuck in a circle", "usage": "Vicious cycle" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "14" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "14",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

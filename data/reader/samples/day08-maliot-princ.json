@@ -4,21 +4,31 @@
   "title_mk": "Ден 8: Цвеќето",
   "title_en": "Day 8: The Flower",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "narrative", "love", "beauty"],
   "series": "30-Day Reading Challenge",
   "day": 8,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "На планетата на момчето имаше едно цвеќе. Не било обично цвеќе - било ружа со четири трна." },
+    { "type": "p", "value": "Ружата расцветала една вечер, полека и убаво. Момчето ја гледало со восхит." },
+    { "type": "p", "value": "„Колку си убава!" рекол тој. „Ти си најубавото цвеќе на светот."" },
+    { "type": "p", "value": "Ружата имала прекрасен мирис. Но била многу горда. „Јас сум единствена," велела таа." },
+    { "type": "p", "value": "Момчето не знаело дека има милиони рози на Земјата. За него, таа била единствена." }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Опишување со придавки",
       "title_en": "Description with Adjectives",
-      "description_en": "Using adjectives to describe appearance",
+      "description_en": "Using adjectives to describe appearance and qualities",
+      "bullets": [
+        "Position: usually before noun (убава ружа)",
+        "Agreement: must match noun gender/number",
+        "Intensifiers: многу (very), прекрасно (gorgeous)"
+      ],
       "examples": [
-        { "mk": "убава, прекрасна", "en": "beautiful, gorgeous" },
-        { "mk": "единствена", "en": "unique" }
+        { "mk": "убава ружа", "en": "beautiful rose", "note": "Feminine agreement" },
+        { "mk": "прекрасен мирис", "en": "wonderful scent", "note": "Masculine agreement" },
+        { "mk": "единствено цвеќе", "en": "unique flower", "note": "Neuter agreement" }
       ]
     }
   ],
@@ -28,12 +38,21 @@
     { "mk": "убавина", "en": "beauty", "pos": "noun" },
     { "mk": "расцветува", "en": "blooms", "pos": "verb" },
     { "mk": "мирис", "en": "scent", "pos": "noun" },
-    { "mk": "трн", "en": "thorn", "pos": "noun" }
+    { "mk": "трн", "en": "thorn", "pos": "noun" },
+    { "mk": "восхит", "en": "admiration", "pos": "noun" },
+    { "mk": "единствен", "en": "unique", "pos": "adjective" }
   ],
   "expressions": [
     { "mk": "на прв поглед", "en": "at first sight", "usage": "Initial impression" },
-    { "mk": "нешто посебно", "en": "something special", "usage": "Uniqueness" }
+    { "mk": "нешто посебно", "en": "something special", "usage": "Uniqueness" },
+    { "mk": "на светот", "en": "in the world", "usage": "Global scope" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "8" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "8",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

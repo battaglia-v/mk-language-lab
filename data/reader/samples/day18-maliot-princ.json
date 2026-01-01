@@ -4,21 +4,31 @@
   "title_mk": "Ден 18: Географот",
   "title_en": "Day 18: The Geographer",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "dialogue", "knowledge", "exploration"],
   "series": "30-Day Reading Challenge",
   "day": 18,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "На шестата планета живееше стар човек со големи книги. Тој беше географ." },
+    { "type": "p", "value": "„Каква е твојата планета?" праша географот. „Опиши ми ја!"" },
+    { "type": "p", "value": "„Имам три вулкани и едно цвеќе," рече момчето. „Цвеќето е многу убаво."" },
+    { "type": "p", "value": "„Цвеќињата не ги записувам," рече географот. „Тие се привремени."" },
+    { "type": "p", "value": "„Привремени?" „Да, значи дека еден ден ќе исчезнат." Момчето се исплаши за својата ружа." }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Прашања со 'каков/каква'",
       "title_en": "Questions with 'what kind of'",
-      "description_en": "Asking about types and categories",
+      "description_en": "Asking about types, qualities and characteristics",
+      "bullets": [
+        "каков (m), каква (f), какво (n) - what kind of",
+        "Agrees with the noun it describes",
+        "Used to ask about qualities"
+      ],
       "examples": [
-        { "mk": "Каква е твојата планета?", "en": "What is your planet like?" },
-        { "mk": "Какви работи има таму?", "en": "What kinds of things are there?" }
+        { "mk": "Каква е твојата планета?", "en": "What is your planet like?", "note": "Feminine" },
+        { "mk": "Каков човек е тој?", "en": "What kind of person is he?", "note": "Masculine" },
+        { "mk": "Какво цвеќе имаш?", "en": "What kind of flower do you have?", "note": "Neuter" }
       ]
     }
   ],
@@ -26,14 +36,23 @@
     { "mk": "географ", "en": "geographer", "pos": "noun" },
     { "mk": "книга", "en": "book", "pos": "noun" },
     { "mk": "истражувач", "en": "explorer", "pos": "noun" },
-    { "mk": "океан", "en": "ocean", "pos": "noun" },
-    { "mk": "река", "en": "river", "pos": "noun" },
-    { "mk": "планина", "en": "mountain", "pos": "noun" }
+    { "mk": "привремен", "en": "temporary", "pos": "adjective" },
+    { "mk": "вечен", "en": "eternal", "pos": "adjective" },
+    { "mk": "исчезнува", "en": "disappears", "pos": "verb" },
+    { "mk": "записува", "en": "records, writes down", "pos": "verb" },
+    { "mk": "се плаши", "en": "is afraid", "pos": "verb" }
   ],
   "expressions": [
     { "mk": "Тоа е привремено.", "en": "That's temporary.", "usage": "Impermanence" },
-    { "mk": "Што значи тоа?", "en": "What does that mean?", "usage": "Asking for meaning" }
+    { "mk": "Што значи тоа?", "en": "What does that mean?", "usage": "Asking for meaning" },
+    { "mk": "еден ден ќе исчезне", "en": "one day it will disappear", "usage": "Mortality" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "18" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "18",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

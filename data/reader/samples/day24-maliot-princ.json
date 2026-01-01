@@ -4,21 +4,31 @@
   "title_mk": "Ден 24: Лисицата",
   "title_en": "Day 24: The Fox",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "dialogue", "friendship", "wisdom"],
   "series": "30-Day Reading Challenge",
   "day": 24,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "Додека момчето плачеше, една лисица се појави. „Здраво," рече таа. „Сакаш ли да бидеме пријатели?"" },
+    { "type": "p", "value": "„Не можам да играм со тебе," рече момчето. „Не сум припитомена," објасни лисицата." },
+    { "type": "p", "value": "„Што значи 'припитомува'?" праша момчето." },
+    { "type": "p", "value": "„Значи да создадеш врски. Сега, ти си за мене само момче меѓу илјадници момчиња. Но ако ме припитомиш, ќе бидеш единствен за мене."" },
+    { "type": "p", "value": "„Мора да бидеш трпелив," додаде лисицата. „Секој ден седи малку поблизу. Така се гради доверба."" }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Барање со 'те молам'",
       "title_en": "Requests with 'please'",
-      "description_en": "Polite requesting",
+      "description_en": "Polite and conditional requesting",
+      "bullets": [
+        "Те молам + imperative for polite requests",
+        "Би сакал/а да... for conditional wishes",
+        "Сакаш ли да...? for invitations"
+      ],
       "examples": [
-        { "mk": "Те молам, припитоми ме!", "en": "Please, tame me!" },
-        { "mk": "Би сакал да...", "en": "I would like to..." }
+        { "mk": "Те молам, припитоми ме!", "en": "Please, tame me!", "note": "Polite request" },
+        { "mk": "Би сакал да бидеме пријатели.", "en": "I would like to be friends.", "note": "Conditional" },
+        { "mk": "Сакаш ли да играме?", "en": "Do you want to play?", "note": "Invitation" }
       ]
     }
   ],
@@ -28,12 +38,21 @@
     { "mk": "пријател", "en": "friend", "pos": "noun" },
     { "mk": "врска", "en": "bond, connection", "pos": "noun" },
     { "mk": "одговорен", "en": "responsible", "pos": "adjective" },
-    { "mk": "трпелив", "en": "patient", "pos": "adjective" }
+    { "mk": "трпелив", "en": "patient", "pos": "adjective" },
+    { "mk": "доверба", "en": "trust", "pos": "noun" },
+    { "mk": "единствен", "en": "unique, the only one", "pos": "adjective" }
   ],
   "expressions": [
-    { "mk": "Што значи 'припитомува'?", "en": "What does 'tame' mean?", "usage": "Definition" },
-    { "mk": "да создадеш врски", "en": "to create bonds", "usage": "Friendship" }
+    { "mk": "Што значи...?", "en": "What does ... mean?", "usage": "Asking definition" },
+    { "mk": "да создадеш врски", "en": "to create bonds", "usage": "Building friendship" },
+    { "mk": "меѓу илјадници", "en": "among thousands", "usage": "Being ordinary" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "24" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "24",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

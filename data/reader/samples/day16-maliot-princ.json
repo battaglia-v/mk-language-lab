@@ -4,21 +4,31 @@
   "title_mk": "Ден 16: Бизнисменот",
   "title_en": "Day 16: The Businessman",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "dialogue", "work", "materialism"],
   "series": "30-Day Reading Challenge",
   "day": 16,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "На четвртата планета седеше човек и броеше. „Три, четири, пет..." мрмореше тој." },
+    { "type": "p", "value": "„Добар ден!" рече момчето. „Тивко! Зафатен сум!" одговори човекот без да погледне." },
+    { "type": "p", "value": "„Што броиш?" праша момчето. „Ѕвездите. Имам петстотини милиони ѕвезди."" },
+    { "type": "p", "value": "„Како можеш да ги поседуваш ѕвездите?" „Ги броев прв, значи се мои!"" },
+    { "type": "p", "value": "Момчето не разбра. Овој човек бил богат на хартија, но сиромашен во срцето." }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Големи броеви",
       "title_en": "Large Numbers",
       "description_en": "Counting millions and beyond",
+      "bullets": [
+        "илјада (1,000) - thousand",
+        "милион (1,000,000) - million",
+        "милијарда (1,000,000,000) - billion"
+      ],
       "examples": [
-        { "mk": "милион, милијарда", "en": "million, billion" },
-        { "mk": "петстотини милиони", "en": "five hundred million" }
+        { "mk": "петстотини милиони", "en": "five hundred million", "note": "Large quantity" },
+        { "mk": "две илјади и дваесет", "en": "two thousand twenty", "note": "Combined number" },
+        { "mk": "три милијарди луѓе", "en": "three billion people", "note": "With noun" }
       ]
     }
   ],
@@ -27,13 +37,22 @@
     { "mk": "брои", "en": "counts", "pos": "verb" },
     { "mk": "поседува", "en": "owns", "pos": "verb" },
     { "mk": "богатство", "en": "wealth", "pos": "noun" },
-    { "mk": "сериозен", "en": "serious", "pos": "adjective" },
-    { "mk": "зафатен", "en": "busy", "pos": "adjective" }
+    { "mk": "ѕвезда", "en": "star", "pos": "noun" },
+    { "mk": "зафатен", "en": "busy", "pos": "adjective" },
+    { "mk": "сиромашен", "en": "poor", "pos": "adjective" },
+    { "mk": "хартија", "en": "paper", "pos": "noun" }
   ],
   "expressions": [
     { "mk": "Немам време!", "en": "I don't have time!", "usage": "Being busy" },
-    { "mk": "Тоа е мое.", "en": "That's mine.", "usage": "Ownership" }
+    { "mk": "Тоа е мое.", "en": "That's mine.", "usage": "Ownership" },
+    { "mk": "богат на хартија", "en": "rich on paper", "usage": "Empty wealth" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "16" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "16",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

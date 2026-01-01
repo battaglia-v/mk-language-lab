@@ -4,21 +4,32 @@
   "title_mk": "Ден 11: Заминувањето",
   "title_en": "Day 11: The Departure",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "narrative", "journey", "farewell"],
   "series": "30-Day Reading Challenge",
   "day": 11,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "Момчето решило да замине. Сакало да види други светови, да научи нови работи." },
+    { "type": "p", "value": "Го исчистил вулканот, ги извадил последните баобаби, и ја полил ружата за последен пат." },
+    { "type": "p", "value": "„Збогум," и рекол на ружата. „Ми е жал што заминувам."" },
+    { "type": "p", "value": "Ружата била тивка. Потоа рекла: „Бев глупава. Те сакам. Оди, биди среќен."" },
+    { "type": "p", "value": "Момчето тргнало на пат со јато селидбени птици. Зад него, ружата останала сама под поклопецот." }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Глаголи за движење",
       "title_en": "Verbs of Motion",
-      "description_en": "Expressing departure and travel",
+      "description_en": "Expressing departure, travel and movement",
+      "bullets": [
+        "заминува - leaves, departs",
+        "патува - travels",
+        "тргнува - sets off",
+        "се враќа - returns"
+      ],
       "examples": [
-        { "mk": "заминува, оди, патува", "en": "leaves, goes, travels" },
-        { "mk": "тргна на пат", "en": "set off on a journey" }
+        { "mk": "Тој замина вчера.", "en": "He left yesterday.", "note": "Past tense" },
+        { "mk": "Тргна на пат.", "en": "He set off on a journey.", "note": "Idiomatic" },
+        { "mk": "Ќе се вратам.", "en": "I will return.", "note": "Future tense" }
       ]
     }
   ],
@@ -28,12 +39,21 @@
     { "mk": "птици", "en": "birds", "pos": "noun" },
     { "mk": "селидба", "en": "migration", "pos": "noun" },
     { "mk": "збогум", "en": "goodbye", "pos": "interjection" },
-    { "mk": "тага", "en": "sadness", "pos": "noun" }
+    { "mk": "тага", "en": "sadness", "pos": "noun" },
+    { "mk": "вулкан", "en": "volcano", "pos": "noun" },
+    { "mk": "јато", "en": "flock", "pos": "noun" }
   ],
   "expressions": [
-    { "mk": "тргна на пат", "en": "set off", "usage": "Beginning a journey" },
-    { "mk": "се враќа", "en": "returns", "usage": "Coming back" }
+    { "mk": "тргна на пат", "en": "set off on a journey", "usage": "Beginning travel" },
+    { "mk": "Ми е жал", "en": "I'm sorry", "usage": "Expressing regret" },
+    { "mk": "за последен пат", "en": "for the last time", "usage": "Finality" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "11" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "11",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

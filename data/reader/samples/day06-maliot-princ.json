@@ -4,36 +4,55 @@
   "title_mk": "Ден 6: Астероид Б-612",
   "title_en": "Day 6: Asteroid B-612",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "narrative", "space", "home"],
   "series": "30-Day Reading Challenge",
   "day": 6,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "Полека научив од каде доаѓа момчето. Тој живеел на мала планета, не поголема од куќа." },
+    { "type": "p", "value": "Планетата се викала Астероид Б-612. Еден турски научник ја видел со телескоп во 1909 година." },
+    { "type": "p", "value": "Научникот сакал да ја објасни на другите. Но никој не му верувал затоа што носел чудна облека." },
+    { "type": "p", "value": "Подоцна, научникот се облекол во европско одело. Тогаш сите му поверувале." },
+    { "type": "p", "value": "Возрасните се такви. Тие не гледаат што кажуваш, туку како изгледаш." }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Бројни придавки",
       "title_en": "Ordinal Numbers",
       "description_en": "Forming ordinal numbers in Macedonian",
+      "bullets": [
+        "1st-10th: прв, втор, трет, четврт, пет-ти, шес-ти...",
+        "Agree with noun gender: прв/прва/прво",
+        "Years: илјада деветстотини и деветта"
+      ],
       "examples": [
-        { "mk": "прв, втор, трет", "en": "first, second, third" },
-        { "mk": "шестстотини дванаесетти", "en": "six hundred twelfth" }
+        { "mk": "првата планета", "en": "the first planet", "note": "Feminine definite" },
+        { "mk": "шестстотини дванаесет", "en": "six hundred twelve", "note": "Cardinal number" },
+        { "mk": "во 1909 година", "en": "in the year 1909", "note": "Year expression" }
       ]
     }
   ],
   "vocabulary": [
     { "mk": "астероид", "en": "asteroid", "pos": "noun" },
     { "mk": "планета", "en": "planet", "pos": "noun" },
-    { "mk": "мал", "en": "small", "pos": "adjective" },
-    { "mk": "ѕвезда", "en": "star", "pos": "noun" },
     { "mk": "телескоп", "en": "telescope", "pos": "noun" },
-    { "mk": "научник", "en": "scientist", "pos": "noun" }
+    { "mk": "научник", "en": "scientist", "pos": "noun" },
+    { "mk": "облека", "en": "clothing", "pos": "noun" },
+    { "mk": "одело", "en": "suit", "pos": "noun" },
+    { "mk": "верува", "en": "believes", "pos": "verb" },
+    { "mk": "изгледа", "en": "looks, appears", "pos": "verb" }
   ],
   "expressions": [
     { "mk": "доаѓа од", "en": "comes from", "usage": "Origin" },
-    { "mk": "еднаш видено", "en": "once seen", "usage": "Past observation" }
+    { "mk": "не поголема од", "en": "no bigger than", "usage": "Size comparison" },
+    { "mk": "не гледаат што... туку", "en": "don't look at what... but", "usage": "Contrast" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "6" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "6",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

@@ -2,7 +2,6 @@ import { notFound } from 'next/navigation';
 // Translations available via getTranslations if needed
 import Link from 'next/link';
 import { ArrowLeft, Clock, Tag, User, Hand } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';

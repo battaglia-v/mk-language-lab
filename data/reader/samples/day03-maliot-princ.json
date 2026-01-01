@@ -4,22 +4,31 @@
   "title_mk": "Ден 3: Пилотот",
   "title_en": "Day 3: The Pilot",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "narrative", "location", "desert"],
   "series": "30-Day Reading Challenge",
   "day": 3,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "Станав пилот и патував низ целиот свет. Летав над океани и планини." },
+    { "type": "p", "value": "Една ноќ, мојот авион паднал во пустина. Бев далеку од сè - илјада милји од луѓе." },
+    { "type": "p", "value": "Наоколу имаше само песок. Ниту едно дрво, ниту една куќа. Самотијата беше огромна." },
+    { "type": "p", "value": "Имав вода само за осум дена. Морав да го поправам авионот или да умрам од жед." },
+    { "type": "p", "value": "Таа ноќ заспав на песокот, насред ништо, далеку од сè живо." }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Локативни изрази",
       "title_en": "Location Expressions",
       "description_en": "Expressing where things are located",
+      "bullets": [
+        "во + noun: inside (во пустината)",
+        "над + noun: above (над планините)",
+        "насред + noun: in the middle of (насред ништо)"
+      ],
       "examples": [
-        { "mk": "во пустината", "en": "in the desert" },
-        { "mk": "далеку од луѓе", "en": "far from people" },
-        { "mk": "насред ништо", "en": "in the middle of nowhere" }
+        { "mk": "во пустината", "en": "in the desert", "note": "Inside location" },
+        { "mk": "далеку од луѓе", "en": "far from people", "note": "Distance from" },
+        { "mk": "насред ништо", "en": "in the middle of nowhere", "note": "Central position" }
       ]
     }
   ],
@@ -27,18 +36,23 @@
     { "mk": "пустина", "en": "desert", "pos": "noun" },
     { "mk": "пилот", "en": "pilot", "pos": "noun" },
     { "mk": "авион", "en": "airplane", "pos": "noun" },
-    { "mk": "паѓа", "en": "falls", "pos": "verb" },
     { "mk": "песок", "en": "sand", "pos": "noun" },
-    { "mk": "самотија", "en": "loneliness", "pos": "noun" }
+    { "mk": "самотија", "en": "loneliness", "pos": "noun" },
+    { "mk": "океан", "en": "ocean", "pos": "noun" },
+    { "mk": "жед", "en": "thirst", "pos": "noun" },
+    { "mk": "поправа", "en": "repairs", "pos": "verb" }
   ],
   "expressions": [
     { "mk": "далеку од сè", "en": "far from everything", "usage": "Expressing isolation" },
-    { "mk": "илјада милји", "en": "a thousand miles", "usage": "Expressing great distance" }
+    { "mk": "илјада милји", "en": "a thousand miles", "usage": "Expressing great distance" },
+    { "mk": "насред ништо", "en": "in the middle of nowhere", "usage": "Complete isolation" }
   ],
   "audioUrl": null,
   "attribution": {
-    "handle": "@macedonianlanguagecorner",
+    "handle": "@mklanguagelab",
     "series": "30-Day Reading Challenge",
-    "day": "3"
+    "day": "3",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
   }
 }

@@ -4,21 +4,31 @@
   "title_mk": "Ден 22: Пустината",
   "title_en": "Day 22: The Desert",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "narrative", "nature", "solitude"],
   "series": "30-Day Reading Challenge",
   "day": 22,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "Момчето одеше низ пустината. Песокот бил жолт и топол под неговите нозе." },
+    { "type": "p", "value": "Сонцето печеше силно. Немаше дрвја, немаше вода, само бескрајна рамнина." },
+    { "type": "p", "value": "„Пустината е убава," помисли момчето. „Убава затоа што некаде скрива бунар."" },
+    { "type": "p", "value": "Тој знаеше дека убавината често е скриена. Мораш да ја бараш со срцето." },
+    { "type": "p", "value": "„Она што ја прави пустината убава е невидливо за очите," си рече тој." }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Опишување пејзаж",
       "title_en": "Describing Landscape",
-      "description_en": "Nature vocabulary and descriptions",
+      "description_en": "Nature vocabulary and landscape descriptions",
+      "bullets": [
+        "Adjectives describe landscape features",
+        "Colors: жолт (yellow), зелен (green), син (blue)",
+        "Qualities: топол (warm), ладен (cold), сув (dry)"
+      ],
       "examples": [
-        { "mk": "пуста, сува, топла", "en": "barren, dry, hot" },
-        { "mk": "бескрајна рамнина", "en": "endless plain" }
+        { "mk": "жолт и топол песок", "en": "yellow and warm sand", "note": "Multiple adjectives" },
+        { "mk": "бескрајна рамнина", "en": "endless plain", "note": "Abstract quality" },
+        { "mk": "празна пустина", "en": "empty desert", "note": "State description" }
       ]
     }
   ],
@@ -26,14 +36,23 @@
     { "mk": "пустина", "en": "desert", "pos": "noun" },
     { "mk": "песок", "en": "sand", "pos": "noun" },
     { "mk": "сонце", "en": "sun", "pos": "noun" },
-    { "mk": "жед", "en": "thirst", "pos": "noun" },
-    { "mk": "празен", "en": "empty", "pos": "adjective" },
-    { "mk": "бескраен", "en": "endless", "pos": "adjective" }
+    { "mk": "бунар", "en": "well", "pos": "noun" },
+    { "mk": "рамнина", "en": "plain", "pos": "noun" },
+    { "mk": "бескраен", "en": "endless", "pos": "adjective" },
+    { "mk": "скриен", "en": "hidden", "pos": "adjective" },
+    { "mk": "невидлив", "en": "invisible", "pos": "adjective" }
   ],
   "expressions": [
-    { "mk": "Нема никој.", "en": "There's nobody.", "usage": "Solitude" },
-    { "mk": "далеку од сè", "en": "far from everything", "usage": "Isolation" }
+    { "mk": "Нема никој.", "en": "There's nobody.", "usage": "Expressing solitude" },
+    { "mk": "далеку од сè", "en": "far from everything", "usage": "Isolation" },
+    { "mk": "невидливо за очите", "en": "invisible to the eyes", "usage": "Hidden beauty" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "22" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "22",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

@@ -4,21 +4,31 @@
   "title_mk": "Ден 12: Кралот",
   "title_en": "Day 12: The King",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "dialogue", "authority", "humor"],
   "series": "30-Day Reading Challenge",
   "day": 12,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "Првата планета беше мала. На неа живееше еден крал со голема круна и црвена наметка." },
+    { "type": "p", "value": "„А! Еве го мојот поданик!" извика кралот кога го виде момчето." },
+    { "type": "p", "value": "„Како знаете дека сум ваш поданик?" праша момчето. „Јас прв пат ве гледам."" },
+    { "type": "p", "value": "„Јас сум крал на сè!" рече кралот. „Ти заповедам да седнеш!"" },
+    { "type": "p", "value": "Момчето седна, но се прашуваше: ако кралот е сам, над кого владее?" }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Заповеди (формални)",
       "title_en": "Formal Commands",
-      "description_en": "Giving orders in formal/royal speech",
+      "description_en": "Giving orders in formal or authoritative speech",
+      "bullets": [
+        "Ти заповедам да... - I command you to...",
+        "Нека биде... - Let it be...",
+        "Мора да... - You must..."
+      ],
       "examples": [
-        { "mk": "Ти заповедам!", "en": "I command you!" },
-        { "mk": "Нека биде така!", "en": "Let it be so!" }
+        { "mk": "Ти заповедам да седнеш!", "en": "I command you to sit!", "note": "Royal command" },
+        { "mk": "Нека биде така!", "en": "Let it be so!", "note": "Formal decree" },
+        { "mk": "Мора да ме слушаш!", "en": "You must obey me!", "note": "Authority" }
       ]
     }
   ],
@@ -27,13 +37,22 @@
     { "mk": "власт", "en": "power", "pos": "noun" },
     { "mk": "поданик", "en": "subject", "pos": "noun" },
     { "mk": "заповед", "en": "command", "pos": "noun" },
-    { "mk": "слуша", "en": "obeys", "pos": "verb" },
-    { "mk": "престол", "en": "throne", "pos": "noun" }
+    { "mk": "круна", "en": "crown", "pos": "noun" },
+    { "mk": "наметка", "en": "cloak", "pos": "noun" },
+    { "mk": "владее", "en": "rules", "pos": "verb" },
+    { "mk": "слуша", "en": "obeys, listens", "pos": "verb" }
   ],
   "expressions": [
     { "mk": "Ти заповедам", "en": "I command you", "usage": "Royal order" },
-    { "mk": "како што сакаш", "en": "as you wish", "usage": "Agreement" }
+    { "mk": "прв пат", "en": "for the first time", "usage": "First encounter" },
+    { "mk": "крал на сè", "en": "king of everything", "usage": "Total authority" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "12" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "12",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

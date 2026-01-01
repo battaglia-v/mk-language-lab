@@ -4,21 +4,31 @@
   "title_mk": "Ден 26: Припитомување",
   "title_en": "Day 26: Taming",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "dialogue", "process", "patience"],
   "series": "30-Day Reading Challenge",
   "day": 26,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "„Те молам, припитоми ме!" рече лисицата. „Како се прави тоа?" праша момчето." },
+    { "type": "p", "value": "„Мора да бидеш трпелив. Првиот ден седи далеку од мене. Следниот, малку поблиску."" },
+    { "type": "p", "value": "„Секој ден во исто време дојди. Тогаш ќе знам да се радувам пред да дојдеш."" },
+    { "type": "p", "value": "Момчето го направи тоа. Полека, постепено, лисицата му се приближуваше." },
+    { "type": "p", "value": "По неколку недели, станаа пријатели. „Ритуалите се важни," рече лисицата. „Тие го прават еден ден различен од друг."" }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Процес со 'полека'",
       "title_en": "Process with 'slowly'",
-      "description_en": "Describing gradual actions",
+      "description_en": "Describing gradual and incremental actions",
+      "bullets": [
+        "полека - slowly",
+        "постепено - gradually",
+        "малку по малку - little by little"
+      ],
       "examples": [
-        { "mk": "полека, постепено", "en": "slowly, gradually" },
-        { "mk": "секој ден малку поблиску", "en": "a little closer every day" }
+        { "mk": "Полека се приближуваше.", "en": "Slowly approached.", "note": "Gradual action" },
+        { "mk": "Постепено стануваа пријатели.", "en": "Gradually became friends.", "note": "Process over time" },
+        { "mk": "Секој ден малку поблиску.", "en": "Every day a little closer.", "note": "Incremental" }
       ]
     }
   ],
@@ -26,14 +36,23 @@
     { "mk": "припитомување", "en": "taming", "pos": "noun" },
     { "mk": "трпение", "en": "patience", "pos": "noun" },
     { "mk": "ритуал", "en": "ritual", "pos": "noun" },
-    { "mk": "време", "en": "time", "pos": "noun" },
     { "mk": "доверба", "en": "trust", "pos": "noun" },
-    { "mk": "приближува", "en": "approaches", "pos": "verb" }
+    { "mk": "приближува", "en": "approaches", "pos": "verb" },
+    { "mk": "радува се", "en": "rejoices", "pos": "verb" },
+    { "mk": "различен", "en": "different", "pos": "adjective" },
+    { "mk": "недела", "en": "week", "pos": "noun" }
   ],
   "expressions": [
-    { "mk": "полека и постепено", "en": "slowly and gradually", "usage": "Process" },
-    { "mk": "секој ден", "en": "every day", "usage": "Routine" }
+    { "mk": "полека и постепено", "en": "slowly and gradually", "usage": "Describing process" },
+    { "mk": "секој ден", "en": "every day", "usage": "Daily routine" },
+    { "mk": "во исто време", "en": "at the same time", "usage": "Consistency" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "26" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "26",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

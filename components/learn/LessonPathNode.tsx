@@ -1,8 +1,14 @@
 'use client';
 
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { LessonNode, LessonNodeStatus } from '@/lib/learn/lesson-path-types';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import {
   BookOpen,
   RefreshCw,
@@ -44,8 +50,10 @@ const statusRingColors: Record<LessonNodeStatus, string> = {
 };
 
 export function LessonPathNode({ node, locale, index, isContinueNode }: LessonPathNodeProps) {
+  const t = useTranslations('learn');
   const Icon = nodeIcons[node.type];
   const isClickable = node.status === 'available' || node.status === 'in_progress';
+  const isLocked = node.status === 'locked';
   const href = node.href ? `/${locale}${node.href}` : undefined;
 
   // Zigzag pattern: alternate left/center/right
@@ -129,6 +137,20 @@ export function LessonPathNode({ node, locale, index, isContinueNode }: LessonPa
       <Link href={href} prefetch={true}>
         {nodeContent}
       </Link>
+    );
+  }
+
+  // Wrap locked nodes with a tooltip explaining why they're locked
+  if (isLocked) {
+    return (
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div>{nodeContent}</div>
+        </TooltipTrigger>
+        <TooltipContent side="right" className="max-w-[200px]">
+          <p>{t('lockedTooltip')}</p>
+        </TooltipContent>
+      </Tooltip>
     );
   }
 

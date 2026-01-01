@@ -4,21 +4,31 @@
   "title_mk": "Ден 27: Тајната",
   "title_en": "Day 27: The Secret",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "dialogue", "wisdom", "heart"],
   "series": "30-Day Reading Challenge",
   "day": 27,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "Дојде време за момчето да замине. Лисицата беше тажна, но сакаше да му каже нешто важно." },
+    { "type": "p", "value": "„Еве ја мојата тајна," рече лисицата. „Многу е едноставна."" },
+    { "type": "p", "value": "„Само со срцето се гледа добро. Суштината е невидлива за очите."" },
+    { "type": "p", "value": "Момчето повтори: „Суштината е невидлива за очите..."" },
+    { "type": "p", "value": "„Ти си одговорен засекогаш за она што си го припитомил," додаде лисицата. „Одговорен си за твојата ружа."" }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Суштествено со 'само'",
       "title_en": "Essential with 'only'",
-      "description_en": "Expressing what truly matters",
+      "description_en": "Expressing what truly matters and exclusivity",
+      "bullets": [
+        "само - only, just",
+        "суштина - essence, essential thing",
+        "засекогаш - forever"
+      ],
       "examples": [
-        { "mk": "Само со срцето се гледа добро.", "en": "Only with the heart can one see clearly." },
-        { "mk": "Суштината е невидлива.", "en": "What is essential is invisible." }
+        { "mk": "Само со срцето се гледа добро.", "en": "Only with the heart can one see clearly.", "note": "Core truth" },
+        { "mk": "Суштината е невидлива.", "en": "The essence is invisible.", "note": "Hidden truth" },
+        { "mk": "Одговорен засекогаш.", "en": "Responsible forever.", "note": "Permanent duty" }
       ]
     }
   ],
@@ -28,12 +38,21 @@
     { "mk": "суштина", "en": "essence", "pos": "noun" },
     { "mk": "невидлив", "en": "invisible", "pos": "adjective" },
     { "mk": "очи", "en": "eyes", "pos": "noun" },
-    { "mk": "гледа", "en": "sees", "pos": "verb" }
+    { "mk": "одговорен", "en": "responsible", "pos": "adjective" },
+    { "mk": "засекогаш", "en": "forever", "pos": "adverb" },
+    { "mk": "едноставен", "en": "simple", "pos": "adjective" }
   ],
   "expressions": [
-    { "mk": "Само со срцето", "en": "Only with the heart", "usage": "Wisdom" },
-    { "mk": "невидливо за очите", "en": "invisible to the eyes", "usage": "Hidden truth" }
+    { "mk": "Само со срцето", "en": "Only with the heart", "usage": "Core wisdom" },
+    { "mk": "невидливо за очите", "en": "invisible to the eyes", "usage": "Hidden truth" },
+    { "mk": "одговорен за", "en": "responsible for", "usage": "Accountability" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "27" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "27",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

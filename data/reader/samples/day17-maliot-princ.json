@@ -4,21 +4,31 @@
   "title_mk": "Ден 17: Фенерџијата",
   "title_en": "Day 17: The Lamplighter",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "dialogue", "duty", "routine"],
   "series": "30-Day Reading Challenge",
   "day": 17,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "На петтата планета живееше фенерџија. Секоја минута го палеше и гаснеше фенерот." },
+    { "type": "p", "value": "„Добро утро!" рече и веднаш го изгасна фенерот. „Добра ноќ!" го запали. „Добро утро!"" },
+    { "type": "p", "value": "„Зошто го правиш тоа толку брзо?" праша момчето." },
+    { "type": "p", "value": "„Тоа е мојата должност. Планетата се врти побрзо од порано. Сега еден ден трае една минута."" },
+    { "type": "p", "value": "Момчето го сакаше фенерџијата. Тој бил единствениот што работеше за други, не само за себе." }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Повторливи дејства",
       "title_en": "Repetitive Actions",
       "description_en": "Expressing routine and repeated actions",
+      "bullets": [
+        "секоја минута/час/ден - every minute/hour/day",
+        "одново и одново - again and again",
+        "постојано - constantly"
+      ],
       "examples": [
-        { "mk": "секоја минута", "en": "every minute" },
-        { "mk": "одново и одново", "en": "again and again" }
+        { "mk": "Секоја минута го палеше фенерот.", "en": "Every minute he lit the lamp.", "note": "Frequency" },
+        { "mk": "Одново и одново го правеше истото.", "en": "Again and again he did the same thing.", "note": "Repetition" },
+        { "mk": "Постојано работеше.", "en": "He constantly worked.", "note": "Continuous" }
       ]
     }
   ],
@@ -28,12 +38,21 @@
     { "mk": "пали", "en": "lights", "pos": "verb" },
     { "mk": "гаси", "en": "extinguishes", "pos": "verb" },
     { "mk": "должност", "en": "duty", "pos": "noun" },
-    { "mk": "уморен", "en": "tired", "pos": "adjective" }
+    { "mk": "се врти", "en": "rotates, spins", "pos": "verb" },
+    { "mk": "минута", "en": "minute", "pos": "noun" },
+    { "mk": "работа", "en": "work, job", "pos": "noun" }
   ],
   "expressions": [
     { "mk": "Добро утро — Добра ноќ", "en": "Good morning — Good night", "usage": "Greetings" },
-    { "mk": "Тоа е мојата работа.", "en": "That's my job.", "usage": "Duty" }
+    { "mk": "Тоа е мојата работа.", "en": "That's my job.", "usage": "Duty" },
+    { "mk": "работи за други", "en": "works for others", "usage": "Selflessness" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "17" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "17",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }
