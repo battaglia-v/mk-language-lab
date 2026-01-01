@@ -1,0 +1,105 @@
+{
+  "meta": {
+    "id": "celebrations-v1",
+    "title": "Celebrations & Traditions",
+    "titleMk": "Празници и традиции",
+    "description": "14 sentences about Macedonian holidays and celebrations",
+    "descriptionMk": "14 реченици за македонски празници и традиции",
+    "level": "A2",
+    "category": "culture",
+    "version": "1.0.0",
+    "lastUpdated": "2025-01-01"
+  },
+  "items": [
+    {
+      "id": "cel-001",
+      "mk": "Денес му е роденден на Иван.",
+      "en": "Today is Ivan's birthday.",
+      "category": "birthday"
+    },
+    {
+      "id": "cel-002",
+      "mk": "Кршиме лепче со паричка за Бадник.",
+      "en": "We break bread with a coin for Christmas Eve.",
+      "category": "christmas",
+      "notes": "Traditional Macedonian Christmas Eve custom"
+    },
+    {
+      "id": "cel-003",
+      "mk": "Каде и да си, за Бадник и Божиќ дома да си!",
+      "en": "Wherever you are, be home for Christmas Eve and Christmas!",
+      "category": "christmas",
+      "notes": "Traditional saying"
+    },
+    {
+      "id": "cel-004",
+      "mk": "Божиќ ми е омилен празник.",
+      "en": "Christmas is my favorite holiday.",
+      "category": "christmas"
+    },
+    {
+      "id": "cel-005",
+      "mk": "Ти купив подарок за роденден.",
+      "en": "I bought you a birthday present.",
+      "category": "birthday"
+    },
+    {
+      "id": "cel-006",
+      "mk": "Ќе славиш роденден?",
+      "en": "Will you celebrate your birthday?",
+      "category": "birthday"
+    },
+    {
+      "id": "cel-007",
+      "mk": "Денес ми е именден.",
+      "en": "Today is my name day.",
+      "category": "nameday",
+      "notes": "Celebrated in Orthodox tradition"
+    },
+    {
+      "id": "cel-008",
+      "mk": "Нашето семејство слави слава за Илинден.",
+      "en": "Our family celebrates our patron saint day on Ilinden.",
+      "category": "slava",
+      "notes": "Slava is a traditional Orthodox family celebration"
+    },
+    {
+      "id": "cel-009",
+      "mk": "Тие направија голема свадба.",
+      "en": "They had a big wedding.",
+      "category": "wedding"
+    },
+    {
+      "id": "cel-010",
+      "mk": "Денес им е венчавка.",
+      "en": "Today is their wedding ceremony.",
+      "category": "wedding"
+    },
+    {
+      "id": "cel-011",
+      "mk": "Бевме на крштевка на нивното бебе.",
+      "en": "We were at their baby's christening.",
+      "category": "christening"
+    },
+    {
+      "id": "cel-012",
+      "mk": "Одиме на излет за Први мај.",
+      "en": "We're going on a trip for May 1st.",
+      "category": "holiday",
+      "notes": "Labor Day is a popular day for outings"
+    },
+    {
+      "id": "cel-013",
+      "mk": "Денес е Први април! Априли-ли-ли!",
+      "en": "Today is April 1st! April Fools!",
+      "category": "holiday",
+      "notes": "Aprili-li-li is the Macedonian April Fools expression"
+    },
+    {
+      "id": "cel-014",
+      "mk": "Во април славиме Велигден.",
+      "en": "In April we celebrate Easter.",
+      "category": "easter"
+    }
+  ]
+}

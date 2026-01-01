@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "id": "household-v1",
+    "title": "Household Items",
+    "titleMk": "Домашни предмети",
+    "description": "30 sentences about items in the home, organized by room",
+    "descriptionMk": "30 реченици за предмети во домот, организирани по соба",
+    "level": "A1",
+    "category": "home",
+    "version": "1.0.0",
+    "lastUpdated": "2025-01-01"
+  },
+  "items": [
+    {
+      "id": "hh-001",
+      "mk": "Гледам телевизија во дневната соба.",
+      "en": "I watch television in the living room.",
+      "category": "living-room"
+    },
+    {
+      "id": "hh-002",
+      "mk": "Каде е далечинското?",
+      "en": "Where is the remote?",
+      "category": "living-room"
+    },
+    {
+      "id": "hh-003",
+      "mk": "Може да ја исклучиш лампата?",
+      "en": "Can you turn off the lamp?",
+      "category": "living-room"
+    },
+    {
+      "id": "hh-004",
+      "mk": "Имаме голем шарен тепих во дневната.",
+      "en": "We have a large colorful rug in the living room.",
+      "category": "living-room"
+    },
+    {
+      "id": "hh-005",
+      "mk": "Завесите се отворени.",
+      "en": "The curtains are open.",
+      "category": "living-room"
+    },
+    {
+      "id": "hh-006",
+      "mk": "Книгите се на полиците.",
+      "en": "The books are on the shelves.",
+      "category": "living-room"
+    },
+    {
+      "id": "hh-007",
+      "mk": "Масата и столчињата се дрвени.",
+      "en": "The table and chairs are wooden.",
+      "category": "living-room"
+    },
+    {
+      "id": "hh-008",
+      "mk": "Треба да ги измијам садовите.",
+      "en": "I need to wash the dishes.",
+      "category": "kitchen"
+    },
+    {
+      "id": "hh-009",
+      "mk": "Фрижидерот е полн.",
+      "en": "The refrigerator is full.",
+      "category": "kitchen"
+    },
+    {
+      "id": "hh-010",
+      "mk": "Може да го ставиш млекото во фрижидерот?",
+      "en": "Can you put the milk in the refrigerator?",
+      "category": "kitchen"
+    },
+    {
+      "id": "hh-011",
+      "mk": "Не работи шпоретот.",
+      "en": "The stove isn't working.",
+      "category": "kitchen"
+    },
+    {
+      "id": "hh-012",
+      "mk": "Лебот се пече во рерната.",
+      "en": "The bread is baking in the oven.",
+      "category": "kitchen"
+    },
+    {
+      "id": "hh-013",
+      "mk": "Подгреј го јадењето во микробрановата.",
+      "en": "Heat up the food in the microwave.",
+      "category": "kitchen"
+    },
+    {
+      "id": "hh-014",
+      "mk": "Не заборавај да ја исклучиш ринглата.",
+      "en": "Don't forget to turn off the burner.",
+      "category": "kitchen"
+    },
+    {
+      "id": "hh-015",
+      "mk": "Го местам креветот.",
+      "en": "I'm making the bed.",
+      "category": "bedroom"
+    },
+    {
+      "id": "hh-016",
+      "mk": "Колку се удобни пернициве!",
+      "en": "How comfortable these pillows are!",
+      "category": "bedroom"
+    },
+    {
+      "id": "hh-017",
+      "mk": "Ќебето е многу меко.",
+      "en": "The blanket is very soft.",
+      "category": "bedroom"
+    },
+    {
+      "id": "hh-018",
+      "mk": "Капутот е во плакарот.",
+      "en": "The coat is in the closet.",
+      "category": "bedroom"
+    },
+    {
+      "id": "hh-019",
+      "mk": "Те молам, затвори ја завесата.",
+      "en": "Please close the curtain.",
+      "category": "bedroom"
+    },
+    {
+      "id": "hh-020",
+      "mk": "Огледалото е пред вратата.",
+      "en": "The mirror is in front of the door.",
+      "category": "bedroom"
+    },
+    {
+      "id": "hh-021",
+      "mk": "Огледалото е замаглено.",
+      "en": "The mirror is fogged up.",
+      "category": "bathroom"
+    },
+    {
+      "id": "hh-022",
+      "mk": "Сапунот мириса убаво.",
+      "en": "The soap smells nice.",
+      "category": "bathroom"
+    },
+    {
+      "id": "hh-023",
+      "mk": "Користам шампон и гел.",
+      "en": "I use shampoo and gel.",
+      "category": "bathroom"
+    },
+    {
+      "id": "hh-024",
+      "mk": "Четката и пастата за заби се до мијалникот.",
+      "en": "The toothbrush and toothpaste are by the sink.",
+      "category": "bathroom"
+    },
+    {
+      "id": "hh-025",
+      "mk": "Тоалетната хартија е до шолјата.",
+      "en": "The toilet paper is by the toilet.",
+      "category": "bathroom"
+    },
+    {
+      "id": "hh-026",
+      "mk": "Имате течен сапун?",
+      "en": "Do you have liquid soap?",
+      "category": "bathroom"
+    },
+    {
+      "id": "hh-027",
+      "mk": "Мантилот е на закачалката во ходникот.",
+      "en": "The robe is on the hook in the hallway.",
+      "category": "hallway"
+    },
+    {
+      "id": "hh-028",
+      "mk": "Има папучи на влезот.",
+      "en": "There are slippers at the entrance.",
+      "category": "hallway"
+    },
+    {
+      "id": "hh-029",
+      "mk": "Секое утро го метам подот.",
+      "en": "Every morning I sweep the floor.",
+      "category": "cleaning"
+    },
+    {
+      "id": "hh-030",
+      "mk": "Овде можете да ги оставите чевлите.",
+      "en": "You can leave your shoes here.",
+      "category": "hallway"
+    }
+  ]
+}

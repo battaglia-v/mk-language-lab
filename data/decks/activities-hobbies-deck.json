@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "id": "activities-hobbies-v1",
+    "title": "Activities & Hobbies",
+    "titleMk": "Активности и хобија",
+    "description": "30 sentences about hobbies and free time activities",
+    "descriptionMk": "30 реченици за хобија и слободно време",
+    "level": "A1",
+    "category": "activities",
+    "version": "1.0.0",
+    "lastUpdated": "2025-01-01"
+  },
+  "items": [
+    {
+      "id": "act-001",
+      "mk": "Што сакаш да правиш во слободно време?",
+      "en": "What do you like to do in your free time?",
+      "category": "questions"
+    },
+    {
+      "id": "act-002",
+      "mk": "Во слободно време, свирам гитара.",
+      "en": "In my free time, I play guitar.",
+      "category": "music"
+    },
+    {
+      "id": "act-003",
+      "mk": "Сакам да цртам и да бојам.",
+      "en": "I like to draw and paint.",
+      "category": "art"
+    },
+    {
+      "id": "act-004",
+      "mk": "Таа ужива кога готви.",
+      "en": "She enjoys cooking.",
+      "category": "cooking"
+    },
+    {
+      "id": "act-005",
+      "mk": "Играм кошарка секој викенд.",
+      "en": "I play basketball every weekend.",
+      "category": "sports"
+    },
+    {
+      "id": "act-006",
+      "mk": "Често одиме на планинарење.",
+      "en": "We often go hiking.",
+      "category": "outdoor"
+    },
+    {
+      "id": "act-007",
+      "mk": "Тој трча секое утро пред работа.",
+      "en": "He runs every morning before work.",
+      "category": "sports"
+    },
+    {
+      "id": "act-008",
+      "mk": "Јогата ми помага да се опуштам.",
+      "en": "Yoga helps me relax.",
+      "category": "wellness"
+    },
+    {
+      "id": "act-009",
+      "mk": "Тие одат на риболов со татко им за викенд.",
+      "en": "They go fishing with their father on weekends.",
+      "category": "outdoor"
+    },
+    {
+      "id": "act-010",
+      "mk": "Многу сакам да слушам музика додека готвам.",
+      "en": "I really like to listen to music while cooking.",
+      "category": "music"
+    },
+    {
+      "id": "act-011",
+      "mk": "Патуваме кога можеме.",
+      "en": "We travel when we can.",
+      "category": "travel"
+    },
+    {
+      "id": "act-012",
+      "mk": "Одиме на кампување.",
+      "en": "We go camping.",
+      "category": "outdoor"
+    },
+    {
+      "id": "act-013",
+      "mk": "Ти се оди на концерт на Колдплеј?",
+      "en": "Do you want to go to a Coldplay concert?",
+      "category": "music"
+    },
+    {
+      "id": "act-014",
+      "mk": "Имам часови по танцување.",
+      "en": "I have dancing lessons.",
+      "category": "arts"
+    },
+    {
+      "id": "act-015",
+      "mk": "Волонтирам во еколошка асоцијација.",
+      "en": "I volunteer in an environmental association.",
+      "category": "volunteer"
+    },
+    {
+      "id": "act-016",
+      "mk": "Учам да играм шах.",
+      "en": "I'm learning to play chess.",
+      "category": "games"
+    },
+    {
+      "id": "act-017",
+      "mk": "Гледам серија на Нетфликс пред да спијам.",
+      "en": "I watch a Netflix series before going to sleep.",
+      "category": "entertainment"
+    },
+    {
+      "id": "act-018",
+      "mk": "Музеите се бесплатни во недела.",
+      "en": "Museums are free on Sunday.",
+      "category": "culture"
+    },
+    {
+      "id": "act-019",
+      "mk": "Сакам да играм игри кога имам време.",
+      "en": "I like to play games when I have time.",
+      "category": "games"
+    },
+    {
+      "id": "act-020",
+      "mk": "Тој собира монети од разни држави.",
+      "en": "He collects coins from different countries.",
+      "category": "collecting"
+    },
+    {
+      "id": "act-021",
+      "mk": "Ми се допаѓа да јадам во егзотични ресторани.",
+      "en": "I like eating at exotic restaurants.",
+      "category": "food"
+    },
+    {
+      "id": "act-022",
+      "mk": "Таа сака да учи нови јазици.",
+      "en": "She likes to learn new languages.",
+      "category": "learning"
+    },
+    {
+      "id": "act-023",
+      "mk": "Одиме на забава секој петок.",
+      "en": "We go to a party every Friday.",
+      "category": "social"
+    },
+    {
+      "id": "act-024",
+      "mk": "Тој сам си ги пишува песните.",
+      "en": "He writes his own songs.",
+      "category": "music"
+    },
+    {
+      "id": "act-025",
+      "mk": "Во лето, играме одбојка на плажа.",
+      "en": "In summer, we play beach volleyball.",
+      "category": "sports"
+    },
+    {
+      "id": "act-026",
+      "mk": "Таа тренира за да трча на маратон.",
+      "en": "She trains to run a marathon.",
+      "category": "sports"
+    },
+    {
+      "id": "act-027",
+      "mk": "Стави им вода на цвеќињата!",
+      "en": "Water the flowers!",
+      "category": "gardening"
+    },
+    {
+      "id": "act-028",
+      "mk": "Обично сакам да поспијам кога имам време.",
+      "en": "Usually I like to sleep in when I have time.",
+      "category": "rest"
+    },
+    {
+      "id": "act-029",
+      "mk": "Пишувам дневник пред да си легнам.",
+      "en": "I write in my journal before going to bed.",
+      "category": "writing"
+    },
+    {
+      "id": "act-030",
+      "mk": "Секој викенд го чистам станот.",
+      "en": "Every weekend I clean the apartment.",
+      "category": "home"
+    }
+  ]
+}

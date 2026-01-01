@@ -1,0 +1,255 @@
+{
+  "meta": {
+    "id": "clothing-appearance-v1",
+    "title": "Clothing & Appearances",
+    "titleMk": "Облека и изглед",
+    "description": "40 sentences about clothing and personal appearance",
+    "descriptionMk": "40 реченици за облека и личен изглед",
+    "level": "A1",
+    "category": "clothing",
+    "version": "1.0.0",
+    "lastUpdated": "2025-01-01"
+  },
+  "items": [
+    {
+      "id": "clo-001",
+      "mk": "Многу ти се убави фармерките!",
+      "en": "Your jeans are so nice!",
+      "category": "compliments"
+    },
+    {
+      "id": "clo-002",
+      "mk": "Од каде ти се патиките?",
+      "en": "Where are your sneakers from?",
+      "category": "shoes"
+    },
+    {
+      "id": "clo-003",
+      "mk": "Јакнава ме топли во зима.",
+      "en": "This jacket keeps me warm in winter.",
+      "category": "outerwear"
+    },
+    {
+      "id": "clo-004",
+      "mk": "Супер ти стои кошулава!",
+      "en": "This shirt looks great on you!",
+      "category": "compliments"
+    },
+    {
+      "id": "clo-005",
+      "mk": "Мислам дека ти треба поголем број.",
+      "en": "I think you need a bigger size.",
+      "category": "shopping"
+    },
+    {
+      "id": "clo-006",
+      "mk": "Овој фустан е премногу тесен.",
+      "en": "This dress is too tight.",
+      "category": "fit"
+    },
+    {
+      "id": "clo-007",
+      "mk": "Не си го заборавај капутот!",
+      "en": "Don't forget your coat!",
+      "category": "outerwear"
+    },
+    {
+      "id": "clo-008",
+      "mk": "Одлично си се облекол / облекла за оваа прилика!",
+      "en": "You dressed excellently for this occasion!",
+      "category": "compliments"
+    },
+    {
+      "id": "clo-009",
+      "mk": "Носам униформа на работа.",
+      "en": "I wear a uniform at work.",
+      "category": "work"
+    },
+    {
+      "id": "clo-010",
+      "mk": "Ме убиваат чевливе!",
+      "en": "These shoes are killing me!",
+      "category": "shoes"
+    },
+    {
+      "id": "clo-011",
+      "mk": "Треба да си купам нова облека.",
+      "en": "I need to buy new clothes.",
+      "category": "shopping"
+    },
+    {
+      "id": "clo-012",
+      "mk": "Обетките не ми одговараат со фризурата.",
+      "en": "The earrings don't match my hairstyle.",
+      "category": "accessories"
+    },
+    {
+      "id": "clo-013",
+      "mk": "Многу ми се допаѓа твојот излед.",
+      "en": "I really like your look.",
+      "category": "compliments"
+    },
+    {
+      "id": "clo-014",
+      "mk": "Имаш прекрасна насмевка.",
+      "en": "You have a beautiful smile.",
+      "category": "appearance"
+    },
+    {
+      "id": "clo-015",
+      "mk": "Изгледаш уморно.",
+      "en": "You look tired.",
+      "category": "appearance"
+    },
+    {
+      "id": "clo-016",
+      "mk": "Таа секогаш изгледа елегантно.",
+      "en": "She always looks elegant.",
+      "category": "appearance"
+    },
+    {
+      "id": "clo-017",
+      "mk": "Тој изгледа помладо без брада.",
+      "en": "He looks younger without a beard.",
+      "category": "appearance"
+    },
+    {
+      "id": "clo-018",
+      "mk": "Ми треба удобна облека.",
+      "en": "I need comfortable clothes.",
+      "category": "shopping"
+    },
+    {
+      "id": "clo-019",
+      "mk": "Ова здолниште е многу модерно.",
+      "en": "This skirt is very fashionable.",
+      "category": "fashion"
+    },
+    {
+      "id": "clo-020",
+      "mk": "Не можам да си ја најдам другата чорапа!",
+      "en": "I can't find my other sock!",
+      "category": "socks"
+    },
+    {
+      "id": "clo-021",
+      "mk": "Ми треба нов накит за свадбата.",
+      "en": "I need new jewelry for the wedding.",
+      "category": "accessories"
+    },
+    {
+      "id": "clo-022",
+      "mk": "Секогаш е убаво нашминкана.",
+      "en": "She's always beautifully made up.",
+      "category": "appearance"
+    },
+    {
+      "id": "clo-023",
+      "mk": "Дотерај се за роденденот!",
+      "en": "Get dressed up for the birthday!",
+      "category": "occasions"
+    },
+    {
+      "id": "clo-024",
+      "mk": "Таа е висока и слаба.",
+      "en": "She is tall and slim.",
+      "category": "body"
+    },
+    {
+      "id": "clo-025",
+      "mk": "Тој е елегантно пополнет.",
+      "en": "He is elegantly built.",
+      "category": "body"
+    },
+    {
+      "id": "clo-026",
+      "mk": "Имаш нова фризура? Одлично ти стојат шишки!",
+      "en": "Do you have a new hairstyle? Bangs look great on you!",
+      "category": "hair"
+    },
+    {
+      "id": "clo-027",
+      "mk": "Си се здебелил/а.",
+      "en": "You've gained weight.",
+      "category": "body"
+    },
+    {
+      "id": "clo-028",
+      "mk": "Си ослабел/а.",
+      "en": "You've lost weight.",
+      "category": "body"
+    },
+    {
+      "id": "clo-029",
+      "mk": "Тој обично носи темни бои.",
+      "en": "He usually wears dark colors.",
+      "category": "style"
+    },
+    {
+      "id": "clo-030",
+      "mk": "Не можам да се одлучам што да носам!",
+      "en": "I can't decide what to wear!",
+      "category": "decisions"
+    },
+    {
+      "id": "clo-031",
+      "mk": "Многу се широки панталоните.",
+      "en": "The pants are too wide.",
+      "category": "fit"
+    },
+    {
+      "id": "clo-032",
+      "mk": "Краватата му одговара со панталоните.",
+      "en": "The tie matches his pants.",
+      "category": "formal"
+    },
+    {
+      "id": "clo-033",
+      "mk": "Се исчешла и ја врза косата во опашка.",
+      "en": "She combed and tied her hair in a ponytail.",
+      "category": "hair"
+    },
+    {
+      "id": "clo-034",
+      "mk": "Ми влезе нешто во око.",
+      "en": "Something got in my eye.",
+      "category": "body"
+    },
+    {
+      "id": "clo-035",
+      "mk": "Си го повредив прстот.",
+      "en": "I hurt my finger.",
+      "category": "body"
+    },
+    {
+      "id": "clo-036",
+      "mk": "Ноктите ти изгледаат прекрасно!",
+      "en": "Your nails look beautiful!",
+      "category": "appearance"
+    },
+    {
+      "id": "clo-037",
+      "mk": "Ме болат нозете од одење.",
+      "en": "My feet hurt from walking.",
+      "category": "body"
+    },
+    {
+      "id": "clo-038",
+      "mk": "Чекај да си ги заврзам патиките.",
+      "en": "Wait, let me tie my sneakers.",
+      "category": "shoes"
+    },
+    {
+      "id": "clo-039",
+      "mk": "Ме боли стомакот.",
+      "en": "My stomach hurts.",
+      "category": "body"
+    },
+    {
+      "id": "clo-040",
+      "mk": "Ме боли грбот.",
+      "en": "My back hurts.",
+      "category": "body"
+    }
+  ]
+}

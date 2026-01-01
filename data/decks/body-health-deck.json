@@ -1,0 +1,196 @@
+{
+  "meta": {
+    "id": "body-health-v1",
+    "title": "Body Parts & Health",
+    "titleMk": "Делови од телото и здравје",
+    "description": "30 sentences about body parts and health",
+    "descriptionMk": "30 реченици за делови од телото и здравје",
+    "level": "A1",
+    "category": "health",
+    "version": "1.0.0",
+    "lastUpdated": "2025-01-01"
+  },
+  "items": [
+    {
+      "id": "bh-001",
+      "mk": "Ме боли главата.",
+      "en": "My head hurts.",
+      "category": "head"
+    },
+    {
+      "id": "bh-002",
+      "mk": "Таа има убава насмевка.",
+      "en": "She has a beautiful smile.",
+      "category": "face"
+    },
+    {
+      "id": "bh-003",
+      "mk": "Имаш прекрасни заби.",
+      "en": "You have beautiful teeth.",
+      "category": "face"
+    },
+    {
+      "id": "bh-004",
+      "mk": "Ме печат очите.",
+      "en": "My eyes burn.",
+      "category": "face",
+      "notes": "Expressing discomfort"
+    },
+    {
+      "id": "bh-005",
+      "mk": "Ме боли грлото.",
+      "en": "My throat hurts.",
+      "category": "head"
+    },
+    {
+      "id": "bh-006",
+      "mk": "Тој има мали уши.",
+      "en": "He has small ears.",
+      "category": "head"
+    },
+    {
+      "id": "bh-007",
+      "mk": "Рацете ми се ладни.",
+      "en": "My hands are cold.",
+      "category": "arms"
+    },
+    {
+      "id": "bh-008",
+      "mk": "Тој има силни рамења.",
+      "en": "He has strong shoulders.",
+      "category": "arms"
+    },
+    {
+      "id": "bh-009",
+      "mk": "Подај ми рака!",
+      "en": "Give me your hand!",
+      "category": "arms"
+    },
+    {
+      "id": "bh-010",
+      "mk": "Ме болат прстите.",
+      "en": "My fingers hurt.",
+      "category": "arms"
+    },
+    {
+      "id": "bh-011",
+      "mk": "Ме боли ногата.",
+      "en": "My leg hurts.",
+      "category": "legs"
+    },
+    {
+      "id": "bh-012",
+      "mk": "Таа има долги нозе.",
+      "en": "She has long legs.",
+      "category": "legs"
+    },
+    {
+      "id": "bh-013",
+      "mk": "Ми треба масажа на стапалата.",
+      "en": "I need a foot massage.",
+      "category": "legs"
+    },
+    {
+      "id": "bh-014",
+      "mk": "Ме боли левото стапало.",
+      "en": "My left foot hurts.",
+      "category": "legs"
+    },
+    {
+      "id": "bh-015",
+      "mk": "Настинат/а сум.",
+      "en": "I have a cold.",
+      "category": "health"
+    },
+    {
+      "id": "bh-016",
+      "mk": "Ме лазат морници.",
+      "en": "I have chills.",
+      "category": "health"
+    },
+    {
+      "id": "bh-017",
+      "mk": "Ме боли стомакот.",
+      "en": "My stomach hurts.",
+      "category": "body"
+    },
+    {
+      "id": "bh-018",
+      "mk": "Срцето ми чука силно.",
+      "en": "My heart is beating fast.",
+      "category": "body"
+    },
+    {
+      "id": "bh-019",
+      "mk": "Тој има висока температура.",
+      "en": "He has a high fever.",
+      "category": "health"
+    },
+    {
+      "id": "bh-020",
+      "mk": "Ми се повраќа.",
+      "en": "I feel like vomiting.",
+      "category": "health"
+    },
+    {
+      "id": "bh-021",
+      "mk": "Ми се гади.",
+      "en": "I feel nauseous.",
+      "category": "health"
+    },
+    {
+      "id": "bh-022",
+      "mk": "Си го шинав глуждот.",
+      "en": "I sprained my ankle.",
+      "category": "injury"
+    },
+    {
+      "id": "bh-023",
+      "mk": "Беше на лекар?",
+      "en": "Did you go to the doctor?",
+      "category": "medical"
+    },
+    {
+      "id": "bh-024",
+      "mk": "Треба на одам на заболекар.",
+      "en": "I need to go to the dentist.",
+      "category": "medical"
+    },
+    {
+      "id": "bh-025",
+      "mk": "Ме боли забот.",
+      "en": "My tooth hurts.",
+      "category": "face"
+    },
+    {
+      "id": "bh-026",
+      "mk": "Ми гори челото.",
+      "en": "My forehead is burning.",
+      "category": "health"
+    },
+    {
+      "id": "bh-027",
+      "mk": "Образите ти се црвени.",
+      "en": "Your cheeks are red.",
+      "category": "face"
+    },
+    {
+      "id": "bh-028",
+      "mk": "Ме боли вилицата кога џвакам.",
+      "en": "My jaw hurts when I chew.",
+      "category": "face"
+    },
+    {
+      "id": "bh-029",
+      "mk": "Снемувам воздух.",
+      "en": "I'm running out of breath.",
+      "category": "health"
+    },
+    {
+      "id": "bh-030",
+      "mk": "Внимавај на здравјето!",
+      "en": "Take care of your health!",
+      "category": "advice"
+    }
+  ]
+}

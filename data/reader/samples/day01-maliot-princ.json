@@ -1,0 +1,51 @@
+{
+  "id": "day01-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 1: Цртежот",
+  "title_en": "Day 1: The Drawing",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "narrative", "past-tense", "childhood"],
+  "series": "30-Day Reading Challenge",
+  "day": 1,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Минато неопределено време",
+      "title_en": "Past Indefinite Tense (–л form)",
+      "description_en": "Used for actions not personally witnessed or in narrative storytelling",
+      "bullets": [
+        "Formed by adding –л, –ла, –ло, –ле to verb stem",
+        "Often used in fairy tales and stories",
+        "Conveys distance from the action"
+      ],
+      "examples": [
+        { "mk": "Имало некогаш...", "en": "Once upon a time there was...", "note": "Classic story opening" },
+        { "mk": "Тој гледал од близу", "en": "He had looked closely" },
+        { "mk": "Никој не разбрал", "en": "Nobody understood" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "цртеж", "en": "drawing", "pos": "noun" },
+    { "mk": "змија", "en": "snake", "pos": "noun" },
+    { "mk": "слон", "en": "elephant", "pos": "noun" },
+    { "mk": "голтнува", "en": "swallows", "pos": "verb" },
+    { "mk": "возрасен", "en": "adult, grown-up", "pos": "adjective" },
+    { "mk": "разбира", "en": "understands", "pos": "verb" }
+  ],
+  "expressions": [
+    { "mk": "Имало некогаш", "en": "Once upon a time", "usage": "Story opening" },
+    { "mk": "на прв поглед", "en": "at first glance", "usage": "Initial impression" },
+    { "mk": "од близу", "en": "closely, up close", "usage": "Manner of looking" }
+  ],
+  "audioUrl": null,
+  "attribution": {
+    "handle": "@macedonianlanguagecorner",
+    "series": "30-Day Reading Challenge",
+    "day": "1",
+    "sourceTitle": "Content pending - add from licensed source"
+  }
+}
