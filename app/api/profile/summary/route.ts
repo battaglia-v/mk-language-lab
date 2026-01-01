@@ -11,7 +11,7 @@ import {
   getLeagueTierFromStreak,
 } from '@mk/gamification';
 
-export const revalidate = 60; // Cache for 60 seconds
+export const revalidate = 10; // Cache for 10 seconds - keep XP/streak fresh
 
 const FALLBACK_PROFILE = fallbackProfileSummary as ProfileSummary;
 const XP_PER_REVIEW = 12;
@@ -59,7 +59,7 @@ const getCachedGameProgress = unstable_cache(
     return prisma.gameProgress.findUnique({ where: { userId } });
   },
   ['game-progress'],
-  { revalidate: 60, tags: ['profile'] } // 1 min cache
+  { revalidate: 10, tags: ['profile'] } // 10 sec cache - keep fresh for XP/streak updates
 );
 
 const getCachedUserBadges = unstable_cache(
@@ -117,7 +117,7 @@ export async function GET() {
         'x-profile-source': 'prisma',
         'x-profile-completeness': `${completeness}%`,
         'x-response-time': `${requestDuration}ms`,
-        'Cache-Control': 'public, s-maxage=30, stale-while-revalidate=60',
+        'Cache-Control': 'private, s-maxage=10, stale-while-revalidate=20',
       },
     });
   } catch (error) {
