@@ -1,0 +1,44 @@
+{
+  "id": "day03-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 3: Пилотот",
+  "title_en": "Day 3: The Pilot",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "narrative", "location", "desert"],
+  "series": "30-Day Reading Challenge",
+  "day": 3,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Локативни изрази",
+      "title_en": "Location Expressions",
+      "description_en": "Expressing where things are located",
+      "examples": [
+        { "mk": "во пустината", "en": "in the desert" },
+        { "mk": "далеку од луѓе", "en": "far from people" },
+        { "mk": "насред ништо", "en": "in the middle of nowhere" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "пустина", "en": "desert", "pos": "noun" },
+    { "mk": "пилот", "en": "pilot", "pos": "noun" },
+    { "mk": "авион", "en": "airplane", "pos": "noun" },
+    { "mk": "паѓа", "en": "falls", "pos": "verb" },
+    { "mk": "песок", "en": "sand", "pos": "noun" },
+    { "mk": "самотија", "en": "loneliness", "pos": "noun" }
+  ],
+  "expressions": [
+    { "mk": "далеку од сè", "en": "far from everything", "usage": "Expressing isolation" },
+    { "mk": "илјада милји", "en": "a thousand miles", "usage": "Expressing great distance" }
+  ],
+  "audioUrl": null,
+  "attribution": {
+    "handle": "@macedonianlanguagecorner",
+    "series": "30-Day Reading Challenge",
+    "day": "3"
+  }
+}
