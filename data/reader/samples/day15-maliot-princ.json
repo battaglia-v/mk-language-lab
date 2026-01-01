@@ -1,0 +1,45 @@
+{
+  "id": "day15-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 15: Преглед - Недела 3",
+  "title_en": "Day 15: Review - Week 3",
+  "difficulty": "B1",
+  "estimatedMinutes": 15,
+  "tags": ["30-day-challenge", "review", "checkpoint"],
+  "series": "30-Day Reading Challenge",
+  "day": 15,
+  "text_blocks_mk": [
+    { "type": "h2", "value": "Преглед на Недела 3" },
+    { "type": "p", "value": "Оваа недела принцот ги посети кралот, суетниот човек и пијаницата. Научи за власта, суетата и тагата." }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Преглед: Глаголи за движење",
+      "title_en": "Review: Motion Verbs",
+      "examples": [
+        { "mk": "замина, пристигна, посети", "en": "left, arrived, visited" }
+      ]
+    },
+    {
+      "title_mk": "Преглед: Зошто/Затоа што",
+      "title_en": "Review: Why/Because",
+      "examples": [
+        { "mk": "Зошто? — Затоа што...", "en": "Why? — Because..." }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "крал", "en": "king", "pos": "noun" },
+    { "mk": "суетен", "en": "vain", "pos": "adjective" },
+    { "mk": "пијаница", "en": "drunkard", "pos": "noun" },
+    { "mk": "власт", "en": "power", "pos": "noun" },
+    { "mk": "аплауз", "en": "applause", "pos": "noun" },
+    { "mk": "срам", "en": "shame", "pos": "noun" }
+  ],
+  "expressions": [
+    { "mk": "Ти заповедам", "en": "I command you", "usage": "Authority" },
+    { "mk": "Зошто правиш така?", "en": "Why do you do that?", "usage": "Questioning" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "15" }
+}

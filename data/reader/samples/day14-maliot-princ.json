@@ -1,0 +1,39 @@
+{
+  "id": "day14-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 14: Пијаницата",
+  "title_en": "Day 14: The Drunkard",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "dialogue", "sadness", "philosophy"],
+  "series": "30-Day Reading Challenge",
+  "day": 14,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Причина со 'зошто/затоа што'",
+      "title_en": "Cause with 'why/because'",
+      "description_en": "Explaining reasons",
+      "examples": [
+        { "mk": "Зошто пиеш?", "en": "Why do you drink?" },
+        { "mk": "Затоа што сакам да заборавам.", "en": "Because I want to forget." }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "пијаница", "en": "drunkard", "pos": "noun" },
+    { "mk": "срам", "en": "shame", "pos": "noun" },
+    { "mk": "заборава", "en": "forgets", "pos": "verb" },
+    { "mk": "шише", "en": "bottle", "pos": "noun" },
+    { "mk": "тажен", "en": "sad", "pos": "adjective" },
+    { "mk": "круг", "en": "circle", "pos": "noun" }
+  ],
+  "expressions": [
+    { "mk": "Зошто правиш така?", "en": "Why do you do that?", "usage": "Asking reason" },
+    { "mk": "Не разбирам", "en": "I don't understand", "usage": "Confusion" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "14" }
+}

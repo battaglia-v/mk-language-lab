@@ -1,0 +1,39 @@
+{
+  "id": "day11-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 11: Заминувањето",
+  "title_en": "Day 11: The Departure",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "narrative", "journey", "farewell"],
+  "series": "30-Day Reading Challenge",
+  "day": 11,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Глаголи за движење",
+      "title_en": "Verbs of Motion",
+      "description_en": "Expressing departure and travel",
+      "examples": [
+        { "mk": "заминува, оди, патува", "en": "leaves, goes, travels" },
+        { "mk": "тргна на пат", "en": "set off on a journey" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "заминување", "en": "departure", "pos": "noun" },
+    { "mk": "патување", "en": "journey", "pos": "noun" },
+    { "mk": "птици", "en": "birds", "pos": "noun" },
+    { "mk": "селидба", "en": "migration", "pos": "noun" },
+    { "mk": "збогум", "en": "goodbye", "pos": "interjection" },
+    { "mk": "тага", "en": "sadness", "pos": "noun" }
+  ],
+  "expressions": [
+    { "mk": "тргна на пат", "en": "set off", "usage": "Beginning a journey" },
+    { "mk": "се враќа", "en": "returns", "usage": "Coming back" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "11" }
+}

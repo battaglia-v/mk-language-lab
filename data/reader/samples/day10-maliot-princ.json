@@ -1,0 +1,47 @@
+{
+  "id": "day10-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 10: Преглед - Недела 2",
+  "title_en": "Day 10: Review - Week 2",
+  "difficulty": "B1",
+  "estimatedMinutes": 15,
+  "tags": ["30-day-challenge", "review", "checkpoint"],
+  "series": "30-Day Reading Challenge",
+  "day": 10,
+  "text_blocks_mk": [
+    { "type": "h2", "value": "Преглед на Недела 2" },
+    { "type": "p", "value": "Оваа недела научивме за астероидот Б-612, баобабите, убавото цвеќе и неговата гордост." }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Преглед: Услов",
+      "title_en": "Review: Conditionals",
+      "examples": [
+        { "mk": "Ако не внимаваш...", "en": "If you don't pay attention..." },
+        { "mk": "Ако сакаш...", "en": "If you want..." }
+      ]
+    },
+    {
+      "title_mk": "Преглед: Директен говор",
+      "title_en": "Review: Direct Speech",
+      "examples": [
+        { "mk": "— Дојди! — рече.", "en": "'Come!' he said." },
+        { "mk": "— Зошто? — праша.", "en": "'Why?' she asked." }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "астероид", "en": "asteroid", "pos": "noun" },
+    { "mk": "баобаб", "en": "baobab", "pos": "noun" },
+    { "mk": "цвеќе", "en": "flower", "pos": "noun" },
+    { "mk": "гордост", "en": "pride", "pos": "noun" },
+    { "mk": "опасен", "en": "dangerous", "pos": "adjective" },
+    { "mk": "убавина", "en": "beauty", "pos": "noun" }
+  ],
+  "expressions": [
+    { "mk": "секое утро", "en": "every morning", "usage": "Routine" },
+    { "mk": "на прв поглед", "en": "at first sight", "usage": "First impression" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "10" }
+}

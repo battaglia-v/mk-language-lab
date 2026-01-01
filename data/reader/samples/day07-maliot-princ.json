@@ -1,0 +1,39 @@
+{
+  "id": "day07-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 7: Баобабите",
+  "title_en": "Day 7: The Baobabs",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "narrative", "danger", "discipline"],
+  "series": "30-Day Reading Challenge",
+  "day": 7,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Услов со 'ако'",
+      "title_en": "Conditional with 'ако' (if)",
+      "description_en": "Expressing conditions and consequences",
+      "examples": [
+        { "mk": "Ако не ги извадиш...", "en": "If you don't pull them out..." },
+        { "mk": "Ако пораснат...", "en": "If they grow..." }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "баобаб", "en": "baobab tree", "pos": "noun" },
+    { "mk": "семе", "en": "seed", "pos": "noun" },
+    { "mk": "опасен", "en": "dangerous", "pos": "adjective" },
+    { "mk": "расте", "en": "grows", "pos": "verb" },
+    { "mk": "корен", "en": "root", "pos": "noun" },
+    { "mk": "уништува", "en": "destroys", "pos": "verb" }
+  ],
+  "expressions": [
+    { "mk": "секое утро", "en": "every morning", "usage": "Daily routine" },
+    { "mk": "мора да", "en": "must, have to", "usage": "Obligation" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "7" }
+}

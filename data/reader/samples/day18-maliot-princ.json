@@ -1,0 +1,39 @@
+{
+  "id": "day18-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 18: Географот",
+  "title_en": "Day 18: The Geographer",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "dialogue", "knowledge", "exploration"],
+  "series": "30-Day Reading Challenge",
+  "day": 18,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Прашања со 'каков/каква'",
+      "title_en": "Questions with 'what kind of'",
+      "description_en": "Asking about types and categories",
+      "examples": [
+        { "mk": "Каква е твојата планета?", "en": "What is your planet like?" },
+        { "mk": "Какви работи има таму?", "en": "What kinds of things are there?" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "географ", "en": "geographer", "pos": "noun" },
+    { "mk": "книга", "en": "book", "pos": "noun" },
+    { "mk": "истражувач", "en": "explorer", "pos": "noun" },
+    { "mk": "океан", "en": "ocean", "pos": "noun" },
+    { "mk": "река", "en": "river", "pos": "noun" },
+    { "mk": "планина", "en": "mountain", "pos": "noun" }
+  ],
+  "expressions": [
+    { "mk": "Тоа е привремено.", "en": "That's temporary.", "usage": "Impermanence" },
+    { "mk": "Што значи тоа?", "en": "What does that mean?", "usage": "Asking for meaning" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "18" }
+}

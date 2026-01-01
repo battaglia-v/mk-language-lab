@@ -1,0 +1,39 @@
+{
+  "id": "day24-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 24: Лисицата",
+  "title_en": "Day 24: The Fox",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "dialogue", "friendship", "wisdom"],
+  "series": "30-Day Reading Challenge",
+  "day": 24,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Барање со 'те молам'",
+      "title_en": "Requests with 'please'",
+      "description_en": "Polite requesting",
+      "examples": [
+        { "mk": "Те молам, припитоми ме!", "en": "Please, tame me!" },
+        { "mk": "Би сакал да...", "en": "I would like to..." }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "лисица", "en": "fox", "pos": "noun" },
+    { "mk": "припитомува", "en": "tames", "pos": "verb" },
+    { "mk": "пријател", "en": "friend", "pos": "noun" },
+    { "mk": "врска", "en": "bond, connection", "pos": "noun" },
+    { "mk": "одговорен", "en": "responsible", "pos": "adjective" },
+    { "mk": "трпелив", "en": "patient", "pos": "adjective" }
+  ],
+  "expressions": [
+    { "mk": "Што значи 'припитомува'?", "en": "What does 'tame' mean?", "usage": "Definition" },
+    { "mk": "да создадеш врски", "en": "to create bonds", "usage": "Friendship" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "24" }
+}

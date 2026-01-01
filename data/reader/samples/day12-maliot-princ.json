@@ -1,0 +1,39 @@
+{
+  "id": "day12-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 12: Кралот",
+  "title_en": "Day 12: The King",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "dialogue", "authority", "humor"],
+  "series": "30-Day Reading Challenge",
+  "day": 12,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Заповеди (формални)",
+      "title_en": "Formal Commands",
+      "description_en": "Giving orders in formal/royal speech",
+      "examples": [
+        { "mk": "Ти заповедам!", "en": "I command you!" },
+        { "mk": "Нека биде така!", "en": "Let it be so!" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "крал", "en": "king", "pos": "noun" },
+    { "mk": "власт", "en": "power", "pos": "noun" },
+    { "mk": "поданик", "en": "subject", "pos": "noun" },
+    { "mk": "заповед", "en": "command", "pos": "noun" },
+    { "mk": "слуша", "en": "obeys", "pos": "verb" },
+    { "mk": "престол", "en": "throne", "pos": "noun" }
+  ],
+  "expressions": [
+    { "mk": "Ти заповедам", "en": "I command you", "usage": "Royal order" },
+    { "mk": "како што сакаш", "en": "as you wish", "usage": "Agreement" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "12" }
+}

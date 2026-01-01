@@ -1,0 +1,39 @@
+{
+  "id": "day08-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 8: Цвеќето",
+  "title_en": "Day 8: The Flower",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "narrative", "love", "beauty"],
+  "series": "30-Day Reading Challenge",
+  "day": 8,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Опишување со придавки",
+      "title_en": "Description with Adjectives",
+      "description_en": "Using adjectives to describe appearance",
+      "examples": [
+        { "mk": "убава, прекрасна", "en": "beautiful, gorgeous" },
+        { "mk": "единствена", "en": "unique" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "цвеќе", "en": "flower", "pos": "noun" },
+    { "mk": "ружа", "en": "rose", "pos": "noun" },
+    { "mk": "убавина", "en": "beauty", "pos": "noun" },
+    { "mk": "расцветува", "en": "blooms", "pos": "verb" },
+    { "mk": "мирис", "en": "scent", "pos": "noun" },
+    { "mk": "трн", "en": "thorn", "pos": "noun" }
+  ],
+  "expressions": [
+    { "mk": "на прв поглед", "en": "at first sight", "usage": "Initial impression" },
+    { "mk": "нешто посебно", "en": "something special", "usage": "Uniqueness" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "8" }
+}

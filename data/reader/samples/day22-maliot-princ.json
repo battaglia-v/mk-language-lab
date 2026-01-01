@@ -1,0 +1,39 @@
+{
+  "id": "day22-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 22: Пустината",
+  "title_en": "Day 22: The Desert",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "narrative", "nature", "solitude"],
+  "series": "30-Day Reading Challenge",
+  "day": 22,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Опишување пејзаж",
+      "title_en": "Describing Landscape",
+      "description_en": "Nature vocabulary and descriptions",
+      "examples": [
+        { "mk": "пуста, сува, топла", "en": "barren, dry, hot" },
+        { "mk": "бескрајна рамнина", "en": "endless plain" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "пустина", "en": "desert", "pos": "noun" },
+    { "mk": "песок", "en": "sand", "pos": "noun" },
+    { "mk": "сонце", "en": "sun", "pos": "noun" },
+    { "mk": "жед", "en": "thirst", "pos": "noun" },
+    { "mk": "празен", "en": "empty", "pos": "adjective" },
+    { "mk": "бескраен", "en": "endless", "pos": "adjective" }
+  ],
+  "expressions": [
+    { "mk": "Нема никој.", "en": "There's nobody.", "usage": "Solitude" },
+    { "mk": "далеку од сè", "en": "far from everything", "usage": "Isolation" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "22" }
+}

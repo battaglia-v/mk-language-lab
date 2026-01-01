@@ -1,0 +1,39 @@
+{
+  "id": "day29-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 29: Збогум",
+  "title_en": "Day 29: Farewell",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "dialogue", "farewell", "return"],
+  "series": "30-Day Reading Challenge",
+  "day": 29,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Изразување тага",
+      "title_en": "Expressing Sadness",
+      "description_en": "Words for farewell and sorrow",
+      "examples": [
+        { "mk": "Ќе ми недостасуваш.", "en": "I will miss you." },
+        { "mk": "Тешко ми е.", "en": "It's hard for me." }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "збогум", "en": "farewell", "pos": "interjection" },
+    { "mk": "растанок", "en": "parting", "pos": "noun" },
+    { "mk": "солза", "en": "tear", "pos": "noun" },
+    { "mk": "враќање", "en": "return", "pos": "noun" },
+    { "mk": "сеќавање", "en": "memory", "pos": "noun" },
+    { "mk": "недостасува", "en": "misses", "pos": "verb" }
+  ],
+  "expressions": [
+    { "mk": "Ќе ми недостасуваш.", "en": "I will miss you.", "usage": "Farewell" },
+    { "mk": "Мора да се вратам.", "en": "I must return.", "usage": "Obligation" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "29" }
+}

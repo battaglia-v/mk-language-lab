@@ -1,0 +1,39 @@
+{
+  "id": "day13-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 13: Суетниот човек",
+  "title_en": "Day 13: The Vain Man",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "dialogue", "vanity", "humor"],
+  "series": "30-Day Reading Challenge",
+  "day": 13,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Суперлатив",
+      "title_en": "Superlative Forms",
+      "description_en": "Expressing 'the most' or 'best'",
+      "examples": [
+        { "mk": "најубав, најпаметен", "en": "most beautiful, smartest" },
+        { "mk": "најдобар од сите", "en": "the best of all" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "суетен", "en": "vain", "pos": "adjective" },
+    { "mk": "аплауз", "en": "applause", "pos": "noun" },
+    { "mk": "восхитување", "en": "admiration", "pos": "noun" },
+    { "mk": "шапка", "en": "hat", "pos": "noun" },
+    { "mk": "поклон", "en": "bow", "pos": "noun" },
+    { "mk": "фали", "en": "praises", "pos": "verb" }
+  ],
+  "expressions": [
+    { "mk": "Јас сум најдобар!", "en": "I am the best!", "usage": "Self-praise" },
+    { "mk": "Ме восхитуваш?", "en": "Do you admire me?", "usage": "Seeking approval" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "13" }
+}
