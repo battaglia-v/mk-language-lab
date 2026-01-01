@@ -2437,5 +2437,77 @@
       "matching": "Match the pairs",
       "translation": "Translate the sentence"
     }
+  },
+  "mobile": {
+    "learn": {
+      "title": "Learn Macedonian",
+      "subtitle": "Just 5 minutes — you've got this.",
+      "startLesson": "Start today's lesson",
+      "quickPractice": "Quick practice",
+      "translateSomething": "Translate something",
+      "todaysGoal": "Today's goal",
+      "hintBelowGoal": "One more session to hit your goal.",
+      "hintGoalComplete": "Nice — goal complete. Want a bonus round?",
+      "pickSkill": "Pick a skill",
+      "pickSkillHelper": "Short, focused practice."
+    },
+    "reader": {
+      "title": "Reader",
+      "subtitle": "Read real Macedonian — tap any word.",
+      "pasteText": "Paste text",
+      "browseStories": "Browse stories",
+      "continue": "Continue",
+      "recent": "Recent",
+      "shortReads": "Short reads",
+      "saved": "Saved",
+      "emptyRecent": "Nothing yet — open a story to start.",
+      "emptySaved": "Save words and texts to see them here.",
+      "tools": "Tools",
+      "smartReveal": "Smart reveal",
+      "highlightUnknown": "Highlight unknown words",
+      "analyzeText": "Analyze this text",
+      "copyCleanText": "Copy clean text",
+      "saveWord": "Save word",
+      "listen": "Listen",
+      "addToPractice": "Add to practice",
+      "savedWordsHelper": "Saved words appear in Practice."
+    },
+    "analyzer": {
+      "title": "Text Analyzer",
+      "subtitle": "Paste text and break it down.",
+      "analyzeText": "Analyze text",
+      "overview": "Overview",
+      "keyWords": "Key words",
+      "sentenceBreakdown": "Sentence breakdown",
+      "fullTranslation": "Full translation",
+      "revealMeaning": "Reveal meaning",
+      "focusMode": "Focus mode",
+      "copyText": "Copy text",
+      "export": "Export",
+      "reset": "Reset"
+    },
+    "wordSprint": {
+      "title": "Word Sprint",
+      "subtitle": "Pick your challenge.",
+      "sessionLength": "Session length",
+      "sessionLengthHelper": "How many questions?",
+      "quick": "Quick",
+      "standard": "Standard",
+      "disabledHelper": "Choose difficulty and length to start.",
+      "easyDesc": "Two choices",
+      "mediumDesc": "Word bank",
+      "hardDesc": "Type the answer"
+    },
+    "profile": {
+      "title": "Profile",
+      "subtitle": "Your progress at a glance.",
+      "totalXP": "Total XP",
+      "thisWeek": "This week",
+      "streak": "Streak",
+      "levelProgress": "Level progress",
+      "loading": "Fetching your stats…",
+      "error": "Couldn't load stats. Tap to retry.",
+      "statsHelper": "Stats update after each session."
+    }
   }
 }

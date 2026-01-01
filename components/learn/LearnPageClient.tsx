@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Flame, Zap, Play, BookOpen, ChevronRight, Lock, Check, GraduationCap, MessageCircle } from 'lucide-react';
+import { Zap, Play, BookOpen, ChevronRight, Lock, Check, GraduationCap, MessageCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
@@ -64,8 +64,12 @@ export function LearnPageClient({
             </p>
           </div>
 
-          {/* Daily Goal Ring - Large and centered */}
+          {/* Daily Goal Progress */}
           <div className="flex flex-col items-center gap-3 py-4">
+            {/* Label */}
+            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+              Today&apos;s goal
+            </span>
             <DailyGoalRing
               progress={goalProgress}
               todayXP={todayXP}
@@ -73,12 +77,12 @@ export function LearnPageClient({
               complete={isGoalComplete}
             />
             <div className="flex items-center gap-4">
-              {/* Streak */}
+              {/* Streak chip with emoji */}
               <div className={cn(
                 'flex items-center gap-1.5 px-3 py-1.5 rounded-full',
                 streak > 0 ? 'bg-orange-500/15' : 'bg-muted/30'
               )}>
-                <Flame className={cn('h-5 w-5', streak > 0 ? 'text-orange-500' : 'text-muted-foreground')} />
+                <span className="text-base">{streak > 0 ? '🔥' : ''}</span>
                 <span className={cn('text-sm font-bold', streak > 0 ? 'text-orange-500' : 'text-muted-foreground')}>
                   {streak} day{streak !== 1 ? 's' : ''}
                 </span>
@@ -86,9 +90,15 @@ export function LearnPageClient({
               {/* XP */}
               <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/15">
                 <Zap className="h-5 w-5 text-primary" />
-                <span className="text-sm font-bold text-primary">{todayXP} XP</span>
+                <span className="text-sm font-bold text-primary">{todayXP} / {dailyGoalXP} XP</span>
               </div>
             </div>
+            {/* Dynamic hint */}
+            <p className="text-sm text-muted-foreground text-center">
+              {isGoalComplete
+                ? 'Nice — goal complete. Want a bonus round?'
+                : 'One more session to hit your goal.'}
+            </p>
           </div>
 
           {/* Primary CTA - Start Today's Lesson */}
@@ -115,6 +125,22 @@ export function LearnPageClient({
             <span className="font-medium text-muted-foreground">Quick practice</span>
             <ChevronRight className="h-4 w-4 text-muted-foreground" />
           </Link>
+
+          {/* Tertiary link */}
+          <div className="text-center">
+            <Link
+              href={`/${locale}/translate`}
+              className="text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              Translate something →
+            </Link>
+          </div>
+
+          {/* Skills Section Header */}
+          <div className="pt-2">
+            <h2 className="text-lg font-bold">Pick a skill</h2>
+            <p className="text-sm text-muted-foreground">Short, focused practice.</p>
+          </div>
 
           {/* Track Switcher */}
           <div className="flex gap-2 p-1 bg-muted/50 rounded-xl">
