@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, BookmarkPlus, Clock, Volume2, Eye, EyeOff } from 'lucide-react';
+import { ArrowLeft, BookmarkPlus, Clock, Volume2, Eye, EyeOff, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { BottomSheet } from '@/components/ui/BottomSheet';
@@ -290,6 +290,9 @@ function TappableWord({
 
 /**
  * WordLookupContent - Content for the word lookup bottom sheet
+ *
+ * Matches redesign spec: Word + Translation + Part of speech
+ * Buttons: Listen | Save word | Add to practice
  */
 function WordLookupContent({
   word,
@@ -304,45 +307,48 @@ function WordLookupContent({
 }) {
   return (
     <div className="space-y-4">
-      {/* Translation */}
-      <div className="text-center">
-        <p className="text-2xl font-bold">{word.translation}</p>
+      {/* Word + Translation */}
+      <div className="text-center py-2">
+        <p className="text-2xl font-bold">{word.original}</p>
+        <p className="text-lg text-muted-foreground mt-1">{word.translation}</p>
         {word.pos && (
-          <p className="text-sm text-muted-foreground mt-1 capitalize">{word.pos}</p>
+          <span className="inline-block mt-2 px-2 py-1 text-xs bg-muted rounded-full capitalize">
+            {word.pos}
+          </span>
         )}
       </div>
 
-      {/* Difficulty badge */}
-      {word.difficulty && (
-        <div className="flex justify-center">
-          <span className={cn(
-            'px-2 py-1 text-xs rounded-full',
-            word.difficulty === 'basic' && 'bg-emerald-500/20 text-emerald-400',
-            word.difficulty === 'intermediate' && 'bg-amber-500/20 text-amber-400',
-            word.difficulty === 'advanced' && 'bg-red-500/20 text-red-400'
-          )}>
-            {word.difficulty}
-          </span>
-        </div>
-      )}
-
-      {/* Actions */}
-      <div className="flex gap-2 pt-2">
+      {/* 3-button action grid */}
+      <div className="grid grid-cols-3 gap-3">
         <Button
           variant="outline"
-          className="flex-1 h-12 rounded-xl"
+          size="sm"
+          className="flex-col h-auto py-3 rounded-xl"
           onClick={() => onListen(word.original, 'mk')}
         >
-          <Volume2 className="h-4 w-4 mr-2" />
-          Hear
+          <Volume2 className="h-5 w-5 mb-1" />
+          <span className="text-xs">Listen</span>
         </Button>
         <Button
-          variant={isSaved ? 'secondary' : 'default'}
-          className="flex-1 h-12 rounded-xl"
+          variant={isSaved ? 'secondary' : 'outline'}
+          size="sm"
+          className="flex-col h-auto py-3 rounded-xl"
           onClick={onSave}
         >
-          <BookmarkPlus className="h-4 w-4 mr-2" />
-          {isSaved ? 'Saved' : 'Save'}
+          <BookmarkPlus className="h-5 w-5 mb-1" />
+          <span className="text-xs">{isSaved ? 'Saved' : 'Save word'}</span>
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          className="flex-col h-auto py-3 rounded-xl"
+          onClick={() => {
+            // Add to practice queue (future feature)
+            onSave(); // For now, just save it
+          }}
+        >
+          <Play className="h-5 w-5 mb-1" />
+          <span className="text-xs">Practice</span>
         </Button>
       </div>
     </div>

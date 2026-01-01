@@ -41,8 +41,8 @@ export function DifficultyPicker({ onSelect, title = 'Word Sprint' }: Props) {
           {/* Difficulty Selection */}
           <div className="space-y-4">
             <div className="text-center">
-              <h2 className="text-2xl font-bold mb-2">Choose Difficulty</h2>
-              <p className="text-muted-foreground">Select your challenge level</p>
+              <h2 className="text-2xl font-bold mb-1">Word Sprint</h2>
+              <p className="text-muted-foreground">Pick your challenge.</p>
             </div>
             <div className="space-y-3">
               {(['easy', 'medium', 'hard'] as const).map((d) => (
@@ -98,14 +98,21 @@ export function DifficultyPicker({ onSelect, title = 'Word Sprint' }: Props) {
           </div>
 
           {/* Start Button */}
-          <Button
-            size="lg"
-            className="w-full min-h-[52px] rounded-xl"
-            onClick={handleStart}
-            disabled={!selectedDifficulty}
-          >
-            Start Session
-          </Button>
+          <div className="space-y-2">
+            <Button
+              size="lg"
+              className="w-full min-h-[52px] rounded-xl"
+              onClick={handleStart}
+              disabled={!selectedDifficulty}
+            >
+              Start session
+            </Button>
+            {!selectedDifficulty && (
+              <p className="text-center text-sm text-muted-foreground">
+                Choose difficulty to start.
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </div>

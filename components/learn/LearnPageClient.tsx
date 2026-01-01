@@ -55,12 +55,12 @@ export function LearnPageClient({
       <div className="flex-1 px-4 py-6">
         <div className="max-w-lg mx-auto space-y-6">
           {/* Hero Section */}
-          <div className="text-center space-y-3">
-            <h1 className="text-3xl font-bold text-foreground">
+          <div className="text-center space-y-2">
+            <h1 className="text-2xl font-bold text-foreground">
               Learn Macedonian
             </h1>
             <p className="text-base text-muted-foreground">
-              5 minutes a day to start speaking Macedonian.
+              Just 5 minutes — you&apos;ve got this.
             </p>
           </div>
 
@@ -109,10 +109,10 @@ export function LearnPageClient({
           {/* Secondary CTA */}
           <Link
             href={`/${locale}/practice`}
-            className="flex items-center justify-center gap-2 rounded-xl border border-border/50 bg-card/50 p-4 transition-colors hover:bg-card hover:border-primary/30"
+            className="flex items-center justify-center gap-2 rounded-xl border border-border/50 bg-card/50 p-4 transition-colors hover:bg-card hover:border-primary/30 active:scale-[0.99]"
           >
             <BookOpen className="h-5 w-5 text-muted-foreground" />
-            <span className="font-medium text-muted-foreground">Practice a specific skill</span>
+            <span className="font-medium text-muted-foreground">Quick practice</span>
             <ChevronRight className="h-4 w-4 text-muted-foreground" />
           </Link>
 

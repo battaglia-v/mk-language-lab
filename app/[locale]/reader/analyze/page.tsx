@@ -48,7 +48,10 @@ export default function ReaderAnalyzePage() {
               <ArrowLeft className="h-5 w-5" />
             </Link>
           </Button>
-          <h1 className="text-xl font-bold">Text Analyzer</h1>
+          <div>
+            <h1 className="text-lg font-bold">Text Analyzer</h1>
+            <p className="text-xs text-muted-foreground">Break down any text into words and meaning.</p>
+          </div>
         </div>
       </header>
 

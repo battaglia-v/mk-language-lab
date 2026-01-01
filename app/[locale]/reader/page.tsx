@@ -73,8 +73,9 @@ export default function ReaderPage() {
   return (
     <div className="min-h-screen pb-24 sm:pb-6">
       {/* Header */}
-      <header className="px-4 pt-6 pb-2">
-        <h1 className="text-2xl font-bold text-center">Reader</h1>
+      <header className="px-4 pt-6 pb-2 text-center">
+        <h1 className="text-2xl font-bold">Reader</h1>
+        <p className="text-sm text-muted-foreground mt-1">Read real Macedonian, tap any word.</p>
       </header>
 
       <PageContainer size="lg">
@@ -210,7 +211,7 @@ export default function ReaderPage() {
               ) : (
                 <div className="text-center py-12 text-muted-foreground">
                   <BookOpen className="h-12 w-12 mx-auto mb-4 opacity-30" />
-                  <p>No readings available yet.</p>
+                  <p>Nothing yet — open a story to start.</p>
                 </div>
               )}
             </section>
@@ -226,10 +227,10 @@ export default function ReaderPage() {
                 Select a text from the Library or analyze your own
               </p>
               <div className="flex flex-col gap-3 max-w-xs mx-auto">
-                <Button asChild>
+                <Button asChild className="active:scale-[0.99]">
                   <Link href={`/${locale}/reader/analyze`}>
                     <Wrench className="h-4 w-4 mr-2" />
-                    Analyze Custom Text
+                    Analyze text
                   </Link>
                 </Button>
               </div>
