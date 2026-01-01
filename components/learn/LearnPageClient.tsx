@@ -62,6 +62,13 @@ export function LearnPageClient({
             <p className="text-base text-muted-foreground">
               Just 5 minutes — you&apos;ve got this.
             </p>
+            <Link
+              href={`/${locale}/learn/paths`}
+              className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
+            >
+              Browse all learning paths
+              <ChevronRight className="h-4 w-4" />
+            </Link>
           </div>
 
           {/* Daily Goal Progress */}

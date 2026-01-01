@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "id": "technology-v1",
+    "title": "Technology & Communication",
+    "titleMk": "Технологија и комуникација",
+    "description": "30 sentences about technology and digital communication",
+    "descriptionMk": "30 реченици за технологија и дигитална комуникација",
+    "level": "A2",
+    "category": "technology",
+    "version": "1.0.0",
+    "lastUpdated": "2025-01-01"
+  },
+  "items": [
+    {
+      "id": "tech-001",
+      "mk": "Работам на компјутер.",
+      "en": "I work on a computer.",
+      "category": "devices"
+    },
+    {
+      "id": "tech-002",
+      "mk": "Компјутерот ми е бавен денес.",
+      "en": "My computer is slow today.",
+      "category": "devices"
+    },
+    {
+      "id": "tech-003",
+      "mk": "Таа си купи нов таблет.",
+      "en": "She bought herself a new tablet.",
+      "category": "devices"
+    },
+    {
+      "id": "tech-004",
+      "mk": "Си ја заборавив лозинката!",
+      "en": "I forgot my password!",
+      "category": "accounts"
+    },
+    {
+      "id": "tech-005",
+      "mk": "Треба да отвориш нова сметка.",
+      "en": "You need to open a new account.",
+      "category": "accounts"
+    },
+    {
+      "id": "tech-006",
+      "mk": "Имаш Инстаграм?",
+      "en": "Do you have Instagram?",
+      "category": "social"
+    },
+    {
+      "id": "tech-007",
+      "mk": "Треба да создадеш профил.",
+      "en": "You need to create a profile.",
+      "category": "accounts"
+    },
+    {
+      "id": "tech-008",
+      "mk": "Симни ја апликацијата!",
+      "en": "Download the app!",
+      "category": "apps"
+    },
+    {
+      "id": "tech-009",
+      "mk": "Пребарувам на интернет.",
+      "en": "I'm searching on the internet.",
+      "category": "internet"
+    },
+    {
+      "id": "tech-010",
+      "mk": "Сега ќе ти пратам е-пошта (имејл).",
+      "en": "I'll send you an email now.",
+      "category": "communication"
+    },
+    {
+      "id": "tech-011",
+      "mk": "Користиш социјални мрежи?",
+      "en": "Do you use social media?",
+      "category": "social"
+    },
+    {
+      "id": "tech-012",
+      "mk": "Што мислиш за вештачката интелигенција?",
+      "en": "What do you think about artificial intelligence?",
+      "category": "tech-topics"
+    },
+    {
+      "id": "tech-013",
+      "mk": "Придружи ни се на групниот повик!",
+      "en": "Join us on the group call!",
+      "category": "communication"
+    },
+    {
+      "id": "tech-014",
+      "mk": "Сега ќе ти се јавам.",
+      "en": "I'll call you now.",
+      "category": "communication"
+    },
+    {
+      "id": "tech-015",
+      "mk": "Јави ми се утре!",
+      "en": "Call me tomorrow!",
+      "category": "communication"
+    },
+    {
+      "id": "tech-016",
+      "mk": "Прати ми порака!",
+      "en": "Send me a message!",
+      "category": "communication"
+    },
+    {
+      "id": "tech-017",
+      "mk": "Секој ден ми стигнуваат нови известувања.",
+      "en": "Every day I receive new notifications.",
+      "category": "apps"
+    },
+    {
+      "id": "tech-018",
+      "mk": "Таа често објавува слики од нејзините патувања.",
+      "en": "She often posts photos from her travels.",
+      "category": "social"
+    },
+    {
+      "id": "tech-019",
+      "mk": "Телефонот ми е празен.",
+      "en": "My phone is dead.",
+      "category": "devices"
+    },
+    {
+      "id": "tech-020",
+      "mk": "Каде е полначот?",
+      "en": "Where is the charger?",
+      "category": "devices"
+    },
+    {
+      "id": "tech-021",
+      "mk": "Треба да го наполнам лаптопот.",
+      "en": "I need to charge my laptop.",
+      "category": "devices"
+    },
+    {
+      "id": "tech-022",
+      "mk": "Намести аларм на телефонот.",
+      "en": "Set an alarm on the phone.",
+      "category": "devices"
+    },
+    {
+      "id": "tech-023",
+      "mk": "Треба да ја исчистам меморијата.",
+      "en": "I need to clear the memory.",
+      "category": "devices"
+    },
+    {
+      "id": "tech-024",
+      "mk": "Можеш да се поврзеш на интернет?",
+      "en": "Can you connect to the internet?",
+      "category": "internet"
+    },
+    {
+      "id": "tech-025",
+      "mk": "Која е лозинката?",
+      "en": "What is the password?",
+      "category": "internet"
+    },
+    {
+      "id": "tech-026",
+      "mk": "Слаб ми е интернетот.",
+      "en": "My internet is slow.",
+      "category": "internet"
+    },
+    {
+      "id": "tech-027",
+      "mk": "Ја изгубив врската.",
+      "en": "I lost the connection.",
+      "category": "internet"
+    },
+    {
+      "id": "tech-028",
+      "mk": "Не те слушам! Ме слушаш?",
+      "en": "I can't hear you! Can you hear me?",
+      "category": "calls"
+    },
+    {
+      "id": "tech-029",
+      "mk": "Добро е, сега те слушам!",
+      "en": "It's fine, I can hear you now!",
+      "category": "calls"
+    },
+    {
+      "id": "tech-030",
+      "mk": "Почекај, имам втор повик. Важно е!",
+      "en": "Wait, I have another call. It's important!",
+      "category": "calls"
+    }
+  ]
+}

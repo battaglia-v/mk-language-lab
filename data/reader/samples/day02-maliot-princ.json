@@ -1,0 +1,45 @@
+{
+  "id": "day02-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 2: Возрасните",
+  "title_en": "Day 2: Grown-ups",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "narrative", "adjectives", "opinions"],
+  "series": "30-Day Reading Challenge",
+  "day": 2,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Придавки со –ен/-на/-но",
+      "title_en": "Adjectives ending in –ен/-на/-но",
+      "description_en": "Common adjective pattern with gender agreement",
+      "examples": [
+        { "mk": "возрасен/возрасна/возрасно", "en": "adult (m/f/n)" },
+        { "mk": "чуден/чудна/чудно", "en": "strange (m/f/n)" },
+        { "mk": "важен/важна/важно", "en": "important (m/f/n)" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "возрасен", "en": "adult, grown-up", "pos": "adjective" },
+    { "mk": "објаснува", "en": "explains", "pos": "verb" },
+    { "mk": "интересира", "en": "interests", "pos": "verb" },
+    { "mk": "број", "en": "number", "pos": "noun" },
+    { "mk": "прашање", "en": "question", "pos": "noun" },
+    { "mk": "одговор", "en": "answer", "pos": "noun" }
+  ],
+  "expressions": [
+    { "mk": "Тоа е важно", "en": "That is important", "usage": "Stating significance" },
+    { "mk": "Не ме интересира", "en": "I'm not interested", "usage": "Expressing disinterest" }
+  ],
+  "audioUrl": null,
+  "attribution": {
+    "handle": "@macedonianlanguagecorner",
+    "series": "30-Day Reading Challenge",
+    "day": "2",
+    "sourceTitle": "Content pending - add from licensed source"
+  }
+}

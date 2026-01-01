@@ -1,0 +1,197 @@
+{
+  "meta": {
+    "id": "weather-seasons-v1",
+    "title": "Weather & Seasons",
+    "titleMk": "Време и годишни времиња",
+    "description": "30 sentences about weather and seasons",
+    "descriptionMk": "30 реченици за временски услови и годишни времиња",
+    "level": "A1",
+    "category": "weather",
+    "version": "1.0.0",
+    "lastUpdated": "2025-01-01"
+  },
+  "items": [
+    {
+      "id": "wx-001",
+      "mk": "Времето е убаво.",
+      "en": "The weather is nice.",
+      "category": "general"
+    },
+    {
+      "id": "wx-002",
+      "mk": "Времето е лошо.",
+      "en": "The weather is bad.",
+      "category": "general"
+    },
+    {
+      "id": "wx-003",
+      "mk": "Времето е ужасно!",
+      "en": "The weather is terrible!",
+      "category": "general"
+    },
+    {
+      "id": "wx-004",
+      "mk": "Сончево е.",
+      "en": "It's sunny.",
+      "category": "conditions"
+    },
+    {
+      "id": "wx-005",
+      "mk": "Топло е.",
+      "en": "It's warm.",
+      "category": "temperature"
+    },
+    {
+      "id": "wx-006",
+      "mk": "Жешко е.",
+      "en": "It's hot.",
+      "category": "temperature"
+    },
+    {
+      "id": "wx-007",
+      "mk": "Колку е жешко!",
+      "en": "How hot it is!",
+      "category": "temperature"
+    },
+    {
+      "id": "wx-008",
+      "mk": "Студено е.",
+      "en": "It's cold.",
+      "category": "temperature"
+    },
+    {
+      "id": "wx-009",
+      "mk": "Свежо е.",
+      "en": "It's cool/fresh.",
+      "category": "temperature"
+    },
+    {
+      "id": "wx-010",
+      "mk": "Ладно е.",
+      "en": "It's chilly.",
+      "category": "temperature",
+      "notes": "Conversational/informal"
+    },
+    {
+      "id": "wx-011",
+      "mk": "Дува ветер.",
+      "en": "The wind is blowing.",
+      "category": "conditions"
+    },
+    {
+      "id": "wx-012",
+      "mk": "Врне (дожд).",
+      "en": "It's raining.",
+      "category": "precipitation"
+    },
+    {
+      "id": "wx-013",
+      "mk": "Врнежливо е.",
+      "en": "It's rainy.",
+      "category": "precipitation"
+    },
+    {
+      "id": "wx-014",
+      "mk": "Земи си чадор. Ќе врне.",
+      "en": "Take an umbrella. It will rain.",
+      "category": "precipitation"
+    },
+    {
+      "id": "wx-015",
+      "mk": "Истура.",
+      "en": "It's pouring.",
+      "category": "precipitation",
+      "notes": "Like 'raining cats and dogs'"
+    },
+    {
+      "id": "wx-016",
+      "mk": "Паѓа снег.",
+      "en": "It's snowing.",
+      "category": "precipitation"
+    },
+    {
+      "id": "wx-017",
+      "mk": "Има снежна бура.",
+      "en": "There's a snowstorm.",
+      "category": "storms"
+    },
+    {
+      "id": "wx-018",
+      "mk": "Грми.",
+      "en": "It's thundering.",
+      "category": "storms"
+    },
+    {
+      "id": "wx-019",
+      "mk": "Удри гром.",
+      "en": "Thunder struck.",
+      "category": "storms"
+    },
+    {
+      "id": "wx-020",
+      "mk": "Светна молња.",
+      "en": "Lightning flashed.",
+      "category": "storms"
+    },
+    {
+      "id": "wx-021",
+      "mk": "Има виножито.",
+      "en": "There's a rainbow.",
+      "category": "conditions"
+    },
+    {
+      "id": "wx-022",
+      "mk": "Доаѓа пролет!",
+      "en": "Spring is coming!",
+      "category": "seasons"
+    },
+    {
+      "id": "wx-023",
+      "mk": "Летото е топло.",
+      "en": "Summer is warm.",
+      "category": "seasons"
+    },
+    {
+      "id": "wx-024",
+      "mk": "Есен е. Лисјата паѓаат.",
+      "en": "It's autumn. The leaves are falling.",
+      "category": "seasons"
+    },
+    {
+      "id": "wx-025",
+      "mk": "Во зима славиме Божиќ.",
+      "en": "In winter we celebrate Christmas.",
+      "category": "seasons"
+    },
+    {
+      "id": "wx-026",
+      "mk": "Правиме снешко.",
+      "en": "We're making a snowman.",
+      "category": "winter"
+    },
+    {
+      "id": "wx-027",
+      "mk": "Кое ти е омилено годишно време?",
+      "en": "What is your favorite season?",
+      "category": "seasons"
+    },
+    {
+      "id": "wx-028",
+      "mk": "Секое годишно време си е убаво на свој начин.",
+      "en": "Every season is beautiful in its own way.",
+      "category": "seasons"
+    },
+    {
+      "id": "wx-029",
+      "mk": "Најмногу сакам лето!",
+      "en": "I love summer the most!",
+      "category": "seasons"
+    },
+    {
+      "id": "wx-030",
+      "mk": "Не сакам зима. Премногу студи!",
+      "en": "I don't like winter. It's too cold!",
+      "category": "seasons"
+    }
+  ]
+}

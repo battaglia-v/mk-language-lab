@@ -1,0 +1,356 @@
+{
+  "meta": {
+    "id": "numbers-time-v1",
+    "title": "Numbers, Days & Time",
+    "titleMk": "Броеви, денови и време",
+    "description": "50 sentences about numbers, days, months, and telling time",
+    "descriptionMk": "50 реченици за броеви, денови, месеци и кажување на времето",
+    "level": "A1",
+    "category": "numbers",
+    "version": "1.0.0",
+    "lastUpdated": "2025-01-01"
+  },
+  "items": [
+    {
+      "id": "num-001",
+      "mk": "Ми треба едно столче.",
+      "en": "I need one chair.",
+      "category": "numbers"
+    },
+    {
+      "id": "num-002",
+      "mk": "Имам две сестри.",
+      "en": "I have two sisters.",
+      "category": "numbers"
+    },
+    {
+      "id": "num-003",
+      "mk": "Имам еден брат и една сестра.",
+      "en": "I have one brother and one sister.",
+      "category": "numbers"
+    },
+    {
+      "id": "num-004",
+      "mk": "Марко има двајца браќа.",
+      "en": "Marko has two brothers.",
+      "category": "numbers"
+    },
+    {
+      "id": "num-005",
+      "mk": "Купив три џемпера.",
+      "en": "I bought three sweaters.",
+      "category": "numbers"
+    },
+    {
+      "id": "num-006",
+      "mk": "Јана има четири мачки.",
+      "en": "Jana has four cats.",
+      "category": "numbers"
+    },
+    {
+      "id": "num-007",
+      "mk": "Има пет јајца во кутијата.",
+      "en": "There are five eggs in the box.",
+      "category": "numbers"
+    },
+    {
+      "id": "num-008",
+      "mk": "Треба да направам шест вежби.",
+      "en": "I need to do six exercises.",
+      "category": "numbers"
+    },
+    {
+      "id": "num-009",
+      "mk": "Има седум ѕвезди на небото.",
+      "en": "There are seven stars in the sky.",
+      "category": "numbers"
+    },
+    {
+      "id": "num-010",
+      "mk": "Има осум книги на полицата.",
+      "en": "There are eight books on the shelf.",
+      "category": "numbers"
+    },
+    {
+      "id": "num-011",
+      "mk": "Има само девет студенти во училницата.",
+      "en": "There are only nine students in the classroom.",
+      "category": "numbers"
+    },
+    {
+      "id": "num-012",
+      "mk": "Каде е десеттиот студент?",
+      "en": "Where is the tenth student?",
+      "category": "numbers"
+    },
+    {
+      "id": "num-013",
+      "mk": "Колку чини јакнава?",
+      "en": "How much does this jacket cost?",
+      "category": "prices"
+    },
+    {
+      "id": "num-014",
+      "mk": "Има дваесет проценти попуст.",
+      "en": "There's a twenty percent discount.",
+      "category": "prices"
+    },
+    {
+      "id": "num-015",
+      "mk": "Чини илјада денари.",
+      "en": "It costs one thousand denars.",
+      "category": "prices"
+    },
+    {
+      "id": "num-016",
+      "mk": "Може да платам со картичка?",
+      "en": "Can I pay by card?",
+      "category": "prices"
+    },
+    {
+      "id": "num-017",
+      "mk": "Вкупно е петстотини денари.",
+      "en": "The total is five hundred denars.",
+      "category": "prices"
+    },
+    {
+      "id": "num-018",
+      "mk": "Вкупно е две илјади денари.",
+      "en": "The total is two thousand denars.",
+      "category": "prices"
+    },
+    {
+      "id": "num-019",
+      "mk": "Има триста шеесет и пет дена во годината.",
+      "en": "There are 365 days in a year.",
+      "category": "calendar"
+    },
+    {
+      "id": "num-020",
+      "mk": "Во Охрид има триста шеесет и пет цркви.",
+      "en": "In Ohrid there are 365 churches.",
+      "category": "facts",
+      "notes": "Famous Macedonian fact about Ohrid"
+    },
+    {
+      "id": "num-021",
+      "mk": "Има дванаесет месеци во годината.",
+      "en": "There are twelve months in a year.",
+      "category": "calendar"
+    },
+    {
+      "id": "num-022",
+      "mk": "Во јануари славиме Божиќ.",
+      "en": "In January we celebrate Christmas.",
+      "category": "months",
+      "notes": "Orthodox Christmas is January 7"
+    },
+    {
+      "id": "num-023",
+      "mk": "Во февруари има карневал.",
+      "en": "In February there's a carnival.",
+      "category": "months"
+    },
+    {
+      "id": "num-024",
+      "mk": "Во март е Денот на жената.",
+      "en": "In March is Women's Day.",
+      "category": "months"
+    },
+    {
+      "id": "num-025",
+      "mk": "Во април славиме Велигден.",
+      "en": "In April we celebrate Easter.",
+      "category": "months"
+    },
+    {
+      "id": "num-026",
+      "mk": "Во мај ми е роденден.",
+      "en": "My birthday is in May.",
+      "category": "months"
+    },
+    {
+      "id": "num-027",
+      "mk": "Во јуни е крај на учебната година.",
+      "en": "In June is the end of the school year.",
+      "category": "months"
+    },
+    {
+      "id": "num-028",
+      "mk": "Во јули одиме на одмор.",
+      "en": "In July we go on vacation.",
+      "category": "months"
+    },
+    {
+      "id": "num-029",
+      "mk": "Во август е многу жешко во Скопје.",
+      "en": "In August it's very hot in Skopje.",
+      "category": "months"
+    },
+    {
+      "id": "num-030",
+      "mk": "Во септември почнува учебната година.",
+      "en": "In September the school year begins.",
+      "category": "months"
+    },
+    {
+      "id": "num-031",
+      "mk": "Во октомври почнува да врне.",
+      "en": "In October it starts to rain.",
+      "category": "months"
+    },
+    {
+      "id": "num-032",
+      "mk": "Во ноември е студено.",
+      "en": "In November it's cold.",
+      "category": "months"
+    },
+    {
+      "id": "num-033",
+      "mk": "Во декември паѓа снег.",
+      "en": "In December it snows.",
+      "category": "months"
+    },
+    {
+      "id": "num-034",
+      "mk": "Во понеделник имаме состанок.",
+      "en": "On Monday we have a meeting.",
+      "category": "days"
+    },
+    {
+      "id": "num-035",
+      "mk": "Секој вторник имам часови по пливање.",
+      "en": "Every Tuesday I have swimming lessons.",
+      "category": "days"
+    },
+    {
+      "id": "num-036",
+      "mk": "Среда ми е омилен ден.",
+      "en": "Wednesday is my favorite day.",
+      "category": "days"
+    },
+    {
+      "id": "num-037",
+      "mk": "Во четврток имам курс по шпански јазик.",
+      "en": "On Thursday I have a Spanish language course.",
+      "category": "days"
+    },
+    {
+      "id": "num-038",
+      "mk": "Петок е последниот работен ден.",
+      "en": "Friday is the last working day.",
+      "category": "days"
+    },
+    {
+      "id": "num-039",
+      "mk": "Во сабота излегувам со пријателите.",
+      "en": "On Saturday I go out with friends.",
+      "category": "days"
+    },
+    {
+      "id": "num-040",
+      "mk": "Во недела одмарам.",
+      "en": "On Sunday I rest.",
+      "category": "days"
+    },
+    {
+      "id": "num-041",
+      "mk": "Колку е часот?",
+      "en": "What time is it?",
+      "category": "time"
+    },
+    {
+      "id": "num-042",
+      "mk": "Немам време!",
+      "en": "I don't have time!",
+      "category": "time"
+    },
+    {
+      "id": "num-043",
+      "mk": "Сега е два часот попладне.",
+      "en": "It's now two o'clock in the afternoon.",
+      "category": "time"
+    },
+    {
+      "id": "num-044",
+      "mk": "Точно е единаесет часот и дваесет минути.",
+      "en": "It's exactly 11:20.",
+      "category": "time"
+    },
+    {
+      "id": "num-045",
+      "mk": "Три и пол е.",
+      "en": "It's half past three.",
+      "category": "time"
+    },
+    {
+      "id": "num-046",
+      "mk": "Дваесет до пет е.",
+      "en": "It's twenty to five.",
+      "category": "time"
+    },
+    {
+      "id": "num-047",
+      "mk": "Пет до десет е.",
+      "en": "It's five to ten.",
+      "category": "time"
+    },
+    {
+      "id": "num-048",
+      "mk": "Полноќ е.",
+      "en": "It's midnight.",
+      "category": "time"
+    },
+    {
+      "id": "num-049",
+      "mk": "Седум навечер е.",
+      "en": "It's seven in the evening.",
+      "category": "time"
+    },
+    {
+      "id": "num-050",
+      "mk": "Десет часот наутро е.",
+      "en": "It's ten o'clock in the morning.",
+      "category": "time"
+    }
+  ],
+  "reference": {
+    "numbers": [
+      {"num": 0, "mk": "нула", "latin": "nula"},
+      {"num": 1, "mk": "еден", "latin": "eden"},
+      {"num": 2, "mk": "два", "latin": "dva"},
+      {"num": 3, "mk": "три", "latin": "tri"},
+      {"num": 4, "mk": "четири", "latin": "chetiri"},
+      {"num": 5, "mk": "пет", "latin": "pet"},
+      {"num": 6, "mk": "шест", "latin": "shest"},
+      {"num": 7, "mk": "седум", "latin": "sedum"},
+      {"num": 8, "mk": "осум", "latin": "osum"},
+      {"num": 9, "mk": "девет", "latin": "devet"},
+      {"num": 10, "mk": "десет", "latin": "deset"},
+      {"num": 11, "mk": "единаесет", "latin": "edinaeset"},
+      {"num": 12, "mk": "дванаесет", "latin": "dvanaeset"},
+      {"num": 20, "mk": "дваесет", "latin": "dvaeset"},
+      {"num": 30, "mk": "триесет", "latin": "trieset"},
+      {"num": 40, "mk": "четириесет", "latin": "chetirieset"},
+      {"num": 50, "mk": "педесет", "latin": "pedeset"},
+      {"num": 100, "mk": "сто", "latin": "sto"},
+      {"num": 1000, "mk": "илјада", "latin": "iljada"},
+      {"num": 1000000, "mk": "милион", "latin": "milion"}
+    ],
+    "timeVocabulary": [
+      {"mk": "час", "en": "hour", "latin": "chas"},
+      {"mk": "саат", "en": "hour (conversational)", "latin": "saat"},
+      {"mk": "време", "en": "time", "latin": "vreme"},
+      {"mk": "часовник", "en": "clock/watch", "latin": "chasovnik"},
+      {"mk": "минута", "en": "minute", "latin": "minuta"},
+      {"mk": "секунда", "en": "second", "latin": "sekunda"},
+      {"mk": "половина", "en": "half", "latin": "polovina"},
+      {"mk": "пред", "en": "before", "latin": "pred"},
+      {"mk": "по", "en": "after", "latin": "po"},
+      {"mk": "наутро", "en": "in the morning", "latin": "nautro"},
+      {"mk": "напладне", "en": "at noon", "latin": "napladne"},
+      {"mk": "навечер", "en": "in the evening", "latin": "navecher"},
+      {"mk": "на полноќ", "en": "at midnight", "latin": "na polnok"}
+    ]
+  }
+}
