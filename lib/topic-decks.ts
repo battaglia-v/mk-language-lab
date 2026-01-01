@@ -10,6 +10,7 @@ import clothingAppearanceDeck from '@/data/decks/clothing-appearance-deck.json';
 import technologyDeck from '@/data/decks/technology-deck.json';
 import numbersTimeDeck from '@/data/decks/numbers-time-deck.json';
 import celebrationsDeck from '@/data/decks/celebrations-deck.json';
+import alphabetDeck from '@/data/alphabet-deck.json';
 
 export interface TopicDeckItem {
   id: string;
@@ -35,6 +36,27 @@ export interface TopicDeck {
   items: TopicDeckItem[];
 }
 
+// Alphabet deck has a different structure - convert it to TopicDeck format
+const alphabetDeckConverted: TopicDeck = {
+  meta: {
+    id: alphabetDeck.meta.id,
+    title: alphabetDeck.meta.title,
+    titleMk: alphabetDeck.meta.titleMk,
+    description: alphabetDeck.meta.description,
+    descriptionMk: alphabetDeck.meta.descriptionMk,
+    level: alphabetDeck.meta.level,
+    category: alphabetDeck.meta.category,
+    version: alphabetDeck.meta.version,
+    lastUpdated: alphabetDeck.meta.lastUpdated,
+  },
+  items: alphabetDeck.items.map((item: { id: string; letter: string; latinEquiv: string; exampleWord: { mk: string; en: string }; notes: string }) => ({
+    id: item.id,
+    mk: item.letter.split(' ')[0], // Just the uppercase letter
+    en: `${item.latinEquiv} - ${item.notes}`, // Latin equivalent with pronunciation hint
+    category: 'alphabet',
+  })),
+};
+
 // Map deck IDs to their data
 const topicDecks: Record<string, TopicDeck> = {
   'household-v1': householdDeck as TopicDeck,
@@ -45,6 +67,7 @@ const topicDecks: Record<string, TopicDeck> = {
   'technology-v1': technologyDeck as TopicDeck,
   'numbers-time-v1': numbersTimeDeck as TopicDeck,
   'celebrations-v1': celebrationsDeck as TopicDeck,
+  'cyrillic-alphabet-v1': alphabetDeckConverted,
 };
 
 /**

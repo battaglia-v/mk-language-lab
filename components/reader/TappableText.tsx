@@ -123,7 +123,7 @@ export function TappableText({ text, vocabulary, className, locale }: TappableTe
 
   return (
     <>
-      <p className={cn('leading-relaxed', className)}>
+      <p className={cn('leading-relaxed select-none', className)}>
         {words.map((word, idx) => {
           // Skip whitespace
           if (/^\s+$/.test(word)) {
@@ -131,17 +131,30 @@ export function TappableText({ text, vocabulary, className, locale }: TappableTe
           }
 
           // Check if this word is in vocabulary
-          const normalized = word.toLowerCase().replace(/[.,!?;:'"]/g, '');
+          const normalized = word.toLowerCase().replace(/[.,!?;:'"„"«»—–]/g, '');
           const isInVocab = vocabMap.has(normalized);
 
           return (
             <span
               key={idx}
-              onClick={() => handleWordClick(word)}
+              role="button"
+              tabIndex={0}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                handleWordClick(word);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleWordClick(word);
+                }
+              }}
               className={cn(
-                'cursor-pointer rounded-sm px-0.5 -mx-0.5 transition-colors',
-                'hover:bg-primary/20 active:bg-primary/30',
-                isInVocab && 'underline decoration-primary/30 decoration-dotted underline-offset-4'
+                'cursor-pointer rounded-sm px-0.5 -mx-0.5 transition-colors inline',
+                'hover:bg-primary/20 active:bg-primary/30 focus:bg-primary/20 focus:outline-none',
+                'touch-manipulation', // Better mobile touch handling
+                isInVocab && 'underline decoration-primary/40 decoration-dotted underline-offset-4'
               )}
             >
               {word}
