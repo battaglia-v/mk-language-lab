@@ -1,0 +1,39 @@
+{
+  "id": "day26-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 26: Припитомување",
+  "title_en": "Day 26: Taming",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "dialogue", "process", "patience"],
+  "series": "30-Day Reading Challenge",
+  "day": 26,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Процес со 'полека'",
+      "title_en": "Process with 'slowly'",
+      "description_en": "Describing gradual actions",
+      "examples": [
+        { "mk": "полека, постепено", "en": "slowly, gradually" },
+        { "mk": "секој ден малку поблиску", "en": "a little closer every day" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "припитомување", "en": "taming", "pos": "noun" },
+    { "mk": "трпение", "en": "patience", "pos": "noun" },
+    { "mk": "ритуал", "en": "ritual", "pos": "noun" },
+    { "mk": "време", "en": "time", "pos": "noun" },
+    { "mk": "доверба", "en": "trust", "pos": "noun" },
+    { "mk": "приближува", "en": "approaches", "pos": "verb" }
+  ],
+  "expressions": [
+    { "mk": "полека и постепено", "en": "slowly and gradually", "usage": "Process" },
+    { "mk": "секој ден", "en": "every day", "usage": "Routine" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "26" }
+}

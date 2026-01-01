@@ -1,0 +1,39 @@
+{
+  "id": "day09-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 9: Гордоста на цвеќето",
+  "title_en": "Day 9: The Flower's Pride",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "dialogue", "emotions", "vanity"],
+  "series": "30-Day Reading Challenge",
+  "day": 9,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Директен говор",
+      "title_en": "Direct Speech",
+      "description_en": "Quoting what someone said",
+      "examples": [
+        { "mk": "— Јас сум единствена! — рече таа.", "en": "'I am unique!' she said." },
+        { "mk": "— Ме заштитуваш ли? — праша.", "en": "'Will you protect me?' she asked." }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "гордост", "en": "pride", "pos": "noun" },
+    { "mk": "суета", "en": "vanity", "pos": "noun" },
+    { "mk": "заштита", "en": "protection", "pos": "noun" },
+    { "mk": "ладно", "en": "cold", "pos": "adverb" },
+    { "mk": "промаја", "en": "draft", "pos": "noun" },
+    { "mk": "чувствителен", "en": "sensitive", "pos": "adjective" }
+  ],
+  "expressions": [
+    { "mk": "премногу барање", "en": "too demanding", "usage": "Criticism" },
+    { "mk": "не разбирам", "en": "I don't understand", "usage": "Confusion" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "9" }
+}

@@ -1,0 +1,39 @@
+{
+  "id": "day06-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 6: Астероид Б-612",
+  "title_en": "Day 6: Asteroid B-612",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "narrative", "space", "home"],
+  "series": "30-Day Reading Challenge",
+  "day": 6,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Бројни придавки",
+      "title_en": "Ordinal Numbers",
+      "description_en": "Forming ordinal numbers in Macedonian",
+      "examples": [
+        { "mk": "прв, втор, трет", "en": "first, second, third" },
+        { "mk": "шестстотини дванаесетти", "en": "six hundred twelfth" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "астероид", "en": "asteroid", "pos": "noun" },
+    { "mk": "планета", "en": "planet", "pos": "noun" },
+    { "mk": "мал", "en": "small", "pos": "adjective" },
+    { "mk": "ѕвезда", "en": "star", "pos": "noun" },
+    { "mk": "телескоп", "en": "telescope", "pos": "noun" },
+    { "mk": "научник", "en": "scientist", "pos": "noun" }
+  ],
+  "expressions": [
+    { "mk": "доаѓа од", "en": "comes from", "usage": "Origin" },
+    { "mk": "еднаш видено", "en": "once seen", "usage": "Past observation" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "6" }
+}

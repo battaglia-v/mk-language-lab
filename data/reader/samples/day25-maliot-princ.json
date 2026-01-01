@@ -1,0 +1,46 @@
+{
+  "id": "day25-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 25: Преглед - Недела 5",
+  "title_en": "Day 25: Review - Week 5",
+  "difficulty": "B1",
+  "estimatedMinutes": 15,
+  "tags": ["30-day-challenge", "review", "checkpoint"],
+  "series": "30-Day Reading Challenge",
+  "day": 25,
+  "text_blocks_mk": [
+    { "type": "h2", "value": "Преглед на Недела 5" },
+    { "type": "p", "value": "Принцот ја сретна змијата, ја мина пустината, ја виде градината со рузи и ја запозна мудрата лисица." }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Преглед: Множина",
+      "title_en": "Review: Plurals",
+      "examples": [
+        { "mk": "ружа—рузи, ѕвезда—ѕвезди", "en": "rose—roses, star—stars" }
+      ]
+    },
+    {
+      "title_mk": "Преглед: Барања",
+      "title_en": "Review: Requests",
+      "examples": [
+        { "mk": "Те молам...", "en": "Please..." },
+        { "mk": "Би сакал да...", "en": "I would like to..." }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "змија", "en": "snake", "pos": "noun" },
+    { "mk": "пустина", "en": "desert", "pos": "noun" },
+    { "mk": "градина", "en": "garden", "pos": "noun" },
+    { "mk": "лисица", "en": "fox", "pos": "noun" },
+    { "mk": "припитомува", "en": "tames", "pos": "verb" },
+    { "mk": "единствен", "en": "unique", "pos": "adjective" }
+  ],
+  "expressions": [
+    { "mk": "да создадеш врски", "en": "to create bonds", "usage": "Connection" },
+    { "mk": "Мислев дека...", "en": "I thought that...", "usage": "Realization" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "25" }
+}

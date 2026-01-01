@@ -1,0 +1,39 @@
+{
+  "id": "day23-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 23: Градината",
+  "title_en": "Day 23: The Garden",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "narrative", "realization", "uniqueness"],
+  "series": "30-Day Reading Challenge",
+  "day": 23,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Множина на именки",
+      "title_en": "Plural Nouns",
+      "description_en": "Forming plurals in Macedonian",
+      "examples": [
+        { "mk": "ружа — рузи", "en": "rose — roses" },
+        { "mk": "цвеќе — цвеќиња", "en": "flower — flowers" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "градина", "en": "garden", "pos": "noun" },
+    { "mk": "ружи", "en": "roses", "pos": "noun" },
+    { "mk": "исти", "en": "same", "pos": "adjective" },
+    { "mk": "разочаран", "en": "disappointed", "pos": "adjective" },
+    { "mk": "единствен", "en": "unique", "pos": "adjective" },
+    { "mk": "плаче", "en": "cries", "pos": "verb" }
+  ],
+  "expressions": [
+    { "mk": "Мислев дека...", "en": "I thought that...", "usage": "Past belief" },
+    { "mk": "Не е единствена.", "en": "It's not unique.", "usage": "Realization" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "23" }
+}

@@ -1,0 +1,39 @@
+{
+  "id": "day21-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 21: Змијата",
+  "title_en": "Day 21: The Snake",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "dialogue", "mystery", "symbolism"],
+  "series": "30-Day Reading Challenge",
+  "day": 21,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Загатки и метафори",
+      "title_en": "Riddles and Metaphors",
+      "description_en": "Understanding figurative language",
+      "examples": [
+        { "mk": "Можам да те вратам...", "en": "I can return you..." },
+        { "mk": "посилен од прстот на крал", "en": "stronger than a king's finger" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "змија", "en": "snake", "pos": "noun" },
+    { "mk": "загатка", "en": "riddle", "pos": "noun" },
+    { "mk": "моќен", "en": "powerful", "pos": "adjective" },
+    { "mk": "песок", "en": "sand", "pos": "noun" },
+    { "mk": "ѕвезда", "en": "star", "pos": "noun" },
+    { "mk": "враќа", "en": "returns", "pos": "verb" }
+  ],
+  "expressions": [
+    { "mk": "Каде одиш?", "en": "Where are you going?", "usage": "Direction" },
+    { "mk": "Ќе се видиме.", "en": "We will see each other.", "usage": "Future meeting" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "21" }
+}

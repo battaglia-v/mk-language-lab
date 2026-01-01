@@ -1,0 +1,39 @@
+{
+  "id": "day27-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 27: Тајната",
+  "title_en": "Day 27: The Secret",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "dialogue", "wisdom", "heart"],
+  "series": "30-Day Reading Challenge",
+  "day": 27,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Суштествено со 'само'",
+      "title_en": "Essential with 'only'",
+      "description_en": "Expressing what truly matters",
+      "examples": [
+        { "mk": "Само со срцето се гледа добро.", "en": "Only with the heart can one see clearly." },
+        { "mk": "Суштината е невидлива.", "en": "What is essential is invisible." }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "тајна", "en": "secret", "pos": "noun" },
+    { "mk": "срце", "en": "heart", "pos": "noun" },
+    { "mk": "суштина", "en": "essence", "pos": "noun" },
+    { "mk": "невидлив", "en": "invisible", "pos": "adjective" },
+    { "mk": "очи", "en": "eyes", "pos": "noun" },
+    { "mk": "гледа", "en": "sees", "pos": "verb" }
+  ],
+  "expressions": [
+    { "mk": "Само со срцето", "en": "Only with the heart", "usage": "Wisdom" },
+    { "mk": "невидливо за очите", "en": "invisible to the eyes", "usage": "Hidden truth" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "27" }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "day20-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 20: Преглед - Недела 4",
+  "title_en": "Day 20: Review - Week 4",
+  "difficulty": "B1",
+  "estimatedMinutes": 15,
+  "tags": ["30-day-challenge", "review", "checkpoint"],
+  "series": "30-Day Reading Challenge",
+  "day": 20,
+  "text_blocks_mk": [
+    { "type": "h2", "value": "Преглед на Недела 4" },
+    { "type": "p", "value": "Принцот го посети бизнисменот, фенерџијата и географот, и конечно пристигна на Земјата." }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Преглед: Споредби",
+      "title_en": "Review: Comparisons",
+      "examples": [
+        { "mk": "поголем, помал, подобар", "en": "bigger, smaller, better" }
+      ]
+    },
+    {
+      "title_mk": "Преглед: Големи броеви",
+      "title_en": "Review: Large Numbers",
+      "examples": [
+        { "mk": "илјада, милион, милијарда", "en": "thousand, million, billion" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "бизнисмен", "en": "businessman", "pos": "noun" },
+    { "mk": "фенерџија", "en": "lamplighter", "pos": "noun" },
+    { "mk": "географ", "en": "geographer", "pos": "noun" },
+    { "mk": "Земја", "en": "Earth", "pos": "noun" },
+    { "mk": "должност", "en": "duty", "pos": "noun" },
+    { "mk": "огромен", "en": "huge", "pos": "adjective" }
+  ],
+  "expressions": [
+    { "mk": "Немам време!", "en": "I don't have time!", "usage": "Busyness" },
+    { "mk": "многу поразлична", "en": "very different", "usage": "Contrast" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "20" }
+}

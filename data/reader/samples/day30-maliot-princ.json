@@ -1,0 +1,45 @@
+{
+  "id": "day30-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 30: Завршен преглед",
+  "title_en": "Day 30: Final Review",
+  "difficulty": "B1",
+  "estimatedMinutes": 20,
+  "tags": ["30-day-challenge", "review", "final", "assessment"],
+  "series": "30-Day Reading Challenge",
+  "day": 30,
+  "text_blocks_mk": [
+    { "type": "h2", "value": "Честитки! Го завршивте предизвикот!" },
+    { "type": "p", "value": "За 30 дена научивте многу за малиот принц и неговото патување. Ги научивте клучните граматички концепти и богатиот вокабулар." }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Завршен преглед: Сите концепти",
+      "title_en": "Final Review: All Concepts",
+      "description_en": "Review of all grammar from the challenge",
+      "examples": [
+        { "mk": "Минато време: Имало некогаш...", "en": "Past tense: Once upon a time..." },
+        { "mk": "Императив: Нацртај ми!", "en": "Imperative: Draw me!" },
+        { "mk": "Услов: Ако сакаш...", "en": "Conditional: If you want..." },
+        { "mk": "Споредби: поголем од", "en": "Comparisons: bigger than" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "принц", "en": "prince", "pos": "noun" },
+    { "mk": "патување", "en": "journey", "pos": "noun" },
+    { "mk": "пријателство", "en": "friendship", "pos": "noun" },
+    { "mk": "љубов", "en": "love", "pos": "noun" },
+    { "mk": "тајна", "en": "secret", "pos": "noun" },
+    { "mk": "срце", "en": "heart", "pos": "noun" },
+    { "mk": "суштина", "en": "essence", "pos": "noun" },
+    { "mk": "одговорност", "en": "responsibility", "pos": "noun" }
+  ],
+  "expressions": [
+    { "mk": "Само со срцето се гледа добро.", "en": "Only with the heart can one see clearly.", "usage": "Key wisdom" },
+    { "mk": "Ти си одговорен за твоето цвеќе.", "en": "You are responsible for your flower.", "usage": "Responsibility" },
+    { "mk": "Тоа што е суштинско е невидливо.", "en": "What is essential is invisible.", "usage": "Core message" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "30" }
+}

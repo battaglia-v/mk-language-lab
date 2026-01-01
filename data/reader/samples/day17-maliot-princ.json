@@ -1,0 +1,39 @@
+{
+  "id": "day17-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 17: Фенерџијата",
+  "title_en": "Day 17: The Lamplighter",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "dialogue", "duty", "routine"],
+  "series": "30-Day Reading Challenge",
+  "day": 17,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Повторливи дејства",
+      "title_en": "Repetitive Actions",
+      "description_en": "Expressing routine and repeated actions",
+      "examples": [
+        { "mk": "секоја минута", "en": "every minute" },
+        { "mk": "одново и одново", "en": "again and again" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "фенерџија", "en": "lamplighter", "pos": "noun" },
+    { "mk": "фенер", "en": "lamp", "pos": "noun" },
+    { "mk": "пали", "en": "lights", "pos": "verb" },
+    { "mk": "гаси", "en": "extinguishes", "pos": "verb" },
+    { "mk": "должност", "en": "duty", "pos": "noun" },
+    { "mk": "уморен", "en": "tired", "pos": "adjective" }
+  ],
+  "expressions": [
+    { "mk": "Добро утро — Добра ноќ", "en": "Good morning — Good night", "usage": "Greetings" },
+    { "mk": "Тоа е мојата работа.", "en": "That's my job.", "usage": "Duty" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "17" }
+}

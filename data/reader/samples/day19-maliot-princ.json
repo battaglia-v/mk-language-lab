@@ -1,0 +1,39 @@
+{
+  "id": "day19-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 19: Земјата",
+  "title_en": "Day 19: Earth",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "narrative", "earth", "arrival"],
+  "series": "30-Day Reading Challenge",
+  "day": 19,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Споредби",
+      "title_en": "Comparisons",
+      "description_en": "Comparing sizes and quantities",
+      "examples": [
+        { "mk": "поголема од", "en": "bigger than" },
+        { "mk": "многу повеќе од", "en": "much more than" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "Земја", "en": "Earth", "pos": "noun" },
+    { "mk": "континент", "en": "continent", "pos": "noun" },
+    { "mk": "население", "en": "population", "pos": "noun" },
+    { "mk": "огромен", "en": "huge", "pos": "adjective" },
+    { "mk": "милијарди", "en": "billions", "pos": "noun" },
+    { "mk": "пристигнува", "en": "arrives", "pos": "verb" }
+  ],
+  "expressions": [
+    { "mk": "седма планета", "en": "seventh planet", "usage": "Sequence" },
+    { "mk": "многу поразлична", "en": "very different", "usage": "Contrast" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "19" }
+}

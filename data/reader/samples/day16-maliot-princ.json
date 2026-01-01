@@ -1,0 +1,39 @@
+{
+  "id": "day16-maliot-princ",
+  "locale": "mk",
+  "title_mk": "Ден 16: Бизнисменот",
+  "title_en": "Day 16: The Businessman",
+  "difficulty": "B1",
+  "estimatedMinutes": 10,
+  "tags": ["30-day-challenge", "dialogue", "work", "materialism"],
+  "series": "30-Day Reading Challenge",
+  "day": 16,
+  "text_blocks_mk": [
+    { "type": "note", "value": "Reading passage to be added from licensed source" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Големи броеви",
+      "title_en": "Large Numbers",
+      "description_en": "Counting millions and beyond",
+      "examples": [
+        { "mk": "милион, милијарда", "en": "million, billion" },
+        { "mk": "петстотини милиони", "en": "five hundred million" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "бизнисмен", "en": "businessman", "pos": "noun" },
+    { "mk": "брои", "en": "counts", "pos": "verb" },
+    { "mk": "поседува", "en": "owns", "pos": "verb" },
+    { "mk": "богатство", "en": "wealth", "pos": "noun" },
+    { "mk": "сериозен", "en": "serious", "pos": "adjective" },
+    { "mk": "зафатен", "en": "busy", "pos": "adjective" }
+  ],
+  "expressions": [
+    { "mk": "Немам време!", "en": "I don't have time!", "usage": "Being busy" },
+    { "mk": "Тоа е мое.", "en": "That's mine.", "usage": "Ownership" }
+  ],
+  "audioUrl": null,
+  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "16" }
+}
