@@ -4,21 +4,31 @@
   "title_mk": "Ден 9: Гордоста на цвеќето",
   "title_en": "Day 9: The Flower's Pride",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "dialogue", "emotions", "vanity"],
   "series": "30-Day Reading Challenge",
   "day": 9,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "Ружата била многу горда и барала многу внимание. Секое утро сакала вода, но не премногу." },
+    { "type": "p", "value": "„Ми е ладно!" се жалела таа. „Заштити ме од промаја!"" },
+    { "type": "p", "value": "Момчето ја ставало под стаклен поклопец. Но ружата пак не била задоволна." },
+    { "type": "p", "value": "„Ми е здодевно!" велела. „Сакам да видам други цвеќиња." Момчето не знаело што да прави." },
+    { "type": "p", "value": "Ја сакаше, но таа го правеше тажен. Не разбираше дека таа го сака, но не знае како да покаже." }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Директен говор",
       "title_en": "Direct Speech",
       "description_en": "Quoting what someone said",
+      "bullets": [
+        "Use „..." for opening and closing quotes",
+        "Verb of saying follows: рече, велеше, праша",
+        "Inversion possible: „Дојди!" рече тој."
+      ],
       "examples": [
-        { "mk": "— Јас сум единствена! — рече таа.", "en": "'I am unique!' she said." },
-        { "mk": "— Ме заштитуваш ли? — праша.", "en": "'Will you protect me?' she asked." }
+        { "mk": "„Ми е ладно!" рече таа.", "en": "'I'm cold!' she said.", "note": "Direct quote" },
+        { "mk": "„Заштити ме!" праша.", "en": "'Protect me!' she asked.", "note": "With imperative" },
+        { "mk": "„Сакам..." велела ружата.", "en": "'I want...' the rose would say.", "note": "Past habitual" }
       ]
     }
   ],
@@ -28,12 +38,21 @@
     { "mk": "заштита", "en": "protection", "pos": "noun" },
     { "mk": "ладно", "en": "cold", "pos": "adverb" },
     { "mk": "промаја", "en": "draft", "pos": "noun" },
-    { "mk": "чувствителен", "en": "sensitive", "pos": "adjective" }
+    { "mk": "здодевно", "en": "boring", "pos": "adjective" },
+    { "mk": "поклопец", "en": "lid, cover", "pos": "noun" },
+    { "mk": "задоволен", "en": "satisfied", "pos": "adjective" }
   ],
   "expressions": [
-    { "mk": "премногу барање", "en": "too demanding", "usage": "Criticism" },
-    { "mk": "не разбирам", "en": "I don't understand", "usage": "Confusion" }
+    { "mk": "Ми е ладно", "en": "I'm cold", "usage": "Expressing physical discomfort" },
+    { "mk": "Ми е здодевно", "en": "I'm bored", "usage": "Expressing boredom" },
+    { "mk": "не знаеше што да прави", "en": "didn't know what to do", "usage": "Expressing confusion" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "9" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "9",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

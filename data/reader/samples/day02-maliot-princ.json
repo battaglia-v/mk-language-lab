@@ -4,42 +4,55 @@
   "title_mk": "Ден 2: Возрасните",
   "title_en": "Day 2: Grown-ups",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "narrative", "adjectives", "opinions"],
   "series": "30-Day Reading Challenge",
   "day": 2,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "Возрасните секогаш прашуваат чудни прашања. „Колку години имаш? Колку пари заработува татко ти?"" },
+    { "type": "p", "value": "Тие никогаш не прашуваат важни работи. Не прашуваат какви соништа имаш или каква музика сакаш." },
+    { "type": "p", "value": "Ако кажеш: „Видов прекрасна куќа со розови цвеќиња," тие нема да разберат." },
+    { "type": "p", "value": "Мораш да кажеш: „Видов куќа која чини сто илјади евра." Тогаш велат: „Колку убава куќа!"" },
+    { "type": "p", "value": "Возрасните се такви. Не треба да се лутиме на нив. Децата мора да бидат трпеливи." }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Придавки со –ен/-на/-но",
       "title_en": "Adjectives ending in –ен/-на/-но",
       "description_en": "Common adjective pattern with gender agreement",
+      "bullets": [
+        "Masculine: –ен (возрасен, чуден, важен)",
+        "Feminine: –на (возрасна, чудна, важна)",
+        "Neuter: –но (возрасно, чудно, важно)"
+      ],
       "examples": [
-        { "mk": "возрасен/возрасна/возрасно", "en": "adult (m/f/n)" },
-        { "mk": "чуден/чудна/чудно", "en": "strange (m/f/n)" },
-        { "mk": "важен/важна/важно", "en": "important (m/f/n)" }
+        { "mk": "возрасен човек", "en": "an adult person", "note": "Masculine" },
+        { "mk": "чудна работа", "en": "a strange thing", "note": "Feminine" },
+        { "mk": "важно прашање", "en": "an important question", "note": "Neuter" }
       ]
     }
   ],
   "vocabulary": [
     { "mk": "возрасен", "en": "adult, grown-up", "pos": "adjective" },
     { "mk": "објаснува", "en": "explains", "pos": "verb" },
-    { "mk": "интересира", "en": "interests", "pos": "verb" },
-    { "mk": "број", "en": "number", "pos": "noun" },
     { "mk": "прашање", "en": "question", "pos": "noun" },
-    { "mk": "одговор", "en": "answer", "pos": "noun" }
+    { "mk": "одговор", "en": "answer", "pos": "noun" },
+    { "mk": "пари", "en": "money", "pos": "noun" },
+    { "mk": "соништа", "en": "dreams", "pos": "noun" },
+    { "mk": "трпелив", "en": "patient", "pos": "adjective" },
+    { "mk": "прекрасен", "en": "wonderful", "pos": "adjective" }
   ],
   "expressions": [
-    { "mk": "Тоа е важно", "en": "That is important", "usage": "Stating significance" },
-    { "mk": "Не ме интересира", "en": "I'm not interested", "usage": "Expressing disinterest" }
+    { "mk": "Колку години имаш?", "en": "How old are you?", "usage": "Asking age" },
+    { "mk": "Не треба да", "en": "You shouldn't", "usage": "Advising against" },
+    { "mk": "Тие се такви", "en": "They are like that", "usage": "Accepting nature" }
   ],
   "audioUrl": null,
   "attribution": {
-    "handle": "@macedonianlanguagecorner",
+    "handle": "@mklanguagelab",
     "series": "30-Day Reading Challenge",
     "day": "2",
-    "sourceTitle": "Content pending - add from licensed source"
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
   }
 }

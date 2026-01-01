@@ -1,11 +1,21 @@
 'use client';
 
-import { ReactNode, useCallback } from 'react';
+import { ReactNode, useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 import { cn } from '@/lib/utils';
 
 /**
@@ -60,6 +70,7 @@ export function SessionShell({
   const t = useTranslations('practiceHub');
   const locale = useLocale();
   const router = useRouter();
+  const [showExitConfirm, setShowExitConfirm] = useState(false);
 
   const handleClose = useCallback(() => {
     if (onClose) {
@@ -70,15 +81,43 @@ export function SessionShell({
     }
   }, [onClose, router, locale]);
 
+  const handleExitClick = useCallback(() => {
+    // Show confirmation dialog if session has started (progress > 0)
+    if (current > 1 || progress > 0) {
+      setShowExitConfirm(true);
+    } else {
+      // No progress yet, just exit
+      handleClose();
+    }
+  }, [current, progress, handleClose]);
+
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-background">
+      {/* Exit Confirmation Dialog */}
+      <AlertDialog open={showExitConfirm} onOpenChange={setShowExitConfirm}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t('drills.exitConfirmTitle')}</AlertDialogTitle>
+            <AlertDialogDescription>
+              {t('drills.exitConfirmDesc')}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>{t('drills.exitConfirmCancel')}</AlertDialogCancel>
+            <AlertDialogAction onClick={handleClose}>
+              {t('drills.exitConfirmEnd')}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
       {/* Top Game Bar */}
       <header className="flex items-center gap-3 border-b border-border/40 px-4 py-3 safe-top">
         <Button
           variant="ghost"
           size="sm"
           className="h-10 w-10 rounded-full p-0 hover:bg-white/10"
-          onClick={handleClose}
+          onClick={handleExitClick}
           aria-label={t('drills.endSession', { default: 'End Session' })}
         >
           <X className="h-5 w-5" />

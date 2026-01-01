@@ -4,28 +4,33 @@
   "title_mk": "Ден 25: Преглед - Недела 5",
   "title_en": "Day 25: Review - Week 5",
   "difficulty": "B1",
-  "estimatedMinutes": 15,
+  "estimatedMinutes": 10,
   "tags": ["30-day-challenge", "review", "checkpoint"],
   "series": "30-Day Reading Challenge",
   "day": 25,
   "text_blocks_mk": [
     { "type": "h2", "value": "Преглед на Недела 5" },
-    { "type": "p", "value": "Принцот ја сретна змијата, ја мина пустината, ја виде градината со рузи и ја запозна мудрата лисица." }
+    { "type": "p", "value": "Оваа недела момчето ја сретна змијата, одеше низ пустината, ја виде градината со рози и ја запозна мудрата лисица." },
+    { "type": "p", "value": "Змијата зборуваше загадочно и понуди да му помогне да се врати дома." },
+    { "type": "p", "value": "Во градината, момчето откри дека неговата ружа не е единствена - има стотици исти рози. Тоа го натажи." },
+    { "type": "p", "value": "Лисицата му објасни нешто важно: она што ја прави ружата посебна е времето што го поминал со неа. Љубовта е избор." }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Преглед: Множина",
       "title_en": "Review: Plurals",
       "examples": [
-        { "mk": "ружа—рузи, ѕвезда—ѕвезди", "en": "rose—roses, star—stars" }
+        { "mk": "ружа → рози", "en": "rose → roses", "note": "Feminine plural" },
+        { "mk": "ѕвезда → ѕвезди", "en": "star → stars", "note": "Feminine plural" },
+        { "mk": "цвеќе → цвеќиња", "en": "flower → flowers", "note": "Neuter plural" }
       ]
     },
     {
       "title_mk": "Преглед: Барања",
       "title_en": "Review: Requests",
       "examples": [
-        { "mk": "Те молам...", "en": "Please..." },
-        { "mk": "Би сакал да...", "en": "I would like to..." }
+        { "mk": "Те молам, кажи ми.", "en": "Please, tell me.", "note": "Polite request" },
+        { "mk": "Би сакал да знам.", "en": "I would like to know.", "note": "Conditional" }
       ]
     }
   ],
@@ -35,12 +40,21 @@
     { "mk": "градина", "en": "garden", "pos": "noun" },
     { "mk": "лисица", "en": "fox", "pos": "noun" },
     { "mk": "припитомува", "en": "tames", "pos": "verb" },
-    { "mk": "единствен", "en": "unique", "pos": "adjective" }
+    { "mk": "единствен", "en": "unique", "pos": "adjective" },
+    { "mk": "избор", "en": "choice", "pos": "noun" },
+    { "mk": "време", "en": "time", "pos": "noun" }
   ],
   "expressions": [
     { "mk": "да создадеш врски", "en": "to create bonds", "usage": "Connection" },
-    { "mk": "Мислев дека...", "en": "I thought that...", "usage": "Realization" }
+    { "mk": "Мислев дека...", "en": "I thought that...", "usage": "Realization" },
+    { "mk": "љубовта е избор", "en": "love is a choice", "usage": "Wisdom" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "25" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "25",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

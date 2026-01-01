@@ -4,36 +4,55 @@
   "title_mk": "Ден 23: Градината",
   "title_en": "Day 23: The Garden",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "narrative", "realization", "uniqueness"],
   "series": "30-Day Reading Challenge",
   "day": 23,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "Момчето најде градина полна со рози. Имаше стотици цвеќиња, сите еднакви." },
+    { "type": "p", "value": "„Здраво," им рече на розите. „Кои сте вие?" „Ние сме рози," одговорија тие." },
+    { "type": "p", "value": "Момчето почувствува тага. Неговата ружа му рекла дека е единствена на светот!" },
+    { "type": "p", "value": "„Мислев дека имам посебно цвеќе," рече тој тажно. „А таа е само една од многу."" },
+    { "type": "p", "value": "Седна на тревата и заплака. Се чувствуваше измамено и разочарано." }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Множина на именки",
       "title_en": "Plural Nouns",
       "description_en": "Forming plurals in Macedonian",
+      "bullets": [
+        "Feminine -а → -и: ружа → рузи",
+        "Neuter -е → -иња: цвеќе → цвеќиња",
+        "Masculine consonant → -и: цвет → цветови"
+      ],
       "examples": [
-        { "mk": "ружа — рузи", "en": "rose — roses" },
-        { "mk": "цвеќе — цвеќиња", "en": "flower — flowers" }
+        { "mk": "една ружа → многу рози", "en": "one rose → many roses", "note": "Feminine" },
+        { "mk": "едно цвеќе → многу цвеќиња", "en": "one flower → many flowers", "note": "Neuter" },
+        { "mk": "стотици цвеќиња", "en": "hundreds of flowers", "note": "With number" }
       ]
     }
   ],
   "vocabulary": [
     { "mk": "градина", "en": "garden", "pos": "noun" },
-    { "mk": "ружи", "en": "roses", "pos": "noun" },
-    { "mk": "исти", "en": "same", "pos": "adjective" },
+    { "mk": "рози", "en": "roses", "pos": "noun" },
+    { "mk": "еднаков", "en": "equal, same", "pos": "adjective" },
     { "mk": "разочаран", "en": "disappointed", "pos": "adjective" },
     { "mk": "единствен", "en": "unique", "pos": "adjective" },
-    { "mk": "плаче", "en": "cries", "pos": "verb" }
+    { "mk": "плаче", "en": "cries", "pos": "verb" },
+    { "mk": "измамен", "en": "deceived", "pos": "adjective" },
+    { "mk": "посебен", "en": "special", "pos": "adjective" }
   ],
   "expressions": [
     { "mk": "Мислев дека...", "en": "I thought that...", "usage": "Past belief" },
-    { "mk": "Не е единствена.", "en": "It's not unique.", "usage": "Realization" }
+    { "mk": "една од многу", "en": "one of many", "usage": "Not unique" },
+    { "mk": "се чувствува измамено", "en": "feels deceived", "usage": "Disappointment" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "23" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "23",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

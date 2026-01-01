@@ -4,21 +4,31 @@
   "title_mk": "Ден 7: Баобабите",
   "title_en": "Day 7: The Baobabs",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "narrative", "danger", "discipline"],
   "series": "30-Day Reading Challenge",
   "day": 7,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "На планетата на момчето имало лоши растенија - баобаби. Нивните семиња биле скриени во земјата." },
+    { "type": "p", "value": "„Ако не ги извадиш навреме," рече момчето, „ќе пораснат и ќе ја уништат планетата."" },
+    { "type": "p", "value": "„Како?" прашав. „Нивните корени се многу силни. Ако баобабот порасне, неможеш да го извадиш."" },
+    { "type": "p", "value": "„Затоа секое утро мора да ги бараш малите баобаби и да ги вадиш," рече тој сериозно." },
+    { "type": "p", "value": "Тоа е тешка работа, но многу важна. Дисциплината е клучот." }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Услов со 'ако'",
       "title_en": "Conditional with 'ако' (if)",
       "description_en": "Expressing conditions and consequences",
+      "bullets": [
+        "ако + present = future consequence (real condition)",
+        "ако + past = past consequence (unreal condition)",
+        "Can start or end the sentence"
+      ],
       "examples": [
-        { "mk": "Ако не ги извадиш...", "en": "If you don't pull them out..." },
-        { "mk": "Ако пораснат...", "en": "If they grow..." }
+        { "mk": "Ако не ги извадиш, ќе пораснат.", "en": "If you don't pull them out, they will grow.", "note": "Real condition" },
+        { "mk": "Ако пораснат, ќе ја уништат.", "en": "If they grow, they will destroy it.", "note": "Future consequence" },
+        { "mk": "Ќе биде доцна ако чекаш.", "en": "It will be too late if you wait.", "note": "Consequence first" }
       ]
     }
   ],
@@ -28,12 +38,21 @@
     { "mk": "опасен", "en": "dangerous", "pos": "adjective" },
     { "mk": "расте", "en": "grows", "pos": "verb" },
     { "mk": "корен", "en": "root", "pos": "noun" },
-    { "mk": "уништува", "en": "destroys", "pos": "verb" }
+    { "mk": "уништува", "en": "destroys", "pos": "verb" },
+    { "mk": "дисциплина", "en": "discipline", "pos": "noun" },
+    { "mk": "клуч", "en": "key", "pos": "noun" }
   ],
   "expressions": [
     { "mk": "секое утро", "en": "every morning", "usage": "Daily routine" },
-    { "mk": "мора да", "en": "must, have to", "usage": "Obligation" }
+    { "mk": "мора да", "en": "must, have to", "usage": "Obligation" },
+    { "mk": "навреме", "en": "on time", "usage": "Punctuality" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "7" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "7",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

@@ -4,27 +4,33 @@
   "title_mk": "Ден 15: Преглед - Недела 3",
   "title_en": "Day 15: Review - Week 3",
   "difficulty": "B1",
-  "estimatedMinutes": 15,
+  "estimatedMinutes": 10,
   "tags": ["30-day-challenge", "review", "checkpoint"],
   "series": "30-Day Reading Challenge",
   "day": 15,
   "text_blocks_mk": [
     { "type": "h2", "value": "Преглед на Недела 3" },
-    { "type": "p", "value": "Оваа недела принцот ги посети кралот, суетниот човек и пијаницата. Научи за власта, суетата и тагата." }
+    { "type": "p", "value": "Оваа недела момчето ги посети кралот, суетниот човек и пијаницата. Секој од нив живееше сам на своја планета." },
+    { "type": "p", "value": "Кралот сакаше власт, но немаше над кого да владее. Суетниот сакаше восхитување, но немаше кој да го восхитува." },
+    { "type": "p", "value": "Пијаницата сакаше да заборави, но не можеше да избега од себе. Сите тие беа сами со своите проблеми." },
+    { "type": "p", "value": "Момчето научи важна лекција: самотијата е тешка, но бегањето од неа не е решение." }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Преглед: Глаголи за движење",
       "title_en": "Review: Motion Verbs",
       "examples": [
-        { "mk": "замина, пристигна, посети", "en": "left, arrived, visited" }
+        { "mk": "замина од планетата", "en": "left the planet", "note": "Departure" },
+        { "mk": "пристигна на", "en": "arrived at", "note": "Arrival" },
+        { "mk": "посети", "en": "visited", "note": "Visit" }
       ]
     },
     {
       "title_mk": "Преглед: Зошто/Затоа што",
       "title_en": "Review: Why/Because",
       "examples": [
-        { "mk": "Зошто? — Затоа што...", "en": "Why? — Because..." }
+        { "mk": "Зошто си сам?", "en": "Why are you alone?", "note": "Question" },
+        { "mk": "Затоа што сите заминаа.", "en": "Because everyone left.", "note": "Answer" }
       ]
     }
   ],
@@ -33,13 +39,22 @@
     { "mk": "суетен", "en": "vain", "pos": "adjective" },
     { "mk": "пијаница", "en": "drunkard", "pos": "noun" },
     { "mk": "власт", "en": "power", "pos": "noun" },
-    { "mk": "аплауз", "en": "applause", "pos": "noun" },
-    { "mk": "срам", "en": "shame", "pos": "noun" }
+    { "mk": "восхитување", "en": "admiration", "pos": "noun" },
+    { "mk": "срам", "en": "shame", "pos": "noun" },
+    { "mk": "самотија", "en": "loneliness", "pos": "noun" },
+    { "mk": "лекција", "en": "lesson", "pos": "noun" }
   ],
   "expressions": [
     { "mk": "Ти заповедам", "en": "I command you", "usage": "Authority" },
-    { "mk": "Зошто правиш така?", "en": "Why do you do that?", "usage": "Questioning" }
+    { "mk": "Зошто правиш така?", "en": "Why do you do that?", "usage": "Questioning" },
+    { "mk": "бегање од себе", "en": "running from oneself", "usage": "Self-avoidance" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "15" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "15",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

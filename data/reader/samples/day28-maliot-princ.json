@@ -4,21 +4,31 @@
   "title_mk": "Ден 28: Бунарот",
   "title_en": "Day 28: The Well",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "narrative", "discovery", "water"],
   "series": "30-Day Reading Challenge",
   "day": 28,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "Момчето и пилотот одеа низ пустината. Немаа вода, и жедта ги мачеше." },
+    { "type": "p", "value": "„Пустината е убава," рече момчето. „Убава затоа што некаде скрива бунар."" },
+    { "type": "p", "value": "По долго одење, конечно најдоа бунар. Имаше јаже и кофа!" },
+    { "type": "p", "value": "Пилотот извади вода. Беше ладна и свежа. „Ова е најубавата вода на светот," рече." },
+    { "type": "p", "value": "„Водата е добра за срцето, не само за телото," рече момчето мудро." }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Откривање со 'најде'",
       "title_en": "Discovery with 'found'",
       "description_en": "Expressing finding and discovery",
+      "bullets": [
+        "најде/најдовме - found (singular/plural)",
+        "конечно - finally",
+        "откри - discovered"
+      ],
       "examples": [
-        { "mk": "Најдовме бунар!", "en": "We found a well!" },
-        { "mk": "Конечно пронајде.", "en": "Finally found." }
+        { "mk": "Најдовме бунар!", "en": "We found a well!", "note": "Discovery" },
+        { "mk": "Конечно пронајде вода.", "en": "Finally found water.", "note": "Relief" },
+        { "mk": "Откривме нешто важно.", "en": "We discovered something important.", "note": "Realization" }
       ]
     }
   ],
@@ -28,12 +38,21 @@
     { "mk": "жед", "en": "thirst", "pos": "noun" },
     { "mk": "јаже", "en": "rope", "pos": "noun" },
     { "mk": "кофа", "en": "bucket", "pos": "noun" },
-    { "mk": "спасува", "en": "saves", "pos": "verb" }
+    { "mk": "свеж", "en": "fresh", "pos": "adjective" },
+    { "mk": "ладен", "en": "cold", "pos": "adjective" },
+    { "mk": "тело", "en": "body", "pos": "noun" }
   ],
   "expressions": [
     { "mk": "Конечно!", "en": "Finally!", "usage": "Relief" },
-    { "mk": "Водата е добра за срцето.", "en": "Water is good for the heart.", "usage": "Metaphor" }
+    { "mk": "Водата е добра за срцето.", "en": "Water is good for the heart.", "usage": "Metaphor" },
+    { "mk": "најубавата на светот", "en": "the most beautiful in the world", "usage": "Superlative" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "28" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "28",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

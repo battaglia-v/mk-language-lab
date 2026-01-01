@@ -4,36 +4,55 @@
   "title_mk": "Ден 19: Земјата",
   "title_en": "Day 19: Earth",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "narrative", "earth", "arrival"],
   "series": "30-Day Reading Challenge",
   "day": 19,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "Седмата планета беше Земјата. Момчето знаеше дека е голема, но не знаеше колку." },
+    { "type": "p", "value": "На Земјата имаше милијарди луѓе, милиони градови, стотици земји. Беше огромна." },
+    { "type": "p", "value": "Момчето пристигна во пустина. Немаше никого. „Каде се луѓето?" се прашуваше." },
+    { "type": "p", "value": "Тогаш видел мала змија. „Здраво," рече змијата. „Барам луѓе. Каде се?"" },
+    { "type": "p", "value": "„Луѓето? Тие живеат во градовите. Пустината е премногу тивка за нив."" }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Споредби",
       "title_en": "Comparisons",
-      "description_en": "Comparing sizes and quantities",
+      "description_en": "Comparing sizes, quantities and qualities",
+      "bullets": [
+        "по- + adjective = comparative (поголем, помал)",
+        "од = than (поголем од)",
+        "многу повеќе од = much more than"
+      ],
       "examples": [
-        { "mk": "поголема од", "en": "bigger than" },
-        { "mk": "многу повеќе од", "en": "much more than" }
+        { "mk": "Земјата е поголема од астероидот.", "en": "Earth is bigger than the asteroid.", "note": "Basic comparison" },
+        { "mk": "Има многу повеќе луѓе.", "en": "There are many more people.", "note": "Quantity" },
+        { "mk": "Пустината е потивка од градот.", "en": "The desert is quieter than the city.", "note": "Quality comparison" }
       ]
     }
   ],
   "vocabulary": [
     { "mk": "Земја", "en": "Earth", "pos": "noun" },
-    { "mk": "континент", "en": "continent", "pos": "noun" },
-    { "mk": "население", "en": "population", "pos": "noun" },
+    { "mk": "милијарда", "en": "billion", "pos": "noun" },
     { "mk": "огромен", "en": "huge", "pos": "adjective" },
-    { "mk": "милијарди", "en": "billions", "pos": "noun" },
-    { "mk": "пристигнува", "en": "arrives", "pos": "verb" }
+    { "mk": "пристигнува", "en": "arrives", "pos": "verb" },
+    { "mk": "град", "en": "city", "pos": "noun" },
+    { "mk": "земја", "en": "country, land", "pos": "noun" },
+    { "mk": "тивок", "en": "quiet", "pos": "adjective" },
+    { "mk": "змија", "en": "snake", "pos": "noun" }
   ],
   "expressions": [
-    { "mk": "седма планета", "en": "seventh planet", "usage": "Sequence" },
-    { "mk": "многу поразлична", "en": "very different", "usage": "Contrast" }
+    { "mk": "седма планета", "en": "seventh planet", "usage": "Ordinal sequence" },
+    { "mk": "Каде се луѓето?", "en": "Where are the people?", "usage": "Asking location" },
+    { "mk": "премногу тивка", "en": "too quiet", "usage": "Excessive quality" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "19" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "19",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

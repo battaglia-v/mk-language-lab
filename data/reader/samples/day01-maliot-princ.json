@@ -4,12 +4,16 @@
   "title_mk": "Ден 1: Цртежот",
   "title_en": "Day 1: The Drawing",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "narrative", "past-tense", "childhood"],
   "series": "30-Day Reading Challenge",
   "day": 1,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "Кога бев мал, многу сакав да цртам. Секој ден цртав животни, дрва и куќи." },
+    { "type": "p", "value": "Еден ден нацртав нешто чудно. Тоа бил цртеж на змија која голтнала слон." },
+    { "type": "p", "value": "Возрасните не разбирале што е тоа. „Зошто нацрта шапка?" прашуваа тие." },
+    { "type": "p", "value": "Никој не гледал од близу. Никој не разбрал дека тоа била змија, а не шапка." },
+    { "type": "p", "value": "Тогаш научив нешто важно: возрасните не гледаат како децата. Тие гледаат само на прв поглед." }
   ],
   "grammar_highlights": [
     {
@@ -22,9 +26,9 @@
         "Conveys distance from the action"
       ],
       "examples": [
-        { "mk": "Имало некогаш...", "en": "Once upon a time there was...", "note": "Classic story opening" },
-        { "mk": "Тој гледал од близу", "en": "He had looked closely" },
-        { "mk": "Никој не разбрал", "en": "Nobody understood" }
+        { "mk": "Тоа бил цртеж", "en": "It was a drawing", "note": "–л form for narrative" },
+        { "mk": "Никој не разбрал", "en": "Nobody understood", "note": "Negative with –л form" },
+        { "mk": "Тоа била змија", "en": "It was a snake", "note": "Feminine –ла form" }
       ]
     }
   ],
@@ -34,18 +38,21 @@
     { "mk": "слон", "en": "elephant", "pos": "noun" },
     { "mk": "голтнува", "en": "swallows", "pos": "verb" },
     { "mk": "возрасен", "en": "adult, grown-up", "pos": "adjective" },
-    { "mk": "разбира", "en": "understands", "pos": "verb" }
+    { "mk": "разбира", "en": "understands", "pos": "verb" },
+    { "mk": "шапка", "en": "hat", "pos": "noun" },
+    { "mk": "чудно", "en": "strange", "pos": "adverb" }
   ],
   "expressions": [
-    { "mk": "Имало некогаш", "en": "Once upon a time", "usage": "Story opening" },
     { "mk": "на прв поглед", "en": "at first glance", "usage": "Initial impression" },
-    { "mk": "од близу", "en": "closely, up close", "usage": "Manner of looking" }
+    { "mk": "од близу", "en": "closely, up close", "usage": "Manner of looking" },
+    { "mk": "кога бев мал", "en": "when I was little", "usage": "Childhood reference" }
   ],
   "audioUrl": null,
   "attribution": {
-    "handle": "@macedonianlanguagecorner",
+    "handle": "@mklanguagelab",
     "series": "30-Day Reading Challenge",
     "day": "1",
-    "sourceTitle": "Content pending - add from licensed source"
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
   }
 }

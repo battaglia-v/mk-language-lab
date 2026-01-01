@@ -4,27 +4,32 @@
   "title_mk": "Ден 20: Преглед - Недела 4",
   "title_en": "Day 20: Review - Week 4",
   "difficulty": "B1",
-  "estimatedMinutes": 15,
+  "estimatedMinutes": 10,
   "tags": ["30-day-challenge", "review", "checkpoint"],
   "series": "30-Day Reading Challenge",
   "day": 20,
   "text_blocks_mk": [
     { "type": "h2", "value": "Преглед на Недела 4" },
-    { "type": "p", "value": "Принцот го посети бизнисменот, фенерџијата и географот, и конечно пристигна на Земјата." }
+    { "type": "p", "value": "Оваа недела момчето ги посети бизнисменот, фенерџијата и географот, и конечно пристигна на Земјата." },
+    { "type": "p", "value": "Бизнисменот броеше ѕвезди што не му припаѓаат. Фенерџијата работеше без одмор, но барем за други." },
+    { "type": "p", "value": "Географот научи момчето важна лекција: убавите работи се привремени." },
+    { "type": "p", "value": "Земјата е огромна и полна со луѓе, но момчето пристигна во празна пустина. Патувањето продолжува..." }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Преглед: Споредби",
       "title_en": "Review: Comparisons",
       "examples": [
-        { "mk": "поголем, помал, подобар", "en": "bigger, smaller, better" }
+        { "mk": "Земјата е поголема од сите планети.", "en": "Earth is bigger than all the planets.", "note": "Comparison" },
+        { "mk": "Фенерџијата работеше подолго од сите.", "en": "The lamplighter worked longer than everyone.", "note": "Duration comparison" }
       ]
     },
     {
       "title_mk": "Преглед: Големи броеви",
       "title_en": "Review: Large Numbers",
       "examples": [
-        { "mk": "илјада, милион, милијарда", "en": "thousand, million, billion" }
+        { "mk": "илјада, милион, милијарда", "en": "thousand, million, billion", "note": "Number scale" },
+        { "mk": "милијарди луѓе на Земјата", "en": "billions of people on Earth", "note": "With noun" }
       ]
     }
   ],
@@ -34,12 +39,21 @@
     { "mk": "географ", "en": "geographer", "pos": "noun" },
     { "mk": "Земја", "en": "Earth", "pos": "noun" },
     { "mk": "должност", "en": "duty", "pos": "noun" },
-    { "mk": "огромен", "en": "huge", "pos": "adjective" }
+    { "mk": "огромен", "en": "huge", "pos": "adjective" },
+    { "mk": "привремен", "en": "temporary", "pos": "adjective" },
+    { "mk": "одмор", "en": "rest", "pos": "noun" }
   ],
   "expressions": [
     { "mk": "Немам време!", "en": "I don't have time!", "usage": "Busyness" },
-    { "mk": "многу поразлична", "en": "very different", "usage": "Contrast" }
+    { "mk": "работа за други", "en": "work for others", "usage": "Selflessness" },
+    { "mk": "привремени работи", "en": "temporary things", "usage": "Impermanence" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "20" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "20",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

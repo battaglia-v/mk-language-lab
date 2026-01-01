@@ -4,21 +4,31 @@
   "title_mk": "Ден 21: Змијата",
   "title_en": "Day 21: The Snake",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "dialogue", "mystery", "symbolism"],
   "series": "30-Day Reading Challenge",
   "day": 21,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "Змијата била мала и златна. Таа лежеше на песокот и гледаше во момчето." },
+    { "type": "p", "value": "„Ти изгледаш изгубен," рече змијата. „Од каде доаѓаш?"" },
+    { "type": "p", "value": "„Од мала планета, далеку оттука. Барам луѓе, но пустината е празна."" },
+    { "type": "p", "value": "„Луѓето? Тие се во градовите. Но и таму можеш да бидеш сам," рече змијата мудро." },
+    { "type": "p", "value": "„Ако некогаш сакаш да се вратиш дома, јас можам да помогнам," додаде таа загадочно." }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Загатки и метафори",
       "title_en": "Riddles and Metaphors",
-      "description_en": "Understanding figurative language",
+      "description_en": "Understanding figurative and indirect language",
+      "bullets": [
+        "Metaphorical speech often hides deeper meaning",
+        "Context helps understand hidden messages",
+        "Macedonian uses similar figurative patterns as English"
+      ],
       "examples": [
-        { "mk": "Можам да те вратам...", "en": "I can return you..." },
-        { "mk": "посилен од прстот на крал", "en": "stronger than a king's finger" }
+        { "mk": "Можам да те вратам дома.", "en": "I can return you home.", "note": "Hidden meaning" },
+        { "mk": "И таму можеш да бидеш сам.", "en": "Even there you can be alone.", "note": "Paradox" },
+        { "mk": "Тоа е загатка.", "en": "That's a riddle.", "note": "Mystery" }
       ]
     }
   ],
@@ -26,14 +36,23 @@
     { "mk": "змија", "en": "snake", "pos": "noun" },
     { "mk": "загатка", "en": "riddle", "pos": "noun" },
     { "mk": "моќен", "en": "powerful", "pos": "adjective" },
-    { "mk": "песок", "en": "sand", "pos": "noun" },
-    { "mk": "ѕвезда", "en": "star", "pos": "noun" },
+    { "mk": "загадочен", "en": "mysterious", "pos": "adjective" },
+    { "mk": "мудар", "en": "wise", "pos": "adjective" },
+    { "mk": "изгубен", "en": "lost", "pos": "adjective" },
+    { "mk": "помага", "en": "helps", "pos": "verb" },
     { "mk": "враќа", "en": "returns", "pos": "verb" }
   ],
   "expressions": [
-    { "mk": "Каде одиш?", "en": "Where are you going?", "usage": "Direction" },
-    { "mk": "Ќе се видиме.", "en": "We will see each other.", "usage": "Future meeting" }
+    { "mk": "Каде одиш?", "en": "Where are you going?", "usage": "Direction question" },
+    { "mk": "Ќе се видиме.", "en": "We will see each other.", "usage": "Future meeting" },
+    { "mk": "можам да помогнам", "en": "I can help", "usage": "Offering assistance" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "21" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "21",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

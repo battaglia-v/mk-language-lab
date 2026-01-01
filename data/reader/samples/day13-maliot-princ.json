@@ -4,36 +4,55 @@
   "title_mk": "Ден 13: Суетниот човек",
   "title_en": "Day 13: The Vain Man",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "dialogue", "vanity", "humor"],
   "series": "30-Day Reading Challenge",
   "day": 13,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "На втората планета живееше суетен човек. Тој носеше чудна шапка и постојано се гледаше во огледало." },
+    { "type": "p", "value": "„Аааа! Еве посетител!" извика тој. „Дојде да ме восхитуваш?"" },
+    { "type": "p", "value": "„Што значи 'восхитувам'?" праша момчето." },
+    { "type": "p", "value": "„Значи да признаеш дека сум најубав, најпаметен и најбогат на планетава!"" },
+    { "type": "p", "value": "„Но ти си единствениот на планетава," рече момчето. Суетниот човек не слушаше - веќе се гледаше во огледалото." }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Суперлатив",
       "title_en": "Superlative Forms",
       "description_en": "Expressing 'the most' or 'best'",
+      "bullets": [
+        "Add нај- prefix: убав → најубав",
+        "Agreement with noun: најубав/најубава/најубаво",
+        "Can combine: нај- + по- → најподобар"
+      ],
       "examples": [
-        { "mk": "најубав, најпаметен", "en": "most beautiful, smartest" },
-        { "mk": "најдобар од сите", "en": "the best of all" }
+        { "mk": "најубав човек", "en": "the most beautiful person", "note": "Masculine" },
+        { "mk": "најпаметна жена", "en": "the smartest woman", "note": "Feminine" },
+        { "mk": "најдобар од сите", "en": "the best of all", "note": "Comparison group" }
       ]
     }
   ],
   "vocabulary": [
     { "mk": "суетен", "en": "vain", "pos": "adjective" },
-    { "mk": "аплауз", "en": "applause", "pos": "noun" },
     { "mk": "восхитување", "en": "admiration", "pos": "noun" },
     { "mk": "шапка", "en": "hat", "pos": "noun" },
-    { "mk": "поклон", "en": "bow", "pos": "noun" },
-    { "mk": "фали", "en": "praises", "pos": "verb" }
+    { "mk": "огледало", "en": "mirror", "pos": "noun" },
+    { "mk": "признава", "en": "admits, acknowledges", "pos": "verb" },
+    { "mk": "богат", "en": "rich", "pos": "adjective" },
+    { "mk": "паметен", "en": "smart", "pos": "adjective" },
+    { "mk": "посетител", "en": "visitor", "pos": "noun" }
   ],
   "expressions": [
     { "mk": "Јас сум најдобар!", "en": "I am the best!", "usage": "Self-praise" },
-    { "mk": "Ме восхитуваш?", "en": "Do you admire me?", "usage": "Seeking approval" }
+    { "mk": "Ме восхитуваш?", "en": "Do you admire me?", "usage": "Seeking approval" },
+    { "mk": "единствениот на планетава", "en": "the only one on this planet", "usage": "Uniqueness" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "13" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "13",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

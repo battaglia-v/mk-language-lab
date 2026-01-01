@@ -4,29 +4,32 @@
   "title_mk": "Ден 10: Преглед - Недела 2",
   "title_en": "Day 10: Review - Week 2",
   "difficulty": "B1",
-  "estimatedMinutes": 15,
+  "estimatedMinutes": 10,
   "tags": ["30-day-challenge", "review", "checkpoint"],
   "series": "30-Day Reading Challenge",
   "day": 10,
   "text_blocks_mk": [
     { "type": "h2", "value": "Преглед на Недела 2" },
-    { "type": "p", "value": "Оваа недела научивме за астероидот Б-612, баобабите, убавото цвеќе и неговата гордост." }
+    { "type": "p", "value": "Оваа недела научивме за астероидот Б-612, опасните баобаби, убавата ружа и нејзината гордост." },
+    { "type": "p", "value": "Момчето научи дека дисциплината е важна - секое утро морал да ги вади баобабите." },
+    { "type": "p", "value": "Научи и дека љубовта е тешка. Ружата барала многу, а тој не знаел како да и угоди." },
+    { "type": "p", "value": "Понекогаш оние што нè сакаат не знаат како да го покажат тоа. Треба да бидеме трпеливи." }
   ],
   "grammar_highlights": [
     {
-      "title_mk": "Преглед: Услов",
-      "title_en": "Review: Conditionals",
+      "title_mk": "Преглед: Услов со 'ако'",
+      "title_en": "Review: Conditionals with 'ако'",
       "examples": [
-        { "mk": "Ако не внимаваш...", "en": "If you don't pay attention..." },
-        { "mk": "Ако сакаш...", "en": "If you want..." }
+        { "mk": "Ако не внимаваш, баобабите ќе пораснат.", "en": "If you don't pay attention, the baobabs will grow." },
+        { "mk": "Ако сакаш нешто, мора да се грижиш.", "en": "If you want something, you must take care of it." }
       ]
     },
     {
       "title_mk": "Преглед: Директен говор",
       "title_en": "Review: Direct Speech",
       "examples": [
-        { "mk": "— Дојди! — рече.", "en": "'Come!' he said." },
-        { "mk": "— Зошто? — праша.", "en": "'Why?' she asked." }
+        { "mk": "„Јас сум единствена!" рече ружата.", "en": "'I am unique!' said the rose." },
+        { "mk": "„Ми е ладно," се жалеше таа.", "en": "'I'm cold,' she complained." }
       ]
     }
   ],
@@ -36,12 +39,21 @@
     { "mk": "цвеќе", "en": "flower", "pos": "noun" },
     { "mk": "гордост", "en": "pride", "pos": "noun" },
     { "mk": "опасен", "en": "dangerous", "pos": "adjective" },
-    { "mk": "убавина", "en": "beauty", "pos": "noun" }
+    { "mk": "убавина", "en": "beauty", "pos": "noun" },
+    { "mk": "дисциплина", "en": "discipline", "pos": "noun" },
+    { "mk": "љубов", "en": "love", "pos": "noun" }
   ],
   "expressions": [
-    { "mk": "секое утро", "en": "every morning", "usage": "Routine" },
-    { "mk": "на прв поглед", "en": "at first sight", "usage": "First impression" }
+    { "mk": "секое утро", "en": "every morning", "usage": "Daily routine" },
+    { "mk": "на прв поглед", "en": "at first sight", "usage": "First impression" },
+    { "mk": "не знаел како", "en": "didn't know how", "usage": "Expressing difficulty" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "10" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "10",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

@@ -4,21 +4,31 @@
   "title_mk": "Ден 29: Збогум",
   "title_en": "Day 29: Farewell",
   "difficulty": "B1",
-  "estimatedMinutes": 10,
+  "estimatedMinutes": 8,
   "tags": ["30-day-challenge", "dialogue", "farewell", "return"],
   "series": "30-Day Reading Challenge",
   "day": 29,
   "text_blocks_mk": [
-    { "type": "note", "value": "Reading passage to be added from licensed source" }
+    { "type": "p", "value": "Дојде време за растанок. Момчето мораше да се врати на својата планета, кај својата ружа." },
+    { "type": "p", "value": "„Мора да заминам," рече тој на пилотот. „Мојата ружа ме чека. Одговорен сум за неа."" },
+    { "type": "p", "value": "Пилотот беше тажен. „Ќе ми недостасуваш," рече тој." },
+    { "type": "p", "value": "„Кога ќе гледаш во ѕвездите, една од нив ќе биде мојата. И ќе знаеш дека некаде, јас се смеам."" },
+    { "type": "p", "value": "„Тогаш сите ѕвезди ќе се смеат за тебе," рече момчето. „Тоа е мојот подарок."" }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Изразување тага",
       "title_en": "Expressing Sadness",
-      "description_en": "Words for farewell and sorrow",
+      "description_en": "Words and phrases for farewell and sorrow",
+      "bullets": [
+        "Ќе ми недостасуваш - I will miss you",
+        "Тешко ми е - It's hard for me",
+        "Тажен сум - I'm sad"
+      ],
       "examples": [
-        { "mk": "Ќе ми недостасуваш.", "en": "I will miss you." },
-        { "mk": "Тешко ми е.", "en": "It's hard for me." }
+        { "mk": "Ќе ми недостасуваш многу.", "en": "I will miss you very much.", "note": "Future loss" },
+        { "mk": "Тешко ми е да заминам.", "en": "It's hard for me to leave.", "note": "Difficulty" },
+        { "mk": "Сеќавањата ќе останат.", "en": "The memories will remain.", "note": "Comfort" }
       ]
     }
   ],
@@ -28,12 +38,21 @@
     { "mk": "солза", "en": "tear", "pos": "noun" },
     { "mk": "враќање", "en": "return", "pos": "noun" },
     { "mk": "сеќавање", "en": "memory", "pos": "noun" },
-    { "mk": "недостасува", "en": "misses", "pos": "verb" }
+    { "mk": "недостасува", "en": "misses", "pos": "verb" },
+    { "mk": "подарок", "en": "gift", "pos": "noun" },
+    { "mk": "се смее", "en": "laughs, smiles", "pos": "verb" }
   ],
   "expressions": [
-    { "mk": "Ќе ми недостасуваш.", "en": "I will miss you.", "usage": "Farewell" },
-    { "mk": "Мора да се вратам.", "en": "I must return.", "usage": "Obligation" }
+    { "mk": "Ќе ми недостасуваш.", "en": "I will miss you.", "usage": "Expressing future loss" },
+    { "mk": "Мора да се вратам.", "en": "I must return.", "usage": "Obligation to return" },
+    { "mk": "Тоа е мојот подарок.", "en": "That's my gift.", "usage": "Leaving something behind" }
   ],
   "audioUrl": null,
-  "attribution": { "handle": "@macedonianlanguagecorner", "series": "30-Day Reading Challenge", "day": "29" }
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "30-Day Reading Challenge",
+    "day": "29",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
+  }
 }

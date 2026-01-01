@@ -1,57 +1,59 @@
 {
   "id": "day05-maliot-princ",
   "locale": "mk",
-  "title_mk": "Ден 5: Преглед - Недела 1",
-  "title_en": "Day 5: Review - Week 1",
+  "title_mk": "Ден 5: Кутијата",
+  "title_en": "Day 5: The Box",
   "difficulty": "B1",
-  "estimatedMinutes": 15,
-  "tags": ["30-day-challenge", "review", "checkpoint"],
+  "estimatedMinutes": 8,
+  "tags": ["30-day-challenge", "narrative", "creativity", "imagination"],
   "series": "30-Day Reading Challenge",
   "day": 5,
   "text_blocks_mk": [
-    { "type": "h2", "value": "Преглед на Недела 1" },
-    { "type": "p", "value": "Оваа недела научивме за раскажувачот, неговиот цртеж, возрасните, пилотот во пустината и чудното барање за овца." }
+    { "type": "p", "value": "Бев уморен од неговите барања. Тогаш нацртав кутија и му реков: „Овцата е внатре."" },
+    { "type": "p", "value": "Момчето се израдува! „Токму вака сакав! Дали мислиш дека оваа овца јаде многу трева?"" },
+    { "type": "p", "value": "„Зошто прашуваш?" реков. „Затоа што мојата планета е мала. Нема многу трева."" },
+    { "type": "p", "value": "„Не грижи се," реков. „Нацртав мала овца. Ќе јаде малку."" },
+    { "type": "p", "value": "Момчето се наведна над цртежот и рече: „Не е толку мала... Гледај! Заспа!"" }
   ],
   "grammar_highlights": [
     {
-      "title_mk": "Преглед: Минато неопределено време",
-      "title_en": "Review: Past Indefinite Tense",
-      "description_en": "The –л form for narrative and non-witnessed actions",
+      "title_mk": "Прашални зборови",
+      "title_en": "Question Words",
+      "description_en": "Words used to form questions in Macedonian",
+      "bullets": [
+        "Зошто? - Why?",
+        "Дали? - Do/Does? (yes/no questions)",
+        "Колку? - How much/many?",
+        "Што? - What?"
+      ],
       "examples": [
-        { "mk": "Имало некогаш...", "en": "Once upon a time..." },
-        { "mk": "Тој живеел сам.", "en": "He had lived alone." },
-        { "mk": "Никој не го разбрал.", "en": "Nobody had understood him." }
-      ]
-    },
-    {
-      "title_mk": "Преглед: Императив",
-      "title_en": "Review: Imperative",
-      "examples": [
-        { "mk": "Нацртај!", "en": "Draw!" },
-        { "mk": "Објасни ми!", "en": "Explain to me!" },
-        { "mk": "Погледни!", "en": "Look!" }
+        { "mk": "Зошто прашуваш?", "en": "Why do you ask?", "note": "Reason question" },
+        { "mk": "Дали мислиш...?", "en": "Do you think...?", "note": "Yes/no question" },
+        { "mk": "Колку трева јаде?", "en": "How much grass does it eat?", "note": "Quantity question" }
       ]
     }
   ],
   "vocabulary": [
-    { "mk": "цртеж", "en": "drawing", "pos": "noun" },
-    { "mk": "змија", "en": "snake", "pos": "noun" },
-    { "mk": "возрасен", "en": "adult", "pos": "adjective" },
-    { "mk": "пустина", "en": "desert", "pos": "noun" },
-    { "mk": "пилот", "en": "pilot", "pos": "noun" },
-    { "mk": "овца", "en": "sheep", "pos": "noun" },
-    { "mk": "барање", "en": "request", "pos": "noun" },
-    { "mk": "разбира", "en": "understands", "pos": "verb" }
+    { "mk": "кутија", "en": "box", "pos": "noun" },
+    { "mk": "трева", "en": "grass", "pos": "noun" },
+    { "mk": "внатре", "en": "inside", "pos": "adverb" },
+    { "mk": "грижи се", "en": "worries", "pos": "verb" },
+    { "mk": "наведнува се", "en": "bends over", "pos": "verb" },
+    { "mk": "заспива", "en": "falls asleep", "pos": "verb" },
+    { "mk": "уморен", "en": "tired", "pos": "adjective" },
+    { "mk": "токму", "en": "exactly", "pos": "adverb" }
   ],
   "expressions": [
-    { "mk": "Имало некогаш", "en": "Once upon a time", "usage": "Story opener" },
-    { "mk": "Те молам", "en": "Please", "usage": "Polite request" },
-    { "mk": "далеку од сè", "en": "far from everything", "usage": "Isolation" }
+    { "mk": "Не грижи се", "en": "Don't worry", "usage": "Reassuring someone" },
+    { "mk": "Токму вака", "en": "Exactly like this", "usage": "Expressing satisfaction" },
+    { "mk": "Не е толку", "en": "It's not that (much)", "usage": "Downplaying" }
   ],
   "audioUrl": null,
   "attribution": {
-    "handle": "@macedonianlanguagecorner",
+    "handle": "@mklanguagelab",
     "series": "30-Day Reading Challenge",
-    "day": "5"
+    "day": "5",
+    "sourceTitle": "Original educational content",
+    "author": "MK Language Lab"
   }
 }
