@@ -29,6 +29,7 @@ import day27 from '@/data/reader/samples/day27-maliot-princ.json';
 import day28 from '@/data/reader/samples/day28-maliot-princ.json';
 import day29 from '@/data/reader/samples/day29-maliot-princ.json';
 import day30 from '@/data/reader/samples/day30-maliot-princ.json';
+import dayInSkopje from '@/data/reader/samples/day-in-skopje.json';
 
 export interface ReaderSampleVocab {
   mk: string;
@@ -151,6 +152,7 @@ const samples: Record<string, ReaderSample> = {
   'day28-maliot-princ': day28 as ReaderSample,
   'day29-maliot-princ': day29 as ReaderSample,
   'day30-maliot-princ': day30 as ReaderSample,
+  'day-in-skopje': dayInSkopje as ReaderSample,
 };
 
 export function getReaderSample(id: string): ReaderSample | null {

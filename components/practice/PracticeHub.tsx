@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { Volume2, Brain, FileText, Sparkles, Heart, Settings2, Clock, Zap } from 'lucide-react';
+import { Volume2, Brain, FileText, Sparkles, Heart, Settings2, Clock, Zap, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { BottomSheet } from '@/components/ui/BottomSheet';
 import { usePracticeDecks } from './usePracticeDecks';
@@ -276,26 +276,31 @@ function PracticeModeCard({
 
       {/* Content */}
       <div className="flex-1 min-w-0">
-        <h3 className="font-semibold text-foreground truncate">{title}</h3>
-        <p className="text-sm text-muted-foreground line-clamp-1">{description}</p>
+        <h3 className="text-base font-semibold leading-tight text-foreground line-clamp-2 break-normal sm:text-lg">
+          {title}
+        </h3>
+        <p className="text-sm text-muted-foreground line-clamp-1 break-normal">{description}</p>
       </div>
 
       {/* Metadata: time + XP */}
-      <div className="flex flex-col items-end gap-1 shrink-0">
-        <span className="flex items-center gap-1 text-xs text-muted-foreground">
-          <Clock className="h-3 w-3" />
+      <div className="flex flex-col items-end gap-1 min-w-[64px] max-w-[96px] text-right">
+        <span className="text-xs text-muted-foreground sm:flex sm:items-center sm:gap-1">
+          <Clock className="hidden h-3 w-3 sm:inline" aria-hidden="true" />
           {time}
         </span>
-        <span className="flex items-center gap-1 text-xs font-semibold text-primary">
-          <Zap className="h-3 w-3" />
+        <span className="text-xs font-semibold text-primary sm:flex sm:items-center sm:gap-1">
+          <Zap className="hidden h-3 w-3 sm:inline" aria-hidden="true" />
           {xp}
         </span>
         {config.cardCount !== undefined && config.cardCount > 0 && (
-          <span className="text-[10px] text-muted-foreground">
+          <span className="hidden text-[10px] text-muted-foreground sm:inline">
             {config.cardCount} cards
           </span>
         )}
       </div>
+
+      {/* Start indicator */}
+      <ChevronRight className="h-5 w-5 text-muted-foreground opacity-50 group-hover:opacity-100 transition-opacity" />
     </div>
   );
 

@@ -1,24 +1,14 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
-  // Allow underscore-prefixed variables to be unused
+  ...nextCoreWebVitals,
+  // Disable React 19 strict rules that are too noisy for existing codebase
   {
     rules: {
-      "@typescript-eslint/no-unused-vars": ["warn", {
-        argsIgnorePattern: "^_",
-        varsIgnorePattern: "^_",
-        caughtErrorsIgnorePattern: "^_"
-      }]
+      "react-hooks/purity": "off",
+      "react-hooks/set-state-in-effect": "off",
+      "react-hooks/preserve-manual-memoization": "off",
+      "react-hooks/immutability": "off",
     }
   },
   {
@@ -28,6 +18,8 @@ const eslintConfig = [
       "out/**",
       "build/**",
       "dist/**",
+      "playwright-report/**",
+      "test-results/**",
       "public/**",
       "coverage/**",
       ".vercel/**",

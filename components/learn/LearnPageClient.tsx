@@ -83,22 +83,15 @@ export function LearnPageClient({
               goalXP={dailyGoalXP}
               complete={isGoalComplete}
             />
-            <div className="flex items-center gap-4">
-              {/* Streak chip with emoji */}
-              <div className={cn(
-                'flex items-center gap-1.5 px-3 py-1.5 rounded-full',
-                streak > 0 ? 'bg-orange-500/15' : 'bg-muted/30'
-              )}>
-                <span className="text-base">{streak > 0 ? '🔥' : ''}</span>
-                <span className={cn('text-sm font-bold', streak > 0 ? 'text-orange-500' : 'text-muted-foreground')}>
-                  {streak} day{streak !== 1 ? 's' : ''}
-                </span>
-              </div>
-              {/* XP */}
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/15">
-                <Zap className="h-5 w-5 text-primary" />
-                <span className="text-sm font-bold text-primary">{todayXP} / {dailyGoalXP} XP</span>
-              </div>
+            {/* Streak chip with emoji - only show if streak > 0 or for context */}
+            <div className={cn(
+              'flex items-center gap-1.5 px-3 py-1.5 rounded-full',
+              streak > 0 ? 'bg-orange-500/15' : 'bg-muted/30'
+            )}>
+              <span className="text-base">{streak > 0 ? '🔥' : '📅'}</span>
+              <span className={cn('text-sm font-bold', streak > 0 ? 'text-orange-500' : 'text-muted-foreground')}>
+                {streak === 0 ? 'Start a streak' : streak === 1 ? '1 day' : `${streak} days`}
+              </span>
             </div>
             {/* Dynamic hint */}
             <p className="text-sm text-muted-foreground text-center">
@@ -358,19 +351,29 @@ function LessonNodeCard({
         <Check className="h-5 w-5 text-emerald-500" />
       )}
 
-      {/* Arrow for next lesson */}
+      {/* Arrow for next lesson - or "Start" text for clarity */}
       {isNext && (
-        <ChevronRight className="h-5 w-5 text-primary" />
+        <span className="flex items-center gap-1 text-sm font-medium text-primary">
+          Start
+          <ChevronRight className="h-4 w-4" />
+        </span>
       )}
     </div>
   );
 
   if (isLocked || !node.href) {
-    return content;
+    return (
+      <div className="cursor-not-allowed" title="Complete previous lessons to unlock">
+        {content}
+      </div>
+    );
   }
 
   return (
-    <Link href={`/${locale}${node.href}`}>
+    <Link
+      href={`/${locale}${node.href}`}
+      className="block transition-transform active:scale-[0.99]"
+    >
       {content}
     </Link>
   );
