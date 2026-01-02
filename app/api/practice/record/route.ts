@@ -39,15 +39,23 @@ export async function POST(request: NextRequest) {
       create: {
         userId: session.user.id,
         xp: xpEarned,
+        todayXP: xpEarned,
         level: 'beginner',
         streak: 1,
         hearts: 5,
+        totalLessons: 1, // First lesson completed
         lastPracticeDate: new Date(),
         streakUpdatedAt: new Date(),
       },
       update: {
         xp: {
           increment: xpEarned,
+        },
+        todayXP: {
+          increment: xpEarned,
+        },
+        totalLessons: {
+          increment: 1, // Increment lesson count for path unlocking
         },
         lastPracticeDate: new Date(),
         // Update streak logic
@@ -86,7 +94,9 @@ export async function POST(request: NextRequest) {
       success: true,
       xpEarned,
       totalXp: gameProgress.xp + xpEarned,
+      todayXP: gameProgress.todayXP + xpEarned,
       streak: gameProgress.streak,
+      totalLessons: gameProgress.totalLessons + 1,
     });
   } catch (error) {
     log.error('Failed to record practice session', {

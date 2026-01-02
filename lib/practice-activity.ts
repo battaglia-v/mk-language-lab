@@ -70,6 +70,7 @@ export function writeActivityData(data: ActivityData): void {
 
 /**
  * Record a practice session
+ * Saves to localStorage AND calls API to persist to database
  */
 export function recordPracticeSession(
   cardsReviewed: number,
@@ -78,7 +79,7 @@ export function recordPracticeSession(
 ): DailyActivity {
   const data = readActivityData();
   const today = getTodayKey();
-  
+
   const existing = data[today] || {
     date: today,
     cardsReviewed: 0,
@@ -86,7 +87,7 @@ export function recordPracticeSession(
     timeSpentSeconds: 0,
     sessions: 0,
   };
-  
+
   const updated: DailyActivity = {
     date: today,
     cardsReviewed: existing.cardsReviewed + cardsReviewed,
@@ -94,11 +95,41 @@ export function recordPracticeSession(
     timeSpentSeconds: existing.timeSpentSeconds + timeSpentSeconds,
     sessions: existing.sessions + 1,
   };
-  
+
   data[today] = updated;
   writeActivityData(data);
-  
+
+  // Also save to database (async, fire-and-forget for UX)
+  savePracticeToDatabase(correctCount, cardsReviewed).catch((err) => {
+    console.warn('[Activity] Failed to save to database:', err);
+  });
+
   return updated;
+}
+
+/**
+ * Save practice session to database via API
+ * Awards XP and increments totalLessons for lesson unlocking
+ */
+async function savePracticeToDatabase(
+  correctCount: number,
+  totalCount: number
+): Promise<void> {
+  try {
+    const response = await fetch('/api/practice/record', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ correctCount, totalCount }),
+    });
+
+    if (!response.ok) {
+      const error = await response.text();
+      throw new Error(`API error: ${response.status} - ${error}`);
+    }
+  } catch (error) {
+    // Re-throw to be caught by caller
+    throw error;
+  }
 }
 
 /**
