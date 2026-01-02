@@ -1,9 +1,12 @@
 'use client';
 
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useRef } from 'react';
 import { WordDetailPopup } from './WordDetailPopup';
 import { cn } from '@/lib/utils';
 import { toggleFavorite, isFavorite } from '@/lib/favorites';
+
+// Simple in-memory cache for translations during session
+const translationCache = new Map<string, string>();
 
 interface VocabItem {
   mk: string;
@@ -41,6 +44,8 @@ interface WordMatch {
 export function TappableText({ text, vocabulary, className, locale }: TappableTextProps) {
   const [selectedWord, setSelectedWord] = useState<WordMatch | null>(null);
   const [isInDeck, setIsInDeck] = useState(false);
+  const [_isTranslating, setIsTranslating] = useState(false);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   // Build a lookup map from Macedonian words (normalized) to vocab items
   const vocabMap = useMemo(() => {
@@ -59,11 +64,57 @@ export function TappableText({ text, vocabulary, className, locale }: TappableTe
     return map;
   }, [vocabulary]);
 
-  const handleWordClick = useCallback((word: string) => {
-    // Normalize the clicked word
-    const normalized = word.toLowerCase().replace(/[.,!?;:'"]/g, '');
+  // Fetch translation from API
+  const fetchTranslation = useCallback(async (word: string, normalized: string): Promise<string | null> => {
+    // Check cache first
+    if (translationCache.has(normalized)) {
+      return translationCache.get(normalized) || null;
+    }
 
-    // Look up in vocabulary
+    // Cancel any pending request
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    abortControllerRef.current = new AbortController();
+
+    try {
+      const response = await fetch('/api/translate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          text: word.replace(/[.,!?;:'"„"«»—–]/g, ''),
+          sourceLang: 'mk',
+          targetLang: 'en',
+        }),
+        signal: abortControllerRef.current.signal,
+      });
+
+      if (!response.ok) {
+        return null;
+      }
+
+      const data = await response.json();
+      const translation = data.translatedText;
+
+      if (translation) {
+        translationCache.set(normalized, translation);
+        return translation;
+      }
+      return null;
+    } catch (error) {
+      if (error instanceof Error && error.name === 'AbortError') {
+        return null;
+      }
+      console.error('Translation fetch error:', error);
+      return null;
+    }
+  }, []);
+
+  const handleWordClick = useCallback(async (word: string) => {
+    // Normalize the clicked word
+    const normalized = word.toLowerCase().replace(/[.,!?;:'"„"«»—–]/g, '');
+
+    // Look up in vocabulary first
     const vocab = vocabMap.get(normalized);
 
     if (vocab) {
@@ -74,18 +125,27 @@ export function TappableText({ text, vocabulary, className, locale }: TappableTe
         phonetic: vocab.note,
       };
       setSelectedWord(match);
-      // Check if already in favorites
-      const wordId = `vocab-${normalized}`;
-      setIsInDeck(isFavorite(wordId));
-    } else {
-      // Word not in vocabulary - still show it but without translation
-      setSelectedWord({
-        original: word,
-        translation: locale === 'mk' ? 'Translation not available' : 'Превод не е достапен',
-      });
-      setIsInDeck(false);
+      setIsInDeck(isFavorite(`vocab-${normalized}`));
+      return;
     }
-  }, [vocabMap, locale]);
+
+    // Not in vocabulary - show loading state and fetch translation
+    const cleanWord = word.replace(/[.,!?;:'"„"«»—–]/g, '');
+    setSelectedWord({
+      original: cleanWord,
+      translation: locale === 'en' ? 'Translating...' : 'Се преведува...',
+    });
+    setIsInDeck(false);
+    setIsTranslating(true);
+
+    const translation = await fetchTranslation(word, normalized);
+
+    setIsTranslating(false);
+    setSelectedWord({
+      original: cleanWord,
+      translation: translation || (locale === 'en' ? 'Translation not available' : 'Превод не е достапен'),
+    });
+  }, [vocabMap, locale, fetchTranslation]);
 
   const handleClose = useCallback(() => {
     setSelectedWord(null);
