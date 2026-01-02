@@ -231,7 +231,7 @@ function NavRail({ items, t, pathname, buildHref, label, onNavClick }: NavRailPr
                 className={cn(
                   "relative z-10 text-[11px] font-semibold leading-tight text-center max-w-full whitespace-nowrap overflow-hidden text-ellipsis transition-all duration-200 max-[359px]:hidden",
                   active
-                    ? "bg-gradient-to-r from-white via-white to-primary bg-clip-text text-transparent drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)]"
+                    ? "text-primary"
                     : "text-white/70 group-hover:text-white"
                 )}
               >

@@ -173,23 +173,12 @@ export default async function ReadingSamplePage({ params }: ReadingSamplePagePro
             </CardContent>
           </Card>
 
-          {/* Attribution */}
+          {/* Attribution - simplified */}
           <Card className="border-dashed">
-            <CardContent className="pt-6">
-              <div className="flex items-start gap-3 text-sm text-muted-foreground">
-                <div className="flex-1 space-y-1">
-                  <p className="font-medium">
-                    {sample.attribution.series} • Day {sample.attribution.day}
-                  </p>
-                  <p>
-                    Source: {sample.attribution.sourceTitle}
-                    {sample.attribution.author && ` by ${sample.attribution.author}`}
-                  </p>
-                  <p className="text-xs">
-                    Content by {sample.attribution.handle}
-                  </p>
-                </div>
-              </div>
+            <CardContent className="pt-4 pb-4">
+              <p className="text-sm text-muted-foreground text-center">
+                {sample.attribution.series} • Day {sample.attribution.day} • {sample.attribution.handle}
+              </p>
             </CardContent>
           </Card>
         </TabsContent>

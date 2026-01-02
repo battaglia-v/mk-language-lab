@@ -77,7 +77,7 @@ export function MarkCompleteButton({ sampleId, locale: _locale, dayNumber: _dayN
   return (
     <Button
       size="lg"
-      className="w-full gap-2"
+      className="w-full gap-2 bg-gradient-to-r from-primary to-amber-500 text-slate-900 font-bold shadow-lg shadow-primary/25 hover:shadow-xl hover:scale-[1.01] transition-all"
       onClick={handleComplete}
       disabled={isLoading}
     >
