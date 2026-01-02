@@ -1,0 +1,132 @@
+{
+  "id": "day-in-skopje",
+  "locale": "mk",
+  "title_mk": "Ден во Скопје",
+  "title_en": "A Day in Skopje",
+  "difficulty": "A1",
+  "estimatedMinutes": 8,
+  "tags": ["story", "A1-final", "travel", "daily-life", "skopje"],
+  "text_blocks_mk": [
+    { "type": "h2", "value": "Утрото" },
+    { "type": "p", "value": "Здраво! Јас се викам Ана. Јас сум од Скопје. Денес е сабота и времето е убаво." },
+    { "type": "p", "value": "Јас станувам во осум часот. Надвор е сончево и топло. Јас отворам прозорецот во мојата соба." },
+    { "type": "p", "value": "За појадок јадам леб со мед и пијам кафе со млеко. Мојата мајка подготвува се во кујната." },
+
+    { "type": "h2", "value": "Во центарот" },
+    { "type": "p", "value": "Во десет часот одам во центарот на Скопје. Денес носам бела кошула и сини фармерки. На нозете носам црни чевли." },
+    { "type": "p", "value": "Прво одам на Плоштад Македонија. Таму има многу луѓе. Некои седат на клупи, други шетаат." },
+    { "type": "p", "value": "Јас гледам еден пријател. Тој се вика Марко." },
+    { "type": "p", "value": "— Здраво, Марко! Како си?" },
+    { "type": "p", "value": "— Здраво, Ана! Добро сум, благодарам. А ти?" },
+    { "type": "p", "value": "— И јас сум добро. Убаво време денес, нели?" },
+    { "type": "p", "value": "— Да, многу убаво! Кај одиш?" },
+    { "type": "p", "value": "— Одам во Старата чаршија." },
+
+    { "type": "h2", "value": "Во Старата чаршија" },
+    { "type": "p", "value": "Марко и јас одиме заедно во Старата чаршија. Таму има многу дуќани и кафулиња." },
+    { "type": "p", "value": "Во еден дуќан гледам убава црвена фустан. Колку чини? Осумстотини денари." },
+    { "type": "p", "value": "Потоа седнуваме во едно кафуле. Марко сака кафе, а јас сакам чај." },
+    { "type": "p", "value": "— Што сакате? — прашува келнерот." },
+    { "type": "p", "value": "— Едно кафе и еден чај, молам." },
+    { "type": "p", "value": "— Дали сакате нешто за јадење?" },
+    { "type": "p", "value": "— Да, две бурици, молам." },
+    { "type": "p", "value": "Ние седиме и разговараме. Марко раскажува за неговите хобија. Тој сака да чита книги и да игра фудбал." },
+
+    { "type": "h2", "value": "Попладнето" },
+    { "type": "p", "value": "Во два часот попладне, јас одам дома. Сум малку уморна, но среќна." },
+    { "type": "p", "value": "Дома, мајка ми прашува: — Како помина денот?" },
+    { "type": "p", "value": "— Одлично, мамо! Го видов Марко и бевме во Стара чаршија." },
+    { "type": "p", "value": "За вечера јадеме шопска салата и печено месо. Многу е вкусно!" },
+    { "type": "p", "value": "Навечер читам една книга во мојата соба. Во единаесет часот, одам да спијам." },
+    { "type": "p", "value": "Беше убав ден во Скопје!" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Глаголи во сегашно време",
+      "title_en": "Present Tense Verbs",
+      "description_en": "Common verbs conjugated for 'I' (јас)",
+      "bullets": [
+        "станувам = I get up",
+        "одам = I go",
+        "носам = I wear/carry",
+        "гледам = I see/watch",
+        "седам = I sit"
+      ],
+      "examples": [
+        { "mk": "Јас станувам во осум часот", "en": "I get up at eight o'clock" },
+        { "mk": "Јас одам во центарот", "en": "I go to the center" },
+        { "mk": "Денес носам бела кошула", "en": "Today I wear a white shirt" }
+      ]
+    },
+    {
+      "title_mk": "Време на часовникот",
+      "title_en": "Telling Time",
+      "description_en": "Expressing hours of the day",
+      "examples": [
+        { "mk": "во осум часот", "en": "at eight o'clock" },
+        { "mk": "во десет часот", "en": "at ten o'clock" },
+        { "mk": "во два часот попладне", "en": "at two o'clock in the afternoon" },
+        { "mk": "во единаесет часот", "en": "at eleven o'clock" }
+      ]
+    },
+    {
+      "title_mk": "Придавки за бои",
+      "title_en": "Color Adjectives",
+      "description_en": "Colors agree with noun gender",
+      "examples": [
+        { "mk": "бела кошула", "en": "white shirt", "note": "feminine noun" },
+        { "mk": "сини фармерки", "en": "blue jeans", "note": "plural" },
+        { "mk": "црни чевли", "en": "black shoes", "note": "plural" },
+        { "mk": "црвена фустан", "en": "red dress", "note": "feminine noun" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "станувам", "en": "I get up", "pos": "verb" },
+    { "mk": "надвор", "en": "outside", "pos": "adverb" },
+    { "mk": "сончево", "en": "sunny", "pos": "adjective" },
+    { "mk": "топло", "en": "warm", "pos": "adjective" },
+    { "mk": "прозорец", "en": "window", "pos": "noun" },
+    { "mk": "соба", "en": "room", "pos": "noun" },
+    { "mk": "појадок", "en": "breakfast", "pos": "noun" },
+    { "mk": "леб", "en": "bread", "pos": "noun" },
+    { "mk": "мед", "en": "honey", "pos": "noun" },
+    { "mk": "кујна", "en": "kitchen", "pos": "noun" },
+    { "mk": "центар", "en": "center", "pos": "noun" },
+    { "mk": "кошула", "en": "shirt", "pos": "noun" },
+    { "mk": "фармерки", "en": "jeans", "pos": "noun" },
+    { "mk": "чевли", "en": "shoes", "pos": "noun" },
+    { "mk": "плоштад", "en": "square, plaza", "pos": "noun" },
+    { "mk": "клупа", "en": "bench", "pos": "noun" },
+    { "mk": "шетам", "en": "I walk, stroll", "pos": "verb" },
+    { "mk": "пријател", "en": "friend", "pos": "noun" },
+    { "mk": "дуќан", "en": "shop, store", "pos": "noun" },
+    { "mk": "фустан", "en": "dress", "pos": "noun" },
+    { "mk": "денар", "en": "denar (currency)", "pos": "noun" },
+    { "mk": "бурек", "en": "burek (pastry)", "pos": "noun" },
+    { "mk": "хоби", "en": "hobby", "pos": "noun" },
+    { "mk": "книга", "en": "book", "pos": "noun" },
+    { "mk": "фудбал", "en": "football/soccer", "pos": "noun" },
+    { "mk": "уморен", "en": "tired", "pos": "adjective" },
+    { "mk": "среќен", "en": "happy", "pos": "adjective" },
+    { "mk": "вечера", "en": "dinner", "pos": "noun" },
+    { "mk": "салата", "en": "salad", "pos": "noun" },
+    { "mk": "месо", "en": "meat", "pos": "noun" },
+    { "mk": "вкусно", "en": "delicious", "pos": "adjective" }
+  ],
+  "expressions": [
+    { "mk": "Како си?", "en": "How are you?", "usage": "Informal greeting" },
+    { "mk": "Добро сум", "en": "I'm fine/well", "usage": "Response to 'how are you'" },
+    { "mk": "нели?", "en": "right? isn't it?", "usage": "Tag question seeking agreement" },
+    { "mk": "Кај одиш?", "en": "Where are you going?", "usage": "Asking about destination" },
+    { "mk": "Колку чини?", "en": "How much does it cost?", "usage": "Asking price" },
+    { "mk": "Како помина денот?", "en": "How was your day?", "usage": "Asking about someone's day" },
+    { "mk": "Одлично!", "en": "Excellent!", "usage": "Enthusiastic positive response" }
+  ],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "A1 Foundations",
+    "day": "final",
+    "sourceTitle": "Original content for A1 path completion"
+  }
+}

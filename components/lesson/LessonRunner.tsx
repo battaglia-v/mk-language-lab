@@ -193,13 +193,13 @@ export function LessonRunner({
       bottomNavOffset={true}
       className="relative"
     >
-      {/* Exit Button (top right) */}
+      {/* Exit Button (top right) - 44px for WCAG touch target */}
       {onExit && (
         <Button
           variant="ghost"
           size="icon"
           onClick={onExit}
-          className="absolute right-4 top-4 z-10 rounded-full h-10 w-10"
+          className="absolute right-4 top-4 z-10 rounded-full h-11 w-11 touch-manipulation"
           aria-label="Exit lesson"
         >
           <X className="h-5 w-5" />
