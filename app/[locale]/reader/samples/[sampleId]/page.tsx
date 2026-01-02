@@ -110,6 +110,7 @@ export default async function ReadingSamplePage({ params }: ReadingSamplePagePro
                       key={idx}
                       text={block.value}
                       vocabulary={sample.vocabulary}
+                      analyzedData={sample.analyzedData}
                       locale={locale}
                     />
                   );

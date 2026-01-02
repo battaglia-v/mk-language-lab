@@ -15,9 +15,11 @@ interface WordDetailPopupProps {
   word: {
     original: string;
     translation: string;
+    alternativeTranslations?: string[];
+    contextHint?: string;
     partOfSpeech?: string;
     phonetic?: string;
-    difficulty?: 'A1' | 'A2' | 'B1' | 'B2' | 'C1';
+    difficulty?: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'basic' | 'intermediate' | 'advanced';
     examples?: string[];
   };
   /** Position for popup (relative to trigger) */
@@ -40,11 +42,16 @@ interface WordDetailPopupProps {
 }
 
 const DIFFICULTY_COLORS: Record<string, string> = {
+  // CEFR levels
   A1: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
   A2: 'bg-sky-500/20 text-sky-400 border-sky-500/30',
   B1: 'bg-amber-500/20 text-amber-400 border-amber-500/30',
   B2: 'bg-purple-500/20 text-purple-400 border-purple-500/30',
   C1: 'bg-rose-500/20 text-rose-400 border-rose-500/30',
+  // Text Analyzer levels
+  basic: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
+  intermediate: 'bg-amber-500/20 text-amber-400 border-amber-500/30',
+  advanced: 'bg-rose-500/20 text-rose-400 border-rose-500/30',
 };
 
 /**
@@ -188,7 +195,7 @@ export function WordDetailPopup({
             {/* Content with staggered animations */}
             <div className="space-y-4 p-4">
               {/* Translation */}
-              <motion.div 
+              <motion.div
                 initial={prefersReducedMotion ? {} : { opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15 }}
@@ -197,6 +204,21 @@ export function WordDetailPopup({
                 <p className="text-lg font-medium text-foreground">
                   {word.translation}
                 </p>
+
+                {/* Alternative translations */}
+                {word.alternativeTranslations && word.alternativeTranslations.length > 0 && (
+                  <p className="text-sm text-muted-foreground">
+                    Also: {word.alternativeTranslations.join(', ')}
+                  </p>
+                )}
+
+                {/* Context hint for words with multiple meanings */}
+                {word.contextHint && (
+                  <p className="text-xs text-primary/80 italic">
+                    {word.contextHint}
+                  </p>
+                )}
+
                 <div className="flex flex-wrap items-center gap-2">
                   {word.partOfSpeech && (
                     <motion.div
@@ -216,9 +238,9 @@ export function WordDetailPopup({
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.25 }}
                     >
-                      <Badge 
-                        variant="outline" 
-                        className={cn("text-xs", DIFFICULTY_COLORS[word.difficulty])}
+                      <Badge
+                        variant="outline"
+                        className={cn("text-xs", DIFFICULTY_COLORS[word.difficulty] || DIFFICULTY_COLORS['basic'])}
                       >
                         <Sparkles className="mr-1 h-3 w-3" />
                         {word.difficulty}

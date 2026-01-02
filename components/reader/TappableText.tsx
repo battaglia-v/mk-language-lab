@@ -15,11 +15,43 @@ interface VocabItem {
   note?: string;
 }
 
+/** Pre-analyzed word from Text Analyzer API */
+interface AnalyzedWord {
+  id: string;
+  original: string;
+  translation: string;
+  alternativeTranslations?: string[];
+  contextualMeaning?: string;
+  contextHint?: string;
+  hasMultipleMeanings?: boolean;
+  pos: 'noun' | 'verb' | 'adjective' | 'adverb' | 'other';
+  difficulty: 'basic' | 'intermediate' | 'advanced';
+  index: number;
+}
+
+/** Pre-analyzed text data from Text Analyzer */
+interface AnalyzedTextData {
+  words: AnalyzedWord[];
+  tokens: Array<{ token: string; isWord: boolean; index: number }>;
+  fullTranslation: string;
+  difficulty: {
+    level: 'beginner' | 'intermediate' | 'advanced';
+    score: number;
+  };
+  metadata: {
+    wordCount: number;
+    sentenceCount: number;
+    characterCount: number;
+  };
+}
+
 interface TappableTextProps {
   /** The Macedonian text to display */
   text: string;
   /** Vocabulary list for lookups */
   vocabulary: VocabItem[];
+  /** Pre-analyzed data from Text Analyzer (optional, for rich word info) */
+  analyzedData?: AnalyzedTextData;
   /** CSS class for the paragraph */
   className?: string;
   /** Locale for translations */
@@ -29,23 +61,41 @@ interface TappableTextProps {
 interface WordMatch {
   original: string;
   translation: string;
+  alternativeTranslations?: string[];
+  contextHint?: string;
   partOfSpeech?: string;
   phonetic?: string;
-  difficulty?: 'A1' | 'A2' | 'B1' | 'B2' | 'C1';
+  difficulty?: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'basic' | 'intermediate' | 'advanced';
   examples?: string[];
 }
 
 /**
  * TappableText - Renders text with tappable words that show translations
  *
- * When a user taps a word, it looks up the word in the vocabulary list
- * and shows a popup with the translation and options to save/hear audio.
+ * When a user taps a word, it looks up the word in:
+ * 1. Pre-analyzed data (if available) - richest info
+ * 2. Vocabulary list - basic translation
+ * 3. Translation API - live lookup as fallback
  */
-export function TappableText({ text, vocabulary, className, locale }: TappableTextProps) {
+export function TappableText({ text, vocabulary, analyzedData, className, locale }: TappableTextProps) {
   const [selectedWord, setSelectedWord] = useState<WordMatch | null>(null);
   const [isInDeck, setIsInDeck] = useState(false);
   const [_isTranslating, setIsTranslating] = useState(false);
   const abortControllerRef = useRef<AbortController | null>(null);
+
+  // Build a lookup map from pre-analyzed words (best quality)
+  const analyzedMap = useMemo(() => {
+    const map = new Map<string, AnalyzedWord>();
+    if (!analyzedData?.words) return map;
+
+    analyzedData.words.forEach((word) => {
+      const normalized = word.original.toLowerCase().replace(/[.,!?;:'"„"«»—–]/g, '');
+      if (!map.has(normalized)) {
+        map.set(normalized, word);
+      }
+    });
+    return map;
+  }, [analyzedData]);
 
   // Build a lookup map from Macedonian words (normalized) to vocab items
   const vocabMap = useMemo(() => {
@@ -113,10 +163,26 @@ export function TappableText({ text, vocabulary, className, locale }: TappableTe
   const handleWordClick = useCallback(async (word: string) => {
     // Normalize the clicked word
     const normalized = word.toLowerCase().replace(/[.,!?;:'"„"«»—–]/g, '');
+    const cleanWord = word.replace(/[.,!?;:'"„"«»—–]/g, '');
 
-    // Look up in vocabulary first
+    // 1. First check pre-analyzed data (richest info)
+    const analyzed = analyzedMap.get(normalized);
+    if (analyzed) {
+      const match: WordMatch = {
+        original: analyzed.original,
+        translation: analyzed.contextualMeaning || analyzed.translation,
+        alternativeTranslations: analyzed.alternativeTranslations,
+        contextHint: analyzed.contextHint,
+        partOfSpeech: analyzed.pos,
+        difficulty: analyzed.difficulty,
+      };
+      setSelectedWord(match);
+      setIsInDeck(isFavorite(`vocab-${normalized}`));
+      return;
+    }
+
+    // 2. Then check vocabulary list
     const vocab = vocabMap.get(normalized);
-
     if (vocab) {
       const match: WordMatch = {
         original: vocab.mk,
@@ -129,8 +195,7 @@ export function TappableText({ text, vocabulary, className, locale }: TappableTe
       return;
     }
 
-    // Not in vocabulary - show loading state and fetch translation
-    const cleanWord = word.replace(/[.,!?;:'"„"«»—–]/g, '');
+    // 3. Not found - show loading state and fetch translation from API
     setSelectedWord({
       original: cleanWord,
       translation: locale === 'en' ? 'Translating...' : 'Се преведува...',
@@ -145,7 +210,7 @@ export function TappableText({ text, vocabulary, className, locale }: TappableTe
       original: cleanWord,
       translation: translation || (locale === 'en' ? 'Translation not available' : 'Превод не е достапен'),
     });
-  }, [vocabMap, locale, fetchTranslation]);
+  }, [analyzedMap, vocabMap, locale, fetchTranslation]);
 
   const handleClose = useCallback(() => {
     setSelectedWord(null);
@@ -190,9 +255,9 @@ export function TappableText({ text, vocabulary, className, locale }: TappableTe
             return <span key={idx}>{word}</span>;
           }
 
-          // Check if this word is in vocabulary
+          // Check if this word has translation data available
           const normalized = word.toLowerCase().replace(/[.,!?;:'"„"«»—–]/g, '');
-          const isInVocab = vocabMap.has(normalized);
+          const hasAnalysis = analyzedMap.has(normalized) || vocabMap.has(normalized);
 
           return (
             <span
@@ -214,7 +279,7 @@ export function TappableText({ text, vocabulary, className, locale }: TappableTe
                 'cursor-pointer rounded-sm px-0.5 -mx-0.5 transition-colors inline',
                 'hover:bg-primary/20 active:bg-primary/30 focus:bg-primary/20 focus:outline-none',
                 'touch-manipulation', // Better mobile touch handling
-                isInVocab && 'underline decoration-primary/40 decoration-dotted underline-offset-4'
+                hasAnalysis && 'underline decoration-primary/40 decoration-dotted underline-offset-4'
               )}
             >
               {word}
