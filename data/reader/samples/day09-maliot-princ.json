@@ -10,9 +10,9 @@
   "day": 9,
   "text_blocks_mk": [
     { "type": "p", "value": "Ружата била многу горда и барала многу внимание. Секое утро сакала вода, но не премногу." },
-    { "type": "p", "value": "„Ми е ладно!" се жалела таа. „Заштити ме од промаја!"" },
+    { "type": "p", "value": "„Ми е ладно!“ се жалела таа. „Заштити ме од промаја!“" },
     { "type": "p", "value": "Момчето ја ставало под стаклен поклопец. Но ружата пак не била задоволна." },
-    { "type": "p", "value": "„Ми е здодевно!" велела. „Сакам да видам други цвеќиња." Момчето не знаело што да прави." },
+    { "type": "p", "value": "„Ми е здодевно!“ велела. „Сакам да видам други цвеќиња.“ Момчето не знаело што да прави." },
     { "type": "p", "value": "Ја сакаше, но таа го правеше тажен. Не разбираше дека таа го сака, но не знае како да покаже." }
   ],
   "grammar_highlights": [
@@ -21,14 +21,14 @@
       "title_en": "Direct Speech",
       "description_en": "Quoting what someone said",
       "bullets": [
-        "Use „..." for opening and closing quotes",
+        "Use „...“ for opening and closing quotes",
         "Verb of saying follows: рече, велеше, праша",
-        "Inversion possible: „Дојди!" рече тој."
+        "Inversion possible: „Дојди!“ рече тој."
       ],
       "examples": [
-        { "mk": "„Ми е ладно!" рече таа.", "en": "'I'm cold!' she said.", "note": "Direct quote" },
-        { "mk": "„Заштити ме!" праша.", "en": "'Protect me!' she asked.", "note": "With imperative" },
-        { "mk": "„Сакам..." велела ружата.", "en": "'I want...' the rose would say.", "note": "Past habitual" }
+        { "mk": "„Ми е ладно!“ рече таа.", "en": "'I'm cold!' she said.", "note": "Direct quote" },
+        { "mk": "„Заштити ме!“ праша.", "en": "'Protect me!' she asked.", "note": "With imperative" },
+        { "mk": "„Сакам...“ велела ружата.", "en": "'I want...' the rose would say.", "note": "Past habitual" }
       ]
     }
   ],
