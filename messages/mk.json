@@ -1830,7 +1830,8 @@
       "xpProgress": "Следно ниво",
       "xpProgressDetail": "{current} XP / {goal} XP",
       "completedQuestsLabel": "{count} завршени оваа недела",
-      "leagueTier": "{tier} лига"
+      "leagueTier": "{tier} лига",
+      "keepItUp": "Продолжи така!"
     },
     "quests": {
       "title": "Активни задачи",

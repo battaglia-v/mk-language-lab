@@ -14,10 +14,9 @@ import { Trophy, TrendingUp, Flame, Crown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { staggerContainer, staggerItem } from '@/lib/animations';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Button } from '@/components/ui/button';
 
-export type LeaderboardType = 'global' | 'friends' | 'league';
-export type LeaderboardPeriod = 'week' | 'alltime';
+export type LeaderboardType = 'global';
+export type LeaderboardPeriod = 'alltime';
 
 type LeaderboardEntry = {
   userId: string;
@@ -39,24 +38,17 @@ type LeaderboardData = {
 };
 
 interface LeaderboardCardProps {
-  type?: LeaderboardType;
-  period?: LeaderboardPeriod;
   limit?: number;
   className?: string;
-  showTypeToggle?: boolean;
-  showPeriodToggle?: boolean;
 }
 
 export function LeaderboardCard({
-  type: initialType = 'global',
-  period: initialPeriod = 'week',
   limit = 10,
   className,
-  showTypeToggle = true,
-  showPeriodToggle = true,
 }: LeaderboardCardProps) {
-  const [type, setType] = useState<LeaderboardType>(initialType);
-  const [period, setPeriod] = useState<LeaderboardPeriod>(initialPeriod);
+  // Simplified: Always global leaderboard by total XP
+  const type: LeaderboardType = 'global';
+  const period: LeaderboardPeriod = 'alltime';
   const [data, setData] = useState<LeaderboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -107,47 +99,8 @@ export function LeaderboardCard({
         )}
       </div>
 
-      {/* Type Toggle */}
-      {showTypeToggle && (
-        <div className="mb-3 flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-          {(['global', 'league'] as LeaderboardType[]).map((t) => (
-            <Button
-              key={t}
-              variant={type === t ? 'default' : 'outline'}
-              size="sm"
-              onClick={() => setType(t)}
-              className={cn(
-                'whitespace-nowrap rounded-full',
-                type === t ? '' : 'bg-background text-foreground hover:bg-muted'
-              )}
-            >
-              {t.charAt(0).toUpperCase() + t.slice(1)}
-            </Button>
-          ))}
-        </div>
-      )}
-
-      {/* Period Toggle */}
-      {showPeriodToggle && (
-        <div className="mb-4 flex gap-2">
-          {(['week', 'alltime'] as LeaderboardPeriod[]).map((p) => (
-            <Button
-              key={p}
-              variant={period === p ? 'outline' : 'ghost'}
-              size="sm"
-              onClick={() => setPeriod(p)}
-              className={cn(
-                'flex-1',
-                period === p
-                  ? 'border-primary bg-primary/10 text-primary'
-                  : 'border-border bg-background text-foreground hover:bg-muted'
-              )}
-            >
-              {p === 'week' ? 'This Week' : 'All Time'}
-            </Button>
-          ))}
-        </div>
-      )}
+      {/* Simplified header - no toggles */}
+      <p className="mb-4 text-sm text-muted-foreground">Top learners by total XP</p>
 
       {/* Leaderboard List */}
       {loading ? (
@@ -171,7 +124,6 @@ export function LeaderboardCard({
             <LeaderboardRow
               key={entry.userId}
               entry={entry}
-              period={period}
               isCurrentUser={data.userRank === entry.rank}
             />
           ))}
@@ -192,14 +144,13 @@ export function LeaderboardCard({
  */
 function LeaderboardRow({
   entry,
-  period,
   isCurrentUser,
 }: {
   entry: LeaderboardEntry;
-  period: LeaderboardPeriod;
   isCurrentUser: boolean;
 }) {
-  const xpToShow = period === 'week' ? entry.weeklyXP : entry.xp;
+  // Always show total XP (simplified leaderboard)
+  const xpToShow = entry.xp;
 
   // Medal colors for top 3
   const getMedalColor = (rank: number) => {

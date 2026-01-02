@@ -22,7 +22,7 @@ export function LessonPath({ path, locale, className }: LessonPathProps) {
     <TooltipProvider delayDuration={300}>
       <div className={cn('flex flex-col', className)}>
         {/* Path header */}
-        <div className="mb-6 px-4">
+        <div className="mb-6">
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-bold">{path.title}</h2>
             <span className="text-sm text-muted-foreground">
@@ -35,14 +35,8 @@ export function LessonPath({ path, locale, className }: LessonPathProps) {
           )}
         </div>
 
-        {/* Vertical path of nodes */}
-        <div className="relative flex flex-col items-start gap-4 px-8 pb-16">
-          {/* Background path line */}
-          <div
-            className="absolute left-[4.5rem] top-8 bottom-16 w-1 bg-gradient-to-b from-muted/60 via-muted/30 to-transparent rounded-full"
-            aria-hidden="true"
-          />
-
+        {/* Vertical path of nodes - clean centered layout */}
+        <div className="flex flex-col items-center pb-8">
           {path.nodes.map((node, index) => (
             <LessonPathNode
               key={node.id}
@@ -50,6 +44,7 @@ export function LessonPath({ path, locale, className }: LessonPathProps) {
               locale={locale}
               index={index}
               isContinueNode={nextNode?.id === node.id}
+              totalNodes={path.nodes.length}
             />
           ))}
         </div>
