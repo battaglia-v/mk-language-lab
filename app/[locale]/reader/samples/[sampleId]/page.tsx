@@ -9,6 +9,7 @@ import { PageContainer } from '@/components/layout';
 import { getReaderSample, getDifficultyColor } from '@/lib/reader-samples';
 import { ReaderQuizButton } from '@/components/reader/ReaderQuizButton';
 import { QuickAnalyzeButton } from '@/components/reader/QuickAnalyzeButton';
+import { MarkCompleteButton } from '@/components/reader/MarkCompleteButton';
 import { TappableTextClient } from './TappableTextClient';
 import { cn } from '@/lib/utils';
 
@@ -306,6 +307,23 @@ export default async function ReadingSamplePage({ params }: ReadingSamplePagePro
           </Card>
         </TabsContent>
       </Tabs>
+
+      {/* Mark Complete CTA - Sticky on mobile */}
+      <Card className="border-emerald-500/30 bg-emerald-500/5">
+        <CardContent className="pt-6 space-y-3">
+          <div className="text-center space-y-2">
+            <h3 className="text-lg font-semibold">Finished Reading?</h3>
+            <p className="text-sm text-muted-foreground">
+              Mark this lesson complete to unlock the next one and earn XP
+            </p>
+          </div>
+          <MarkCompleteButton
+            sampleId={sampleId}
+            locale={locale}
+            dayNumber={sample.attribution.day}
+          />
+        </CardContent>
+      </Card>
     </PageContainer>
   );
 }
