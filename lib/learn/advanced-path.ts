@@ -84,7 +84,7 @@ export const advancedPathNodes: LessonNode[] = [
     description: 'Read and understand a travel story',
     status: 'locked',
     xpReward: 30,
-    href: '/reader',
+    href: '/reader/samples/day-in-skopje',
     contentId: 'day-in-skopje',
   },
   {
