@@ -1,0 +1,14 @@
+{
+  "route": "/en/practice/grammar",
+  "viewport": "SmallAndroid",
+  "timestamp": "2026-01-02T01:52:57.218Z",
+  "overflow": {
+    "hasOverflow": false,
+    "elements": []
+  },
+  "i18nKeys": [],
+  "consoleErrors": [],
+  "networkErrors": [],
+  "brokenImages": [],
+  "screenshot": "SmallAndroid-Grammar.png"
+}

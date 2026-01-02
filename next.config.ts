@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from 'next-intl/plugin';
-// import { withSentryConfig } from "@sentry/nextjs"; // Disabled - Sentry temporarily removed
+import { withSentryConfig } from "@sentry/nextjs";
 import withPWA from '@ducanh2912/next-pwa';
 
 const withNextIntl = createNextIntlPlugin('./i18n.ts');
@@ -301,5 +301,12 @@ const pwaConfig = withPWA({
   register: false,
 });
 
-// Wrap the config with PWA and next-intl (Sentry temporarily disabled)
-export default withNextIntl(pwaConfig(nextConfig));
+const configWithPlugins = withNextIntl(pwaConfig(nextConfig));
+
+const shouldEnableSentryWebpackPlugin = Boolean(
+  process.env.SENTRY_AUTH_TOKEN && process.env.SENTRY_ORG && process.env.SENTRY_PROJECT
+);
+
+export default shouldEnableSentryWebpackPlugin
+  ? withSentryConfig(configWithPlugins, sentryWebpackPluginOptions)
+  : configWithPlugins;

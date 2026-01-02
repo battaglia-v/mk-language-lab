@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Clock, BookOpen } from 'lucide-react';
+import { Clock, BookOpen, Lock } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { getDifficultyColor, type ReaderSample } from '@/lib/reader-samples';
@@ -9,13 +9,40 @@ import { getDifficultyColor, type ReaderSample } from '@/lib/reader-samples';
 interface ReadingSampleCardProps {
   sample: ReaderSample;
   locale: string;
+  isPremium?: boolean;
+  isLocked?: boolean;
+  ctaHref?: string;
+  ctaLabel?: string;
 }
 
-export function ReadingSampleCard({ sample, locale }: ReadingSampleCardProps) {
+export function ReadingSampleCard({
+  sample,
+  locale,
+  isPremium = false,
+  isLocked = false,
+  ctaHref,
+  ctaLabel,
+}: ReadingSampleCardProps) {
   const title = locale === 'mk' ? sample.title_mk : sample.title_en;
+  const href = ctaHref || `/${locale}/reader/samples/${sample.id}`;
+  const defaultCtaLabel = isLocked
+    ? (locale === 'mk' ? 'Отклучи Pro' : 'Unlock Pro')
+    : (locale === 'mk' ? 'Почни да читаш' : 'Start Reading');
+  const buttonLabel = ctaLabel || defaultCtaLabel;
 
   return (
-    <Card className="group relative overflow-hidden border-border/60 bg-card/50 backdrop-blur transition-all hover:border-primary/50 hover:shadow-lg">
+    <Card
+      className={cn(
+        "group relative overflow-hidden border-border/60 bg-card/50 backdrop-blur transition-all hover:border-primary/50 hover:shadow-lg",
+        isLocked && "border-primary/30 bg-primary/5"
+      )}
+    >
+      {isPremium && (
+        <div className="absolute right-3 top-3 z-10 inline-flex items-center gap-1 rounded-full bg-primary/20 px-2 py-1 text-[11px] font-semibold text-primary">
+          <Lock className="h-3 w-3" aria-hidden="true" />
+          PRO
+        </div>
+      )}
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 space-y-1.5">
@@ -69,8 +96,8 @@ export function ReadingSampleCard({ sample, locale }: ReadingSampleCardProps) {
           asChild
           className="w-full min-h-[52px]"
         >
-          <Link href={`/${locale}/reader/samples/${sample.id}`}>
-            Start Reading
+          <Link href={href}>
+            {buttonLabel}
           </Link>
         </Button>
       </CardContent>

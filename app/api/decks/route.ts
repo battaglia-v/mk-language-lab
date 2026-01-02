@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import { FREE_TIER_LIMITS } from '@/lib/entitlements';
+import { getEntitlementForUserId } from '@/lib/entitlements-server';
 
 export const dynamic = 'force-dynamic';
 
@@ -59,6 +61,26 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    if (process.env.ENABLE_PAYWALL === 'true') {
+      const entitlement = await getEntitlementForUserId(session.user.id);
+
+      if (!entitlement.isPro) {
+        const activeDeckCount = await prisma.customDeck.count({
+          where: {
+            userId: session.user.id,
+            isArchived: false,
+          },
+        });
+
+        if (activeDeckCount >= FREE_TIER_LIMITS.maxCustomDecks) {
+          return NextResponse.json(
+            { error: 'Upgrade required to create more custom decks' },
+            { status: 402 }
+          );
+        }
+      }
+    }
+
     const body = await request.json();
     const { name, description, category } = body;
 

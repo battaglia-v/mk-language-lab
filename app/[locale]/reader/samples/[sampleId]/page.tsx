@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 // Translations available via getTranslations if needed
 import Link from 'next/link';
 import { ArrowLeft, Clock, Tag, User, Hand } from 'lucide-react';
@@ -12,6 +12,8 @@ import { QuickAnalyzeButton } from '@/components/reader/QuickAnalyzeButton';
 import { MarkCompleteButton } from '@/components/reader/MarkCompleteButton';
 import { TappableTextClient } from './TappableTextClient';
 import { cn } from '@/lib/utils';
+import { auth } from '@/lib/auth';
+import { hasProSubscription } from '@/lib/subscription';
 
 interface ReadingSamplePageProps {
   params: Promise<{
@@ -26,6 +28,29 @@ export default async function ReadingSamplePage({ params }: ReadingSamplePagePro
 
   if (!sample) {
     notFound();
+  }
+
+  const dayNumber = Number.parseInt(sample.attribution.day ?? '', 10);
+  const isPremiumChallengeDay =
+    sample.tags.includes('30-day-challenge') &&
+    Number.isFinite(dayNumber) &&
+    dayNumber >= 6;
+
+  const paywallEnabled = process.env.ENABLE_PAYWALL === 'true';
+
+  if (paywallEnabled && isPremiumChallengeDay) {
+    const session = await auth().catch(() => null);
+
+    if (!session?.user?.id) {
+      redirect(
+        `/${locale}/sign-in?callbackUrl=${encodeURIComponent(`/${locale}/reader/samples/${sampleId}`)}`
+      );
+    }
+
+    const isPro = await hasProSubscription(session.user.id);
+    if (!isPro) {
+      redirect(`/${locale}/upgrade?from=${encodeURIComponent(`/${locale}/reader`)}`);
+    }
   }
 
   const title = locale === 'mk' ? sample.title_mk : sample.title_en;

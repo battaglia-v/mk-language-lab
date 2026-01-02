@@ -9,9 +9,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ReadingSampleCard } from '@/components/reader/ReadingSampleCard';
-import { getAllReaderSamples } from '@/lib/reader-samples';
+import { getAllReaderSamples, type ReaderSample } from '@/lib/reader-samples';
 import { readFavorites } from '@/lib/favorites';
 import { cn } from '@/lib/utils';
+import { useEntitlement } from '@/hooks/use-entitlement';
+import { useAppConfig } from '@/hooks/use-app-config';
 
 const DIFFICULTY_LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
 type DifficultyLevel = typeof DIFFICULTY_LEVELS[number];
@@ -25,6 +27,8 @@ type DifficultyLevel = typeof DIFFICULTY_LEVELS[number];
 export default function ReaderPage() {
   const locale = useLocale();
   const allSamples = useMemo(() => getAllReaderSamples(), []);
+  const { config } = useAppConfig();
+  const { entitlement } = useEntitlement();
   const [savedCount] = useState(() => {
     if (typeof window === 'undefined') return 0;
     return readFavorites().length;
@@ -69,6 +73,17 @@ export default function ReaderPage() {
   };
 
   const hasActiveFilters = searchQuery.trim() || selectedDifficulty;
+  const paywallEnabled = config.paywallEnabled;
+  const isPro = entitlement.isPro;
+
+  const isPremiumSample = (sample: ReaderSample) => {
+    const dayNumber = Number.parseInt(sample.attribution.day ?? '', 10);
+    return (
+      sample.tags.includes('30-day-challenge') &&
+      Number.isFinite(dayNumber) &&
+      dayNumber >= 6
+    );
+  };
 
   return (
     <div className="min-h-screen pb-24 sm:pb-6">
@@ -194,13 +209,23 @@ export default function ReaderPage() {
                   {allSamples
                     .filter(s => s.tags.includes('30-day-challenge'))
                     .slice(0, 4)
-                    .map((sample) => (
-                      <ReadingSampleCard
-                        key={sample.id}
-                        sample={sample}
-                        locale={locale}
-                      />
-                    ))}
+                    .map((sample) => {
+                      const isPremium = isPremiumSample(sample);
+                      const isLocked = paywallEnabled && isPremium && !isPro;
+
+                      return (
+                        <ReadingSampleCard
+                          key={sample.id}
+                          sample={sample}
+                          locale={locale}
+                          isPremium={isPremium}
+                          isLocked={isLocked}
+                          ctaHref={
+                            isLocked ? `/${locale}/upgrade?from=${encodeURIComponent(`/${locale}/reader`)}` : undefined
+                          }
+                        />
+                      );
+                    })}
                 </div>
               </section>
             )}
@@ -220,13 +245,23 @@ export default function ReaderPage() {
 
               {filteredSamples.length > 0 ? (
                 <div className="grid gap-4 sm:grid-cols-2">
-                  {filteredSamples.map((sample) => (
-                    <ReadingSampleCard
-                      key={sample.id}
-                      sample={sample}
-                      locale={locale}
-                    />
-                  ))}
+                  {filteredSamples.map((sample) => {
+                    const isPremium = isPremiumSample(sample);
+                    const isLocked = paywallEnabled && isPremium && !isPro;
+
+                    return (
+                      <ReadingSampleCard
+                        key={sample.id}
+                        sample={sample}
+                        locale={locale}
+                        isPremium={isPremium}
+                        isLocked={isLocked}
+                        ctaHref={
+                          isLocked ? `/${locale}/upgrade?from=${encodeURIComponent(`/${locale}/reader`)}` : undefined
+                        }
+                      />
+                    );
+                  })}
                 </div>
               ) : hasActiveFilters ? (
                 <div className="text-center py-12 text-muted-foreground">

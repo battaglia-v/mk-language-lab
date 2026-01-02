@@ -1,0 +1,14 @@
+{
+  "route": "/en/learn",
+  "viewport": "SmallAndroid",
+  "timestamp": "2026-01-02T01:52:50.140Z",
+  "overflow": {
+    "hasOverflow": false,
+    "elements": []
+  },
+  "i18nKeys": [],
+  "consoleErrors": [],
+  "networkErrors": [],
+  "brokenImages": [],
+  "screenshot": "SmallAndroid-LearnDashboard.png"
+}

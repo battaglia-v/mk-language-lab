@@ -1,0 +1,14 @@
+{
+  "route": "/en/translate",
+  "viewport": "iPhone5SE",
+  "timestamp": "2026-01-02T02:10:34.081Z",
+  "overflow": {
+    "hasOverflow": false,
+    "elements": []
+  },
+  "i18nKeys": [],
+  "consoleErrors": [],
+  "networkErrors": [],
+  "brokenImages": [],
+  "screenshot": "iPhone5SE-Translate.png"
+}

@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import { convertDeckCardsToPracticeItems } from '@/lib/custom-decks';
+import { FREE_TIER_LIMITS } from '@/lib/entitlements';
+import { getEntitlementForUserId } from '@/lib/entitlements-server';
 
 export const dynamic = 'force-dynamic';
 
@@ -94,6 +96,17 @@ export async function POST(request: NextRequest, context: RouteContext) {
 
     if (!deck) {
       return NextResponse.json({ error: 'Deck not found' }, { status: 404 });
+    }
+
+    if (process.env.ENABLE_PAYWALL === 'true') {
+      const entitlement = await getEntitlementForUserId(session.user.id);
+
+      if (!entitlement.isPro && deck.cardCount >= FREE_TIER_LIMITS.maxCardsPerDeck) {
+        return NextResponse.json(
+          { error: 'Upgrade required to add more cards to this deck' },
+          { status: 402 }
+        );
+      }
     }
 
     // Get the next orderIndex

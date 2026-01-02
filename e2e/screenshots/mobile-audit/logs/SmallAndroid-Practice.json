@@ -1,0 +1,14 @@
+{
+  "route": "/en/practice",
+  "viewport": "SmallAndroid",
+  "timestamp": "2026-01-02T01:52:52.479Z",
+  "overflow": {
+    "hasOverflow": false,
+    "elements": []
+  },
+  "i18nKeys": [],
+  "consoleErrors": [],
+  "networkErrors": [],
+  "brokenImages": [],
+  "screenshot": "SmallAndroid-Practice.png"
+}

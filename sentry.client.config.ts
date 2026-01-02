@@ -1,8 +1,16 @@
-// Sentry client configuration - COMPLETELY DISABLED
-// This file is required by Next.js but Sentry is temporarily disabled
+import * as Sentry from "@sentry/nextjs";
 
-console.log("[Sentry Client] Completely disabled to fix app crashes");
+const dsn = process.env.NEXT_PUBLIC_SENTRY_DSN;
+const enabled =
+  Boolean(dsn) &&
+  (process.env.NODE_ENV === "production" || process.env.NEXT_PUBLIC_SENTRY_ENABLED === "true");
 
-// All Sentry functionality commented out
-// import * as Sentry from "@sentry/nextjs";
-// Sentry.init({ ... });
+if (enabled) {
+  Sentry.init({
+    dsn,
+    release: process.env.NEXT_PUBLIC_GIT_SHA,
+    environment: process.env.NODE_ENV,
+    tracesSampleRate: process.env.NODE_ENV === "production" ? 0.1 : 1.0,
+    denyUrls: [/extensions\//i, /^chrome:\/\//i, /^moz-extension:\/\//i],
+  });
+}

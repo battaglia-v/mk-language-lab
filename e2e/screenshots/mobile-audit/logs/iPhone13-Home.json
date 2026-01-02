@@ -1,0 +1,14 @@
+{
+  "route": "/en",
+  "viewport": "iPhone13",
+  "timestamp": "2026-01-02T01:53:23.750Z",
+  "overflow": {
+    "hasOverflow": false,
+    "elements": []
+  },
+  "i18nKeys": [],
+  "consoleErrors": [],
+  "networkErrors": [],
+  "brokenImages": [],
+  "screenshot": "iPhone13-Home.png"
+}

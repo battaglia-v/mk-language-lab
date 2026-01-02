@@ -1,7 +1,9 @@
 # Google Play Store Launch Plan
 
-**Last Updated:** December 13, 2025  
-**Status:** Ready for submission when desired
+**Last Updated:** January 2, 2026  
+**Status:** Packaging-ready; monetization + QA pending
+
+> For a full production readiness + paywall plan, see `docs/production-audit-2026-01-02.md:1`.
 
 ## Build Artifacts
 
@@ -70,7 +72,6 @@ Instantly translate between English and Macedonian. Perfect for understanding te
 Read real Macedonian news articles curated from local sources. Improve your reading comprehension while staying informed about current events.
 
 📱 DESIGNED FOR MOBILE
-• Works offline – Continue learning without internet
 • Clean, modern interface – Focus on what matters
 • Bilingual support – Switch between English and Macedonian UI
 

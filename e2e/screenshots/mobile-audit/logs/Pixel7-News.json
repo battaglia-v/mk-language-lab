@@ -1,0 +1,14 @@
+{
+  "route": "/en/news",
+  "viewport": "Pixel7",
+  "timestamp": "2026-01-02T01:54:16.756Z",
+  "overflow": {
+    "hasOverflow": false,
+    "elements": []
+  },
+  "i18nKeys": [],
+  "consoleErrors": [],
+  "networkErrors": [],
+  "brokenImages": [],
+  "screenshot": "Pixel7-News.png"
+}

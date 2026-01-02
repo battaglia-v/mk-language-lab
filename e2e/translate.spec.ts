@@ -1,8 +1,10 @@
 import { test, expect } from '@playwright/test';
+import { bypassNetworkInterstitial } from './helpers/network-interstitial';
 
 test.describe('Translate Page', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/mk/translate');
+    await bypassNetworkInterstitial(page);
     // Wait for client component to hydrate and translations to load
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000);
@@ -73,6 +75,10 @@ test.describe('Translate Page', () => {
   });
 
   test('should have clear button', async ({ page }) => {
+    // Clear is only shown after the user enters text.
+    const textarea = page.getByRole('textbox').first();
+    await textarea.fill('x', { force: true });
+
     // Look for clear button (translated text: "Clear" or "Исчисти")
     const clearButton = page.getByRole('button', { name: /Clear|Исчисти/i });
     await expect(clearButton).toBeVisible();
@@ -183,17 +189,13 @@ test.describe('Translate Page', () => {
       const firstButton = directionButtons.first();
       const secondButton = directionButtons.nth(1);
 
-      // Get initial classes to check for active state
-      const firstInitialClass = await firstButton.getAttribute('class');
-      const isFirstActive = firstInitialClass?.includes('bg-white');
-
       // Click the second direction button
       await secondButton.click({ force: true });
       await page.waitForTimeout(500);
 
-      // Check that the button states changed (via CSS class indicating active)
-      const secondClass = await secondButton.getAttribute('class');
-      expect(secondClass).toContain('bg-white');
+      // Check that the button states changed (via aria-pressed indicating active)
+      await expect(secondButton).toHaveAttribute('aria-pressed', 'true');
+      await expect(firstButton).toHaveAttribute('aria-pressed', 'false');
 
       // Click swap button - look for the button with swap label
       const swapButton = page.getByLabel(/swap/i);
@@ -203,8 +205,7 @@ test.describe('Translate Page', () => {
         await page.waitForTimeout(500);
 
         // Direction should have swapped back (first button active again)
-        const firstAfterSwapClass = await firstButton.getAttribute('class');
-        expect(firstAfterSwapClass).toContain('bg-white');
+        await expect(firstButton).toHaveAttribute('aria-pressed', 'true');
       }
     } else {
       // If buttons aren't found with arrow, try other selectors

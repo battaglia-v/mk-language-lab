@@ -21,10 +21,16 @@ export async function GET() {
       count: tags.length,
     });
   } catch (error) {
-    console.error('Error fetching tags:', error);
+    console.error('[api.tags] Failed to fetch tags', error);
     return NextResponse.json(
-      { error: 'Failed to fetch tags' },
-      { status: 500 }
+      { tags: [], count: 0, error: 'Failed to fetch tags' },
+      {
+        status: 200,
+        headers: {
+          'Cache-Control': 'no-store',
+          'x-tags-source': 'fallback',
+        },
+      }
     );
   }
 }

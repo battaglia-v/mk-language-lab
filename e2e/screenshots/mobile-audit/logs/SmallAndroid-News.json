@@ -1,0 +1,14 @@
+{
+  "route": "/en/news",
+  "viewport": "SmallAndroid",
+  "timestamp": "2026-01-02T01:53:07.388Z",
+  "overflow": {
+    "hasOverflow": false,
+    "elements": []
+  },
+  "i18nKeys": [],
+  "consoleErrors": [],
+  "networkErrors": [],
+  "brokenImages": [],
+  "screenshot": "SmallAndroid-News.png"
+}

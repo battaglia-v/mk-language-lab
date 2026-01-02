@@ -32,7 +32,7 @@ export default async function LocaleHome({ params }: LocalePageProps) {
   // Guest lesson link - goes directly to practice session
   // Note: Using difficulty=all because vocabulary data defaults to 'mixed' difficulty
   const startLessonHref = `/${safeLocale}/practice/session?deck=curated&difficulty=all`;
-  const signInHref = `/${safeLocale}/auth/signin`;
+  const signInHref = `/${safeLocale}/sign-in`;
 
   return (
     <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-4 py-8">

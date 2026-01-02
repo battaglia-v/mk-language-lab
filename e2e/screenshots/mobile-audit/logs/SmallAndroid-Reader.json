@@ -1,0 +1,14 @@
+{
+  "route": "/en/reader",
+  "viewport": "SmallAndroid",
+  "timestamp": "2026-01-02T01:53:02.419Z",
+  "overflow": {
+    "hasOverflow": false,
+    "elements": []
+  },
+  "i18nKeys": [],
+  "consoleErrors": [],
+  "networkErrors": [],
+  "brokenImages": [],
+  "screenshot": "SmallAndroid-Reader.png"
+}
