@@ -6,11 +6,9 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useSession } from 'next-auth/react';
 import { cn } from '@/lib/utils';
 import { ProfileHeader } from './ProfileHeader';
-import { QuestsSection } from './QuestsSection';
 import { BadgesSection } from './BadgesSection';
 import { StatsSection } from './StatsSection';
 import { LeagueStandingsCard } from './LeagueStandingsCard';
-import { ProfileActivityMap } from './ProfileActivityMap';
 import { Button } from '@/components/ui/button';
 
 type ProfileDashboardProps = {
@@ -120,15 +118,8 @@ export function ProfileDashboard({ className, dataTestId }: ProfileDashboardProp
             xp={profile.xp}
             xpProgress={profile.xpProgress}
             streakDays={profile.streakDays}
-            quests={profile.quests}
-            hearts={profile.hearts}
-            currency={profile.currency}
             league={profile.league}
           />
-
-          <QuestsSection />
-
-          <ProfileActivityMap entries={profile.activityHeatmap} />
         </div>
 
         <div className="space-y-5 lg:col-span-5">

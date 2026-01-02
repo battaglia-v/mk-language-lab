@@ -242,24 +242,28 @@ export default function AlphabetLessonPage() {
             {alphabet.items.map((letter) => (
               <Card
                 key={letter.id}
-                role="button"
-                tabIndex={0}
-                aria-label={`Letter ${letter.letter}, ${letter.latinEquiv}`}
                 className={cn(
-                  'cursor-pointer transition-all hover:border-primary/50 hover:shadow-md active:scale-[0.98]',
-                  'min-h-[140px] touch-manipulation select-none', // Mobile-friendly: larger tap target
+                  'relative overflow-hidden transition-all hover:border-primary/50 hover:shadow-md',
+                  'min-h-[140px]',
                   viewedLetters.has(letter.id) && 'border-emerald-500/30 bg-emerald-500/5',
                   playingLetter === letter.id && 'border-primary ring-2 ring-primary/20'
                 )}
-                onClick={() => speakLetter(letter)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    speakLetter(letter);
-                  }
-                }}
               >
-                <CardContent className="p-4 sm:p-5 text-center flex flex-col justify-center h-full">
+                {/* Clickable overlay for the main card area */}
+                {/* eslint-disable-next-line react/forbid-elements -- transparent overlay needs raw button */}
+                <button
+                  type="button"
+                  aria-label={`Letter ${letter.letter}, ${letter.latinEquiv}. Tap to hear pronunciation.`}
+                  className="absolute inset-0 z-10 cursor-pointer touch-manipulation"
+                  onClick={() => speakLetter(letter)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      speakLetter(letter);
+                    }
+                  }}
+                />
+                <CardContent className="p-4 sm:p-5 text-center flex flex-col justify-center h-full pointer-events-none">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm text-muted-foreground">{letter.latinEquiv}</span>
                     {viewedLetters.has(letter.id) && (
@@ -271,7 +275,7 @@ export default function AlphabetLessonPage() {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="w-full gap-2 text-sm min-h-[44px]" // WCAG 44px touch target
+                    className="w-full gap-2 text-sm min-h-[44px] pointer-events-auto relative z-20"
                     onClick={(e) => {
                       e.stopPropagation();
                       speakWord(letter.exampleWord.mk);
@@ -319,10 +323,16 @@ export default function AlphabetLessonPage() {
                   .map((letter) => (
                     <Card
                       key={letter.id}
-                      className="cursor-pointer hover:border-amber-500/50 transition-all"
-                      onClick={() => speakLetter(letter)}
+                      className="relative overflow-hidden hover:border-amber-500/50 transition-all"
                     >
-                      <CardContent className="p-4 text-center">
+                      {/* eslint-disable-next-line react/forbid-elements -- transparent overlay needs raw button */}
+                      <button
+                        type="button"
+                        aria-label={`Letter ${letter.letter}. Tap to hear.`}
+                        className="absolute inset-0 z-10 cursor-pointer touch-manipulation"
+                        onClick={() => speakLetter(letter)}
+                      />
+                      <CardContent className="p-4 text-center pointer-events-none">
                         <div className="text-4xl font-bold text-amber-400 mb-2">{letter.letter}</div>
                         <div className="text-sm font-medium">{letter.latinEquiv}</div>
                         <div className="text-xs text-muted-foreground">{letter.ipa}</div>
