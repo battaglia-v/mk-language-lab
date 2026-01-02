@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
+import { auth } from "@/lib/auth";
+import prisma from "@/lib/prisma";
 import { createStarterPath } from "@/lib/learn/starter-path";
 import { createA2Path } from "@/lib/learn/a2-path";
 import { create30DayChallengePath } from "@/lib/learn/challenge-30day-path";
@@ -9,6 +11,7 @@ import { LessonPath } from "@/components/learn/LessonPath";
 import type { LessonPath as LessonPathType } from "@/lib/learn/lesson-path-types";
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 type PathPageProps = {
   params: Promise<{ locale: string; pathId: string }>;
@@ -49,8 +52,39 @@ export default async function PathDetailPage({ params }: PathPageProps) {
     notFound();
   }
 
-  // TODO: Load completed node IDs from user progress
-  const completedNodeIds: string[] = [];
+  // Load completed node IDs from database
+  let completedNodeIds: string[] = [];
+  const session = await auth().catch(() => null);
+
+  if (session?.user?.id) {
+    try {
+      const progress = await prisma.gameProgress.findUnique({
+        where: { userId: session.user.id },
+      });
+
+      if (progress?.totalLessons) {
+        // Generate completed node IDs based on path type
+        const totalLessons = progress.totalLessons;
+
+        if (pathId === 'a1') {
+          // A1 path uses node-1, node-2, etc.
+          const completedCount = Math.min(totalLessons, 14);
+          completedNodeIds = Array.from({ length: completedCount }, (_, i) => `node-${i + 1}`);
+        } else if (pathId === '30day') {
+          // 30-day path uses 30day-1, 30day-2, etc.
+          const completedCount = Math.min(totalLessons, 30);
+          completedNodeIds = Array.from({ length: completedCount }, (_, i) => `30day-${i + 1}`);
+        } else if (pathId === 'topics') {
+          // Topics path - all unlocked by design
+          completedNodeIds = [];
+        }
+        // A2 path uses adv-1, adv-2, etc. (future)
+      }
+    } catch (error) {
+      console.error("[learn/paths] Failed to load progress:", error);
+    }
+  }
+
   const path = config.createPath(completedNodeIds);
 
   return (
