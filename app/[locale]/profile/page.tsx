@@ -39,7 +39,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
                 <p className="page-header-badge">{t('title')}</p>
                 <h1 className="page-header-title">{t('description')}</h1>
                 <p className="page-header-subtitle">
-                  Track your streak, quests, and badges across every device.
+                  Track your streak, XP, and badges across every device.
                 </p>
               </div>
             </header>
