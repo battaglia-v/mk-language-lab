@@ -60,16 +60,26 @@ export function LearnPageClient({
               Learn Macedonian
             </h1>
             <p className="text-base text-muted-foreground">
-              Just 5 minutes — you&apos;ve got this.
+              Quick lessons to build your skills daily
             </p>
-            <Link
-              href={`/${locale}/learn/paths`}
-              className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
-            >
-              Browse all learning paths
-              <ChevronRight className="h-4 w-4" />
-            </Link>
           </div>
+
+          {/* Learning Paths Banner */}
+          <Link
+            href={`/${locale}/learn/paths`}
+            className="group flex items-center justify-between gap-3 rounded-xl border border-primary/30 bg-primary/5 p-4 transition-all hover:bg-primary/10 hover:border-primary/50"
+          >
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/20">
+                <Zap className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <p className="font-semibold text-foreground">Learning Paths</p>
+                <p className="text-sm text-muted-foreground">A1, 30-Day Challenge & more</p>
+              </div>
+            </div>
+            <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+          </Link>
 
           {/* Daily Goal Progress */}
           <div className="flex flex-col items-center gap-3 py-4">
@@ -166,7 +176,7 @@ export function LearnPageClient({
               )}
             >
               <MessageCircle className="h-4 w-4" />
-              <span>Conversations</span>
+              <span>Speaking</span>
             </button>
           </div>
 
