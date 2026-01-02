@@ -1,0 +1,14 @@
+{
+  "route": "/en/discover",
+  "viewport": "iPhone13",
+  "timestamp": "2026-01-02T01:53:46.855Z",
+  "overflow": {
+    "hasOverflow": false,
+    "elements": []
+  },
+  "i18nKeys": [],
+  "consoleErrors": [],
+  "networkErrors": [],
+  "brokenImages": [],
+  "screenshot": "iPhone13-Discover.png"
+}

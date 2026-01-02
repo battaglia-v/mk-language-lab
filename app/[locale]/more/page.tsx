@@ -1,6 +1,6 @@
 import { getLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
-import { Newspaper, BookOpen, CircleUserRound, Settings, Info, HelpCircle, ChevronRight } from 'lucide-react';
+import { Newspaper, BookOpen, CircleUserRound, Settings, Info, HelpCircle, ChevronRight, Crown } from 'lucide-react';
 import { PageContainer } from '@/components/layout';
 
 export default async function MorePage() {
@@ -11,6 +11,7 @@ export default async function MorePage() {
     { href: `/${locale}/news`, icon: Newspaper, label: t('news'), description: 'Macedonian news articles' },
     { href: `/${locale}/resources`, icon: BookOpen, label: t('resources'), description: 'Learning resources' },
     { href: `/${locale}/profile`, icon: CircleUserRound, label: t('profile'), description: 'Your progress and stats' },
+    { href: `/${locale}/upgrade`, icon: Crown, label: t('upgrade', { default: 'Upgrade' }), description: 'Unlock Pro features' },
     { href: `/${locale}/settings`, icon: Settings, label: t('settings', { default: 'Settings' }), description: 'App preferences' },
     { href: `/${locale}/about`, icon: Info, label: t('about'), description: 'About MKLanguage' },
     { href: `/${locale}/help`, icon: HelpCircle, label: t('help', { default: 'Help' }), description: 'Support and FAQ' },

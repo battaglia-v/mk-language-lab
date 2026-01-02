@@ -65,6 +65,15 @@ Or transfer the APK file to your Android device and install manually.
 - **Backup your keystore file** - `mklanguage.keystore` - losing this means you can't update the app
 - **Production URL** - Make sure your app is deployed to `mklanguage.com` before testing
 
+## In-app subscriptions (Google Play Billing)
+
+The web app supports Play subscriptions via **Payment Request + Digital Goods API** (no native JS bridge required).
+
+To make this work end-to-end:
+- Create Play Console products: `pro_monthly`, `pro_yearly`
+- Configure server verification env vars (`GOOGLE_PLAY_SERVICE_ACCOUNT_JSON`, `GOOGLE_PLAY_PACKAGE_NAME`)
+- Test on a real device **installed from Google Play** (the Digital Goods API is not available in normal mobile Chrome browsing)
+
 ## Troubleshooting
 
 If you get errors about Android SDK:

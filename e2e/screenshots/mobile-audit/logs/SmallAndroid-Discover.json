@@ -1,0 +1,14 @@
+{
+  "route": "/en/discover",
+  "viewport": "SmallAndroid",
+  "timestamp": "2026-01-02T01:53:12.183Z",
+  "overflow": {
+    "hasOverflow": false,
+    "elements": []
+  },
+  "i18nKeys": [],
+  "consoleErrors": [],
+  "networkErrors": [],
+  "brokenImages": [],
+  "screenshot": "SmallAndroid-Discover.png"
+}

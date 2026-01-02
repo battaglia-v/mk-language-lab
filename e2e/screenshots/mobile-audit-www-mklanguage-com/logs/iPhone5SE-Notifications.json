@@ -1,0 +1,22 @@
+{
+  "route": "/en/notifications",
+  "viewport": "iPhone5SE",
+  "timestamp": "2026-01-02T15:44:23.913Z",
+  "interstitialBypassed": false,
+  "overflow": {
+    "hasOverflow": false,
+    "elements": []
+  },
+  "i18nKeys": [],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  ],
+  "networkErrors": [
+    {
+      "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+      "status": 403
+    }
+  ],
+  "brokenImages": [],
+  "screenshot": "iPhone5SE-Notifications.png"
+}

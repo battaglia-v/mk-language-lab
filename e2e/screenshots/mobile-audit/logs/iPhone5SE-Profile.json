@@ -1,0 +1,14 @@
+{
+  "route": "/en/profile",
+  "viewport": "iPhone5SE",
+  "timestamp": "2026-01-02T01:52:40.811Z",
+  "overflow": {
+    "hasOverflow": false,
+    "elements": []
+  },
+  "i18nKeys": [],
+  "consoleErrors": [],
+  "networkErrors": [],
+  "brokenImages": [],
+  "screenshot": "iPhone5SE-Profile.png"
+}

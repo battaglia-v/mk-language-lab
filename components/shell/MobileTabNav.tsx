@@ -14,15 +14,19 @@ export function MobileTabNav() {
   const locale = useLocale();
   const t = useTranslations("nav");
   const pathname = usePathname();
-  const [isNarrowViewport, setIsNarrowViewport] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const { showHints, markHintSeen, isHintSeen } = useFirstSession();
   const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
 
+  const shouldShowPracticeHint =
+    pathname === `/${locale}` || pathname === `/${locale}/learn`;
+
   // Show first tooltip after mount delay
   useEffect(() => {
     if (!mounted || !showHints) return;
+
+    if (!shouldShowPracticeHint) return;
     
     // Show practice tooltip first (central CTA)
     const timer = setTimeout(() => {
@@ -32,7 +36,19 @@ export function MobileTabNav() {
     }, 1500);
     
     return () => clearTimeout(timer);
-  }, [mounted, showHints, isHintSeen]);
+  }, [mounted, showHints, isHintSeen, locale, pathname, shouldShowPracticeHint]);
+
+  // Hide tooltips when leaving the intended route(s) so they don't obscure other flows.
+  useEffect(() => {
+    if (!activeTooltip) return;
+    if (!showHints) {
+      setActiveTooltip(null);
+      return;
+    }
+    if (!shouldShowPracticeHint && activeTooltip === 'nav-practice') {
+      setActiveTooltip(null);
+    }
+  }, [activeTooltip, showHints, shouldShowPracticeHint]);
 
   const handleTooltipDismiss = useCallback((id: string) => {
     markHintSeen(id);
@@ -52,19 +68,12 @@ export function MobileTabNav() {
   // Track viewport width for adaptive layout
   useEffect(() => {
     setMounted(true);
-    const checkWidth = () => {
-      setIsNarrowViewport(window.innerWidth < 375);
-    };
-
-    checkWidth();
-    window.addEventListener('resize', checkWidth);
     const onScroll = () => {
       setHasScrolled(window.scrollY > 4);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
     return () => {
-      window.removeEventListener('resize', checkWidth);
       window.removeEventListener('scroll', onScroll);
     };
   }, []);
@@ -97,12 +106,10 @@ export function MobileTabNav() {
         <div
           className={cn(
             "relative flex min-h-[56px] items-center justify-between gap-1 rounded-2xl border border-white/10 bg-white/[0.04] px-2 py-1",
+            "max-[359px]:bg-[#070a14]",
             "shadow-[0_-10px_28px_rgba(0,0,0,0.34)] ring-1 ring-white/8 backdrop-blur-2xl transition-shadow duration-200",
             hasScrolled && "border-white/14 ring-white/12 shadow-[0_-14px_36px_rgba(0,0,0,0.46)]"
           )}
-          style={{
-            background: isNarrowViewport ? '#070a14' : undefined,
-          }}
         >
           <div className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/8" aria-hidden="true" />
 
@@ -113,15 +120,14 @@ export function MobileTabNav() {
               pathname={pathname}
               buildHref={buildHref}
               label="primary"
-              isNarrowViewport={isNarrowViewport}
               onNavClick={handleNavClick}
             />
 
             {accentItem && AccentIcon ? (
               <div className="relative">
                 <NavTooltip
-                  isVisible={activeTooltip === 'nav-practice' && showHints}
-                  text="Start practicing here!"
+                  isVisible={activeTooltip === 'nav-practice' && showHints && shouldShowPracticeHint}
+                  text={t('practiceHint', { default: 'Start practicing here!' })}
                   icon="🎯"
                   position="top"
                   onDismiss={() => handleTooltipDismiss('nav-practice')}
@@ -151,11 +157,9 @@ export function MobileTabNav() {
                     strokeWidth={2.25}
                     aria-hidden="true"
                   />
-                  {!isNarrowViewport && (
-                    <span className="relative z-10 mt-1 text-[10px] font-semibold leading-none text-slate-900">
-                      {t(accentItem.id)}
-                    </span>
-                  )}
+                  <span className="relative z-10 mt-1 text-[10px] font-semibold leading-none text-slate-900 max-[359px]:hidden">
+                    {t(accentItem.id)}
+                  </span>
                 </Link>
               </div>
             ) : null}
@@ -166,7 +170,6 @@ export function MobileTabNav() {
               pathname={pathname}
               buildHref={buildHref}
               label="secondary"
-              isNarrowViewport={isNarrowViewport}
               onNavClick={handleNavClick}
             />
           </div>
@@ -182,11 +185,10 @@ type NavRailProps = {
   pathname: string;
   buildHref: (path: string) => string;
   label: string;
-  isNarrowViewport: boolean;
   onNavClick?: (itemId: string) => void;
 };
 
-function NavRail({ items, t, pathname, buildHref, label, isNarrowViewport, onNavClick }: NavRailProps) {
+function NavRail({ items, t, pathname, buildHref, label, onNavClick }: NavRailProps) {
   return (
     <ul className="flex flex-1 items-center justify-around gap-1.5 min-w-0" role="list" aria-label={`${t("label")}-${label}`}>
       {items.map((item) => {
@@ -205,7 +207,7 @@ function NavRail({ items, t, pathname, buildHref, label, isNarrowViewport, onNav
               aria-label={itemLabel}
               className={cn(
                 "nav-item group relative flex flex-col items-center justify-center rounded-2xl transition-all duration-200 min-w-0",
-                isNarrowViewport ? "px-1.5 py-1.5" : "px-1.5 py-1.5 gap-1",
+                "px-1.5 py-1.5 gap-1 max-[359px]:gap-0",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#070a14]",
                 "active:scale-95",
                 active
@@ -216,7 +218,7 @@ function NavRail({ items, t, pathname, buildHref, label, isNarrowViewport, onNav
               <Icon
                 className={cn(
                   "relative z-10 flex-shrink-0 transition-transform duration-150",
-                  isNarrowViewport ? "h-[21px] w-[21px]" : "h-5 w-5",
+                  "h-5 w-5 max-[359px]:h-[21px] max-[359px]:w-[21px]",
                   active
                     ? "text-primary scale-105"
                     : "text-white/80 group-hover:text-white"
@@ -225,16 +227,16 @@ function NavRail({ items, t, pathname, buildHref, label, isNarrowViewport, onNav
                 aria-hidden="true"
               />
 
-              {!isNarrowViewport && (
-                <span className={cn(
-                  "relative z-10 text-[11px] font-semibold leading-tight text-center max-w-full whitespace-nowrap overflow-hidden text-ellipsis transition-all duration-200",
+              <span
+                className={cn(
+                  "relative z-10 text-[11px] font-semibold leading-tight text-center max-w-full whitespace-nowrap overflow-hidden text-ellipsis transition-all duration-200 max-[359px]:hidden",
                   active
                     ? "bg-gradient-to-r from-white via-white to-primary bg-clip-text text-transparent drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)]"
                     : "text-white/70 group-hover:text-white"
-                )}>
-                  {itemLabel}
-                </span>
-              )}
+                )}
+              >
+                {itemLabel}
+              </span>
 
               {active && (
                 <span className="absolute -bottom-1 left-1/2 h-[3px] w-8 -translate-x-1/2 rounded-full bg-gradient-to-r from-primary to-primary/70" />

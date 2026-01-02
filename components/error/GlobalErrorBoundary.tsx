@@ -11,12 +11,18 @@ interface ErrorBoundaryProps {
   reset: () => void;
 }
 
+const sentryEnabled =
+  Boolean(process.env.NEXT_PUBLIC_SENTRY_DSN) &&
+  (process.env.NODE_ENV === "production" || process.env.NEXT_PUBLIC_SENTRY_ENABLED === "true");
+
 export default function GlobalErrorBoundary({ error, reset }: ErrorBoundaryProps) {
   const [isSupportModalOpen, setIsSupportModalOpen] = useState(false);
 
   useEffect(() => {
     // Log the error to Sentry
-    Sentry.captureException(error);
+    if (sentryEnabled) {
+      Sentry.captureException(error);
+    }
     console.error("[Global Error Boundary]", error);
   }, [error]);
 

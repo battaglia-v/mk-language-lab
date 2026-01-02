@@ -8,9 +8,30 @@
  */
 
 import { test, expect, Page } from '@playwright/test';
+import { bypassNetworkInterstitial } from './helpers/network-interstitial';
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3000';
 const LOCALE = 'en';
+
+async function safeGoto(page: Page, url: string, options?: { timeout?: number }) {
+  const response = await page.goto(url, {
+    waitUntil: 'domcontentloaded',
+    timeout: options?.timeout,
+  });
+
+  const bypassed = await bypassNetworkInterstitial(page);
+  if (bypassed) {
+    const secondResponse = await page.goto(url, {
+      waitUntil: 'domcontentloaded',
+      timeout: options?.timeout,
+    });
+    await page.waitForLoadState('networkidle', { timeout: 5000 }).catch(() => {});
+    return secondResponse;
+  }
+
+  await page.waitForLoadState('networkidle', { timeout: 5000 }).catch(() => {});
+  return response;
+}
 
 // Primary routes that should always be accessible
 const PRIMARY_ROUTES = [
@@ -38,17 +59,17 @@ const DASHBOARD_CTAS = [
   { selector: 'a[href*="/resources"]', name: 'Resources CTA' },
 ];
 
-// Track visited URLs to avoid duplicates
-const visitedUrls = new Set<string>();
-const errors: Array<{ url: string; status: number; source: string }> = [];
-
 test.describe('Route Crawler - 404 Detection', () => {
   test('all primary routes are accessible', async ({ page }) => {
+    const errors: Array<{ url: string; status: number | null }> = [];
+
     for (const route of PRIMARY_ROUTES) {
       const url = `${BASE_URL}${route}`;
-      const response = await page.goto(url, { waitUntil: 'domcontentloaded' });
+      const response = await safeGoto(page, url);
 
-      expect(response?.status(), `Route ${route} should not 404`).not.toBe(404);
+      if (response?.status() === 404) {
+        errors.push({ url: route, status: response.status() });
+      }
 
       // Check for error boundary or custom 404 page
       const pageContent = await page.content();
@@ -62,11 +83,13 @@ test.describe('Route Crawler - 404 Detection', () => {
         console.warn(`Warning: Route ${route} may show 404 content`);
       }
     }
+
+    expect(errors, `Found ${errors.length} primary route 404s`).toHaveLength(0);
   });
 
   test('dashboard CTAs lead to valid pages', async ({ page }) => {
     // Go to learn page (dashboard for authenticated users)
-    await page.goto(`${BASE_URL}/${LOCALE}/learn`, { waitUntil: 'networkidle' });
+    await safeGoto(page, `${BASE_URL}/${LOCALE}/learn`);
 
     for (const cta of DASHBOARD_CTAS) {
       const link = await page.$(cta.selector);
@@ -80,9 +103,7 @@ test.describe('Route Crawler - 404 Detection', () => {
             : `${BASE_URL}${href.startsWith('/') ? '' : '/'}${href}`;
 
           // Navigate and check
-          const response = await page.goto(fullUrl, {
-            waitUntil: 'domcontentloaded',
-          });
+          const response = await safeGoto(page, fullUrl);
 
           expect(
             response?.status(),
@@ -90,9 +111,7 @@ test.describe('Route Crawler - 404 Detection', () => {
           ).not.toBe(404);
 
           // Go back to dashboard
-          await page.goto(`${BASE_URL}/${LOCALE}/learn`, {
-            waitUntil: 'domcontentloaded',
-          });
+          await safeGoto(page, `${BASE_URL}/${LOCALE}/learn`);
         }
       }
     }
@@ -102,133 +121,107 @@ test.describe('Route Crawler - 404 Detection', () => {
     // Set mobile viewport
     await page.setViewportSize({ width: 375, height: 667 });
 
-    await page.goto(`${BASE_URL}/${LOCALE}`, { waitUntil: 'networkidle' });
+    await safeGoto(page, `${BASE_URL}/${LOCALE}`);
 
     // Find mobile tab nav items
-    const navItems = await page.$$('[data-testid="mobile-tab-nav"] a');
+    const nav = page.getByRole('navigation', { name: 'Main navigation' });
+    const hrefs = await nav
+      .locator('a[href]')
+      .evaluateAll((els) =>
+        els.map((el) => (el as HTMLAnchorElement).getAttribute('href')).filter(Boolean)
+      );
 
-    for (const navItem of navItems) {
-      const href = await navItem.getAttribute('href');
+    const checked = new Set<string>();
+    const errors: Array<{ url: string; status: number | null }> = [];
 
-      if (href && !visitedUrls.has(href)) {
-        visitedUrls.add(href);
+    for (const href of hrefs) {
+      if (!href || checked.has(href) || href.startsWith('http')) continue;
+      checked.add(href);
 
-        const fullUrl = href.startsWith('http')
-          ? href
-          : `${BASE_URL}${href.startsWith('/') ? '' : '/'}${href}`;
-
-        const response = await page.goto(fullUrl, {
-          waitUntil: 'domcontentloaded',
-        });
-
-        expect(
-          response?.status(),
-          `Mobile nav link (${href}) should not 404`
-        ).not.toBe(404);
+      const fullUrl = href.startsWith('/') ? `${BASE_URL}${href}` : `${BASE_URL}/${href}`;
+      const response = await safeGoto(page, fullUrl);
+      if (response?.status() === 404) {
+        errors.push({ url: href, status: response.status() });
       }
     }
+
+    expect(errors, `Found ${errors.length} mobile nav 404s`).toHaveLength(0);
   });
 
   test('sidebar navigation works on desktop', async ({ page }) => {
     // Set desktop viewport
     await page.setViewportSize({ width: 1280, height: 800 });
 
-    await page.goto(`${BASE_URL}/${LOCALE}`, { waitUntil: 'networkidle' });
+    await safeGoto(page, `${BASE_URL}/${LOCALE}`);
 
     // Find sidebar nav items
-    const sidebarLinks = await page.$$('nav a[href^="/"]');
+    const nav = page.getByRole('navigation', { name: 'Main navigation' });
+    const hrefs = await nav
+      .locator('a[href]')
+      .evaluateAll((els) =>
+        els.map((el) => (el as HTMLAnchorElement).getAttribute('href')).filter(Boolean)
+      );
 
-    const checkedHrefs = new Set<string>();
+    const checked = new Set<string>();
+    const errors: Array<{ url: string; status: number | null }> = [];
 
-    for (const link of sidebarLinks.slice(0, 15)) {
-      // Limit to first 15
-      const href = await link.getAttribute('href');
+    for (const href of hrefs.slice(0, 15)) {
+      if (!href || checked.has(href) || href.startsWith('http')) continue;
+      checked.add(href);
 
-      if (href && !checkedHrefs.has(href)) {
-        checkedHrefs.add(href);
-
-        const fullUrl = `${BASE_URL}${href}`;
-
-        try {
-          const response = await page.goto(fullUrl, {
-            waitUntil: 'domcontentloaded',
-            timeout: 10000,
-          });
-
-          if (response?.status() === 404) {
-            errors.push({
-              url: href,
-              status: 404,
-              source: 'sidebar navigation',
-            });
-          }
-        } catch (error) {
-          console.warn(`Failed to navigate to ${href}:`, error);
-        }
+      const fullUrl = href.startsWith('/') ? `${BASE_URL}${href}` : `${BASE_URL}/${href}`;
+      const response = await safeGoto(page, fullUrl, { timeout: 15000 });
+      if (response?.status() === 404) {
+        errors.push({ url: href, status: response.status() });
       }
     }
 
-    expect(errors.length, `Found ${errors.length} 404 errors`).toBe(0);
+    expect(errors, `Found ${errors.length} sidebar nav 404s`).toHaveLength(0);
   });
 });
 
 test.describe('Route Crawler - Deep Link Validation', () => {
   test('practice page links work', async ({ page }) => {
-    await page.goto(`${BASE_URL}/${LOCALE}/practice`, {
-      waitUntil: 'networkidle',
-    });
+    await safeGoto(page, `${BASE_URL}/${LOCALE}/practice`);
 
     // Check for any internal links on the practice page
-    const internalLinks = await page.$$('a[href^="/"]');
+    const hrefs = await page
+      .locator('a[href^="/"]')
+      .evaluateAll((els) =>
+        els.map((el) => (el as HTMLAnchorElement).getAttribute('href')).filter(Boolean)
+      );
+    const errors: Array<{ url: string; status: number | null }> = [];
+    const visitedUrls = new Set<string>();
 
-    for (const link of internalLinks.slice(0, 10)) {
-      const href = await link.getAttribute('href');
+    for (const href of hrefs.slice(0, 10)) {
+      if (!href || visitedUrls.has(href)) continue;
+      visitedUrls.add(href);
 
-      if (href && !visitedUrls.has(href)) {
-        visitedUrls.add(href);
-
-        const response = await page.goto(`${BASE_URL}${href}`, {
-          waitUntil: 'domcontentloaded',
-          timeout: 10000,
-        });
-
-        if (response?.status() === 404) {
-          errors.push({
-            url: href,
-            status: 404,
-            source: 'practice page',
-          });
-        }
-
-        // Return to practice page
-        await page.goto(`${BASE_URL}/${LOCALE}/practice`, {
-          waitUntil: 'domcontentloaded',
-        });
+      const response = await safeGoto(page, `${BASE_URL}${href}`, { timeout: 15000 });
+      if (response?.status() === 404) {
+        errors.push({ url: href, status: response.status() });
       }
+
+      // Return to practice page
+      await safeGoto(page, `${BASE_URL}/${LOCALE}/practice`);
     }
+
+    expect(errors, `Found ${errors.length} practice page 404s`).toHaveLength(0);
   });
 
   test('news page loads with articles', async ({ page }) => {
-    await page.goto(`${BASE_URL}/${LOCALE}/news`, {
-      waitUntil: 'networkidle',
-      timeout: 15000,
+    const response = await safeGoto(page, `${BASE_URL}/${LOCALE}/news`, {
+      timeout: 20000,
     });
 
-    // Check that news cards are present
-    const newsCards = await page.$$('[data-testid="news-card"]');
-
-    // Should have at least some news items (or fallback data)
-    expect(newsCards.length).toBeGreaterThanOrEqual(0);
-
-    // Check page didn't 404
-    const pageContent = await page.content();
-    expect(pageContent).not.toContain('404');
+    expect(response?.status(), 'News page should not 404').not.toBe(404);
+    await expect(page.getByRole('heading', { name: /news feed/i })).toBeVisible();
+    await expect(page.getByPlaceholder('Search headlines or keywords...')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Refresh' })).toBeVisible();
   });
 
   test('translate page is functional', async ({ page }) => {
-    await page.goto(`${BASE_URL}/${LOCALE}/translate`, {
-      waitUntil: 'networkidle',
-    });
+    await safeGoto(page, `${BASE_URL}/${LOCALE}/translate`);
 
     // Check for key elements
     const translateButton = await page.$('button[type="submit"]');
@@ -279,19 +272,4 @@ test.describe('Legacy Route Redirects', () => {
     expect(url).toContain('/translate');
     expect(url).toContain('sheet=history');
   });
-});
-
-// Summary report at the end
-test.afterAll(async () => {
-  if (errors.length > 0) {
-    console.log('\n=== Route Crawler Error Summary ===');
-    console.log(`Found ${errors.length} issues:\n`);
-
-    for (const error of errors) {
-      console.log(`  ${error.status}: ${error.url}`);
-      console.log(`    Source: ${error.source}\n`);
-    }
-  } else {
-    console.log('\n=== Route Crawler: All routes OK ===');
-  }
 });

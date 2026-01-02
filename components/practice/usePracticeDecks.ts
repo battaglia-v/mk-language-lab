@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useSession } from 'next-auth/react';
 import { useSavedPhrases } from '@/components/translate/useSavedPhrases';
 import { readTranslatorHistory } from '@/lib/translator-history';
 import { fetchUserDecks } from '@/lib/custom-decks';
@@ -24,6 +25,7 @@ type PromptResponse = {
  */
 export function usePracticeDecks() {
   const { phrases } = useSavedPhrases();
+  const { status } = useSession();
   const [historySnapshot, setHistorySnapshot] = useState<ReturnType<typeof readTranslatorHistory>>([]);
   const [customDecks, setCustomDecks] = useState<CustomDeckSummary[]>([]);
   const [curatedDeck, setCuratedDeck] = useState<Flashcard[]>([]);
@@ -100,7 +102,9 @@ export function usePracticeDecks() {
     setIsLoading(true);
 
     Promise.all([
-      fetchUserDecks({ archived: false }).catch(() => []),
+      status === 'authenticated'
+        ? fetchUserDecks({ archived: false }).catch(() => [])
+        : Promise.resolve([] as CustomDeckSummary[]),
       fetch('/api/practice/prompts').then((res) => res.json()).catch(() => []),
     ]).then(([decks, prompts]) => {
       setCustomDecks(decks);
@@ -130,7 +134,7 @@ export function usePracticeDecks() {
 
       setIsLoading(false);
     });
-  }, []);
+  }, [status]);
 
   // Load a specific custom deck
   const loadCustomDeck = useCallback(async (deckId: string) => {

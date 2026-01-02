@@ -1,0 +1,14 @@
+{
+  "route": "/en",
+  "viewport": "SmallAndroid",
+  "timestamp": "2026-01-02T01:52:47.776Z",
+  "overflow": {
+    "hasOverflow": false,
+    "elements": []
+  },
+  "i18nKeys": [],
+  "consoleErrors": [],
+  "networkErrors": [],
+  "brokenImages": [],
+  "screenshot": "SmallAndroid-Home.png"
+}

@@ -112,6 +112,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const enableVercelAnalytics = Boolean(process.env.VERCEL);
+
   return (
     <html lang="en" className="dark notranslate overflow-x-hidden" translate="no" suppressHydrationWarning>
       <head>
@@ -129,7 +131,7 @@ export default function RootLayout({
       >
         <SentryInit />
         {children}
-        <Analytics debug={false} />
+        {enableVercelAnalytics ? <Analytics debug={false} /> : null}
       </body>
     </html>
   );

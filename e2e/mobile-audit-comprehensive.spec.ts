@@ -15,8 +15,17 @@
 import { test, expect, Page, BrowserContext } from '@playwright/test';
 import * as fs from 'fs';
 import * as path from 'path';
+import { bypassNetworkInterstitial } from './helpers/network-interstitial';
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3000';
+const AUDIT_TARGET = (() => {
+  try {
+    const hostname = new URL(BASE_URL).hostname;
+    return hostname === 'localhost' ? 'mobile-audit' : `mobile-audit-${hostname.replace(/\./g, '-')}`;
+  } catch {
+    return 'mobile-audit';
+  }
+})();
 
 // Mobile viewports to test - including smallest common viewport (320px)
 const VIEWPORTS = [
@@ -54,6 +63,7 @@ interface AuditResult {
   route: string;
   viewport: string;
   timestamp: string;
+  interstitialBypassed?: boolean;
   overflow: { hasOverflow: boolean; elements: string[] };
   i18nKeys: string[];
   consoleErrors: string[];
@@ -106,7 +116,9 @@ async function checkBrokenImages(page: Page): Promise<string[]> {
   return page.evaluate(() => {
     const broken: string[] = [];
     document.querySelectorAll('img').forEach((img) => {
-      if (!img.complete || img.naturalWidth === 0) {
+      // Only flag images that have finished loading but have no intrinsic size.
+      // `!img.complete` is often just a slow network and would create noisy false positives.
+      if (img.complete && img.naturalWidth === 0) {
         broken.push(img.src.slice(0, 100));
       }
     });
@@ -115,8 +127,8 @@ async function checkBrokenImages(page: Page): Promise<string[]> {
 }
 
 test.describe('Comprehensive Mobile Audit', () => {
-  const screenshotDir = path.join(process.cwd(), 'e2e/screenshots/mobile-audit');
-  const logsDir = path.join(process.cwd(), 'e2e/screenshots/mobile-audit/logs');
+  const screenshotDir = path.join(process.cwd(), 'e2e/screenshots', AUDIT_TARGET);
+  const logsDir = path.join(screenshotDir, 'logs');
 
   test.beforeAll(async () => {
     fs.mkdirSync(screenshotDir, { recursive: true });
@@ -133,6 +145,7 @@ test.describe('Comprehensive Mobile Audit', () => {
         test(`${route.name}`, async ({ page }) => {
           const consoleErrors: string[] = [];
           const networkErrors: { url: string; status: number }[] = [];
+          let interstitialBypassed = false;
 
           // Capture console errors
           page.on('console', (msg) => {
@@ -149,10 +162,23 @@ test.describe('Comprehensive Mobile Audit', () => {
           });
 
           // Navigate
+          // `networkidle` can be flaky on pages with background polling; use a
+          // more reliable navigation signal, then optionally wait for idle.
           await page.goto(`${BASE_URL}${route.path}`, {
-            waitUntil: 'networkidle',
+            waitUntil: 'domcontentloaded',
             timeout: 30000,
           });
+
+          // If the network injects an interstitial warning page (corporate proxy),
+          // click through so we audit the actual app rather than the warning.
+          interstitialBypassed = await bypassNetworkInterstitial(page);
+          if (interstitialBypassed) {
+            consoleErrors.length = 0;
+            networkErrors.length = 0;
+          }
+
+          // Best-effort settle for pages that do reach idle.
+          await page.waitForLoadState('networkidle', { timeout: 5000 }).catch(() => {});
 
           // Wait for content to settle
           await page.waitForTimeout(1500);
@@ -171,6 +197,7 @@ test.describe('Comprehensive Mobile Audit', () => {
             route: route.path,
             viewport: viewport.name,
             timestamp: new Date().toISOString(),
+            interstitialBypassed,
             overflow,
             i18nKeys,
             consoleErrors: consoleErrors.slice(0, 10),
@@ -229,6 +256,8 @@ test.describe('Audio Availability', () => {
   test('Word of the Day audio works or falls back to TTS', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(`${BASE_URL}/en/learn`, { waitUntil: 'networkidle' });
+    await bypassNetworkInterstitial(page);
+    await expect(page.getByRole('heading', { name: /learn macedonian/i })).toBeVisible();
 
     // Look for audio play button in Word of the Day
     const audioButton = page.locator('[aria-label*="Listen"], [aria-label*="Play"], button:has(svg[class*="Volume"])').first();
@@ -249,24 +278,37 @@ test.describe('News Images', () => {
   test('News page loads with images (or proper placeholders)', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(`${BASE_URL}/en/news`, { waitUntil: 'networkidle', timeout: 20000 });
+    await bypassNetworkInterstitial(page);
 
     await page.waitForTimeout(3000); // Allow images to load
 
     // Check for news cards
     const newsCards = await page.locator('[data-testid="news-card"], article, .news-item').count();
+    expect(newsCards, 'News page should render at least one card').toBeGreaterThan(0);
 
-    // Check images loaded
-    const brokenImages = await page.evaluate(() => {
-      let broken = 0;
+    // Check images loaded (in-viewport only; offscreen images are often `loading=\"lazy\"`)
+    const { inViewCount, brokenInView } = await page.evaluate(() => {
+      let inViewCount = 0;
+      let brokenInView = 0;
+
       document.querySelectorAll('img').forEach((img) => {
         // Skip SVG fallbacks (they're valid)
         if (img.src.includes('data:image/svg') || img.src.includes('placeholder')) return;
-        if (!img.complete || img.naturalWidth === 0) broken++;
+
+        const rect = img.getBoundingClientRect();
+        const isInViewport = rect.bottom > 0 && rect.top < window.innerHeight;
+        if (!isInViewport) return;
+
+        inViewCount++;
+
+        // Only flag images that have finished loading but have no intrinsic size.
+        if (img.complete && img.naturalWidth === 0) brokenInView++;
       });
-      return broken;
+
+      return { inViewCount, brokenInView };
     });
 
-    console.log(`News page: ${newsCards} cards, ${brokenImages} broken images`);
-    expect(brokenImages, 'Should have minimal broken images').toBeLessThanOrEqual(3);
+    console.log(`News page: ${newsCards} cards, ${brokenInView} broken images in view (of ${inViewCount} imgs)`);
+    expect(brokenInView, 'Should have minimal broken images in viewport').toBeLessThanOrEqual(3);
   });
 });

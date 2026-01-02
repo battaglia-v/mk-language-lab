@@ -1,8 +1,12 @@
 "use client";
 
-// import * as Sentry from "@sentry/nextjs"; // Disabled - Sentry temporarily removed
+import * as Sentry from "@sentry/nextjs";
 import NextError from "next/error";
 import { useEffect } from "react";
+
+const sentryEnabled =
+  Boolean(process.env.NEXT_PUBLIC_SENTRY_DSN) &&
+  (process.env.NODE_ENV === "production" || process.env.NEXT_PUBLIC_SENTRY_ENABLED === "true");
 
 export default function GlobalError({
   error,
@@ -10,7 +14,9 @@ export default function GlobalError({
   error: Error & { digest?: string };
 }) {
   useEffect(() => {
-    // Sentry.captureException(error); // Disabled - Sentry temporarily removed
+    if (sentryEnabled) {
+      Sentry.captureException(error);
+    }
     console.error("[Global Error]", error);
   }, [error]);
 

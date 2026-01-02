@@ -2,15 +2,12 @@
  * User Entitlement API
  * 
  * Returns the user's current subscription status and Pro features.
- * 
- * NOTE: This returns free entitlement until the Subscription model
- * is migrated to the database. Run `npx prisma migrate dev` to enable
- * full subscription support.
  */
 
 import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { createFreeEntitlement } from '@/lib/entitlements';
+import { getEntitlementForUserId } from '@/lib/entitlements-server';
 
 export async function GET() {
   try {
@@ -23,27 +20,8 @@ export async function GET() {
       });
     }
 
-    // TODO: Once Subscription model is migrated, uncomment this:
-    // const subscription = await prisma.subscription.findUnique({
-    //   where: { userId: session.user.id },
-    // });
-    // 
-    // if (subscription?.status === 'active') {
-    //   return NextResponse.json({
-    //     entitlement: {
-    //       isPro: true,
-    //       tier: 'pro',
-    //       source: subscription.source,
-    //       expiresAt: subscription.expiresAt?.toISOString() ?? null,
-    //       ...
-    //     }
-    //   });
-    // }
-
-    // For now, return free entitlement
-    // This ensures the app works before migration is run
     return NextResponse.json({
-      entitlement: createFreeEntitlement(),
+      entitlement: await getEntitlementForUserId(session.user.id),
     });
   } catch (error) {
     console.error('[Entitlement API] Error:', error);
@@ -54,4 +32,3 @@ export async function GET() {
     });
   }
 }
-

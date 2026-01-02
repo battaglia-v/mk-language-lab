@@ -5,7 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { PageContainer } from '@/components/layout';
-import { PRO_FEATURES } from '@/lib/subscription';
+import { FEATURES } from '@/lib/entitlements';
+import { SubscribeButton } from '@/components/subscription/SubscribeButton';
 
 interface UpgradePageProps {
   params: Promise<{ locale: string }>;
@@ -13,20 +14,20 @@ interface UpgradePageProps {
 }
 
 const FEATURE_ICONS: Record<string, React.ReactNode> = {
-  'Unlimited practice sessions': <Infinity className="h-4 w-4" />,
-  'Full 30-Day Reading Challenge': <BookOpen className="h-4 w-4" />,
-  'B1-C1 learning paths': <Sparkles className="h-4 w-4" />,
-  'Unlimited custom decks': <Zap className="h-4 w-4" />,
-  'Priority pronunciation audio': <Zap className="h-4 w-4" />,
-  'Advanced grammar lessons': <BookOpen className="h-4 w-4" />,
-  'Offline mode': <Shield className="h-4 w-4" />,
-  'Ad-free experience': <Shield className="h-4 w-4" />,
+  unlimited_practice: <Infinity className="h-4 w-4" />,
+  custom_decks: <Zap className="h-4 w-4" />,
+  reading_challenge_full: <BookOpen className="h-4 w-4" />,
+  native_audio: <Sparkles className="h-4 w-4" />,
+  advanced_grammar: <BookOpen className="h-4 w-4" />,
+  offline_content: <Shield className="h-4 w-4" />,
 };
 
 export default async function UpgradePage({ params, searchParams }: UpgradePageProps) {
   const { locale } = await params;
   const { from } = await searchParams;
+  const safeFrom = typeof from === 'string' && from.startsWith('/') ? from : undefined;
   const t = await getTranslations('upgrade');
+  const proFeatures = FEATURES.filter((feature) => feature.requiresPro);
 
   return (
     <PageContainer size="lg" className="flex flex-col gap-6 pb-24 sm:pb-10 pt-6">
@@ -61,9 +62,15 @@ export default async function UpgradePage({ params, searchParams }: UpgradePageP
               <span className="text-4xl font-bold">$4.99</span>
               <span className="text-muted-foreground">/month</span>
             </div>
-            <Button className="w-full" size="lg">
+            <SubscribeButton
+              productId="pro_monthly"
+              locale={locale}
+              from={safeFrom}
+              className="w-full"
+              size="lg"
+            >
               {t('subscribe', { default: 'Subscribe' })}
-            </Button>
+            </SubscribeButton>
           </CardContent>
         </Card>
 
@@ -91,9 +98,15 @@ export default async function UpgradePage({ params, searchParams }: UpgradePageP
             <p className="text-sm text-muted-foreground">
               {t('yearlyPricePerMonth', { default: 'Just $3/month' })}
             </p>
-            <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90" size="lg">
+            <SubscribeButton
+              productId="pro_yearly"
+              locale={locale}
+              from={safeFrom}
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+              size="lg"
+            >
               {t('subscribe', { default: 'Subscribe' })}
-            </Button>
+            </SubscribeButton>
           </CardContent>
         </Card>
       </div>
@@ -108,12 +121,15 @@ export default async function UpgradePage({ params, searchParams }: UpgradePageP
         </CardHeader>
         <CardContent>
           <ul className="grid gap-3 sm:grid-cols-2">
-            {PRO_FEATURES.map((feature) => (
-              <li key={feature} className="flex items-center gap-3">
+            {proFeatures.map((feature) => (
+              <li key={feature.id} className="flex items-center gap-3">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400 shrink-0">
-                  {FEATURE_ICONS[feature] || <Check className="h-4 w-4" />}
+                  {FEATURE_ICONS[feature.id] || <Check className="h-4 w-4" />}
                 </div>
-                <span className="text-sm">{feature}</span>
+                <div className="min-w-0">
+                  <div className="text-sm font-medium text-foreground">{feature.name}</div>
+                  <div className="text-xs text-muted-foreground truncate">{feature.description}</div>
+                </div>
               </li>
             ))}
           </ul>
@@ -145,19 +161,9 @@ export default async function UpgradePage({ params, searchParams }: UpgradePageP
               pro={t('allDays', { default: 'All 30 days' })}
             />
             <ComparisonRow
-              feature={t('learningPaths', { default: 'Learning paths' })}
-              free="A1, A2"
-              pro="A1-C1"
-            />
-            <ComparisonRow
               feature={t('customDecks', { default: 'Custom decks' })}
               free="1"
               pro={t('unlimited', { default: 'Unlimited' })}
-            />
-            <ComparisonRow
-              feature={t('offlineMode', { default: 'Offline mode' })}
-              free={<span className="text-muted-foreground">-</span>}
-              pro={<Check className="h-4 w-4 text-emerald-400 mx-auto" />}
             />
           </div>
         </CardContent>
@@ -166,7 +172,7 @@ export default async function UpgradePage({ params, searchParams }: UpgradePageP
       {/* Back Link */}
       <div className="text-center">
         <Button asChild variant="ghost">
-          <Link href={from || `/${locale}/learn`}>
+          <Link href={safeFrom || `/${locale}/learn`}>
             {t('maybeLater', { default: 'Maybe later' })}
           </Link>
         </Button>

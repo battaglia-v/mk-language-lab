@@ -12,13 +12,15 @@ import { cn } from '@/lib/utils';
 import { usePracticeDecks } from './usePracticeDecks';
 import { isTopicDeck, getTopicDeck } from '@/lib/topic-decks';
 import { isFavorite, toggleFavorite } from '@/lib/favorites';
-import { recordPracticeSession } from '@/lib/practice-activity';
+import { recordPracticeSession as recordActivitySession } from '@/lib/practice-activity';
 import { recordReview } from '@/lib/srs';
 import { calculateXP, formatDifficultyLabel } from './types';
 import { XPAnimation } from '@/components/gamification/XPAnimation';
 import { GoalCelebration } from '@/components/gamification/GoalCelebration';
 import { addLocalXP, getLocalXP, isGoalComplete } from '@/lib/gamification/local-xp';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useEntitlement } from '@/hooks/use-entitlement';
+import { useAppConfig } from '@/hooks/use-app-config';
 import type { DeckType, PracticeMode, DifficultyFilter, Flashcard } from './types';
 
 // deckType can be a standard DeckType or a topic deck ID (e.g., household-v1)
@@ -29,6 +31,8 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
   const locale = useLocale();
   const router = useRouter();
   const { getDeck, loadCustomDeck } = usePracticeDecks();
+  const { config } = useAppConfig();
+  const { entitlement, isPracticeLimitReached, recordPracticeSession } = useEntitlement();
 
   const [deck, setDeck] = useState<Flashcard[]>([]);
   const [index, setIndex] = useState(0);
@@ -56,6 +60,11 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
 
   // Load deck with fallback for auth failures
   useEffect(() => {
+    if (config.paywallEnabled && !entitlement.isPro && isPracticeLimitReached) {
+      router.replace(`/${locale}/upgrade?from=${encodeURIComponent(`/${locale}/practice`)}`);
+      return;
+    }
+
     // Check if it's a topic deck first (e.g., household-v1, weather-seasons-v1)
     if (isTopicDeck(deckType)) {
       const topicDeck = getTopicDeck(deckType);
@@ -90,7 +99,18 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
       // Cast to DeckType for standard decks (unknown types fall back to curated)
       setDeck(getDeck(deckType as DeckType, difficulty));
     }
-  }, [deckType, difficulty, customDeckId, getDeck, loadCustomDeck]);
+  }, [
+    config.paywallEnabled,
+    entitlement.isPro,
+    isPracticeLimitReached,
+    deckType,
+    difficulty,
+    customDeckId,
+    getDeck,
+    loadCustomDeck,
+    locale,
+    router,
+  ]);
 
   const card = deck[index];
   const total = deck.length || 1;
@@ -110,13 +130,25 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
   const endSession = useCallback(() => {
     const duration = Math.floor((Date.now() - sessionStart.current) / 1000);
     const xp = calculateXP(correctAnswers, maxStreak);
-    recordPracticeSession(reviewedCount, correctAnswers, duration);
+    recordActivitySession(reviewedCount, correctAnswers, duration);
+    if (config.paywallEnabled) {
+      recordPracticeSession();
+    }
     const params = new URLSearchParams({
       reviewed: reviewedCount.toString(), correct: correctAnswers.toString(),
       streak: maxStreak.toString(), duration: duration.toString(), xp: xp.toString(), deck: deckType,
     });
     router.push(`/${locale}/practice/results?${params}`);
-  }, [correctAnswers, maxStreak, reviewedCount, deckType, locale, router]);
+  }, [
+    config.paywallEnabled,
+    correctAnswers,
+    maxStreak,
+    recordPracticeSession,
+    reviewedCount,
+    deckType,
+    locale,
+    router,
+  ]);
 
   const goNext = useCallback(() => {
     if (index + 1 >= deck.length) { endSession(); return; }
@@ -184,7 +216,7 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
     if (!card || !window.speechSynthesis) return;
     window.speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(card.macedonian || card.source);
-    u.lang = 'sr-RS'; u.rate = 0.85;
+    u.lang = 'mk-MK'; u.rate = 0.85;
     u.onstart = () => setIsSpeaking(true);
     u.onend = () => setIsSpeaking(false);
     window.speechSynthesis.speak(u);

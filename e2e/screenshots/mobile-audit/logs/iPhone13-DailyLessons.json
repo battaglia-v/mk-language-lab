@@ -1,0 +1,14 @@
+{
+  "route": "/en/daily-lessons",
+  "viewport": "iPhone13",
+  "timestamp": "2026-01-02T01:53:49.194Z",
+  "overflow": {
+    "hasOverflow": false,
+    "elements": []
+  },
+  "i18nKeys": [],
+  "consoleErrors": [],
+  "networkErrors": [],
+  "brokenImages": [],
+  "screenshot": "iPhone13-DailyLessons.png"
+}

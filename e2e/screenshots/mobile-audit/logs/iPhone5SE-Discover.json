@@ -1,0 +1,14 @@
+{
+  "route": "/en/discover",
+  "viewport": "iPhone5SE",
+  "timestamp": "2026-01-02T01:52:36.172Z",
+  "overflow": {
+    "hasOverflow": false,
+    "elements": []
+  },
+  "i18nKeys": [],
+  "consoleErrors": [],
+  "networkErrors": [],
+  "brokenImages": [],
+  "screenshot": "iPhone5SE-Discover.png"
+}

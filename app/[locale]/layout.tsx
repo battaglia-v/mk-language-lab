@@ -1,6 +1,5 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { Analytics } from '@vercel/analytics/react';
 import { notFound } from 'next/navigation';
 import { locales } from '@/i18n';
 import { SessionProvider } from '@/components/auth/SessionProvider';
@@ -43,7 +42,6 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
           </ToasterProvider>
         </QueryProvider>
       </NextIntlClientProvider>
-      <Analytics />
     </SessionProvider>
   );
 }

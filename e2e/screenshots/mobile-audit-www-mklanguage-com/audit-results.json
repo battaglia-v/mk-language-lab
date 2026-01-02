@@ -1,0 +1,1234 @@
+[
+  {
+    "route": "/en",
+    "viewport": "iPhone5SE",
+    "timestamp": "2026-01-02T15:43:43.981Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone5SE-Home.png"
+  },
+  {
+    "route": "/en/learn",
+    "viewport": "iPhone5SE",
+    "timestamp": "2026-01-02T15:43:47.250Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone5SE-LearnDashboard.png"
+  },
+  {
+    "route": "/en/practice",
+    "viewport": "iPhone5SE",
+    "timestamp": "2026-01-02T15:43:50.492Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone5SE-Practice.png"
+  },
+  {
+    "route": "/en/practice/pronunciation",
+    "viewport": "iPhone5SE",
+    "timestamp": "2026-01-02T15:43:53.978Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone5SE-Pronunciation.png"
+  },
+  {
+    "route": "/en/practice/grammar",
+    "viewport": "iPhone5SE",
+    "timestamp": "2026-01-02T15:43:57.284Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone5SE-Grammar.png"
+  },
+  {
+    "route": "/en/translate",
+    "viewport": "iPhone5SE",
+    "timestamp": "2026-01-02T15:44:00.533Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone5SE-Translate.png"
+  },
+  {
+    "route": "/en/reader",
+    "viewport": "iPhone5SE",
+    "timestamp": "2026-01-02T15:44:04.466Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone5SE-Reader.png"
+  },
+  {
+    "route": "/en/news",
+    "viewport": "iPhone5SE",
+    "timestamp": "2026-01-02T15:44:07.726Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone5SE-News.png"
+  },
+  {
+    "route": "/en/resources",
+    "viewport": "iPhone5SE",
+    "timestamp": "2026-01-02T15:44:11.134Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone5SE-Resources.png"
+  },
+  {
+    "route": "/en/discover",
+    "viewport": "iPhone5SE",
+    "timestamp": "2026-01-02T15:44:14.304Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone5SE-Discover.png"
+  },
+  {
+    "route": "/en/daily-lessons",
+    "viewport": "iPhone5SE",
+    "timestamp": "2026-01-02T15:44:17.545Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone5SE-DailyLessons.png"
+  },
+  {
+    "route": "/en/profile",
+    "viewport": "iPhone5SE",
+    "timestamp": "2026-01-02T15:44:20.689Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone5SE-Profile.png"
+  },
+  {
+    "route": "/en/notifications",
+    "viewport": "iPhone5SE",
+    "timestamp": "2026-01-02T15:44:23.913Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone5SE-Notifications.png"
+  },
+  {
+    "route": "/en/about",
+    "viewport": "iPhone5SE",
+    "timestamp": "2026-01-02T15:44:27.266Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone5SE-About.png"
+  },
+  {
+    "route": "/en",
+    "viewport": "SmallAndroid",
+    "timestamp": "2026-01-02T15:44:30.394Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "SmallAndroid-Home.png"
+  },
+  {
+    "route": "/en/learn",
+    "viewport": "SmallAndroid",
+    "timestamp": "2026-01-02T15:44:33.521Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "SmallAndroid-LearnDashboard.png"
+  },
+  {
+    "route": "/en/practice",
+    "viewport": "SmallAndroid",
+    "timestamp": "2026-01-02T15:44:36.722Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "SmallAndroid-Practice.png"
+  },
+  {
+    "route": "/en/practice/pronunciation",
+    "viewport": "SmallAndroid",
+    "timestamp": "2026-01-02T15:44:40.076Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "SmallAndroid-Pronunciation.png"
+  },
+  {
+    "route": "/en/practice/grammar",
+    "viewport": "SmallAndroid",
+    "timestamp": "2026-01-02T15:44:43.447Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "SmallAndroid-Grammar.png"
+  },
+  {
+    "route": "/en/translate",
+    "viewport": "SmallAndroid",
+    "timestamp": "2026-01-02T15:44:46.594Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "SmallAndroid-Translate.png"
+  },
+  {
+    "route": "/en/reader",
+    "viewport": "SmallAndroid",
+    "timestamp": "2026-01-02T15:44:50.558Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "SmallAndroid-Reader.png"
+  },
+  {
+    "route": "/en/news",
+    "viewport": "SmallAndroid",
+    "timestamp": "2026-01-02T15:44:53.744Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "SmallAndroid-News.png"
+  },
+  {
+    "route": "/en/resources",
+    "viewport": "SmallAndroid",
+    "timestamp": "2026-01-02T15:44:57.229Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "SmallAndroid-Resources.png"
+  },
+  {
+    "route": "/en/discover",
+    "viewport": "SmallAndroid",
+    "timestamp": "2026-01-02T15:45:00.439Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "SmallAndroid-Discover.png"
+  },
+  {
+    "route": "/en/daily-lessons",
+    "viewport": "SmallAndroid",
+    "timestamp": "2026-01-02T15:45:03.785Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "SmallAndroid-DailyLessons.png"
+  },
+  {
+    "route": "/en/profile",
+    "viewport": "SmallAndroid",
+    "timestamp": "2026-01-02T15:45:06.963Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "SmallAndroid-Profile.png"
+  },
+  {
+    "route": "/en/notifications",
+    "viewport": "SmallAndroid",
+    "timestamp": "2026-01-02T15:45:10.128Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "SmallAndroid-Notifications.png"
+  },
+  {
+    "route": "/en/about",
+    "viewport": "SmallAndroid",
+    "timestamp": "2026-01-02T15:45:13.577Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "SmallAndroid-About.png"
+  },
+  {
+    "route": "/en",
+    "viewport": "iPhone13",
+    "timestamp": "2026-01-02T15:45:16.745Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone13-Home.png"
+  },
+  {
+    "route": "/en/learn",
+    "viewport": "iPhone13",
+    "timestamp": "2026-01-02T15:45:20.183Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone13-LearnDashboard.png"
+  },
+  {
+    "route": "/en/practice",
+    "viewport": "iPhone13",
+    "timestamp": "2026-01-02T15:45:23.463Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone13-Practice.png"
+  },
+  {
+    "route": "/en/practice/pronunciation",
+    "viewport": "iPhone13",
+    "timestamp": "2026-01-02T15:45:26.734Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone13-Pronunciation.png"
+  },
+  {
+    "route": "/en/practice/grammar",
+    "viewport": "iPhone13",
+    "timestamp": "2026-01-02T15:45:30.314Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone13-Grammar.png"
+  },
+  {
+    "route": "/en/translate",
+    "viewport": "iPhone13",
+    "timestamp": "2026-01-02T15:45:33.524Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone13-Translate.png"
+  },
+  {
+    "route": "/en/reader",
+    "viewport": "iPhone13",
+    "timestamp": "2026-01-02T15:45:37.336Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone13-Reader.png"
+  },
+  {
+    "route": "/en/news",
+    "viewport": "iPhone13",
+    "timestamp": "2026-01-02T15:45:40.680Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone13-News.png"
+  },
+  {
+    "route": "/en/resources",
+    "viewport": "iPhone13",
+    "timestamp": "2026-01-02T15:45:43.807Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone13-Resources.png"
+  },
+  {
+    "route": "/en/discover",
+    "viewport": "iPhone13",
+    "timestamp": "2026-01-02T15:45:46.999Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone13-Discover.png"
+  },
+  {
+    "route": "/en/daily-lessons",
+    "viewport": "iPhone13",
+    "timestamp": "2026-01-02T15:45:50.668Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone13-DailyLessons.png"
+  },
+  {
+    "route": "/en/profile",
+    "viewport": "iPhone13",
+    "timestamp": "2026-01-02T15:45:54.040Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone13-Profile.png"
+  },
+  {
+    "route": "/en/notifications",
+    "viewport": "iPhone13",
+    "timestamp": "2026-01-02T15:45:57.511Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone13-Notifications.png"
+  },
+  {
+    "route": "/en/about",
+    "viewport": "iPhone13",
+    "timestamp": "2026-01-02T15:46:00.815Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "iPhone13-About.png"
+  },
+  {
+    "route": "/en",
+    "viewport": "Pixel7",
+    "timestamp": "2026-01-02T15:46:04.026Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "Pixel7-Home.png"
+  },
+  {
+    "route": "/en/learn",
+    "viewport": "Pixel7",
+    "timestamp": "2026-01-02T15:46:08.088Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "Pixel7-LearnDashboard.png"
+  },
+  {
+    "route": "/en/practice",
+    "viewport": "Pixel7",
+    "timestamp": "2026-01-02T15:46:11.218Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "Pixel7-Practice.png"
+  },
+  {
+    "route": "/en/practice/pronunciation",
+    "viewport": "Pixel7",
+    "timestamp": "2026-01-02T15:46:14.587Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "Pixel7-Pronunciation.png"
+  },
+  {
+    "route": "/en/practice/grammar",
+    "viewport": "Pixel7",
+    "timestamp": "2026-01-02T15:46:17.932Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "Pixel7-Grammar.png"
+  },
+  {
+    "route": "/en/translate",
+    "viewport": "Pixel7",
+    "timestamp": "2026-01-02T15:46:21.154Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "Pixel7-Translate.png"
+  },
+  {
+    "route": "/en/reader",
+    "viewport": "Pixel7",
+    "timestamp": "2026-01-02T15:46:25.084Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "Pixel7-Reader.png"
+  },
+  {
+    "route": "/en/news",
+    "viewport": "Pixel7",
+    "timestamp": "2026-01-02T15:46:28.281Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "Pixel7-News.png"
+  },
+  {
+    "route": "/en/resources",
+    "viewport": "Pixel7",
+    "timestamp": "2026-01-02T15:46:31.453Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "Pixel7-Resources.png"
+  },
+  {
+    "route": "/en/discover",
+    "viewport": "Pixel7",
+    "timestamp": "2026-01-02T15:46:34.661Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "Pixel7-Discover.png"
+  },
+  {
+    "route": "/en/daily-lessons",
+    "viewport": "Pixel7",
+    "timestamp": "2026-01-02T15:46:37.888Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "Pixel7-DailyLessons.png"
+  },
+  {
+    "route": "/en/profile",
+    "viewport": "Pixel7",
+    "timestamp": "2026-01-02T15:46:41.024Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "Pixel7-Profile.png"
+  },
+  {
+    "route": "/en/notifications",
+    "viewport": "Pixel7",
+    "timestamp": "2026-01-02T15:46:44.200Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "Pixel7-Notifications.png"
+  },
+  {
+    "route": "/en/about",
+    "viewport": "Pixel7",
+    "timestamp": "2026-01-02T15:46:47.362Z",
+    "interstitialBypassed": false,
+    "overflow": {
+      "hasOverflow": false,
+      "elements": []
+    },
+    "i18nKeys": [],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    ],
+    "networkErrors": [
+      {
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "status": 403
+      }
+    ],
+    "brokenImages": [],
+    "screenshot": "Pixel7-About.png"
+  }
+]

@@ -40,12 +40,16 @@ export function useFirstSession(): FirstSessionState {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       let count = 1;
+      let dismissed = false;
+      let loadedSeenHints: string[] = [];
       
       if (stored) {
         const data = JSON.parse(stored);
         count = (data.count || 0) + 1;
-        setHintsDismissed(data.dismissed || false);
-        setSeenHints(new Set(data.seenHints || []));
+        dismissed = Boolean(data.dismissed);
+        loadedSeenHints = Array.isArray(data.seenHints) ? data.seenHints : [];
+        setHintsDismissed(dismissed);
+        setSeenHints(new Set(loadedSeenHints));
       }
 
       setSessionCount(count);
@@ -53,8 +57,8 @@ export function useFirstSession(): FirstSessionState {
       // Save updated session count
       localStorage.setItem(STORAGE_KEY, JSON.stringify({
         count,
-        dismissed: hintsDismissed,
-        seenHints: Array.from(seenHints),
+        dismissed,
+        seenHints: loadedSeenHints,
         lastSession: new Date().toISOString(),
       }));
     } catch {
@@ -112,4 +116,3 @@ export function useFirstSession(): FirstSessionState {
     isHintSeen,
   };
 }
-

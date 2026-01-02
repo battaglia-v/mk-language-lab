@@ -36,7 +36,9 @@ function reportAuthConfigurationIssue(message: string, extra?: Record<string, un
 
 const providers = [];
 
-const googleConfigReady = Boolean(googleClientId && googleClientSecret);
+const googleClientIdPresent = Boolean(googleClientId);
+const googleClientSecretPresent = Boolean(googleClientSecret);
+const googleConfigReady = googleClientIdPresent && googleClientSecretPresent;
 if (googleConfigReady) {
   providers.push(
     Google({
@@ -51,10 +53,10 @@ if (googleConfigReady) {
       },
     })
   );
-} else {
+} else if (googleClientIdPresent || googleClientSecretPresent) {
   reportAuthConfigurationIssue('Google provider is not fully configured.', {
-    googleClientIdPresent: Boolean(googleClientId),
-    googleClientSecretPresent: Boolean(googleClientSecret),
+    googleClientIdPresent,
+    googleClientSecretPresent,
   });
 }
 

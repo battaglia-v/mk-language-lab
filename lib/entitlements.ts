@@ -69,8 +69,8 @@ export const SUBSCRIPTION_PRODUCTS: SubscriptionProduct[] = [
     name: 'Pro Yearly',
     description: 'Full access, billed annually',
     period: 'yearly',
-    displayPrice: '$39.99/yr',
-    savingsPercent: 33,
+    displayPrice: '$35.99/yr',
+    savingsPercent: 40,
   },
 ];
 
@@ -99,11 +99,9 @@ export interface ProFeature {
  * - 10 practice sessions/day
  * 
  * PRO:
- * - Native audio recordings
- * - Advanced grammar explanations
  * - Unlimited practice sessions
- * - Offline content (future)
- * - Priority support
+ * - Unlimited custom decks
+ * - Full 30-Day Reading Challenge (days 6–30)
  */
 export const FEATURES: ProFeature[] = [
   // FREE Features
@@ -112,14 +110,12 @@ export const FEATURES: ProFeature[] = [
   { id: 'basic_lessons', name: 'Basic Lessons', description: 'Core Macedonian lessons', requiresPro: false, category: 'content' },
   { id: 'news_reader', name: 'News & Reader', description: 'Read Macedonian news', requiresPro: false, category: 'content' },
   { id: 'translator', name: 'Translator', description: 'Translate text', requiresPro: false, category: 'content' },
-  { id: 'basic_practice', name: 'Basic Practice', description: '10 practice sessions/day', requiresPro: false, category: 'practice' },
+  { id: 'basic_practice', name: 'Basic Practice', description: '3 practice sessions/day', requiresPro: false, category: 'practice' },
   
   // PRO Features
-  { id: 'native_audio', name: 'Native Audio', description: 'Real Macedonian speaker recordings', requiresPro: true, category: 'audio' },
-  { id: 'advanced_grammar', name: 'Advanced Grammar', description: 'Detailed grammar explanations', requiresPro: true, category: 'grammar' },
   { id: 'unlimited_practice', name: 'Unlimited Practice', description: 'No daily practice limit', requiresPro: true, category: 'practice' },
   { id: 'custom_decks', name: 'Unlimited Custom Decks', description: 'Create unlimited vocabulary decks', requiresPro: true, category: 'practice' },
-  { id: 'offline_content', name: 'Offline Content', description: 'Download lessons for offline use', requiresPro: true, category: 'content' },
+  { id: 'reading_challenge_full', name: 'Full Reading Challenge', description: 'Unlock days 6–30 in the 30-Day challenge', requiresPro: true, category: 'content' },
 ];
 
 // =====================================================
@@ -128,11 +124,13 @@ export const FEATURES: ProFeature[] = [
 
 export const FREE_TIER_LIMITS = {
   /** Max practice sessions per day */
-  dailyPracticeSessions: 10,
+  dailyPracticeSessions: 3,
   /** Max custom decks */
-  maxCustomDecks: 3,
+  maxCustomDecks: 1,
   /** Max cards per custom deck */
   maxCardsPerDeck: 50,
+  /** Free days in the 30-day reading challenge */
+  readerChallengeFreeDays: 5,
 };
 
 // =====================================================
@@ -362,4 +360,3 @@ export function getLastUpsellShown(): Date | null {
     return null;
   }
 }
-

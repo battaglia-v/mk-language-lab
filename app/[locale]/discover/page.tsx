@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { useFormatter, useLocale, useTranslations } from 'next-intl';
+import { useFormatter, useLocale, useNow, useTranslations } from 'next-intl';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -46,6 +46,7 @@ export default function DiscoverPage() {
   const navT = useTranslations('nav');
   const locale = useLocale();
   const formatter = useFormatter();
+  const now = useNow({ updateInterval: 60_000 });
   const [feed, setFeed] = useState<DiscoverFeed | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -165,7 +166,7 @@ export default function DiscoverPage() {
             </ul>
             <div className="text-xs text-muted-foreground/80">
               {updatedAt ? (
-                <span>{t('hero.updated', { time: formatter.relativeTime(updatedAt) })}</span>
+                <span>{t('hero.updated', { time: formatter.relativeTime(updatedAt, { now }) })}</span>
               ) : (
                 <span>{t('hero.ready')}</span>
               )}
@@ -274,7 +275,7 @@ export default function DiscoverPage() {
         ) : events.length ? (
           <div className="grid gap-4 md:grid-cols-2">
             {events.map((event) => (
-              <EventCard key={event.id} event={event} formatter={formatter} />
+              <EventCard key={event.id} event={event} formatter={formatter} now={now} />
             ))}
           </div>
         ) : (
@@ -360,13 +361,14 @@ function DiscoverCardEntry({ card }: DiscoverCardEntryProps) {
 type EventCardProps = {
   event: DiscoverEvent;
   formatter: Formatter;
+  now: Date;
 };
 
-function EventCard({ event, formatter }: EventCardProps) {
+function EventCard({ event, formatter, now }: EventCardProps) {
   const startDate = new Date(event.startAt);
   const relativeLabel = Number.isNaN(startDate.getTime())
     ? null
-    : formatter.relativeTime(startDate, { style: 'narrow' });
+    : formatter.relativeTime(startDate, { now, style: 'narrow' });
   const absoluteLabel = Number.isNaN(startDate.getTime())
     ? null
     : formatter.dateTime(startDate, { dateStyle: 'medium', timeStyle: 'short' });

@@ -2,29 +2,44 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useLocale } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { CreateDeckDialog } from '@/components/practice/decks/CreateDeckDialog';
 import { DeleteDeckDialog } from '@/components/practice/decks/DeleteDeckDialog';
 import { DeckList } from '@/components/practice/decks/DeckList';
-import { Archive, Loader2 } from 'lucide-react';
+import { Archive, Crown, Loader2 } from 'lucide-react';
 import { fetchUserDecks, updateDeck } from '@/lib/custom-decks';
 import { useToast } from '@/components/ui/use-toast';
 import type { CustomDeckSummary } from '@/lib/custom-decks';
 import { PageContainer } from '@/components/layout';
+import { useEntitlement } from '@/hooks/use-entitlement';
+import { useAppConfig } from '@/hooks/use-app-config';
 
 export default function DecksPage() {
+  const locale = useLocale();
   const router = useRouter();
   const { addToast } = useToast();
   const [decks, setDecks] = useState<CustomDeckSummary[]>([]);
+  const [activeDeckCount, setActiveDeckCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [showArchived, setShowArchived] = useState(false);
   const [deckToDelete, setDeckToDelete] = useState<CustomDeckSummary | null>(null);
+  const { config } = useAppConfig();
+  const { canCreateDeck, entitlement } = useEntitlement();
 
   const loadDecks = async () => {
     setIsLoading(true);
     try {
       const fetchedDecks = await fetchUserDecks({ archived: showArchived });
       setDecks(fetchedDecks);
+
+      if (!showArchived) {
+        setActiveDeckCount(fetchedDecks.length);
+      } else {
+        // When viewing archived decks, we still need the active count for free-tier gating.
+        const activeDecks = await fetchUserDecks({ archived: false });
+        setActiveDeckCount(activeDecks.length);
+      }
     } catch (error) {
       console.error('Failed to load decks:', error);
       addToast({
@@ -75,6 +90,9 @@ export default function DecksPage() {
     loadDecks();
   };
 
+  const paywallEnabled = config.paywallEnabled;
+  const deckCreationLocked = paywallEnabled && !entitlement.isPro && !canCreateDeck(activeDeckCount);
+
   return (
     <PageContainer size="lg" className="flex flex-col gap-5 pb-24 pt-6 sm:gap-6 sm:pt-8 sm:pb-8">
       {/* Header */}
@@ -82,7 +100,7 @@ export default function DecksPage() {
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => router.push('/practice')}
+          onClick={() => router.push(`/${locale}/practice`)}
           className="w-fit rounded-full border border-border/60 px-4 text-sm text-muted-foreground"
         >
           ← Back to Practice
@@ -94,7 +112,17 @@ export default function DecksPage() {
               Create and manage your personalized practice decks
             </p>
           </div>
-          <CreateDeckDialog onDeckCreated={loadDecks} />
+          {deckCreationLocked ? (
+            <Button
+              onClick={() => router.push(`/${locale}/upgrade?from=${encodeURIComponent(`/${locale}/practice/decks`)}`)}
+              className="gap-2"
+            >
+              <Crown className="h-4 w-4" />
+              Upgrade to create more
+            </Button>
+          ) : (
+            <CreateDeckDialog onDeckCreated={loadDecks} />
+          )}
         </div>
 
         {/* Archive toggle */}

@@ -51,6 +51,20 @@ export default function TranslatePage() {
     [t],
   );
 
+  const directionUiOptions = useMemo(
+    () =>
+      directionOptions.map((opt) => ({
+        value: opt.id,
+        label: (
+          <>
+            <span className="sm:hidden">{opt.sourceLang.toUpperCase()} → {opt.targetLang.toUpperCase()}</span>
+            <span className="hidden sm:inline">{opt.label}</span>
+          </>
+        ),
+      })),
+    [directionOptions],
+  );
+
   const {
     directionId, setDirectionId, selectedDirection, inputText, setInputText,
     translatedText, isTranslating, errorMessage, copiedState, history,
@@ -97,7 +111,7 @@ export default function TranslatePage() {
     if (!translatedText || !window.speechSynthesis) return;
     window.speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(translatedText);
-    u.lang = directionId === 'en-mk' ? 'sr-RS' : 'en-US';
+    u.lang = directionId === 'en-mk' ? 'mk-MK' : 'en-US';
     u.rate = 0.85;
     u.onstart = () => setIsSpeaking(true);
     u.onend = () => setIsSpeaking(false);
@@ -135,10 +149,11 @@ export default function TranslatePage() {
       {/* Direction Toggle */}
       <div className="flex items-center gap-2">
         <SegmentedControl
-          options={directionOptions.map((opt) => ({ value: opt.id, label: opt.label }))}
+          options={directionUiOptions}
           value={directionId}
           onChange={setDirectionId}
           className="flex-1"
+          ariaLabel={t('directionsGroupLabel', { default: 'Translation direction' })}
         />
         <button
           onClick={handleSwapDirections}
@@ -161,11 +176,25 @@ export default function TranslatePage() {
             className="min-h-[140px] resize-none rounded-2xl border-border/40 bg-muted/20 p-4 text-base placeholder:text-muted-foreground focus-visible:ring-primary/40"
           />
           <div className="absolute bottom-3 right-3 flex gap-1">
-            <Button type="button" variant="ghost" size="icon" className="h-8 w-8" onClick={handlePaste}>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8"
+              onClick={handlePaste}
+              aria-label={t('paste', { default: 'Paste text' })}
+            >
               <ClipboardPaste className="h-4 w-4" />
             </Button>
             {inputText && (
-              <Button type="button" variant="ghost" size="icon" className="h-8 w-8" onClick={handleClear}>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8"
+                onClick={handleClear}
+                aria-label={t('clearButton', { default: 'Clear' })}
+              >
                 <X className="h-4 w-4" />
               </Button>
             )}
@@ -204,7 +233,7 @@ export default function TranslatePage() {
             </Button>
             <Button variant="ghost" size="sm" onClick={handleListen} className="gap-2 h-10 rounded-full">
               <Volume2 className={cn('h-4 w-4', isSpeaking && 'text-primary animate-pulse')} />
-              <span className="text-sm">Listen</span>
+              <span className="text-sm">{t('listen', { default: 'Listen' })}</span>
             </Button>
           </div>
         </div>
@@ -226,23 +255,23 @@ export default function TranslatePage() {
       )}
 
       {/* More Menu Bottom Sheet */}
-      <BottomSheet open={moreOpen} onClose={() => setMoreOpen(false)} title="Options">
+      <BottomSheet open={moreOpen} onClose={() => setMoreOpen(false)} title={t('optionsTitle', { default: 'Options' })}>
         <div className="space-y-2">
           <button onClick={() => { setMoreOpen(false); setHistoryOpen(true); }} className="flex w-full items-center gap-3 rounded-xl p-4 hover:bg-muted/30">
-            <History className="h-5 w-5" /><span className="flex-1 text-left font-medium">History</span>
+            <History className="h-5 w-5" /><span className="flex-1 text-left font-medium">{t('history', { default: 'History' })}</span>
             <span className="text-sm text-muted-foreground">{history.length}</span>
           </button>
           <button onClick={() => { setMoreOpen(false); setSavedOpen(true); }} className="flex w-full items-center gap-3 rounded-xl p-4 hover:bg-muted/30">
-            <BookmarkPlus className="h-5 w-5" /><span className="flex-1 text-left font-medium">Saved Phrases</span>
+            <BookmarkPlus className="h-5 w-5" /><span className="flex-1 text-left font-medium">{t('savedTitle', { default: 'Saved phrases' })}</span>
             <span className="text-sm text-muted-foreground">{phrases.length}</span>
           </button>
         </div>
       </BottomSheet>
 
       {/* History Bottom Sheet */}
-      <BottomSheet open={historyOpen} onClose={() => setHistoryOpen(false)} title="History">
+      <BottomSheet open={historyOpen} onClose={() => setHistoryOpen(false)} title={t('historyTitle', { default: 'Recent translations' })}>
         {history.length === 0 ? (
-          <p className="text-center text-sm text-muted-foreground py-8">No history yet</p>
+          <p className="text-center text-sm text-muted-foreground py-8">{t('historyEmpty', { default: 'Your latest translations will appear here.' })}</p>
         ) : (
           <BottomSheetList items={history} onItemClick={(item) => { handleHistoryLoad(item); setHistoryOpen(false); }}
             renderItem={(item) => (
@@ -256,9 +285,9 @@ export default function TranslatePage() {
       </BottomSheet>
 
       {/* Saved Bottom Sheet */}
-      <BottomSheet open={savedOpen} onClose={() => setSavedOpen(false)} title="Saved Phrases">
+      <BottomSheet open={savedOpen} onClose={() => setSavedOpen(false)} title={t('savedTitle', { default: 'Saved phrases' })}>
         {phrases.length === 0 ? (
-          <p className="text-center text-sm text-muted-foreground py-8">No saved phrases</p>
+          <p className="text-center text-sm text-muted-foreground py-8">{t('savedEmptyDescription', { default: 'Save translations to unlock a custom practice deck.' })}</p>
         ) : (
           <div className="space-y-2">
             {phrases.map((phrase) => (
