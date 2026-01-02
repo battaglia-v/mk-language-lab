@@ -128,13 +128,13 @@ export default async function LearningPathsPage() {
             <p className="text-sm text-muted-foreground">
               Not sure where to start?
             </p>
-            <Link
-              href={`/${locale}/learn/placement`}
-              className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-            >
-              Take a placement quiz
-              <ChevronRight className="h-4 w-4" />
-            </Link>
+            <div className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground">
+              <span>Placement Quiz</span>
+              <span className="text-xs bg-muted px-2 py-0.5 rounded">Coming Soon</span>
+            </div>
+            <p className="text-xs text-muted-foreground">
+              For now, we recommend starting with A1 Foundations
+            </p>
           </div>
         </div>
       </div>

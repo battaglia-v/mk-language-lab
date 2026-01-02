@@ -218,13 +218,13 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
 
   const handleAddToDeck = useCallback((word: WordMatch) => {
     const wordId = `vocab-${word.original.toLowerCase().replace(/[.,!?;:'"]/g, '')}`;
-    toggleFavorite({
+    const wasAdded = toggleFavorite({
       id: wordId,
       macedonian: word.original,
       english: word.translation,
       category: 'reader',
     });
-    setIsInDeck(true);
+    setIsInDeck(wasAdded);
   }, []);
 
   const handlePlayAudio = useCallback((text: string) => {
