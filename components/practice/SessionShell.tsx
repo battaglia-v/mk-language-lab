@@ -282,6 +282,9 @@ export function SessionChoice({
   const isSelectedIncorrect = selected && correct === false;
   const isCorrectAnswer = !selected && correct === true;
 
+  // Selected but not yet revealed (user picked this one)
+  const isSelectedPending = selected && !isRevealed;
+
   return (
     <button
       type="button"
@@ -292,9 +295,15 @@ export function SessionChoice({
         'flex items-center gap-3',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50',
         'active:scale-[0.98]',
-        !isRevealed && !disabled && 'border-white/15 bg-white/5 hover:border-white/25 hover:bg-white/10',
+        // Default unselected state
+        !isRevealed && !disabled && !selected && 'border-white/15 bg-white/5 hover:border-white/25 hover:bg-white/10',
+        // Selected but not yet checked
+        isSelectedPending && 'border-primary bg-primary/20 ring-2 ring-primary/30',
+        // Correct answer after reveal
         isSelectedCorrect && 'border-emerald-400 bg-emerald-500/20 scale-[1.02]',
+        // Wrong answer after reveal
         isSelectedIncorrect && 'border-amber-400 bg-amber-500/20 animate-shake',
+        // Show correct answer if user picked wrong
         isCorrectAnswer && 'border-emerald-400/50 bg-emerald-500/10',
         disabled && !isRevealed && 'opacity-60 cursor-not-allowed'
       )}
