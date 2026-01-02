@@ -1,14 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { useLeagueStandingsQuery, useProfileSummaryQuery } from '@mk/api-client';
+import { useProfileSummaryQuery } from '@mk/api-client';
 import { useLocale, useTranslations } from 'next-intl';
 import { useSession } from 'next-auth/react';
 import { cn } from '@/lib/utils';
 import { ProfileHeader } from './ProfileHeader';
-import { BadgesSection } from './BadgesSection';
 import { StatsSection } from './StatsSection';
-import { LeagueStandingsCard } from './LeagueStandingsCard';
 import { Button } from '@/components/ui/button';
 
 type ProfileDashboardProps = {
@@ -29,14 +27,6 @@ export function ProfileDashboard({ className, dataTestId }: ProfileDashboardProp
     refetch: refetchProfile,
     isFetching,
   } = useProfileSummaryQuery({
-    baseUrl: apiBaseUrl,
-    enabled: status === 'authenticated',
-  });
-  const {
-    data: leagueStandings,
-    isLoading: isLeagueLoading,
-    error: leagueError,
-  } = useLeagueStandingsQuery({
     baseUrl: apiBaseUrl,
     enabled: status === 'authenticated',
   });
@@ -109,30 +99,13 @@ export function ProfileDashboard({ className, dataTestId }: ProfileDashboardProp
         streakDays={profile.streakDays}
         xpProgress={profile.xpProgress}
         hearts={profile.hearts}
-        league={profile.league}
       />
 
-      <div className="grid gap-5 lg:grid-cols-12">
-        <div className="space-y-5 lg:col-span-7">
-          <StatsSection
-            xp={profile.xp}
-            xpProgress={profile.xpProgress}
-            streakDays={profile.streakDays}
-            league={profile.league}
-          />
-        </div>
-
-        <div className="space-y-5 lg:col-span-5">
-          {/* Only show league standings if the user has started practicing (has XP) */}
-          {leagueStandings &&
-           !leagueError &&
-           profile.xp.total > 0 && (
-            <LeagueStandingsCard data={leagueStandings} isLoading={isLeagueLoading} error={leagueError} />
-          )}
-
-          <BadgesSection badges={profile.badges} />
-        </div>
-      </div>
+      <StatsSection
+        xp={profile.xp}
+        xpProgress={profile.xpProgress}
+        streakDays={profile.streakDays}
+      />
     </div>
   );
 }

@@ -5,19 +5,18 @@ type StatsSectionProps = {
   xp: { total: number; weekly: number };
   xpProgress: { percentComplete: number; xpInCurrentLevel: number; xpForNextLevel: number };
   streakDays: number;
-  league: { tier: string; nextTier?: string | null; daysUntilNextTier?: number | null };
 };
 
-export function StatsSection({ xp, xpProgress, streakDays, league }: StatsSectionProps) {
+export function StatsSection({ xp, xpProgress, streakDays }: StatsSectionProps) {
   const t = useTranslations('profile.stats');
 
   return (
     <section className="glass-card rounded-3xl p-5 md:p-7 text-white" data-testid="profile-stats">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <StatCard title={t('streak')} value={`${streakDays} ${t('days')}`} accent="from-orange-400/30 to-orange-500/10">
-          <p className="text-sm text-slate-200">{t('leagueTier', { tier: league.tier })}</p>
+          <p className="text-sm text-slate-200">{t('keepItUp')}</p>
         </StatCard>
-        <StatCard title={t('weeklyXP')} value={xp.weekly.toLocaleString()} accent="from-emerald-400/30 to-emerald-500/10">
+        <StatCard title={t('totalXP')} value={xp.total.toLocaleString()} accent="from-emerald-400/30 to-emerald-500/10">
           <p className="text-sm text-slate-200">{t('totalXPCaption', { value: xp.total.toLocaleString() })}</p>
         </StatCard>
         <div className="rounded-2xl border border-white/15 bg-white/5 p-4 md:col-span-2">

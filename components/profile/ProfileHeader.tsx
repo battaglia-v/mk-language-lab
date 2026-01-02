@@ -10,7 +10,6 @@ type ProfileHeaderProps = {
   streakDays: number;
   xpProgress: { percentComplete: number };
   hearts: { current: number; max: number; isFull: boolean; minutesUntilNext: number };
-  league: { tier: string; nextTier?: string | null; daysUntilNextTier?: number | null };
   className?: string;
 };
 
@@ -20,7 +19,6 @@ export function ProfileHeader({
   xp,
   streakDays,
   xpProgress,
-  league,
   className,
 }: ProfileHeaderProps) {
   const t = useTranslations('profile');
@@ -39,9 +37,8 @@ export function ProfileHeader({
           <h2 className="mt-2 text-3xl font-bold md:text-4xl">{name}</h2>
           <p className="text-sm text-slate-300">{level}</p>
         </div>
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2">
           <StatPill label={t('totalXP')} value={xp.total.toLocaleString()} accent="from-primary/40 to-primary/20" />
-          <StatPill label={t('weeklyXP')} value={xp.weekly.toLocaleString()} accent="from-emerald-400/40 to-emerald-500/10" />
           <StatPill
             label={t('xpProgress')}
             value={`${xpProgress.percentComplete}%`}
@@ -71,12 +68,6 @@ export function ProfileHeader({
             <p className="text-2xl font-bold">{xp.total.toLocaleString()}</p>
             <p className="text-xs text-slate-300">{t('totalXP')}</p>
           </div>
-        </div>
-
-        {/* League Badge */}
-        <div className="rounded-2xl border border-white/10 bg-white/5 px-5 py-3">
-          <p className="text-lg font-semibold">{league.tier}</p>
-          <p className="text-xs text-slate-300">{t('league.status', { tier: league.tier })}</p>
         </div>
       </div>
     </section>

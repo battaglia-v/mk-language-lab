@@ -1830,7 +1830,8 @@
       "xpProgress": "Next level",
       "xpProgressDetail": "{current} XP / {goal} XP",
       "completedQuestsLabel": "{count} completed this week",
-      "leagueTier": "{tier} league"
+      "leagueTier": "{tier} league",
+      "keepItUp": "Keep it up!"
     },
     "quests": {
       "title": "Active Quests",
