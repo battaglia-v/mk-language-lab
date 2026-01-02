@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { notFound } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { Card } from '@/components/ui/card';
@@ -17,13 +18,21 @@ export default function UIKitPage() {
   const [segment, setSegment] = useState('text');
   const [loading, setLoading] = useState(false);
 
+  // Gate this page in production - return 404
+  useEffect(() => {
+    if (process.env.NEXT_PUBLIC_ENABLE_DEV_PAGES !== 'true') {
+      notFound();
+    }
+  }, []);
+
   const handleLoadingDemo = () => {
     setLoading(true);
     setTimeout(() => setLoading(false), 2000);
   };
 
+  // Don't render until we verify dev mode is enabled
   if (process.env.NEXT_PUBLIC_ENABLE_DEV_PAGES !== 'true') {
-    return <div className="p-8 text-center text-muted-foreground">Dev pages disabled</div>;
+    return null;
   }
 
   return (
