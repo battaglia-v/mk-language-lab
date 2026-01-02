@@ -110,7 +110,7 @@ export function LeaderboardCard({
       {/* Type Toggle */}
       {showTypeToggle && (
         <div className="mb-3 flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-          {(['global', 'friends', 'league'] as LeaderboardType[]).map((t) => (
+          {(['global', 'league'] as LeaderboardType[]).map((t) => (
             <Button
               key={t}
               variant={type === t ? 'default' : 'outline'}

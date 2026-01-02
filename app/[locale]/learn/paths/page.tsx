@@ -1,6 +1,6 @@
 import { getLocale } from "next-intl/server";
 import Link from "next/link";
-import { BookOpen, Rocket, Globe, Trophy, Calendar, Boxes } from "lucide-react";
+import { BookOpen, Calendar, Boxes } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const dynamic = 'force-dynamic';
@@ -15,7 +15,6 @@ interface PathCard {
   units: number;
   icon: React.ReactNode;
   color: string;
-  available: boolean;
 }
 
 const learningPaths: PathCard[] = [
@@ -29,43 +28,6 @@ const learningPaths: PathCard[] = [
     units: 10,
     icon: <BookOpen className="h-6 w-6" />,
     color: "bg-emerald-500",
-    available: true,
-  },
-  {
-    id: "a2",
-    level: "A2",
-    title: "Momentum",
-    titleMk: "Напредок",
-    description: "Build on basics with past/future tenses, directions, and travel phrases",
-    estimatedWeeks: 6,
-    units: 12,
-    icon: <Rocket className="h-6 w-6" />,
-    color: "bg-blue-500",
-    available: false,
-  },
-  {
-    id: "b1",
-    level: "B1",
-    title: "Independence",
-    titleMk: "Самостојност",
-    description: "Express opinions, tell stories, and handle everyday situations",
-    estimatedWeeks: 8,
-    units: 15,
-    icon: <Globe className="h-6 w-6" />,
-    color: "bg-purple-500",
-    available: false,
-  },
-  {
-    id: "b2c1",
-    level: "B2/C1",
-    title: "Mastery",
-    titleMk: "Мајсторство",
-    description: "Achieve fluency with real texts, news, and advanced conversations",
-    estimatedWeeks: 12,
-    units: 24,
-    icon: <Trophy className="h-6 w-6" />,
-    color: "bg-amber-500",
-    available: false,
   },
   {
     id: "30day",
@@ -77,7 +39,6 @@ const learningPaths: PathCard[] = [
     units: 30,
     icon: <Calendar className="h-6 w-6" />,
     color: "bg-rose-500",
-    available: true,
   },
   {
     id: "topics",
@@ -89,7 +50,6 @@ const learningPaths: PathCard[] = [
     units: 8,
     icon: <Boxes className="h-6 w-6" />,
     color: "bg-teal-500",
-    available: true,
   },
 ];
 
@@ -123,17 +83,10 @@ export default async function LearningPathsPage() {
             ))}
           </div>
 
-          {/* Find My Level CTA */}
-          <div className="bg-muted/50 rounded-xl p-4 text-center space-y-3">
+          {/* Recommendation */}
+          <div className="bg-muted/50 rounded-xl p-4 text-center">
             <p className="text-sm text-muted-foreground">
-              Not sure where to start?
-            </p>
-            <div className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground">
-              <span>Placement Quiz</span>
-              <span className="text-xs bg-muted px-2 py-0.5 rounded">Coming Soon</span>
-            </div>
-            <p className="text-xs text-muted-foreground">
-              For now, we recommend starting with A1 Foundations
+              New to Macedonian? Start with <span className="font-medium text-foreground">A1 Foundations</span>
             </p>
           </div>
         </div>
@@ -143,31 +96,17 @@ export default async function LearningPathsPage() {
 }
 
 function PathCardComponent({ path, locale }: { path: PathCard; locale: string }) {
-  const href = path.available ? `/${locale}/learn/paths/${path.id}` : "#";
+  const href = `/${locale}/learn/paths/${path.id}`;
 
   return (
-    <div
-      className={cn(
-        "relative rounded-xl border bg-card p-4 space-y-3 transition-all",
-        path.available
-          ? "hover:shadow-md hover:border-primary/20 cursor-pointer"
-          : "opacity-60 cursor-not-allowed"
-      )}
-    >
+    <div className="relative rounded-xl border bg-card p-4 space-y-3 transition-all hover:shadow-md hover:border-primary/20">
       {/* Level Badge */}
-      <div className="flex items-center justify-between">
-        <div className={cn(
-          "flex items-center gap-2 px-2.5 py-1 rounded-full text-white text-xs font-semibold",
-          path.color
-        )}>
-          {path.icon}
-          <span>{path.level}</span>
-        </div>
-        {!path.available && (
-          <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded">
-            Coming Soon
-          </span>
-        )}
+      <div className={cn(
+        "inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-white text-xs font-semibold",
+        path.color
+      )}>
+        {path.icon}
+        <span>{path.level}</span>
       </div>
 
       {/* Title & Description */}
@@ -185,14 +124,12 @@ function PathCardComponent({ path, locale }: { path: PathCard; locale: string })
       </div>
 
       {/* CTA */}
-      {path.available && (
-        <Link
-          href={href}
-          className="block w-full text-center py-2 px-4 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
-        >
-          Start Path
-        </Link>
-      )}
+      <Link
+        href={href}
+        className="block w-full text-center py-2 px-4 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
+      >
+        Start Path
+      </Link>
     </div>
   );
 }

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
-import { ArrowLeft, Target, Bell, Globe, Palette, ChevronRight, RotateCcw } from 'lucide-react';
+import { ArrowLeft, Target, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PageContainer } from '@/components/layout';
 import { cn } from '@/lib/utils';
@@ -63,26 +63,6 @@ export default function SettingsPage() {
         </div>
       ),
     },
-    {
-      title: 'Notifications',
-      icon: Bell,
-      description: 'Practice reminders',
-      href: '#notifications',
-      badge: t('comingSoon'),
-    },
-    {
-      title: 'Language',
-      icon: Globe,
-      description: locale === 'mk' ? 'Македонски' : 'English',
-      href: '#language',
-    },
-    {
-      title: 'Appearance',
-      icon: Palette,
-      description: 'Dark mode enabled',
-      href: '#appearance',
-      badge: t('comingSoon'),
-    },
   ];
 
   return (
@@ -105,39 +85,18 @@ export default function SettingsPage() {
         <div className="space-y-3">
           {settingsGroups.map((group) => {
             const Icon = group.icon;
-            const content = (
-              <div className="flex items-center gap-4 rounded-xl border border-border/40 bg-card p-4 transition-all hover:border-primary/40 hover:bg-muted/20">
+            return (
+              <div key={group.title} className="flex items-center gap-4 rounded-xl border border-border/40 bg-card p-4">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-muted/30">
                   <Icon className="h-5 w-5 text-muted-foreground" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
-                    <p className="font-semibold text-foreground">{group.title}</p>
-                    {group.badge && (
-                      <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium uppercase text-muted-foreground">
-                        {group.badge}
-                      </span>
-                    )}
-                  </div>
+                  <p className="font-semibold text-foreground">{group.title}</p>
                   <p className="text-sm text-muted-foreground">{group.description}</p>
                 </div>
-                {group.action ? (
-                  group.action
-                ) : (
-                  <ChevronRight className="h-5 w-5 text-muted-foreground" />
-                )}
+                {group.action}
               </div>
             );
-
-            if (group.href) {
-              return (
-                <div key={group.title} className="cursor-not-allowed opacity-60">
-                  {content}
-                </div>
-              );
-            }
-
-            return <div key={group.title}>{content}</div>;
           })}
         </div>
 
