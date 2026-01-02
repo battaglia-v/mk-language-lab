@@ -68,6 +68,36 @@ export interface ReaderSampleAttribution {
   author?: string;
 }
 
+/** Pre-analyzed word from Text Analyzer API */
+export interface AnalyzedWord {
+  id: string;
+  original: string;
+  translation: string;
+  alternativeTranslations?: string[];
+  contextualMeaning?: string;
+  contextHint?: string;
+  hasMultipleMeanings?: boolean;
+  pos: 'noun' | 'verb' | 'adjective' | 'adverb' | 'other';
+  difficulty: 'basic' | 'intermediate' | 'advanced';
+  index: number;
+}
+
+/** Pre-analyzed text data from Text Analyzer */
+export interface AnalyzedTextData {
+  words: AnalyzedWord[];
+  tokens: Array<{ token: string; isWord: boolean; index: number }>;
+  fullTranslation: string;
+  difficulty: {
+    level: 'beginner' | 'intermediate' | 'advanced';
+    score: number;
+  };
+  metadata: {
+    wordCount: number;
+    sentenceCount: number;
+    characterCount: number;
+  };
+}
+
 export interface ReaderSample {
   id: string;
   locale: string;
@@ -84,6 +114,8 @@ export interface ReaderSample {
   vocabulary: ReaderSampleVocab[];
   expressions: ReaderSampleExpression[];
   attribution: ReaderSampleAttribution;
+  /** Pre-analyzed text data for instant word lookups */
+  analyzedData?: AnalyzedTextData;
 }
 
 // Reader samples - add new samples here
