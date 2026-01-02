@@ -1,17 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
-import { ArrowLeft, Volume2, Check, Sparkles, BookOpen, Mic } from 'lucide-react';
+import { ArrowLeft, Volume2, Check, Sparkles, BookOpen, Mic, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PageContainer } from '@/components/layout';
+import { useToast } from '@/components/ui/toast';
 import { cn } from '@/lib/utils';
 import alphabetData from '@/data/alphabet-deck.json';
+
+const STORAGE_KEY = 'mkll:alphabet-progress';
 
 interface AlphabetLetter {
   id: string;
@@ -53,8 +56,88 @@ export default function AlphabetLessonPage() {
   const t = useTranslations('alphabet');
   const [viewedLetters, setViewedLetters] = useState<Set<string>>(new Set());
   const [playingLetter, setPlayingLetter] = useState<string | null>(null);
+  const [isCompleting, setIsCompleting] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(false);
+  const { addToast } = useToast();
+  const hasCalledCompletion = useRef(false);
 
   const progress = Math.round((viewedLetters.size / alphabet.items.length) * 100);
+
+  // Load progress from localStorage on mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          setViewedLetters(new Set(parsed));
+        }
+        // Check if already completed
+        if (parsed.length >= alphabet.items.length) {
+          setIsCompleted(true);
+        }
+      }
+    } catch (e) {
+      console.warn('[Alphabet] Failed to load progress:', e);
+    }
+  }, []);
+
+  // Save progress to localStorage when letters change
+  useEffect(() => {
+    if (viewedLetters.size > 0) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify([...viewedLetters]));
+      } catch (e) {
+        console.warn('[Alphabet] Failed to save progress:', e);
+      }
+    }
+  }, [viewedLetters]);
+
+  // Mark lesson complete when all letters viewed
+  const markLessonComplete = useCallback(async () => {
+    if (hasCalledCompletion.current || isCompleted) return;
+    hasCalledCompletion.current = true;
+    setIsCompleting(true);
+
+    try {
+      const response = await fetch('/api/practice/record', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          correctCount: alphabet.items.length,
+          totalCount: alphabet.items.length,
+          type: 'alphabet',
+        }),
+      });
+
+      if (!response.ok) throw new Error('Failed to record completion');
+
+      const data = await response.json();
+      setIsCompleted(true);
+      addToast({
+        title: t('completedTitle', { default: 'Lesson Complete!' }),
+        description: `+${data.xpEarned} XP earned!`,
+        type: 'success',
+      });
+    } catch (error) {
+      console.error('[Alphabet] Failed to mark complete:', error);
+      hasCalledCompletion.current = false;
+      addToast({
+        title: 'Error',
+        description: 'Failed to save progress. Please try again.',
+        type: 'error',
+      });
+    } finally {
+      setIsCompleting(false);
+    }
+  }, [isCompleted, addToast, t]);
+
+  // Auto-complete when 100% reached
+  useEffect(() => {
+    if (progress >= 100 && !isCompleted && !hasCalledCompletion.current) {
+      markLessonComplete();
+    }
+  }, [progress, isCompleted, markLessonComplete]);
 
   const speakLetter = (letter: AlphabetLetter) => {
     // Mark as viewed immediately (even if audio fails)
@@ -155,39 +238,49 @@ export default function AlphabetLessonPage() {
 
         {/* Learn Tab - Full Alphabet Grid */}
         <TabsContent value="learn" className="mt-4 space-y-6">
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             {alphabet.items.map((letter) => (
               <Card
                 key={letter.id}
+                role="button"
+                tabIndex={0}
+                aria-label={`Letter ${letter.letter}, ${letter.latinEquiv}`}
                 className={cn(
                   'cursor-pointer transition-all hover:border-primary/50 hover:shadow-md active:scale-[0.98]',
+                  'min-h-[140px] touch-manipulation select-none', // Mobile-friendly: larger tap target
                   viewedLetters.has(letter.id) && 'border-emerald-500/30 bg-emerald-500/5',
                   playingLetter === letter.id && 'border-primary ring-2 ring-primary/20'
                 )}
                 onClick={() => speakLetter(letter)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    speakLetter(letter);
+                  }
+                }}
               >
-                <CardContent className="p-4 text-center">
+                <CardContent className="p-4 sm:p-5 text-center flex flex-col justify-center h-full">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs text-muted-foreground">{letter.latinEquiv}</span>
+                    <span className="text-sm text-muted-foreground">{letter.latinEquiv}</span>
                     {viewedLetters.has(letter.id) && (
-                      <Check className="h-3 w-3 text-emerald-400" />
+                      <Check className="h-4 w-4 text-emerald-400" />
                     )}
                   </div>
-                  <div className="text-3xl font-bold mb-1">{letter.letter}</div>
-                  <div className="text-xs text-muted-foreground mb-2">{letter.ipa}</div>
+                  <div className="text-4xl sm:text-3xl font-bold mb-1">{letter.letter}</div>
+                  <div className="text-sm text-muted-foreground mb-3">{letter.ipa}</div>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="w-full gap-1 text-xs"
+                    className="w-full gap-2 text-sm min-h-[44px]" // WCAG 44px touch target
                     onClick={(e) => {
                       e.stopPropagation();
                       speakWord(letter.exampleWord.mk);
                     }}
                   >
-                    <Volume2 className="h-3 w-3" />
+                    <Volume2 className="h-4 w-4" />
                     {letter.exampleWord.mk}
                   </Button>
-                  <p className="text-xs text-muted-foreground mt-1">{letter.exampleWord.en}</p>
+                  <p className="text-sm text-muted-foreground mt-1">{letter.exampleWord.en}</p>
                 </CardContent>
               </Card>
             ))}
@@ -301,18 +394,29 @@ export default function AlphabetLessonPage() {
           {progress >= 100 && (
             <Card className="border-emerald-500/30 bg-emerald-500/10">
               <CardContent className="pt-6 text-center">
-                <Check className="h-12 w-12 mx-auto text-emerald-400 mb-3" />
-                <h3 className="text-lg font-semibold text-emerald-400 mb-2">
-                  {t('completedTitle', { default: 'Lesson Complete!' })}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  {t('completedDesc', { default: 'You\'ve viewed all 31 letters. Great job!' })}
-                </p>
-                <Button asChild>
-                  <Link href={`/${locale}/learn/paths/a1`}>
-                    {t('continue', { default: 'Continue to Next Lesson' })}
-                  </Link>
-                </Button>
+                {isCompleting ? (
+                  <>
+                    <Loader2 className="h-12 w-12 mx-auto text-emerald-400 mb-3 animate-spin" />
+                    <h3 className="text-lg font-semibold text-emerald-400 mb-2">
+                      {t('saving', { default: 'Saving Progress...' })}
+                    </h3>
+                  </>
+                ) : (
+                  <>
+                    <Check className="h-12 w-12 mx-auto text-emerald-400 mb-3" />
+                    <h3 className="text-lg font-semibold text-emerald-400 mb-2">
+                      {t('completedTitle', { default: 'Lesson Complete!' })}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      {t('completedDesc', { default: 'You\'ve viewed all 31 letters. Great job!' })}
+                    </p>
+                    <Button asChild className="min-h-[44px]">
+                      <Link href={`/${locale}/learn/paths/a1`}>
+                        {t('continue', { default: 'Continue to Next Lesson' })}
+                      </Link>
+                    </Button>
+                  </>
+                )}
               </CardContent>
             </Card>
           )}

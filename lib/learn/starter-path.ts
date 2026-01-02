@@ -150,7 +150,7 @@ export const starterPathNodes: LessonNode[] = [
     description: 'Read a short story using all vocabulary',
     status: 'locked',
     xpReward: 25,
-    href: '/reader',
+    href: '/reader/samples/day-in-skopje',
     contentId: 'day-in-skopje',
   },
   {

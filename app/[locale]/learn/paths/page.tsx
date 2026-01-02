@@ -1,6 +1,6 @@
 import { getLocale } from "next-intl/server";
 import Link from "next/link";
-import { ChevronRight, BookOpen, Rocket, Globe, Trophy, Calendar, Boxes } from "lucide-react";
+import { BookOpen, Rocket, Globe, Trophy, Calendar, Boxes } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const dynamic = 'force-dynamic';
