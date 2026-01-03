@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
-import { ArrowLeft, Target, RotateCcw, Languages } from 'lucide-react';
+import { ArrowLeft, Target, RotateCcw, Languages, Loader2 } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import { PageContainer } from '@/components/layout';
 import { cn } from '@/lib/utils';
@@ -17,30 +18,85 @@ export default function SettingsPage() {
   const t = useTranslations('nav');
   const router = useRouter();
   const pathname = usePathname();
+  const { data: session, status } = useSession();
 
   const [dailyGoal, setDailyGoal] = useState(20);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [resetComplete, setResetComplete] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
 
+  const isSignedIn = status === 'authenticated' && !!session?.user;
+
+  // Load settings from API (signed in) or localStorage (anonymous)
   useEffect(() => {
-    const stored = localStorage.getItem('mk-daily-goal');
-    if (stored) {
-      setDailyGoal(parseInt(stored, 10));
+    const loadSettings = async () => {
+      if (status === 'loading') return;
+
+      if (isSignedIn) {
+        try {
+          const response = await fetch('/api/user/settings');
+          if (response.ok) {
+            const data = await response.json();
+            setDailyGoal(data.dailyGoal ?? 20);
+            // Also sync to localStorage for consistency
+            localStorage.setItem('mk-daily-goal', String(data.dailyGoal ?? 20));
+          }
+        } catch (error) {
+          console.error('Failed to load settings:', error);
+          // Fall back to localStorage
+          const stored = localStorage.getItem('mk-daily-goal');
+          if (stored) setDailyGoal(parseInt(stored, 10));
+        }
+      } else {
+        // Anonymous user - use localStorage
+        const stored = localStorage.getItem('mk-daily-goal');
+        if (stored) setDailyGoal(parseInt(stored, 10));
+      }
+      setIsLoading(false);
+    };
+
+    loadSettings();
+  }, [status, isSignedIn]);
+
+  // Save settings to API (signed in) or localStorage (anonymous)
+  const saveSettings = useCallback(async (settings: { locale?: string; dailyGoal?: number }) => {
+    // Always save to localStorage for immediate effect
+    if (settings.dailyGoal !== undefined) {
+      localStorage.setItem('mk-daily-goal', String(settings.dailyGoal));
     }
-  }, []);
+    if (settings.locale !== undefined) {
+      localStorage.setItem('mk-preferred-locale', settings.locale);
+      document.cookie = `NEXT_LOCALE=${settings.locale};path=/;max-age=31536000;SameSite=Lax`;
+    }
+
+    // If signed in, also persist to database
+    if (isSignedIn) {
+      setIsSaving(true);
+      try {
+        await fetch('/api/user/settings', {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(settings),
+        });
+      } catch (error) {
+        console.error('Failed to save settings to database:', error);
+      } finally {
+        setIsSaving(false);
+      }
+    }
+  }, [isSignedIn]);
 
   const handleGoalChange = (goal: number) => {
     setDailyGoal(goal);
-    localStorage.setItem('mk-daily-goal', String(goal));
+    saveSettings({ dailyGoal: goal });
   };
 
   const handleLanguageChange = (newLocale: string) => {
+    // Save to database first, then navigate
+    saveSettings({ locale: newLocale });
     // Replace the locale in the current path
     const newPath = pathname.replace(`/${locale}`, `/${newLocale}`);
-    // Store preference in localStorage
-    localStorage.setItem('mk-preferred-locale', newLocale);
-    // Set cookie for next-intl to persist across sessions (1 year expiry)
-    document.cookie = `NEXT_LOCALE=${newLocale};path=/;max-age=31536000;SameSite=Lax`;
     router.push(newPath);
   };
 
@@ -112,6 +168,16 @@ export default function SettingsPage() {
     },
   ];
 
+  if (isLoading) {
+    return (
+      <PageContainer size="md" className="pb-24 sm:pb-6">
+        <div className="flex items-center justify-center py-12">
+          <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+        </div>
+      </PageContainer>
+    );
+  }
+
   return (
     <PageContainer size="md" className="pb-24 sm:pb-6">
       <div className="space-y-6">
@@ -127,7 +193,17 @@ export default function SettingsPage() {
             </Link>
           </Button>
           <h1 className="text-2xl font-bold">{t('settings', { default: 'Settings' })}</h1>
+          {isSaving && (
+            <Loader2 className="h-4 w-4 animate-spin text-muted-foreground ml-auto" />
+          )}
         </div>
+
+        {/* Signed in indicator */}
+        {isSignedIn && (
+          <div className="rounded-lg bg-primary/10 border border-primary/20 px-4 py-2 text-sm text-primary">
+            Settings will sync across devices when signed in as {session?.user?.email}
+          </div>
+        )}
 
         <div className="space-y-3">
           {settingsGroups.map((group) => {
