@@ -44,7 +44,8 @@ export default function OfflinePage() {
 
         <button
           onClick={() => window.location.reload()}
-          className="w-full mt-6 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+          className="w-full mt-6 px-4 py-2 bg-primary text-black rounded-md hover:bg-primary/90 transition-colors"
+          data-testid="offline-try-again"
         >
           Try Again
         </button>

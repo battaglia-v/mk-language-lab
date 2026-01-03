@@ -224,7 +224,7 @@ export default function DeckEditorPage() {
           <h2 className="text-xl font-semibold text-foreground mb-4">
             Add New Card
           </h2>
-          <CardForm onSubmit={handleAddCard} isSubmitting={isAddingCard} />
+          <CardForm onSubmit={handleAddCard} isSubmitting={isAddingCard} testIdPrefix="deck-card-create" />
         </div>
 
         {/* Cards List */}

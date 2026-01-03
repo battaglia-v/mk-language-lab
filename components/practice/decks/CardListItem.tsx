@@ -62,6 +62,7 @@ export function CardListItem({
         submitLabel="Update Card"
         isSubmitting={isUpdating}
         onCancel={() => setIsEditing(false)}
+        testIdPrefix={`deck-card-edit-${card.id}`}
       />
     );
   }
@@ -112,6 +113,7 @@ export function CardListItem({
               disabled={isUpdating || isDeleting}
               className="h-9 w-9 p-0 text-foreground hover:text-foreground hover:bg-accent/20 border border-border/50 hover:border-border"
               aria-label="Edit card"
+              data-testid={`deck-card-edit-open-${card.id}`}
             >
               <Edit className="h-5 w-5" />
             </Button>
@@ -122,6 +124,7 @@ export function CardListItem({
               disabled={isUpdating || isDeleting}
               className="h-9 w-9 p-0 text-destructive hover:text-destructive hover:bg-destructive/10 border border-destructive/30 hover:border-destructive/50"
               aria-label="Delete card"
+              data-testid={`deck-card-delete-open-${card.id}`}
             >
               <Trash2 className="h-5 w-5" />
             </Button>
@@ -136,6 +139,7 @@ export function CardListItem({
               size="sm"
               onClick={() => setShowDetails(!showDetails)}
               className="mt-2 h-auto p-1 text-xs text-muted-foreground hover:text-foreground"
+              data-testid={`deck-card-details-toggle-${card.id}`}
             >
               {showDetails ? (
                 <>
@@ -195,6 +199,7 @@ export function CardListItem({
         open={showDeleteDialog}
         onOpenChange={setShowDeleteDialog}
         onConfirm={handleDelete}
+        testIdPrefix={`deck-card-delete-${card.id}`}
         cardContent={{
           macedonian: card.macedonian,
           english: card.english,

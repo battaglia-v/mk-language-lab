@@ -261,6 +261,7 @@ export default function NewsClient({
             variant="ghost"
             size="sm"
             className="inline-flex min-h-[44px] w-fit items-center gap-2 rounded-full border border-border/60 px-4 text-sm text-muted-foreground"
+            data-testid="news-back-to-dashboard"
           >
             <Link href={`/${locale}/learn`} aria-label={navT('backToDashboard')}>
               <ArrowLeft className="h-4 w-4" aria-hidden="true" />
@@ -290,6 +291,7 @@ export default function NewsClient({
               <FilterChip
                 key={filter.id}
                 active={source === filter.id}
+                data-testid={`news-filter-source-${filter.id}`}
                 onClick={() => {
                   setSource(filter.id);
                   trackEvent(AnalyticsEvents.NEWS_FILTER_CHANGED, { filterType: 'source', value: filter.id });
@@ -300,6 +302,7 @@ export default function NewsClient({
             ))}
             <FilterChip
               active={videosOnly}
+              data-testid="news-filter-videos-only"
               onClick={() => {
                 setVideosOnly((prev) => {
                   trackEvent(AnalyticsEvents.NEWS_FILTER_CHANGED, { filterType: 'videosOnly', value: !prev });
@@ -320,6 +323,7 @@ export default function NewsClient({
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder={t('searchPlaceholder')}
                 className="min-h-[44px] rounded-2xl border border-border/60 bg-background/80 pl-10 text-sm text-white placeholder:text-muted-foreground"
+                data-testid="news-search-input"
               />
             </div>
             <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground sm:gap-3 sm:text-sm">
@@ -340,6 +344,7 @@ export default function NewsClient({
                 variant="ghost"
                 size="sm"
                 onClick={handleRefresh}
+                data-testid="news-refresh"
                 className="min-h-[44px] gap-1.5 rounded-full border border-border/60 px-4 text-white"
               >
                 <RefreshCcw className="h-3.5 w-3.5" />
@@ -359,6 +364,7 @@ export default function NewsClient({
             size="sm"
             className="mt-3 min-h-[44px] rounded-full border-border/60 px-4 text-sm text-white sm:mt-4"
             onClick={handleRefresh}
+            data-testid="news-retry"
           >
             {t('retry')}
           </Button>
@@ -398,6 +404,7 @@ export default function NewsClient({
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-testid={`news-article-${item.id}`}
                 onClick={() => {
                   trackEvent(AnalyticsEvents.NEWS_ARTICLE_CLICKED, {
                     source: item.sourceId,

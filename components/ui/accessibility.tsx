@@ -17,18 +17,21 @@ interface SkipLinkProps {
   label?: string;
   /** Additional class names */
   className?: string;
+  dataTestId?: string;
 }
 
 export function SkipLink({ 
   href = '#main-content', 
   label,
-  className 
+  className,
+  dataTestId = 'skip-link'
 }: SkipLinkProps) {
   const t = useTranslations('accessibility');
 
   return (
     <a
       href={href}
+      data-testid={dataTestId}
       className={cn(
         // Hidden by default
         'sr-only',
@@ -82,6 +85,7 @@ export function SkipLinks({ links, className }: SkipLinksProps) {
         <a
           key={link.href}
           href={link.href}
+          data-testid={`skip-link-${index}`}
           className={cn(
             // Hidden by default
             'sr-only',

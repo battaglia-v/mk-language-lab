@@ -43,7 +43,7 @@ export default function ReaderAnalyzePage() {
       {/* Header */}
       <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-sm border-b border-border/50 px-4 py-3">
         <div className="flex items-center gap-3 max-w-4xl mx-auto">
-          <Button asChild variant="ghost" size="icon" className="h-10 w-10 rounded-full">
+          <Button asChild variant="ghost" size="icon" className="h-10 w-10 rounded-full" data-testid="reader-analyze-back">
             <Link href={`/${locale}/reader`}>
               <ArrowLeft className="h-5 w-5" />
             </Link>

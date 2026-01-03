@@ -98,7 +98,7 @@ export function CreateDeckDialog({ onDeckCreated }: CreateDeckDialogProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="gap-2">
+        <Button className="gap-2" data-testid="custom-decks-create-open">
           <Plus className="h-4 w-4" />
           {t('createDeck')}
         </Button>
@@ -125,6 +125,7 @@ export function CreateDeckDialog({ onDeckCreated }: CreateDeckDialogProps) {
                 maxLength={100}
                 required
                 autoFocus
+                data-testid="custom-decks-create-name"
               />
             </div>
 
@@ -137,6 +138,7 @@ export function CreateDeckDialog({ onDeckCreated }: CreateDeckDialogProps) {
                 onChange={(e) => setDescription(e.target.value)}
                 rows={3}
                 maxLength={500}
+                data-testid="custom-decks-create-description"
               />
             </div>
 
@@ -148,6 +150,7 @@ export function CreateDeckDialog({ onDeckCreated }: CreateDeckDialogProps) {
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
                 maxLength={50}
+                data-testid="custom-decks-create-category"
               />
             </div>
           </div>
@@ -158,10 +161,11 @@ export function CreateDeckDialog({ onDeckCreated }: CreateDeckDialogProps) {
               variant="outline"
               onClick={() => setOpen(false)}
               disabled={isSubmitting}
+              data-testid="custom-decks-create-cancel"
             >
               {t('cancel')}
             </Button>
-            <Button type="submit" disabled={isSubmitting || !name.trim()}>
+            <Button type="submit" disabled={isSubmitting || !name.trim()} data-testid="custom-decks-create-submit">
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />

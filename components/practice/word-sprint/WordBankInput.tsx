@@ -75,6 +75,7 @@ export function WordBankInput({
               size="sm"
               onClick={() => handleWordTap(word)}
               disabled={disabled || !!feedback}
+              data-testid={`word-sprint-word-${i}`}
               className={cn(
                 'rounded-full px-4 transition-all',
                 isUsed && 'opacity-50 scale-95',
@@ -93,6 +94,7 @@ export function WordBankInput({
           className="w-full min-h-[48px] rounded-xl"
           onClick={handleCheck}
           disabled={!selected || disabled}
+          data-testid="word-sprint-check"
         >
           Check
         </Button>

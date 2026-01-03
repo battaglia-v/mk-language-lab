@@ -62,6 +62,7 @@ export default async function ReadingSamplePage({ params }: ReadingSamplePagePro
         <Link
           href={`/${locale}/reader`}
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          data-testid="reader-sample-back-to-reader"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to Reader
@@ -113,9 +114,9 @@ export default async function ReadingSamplePage({ params }: ReadingSamplePagePro
       {/* Tabs for Text / Grammar / Vocabulary */}
       <Tabs defaultValue="text" className="w-full">
         <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="text">Text</TabsTrigger>
-          <TabsTrigger value="grammar">Grammar</TabsTrigger>
-          <TabsTrigger value="vocabulary">Vocabulary</TabsTrigger>
+          <TabsTrigger value="text" data-testid="reader-sample-tab-text">Text</TabsTrigger>
+          <TabsTrigger value="grammar" data-testid="reader-sample-tab-grammar">Grammar</TabsTrigger>
+          <TabsTrigger value="vocabulary" data-testid="reader-sample-tab-vocabulary">Vocabulary</TabsTrigger>
         </TabsList>
 
         {/* Text Tab */}

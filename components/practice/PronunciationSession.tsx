@@ -206,6 +206,7 @@ export function PronunciationSession({
               size="lg"
               onClick={handleRestart}
               className="w-full"
+              data-testid="pronunciation-session-restart"
             >
               <RotateCcw className="h-5 w-5 mr-2" />
               {t.practiceAgain}
@@ -215,6 +216,7 @@ export function PronunciationSession({
               size="lg"
               onClick={onHome}
               className="w-full"
+              data-testid="pronunciation-session-back"
             >
               <Home className="h-5 w-5 mr-2" />
               {t.backToHome}

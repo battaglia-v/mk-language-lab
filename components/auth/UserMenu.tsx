@@ -44,7 +44,11 @@ export function UserMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center gap-2 rounded-full border border-white/10 bg-slate-900/70 p-0.5 shadow-lg shadow-black/30 transition focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-slate-900" aria-label="Open user menu">
+        <button
+          className="flex items-center gap-2 rounded-full border border-white/10 bg-slate-900/70 p-0.5 shadow-lg shadow-black/30 transition focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-slate-900"
+          aria-label="Open user menu"
+          data-testid="user-menu-trigger"
+        >
           <Avatar className="h-10 w-10">
             <AvatarImage src={session.user.image || undefined} alt={session.user.name || 'User'} />
             <AvatarFallback className="bg-primary text-primary-foreground">
@@ -63,14 +67,14 @@ export function UserMenu() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator className="bg-white/5" />
         <DropdownMenuItem asChild className={menuItemClass}>
-          <Link href={`/${locale}/profile`} className="flex w-full items-center">
+          <Link href={`/${locale}/profile`} className="flex w-full items-center" data-testid="user-menu-profile">
             <User className={iconClass} />
             <span className="text-sm font-medium">{t('profile')}</span>
           </Link>
         </DropdownMenuItem>
         {session.user.role === 'admin' && (
           <DropdownMenuItem asChild className={menuItemClass}>
-            <Link href="/admin" className="flex w-full items-center">
+            <Link href="/admin" className="flex w-full items-center" data-testid="user-menu-admin">
               <LayoutDashboard className={iconClass} />
               <span className="text-sm font-medium">Admin Panel</span>
             </Link>
@@ -87,6 +91,7 @@ export function UserMenu() {
             target="_blank"
             rel="noopener noreferrer"
             className="flex w-full items-center"
+            data-testid="user-menu-instagram"
           >
             <Instagram className={iconClass} />
             <span className="text-sm font-medium">{t('instagram')}</span>
@@ -99,6 +104,7 @@ export function UserMenu() {
             target="_blank"
             rel="noopener noreferrer"
             className="flex w-full items-center"
+            data-testid="user-menu-youtube"
           >
             <Youtube className={iconClass} />
             <span className="text-sm font-medium">{t('youtube')}</span>
@@ -111,6 +117,7 @@ export function UserMenu() {
             target="_blank"
             rel="noopener noreferrer"
             className="flex w-full items-center"
+            data-testid="user-menu-linktree"
           >
             <ExternalLink className={iconClass} />
             <span className="text-sm font-medium">{t('allLinks')}</span>
@@ -123,6 +130,7 @@ export function UserMenu() {
             <SignOutButton
               variant="ghost"
               size="sm"
+              dataTestId="user-menu-signout"
               className="w-full justify-start px-0 text-sm font-medium text-white hover:text-blue-200"
             />
           </div>

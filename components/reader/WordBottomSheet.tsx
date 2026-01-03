@@ -99,6 +99,7 @@ export function WordBottomSheet({
       onClose={onClose}
       height="auto"
       showCloseButton={true}
+      testId="reader-word-sheet"
     >
       <div className="space-y-5 pb-2">
         {/* Word header */}
@@ -116,6 +117,7 @@ export function WordBottomSheet({
                 className="h-10 w-10 rounded-full hover:bg-primary/20"
                 onClick={handlePlayAudio}
                 aria-label={t.listen}
+                data-testid="reader-word-sheet-audio"
               >
                 <Volume2 className="h-5 w-5 text-primary" />
               </Button>
@@ -201,9 +203,10 @@ export function WordBottomSheet({
               'w-full min-h-[52px] rounded-xl text-base font-semibold transition-all',
               showSaved
                 ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                : 'bg-primary text-primary-foreground hover:bg-primary/90'
+                : 'bg-primary text-black hover:bg-primary/90'
             )}
             size="lg"
+            data-testid="reader-word-sheet-save"
           >
             {showSaved ? (
               <>

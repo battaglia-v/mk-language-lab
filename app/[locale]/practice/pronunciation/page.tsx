@@ -152,16 +152,16 @@ export default function PronunciationPracticePage() {
 
   // Session selection view
   return (
-    <PageContainer size="lg" className="flex flex-col gap-6 pb-24 sm:pb-8">
-      {/* Header */}
-      <div className="flex items-center gap-3">
-        <Link href={`/${locale}/practice`}>
-          <Button variant="ghost" size="sm" className="gap-2">
-            <ArrowLeft className="h-4 w-4" />
-            {t('backToPractice')}
+      <PageContainer size="lg" className="flex flex-col gap-6 pb-24 sm:pb-8">
+        {/* Header */}
+        <div className="flex items-center gap-3">
+          <Button asChild variant="ghost" size="sm" className="gap-2" data-testid="pronunciation-back-to-practice">
+            <Link href={`/${locale}/practice`}>
+              <ArrowLeft className="h-4 w-4" />
+              {t('backToPractice')}
+            </Link>
           </Button>
-        </Link>
-      </div>
+        </div>
 
       {/* Page Title */}
       <div className="space-y-2">
@@ -201,43 +201,50 @@ export default function PronunciationPracticePage() {
       <div className="space-y-4">
         <h2 className="text-lg font-semibold">{t('selectSession')}</h2>
         
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {sessions.map((session) => (
-            <Card
-              key={session.id}
-              className={cn(
-                'cursor-pointer border-white/8 bg-white/5 transition-all',
-                'hover:border-accent/30 hover:bg-white/8 hover:shadow-lg',
-                'active:scale-[0.98]'
-              )}
-              onClick={() => handleStartSession(session)}
-            >
-              <CardHeader className="pb-2">
-                <div className="flex items-start justify-between gap-2">
-                  <CardTitle className="text-base">
-                    {locale === 'mk' ? session.titleMk : session.title}
-                  </CardTitle>
-                  <Badge
-                    variant="outline"
-                    className={cn('shrink-0 text-xs', difficultyColors[session.difficulty])}
-                  >
-                    {t(`difficulty.${session.difficulty}`)}
-                  </Badge>
-                </div>
-                <CardDescription className="text-sm">
-                  {locale === 'mk' ? session.descriptionMk : session.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center justify-between text-sm text-muted-foreground">
-                  <span>{session.words.length} {t('phrases')}</span>
-                  <span>~{Math.ceil(session.words.length * 1.5)} {t('minutes')}</span>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {sessions.map((session) => (
+              // eslint-disable-next-line react/forbid-elements -- Clickable card wrapper pattern
+              <button
+                key={session.id}
+                type="button"
+                onClick={() => handleStartSession(session)}
+                className="w-full text-left"
+                data-testid={`pronunciation-session-${session.id}`}
+              >
+                <Card
+                  className={cn(
+                    'border-white/8 bg-white/5 transition-all',
+                    'hover:border-accent/30 hover:bg-white/8 hover:shadow-lg',
+                    'active:scale-[0.98]'
+                  )}
+                >
+                  <CardHeader className="pb-2">
+                    <div className="flex items-start justify-between gap-2">
+                      <CardTitle className="text-base">
+                        {locale === 'mk' ? session.titleMk : session.title}
+                      </CardTitle>
+                      <Badge
+                        variant="outline"
+                        className={cn('shrink-0 text-xs', difficultyColors[session.difficulty])}
+                      >
+                        {t(`difficulty.${session.difficulty}`)}
+                      </Badge>
+                    </div>
+                    <CardDescription className="text-sm">
+                      {locale === 'mk' ? session.descriptionMk : session.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex items-center justify-between text-sm text-muted-foreground">
+                      <span>{session.words.length} {t('phrases')}</span>
+                      <span>~{Math.ceil(session.words.length * 1.5)} {t('minutes')}</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
 
       {/* Tips Section */}
       <Card className="border-white/8 bg-white/5">

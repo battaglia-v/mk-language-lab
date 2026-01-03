@@ -56,19 +56,19 @@ export default function ResultsPage() {
 
       {/* Actions */}
       <div className="flex flex-col gap-3 w-full max-w-sm mt-4">
-        <Button asChild size="lg" className="w-full min-h-[52px] rounded-xl">
+        <Button asChild size="lg" className="w-full min-h-[52px] rounded-xl" data-testid="practice-results-practice-again">
           <Link href={`/${locale}/practice/session?deck=${deckType}`}>
             <RotateCcw className="h-5 w-5 mr-2" />
             {t('drills.startNew', { default: 'Practice Again' })}
           </Link>
         </Button>
-        <Button asChild variant="outline" size="lg" className="w-full min-h-[52px] rounded-xl">
+        <Button asChild variant="outline" size="lg" className="w-full min-h-[52px] rounded-xl" data-testid="practice-results-back-to-practice">
           <Link href={`/${locale}/practice`}>
             <ArrowRight className="h-5 w-5 mr-2" />
             {t('drills.backToHub', { default: 'Back to Practice' })}
           </Link>
         </Button>
-        <Button asChild variant="ghost" size="lg" className="w-full min-h-[52px] rounded-xl">
+        <Button asChild variant="ghost" size="lg" className="w-full min-h-[52px] rounded-xl" data-testid="practice-results-go-home">
           <Link href={`/${locale}/learn`}>
             {t('drills.goHome', { default: 'Go Home' })}
           </Link>

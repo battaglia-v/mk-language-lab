@@ -348,7 +348,7 @@ function LessonNodeCard({
         className={cn(
           'flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-bold text-sm',
           isCompleted && 'bg-emerald-500 text-white',
-          isNext && 'bg-primary text-primary-foreground',
+          isNext && 'bg-primary text-black',
           isLocked && 'bg-muted text-muted-foreground'
         )}
       >

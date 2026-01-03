@@ -31,6 +31,7 @@ export default async function NotificationsPage({ params }: { params: Promise<{ 
               href={`/${locale}/learn`}
               className="inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-1.5 text-xs text-slate-300"
               aria-label={navT('backToDashboard')}
+              data-testid="notifications-back-to-learn"
             >
               <ArrowLeft className="h-4 w-4" aria-hidden="true" />
               {navT('backToDashboard')}
@@ -50,10 +51,17 @@ export default async function NotificationsPage({ params }: { params: Promise<{ 
           <p className="mt-3 max-w-2xl text-sm text-slate-300">{t('signIn.body')}</p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Button asChild size="lg" className="px-6">
-              <Link href={`/${locale}/sign-in?callbackUrl=/${locale}/notifications`}>{t('signIn.cta')}</Link>
+              <Link
+                href={`/${locale}/sign-in?callbackUrl=/${locale}/notifications`}
+                data-testid="notifications-sign-in"
+              >
+                {t('signIn.cta')}
+              </Link>
             </Button>
             <Button asChild variant="ghost" size="lg" className="px-6 text-slate-200">
-              <Link href={`/${locale}`}>{t('signIn.secondary')}</Link>
+              <Link href={`/${locale}`} data-testid="notifications-back-home">
+                {t('signIn.secondary')}
+              </Link>
             </Button>
           </div>
         </section>

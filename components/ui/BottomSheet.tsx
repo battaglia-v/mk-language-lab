@@ -34,6 +34,10 @@ interface BottomSheetProps {
    */
   className?: string;
   /**
+   * Optional base test id for internal controls
+   */
+  testId?: string;
+  /**
    * Height variant
    */
   height?: "default" | "full" | "auto";
@@ -50,6 +54,7 @@ export function BottomSheet({
   description,
   children,
   className,
+  testId,
   height = "default",
   showCloseButton = true,
 }: BottomSheetProps) {
@@ -124,6 +129,7 @@ export function BottomSheet({
             aria-modal="true"
             aria-labelledby={title ? titleId : undefined}
             aria-describedby={description ? descriptionId : undefined}
+            data-testid={testId}
             variants={prefersReducedMotion ? reducedSheet : bottomSheet}
             initial="initial"
             animate="animate"
@@ -152,6 +158,7 @@ export function BottomSheet({
                     onClick={onClose}
                     className="flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-muted"
                     aria-label="Close"
+                    data-testid={testId ? `${testId}-close` : 'bottom-sheet-close'}
                   >
                     <X className="h-5 w-5 text-muted-foreground" />
                   </button>
@@ -194,25 +201,47 @@ export function BottomSheetList<T>({
   items,
   onItemClick,
   renderItem,
+  itemTestIdPrefix,
+  getItemKey,
 }: {
   items: T[];
   onItemClick?: (item: T) => void;
   renderItem: (item: T) => React.ReactNode;
+  itemTestIdPrefix?: string;
+  getItemKey?: (item: T, index: number) => string | number;
 }) {
   return (
     <div className="space-y-2">
-      {items.map((item, index) => (
-        <div
-          key={index}
-          onClick={() => onItemClick?.(item)}
-          className={cn(
-            "rounded-lg border border-border bg-card p-3 transition-colors",
-            onItemClick && "cursor-pointer hover:bg-muted"
-          )}
-        >
-          {renderItem(item)}
-        </div>
-      ))}
+      {items.map((item, index) => {
+        const key = getItemKey ? getItemKey(item, index) : index;
+        if (onItemClick) {
+          const testId = itemTestIdPrefix ? `${itemTestIdPrefix}-${index}` : undefined;
+          return (
+            <button
+              key={key}
+              type="button"
+              onClick={() => onItemClick(item)}
+              data-testid={testId}
+              className={cn(
+                "w-full rounded-lg border border-border bg-card p-3 text-left transition-colors hover:bg-muted",
+              )}
+            >
+              {renderItem(item)}
+            </button>
+          );
+        }
+
+        return (
+          <div
+            key={key}
+            className={cn(
+              "rounded-lg border border-border bg-card p-3",
+            )}
+          >
+            {renderItem(item)}
+          </div>
+        );
+      })}
     </div>
   );
 }

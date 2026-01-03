@@ -37,6 +37,7 @@ export function MultipleChoiceInput({
             variant="outline"
             onClick={() => onSelect(opt)}
             disabled={disabled || !!feedback}
+            data-testid={`word-sprint-choice-${i}`}
             className={cn(
               'min-h-[60px] justify-start rounded-xl text-left active:scale-[0.98] text-base',
               isSelected && feedback === 'correct' && 'border-emerald-400 bg-emerald-500/20',

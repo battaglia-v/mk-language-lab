@@ -44,7 +44,12 @@ export default async function DailyLessonsPage() {
               asChild
               className="w-full rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20 md:w-auto"
             >
-              <a href="https://www.instagram.com/macedonianlanguagecorner" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.instagram.com/macedonianlanguagecorner"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="daily-lessons-instagram"
+              >
                 <Instagram className="h-4 w-4" />
                 {t('visitInstagram')}
               </a>

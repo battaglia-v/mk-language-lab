@@ -141,7 +141,13 @@ export default function TranslatePage() {
       {/* Minimal Header */}
       <header className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">{t('title', { default: 'Translate' })}</h1>
-        <Button variant="ghost" size="icon" className="h-10 w-10 rounded-full" onClick={() => setMoreOpen(true)}>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-10 w-10 rounded-full"
+          onClick={() => setMoreOpen(true)}
+          data-testid="translate-more-open"
+        >
           <MoreHorizontal className="h-5 w-5" />
         </Button>
       </header>
@@ -154,11 +160,13 @@ export default function TranslatePage() {
           onChange={setDirectionId}
           className="flex-1"
           ariaLabel={t('directionsGroupLabel', { default: 'Translation direction' })}
+          testId="translate-direction"
         />
         <button
           onClick={handleSwapDirections}
           className="flex h-10 w-10 items-center justify-center rounded-xl border border-border/40 bg-muted/30 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
           aria-label={t('swapDirections', { default: 'Swap' })}
+          data-testid="translate-swap-directions"
         >
           <ArrowLeftRight className="h-4 w-4" />
         </button>
@@ -174,6 +182,7 @@ export default function TranslatePage() {
             placeholder={selectedDirection?.placeholder}
             maxLength={MAX_CHARACTERS}
             className="min-h-[140px] resize-none rounded-2xl border-border/40 bg-muted/20 p-4 text-base placeholder:text-muted-foreground focus-visible:ring-primary/40"
+            data-testid="translate-input"
           />
           <div className="absolute bottom-3 right-3 flex gap-1">
             <Button
@@ -183,6 +192,7 @@ export default function TranslatePage() {
               className="h-8 w-8"
               onClick={handlePaste}
               aria-label={t('paste', { default: 'Paste text' })}
+              data-testid="translate-paste"
             >
               <ClipboardPaste className="h-4 w-4" />
             </Button>
@@ -194,6 +204,7 @@ export default function TranslatePage() {
                 className="h-8 w-8"
                 onClick={handleClear}
                 aria-label={t('clearButton', { default: 'Clear' })}
+                data-testid="translate-clear"
               >
                 <X className="h-4 w-4" />
               </Button>
@@ -210,6 +221,7 @@ export default function TranslatePage() {
           size="lg"
           className="hidden sm:flex w-full bg-gradient-to-r from-primary to-amber-500 text-lg font-bold text-slate-950"
           disabled={isTranslating || !inputText.trim()}
+          data-testid="translate-submit-desktop"
         >
           {isTranslating ? <><Loader2 className="mr-2 h-5 w-5 animate-spin" />{t('translatingStatus')}</> : t('translateButton')}
         </Button>
@@ -223,15 +235,34 @@ export default function TranslatePage() {
         <div className="rounded-2xl border border-primary/30 bg-primary/5 p-4 animate-feedback-correct">
           <p className="text-base text-foreground whitespace-pre-wrap mb-4">{translatedText}</p>
           <div className="flex items-center gap-2 border-t border-border/30 pt-3">
-            <Button variant="ghost" size="sm" onClick={handleCopy} className="gap-2 h-10 rounded-full">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleCopy}
+              className="gap-2 h-10 rounded-full"
+              data-testid="translate-copy"
+            >
               {copiedState === 'copied' ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
               <span className="text-sm">{copiedState === 'copied' ? t('copied') : t('copyButton')}</span>
             </Button>
-            <Button variant="ghost" size="sm" onClick={handleSaveToggle} disabled={!currentPayload} className="gap-2 h-10 rounded-full">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleSaveToggle}
+              disabled={!currentPayload}
+              className="gap-2 h-10 rounded-full"
+              data-testid="translate-save-toggle"
+            >
               {isCurrentSaved ? <BookmarkCheck className="h-4 w-4 text-primary" /> : <BookmarkPlus className="h-4 w-4" />}
               <span className="text-sm">{isCurrentSaved ? t('saved') : t('saveButton')}</span>
             </Button>
-            <Button variant="ghost" size="sm" onClick={handleListen} className="gap-2 h-10 rounded-full">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleListen}
+              className="gap-2 h-10 rounded-full"
+              data-testid="translate-listen"
+            >
               <Volume2 className={cn('h-4 w-4', isSpeaking && 'text-primary animate-pulse')} />
               <span className="text-sm">{t('listen', { default: 'Listen' })}</span>
             </Button>
@@ -248,6 +279,7 @@ export default function TranslatePage() {
             size="lg"
             className="w-full min-h-[48px] bg-gradient-to-r from-primary to-amber-500 text-lg font-bold text-slate-950"
             disabled={isTranslating}
+            data-testid="translate-submit-sticky"
           >
             {isTranslating ? <><Loader2 className="mr-2 h-5 w-5 animate-spin" />{t('translatingStatus')}</> : t('translateButton')}
           </Button>
@@ -255,13 +287,26 @@ export default function TranslatePage() {
       )}
 
       {/* More Menu Bottom Sheet */}
-      <BottomSheet open={moreOpen} onClose={() => setMoreOpen(false)} title={t('optionsTitle', { default: 'Options' })}>
+      <BottomSheet
+        open={moreOpen}
+        onClose={() => setMoreOpen(false)}
+        title={t('optionsTitle', { default: 'Options' })}
+        testId="translate-more-sheet"
+      >
         <div className="space-y-2">
-          <button onClick={() => { setMoreOpen(false); setHistoryOpen(true); }} className="flex w-full items-center gap-3 rounded-xl p-4 hover:bg-muted/30">
+          <button
+            onClick={() => { setMoreOpen(false); setHistoryOpen(true); }}
+            className="flex w-full items-center gap-3 rounded-xl p-4 hover:bg-muted/30"
+            data-testid="translate-open-history"
+          >
             <History className="h-5 w-5" /><span className="flex-1 text-left font-medium">{t('history', { default: 'History' })}</span>
             <span className="text-sm text-muted-foreground">{history.length}</span>
           </button>
-          <button onClick={() => { setMoreOpen(false); setSavedOpen(true); }} className="flex w-full items-center gap-3 rounded-xl p-4 hover:bg-muted/30">
+          <button
+            onClick={() => { setMoreOpen(false); setSavedOpen(true); }}
+            className="flex w-full items-center gap-3 rounded-xl p-4 hover:bg-muted/30"
+            data-testid="translate-open-saved"
+          >
             <BookmarkPlus className="h-5 w-5" /><span className="flex-1 text-left font-medium">{t('savedTitle', { default: 'Saved phrases' })}</span>
             <span className="text-sm text-muted-foreground">{phrases.length}</span>
           </button>
@@ -269,11 +314,19 @@ export default function TranslatePage() {
       </BottomSheet>
 
       {/* History Bottom Sheet */}
-      <BottomSheet open={historyOpen} onClose={() => setHistoryOpen(false)} title={t('historyTitle', { default: 'Recent translations' })}>
+      <BottomSheet
+        open={historyOpen}
+        onClose={() => setHistoryOpen(false)}
+        title={t('historyTitle', { default: 'Recent translations' })}
+        testId="translate-history-sheet"
+      >
         {history.length === 0 ? (
           <p className="text-center text-sm text-muted-foreground py-8">{t('historyEmpty', { default: 'Your latest translations will appear here.' })}</p>
         ) : (
-          <BottomSheetList items={history} onItemClick={(item) => { handleHistoryLoad(item); setHistoryOpen(false); }}
+          <BottomSheetList
+            items={history}
+            onItemClick={(item) => { handleHistoryLoad(item); setHistoryOpen(false); }}
+            itemTestIdPrefix="translate-history-item"
             renderItem={(item) => (
               <div className="space-y-1">
                 <p className="text-sm font-medium">{item.sourceText}</p>
@@ -285,7 +338,12 @@ export default function TranslatePage() {
       </BottomSheet>
 
       {/* Saved Bottom Sheet */}
-      <BottomSheet open={savedOpen} onClose={() => setSavedOpen(false)} title={t('savedTitle', { default: 'Saved phrases' })}>
+      <BottomSheet
+        open={savedOpen}
+        onClose={() => setSavedOpen(false)}
+        title={t('savedTitle', { default: 'Saved phrases' })}
+        testId="translate-saved-sheet"
+      >
         {phrases.length === 0 ? (
           <p className="text-center text-sm text-muted-foreground py-8">{t('savedEmptyDescription', { default: 'Save translations to unlock a custom practice deck.' })}</p>
         ) : (
@@ -296,7 +354,12 @@ export default function TranslatePage() {
                   <p className="text-sm font-medium">{phrase.sourceText}</p>
                   <p className="text-sm text-muted-foreground">{phrase.translatedText}</p>
                 </div>
-                <Button variant="ghost" size="sm" onClick={() => deletePhrase(phrase.id)}>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => deletePhrase(phrase.id)}
+                  data-testid={`translate-saved-delete-${phrase.id}`}
+                >
                   <Trash2 className="h-4 w-4 text-destructive" />
                 </Button>
               </div>

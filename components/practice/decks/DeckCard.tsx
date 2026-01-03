@@ -51,6 +51,7 @@ export function DeckCard({ deck, onDelete, onArchive }: DeckCardProps) {
             <Link
               href={`/${locale}/practice/decks/${deck.id}`}
               className="block group"
+              data-testid={`custom-deck-open-${deck.id}`}
             >
               <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors truncate">
                 {deck.name}
@@ -71,13 +72,18 @@ export function DeckCard({ deck, onDelete, onArchive }: DeckCardProps) {
                 size="sm"
                 className="h-9 w-9 p-0 flex-shrink-0 text-foreground hover:text-foreground hover:bg-accent/20 border border-border/50 hover:border-border"
                 aria-label="Deck options"
+                data-testid={`custom-deck-menu-${deck.id}`}
               >
                 <MoreVertical className="h-5 w-5" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">
               <DropdownMenuItem asChild>
-                <Link href={`/${locale}/practice/decks/${deck.id}`} className="flex items-center gap-2">
+                <Link
+                  href={`/${locale}/practice/decks/${deck.id}`}
+                  className="flex items-center gap-2"
+                  data-testid={`custom-deck-menu-edit-${deck.id}`}
+                >
                   <Edit className="h-4 w-4" />
                   Edit deck
                 </Link>
@@ -86,13 +92,18 @@ export function DeckCard({ deck, onDelete, onArchive }: DeckCardProps) {
                 <Link
                   href={`/${locale}/practice?practiceFixture=custom-deck-${deck.id}`}
                   className="flex items-center gap-2"
+                  data-testid={`custom-deck-menu-practice-${deck.id}`}
                 >
                   <Play className="h-4 w-4" />
                   Practice now
                 </Link>
               </DropdownMenuItem>
               {onArchive && (
-                <DropdownMenuItem onClick={handleArchive} className="flex items-center gap-2">
+                <DropdownMenuItem
+                  onClick={handleArchive}
+                  className="flex items-center gap-2"
+                  data-testid={`custom-deck-menu-archive-${deck.id}`}
+                >
                   {deck.isArchived ? (
                     <>
                       <ArchiveRestore className="h-4 w-4" />
@@ -110,6 +121,7 @@ export function DeckCard({ deck, onDelete, onArchive }: DeckCardProps) {
               <DropdownMenuItem
                 onClick={handleDelete}
                 className="flex items-center gap-2 text-destructive focus:text-destructive"
+                data-testid={`custom-deck-menu-delete-${deck.id}`}
               >
                 <Trash2 className="h-4 w-4" />
                 Delete

@@ -102,6 +102,7 @@ export default function DecksPage() {
           size="sm"
           onClick={() => router.push(`/${locale}/practice`)}
           className="w-fit rounded-full border border-border/60 px-4 text-sm text-muted-foreground"
+          data-testid="custom-decks-back-to-practice"
         >
           ← Back to Practice
         </Button>
@@ -116,6 +117,7 @@ export default function DecksPage() {
             <Button
               onClick={() => router.push(`/${locale}/upgrade?from=${encodeURIComponent(`/${locale}/practice/decks`)}`)}
               className="gap-2"
+              data-testid="custom-decks-upgrade"
             >
               <Crown className="h-4 w-4" />
               Upgrade to create more
@@ -132,6 +134,7 @@ export default function DecksPage() {
             size="sm"
             onClick={() => setShowArchived(!showArchived)}
             className="gap-2 rounded-full border border-white/15 bg-white/5"
+            data-testid="custom-decks-toggle-archived"
           >
             <Archive className="h-4 w-4" />
             {showArchived ? 'Viewing Archived' : 'View Archived'}

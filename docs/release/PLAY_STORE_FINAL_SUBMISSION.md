@@ -24,9 +24,9 @@ MK Language Lab
 ## Short Description (80 chars max)
 
 ```
-Master Macedonian with AI lessons, daily practice & real-world content. Free!
+Learn Macedonian: AI lessons, daily practice, translation & news. 100% Free!
 ```
-_(78 characters)_
+_(76 characters)_
 
 ---
 
@@ -129,7 +129,7 @@ Learning should feel rewarding:
 
 🚀 START YOUR JOURNEY TODAY
 
-Download now and learn your first Macedonian words in minutes. No credit card required. No subscriptions. Just pure language learning.
+Download now and learn your first Macedonian words in minutes. Completely free — no ads, no subscriptions, no hidden costs.
 
 Добредојде! (Welcome!)
 ```
@@ -324,17 +324,25 @@ Start your Macedonian journey today!
 
 ## Checklist Before Submission
 
+### Store Listing
 - [ ] Upload AAB: `android-twa/app-release-bundle.aab`
 - [ ] App icon uploaded (512x512)
 - [ ] Feature graphic uploaded (1024x500)
-- [ ] All 8 screenshots uploaded with captions
+- [ ] All 8 screenshots uploaded
 - [ ] Short description entered (80 chars)
-- [ ] Full description entered (4000 chars)
-- [ ] Privacy policy URL verified working
-- [ ] Content rating questionnaire completed
+- [ ] Full description entered
+
+### App Content
+- [ ] Privacy policy URL verified: `https://mklanguage.com/en/privacy`
+- [ ] Content rating questionnaire completed (answer "No" to all)
 - [ ] Data safety form completed
+- [ ] Target audience set to 13+
+- [ ] App pricing: **Free** (no in-app purchases)
+
+### Final
 - [ ] Contact email verified
 - [ ] Release notes added
+- [ ] All sections show green checkmarks
 
 ---
 

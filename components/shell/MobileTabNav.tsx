@@ -137,6 +137,7 @@ export function MobileTabNav() {
                   href={buildHref(accentItem.path)}
                   prefetch={true}
                   onClick={() => handleNavClick(accentItem.id)}
+                  data-testid={`nav-${accentItem.id}`}
                   aria-current={isNavItemActive(pathname, buildHref(accentItem.path)) ? "page" : undefined}
                   aria-label={t(accentItem.id)}
                   className={cn(
@@ -203,6 +204,7 @@ function NavRail({ items, t, pathname, buildHref, label, onNavClick }: NavRailPr
               href={href}
               prefetch={true}
               onClick={() => onNavClick?.(item.id)}
+              data-testid={`nav-${item.id}`}
               aria-current={active ? "page" : undefined}
               aria-label={itemLabel}
               className={cn(

@@ -165,6 +165,7 @@ export function WordDetailPopup({
                         className="h-8 w-8 rounded-full hover:bg-primary/20 hover:scale-110 transition-all"
                         onClick={handlePlayAudio}
                         aria-label={t.playAudio}
+                        data-testid="reader-word-popup-audio"
                       >
                         <Volume2 className="h-4 w-4 text-primary" />
                       </Button>
@@ -187,6 +188,8 @@ export function WordDetailPopup({
                 size="icon"
                 className="h-8 w-8 rounded-full relative z-10 hover:bg-white/10"
                 onClick={onClose}
+                aria-label="Close"
+                data-testid="reader-word-popup-close"
               >
                 <X className="h-4 w-4" />
               </Button>
@@ -291,6 +294,7 @@ export function WordDetailPopup({
                         ? "bg-success/20 text-success" 
                         : "bg-primary text-[#0a0a0a] hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98]"
                     )}
+                    data-testid="reader-word-popup-add"
                   >
                     <Plus className="mr-2 h-4 w-4" />
                     {isInDeck ? t.alreadyInDeck : t.addToDeck}

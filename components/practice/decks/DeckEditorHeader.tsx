@@ -58,7 +58,7 @@ export function DeckEditorHeader({ deck, onUpdate, cardCount }: DeckEditorHeader
         size="sm"
         className="inline-flex w-fit items-center gap-2"
       >
-        <Link href={`/${locale}/practice/decks`}>
+        <Link href={`/${locale}/practice/decks`} data-testid="deck-editor-back-to-decks">
           <ArrowLeft className="h-4 w-4" />
           Back to Decks
         </Link>
@@ -75,6 +75,7 @@ export function DeckEditorHeader({ deck, onUpdate, cardCount }: DeckEditorHeader
               placeholder={t('deckNamePlaceholder')}
               maxLength={100}
               disabled={isSaving}
+              data-testid="deck-editor-name"
             />
           </div>
 
@@ -87,6 +88,7 @@ export function DeckEditorHeader({ deck, onUpdate, cardCount }: DeckEditorHeader
               rows={3}
               maxLength={500}
               disabled={isSaving}
+              data-testid="deck-editor-description"
             />
           </div>
 
@@ -98,11 +100,12 @@ export function DeckEditorHeader({ deck, onUpdate, cardCount }: DeckEditorHeader
               placeholder={t('categoryPlaceholder')}
               maxLength={50}
               disabled={isSaving}
+              data-testid="deck-editor-category"
             />
           </div>
 
           <div className="flex gap-2">
-            <Button onClick={handleSave} disabled={isSaving || !name.trim()}>
+            <Button onClick={handleSave} disabled={isSaving || !name.trim()} data-testid="deck-editor-save">
               {isSaving ? (
                 <>{t('saving')}</>
               ) : (
@@ -112,7 +115,7 @@ export function DeckEditorHeader({ deck, onUpdate, cardCount }: DeckEditorHeader
                 </>
               )}
             </Button>
-            <Button variant="outline" onClick={handleCancel} disabled={isSaving}>
+            <Button variant="outline" onClick={handleCancel} disabled={isSaving} data-testid="deck-editor-cancel">
               <X className="mr-2 h-4 w-4" />
               {t('cancel')}
             </Button>
@@ -147,13 +150,17 @@ export function DeckEditorHeader({ deck, onUpdate, cardCount }: DeckEditorHeader
               variant="outline"
               onClick={() => setIsEditing(true)}
               className="gap-2"
+              data-testid="deck-editor-edit-info"
             >
               <Edit className="h-4 w-4" />
               Edit Info
             </Button>
             {cardCount > 0 && (
               <Button asChild className="gap-2">
-                <Link href={`/${locale}/practice?practiceFixture=custom-deck-${deck.id}`}>
+                <Link
+                  href={`/${locale}/practice?practiceFixture=custom-deck-${deck.id}`}
+                  data-testid="deck-editor-practice"
+                >
                   <Play className="h-4 w-4" />
                   Practice
                 </Link>

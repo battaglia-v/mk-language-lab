@@ -101,6 +101,7 @@ export default function PrivacyPolicyPage() {
               <a
                 href="mailto:macedonianlanguagelab@gmail.com?subject=Privacy%20Policy%20Inquiry%20-%20Macedonian%20Learning%20App"
                 className="text-primary hover:underline font-semibold"
+                data-testid="privacy-contact-email"
               >
                 Contact Us
               </a>
@@ -110,11 +111,11 @@ export default function PrivacyPolicyPage() {
 
         <div className="text-center text-slate-300">
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link href={`/${locale}/terms`} className="text-primary hover:underline font-medium">
+            <Link href={`/${locale}/terms`} className="text-primary hover:underline font-medium" data-testid="privacy-view-terms">
               {t('viewTerms')}
             </Link>
             <span className="hidden sm:inline text-slate-500">•</span>
-            <Link href={`/${locale}`} className="text-slate-400 hover:text-white transition-colors">
+            <Link href={`/${locale}`} className="text-slate-400 hover:text-white transition-colors" data-testid="privacy-back-home">
               {t('backHome')}
             </Link>
           </div>

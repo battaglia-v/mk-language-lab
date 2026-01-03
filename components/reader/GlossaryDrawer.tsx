@@ -99,6 +99,7 @@ export function GlossaryDrawer({
         onClose={onClose}
         height="auto"
         showCloseButton={false}
+        testId="glossary-review-sheet"
       >
         <div className="space-y-6">
           {/* Header */}
@@ -106,6 +107,7 @@ export function GlossaryDrawer({
             <button
               onClick={exitReview}
               className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              data-testid="glossary-exit-review"
             >
               <X className="h-4 w-4" />
               Exit
@@ -134,6 +136,7 @@ export function GlossaryDrawer({
                 size="sm"
                 onClick={() => handlePlayAudio(currentWord.original)}
                 className="mt-2"
+                data-testid="glossary-review-audio"
               >
                 <Volume2 className="h-4 w-4 mr-2" />
                 {t.listen}
@@ -157,6 +160,7 @@ export function GlossaryDrawer({
                 onClick={() => setShowTranslation(true)}
                 className="flex-1"
                 size="lg"
+                data-testid="glossary-review-show-translation"
               >
                 {t.showAnswer}
               </Button>
@@ -165,6 +169,7 @@ export function GlossaryDrawer({
                 onClick={handleNextCard}
                 className="flex-1"
                 size="lg"
+                data-testid="glossary-review-next"
               >
                 {isLast ? t.done : t.next}
                 {!isLast && <ChevronRight className="h-4 w-4 ml-1" />}
@@ -184,6 +189,7 @@ export function GlossaryDrawer({
       title={t.glossary}
       description={words.length > 0 ? `${words.length} ${t.wordsCount}` : undefined}
       height="auto"
+      testId="glossary-sheet"
     >
       <div className="space-y-4">
         {/* Empty state */}
@@ -200,6 +206,7 @@ export function GlossaryDrawer({
             onClick={startReview}
             className="w-full"
             size="lg"
+            data-testid="glossary-start-review"
           >
             <Shuffle className="h-4 w-4 mr-2" />
             {t.reviewNow}
@@ -213,6 +220,7 @@ export function GlossaryDrawer({
               <div
                 key={word.id}
                 className="flex items-center gap-3 rounded-lg border border-border bg-card p-3"
+                data-testid={`glossary-word-${word.id}`}
               >
                 {/* Word info */}
                 <div className="flex-1 min-w-0">
@@ -232,6 +240,7 @@ export function GlossaryDrawer({
                     className="h-8 w-8"
                     onClick={() => handlePlayAudio(word.original)}
                     aria-label={t.listen}
+                    data-testid={`glossary-word-listen-${word.id}`}
                   >
                     <Volume2 className="h-4 w-4 text-muted-foreground" />
                   </Button>
@@ -241,6 +250,7 @@ export function GlossaryDrawer({
                     className="h-8 w-8"
                     onClick={() => onRemoveWord(word.id)}
                     aria-label={t.remove}
+                    data-testid={`glossary-word-remove-${word.id}`}
                   >
                     <Trash2 className="h-4 w-4 text-muted-foreground" />
                   </Button>

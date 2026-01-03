@@ -76,6 +76,7 @@ export default function LanguageSwitcher() {
           className="gap-2 px-2 sm:px-3 justify-center items-center"
           disabled={isPending}
           aria-label={t('language')}
+          data-testid="language-switcher-trigger"
         >
           <Languages className="h-4 w-4 flex-shrink-0" />
           <span className="sm:hidden flex-shrink-0">{currentLanguage.flag}</span>
@@ -89,7 +90,7 @@ export default function LanguageSwitcher() {
           aria-label={t('language')}
         >
           {languages.map((lang) => (
-            <DropdownMenuRadioItem key={lang.code} value={lang.code}>
+            <DropdownMenuRadioItem key={lang.code} value={lang.code} data-testid={`language-switcher-option-${lang.code}`}>
               <span className="mr-2" aria-hidden="true">
                 {lang.flag}
               </span>

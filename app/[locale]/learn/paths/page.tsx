@@ -64,6 +64,7 @@ export default async function LearningPathsPage() {
           <div className="space-y-2">
             <Link
               href={`/${locale}/learn`}
+              data-testid="paths-back-to-learn"
               className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1"
             >
               ← Back to Learn
@@ -126,6 +127,7 @@ function PathCardComponent({ path, locale }: { path: PathCard; locale: string })
       {/* CTA */}
       <Link
         href={href}
+        data-testid={`paths-start-${path.id}`}
         className="block w-full text-center py-2 px-4 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
       >
         Start Path

@@ -91,7 +91,7 @@ export function GoalCelebration({ xpEarned, streak, onClose, className }: Props)
         </div>
 
         {/* CTA */}
-        <Button onClick={onClose} className="w-full min-h-[48px] rounded-xl">
+        <Button onClick={onClose} className="w-full min-h-[48px] rounded-xl" data-testid="goal-celebration-close">
           Keep Going!
         </Button>
       </div>

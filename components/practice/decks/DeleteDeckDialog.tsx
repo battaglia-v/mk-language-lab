@@ -75,11 +75,14 @@ export function DeleteDeckDialog({ deck, open, onOpenChange, onDeleted }: Delete
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel disabled={isDeleting}>Cancel</AlertDialogCancel>
+          <AlertDialogCancel disabled={isDeleting} data-testid="custom-decks-delete-cancel">
+            Cancel
+          </AlertDialogCancel>
           <AlertDialogAction
             onClick={handleDelete}
             disabled={isDeleting}
             className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            data-testid="custom-decks-delete-confirm"
           >
             {isDeleting ? (
               <>

@@ -63,6 +63,7 @@ function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel
               key={option.id}
               type="button"
               onClick={() => onChange(option.id)}
+              data-testid={`reader-workspace-direction-${option.id}`}
               className={cn(
                 'min-h-[36px] rounded-lg px-2.5 py-1.5 text-xs font-semibold transition-all sm:min-h-[40px] sm:px-3.5 sm:py-2 sm:text-sm',
                 isActive
@@ -83,6 +84,7 @@ function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel
         onClick={onSwap}
         className="min-h-[36px] rounded-full border border-border/60 px-2.5 sm:min-h-[40px] sm:px-3.5"
         aria-label={swapLabel}
+        data-testid="reader-workspace-swap-directions"
       >
         <RefreshCw className="h-3.5 w-3.5" aria-hidden="true" />
         <span className="ml-1.5 text-xs sm:text-sm">{swapLabel}</span>
@@ -409,6 +411,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
             size="sm"
             onClick={handleToggleReveal}
             className="h-11 min-w-[120px] flex-1 sm:flex-none rounded-lg text-xs sm:text-sm gap-1.5"
+            data-testid="reader-workspace-reveal-toggle"
           >
             {revealMode === 'hidden' ? (
               <>
@@ -431,6 +434,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
             onClick={() => setFocusMode((prev) => !prev)}
             className="h-11 min-w-[110px] flex-1 sm:flex-none rounded-lg text-xs sm:text-sm gap-1.5"
             title={t('readerFocusTooltip', { default: 'Focus mode highlights one word at a time for easier learning' })}
+            data-testid="reader-workspace-focus-toggle"
           >
             <Focus className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
             <span>
@@ -446,6 +450,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
             disabled={!analyzedData}
             onClick={() => void handleCopyTranslation()}
             className="h-11 min-w-[100px] flex-1 sm:flex-none rounded-lg text-xs sm:text-sm gap-1.5"
+            data-testid="reader-workspace-copy-translation"
           >
             <CopyIcon className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
             <span>
@@ -475,6 +480,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                 type="button"
                 onClick={() => handleHistoryLoad(entry)}
                 className="flex-shrink-0 w-[160px] sm:w-[180px] rounded-xl border border-border/30 bg-[#0c1224]/70 px-2.5 py-2 text-left shadow-inner transition-colors hover:border-primary/50 hover:bg-[#0f152a] active:scale-[0.98]"
+                data-testid={`reader-workspace-history-${entry.id}`}
               >
                 <p className="line-clamp-2 text-[11px] font-medium text-foreground/90 leading-snug">
                   {entry.sourceText}
@@ -524,6 +530,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
             aria-describedby="reader-character-count"
             maxLength={MAX_CHARACTERS}
             className="min-h-[140px] resize-none rounded-xl border border-white/10 bg-black/30 px-3 py-3 text-[15px] font-medium shadow-inner placeholder:text-muted-foreground sm:min-h-[200px] sm:px-4 sm:text-base focus-visible:ring-2 focus-visible:ring-primary/40"
+            data-testid="reader-workspace-input"
           />
 
             <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
@@ -535,6 +542,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                   onClick={handleClear}
                   disabled={!inputText && !analyzedData}
                   className="rounded-full border border-border/60 min-h-[40px] px-3 text-xs"
+                  data-testid="reader-workspace-clear"
                 >
                   {t('clearButton')}
                 </Button>
@@ -549,6 +557,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                 size="lg"
                 disabled={!inputText.trim() || isAnalyzing}
                 className="w-full sm:w-auto rounded-xl px-5 font-semibold min-h-[44px] bg-gradient-to-r from-amber-500 to-primary text-slate-900 hover:from-amber-600 hover:to-primary/90 shadow-lg"
+                data-testid="reader-workspace-analyze"
               >
                 {isAnalyzing ? (
                   <>
@@ -574,6 +583,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                 variant="ghost"
                 onClick={() => void handleAnalyze()}
                 className="ml-2 min-h-[44px]"
+                data-testid="reader-workspace-retry"
               >
                 {t('retryButton')}
               </Button>
@@ -637,6 +647,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                   setInputText("Good morning! How are you today? I'm going to the market to buy some fresh vegetables.");
                 }}
                 className="text-xs"
+                data-testid="reader-workspace-example-en"
               >
                 {t('readerEmptyExample1')}
               </Button>
@@ -649,6 +660,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                   setInputText("Добро утро! Како си денес? Одам на пазар да купам свеж зеленчук.");
                 }}
                 className="text-xs"
+                data-testid="reader-workspace-example-mk"
               >
                 {t('readerEmptyExample2')}
               </Button>
@@ -732,6 +744,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                   disabled={isPlaying}
                   className="rounded-full h-8 w-8 p-0"
                   aria-label={t('readerListen', { default: 'Listen' })}
+                  data-testid="reader-workspace-full-translation-listen"
                 >
                   {isPlaying ? (
                     <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
@@ -748,6 +761,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                   }}
                   className="rounded-full h-8 w-8 p-0"
                   aria-label={t('readerCopy', { default: 'Copy' })}
+                  data-testid="reader-workspace-full-translation-copy"
                 >
                   <CopyIcon className="h-4 w-4" aria-hidden="true" />
                 </Button>
@@ -787,6 +801,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                           variant={saved ? 'secondary' : 'outline'}
                           onClick={() => toggleSaveSentence(sentence)}
                           className="rounded-full min-h-[44px] px-4"
+                          data-testid={`reader-sentence-save-${sentence.id}`}
                         >
                           {saved ? (
                             <BookmarkCheck className="h-4 w-4" aria-hidden="true" />
@@ -805,6 +820,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                           variant="ghost"
                           onClick={() => void handleCopySentence(sentence)}
                           className="rounded-full min-h-[44px] px-4"
+                          data-testid={`reader-sentence-copy-${sentence.id}`}
                         >
                           <CopyIcon className="h-4 w-4" aria-hidden="true" />
                           <span className="ml-2">
@@ -820,6 +836,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                           onClick={() => handleListen(sentence.text)}
                           disabled={isPlaying}
                           className="rounded-full min-h-[44px] px-4"
+                          data-testid={`reader-sentence-listen-${sentence.id}`}
                         >
                           {isPlaying ? (
                             <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
