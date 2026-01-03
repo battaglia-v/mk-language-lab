@@ -80,13 +80,12 @@ export function GoogleOneTap({
   const initializedRef = useRef(false);
 
   const handleCredentialResponse = useCallback(
-    async (response: GoogleCredentialResponse) => {
+    async (_response: GoogleCredentialResponse) => {
+      // Google One Tap provides an ID token, but NextAuth's Google provider
+      // uses OAuth. When user selects their account via One Tap, we trigger
+      // the OAuth flow which will be fast since they're already authenticated.
       try {
-        // Use NextAuth's signIn with the Google credential
-        await signIn('google', {
-          callbackUrl,
-          redirect: true,
-        });
+        await signIn('google', { callbackUrl, redirect: true });
       } catch (error) {
         console.error('[GoogleOneTap] Sign-in error:', error);
       }
@@ -117,7 +116,7 @@ export function GoogleOneTap({
         cancel_on_tap_outside: true,
         context,
         itp_support: true,
-        use_fedcm_for_prompt: true, // Use FedCM when available
+        use_fedcm_for_prompt: false, // Disable FedCM - can cause issues on some devices
       });
 
       if (autoPrompt) {
