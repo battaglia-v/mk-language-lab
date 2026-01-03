@@ -18,7 +18,7 @@ export const FilterChip = React.forwardRef<HTMLButtonElement, FilterChipProps>(
         className={cn(
           'inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-60',
           active && filled
-            ? 'border-primary bg-primary text-primary-foreground'
+            ? 'border-primary bg-primary text-black'
             : active && !filled
               ? 'border-primary bg-primary/15 text-primary'
               : 'border-border/60 bg-white/5 text-foreground/90 hover:border-primary/50 hover:bg-primary/10 hover:text-primary',

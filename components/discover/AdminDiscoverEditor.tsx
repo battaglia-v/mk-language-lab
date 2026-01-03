@@ -164,7 +164,7 @@ export function AdminDiscoverEditor() {
         <div className="flex flex-wrap items-center gap-4">
           <Button
             type="button"
-            className="rounded-full px-6 bg-primary text-primary-foreground hover:bg-primary/90"
+            className="rounded-full px-6 bg-primary text-black hover:bg-primary/90"
             onClick={handleSave}
             disabled={isSaving || !draft}
           >

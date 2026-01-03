@@ -82,7 +82,7 @@ export function QuickActionsGrid({
             >
               {/* Badge - positioned absolutely for consistent icon placement */}
               {action.badge && (
-                <span className="absolute -top-2 -right-2 rounded-full bg-primary px-2.5 py-1 text-[10px] font-bold text-primary-foreground shadow-lg">
+                <span className="absolute -top-2 -right-2 rounded-full bg-primary px-2.5 py-1 text-[10px] font-bold text-black shadow-lg">
                   {action.badge}
                 </span>
               )}
