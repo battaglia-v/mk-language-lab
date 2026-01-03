@@ -123,8 +123,15 @@ function SignInContent() {
         <div className="w-full max-w-sm space-y-8">
           {/* App branding */}
           <div className="text-center space-y-2">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-amber-500 shadow-lg shadow-primary/25">
-              <span className="text-3xl font-bold text-black">М</span>
+            <div className="mx-auto h-16 w-16 overflow-hidden rounded-2xl shadow-lg shadow-primary/25">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/icon-192.png"
+                alt="MK Language Lab"
+                width={64}
+                height={64}
+                className="h-full w-full object-cover"
+              />
             </div>
             <h1 className="text-2xl font-bold tracking-tight">Welcome back</h1>
             <p className="text-sm text-muted-foreground">

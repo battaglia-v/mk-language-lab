@@ -49,7 +49,7 @@ export default function AboutPage() {
           </div>
           <Card className="glass-card rounded-3xl p-6 text-center mx-auto max-w-md">
             <CardHeader className="flex flex-col items-center space-y-4">
-              <div className="relative h-24 w-24 rounded-full overflow-hidden ring-4 ring-primary/30 shadow-xl">
+              <div className="relative h-24 w-24 rounded-full overflow-hidden ring-4 ring-primary/30 shadow-xl bg-primary/20">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/images/vinny-profile.png"
@@ -57,6 +57,14 @@ export default function AboutPage() {
                   width={96}
                   height={96}
                   className="h-full w-full object-cover"
+                  onError={(e) => {
+                    // Fallback to initials if image fails to load
+                    e.currentTarget.style.display = 'none';
+                    const parent = e.currentTarget.parentElement;
+                    if (parent) {
+                      parent.innerHTML = '<span class="flex items-center justify-center h-full w-full text-2xl font-bold text-primary">VB</span>';
+                    }
+                  }}
                 />
               </div>
               <div>
