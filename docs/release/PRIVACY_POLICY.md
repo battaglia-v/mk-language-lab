@@ -1,8 +1,8 @@
 # Privacy Policy – Македонски • MK Language Lab
 
-**Last Updated:** [Date to be filled]
+**Last Updated:** January 2, 2025
 
-**Effective Date:** [Date to be filled]
+**Effective Date:** January 2, 2025
 
 ## Introduction
 
@@ -173,7 +173,7 @@ The App is not directed at children under 13 years of age. We do not knowingly c
 
 ## International Data Transfers
 
-Our servers are located in [Region – e.g., United States, EU]. If you access the App from outside this region, your information may be transferred to, stored, and processed in [Region]. By using the App, you consent to this transfer.
+Our servers are located in the United States (via Vercel and Neon). If you access the App from outside this region, your information may be transferred to, stored, and processed in the United States. By using the App, you consent to this transfer.
 
 We comply with applicable data protection laws, including the General Data Protection Regulation (GDPR) for users in the European Economic Area (EEA).
 
@@ -218,8 +218,7 @@ Your continued use of the App after changes are posted constitutes acceptance of
 If you have questions, concerns, or requests regarding this Privacy Policy or your personal information, please contact us:
 
 **Email:** support@makedonski.mk
-**Website:** https://makedonski.mk
-**Mailing Address:** [Physical address to be filled]
+**Website:** https://mklanguage.com
 
 ## Consent
 
@@ -228,4 +227,4 @@ By using Македонски • MK Language Lab, you acknowledge that you have
 ---
 
 **Version History:**
-- v1.0 (2024-XX-XX): Initial privacy policy for mobile app release
+- v1.0 (2025-01-02): Initial privacy policy for mobile app release
