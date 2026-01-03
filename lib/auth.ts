@@ -46,7 +46,9 @@ if (googleConfigReady) {
       clientSecret: googleClientSecret,
       authorization: {
         params: {
-          prompt: 'consent',
+          // Use 'select_account' instead of 'consent' for smoother PWA experience
+          // This allows faster re-authentication without forcing consent every time
+          prompt: 'select_account',
           access_type: 'offline',
           response_type: 'code',
         },

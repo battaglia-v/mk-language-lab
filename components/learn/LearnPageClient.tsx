@@ -157,39 +157,39 @@ export function LearnPageClient({
               onClick={() => setActiveTrack('basics')}
               data-testid="learn-track-basics"
               className={cn(
-                'flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg font-medium transition-all text-sm',
+                'flex-1 flex items-center justify-center gap-1 py-2.5 px-2 sm:px-3 rounded-lg font-medium transition-all text-xs sm:text-sm whitespace-nowrap',
                 activeTrack === 'basics'
                   ? 'bg-background text-foreground shadow-sm'
                   : 'text-muted-foreground hover:text-foreground'
               )}
             >
-              <GraduationCap className="h-4 w-4" />
+              <GraduationCap className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
               <span>{t('basics')}</span>
             </button>
             <button
               onClick={() => setActiveTrack('advanced')}
               data-testid="learn-track-advanced"
               className={cn(
-                'flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg font-medium transition-all text-sm',
+                'flex-1 flex items-center justify-center gap-1 py-2.5 px-2 sm:px-3 rounded-lg font-medium transition-all text-xs sm:text-sm whitespace-nowrap',
                 activeTrack === 'advanced'
                   ? 'bg-background text-foreground shadow-sm'
                   : 'text-muted-foreground hover:text-foreground'
               )}
             >
-              <MessageCircle className="h-4 w-4" />
+              <MessageCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
               <span>{t('speaking')}</span>
             </button>
             <button
               onClick={() => setActiveTrack('challenge')}
               data-testid="learn-track-challenge"
               className={cn(
-                'flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg font-medium transition-all text-sm',
+                'flex-1 flex items-center justify-center gap-1 py-2.5 px-2 sm:px-3 rounded-lg font-medium transition-all text-xs sm:text-sm whitespace-nowrap',
                 activeTrack === 'challenge'
                   ? 'bg-background text-foreground shadow-sm'
                   : 'text-muted-foreground hover:text-foreground'
               )}
             >
-              <CalendarDays className="h-4 w-4" />
+              <CalendarDays className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
               <span>{t('challenge')}</span>
             </button>
           </div>
@@ -406,6 +406,7 @@ function LessonNodeCard({
       href={`/${locale}${node.href}`}
       data-testid={`learn-node-${node.id}`}
       className="block transition-transform active:scale-[0.99]"
+      scroll={true}
     >
       {content}
     </Link>

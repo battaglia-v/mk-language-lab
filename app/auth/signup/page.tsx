@@ -272,7 +272,7 @@ export default function SignUpPage() {
 
               <Button
                 type="submit"
-                className="w-full py-6"
+                className="w-full py-6 text-black"
                 size="lg"
                 disabled={isLoading}
                 aria-label="Create your account"

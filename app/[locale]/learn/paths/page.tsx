@@ -128,7 +128,7 @@ function PathCardComponent({ path, locale }: { path: PathCard; locale: string })
       <Link
         href={href}
         data-testid={`paths-start-${path.id}`}
-        className="block w-full text-center py-2 px-4 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
+        className="block w-full text-center py-2 px-4 bg-primary text-black rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
       >
         Start Path
       </Link>
