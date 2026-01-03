@@ -2466,7 +2466,18 @@
       "hintBelowGoal": "Уште една сесија и ја постигнуваш целта.",
       "hintGoalComplete": "Браво — целта е постигната. Уште една рунда?",
       "pickSkill": "Избери вештина",
-      "pickSkillHelper": "Кратки, фокусирани вежби."
+      "pickSkillHelper": "Кратки, фокусирани вежби.",
+      "learningPaths": "Патеки за учење",
+      "learningPathsDesc": "А1, 30-дневен предизвик и повеќе",
+      "startStreak": "Започни серија",
+      "dayCount": "1 ден",
+      "daysCount": "{count} дена",
+      "basics": "Основи",
+      "speaking": "Зборување",
+      "complete": "завршено",
+      "goalMet": "Целта е постигната!",
+      "start": "Почни",
+      "lockTooltip": "Заврши ги претходните лекции за отклучување"
     },
     "reader": {
       "title": "Читач",
