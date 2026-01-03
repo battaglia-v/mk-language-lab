@@ -286,7 +286,7 @@ export default async function AdminDashboard() {
       </div>
 
       {/* Management Cards */}
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="grid gap-6 lg:grid-cols-2">
         {/* Vocabulary Management */}
         <Card className="relative overflow-hidden transition-all hover:shadow-lg">
           <div
@@ -353,43 +353,6 @@ export default async function AdminDashboard() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
-          </CardContent>
-        </Card>
-
-        {/* Quick Tips */}
-        <Card className="relative overflow-hidden">
-          <div
-            className="pointer-events-none absolute right-0 top-0 h-24 w-24 rounded-full bg-blue-500/5 blur-2xl"
-            aria-hidden="true"
-          />
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Activity className="h-5 w-5" />
-              Quick Tips
-            </CardTitle>
-            <CardDescription>
-              Keyboard shortcuts for faster management
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3 text-sm">
-              <div className="flex items-center justify-between">
-                <span className="text-muted-foreground">Add new word</span>
-                <Badge variant="outline" className="font-mono">Alt + N</Badge>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-muted-foreground">Search vocabulary</span>
-                <Badge variant="outline" className="font-mono">Ctrl/⌘ + K</Badge>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-muted-foreground">Toggle bulk select</span>
-                <Badge variant="outline" className="font-mono">Alt + B</Badge>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-muted-foreground">Navigate pages</span>
-                <Badge variant="outline" className="font-mono">G then H/V/W</Badge>
-              </div>
-            </div>
           </CardContent>
         </Card>
       </div>
