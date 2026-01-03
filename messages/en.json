@@ -2466,7 +2466,18 @@
       "hintBelowGoal": "One more session to hit your goal.",
       "hintGoalComplete": "Nice — goal complete. Want a bonus round?",
       "pickSkill": "Pick a skill",
-      "pickSkillHelper": "Short, focused practice."
+      "pickSkillHelper": "Short, focused practice.",
+      "learningPaths": "Learning Paths",
+      "learningPathsDesc": "A1, 30-Day Challenge & more",
+      "startStreak": "Start a streak",
+      "dayCount": "1 day",
+      "daysCount": "{count} days",
+      "basics": "Basics",
+      "speaking": "Speaking",
+      "complete": "complete",
+      "goalMet": "Goal met!",
+      "start": "Start",
+      "lockTooltip": "Complete previous lessons to unlock"
     },
     "reader": {
       "title": "Reader",

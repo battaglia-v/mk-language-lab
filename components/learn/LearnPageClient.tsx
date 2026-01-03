@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { Zap, Play, BookOpen, ChevronRight, Lock, Check, GraduationCap, MessageCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import { getLocalXP } from '@/lib/gamification/local-xp';
@@ -32,6 +33,7 @@ export function LearnPageClient({
   starterPath,
   advancedPath,
 }: LearnPageClientProps) {
+  const t = useTranslations('mobile.learn');
   // Use local XP state for real-time updates
   const [localState, setLocalState] = useState({ todayXP: initialTodayXP, streak: initialStreak });
   const [activeTrack, setActiveTrack] = useState<TrackId>('basics');
@@ -57,16 +59,17 @@ export function LearnPageClient({
           {/* Hero Section */}
           <div className="text-center space-y-2">
             <h1 className="text-2xl font-bold text-foreground">
-              Learn Macedonian
+              {t('title')}
             </h1>
             <p className="text-base text-muted-foreground">
-              Quick lessons to build your skills daily
+              {t('subtitle')}
             </p>
           </div>
 
           {/* Learning Paths Banner */}
           <Link
             href={`/${locale}/learn/paths`}
+            data-testid="learn-browse-paths"
             className="group flex items-center justify-between gap-3 rounded-xl border border-primary/30 bg-primary/5 p-4 transition-all hover:bg-primary/10 hover:border-primary/50"
           >
             <div className="flex items-center gap-3">
@@ -74,8 +77,8 @@ export function LearnPageClient({
                 <Zap className="h-5 w-5 text-primary" />
               </div>
               <div>
-                <p className="font-semibold text-foreground">Learning Paths</p>
-                <p className="text-sm text-muted-foreground">A1, 30-Day Challenge & more</p>
+                <p className="font-semibold text-foreground">{t('learningPaths')}</p>
+                <p className="text-sm text-muted-foreground">{t('learningPathsDesc')}</p>
               </div>
             </div>
             <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
@@ -85,13 +88,14 @@ export function LearnPageClient({
           <div className="flex flex-col items-center gap-3 py-4">
             {/* Label */}
             <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-              Today&apos;s goal
+              {t('todaysGoal')}
             </span>
             <DailyGoalRing
               progress={goalProgress}
               todayXP={todayXP}
               goalXP={dailyGoalXP}
               complete={isGoalComplete}
+              goalMetLabel={t('goalMet')}
             />
             {/* Streak chip with emoji - only show if streak > 0 or for context */}
             <div className={cn(
@@ -100,20 +104,21 @@ export function LearnPageClient({
             )}>
               <span className="text-base">{streak > 0 ? '🔥' : '📅'}</span>
               <span className={cn('text-sm font-bold', streak > 0 ? 'text-orange-500' : 'text-muted-foreground')}>
-                {streak === 0 ? 'Start a streak' : streak === 1 ? '1 day' : `${streak} days`}
+                {streak === 0 ? t('startStreak') : streak === 1 ? t('dayCount') : t('daysCount', { count: streak })}
               </span>
             </div>
             {/* Dynamic hint */}
             <p className="text-sm text-muted-foreground text-center">
               {isGoalComplete
-                ? 'Nice — goal complete. Want a bonus round?'
-                : 'One more session to hit your goal.'}
+                ? t('hintGoalComplete')
+                : t('hintBelowGoal')}
             </p>
           </div>
 
           {/* Primary CTA - Start Today's Lesson */}
           <Link
             href={continueHref}
+            data-testid="learn-start-todays-lesson"
             className={cn(
               'group flex items-center justify-center gap-3 rounded-2xl p-5',
               'bg-gradient-to-r from-primary to-amber-500',
@@ -123,16 +128,17 @@ export function LearnPageClient({
             )}
           >
             <Play className="h-6 w-6" fill="currentColor" />
-            <span className="text-xl font-bold">Start today&apos;s lesson</span>
+            <span className="text-xl font-bold">{t('startLesson')}</span>
           </Link>
 
           {/* Secondary CTA */}
           <Link
             href={`/${locale}/practice`}
+            data-testid="learn-quick-practice"
             className="flex items-center justify-center gap-2 rounded-xl border border-border/50 bg-card/50 p-4 transition-colors hover:bg-card hover:border-primary/30 active:scale-[0.99]"
           >
             <BookOpen className="h-5 w-5 text-muted-foreground" />
-            <span className="font-medium text-muted-foreground">Quick practice</span>
+            <span className="font-medium text-muted-foreground">{t('quickPractice')}</span>
             <ChevronRight className="h-4 w-4 text-muted-foreground" />
           </Link>
 
@@ -140,22 +146,24 @@ export function LearnPageClient({
           <div className="text-center">
             <Link
               href={`/${locale}/translate`}
+              data-testid="learn-translate-link"
               className="text-sm text-muted-foreground hover:text-primary transition-colors"
             >
-              Translate something →
+              {t('translateSomething')} →
             </Link>
           </div>
 
           {/* Skills Section Header */}
           <div className="pt-2">
-            <h2 className="text-lg font-bold">Pick a skill</h2>
-            <p className="text-sm text-muted-foreground">Short, focused practice.</p>
+            <h2 className="text-lg font-bold">{t('pickSkill')}</h2>
+            <p className="text-sm text-muted-foreground">{t('pickSkillHelper')}</p>
           </div>
 
           {/* Track Switcher */}
           <div className="flex gap-2 p-1 bg-muted/50 rounded-xl">
             <button
               onClick={() => setActiveTrack('basics')}
+              data-testid="learn-track-basics"
               className={cn(
                 'flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg font-medium transition-all',
                 activeTrack === 'basics'
@@ -164,10 +172,11 @@ export function LearnPageClient({
               )}
             >
               <GraduationCap className="h-4 w-4" />
-              <span>Basics</span>
+              <span>{t('basics')}</span>
             </button>
             <button
               onClick={() => setActiveTrack('advanced')}
+              data-testid="learn-track-advanced"
               className={cn(
                 'flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg font-medium transition-all',
                 activeTrack === 'advanced'
@@ -176,7 +185,7 @@ export function LearnPageClient({
               )}
             >
               <MessageCircle className="h-4 w-4" />
-              <span>Speaking</span>
+              <span>{t('speaking')}</span>
             </button>
           </div>
 
@@ -185,7 +194,7 @@ export function LearnPageClient({
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold">{currentPath.title}</h2>
               <span className="text-sm text-muted-foreground">
-                {currentPath.completedCount}/{currentPath.totalCount} complete
+                {currentPath.completedCount}/{currentPath.totalCount} {t('complete')}
               </span>
             </div>
 
@@ -197,6 +206,8 @@ export function LearnPageClient({
                   node={node}
                   locale={locale}
                   lessonNumber={index + 1}
+                  startLabel={t('start')}
+                  lockTooltip={t('lockTooltip')}
                 />
               ))}
             </div>
@@ -226,11 +237,13 @@ function DailyGoalRing({
   todayXP,
   goalXP,
   complete,
+  goalMetLabel,
 }: {
   progress: number;
   todayXP: number;
   goalXP: number;
   complete: boolean;
+  goalMetLabel: string;
 }) {
   const size = 120;
   const strokeWidth = 10;
@@ -273,7 +286,7 @@ function DailyGoalRing({
         {complete ? (
           <>
             <Check className="h-8 w-8 text-emerald-500" strokeWidth={3} />
-            <span className="text-xs font-medium text-emerald-500 mt-1">Goal met!</span>
+            <span className="text-xs font-medium text-emerald-500 mt-1">{goalMetLabel}</span>
           </>
         ) : (
           <>
@@ -293,10 +306,14 @@ function LessonNodeCard({
   node,
   locale,
   lessonNumber,
+  startLabel,
+  lockTooltip,
 }: {
   node: LessonNode;
   locale: string;
   lessonNumber: number;
+  startLabel: string;
+  lockTooltip: string;
 }) {
   const isCompleted = node.status === 'completed';
   const isNext = node.status === 'available' || node.status === 'in_progress';
@@ -364,7 +381,7 @@ function LessonNodeCard({
       {/* Arrow for next lesson - or "Start" text for clarity */}
       {isNext && (
         <span className="flex items-center gap-1 text-sm font-medium text-primary">
-          Start
+          {startLabel}
           <ChevronRight className="h-4 w-4" />
         </span>
       )}
@@ -373,7 +390,7 @@ function LessonNodeCard({
 
   if (isLocked || !node.href) {
     return (
-      <div className="cursor-not-allowed" title="Complete previous lessons to unlock">
+      <div className="cursor-not-allowed" title={lockTooltip}>
         {content}
       </div>
     );
@@ -382,6 +399,7 @@ function LessonNodeCard({
   return (
     <Link
       href={`/${locale}${node.href}`}
+      data-testid={`learn-node-${node.id}`}
       className="block transition-transform active:scale-[0.99]"
     >
       {content}
