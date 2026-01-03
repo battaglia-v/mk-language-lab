@@ -25,141 +25,163 @@ type SupportRequest = z.infer<typeof supportRequestSchema>;
 
 function formatEmailHtml(data: SupportRequest): string {
   const { name, email, subject, description, errorDetails } = data;
+  const timestamp = new Date().toLocaleString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZoneName: 'short'
+  });
 
   let html = `
     <!DOCTYPE html>
     <html>
       <head>
         <meta charset="utf-8">
-        <style>
-          body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-          }
-          .header {
-            background: linear-gradient(135deg, #D7263D 0%, #F7C948 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 8px 8px 0 0;
-          }
-          .content {
-            background: #f9f9f9;
-            padding: 20px;
-            border: 1px solid #e0e0e0;
-            border-top: none;
-          }
-          .section {
-            background: white;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 6px;
-            border-left: 4px solid #D7263D;
-          }
-          .label {
-            font-weight: 600;
-            color: #D7263D;
-            margin-bottom: 5px;
-          }
-          .error-section {
-            background: #fff5f5;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 6px;
-            border: 2px solid #D7263D;
-          }
-          .error-label {
-            font-weight: 600;
-            color: #D7263D;
-            margin-bottom: 10px;
-          }
-          pre {
-            background: #f5f5f5;
-            padding: 10px;
-            border-radius: 4px;
-            overflow-x: auto;
-            font-size: 12px;
-          }
-          .footer {
-            text-align: center;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 2px solid #e0e0e0;
-            color: #666;
-            font-size: 14px;
-          }
-        </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Support Request</title>
       </head>
-      <body>
-        <div class="header">
-          <h1 style="margin: 0; font-size: 24px;">Support Request</h1>
-          <p style="margin: 5px 0 0 0; opacity: 0.9;">Macedonian Learning App</p>
-        </div>
+      <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #0a0a0a;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #0a0a0a; padding: 40px 20px;">
+          <tr>
+            <td align="center">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 560px; background-color: #1a1a1a; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.4);">
 
-        <div class="content">
-          <div class="section">
-            <div class="label">Subject</div>
-            <div>${subject}</div>
-          </div>
+                <!-- Header -->
+                <tr>
+                  <td style="background: linear-gradient(135deg, #F7C948 0%, #ff8c00 100%); padding: 32px 24px; text-align: center;">
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td style="text-align: center;">
+                          <div style="font-size: 32px; margin-bottom: 8px;">📬</div>
+                          <h1 style="margin: 0; font-size: 22px; font-weight: 700; color: #000; letter-spacing: -0.5px;">New Support Request</h1>
+                          <p style="margin: 8px 0 0 0; font-size: 14px; color: rgba(0,0,0,0.7);">MK Language Lab</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
 
-          <div class="section">
-            <div class="label">From</div>
-            <div>${name} (${email})</div>
-          </div>
+                <!-- Content -->
+                <tr>
+                  <td style="padding: 32px 24px;">
 
-          <div class="section">
-            <div class="label">Description</div>
-            <div style="white-space: pre-wrap;">${description}</div>
-          </div>
+                    <!-- Subject -->
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 20px;">
+                      <tr>
+                        <td style="background-color: #252525; border-radius: 12px; padding: 16px;">
+                          <p style="margin: 0 0 4px 0; font-size: 11px; font-weight: 600; color: #F7C948; text-transform: uppercase; letter-spacing: 1px;">Subject</p>
+                          <p style="margin: 0; font-size: 18px; font-weight: 600; color: #ffffff;">${subject}</p>
+                        </td>
+                      </tr>
+                    </table>
+
+                    <!-- From -->
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 20px;">
+                      <tr>
+                        <td style="background-color: #252525; border-radius: 12px; padding: 16px;">
+                          <p style="margin: 0 0 4px 0; font-size: 11px; font-weight: 600; color: #F7C948; text-transform: uppercase; letter-spacing: 1px;">From</p>
+                          <p style="margin: 0; font-size: 16px; color: #ffffff; font-weight: 500;">${name}</p>
+                          <p style="margin: 4px 0 0 0; font-size: 14px; color: #888888;">
+                            <a href="mailto:${email}" style="color: #F7C948; text-decoration: none;">${email}</a>
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+
+                    <!-- Message -->
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 20px;">
+                      <tr>
+                        <td style="background-color: #252525; border-radius: 12px; padding: 16px;">
+                          <p style="margin: 0 0 8px 0; font-size: 11px; font-weight: 600; color: #F7C948; text-transform: uppercase; letter-spacing: 1px;">Message</p>
+                          <p style="margin: 0; font-size: 15px; color: #e0e0e0; line-height: 1.6; white-space: pre-wrap;">${description}</p>
+                        </td>
+                      </tr>
+                    </table>
   `;
 
   if (errorDetails && (errorDetails.message || errorDetails.digest || errorDetails.stack)) {
     html += `
-          <div class="error-section">
-            <div class="error-label">Error Details</div>
+                    <!-- Error Details -->
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 20px;">
+                      <tr>
+                        <td style="background-color: #3d1f1f; border-radius: 12px; padding: 16px; border: 1px solid #5c2a2a;">
+                          <p style="margin: 0 0 12px 0; font-size: 11px; font-weight: 600; color: #ff6b6b; text-transform: uppercase; letter-spacing: 1px;">⚠️ Error Details</p>
     `;
 
     if (errorDetails.message) {
       html += `
-            <div style="margin-bottom: 10px;">
-              <strong>Error Message:</strong>
-              <pre>${errorDetails.message}</pre>
-            </div>
+                          <div style="margin-bottom: 12px;">
+                            <p style="margin: 0 0 4px 0; font-size: 12px; color: #ff9999; font-weight: 600;">Error Message:</p>
+                            <p style="margin: 0; font-size: 13px; color: #ffcccc; background-color: #2d1515; padding: 10px; border-radius: 6px; font-family: 'SF Mono', Monaco, monospace; word-break: break-word;">${errorDetails.message}</p>
+                          </div>
       `;
     }
 
     if (errorDetails.digest) {
       html += `
-            <div style="margin-bottom: 10px;">
-              <strong>Error ID:</strong>
-              <pre>${errorDetails.digest}</pre>
-            </div>
+                          <div style="margin-bottom: 12px;">
+                            <p style="margin: 0 0 4px 0; font-size: 12px; color: #ff9999; font-weight: 600;">Error ID:</p>
+                            <p style="margin: 0; font-size: 13px; color: #ffcccc; background-color: #2d1515; padding: 10px; border-radius: 6px; font-family: 'SF Mono', Monaco, monospace;">${errorDetails.digest}</p>
+                          </div>
       `;
     }
 
     if (errorDetails.stack) {
       html += `
-            <div>
-              <strong>Stack Trace:</strong>
-              <pre>${errorDetails.stack}</pre>
-            </div>
+                          <div>
+                            <p style="margin: 0 0 4px 0; font-size: 12px; color: #ff9999; font-weight: 600;">Stack Trace:</p>
+                            <p style="margin: 0; font-size: 11px; color: #ffcccc; background-color: #2d1515; padding: 10px; border-radius: 6px; font-family: 'SF Mono', Monaco, monospace; overflow-x: auto; white-space: pre-wrap; word-break: break-word; max-height: 200px; overflow-y: auto;">${errorDetails.stack}</p>
+                          </div>
       `;
     }
 
     html += `
-          </div>
+                        </td>
+                      </tr>
+                    </table>
     `;
   }
 
   html += `
-        </div>
+                  </td>
+                </tr>
 
-        <div class="footer">
-          <p>This support request was sent via the Macedonian Learning App error handling system.</p>
-        </div>
+                <!-- Footer -->
+                <tr>
+                  <td style="padding: 24px; background-color: #141414; border-top: 1px solid #333;">
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td style="text-align: center;">
+                          <p style="margin: 0 0 8px 0; font-size: 13px; color: #666;">
+                            Sent from <span style="color: #F7C948; font-weight: 600;">MK Language Lab</span>
+                          </p>
+                          <p style="margin: 0; font-size: 12px; color: #555;">
+                            ${timestamp}
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+              </table>
+
+              <!-- Reply hint -->
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 560px; margin-top: 16px;">
+                <tr>
+                  <td style="text-align: center;">
+                    <p style="margin: 0; font-size: 12px; color: #555;">
+                      Reply directly to this email to respond to ${name}
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
       </body>
     </html>
   `;
