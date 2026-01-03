@@ -99,7 +99,7 @@ export default function PrivacyPolicyPage() {
             <CardContent className="text-slate-200">
               <p className="leading-relaxed mb-4">{t('contact.content')}</p>
               <a
-                href="mailto:macedonianlanguagelab@gmail.com?subject=Privacy%20Policy%20Inquiry%20-%20Macedonian%20Learning%20App"
+                href="mailto:contact@mklanguage.com?subject=Privacy%20Policy%20Inquiry%20-%20Macedonian%20Learning%20App"
                 className="text-primary hover:underline font-semibold"
                 data-testid="privacy-contact-email"
               >

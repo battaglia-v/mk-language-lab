@@ -298,7 +298,7 @@ Start your Macedonian journey today!
 
 ## Contact Information
 
-**Email**: support@makedonski.mk
+**Email**: contact@mklanguage.com
 **Website**: https://mklanguage.com
 **Privacy Policy**: https://mklanguage.com/en/privacy
 

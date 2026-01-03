@@ -141,7 +141,7 @@ We take data security seriously and implement industry-standard measures:
 ### Data Deletion
 
 You can request deletion of your account and all associated data at any time by:
-1. Emailing us at **support@makedonski.mk** with the subject line "Account Deletion Request"
+1. Emailing us at **contact@mklanguage.com** with the subject line "Account Deletion Request"
 2. Providing your registered email address for verification
 
 We will delete your account and all associated data within **30 days** of receiving your request. Note that some data may be retained in anonymized form for analytics purposes or as required by law.
@@ -150,7 +150,7 @@ We will delete your account and all associated data within **30 days** of receiv
 
 ### Access and Correction
 
-You can access and update your account information at any time via the Profile tab in the App. If you need assistance, contact us at support@makedonski.mk.
+You can access and update your account information at any time via the Profile tab in the App. If you need assistance, contact us at contact@mklanguage.com.
 
 ### Opt-Out of Push Notifications
 
@@ -161,7 +161,7 @@ You can disable push notifications at any time by:
 
 ### Data Portability
 
-You can request a copy of your learning progress data by emailing support@makedonski.mk. We will provide a machine-readable export (JSON format) within 30 days.
+You can request a copy of your learning progress data by emailing contact@mklanguage.com. We will provide a machine-readable export (JSON format) within 30 days.
 
 ### Account Deletion
 
@@ -169,7 +169,7 @@ See "Data Deletion" above.
 
 ## Children's Privacy
 
-The App is not directed at children under 13 years of age. We do not knowingly collect personal information from children under 13. If we discover that we have inadvertently collected such information, we will delete it immediately. If you believe we have collected information from a child under 13, please contact us at support@makedonski.mk.
+The App is not directed at children under 13 years of age. We do not knowingly collect personal information from children under 13. If we discover that we have inadvertently collected such information, we will delete it immediately. If you believe we have collected information from a child under 13, please contact us at contact@mklanguage.com.
 
 ## International Data Transfers
 
@@ -185,7 +185,7 @@ If you are a California resident, you have the following rights:
 - **Right to Opt-Out:** Opt out of the "sale" of personal information (note: we do not sell personal information)
 - **Right to Non-Discrimination:** We will not discriminate against you for exercising your privacy rights
 
-To exercise these rights, email us at support@makedonski.mk with "CCPA Request" in the subject line.
+To exercise these rights, email us at contact@mklanguage.com with "CCPA Request" in the subject line.
 
 ## European Privacy Rights (GDPR)
 
@@ -198,7 +198,7 @@ If you are in the European Economic Area (EEA), you have the following rights un
 - **Right to Object:** Object to processing of your data for direct marketing or legitimate interests
 - **Right to Withdraw Consent:** Withdraw consent at any time (e.g., for push notifications)
 
-To exercise these rights, email us at support@makedonski.mk with "GDPR Request" in the subject line. We will respond within 30 days.
+To exercise these rights, email us at contact@mklanguage.com with "GDPR Request" in the subject line. We will respond within 30 days.
 
 ## Third-Party Links and Content
 
@@ -217,7 +217,7 @@ Your continued use of the App after changes are posted constitutes acceptance of
 
 If you have questions, concerns, or requests regarding this Privacy Policy or your personal information, please contact us:
 
-**Email:** support@makedonski.mk
+**Email:** contact@mklanguage.com
 **Website:** https://mklanguage.com
 
 ## Consent

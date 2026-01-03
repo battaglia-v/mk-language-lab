@@ -20,7 +20,7 @@
     "path": "./mklanguage.keystore",
     "alias": "mklanguage"
   },
-  "appVersionName": "1",
+  "appVersionName": "1.0.0",
   "appVersionCode": 1,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
