@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { ArrowLeft, Mic, Volume2 } from 'lucide-react';
@@ -10,6 +10,8 @@ import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import pronunciationSessionsData from '@/data/pronunciation-sessions.json';
 import { PageContainer } from '@/components/layout';
+import { useToast } from '@/components/ui/toast';
+import { addLocalXP } from '@/lib/gamification/local-xp';
 
 // Match actual JSON structure
 interface PronunciationWord {
@@ -51,6 +53,9 @@ export default function PronunciationPracticePage() {
   const navT = useTranslations('nav');
   const locale = useLocale() as 'en' | 'mk';
   const [activeSession, setActiveSession] = useState<PronunciationSessionData | null>(null);
+  const [isRecordingXP, setIsRecordingXP] = useState(false);
+  const hasRecordedRef = useRef(false);
+  const { addToast } = useToast();
 
   const sessions = pronunciationSessionsData as PronunciationSessionData[];
 
@@ -62,23 +67,69 @@ export default function PronunciationPracticePage() {
 
   const handleStartSession = (session: PronunciationSessionData) => {
     setActiveSession(session);
+    hasRecordedRef.current = false;
   };
 
   const handleEndSession = () => {
     setActiveSession(null);
   };
 
-  const handleComplete = (results: { 
-    totalWords: number; 
-    completedWords: number; 
+  const handleComplete = useCallback(async (results: {
+    totalWords: number;
+    completedWords: number;
     skippedWords: number;
     xpEarned: number;
     averageScore: number;
   }) => {
-    // Could save results to database here
-    console.log('Session completed:', results);
-    setActiveSession(null);
-  };
+    // Prevent double-recording
+    if (hasRecordedRef.current || isRecordingXP) return;
+    hasRecordedRef.current = true;
+    setIsRecordingXP(true);
+
+    try {
+      // Record practice to database for XP
+      const response = await fetch('/api/practice/record', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          correctCount: results.completedWords,
+          totalCount: results.totalWords,
+          type: 'pronunciation',
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        // Update local XP state for immediate UI feedback
+        addLocalXP(data.xpEarned);
+
+        addToast({
+          title: t('sessionComplete'),
+          description: `+${data.xpEarned} XP earned!`,
+          type: 'success',
+        });
+      } else {
+        // API failed but still show local success
+        addLocalXP(results.xpEarned);
+        addToast({
+          title: t('sessionComplete'),
+          description: `+${results.xpEarned} XP earned!`,
+          type: 'success',
+        });
+      }
+    } catch (error) {
+      console.error('[Pronunciation] Failed to record XP:', error);
+      // Still add local XP for offline support
+      addLocalXP(results.xpEarned);
+      addToast({
+        title: t('sessionComplete'),
+        description: `+${results.xpEarned} XP earned!`,
+        type: 'success',
+      });
+    } finally {
+      setIsRecordingXP(false);
+    }
+  }, [isRecordingXP, addToast, t]);
 
   // Translations for the PronunciationSession component
   const sessionTranslations = useMemo(() => ({
