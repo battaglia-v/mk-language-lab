@@ -311,21 +311,21 @@ export default function AlphabetLessonPage() {
         <TabsContent value="special" className="mt-4 space-y-6">
           {/* Unique Macedonian Letters */}
           <Card>
-            <CardHeader>
+            <CardHeader className="pb-3">
               <CardTitle className="text-base flex items-center gap-2">
                 <Sparkles className="h-4 w-4 text-amber-400" />
                 {t('uniqueTitle', { default: 'Unique Macedonian Letters' })}
               </CardTitle>
-              <CardDescription>{alphabet.uniqueLetters.notes}</CardDescription>
+              <CardDescription className="text-sm">{alphabet.uniqueLetters.notes}</CardDescription>
             </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-3 gap-4">
+            <CardContent className="pt-0">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {alphabet.items
                   .filter(l => alphabet.uniqueLetters.letters.includes(l.letter))
                   .map((letter) => (
                     <Card
                       key={letter.id}
-                      className="relative overflow-hidden hover:border-amber-500/50 transition-all"
+                      className="relative overflow-hidden hover:border-amber-500/50 transition-all border-amber-500/20 bg-amber-500/5"
                     >
                       {/* eslint-disable-next-line react/forbid-elements -- transparent overlay needs raw button */}
                       <button
@@ -335,11 +335,21 @@ export default function AlphabetLessonPage() {
                         className="absolute inset-0 z-10 cursor-pointer touch-manipulation"
                         onClick={() => speakLetter(letter)}
                       />
-                      <CardContent className="p-4 text-center pointer-events-none">
-                        <div className="text-4xl font-bold text-amber-400 mb-2">{letter.letter}</div>
-                        <div className="text-sm font-medium">{letter.latinEquiv}</div>
-                        <div className="text-xs text-muted-foreground">{letter.ipa}</div>
-                        <p className="text-xs mt-2">{letter.notes}</p>
+                      <CardContent className="p-4 pointer-events-none">
+                        <div className="flex items-center gap-4 sm:flex-col sm:text-center sm:gap-2">
+                          {/* Letter display */}
+                          <div className="flex items-center gap-3 sm:flex-col sm:gap-1">
+                            <div className="text-4xl font-bold text-amber-400">{letter.letter}</div>
+                            <div className="text-left sm:text-center">
+                              <div className="text-sm font-medium">{letter.latinEquiv}</div>
+                              <div className="text-xs text-muted-foreground">{letter.ipa}</div>
+                            </div>
+                          </div>
+                          {/* Notes - compact on mobile */}
+                          <p className="text-xs text-muted-foreground flex-1 line-clamp-2 sm:line-clamp-3">
+                            {letter.notes}
+                          </p>
+                        </div>
                       </CardContent>
                     </Card>
                   ))}
@@ -349,22 +359,22 @@ export default function AlphabetLessonPage() {
 
           {/* Soft Letter Pairs */}
           <Card>
-            <CardHeader>
+            <CardHeader className="pb-3">
               <CardTitle className="text-base">
                 {t('softPairsTitle', { default: 'Soft Consonant Pairs' })}
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-sm">
                 {t('softPairsDesc', { default: 'These letters come in hard/soft pairs. The soft versions are palatalized.' })}
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+            <CardContent className="pt-0">
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                 {alphabet.softLetters.pairs.map((pair, idx) => (
-                  <div key={idx} className="text-center p-3 rounded-lg bg-muted/30">
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                      <span className="text-2xl">{pair.hard}</span>
-                      <span className="text-muted-foreground">→</span>
-                      <span className="text-2xl text-primary">{pair.soft}</span>
+                  <div key={idx} className="text-center p-3 rounded-xl bg-muted/30 border border-border/30">
+                    <div className="flex items-center justify-center gap-2 mb-1">
+                      <span className="text-2xl font-medium">{pair.hard}</span>
+                      <span className="text-muted-foreground text-sm">→</span>
+                      <span className="text-2xl font-medium text-primary">{pair.soft}</span>
                     </div>
                     <p className="text-xs text-muted-foreground">
                       {t('hardToSoft', { default: 'hard → soft' })}
