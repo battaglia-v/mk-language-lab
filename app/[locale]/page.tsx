@@ -35,7 +35,7 @@ export default async function LocaleHome({ params }: LocalePageProps) {
   const signInHref = `/${safeLocale}/sign-in`;
 
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-4 py-8">
+    <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center px-4 pt-16 pb-8">
       <div className="w-full max-w-md space-y-8 text-center">
         {/* Hero */}
         <div className="space-y-4">
@@ -48,7 +48,12 @@ export default async function LocaleHome({ params }: LocalePageProps) {
         </div>
 
         {/* Primary CTA */}
-        <Button asChild size="lg" className="w-full gap-2 text-lg min-h-[56px]">
+        <Button
+          asChild
+          size="lg"
+          className="w-full gap-2 text-lg min-h-[56px] text-black"
+          data-testid="home-start-learning"
+        >
           <Link href={startLessonHref}>
             <Play className="h-5 w-5" fill="currentColor" />
             {homeT("guestCta")}
@@ -58,7 +63,11 @@ export default async function LocaleHome({ params }: LocalePageProps) {
         {/* Sign in link */}
         <p className="text-sm text-muted-foreground">
           {homeT("guestSignIn")}{" "}
-          <Link href={signInHref} className="font-medium text-primary hover:underline">
+          <Link
+            href={signInHref}
+            className="font-medium text-primary hover:underline"
+            data-testid="home-sign-in"
+          >
             {homeT("guestSignInLink")}
           </Link>
         </p>

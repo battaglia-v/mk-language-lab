@@ -87,7 +87,7 @@ function SignInContent() {
       <div className="w-full max-w-md space-y-6">
         <div className="flex justify-start">
           <Button variant="ghost" size="sm" asChild>
-            <Link href={dashboardPath} aria-label="Back to home">
+            <Link href={dashboardPath} aria-label="Back to home" data-testid="auth-signin-back-home">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Home
             </Link>
@@ -110,6 +110,7 @@ function SignInContent() {
               size="lg"
               disabled={isLoading}
               aria-label="Continue with Google"
+              data-testid="auth-signin-google"
             >
               <Chrome className="h-5 w-5" />
               Continue with Google
@@ -150,6 +151,7 @@ function SignInContent() {
                   required
                   aria-invalid={Boolean(fieldErrors.email)}
                   aria-describedby={fieldErrors.email ? 'email-error' : undefined}
+                  data-testid="auth-signin-email"
                 />
                 {fieldErrors.email && (
                   <p id="email-error" className="text-sm text-red-500" role="alert" aria-live="assertive">
@@ -170,6 +172,7 @@ function SignInContent() {
                   required
                   aria-invalid={Boolean(fieldErrors.password)}
                   aria-describedby={fieldErrors.password ? 'password-error' : undefined}
+                  data-testid="auth-signin-password"
                 />
                 {fieldErrors.password && (
                   <p
@@ -185,10 +188,11 @@ function SignInContent() {
 
               <Button
                 type="submit"
-                className="w-full py-6"
+                className="w-full py-6 text-black"
                 size="lg"
                 disabled={isLoading}
                 aria-label="Sign in with email and password"
+                data-testid="auth-signin-submit"
               >
                 {isLoading ? (
                   <>
@@ -204,7 +208,11 @@ function SignInContent() {
             {/* Sign-Up Link */}
             <div className="text-center text-sm">
               <span className="text-muted-foreground">Don&apos;t have an account? </span>
-              <Link href="/auth/signup" className="font-medium text-primary hover:underline">
+              <Link
+                href="/auth/signup"
+                className="font-medium text-primary hover:underline"
+                data-testid="auth-signin-signup-link"
+              >
                 Sign up
               </Link>
             </div>
@@ -212,7 +220,11 @@ function SignInContent() {
             <div className="text-center text-xs text-muted-foreground">
               <p>
                 By signing in, you agree to our{' '}
-                <Link href={`/${resolvedLocale}/about`} className="underline hover:text-foreground">
+                <Link
+                  href={`/${resolvedLocale}/about`}
+                  className="underline hover:text-foreground"
+                  data-testid="auth-signin-terms-link"
+                >
                   Terms of Service
                 </Link>
               </p>
