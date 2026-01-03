@@ -52,7 +52,7 @@ export default function AboutPage() {
             <CardHeader className="flex flex-col items-center space-y-4">
               <div className="relative h-24 w-24 rounded-full overflow-hidden ring-4 ring-primary/30 shadow-xl">
                 <Image
-                  src="/images/vinny-profile.jpg"
+                  src="/images/vinny-profile.png"
                   alt="Vincent Battaglia"
                   fill
                   className="object-cover"
