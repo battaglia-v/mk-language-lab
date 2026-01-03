@@ -42,6 +42,8 @@ model User {
   password             String? // Hashed password (optional for OAuth users)
   image                String?
   role                 String                  @default("user") // "user" | "admin"
+  locale               String?                 @default("en") // "en" | "mk" - user's preferred language
+  dailyGoal            Int?                    @default(20) // daily XP target (10, 20, 30, 50)
   createdAt            DateTime                @default(now())
   updatedAt            DateTime                @updatedAt
   accounts             Account[]

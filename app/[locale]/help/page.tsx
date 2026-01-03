@@ -14,7 +14,7 @@ export default async function HelpPage() {
       title: 'Getting Started',
       description: 'Learn the basics of MKLanguage',
       icon: BookOpen,
-      href: `/${locale}/about`,
+      href: `/${locale}/getting-started`,
     },
     {
       id: 'contact-support',
