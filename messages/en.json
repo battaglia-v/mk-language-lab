@@ -1139,6 +1139,7 @@
       "badge": "Saved Phrases",
       "title": "Practicing saved phrases",
       "description": "Quick Practice will use the phrases you saved in the translator.",
+      "lockedReason": "Save a phrase in Translate to unlock.",
       "emptyDescription": "Save at least one translation to unlock this custom deck.",
       "manageCta": "Manage saved phrases"
     }
@@ -2497,6 +2498,7 @@
       "daysCount": "{count} days",
       "basics": "Basics",
       "speaking": "Advanced",
+      "challenge": "30-Day",
       "complete": "complete",
       "goalMet": "Goal met!",
       "start": "Start",

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Zap, Play, BookOpen, ChevronRight, Lock, Check, GraduationCap, MessageCircle } from 'lucide-react';
+import { Zap, Play, BookOpen, ChevronRight, Lock, Check, GraduationCap, MessageCircle, CalendarDays } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Progress } from '@/components/ui/progress';
@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 import { getLocalXP } from '@/lib/gamification/local-xp';
 import type { LessonPath as LessonPathData, LessonNode } from '@/lib/learn/lesson-path-types';
 
-type TrackId = 'basics' | 'advanced';
+type TrackId = 'basics' | 'advanced' | 'challenge';
 
 interface LearnPageClientProps {
   locale: string;
@@ -22,6 +22,7 @@ interface LearnPageClientProps {
   nextLessonSubtitle: string;
   starterPath: LessonPathData;
   advancedPath: LessonPathData;
+  challengePath: LessonPathData;
 }
 
 export function LearnPageClient({
@@ -33,6 +34,7 @@ export function LearnPageClient({
   nextLessonTitle,
   starterPath,
   advancedPath,
+  challengePath,
 }: LearnPageClientProps) {
   const t = useTranslations('mobile.learn');
   // Use local XP state for real-time updates
@@ -50,7 +52,11 @@ export function LearnPageClient({
   const isGoalComplete = todayXP >= dailyGoalXP;
 
   // Get current path based on selected track
-  const currentPath = activeTrack === 'basics' ? starterPath : advancedPath;
+  const currentPath = activeTrack === 'basics'
+    ? starterPath
+    : activeTrack === 'advanced'
+      ? advancedPath
+      : challengePath;
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-4rem)] pb-24 sm:pb-6">
@@ -146,12 +152,12 @@ export function LearnPageClient({
           </div>
 
           {/* Track Switcher */}
-          <div className="flex gap-2 p-1 bg-muted/50 rounded-xl">
+          <div className="flex gap-1 p-1 bg-muted/50 rounded-xl">
             <button
               onClick={() => setActiveTrack('basics')}
               data-testid="learn-track-basics"
               className={cn(
-                'flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg font-medium transition-all',
+                'flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg font-medium transition-all text-sm',
                 activeTrack === 'basics'
                   ? 'bg-background text-foreground shadow-sm'
                   : 'text-muted-foreground hover:text-foreground'
@@ -164,7 +170,7 @@ export function LearnPageClient({
               onClick={() => setActiveTrack('advanced')}
               data-testid="learn-track-advanced"
               className={cn(
-                'flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg font-medium transition-all',
+                'flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg font-medium transition-all text-sm',
                 activeTrack === 'advanced'
                   ? 'bg-background text-foreground shadow-sm'
                   : 'text-muted-foreground hover:text-foreground'
@@ -172,6 +178,19 @@ export function LearnPageClient({
             >
               <MessageCircle className="h-4 w-4" />
               <span>{t('speaking')}</span>
+            </button>
+            <button
+              onClick={() => setActiveTrack('challenge')}
+              data-testid="learn-track-challenge"
+              className={cn(
+                'flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg font-medium transition-all text-sm',
+                activeTrack === 'challenge'
+                  ? 'bg-background text-foreground shadow-sm'
+                  : 'text-muted-foreground hover:text-foreground'
+              )}
+            >
+              <CalendarDays className="h-4 w-4" />
+              <span>{t('challenge')}</span>
             </button>
           </div>
 
