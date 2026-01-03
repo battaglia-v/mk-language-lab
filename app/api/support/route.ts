@@ -55,7 +55,9 @@ function formatEmailHtml(data: SupportRequest): string {
                     <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                       <tr>
                         <td style="text-align: center;">
-                          <img src="https://mklanguage.com/icon-192.png" alt="MK Language Lab" width="64" height="64" style="border-radius: 16px; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" />
+                          <div style="width: 64px; height: 64px; margin: 0 auto 12px auto; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                            <img src="https://mklanguage.com/icon-192.png" alt="" width="64" height="64" style="display: block; width: 64px; height: 64px;" />
+                          </div>
                           <h1 style="margin: 0; font-size: 22px; font-weight: 700; color: #000; letter-spacing: -0.5px;">New Support Request</h1>
                           <p style="margin: 8px 0 0 0; font-size: 14px; color: rgba(0,0,0,0.7);">MK Language Lab</p>
                         </td>
