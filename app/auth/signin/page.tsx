@@ -216,19 +216,19 @@ function SignInContent() {
 
               <Button
                 type="submit"
-                className="w-full h-11 rounded-xl text-black font-medium mt-2"
+                className="w-full h-11 rounded-xl text-black font-medium mt-2 gap-2"
                 disabled={isLoading}
                 aria-label="Sign in with email and password"
                 data-testid="auth-signin-submit"
               >
                 {isLoading ? (
                   <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    <Loader2 className="h-4 w-4 animate-spin" />
                     Signing in...
                   </>
                 ) : (
                   <>
-                    <Mail className="mr-2 h-4 w-4" />
+                    <Mail className="h-4 w-4" />
                     Sign in with Email
                   </>
                 )}
