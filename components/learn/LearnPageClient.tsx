@@ -30,6 +30,7 @@ export function LearnPageClient({
   todayXP: initialTodayXP,
   dailyGoalXP,
   continueHref,
+  nextLessonTitle,
   starterPath,
   advancedPath,
 }: LearnPageClientProps) {
@@ -65,24 +66,6 @@ export function LearnPageClient({
               {t('subtitle')}
             </p>
           </div>
-
-          {/* Learning Paths Banner */}
-          <Link
-            href={`/${locale}/learn/paths`}
-            data-testid="learn-browse-paths"
-            className="group flex items-center justify-between gap-3 rounded-xl border border-primary/30 bg-primary/5 p-4 transition-all hover:bg-primary/10 hover:border-primary/50"
-          >
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/20">
-                <Zap className="h-5 w-5 text-primary" />
-              </div>
-              <div>
-                <p className="font-semibold text-foreground">{t('learningPaths')}</p>
-                <p className="text-sm text-muted-foreground">{t('learningPathsDesc')}</p>
-              </div>
-            </div>
-            <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
-          </Link>
 
           {/* Daily Goal Progress */}
           <div className="flex flex-col items-center gap-3 py-4">
@@ -120,15 +103,18 @@ export function LearnPageClient({
             href={continueHref}
             data-testid="learn-start-todays-lesson"
             className={cn(
-              'group flex items-center justify-center gap-3 rounded-2xl p-5',
+              'group flex flex-col items-center gap-1 rounded-2xl p-5',
               'bg-gradient-to-r from-primary to-amber-500',
               'text-black shadow-lg shadow-primary/25',
               'transition-all duration-200 hover:shadow-xl hover:scale-[1.01]',
               'active:scale-[0.99]'
             )}
           >
-            <Play className="h-6 w-6" fill="currentColor" />
-            <span className="text-xl font-bold">{t('startLesson')}</span>
+            <div className="flex items-center gap-2">
+              <Play className="h-5 w-5" fill="currentColor" />
+              <span className="text-sm font-medium uppercase tracking-wide opacity-80">{t('startLesson')}</span>
+            </div>
+            <span className="text-xl font-bold">{nextLessonTitle}</span>
           </Link>
 
           {/* Secondary CTA */}
