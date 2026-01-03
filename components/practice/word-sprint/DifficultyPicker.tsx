@@ -31,6 +31,7 @@ export function DifficultyPicker({ onSelect, title = 'Word Sprint' }: Props) {
           size="sm"
           className="h-10 w-10 rounded-full p-0"
           onClick={() => router.back()}
+          data-testid="word-sprint-picker-close"
         >
           <X className="h-5 w-5" />
         </Button>
@@ -55,6 +56,7 @@ export function DifficultyPicker({ onSelect, title = 'Word Sprint' }: Props) {
                     selectedDifficulty !== d && `hover:${DIFFICULTY_COLORS[d].bg}`
                   )}
                   onClick={() => setSelectedDifficulty(d)}
+                  data-testid={`word-sprint-picker-difficulty-${d}`}
                 >
                   <div>
                     <span className="font-semibold capitalize">{d}</span>
@@ -84,12 +86,15 @@ export function DifficultyPicker({ onSelect, title = 'Word Sprint' }: Props) {
                 <Button
                   key={length}
                   variant={selectedLength === length ? 'default' : 'outline'}
-                  className="h-16 rounded-xl flex-col"
+                  className={cn(
+                    "h-20 rounded-xl flex flex-col items-center justify-center gap-0.5 px-2",
+                    selectedLength === length && "text-black"
+                  )}
                   onClick={() => setSelectedLength(length)}
+                  data-testid={`word-sprint-picker-length-${length}`}
                 >
-                  <Clock className="h-4 w-4 mb-1" />
-                  <span className="text-lg font-bold">{length}</span>
-                  <span className="text-xs opacity-70">
+                  <span className="text-2xl font-bold leading-none">{length}</span>
+                  <span className="text-xs opacity-70 leading-tight">
                     {length === 10 ? 'Quick' : 'Standard'}
                   </span>
                 </Button>
@@ -101,9 +106,10 @@ export function DifficultyPicker({ onSelect, title = 'Word Sprint' }: Props) {
           <div className="space-y-2">
             <Button
               size="lg"
-              className="w-full min-h-[52px] rounded-xl"
+              className="w-full min-h-[52px] rounded-xl text-black"
               onClick={handleStart}
               disabled={!selectedDifficulty}
+              data-testid="word-sprint-picker-start"
             >
               Start session
             </Button>
