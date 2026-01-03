@@ -73,7 +73,7 @@ Download now and start your first mission today!
 Built by language learners, for language learners. Македонски • MK Language Lab combines modern mobile UX with proven spaced-repetition techniques and authentic Macedonian content. Join our growing community and discover how enjoyable language learning can be.
 
 **SUPPORT**
-Questions or feedback? Contact us at support@makedonski.mk or visit our website at https://makedonski.mk
+Questions or feedback? Contact us at contact@mklanguage.com or visit our website at https://makedonski.mk
 
 ## Keywords (100 chars max, comma-separated)
 
@@ -205,7 +205,7 @@ Daily AI-powered missions make learning Macedonian fun! Practice with swipeable 
 
 ### Data Retention
 
-- User can request account deletion at any time (email support@makedonski.mk)
+- User can request account deletion at any time (email contact@mklanguage.com)
 - All user data deleted within 30 days of deletion request
 - Aggregated analytics retained indefinitely (anonymized)
 
@@ -249,7 +249,7 @@ This app helps users learn the Macedonian language through daily missions, inter
 **First Name:** Makedonski
 **Last Name:** Support Team
 **Phone:** +1 (555) 123-4567 (placeholder – update with real support number)
-**Email:** support@makedonski.mk
+**Email:** contact@mklanguage.com
 **Website:** https://makedonski.mk
 
 ## Copyright & Trademark
