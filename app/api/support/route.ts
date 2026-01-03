@@ -55,7 +55,7 @@ function formatEmailHtml(data: SupportRequest): string {
                     <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                       <tr>
                         <td style="text-align: center;">
-                          <div style="font-size: 32px; margin-bottom: 8px;">📬</div>
+                          <img src="https://mklanguage.com/icon-192.png" alt="MK Language Lab" width="64" height="64" style="border-radius: 16px; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" />
                           <h1 style="margin: 0; font-size: 22px; font-weight: 700; color: #000; letter-spacing: -0.5px;">New Support Request</h1>
                           <p style="margin: 8px 0 0 0; font-size: 14px; color: rgba(0,0,0,0.7);">MK Language Lab</p>
                         </td>
@@ -167,17 +167,6 @@ function formatEmailHtml(data: SupportRequest): string {
                   </td>
                 </tr>
 
-              </table>
-
-              <!-- Reply hint -->
-              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 560px; margin-top: 16px;">
-                <tr>
-                  <td style="text-align: center;">
-                    <p style="margin: 0; font-size: 12px; color: #555;">
-                      Reply directly to this email to respond to ${name}
-                    </p>
-                  </td>
-                </tr>
               </table>
             </td>
           </tr>
