@@ -256,7 +256,7 @@ async function scanRoute(
   ensureModeAuth: () => Promise<void>
 ): Promise<void> {
   const visited = new Set<string>();
-  const safetyLimit = 250;
+  const safetyLimit = resolveMaxInteractionsPerRoute();
 
   for (let step = 0; step < safetyLimit; step += 1) {
     const candidates = await getVisibleInteractives(page);
@@ -334,7 +334,10 @@ async function scanRoute(
 
       const nowPathname = new URL(page.url()).pathname;
       if (nowPathname !== resolvedPathname) {
-        await safeGoto(page, route.path);
+        const wentBack = await page.goBack({ waitUntil: 'domcontentloaded', timeout: 15_000 }).catch(() => null);
+        if (!wentBack || new URL(page.url()).pathname !== resolvedPathname) {
+          await safeGoto(page, route.path);
+        }
       }
 
       break; // Re-query interactives after each click
@@ -342,4 +345,18 @@ async function scanRoute(
 
     if (!progressed) break;
   }
+}
+
+function resolveMaxInteractionsPerRoute(): number {
+  const explicit = Number(process.env.RELEASE_GATE_MAX_INTERACTIONS_PER_ROUTE || 0);
+  if (Number.isFinite(explicit) && explicit > 0) return explicit;
+
+  const baseURL = process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3000';
+  try {
+    const hostname = new URL(baseURL).hostname;
+    if (hostname === 'localhost' || hostname === '127.0.0.1') return 250;
+  } catch {}
+
+  // Remote/prod audits should be polite and bounded by default.
+  return 60;
 }

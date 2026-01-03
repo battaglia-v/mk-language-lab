@@ -282,11 +282,11 @@ function DailyGoalRing({
         />
       </svg>
       {/* Center content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-2">
         {complete ? (
           <>
-            <Check className="h-8 w-8 text-emerald-500" strokeWidth={3} />
-            <span className="text-xs font-medium text-emerald-500 mt-1">{goalMetLabel}</span>
+            <Check className="h-7 w-7 text-emerald-500" strokeWidth={3} />
+            <span className="text-[10px] font-semibold text-emerald-500 mt-0.5 text-center leading-tight max-w-[80px]">{goalMetLabel}</span>
           </>
         ) : (
           <>
