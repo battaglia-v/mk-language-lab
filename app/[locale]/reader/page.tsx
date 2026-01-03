@@ -1,8 +1,9 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { BookOpen, Wrench, BookmarkPlus, Zap, ChevronRight, Library, FileText, Search, X } from 'lucide-react';
 import { PageContainer } from '@/components/layout';
 import { Button } from '@/components/ui/button';
@@ -26,6 +27,8 @@ type DifficultyLevel = typeof DIFFICULTY_LEVELS[number];
  */
 export default function ReaderPage() {
   const locale = useLocale();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const allSamples = useMemo(() => getAllReaderSamples(), []);
   const { config } = useAppConfig();
   const { entitlement } = useEntitlement();
@@ -33,6 +36,31 @@ export default function ReaderPage() {
     if (typeof window === 'undefined') return 0;
     return readFavorites().length;
   });
+
+  // Tab state - read from URL query parameter
+  const tabParam = searchParams.get('tab');
+  const [activeTab, setActiveTab] = useState<string>(tabParam === 'workspace' ? 'workspace' : 'library');
+
+  // Update tab when URL changes
+  useEffect(() => {
+    const newTab = tabParam === 'workspace' ? 'workspace' : 'library';
+    if (newTab !== activeTab) {
+      setActiveTab(newTab);
+    }
+  }, [tabParam, activeTab]);
+
+  // Handle tab change - update URL
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    const newParams = new URLSearchParams(searchParams.toString());
+    if (value === 'library') {
+      newParams.delete('tab');
+    } else {
+      newParams.set('tab', value);
+    }
+    const queryString = newParams.toString();
+    router.replace(`/${locale}/reader${queryString ? `?${queryString}` : ''}`, { scroll: false });
+  };
 
   // Search and filter state
   const [searchQuery, setSearchQuery] = useState('');
@@ -94,7 +122,7 @@ export default function ReaderPage() {
       </header>
 
       <PageContainer size="lg">
-        <Tabs defaultValue="library" className="w-full">
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-6">
             <TabsTrigger value="library" className="gap-2" data-testid="reader-tab-library">
               <Library className="h-4 w-4" />
