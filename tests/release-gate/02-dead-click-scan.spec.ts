@@ -289,24 +289,30 @@ async function scanRoute(
       if (disabled) {
         action = 'disabled-with-reason';
       } else {
-        const result = await clickAndDetect(page, el);
-        action = result.action;
-        navigationTo = result.navigationTo;
-        popupUrl = result.popupUrl;
-        if (result.dead) {
-          outcome = 'dead-click';
-          deadClicks.push({
-            routeId: route.id,
-            routePath: route.path,
-            resolvedPathname,
-            selector,
-            label,
-            repro: [
-              `Go to ${route.path}`,
-              `Click ${selector} (${label})`,
-              'Observe: no navigation, modal, or state change',
-            ],
-          });
+        // Avoid expensive full navigations for normal links on remote audits.
+        if (tagName === 'a' && href && href.trim() && href.trim() !== '#' && !href.trim().toLowerCase().startsWith('javascript:')) {
+          action = 'navigate';
+          navigationTo = href;
+        } else {
+          const result = await clickAndDetect(page, el);
+          action = result.action;
+          navigationTo = result.navigationTo;
+          popupUrl = result.popupUrl;
+          if (result.dead) {
+            outcome = 'dead-click';
+            deadClicks.push({
+              routeId: route.id,
+              routePath: route.path,
+              resolvedPathname,
+              selector,
+              label,
+              repro: [
+                `Go to ${route.path}`,
+                `Click ${selector} (${label})`,
+                'Observe: no navigation, modal, or state change',
+              ],
+            });
+          }
         }
       }
 
