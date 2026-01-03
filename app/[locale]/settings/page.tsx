@@ -39,6 +39,8 @@ export default function SettingsPage() {
     const newPath = pathname.replace(`/${locale}`, `/${newLocale}`);
     // Store preference in localStorage
     localStorage.setItem('mk-preferred-locale', newLocale);
+    // Set cookie for next-intl to persist across sessions (1 year expiry)
+    document.cookie = `NEXT_LOCALE=${newLocale};path=/;max-age=31536000;SameSite=Lax`;
     router.push(newPath);
   };
 
@@ -131,15 +133,19 @@ export default function SettingsPage() {
           {settingsGroups.map((group) => {
             const Icon = group.icon;
             return (
-              <div key={group.title} className="flex items-center gap-4 rounded-xl border border-border/40 bg-card p-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-muted/30">
-                  <Icon className="h-5 w-5 text-muted-foreground" />
+              <div key={group.title} className="rounded-xl border border-border/40 bg-card p-4">
+                <div className="flex items-start gap-3 mb-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-muted/30">
+                    <Icon className="h-5 w-5 text-muted-foreground" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-semibold text-foreground">{group.title}</p>
+                    <p className="text-sm text-muted-foreground">{group.description}</p>
+                  </div>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-foreground">{group.title}</p>
-                  <p className="text-sm text-muted-foreground">{group.description}</p>
+                <div className="pl-13">
+                  {group.action}
                 </div>
-                {group.action}
               </div>
             );
           })}
@@ -147,44 +153,48 @@ export default function SettingsPage() {
 
         {/* Reset Progress Section */}
         <div className="pt-6 border-t border-border/40">
-          <div className="flex items-center gap-4 rounded-xl border border-destructive/20 bg-destructive/5 p-4">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-destructive/10">
-              <RotateCcw className="h-5 w-5 text-destructive" />
+          <div className="rounded-xl border border-destructive/20 bg-destructive/5 p-4">
+            <div className="flex items-start gap-3 mb-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-destructive/10">
+                <RotateCcw className="h-5 w-5 text-destructive" />
+              </div>
+              <div className="flex-1">
+                <p className="font-semibold text-foreground">Reset Progress</p>
+                <p className="text-sm text-muted-foreground">Clear all local data and start fresh</p>
+              </div>
             </div>
-            <div className="flex-1 min-w-0">
-              <p className="font-semibold text-foreground">Reset Progress</p>
-              <p className="text-sm text-muted-foreground">Clear all local data and start fresh</p>
-            </div>
-            {!showResetConfirm ? (
-              <Button
-                variant="outline"
-                size="sm"
-                className="border-destructive/40 text-destructive hover:bg-destructive/10"
-                onClick={() => setShowResetConfirm(true)}
-                data-testid="settings-reset-open"
-              >
-                Reset
-              </Button>
-            ) : (
-              <div className="flex gap-2">
+            <div className="pl-13 flex justify-end">
+              {!showResetConfirm ? (
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => setShowResetConfirm(false)}
-                  data-testid="settings-reset-cancel"
+                  className="border-destructive/40 text-destructive hover:bg-destructive/10"
+                  onClick={() => setShowResetConfirm(true)}
+                  data-testid="settings-reset-open"
                 >
-                  Cancel
+                  Reset
                 </Button>
-                <Button
-                  variant="destructive"
-                  size="sm"
-                  onClick={handleResetProgress}
-                  data-testid="settings-reset-confirm"
-                >
-                  Confirm
-                </Button>
-              </div>
-            )}
+              ) : (
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setShowResetConfirm(false)}
+                    data-testid="settings-reset-cancel"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    variant="destructive"
+                    size="sm"
+                    onClick={handleResetProgress}
+                    data-testid="settings-reset-confirm"
+                  >
+                    Confirm
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
           {resetComplete && (
             <p className="mt-2 text-sm text-emerald-500 text-center">Progress reset successfully!</p>

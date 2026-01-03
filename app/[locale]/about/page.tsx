@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { CheckCircle2 } from 'lucide-react';
@@ -51,14 +50,13 @@ export default function AboutPage() {
           <Card className="glass-card rounded-3xl p-6 text-center mx-auto max-w-md">
             <CardHeader className="flex flex-col items-center space-y-4">
               <div className="relative h-24 w-24 rounded-full overflow-hidden ring-4 ring-primary/30 shadow-xl">
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src="/images/vinny-profile.png"
                   alt="Vincent Battaglia"
                   width={96}
                   height={96}
                   className="h-full w-full object-cover"
-                  priority
-                  unoptimized
                 />
               </div>
               <div>
