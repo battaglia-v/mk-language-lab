@@ -126,6 +126,7 @@ export function ReminderSettingsCard({ className, dataTestId }: ReminderSettings
             description={t('quietHours.description')}
             checked={settings.quietHoursEnabled}
             onChange={(checked) => handleUpdate({ quietHoursEnabled: checked })}
+            checkboxTestId="reminder-quiet-hours-toggle"
           >
             <div className="flex flex-wrap gap-3 text-slate-900">
               <Select
@@ -133,7 +134,11 @@ export function ReminderSettingsCard({ className, dataTestId }: ReminderSettings
                 onValueChange={(value) => handleUpdate({ quietHoursStart: Number(value) })}
                 disabled={!settings.quietHoursEnabled}
               >
-                <SelectTrigger className="bg-white/80 text-sm text-slate-900" size="sm">
+                <SelectTrigger
+                  className="bg-white/80 text-sm text-slate-900"
+                  size="sm"
+                  data-testid="reminder-quiet-hours-start"
+                >
                   <SelectValue placeholder="--" />
                 </SelectTrigger>
                 <SelectContent>
@@ -150,7 +155,11 @@ export function ReminderSettingsCard({ className, dataTestId }: ReminderSettings
                 onValueChange={(value) => handleUpdate({ quietHoursEnd: Number(value) })}
                 disabled={!settings.quietHoursEnabled}
               >
-                <SelectTrigger className="bg-white/80 text-sm text-slate-900" size="sm">
+                <SelectTrigger
+                  className="bg-white/80 text-sm text-slate-900"
+                  size="sm"
+                  data-testid="reminder-quiet-hours-end"
+                >
                   <SelectValue placeholder="--" />
                 </SelectTrigger>
                 <SelectContent>
@@ -169,6 +178,7 @@ export function ReminderSettingsCard({ className, dataTestId }: ReminderSettings
             description={t('streakWarnings.description')}
             checked={settings.streakRemindersEnabled}
             onChange={(checked) => handleUpdate({ streakRemindersEnabled: checked })}
+            checkboxTestId="reminder-streak-warnings-toggle"
           />
 
           <ToggleRow
@@ -176,12 +186,13 @@ export function ReminderSettingsCard({ className, dataTestId }: ReminderSettings
             description={t('dailyNudges.description')}
             checked={settings.dailyNudgesEnabled}
             onChange={(checked) => handleUpdate({ dailyNudgesEnabled: checked })}
+            checkboxTestId="reminder-daily-nudges-toggle"
           />
         </div>
       ) : null}
 
       <div className="flex flex-wrap items-center gap-3">
-        <Button onClick={handleSave} disabled={disabled} size="sm" className="px-6">
+        <Button onClick={handleSave} disabled={disabled} size="sm" className="px-6" data-testid="reminder-settings-save">
           {mutation.isPending ? t('saving') : t('save')}
         </Button>
         <p className="text-xs text-slate-300">{t('footerHint')}</p>
@@ -196,13 +207,14 @@ type ToggleRowProps = {
   checked: boolean;
   onChange: (checked: boolean) => void;
   children?: React.ReactNode;
+  checkboxTestId?: string;
 };
 
-function ToggleRow({ label, description, checked, onChange, children }: ToggleRowProps) {
+function ToggleRow({ label, description, checked, onChange, children, checkboxTestId }: ToggleRowProps) {
   return (
     <div className="space-y-3 rounded-2xl border border-white/10 bg-white/5 p-4">
       <div className="flex items-start gap-4">
-        <Checkbox checked={checked} onCheckedChange={(value) => onChange(Boolean(value))} />
+        <Checkbox checked={checked} onCheckedChange={(value) => onChange(Boolean(value))} data-testid={checkboxTestId} />
         <div className="space-y-1">
           <p className="text-sm font-semibold text-white">{label}</p>
           <p className="text-xs text-slate-300">{description}</p>

@@ -1,13 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ReaderV2Layout } from '@/components/reader/ReaderV2Layout';
 import { TappableTextV2 } from '@/components/reader/TappableTextV2';
 import { BottomSheet } from '@/components/ui/BottomSheet';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { BookOpen, Lightbulb, CheckCircle, Settings, Sparkles } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { BookOpen, Lightbulb, CheckCircle } from 'lucide-react';
 
 interface ReaderSample {
   title_en: string;
@@ -61,9 +60,12 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
   const [grammarOpen, setGrammarOpen] = useState(false);
   const [vocabOpen, setVocabOpen] = useState(false);
   const [readProgress, setReadProgress] = useState(0);
+  const [fontSize, setFontSize] = useState<'sm' | 'base' | 'lg' | 'xl'>('base');
+  const [isComplete, setIsComplete] = useState(false);
 
   const title = locale === 'mk' ? sample.title_mk : sample.title_en;
   const backUrl = `/${locale}/reader`;
+  const completionKey = `mkll:reader-v2-complete:${sampleId}`;
 
   const t = {
     grammar: locale === 'mk' ? 'Граматика' : 'Grammar',
@@ -78,6 +80,20 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
     settings: locale === 'mk' ? 'Поставки' : 'Settings',
     fontSize: locale === 'mk' ? 'Големина на текст' : 'Font Size',
     theme: locale === 'mk' ? 'Тема' : 'Theme',
+  };
+
+  useEffect(() => {
+    try {
+      setIsComplete(localStorage.getItem(completionKey) === 'true');
+    } catch {}
+  }, [completionKey]);
+
+  const handleMarkComplete = () => {
+    if (isComplete) return;
+    setIsComplete(true);
+    try {
+      localStorage.setItem(completionKey, 'true');
+    } catch {}
   };
 
   // Handle scroll progress
@@ -96,6 +112,7 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
       progress={readProgress}
       estimatedMinutes={sample.estimatedMinutes}
       difficulty={sample.difficulty}
+      fontSize={fontSize}
       locale={locale}
       onSettingsClick={() => setSettingsOpen(true)}
     >
@@ -141,6 +158,7 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
             size="sm"
             onClick={() => setGrammarOpen(true)}
             className="gap-2"
+            data-testid="reader-v2-open-grammar"
           >
             <Lightbulb className="h-4 w-4" />
             {t.viewGrammar}
@@ -150,6 +168,7 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
             size="sm"
             onClick={() => setVocabOpen(true)}
             className="gap-2"
+            data-testid="reader-v2-open-vocabulary"
           >
             <BookOpen className="h-4 w-4" />
             {t.viewVocabulary}
@@ -174,9 +193,12 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
           <Button
             className="w-full min-h-[52px] text-base font-semibold gap-2"
             size="lg"
+            onClick={handleMarkComplete}
+            disabled={isComplete}
+            data-testid="reader-v2-mark-complete"
           >
             <CheckCircle className="h-5 w-5" />
-            {t.markComplete}
+            {isComplete ? t.completed : t.markComplete}
           </Button>
         </div>
       </div>
@@ -187,6 +209,7 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
         onClose={() => setSettingsOpen(false)}
         title={t.settings}
         height="auto"
+        testId="reader-v2-settings-sheet"
       >
         <div className="space-y-6 py-2">
           <div className="space-y-3">
@@ -197,12 +220,12 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
               {['sm', 'base', 'lg', 'xl'].map((size) => (
                 <Button
                   key={size}
-                  variant="outline"
+                  variant={fontSize === size ? 'secondary' : 'outline'}
                   size="sm"
-                  className={cn(
-                    'flex-1',
-                    size === 'lg' && 'border-primary text-primary'
-                  )}
+                  className="flex-1"
+                  onClick={() => setFontSize(size as typeof fontSize)}
+                  data-testid={`reader-v2-font-size-${size}`}
+                  aria-pressed={fontSize === size}
                 >
                   {size.toUpperCase()}
                 </Button>
@@ -218,6 +241,7 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
         onClose={() => setGrammarOpen(false)}
         title={t.grammar}
         height="auto"
+        testId="reader-v2-grammar-sheet"
       >
         <div className="space-y-4 max-h-[60vh] overflow-y-auto">
           {sample.grammar_highlights.map((highlight, idx) => (
@@ -266,6 +290,7 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
         onClose={() => setVocabOpen(false)}
         title={`${t.vocabulary} (${sample.vocabulary.length})`}
         height="auto"
+        testId="reader-v2-vocab-sheet"
       >
         <div className="space-y-4 max-h-[60vh] overflow-y-auto">
           {/* Key vocabulary */}

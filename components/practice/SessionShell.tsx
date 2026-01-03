@@ -103,8 +103,8 @@ export function SessionShell({
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>{t('drills.exitConfirmCancel')}</AlertDialogCancel>
-            <AlertDialogAction onClick={handleClose}>
+            <AlertDialogCancel data-testid="session-shell-exit-cancel">{t('drills.exitConfirmCancel')}</AlertDialogCancel>
+            <AlertDialogAction onClick={handleClose} data-testid="session-shell-exit-confirm">
               {t('drills.exitConfirmEnd')}
             </AlertDialogAction>
           </AlertDialogFooter>
@@ -119,6 +119,7 @@ export function SessionShell({
           className="h-10 w-10 rounded-full p-0 hover:bg-white/10"
           onClick={handleExitClick}
           aria-label={t('drills.endSession', { default: 'End Session' })}
+          data-testid="session-shell-exit"
         >
           <X className="h-5 w-5" />
         </Button>
@@ -269,6 +270,7 @@ export function SessionChoice({
   correct,
   disabled,
   onClick,
+  testId,
 }: {
   label: string; // A, B, C, D
   text: string;
@@ -276,6 +278,7 @@ export function SessionChoice({
   correct?: boolean | null; // null = not yet revealed
   disabled?: boolean;
   onClick?: () => void;
+  testId?: string;
 }) {
   const isRevealed = correct !== null && correct !== undefined;
   const isSelectedCorrect = selected && correct === true;
@@ -290,6 +293,7 @@ export function SessionChoice({
       type="button"
       onClick={onClick}
       disabled={disabled}
+      data-testid={testId}
       className={cn(
         'min-h-[52px] w-full rounded-xl border px-4 py-3 text-left transition-all duration-200',
         'flex items-center gap-3',

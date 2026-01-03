@@ -33,6 +33,7 @@ export function ReaderQuizButton({ sample }: { sample: ReaderSample }) {
       size="lg"
       onClick={() => setShowQuiz(true)}
       className="w-full gap-2"
+      data-testid="reader-quiz-start"
     >
       <Sparkles className="h-5 w-5" />
       Start Vocabulary Quiz

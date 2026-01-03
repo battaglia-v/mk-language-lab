@@ -99,6 +99,7 @@ export function NotificationsInbox({ className, dataTestId }: NotificationsInbox
               className="rounded-full bg-white/10 text-white hover:bg-white/20"
               onClick={() => void refetch()}
               disabled={isFetching}
+              data-testid="notifications-retry"
             >
               {t('error.cta')}
             </Button>
@@ -128,6 +129,7 @@ export function NotificationsInbox({ className, dataTestId }: NotificationsInbox
               className="rounded-full border-white/20 bg-white/10 text-white hover:bg-white/20"
               onClick={() => void refetch()}
               disabled={isFetching}
+              data-testid="notifications-refresh"
             >
               {t('empty.cta')}
             </Button>

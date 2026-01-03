@@ -39,6 +39,7 @@ export function SessionComplete({
           size="sm"
           className="h-10 w-10 rounded-full p-0"
           onClick={onFinish}
+          data-testid="word-sprint-complete-close"
         >
           <X className="h-5 w-5" />
         </Button>
@@ -77,11 +78,11 @@ export function SessionComplete({
 
           {/* Action Buttons */}
           <div className="flex flex-col gap-3 pt-2">
-            <Button onClick={onPlayAgain} size="lg" className="min-h-[52px] rounded-xl">
+            <Button onClick={onPlayAgain} size="lg" className="min-h-[52px] rounded-xl" data-testid="word-sprint-complete-play-again">
               <RotateCcw className="h-5 w-5 mr-2" />
               Play Again
             </Button>
-            <Button onClick={onAddMore} variant="outline" size="lg" className="min-h-[52px] rounded-xl">
+            <Button onClick={onAddMore} variant="outline" size="lg" className="min-h-[52px] rounded-xl" data-testid="word-sprint-complete-add-more">
               <Plus className="h-5 w-5 mr-2" />
               +5 More
             </Button>
@@ -91,6 +92,7 @@ export function SessionComplete({
                 variant="outline"
                 size="lg"
                 className={`min-h-[52px] rounded-xl ${DIFFICULTY_COLORS[nextDifficulty].border}`}
+                data-testid="word-sprint-complete-harder"
               >
                 <ArrowUp className="h-5 w-5 mr-2" />
                 Try {nextDifficulty.charAt(0).toUpperCase() + nextDifficulty.slice(1)}
@@ -101,6 +103,7 @@ export function SessionComplete({
               onClick={onFinish}
               size="lg"
               className="min-h-[52px] rounded-xl"
+              data-testid="word-sprint-complete-back"
             >
               Back to Practice
             </Button>

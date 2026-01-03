@@ -54,9 +54,11 @@ export default function AboutPage() {
                 <Image
                   src="/images/vinny-profile.png"
                   alt="Vincent Battaglia"
-                  fill
-                  className="object-cover"
+                  width={96}
+                  height={96}
+                  className="h-full w-full object-cover"
                   priority
+                  unoptimized
                 />
               </div>
               <div>

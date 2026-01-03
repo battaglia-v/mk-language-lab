@@ -62,6 +62,7 @@ function TaskCard({ task }: { task: Task }) {
       {...attributes}
       {...listeners}
       className="rounded-2xl border border-white/10 bg-white/5 p-4 mb-3 cursor-move select-none text-white transition hover:border-primary/50"
+      data-testid={`tasks-task-${task.id}`}
     >
       <div className="flex items-start gap-2">
         <div className="cursor-grab active:cursor-grabbing mt-1 touch-none">
@@ -104,7 +105,13 @@ function KanbanColumn({
             <span className="text-sm font-normal text-slate-300">({column.tasks.length})</span>
           </CardTitle>
           {totalColumns > 1 && (
-            <Button variant="ghost" size="icon" onClick={() => onDeleteColumn(column.id)} className="h-8 w-8 text-white">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => onDeleteColumn(column.id)}
+              className="h-8 w-8 text-white"
+              data-testid={`tasks-column-delete-${column.id}`}
+            >
               <Trash2 className="h-4 w-4 text-destructive" />
             </Button>
           )}
@@ -376,7 +383,7 @@ export default function TasksPage() {
               <div className="flex flex-wrap gap-2">
                 <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                   <DialogTrigger asChild>
-                    <Button className="rounded-full">
+                    <Button className="rounded-full" data-testid="tasks-add-task-open">
                       <Plus className="h-4 w-4 mr-2" />
                       {t('addTask')}
                     </Button>
@@ -392,6 +399,7 @@ export default function TasksPage() {
                           value={newTaskColumn}
                           onChange={(e) => setNewTaskColumn(e.target.value)}
                           className="w-full rounded-2xl border border-white/15 bg-background/80 px-3 py-2 text-white"
+                          data-testid="tasks-add-task-column-select"
                         >
                           <option value="">Select column...</option>
                           {columns.map((col) => (
@@ -408,6 +416,7 @@ export default function TasksPage() {
                           onChange={(e) => setNewTaskTitle(e.target.value)}
                           placeholder={t('taskTitle')}
                           className="rounded-2xl border border-white/15 bg-background/80 text-white placeholder:text-slate-400"
+                          data-testid="tasks-add-task-title"
                         />
                       </div>
                       <div>
@@ -418,15 +427,21 @@ export default function TasksPage() {
                           placeholder={t('taskDescription')}
                           rows={3}
                           className="rounded-2xl border border-white/15 bg-background/80 text-white placeholder:text-slate-400"
+                          data-testid="tasks-add-task-description"
                         />
                       </div>
-                      <Button onClick={handleAddTask} className="w-full rounded-full">
+                      <Button onClick={handleAddTask} className="w-full rounded-full" data-testid="tasks-add-task-submit">
                         {t('create')}
                       </Button>
                     </div>
                   </DialogContent>
                 </Dialog>
-                <Button variant="outline" onClick={handleAddColumn} className="rounded-full border-white/20 text-white">
+                <Button
+                  variant="outline"
+                  onClick={handleAddColumn}
+                  className="rounded-full border-white/20 text-white"
+                  data-testid="tasks-add-column"
+                >
                   <Plus className="h-4 w-4 mr-2" />
                   {t('addColumn')}
                 </Button>

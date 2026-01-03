@@ -10,12 +10,14 @@ export default async function HelpPage() {
 
   const helpItems = [
     {
+      id: 'getting-started',
       title: 'Getting Started',
       description: 'Learn the basics of MKLanguage',
       icon: BookOpen,
       href: `/${locale}/about`,
     },
     {
+      id: 'contact-support',
       title: 'Contact Support',
       description: 'Get help from our team',
       icon: Mail,
@@ -23,12 +25,14 @@ export default async function HelpPage() {
       external: true,
     },
     {
+      id: 'feedback',
       title: 'Feedback',
       description: 'Share your suggestions',
       icon: MessageCircle,
       href: `/${locale}/feedback`,
     },
     {
+      id: 'resources',
       title: 'Resources',
       description: 'External learning materials',
       icon: ExternalLink,
@@ -46,7 +50,7 @@ export default async function HelpPage() {
             size="icon"
             className="h-10 w-10 rounded-full"
           >
-            <Link href={`/${locale}/more`}>
+            <Link href={`/${locale}/more`} data-testid="help-back-to-more">
               <ArrowLeft className="h-5 w-5" />
             </Link>
           </Button>
@@ -62,6 +66,7 @@ export default async function HelpPage() {
                 href={item.href}
                 {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 className="group flex items-center gap-4 rounded-xl border border-border/40 bg-card p-4 transition-all hover:border-primary/40 hover:bg-muted/20"
+                data-testid={`help-item-${item.id}`}
               >
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-muted/30">
                   <Icon className="h-5 w-5 text-muted-foreground group-hover:text-primary" />
@@ -79,7 +84,11 @@ export default async function HelpPage() {
         <div className="rounded-xl border border-border/40 bg-muted/20 p-6 text-center">
           <p className="text-sm text-muted-foreground">
             Need more help? Email us at{' '}
-            <a href="mailto:support@mklanguage.com" className="text-primary hover:underline">
+            <a
+              href="mailto:support@mklanguage.com"
+              className="text-primary hover:underline"
+              data-testid="help-email-support"
+            >
               support@mklanguage.com
             </a>
           </p>

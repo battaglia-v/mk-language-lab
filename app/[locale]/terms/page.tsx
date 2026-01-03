@@ -131,6 +131,7 @@ export default function TermsOfServicePage() {
               <a
                 href="mailto:macedonianlanguagelab@gmail.com?subject=Terms%20of%20Service%20Inquiry%20-%20Macedonian%20Learning%20App"
                 className="text-primary hover:underline font-medium"
+                data-testid="terms-contact-email"
               >
                 Contact Us
               </a>
@@ -144,6 +145,7 @@ export default function TermsOfServicePage() {
             <Link
               href={`/${locale}/privacy`}
               className="text-primary hover:underline font-medium"
+              data-testid="terms-view-privacy"
             >
               {t('viewPrivacy')}
             </Link>
@@ -151,6 +153,7 @@ export default function TermsOfServicePage() {
             <Link
               href={`/${locale}`}
               className="text-muted-foreground hover:text-foreground transition-colors"
+              data-testid="terms-back-home"
             >
               {t('backHome')}
             </Link>

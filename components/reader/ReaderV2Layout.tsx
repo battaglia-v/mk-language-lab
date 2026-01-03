@@ -55,6 +55,8 @@ interface ReaderV2LayoutProps {
   estimatedMinutes?: number;
   /** Difficulty level */
   difficulty?: string;
+  /** Preferred font size */
+  fontSize?: 'sm' | 'base' | 'lg' | 'xl';
   /** Locale */
   locale: string;
   /** Main reading content */
@@ -78,6 +80,7 @@ export function ReaderV2Layout({
   progress = 0,
   estimatedMinutes,
   difficulty,
+  fontSize = 'base',
   locale,
   children,
   onSettingsClick,
@@ -137,9 +140,19 @@ export function ReaderV2Layout({
     sentenceMode: locale === 'mk' ? 'Реченици' : 'Sentences',
     glossary: locale === 'mk' ? 'Речник' : 'Glossary',
     save: locale === 'mk' ? 'Зачувај' : 'Save',
+    saveComingSoon: locale === 'mk' ? 'Наскоро' : 'Coming soon',
     back: locale === 'mk' ? 'Назад' : 'Back',
     minRead: locale === 'mk' ? 'мин' : 'min',
   };
+
+  const proseSize =
+    fontSize === 'sm'
+      ? 'prose-p:text-base sm:prose-p:text-lg'
+      : fontSize === 'lg'
+        ? 'prose-p:text-xl sm:prose-p:text-2xl'
+        : fontSize === 'xl'
+          ? 'prose-p:text-2xl sm:prose-p:text-3xl'
+          : 'prose-p:text-lg sm:prose-p:text-xl';
 
   return (
     <ReaderV2Context.Provider value={contextValue}>
@@ -152,6 +165,7 @@ export function ReaderV2Layout({
               href={backUrl}
               className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-muted transition-colors"
               aria-label={t.back}
+              data-testid="reader-v2-back"
             >
               <ArrowLeft className="h-5 w-5 text-muted-foreground" />
             </Link>
@@ -187,6 +201,7 @@ export function ReaderV2Layout({
                 className="h-10 w-10 rounded-full"
                 onClick={onSettingsClick}
                 aria-label="Settings"
+                data-testid="reader-v2-settings"
               >
                 <Settings className="h-5 w-5 text-muted-foreground" />
               </Button>
@@ -204,7 +219,12 @@ export function ReaderV2Layout({
         <main className="flex-1 overflow-y-auto overscroll-contain">
           <div className="px-4 py-6 sm:px-6 md:px-8">
             {/* Reading content with optimal typography */}
-            <article className="prose prose-lg dark:prose-invert max-w-none prose-p:leading-relaxed prose-p:text-lg sm:prose-p:text-xl prose-p:tracking-wide">
+            <article
+              className={cn(
+                'prose dark:prose-invert max-w-none prose-p:leading-relaxed prose-p:tracking-wide',
+                proseSize
+              )}
+            >
               {children}
             </article>
           </div>
@@ -223,6 +243,7 @@ export function ReaderV2Layout({
                   : 'text-muted-foreground hover:bg-muted'
               )}
               aria-pressed={tapTranslateEnabled}
+              data-testid="reader-v2-toggle-tap"
             >
               <BookOpen className="h-5 w-5" />
               <span className="text-xs font-medium">{t.tapTranslate}</span>
@@ -238,6 +259,7 @@ export function ReaderV2Layout({
                   : 'text-muted-foreground hover:bg-muted'
               )}
               aria-pressed={sentenceModeEnabled}
+              data-testid="reader-v2-toggle-sentences"
             >
               <MessageSquare className="h-5 w-5" />
               <span className="text-xs font-medium">{t.sentenceMode}</span>
@@ -250,11 +272,12 @@ export function ReaderV2Layout({
                 'flex flex-col items-center gap-1 px-3 py-2 rounded-lg transition-colors min-w-[60px] relative',
                 'text-muted-foreground hover:bg-muted'
               )}
+              data-testid="reader-v2-open-glossary"
             >
               <Library className="h-5 w-5" />
               <span className="text-xs font-medium">{t.glossary}</span>
               {savedWords.length > 0 && (
-                <span className="absolute top-1 right-1 h-4 w-4 rounded-full bg-primary text-[10px] font-bold text-primary-foreground flex items-center justify-center">
+                <span className="absolute top-1 right-1 h-4 w-4 rounded-full bg-primary text-[10px] font-bold text-black flex items-center justify-center">
                   {savedWords.length}
                 </span>
               )}
@@ -262,10 +285,15 @@ export function ReaderV2Layout({
 
             {/* Save Current */}
             <button
+              type="button"
+              disabled
+              aria-disabled="true"
+              title={t.saveComingSoon}
               className={cn(
                 'flex flex-col items-center gap-1 px-3 py-2 rounded-lg transition-colors min-w-[60px]',
-                'text-muted-foreground hover:bg-muted'
+                'text-muted-foreground opacity-50 cursor-not-allowed'
               )}
+              data-testid="reader-v2-save-disabled"
             >
               <Bookmark className="h-5 w-5" />
               <span className="text-xs font-medium">{t.save}</span>

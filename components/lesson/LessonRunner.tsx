@@ -130,6 +130,7 @@ export function LessonRunner({
                 size="default"
                 onClick={skipStep}
                 className="mt-4"
+                data-testid="lesson-runner-validation-continue"
               >
                 Continue
               </Button>
@@ -182,17 +183,18 @@ export function LessonRunner({
   ];
 
   return (
-    <ExerciseLayout
-      progress={progress}
-      chips={chips.length > 0 ? chips : undefined}
-      onSkip={showSkip ? skipStep : undefined}
-      onSubmit={handleSubmit}
-      submitLabel={submitLabel}
-      submitDisabled={submitDisabled && !showFeedback}
-      submitLoading={isEvaluating}
-      bottomNavOffset={true}
-      className="relative"
-    >
+      <ExerciseLayout
+        progress={progress}
+        chips={chips.length > 0 ? chips : undefined}
+        onSkip={showSkip ? skipStep : undefined}
+        onSubmit={handleSubmit}
+        submitLabel={submitLabel}
+        submitDisabled={submitDisabled && !showFeedback}
+        submitLoading={isEvaluating}
+        bottomNavOffset={true}
+        className="relative"
+        testId="lesson-runner"
+      >
       {/* Exit Button (top right) - 44px for WCAG touch target */}
       {onExit && (
         <Button
@@ -201,13 +203,14 @@ export function LessonRunner({
           onClick={onExit}
           className="absolute right-4 top-4 z-10 rounded-full h-11 w-11 touch-manipulation"
           aria-label="Exit lesson"
+          data-testid="lesson-runner-exit"
         >
           <X className="h-5 w-5" />
         </Button>
       )}
 
       {/* Current Step */}
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {renderStep()}
 
         {/* Feedback Banner */}

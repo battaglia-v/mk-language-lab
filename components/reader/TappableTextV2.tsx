@@ -258,6 +258,9 @@ export function TappableTextV2({
         key={wordIndex}
         role={tapTranslateEnabled ? 'button' : undefined}
         tabIndex={tapTranslateEnabled ? 0 : undefined}
+        data-testid={tapTranslateEnabled ? 'reader-tappable-word' : undefined}
+        data-scan-group={tapTranslateEnabled ? 'reader-tappable-word' : undefined}
+        data-scan-label={tapTranslateEnabled ? 'Tap word for translation' : undefined}
         onClick={(e) => {
           e.stopPropagation();
           handleWordClick(word);
@@ -318,7 +321,7 @@ export function TappableTextV2({
 
   return (
     <>
-      <p className={cn('leading-relaxed select-none text-lg', className)}>
+      <p className={cn('leading-relaxed select-none', className)}>
         {sentences.map((sentence, sentenceIndex) => renderSentence(sentence, sentenceIndex))}
       </p>
 

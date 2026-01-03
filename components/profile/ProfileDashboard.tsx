@@ -60,10 +60,14 @@ export function ProfileDashboard({ className, dataTestId }: ProfileDashboardProp
           <p className="mt-3 max-w-2xl text-sm text-slate-300">{t('signIn.body')}</p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Button asChild size="lg" className="px-6">
-              <Link href={signInHref}>{t('signIn.cta')}</Link>
+              <Link href={signInHref} data-testid="profile-sign-in">
+                {t('signIn.cta')}
+              </Link>
             </Button>
             <Button asChild variant="ghost" size="lg" className="px-6 text-slate-200">
-              <Link href={`/${locale}`}>{t('signIn.secondary')}</Link>
+              <Link href={`/${locale}`} data-testid="profile-back-home">
+                {t('signIn.secondary')}
+              </Link>
             </Button>
           </div>
         </div>
@@ -78,11 +82,13 @@ export function ProfileDashboard({ className, dataTestId }: ProfileDashboardProp
           <h2 className="text-lg font-semibold text-white">{t('error.title')}</h2>
           <p className="mt-1 text-red-100/90">{error?.message || t('error.generic')}</p>
           <div className="mt-4 flex flex-wrap gap-3">
-            <Button onClick={() => void refetchProfile()} size="sm" variant="secondary">
+            <Button onClick={() => void refetchProfile()} size="sm" variant="secondary" data-testid="profile-retry">
               {isFetching ? common('loading') : common('tryAgain')}
             </Button>
             <Button asChild size="sm" variant="ghost" className="text-slate-200">
-              <Link href={`/${locale}/practice`}>{common('goHome')}</Link>
+              <Link href={`/${locale}/practice`} data-testid="profile-go-practice">
+                {common('goHome')}
+              </Link>
             </Button>
           </div>
         </div>

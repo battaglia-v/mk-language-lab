@@ -161,13 +161,14 @@ export default function GrammarPracticePage() {
             </div>
 
             <div className="flex flex-col gap-3">
-              <Button onClick={handleBackToLessons} className="w-full">
+              <Button onClick={handleBackToLessons} className="w-full" data-testid="grammar-results-back-to-lessons">
                 {t('lessonComplete.continueLearning')}
               </Button>
               <Button
                 variant="outline"
                 onClick={() => handleStartLesson(activeLesson)}
                 className="w-full"
+                data-testid="grammar-results-retry"
               >
                 {t('lessonComplete.retryLesson')}
               </Button>
@@ -195,12 +196,12 @@ export default function GrammarPracticePage() {
     <PageContainer size="lg" className="flex flex-col gap-6 pb-24 sm:pb-8">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <Link href={`/${locale}/practice`}>
-          <Button variant="ghost" size="sm" className="gap-2">
+        <Button asChild variant="ghost" size="sm" className="gap-2" data-testid="grammar-back-to-practice">
+          <Link href={`/${locale}/practice`}>
             <ArrowLeft className="h-4 w-4" />
             {t('backToPractice')}
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </div>
 
       {/* Page Title */}
@@ -240,68 +241,77 @@ export default function GrammarPracticePage() {
             const isCompleted = lessonProgress?.completed ?? false;
 
             return (
-              <Card
+              // eslint-disable-next-line react/forbid-elements -- Clickable card wrapper pattern
+              <button
                 key={lesson.id}
-                className={cn(
-                  'transition-all',
-                  isUnlocked
-                    ? 'cursor-pointer border-white/8 bg-white/5 hover:border-accent/30 hover:bg-white/8'
-                    : 'cursor-not-allowed border-white/5 bg-white/2 opacity-60'
-                )}
-                onClick={() => isUnlocked && handleStartLesson(lesson)}
+                type="button"
+                disabled={!isUnlocked}
+                onClick={() => handleStartLesson(lesson)}
+                className="w-full text-left"
+                data-testid={`grammar-lesson-${lesson.id}`}
+                title={!isUnlocked ? t('lockedReason', { default: 'Complete the previous lesson to unlock.' }) : undefined}
               >
-                <CardContent className="flex items-center gap-4 py-4">
-                  {/* Lesson Number / Status */}
-                  <div
-                    className={cn(
-                      'flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold',
-                      isCompleted
-                        ? 'bg-emerald-500/20 text-emerald-400'
-                        : isUnlocked
-                        ? 'bg-accent/20 text-accent'
-                        : 'bg-white/10 text-muted-foreground'
-                    )}
-                  >
-                    {isCompleted ? (
-                      <CheckCircle2 className="h-5 w-5" />
-                    ) : isUnlocked ? (
-                      index + 1
-                    ) : (
-                      <Lock className="h-4 w-4" />
-                    )}
-                  </div>
-
-                  {/* Lesson Info */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <h3 className="font-medium truncate">
-                        {locale === 'mk' ? lesson.titleMk : lesson.titleEn}
-                      </h3>
-                      <Badge
-                        variant="outline"
-                        className={cn('shrink-0 text-xs', difficultyColors[lesson.difficulty])}
-                      >
-                        {lesson.difficulty}
-                      </Badge>
-                    </div>
-                    <p className="text-sm text-muted-foreground truncate">
-                      {locale === 'mk' ? lesson.descriptionMk : lesson.descriptionEn}
-                    </p>
-                    <div className="mt-1 flex items-center gap-3 text-xs text-muted-foreground">
-                      <span>{lesson.exercises.length} {t('exercises')}</span>
-                      <span>~{Math.ceil(lesson.exercises.length * 2)} {t('minutes')}</span>
-                      {lessonProgress?.score !== undefined && (
-                        <span className="text-emerald-400">{lessonProgress.score}%</span>
+                <Card
+                  className={cn(
+                    'transition-all',
+                    isUnlocked
+                      ? 'border-white/8 bg-white/5 hover:border-accent/30 hover:bg-white/8'
+                      : 'cursor-not-allowed border-white/5 bg-white/2 opacity-60'
+                  )}
+                >
+                  <CardContent className="flex items-center gap-4 py-4">
+                    {/* Lesson Number / Status */}
+                    <div
+                      className={cn(
+                        'flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold',
+                        isCompleted
+                          ? 'bg-emerald-500/20 text-emerald-400'
+                          : isUnlocked
+                          ? 'bg-accent/20 text-accent'
+                          : 'bg-white/10 text-muted-foreground'
+                      )}
+                    >
+                      {isCompleted ? (
+                        <CheckCircle2 className="h-5 w-5" />
+                      ) : isUnlocked ? (
+                        index + 1
+                      ) : (
+                        <Lock className="h-4 w-4" />
                       )}
                     </div>
-                  </div>
 
-                  {/* Arrow */}
-                  {isUnlocked && (
-                    <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground" />
-                  )}
-                </CardContent>
-              </Card>
+                    {/* Lesson Info */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <h3 className="font-medium truncate">
+                          {locale === 'mk' ? lesson.titleMk : lesson.titleEn}
+                        </h3>
+                        <Badge
+                          variant="outline"
+                          className={cn('shrink-0 text-xs', difficultyColors[lesson.difficulty])}
+                        >
+                          {lesson.difficulty}
+                        </Badge>
+                      </div>
+                      <p className="text-sm text-muted-foreground truncate">
+                        {locale === 'mk' ? lesson.descriptionMk : lesson.descriptionEn}
+                      </p>
+                      <div className="mt-1 flex items-center gap-3 text-xs text-muted-foreground">
+                        <span>{lesson.exercises.length} {t('exercises')}</span>
+                        <span>~{Math.ceil(lesson.exercises.length * 2)} {t('minutes')}</span>
+                        {lessonProgress?.score !== undefined && (
+                          <span className="text-emerald-400">{lessonProgress.score}%</span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Arrow */}
+                    {isUnlocked && (
+                      <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground" />
+                    )}
+                  </CardContent>
+                </Card>
+              </button>
             );
           })}
         </div>

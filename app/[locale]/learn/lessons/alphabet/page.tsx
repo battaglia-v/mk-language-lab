@@ -189,7 +189,7 @@ export default function AlphabetLessonPage() {
     <PageContainer size="lg" className="flex flex-col gap-5 pb-24 sm:gap-6 sm:pb-10">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <Button asChild variant="ghost" size="sm" className="gap-2">
+        <Button asChild variant="ghost" size="sm" className="gap-2" data-testid="alphabet-back-to-a1">
           <Link href={`/${locale}/learn/paths/a1`}>
             <ArrowLeft className="h-4 w-4" />
             {t('backToPath', { default: 'Back to A1 Path' })}
@@ -222,15 +222,15 @@ export default function AlphabetLessonPage() {
       {/* Tabs */}
       <Tabs defaultValue="learn" className="w-full">
         <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="learn" className="gap-1.5">
+          <TabsTrigger value="learn" className="gap-1.5" data-testid="alphabet-tab-learn">
             <BookOpen className="h-4 w-4" />
             {t('learn', { default: 'Learn' })}
           </TabsTrigger>
-          <TabsTrigger value="special" className="gap-1.5">
+          <TabsTrigger value="special" className="gap-1.5" data-testid="alphabet-tab-special">
             <Sparkles className="h-4 w-4" />
             {t('special', { default: 'Special' })}
           </TabsTrigger>
-          <TabsTrigger value="practice" className="gap-1.5">
+          <TabsTrigger value="practice" className="gap-1.5" data-testid="alphabet-tab-practice">
             <Mic className="h-4 w-4" />
             {t('practice', { default: 'Practice' })}
           </TabsTrigger>
@@ -254,6 +254,7 @@ export default function AlphabetLessonPage() {
                 <button
                   type="button"
                   aria-label={`Letter ${letter.letter}, ${letter.latinEquiv}. Tap to hear pronunciation.`}
+                  data-testid={`alphabet-letter-${letter.id}`}
                   className="absolute inset-0 z-10 cursor-pointer touch-manipulation"
                   onClick={() => speakLetter(letter)}
                   onKeyDown={(e) => {
@@ -276,6 +277,7 @@ export default function AlphabetLessonPage() {
                     variant="ghost"
                     size="sm"
                     className="w-full gap-2 text-sm min-h-[44px] pointer-events-auto relative z-20"
+                    data-testid={`alphabet-example-audio-${letter.id}`}
                     onClick={(e) => {
                       e.stopPropagation();
                       speakWord(letter.exampleWord.mk);
@@ -329,6 +331,7 @@ export default function AlphabetLessonPage() {
                       <button
                         type="button"
                         aria-label={`Letter ${letter.letter}. Tap to hear.`}
+                        data-testid={`alphabet-special-letter-${letter.id}`}
                         className="absolute inset-0 z-10 cursor-pointer touch-manipulation"
                         onClick={() => speakLetter(letter)}
                       />
@@ -385,14 +388,14 @@ export default function AlphabetLessonPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Button asChild className="w-full">
+              <Button asChild className="w-full" data-testid="alphabet-go-pronunciation-practice">
                 <Link href={`/${locale}/practice/pronunciation`}>
                   <Mic className="h-4 w-4 mr-2" />
                   {t('pronunciationPractice', { default: 'Pronunciation Practice' })}
                 </Link>
               </Button>
 
-              <Button asChild variant="outline" className="w-full">
+              <Button asChild variant="outline" className="w-full" data-testid="alphabet-go-alphabet-quiz">
                 <Link href={`/${locale}/practice/session?deck=cyrillic-alphabet-v1&difficulty=all`}>
                   <BookOpen className="h-4 w-4 mr-2" />
                   {t('alphabetQuiz', { default: 'Alphabet Quiz' })}
@@ -420,7 +423,7 @@ export default function AlphabetLessonPage() {
                     <p className="text-sm text-muted-foreground mb-4">
                       {t('completedDesc', { default: 'You\'ve viewed all 31 letters. Great job!' })}
                     </p>
-                    <Button asChild className="min-h-[44px]">
+                    <Button asChild className="min-h-[44px]" data-testid="alphabet-continue-to-a1">
                       <Link href={`/${locale}/learn/paths/a1`}>
                         {t('continue', { default: 'Continue to Next Lesson' })}
                       </Link>

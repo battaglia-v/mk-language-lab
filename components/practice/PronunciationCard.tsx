@@ -411,6 +411,7 @@ export function PronunciationCard({
             onClick={playReference}
             disabled={isPlayingReference}
             className="min-h-[56px] min-w-[180px] rounded-full"
+            data-testid="pronunciation-reference-audio"
           >
             {isPlayingReference ? (
               <Pause className="h-5 w-5 mr-2" />
@@ -432,6 +433,7 @@ export function PronunciationCard({
               variant="outline"
               onClick={handleSkip}
               className="flex-1"
+              data-testid="pronunciation-skip"
             >
               {t.skip}
             </Button>
@@ -439,6 +441,7 @@ export function PronunciationCard({
               onClick={handlePracticeSilently}
               className="flex-1"
               disabled={!hasListened}
+              data-testid="pronunciation-practice-silently"
             >
               {t.practiceSilently || 'I practiced'}
             </Button>
@@ -515,6 +518,7 @@ export function PronunciationCard({
                 onClick={playReference}
                 disabled={isPlayingReference}
                 className="min-h-[64px] min-w-[200px] rounded-full"
+                data-testid="pronunciation-reference-audio"
               >
                 {isPlayingReference ? (
                   <Pause className="h-6 w-6 mr-2" />
@@ -579,6 +583,8 @@ export function PronunciationCard({
                 onTouchStart={handleRecordStart}
                 onTouchEnd={handleRecordStop}
                 disabled={recordButtonState.disabled}
+                aria-label={recordButtonState.label}
+                data-testid="pronunciation-record"
                 className={cn(
                   "flex h-24 w-24 items-center justify-center rounded-full transition-all",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
@@ -688,6 +694,7 @@ export function PronunciationCard({
                   onClick={playReference}
                   disabled={isPlayingReference}
                   className="flex-1 min-h-[56px]"
+                  data-testid="pronunciation-play-reference"
                 >
                   <Volume2 className="h-5 w-5 mr-2" />
                   {t.playReference}
@@ -700,6 +707,7 @@ export function PronunciationCard({
                   onClick={playRecording}
                   disabled={!recordedAudioUrl || isPlayingRecording}
                   className="flex-1 min-h-[56px]"
+                  data-testid="pronunciation-play-recording"
                 >
                   {isPlayingRecording ? (
                     <Pause className="h-5 w-5 mr-2" />
@@ -718,6 +726,7 @@ export function PronunciationCard({
                     variant="outline"
                     onClick={handleTryAgain}
                     className="flex-1 min-h-[48px]"
+                    data-testid="pronunciation-try-again"
                   >
                     <RotateCcw className="h-4 w-4 mr-2" />
                     {t.tryAgain}
@@ -733,6 +742,7 @@ export function PronunciationCard({
                       ? "bg-success hover:bg-success/90" 
                       : "bg-primary hover:bg-primary/90"
                   )}
+                  data-testid="pronunciation-sounds-good"
                 >
                   <Check className="h-4 w-4 mr-2" />
                   {score ? (t.gotIt ?? 'Got it') : t.soundsGood}
@@ -749,6 +759,7 @@ export function PronunciationCard({
             size="sm"
             onClick={handleSkip}
             className="text-muted-foreground hover:text-foreground"
+            data-testid="pronunciation-skip"
           >
             <X className="h-4 w-4 mr-1" />
             {t.skip}

@@ -161,7 +161,7 @@ export default function ResourcesPage() {
         </div>
         {data?.pdf && (
           <Button asChild variant="outline" size="sm" className="hidden sm:flex">
-            <a href={data.pdf.url} target="_blank" rel="noreferrer">
+            <a href={data.pdf.url} target="_blank" rel="noreferrer" data-testid="resources-pdf-desktop">
               <ExternalLink className="mr-2 h-4 w-4" />
               {data.pdf.label}
             </a>
@@ -177,6 +177,7 @@ export default function ResourcesPage() {
           onChange={(e) => setQuery(e.target.value)}
           placeholder={t('searchPlaceholder', { default: 'Search resources...' })}
           className="h-12 rounded-xl pl-10"
+          data-testid="resources-search-input"
         />
       </div>
 
@@ -186,6 +187,7 @@ export default function ResourcesPage() {
           active={!sectionFilter}
           onClick={() => setSectionFilter(null)}
           className="h-9 px-4 text-sm"
+          data-testid="resources-filter-all"
         >
           All
           {!sectionFilter && (
@@ -200,6 +202,7 @@ export default function ResourcesPage() {
             active={sectionFilter === section.title}
             onClick={() => setSectionFilter(section.title)}
             className="h-9 px-4 text-sm"
+            data-testid={`resources-filter-${section.id}`}
           >
             {section.title}
             {sectionFilter === section.title && (
@@ -255,6 +258,7 @@ export default function ResourcesPage() {
               className={cn(
                 'group relative flex gap-3 rounded-xl border border-border bg-card p-3 transition-all hover:border-primary/50 hover:bg-card/80 sm:gap-4 sm:p-4',
               )}
+              data-testid={`resources-item-${resource.id}`}
             >
               <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary ring-1 ring-primary/15">
                 {(() => {
@@ -305,7 +309,13 @@ export default function ResourcesPage() {
           className="sm:hidden w-full whitespace-normal break-words text-sm leading-relaxed px-4 py-3 h-auto min-h-[52px] justify-start text-left gap-2 rounded-xl"
           size="lg"
         >
-          <a href={data.pdf.url} target="_blank" rel="noreferrer" className="flex items-start gap-2 w-full">
+          <a
+            href={data.pdf.url}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-start gap-2 w-full"
+            data-testid="resources-pdf-mobile"
+          >
             <ExternalLink className="mt-0.5 h-4 w-4 flex-shrink-0" />
             <span className="text-left break-words">{data.pdf.label}</span>
           </a>

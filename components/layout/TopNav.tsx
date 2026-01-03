@@ -77,6 +77,7 @@ export function TopNav({
       <a
         href="#main-content"
         className="skip-nav-link"
+        data-testid="skip-to-main-content"
       >
         {common('skipToContent')}
       </a>
@@ -94,6 +95,7 @@ export function TopNav({
             href={`/${locale}`}
             className="flex items-center gap-2 transition-opacity hover:opacity-80"
             aria-label={t('home')}
+            data-testid="topnav-home"
           >
             <AjvarLogo size={32} />
             <span className="text-base font-semibold text-white">{brandLabel}</span>
@@ -151,6 +153,7 @@ function MissionSummaryBanner({ mission, state, error, onRefresh, t, buildHref }
         <button
           type="button"
           onClick={onRefresh}
+          data-testid="topnav-mission-retry"
           className="min-h-[44px] touch-target rounded-full border border-red-400/60 px-3 py-1 text-xs font-semibold text-red-100 transition-all hover:bg-red-500/20"
         >
           {t('retry')}
@@ -217,6 +220,7 @@ function MissionSummaryBanner({ mission, state, error, onRefresh, t, buildHref }
       <div className="flex w-full flex-col gap-2 md:w-[240px]">
         <Link
           href={buildHref('/practice')}
+          data-testid="topnav-quick-practice"
           className="flex min-h-[48px] flex-col justify-center rounded-xl bg-[var(--brand-red)] px-4 py-2.5 text-white shadow-lg shadow-[rgba(255,79,94,0.35)] transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-red)] focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:rounded-2xl sm:py-3"
         >
           <span className="text-sm font-semibold">{t('quickActionPractice')}</span>
@@ -224,6 +228,7 @@ function MissionSummaryBanner({ mission, state, error, onRefresh, t, buildHref }
         </Link>
         <Link
           href={buildHref('/translate')}
+          data-testid="topnav-quick-translate"
           className="flex min-h-[48px] items-center justify-between rounded-xl border border-border/70 bg-background/80 px-4 py-2.5 text-sm font-semibold text-foreground transition hover:border-[var(--brand-red)] hover:text-[var(--brand-red)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-red)] focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:rounded-2xl sm:py-3"
         >
           <span>{t('quickActionTranslate')}</span>

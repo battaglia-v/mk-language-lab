@@ -70,7 +70,7 @@ export function LearnHeader({
             href={continueHref}
             className={cn(
               'flex items-center gap-1.5 px-4 py-2 rounded-full font-semibold text-sm transition-all',
-              'bg-primary text-primary-foreground shadow-md hover:shadow-lg',
+              'bg-primary text-black shadow-md hover:shadow-lg',
               'hover:scale-105 active:scale-95'
             )}
           >

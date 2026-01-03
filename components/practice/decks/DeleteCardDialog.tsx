@@ -17,6 +17,7 @@ type DeleteCardDialogProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onConfirm: () => Promise<void>;
+  testIdPrefix?: string;
   cardContent: {
     macedonian: string;
     english: string;
@@ -27,6 +28,7 @@ export function DeleteCardDialog({
   open,
   onOpenChange,
   onConfirm,
+  testIdPrefix = 'delete-card',
   cardContent,
 }: DeleteCardDialogProps) {
   const [isDeleting, setIsDeleting] = useState(false);
@@ -63,7 +65,9 @@ export function DeleteCardDialog({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel disabled={isDeleting}>Cancel</AlertDialogCancel>
+          <AlertDialogCancel disabled={isDeleting} data-testid={`${testIdPrefix}-cancel`}>
+            Cancel
+          </AlertDialogCancel>
           <AlertDialogAction
             onClick={(e) => {
               e.preventDefault();
@@ -71,6 +75,7 @@ export function DeleteCardDialog({
             }}
             disabled={isDeleting}
             className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            data-testid={`${testIdPrefix}-confirm`}
           >
             {isDeleting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             Delete Card

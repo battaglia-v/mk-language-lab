@@ -313,7 +313,7 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
         <CardHeader>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-primary-foreground">
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-black">
                 <Instagram className="h-6 w-6" />
               </div>
               <div>
@@ -322,7 +322,7 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <Button variant="outline" size="sm" disabled>
+              <Button variant="outline" size="sm" disabled data-testid="daily-lessons-follow-loading">
                 <Instagram className="mr-2 h-4 w-4" />
                 {t('follow')}
               </Button>
@@ -353,7 +353,7 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
         <CardHeader>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-primary-foreground">
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-black">
                 <Instagram className="h-6 w-6" />
               </div>
               <div>
@@ -362,7 +362,12 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
               </div>
             </div>
             <Button variant="outline" size="sm" asChild>
-              <a href="https://www.instagram.com/macedonianlanguagecorner" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.instagram.com/macedonianlanguagecorner"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="daily-lessons-visit-instagram-error"
+              >
                 <Instagram className="mr-2 h-4 w-4" />
                 {t('visitInstagram')}
               </a>
@@ -384,7 +389,7 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
       <CardHeader>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-primary-foreground">
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-black">
               <Instagram className="h-6 w-6" />
             </div>
             <div>
@@ -405,7 +410,7 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
             )}
             {showViewAll && (
               <Button variant="default" size="sm" asChild>
-                <Link href={`/${locale}/daily-lessons`}>
+                <Link href={`/${locale}/daily-lessons`} data-testid="daily-lessons-view-all">
                   {t('viewAll')}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
@@ -416,6 +421,7 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
                 href="https://www.instagram.com/macedonianlanguagecorner"
                 target="_blank"
                 rel="noopener noreferrer"
+                data-testid="daily-lessons-follow"
               >
                 <Instagram className="mr-2 h-4 w-4" />
                 {t('follow')}
@@ -443,6 +449,7 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
                   size="sm"
                   className="h-auto px-0 text-xs font-medium"
                   onClick={() => setSelectedTagIds(new Set())}
+                  data-testid="daily-lessons-clear-filters"
                 >
                   {t('clearFilters')}
                 </Button>
@@ -461,6 +468,7 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
                         ? { backgroundColor: tag.color, borderColor: tag.color, color: '#fff' }
                         : undefined
                     }
+                    data-testid={`daily-lessons-tag-${tag.id}`}
                   >
                     {tag.icon && <span className="text-sm">{tag.icon}</span>}
                     <span>{tag.name}</span>
@@ -473,11 +481,11 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
 
         <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-6">
-            <TabsTrigger value="all" className="flex items-center gap-2">
+            <TabsTrigger value="all" className="flex items-center gap-2" data-testid="daily-lessons-tab-all">
               <Instagram className="h-4 w-4" />
               {t('tabs.all')}
             </TabsTrigger>
-            <TabsTrigger value="saved" className="flex items-center gap-2">
+            <TabsTrigger value="saved" className="flex items-center gap-2" data-testid="daily-lessons-tab-saved">
               <BookmarkCheck className="h-4 w-4" />
               {t('tabs.saved')}
             </TabsTrigger>
@@ -504,6 +512,7 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group block overflow-hidden rounded-xl border border-white/10 bg-white/5 transition hover:border-primary/40 hover:bg-white/10"
+                      data-testid={`daily-lessons-post-${post.id}`}
                     >
                       <div className="relative aspect-square overflow-hidden bg-muted">
                         <Image
@@ -542,6 +551,7 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
                             disabled={savingPostIds.has(post.id)}
                             className="absolute left-2 top-2 h-9 w-9 rounded-full bg-black/60 backdrop-blur-sm hover:bg-black/80"
                             aria-label={savedPostIds.has(post.id) ? 'Unsave post' : 'Save post'}
+                            data-testid={`daily-lessons-save-${post.id}`}
                           >
                             <Bookmark
                               className={`h-4 w-4 transition-all ${
@@ -625,6 +635,7 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group block overflow-hidden rounded-xl border border-white/10 bg-white/5 transition hover:border-primary/40 hover:bg-white/10"
+                      data-testid={`daily-lessons-saved-post-${post.id}`}
                     >
                       <div className="relative aspect-square overflow-hidden bg-muted">
                         <Image
@@ -663,6 +674,7 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
                             disabled={savingPostIds.has(post.id)}
                             className="absolute left-2 top-2 h-9 w-9 rounded-full bg-black/60 backdrop-blur-sm hover:bg-black/80"
                             aria-label={savedPostIds.has(post.id) ? 'Unsave post' : 'Save post'}
+                            data-testid={`daily-lessons-save-${post.id}`}
                           >
                             <Bookmark
                               className={`h-4 w-4 transition-all ${

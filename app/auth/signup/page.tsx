@@ -124,7 +124,7 @@ export default function SignUpPage() {
       <div className="w-full max-w-md space-y-6">
         <div className="flex justify-start">
           <Button variant="ghost" size="sm" asChild>
-            <Link href="/en">
+            <Link href="/en" data-testid="auth-signup-back-home">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Home
             </Link>
@@ -147,6 +147,7 @@ export default function SignUpPage() {
               size="lg"
               disabled={isLoading}
               aria-label="Continue with Google"
+              data-testid="auth-signup-google"
             >
               <Chrome className="h-5 w-5" />
               Continue with Google
@@ -187,6 +188,7 @@ export default function SignUpPage() {
                   required
                   aria-invalid={Boolean(fieldErrors.name)}
                   aria-describedby={fieldErrors.name ? 'name-error' : undefined}
+                  data-testid="auth-signup-name"
                 />
                 {fieldErrors.name && (
                   <p id="name-error" className="text-sm text-red-500" role="alert" aria-live="assertive">
@@ -207,6 +209,7 @@ export default function SignUpPage() {
                   required
                   aria-invalid={Boolean(fieldErrors.email)}
                   aria-describedby={fieldErrors.email ? 'signup-email-error' : undefined}
+                  data-testid="auth-signup-email"
                 />
                 {fieldErrors.email && (
                   <p
@@ -232,6 +235,7 @@ export default function SignUpPage() {
                   required
                   aria-invalid={Boolean(fieldErrors.password)}
                   aria-describedby={fieldErrors.password ? 'password-error' : undefined}
+                  data-testid="auth-signup-password"
                 />
                 {fieldErrors.password && (
                   <p id="password-error" className="text-sm text-red-500" role="alert" aria-live="assertive">
@@ -252,6 +256,7 @@ export default function SignUpPage() {
                   required
                   aria-invalid={Boolean(fieldErrors.confirmPassword)}
                   aria-describedby={fieldErrors.confirmPassword ? 'confirm-password-error' : undefined}
+                  data-testid="auth-signup-confirm-password"
                 />
                 {fieldErrors.confirmPassword && (
                   <p
@@ -271,6 +276,7 @@ export default function SignUpPage() {
                 size="lg"
                 disabled={isLoading}
                 aria-label="Create your account"
+                data-testid="auth-signup-submit"
               >
                 {isLoading ? (
                   <>
@@ -286,7 +292,11 @@ export default function SignUpPage() {
             {/* Sign-In Link */}
             <div className="text-center text-sm">
               <span className="text-muted-foreground">Already have an account? </span>
-              <Link href="/auth/signin" className="font-medium text-primary hover:underline">
+              <Link
+                href="/auth/signin"
+                className="font-medium text-primary hover:underline"
+                data-testid="auth-signup-signin-link"
+              >
                 Sign in
               </Link>
             </div>
@@ -294,7 +304,7 @@ export default function SignUpPage() {
             <div className="text-center text-xs text-muted-foreground">
               <p>
                 By creating an account, you agree to our{' '}
-                <Link href="/en/about" className="underline hover:text-foreground">
+                <Link href="/en/about" className="underline hover:text-foreground" data-testid="auth-signup-terms-link">
                   Terms of Service
                 </Link>
               </p>

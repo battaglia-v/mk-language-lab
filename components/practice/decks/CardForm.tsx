@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -31,6 +31,7 @@ type CardFormProps = {
   submitLabel?: string;
   isSubmitting?: boolean;
   onCancel?: () => void;
+  testIdPrefix?: string;
 };
 
 export function CardForm({
@@ -39,8 +40,10 @@ export function CardForm({
   submitLabel,
   isSubmitting = false,
   onCancel,
+  testIdPrefix = 'deck-card-form',
 }: CardFormProps) {
   const t = useTranslations('deckForm');
+  const baseId = useId();
   const [formData, setFormData] = useState<CardFormData>({
     macedonian: initialData?.macedonian || '',
     english: initialData?.english || '',
@@ -90,6 +93,7 @@ export function CardForm({
   };
 
   const isValid = formData.macedonian.trim() && formData.english.trim();
+  const fieldId = (suffix: string) => `${baseId}-${suffix}`;
 
   return (
     <Card className="p-4 sm:p-6 border-border/60 bg-card/80">
@@ -97,31 +101,33 @@ export function CardForm({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Macedonian */}
           <div className="space-y-2">
-            <Label htmlFor="macedonian">
+            <Label htmlFor={fieldId('macedonian')}>
               {t('macedonian')} <span className="text-destructive">*</span>
             </Label>
             <Input
-              id="macedonian"
+              id={fieldId('macedonian')}
               placeholder={t('macedonianPlaceholder')}
               value={formData.macedonian}
               onChange={(e) => setFormData({ ...formData, macedonian: e.target.value })}
               required
               disabled={isSubmitting}
+              data-testid={`${testIdPrefix}-macedonian`}
             />
           </div>
 
           {/* English */}
           <div className="space-y-2">
-            <Label htmlFor="english">
+            <Label htmlFor={fieldId('english')}>
               {t('english')} <span className="text-destructive">*</span>
             </Label>
             <Input
-              id="english"
+              id={fieldId('english')}
               placeholder={t('englishPlaceholder')}
               value={formData.english}
               onChange={(e) => setFormData({ ...formData, english: e.target.value })}
               required
               disabled={isSubmitting}
+              data-testid={`${testIdPrefix}-english`}
             />
           </div>
         </div>
@@ -129,15 +135,16 @@ export function CardForm({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Macedonian Alternates */}
           <div className="space-y-2">
-            <Label htmlFor="macedonianAlternates">
+            <Label htmlFor={fieldId('macedonianAlternates')}>
               {t('macedonianAlternatesOptional')}
             </Label>
             <Input
-              id="macedonianAlternates"
+              id={fieldId('macedonianAlternates')}
               placeholder={t('macedonianAlternatesPlaceholder')}
               value={formData.macedonianAlternates}
               onChange={(e) => setFormData({ ...formData, macedonianAlternates: e.target.value })}
               disabled={isSubmitting}
+              data-testid={`${testIdPrefix}-macedonian-alternates`}
             />
             <p className="text-xs text-muted-foreground">
               {t('alternatesHint')}
@@ -146,15 +153,16 @@ export function CardForm({
 
           {/* English Alternates */}
           <div className="space-y-2">
-            <Label htmlFor="englishAlternates">
+            <Label htmlFor={fieldId('englishAlternates')}>
               {t('englishAlternatesOptional')}
             </Label>
             <Input
-              id="englishAlternates"
+              id={fieldId('englishAlternates')}
               placeholder={t('englishAlternatesPlaceholder')}
               value={formData.englishAlternates}
               onChange={(e) => setFormData({ ...formData, englishAlternates: e.target.value })}
               disabled={isSubmitting}
+              data-testid={`${testIdPrefix}-english-alternates`}
             />
             <p className="text-xs text-muted-foreground">
               {t('alternatesHint')}
@@ -164,28 +172,30 @@ export function CardForm({
 
         {/* Category */}
         <div className="space-y-2">
-          <Label htmlFor="category">{t('categoryOptional')}</Label>
+          <Label htmlFor={fieldId('category')}>{t('categoryOptional')}</Label>
           <Input
-            id="category"
+            id={fieldId('category')}
             placeholder={t('categoryPlaceholder')}
             value={formData.category}
             onChange={(e) => setFormData({ ...formData, category: e.target.value })}
             disabled={isSubmitting}
             maxLength={50}
+            data-testid={`${testIdPrefix}-category`}
           />
         </div>
 
         {/* Notes */}
         <div className="space-y-2">
-          <Label htmlFor="notes">{t('notesOptional')}</Label>
+          <Label htmlFor={fieldId('notes')}>{t('notesOptional')}</Label>
           <Textarea
-            id="notes"
+            id={fieldId('notes')}
             placeholder={t('notesPlaceholder')}
             value={formData.notes}
             onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
             disabled={isSubmitting}
             rows={3}
             maxLength={500}
+            data-testid={`${testIdPrefix}-notes`}
           />
         </div>
 
@@ -197,11 +207,12 @@ export function CardForm({
               variant="outline"
               onClick={onCancel}
               disabled={isSubmitting}
+              data-testid={`${testIdPrefix}-cancel`}
             >
               {t('cancel')}
             </Button>
           )}
-          <Button type="submit" disabled={!isValid || isSubmitting}>
+          <Button type="submit" disabled={!isValid || isSubmitting} data-testid={`${testIdPrefix}-submit`}>
             {isSubmitting ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />

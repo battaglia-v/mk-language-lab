@@ -95,6 +95,7 @@ export default async function PathDetailPage({ params }: PathPageProps) {
           <div className="space-y-2">
             <Link
               href={`/${locale}/learn/paths`}
+              data-testid="path-detail-back"
               className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
             >
               <ChevronLeft className="h-4 w-4" />

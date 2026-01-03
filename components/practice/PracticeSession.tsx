@@ -272,7 +272,13 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
       )}
       {/* Header */}
       <header className="flex items-center gap-3 border-b border-border/40 px-4 py-3 safe-top">
-        <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full p-0" onClick={endSession}>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="h-10 w-10 rounded-full p-0"
+          onClick={endSession}
+          data-testid="practice-session-exit"
+        >
           <X className="h-5 w-5" />
         </Button>
         <div className="flex-1">
@@ -297,10 +303,22 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
 
           {/* Controls */}
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="sm" onClick={speak} className={cn('h-9 rounded-full', isSpeaking && 'text-primary')}>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={speak}
+              className={cn('h-9 rounded-full', isSpeaking && 'text-primary')}
+              data-testid="practice-session-speak"
+            >
               {isSpeaking ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
             </Button>
-            <Button variant="ghost" size="sm" onClick={toggleFav} className={cn('h-9 rounded-full', isFav && 'text-pink-400')}>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={toggleFav}
+              className={cn('h-9 rounded-full', isFav && 'text-pink-400')}
+              data-testid="practice-session-favorite-toggle"
+            >
               <Heart className={cn('h-4 w-4', isFav && 'fill-current')} />
             </Button>
           </div>
@@ -310,19 +328,57 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
             <form onSubmit={submitTyping} className="space-y-3">
               {hint && !revealed && <div className="rounded-lg bg-amber-500/10 px-3 py-2 text-sm text-amber-200 font-mono">{hint}</div>}
               <div className="flex gap-2">
-                <Input value={guess} onChange={(e) => setGuess(e.target.value)} placeholder={t('drills.wordInputPlaceholder')} className="flex-1 min-h-[48px] rounded-xl" disabled={!!feedback} />
-                <Button type="submit" className="min-h-[48px] rounded-xl px-6" disabled={!guess.trim() || !!feedback}>{t('drills.submitWord')}</Button>
+                <Input
+                  value={guess}
+                  onChange={(e) => setGuess(e.target.value)}
+                  placeholder={t('drills.wordInputPlaceholder')}
+                  className="flex-1 min-h-[48px] rounded-xl"
+                  disabled={!!feedback}
+                  data-testid="practice-session-typing-input"
+                />
+                <Button
+                  type="submit"
+                  className="min-h-[48px] rounded-xl px-6"
+                  disabled={!guess.trim() || !!feedback}
+                  data-testid="practice-session-typing-submit"
+                >
+                  {t('drills.submitWord')}
+                </Button>
               </div>
               <div className="flex gap-2">
-                <Button type="button" variant="ghost" size="sm" onClick={showHint} disabled={revealed || !!hint}><Lightbulb className="h-4 w-4 mr-1" />{t('drills.hintButton')}</Button>
-                <Button type="button" variant="ghost" size="sm" onClick={goNext}><SkipForward className="h-4 w-4 mr-1" />{t('drills.skip')}</Button>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={showHint}
+                  disabled={revealed || !!hint}
+                  data-testid="practice-session-hint"
+                >
+                  <Lightbulb className="h-4 w-4 mr-1" />
+                  {t('drills.hintButton')}
+                </Button>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={goNext}
+                  data-testid="practice-session-skip"
+                >
+                  <SkipForward className="h-4 w-4 mr-1" />
+                  {t('drills.skip')}
+                </Button>
               </div>
             </form>
           ) : (
             <div className="space-y-3">
               <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                 {choices.map((c, i) => (
-                  <Button key={i} variant="outline" onClick={() => selectChoice(c)} disabled={!!feedback}
+                  <Button
+                    key={i}
+                    variant="outline"
+                    onClick={() => selectChoice(c)}
+                    disabled={!!feedback}
+                    data-testid={`practice-session-choice-${i}`}
                     className={cn('min-h-[52px] justify-start rounded-xl text-left transition-all duration-200 active:scale-[0.98]',
                       selectedChoice === c && feedback === 'correct' && 'border-emerald-400 bg-emerald-500/20 scale-[1.02]',
                       selectedChoice === c && feedback === 'incorrect' && 'border-amber-400 bg-amber-500/20 animate-shake',
@@ -332,7 +388,10 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
                   </Button>
                 ))}
               </div>
-              <Button variant="ghost" size="sm" onClick={goNext}><SkipForward className="h-4 w-4 mr-1" />{t('drills.skip')}</Button>
+              <Button variant="ghost" size="sm" onClick={goNext} data-testid="practice-session-skip">
+                <SkipForward className="h-4 w-4 mr-1" />
+                {t('drills.skip')}
+              </Button>
             </div>
           )}
 
@@ -357,7 +416,9 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
       {/* Footer */}
       {feedback === 'incorrect' && (
         <footer className="border-t border-border/40 px-4 py-3 safe-bottom">
-          <Button className="w-full min-h-[48px] rounded-xl" onClick={goNext}>{t('drills.continueLabel', { default: 'Continue' })}</Button>
+          <Button className="w-full min-h-[48px] rounded-xl" onClick={goNext} data-testid="practice-session-continue">
+            {t('drills.continueLabel', { default: 'Continue' })}
+          </Button>
         </footer>
       )}
     </div>

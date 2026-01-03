@@ -106,11 +106,12 @@ export function DifficultyPicker({ onSelect, title = 'Word Sprint' }: Props) {
           <div className="space-y-2">
             <Button
               size="lg"
-              className="w-full min-h-[52px] rounded-xl text-black"
+              className="w-full min-h-[52px] rounded-xl text-black gap-2"
               onClick={handleStart}
               disabled={!selectedDifficulty}
               data-testid="word-sprint-picker-start"
             >
+              <Zap className="h-5 w-5" />
               Start session
             </Button>
             {!selectedDifficulty && (

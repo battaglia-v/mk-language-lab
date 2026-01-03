@@ -49,6 +49,7 @@ export function SidebarNav() {
                   <Link
                     href={href}
                     prefetch={true}
+                    data-testid={`nav-${item.id}`}
                     className={cn(
                       "group icon-gap flex items-center rounded-2xl px-3 py-3.5 text-sm font-semibold transition justify-center 2xl:justify-start min-h-[44px]",
                       active

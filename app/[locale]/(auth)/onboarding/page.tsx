@@ -231,6 +231,7 @@ export default function OnboardingPage() {
                         type="button"
                         onClick={() => handleGoalSelect(goal.id)}
                         className="w-full p-4 text-left"
+                        data-testid={`onboarding-goal-${goal.id}`}
                       >
                         {isSelected && (
                           <div className="absolute right-3 top-3 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--brand-red,#e63946)] text-white">
@@ -257,6 +258,7 @@ export default function OnboardingPage() {
                                     ? 'bg-[var(--brand-red,#e63946)] text-white'
                                     : 'bg-muted/50 text-foreground hover:bg-muted'
                                 }`}
+                                data-testid={`onboarding-level-${goal.id}-${level.id}`}
                               >
                                 {level.label}
                               </button>
@@ -286,6 +288,7 @@ export default function OnboardingPage() {
                         ? 'border-[var(--brand-red,#e63946)] bg-[var(--brand-red,#e63946)] text-white'
                         : 'border-border/40 text-foreground hover:border-[var(--brand-red,#e63946)]/50'
                     }`}
+                    data-testid={`onboarding-daily-goal-${option.minutes}`}
                   >
                     <Clock className={`mb-2 h-6 w-6 ${
                       data.dailyGoalMinutes === option.minutes ? 'text-white' : 'text-[var(--brand-gold,#f4a261)]'
@@ -327,6 +330,7 @@ export default function OnboardingPage() {
                 onClick={handleNext}
                 disabled={isSubmitting}
                 className="w-full py-4 text-lg"
+                data-testid="onboarding-start"
               >
                 {isSubmitting ? (
                   'Setting up...'
@@ -347,6 +351,7 @@ export default function OnboardingPage() {
             variant="ghost"
             onClick={handleBack}
             disabled={step === 1 || isSubmitting}
+            data-testid="onboarding-back"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back
@@ -356,6 +361,7 @@ export default function OnboardingPage() {
             <WebButton
               onClick={handleNext}
               disabled={!canProceed || isSubmitting}
+              data-testid="onboarding-next"
             >
               Next
               <ArrowRight className="ml-2 h-4 w-4" />

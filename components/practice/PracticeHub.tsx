@@ -17,6 +17,7 @@ type PracticeModeConfig = {
   variant: 'default' | 'primary' | 'accent' | 'saved';
   cardCount?: number;
   disabled?: boolean;
+  disabledReason?: string;
 };
 
 /**
@@ -78,6 +79,7 @@ export function PracticeHub() {
       variant: 'saved',
       cardCount: savedDeck.length,
       disabled: savedDeck.length === 0,
+      disabledReason: t('savedDeck.lockedReason', { default: 'Save a phrase in Translate to unlock.' }),
     },
   ];
 
@@ -98,6 +100,7 @@ export function PracticeHub() {
           size="sm"
           className="h-9 gap-1.5 rounded-full text-muted-foreground"
           onClick={() => setSettingsOpen(true)}
+          data-testid="practice-settings-open"
         >
           <Settings2 className="h-4 w-4" />
           <span className="hidden sm:inline">{t('hub.settingsLink')}</span>
@@ -120,6 +123,7 @@ export function PracticeHub() {
         open={settingsOpen}
         onClose={() => setSettingsOpen(false)}
         title={t('drills.settings', { default: 'Practice Settings' })}
+        testId="practice-settings-sheet"
       >
         <div className="space-y-6">
           {/* Mode Selection */}
@@ -132,6 +136,7 @@ export function PracticeHub() {
                 variant={mode === 'typing' ? 'secondary' : 'outline'}
                 className="flex-1"
                 onClick={() => setMode('typing')}
+                data-testid="practice-settings-mode-typing"
               >
                 {t('drills.modeTyping', { default: 'Typing' })}
               </Button>
@@ -139,6 +144,7 @@ export function PracticeHub() {
                 variant={mode === 'multiple-choice' ? 'secondary' : 'outline'}
                 className="flex-1"
                 onClick={() => setMode('multiple-choice')}
+                data-testid="practice-settings-mode-multiple-choice"
               >
                 {t('drills.modeMultipleChoice', { default: 'Multiple Choice' })}
               </Button>
@@ -157,6 +163,7 @@ export function PracticeHub() {
                   variant={difficulty === d ? 'secondary' : 'outline'}
                   size="sm"
                   onClick={() => setDifficulty(d)}
+                  data-testid={`practice-settings-difficulty-${d}`}
                 >
                   {d === 'all'
                     ? t('drills.allLevels', { default: 'All' })
@@ -177,6 +184,7 @@ export function PracticeHub() {
                 count={curatedDeck.length}
                 active={deckType === 'curated'}
                 onClick={() => handleDeckSelect('curated')}
+                testId="practice-settings-deck-curated"
               />
               <DeckButton
                 label={t('savedDeck.badge', { default: 'Saved' })}
@@ -184,6 +192,7 @@ export function PracticeHub() {
                 active={deckType === 'saved'}
                 disabled={!savedDeck.length}
                 onClick={() => handleDeckSelect('saved')}
+                testId="practice-settings-deck-saved"
               />
               {srsDueDeck.length > 0 && (
                 <DeckButton
@@ -191,6 +200,7 @@ export function PracticeHub() {
                   count={srsDueDeck.length}
                   active={deckType === 'srs'}
                   onClick={() => handleDeckSelect('srs')}
+                  testId="practice-settings-deck-srs"
                 />
               )}
               {mistakesDeck.length > 0 && (
@@ -199,6 +209,7 @@ export function PracticeHub() {
                   count={mistakesDeck.length}
                   active={deckType === 'mistakes'}
                   onClick={() => handleDeckSelect('mistakes')}
+                  testId="practice-settings-deck-mistakes"
                 />
               )}
             </div>
@@ -213,6 +224,7 @@ export function PracticeHub() {
                 clearMistakes();
                 handleDeckSelect('curated');
               }}
+              data-testid="practice-settings-clear-mistakes"
             >
               {t('drills.clearMistakes', { default: 'Clear mistakes' })}
             </Button>
@@ -234,6 +246,7 @@ function PracticeModeCard({
   t: ReturnType<typeof useTranslations<'practiceHub'>>;
 }) {
   const Icon = config.icon;
+  const testId = `practice-mode-${config.id}`;
 
   const variantStyles = {
     default: 'bg-white/5 border-white/10 hover:border-white/20 hover:bg-white/8',
@@ -261,7 +274,7 @@ function PracticeModeCard({
         'group flex items-center gap-4 rounded-2xl border p-4 transition-all duration-200',
         'min-h-[80px] active:scale-[0.99]',
         variantStyles[config.variant],
-        config.disabled && 'opacity-50 pointer-events-none'
+        config.disabled && 'opacity-50'
       )}
     >
       {/* Icon */}
@@ -280,6 +293,9 @@ function PracticeModeCard({
           {title}
         </h3>
         <p className="text-sm text-muted-foreground line-clamp-1 break-normal">{description}</p>
+        {config.disabled && config.disabledReason ? (
+          <p className="mt-1 text-xs text-muted-foreground">{config.disabledReason}</p>
+        ) : null}
       </div>
 
       {/* Metadata: time + XP */}
@@ -305,10 +321,18 @@ function PracticeModeCard({
   );
 
   if (config.disabled) {
-    return content;
+    return (
+      <button type="button" disabled aria-disabled="true" className="w-full text-left" data-testid={testId}>
+        {content}
+      </button>
+    );
   }
 
-  return <Link href={config.href}>{content}</Link>;
+  return (
+    <Link href={config.href} data-testid={testId}>
+      {content}
+    </Link>
+  );
 }
 
 /**
@@ -320,18 +344,21 @@ function DeckButton({
   active,
   disabled,
   onClick,
+  testId,
 }: {
   label: string;
   count: number;
   active: boolean;
   disabled?: boolean;
   onClick: () => void;
+  testId: string;
 }) {
   return (
     <Button
       variant="outline"
       disabled={disabled}
       onClick={onClick}
+      data-testid={testId}
       className={cn(
         'flex h-auto min-h-[52px] flex-col items-start justify-center gap-0.5 rounded-xl p-3 text-left',
         active && 'border-primary/70 bg-primary/15 ring-1 ring-primary/25',

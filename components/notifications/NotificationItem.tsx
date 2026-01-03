@@ -54,6 +54,7 @@ export function NotificationItem({ notification, onMarkAsRead }: NotificationIte
                 variant="ghost"
                 size="sm"
                 className="h-auto px-2 py-1 text-xs font-semibold uppercase tracking-wide text-primary hover:text-primary/80"
+                data-testid={`notification-mark-read-${notification.id}`}
               >
                 {t('markRead')}
               </Button>
@@ -69,6 +70,7 @@ export function NotificationItem({ notification, onMarkAsRead }: NotificationIte
               <Link
                 href={notification.actionUrl}
                 className="text-sm font-semibold text-primary hover:text-primary/80"
+                data-testid={`notification-action-${notification.id}`}
               >
                 {t('viewAction')} →
               </Link>

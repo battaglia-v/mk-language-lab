@@ -159,7 +159,7 @@ export const ALL_ROUTES = {
   pathA1: '/en/learn/paths/a1',
   pathA2: '/en/learn/paths/a2',
   path30Day: '/en/learn/paths/30day',
-  pathTopicPacks: '/en/learn/paths/topic-packs',
+  pathTopicPacks: '/en/learn/paths/topics',
 
   // Lessons
   lessonAlphabet: '/en/learn/lessons/alphabet',
@@ -252,5 +252,5 @@ export const LEARNING_PATH_IDS = [
   'a1',
   'a2',
   '30day',
-  'topic-packs',
+  'topics',
 ];

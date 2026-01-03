@@ -264,6 +264,9 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
               key={idx}
               role="button"
               tabIndex={0}
+              data-testid="reader-tappable-word"
+              data-scan-group="reader-tappable-word"
+              data-scan-label="Tap word for translation"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();

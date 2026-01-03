@@ -194,7 +194,11 @@ export default function ReviewSessionPage() {
         <p className="text-muted-foreground mb-6">
           Save words while reading to build your review deck.
         </p>
-        <Button onClick={() => router.push(`/${locale}/reader`)} className="rounded-xl">
+        <Button
+          onClick={() => router.push(`/${locale}/reader`)}
+          className="rounded-xl"
+          data-testid="reader-review-empty-go-library"
+        >
           <ArrowRight className="mr-2 h-4 w-4" />
           Go to Library
         </Button>
@@ -225,11 +229,16 @@ export default function ReviewSessionPage() {
         </div>
 
         <div className="flex flex-col gap-3 w-full max-w-xs">
-          <Button onClick={handleRestart} variant="outline" className="rounded-xl h-12">
+          <Button
+            onClick={handleRestart}
+            variant="outline"
+            className="rounded-xl h-12"
+            data-testid="reader-review-complete-restart"
+          >
             <RotateCcw className="mr-2 h-4 w-4" />
             Review Again
           </Button>
-          <Button onClick={handleClose} className="rounded-xl h-12">
+          <Button onClick={handleClose} className="rounded-xl h-12" data-testid="reader-review-complete-done">
             Done
           </Button>
         </div>
@@ -259,6 +268,7 @@ export default function ReviewSessionPage() {
           className="w-full h-14 rounded-xl text-lg font-semibold"
           onClick={isRevealed ? handleContinue : handleCheck}
           disabled={!isRevealed && currentQuestion.type !== 'recall' && !selectedAnswer}
+          data-testid="reader-review-footer"
         >
           {isRevealed ? (
             <>
@@ -295,6 +305,7 @@ export default function ReviewSessionPage() {
           size="sm"
           className="h-10 gap-2"
           onClick={() => handleListen(currentQuestion.prompt, currentQuestion.promptLang)}
+          data-testid="reader-review-listen"
         >
           <Volume2 className="h-4 w-4" />
           Listen
@@ -334,6 +345,7 @@ export default function ReviewSessionPage() {
                   correct={isRevealed ? isCorrectChoice : null}
                   disabled={isRevealed}
                   onClick={() => handleSelectAnswer(choice)}
+                  testId={`reader-review-choice-${idx}`}
                 />
               );
             })}

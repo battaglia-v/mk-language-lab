@@ -96,11 +96,11 @@ export default function ReaderPage() {
       <PageContainer size="lg">
         <Tabs defaultValue="library" className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-6">
-            <TabsTrigger value="library" className="gap-2">
+            <TabsTrigger value="library" className="gap-2" data-testid="reader-tab-library">
               <Library className="h-4 w-4" />
               Library
             </TabsTrigger>
-            <TabsTrigger value="workspace" className="gap-2">
+            <TabsTrigger value="workspace" className="gap-2" data-testid="reader-tab-workspace">
               <FileText className="h-4 w-4" />
               Workspace
             </TabsTrigger>
@@ -112,6 +112,7 @@ export default function ReaderPage() {
             {savedCount > 0 && (
               <Link
                 href={`/${locale}/reader/review`}
+                data-testid="reader-review-saved-cta-library"
                 className={cn(
                   'flex items-center gap-4 rounded-2xl p-4',
                   'bg-gradient-to-r from-amber-500/20 to-orange-500/20',
@@ -141,6 +142,7 @@ export default function ReaderPage() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-9 pr-9"
+                  data-testid="reader-search-input"
                 />
                 {searchQuery && (
                   <Button
@@ -148,6 +150,7 @@ export default function ReaderPage() {
                     size="icon"
                     onClick={() => setSearchQuery('')}
                     className="absolute right-3 top-1/2 -translate-y-1/2 h-6 w-6 text-muted-foreground hover:text-foreground"
+                    data-testid="reader-search-clear"
                   >
                     <X className="h-4 w-4" />
                   </Button>
@@ -172,6 +175,7 @@ export default function ReaderPage() {
                           : 'bg-pink-500 text-white border-pink-500 hover:bg-pink-600'
                           : 'bg-transparent hover:border-primary/50'
                       )}
+                      data-testid={`reader-filter-difficulty-${level}`}
                     >
                       {level}
                     </Button>
@@ -182,6 +186,7 @@ export default function ReaderPage() {
                       size="sm"
                       onClick={clearFilters}
                       className="rounded-full h-7 px-3 text-xs font-medium text-muted-foreground"
+                      data-testid="reader-filter-clear-all"
                     >
                       Clear all
                     </Button>
@@ -198,7 +203,11 @@ export default function ReaderPage() {
                     <span>30-Day Reading Challenge</span>
                     <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">NEW</span>
                   </h2>
-                  <Link href={`/${locale}/learn/paths/30day`} className="text-sm text-primary hover:underline">
+                  <Link
+                    href={`/${locale}/learn/paths/30day`}
+                    className="text-sm text-primary hover:underline"
+                    data-testid="reader-30day-view-all"
+                  >
                     View all →
                   </Link>
                 </div>
@@ -271,6 +280,7 @@ export default function ReaderPage() {
                     variant="link"
                     onClick={clearFilters}
                     className="mt-2"
+                    data-testid="reader-filter-clear-empty"
                   >
                     Clear filters
                   </Button>
@@ -294,13 +304,13 @@ export default function ReaderPage() {
                 Paste text and break it down.
               </p>
               <div className="flex flex-col gap-3 max-w-xs mx-auto">
-                <Button asChild className="active:scale-[0.99]">
+                <Button asChild className="active:scale-[0.99]" data-testid="reader-workspace-analyze">
                   <Link href={`/${locale}/reader/analyze`}>
                     <Wrench className="h-4 w-4 mr-2" />
                     Paste text
                   </Link>
                 </Button>
-                <Button asChild variant="outline" className="active:scale-[0.99]">
+                <Button asChild variant="outline" className="active:scale-[0.99]" data-testid="reader-workspace-browse-stories">
                   <Link href={`/${locale}/reader?tab=library`}>
                     <BookOpen className="h-4 w-4 mr-2" />
                     Browse stories
@@ -313,6 +323,7 @@ export default function ReaderPage() {
             {savedCount > 0 && (
               <Link
                 href={`/${locale}/reader/review`}
+                data-testid="reader-review-saved-cta-workspace"
                 className={cn(
                   'flex items-center gap-4 rounded-2xl p-4',
                   'bg-gradient-to-r from-amber-500/20 to-orange-500/20',

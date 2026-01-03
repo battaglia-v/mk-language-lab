@@ -89,10 +89,14 @@ function AuthErrorContent() {
           )}
           <div className="flex flex-col gap-3">
             <Button asChild className="w-full">
-              <Link href="/auth/signin">Try Again</Link>
+              <Link href="/auth/signin" data-testid="auth-error-try-again">
+                Try Again
+              </Link>
             </Button>
             <Button variant="outline" asChild className="w-full">
-              <Link href="/">Go to Home</Link>
+              <Link href="/" data-testid="auth-error-go-home">
+                Go to Home
+              </Link>
             </Button>
           </div>
         </CardContent>

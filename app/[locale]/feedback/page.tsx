@@ -126,6 +126,7 @@ export default function FeedbackPage() {
           <Button
             onClick={() => router.push(`/${locale}`)}
             className="mt-4"
+            data-testid="feedback-success-back-home"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Home
@@ -143,6 +144,7 @@ export default function FeedbackPage() {
           variant="ghost"
           onClick={() => router.back()}
           className="mb-4 -ml-2"
+          data-testid="feedback-back"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back
@@ -163,6 +165,7 @@ export default function FeedbackPage() {
                 key={type.id}
                 type="button"
                 onClick={() => setFeedbackType(type.id)}
+                data-testid={`feedback-type-${type.id}`}
                 className={cn(
                   'flex items-start gap-3 rounded-xl border-2 p-4 text-left transition-all',
                   feedbackType === type.id
@@ -195,6 +198,7 @@ export default function FeedbackPage() {
                 type="button"
                 onClick={() => setRating(star)}
                 className="transition-transform hover:scale-110"
+                data-testid={`feedback-rating-${star}`}
               >
                 <Star
                   className={cn(
@@ -219,6 +223,7 @@ export default function FeedbackPage() {
             className="resize-none"
             required
             minLength={10}
+            data-testid="feedback-message"
           />
           <p className="text-xs text-muted-foreground">
             {message.length}/2000 characters (minimum 10)
@@ -234,6 +239,7 @@ export default function FeedbackPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
+            data-testid="feedback-email"
           />
           <p className="text-xs text-muted-foreground">
             We&apos;ll only use this to follow up on your feedback if needed.
@@ -253,6 +259,7 @@ export default function FeedbackPage() {
           size="lg"
           disabled={isSubmitting || !feedbackType || message.length < 10}
           className="w-full"
+          data-testid="feedback-submit"
         >
           {isSubmitting ? (
             'Submitting...'
@@ -267,4 +274,3 @@ export default function FeedbackPage() {
     </PageContainer>
   );
 }
-

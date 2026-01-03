@@ -16,6 +16,7 @@ const isLocalBaseUrl = baseHostname === 'localhost' || baseHostname === '127.0.0
 
 export default defineConfig({
   testDir: './e2e',
+  outputDir: 'test-results/playwright',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   // Retries help with flaky tests - reduced in CI for speed
@@ -76,6 +77,16 @@ export default defineConfig({
     {
       name: 'mobile-audit',
       testDir: './tests/mobile-audit',
+      use: {
+        ...devices['iPhone 12'],
+        viewport: { width: 390, height: 844 },
+      },
+    },
+    // Release gate project - enforces 0 dead interactions and full testid coverage
+    {
+      name: 'release-gate',
+      testDir: './tests/release-gate',
+      retries: 0,
       use: {
         ...devices['iPhone 12'],
         viewport: { width: 390, height: 844 },

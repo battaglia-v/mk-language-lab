@@ -129,6 +129,7 @@ export default function DiscoverPage() {
           href={`/${locale}/learn`}
           className="inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-1.5 text-xs text-muted-foreground"
           aria-label={navT('backToDashboard')}
+          data-testid="discover-back-to-learn"
         >
           <ArrowLeft className="h-4 w-4" aria-hidden="true" />
           {navT('backToDashboard')}
@@ -171,7 +172,14 @@ export default function DiscoverPage() {
                 <span>{t('hero.ready')}</span>
               )}
             </div>
-            <Button variant="outline" size="sm" className="gap-2" onClick={handleRefresh} disabled={isRefreshing}>
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-2"
+              onClick={handleRefresh}
+              disabled={isRefreshing}
+              data-testid="discover-refresh"
+            >
               <RefreshCcw className={cn('h-4 w-4', isRefreshing && 'animate-spin')} aria-hidden />
               {isRefreshing ? t('actions.refreshing') : t('actions.refresh')}
             </Button>
@@ -205,6 +213,7 @@ export default function DiscoverPage() {
                 active={selectedCategoryId === filter.id}
                 onClick={() => setSelectedCategoryId(filter.id)}
                 disabled={isLoading && !feed}
+                data-testid={`discover-filter-${filter.id}`}
               >
                 {filter.label}
               </FilterChip>
@@ -217,7 +226,13 @@ export default function DiscoverPage() {
             <AlertTitle>{t('error.title')}</AlertTitle>
             <AlertDescription className="flex flex-col gap-2 text-sm text-muted-foreground">
               <span>{t('error.description')}</span>
-              <Button variant="secondary" size="sm" className="self-start" onClick={handleRefresh}>
+              <Button
+                variant="secondary"
+                size="sm"
+                className="self-start"
+                onClick={handleRefresh}
+                data-testid="discover-error-retry"
+              >
                 {t('actions.retry')}
               </Button>
             </AlertDescription>
@@ -328,12 +343,12 @@ function DiscoverCardEntry({ card }: DiscoverCardEntryProps) {
   const Action = (
     <Button variant="secondary" size="sm" className="gap-2" asChild>
       {isExternal ? (
-        <a href={href} target="_blank" rel="noreferrer">
+        <a href={href} target="_blank" rel="noreferrer" data-testid={`discover-card-cta-${card.id}`}>
           {card.cta}
           <CTAIcon />
         </a>
       ) : (
-        <Link href={href}>
+        <Link href={href} data-testid={`discover-card-cta-${card.id}`}>
           {card.cta}
           <CTAIcon />
         </Link>
@@ -378,12 +393,12 @@ function EventCard({ event, formatter, now }: EventCardProps) {
   const CTA = (
     <Button size="sm" variant="secondary" className="gap-2" asChild>
       {isExternal ? (
-        <a href={href} target="_blank" rel="noreferrer">
+        <a href={href} target="_blank" rel="noreferrer" data-testid={`discover-event-cta-${event.id}`}>
           {event.cta}
           <CTAIcon />
         </a>
       ) : (
-        <Link href={href}>
+        <Link href={href} data-testid={`discover-event-cta-${event.id}`}>
           {event.cta}
           <CTAIcon />
         </Link>
@@ -436,7 +451,7 @@ function QuestRail({ isLoading, quests, error, onRetry }: QuestRailProps) {
           <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
         </div>
         {error ? (
-          <Button size="sm" variant="secondary" onClick={onRetry}>
+          <Button size="sm" variant="secondary" onClick={onRetry} data-testid="discover-quests-retry">
             {t('retry')}
           </Button>
         ) : null}
@@ -469,7 +484,7 @@ function QuestRail({ isLoading, quests, error, onRetry }: QuestRailProps) {
                   <span>+{quest.currencyReward} 💎</span>
                 </div>
                 <Button size="sm" variant="secondary" className="gap-2" asChild>
-                  <Link href={quest.ctaUrl ?? '/practice'}>
+                  <Link href={quest.ctaUrl ?? '/practice'} data-testid={`discover-quest-cta-${quest.id}`}>
                     {quest.cta}
                     <CTAIcon />
                   </Link>
@@ -523,7 +538,7 @@ function CommunityRail({ isLoading, highlights }: CommunityRailProps) {
                   {new Date(entry.updatedAt).toLocaleString()}
                 </div>
                 <Button size="sm" variant="ghost" className="gap-2 text-primary" asChild>
-                  <Link href={entry.ctaUrl ?? '/profile'}>
+                  <Link href={entry.ctaUrl ?? '/profile'} data-testid={`discover-community-cta-${entry.id}`}>
                     {entry.cta}
                     <CTAIcon />
                   </Link>

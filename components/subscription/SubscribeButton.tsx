@@ -18,6 +18,7 @@ type SubscribeButtonProps = {
   className?: string;
   size?: React.ComponentProps<typeof Button>['size'];
   variant?: React.ComponentProps<typeof Button>['variant'];
+  dataTestId?: string;
   children: React.ReactNode;
 };
 
@@ -28,6 +29,7 @@ export function SubscribeButton({
   className,
   size,
   variant,
+  dataTestId,
   children,
 }: SubscribeButtonProps) {
   const t = useTranslations('upgrade');
@@ -106,6 +108,7 @@ export function SubscribeButton({
       className={cn(className)}
       onClick={handleSubscribe}
       disabled={isSubmitting}
+      data-testid={dataTestId}
     >
       {isSubmitting ? (
         <>

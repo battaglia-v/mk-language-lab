@@ -240,7 +240,13 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-background">
       <header className="flex items-center gap-3 border-b border-border/40 px-4 py-3 safe-top">
-        <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full p-0" onClick={endSession}>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="h-10 w-10 rounded-full p-0"
+          onClick={endSession}
+          data-testid="word-sprint-exit"
+        >
           <X className="h-5 w-5" />
         </Button>
         <div className="flex-1"><Progress value={progress} className="h-2" /></div>
@@ -270,7 +276,13 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
           </div>
 
           <div className="flex justify-center">
-            <Button variant="ghost" size="sm" onClick={speak} className={cn('h-9 rounded-full', isSpeaking && 'text-primary')}>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={speak}
+              className={cn('h-9 rounded-full', isSpeaking && 'text-primary')}
+              data-testid="word-sprint-listen"
+            >
               <Volume2 className="h-4 w-4 mr-2" />Listen
             </Button>
           </div>
@@ -299,7 +311,9 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
 
       {feedback === 'incorrect' && (
         <footer className="border-t border-border/40 px-4 py-3 safe-bottom">
-          <Button className="w-full min-h-[48px] rounded-xl" onClick={goNext}>Continue</Button>
+          <Button className="w-full min-h-[48px] rounded-xl" onClick={goNext} data-testid="word-sprint-continue">
+            Continue
+          </Button>
         </footer>
       )}
     </div>

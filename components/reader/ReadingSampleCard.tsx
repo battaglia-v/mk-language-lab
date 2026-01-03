@@ -95,6 +95,7 @@ export function ReadingSampleCard({
         <Button
           asChild
           className="w-full min-h-[52px]"
+          data-testid={`reader-sample-${sample.id}-cta`}
         >
           <Link href={href}>
             {buttonLabel}

@@ -76,12 +76,20 @@ export default function SignOutPage() {
         <CardContent className="space-y-3">
           {status === 'confirming' && (
             <>
-              <Button onClick={handleSignOut} variant="destructive" className="w-full" size="lg">
+              <Button
+                onClick={handleSignOut}
+                variant="destructive"
+                className="w-full"
+                size="lg"
+                data-testid="auth-signout-confirm"
+              >
                 <LogOut className="mr-2 h-4 w-4" />
                 Yes, Sign Out
               </Button>
               <Button variant="outline" asChild className="w-full" size="lg">
-                <Link href="/">Cancel</Link>
+                <Link href="/" data-testid="auth-signout-cancel">
+                  Cancel
+                </Link>
               </Button>
             </>
           )}
@@ -94,7 +102,9 @@ export default function SignOutPage() {
 
           {status === 'signed-out' && (
             <Button asChild className="w-full" size="lg">
-              <Link href="/">Go to Home</Link>
+              <Link href="/" data-testid="auth-signout-go-home">
+                Go to Home
+              </Link>
             </Button>
           )}
         </CardContent>

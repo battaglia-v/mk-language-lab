@@ -55,7 +55,7 @@ export function CustomDecksDropdown({
           <div className="flex items-center gap-2 flex-shrink-0">
             <span className={cn(
               'rounded-full px-2.5 py-0.5 text-xs font-bold transition-colors',
-              isActive ? 'bg-primary/30 text-primary-foreground' : 'bg-muted/60 text-muted-foreground group-hover:bg-primary/15'
+              isActive ? 'bg-primary/30 text-black' : 'bg-muted/60 text-muted-foreground group-hover:bg-primary/15'
             )}>
               {activeDeck ? activeDeck.cardCount : decks.length}
             </span>

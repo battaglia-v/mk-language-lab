@@ -62,6 +62,7 @@ export function TypedInput({
         onChange={(e) => setValue(e.target.value)}
         placeholder="Type your answer..."
         disabled={disabled || !!feedback}
+        data-testid="word-sprint-typed-input"
         className={cn(
           'min-h-[52px] text-lg rounded-xl text-center',
           feedback === 'correct' && 'border-emerald-400 bg-emerald-500/20',
@@ -77,6 +78,7 @@ export function TypedInput({
           type="submit"
           className="w-full min-h-[48px] rounded-xl"
           disabled={!value.trim() || disabled}
+          data-testid="word-sprint-typed-check"
         >
           Check
         </Button>
