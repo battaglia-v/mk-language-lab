@@ -122,7 +122,7 @@ export function LearnPageClient({
             className={cn(
               'group flex items-center justify-center gap-3 rounded-2xl p-5',
               'bg-gradient-to-r from-primary to-amber-500',
-              'text-primary-foreground shadow-lg shadow-primary/25',
+              'text-black shadow-lg shadow-primary/25',
               'transition-all duration-200 hover:shadow-xl hover:scale-[1.01]',
               'active:scale-[0.99]'
             )}

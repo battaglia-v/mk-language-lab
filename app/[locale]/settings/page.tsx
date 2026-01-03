@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
-import { ArrowLeft, Target, RotateCcw } from 'lucide-react';
+import { ArrowLeft, Target, RotateCcw, Languages } from 'lucide-react';
+import { useRouter, usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { PageContainer } from '@/components/layout';
 import { cn } from '@/lib/utils';
@@ -14,6 +15,8 @@ const DAILY_GOAL_OPTIONS = [10, 20, 30, 50];
 export default function SettingsPage() {
   const locale = useLocale();
   const t = useTranslations('nav');
+  const router = useRouter();
+  const pathname = usePathname();
 
   const [dailyGoal, setDailyGoal] = useState(20);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
@@ -31,6 +34,14 @@ export default function SettingsPage() {
     localStorage.setItem('mk-daily-goal', String(goal));
   };
 
+  const handleLanguageChange = (newLocale: string) => {
+    // Replace the locale in the current path
+    const newPath = pathname.replace(`/${locale}`, `/${newLocale}`);
+    // Store preference in localStorage
+    localStorage.setItem('mk-preferred-locale', newLocale);
+    router.push(newPath);
+  };
+
   const handleResetProgress = () => {
     clearAllLocalProgress();
     setShowResetConfirm(false);
@@ -41,6 +52,39 @@ export default function SettingsPage() {
 
   const settingsGroups = [
     {
+      title: 'Language',
+      icon: Languages,
+      description: 'Choose your preferred language',
+      action: (
+        <div className="flex gap-2">
+          <button
+            onClick={() => handleLanguageChange('en')}
+            data-testid="settings-language-en"
+            className={cn(
+              'rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
+              locale === 'en'
+                ? 'bg-primary text-black'
+                : 'bg-muted/50 text-muted-foreground hover:bg-muted'
+            )}
+          >
+            English
+          </button>
+          <button
+            onClick={() => handleLanguageChange('mk')}
+            data-testid="settings-language-mk"
+            className={cn(
+              'rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
+              locale === 'mk'
+                ? 'bg-primary text-black'
+                : 'bg-muted/50 text-muted-foreground hover:bg-muted'
+            )}
+          >
+            Македонски
+          </button>
+        </div>
+      ),
+    },
+    {
       title: 'Daily Goal',
       icon: Target,
       description: 'Set your daily XP target',
@@ -50,10 +94,11 @@ export default function SettingsPage() {
             <button
               key={goal}
               onClick={() => handleGoalChange(goal)}
+              data-testid={`settings-daily-goal-${goal}`}
               className={cn(
                 'rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
                 dailyGoal === goal
-                  ? 'bg-primary text-primary-foreground'
+                  ? 'bg-primary text-black'
                   : 'bg-muted/50 text-muted-foreground hover:bg-muted'
               )}
             >
@@ -75,7 +120,7 @@ export default function SettingsPage() {
             size="icon"
             className="h-10 w-10 rounded-full"
           >
-            <Link href={`/${locale}/more`}>
+            <Link href={`/${locale}/more`} data-testid="settings-back-to-more">
               <ArrowLeft className="h-5 w-5" />
             </Link>
           </Button>
@@ -116,6 +161,7 @@ export default function SettingsPage() {
                 size="sm"
                 className="border-destructive/40 text-destructive hover:bg-destructive/10"
                 onClick={() => setShowResetConfirm(true)}
+                data-testid="settings-reset-open"
               >
                 Reset
               </Button>
@@ -125,6 +171,7 @@ export default function SettingsPage() {
                   variant="outline"
                   size="sm"
                   onClick={() => setShowResetConfirm(false)}
+                  data-testid="settings-reset-cancel"
                 >
                   Cancel
                 </Button>
@@ -132,6 +179,7 @@ export default function SettingsPage() {
                   variant="destructive"
                   size="sm"
                   onClick={handleResetProgress}
+                  data-testid="settings-reset-confirm"
                 >
                   Confirm
                 </Button>

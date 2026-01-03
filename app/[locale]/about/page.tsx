@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { CheckCircle2 } from 'lucide-react';
@@ -34,7 +35,7 @@ export default function AboutPage() {
               <ul className="space-y-4 text-slate-200">
                 {features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-primary" />
+                    <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-primary mt-0.5" />
                     <span className="text-lg">{feature}</span>
                   </li>
                 ))}
@@ -48,9 +49,20 @@ export default function AboutPage() {
             <h2 className="text-3xl font-semibold">{t('author')}</h2>
           </div>
           <Card className="glass-card rounded-3xl p-6 text-center mx-auto max-w-md">
-            <CardHeader>
-              <CardTitle className="text-2xl text-white">Vincent (&quot;Vinny&quot;) Battaglia</CardTitle>
-              <p className="text-sm text-slate-300">{t('vincentRole')}</p>
+            <CardHeader className="flex flex-col items-center space-y-4">
+              <div className="relative h-24 w-24 rounded-full overflow-hidden ring-4 ring-primary/30 shadow-xl">
+                <Image
+                  src="/images/vinny-profile.jpg"
+                  alt="Vincent Battaglia"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              <div>
+                <CardTitle className="text-2xl text-white">Vincent (&quot;Vinny&quot;) Battaglia</CardTitle>
+                <p className="text-sm text-slate-300 mt-1">{t('vincentRole')}</p>
+              </div>
             </CardHeader>
             <CardContent className="space-y-4 text-sm text-slate-200">
               <p>{t('vincentBio')}</p>
@@ -60,6 +72,7 @@ export default function AboutPage() {
                   target="_blank"
                   rel="noreferrer"
                   className="rounded-full border border-primary/40 px-3 py-1 text-primary hover:bg-primary/10"
+                  data-testid="about-linkedin"
                 >
                   LinkedIn
                 </a>
@@ -81,6 +94,7 @@ export default function AboutPage() {
                   target="_blank"
                   rel="noreferrer"
                   className="rounded-full border border-primary/40 px-3 py-1 text-primary hover:bg-primary/10 text-xs"
+                  data-testid="about-credit-mlc"
                 >
                   Macedonian Language Corner
                 </a>
@@ -89,6 +103,7 @@ export default function AboutPage() {
                   target="_blank"
                   rel="noreferrer"
                   className="rounded-full border border-primary/40 px-3 py-1 text-primary hover:bg-primary/10 text-xs"
+                  data-testid="about-credit-instagram"
                 >
                   @macedonianlanguagecorner
                 </a>

@@ -61,6 +61,8 @@ export interface ExerciseLayoutProps {
   bottomNavOffset?: boolean;
   /** Additional class for the container */
   className?: string;
+  /** data-testid for the layout root */
+  testId?: string;
   /** Hint button label */
   hintLabel?: string;
   /** Skip button label */
@@ -81,6 +83,7 @@ export function ExerciseLayout({
   helperIsError = false,
   bottomNavOffset = true,
   className,
+  testId,
   hintLabel = 'Hint',
   skipLabel = 'Skip',
 }: ExerciseLayoutProps) {
@@ -94,6 +97,7 @@ export function ExerciseLayout({
         'flex min-h-[100dvh] flex-col',
         className
       )}
+      data-testid={testId}
     >
       {/* Top: Progress bar + chips */}
       {(progress || chips) && (
@@ -147,7 +151,7 @@ export function ExerciseLayout({
       <footer
         className={cn(
           'sticky bottom-0 z-10 border-t border-border/30 bg-background/95 px-4 py-4 backdrop-blur-sm',
-          bottomNavOffset && 'pb-[calc(1rem+env(safe-area-inset-bottom))]'
+          bottomNavOffset && 'pb-[calc(5rem+env(safe-area-inset-bottom))]'
         )}
       >
         <div className="mx-auto max-w-2xl space-y-3">
@@ -160,6 +164,7 @@ export function ExerciseLayout({
                   size="sm"
                   onClick={onHint}
                   className="gap-1.5 text-muted-foreground hover:text-primary"
+                  data-testid="exercise-hint"
                 >
                   <Lightbulb className="h-4 w-4" />
                   <span className="label-nowrap">{hintLabel}</span>
@@ -174,6 +179,7 @@ export function ExerciseLayout({
                   size="sm"
                   onClick={onSkip}
                   className="gap-1.5 text-muted-foreground hover:text-primary"
+                  data-testid="exercise-skip"
                 >
                   <span className="label-nowrap">{skipLabel}</span>
                   <SkipForward className="h-4 w-4" />
@@ -188,6 +194,7 @@ export function ExerciseLayout({
             disabled={submitDisabled || submitLoading}
             className="w-full"
             size="lg"
+            data-testid="exercise-submit"
           >
             {submitLoading ? (
               <>
@@ -314,4 +321,3 @@ export function FeedbackBanner({
     </div>
   );
 }
-
