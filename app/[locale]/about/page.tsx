@@ -86,6 +86,15 @@ export default function AboutPage() {
                 >
                   LinkedIn
                 </a>
+                <a
+                  href="https://www.instagram.com/battagliavinny/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-full border border-primary/40 px-3 py-1 text-primary hover:bg-primary/10"
+                  data-testid="about-instagram"
+                >
+                  Instagram
+                </a>
               </div>
             </CardContent>
           </Card>
