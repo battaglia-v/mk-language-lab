@@ -114,7 +114,7 @@ export function BottomSheet({
       {open && (
         <>
           {/* Backdrop */}
-          <motion.div onClick={onClose} className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
+          <motion.div onClick={onClose} className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm"
             variants={prefersReducedMotion ? reducedBackdrop : modalBackdrop}
             initial="initial"
             animate="animate"
@@ -135,7 +135,7 @@ export function BottomSheet({
             animate="animate"
             exit="exit"
             className={cn(
-              "fixed inset-x-0 bottom-0 z-50 flex flex-col rounded-t-3xl border-t border-border bg-background shadow-2xl",
+              "fixed inset-x-0 bottom-0 z-[70] flex flex-col rounded-t-3xl border-t border-border bg-background shadow-2xl",
               heightClasses[height]
             )}
             style={{

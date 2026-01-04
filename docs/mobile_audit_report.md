@@ -5,7 +5,7 @@
 - Viewport: iPhone 12 (390x844)
 - Project: mobile-audit
 - Command: PLAYWRIGHT_BASE_URL=https://www.mklanguage.com npx playwright test --project=mobile-audit tests/mobile-audit/13-stage4-critical.spec.ts
-- Tests: 9 total (5 passed, 4 failed)
+- Tests: 9 total (6 passed, 3 failed)
 
 ## Failures
 
@@ -15,13 +15,6 @@
 - Expected: A2 path shows title “A2 Momentum” with A2 lessons.
 - Actual: A1 path remains visible; A2 title never appears.
 - Notes: Could be state not updating or selection not applying in production.
-
-### Paths: A2 “Start here” doesn’t open a practice session
-- Severity: major
-- Steps: `/en/learn/paths` -> tap “Start here” on A2
-- Expected: Practice session loads and shows session UI with exit control.
-- Actual: Session UI never appears (stuck on loading/skeleton state).
-- Notes: Practice session may not initialize for intermediate deck or auth state.
 
 ### Practice: Word Sprint doesn’t start
 - Severity: critical
@@ -41,6 +34,7 @@
 - Beginner CTA navigates to A1 learn path.
 - Paths hub shows A1/A2 cards.
 - A1 “Start here” opens Alphabet lesson.
+- A2 “Start here” opens a practice session.
 
 ## Artifacts
 - Playwright output: `test-results/playwright/`
