@@ -1,86 +1,87 @@
 'use client';
 
 import { useState, useCallback, useEffect, useRef, ImgHTMLAttributes } from 'react';
-import { Newspaper } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { getSourceFallbackImage, getSourceBranding } from '@/lib/news-source-branding';
 
 interface ProxiedNewsImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'onError'> {
   /** Original image URL (will be proxied) */
   imageUrl: string | null;
   /** Alt text for accessibility */
   alt: string;
-  /** Source name for fallback display */
+  /** Source ID for branded fallback (e.g., 'time-mk', 'meta-mk') */
+  sourceId?: string;
+  /** Source name for fallback display (deprecated, use sourceId) */
   sourceName?: string;
   /** Additional class name for the container */
   containerClassName?: string;
-  /** Max retry attempts (default: 2) */
+  /** Max retry attempts (default: 1 - fail fast, show branded fallback) */
   maxRetries?: number;
 }
 
-// Retry delays in ms (exponential backoff)
-const RETRY_DELAYS = [1000, 2000, 3000];
-
-// Maximum time to wait before showing fallback (prevents infinite skeleton)
-const MAX_LOADING_TIMEOUT_MS = 10000;
+// Reduced timeout - show branded fallback faster for better UX
+const MAX_LOADING_TIMEOUT_MS = 5000;
 
 /**
  * Proxied News Image Component
  *
  * Handles image loading through the server-side proxy with automatic fallback
- * to a branded placeholder when images fail to load.
+ * to a SOURCE-BRANDED placeholder when images fail to load.
+ *
+ * Key improvement: Instead of showing a generic placeholder, we show a
+ * branded SVG specific to the news source (Time.mk, Meta.mk, etc.)
+ * This makes failed images look intentional rather than broken.
  *
  * Features:
  * - Server-side proxy URL generation (never direct hotlink)
- * - Automatic retry with exponential backoff
- * - Graceful fallback on error
- * - Loading state handling with skeleton
+ * - Fast failure with branded fallback (1 retry max)
+ * - Source-specific branded placeholders
+ * - 5s timeout to prevent infinite skeleton
  * - Lazy loading support
  * - No layout shift (explicit dimensions)
- * - Max 10s timeout to prevent infinite skeleton (Phase 9)
  */
 export function ProxiedNewsImage({
   imageUrl,
   alt,
-  sourceName = 'News',
+  sourceId = 'unknown',
+  sourceName,
   containerClassName,
   className,
-  maxRetries = 2,
+  maxRetries = 1, // Reduced from 2 - fail fast, show branded fallback
   ...imgProps
 }: ProxiedNewsImageProps) {
   const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
-  const retryTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const maxTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Get source branding for fallback
+  const branding = getSourceBranding(sourceId);
+  const fallbackImage = getSourceFallbackImage(sourceId);
+  const displayName = sourceName || branding.name;
 
   // Reset state when imageUrl changes
   useEffect(() => {
     setHasError(false);
     setIsLoaded(false);
     setRetryCount(0);
-    
-    if (retryTimeoutRef.current) {
-      clearTimeout(retryTimeoutRef.current);
-      retryTimeoutRef.current = null;
-    }
+
     if (maxTimeoutRef.current) {
       clearTimeout(maxTimeoutRef.current);
       maxTimeoutRef.current = null;
     }
   }, [imageUrl]);
 
-  // Max timeout - prevent infinite skeleton
-  // After 10s, show fallback regardless of retry state
+  // Max timeout - show fallback after 5s
   useEffect(() => {
     if (!imageUrl || isLoaded || hasError) return;
-    
+
     maxTimeoutRef.current = setTimeout(() => {
       if (!isLoaded) {
-        console.warn(`[ProxiedNewsImage] Max timeout reached for: ${imageUrl.slice(0, 50)}...`);
         setHasError(true);
       }
     }, MAX_LOADING_TIMEOUT_MS);
-    
+
     return () => {
       if (maxTimeoutRef.current) {
         clearTimeout(maxTimeoutRef.current);
@@ -91,30 +92,24 @@ export function ProxiedNewsImage({
   // Cleanup on unmount
   useEffect(() => {
     return () => {
-      if (retryTimeoutRef.current) {
-        clearTimeout(retryTimeoutRef.current);
-      }
       if (maxTimeoutRef.current) {
         clearTimeout(maxTimeoutRef.current);
       }
     };
   }, []);
 
-  // Generate proxy URL - always use server-side proxy
-  // The proxy fetches images server-side and caches them
+  // Generate proxy URL
   const proxyUrl = imageUrl
     ? `/api/news/image?src=${encodeURIComponent(imageUrl)}${retryCount > 0 ? `&retry=${retryCount}` : ''}`
     : null;
 
   const handleError = useCallback(() => {
-    // Retry with exponential backoff
     if (retryCount < maxRetries) {
-      const delay = RETRY_DELAYS[retryCount] || 2000;
-      retryTimeoutRef.current = setTimeout(() => {
+      // Quick retry (500ms) then fail
+      setTimeout(() => {
         setRetryCount(prev => prev + 1);
-      }, delay);
+      }, 500);
     } else {
-      // Max retries reached, show fallback
       setHasError(true);
     }
   }, [retryCount, maxRetries]);
@@ -124,20 +119,34 @@ export function ProxiedNewsImage({
     setHasError(false);
   }, []);
 
-  // Show fallback if no image URL or all retries failed
+  // Show fallback if no image URL or load failed
   const showFallback = !imageUrl || hasError;
-  const isRetrying = retryCount > 0 && !isLoaded && !hasError;
+  const isLoading = proxyUrl && !showFallback && !isLoaded;
 
   return (
-    <div className={cn(
-      "relative w-full overflow-hidden bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800",
-      containerClassName
-    )}>
-      {/* Actual image - hidden when showing fallback */}
+    <div
+      className={cn(
+        "relative w-full overflow-hidden",
+        containerClassName
+      )}
+      style={{
+        backgroundColor: branding.primaryColor,
+      }}
+    >
+      {/* Branded fallback - always rendered as background */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={fallbackImage}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+
+      {/* Actual image - overlays fallback when loaded */}
       {proxyUrl && !showFallback && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          key={`${imageUrl}-${retryCount}`} // Force re-render on retry
+          key={`${imageUrl}-${retryCount}`}
           src={proxyUrl}
           alt={alt}
           loading="lazy"
@@ -147,7 +156,7 @@ export function ProxiedNewsImage({
           onError={handleError}
           onLoad={handleLoad}
           className={cn(
-            "h-full w-full object-cover transition-opacity duration-300",
+            "absolute inset-0 h-full w-full object-cover transition-opacity duration-300",
             isLoaded ? "opacity-100" : "opacity-0",
             className
           )}
@@ -155,26 +164,23 @@ export function ProxiedNewsImage({
         />
       )}
 
-      {/* Loading skeleton - shown while image loads or retrying */}
-      {proxyUrl && !showFallback && !isLoaded && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800" />
-          <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-xl bg-white/5">
-            <Newspaper className={cn(
-              "h-6 w-6 text-slate-500",
-              isRetrying ? "animate-spin" : "animate-pulse"
-            )} />
-          </div>
-        </div>
+      {/* Loading overlay - subtle pulse on top of branded fallback */}
+      {isLoading && (
+        <div className="absolute inset-0 bg-black/20 animate-pulse" />
       )}
 
-      {/* Fallback placeholder */}
+      {/* Source badge - shown on fallback */}
       {showFallback && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-slate-800/95 via-slate-700/90 to-slate-800/95">
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-sm">
-            <Newspaper className="h-8 w-8 text-slate-300" />
-          </div>
-          <span className="text-xs font-medium text-slate-400">{sourceName}</span>
+        <div className="absolute bottom-3 left-3">
+          <span
+            className="px-2 py-1 text-[10px] font-semibold uppercase tracking-wide rounded"
+            style={{
+              backgroundColor: `${branding.textColor}20`,
+              color: branding.textColor,
+            }}
+          >
+            {displayName}
+          </span>
         </div>
       )}
     </div>

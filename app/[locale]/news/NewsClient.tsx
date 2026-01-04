@@ -421,6 +421,7 @@ export default function NewsClient({
                     <ProxiedNewsImage
                       imageUrl={item.imageProxy ?? item.image}
                       alt={item.title}
+                      sourceId={item.sourceId}
                       sourceName={item.sourceName}
                       containerClassName="aspect-video"
                     />
