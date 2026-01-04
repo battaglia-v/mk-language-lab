@@ -76,13 +76,12 @@ type NewsItem = {
 };
 
 /**
- * Get proxied image URL for sources that block direct loading
+ * Get proxied image URL for ALL sources
+ * Always proxy to handle CORS, hotlinking, and caching consistently
  */
-function getProxiedImageUrl(imageUrl: string | null, source: NewsSource): string | null {
+function getProxiedImageUrl(imageUrl: string | null, _source: NewsSource): string | null {
   if (!imageUrl) return null;
-  if (!source.useProxy) return imageUrl;
-
-  // Return the proxy URL
+  // Always proxy - the proxy handles CORS, hotlinking blocks, and caching
   return `/api/news/image?src=${encodeURIComponent(imageUrl)}`;
 }
 
@@ -624,6 +623,9 @@ function applyPreviewResult(item: NewsItem, result: ArticlePreviewResult) {
   }
   if (!item.image && result.image) {
     item.image = result.image;
+    // IMPORTANT: Set imageProxy after enrichment so it's not null
+    // All images should go through the proxy for CORS/hotlinking issues
+    item.imageProxy = `/api/news/image?src=${encodeURIComponent(result.image)}`;
   }
 }
 
