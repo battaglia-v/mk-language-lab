@@ -117,6 +117,7 @@ export function WordBottomSheet({
       height="auto"
       showCloseButton={true}
       testId="reader-word-sheet"
+      className="pb-[calc(env(safe-area-inset-bottom,0px)+1.5rem)]"
     >
       <div className="space-y-5 pb-2">
         {/* Word header */}

@@ -350,6 +350,7 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
       setTotalAttempts(0);
       setCorrectCount(0);
       setIsCelebrating(false);
+      setFeedbackItemKey(null);
       return;
     }
     let nextIndex = Math.floor(Math.random() * practiceItems.length);
@@ -365,6 +366,7 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     setTotalAttempts(0);
     setCorrectCount(0);
     setIsCelebrating(false);
+    setFeedbackItemKey(null);
   }, [practiceItems, initialPromptId]);
 
   useEffect(() => {
@@ -372,6 +374,7 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     setFeedback(null);
     setRevealedAnswer('');
     setIsCelebrating(false);
+    setFeedbackItemKey(null);
   }, [practiceMode, direction]);
 
   useEffect(() => {
@@ -379,6 +382,7 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     setFeedback(null);
     setRevealedAnswer('');
     setIsCelebrating(false);
+    setFeedbackItemKey(null);
   }, [debouncedCategoryReset]);
 
   useEffect(() => {
@@ -513,6 +517,7 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
       setAnswer('');
       setFeedback(null);
       setRevealedAnswer('');
+      setFeedbackItemKey(null);
       return;
     }
     const nextIndex = selectNextPracticeIndex(currentIndex, practiceItems.length);
@@ -521,6 +526,7 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     setFeedback(null);
     setIsCelebrating(false);
     setRevealedAnswer('');
+    setFeedbackItemKey(null);
     if (timerDuration) {
       setTimeRemaining(timerDuration);
       timerExpiredRef.current = false;
@@ -534,6 +540,7 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     setFeedback(null);
     setIsCelebrating(false);
     setRevealedAnswer(expectedAnswer);
+    setFeedbackItemKey(currentItemKey ?? null);
   };
 
   useEffect(() => {
@@ -560,6 +567,7 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
           setRevealedAnswer(expectedAnswer);
         }
         setFeedback('incorrect');
+        setFeedbackItemKey(currentItemKey ?? null);
       }
       if (timerIntervalRef.current) {
         clearInterval(timerIntervalRef.current);
@@ -598,6 +606,7 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     setCorrectCount(0);
     setIsCelebrating(false);
     setRevealedAnswer('');
+    setFeedbackItemKey(null);
     setShowCompletionModal(false);
     setShowGameOverModal(false);
     setHearts(INITIAL_HEARTS);
@@ -640,6 +649,7 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     setCorrectCount(0);
     setIsCelebrating(false);
     setRevealedAnswer('');
+    setFeedbackItemKey(null);
     setShowCompletionModal(false);
     setShowGameOverModal(false);
     setHearts(INITIAL_HEARTS);
@@ -709,6 +719,7 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
         setFeedback('correct');
         setRevealedAnswer('');
         setIsCelebrating(true);
+        setFeedbackItemKey(currentItemKey ?? null);
         if (celebrationTimeoutRef.current) clearTimeout(celebrationTimeoutRef.current);
         celebrationTimeoutRef.current = setTimeout(() => setIsCelebrating(false), 1200);
         trackEvent(AnalyticsEvents.PRACTICE_ANSWER_CORRECT, analyticsPayload);
@@ -738,6 +749,7 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
         setRevealedAnswer(expectedAnswer);
         setIsCelebrating(false);
         setIsShaking(true);
+        setFeedbackItemKey(currentItemKey ?? null);
         setTimeout(() => setIsShaking(false), 500);
         trackEvent(AnalyticsEvents.PRACTICE_ANSWER_INCORRECT, analyticsPayload);
         if (isClozeMode) {
@@ -752,6 +764,10 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     }
   };
 
+  const isFeedbackActive = feedbackItemKey !== null && feedbackItemKey === currentItemKey;
+  const visibleFeedback = isFeedbackActive ? feedback : null;
+  const visibleRevealedAnswer = isFeedbackActive ? revealedAnswer : '';
+
   return {
     categories,
     category,
@@ -764,8 +780,8 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     setDifficulty,
     answer,
     setAnswer,
-    feedback,
-    revealedAnswer,
+    feedback: visibleFeedback,
+    revealedAnswer: visibleRevealedAnswer,
     totalAttempts,
     correctCount,
     sessionProgress,

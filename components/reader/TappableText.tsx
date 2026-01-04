@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useCallback, useMemo, useRef } from 'react';
+import { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { WordBottomSheet } from './WordBottomSheet';
 import { cn } from '@/lib/utils';
 import { toggleFavorite, isFavorite } from '@/lib/favorites';
+import { triggerHaptic } from '@/lib/haptics';
 
 // Simple in-memory cache for translations during session
 const translationCache = new Map<string, string>();
@@ -79,10 +80,18 @@ interface WordMatch {
  */
 export function TappableText({ text, vocabulary, analyzedData, className, locale }: TappableTextProps) {
   const [selectedWord, setSelectedWord] = useState<WordMatch | null>(null);
+  const [selectedWordIndex, setSelectedWordIndex] = useState<number | null>(null);
   const [isInDeck, setIsInDeck] = useState(false);
   const [_isTranslating, setIsTranslating] = useState(false);
   const abortControllerRef = useRef<AbortController | null>(null);
   const lastTapRef = useRef(0);
+
+  // Clear selection when bottom sheet closes
+  useEffect(() => {
+    if (!selectedWord) {
+      setSelectedWordIndex(null);
+    }
+  }, [selectedWord]);
 
   // Build a lookup map from pre-analyzed words (best quality)
   const analyzedMap = useMemo(() => {
@@ -161,7 +170,11 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
     }
   }, []);
 
-  const handleWordClick = useCallback(async (word: string) => {
+  const handleWordClick = useCallback(async (word: string, wordIndex: number) => {
+    // Immediately show visual feedback
+    setSelectedWordIndex(wordIndex);
+    triggerHaptic('selection');
+
     // Normalize the clicked word
     const normalized = word.toLowerCase().replace(/[.,!?;:'"„"«»—–]/g, '');
     const cleanWord = word.replace(/[.,!?;:'"„"«»—–]/g, '');
@@ -196,7 +209,7 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
       return;
     }
 
-    // 3. Not found - show loading state and fetch translation from API
+    // 3. Not found - show loading state immediately and fetch translation from API
     setSelectedWord({
       original: cleanWord,
       translation: locale === 'en' ? 'Translating...' : 'Се преведува...',
@@ -237,11 +250,12 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
     window.speechSynthesis.speak(utterance);
   }, []);
 
-  const triggerWord = useCallback((word: string) => {
+  const triggerWord = useCallback((word: string, wordIndex: number) => {
     const now = Date.now();
-    if (now - lastTapRef.current < 250) return;
+    // Reduced debounce from 250ms to 100ms for faster response
+    if (now - lastTapRef.current < 100) return;
     lastTapRef.current = now;
-    void handleWordClick(word);
+    void handleWordClick(word, wordIndex);
   }, [handleWordClick]);
 
   // Split text into words while preserving punctuation
@@ -259,6 +273,7 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
           // Check if this word has translation data available
           const normalized = word.toLowerCase().replace(/[.,!?;:'"„"«»—–]/g, '');
           const hasAnalysis = analyzedMap.has(normalized) || vocabMap.has(normalized);
+          const isSelected = selectedWordIndex === idx;
 
           return (
             <span
@@ -268,27 +283,41 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
               data-testid="reader-tappable-word"
               data-scan-group="reader-tappable-word"
               data-scan-label="Tap word for translation"
-              onPointerUp={(e) => {
-                e.preventDefault();
+              // Use onTouchStart for faster mobile response (fires before onPointerUp)
+              onTouchStart={(e) => {
+                // Don't prevent default - allow native scroll
                 e.stopPropagation();
-                triggerWord(word);
+                triggerWord(word, idx);
+              }}
+              onPointerUp={(e) => {
+                // Fallback for non-touch devices
+                if (e.pointerType !== 'touch') {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  triggerWord(word, idx);
+                }
               }}
               onClick={(e) => {
+                // Additional fallback for accessibility
                 e.preventDefault();
                 e.stopPropagation();
-                triggerWord(word);
               }}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
-                  triggerWord(word);
+                  triggerWord(word, idx);
                 }
               }}
               className={cn(
-                'cursor-pointer rounded-sm px-1 py-0.5 -mx-1 transition-colors inline-block',
-                'hover:bg-primary/20 active:bg-primary/30 focus:bg-primary/20 focus:outline-none',
+                'cursor-pointer rounded-sm px-1 py-0.5 -mx-1 transition-all duration-150 inline-block',
+                'hover:bg-primary/20 focus:bg-primary/20 focus:outline-none',
                 'touch-manipulation', // Better mobile touch handling
-                hasAnalysis && 'underline decoration-primary/40 decoration-dotted underline-offset-4'
+                // Show selected state with prominent highlight
+                isSelected
+                  ? 'bg-primary/40 text-primary-foreground ring-2 ring-primary/60 scale-105'
+                  : 'active:bg-primary/30 active:scale-105',
+                // Subtle underline for words with known translations
+                !isSelected && hasAnalysis && 'underline decoration-primary/40 decoration-dotted underline-offset-4'
               )}
             >
               {word}
