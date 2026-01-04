@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { Play } from "lucide-react";
+import { Play, Sparkles } from "lucide-react";
 import { locales } from "@/i18n";
 import { Button } from "@/components/ui/button";
 import { auth } from "@/lib/auth";
@@ -31,7 +31,8 @@ export default async function LocaleHome({ params }: LocalePageProps) {
 
   // Guest lesson link - goes directly to practice session
   // Note: Using difficulty=all because vocabulary data defaults to 'mixed' difficulty
-  const startLessonHref = `/${safeLocale}/practice/session?deck=curated&difficulty=all`;
+  const beginnerHref = `/${safeLocale}/learn?level=beginner`;
+  const intermediateHref = `/${safeLocale}/learn?level=intermediate`;
   const signInHref = `/${safeLocale}/sign-in`;
 
   return (
@@ -47,18 +48,38 @@ export default async function LocaleHome({ params }: LocalePageProps) {
           </p>
         </div>
 
-        {/* Primary CTA */}
-        <Button
-          asChild
-          size="lg"
-          className="w-full gap-2 text-lg min-h-[56px] text-black"
-          data-testid="home-start-learning"
-        >
-          <Link href={startLessonHref}>
-            <Play className="h-5 w-5" fill="currentColor" />
-            {homeT("guestCta")}
-          </Link>
-        </Button>
+        {/* Level Selection */}
+        <div className="space-y-3">
+          <div className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+            {homeT("levelPrompt")}
+          </div>
+          <div className="grid gap-3">
+            <Button
+              asChild
+              size="lg"
+              className="w-full gap-2 text-lg min-h-[56px] text-black"
+              data-testid="home-start-learning"
+            >
+              <Link href={beginnerHref}>
+                <Play className="h-5 w-5" fill="currentColor" />
+                {homeT("levelBeginner")} <span className="text-sm font-semibold">A1</span>
+              </Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="w-full gap-2 text-lg min-h-[56px]"
+              data-testid="home-level-intermediate"
+            >
+              <Link href={intermediateHref}>
+                <Sparkles className="h-5 w-5" />
+                {homeT("levelIntermediate")} <span className="text-sm font-semibold">A2</span>
+              </Link>
+            </Button>
+          </div>
+          <p className="text-xs text-muted-foreground">{homeT("levelHelper")}</p>
+        </div>
 
         {/* Sign in link */}
         <p className="text-sm text-muted-foreground">

@@ -3,11 +3,12 @@ import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
-import { createStarterPath } from "@/lib/learn/starter-path";
-import { createA2Path } from "@/lib/learn/a2-path";
-import { create30DayChallengePath } from "@/lib/learn/challenge-30day-path";
-import { createTopicPacksPath } from "@/lib/learn/topic-packs-path";
+import { createStarterPath, starterPathNodes } from "@/lib/learn/starter-path";
+import { createA2Path, a2PathNodes } from "@/lib/learn/a2-path";
+import { getNextNode } from "@/lib/learn/lesson-path-types";
 import { LessonPath } from "@/components/learn/LessonPath";
+import { Progress } from "@/components/ui/progress";
+import { cn } from "@/lib/utils";
 import type { LessonPath as LessonPathType } from "@/lib/learn/lesson-path-types";
 
 export const dynamic = 'force-dynamic';
@@ -20,27 +21,26 @@ type PathPageProps = {
 const pathConfigs: Record<string, {
   title: string;
   description: string;
+  badge: string;
+  difficulty: string;
+  badgeClass: string;
   createPath: (completedIds?: string[]) => LessonPathType;
 }> = {
   a1: {
     title: "A1 Foundations",
-    description: "Master the basics of Macedonian",
+    description: "Alphabet, pronunciation, greetings, and everyday basics.",
+    badge: "A1",
+    difficulty: "Beginner",
+    badgeClass: "bg-emerald-500/15 text-emerald-600",
     createPath: createStarterPath,
   },
   a2: {
     title: "A2 Momentum",
-    description: "Build on basics with tenses and travel",
+    description: "Daily routines, past tense intro, directions, and short dialogues.",
+    badge: "A2",
+    difficulty: "Intermediate",
+    badgeClass: "bg-sky-500/15 text-sky-600",
     createPath: createA2Path,
-  },
-  "30day": {
-    title: "30-Day Reading Challenge",
-    description: "Daily reading passages with vocabulary and grammar",
-    createPath: create30DayChallengePath,
-  },
-  topics: {
-    title: "Topic Packs",
-    description: "Focused vocabulary by theme - pick any topic",
-    createPath: createTopicPacksPath,
   },
 };
 
@@ -63,22 +63,18 @@ export default async function PathDetailPage({ params }: PathPageProps) {
       });
 
       if (progress?.totalLessons) {
-        // Generate completed node IDs based on path type
         const totalLessons = progress.totalLessons;
 
         if (pathId === 'a1') {
-          // A1 path uses node-1, node-2, etc.
-          const completedCount = Math.min(totalLessons, 14);
+          const completedCount = Math.min(totalLessons, starterPathNodes.length);
           completedNodeIds = Array.from({ length: completedCount }, (_, i) => `node-${i + 1}`);
-        } else if (pathId === '30day') {
-          // 30-day path uses 30day-1, 30day-2, etc.
-          const completedCount = Math.min(totalLessons, 30);
-          completedNodeIds = Array.from({ length: completedCount }, (_, i) => `30day-${i + 1}`);
-        } else if (pathId === 'topics') {
-          // Topics path - all unlocked by design
-          completedNodeIds = [];
+        } else if (pathId === 'a2') {
+          const completedCount = Math.min(
+            Math.max(0, totalLessons - starterPathNodes.length),
+            a2PathNodes.length
+          );
+          completedNodeIds = Array.from({ length: completedCount }, (_, i) => `a2-${i + 1}`);
         }
-        // A2 path uses adv-1, adv-2, etc. (future)
       }
     } catch (error) {
       console.error("[learn/paths] Failed to load progress:", error);
@@ -86,13 +82,24 @@ export default async function PathDetailPage({ params }: PathPageProps) {
   }
 
   const path = config.createPath(completedNodeIds);
+  const nextNode = getNextNode(path);
+  const startNode = nextNode ?? path.nodes[0];
+  const startHref = startNode?.href
+    ? `/${locale}${startNode.href}`
+    : `/${locale}/learn/paths/${pathId}`;
+  const startLabel = nextNode ? "Start here" : "Review path";
+  const startTitle = startNode?.title ?? path.title;
+  const startDescription = startNode?.description;
+  const progressValue = path.totalCount > 0
+    ? Math.round((path.completedCount / path.totalCount) * 100)
+    : 0;
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-4rem)] pb-24 sm:pb-6">
       <div className="flex-1 px-4 py-6">
         <div className="max-w-lg mx-auto space-y-6">
           {/* Header */}
-          <div className="space-y-2">
+          <div className="space-y-4">
             <Link
               href={`/${locale}/learn/paths`}
               data-testid="path-detail-back"
@@ -101,22 +108,52 @@ export default async function PathDetailPage({ params }: PathPageProps) {
               <ChevronLeft className="h-4 w-4" />
               All Paths
             </Link>
-            <h1 className="text-2xl font-bold text-foreground">
-              {config.title}
-            </h1>
+            <div className="flex flex-wrap items-center gap-2">
+              <h1 className="text-2xl font-bold text-foreground">
+                {config.title}
+              </h1>
+              <span className={cn(
+                "inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold uppercase",
+                config.badgeClass
+              )}>
+                <span className="text-[10px] font-bold text-foreground">{config.badge}</span>
+                {config.difficulty}
+              </span>
+            </div>
             <p className="text-base text-muted-foreground">
               {config.description}
             </p>
-            {/* Progress */}
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <span>{path.completedCount} / {path.totalCount} completed</span>
-              <span>•</span>
-              <span>{Math.round((path.completedCount / path.totalCount) * 100)}%</span>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-sm text-muted-foreground">
+                <span>{path.completedCount} / {path.totalCount} completed</span>
+                <span>{progressValue}%</span>
+              </div>
+              <Progress value={progressValue} className="h-2" />
             </div>
+            <Link
+              href={startHref}
+              data-testid="path-detail-start-here"
+              className={cn(
+                "group flex flex-col items-start gap-1 rounded-2xl border border-border/60 bg-card/70 p-4 transition-all",
+                "hover:border-primary/40 hover:shadow-md active:scale-[0.99]"
+              )}
+            >
+              <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                {startLabel}
+              </span>
+              <span className="text-lg font-semibold text-foreground">
+                {startTitle}
+              </span>
+              {startDescription && (
+                <span className="text-xs text-muted-foreground line-clamp-2">
+                  {startDescription}
+                </span>
+              )}
+            </Link>
           </div>
 
           {/* Lesson Path */}
-          <LessonPath path={path} locale={locale} />
+          <LessonPath path={path} locale={locale} showHeader={false} />
         </div>
       </div>
     </div>

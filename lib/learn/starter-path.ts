@@ -1,11 +1,11 @@
 import { LessonPath, LessonNode } from './lesson-path-types';
 
 /**
- * A1 Foundations Path - 10 units covering basics
+ * A1 Foundations Path - 6 units covering basics
  * Based on CEFR A1 level curriculum
  */
 export const starterPathNodes: LessonNode[] = [
-  // Unit 1: Alphabet & Pronunciation
+  // Unit 1: Alphabet
   {
     id: 'node-1',
     type: 'lesson',
@@ -17,150 +17,65 @@ export const starterPathNodes: LessonNode[] = [
     href: '/learn/lessons/alphabet',
     contentId: 'alphabet',
   },
-  // Unit 2: Greetings & Introductions
+  // Unit 2: Pronunciation Basics
   {
     id: 'node-2',
     type: 'lesson',
-    title: 'Greetings',
-    titleMk: 'Поздрави',
-    description: 'Essential greetings and introductions',
+    title: 'Pronunciation Basics',
+    titleMk: 'Основи на изговор',
+    description: 'Practice sounds, stress, and key letter pairs',
     status: 'locked',
     xpReward: 15,
-    href: '/practice/session?deck=curated&difficulty=all',
-    contentId: 'greetings',
+    href: '/practice/pronunciation',
+    contentId: 'pronunciation-basics',
   },
-  // Unit 3: Numbers, Days & Months
+  // Unit 3: Greetings
   {
     id: 'node-3',
     type: 'lesson',
+    title: 'Greetings',
+    titleMk: 'Поздрави',
+    description: 'Say hello, introduce yourself, and respond politely',
+    status: 'locked',
+    xpReward: 15,
+    href: '/practice/session?deck=curated&difficulty=beginner',
+    contentId: 'greetings',
+  },
+  // Unit 4: Simple Sentences
+  {
+    id: 'node-4',
+    type: 'lesson',
+    title: 'Simple Sentences',
+    titleMk: 'Едноставни реченици',
+    description: 'Build short sentences with basic structure',
+    status: 'locked',
+    xpReward: 20,
+    href: '/practice/session?deck=curated&difficulty=beginner',
+    contentId: 'simple-sentences',
+  },
+  // Unit 5: Numbers & Time
+  {
+    id: 'node-5',
+    type: 'lesson',
     title: 'Numbers & Time',
     titleMk: 'Броеви и време',
-    description: 'Count, tell time, and name days/months',
+    description: 'Count, tell time, and talk about dates',
     status: 'locked',
     xpReward: 20,
     href: '/practice/session?deck=numbers-time-v1&difficulty=all',
     contentId: 'numbers-time-v1',
   },
-  {
-    id: 'node-4',
-    type: 'review',
-    title: 'Quick Review',
-    description: 'Practice alphabet, greetings, and numbers',
-    status: 'locked',
-    xpReward: 10,
-    href: '/practice/word-sprint',
-  },
-  // Unit 4: Food & Café Survival
-  {
-    id: 'node-5',
-    type: 'lesson',
-    title: 'At the Café',
-    titleMk: 'Во кафуле',
-    description: 'Order food and drinks like a local',
-    status: 'locked',
-    xpReward: 15,
-    href: '/practice/session?deck=curated&difficulty=all',
-    contentId: 'cafe',
-  },
-  // Unit 5: Home & Household
+  // Unit 6: Everyday Verbs
   {
     id: 'node-6',
     type: 'lesson',
-    title: 'At Home',
-    titleMk: 'Дома',
-    description: 'Household items and rooms',
+    title: 'Everyday Verbs',
+    titleMk: 'Секојдневни глаголи',
+    description: 'Talk about daily actions with common verbs',
     status: 'locked',
-    xpReward: 15,
-    href: '/practice/session?deck=household-v1&difficulty=all',
-    contentId: 'household-v1',
-  },
-  // Checkpoint 1
-  {
-    id: 'node-7',
-    type: 'checkpoint',
-    title: 'Checkpoint 1',
-    description: 'Test your progress on Units 1-5',
-    status: 'locked',
-    xpReward: 30,
-    href: '/practice/word-sprint',
-  },
-  // Unit 6: Weather & Seasons
-  {
-    id: 'node-8',
-    type: 'lesson',
-    title: 'Weather',
-    titleMk: 'Време',
-    description: 'Weather expressions and seasons',
-    status: 'locked',
-    xpReward: 15,
-    href: '/practice/session?deck=weather-seasons-v1&difficulty=all',
-    contentId: 'weather-seasons-v1',
-  },
-  // Unit 7: Health & Body
-  {
-    id: 'node-9',
-    type: 'lesson',
-    title: 'Health & Body',
-    titleMk: 'Здравје и тело',
-    description: 'Body parts and health phrases',
-    status: 'locked',
-    xpReward: 15,
-    href: '/practice/session?deck=body-health-v1&difficulty=all',
-    contentId: 'body-health-v1',
-  },
-  // Unit 8: Activities & Hobbies
-  {
-    id: 'node-10',
-    type: 'lesson',
-    title: 'Hobbies',
-    titleMk: 'Хобија',
-    description: 'Free time activities and interests',
-    status: 'locked',
-    xpReward: 15,
-    href: '/practice/session?deck=activities-hobbies-v1&difficulty=all',
+    xpReward: 20,
+    href: '/practice/session?deck=activities-hobbies-v1&difficulty=beginner',
     contentId: 'activities-hobbies-v1',
-  },
-  {
-    id: 'node-11',
-    type: 'review',
-    title: 'Review Session',
-    description: 'Practice weather, health, and hobbies',
-    status: 'locked',
-    xpReward: 10,
-    href: '/practice/word-sprint',
-  },
-  // Unit 9: Clothing & Appearance
-  {
-    id: 'node-12',
-    type: 'lesson',
-    title: 'Clothing',
-    titleMk: 'Облека',
-    description: 'Describe clothing and appearances',
-    status: 'locked',
-    xpReward: 15,
-    href: '/practice/session?deck=clothing-appearance-v1&difficulty=all',
-    contentId: 'clothing-appearance-v1',
-  },
-  // Unit 10: Final Story & Assessment
-  {
-    id: 'node-13',
-    type: 'story',
-    title: 'A Day in Skopje',
-    titleMk: 'Ден во Скопје',
-    description: 'Read a short story using all vocabulary',
-    status: 'locked',
-    xpReward: 25,
-    href: '/reader/samples/day-in-skopje',
-    contentId: 'day-in-skopje',
-  },
-  {
-    id: 'node-14',
-    type: 'checkpoint',
-    title: 'A1 Final',
-    description: 'Complete the A1 Foundations assessment',
-    status: 'locked',
-    xpReward: 50,
-    href: '/practice/word-sprint',
   },
 ];
 

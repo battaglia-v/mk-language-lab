@@ -10,9 +10,10 @@ interface LessonPathProps {
   path: LessonPathType;
   locale: string;
   className?: string;
+  showHeader?: boolean;
 }
 
-export function LessonPath({ path, locale, className }: LessonPathProps) {
+export function LessonPath({ path, locale, className, showHeader = true }: LessonPathProps) {
   const nextNode = getNextNode(path);
   const progress = path.totalCount > 0
     ? Math.round((path.completedCount / path.totalCount) * 100)
@@ -22,18 +23,20 @@ export function LessonPath({ path, locale, className }: LessonPathProps) {
     <TooltipProvider delayDuration={300}>
       <div className={cn('flex flex-col', className)}>
         {/* Path header */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-2">
-            <h2 className="text-lg font-bold">{path.title}</h2>
-            <span className="text-sm text-muted-foreground">
-              {path.completedCount}/{path.totalCount}
-            </span>
+        {showHeader && (
+          <div className="mb-6">
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-lg font-bold">{path.title}</h2>
+              <span className="text-sm text-muted-foreground">
+                {path.completedCount}/{path.totalCount}
+              </span>
+            </div>
+            <Progress value={progress} className="h-2" />
+            {path.description && (
+              <p className="text-sm text-muted-foreground mt-2">{path.description}</p>
+            )}
           </div>
-          <Progress value={progress} className="h-2" />
-          {path.description && (
-            <p className="text-sm text-muted-foreground mt-2">{path.description}</p>
-          )}
-        </div>
+        )}
 
         {/* Vertical path of nodes - clean centered layout */}
         <div className="flex flex-col items-center pb-8">

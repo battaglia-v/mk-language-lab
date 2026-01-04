@@ -1,28 +1,27 @@
 'use client';
 
 import Link from 'next/link';
-import { Zap, Play, BookOpen, ChevronRight, Lock, Check, GraduationCap, MessageCircle, CalendarDays } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { Zap, Play, BookOpen, ChevronRight, Lock, Check, GraduationCap, Sparkles } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import { getLocalXP } from '@/lib/gamification/local-xp';
+import { getNextNode } from '@/lib/learn/lesson-path-types';
 import type { LessonPath as LessonPathData, LessonNode } from '@/lib/learn/lesson-path-types';
 
-type TrackId = 'basics' | 'advanced' | 'challenge';
+type LevelId = 'beginner' | 'intermediate';
+
+const LEVEL_STORAGE_KEY = 'mklanguage-level';
 
 interface LearnPageClientProps {
   locale: string;
   streak: number;
   todayXP: number;
   dailyGoalXP: number;
-  totalLessons: number;
-  continueHref: string;
-  nextLessonTitle: string;
-  nextLessonSubtitle: string;
   starterPath: LessonPathData;
-  advancedPath: LessonPathData;
-  challengePath: LessonPathData;
+  a2Path: LessonPathData;
 }
 
 export function LearnPageClient({
@@ -30,33 +29,69 @@ export function LearnPageClient({
   streak: initialStreak,
   todayXP: initialTodayXP,
   dailyGoalXP,
-  continueHref,
-  nextLessonTitle,
   starterPath,
-  advancedPath,
-  challengePath,
+  a2Path,
 }: LearnPageClientProps) {
   const t = useTranslations('mobile.learn');
+  const searchParams = useSearchParams();
   // Use local XP state for real-time updates
   const [localState, setLocalState] = useState({ todayXP: initialTodayXP, streak: initialStreak });
-  const [activeTrack, setActiveTrack] = useState<TrackId>('basics');
+  const [activeLevel, setActiveLevel] = useState<LevelId>('beginner');
 
   useEffect(() => {
     const state = getLocalXP();
     setLocalState({ todayXP: state.todayXP, streak: state.streak });
   }, []);
 
+  useEffect(() => {
+    const levelParam = searchParams.get('level');
+    if (levelParam === 'beginner' || levelParam === 'intermediate') {
+      setActiveLevel(levelParam);
+      try {
+        window.localStorage.setItem(LEVEL_STORAGE_KEY, levelParam);
+      } catch {
+        // Ignore storage errors (private mode, etc.)
+      }
+      return;
+    }
+
+    try {
+      const storedLevel = window.localStorage.getItem(LEVEL_STORAGE_KEY);
+      if (storedLevel === 'beginner' || storedLevel === 'intermediate') {
+        setActiveLevel(storedLevel);
+      }
+    } catch {
+      // Ignore storage errors
+    }
+  }, [searchParams]);
+
+  const handleLevelChange = (level: LevelId) => {
+    setActiveLevel(level);
+    try {
+      window.localStorage.setItem(LEVEL_STORAGE_KEY, level);
+    } catch {
+      // Ignore storage errors
+    }
+  };
+
   const todayXP = Math.max(localState.todayXP, initialTodayXP);
   const streak = Math.max(localState.streak, initialStreak);
   const goalProgress = dailyGoalXP > 0 ? Math.min(100, Math.round((todayXP / dailyGoalXP) * 100)) : 0;
   const isGoalComplete = todayXP >= dailyGoalXP;
 
-  // Get current path based on selected track
-  const currentPath = activeTrack === 'basics'
-    ? starterPath
-    : activeTrack === 'advanced'
-      ? advancedPath
-      : challengePath;
+  const currentPath = activeLevel === 'beginner' ? starterPath : a2Path;
+  const levelLabel = activeLevel === 'beginner' ? t('basics') : t('speaking');
+  const levelBadge = activeLevel === 'beginner' ? 'A1' : 'A2';
+  const nextNode = getNextNode(currentPath);
+  const startNode = nextNode ?? currentPath.nodes[0];
+  const startHref = startNode?.href
+    ? `/${locale}${startNode.href}`
+    : `/${locale}/learn/paths/${activeLevel === 'beginner' ? 'a1' : 'a2'}`;
+  const startTitle = startNode?.title ?? currentPath.title;
+  const startDescription = startNode?.description ?? currentPath.description;
+  const pathProgress = currentPath.totalCount > 0
+    ? Math.round((currentPath.completedCount / currentPath.totalCount) * 100)
+    : 0;
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-4rem)] pb-24 sm:pb-6">
@@ -104,9 +139,9 @@ export function LearnPageClient({
             </p>
           </div>
 
-          {/* Primary CTA - Start Today's Lesson */}
+          {/* Primary CTA - Start Here */}
           <Link
-            href={continueHref}
+            href={startHref}
             data-testid="learn-start-todays-lesson"
             className={cn(
               'group flex flex-col items-center gap-1 rounded-2xl p-5',
@@ -120,7 +155,12 @@ export function LearnPageClient({
               <Play className="h-5 w-5" fill="currentColor" />
               <span className="text-sm font-medium uppercase tracking-wide opacity-80">{t('startLesson')}</span>
             </div>
-            <span className="text-xl font-bold">{nextLessonTitle}</span>
+            <span className="text-xl font-bold text-center">{startTitle}</span>
+            {startDescription && (
+              <span className="text-xs font-medium text-black/70 text-center line-clamp-2">
+                {startDescription}
+              </span>
+            )}
           </Link>
 
           {/* Secondary CTA */}
@@ -145,62 +185,80 @@ export function LearnPageClient({
             </Link>
           </div>
 
-          {/* Skills Section Header */}
-          <div className="pt-2">
-            <h2 className="text-lg font-bold">{t('pickSkill')}</h2>
-            <p className="text-sm text-muted-foreground">{t('pickSkillHelper')}</p>
-          </div>
-
-          {/* Track Switcher */}
-          <div className="flex gap-1 p-1 bg-muted/50 rounded-xl">
-            <button
-              onClick={() => setActiveTrack('basics')}
-              data-testid="learn-track-basics"
-              className={cn(
-                'flex-1 flex items-center justify-center gap-1 py-2.5 px-2 sm:px-3 rounded-lg font-medium transition-all text-xs sm:text-sm whitespace-nowrap',
-                activeTrack === 'basics'
-                  ? 'bg-background text-foreground shadow-sm'
-                  : 'text-muted-foreground hover:text-foreground'
-              )}
-            >
-              <GraduationCap className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
-              <span>{t('basics')}</span>
-            </button>
-            <button
-              onClick={() => setActiveTrack('advanced')}
-              data-testid="learn-track-advanced"
-              className={cn(
-                'flex-1 flex items-center justify-center gap-1 py-2.5 px-2 sm:px-3 rounded-lg font-medium transition-all text-xs sm:text-sm whitespace-nowrap',
-                activeTrack === 'advanced'
-                  ? 'bg-background text-foreground shadow-sm'
-                  : 'text-muted-foreground hover:text-foreground'
-              )}
-            >
-              <MessageCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
-              <span>{t('speaking')}</span>
-            </button>
-            <button
-              onClick={() => setActiveTrack('challenge')}
-              data-testid="learn-track-challenge"
-              className={cn(
-                'flex-1 flex items-center justify-center gap-1 py-2.5 px-2 sm:px-3 rounded-lg font-medium transition-all text-xs sm:text-sm whitespace-nowrap',
-                activeTrack === 'challenge'
-                  ? 'bg-background text-foreground shadow-sm'
-                  : 'text-muted-foreground hover:text-foreground'
-              )}
-            >
-              <CalendarDays className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
-              <span>{t('challenge')}</span>
-            </button>
+          {/* Level Selection */}
+          <div className="space-y-3">
+            <div>
+              <h2 className="text-lg font-bold">{t('pickSkill')}</h2>
+              <p className="text-sm text-muted-foreground">{t('pickSkillHelper')}</p>
+            </div>
+            <div className="flex gap-2 rounded-xl bg-muted/50 p-1.5">
+              <button
+                type="button"
+                onClick={() => handleLevelChange('beginner')}
+                data-testid="learn-level-beginner"
+                className={cn(
+                  'flex-1 flex items-center gap-2 rounded-lg px-3 py-3 text-left transition-all min-h-[44px]',
+                  activeLevel === 'beginner'
+                    ? 'bg-background text-foreground shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                )}
+              >
+                <GraduationCap className="h-4 w-4 shrink-0" />
+                <div className="flex flex-col leading-tight">
+                  <span className="text-sm font-semibold">{t('basics')}</span>
+                  <span className="text-[10px] uppercase tracking-wide text-muted-foreground">A1</span>
+                </div>
+              </button>
+              <button
+                type="button"
+                onClick={() => handleLevelChange('intermediate')}
+                data-testid="learn-level-intermediate"
+                className={cn(
+                  'flex-1 flex items-center gap-2 rounded-lg px-3 py-3 text-left transition-all min-h-[44px]',
+                  activeLevel === 'intermediate'
+                    ? 'bg-background text-foreground shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                )}
+              >
+                <Sparkles className="h-4 w-4 shrink-0" />
+                <div className="flex flex-col leading-tight">
+                  <span className="text-sm font-semibold">{t('speaking')}</span>
+                  <span className="text-[10px] uppercase tracking-wide text-muted-foreground">A2</span>
+                </div>
+              </button>
+            </div>
           </div>
 
           {/* Your Path Section */}
           <section className="space-y-4">
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-bold">{currentPath.title}</h2>
-              <span className="text-sm text-muted-foreground">
-                {currentPath.completedCount}/{currentPath.totalCount} {t('complete')}
-              </span>
+            <div className="space-y-2">
+              <div className="flex items-start justify-between gap-3">
+                <div className="space-y-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h2 className="text-lg font-bold">{currentPath.title}</h2>
+                    <span className="inline-flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 text-xs font-semibold text-muted-foreground">
+                      <span className="text-[10px] font-bold text-foreground">{levelBadge}</span>
+                      {levelLabel}
+                    </span>
+                  </div>
+                  {currentPath.description && (
+                    <p className="text-sm text-muted-foreground">{currentPath.description}</p>
+                  )}
+                </div>
+                <Link
+                  href={`/${locale}/learn/paths`}
+                  data-testid="learn-browse-paths"
+                  className="text-xs font-medium text-muted-foreground hover:text-primary transition-colors whitespace-nowrap"
+                >
+                  {t('learningPaths')} →
+                </Link>
+              </div>
+              <div className="flex items-center justify-between text-sm text-muted-foreground">
+                <span>
+                  {currentPath.completedCount}/{currentPath.totalCount} {t('complete')}
+                </span>
+                <span>{pathProgress}%</span>
+              </div>
             </div>
 
             {/* Lesson Cards */}
@@ -219,13 +277,8 @@ export function LearnPageClient({
 
             {/* Progress indicator */}
             <div className="flex items-center gap-3 pt-2">
-              <Progress
-                value={(currentPath.completedCount / currentPath.totalCount) * 100}
-                className="h-2 flex-1"
-              />
-              <span className="text-sm text-muted-foreground">
-                {Math.round((currentPath.completedCount / currentPath.totalCount) * 100)}%
-              </span>
+              <Progress value={pathProgress} className="h-2 flex-1" />
+              <span className="text-sm text-muted-foreground">{pathProgress}%</span>
             </div>
           </section>
         </div>
