@@ -394,7 +394,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
 
   return (
     <div className="space-y-5 sm:space-y-6 pb-28">
-      <div className="rounded-xl border border-border/30 bg-white/5 p-3 sm:p-4 shadow-[0_14px_40px_rgba(0,0,0,0.25)] space-y-3">
+      <div className="rounded-xl border border-border bg-card p-3 sm:p-4 shadow-md space-y-3">
         <DirectionToggle
           options={directionOptions}
           activeId={directionId}
@@ -461,7 +461,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
       </div>
 
       {recentHistory.length > 0 && (
-        <div className="rounded-xl border border-border/30 bg-white/5 px-3 py-2.5 sm:px-4 sm:py-3">
+        <div className="rounded-xl border border-border bg-card px-3 py-2.5 sm:px-4 sm:py-3">
           <div className="flex items-center justify-between gap-2 mb-2">
             <div className="flex items-center gap-1.5">
               <History className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
@@ -479,17 +479,17 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                 key={entry.id}
                 type="button"
                 onClick={() => handleHistoryLoad(entry)}
-                className="flex-shrink-0 w-[160px] sm:w-[180px] rounded-xl border border-border/30 bg-[#0c1224]/70 px-2.5 py-2 text-left shadow-inner transition-colors hover:border-primary/50 hover:bg-[#0f152a] active:scale-[0.98]"
+                className="flex-shrink-0 w-[160px] sm:w-[180px] rounded-xl border border-border bg-muted px-2.5 py-2 text-left shadow-inner transition-colors hover:border-primary/50 hover:bg-accent active:scale-[0.98]"
                 data-testid={`reader-workspace-history-${entry.id}`}
               >
                 <p className="line-clamp-2 text-[11px] font-medium text-foreground/90 leading-snug">
                   {entry.sourceText}
                 </p>
                 <div className="mt-1.5 flex flex-row flex-nowrap items-center gap-1.5 text-[9px] text-muted-foreground">
-                  <span className="flex-shrink-0 whitespace-nowrap rounded bg-white/5 px-1.5 py-0.5 border border-border/40">
+                  <span className="flex-shrink-0 whitespace-nowrap rounded bg-muted px-1.5 py-0.5 border border-border">
                     {entry.analyzedData.metadata.wordCount} {t('readerWords', { default: 'words' })}
                   </span>
-                  <span className="flex-shrink-0 whitespace-nowrap rounded bg-white/5 px-1.5 py-0.5 border border-border/40">
+                  <span className="flex-shrink-0 whitespace-nowrap rounded bg-muted px-1.5 py-0.5 border border-border">
                     {entry.analyzedData.metadata.sentenceCount} sent.
                   </span>
                 </div>
@@ -500,7 +500,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
       )}
 
       <form
-        className="rounded-2xl sm:rounded-[28px] p-3 sm:p-5 md:p-6 bg-white/5 border border-border/40 shadow-[0_18px_48px_rgba(0,0,0,0.25)]"
+        className="rounded-2xl sm:rounded-[28px] p-3 sm:p-5 md:p-6 bg-card border border-border shadow-lg"
         onSubmit={(event: FormEvent<HTMLFormElement>) => {
           event.preventDefault();
           void handleAnalyze(event);
@@ -516,7 +516,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                 {t('readerInputHelper', { default: 'Paste or type up to 5000 characters.' })}
               </span>
             </div>
-            <span id="reader-character-count" className="flex-shrink-0 rounded-full bg-white/10 px-2.5 py-0.5 text-[10px] font-semibold text-muted-foreground/90">
+            <span id="reader-character-count" className="flex-shrink-0 rounded-full bg-muted px-2.5 py-0.5 text-[10px] font-semibold text-muted-foreground">
               {characterCount}
             </span>
           </div>
@@ -529,7 +529,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
             aria-label={t('readerInputLabel')}
             aria-describedby="reader-character-count"
             maxLength={MAX_CHARACTERS}
-            className="min-h-[140px] resize-none rounded-xl border border-white/10 bg-black/30 px-3 py-3 text-[15px] font-medium shadow-inner placeholder:text-muted-foreground sm:min-h-[200px] sm:px-4 sm:text-base focus-visible:ring-2 focus-visible:ring-primary/40"
+            className="min-h-[140px] resize-none rounded-xl border border-border bg-muted px-3 py-3 text-[15px] font-medium placeholder:text-muted-foreground sm:min-h-[200px] sm:px-4 sm:text-base focus-visible:ring-2 focus-visible:ring-primary/40"
             data-testid="reader-workspace-input"
           />
 
@@ -670,9 +670,9 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
       )}
 
       {analyzedData && !isAnalyzing && (
-        <div className="rounded-2xl sm:rounded-[28px] p-5 sm:p-6 md:p-8 space-y-6 bg-white/5 border border-border/40 shadow-[0_18px_48px_rgba(0,0,0,0.25)]">
+        <div className="rounded-2xl sm:rounded-[28px] p-5 sm:p-6 md:p-8 space-y-6 bg-card border border-border shadow-lg">
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-5 sm:gap-3">
-            <div className="col-span-2 rounded-xl border border-border/40 bg-white/5 px-3 py-2.5">
+            <div className="col-span-2 rounded-xl border border-border bg-muted px-3 py-2.5">
               <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
                 {t('readerDifficultyLabel', { default: 'Difficulty' })}
               </p>
@@ -694,7 +694,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                 </span>
               </div>
             </div>
-            <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2.5">
+            <div className="rounded-xl border border-border bg-muted px-3 py-2.5">
               <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
                 {t('readerWords', { default: 'Words' })}
               </p>
@@ -702,7 +702,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                 {analyzedData.metadata.wordCount}
               </p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2.5">
+            <div className="rounded-xl border border-border bg-muted px-3 py-2.5">
               <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
                 {t('readerSentences', { default: 'Sentences' })}
               </p>
@@ -710,14 +710,14 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                 {analyzedData.metadata.sentenceCount}
               </p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2.5">
+            <div className="rounded-xl border border-border bg-muted px-3 py-2.5">
               <p className="text-[11px] uppercase tracking-wide text-muted-foreground flex items-center gap-1">
                 <Clock3 className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
                 {t('readerSessionTime', { default: 'Session' })}
               </p>
               <p className="mt-1 text-sm font-semibold text-foreground">{elapsedLabel}</p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-white/5 px-3 py-2.5">
+            <div className="rounded-xl border border-border bg-muted px-3 py-2.5">
               <p className="text-[11px] uppercase tracking-wide text-muted-foreground flex items-center gap-1">
                 <span role="img" aria-hidden="true">🔥</span>
                 {t('readerStreak', { default: 'Day streak' })}
@@ -771,7 +771,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
           </div>
 
           {sentences.length > 0 && (
-            <div className="space-y-4 rounded-2xl border border-border/40 bg-white/3 p-4 sm:p-6">
+            <div className="space-y-4 rounded-2xl border border-border bg-muted/50 p-4 sm:p-6">
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-center gap-2">
                   <Sparkles className="h-4 w-4 text-primary" aria-hidden="true" />
@@ -790,7 +790,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                   return (
                     <div
                       key={sentence.id}
-                      className="rounded-xl bg-[#0c1224]/80 border border-border/40 p-4 sm:p-5 shadow-inner space-y-3"
+                      className="rounded-xl bg-card border border-border p-4 sm:p-5 space-y-3"
                     >
                       <p className="text-base sm:text-lg font-semibold text-foreground leading-relaxed">{sentence.text}</p>
                       <p className="text-sm sm:text-base text-primary/90 leading-relaxed">{sentence.translation}</p>

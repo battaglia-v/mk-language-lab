@@ -77,10 +77,10 @@ function WordToken({ word, revealMode, isRevealed, onToggleReveal, isFocused = f
           onClick={handleClick}
           className={cn(
             'relative inline-flex cursor-pointer select-none flex-col items-start text-left',
-            'rounded-xl border-2 border-white/15 bg-gradient-to-b from-white/10 to-white/5 shadow-md',
+            'rounded-xl border-2 border-border bg-card shadow-md',
             // Improved touch targets - minimum 44px height for accessibility
             'px-3 py-2.5 min-w-[64px] max-w-[140px] min-h-[44px] sm:px-3.5 sm:py-2.5 sm:min-w-[80px] sm:max-w-[180px]',
-            'transition-all duration-200 hover:border-primary/60 hover:bg-white/15 hover:shadow-lg active:scale-[0.98]',
+            'transition-all duration-200 hover:border-primary/60 hover:bg-accent hover:shadow-lg active:scale-[0.98]',
             showTranslation && 'ring-2 ring-primary/50 border-primary/40 bg-primary/5',
             // Focus mode styling
             focusMode && !isFocused && 'opacity-30 scale-90 blur-[0.5px]',
@@ -88,7 +88,7 @@ function WordToken({ word, revealMode, isRevealed, onToggleReveal, isFocused = f
           )}
           aria-label={`${word.original}: ${word.translation}`}
         >
-          <span className="block text-base font-bold text-white leading-snug tracking-wide break-words sm:text-lg">
+          <span className="block text-base font-bold text-foreground leading-snug tracking-wide break-words sm:text-lg">
             {word.original}
           </span>
           {showTranslation ? (
@@ -96,7 +96,7 @@ function WordToken({ word, revealMode, isRevealed, onToggleReveal, isFocused = f
               {word.translation}
             </span>
           ) : (
-            <span className="mt-1 inline-flex items-center rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-medium text-muted-foreground/70 leading-tight sm:px-2.5 sm:py-1 sm:text-xs">
+            <span className="mt-1 inline-flex items-center rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground leading-tight sm:px-2.5 sm:py-1 sm:text-xs">
               {t('readerRevealHint', { default: 'Tap' })}
             </span>
           )}
@@ -251,7 +251,7 @@ export function WordByWordDisplay({ data, revealMode, focusMode = false }: WordB
 
   return (
     <div
-      className="min-h-[180px] rounded-xl bg-gradient-to-b from-[#0e1324] via-[#0b1020] to-[#0a0f1b] p-3 sm:p-5 leading-relaxed border border-border/30 shadow-[0_18px_36px_rgba(0,0,0,0.28)] sm:min-h-[240px] sm:rounded-2xl"
+      className="min-h-[180px] rounded-xl bg-muted p-3 sm:p-5 leading-relaxed border border-border shadow-md sm:min-h-[240px] sm:rounded-2xl"
       role="region"
       aria-label="Word by word translation"
     >
