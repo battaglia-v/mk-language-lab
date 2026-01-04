@@ -95,7 +95,8 @@
    Clean, warm, Adjustly-inspired
    ======================================== */
 :root,
-.theme-light {
+.theme-light,
+html.theme-light {
   color-scheme: light;
 
   /* Core palette - Adjustly-inspired warm grays */
@@ -185,7 +186,8 @@ body.theme-light {
    DARK THEME
    Rich, immersive, premium feel
    ======================================== */
-.theme-dark {
+.theme-dark,
+html.theme-dark {
   color-scheme: dark;
 
   /* Core palette */
@@ -274,7 +276,9 @@ body.theme-dark {
 /* Legacy variable aliases for backwards compatibility */
 :root,
 .theme-light,
-.theme-dark {
+.theme-dark,
+html.theme-light,
+html.theme-dark {
   --mk-bg-surface: var(--mk-surface);
   --mk-bg-panel: var(--mk-surface-2);
   --mk-bg-panel-muted: var(--mk-surface-2);

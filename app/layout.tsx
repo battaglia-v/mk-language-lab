@@ -116,9 +116,34 @@ export default function RootLayout({
   const enableVercelAnalytics = Boolean(process.env.VERCEL);
 
   return (
-    <html lang="en" className="dark notranslate overflow-x-hidden" translate="no" suppressHydrationWarning>
+    <html lang="en" className="notranslate overflow-x-hidden" translate="no" suppressHydrationWarning>
       <head>
         <meta name="google" content="notranslate" />
+        {/* Blocking script to prevent theme flash - runs before paint */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('mk-theme');
+                  var isLight = theme === 'light';
+                  var html = document.documentElement;
+                  if (isLight) {
+                    html.classList.remove('dark');
+                    html.classList.add('theme-light');
+                    html.classList.remove('theme-dark');
+                  } else {
+                    html.classList.add('dark');
+                    html.classList.add('theme-dark');
+                    html.classList.remove('theme-light');
+                  }
+                } catch (e) {
+                  document.documentElement.classList.add('dark', 'theme-dark');
+                }
+              })();
+            `,
+          }}
+        />
         {/* Preconnect to external services for faster loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -128,7 +153,7 @@ export default function RootLayout({
         {/* Preload critical font if using Google Fonts */}
       </head>
       <body
-        className="antialiased overflow-x-hidden theme-dark bg-[var(--mk-bg)] text-[var(--mk-text)]"
+        className="antialiased overflow-x-hidden bg-[var(--mk-bg)] text-[var(--mk-text)]"
       >
         <ThemeProvider>
           <SentryInit />
