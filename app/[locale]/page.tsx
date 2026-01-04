@@ -36,8 +36,8 @@ export default async function LocaleHome({ params }: LocalePageProps) {
   const signInHref = `/${safeLocale}/sign-in`;
 
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center px-4 pt-16 pb-8">
-      <div className="w-full max-w-md space-y-8 text-center">
+    <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center pt-12 pb-8">
+      <div className="w-full space-y-8 text-center">
         {/* Hero */}
         <div className="space-y-4">
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">

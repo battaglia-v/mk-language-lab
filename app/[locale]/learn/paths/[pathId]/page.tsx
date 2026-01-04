@@ -95,67 +95,63 @@ export default async function PathDetailPage({ params }: PathPageProps) {
     : 0;
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-4rem)] pb-24 sm:pb-6">
-      <div className="flex-1 px-4 py-6">
-        <div className="max-w-lg mx-auto space-y-6">
-          {/* Header */}
-          <div className="space-y-4">
-            <Link
-              href={`/${locale}/learn/paths`}
-              data-testid="path-detail-back"
-              className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
-            >
-              <ChevronLeft className="h-4 w-4" />
-              All Paths
-            </Link>
-            <div className="flex flex-wrap items-center gap-2">
-              <h1 className="text-2xl font-bold text-foreground">
-                {config.title}
-              </h1>
-              <span className={cn(
-                "inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold uppercase",
-                config.badgeClass
-              )}>
-                <span className="text-[10px] font-bold text-foreground">{config.badge}</span>
-                {config.difficulty}
-              </span>
-            </div>
-            <p className="text-base text-muted-foreground">
-              {config.description}
-            </p>
-            <div className="space-y-2">
-              <div className="flex items-center justify-between text-sm text-muted-foreground">
-                <span>{path.completedCount} / {path.totalCount} completed</span>
-                <span>{progressValue}%</span>
-              </div>
-              <Progress value={progressValue} className="h-2" />
-            </div>
-            <Link
-              href={startHref}
-              data-testid="path-detail-start-here"
-              className={cn(
-                "group flex flex-col items-start gap-1 rounded-2xl border border-border/60 bg-card/70 p-4 transition-all",
-                "hover:border-primary/40 hover:shadow-md active:scale-[0.99]"
-              )}
-            >
-              <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                {startLabel}
-              </span>
-              <span className="text-lg font-semibold text-foreground">
-                {startTitle}
-              </span>
-              {startDescription && (
-                <span className="text-xs text-muted-foreground line-clamp-2">
-                  {startDescription}
-                </span>
-              )}
-            </Link>
-          </div>
-
-          {/* Lesson Path */}
-          <LessonPath path={path} locale={locale} showHeader={false} />
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="space-y-4">
+        <Link
+          href={`/${locale}/learn/paths`}
+          data-testid="path-detail-back"
+          className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+        >
+          <ChevronLeft className="h-4 w-4" />
+          All Paths
+        </Link>
+        <div className="flex flex-wrap items-center gap-2">
+          <h1 className="text-2xl font-bold text-foreground">
+            {config.title}
+          </h1>
+          <span className={cn(
+            "inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold uppercase",
+            config.badgeClass
+          )}>
+            <span className="text-[10px] font-bold text-foreground">{config.badge}</span>
+            {config.difficulty}
+          </span>
         </div>
+        <p className="text-base text-muted-foreground">
+          {config.description}
+        </p>
+        <div className="space-y-2">
+          <div className="flex items-center justify-between text-sm text-muted-foreground">
+            <span>{path.completedCount} / {path.totalCount} completed</span>
+            <span>{progressValue}%</span>
+          </div>
+          <Progress value={progressValue} className="h-2" />
+        </div>
+        <Link
+          href={startHref}
+          data-testid="path-detail-start-here"
+          className={cn(
+            "group flex flex-col items-start gap-1 rounded-2xl border border-border/60 bg-card/70 p-4 transition-all",
+            "hover:border-primary/40 hover:shadow-md active:scale-[0.99]"
+          )}
+        >
+          <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+            {startLabel}
+          </span>
+          <span className="text-lg font-semibold text-foreground">
+            {startTitle}
+          </span>
+          {startDescription && (
+            <span className="text-xs text-muted-foreground line-clamp-2">
+              {startDescription}
+            </span>
+          )}
+        </Link>
       </div>
+
+      {/* Lesson Path */}
+      <LessonPath path={path} locale={locale} showHeader={false} />
     </div>
   );
 }

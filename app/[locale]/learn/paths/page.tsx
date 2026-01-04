@@ -96,40 +96,36 @@ export default async function LearningPathsPage() {
   ];
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-4rem)] pb-24 sm:pb-6">
-      <div className="flex-1 px-4 py-6">
-        <div className="max-w-2xl mx-auto space-y-6">
-          {/* Header */}
-          <div className="space-y-2">
-            <Link
-              href={`/${locale}/learn`}
-              data-testid="paths-back-to-learn"
-              className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1"
-            >
-              ← Back to Learn
-            </Link>
-            <h1 className="text-2xl font-bold text-foreground">
-              Learning Paths
-            </h1>
-            <p className="text-base text-muted-foreground">
-              Choose your journey based on your current level
-            </p>
-          </div>
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="space-y-2">
+        <Link
+          href={`/${locale}/learn`}
+          data-testid="paths-back-to-learn"
+          className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1"
+        >
+          ← Back to Learn
+        </Link>
+        <h1 className="text-2xl font-bold text-foreground">
+          Learning Paths
+        </h1>
+        <p className="text-base text-muted-foreground">
+          Choose your journey based on your current level
+        </p>
+      </div>
 
-          {/* Path Cards Grid */}
-          <div className="grid gap-4 sm:grid-cols-2">
-            {learningPaths.map((path) => (
-              <PathCardComponent key={path.id} path={path} />
-            ))}
-          </div>
+      {/* Path Cards Grid */}
+      <div className="grid gap-4 sm:grid-cols-2">
+        {learningPaths.map((path) => (
+          <PathCardComponent key={path.id} path={path} />
+        ))}
+      </div>
 
-          {/* Recommendation */}
-          <div className="bg-muted/50 rounded-xl p-4 text-center">
-            <p className="text-sm text-muted-foreground">
-              New to Macedonian? Start with <span className="font-medium text-foreground">A1 Foundations</span>
-            </p>
-          </div>
-        </div>
+      {/* Recommendation */}
+      <div className="bg-muted/50 rounded-xl p-4 text-center">
+        <p className="text-sm text-muted-foreground">
+          New to Macedonian? Start with <span className="font-medium text-foreground">A1 Foundations</span>
+        </p>
       </div>
     </div>
   );
