@@ -76,6 +76,11 @@ const ALLOWED_DOMAINS = new Set([
   'veles.mk', 'gostivar.mk', 'tetovo.info', 'kumanovo.mk', 'kavadarci.mk',
   'dnevnik.mk', 'utrinski.mk', 'vecher.mk', 'vest.mk', 'koha.mk',
   'zhurnal.mk', 'sloboden.mk', 'nova.mk', 'kanal5.mk', 'alsat-m.tv',
+  // More MK news/media sources discovered from time.mk articles
+  'reporter.mk', 'tocka.mk', 'sakam.mk', 'idividi.com.mk', 'star.mk',
+  'mkd.mk', 'mkdpress.mk', 'alfa.com.mk', 'kurir.com.mk', '24vesti.mk',
+  'sportmedia.mk', 'sportlife.mk', 'a1on.com.mk', 'sitel.mk', 'kanal5tv.mk',
+  'novosti.mk', 'mkd-news.com', 'slobodnaevropa.mk', 'voa.mk',
   // WordPress hosted MK sites (common pattern)
   'i0.wp.com', 'i1.wp.com', 'i2.wp.com', 'i3.wp.com',
   // CDNs
@@ -83,6 +88,11 @@ const ALLOWED_DOMAINS = new Set([
   'akamaized.net', 'fastly.net', 'cloudfront.net', 'b-cdn.net',
   'cdninstagram.com', 'fbcdn.net',
 ]);
+
+/**
+ * Check if a domain is allowed.
+ * Also allows any .mk domain as a fallback since they're all Macedonian news sources.
+ */
 
 // User agents that mimic real browsers
 const USER_AGENTS = [
@@ -115,11 +125,20 @@ const FALLBACK_SVG = `<svg width="800" height="450" viewBox="0 0 800 450" fill="
 function isAllowedDomain(url: string): boolean {
   try {
     const hostname = new URL(url).hostname;
+
+    // Check explicit allowlist first
     for (const allowed of ALLOWED_DOMAINS) {
       if (hostname === allowed || hostname.endsWith(`.${allowed}`)) {
         return true;
       }
     }
+
+    // Allow any .mk domain as a fallback (all Macedonian news sources)
+    // This handles the many small local news sites not in the explicit list
+    if (hostname.endsWith('.mk')) {
+      return true;
+    }
+
     return false;
   } catch {
     return false;
