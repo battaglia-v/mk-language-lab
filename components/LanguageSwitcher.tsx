@@ -95,7 +95,7 @@ export default function LanguageSwitcher() {
           aria-label={t('language')}
           data-testid="language-switcher-trigger"
         >
-          <Languages className="h-4 w-4 flex-shrink-0" />
+          <Languages className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
           <span className="sm:hidden flex-shrink-0">{currentLanguage.flag}</span>
           <span className="hidden sm:inline text-center flex-1">{currentLanguage.name}</span>
         </Button>
