@@ -136,6 +136,7 @@
     "jsdom": "^27.0.1",
     "lint-staged": "^16.2.6",
     "msw": "^2.11.5",
+    "png-to-ico": "^3.0.1",
     "prisma": "^6.19.0",
     "tailwindcss": "^4",
     "tsx": "^4.20.6",
