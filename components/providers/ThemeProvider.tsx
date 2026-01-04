@@ -36,16 +36,22 @@ function ThemeBodySync() {
 
     const currentTheme = resolvedTheme || 'dark';
     const isLight = currentTheme === 'light';
+    const html = document.documentElement;
+    const body = document.body;
 
-    // Update body theme class for our CSS variables
-    document.body.classList.remove('theme-light', 'theme-dark');
-    document.body.classList.add(isLight ? 'theme-light' : 'theme-dark');
+    // Update html classes for our CSS variables (theme works before body)
+    html.classList.remove('theme-light', 'theme-dark');
+    html.classList.add(isLight ? 'theme-light' : 'theme-dark');
+
+    // Update body theme class for backwards compatibility
+    body.classList.remove('theme-light', 'theme-dark');
+    body.classList.add(isLight ? 'theme-light' : 'theme-dark');
 
     // Update html dark class for Tailwind
     if (isLight) {
-      document.documentElement.classList.remove('dark');
+      html.classList.remove('dark');
     } else {
-      document.documentElement.classList.add('dark');
+      html.classList.add('dark');
     }
   }, [resolvedTheme, mounted]);
 

@@ -16,7 +16,7 @@ export default function AboutPage() {
 
   return (
     <div className="page-shell">
-      <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6 text-white">
+      <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6">
         <section data-testid="about-hero" className="glass-card rounded-3xl p-6 md:p-8 text-center">
           <header className="page-header mx-auto">
             <div className="page-header-content">
@@ -30,10 +30,10 @@ export default function AboutPage() {
         <section data-testid="about-features">
           <Card className="glass-card rounded-3xl p-6 md:p-8">
             <CardHeader>
-              <CardTitle className="text-2xl text-white">{t('features')}</CardTitle>
+              <CardTitle className="text-2xl text-foreground">{t('features')}</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="space-y-4 text-slate-200">
+              <ul className="space-y-4 text-muted-foreground">
                 {features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
                     <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-primary mt-0.5" />
@@ -70,11 +70,11 @@ export default function AboutPage() {
                 />
               </div>
               <div>
-                <CardTitle className="text-2xl text-white">Vincent (&quot;Vinny&quot;) Battaglia</CardTitle>
-                <p className="text-sm text-slate-300 mt-1">{t('vincentRole')}</p>
+                <CardTitle className="text-2xl text-foreground">Vincent (&quot;Vinny&quot;) Battaglia</CardTitle>
+                <p className="text-sm text-muted-foreground mt-1">{t('vincentRole')}</p>
               </div>
             </CardHeader>
-            <CardContent className="space-y-4 text-sm text-slate-200">
+            <CardContent className="space-y-4 text-sm text-muted-foreground">
               <p>{t('vincentBio')}</p>
               <div className="flex flex-wrap justify-center gap-2 text-xs">
                 <a
@@ -110,11 +110,11 @@ export default function AboutPage() {
                 <span className="text-3xl">🇲🇰</span>
               </div>
               <div>
-                <CardTitle className="text-2xl text-white">Macedonian Language Corner</CardTitle>
-                <p className="text-sm text-slate-300 mt-1">Content Partner</p>
+                <CardTitle className="text-2xl text-foreground">Macedonian Language Corner</CardTitle>
+                <p className="text-sm text-muted-foreground mt-1">Content Partner</p>
               </div>
             </CardHeader>
-            <CardContent className="space-y-4 text-sm text-slate-200">
+            <CardContent className="space-y-4 text-sm text-muted-foreground">
               <p>{t('creditsContent')}</p>
               <div className="flex flex-wrap justify-center gap-2 text-xs">
                 <a
