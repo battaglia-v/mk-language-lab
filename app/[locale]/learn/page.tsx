@@ -2,10 +2,8 @@ import { getLocale } from "next-intl/server";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { LearnPageClient } from "@/components/learn/LearnPageClient";
-import { createStarterPath } from "@/lib/learn/starter-path";
-import { createAdvancedPath } from "@/lib/learn/advanced-path";
-import { create30DayChallengePath } from "@/lib/learn/challenge-30day-path";
-import { getNextNode } from "@/lib/learn/lesson-path-types";
+import { createStarterPath, starterPathNodes } from "@/lib/learn/starter-path";
+import { createA2Path, a2PathNodes } from "@/lib/learn/a2-path";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -39,7 +37,7 @@ export default async function LearnPage() {
           totalLessons: progress.totalLessons,
         };
 
-        const completedCount = Math.min(progress.totalLessons, 10);
+        const completedCount = Math.min(progress.totalLessons, starterPathNodes.length);
         completedNodeIds = Array.from(
           { length: completedCount },
           (_, i) => `node-${i + 1}`
@@ -50,21 +48,15 @@ export default async function LearnPage() {
     }
   }
 
-  // Create all learning paths
+  // Create learning paths
   const starterPath = createStarterPath(completedNodeIds);
 
-  // For advanced path, filter completed IDs that start with 'adv-'
-  const advCompletedIds = completedNodeIds.filter(id => id.startsWith('adv-'));
-  const advancedPath = createAdvancedPath(advCompletedIds);
-
-  // For 30-day challenge, filter completed IDs that start with '30day-'
-  const challengeCompletedIds = completedNodeIds.filter(id => id.startsWith('30day-'));
-  const challengePath = create30DayChallengePath(challengeCompletedIds);
-
-  const nextNode = getNextNode(starterPath);
-  const continueHref = nextNode?.href ? `/${locale}${nextNode.href}` : `/${locale}/practice`;
-  const nextLessonTitle = nextNode?.title || "Quick Practice";
-  const nextLessonSubtitle = nextNode?.description || "Build your streak";
+  const a2CompletedCount = Math.max(0, gameProgress.totalLessons - starterPathNodes.length);
+  const a2CompletedIds = Array.from(
+    { length: Math.min(a2CompletedCount, a2PathNodes.length) },
+    (_, i) => `a2-${i + 1}`
+  );
+  const a2Path = createA2Path(a2CompletedIds);
 
   return (
     <LearnPageClient
@@ -72,13 +64,8 @@ export default async function LearnPage() {
       streak={gameProgress.streak}
       todayXP={gameProgress.todayXP}
       dailyGoalXP={gameProgress.dailyGoalXP}
-      totalLessons={gameProgress.totalLessons}
-      continueHref={continueHref}
-      nextLessonTitle={nextLessonTitle}
-      nextLessonSubtitle={nextLessonSubtitle}
       starterPath={starterPath}
-      advancedPath={advancedPath}
-      challengePath={challengePath}
+      a2Path={a2Path}
     />
   );
 }

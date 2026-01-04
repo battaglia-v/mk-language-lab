@@ -1,60 +1,99 @@
 import { getLocale } from "next-intl/server";
 import Link from "next/link";
-import { BookOpen, Calendar, Boxes } from "lucide-react";
+import { BookOpen, Sparkles } from "lucide-react";
+import { auth } from "@/lib/auth";
+import prisma from "@/lib/prisma";
 import { cn } from "@/lib/utils";
+import { Progress } from "@/components/ui/progress";
+import { createStarterPath, starterPathNodes } from "@/lib/learn/starter-path";
+import { createA2Path, a2PathNodes } from "@/lib/learn/a2-path";
+import { getNextNode } from "@/lib/learn/lesson-path-types";
 
 export const dynamic = 'force-dynamic';
 
 interface PathCard {
   id: string;
   level: string;
+  difficulty: string;
   title: string;
-  titleMk: string;
   description: string;
-  estimatedWeeks: number;
   units: number;
   icon: React.ReactNode;
   color: string;
+  completedCount: number;
+  totalCount: number;
+  progress: number;
+  startHref: string;
+  detailHref: string;
 }
-
-const learningPaths: PathCard[] = [
-  {
-    id: "a1",
-    level: "A1",
-    title: "Foundations",
-    titleMk: "Основи",
-    description: "Master the basics: alphabet, greetings, numbers, and essential phrases",
-    estimatedWeeks: 4,
-    units: 10,
-    icon: <BookOpen className="h-6 w-6" />,
-    color: "bg-emerald-500",
-  },
-  {
-    id: "30day",
-    level: "Challenge",
-    title: "30-Day Reading",
-    titleMk: "30 дена читање",
-    description: "Daily reading passages with vocabulary and grammar notes",
-    estimatedWeeks: 4,
-    units: 30,
-    icon: <Calendar className="h-6 w-6" />,
-    color: "bg-rose-500",
-  },
-  {
-    id: "topics",
-    level: "Topics",
-    title: "Topic Packs",
-    titleMk: "Тематски пакети",
-    description: "Focused vocabulary: travel, food, business, and more",
-    estimatedWeeks: 2,
-    units: 8,
-    icon: <Boxes className="h-6 w-6" />,
-    color: "bg-teal-500",
-  },
-];
 
 export default async function LearningPathsPage() {
   const locale = await getLocale();
+  const session = await auth().catch(() => null);
+
+  let totalLessons = 0;
+  if (session?.user?.id) {
+    try {
+      const progress = await prisma.gameProgress.findUnique({
+        where: { userId: session.user.id },
+      });
+      totalLessons = progress?.totalLessons ?? 0;
+    } catch (error) {
+      console.error("[learn/paths] Failed to load progress:", error);
+    }
+  }
+
+  const completedA1 = Math.min(totalLessons, starterPathNodes.length);
+  const completedA2 = Math.min(
+    Math.max(0, totalLessons - starterPathNodes.length),
+    a2PathNodes.length
+  );
+
+  const completedA1Ids = Array.from({ length: completedA1 }, (_, i) => `node-${i + 1}`);
+  const completedA2Ids = Array.from({ length: completedA2 }, (_, i) => `a2-${i + 1}`);
+
+  const starterPath = createStarterPath(completedA1Ids);
+  const a2Path = createA2Path(completedA2Ids);
+
+  const starterNext = getNextNode(starterPath) ?? starterPath.nodes[0];
+  const a2Next = getNextNode(a2Path) ?? a2Path.nodes[0];
+
+  const learningPaths: PathCard[] = [
+    {
+      id: "a1",
+      level: "A1",
+      difficulty: "Beginner",
+      title: "Foundations",
+      description: "Alphabet, pronunciation, greetings, numbers, and everyday verbs.",
+      units: starterPath.totalCount,
+      icon: <BookOpen className="h-6 w-6" />,
+      color: "bg-emerald-500",
+      completedCount: starterPath.completedCount,
+      totalCount: starterPath.totalCount,
+      progress: starterPath.totalCount > 0
+        ? Math.round((starterPath.completedCount / starterPath.totalCount) * 100)
+        : 0,
+      startHref: starterNext?.href ? `/${locale}${starterNext.href}` : `/${locale}/learn/paths/a1`,
+      detailHref: `/${locale}/learn/paths/a1`,
+    },
+    {
+      id: "a2",
+      level: "A2",
+      difficulty: "Intermediate",
+      title: "Momentum",
+      description: "Daily routines, past tense intro, directions, and short dialogues.",
+      units: a2Path.totalCount,
+      icon: <Sparkles className="h-6 w-6" />,
+      color: "bg-sky-500",
+      completedCount: a2Path.completedCount,
+      totalCount: a2Path.totalCount,
+      progress: a2Path.totalCount > 0
+        ? Math.round((a2Path.completedCount / a2Path.totalCount) * 100)
+        : 0,
+      startHref: a2Next?.href ? `/${locale}${a2Next.href}` : `/${locale}/learn/paths/a2`,
+      detailHref: `/${locale}/learn/paths/a2`,
+    },
+  ];
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-4rem)] pb-24 sm:pb-6">
@@ -80,7 +119,7 @@ export default async function LearningPathsPage() {
           {/* Path Cards Grid */}
           <div className="grid gap-4 sm:grid-cols-2">
             {learningPaths.map((path) => (
-              <PathCardComponent key={path.id} path={path} locale={locale} />
+              <PathCardComponent key={path.id} path={path} />
             ))}
           </div>
 
@@ -96,11 +135,9 @@ export default async function LearningPathsPage() {
   );
 }
 
-function PathCardComponent({ path, locale }: { path: PathCard; locale: string }) {
-  const href = `/${locale}/learn/paths/${path.id}`;
-
+function PathCardComponent({ path }: { path: PathCard }) {
   return (
-    <div className="relative rounded-xl border bg-card p-4 space-y-3 transition-all hover:shadow-md hover:border-primary/20">
+    <div className="relative rounded-xl border bg-card p-4 space-y-4 transition-all hover:shadow-md hover:border-primary/20">
       {/* Level Badge */}
       <div className={cn(
         "inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-white text-xs font-semibold",
@@ -108,6 +145,8 @@ function PathCardComponent({ path, locale }: { path: PathCard; locale: string })
       )}>
         {path.icon}
         <span>{path.level}</span>
+        <span className="text-white/70">/</span>
+        <span>{path.difficulty}</span>
       </div>
 
       {/* Title & Description */}
@@ -121,16 +160,30 @@ function PathCardComponent({ path, locale }: { path: PathCard; locale: string })
       {/* Stats */}
       <div className="flex items-center gap-4 text-xs text-muted-foreground">
         <span>{path.units} lessons</span>
-        <span>~{path.estimatedWeeks} weeks</span>
+        <Link
+          href={path.detailHref}
+          className="text-xs font-medium text-muted-foreground hover:text-primary"
+        >
+          View full path
+        </Link>
+      </div>
+
+      {/* Progress */}
+      <div className="space-y-2">
+        <div className="flex items-center justify-between text-xs text-muted-foreground">
+          <span>{path.completedCount}/{path.totalCount} complete</span>
+          <span>{path.progress}%</span>
+        </div>
+        <Progress value={path.progress} className="h-2" />
       </div>
 
       {/* CTA */}
       <Link
-        href={href}
+        href={path.startHref}
         data-testid={`paths-start-${path.id}`}
         className="block w-full text-center py-2 px-4 bg-primary text-black rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
       >
-        Start Path
+        Start here
       </Link>
     </div>
   );
