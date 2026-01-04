@@ -2,6 +2,7 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -25,16 +26,32 @@ export default function LanguageSwitcher() {
   const t = useTranslations('common');
   const router = useRouter();
   const pathname = usePathname();
+  const { data: session } = useSession();
   const [isPending, startTransition] = useTransition();
 
-  const switchLanguage = (newLocale: string) => {
+  const switchLanguage = async (newLocale: string) => {
     if (newLocale === locale) {
       return;
     }
 
-    // Store preference in localStorage
+    // Store preference in localStorage and cookie
     if (typeof window !== 'undefined') {
-      localStorage.setItem('preferredLocale', newLocale);
+      localStorage.setItem('mk-preferred-locale', newLocale);
+      // Update cookie for next-intl middleware
+      document.cookie = `NEXT_LOCALE=${newLocale};path=/;max-age=31536000;SameSite=Lax`;
+    }
+
+    // Save to database if user is logged in
+    if (session?.user?.id) {
+      try {
+        await fetch('/api/user/settings', {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ locale: newLocale }),
+        });
+      } catch (error) {
+        console.error('[LanguageSwitcher] Failed to save locale to database:', error);
+      }
     }
 
     // Replace the locale in the pathname
