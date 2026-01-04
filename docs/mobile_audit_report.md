@@ -6,6 +6,7 @@
 - Project: mobile-audit
 - Command: PLAYWRIGHT_BASE_URL=https://www.mklanguage.com npx playwright test --project=mobile-audit tests/mobile-audit/13-stage4-critical.spec.ts
 - Tests: 9 total (6 passed, 3 failed)
+- Notes: Re-run after fixes were pushed to main; production still shows failures (likely deploy lag).
 
 ## Failures
 
@@ -14,19 +15,21 @@
 - Steps: `/en/learn` -> tap “Intermediate (A2)”
 - Expected: A2 path shows title “A2 Momentum” with A2 lessons.
 - Actual: A1 path remains visible; A2 title never appears.
-- Notes: Could be state not updating or selection not applying in production.
+- Notes: Fix pushed (level toggle now uses router state + URL); production still failing.
 
 ### Practice: Word Sprint doesn’t start
 - Severity: critical
 - Steps: `/en/practice/word-sprint` -> tap “Start session”
 - Expected: Session starts and shows exit control.
 - Actual: Remains on difficulty picker; no session UI.
+- Notes: Fix pushed (start button now triggers session directly + updates URL); production still failing.
 
 ### Reader: Word tap does not open word sheet
 - Severity: major
 - Steps: `/en/reader/samples/cafe-conversation` -> tap any word
 - Expected: Bottom sheet opens with translation/actions.
 - Actual: No word sheet appears.
+- Notes: Fix pushed (tap handler supports pointer + click events); production still failing.
 
 ## Passed Checks
 - Core routes load without 404s (home, learn, paths, A1/A2, word sprint, reader sample).
