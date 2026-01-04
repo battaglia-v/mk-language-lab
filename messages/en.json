@@ -24,6 +24,22 @@
     "settings": "Settings",
     "help": "Help",
     "about": "About",
+    "languageLab": "Language Lab",
+    "languageLabDesc": "Translator, analyzer & pronunciation",
+    "newsDesc": "Macedonian news articles",
+    "resourcesDesc": "Learning resources",
+    "profileDesc": "Your progress and stats",
+    "settingsDesc": "App preferences",
+    "aboutDesc": "About MKLanguage",
+    "helpDesc": "Support and FAQ",
+    "theme": "Theme",
+    "themeDesc": "Choose light or dark mode",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "language": "Language",
+    "languageDesc": "Choose your preferred language",
+    "dailyGoal": "Daily Goal",
+    "dailyGoalDesc": "Set your daily XP target",
     "notifications": "Notifications",
     "profile": "Profile",
     "upgrade": "Upgrade",
@@ -1021,6 +1037,7 @@
       "modeMultipleChoice": "Pick one",
       "chooseAnswer": "Choose the correct answer",
       "skip": "Skip",
+      "skipHint": "Skip this question (no XP earned)",
       "navigate": "Nav",
       "endSession": "End Session",
       "exitConfirmTitle": "End this session?",
@@ -2598,7 +2615,7 @@
     "yearlyPricePerMonth": "Just $3/month",
     "subscribe": "Subscribe",
     "purchaseProcessing": "Processing…",
-    "purchaseUnavailable": "Purchases aren’t available on this device yet.",
+    "purchaseUnavailable": "Purchases aren't available on this device yet.",
     "purchaseSuccessTitle": "Subscribed",
     "purchaseSuccessDescription": "Pro is now active on your account.",
     "purchaseFailedTitle": "Purchase failed",
@@ -2619,5 +2636,25 @@
     "maybeLater": "Maybe later",
     "cancelAnytime": "Cancel anytime. No questions asked.",
     "securePayment": "Secure payment via Google Play or Stripe"
+  },
+  "languageLab": {
+    "title": "Language Lab",
+    "subtitle": "Essential tools for learning Macedonian",
+    "translator": {
+      "title": "Translator",
+      "description": "Translate between Macedonian and English with history and saved phrases",
+      "badge": "Core"
+    },
+    "analyzer": {
+      "title": "Text Analyzer",
+      "description": "Break down any text word-by-word with translations and grammar hints",
+      "badge": "Reader"
+    },
+    "pronunciation": {
+      "title": "Pronunciation Practice",
+      "description": "Perfect your accent with guided speaking exercises and native audio",
+      "badge": "Speaking"
+    },
+    "hint": "These tools help you understand, translate, and speak Macedonian. Use them alongside your lessons for faster progress."
   }
 }
