@@ -62,7 +62,12 @@ export function ShellHeader() {
               </Link>
             </Button>
           ) : null}
-          <Link href={buildHref("/learn")} className="flex items-center gap-2 sm:gap-3" aria-label={t("full")}>
+          <Link
+            href={buildHref("/learn")}
+            className="flex items-center gap-2 sm:gap-3"
+            aria-label={t("full")}
+            data-testid="shell-brand-link"
+          >
             <span className="title-gradient text-xl sm:text-2xl lowercase whitespace-nowrap">македонски</span>
             <span className="hidden text-[11px] uppercase tracking-[0.35em] text-muted-foreground whitespace-nowrap md:inline">
               MK LANGUAGE LAB

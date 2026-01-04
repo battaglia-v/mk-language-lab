@@ -121,8 +121,8 @@ html.theme-light {
   --mk-danger: #DC2626;
   --mk-danger-muted: #FEE2E2;
 
-  /* Brand gradient */
-  --mk-gradient: linear-gradient(115deg, #F6D83B, #F4B400, #34D399);
+  /* Brand gradient - Macedonian red + yellow/gold (no green) */
+  --mk-gradient: linear-gradient(115deg, #F6D83B, #F4B400, #E94D4D);
   --mk-surface-glow: linear-gradient(145deg, rgba(0, 0, 0, 0.02), transparent);
 
   /* shadcn/ui mappings */
@@ -212,8 +212,8 @@ html.theme-dark {
   --mk-danger: #F87171;
   --mk-danger-muted: rgba(248, 113, 113, 0.15);
 
-  /* Brand gradient */
-  --mk-gradient: linear-gradient(115deg, #F6D83B, #F4B400, #34D399);
+  /* Brand gradient - Macedonian red + yellow/gold (no green) */
+  --mk-gradient: linear-gradient(115deg, #F6D83B, #F4B400, #E94D4D);
   --mk-surface-glow: linear-gradient(145deg, rgba(255, 255, 255, 0.03), transparent);
 
   /* shadcn/ui mappings */

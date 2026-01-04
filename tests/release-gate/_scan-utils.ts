@@ -31,6 +31,74 @@ export async function getVisibleInteractives(pageOrScope: Page | Locator): Promi
   return pageOrScope.locator(`${INTERACTIVE_SELECTOR}:visible`);
 }
 
+export type InteractiveSnapshot = {
+  tagName: string;
+  role: string | null;
+  href: string | null;
+  label: string;
+  disabled: boolean;
+  testId: string | null;
+  scanGroup: string | null;
+};
+
+export async function getViewportInteractivesSnapshot(page: Page): Promise<InteractiveSnapshot[]> {
+  return page.evaluate(({ selector }: { selector: string }) => {
+    const isVisible = (el: Element): boolean => {
+      const node = el as HTMLElement;
+      const style = window.getComputedStyle(node);
+      if (style.display === 'none') return false;
+      if (style.visibility === 'hidden') return false;
+      if (style.pointerEvents === 'none') return false;
+      const rect = node.getBoundingClientRect();
+      return rect.width > 0 && rect.height > 0;
+    };
+
+    const isInViewport = (el: Element): boolean => {
+      const rect = (el as HTMLElement).getBoundingClientRect();
+      return rect.bottom > 0 && rect.right > 0 && rect.top < window.innerHeight && rect.left < window.innerWidth;
+    };
+
+    const isDisabled = (el: Element): boolean => {
+      const node = el as HTMLElement;
+      const ariaDisabled = node.getAttribute('aria-disabled');
+      if (ariaDisabled === 'true') return true;
+      if ('disabled' in (node as any) && Boolean((node as any).disabled)) return true;
+      return false;
+    };
+
+    const stableLabel = (el: Element): string => {
+      const node = el as HTMLElement;
+      const attrs = ['data-scan-label', 'aria-label', 'title', 'placeholder', 'value'] as const;
+      for (const attr of attrs) {
+        const value = node.getAttribute(attr);
+        if (value && value.trim()) return value.trim();
+      }
+      const text = node.innerText?.replace(/\s+/g, ' ').trim();
+      if (text) return text;
+      const imgAlt = node.querySelector('img[alt]')?.getAttribute('alt');
+      if (imgAlt && imgAlt.trim()) return imgAlt.trim();
+      return node.tagName.toLowerCase();
+    };
+
+    const nodes = Array.from(document.querySelectorAll(selector));
+    const results: InteractiveSnapshot[] = [];
+    for (const el of nodes) {
+      if (!isVisible(el)) continue;
+      if (!isInViewport(el)) continue;
+      results.push({
+        tagName: el.tagName.toLowerCase(),
+        role: el.getAttribute('role'),
+        href: el.getAttribute('href'),
+        label: stableLabel(el),
+        disabled: isDisabled(el),
+        testId: el.getAttribute('data-testid'),
+        scanGroup: el.getAttribute('data-scan-group'),
+      });
+    }
+    return results;
+  }, { selector: INTERACTIVE_SELECTOR });
+}
+
 export async function getVisibleTestIdRequired(pageOrScope: Page | Locator): Promise<Locator> {
   return pageOrScope.locator(`${TESTID_REQUIRED_SELECTOR}:visible`);
 }
@@ -106,7 +174,23 @@ export async function instrumentActionSignals(page: Page): Promise<void> {
       audioPlayCalls: 0,
       speechSpeakCalls: 0,
       clipboardWrites: 0,
+      domMutations: 0,
     };
+
+    try {
+      const observer = new MutationObserver(() => {
+        try {
+          (window as any).__mkllSignals.domMutations += 1;
+        } catch {}
+      });
+
+      observer.observe(document.documentElement, {
+        subtree: true,
+        childList: true,
+        attributes: true,
+        characterData: true,
+      });
+    } catch {}
 
     const originalPlay = HTMLMediaElement.prototype.play;
     HTMLMediaElement.prototype.play = function (...args) {
@@ -142,17 +226,26 @@ export async function instrumentActionSignals(page: Page): Promise<void> {
 
 export async function getSignalSnapshot(
   page: Page
-): Promise<{ audioPlayCalls: number; speechSpeakCalls: number; clipboardWrites: number }> {
+): Promise<{
+  audioPlayCalls: number;
+  speechSpeakCalls: number;
+  clipboardWrites: number;
+  domMutations: number;
+  activeElementTag: string | null;
+}> {
   return page
     .evaluate(() => {
       const signals = (window as any).__mkllSignals;
+      const active = document.activeElement;
       return {
         audioPlayCalls: Number(signals?.audioPlayCalls || 0),
         speechSpeakCalls: Number(signals?.speechSpeakCalls || 0),
         clipboardWrites: Number(signals?.clipboardWrites || 0),
+        domMutations: Number(signals?.domMutations || 0),
+        activeElementTag: active ? active.tagName.toLowerCase() : null,
       };
     })
-    .catch(() => ({ audioPlayCalls: 0, speechSpeakCalls: 0, clipboardWrites: 0 }));
+    .catch(() => ({ audioPlayCalls: 0, speechSpeakCalls: 0, clipboardWrites: 0, domMutations: 0, activeElementTag: null }));
 }
 
 export async function getOverlaySignature(page: Page): Promise<{ openCount: number }> {
@@ -173,16 +266,9 @@ export async function getOverlaySignature(page: Page): Promise<{ openCount: numb
 export async function closeOverlays(page: Page): Promise<void> {
   // Radix components typically close on Escape.
   await page.keyboard.press('Escape').catch(() => {});
-  await page.waitForTimeout(150);
+  await page.waitForTimeout(80);
   await page.keyboard.press('Escape').catch(() => {});
-  await page.waitForTimeout(150);
+  await page.waitForTimeout(80);
 }
 
-export async function getDomSignature(page: Page): Promise<{ textLength: number; activeElementTag: string | null }> {
-  return page.evaluate(() => {
-    const textLength = document.body?.innerText?.length ?? 0;
-    const active = document.activeElement;
-    const activeElementTag = active ? active.tagName.toLowerCase() : null;
-    return { textLength, activeElementTag };
-  });
-}
+// DOM state changes are detected via `domMutations` + `activeElementTag` in getSignalSnapshot.

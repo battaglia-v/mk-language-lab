@@ -1,9 +1,6 @@
 import { redirect } from 'next/navigation';
 
-export default function WordGapsPage({
-  params,
-}: {
-  params: { locale: string };
-}) {
-  redirect(`/${params.locale}/practice/word-sprint`);
+export default async function WordGapsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  redirect(`/${locale}/practice/word-sprint`);
 }

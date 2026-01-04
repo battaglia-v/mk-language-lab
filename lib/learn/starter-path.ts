@@ -17,16 +17,16 @@ export const starterPathNodes: LessonNode[] = [
     href: '/learn/lessons/alphabet',
     contentId: 'alphabet',
   },
-  // Unit 2: Pronunciation Basics
+  // Unit 2: Pronunciation Basics (TEXT ONLY - audio coming soon)
   {
     id: 'node-2',
     type: 'lesson',
     title: 'Pronunciation Basics',
     titleMk: 'Основи на изговор',
-    description: 'Practice sounds, stress, and key letter pairs',
-    status: 'locked',
+    description: 'Learn sounds, stress patterns, and key letter pairs (text guide)',
+    status: 'available',
     xpReward: 15,
-    href: '/practice/pronunciation',
+    href: '/practice/grammar',
     contentId: 'pronunciation-basics',
   },
   // Unit 3: Greetings
@@ -81,13 +81,16 @@ export const starterPathNodes: LessonNode[] = [
 
 /**
  * Create a starter path with progress applied
+ *
+ * Note: All lessons are now unlocked by default for free navigation.
+ * Users can start anywhere - no forced sequential locking.
  */
 export function createStarterPath(completedNodeIds: string[] = []): LessonPath {
-  // Apply completion status
+  // Apply completion status - all nodes are available (no locking)
   const nodes = starterPathNodes.map((node, index) => {
     const isCompleted = completedNodeIds.includes(node.id);
 
-    // Find the first incomplete node to mark as available
+    // Find the first incomplete node to highlight as "next"
     const firstIncompleteIndex = starterPathNodes.findIndex(
       (n) => !completedNodeIds.includes(n.id)
     );
@@ -96,11 +99,11 @@ export function createStarterPath(completedNodeIds: string[] = []): LessonPath {
     if (isCompleted) {
       status = 'completed';
     } else if (index === firstIncompleteIndex) {
+      // Highlight next recommended lesson
       status = 'available';
-    } else if (index < firstIncompleteIndex) {
-      status = 'completed';
     } else {
-      status = 'locked';
+      // All other lessons are available (not locked)
+      status = 'available';
     }
 
     return { ...node, status };

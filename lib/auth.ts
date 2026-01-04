@@ -6,6 +6,7 @@ import Credentials from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 import prisma from '@/lib/prisma';
+import { isE2EAuthEnabled, verifyE2EUser } from '@/lib/e2e-auth';
 
 const googleClientId = process.env.AUTH_GOOGLE_ID ?? process.env.GOOGLE_CLIENT_ID;
 const googleClientSecret = process.env.AUTH_GOOGLE_SECRET ?? process.env.GOOGLE_CLIENT_SECRET;
@@ -91,6 +92,17 @@ providers.push(
         return null;
       }
 
+      if (isE2EAuthEnabled()) {
+        const user = await verifyE2EUser(credentials.email as string, credentials.password as string);
+        if (!user) return null;
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          image: user.image ?? undefined,
+        };
+      }
+
       try {
         const user = await prisma.user.findUnique({
           where: { email: credentials.email as string },
@@ -168,6 +180,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   callbacks: {
     async jwt({ token, user, account, profile }) {
+      // Always keep token fields in sync with the current user object (covers credentials sign-in too).
+      if (user) {
+        token.userId = (user as unknown as { id?: string }).id ?? (token.userId as string | undefined);
+        token.email = user.email ?? (token.email as string | undefined);
+        token.name = user.name ?? (token.name as string | undefined);
+        token.picture = user.image ?? (token.picture as string | undefined);
+        if (!token.role) token.role = 'user';
+      }
+
       // On initial sign-in, create/update user in database
       if (user && account && profile) {
         try {
@@ -234,14 +255,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
 
       // Ensure token role stays in sync with database (e.g., when roles change after sign-in)
-      if (token.email && token.role !== 'admin') {
-        const existingUser = await prisma.user.findUnique({
-          where: { email: token.email as string },
-          select: { role: true },
-        });
+      if (!isE2EAuthEnabled() && token.email && token.role !== 'admin') {
+        try {
+          const existingUser = await prisma.user.findUnique({
+            where: { email: token.email as string },
+            select: { role: true },
+          });
 
-        if (existingUser?.role) {
-          token.role = existingUser.role;
+          if (existingUser?.role) {
+            token.role = existingUser.role;
+          }
+        } catch (error) {
+          console.error('[AUTH] Error syncing role from database:', error);
         }
       }
 

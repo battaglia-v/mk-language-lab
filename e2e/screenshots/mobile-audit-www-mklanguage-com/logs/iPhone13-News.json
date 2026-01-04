@@ -1,7 +1,7 @@
 {
   "route": "/en/news",
   "viewport": "iPhone13",
-  "timestamp": "2026-01-02T15:45:40.680Z",
+  "timestamp": "2026-01-04T13:56:56.915Z",
   "interstitialBypassed": false,
   "overflow": {
     "hasOverflow": false,
@@ -9,14 +9,63 @@
   },
   "i18nKeys": [],
   "consoleErrors": [
-    "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)"
   ],
   "networkErrors": [
     {
-      "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+      "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
       "status": 403
+    },
+    {
+      "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fwww.vece",
+      "status": 400
+    },
+    {
+      "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fpuls24.m",
+      "status": 400
+    },
+    {
+      "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Flibertas",
+      "status": 400
+    },
+    {
+      "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttp%253A%252F%252Fpress24.m",
+      "status": 400
+    },
+    {
+      "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fwww.vece",
+      "status": 400
+    },
+    {
+      "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Ftime.mk%",
+      "status": 400
+    },
+    {
+      "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttp%253A%252F%252Fprovereno",
+      "status": 400
+    },
+    {
+      "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Ffls-a0a6",
+      "status": 400
     }
   ],
-  "brokenImages": [],
+  "brokenImages": [
+    "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fwww.vece",
+    "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fpuls24.m",
+    "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttp%253A%252F%252Fpress24.m",
+    "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Ftime.mk%",
+    "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fwww.vece",
+    "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Flibertas",
+    "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttp%253A%252F%252Fprovereno",
+    "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Ffls-a0a6"
+  ],
   "screenshot": "iPhone13-News.png"
 }

@@ -10,6 +10,20 @@ A modern, mobile-first language learning platform for Macedonian. Built with Nex
 
 **Live at:** [mklanguage.com](https://mklanguage.com)
 
+---
+
+## 📜 Open Source + Content Notice
+
+| Component | License | Notes |
+|-----------|---------|-------|
+| **Source Code** | [MIT](./LICENSE) | Free to use, modify, and distribute |
+| **Brand & Name** | Proprietary | "MKLanguage" name/logo not licensed for reuse |
+| **Lesson Content** | Proprietary | Educational content in `data/` is not open source |
+
+See [DISCLAIMER.md](./DISCLAIMER.md) for full details on content restrictions.
+
+---
+
 ## ✨ Features
 
 ### 📖 Learning Paths

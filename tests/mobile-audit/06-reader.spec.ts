@@ -1,5 +1,4 @@
-import { test, expect } from '@playwright/test';
-import { assertNoRawTranslationKeys, MOBILE_VIEWPORT, READER_SAMPLE_IDS } from './_helpers';
+import { test, expect, assertNoRawTranslationKeys, MOBILE_VIEWPORT, READER_SAMPLE_IDS, waitForInteractive } from './_helpers';
 
 test.use({ viewport: MOBILE_VIEWPORT });
 
@@ -63,13 +62,10 @@ test.describe('Reader Library', () => {
   test('reading cards are clickable', async ({ page }) => {
     await page.goto('/en/reader', { waitUntil: 'domcontentloaded' });
 
-    // Find any reading card
-    const cards = page.locator('a').filter({ hasText: /cafe|day|conversation|skopje/i });
+    const cards = page.locator('a[data-testid^="reader-sample-"][data-testid$="-cta"]');
     const count = await cards.count();
-
     expect(count).toBeGreaterThan(0);
 
-    // First card should navigate
     const href = await cards.first().getAttribute('href');
     expect(href).toContain('/reader/samples/');
   });
@@ -118,22 +114,24 @@ test.describe('Reader Sample Page', () => {
 
   test('Grammar tab shows content', async ({ page }) => {
     await page.goto('/en/reader/samples/cafe-conversation', { waitUntil: 'domcontentloaded' });
+    await waitForInteractive(page);
 
-    const grammarTab = page.getByRole('tab', { name: /grammar/i }).first();
-    if (await grammarTab.count() > 0) {
-      await grammarTab.click();
-      await expect(page.locator('body')).toContainText(/example|form|tense|verb/i);
-    }
+    const grammarTab = page.getByTestId('reader-sample-tab-grammar');
+    await grammarTab.click();
+    const grammarTitle = page
+      .locator('[data-slot="card-title"]')
+      .filter({ hasText: /sakam|with \/ without|сакам|со \/ без/i });
+    await expect(grammarTitle.first()).toBeVisible();
   });
 
   test('Vocabulary tab shows word list', async ({ page }) => {
     await page.goto('/en/reader/samples/cafe-conversation', { waitUntil: 'domcontentloaded' });
+    await waitForInteractive(page);
 
-    const vocabTab = page.getByRole('tab', { name: /vocabulary/i }).first();
-    if (await vocabTab.count() > 0) {
-      await vocabTab.click();
-      await expect(page.locator('body')).toContainText(/key vocabulary/i);
-    }
+    const vocabTab = page.getByTestId('reader-sample-tab-vocabulary');
+    await vocabTab.click();
+    const vocabTitle = page.locator('[data-slot="card-title"]').filter({ hasText: /key vocabulary/i });
+    await expect(vocabTitle.first()).toBeVisible();
   });
 
   test('Quick Analyze button works', async ({ page }) => {

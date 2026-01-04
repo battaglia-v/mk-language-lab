@@ -2,7 +2,7 @@
   {
     "route": "/en",
     "viewport": "iPhone5SE",
-    "timestamp": "2026-01-02T15:43:43.981Z",
+    "timestamp": "2026-01-04T13:54:57.842Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -14,7 +14,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -24,7 +24,7 @@
   {
     "route": "/en/learn",
     "viewport": "iPhone5SE",
-    "timestamp": "2026-01-02T15:43:47.250Z",
+    "timestamp": "2026-01-04T13:55:01.132Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -36,7 +36,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -46,7 +46,7 @@
   {
     "route": "/en/practice",
     "viewport": "iPhone5SE",
-    "timestamp": "2026-01-02T15:43:50.492Z",
+    "timestamp": "2026-01-04T13:55:04.494Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -58,7 +58,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -68,7 +68,7 @@
   {
     "route": "/en/practice/pronunciation",
     "viewport": "iPhone5SE",
-    "timestamp": "2026-01-02T15:43:53.978Z",
+    "timestamp": "2026-01-04T13:55:07.913Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -80,7 +80,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -90,7 +90,7 @@
   {
     "route": "/en/practice/grammar",
     "viewport": "iPhone5SE",
-    "timestamp": "2026-01-02T15:43:57.284Z",
+    "timestamp": "2026-01-04T13:55:11.466Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -102,7 +102,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -112,7 +112,7 @@
   {
     "route": "/en/translate",
     "viewport": "iPhone5SE",
-    "timestamp": "2026-01-02T15:44:00.533Z",
+    "timestamp": "2026-01-04T13:55:14.792Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -124,7 +124,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -134,7 +134,7 @@
   {
     "route": "/en/reader",
     "viewport": "iPhone5SE",
-    "timestamp": "2026-01-02T15:44:04.466Z",
+    "timestamp": "2026-01-04T13:55:18.899Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -146,7 +146,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -156,7 +156,7 @@
   {
     "route": "/en/news",
     "viewport": "iPhone5SE",
-    "timestamp": "2026-01-02T15:44:07.726Z",
+    "timestamp": "2026-01-04T13:55:22.676Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -164,21 +164,70 @@
     },
     "i18nKeys": [],
     "consoleErrors": [
-      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)"
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fpuls24.m",
+        "status": 400
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fwww.vece",
+        "status": 400
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttp%253A%252F%252Fpress24.m",
+        "status": 400
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Flibertas",
+        "status": 400
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fwww.vece",
+        "status": 400
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Ftime.mk%",
+        "status": 400
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttp%253A%252F%252Fprovereno",
+        "status": 400
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Ffls-a0a6",
+        "status": 400
       }
     ],
-    "brokenImages": [],
+    "brokenImages": [
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fwww.vece",
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fpuls24.m",
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttp%253A%252F%252Fpress24.m",
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Ftime.mk%",
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fwww.vece",
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Flibertas",
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttp%253A%252F%252Fprovereno",
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Ffls-a0a6"
+    ],
     "screenshot": "iPhone5SE-News.png"
   },
   {
     "route": "/en/resources",
     "viewport": "iPhone5SE",
-    "timestamp": "2026-01-02T15:44:11.134Z",
+    "timestamp": "2026-01-04T13:55:26.029Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -190,7 +239,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -200,7 +249,7 @@
   {
     "route": "/en/discover",
     "viewport": "iPhone5SE",
-    "timestamp": "2026-01-02T15:44:14.304Z",
+    "timestamp": "2026-01-04T13:55:29.451Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -212,7 +261,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -222,7 +271,7 @@
   {
     "route": "/en/daily-lessons",
     "viewport": "iPhone5SE",
-    "timestamp": "2026-01-02T15:44:17.545Z",
+    "timestamp": "2026-01-04T13:55:32.856Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -234,7 +283,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -244,7 +293,7 @@
   {
     "route": "/en/profile",
     "viewport": "iPhone5SE",
-    "timestamp": "2026-01-02T15:44:20.689Z",
+    "timestamp": "2026-01-04T13:55:36.133Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -256,7 +305,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -266,7 +315,7 @@
   {
     "route": "/en/notifications",
     "viewport": "iPhone5SE",
-    "timestamp": "2026-01-02T15:44:23.913Z",
+    "timestamp": "2026-01-04T13:55:39.630Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -278,7 +327,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -288,7 +337,7 @@
   {
     "route": "/en/about",
     "viewport": "iPhone5SE",
-    "timestamp": "2026-01-02T15:44:27.266Z",
+    "timestamp": "2026-01-04T13:55:43.252Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -300,7 +349,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -310,7 +359,7 @@
   {
     "route": "/en",
     "viewport": "SmallAndroid",
-    "timestamp": "2026-01-02T15:44:30.394Z",
+    "timestamp": "2026-01-04T13:55:46.345Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -322,7 +371,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -332,7 +381,7 @@
   {
     "route": "/en/learn",
     "viewport": "SmallAndroid",
-    "timestamp": "2026-01-02T15:44:33.521Z",
+    "timestamp": "2026-01-04T13:55:49.575Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -344,7 +393,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -354,7 +403,7 @@
   {
     "route": "/en/practice",
     "viewport": "SmallAndroid",
-    "timestamp": "2026-01-02T15:44:36.722Z",
+    "timestamp": "2026-01-04T13:55:52.889Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -366,7 +415,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -376,7 +425,7 @@
   {
     "route": "/en/practice/pronunciation",
     "viewport": "SmallAndroid",
-    "timestamp": "2026-01-02T15:44:40.076Z",
+    "timestamp": "2026-01-04T13:55:56.258Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -388,7 +437,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -398,7 +447,7 @@
   {
     "route": "/en/practice/grammar",
     "viewport": "SmallAndroid",
-    "timestamp": "2026-01-02T15:44:43.447Z",
+    "timestamp": "2026-01-04T13:55:59.525Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -410,7 +459,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -420,7 +469,7 @@
   {
     "route": "/en/translate",
     "viewport": "SmallAndroid",
-    "timestamp": "2026-01-02T15:44:46.594Z",
+    "timestamp": "2026-01-04T13:56:02.629Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -432,7 +481,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -442,7 +491,7 @@
   {
     "route": "/en/reader",
     "viewport": "SmallAndroid",
-    "timestamp": "2026-01-02T15:44:50.558Z",
+    "timestamp": "2026-01-04T13:56:06.531Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -454,7 +503,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -464,7 +513,7 @@
   {
     "route": "/en/news",
     "viewport": "SmallAndroid",
-    "timestamp": "2026-01-02T15:44:53.744Z",
+    "timestamp": "2026-01-04T13:56:10.612Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -472,21 +521,70 @@
     },
     "i18nKeys": [],
     "consoleErrors": [
-      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)"
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fwww.vece",
+        "status": 400
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fwww.vece",
+        "status": 400
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fpuls24.m",
+        "status": 400
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Flibertas",
+        "status": 400
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttp%253A%252F%252Fpress24.m",
+        "status": 400
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Ftime.mk%",
+        "status": 400
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Ffls-a0a6",
+        "status": 400
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttp%253A%252F%252Fprovereno",
+        "status": 400
       }
     ],
-    "brokenImages": [],
+    "brokenImages": [
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fwww.vece",
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fpuls24.m",
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttp%253A%252F%252Fpress24.m",
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Ftime.mk%",
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fwww.vece",
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Flibertas",
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttp%253A%252F%252Fprovereno",
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Ffls-a0a6"
+    ],
     "screenshot": "SmallAndroid-News.png"
   },
   {
     "route": "/en/resources",
     "viewport": "SmallAndroid",
-    "timestamp": "2026-01-02T15:44:57.229Z",
+    "timestamp": "2026-01-04T13:56:13.749Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -498,7 +596,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -508,7 +606,7 @@
   {
     "route": "/en/discover",
     "viewport": "SmallAndroid",
-    "timestamp": "2026-01-02T15:45:00.439Z",
+    "timestamp": "2026-01-04T13:56:16.963Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -520,7 +618,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -530,7 +628,7 @@
   {
     "route": "/en/daily-lessons",
     "viewport": "SmallAndroid",
-    "timestamp": "2026-01-02T15:45:03.785Z",
+    "timestamp": "2026-01-04T13:56:20.156Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -542,7 +640,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -552,7 +650,7 @@
   {
     "route": "/en/profile",
     "viewport": "SmallAndroid",
-    "timestamp": "2026-01-02T15:45:06.963Z",
+    "timestamp": "2026-01-04T13:56:23.274Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -564,7 +662,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -574,7 +672,7 @@
   {
     "route": "/en/notifications",
     "viewport": "SmallAndroid",
-    "timestamp": "2026-01-02T15:45:10.128Z",
+    "timestamp": "2026-01-04T13:56:26.389Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -586,7 +684,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -596,7 +694,7 @@
   {
     "route": "/en/about",
     "viewport": "SmallAndroid",
-    "timestamp": "2026-01-02T15:45:13.577Z",
+    "timestamp": "2026-01-04T13:56:29.589Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -608,7 +706,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -618,7 +716,7 @@
   {
     "route": "/en",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-02T15:45:16.745Z",
+    "timestamp": "2026-01-04T13:56:32.691Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -630,7 +728,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -640,7 +738,7 @@
   {
     "route": "/en/learn",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-02T15:45:20.183Z",
+    "timestamp": "2026-01-04T13:56:35.821Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -652,7 +750,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -662,7 +760,7 @@
   {
     "route": "/en/practice",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-02T15:45:23.463Z",
+    "timestamp": "2026-01-04T13:56:39.020Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -674,7 +772,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -684,7 +782,7 @@
   {
     "route": "/en/practice/pronunciation",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-02T15:45:26.734Z",
+    "timestamp": "2026-01-04T13:56:42.281Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -696,7 +794,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -706,7 +804,7 @@
   {
     "route": "/en/practice/grammar",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-02T15:45:30.314Z",
+    "timestamp": "2026-01-04T13:56:45.594Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -718,7 +816,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -728,7 +826,7 @@
   {
     "route": "/en/translate",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-02T15:45:33.524Z",
+    "timestamp": "2026-01-04T13:56:48.799Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -740,7 +838,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -750,7 +848,7 @@
   {
     "route": "/en/reader",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-02T15:45:37.336Z",
+    "timestamp": "2026-01-04T13:56:52.810Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -762,7 +860,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -772,7 +870,7 @@
   {
     "route": "/en/news",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-02T15:45:40.680Z",
+    "timestamp": "2026-01-04T13:56:56.915Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -780,21 +878,70 @@
     },
     "i18nKeys": [],
     "consoleErrors": [
-      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+      "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+      "Failed to load resource: the server responded with a status of 400 (Bad Request)"
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fwww.vece",
+        "status": 400
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fpuls24.m",
+        "status": 400
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Flibertas",
+        "status": 400
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttp%253A%252F%252Fpress24.m",
+        "status": 400
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fwww.vece",
+        "status": 400
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Ftime.mk%",
+        "status": 400
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttp%253A%252F%252Fprovereno",
+        "status": 400
+      },
+      {
+        "url": "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Ffls-a0a6",
+        "status": 400
       }
     ],
-    "brokenImages": [],
+    "brokenImages": [
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fwww.vece",
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fpuls24.m",
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttp%253A%252F%252Fpress24.m",
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Ftime.mk%",
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Fwww.vece",
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Flibertas",
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttp%253A%252F%252Fprovereno",
+      "https://mklanguage.com/api/news/image?src=%2Fapi%2Fnews%2Fimage%3Fsrc%3Dhttps%253A%252F%252Ffls-a0a6"
+    ],
     "screenshot": "iPhone13-News.png"
   },
   {
     "route": "/en/resources",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-02T15:45:43.807Z",
+    "timestamp": "2026-01-04T13:57:02.411Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -806,7 +953,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -816,7 +963,7 @@
   {
     "route": "/en/discover",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-02T15:45:46.999Z",
+    "timestamp": "2026-01-04T13:57:05.636Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -828,7 +975,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -838,7 +985,7 @@
   {
     "route": "/en/daily-lessons",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-02T15:45:50.668Z",
+    "timestamp": "2026-01-04T13:57:08.871Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -850,7 +997,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -860,7 +1007,7 @@
   {
     "route": "/en/profile",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-02T15:45:54.040Z",
+    "timestamp": "2026-01-04T13:57:12.090Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -872,7 +1019,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -882,7 +1029,7 @@
   {
     "route": "/en/notifications",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-02T15:45:57.511Z",
+    "timestamp": "2026-01-04T13:57:15.260Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -894,7 +1041,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -904,7 +1051,7 @@
   {
     "route": "/en/about",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-02T15:46:00.815Z",
+    "timestamp": "2026-01-04T13:57:18.787Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -916,7 +1063,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -926,7 +1073,7 @@
   {
     "route": "/en",
     "viewport": "Pixel7",
-    "timestamp": "2026-01-02T15:46:04.026Z",
+    "timestamp": "2026-01-04T13:57:22.200Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -938,7 +1085,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -948,7 +1095,7 @@
   {
     "route": "/en/learn",
     "viewport": "Pixel7",
-    "timestamp": "2026-01-02T15:46:08.088Z",
+    "timestamp": "2026-01-04T13:57:25.428Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -960,7 +1107,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -970,7 +1117,7 @@
   {
     "route": "/en/practice",
     "viewport": "Pixel7",
-    "timestamp": "2026-01-02T15:46:11.218Z",
+    "timestamp": "2026-01-04T13:57:28.642Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -982,7 +1129,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -992,7 +1139,7 @@
   {
     "route": "/en/practice/pronunciation",
     "viewport": "Pixel7",
-    "timestamp": "2026-01-02T15:46:14.587Z",
+    "timestamp": "2026-01-04T13:57:32.278Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -1004,7 +1151,7 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
@@ -1014,7 +1161,7 @@
   {
     "route": "/en/practice/grammar",
     "viewport": "Pixel7",
-    "timestamp": "2026-01-02T15:46:17.932Z",
+    "timestamp": "2026-01-04T13:57:35.523Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -1026,209 +1173,11 @@
     ],
     "networkErrors": [
       {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
         "status": 403
       }
     ],
     "brokenImages": [],
     "screenshot": "Pixel7-Grammar.png"
-  },
-  {
-    "route": "/en/translate",
-    "viewport": "Pixel7",
-    "timestamp": "2026-01-02T15:46:21.154Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [
-      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
-    ],
-    "networkErrors": [
-      {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
-        "status": 403
-      }
-    ],
-    "brokenImages": [],
-    "screenshot": "Pixel7-Translate.png"
-  },
-  {
-    "route": "/en/reader",
-    "viewport": "Pixel7",
-    "timestamp": "2026-01-02T15:46:25.084Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [
-      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
-    ],
-    "networkErrors": [
-      {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
-        "status": 403
-      }
-    ],
-    "brokenImages": [],
-    "screenshot": "Pixel7-Reader.png"
-  },
-  {
-    "route": "/en/news",
-    "viewport": "Pixel7",
-    "timestamp": "2026-01-02T15:46:28.281Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [
-      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
-    ],
-    "networkErrors": [
-      {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
-        "status": 403
-      }
-    ],
-    "brokenImages": [],
-    "screenshot": "Pixel7-News.png"
-  },
-  {
-    "route": "/en/resources",
-    "viewport": "Pixel7",
-    "timestamp": "2026-01-02T15:46:31.453Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [
-      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
-    ],
-    "networkErrors": [
-      {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
-        "status": 403
-      }
-    ],
-    "brokenImages": [],
-    "screenshot": "Pixel7-Resources.png"
-  },
-  {
-    "route": "/en/discover",
-    "viewport": "Pixel7",
-    "timestamp": "2026-01-02T15:46:34.661Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [
-      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
-    ],
-    "networkErrors": [
-      {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
-        "status": 403
-      }
-    ],
-    "brokenImages": [],
-    "screenshot": "Pixel7-Discover.png"
-  },
-  {
-    "route": "/en/daily-lessons",
-    "viewport": "Pixel7",
-    "timestamp": "2026-01-02T15:46:37.888Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [
-      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
-    ],
-    "networkErrors": [
-      {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
-        "status": 403
-      }
-    ],
-    "brokenImages": [],
-    "screenshot": "Pixel7-DailyLessons.png"
-  },
-  {
-    "route": "/en/profile",
-    "viewport": "Pixel7",
-    "timestamp": "2026-01-02T15:46:41.024Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [
-      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
-    ],
-    "networkErrors": [
-      {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
-        "status": 403
-      }
-    ],
-    "brokenImages": [],
-    "screenshot": "Pixel7-Profile.png"
-  },
-  {
-    "route": "/en/notifications",
-    "viewport": "Pixel7",
-    "timestamp": "2026-01-02T15:46:44.200Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [
-      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
-    ],
-    "networkErrors": [
-      {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
-        "status": 403
-      }
-    ],
-    "brokenImages": [],
-    "screenshot": "Pixel7-Notifications.png"
-  },
-  {
-    "route": "/en/about",
-    "viewport": "Pixel7",
-    "timestamp": "2026-01-02T15:46:47.362Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [
-      "Failed to load resource: the server responded with a status of 403 (Forbidden)"
-    ],
-    "networkErrors": [
-      {
-        "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
-        "status": 403
-      }
-    ],
-    "brokenImages": [],
-    "screenshot": "Pixel7-About.png"
   }
 ]

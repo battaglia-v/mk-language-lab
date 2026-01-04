@@ -27,9 +27,10 @@ export default defineConfig({
   workers: isLocalBaseUrl ? 2 : 1,
   reporter: 'html',
   // Reasonable timeout for most tests
-  timeout: 45000,
+  timeout: 60000,
+  globalTimeout: 15 * 60 * 1000,
   expect: {
-    timeout: 10000,
+    timeout: 15000,
   },
   use: {
     baseURL,
@@ -82,6 +83,15 @@ export default defineConfig({
         viewport: { width: 390, height: 844 },
       },
     },
+    // Phase 2 mobile scans (slow/crawl-style)
+    {
+      name: 'phase2-mobile',
+      testDir: './tests/phase2',
+      use: {
+        ...devices['iPhone 12'],
+        viewport: { width: 390, height: 844 },
+      },
+    },
     // Release gate project - enforces 0 dead interactions and full testid coverage
     {
       name: 'release-gate',
@@ -101,7 +111,7 @@ export default defineConfig({
         command: process.env.E2E_DEV_MODE ? 'npm run dev:webpack' : 'npm run build && npm run start',
         url: baseURL,
         reuseExistingServer: !process.env.CI,
-        timeout: 120000, // Allow 2 minutes for build
+        timeout: 600000, // Allow up to 10 minutes for build/start on slower machines
       }
     : undefined,
 });

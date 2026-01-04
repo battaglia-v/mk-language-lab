@@ -1056,6 +1056,9 @@
       "bestStreak": "Best Streak",
       "continueLabel": "Continue",
       "startNew": "Start New Session",
+      "earned": "Earned",
+      "backToHub": "Back to Practice",
+      "goHome": "Go Home",
       "favorites": "Favorites",
       "favorite": "Save",
       "unfavorite": "Saved",
@@ -1072,8 +1075,8 @@
     "modes": {
       "pronunciation": {
         "title": "Speaking",
-        "description": "Perfect your accent with native audio",
-        "time": "3–5 min",
+        "description": "Audio pronunciation coming soon — recorded by native speakers",
+        "time": "Coming soon",
         "xp": "+15 XP"
       },
       "grammar": {

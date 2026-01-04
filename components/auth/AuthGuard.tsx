@@ -8,9 +8,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 interface AuthGuardProps {
   children: ReactNode;
   fallbackHeight?: string;
+  signInTestId?: string;
+  cardTestId?: string;
 }
 
-export default function AuthGuard({ children, fallbackHeight = 'min-h-[400px]' }: AuthGuardProps) {
+export default function AuthGuard({
+  children,
+  fallbackHeight = 'min-h-[400px]',
+  signInTestId = 'auth-guard-signin',
+  cardTestId = 'auth-guard-card',
+}: AuthGuardProps) {
   const { data: session, status } = useSession();
 
   if (process.env.NEXT_PUBLIC_DISABLE_AUTH_GUARD === 'true') {
@@ -28,7 +35,7 @@ export default function AuthGuard({ children, fallbackHeight = 'min-h-[400px]' }
   if (!session) {
     return (
       <div className={`flex items-center justify-center ${fallbackHeight}`}>
-        <Card className="w-full max-w-md">
+        <Card className="w-full max-w-md" data-testid={cardTestId}>
           <CardHeader className="text-center">
             <CardTitle>Sign in required</CardTitle>
             <CardDescription>
@@ -36,7 +43,7 @@ export default function AuthGuard({ children, fallbackHeight = 'min-h-[400px]' }
             </CardDescription>
           </CardHeader>
           <CardContent className="flex justify-center">
-            <SignInButton size="lg" />
+            <SignInButton size="lg" dataTestId={signInTestId} />
           </CardContent>
         </Card>
       </div>

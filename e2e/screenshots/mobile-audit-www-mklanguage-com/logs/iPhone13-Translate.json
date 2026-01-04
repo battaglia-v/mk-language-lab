@@ -1,7 +1,7 @@
 {
   "route": "/en/translate",
   "viewport": "iPhone13",
-  "timestamp": "2026-01-02T15:45:33.524Z",
+  "timestamp": "2026-01-04T13:56:48.799Z",
   "interstitialBypassed": false,
   "overflow": {
     "hasOverflow": false,
@@ -13,7 +13,7 @@
   ],
   "networkErrors": [
     {
-      "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_8Dnq46bo9Ly3wfZNpa67j5rCimc3",
+      "url": "https://mklanguage.com/_next/static/chunks/25ef16b69a31e3e7.js?dpl=dpl_5Cxay7SjEJvY54rmHyzZhBY44Y1M",
       "status": 403
     }
   ],

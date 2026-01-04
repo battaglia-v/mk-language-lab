@@ -164,27 +164,16 @@ export function LearnPageClient({
             )}
           </Link>
 
-          {/* Secondary CTA */}
+          {/* Secondary CTA - Browse Learning Paths */}
           <Link
-            href={`/${locale}/practice`}
-            data-testid="learn-quick-practice"
+            href={`/${locale}/learn/paths`}
+            data-testid="learn-browse-paths-cta"
             className="flex items-center justify-center gap-2 rounded-xl border border-border/50 bg-card/50 p-4 transition-colors hover:bg-card hover:border-primary/30 active:scale-[0.99]"
           >
             <BookOpen className="h-5 w-5 text-muted-foreground" />
-            <span className="font-medium text-muted-foreground">{t('quickPractice')}</span>
+            <span className="font-medium text-muted-foreground">{t('learningPaths')}</span>
             <ChevronRight className="h-4 w-4 text-muted-foreground" />
           </Link>
-
-          {/* Tertiary link */}
-          <div className="text-center">
-            <Link
-              href={`/${locale}/translate`}
-              data-testid="learn-translate-link"
-              className="text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
-              {t('translateSomething')} →
-            </Link>
-          </div>
 
           {/* Level Selection */}
           <div className="space-y-3">

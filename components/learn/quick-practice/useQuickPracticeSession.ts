@@ -329,6 +329,15 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
           : null;
   const currentItem =
     currentIndex >= 0 && currentIndex < practiceItems.length ? practiceItems[currentIndex] : undefined;
+  const currentItemKey = currentItem?.id ?? currentItem?.macedonian ?? null;
+
+  useEffect(() => {
+    if (!currentItemKey) return;
+    setAnswer('');
+    setFeedback(null);
+    setRevealedAnswer('');
+    setIsCelebrating(false);
+  }, [currentItemKey]);
 
   useEffect(() => {
     if (!practiceItems.length) {

@@ -1,5 +1,4 @@
-import { test, expect } from '@playwright/test';
-import { assertNoRawTranslationKeys, MOBILE_VIEWPORT, LEARNING_PATH_IDS } from './_helpers';
+import { test, expect, assertNoRawTranslationKeys, MOBILE_VIEWPORT, LEARNING_PATH_IDS } from './_helpers';
 
 test.use({ viewport: MOBILE_VIEWPORT });
 
@@ -32,15 +31,13 @@ test.describe('Learning Paths Hub', () => {
   test('path cards are clickable', async ({ page }) => {
     await page.goto('/en/learn/paths', { waitUntil: 'domcontentloaded' });
 
-    // Find any path card link
-    const pathCards = page.locator('a').filter({ hasText: /foundations|30-day|topic|advanced/i });
+    // Find any path CTA link
+    const pathCards = page.locator('[data-testid^="paths-start-"]');
     const count = await pathCards.count();
-
     expect(count).toBeGreaterThan(0);
 
-    // First card should have href
     const href = await pathCards.first().getAttribute('href');
-    expect(href).toBeTruthy();
+    expect(href).toContain('/learn/paths/');
   });
 });
 
@@ -65,10 +62,8 @@ for (const pathId of LEARNING_PATH_IDS) {
     test(`${pathId} path has back navigation`, async ({ page }) => {
       await page.goto(`/en/learn/paths/${pathId}`, { waitUntil: 'domcontentloaded' });
 
-      const backLink = page.locator('a').filter({ hasText: /back|←|chevron/i }).first();
-      if (await backLink.count() > 0) {
-        await expect(backLink).toBeVisible();
-      }
+      const backLink = page.getByTestId('path-detail-back');
+      await expect(backLink).toBeVisible();
     });
   });
 }

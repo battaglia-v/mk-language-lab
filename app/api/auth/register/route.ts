@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { authRateLimit, checkRateLimit } from '@/lib/rate-limit';
 import { createEmailVerificationToken } from '@/lib/tokens';
 import { sendVerificationEmail } from '@/lib/email';
+import { isE2EAuthEnabled, upsertE2EUser } from '@/lib/e2e-auth';
 
 // Validation schema for registration
 const registerSchema = z.object({
@@ -46,6 +47,22 @@ export async function POST(request: NextRequest) {
     }
 
     const { name, email, password } = validation.data;
+
+    if (isE2EAuthEnabled()) {
+      const user = await upsertE2EUser({ name, email, password });
+      return NextResponse.json(
+        {
+          success: true,
+          message: 'E2E account created.',
+          user: {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+          },
+        },
+        { status: 201 }
+      );
+    }
 
     // Check if user already exists
     const existingUser = await prisma.user.findUnique({

@@ -229,6 +229,7 @@ a:active,
   }
 }
 
+/* Brand gradient text - slowed animation for less distraction */
 .mk-gradient,
 .title-gradient {
   background-image: var(--mk-gradient);
@@ -236,7 +237,8 @@ a:active,
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: mkGradientShift 6s ease infinite;
+  /* Slowed from 6s to 20s for less distraction */
+  animation: mkGradientShift 20s ease infinite;
 }
 
 .title-gradient {

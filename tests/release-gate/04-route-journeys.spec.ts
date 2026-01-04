@@ -47,7 +47,7 @@ function expectedJourneyTestIds(route: GateRoute, mode: ReleaseGateMode): string
   if (id === 'notifications') {
     return mode === 'signed-out' ? ['notifications-sign-in'] : ['notifications-list', 'notifications-refresh', 'notifications-sign-in'];
   }
-  if (id === 'tasks') return ['tasks-hero', 'tasks-board'];
+  if (id === 'tasks') return mode === 'signed-out' ? ['tasks-sign-in-card', 'tasks-sign-in'] : ['tasks-hero', 'tasks-board'];
   if (id === 'profile') {
     return mode === 'signed-out' ? ['profile-sign-in'] : ['profile-overview', 'profile-sign-in'];
   }
@@ -57,7 +57,7 @@ function expectedJourneyTestIds(route: GateRoute, mode: ReleaseGateMode): string
   if (id === 'feedback') return ['feedback-message', 'feedback-submit', 'feedback-back'];
   if (id === 'terms') return ['terms-back-home', 'terms-contact-email'];
   if (id === 'privacy') return ['privacy-hero'];
-  if (id === 'upgrade') return ['upgrade-subscribe-monthly', 'upgrade-subscribe-yearly'];
+  if (id === 'upgrade') return ['upgrade-hero', 'upgrade-back-to-learn'];
   if (id === 'more') return ['more-menu-news', 'more-menu-profile'];
   if (id === 'onboarding') return ['onboarding-start', 'onboarding-next'];
   if (id === 'localizedSignIn' || id === 'authSignIn') return ['auth-signin-email', 'auth-signin-submit'];
@@ -151,4 +151,3 @@ test.describe.serial('release gate: journey coverage', () => {
     expect(failures, 'Every route must have at least one passing journey assertion').toHaveLength(0);
   });
 });
-
