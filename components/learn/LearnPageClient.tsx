@@ -37,6 +37,8 @@ export function LearnPageClient({
   // Use local XP state for real-time updates
   const [localState, setLocalState] = useState({ todayXP: initialTodayXP, streak: initialStreak });
   const [activeLevel, setActiveLevel] = useState<LevelId>('beginner');
+  const beginnerHref = `/${locale}/learn?level=beginner`;
+  const intermediateHref = `/${locale}/learn?level=intermediate`;
 
   useEffect(() => {
     const state = getLocalXP();
@@ -192,10 +194,11 @@ export function LearnPageClient({
               <p className="text-sm text-muted-foreground">{t('pickSkillHelper')}</p>
             </div>
             <div className="flex gap-2 rounded-xl bg-muted/50 p-1.5">
-              <button
-                type="button"
+              <Link
+                href={beginnerHref}
                 onClick={() => handleLevelChange('beginner')}
                 data-testid="learn-level-beginner"
+                aria-current={activeLevel === 'beginner' ? 'page' : undefined}
                 className={cn(
                   'flex-1 flex items-center gap-2 rounded-lg px-3 py-3 text-left transition-all min-h-[44px]',
                   activeLevel === 'beginner'
@@ -208,11 +211,12 @@ export function LearnPageClient({
                   <span className="text-sm font-semibold">{t('basics')}</span>
                   <span className="text-[10px] uppercase tracking-wide text-muted-foreground">A1</span>
                 </div>
-              </button>
-              <button
-                type="button"
+              </Link>
+              <Link
+                href={intermediateHref}
                 onClick={() => handleLevelChange('intermediate')}
                 data-testid="learn-level-intermediate"
+                aria-current={activeLevel === 'intermediate' ? 'page' : undefined}
                 className={cn(
                   'flex-1 flex items-center gap-2 rounded-lg px-3 py-3 text-left transition-all min-h-[44px]',
                   activeLevel === 'intermediate'
@@ -225,7 +229,7 @@ export function LearnPageClient({
                   <span className="text-sm font-semibold">{t('speaking')}</span>
                   <span className="text-[10px] uppercase tracking-wide text-muted-foreground">A2</span>
                 </div>
-              </button>
+              </Link>
             </div>
           </div>
 

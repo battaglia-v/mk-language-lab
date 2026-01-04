@@ -77,6 +77,9 @@ export const normalizeDifficulty = (value?: string | null): Flashcard['difficult
   if (normalized === 'beginner' || normalized === 'intermediate' || normalized === 'advanced') {
     return normalized;
   }
+  if (normalized === 'a1') return 'beginner';
+  if (normalized === 'a2') return 'intermediate';
+  if (normalized === 'b1' || normalized === 'b2' || normalized === 'c1') return 'advanced';
   return 'mixed';
 };
 
@@ -89,6 +92,11 @@ export const formatDifficultyLabel = (value?: Flashcard['difficulty']) => {
   if (normalized === 'beginner') return 'Beginner';
   if (normalized === 'intermediate') return 'Intermediate';
   if (normalized === 'advanced') return 'Advanced';
+  if (normalized === 'a1') return 'A1';
+  if (normalized === 'a2') return 'A2';
+  if (normalized === 'b1') return 'B1';
+  if (normalized === 'b2') return 'B2';
+  if (normalized === 'c1') return 'C1';
   return 'Mixed';
 };
 
