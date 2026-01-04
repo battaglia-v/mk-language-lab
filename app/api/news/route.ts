@@ -228,8 +228,17 @@ function normalizePotentialUrl(value: string | null, base?: string): string | nu
 }
 
 function extractFirstImageSource(html: string): string | null {
-  const match = /<img[^>]+src=["']([^"']+)["'][^>]*>/i.exec(html);
-  return match ? decodeHtmlEntities(match[1]) : null;
+  // Try regular src first
+  const srcMatch = /<img[^>]+src=["']([^"']+)["'][^>]*>/i.exec(html);
+  if (srcMatch) return decodeHtmlEntities(srcMatch[1]);
+
+  // Try data-src for lazy-loaded images
+  const dataSrcMatch = /<img[^>]+data-src=["']([^"']+)["'][^>]*>/i.exec(html);
+  if (dataSrcMatch) return decodeHtmlEntities(dataSrcMatch[1]);
+
+  // Try data-lazy-src
+  const dataLazySrcMatch = /<img[^>]+data-lazy-src=["']([^"']+)["'][^>]*>/i.exec(html);
+  return dataLazySrcMatch ? decodeHtmlEntities(dataLazySrcMatch[1]) : null;
 }
 
 function extractItemImage(
@@ -492,9 +501,15 @@ const PREVIEW_FETCH_LIMIT = 30;
 const PREVIEW_MAX_LENGTH = 260;
 
 function extractMetaContent(html: string, attribute: 'property' | 'name', value: string): string | null {
-  const pattern = new RegExp(`<meta[^>]+${attribute}=["']${value}["'][^>]+content=["']([^"']+)["'][^>]*>`, 'i');
-  const match = pattern.exec(html);
-  return match ? decodeHtmlEntities(match[1]) : null;
+  // Try attribute before content (most common)
+  const pattern1 = new RegExp(`<meta[^>]+${attribute}=["']${value}["'][^>]+content=["']([^"']+)["'][^>]*>`, 'i');
+  const match1 = pattern1.exec(html);
+  if (match1) return decodeHtmlEntities(match1[1]);
+
+  // Try content before attribute (some sites use this order)
+  const pattern2 = new RegExp(`<meta[^>]+content=["']([^"']+)["'][^>]+${attribute}=["']${value}["'][^>]*>`, 'i');
+  const match2 = pattern2.exec(html);
+  return match2 ? decodeHtmlEntities(match2[1]) : null;
 }
 
 function extractSnippetParagraph(html: string): string | null {
