@@ -1,7 +1,12 @@
 {
+  "app": {
+    "displayName": "Macedonian Language Lab",
+    "shortName": "MK Language",
+    "tagline": "Learn Macedonian with AI"
+  },
   "brand": {
-    "full": "Македонски • MK Language Lab",
-    "short": "Македонски"
+    "full": "Macedonian Language Lab",
+    "short": "MK Language"
   },
   "nav": {
     "label": "Main navigation",

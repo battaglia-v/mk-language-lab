@@ -151,7 +151,7 @@ export default function FeedbackPage() {
         </Button>
         <h1 className="text-3xl font-bold text-foreground">Share Your Feedback</h1>
         <p className="mt-2 text-muted-foreground">
-          Help us make MK Language Lab better. We read every piece of feedback.
+          Help us make the app better. We read every piece of feedback.
         </p>
       </div>
 

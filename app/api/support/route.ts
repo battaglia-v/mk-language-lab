@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { z } from 'zod';
 import { supportRateLimit, checkRateLimit } from '@/lib/rate-limit';
+import { APP_META } from '@/lib/appMeta';
 
 // Initialize Resend client
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
@@ -59,7 +60,7 @@ function formatEmailHtml(data: SupportRequest): string {
                             <img src="https://mklanguage.com/icon-192.png" alt="" width="64" height="64" style="display: block; width: 64px; height: 64px;" />
                           </div>
                           <h1 style="margin: 0; font-size: 22px; font-weight: 700; color: #000; letter-spacing: -0.5px;">New Support Request</h1>
-                          <p style="margin: 8px 0 0 0; font-size: 14px; color: rgba(0,0,0,0.7);">MK Language Lab</p>
+                          <p style="margin: 8px 0 0 0; font-size: 14px; color: rgba(0,0,0,0.7);">${APP_META.storeName}</p>
                         </td>
                       </tr>
                     </table>
@@ -158,7 +159,7 @@ function formatEmailHtml(data: SupportRequest): string {
                       <tr>
                         <td style="text-align: center;">
                           <p style="margin: 0 0 8px 0; font-size: 13px; color: #666;">
-                            Sent from <span style="color: #F7C948; font-weight: 600;">MK Language Lab</span>
+                            Sent from <span style="color: #F7C948; font-weight: 600;">${APP_META.storeName}</span>
                           </p>
                           <p style="margin: 0; font-size: 12px; color: #555;">
                             ${timestamp}

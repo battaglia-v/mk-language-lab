@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { encode } from 'next-auth/jwt';
 import { auth } from '@/lib/auth';
+import { APP_META } from '@/lib/appMeta';
 
 const TOKEN_MAX_AGE_SECONDS = 60 * 60 * 24 * 30;
 
@@ -64,13 +65,13 @@ function buildClientRedirect(target: string, params: Record<string, string | und
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="refresh" content="0; url=${escaped}" />
-    <title>Returning to MK Language Lab</title>
+    <title>Returning to ${APP_META.storeName}</title>
     <style>
       body { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 2rem; line-height: 1.4; }
     </style>
   </head>
   <body>
-    <p>Redirecting back to the MK Language Lab app&hellip;</p>
+    <p>Redirecting back to the ${APP_META.storeName} app&hellip;</p>
     <p>If you are not redirected automatically, <a href="${escaped}">tap here</a>.</p>
     <script>
       window.location.replace(${JSON.stringify(encoded)});

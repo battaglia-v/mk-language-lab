@@ -127,7 +127,7 @@ function SignInContent() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/icon-192.png"
-                alt="MK Language Lab"
+                alt="App icon"
                 width={64}
                 height={64}
                 className="h-full w-full object-cover"

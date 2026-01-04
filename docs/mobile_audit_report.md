@@ -24,5 +24,5 @@
 | Translate smoke | Translate button remains disabled after input | `test-results/playwright/14-stage4-gate-Stage-4-gat-808c1-al-journeys-translate-smoke-mobile-audit/test-failed-1.png` | `test-results/playwright/14-stage4-gate-Stage-4-gat-808c1-al-journeys-translate-smoke-mobile-audit-retry1/trace.zip` |
 
 ## Notes
-- Suspected deploy lag: A2 toggle, Word Sprint start/exit, and reader word sheet were fixed on main but still fail on production.
-- Translate submit remains disabled after input on production; needs investigation.
+- Fixes are implemented locally and pending deploy: level toggle link fallback, Word Sprint start link fallback, reader tap handling (touch-move threshold + click fallback), translate input hydration sync.
+- Suspected deploy lag: A2 toggle, Word Sprint start/exit, reader word sheet, and translate submit remain failing on production until new build is live.

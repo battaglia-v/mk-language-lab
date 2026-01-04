@@ -1,7 +1,7 @@
 {
   "id": "/",
-  "name": "Македонски • MK Language Lab",
-  "short_name": "Македонски",
+  "name": "Macedonian Language Lab",
+  "short_name": "MK Language",
   "description": "Learn Macedonian with AI-powered tutoring, translation, and interactive lessons",
   "version": "1.0.0",
   "start_url": "/mk",

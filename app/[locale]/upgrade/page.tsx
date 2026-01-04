@@ -15,7 +15,7 @@ export default async function UpgradePage({ params }: UpgradePageProps) {
           <header className="page-header mx-auto">
             <div className="page-header-content">
               <p className="page-header-badge">Upgrade</p>
-              <h1 className="page-header-title">MK Language Lab is free for launch</h1>
+              <h1 className="page-header-title">The app is free for launch</h1>
               <p className="page-header-subtitle mx-auto">
                 Pro subscriptions are coming later. For now, enjoy full access for free.
               </p>

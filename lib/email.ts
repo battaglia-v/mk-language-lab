@@ -1,11 +1,11 @@
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const Resend = require('resend').Resend;
+import { Resend } from 'resend';
+import { APP_META } from '@/lib/appMeta';
 
 type ResendClient = { emails: { send: (options: { from: string; to: string; subject: string; html: string }) => Promise<unknown> } };
 const resend: ResendClient | null = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 const fromEmail = process.env.RESEND_FROM_EMAIL || 'noreply@mklanglabs.com';
-const appName = 'MK Language Lab';
+const appName = APP_META.storeName;
 const appUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000';
 
 export interface EmailResult {

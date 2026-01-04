@@ -1,8 +1,8 @@
 {
   "packageId": "com.mklanguage.twa",
   "host": "mklanguage.com",
-  "name": "Македонски • MK Language Lab",
-  "launcherName": "Македонски",
+  "name": "Macedonian Language Lab",
+  "launcherName": "MK Language",
   "display": "standalone",
   "themeColor": "#FF5A2C",
   "themeColorDark": "#000000",
