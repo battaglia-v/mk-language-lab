@@ -82,6 +82,7 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
   const [isInDeck, setIsInDeck] = useState(false);
   const [_isTranslating, setIsTranslating] = useState(false);
   const abortControllerRef = useRef<AbortController | null>(null);
+  const lastTapRef = useRef(0);
 
   // Build a lookup map from pre-analyzed words (best quality)
   const analyzedMap = useMemo(() => {
@@ -236,6 +237,13 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
     window.speechSynthesis.speak(utterance);
   }, []);
 
+  const triggerWord = useCallback((word: string) => {
+    const now = Date.now();
+    if (now - lastTapRef.current < 250) return;
+    lastTapRef.current = now;
+    void handleWordClick(word);
+  }, [handleWordClick]);
+
   // Split text into words while preserving punctuation
   const words = text.split(/(\s+)/);
 
@@ -263,12 +271,17 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
               onPointerUp={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                handleWordClick(word);
+                triggerWord(word);
+              }}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                triggerWord(word);
               }}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
-                  handleWordClick(word);
+                  triggerWord(word);
                 }
               }}
               className={cn(

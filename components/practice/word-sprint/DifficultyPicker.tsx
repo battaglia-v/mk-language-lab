@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { X, Zap, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -19,12 +18,10 @@ export function DifficultyPicker({ onSelect, title = 'Word Sprint' }: Props) {
   const [selectedLength, setSelectedLength] = useState<SessionLength>(10);
 
   const handleStart = () => {
-    if (selectedDifficulty) {
-      onSelect(selectedDifficulty, selectedLength);
-    }
+    if (!selectedDifficulty) return;
+    onSelect(selectedDifficulty, selectedLength);
+    router.replace(`?difficulty=${selectedDifficulty}&length=${selectedLength}`, { scroll: false });
   };
-
-  const startHref = `?difficulty=${selectedDifficulty}&length=${selectedLength}`;
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-background">
@@ -110,23 +107,14 @@ export function DifficultyPicker({ onSelect, title = 'Word Sprint' }: Props) {
           {/* Start Button */}
           <div className="space-y-2">
             <Button
-              asChild
               size="lg"
               className="w-full min-h-[52px] rounded-xl text-black gap-2"
               disabled={!selectedDifficulty}
+              onClick={handleStart}
               data-testid="word-sprint-picker-start"
             >
-              <Link
-                href={startHref}
-                onClick={(event) => {
-                  if (!selectedDifficulty) return;
-                  event.preventDefault();
-                  handleStart();
-                }}
-              >
-                <Zap className="h-5 w-5" />
-                Start session
-              </Link>
+              <Zap className="h-5 w-5" />
+              Start session
             </Button>
             <p className="text-center text-sm text-muted-foreground">
               Adjust difficulty or length before starting.

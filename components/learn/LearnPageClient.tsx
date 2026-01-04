@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Zap, Play, BookOpen, ChevronRight, Lock, Check, GraduationCap, Sparkles } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
@@ -34,11 +34,10 @@ export function LearnPageClient({
 }: LearnPageClientProps) {
   const t = useTranslations('mobile.learn');
   const searchParams = useSearchParams();
+  const router = useRouter();
   // Use local XP state for real-time updates
   const [localState, setLocalState] = useState({ todayXP: initialTodayXP, streak: initialStreak });
   const [activeLevel, setActiveLevel] = useState<LevelId>('beginner');
-  const beginnerHref = `/${locale}/learn?level=beginner`;
-  const intermediateHref = `/${locale}/learn?level=intermediate`;
 
   useEffect(() => {
     const state = getLocalXP();
@@ -74,6 +73,7 @@ export function LearnPageClient({
     } catch {
       // Ignore storage errors
     }
+    router.replace(`/${locale}/learn?level=${level}`, { scroll: false });
   };
 
   const todayXP = Math.max(localState.todayXP, initialTodayXP);
@@ -193,11 +193,12 @@ export function LearnPageClient({
               <p className="text-sm text-muted-foreground">{t('pickSkillHelper')}</p>
             </div>
             <div className="flex gap-2 rounded-xl bg-muted/50 p-1.5">
-              <Link
-                href={beginnerHref}
+              <button
+                type="button"
                 onClick={() => handleLevelChange('beginner')}
                 data-testid="learn-level-beginner"
                 aria-current={activeLevel === 'beginner' ? 'page' : undefined}
+                aria-pressed={activeLevel === 'beginner'}
                 className={cn(
                   'flex-1 flex items-center gap-2 rounded-lg px-3 py-3 text-left transition-all min-h-[44px]',
                   activeLevel === 'beginner'
@@ -210,12 +211,13 @@ export function LearnPageClient({
                   <span className="text-sm font-semibold">{t('basics')}</span>
                   <span className="text-[10px] uppercase tracking-wide text-muted-foreground">A1</span>
                 </div>
-              </Link>
-              <Link
-                href={intermediateHref}
+              </button>
+              <button
+                type="button"
                 onClick={() => handleLevelChange('intermediate')}
                 data-testid="learn-level-intermediate"
                 aria-current={activeLevel === 'intermediate' ? 'page' : undefined}
+                aria-pressed={activeLevel === 'intermediate'}
                 className={cn(
                   'flex-1 flex items-center gap-2 rounded-lg px-3 py-3 text-left transition-all min-h-[44px]',
                   activeLevel === 'intermediate'
@@ -228,7 +230,7 @@ export function LearnPageClient({
                   <span className="text-sm font-semibold">{t('speaking')}</span>
                   <span className="text-[10px] uppercase tracking-wide text-muted-foreground">A2</span>
                 </div>
-              </Link>
+              </button>
             </div>
           </div>
 
