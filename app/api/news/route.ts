@@ -83,7 +83,7 @@ function getProxiedImageUrl(imageUrl: string | null, source: NewsSource): string
   if (!source.useProxy) return imageUrl;
 
   // Return the proxy URL
-  return `/api/news/image?url=${encodeURIComponent(imageUrl)}`;
+  return `/api/news/image?src=${encodeURIComponent(imageUrl)}`;
 }
 
 type ArticlePreviewResult = {
