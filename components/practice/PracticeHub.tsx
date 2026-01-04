@@ -249,17 +249,17 @@ function PracticeModeCard({
   const testId = `practice-mode-${config.id}`;
 
   const variantStyles = {
-    default: 'bg-white/5 border-white/10 hover:border-white/20 hover:bg-white/8',
-    primary: 'bg-gradient-to-br from-primary/20 to-primary/5 border-primary/30 hover:border-primary/50',
-    accent: 'bg-gradient-to-br from-amber-500/20 to-amber-500/5 border-amber-500/30 hover:border-amber-500/50',
-    saved: 'bg-gradient-to-br from-pink-500/20 to-pink-500/5 border-pink-500/30 hover:border-pink-500/50',
+    default: 'bg-card border-border hover:border-primary/30 hover:bg-accent/50',
+    primary: 'bg-primary/10 border-primary/30 hover:border-primary/50',
+    accent: 'bg-amber-500/10 border-amber-500/30 hover:border-amber-500/50',
+    saved: 'bg-pink-500/10 border-pink-500/30 hover:border-pink-500/50',
   };
 
   const iconStyles = {
-    default: 'bg-white/10 text-white/80',
+    default: 'bg-muted text-muted-foreground',
     primary: 'bg-primary/20 text-primary',
-    accent: 'bg-amber-500/20 text-amber-400',
-    saved: 'bg-pink-500/20 text-pink-400',
+    accent: 'bg-amber-500/20 text-amber-500',
+    saved: 'bg-pink-500/20 text-pink-500',
   };
 
   // Get translated strings
