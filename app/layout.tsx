@@ -119,15 +119,34 @@ export default function RootLayout({
     <html lang="en" className="notranslate overflow-x-hidden" translate="no" suppressHydrationWarning>
       <head>
         <meta name="google" content="notranslate" />
-        {/* Blocking script to prevent theme flash - runs before paint */}
+        {/* Blocking script to prevent theme flash - runs before paint
+            Theme priority:
+            1. User's saved preference (localStorage)
+            2. System preference (prefers-color-scheme)
+            3. Default to light mode (light is primary)
+        */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
                 try {
-                  var theme = localStorage.getItem('mk-theme');
-                  var isLight = theme === 'light';
                   var html = document.documentElement;
+                  var savedTheme = localStorage.getItem('mk-theme');
+                  var theme;
+
+                  if (savedTheme === 'light' || savedTheme === 'dark') {
+                    // User has explicitly chosen a theme - respect it
+                    theme = savedTheme;
+                  } else if (savedTheme === 'system' || !savedTheme) {
+                    // No saved preference or "system" - check prefers-color-scheme
+                    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    theme = prefersDark ? 'dark' : 'light';
+                  } else {
+                    // Fallback to light (light mode is primary)
+                    theme = 'light';
+                  }
+
+                  var isLight = theme === 'light';
                   if (isLight) {
                     html.classList.remove('dark');
                     html.classList.add('theme-light');
@@ -138,7 +157,9 @@ export default function RootLayout({
                     html.classList.remove('theme-light');
                   }
                 } catch (e) {
-                  document.documentElement.classList.add('dark', 'theme-dark');
+                  // On error, default to light mode (primary)
+                  document.documentElement.classList.remove('dark', 'theme-dark');
+                  document.documentElement.classList.add('theme-light');
                 }
               })();
             `,
