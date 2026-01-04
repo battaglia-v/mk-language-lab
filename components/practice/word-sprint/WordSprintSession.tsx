@@ -7,7 +7,6 @@ import { useSession } from 'next-auth/react';
 import { CheckCircle2, XCircle, Volume2, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 import { XPAnimation } from '@/components/gamification/XPAnimation';
 import { addLocalXP } from '@/lib/gamification/local-xp';
@@ -32,7 +31,10 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
   const [difficulty, setDifficulty] = useState<Difficulty | null>(initialDifficulty ?? null);
   const [sessionLength, setSessionLength] = useState<SessionLength>(initialCount);
   const [showPicker, setShowPicker] = useState(!initialDifficulty);
-  const [queue, setQueue] = useState<WordSprintItem[]>([]);
+  const [queue, setQueue] = useState<WordSprintItem[]>(() => {
+    if (!initialDifficulty) return [];
+    return getWordSprintSession(initialCount, initialDifficulty).map(refreshItemOptions);
+  });
   const [index, setIndex] = useState(0);
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
@@ -47,7 +49,7 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
   const [isSpeaking, setIsSpeaking] = useState(false);
   const sessionStart = useRef(Date.now());
 
-  const startSession = (diff: Difficulty, length: SessionLength) => {
+  const startSession = useCallback((diff: Difficulty, length: SessionLength) => {
     setDifficulty(diff);
     setSessionLength(length);
     setShowPicker(false);
@@ -61,7 +63,13 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
     setTotalXP(0);
     setIsComplete(false);
     sessionStart.current = Date.now();
-  };
+  }, []);
+
+  useEffect(() => {
+    if (initialDifficulty) {
+      startSession(initialDifficulty, initialCount);
+    }
+  }, [initialCount, initialDifficulty, startSession]);
 
   const card = queue[index];
   const total = queue.length || 1;
@@ -203,14 +211,36 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
     return (
       <div className="fixed inset-0 z-50 flex flex-col bg-background">
         <header className="flex items-center gap-3 border-b border-border/40 px-4 py-3 safe-top">
-          <Skeleton className="h-10 w-10 rounded-full" />
-          <Skeleton className="h-2 flex-1 rounded-full" />
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-11 w-11 rounded-full p-0"
+            onClick={() => setShowPicker(true)}
+            data-testid="word-sprint-exit"
+          >
+            <X className="h-5 w-5" />
+          </Button>
+          <Progress value={0} className="h-2 flex-1 opacity-40" />
         </header>
         <div className="flex-1 px-4 py-6">
-          <div className="mx-auto max-w-lg space-y-4">
-            <Skeleton className="h-6 w-full" />
-            <div className="grid grid-cols-2 gap-2">
-              {[1, 2, 3, 4].map((i) => <Skeleton key={i} className="h-14 rounded-xl" />)}
+          <div className="mx-auto flex max-w-sm flex-col items-center gap-4 text-center">
+            <div className="space-y-2">
+              <p className="text-lg font-semibold text-foreground">No questions loaded yet</p>
+              <p className="text-sm text-muted-foreground">
+                Try a different difficulty or head back to practice.
+              </p>
+            </div>
+            <div className="flex w-full flex-col gap-2">
+              <Button onClick={() => setShowPicker(true)} data-testid="word-sprint-empty-retry">
+                Back to picker
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => router.push(`/${locale}/practice`)}
+                data-testid="word-sprint-empty-back"
+              >
+                Go to Practice
+              </Button>
             </div>
           </div>
         </div>
@@ -243,7 +273,7 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
         <Button
           variant="ghost"
           size="sm"
-          className="h-10 w-10 rounded-full p-0"
+          className="h-11 w-11 rounded-full p-0"
           onClick={endSession}
           data-testid="word-sprint-exit"
         >

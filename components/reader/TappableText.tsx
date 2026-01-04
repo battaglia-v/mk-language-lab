@@ -260,7 +260,7 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
               data-testid="reader-tappable-word"
               data-scan-group="reader-tappable-word"
               data-scan-label="Tap word for translation"
-              onClick={(e) => {
+              onPointerUp={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 handleWordClick(word);

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { X, Zap, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -23,13 +24,15 @@ export function DifficultyPicker({ onSelect, title = 'Word Sprint' }: Props) {
     }
   };
 
+  const startHref = `?difficulty=${selectedDifficulty}&length=${selectedLength}`;
+
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-background">
       <header className="flex items-center gap-3 border-b border-border/40 px-4 py-3 safe-top">
         <Button
           variant="ghost"
           size="sm"
-          className="h-10 w-10 rounded-full p-0"
+          className="h-11 w-11 rounded-full p-0"
           onClick={() => router.back()}
           data-testid="word-sprint-picker-close"
         >
@@ -49,6 +52,7 @@ export function DifficultyPicker({ onSelect, title = 'Word Sprint' }: Props) {
               {(['easy', 'medium', 'hard'] as const).map((d) => (
                 <Button
                   key={d}
+                  type="button"
                   variant={selectedDifficulty === d ? 'default' : 'outline'}
                   className={cn(
                     'w-full h-16 justify-between rounded-xl text-left transition-all',
@@ -85,6 +89,7 @@ export function DifficultyPicker({ onSelect, title = 'Word Sprint' }: Props) {
               {SESSION_LENGTH_OPTIONS.map((length) => (
                 <Button
                   key={length}
+                  type="button"
                   variant={selectedLength === length ? 'default' : 'outline'}
                   className={cn(
                     "h-20 rounded-xl flex flex-col items-center justify-center gap-0.5 px-2",
@@ -105,14 +110,23 @@ export function DifficultyPicker({ onSelect, title = 'Word Sprint' }: Props) {
           {/* Start Button */}
           <div className="space-y-2">
             <Button
+              asChild
               size="lg"
               className="w-full min-h-[52px] rounded-xl text-black gap-2"
-              onClick={handleStart}
               disabled={!selectedDifficulty}
               data-testid="word-sprint-picker-start"
             >
-              <Zap className="h-5 w-5" />
-              Start session
+              <Link
+                href={startHref}
+                onClick={(event) => {
+                  if (!selectedDifficulty) return;
+                  event.preventDefault();
+                  handleStart();
+                }}
+              >
+                <Zap className="h-5 w-5" />
+                Start session
+              </Link>
             </Button>
             <p className="text-center text-sm text-muted-foreground">
               Adjust difficulty or length before starting.

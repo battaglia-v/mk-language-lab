@@ -14,7 +14,7 @@ import { isTopicDeck, getTopicDeck } from '@/lib/topic-decks';
 import { isFavorite, toggleFavorite } from '@/lib/favorites';
 import { recordPracticeSession as recordActivitySession } from '@/lib/practice-activity';
 import { recordReview } from '@/lib/srs';
-import { calculateXP, formatDifficultyLabel } from './types';
+import { calculateXP, formatDifficultyLabel, normalizeDifficulty } from './types';
 import { XPAnimation } from '@/components/gamification/XPAnimation';
 import { GoalCelebration } from '@/components/gamification/GoalCelebration';
 import { addLocalXP, getLocalXP, isGoalComplete } from '@/lib/gamification/local-xp';
@@ -30,11 +30,12 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
   const t = useTranslations('practiceHub');
   const locale = useLocale();
   const router = useRouter();
-  const { getDeck, loadCustomDeck } = usePracticeDecks();
+  const { getDeck, loadCustomDeck, isLoading: isDecksLoading } = usePracticeDecks();
   const { config } = useAppConfig();
   const { entitlement, isPracticeLimitReached, recordPracticeSession } = useEntitlement();
 
   const [deck, setDeck] = useState<Flashcard[]>([]);
+  const [deckStatus, setDeckStatus] = useState<'loading' | 'ready' | 'empty'>('loading');
   const [index, setIndex] = useState(0);
   const [guess, setGuess] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
@@ -60,6 +61,26 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
 
   // Load deck with fallback for auth failures
   useEffect(() => {
+    let isActive = true;
+
+    const applyDeck = (cards: Flashcard[], status?: 'loading' | 'ready' | 'empty') => {
+      if (!isActive) return;
+      setDeck(cards);
+      if (status) {
+        setDeckStatus(status);
+        return;
+      }
+      if (cards.length > 0) {
+        setDeckStatus('ready');
+      } else if (isDecksLoading) {
+        setDeckStatus('loading');
+      } else {
+        setDeckStatus('empty');
+      }
+    };
+
+    setDeckStatus('loading');
+
     if (config.paywallEnabled && !entitlement.isPro && isPracticeLimitReached) {
       router.replace(`/${locale}/upgrade?from=${encodeURIComponent(`/${locale}/practice`)}`);
       return;
@@ -69,36 +90,47 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
     if (isTopicDeck(deckType)) {
       const topicDeck = getTopicDeck(deckType);
       if (topicDeck && topicDeck.items.length > 0) {
+        const resolvedDifficulty = difficulty === 'all'
+          ? normalizeDifficulty(topicDeck.meta.level)
+          : difficulty;
         const flashcards: Flashcard[] = topicDeck.items.map((item) => ({
           id: item.id,
           source: item.mk,
           target: item.en,
           direction: 'mk-en' as const,
           category: item.category || topicDeck.meta.category,
-          difficulty: topicDeck.meta.level.toLowerCase(),
+          difficulty: resolvedDifficulty,
           audioClip: null,
           macedonian: item.mk,
         }));
         // Shuffle the deck for variety
         const shuffled = [...flashcards].sort(() => Math.random() - 0.5);
-        setDeck(shuffled);
+        applyDeck(shuffled, 'ready');
         return;
       }
     }
 
     if (customDeckId) {
       loadCustomDeck(customDeckId).then((cards) => {
+        if (!isActive) return;
         if (cards.length > 0) {
-          setDeck(cards);
-        } else {
-          // Custom deck unavailable (auth failure or not found) - fall back to curated
-          setDeck(getDeck('curated', difficulty));
+          applyDeck(cards, 'ready');
+          return;
         }
+
+        // Custom deck unavailable (auth failure or not found) - fall back to curated
+        const fallback = getDeck('curated', difficulty);
+        applyDeck(fallback);
       });
     } else {
       // Cast to DeckType for standard decks (unknown types fall back to curated)
-      setDeck(getDeck(deckType as DeckType, difficulty));
+      const cards = getDeck(deckType as DeckType, difficulty);
+      applyDeck(cards);
     }
+
+    return () => {
+      isActive = false;
+    };
   }, [
     config.paywallEnabled,
     entitlement.isPro,
@@ -108,6 +140,7 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
     customDeckId,
     getDeck,
     loadCustomDeck,
+    isDecksLoading,
     locale,
     router,
   ]);
@@ -235,28 +268,65 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
     setIsFav(toggleFavorite({ id: card.id, macedonian: mk, english: en, category: card.category || undefined }));
   };
 
-  if (!deck.length) return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-background">
-      <header className="flex items-center gap-3 border-b border-border/40 px-4 py-3 safe-top">
-        <Skeleton className="h-10 w-10 rounded-full" />
-        <Skeleton className="h-2 flex-1 rounded-full" />
-        <Skeleton className="h-4 w-12" />
-      </header>
-      <div className="flex-1 px-4 py-6">
-        <div className="mx-auto max-w-lg space-y-4">
-          <Skeleton className="h-4 w-20" />
-          <Skeleton className="h-10 w-full" />
-          <Skeleton className="h-24 w-full rounded-xl" />
-          <div className="grid grid-cols-2 gap-2">
-            <Skeleton className="h-14 rounded-xl" />
-            <Skeleton className="h-14 rounded-xl" />
-            <Skeleton className="h-14 rounded-xl" />
-            <Skeleton className="h-14 rounded-xl" />
+  if (deckStatus !== 'ready') {
+    return (
+      <div className="fixed inset-0 z-50 flex flex-col bg-background">
+        <header className="flex items-center gap-3 border-b border-border/40 px-4 py-3 safe-top">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-11 w-11 rounded-full p-0"
+            onClick={() => router.push(`/${locale}/practice`)}
+            data-testid="practice-session-exit"
+          >
+            <X className="h-5 w-5" />
+          </Button>
+          <div className="flex-1">
+            <Progress value={0} className="h-2 opacity-40" />
           </div>
+          <span className="text-sm font-medium text-muted-foreground">0/0</span>
+        </header>
+        <div className="flex-1 px-4 py-6">
+          {deckStatus === 'loading' ? (
+            <div className="mx-auto max-w-lg space-y-4">
+              <Skeleton className="h-4 w-20" />
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-24 w-full rounded-xl" />
+              <div className="grid grid-cols-2 gap-2">
+                <Skeleton className="h-14 rounded-xl" />
+                <Skeleton className="h-14 rounded-xl" />
+                <Skeleton className="h-14 rounded-xl" />
+                <Skeleton className="h-14 rounded-xl" />
+              </div>
+            </div>
+          ) : (
+            <div className="mx-auto flex max-w-sm flex-col items-center gap-4 text-center">
+              <div className="space-y-2">
+                <p className="text-lg font-semibold text-foreground">No cards ready yet</p>
+                <p className="text-sm text-muted-foreground">
+                  Try a different deck or return to practice to pick another mode.
+                </p>
+              </div>
+              <div className="flex w-full flex-col gap-2">
+                <Button onClick={() => router.push(`/${locale}/practice`)} data-testid="practice-session-back">
+                  Back to Practice
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() =>
+                    router.replace(`/${locale}/practice/session?deck=curated&difficulty=${difficulty}`)
+                  }
+                  data-testid="practice-session-try-curated"
+                >
+                  Try curated deck
+                </Button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-background">
@@ -275,7 +345,7 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
         <Button
           variant="ghost"
           size="sm"
-          className="h-10 w-10 rounded-full p-0"
+          className="h-11 w-11 rounded-full p-0"
           onClick={endSession}
           data-testid="practice-session-exit"
         >
@@ -305,18 +375,18 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
           <div className="flex items-center gap-2">
             <Button
               variant="ghost"
-              size="sm"
+              size="icon-sm"
               onClick={speak}
-              className={cn('h-9 rounded-full', isSpeaking && 'text-primary')}
+              className={cn('rounded-full', isSpeaking && 'text-primary')}
               data-testid="practice-session-speak"
             >
               {isSpeaking ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
             </Button>
             <Button
               variant="ghost"
-              size="sm"
+              size="icon-sm"
               onClick={toggleFav}
-              className={cn('h-9 rounded-full', isFav && 'text-pink-400')}
+              className={cn('rounded-full', isFav && 'text-pink-400')}
               data-testid="practice-session-favorite-toggle"
             >
               <Heart className={cn('h-4 w-4', isFav && 'fill-current')} />

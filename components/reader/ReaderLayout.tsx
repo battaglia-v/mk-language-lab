@@ -41,7 +41,7 @@ export function ReaderLayout({ sample, locale }: ReaderLayoutProps) {
     <div className="space-y-6">
       <div className="sticky top-0 z-30 -mx-4 border-b border-border/40 bg-background/90 px-4 py-3 backdrop-blur">
         <div className="flex items-center gap-2">
-          <Button asChild variant="ghost" size="sm" className="h-10 gap-1 px-2">
+          <Button asChild variant="ghost" size="sm" className="gap-1 px-3">
             <Link href={`/${locale}/reader`} data-testid="reader-sample-back-to-reader">
               <ArrowLeft className="h-4 w-4" />
               <span className="text-sm">Back</span>
@@ -53,8 +53,8 @@ export function ReaderLayout({ sample, locale }: ReaderLayoutProps) {
               <Button
                 type="button"
                 variant="ghost"
-                size="sm"
-                className="h-9 w-9 rounded-full"
+                size="icon-sm"
+                className="rounded-full"
                 onClick={() => handleFontChange('down')}
                 disabled={fontStep === 0}
                 aria-label="Decrease font size"
@@ -66,8 +66,8 @@ export function ReaderLayout({ sample, locale }: ReaderLayoutProps) {
               <Button
                 type="button"
                 variant="ghost"
-                size="sm"
-                className="h-9 w-9 rounded-full"
+                size="icon-sm"
+                className="rounded-full"
                 onClick={() => handleFontChange('up')}
                 disabled={fontStep === FONT_STEPS.length - 1}
                 aria-label="Increase font size"
@@ -81,7 +81,7 @@ export function ReaderLayout({ sample, locale }: ReaderLayoutProps) {
               type="button"
               variant={focusMode ? 'secondary' : 'ghost'}
               size="sm"
-              className="h-10 gap-1.5 rounded-full px-3"
+              className="gap-1.5 rounded-full px-3"
               onClick={() => setFocusMode((current) => !current)}
               aria-pressed={focusMode}
               data-testid="reader-focus-toggle"
