@@ -1,121 +1,60 @@
-:root,
-.theme-dark {
-  color-scheme: dark;
-  /* Typography scale - BOLD increases for mobile readability */
-  --font-size-xs: 1rem;           /* 16px - was 14px (+2px) */
-  --font-size-sm: 1.0625rem;      /* 17px - was 15.2px (+2px) */
-  --font-size-base: 1.125rem;     /* 18px - was 16px (+2px) */
-  --font-size-lg: 1.25rem;        /* 20px - was 18px (+2px) */
-  --font-size-xl: 1.5rem;         /* 24px - was 22px (+2px) */
-  --line-height-tight: 1.35;
+/* ========================================
+   MK LANGUAGE LAB - THEME SYSTEM
+   Inspired by Adjustly's clean, consistent approach
+   ======================================== */
+
+:root {
+  /* Typography scale */
+  --font-size-xs: 0.875rem;       /* 14px */
+  --font-size-sm: 1rem;           /* 16px */
+  --font-size-base: 1.0625rem;    /* 17px */
+  --font-size-lg: 1.125rem;       /* 18px */
+  --font-size-xl: 1.25rem;        /* 20px */
+  --font-size-2xl: 1.5rem;        /* 24px */
+  --line-height-tight: 1.3;
   --line-height-base: 1.6;
-  --line-height-relaxed: 1.8;
+  --line-height-relaxed: 1.75;
 
-  /* Layout guardrails - UPDATED for wider, more spacious layouts */
-  --content-padding: clamp(1rem, 3vw, 2.5rem);
-  --content-max: 1280px;      /* was 1200px - more breathing room */
-  --content-wide: 1180px;     /* was 1120px */
-  --content-reading: 720px;   /* was 896px - narrower for better readability */
-  --content-narrow: 480px;    /* NEW: for focused content like forms */
+  /* Layout */
+  --content-padding: clamp(1rem, 3vw, 1.5rem);
+  --content-max: 1280px;
+  --content-wide: 1024px;
+  --content-reading: 680px;
+  --content-narrow: 480px;
 
-  /* Button sizing - Duolingo-like sizing for clear CTAs */
-  --button-height-sm: 2.75rem;  /* 44px - secondary/minor actions */
-  --button-height-md: 3.5rem;   /* 56px - PRIMARY CTA (was 48px) */
-  --button-height-lg: 3.5rem;   /* 56px - hero CTA */
+  /* Button sizing */
+  --button-height-sm: 2.75rem;    /* 44px - tap target minimum */
+  --button-height-md: 3rem;       /* 48px - standard */
+  --button-height-lg: 3.5rem;     /* 56px - hero CTA */
   --button-pad-x-sm: 1rem;
   --button-pad-x-md: 1.5rem;
   --button-pad-x-lg: 2rem;
-  --button-pad-y: 0.75rem;
-  --touch-target-min: 44px;     /* WCAG AA minimum */
-  
-  /* Input sizing - consistent with primary buttons */
-  --input-height: 3.5rem;       /* 56px - matches primary CTA height */
-  --input-height-sm: 2.75rem;   /* 44px - compact inputs */
+  --touch-target-min: 44px;
 
-  --mk-bg: #06060b;
-  --mk-bg-surface: #0b0b12;
-  --mk-bg-panel: #151827;
-  --mk-bg-panel-muted: #1b1f33;
-  --mk-bg-card: #111424;
-  --mk-border: #222536;
-  --mk-border-strong: #2e3246;
-  --mk-border-soft: #1a1d2b;
-  --mk-text: #f7f8fb;
-  --mk-text-muted: rgba(247, 248, 251, 0.88);
-  --mk-accent: #f6d83b;
-  --mk-accent-2: #f4b400;
-  --mk-accent-3: #34d399;
-  --mk-success: #3ecf8e;
-  --mk-warning: #f4c84a;
-  --mk-danger: #ff7878;
-  --mk-gradient: linear-gradient(115deg, #f6d83b, #f4b400, #34d399);
-  --mk-surface-glow: linear-gradient(145deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
-  --background: var(--mk-bg);
-  --foreground: var(--mk-text);
-  --card: var(--mk-bg-card);
-  --card-foreground: var(--mk-text);
-  --popover: #07070f;
-  --popover-foreground: var(--mk-text);
-  --primary: var(--mk-accent);
-  --primary-foreground: #0a0a0a; /* Near-black for maximum WCAG AAA contrast on yellow buttons */
-  --secondary: var(--mk-accent-3);
-  --secondary-foreground: #02150c;
-  --muted: var(--mk-bg-panel-muted);
-  --muted-foreground: var(--mk-text-muted);
-  --accent: var(--mk-accent);
-  --accent-foreground: #0c0a14;
-  --destructive: var(--mk-danger);
-  --destructive-foreground: #120102;
-  --border: var(--mk-border);
-  --input: var(--mk-border-soft);
-  --ring: var(--mk-accent-2);
-  /* Radii - Duolingo-like rounded corners */
-  --radius: 18px;             /* Default for buttons */
-  --radius-control: 18px;     /* Buttons/inputs (was 14px) */
-  --radius-card: 24px;        /* Cards (was 22px) */
-  --radius-panel: 24px;       /* Panels/modals */
-  --radius-chip: 9999px;      /* Pills/chips */
-  --sidebar: rgba(6, 6, 11, 0.95);
-  --sidebar-foreground: rgba(247, 248, 251, 0.8);
-  --sidebar-primary: rgba(246, 216, 59, 0.16);
-  --sidebar-primary-foreground: #fff9c4;
-  --sidebar-accent: rgba(247, 248, 251, 0.04);
-  --sidebar-accent-foreground: var(--mk-text);
-  --sidebar-border: rgba(255, 255, 255, 0.07);
-  --sidebar-ring: var(--mk-accent);
-  --shadow-sm: 0 2px 8px -2px rgba(0, 0, 0, 0.45);
-  --shadow-md: 0 4px 16px -4px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 8px 32px -8px rgba(0, 0, 0, 0.55);
-  --shadow-focus: 0 0 0 3px rgba(246, 216, 59, 0.28);
-  --shadow-soft: 0 12px 40px -12px rgba(0, 0, 0, 0.45);
-  --panel-shadow: 0 16px 48px -12px rgba(0, 0, 0, 0.55);
-  
-  /* Surface elevation levels - simplified hierarchy */
-  --surface-1: var(--mk-bg);           /* Page background */
-  --surface-2: var(--mk-bg-surface);   /* Primary content containers */
-  --surface-3: var(--mk-bg-panel);     /* Secondary/elevated containers */
-  --surface-utility: var(--mk-bg-card); /* Cards, modals, popovers */
+  /* Input sizing */
+  --input-height: 3rem;           /* 48px */
+  --input-height-sm: 2.75rem;     /* 44px */
 
-  /* Z-index scale - standardized layering */
-  --z-dropdown: 40;
-  --z-sticky: 45;
-  --z-modal: 50;
-  --z-popover: 55;
-  --z-tooltip: 60;
-  --z-toast: 100;
-  --z-skip-link: 9999;
+  /* Radii - Simplified to 2 main values */
+  --radius: 16px;                 /* Primary: buttons, cards */
+  --radius-sm: 12px;              /* Secondary: inputs, chips */
+  --radius-lg: 20px;              /* Large panels */
+  --radius-pill: 9999px;          /* Pills/chips */
 
-  /* Focus ring tokens */
-  --focus-ring-color: var(--ring);
-  --focus-ring-width: 2px;
-  --focus-ring-offset: 2px;
+  /* Legacy mappings */
+  --radius-control: var(--radius);
+  --radius-card: var(--radius);
+  --radius-panel: var(--radius-lg);
+  --radius-chip: var(--radius-pill);
 
+  /* Icon system */
   --icon-size: 20px;
   --icon-size-sm: 16px;
-  --icon-stroke: 1.6;
-  --icon-gap: 10px;
+  --icon-size-lg: 24px;
+  --icon-stroke: 2;
+  --icon-gap: 8px;
 
-  /* Spacing scale (Batch 2) */
+  /* Spacing scale */
   --space-1: 0.25rem;   /* 4px */
   --space-2: 0.5rem;    /* 8px */
   --space-3: 0.75rem;   /* 12px */
@@ -125,109 +64,116 @@
   --space-8: 2rem;      /* 32px */
   --space-10: 2.5rem;   /* 40px */
   --space-12: 3rem;     /* 48px */
-  --space-16: 4rem;     /* 64px */
 
-  /* Component tokens (Batch 2) */
-  --card-radius: 1rem;          /* 16px */
-  --card-radius-lg: 1.25rem;    /* 20px */
-  --card-padding-default: var(--space-5);  /* 20px */
-  --card-padding-compact: var(--space-4);  /* 16px */
-  --card-gap: var(--space-4);              /* 16px */
-  --section-gap: var(--space-8);           /* 32px */
-  --page-gutter-mobile: var(--space-4);    /* 16px */
-  --page-gutter-desktop: var(--space-10);  /* 40px */
+  /* Component tokens */
+  --card-padding: var(--space-4);
+  --card-padding-lg: var(--space-6);
+  --card-gap: var(--space-3);
+  --section-gap: var(--space-6);
+  --page-gutter: var(--space-4);
+
+  /* Z-index scale */
+  --z-dropdown: 40;
+  --z-sticky: 45;
+  --z-modal: 50;
+  --z-popover: 55;
+  --z-tooltip: 60;
+  --z-toast: 100;
+
+  /* Focus ring */
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
 
   /* Progress ring sizes */
-  --progress-ring-sm: 3rem;     /* 48px */
-  --progress-ring-md: 5rem;     /* 80px */
-  --progress-ring-lg: 7.5rem;   /* 120px */
-
-  /* Reader - Part of Speech colors */
-  --pos-noun: #60a5fa;       /* blue */
-  --pos-verb: #34d399;       /* teal/green */
-  --pos-adjective: #fbbf24;  /* yellow */
-  --pos-adverb: #a78bfa;     /* purple */
-  --pos-other: #cbd5e1;      /* gray */
-}
-
-body.theme-dark {
-  background: var(--mk-bg);
-  color: var(--mk-text);
+  --progress-ring-sm: 3rem;
+  --progress-ring-md: 5rem;
+  --progress-ring-lg: 7.5rem;
 }
 
 /* ========================================
    LIGHT THEME (Default)
+   Clean, warm, Adjustly-inspired
    ======================================== */
+:root,
 .theme-light {
   color-scheme: light;
 
-  /* Light theme colors */
-  --mk-bg: #f7f8fb;
-  --mk-bg-surface: #ffffff;
-  --mk-bg-panel: #f0f2f7;
-  --mk-bg-panel-muted: #e8eaf0;
-  --mk-bg-card: #ffffff;
-  --mk-border: #e0e3e9;
-  --mk-border-strong: #cbd0db;
-  --mk-border-soft: #eef0f4;
-  --mk-text: #0b0b12;
-  --mk-text-muted: rgba(11, 11, 18, 0.78);  /* Increased opacity for WCAG AA (was 0.72) */
+  /* Core palette - Adjustly-inspired warm grays */
+  --mk-bg: #F5F7FA;
+  --mk-surface: #FFFFFF;
+  --mk-surface-2: #F1F4F9;
+  --mk-text: #121820;
+  --mk-text-muted: #6B778C;
+  --mk-border: #E3E7EE;
+  --mk-border-strong: #D1D5DB;
 
-  /* Keep accent colors (they work for both themes) */
-  --mk-accent: #d4a800;        /* Darkened for WCAG AA contrast on light bg (was #f6d83b) */
-  --mk-accent-2: #b89600;      /* Darkened for contrast (was #f4b400) */
-  --mk-accent-3: #059669;      /* Darkened teal for contrast (was #34d399) */
-  --mk-success: #059669;       /* Use darker green for success text */
-  --mk-warning: #b89600;       /* Darkened for contrast */
-  --mk-danger: #dc2626;        /* Standard red with good contrast */
-  --mk-gradient: linear-gradient(115deg, #f6d83b, #f4b400, #34d399);
-  --mk-surface-glow: linear-gradient(145deg, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0));
+  /* Brand accent - Macedonian gold */
+  --mk-accent: #D4A800;
+  --mk-accent-bright: #F6D83B;
+  --mk-accent-muted: #FEF3C7;
 
-  /* Shadcn/UI mappings for light theme - using darker accents for text contrast */
+  /* Semantic colors */
+  --mk-success: #16A34A;
+  --mk-success-muted: #DCFCE7;
+  --mk-warning: #D97706;
+  --mk-warning-muted: #FEF3C7;
+  --mk-danger: #DC2626;
+  --mk-danger-muted: #FEE2E2;
+
+  /* Brand gradient */
+  --mk-gradient: linear-gradient(115deg, #F6D83B, #F4B400, #34D399);
+  --mk-surface-glow: linear-gradient(145deg, rgba(0, 0, 0, 0.02), transparent);
+
+  /* shadcn/ui mappings */
   --background: var(--mk-bg);
   --foreground: var(--mk-text);
-  --card: var(--mk-bg-card);
+  --card: var(--mk-surface);
   --card-foreground: var(--mk-text);
-  --popover: #ffffff;
+  --popover: var(--mk-surface);
   --popover-foreground: var(--mk-text);
-  --primary: #b89600;          /* Darker gold for buttons - WCAG AA on white */
-  --primary-foreground: #000000;
-  --secondary: #059669;        /* Darker teal for secondary - WCAG AA on white */
-  --secondary-foreground: #ffffff;
-  --muted: var(--mk-bg-panel-muted);
+  --primary: var(--mk-accent);
+  --primary-foreground: #FFFFFF;
+  --secondary: var(--mk-surface-2);
+  --secondary-foreground: var(--mk-text);
+  --muted: var(--mk-surface-2);
   --muted-foreground: var(--mk-text-muted);
-  --accent: var(--mk-accent);
-  --accent-foreground: #0c0a14;
-  --destructive: #dc2626;      /* Standard red-600 for good contrast */
-  --destructive-foreground: #ffffff;
+  --accent: var(--mk-accent-muted);
+  --accent-foreground: var(--mk-accent);
+  --destructive: var(--mk-danger);
+  --destructive-foreground: #FFFFFF;
   --border: var(--mk-border);
   --input: var(--mk-border);
-  --ring: #8b7500;             /* Darker ring for focus visibility */
+  --ring: var(--mk-accent);
 
-  /* Sidebar for light theme */
-  --sidebar: rgba(255, 255, 255, 0.98);
-  --sidebar-foreground: rgba(11, 11, 18, 0.85);
-  --sidebar-primary: rgba(246, 216, 59, 0.12);
-  --sidebar-primary-foreground: #8b7500;
-  --sidebar-accent: rgba(11, 11, 18, 0.04);
+  /* Sidebar */
+  --sidebar: var(--mk-surface);
+  --sidebar-foreground: var(--mk-text);
+  --sidebar-primary: var(--mk-accent-muted);
+  --sidebar-primary-foreground: var(--mk-accent);
+  --sidebar-accent: var(--mk-surface-2);
   --sidebar-accent-foreground: var(--mk-text);
-  --sidebar-border: rgba(0, 0, 0, 0.08);
+  --sidebar-border: var(--mk-border);
   --sidebar-ring: var(--mk-accent);
 
-  /* Light theme shadows */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
-  --shadow-focus: 0 0 0 3px rgba(246, 216, 59, 0.35);
-  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
-  --panel-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  /* Shadows - subtle for light mode */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  --shadow-focus: 0 0 0 3px rgba(212, 168, 0, 0.25);
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --panel-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 
-  /* Reader - Part of Speech colors (adjusted for light theme) */
-  --pos-noun: #2563eb;       /* darker blue */
-  --pos-verb: #059669;       /* darker teal/green */
-  --pos-adjective: #d97706;  /* darker yellow/orange */
-  --pos-adverb: #7c3aed;     /* darker purple */
-  --pos-other: #64748b;      /* darker gray */
+  /* Surface hierarchy */
+  --surface-1: var(--mk-bg);
+  --surface-2: var(--mk-surface);
+  --surface-3: var(--mk-surface-2);
+
+  /* Reader - Part of Speech colors */
+  --pos-noun: #2563EB;
+  --pos-verb: #059669;
+  --pos-adjective: #D97706;
+  --pos-adverb: #7C3AED;
+  --pos-other: #64748B;
 }
 
 body.theme-light {
@@ -235,7 +181,106 @@ body.theme-light {
   color: var(--mk-text);
 }
 
-/* Default to light theme */
-:root:not(.theme-dark) {
-  color-scheme: light;
+/* ========================================
+   DARK THEME
+   Rich, immersive, premium feel
+   ======================================== */
+.theme-dark {
+  color-scheme: dark;
+
+  /* Core palette */
+  --mk-bg: #0C0E12;
+  --mk-surface: #121621;
+  --mk-surface-2: #181E2B;
+  --mk-text: #F2F5FA;
+  --mk-text-muted: #A7B0C0;
+  --mk-border: #2A3345;
+  --mk-border-strong: #3D4656;
+
+  /* Brand accent - brighter in dark mode */
+  --mk-accent: #F6D83B;
+  --mk-accent-bright: #FFEB80;
+  --mk-accent-muted: rgba(246, 216, 59, 0.15);
+
+  /* Semantic colors - brighter for dark backgrounds */
+  --mk-success: #22C55E;
+  --mk-success-muted: rgba(34, 197, 94, 0.15);
+  --mk-warning: #FBBF24;
+  --mk-warning-muted: rgba(251, 191, 36, 0.15);
+  --mk-danger: #F87171;
+  --mk-danger-muted: rgba(248, 113, 113, 0.15);
+
+  /* Brand gradient */
+  --mk-gradient: linear-gradient(115deg, #F6D83B, #F4B400, #34D399);
+  --mk-surface-glow: linear-gradient(145deg, rgba(255, 255, 255, 0.03), transparent);
+
+  /* shadcn/ui mappings */
+  --background: var(--mk-bg);
+  --foreground: var(--mk-text);
+  --card: var(--mk-surface);
+  --card-foreground: var(--mk-text);
+  --popover: var(--mk-surface);
+  --popover-foreground: var(--mk-text);
+  --primary: var(--mk-accent);
+  --primary-foreground: #0A0A0A;
+  --secondary: var(--mk-surface-2);
+  --secondary-foreground: var(--mk-text);
+  --muted: var(--mk-surface-2);
+  --muted-foreground: var(--mk-text-muted);
+  --accent: var(--mk-accent-muted);
+  --accent-foreground: var(--mk-accent);
+  --destructive: var(--mk-danger);
+  --destructive-foreground: #0A0A0A;
+  --border: var(--mk-border);
+  --input: var(--mk-border);
+  --ring: var(--mk-accent);
+
+  /* Sidebar */
+  --sidebar: rgba(12, 14, 18, 0.95);
+  --sidebar-foreground: var(--mk-text-muted);
+  --sidebar-primary: var(--mk-accent-muted);
+  --sidebar-primary-foreground: var(--mk-accent);
+  --sidebar-accent: var(--mk-surface-2);
+  --sidebar-accent-foreground: var(--mk-text);
+  --sidebar-border: var(--mk-border);
+  --sidebar-ring: var(--mk-accent);
+
+  /* Shadows - more prominent for dark mode */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-focus: 0 0 0 3px rgba(246, 216, 59, 0.3);
+  --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --panel-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+
+  /* Surface hierarchy */
+  --surface-1: var(--mk-bg);
+  --surface-2: var(--mk-surface);
+  --surface-3: var(--mk-surface-2);
+
+  /* Reader - Part of Speech colors (brighter for dark) */
+  --pos-noun: #60A5FA;
+  --pos-verb: #34D399;
+  --pos-adjective: #FBBF24;
+  --pos-adverb: #A78BFA;
+  --pos-other: #94A3B8;
+}
+
+body.theme-dark {
+  background: var(--mk-bg);
+  color: var(--mk-text);
+}
+
+/* Legacy variable aliases for backwards compatibility */
+:root,
+.theme-light,
+.theme-dark {
+  --mk-bg-surface: var(--mk-surface);
+  --mk-bg-panel: var(--mk-surface-2);
+  --mk-bg-panel-muted: var(--mk-surface-2);
+  --mk-bg-card: var(--mk-surface);
+  --mk-border-soft: var(--mk-border);
+  --mk-accent-2: var(--mk-accent);
+  --mk-accent-3: var(--mk-success);
+  --focus-ring-color: var(--ring);
 }
