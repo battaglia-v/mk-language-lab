@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useMemo, useRef, useEffect } from 'react';
+import { useState, useCallback, useMemo, useRef, useEffect, type TouchEvent } from 'react';
 import { WordBottomSheet } from './WordBottomSheet';
 import { cn } from '@/lib/utils';
 import { toggleFavorite, isFavorite } from '@/lib/favorites';
@@ -263,14 +263,14 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
     void handleWordClick(word, wordIndex);
   }, [handleWordClick]);
 
-  const handleTouchStart = useCallback((event: React.TouchEvent, wordIndex: number) => {
+  const handleTouchStart = useCallback((event: TouchEvent, wordIndex: number) => {
     const touch = event.touches[0];
     if (!touch) return;
     touchStartRef.current = { x: touch.clientX, y: touch.clientY, wordIndex };
     touchMovedRef.current = false;
   }, []);
 
-  const handleTouchMove = useCallback((event: React.TouchEvent) => {
+  const handleTouchMove = useCallback((event: TouchEvent) => {
     const start = touchStartRef.current;
     const touch = event.touches[0];
     if (!start || !touch) return;
