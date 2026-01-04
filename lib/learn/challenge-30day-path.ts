@@ -67,6 +67,9 @@ export const challenge30DayNodes: LessonNode[] = [
 
 /**
  * Create the 30-Day Challenge path with progress applied
+ *
+ * Note: All days are unlocked by default for free navigation.
+ * Users can jump around - no forced sequential reading.
  */
 export function create30DayChallengePath(completedNodeIds: string[] = []): LessonPath {
   const nodes = challenge30DayNodes.map((node, index) => {
@@ -79,11 +82,11 @@ export function create30DayChallengePath(completedNodeIds: string[] = []): Lesso
     if (isCompleted) {
       status = 'completed';
     } else if (index === firstIncompleteIndex) {
+      // Highlight next recommended day
       status = 'available';
-    } else if (index < firstIncompleteIndex) {
-      status = 'completed';
     } else {
-      status = 'locked';
+      // All other days are available (not locked)
+      status = 'available';
     }
 
     return { ...node, status };

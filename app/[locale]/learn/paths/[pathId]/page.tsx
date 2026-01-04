@@ -5,6 +5,7 @@ import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { createStarterPath, starterPathNodes } from "@/lib/learn/starter-path";
 import { createA2Path, a2PathNodes } from "@/lib/learn/a2-path";
+import { create30DayChallengePath, challenge30DayNodes } from "@/lib/learn/challenge-30day-path";
 import { getNextNode } from "@/lib/learn/lesson-path-types";
 import { LessonPath } from "@/components/learn/LessonPath";
 import { Progress } from "@/components/ui/progress";
@@ -42,6 +43,14 @@ const pathConfigs: Record<string, {
     badgeClass: "bg-sky-500/15 text-sky-600",
     createPath: createA2Path,
   },
+  "30day": {
+    title: "30-Day Reading Challenge",
+    description: "Read \"The Little Prince\" (Малиот принц) in Macedonian, one chapter at a time. All levels welcome.",
+    badge: "📚",
+    difficulty: "Reading",
+    badgeClass: "bg-amber-500/15 text-amber-600",
+    createPath: create30DayChallengePath,
+  },
 };
 
 export default async function PathDetailPage({ params }: PathPageProps) {
@@ -74,6 +83,10 @@ export default async function PathDetailPage({ params }: PathPageProps) {
             a2PathNodes.length
           );
           completedNodeIds = Array.from({ length: completedCount }, (_, i) => `a2-${i + 1}`);
+        } else if (pathId === '30day') {
+          // For 30-day challenge, we track separately via reader progress
+          // For now, start fresh - could be enhanced to check ReadingProgress table
+          completedNodeIds = [];
         }
       }
     } catch (error) {
