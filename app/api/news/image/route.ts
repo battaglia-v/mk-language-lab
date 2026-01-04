@@ -55,6 +55,7 @@ const CONFIG = {
 } as const;
 
 // Allowed domains for security (same as main image-proxy)
+// NOTE: Be generous here - news images come from many MK domains
 const ALLOWED_DOMAINS = new Set([
   // Primary aggregators
   'time.mk', 'meta.mk',
@@ -69,9 +70,18 @@ const ALLOWED_DOMAINS = new Set([
   'republika.mk', 'lider.mk', 'kapital.mk', 'ekran.mk', 'ipon.mk',
   'sportstation.mk', 'trn.mk', 'topsport.mk', 'sportplus.mk', 'skopjeinfo.mk',
   'vecer.press',
+  // Additional MK news sources (often appear in og:image from time.mk articles)
+  'prvaskopska.mk', 'infomax.mk', 'almakos.mk', 'expres.mk', 'brif.mk',
+  'tetova.net', 'ohridnews.com', 'bitola.info', 'strumica.net', 'prilep.mk',
+  'veles.mk', 'gostivar.mk', 'tetovo.info', 'kumanovo.mk', 'kavadarci.mk',
+  'dnevnik.mk', 'utrinski.mk', 'vecher.mk', 'vest.mk', 'koha.mk',
+  'zhurnal.mk', 'sloboden.mk', 'nova.mk', 'kanal5.mk', 'alsat-m.tv',
+  // WordPress hosted MK sites (common pattern)
+  'i0.wp.com', 'i1.wp.com', 'i2.wp.com', 'i3.wp.com',
   // CDNs
   'cloudinary.com', 'wp.com', 'amazonaws.com', 'imgix.net',
   'akamaized.net', 'fastly.net', 'cloudfront.net', 'b-cdn.net',
+  'cdninstagram.com', 'fbcdn.net',
 ]);
 
 // User agents that mimic real browsers
