@@ -1,6 +1,14 @@
+/**
+ * Brand naming - canonical values
+ * For localized display, use i18n keys instead
+ */
 export const brandNames = {
-  full: 'Македонски • MK Language Lab',
-  short: 'Македонски',
+  /** Store name (Google Play, App Store) - no emojis, ≤30 chars */
+  store: 'Macedonian Language Lab',
+  /** Short name for icons/home screen */
+  short: 'MK Language',
+  /** Full name (deprecated - use store or i18n) */
+  full: 'Macedonian Language Lab',
 } as const;
 
 export const brandColors = {

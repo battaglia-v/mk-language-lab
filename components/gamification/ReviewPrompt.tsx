@@ -88,9 +88,9 @@ export function ReviewPrompt({
   const [isVisible, setIsVisible] = useState(false);
   const [state, setState] = useState<'prompt' | 'thankyou' | 'feedback'>('prompt');
 
-  // Default translations
+  // Default translations - app name should come from i18n via parent component
   const translations = {
-    title: t.title || 'Enjoying MK Language Lab?',
+    title: t.title || 'Enjoying the app?',
     subtitle: t.subtitle || 'Your feedback helps us improve!',
     yesButton: t.yesButton || 'Yes!',
     notYetButton: t.notYetButton || 'Not yet',

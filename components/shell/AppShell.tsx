@@ -1,12 +1,20 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { SidebarNav } from "./SidebarNav";
 import { ShellHeader } from "./ShellHeader";
 import { MobileTabNav } from "./MobileTabNav";
 import { BuildInfo } from "@/components/ui/BuildInfo";
 
 export function AppShell({ children }: { children: ReactNode }) {
+  useEffect(() => {
+    const root = document.documentElement;
+    root.dataset.hydrated = "true";
+    return () => {
+      delete root.dataset.hydrated;
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Desktop sidebar - hidden on mobile */}

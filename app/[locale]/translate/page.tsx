@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useMemo, useRef, useState } from 'react';
+import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import {
   Copy,
@@ -96,6 +96,14 @@ export default function TranslatePage() {
   const inputChanged = inputText.trim() !== lastTranslatedInput && inputText.trim().length > 0;
   const showStickyButton = inputChanged && !translatedText;
   const showInlineMobileButton = !showStickyButton;
+
+  useEffect(() => {
+    if (inputText.trim()) return;
+    const pendingValue = textareaRef.current?.value?.trim() ?? '';
+    if (pendingValue) {
+      setInputText(pendingValue.slice(0, MAX_CHARACTERS));
+    }
+  }, [inputText, setInputText]);
 
   const handleSaveToggle = () => {
     if (!currentPayload) return;

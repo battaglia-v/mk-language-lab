@@ -182,9 +182,13 @@ export function LearnPageClient({
               <p className="text-sm text-muted-foreground">{t('pickSkillHelper')}</p>
             </div>
             <div className="flex gap-2 rounded-xl bg-muted/50 p-1.5">
-              <button
-                type="button"
-                onClick={() => handleLevelChange('beginner')}
+              <Link
+                href={`/${locale}/learn?level=beginner`}
+                onClick={(event) => {
+                  event.preventDefault();
+                  handleLevelChange('beginner');
+                }}
+                role="button"
                 data-testid="learn-level-beginner"
                 aria-current={activeLevel === 'beginner' ? 'page' : undefined}
                 aria-pressed={activeLevel === 'beginner'}
@@ -200,10 +204,14 @@ export function LearnPageClient({
                   <span className="text-sm font-semibold">{t('basics')}</span>
                   <span className="text-[10px] uppercase tracking-wide text-muted-foreground">A1</span>
                 </div>
-              </button>
-              <button
-                type="button"
-                onClick={() => handleLevelChange('intermediate')}
+              </Link>
+              <Link
+                href={`/${locale}/learn?level=intermediate`}
+                onClick={(event) => {
+                  event.preventDefault();
+                  handleLevelChange('intermediate');
+                }}
+                role="button"
                 data-testid="learn-level-intermediate"
                 aria-current={activeLevel === 'intermediate' ? 'page' : undefined}
                 aria-pressed={activeLevel === 'intermediate'}
@@ -219,7 +227,7 @@ export function LearnPageClient({
                   <span className="text-sm font-semibold">{t('speaking')}</span>
                   <span className="text-[10px] uppercase tracking-wide text-muted-foreground">A2</span>
                 </div>
-              </button>
+              </Link>
             </div>
           </div>
 

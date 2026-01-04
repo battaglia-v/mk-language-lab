@@ -125,8 +125,9 @@ export async function expectUrlChangeOrDialog(
 export async function waitForInteractive(page: Page): Promise<void> {
   await page.waitForLoadState('domcontentloaded');
   await page.waitForLoadState('networkidle', { timeout: 5000 }).catch(() => {});
-  // Wait for hydration
-  await page.waitForTimeout(500);
+  await page.waitForSelector('html[data-hydrated="true"]', { timeout: 10000 }).catch(() => {});
+  // Extra buffer for microtasks after hydration
+  await page.waitForTimeout(300);
 }
 
 /**

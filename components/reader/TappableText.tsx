@@ -85,6 +85,11 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
   const [_isTranslating, setIsTranslating] = useState(false);
   const abortControllerRef = useRef<AbortController | null>(null);
   const lastTapRef = useRef(0);
+  const touchStartRef = useRef<{ x: number; y: number; wordIndex: number } | null>(null);
+  const touchMovedRef = useRef(false);
+  const lastTouchRef = useRef(0);
+
+  const TOUCH_MOVE_THRESHOLD = 8;
 
   // Clear selection when bottom sheet closes
   useEffect(() => {
@@ -258,6 +263,41 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
     void handleWordClick(word, wordIndex);
   }, [handleWordClick]);
 
+  const handleTouchStart = useCallback((event: React.TouchEvent, wordIndex: number) => {
+    const touch = event.touches[0];
+    if (!touch) return;
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY, wordIndex };
+    touchMovedRef.current = false;
+  }, []);
+
+  const handleTouchMove = useCallback((event: React.TouchEvent) => {
+    const start = touchStartRef.current;
+    const touch = event.touches[0];
+    if (!start || !touch) return;
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    if (Math.hypot(dx, dy) > TOUCH_MOVE_THRESHOLD) {
+      touchMovedRef.current = true;
+    }
+  }, []);
+
+  const handleTouchEnd = useCallback((word: string, wordIndex: number) => {
+    const start = touchStartRef.current;
+    touchStartRef.current = null;
+    if (!start || touchMovedRef.current || start.wordIndex !== wordIndex) {
+      touchMovedRef.current = false;
+      return;
+    }
+    touchMovedRef.current = false;
+    lastTouchRef.current = Date.now();
+    triggerWord(word, wordIndex);
+  }, [triggerWord]);
+
+  const handleTouchCancel = useCallback(() => {
+    touchStartRef.current = null;
+    touchMovedRef.current = false;
+  }, []);
+
   // Split text into words while preserving punctuation
   const words = text.split(/(\s+)/);
 
@@ -283,24 +323,21 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
               data-testid="reader-tappable-word"
               data-scan-group="reader-tappable-word"
               data-scan-label="Tap word for translation"
-              // Use onTouchStart for faster mobile response (fires before onPointerUp)
               onTouchStart={(e) => {
-                // Don't prevent default - allow native scroll
                 e.stopPropagation();
-                triggerWord(word, idx);
+                handleTouchStart(e, idx);
               }}
-              onPointerUp={(e) => {
-                // Fallback for non-touch devices
-                if (e.pointerType !== 'touch') {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  triggerWord(word, idx);
-                }
+              onTouchMove={handleTouchMove}
+              onTouchEnd={(e) => {
+                e.stopPropagation();
+                handleTouchEnd(word, idx);
               }}
+              onTouchCancel={handleTouchCancel}
               onClick={(e) => {
-                // Additional fallback for accessibility
                 e.preventDefault();
                 e.stopPropagation();
+                if (Date.now() - lastTouchRef.current < 500) return;
+                triggerWord(word, idx);
               }}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
