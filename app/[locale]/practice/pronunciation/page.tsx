@@ -224,6 +224,14 @@ export default function PronunciationPracticePage() {
         </p>
       </div>
 
+      {/* Audio Coming Soon Notice */}
+      <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4">
+        <p className="text-sm text-amber-200">
+          <strong>Note:</strong> Audio pronunciation coming soon — recorded by native speakers.
+          For now, focus on the text guides and written pronunciation tips below.
+        </p>
+      </div>
+
       {/* How It Works */}
       <Card className="border-accent/20 bg-accent/5">
         <CardHeader className="pb-3">

@@ -6,13 +6,8 @@ import { getReleaseGateMode } from './_mode';
 import { resolveGateRoutes } from './_routes';
 import { maybeAddDiscoveredCustomDeckEditorRoute, maybeAddDiscoveredLessonRoute } from './_discover';
 import {
-  getHref,
-  getRole,
-  getStableLabel,
-  getTagName,
-  getVisibleTestIdRequired,
   instrumentActionSignals,
-  isDisabled,
+  TESTID_REQUIRED_SELECTOR,
   safeGoto,
 } from './_scan-utils';
 
@@ -49,6 +44,7 @@ test.describe.serial('release gate: missing_testid_scan', () => {
     const maxRoutes = Number(process.env.RELEASE_GATE_MAX_ROUTES || 0);
     const routesToScan = maxRoutes > 0 ? routes.slice(0, maxRoutes) : routes;
     const missing: MissingTestId[] = [];
+    let missingTotal = 0;
     const routeErrors: RouteError[] = [];
 
     for (const route of routesToScan) {
@@ -65,23 +61,81 @@ test.describe.serial('release gate: missing_testid_scan', () => {
       }
       const resolvedPathname = new URL(page.url()).pathname;
 
-      const interactives = await getVisibleTestIdRequired(page);
-      const count = await interactives.count();
+      const maxDetails = Number(process.env.RELEASE_GATE_MAX_MISSING_DETAILS_PER_ROUTE || 500);
+      const missingOnRoute = await page.evaluate(
+        ({ selector, maxDetails: max }: { selector: string; maxDetails: number }) => {
+          const results: Array<{
+            tagName: string;
+            role: string | null;
+            href: string | null;
+            label: string;
+            disabled: boolean;
+          }> = [];
+          let missingCount = 0;
 
-      for (let i = 0; i < count; i += 1) {
-        const el = interactives.nth(i);
-        const testId = await el.getAttribute('data-testid').catch(() => null);
-        if (testId && testId.trim()) continue;
+          const isVisible = (el: Element): boolean => {
+            const node = el as HTMLElement;
+            const style = window.getComputedStyle(node);
+            if (style.display === 'none') return false;
+            if (style.visibility === 'hidden') return false;
+            const rect = node.getBoundingClientRect();
+            return rect.width > 0 && rect.height > 0;
+          };
 
+          const isDisabled = (el: Element): boolean => {
+            const node = el as HTMLElement;
+            const ariaDisabled = node.getAttribute('aria-disabled');
+            if (ariaDisabled === 'true') return true;
+            if ('disabled' in (node as any) && Boolean((node as any).disabled)) return true;
+            return false;
+          };
+
+          const stableLabel = (el: Element): string => {
+            const node = el as HTMLElement;
+            const attrs = ['data-scan-label', 'aria-label', 'title', 'placeholder', 'value'] as const;
+            for (const attr of attrs) {
+              const value = node.getAttribute(attr);
+              if (value && value.trim()) return value.trim();
+            }
+            const text = node.innerText?.replace(/\s+/g, ' ').trim();
+            if (text) return text;
+            const imgAlt = node.querySelector('img[alt]')?.getAttribute('alt');
+            if (imgAlt && imgAlt.trim()) return imgAlt.trim();
+            return node.tagName.toLowerCase();
+          };
+
+          const nodes = Array.from(document.querySelectorAll(selector));
+          for (const el of nodes) {
+            if (!isVisible(el)) continue;
+            const testId = el.getAttribute('data-testid');
+            if (testId && testId.trim()) continue;
+
+            missingCount += 1;
+            if (results.length < max) {
+              results.push({
+                tagName: el.tagName.toLowerCase(),
+                role: el.getAttribute('role'),
+                href: el.getAttribute('href'),
+                label: stableLabel(el),
+                disabled: isDisabled(el),
+              });
+            }
+
+            // Keep counting even if we stop collecting details.
+          }
+
+          return { results, missingCount, scanned: nodes.length };
+        },
+        { selector: TESTID_REQUIRED_SELECTOR, maxDetails }
+      );
+
+      missingTotal += missingOnRoute.missingCount;
+      for (const entry of missingOnRoute.results) {
         missing.push({
           routeId: route.id,
           routePath: route.path,
           resolvedPathname,
-          tagName: await getTagName(el),
-          role: await getRole(el),
-          href: await getHref(el),
-          label: await getStableLabel(el),
-          disabled: await isDisabled(el),
+          ...entry,
         });
       }
     }
@@ -95,7 +149,8 @@ test.describe.serial('release gate: missing_testid_scan', () => {
           totalRoutes: routesToScan.length,
           routes: routesToScan,
           routeErrorCount: routeErrors.length,
-          missingCount: missing.length,
+          missingCount: missingTotal,
+          missingDetailsCount: missing.length,
           routeErrors,
           missing,
         },

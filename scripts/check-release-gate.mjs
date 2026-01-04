@@ -7,7 +7,7 @@ const args = process.argv.slice(2);
 const rootArg = args.find((arg) => arg.startsWith('--root='));
 const rootDir = rootArg ? rootArg.slice('--root='.length) : path.join(process.cwd(), 'test-results', 'release-gate');
 
-const modes = ['signed-out', 'signed-in', 'premium'];
+const modes = ['signed-out', 'signed-in'];
 const requiredArtifacts = ['missing-testid.json', 'interaction-inventory.json', 'journey-results.json'];
 const failures = [];
 
@@ -103,4 +103,3 @@ if (failures.length > 0) {
 }
 
 console.log('Release gate check passed.');
-

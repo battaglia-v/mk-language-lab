@@ -1,5 +1,4 @@
-import { test, expect } from '@playwright/test';
-import { MOBILE_VIEWPORT, expectUrlChangeOrDialog, ALL_ROUTES } from './_helpers';
+import { test, expect, MOBILE_VIEWPORT, expectUrlChangeOrDialog, ALL_ROUTES } from '../mobile-audit/_helpers';
 
 test.use({ viewport: MOBILE_VIEWPORT });
 
@@ -22,7 +21,7 @@ const ROUTES_TO_SCAN = [
   ALL_ROUTES.lessonAlphabet,
 ];
 
-test.describe('Dead Click Scanner', () => {
+test.describe('@slow Dead Click Scanner', () => {
   for (const route of ROUTES_TO_SCAN) {
     test(`scan buttons/links on ${route}`, async ({ page }) => {
       await page.goto(route, { waitUntil: 'domcontentloaded' });
@@ -91,7 +90,7 @@ test.describe('Dead Click Scanner', () => {
   }
 });
 
-test.describe('Critical Button Validation', () => {
+test.describe('@slow Critical Button Validation', () => {
   test('Home - Start Learning is not dead', async ({ page }) => {
     await page.goto('/en', { waitUntil: 'domcontentloaded' });
 

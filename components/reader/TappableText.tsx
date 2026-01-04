@@ -285,7 +285,7 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
                 }
               }}
               className={cn(
-                'cursor-pointer rounded-sm px-0.5 -mx-0.5 transition-colors inline',
+                'cursor-pointer rounded-sm px-1 py-0.5 -mx-1 transition-colors inline-block',
                 'hover:bg-primary/20 active:bg-primary/30 focus:bg-primary/20 focus:outline-none',
                 'touch-manipulation', // Better mobile touch handling
                 hasAnalysis && 'underline decoration-primary/40 decoration-dotted underline-offset-4'

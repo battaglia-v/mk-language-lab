@@ -1,5 +1,4 @@
-import { test, expect } from '@playwright/test';
-import { assertNoRawTranslationKeys, MOBILE_VIEWPORT, PRACTICE_DECKS } from './_helpers';
+import { test, expect, assertNoRawTranslationKeys, MOBILE_VIEWPORT, PRACTICE_DECKS, waitForInteractive } from './_helpers';
 
 test.use({ viewport: MOBILE_VIEWPORT });
 
@@ -14,7 +13,7 @@ test.describe('Practice Hub', () => {
   test('Pronunciation card visible and clickable', async ({ page }) => {
     await page.goto('/en/practice', { waitUntil: 'domcontentloaded' });
 
-    const card = page.locator('a, button').filter({ hasText: /pronunciation/i }).first();
+    const card = page.getByTestId('practice-mode-pronunciation');
     await expect(card).toBeVisible();
 
     await card.click();
@@ -24,7 +23,7 @@ test.describe('Practice Hub', () => {
   test('Grammar card visible and clickable', async ({ page }) => {
     await page.goto('/en/practice', { waitUntil: 'domcontentloaded' });
 
-    const card = page.locator('a, button').filter({ hasText: /grammar/i }).first();
+    const card = page.getByTestId('practice-mode-grammar');
     await expect(card).toBeVisible();
 
     await card.click();
@@ -34,7 +33,7 @@ test.describe('Practice Hub', () => {
   test('Word Sprint card visible and clickable', async ({ page }) => {
     await page.goto('/en/practice', { waitUntil: 'domcontentloaded' });
 
-    const card = page.locator('a, button').filter({ hasText: /word sprint/i }).first();
+    const card = page.getByTestId('practice-mode-wordSprint');
     await expect(card).toBeVisible();
 
     await card.click();
@@ -44,7 +43,7 @@ test.describe('Practice Hub', () => {
   test('Vocabulary card visible', async ({ page }) => {
     await page.goto('/en/practice', { waitUntil: 'domcontentloaded' });
 
-    const card = page.locator('a, button').filter({ hasText: /vocabulary/i }).first();
+    const card = page.getByTestId('practice-mode-vocabulary');
     await expect(card).toBeVisible();
   });
 
@@ -52,11 +51,11 @@ test.describe('Practice Hub', () => {
     await page.goto('/en/practice', { waitUntil: 'domcontentloaded' });
 
     // Cards should have right chevron for tap affordance
-    const cards = page.locator('a').filter({ hasText: /pronunciation|grammar|word sprint|vocabulary/i });
+    const cards = page.locator('a[data-testid^="practice-mode-"]');
     const count = await cards.count();
+    expect(count).toBeGreaterThan(0);
 
-    // Each card should be a proper link
-    for (let i = 0; i < Math.min(count, 5); i++) {
+    for (let i = 0; i < Math.min(count, 6); i++) {
       const href = await cards.nth(i).getAttribute('href');
       expect(href).toBeTruthy();
     }
@@ -102,15 +101,22 @@ test.describe('Word Sprint', () => {
 
   test('start button initiates session', async ({ page }) => {
     await page.goto('/en/practice/word-sprint', { waitUntil: 'domcontentloaded' });
+    await waitForInteractive(page);
 
-    const startBtn = page.getByRole('button', { name: /start/i }).first();
-    if (await startBtn.count() > 0) {
-      await startBtn.click();
-      await page.waitForTimeout(500);
+    const easyBtn = page.getByTestId('word-sprint-picker-difficulty-easy');
+    await expect(easyBtn).toBeVisible();
+    await easyBtn.click();
 
-      // Should show question or session UI
-      await expect(page.locator('body')).toContainText(/question|score|skip|next|correct/i);
+    const lengthBtn = page.getByTestId('word-sprint-picker-length-10');
+    if (await lengthBtn.count() > 0) {
+      await lengthBtn.click();
     }
+
+    const startBtn = page.getByTestId('word-sprint-picker-start');
+    await expect(startBtn).toBeEnabled();
+    await startBtn.click();
+
+    await expect(page.getByTestId('word-sprint-exit')).toBeVisible();
   });
 });
 

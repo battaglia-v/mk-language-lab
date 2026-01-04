@@ -1,5 +1,4 @@
-import { test, expect } from '@playwright/test';
-import { assertNoRawTranslationKeys, MOBILE_VIEWPORT } from './_helpers';
+import { test, expect, assertNoRawTranslationKeys, MOBILE_VIEWPORT } from './_helpers';
 
 test.use({ viewport: MOBILE_VIEWPORT });
 

@@ -5,6 +5,7 @@ import { auth } from '@/lib/auth';
 import type { LeagueStandings } from '@mk/api-client';
 import { getLeagueTierFromStreak } from '@mk/gamification';
 import type { GameProgress, Prisma } from '@prisma/client';
+import { cacheGetOrSet, CacheKeys } from '@/lib/cache';
 
 const TIER_ORDER: Record<string, number> = {
   bronze: 1,
@@ -56,11 +57,17 @@ export async function GET() {
   }
 
   try {
-    const standings = await buildLeagueStandings(session.user.id);
+    // Use Redis cache for cross-instance consistency (60s TTL, 120s SWR)
+    // League standings are shared across users, so this is highly cacheable
+    const standings = await cacheGetOrSet(
+      CacheKeys.leagueStandings(session.user.id),
+      () => buildLeagueStandings(session.user.id),
+      { ttl: 60, swr: 120 }
+    );
     return NextResponse.json(standings, {
       headers: {
         'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120',
-        'x-league-source': 'prisma',
+        'x-league-source': 'redis-cache',
       },
     });
   } catch (error) {

@@ -62,6 +62,12 @@ export const a2PathNodes: LessonNode[] = [
   },
 ];
 
+/**
+ * Create an A2 path with progress applied
+ *
+ * Note: All lessons are now unlocked by default for free navigation.
+ * Users can start anywhere - no forced sequential locking.
+ */
 export function createA2Path(completedNodeIds: string[] = []): LessonPath {
   const nodes = a2PathNodes.map((node, index) => {
     const isCompleted = completedNodeIds.includes(node.id);
@@ -73,11 +79,11 @@ export function createA2Path(completedNodeIds: string[] = []): LessonPath {
     if (isCompleted) {
       status = 'completed';
     } else if (index === firstIncompleteIndex) {
+      // Highlight next recommended lesson
       status = 'available';
-    } else if (index < firstIncompleteIndex) {
-      status = 'completed';
     } else {
-      status = 'locked';
+      // All other lessons are available (not locked)
+      status = 'available';
     }
 
     return { ...node, status };

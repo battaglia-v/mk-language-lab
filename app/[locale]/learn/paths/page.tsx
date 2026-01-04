@@ -110,7 +110,15 @@ export default async function LearningPathsPage() {
           Learning Paths
         </h1>
         <p className="text-base text-muted-foreground">
-          Choose your journey based on your current level
+          Choose where you want to start — you can jump around anytime.
+        </p>
+      </div>
+
+      {/* Explainer Banner */}
+      <div className="rounded-xl border border-primary/20 bg-primary/5 p-4">
+        <p className="text-sm text-muted-foreground">
+          <strong className="text-foreground">No prerequisites required.</strong> Pick any path that matches your level.
+          Lessons are designed to work independently — start wherever feels right for you.
         </p>
       </div>
 
@@ -133,7 +141,10 @@ export default async function LearningPathsPage() {
 
 function PathCardComponent({ path }: { path: PathCard }) {
   return (
-    <div className="relative rounded-xl border bg-card p-4 space-y-4 transition-all hover:shadow-md hover:border-primary/20">
+    <div
+      className="relative rounded-xl border bg-card p-4 space-y-4 transition-all hover:shadow-md hover:border-primary/20"
+      data-testid={`path-card-${path.id}`}
+    >
       {/* Level Badge */}
       <div className={cn(
         "inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-white text-xs font-semibold",

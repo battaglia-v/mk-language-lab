@@ -1,5 +1,4 @@
-import { test, expect } from '@playwright/test';
-import { assertNoRawTranslationKeys, attachConsoleAndPageErrors, MOBILE_VIEWPORT } from './_helpers';
+import { test, expect, assertNoRawTranslationKeys, attachConsoleAndPageErrors, MOBILE_VIEWPORT } from './_helpers';
 
 test.use({ viewport: MOBILE_VIEWPORT });
 
@@ -20,11 +19,11 @@ test.describe('Home Page', () => {
     expect(jsErrors.length, `JS errors found: ${jsErrors.join(', ')}`).toBe(0);
   });
 
-  test('Start Learning CTA navigates to /learn', async ({ page }) => {
+  test('Start Learning CTA navigates to a practice session', async ({ page }) => {
     await page.goto('/en', { waitUntil: 'domcontentloaded' });
 
     await page.getByRole('link', { name: /start learning/i }).click();
-    await expect(page).toHaveURL(/\/en\/learn/);
+    await expect(page).toHaveURL(/\/en\/practice\/session\?deck=curated/);
   });
 
   test('Sign In CTA navigates to auth', async ({ page }) => {
@@ -38,8 +37,8 @@ test.describe('Home Page', () => {
     await page.goto('/en', { waitUntil: 'domcontentloaded' });
 
     // Should have nav items
-    const nav = page.locator('nav, [role="navigation"]');
-    await expect(nav.first()).toBeVisible();
+    const nav = page.getByRole('navigation', { name: /main navigation|главна навигација/i });
+    await expect(nav).toBeVisible();
   });
 
   test('language toggle accessible', async ({ page }) => {

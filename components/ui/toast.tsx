@@ -72,6 +72,7 @@ function Toaster() {
 }
 
 function Toast({
+  id,
   title,
   description,
   type = "info",
@@ -108,6 +109,7 @@ function Toast({
       <button
         onClick={onClose}
         aria-label="Dismiss notification"
+        data-testid={`toast-dismiss-${id}`}
         className="flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-md -m-2 hover:bg-black/5 dark:hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       >
         <X className="h-4 w-4" />

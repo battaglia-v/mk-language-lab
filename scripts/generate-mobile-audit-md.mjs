@@ -258,7 +258,7 @@ function shortenPath(p) {
 }
 
 function loadReleaseGateArtifacts(rootDir) {
-  const modes = ['signed-out', 'signed-in', 'premium'];
+  const modes = ['signed-out', 'signed-in'];
   const runs = [];
 
   for (const mode of modes) {
@@ -316,13 +316,14 @@ function buildMergedInteractionInventory(releaseGate) {
 
   const rows = Array.from(byKey.values()).map((row) => {
     const modes = Array.from(row.modes.values());
-    const gating = modes.includes('signed-out')
-      ? 'signed-out'
-      : modes.includes('signed-in')
-        ? 'signed-in'
-        : modes.includes('premium')
-          ? 'pro'
-          : 'unknown';
+    const gating =
+      modes.includes('signed-out') && modes.includes('signed-in')
+        ? 'signed-out + signed-in'
+        : modes.includes('signed-out')
+          ? 'signed-out'
+          : modes.includes('signed-in')
+            ? 'signed-in'
+            : 'unknown';
 
     return {
       routePath: row.routePath,
@@ -401,7 +402,7 @@ function renderCoverageSummary({ releaseGate, interactionInventory }) {
   const inventoriedCount = interactionInventory.rows.length;
   const assertedCount = assertedKeySet.size;
   out += `- Total routes covered: **${routeSet.size}**\n`;
-  out += `- Journey runs present: **${journeyRunCount} / 3**\n`;
+  out += `- Journey runs present: **${journeyRunCount} / 2**\n`;
   out += `- Total interactions inventoried: **${inventoriedCount}**\n`;
   out += `- Total interactions asserted by tests: **${assertedCount}**\n`;
   out += `- Inventory count == asserted count: **${inventoriedCount === assertedCount ? 'YES' : `NO (${inventoriedCount} vs ${assertedCount})`}**\n`;

@@ -214,11 +214,12 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
           <Button
             variant="ghost"
             size="sm"
-            className="h-11 w-11 rounded-full p-0"
+            className="h-11 rounded-full px-3 gap-2 text-muted-foreground hover:text-foreground"
             onClick={() => setShowPicker(true)}
             data-testid="word-sprint-exit"
           >
-            <X className="h-5 w-5" />
+            <X className="h-4 w-4" />
+            <span className="text-xs font-semibold">Back</span>
           </Button>
           <Progress value={0} className="h-2 flex-1 opacity-40" />
         </header>
@@ -273,11 +274,12 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
         <Button
           variant="ghost"
           size="sm"
-          className="h-11 w-11 rounded-full p-0"
+          className="h-11 rounded-full px-3 gap-2 text-muted-foreground hover:text-foreground"
           onClick={endSession}
           data-testid="word-sprint-exit"
         >
-          <X className="h-5 w-5" />
+          <X className="h-4 w-4" />
+          <span className="text-xs font-semibold">Exit</span>
         </Button>
         <div className="flex-1"><Progress value={progress} className="h-2" /></div>
         <span className="text-sm font-medium text-muted-foreground">{index + 1}/{total}</span>

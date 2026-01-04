@@ -7,7 +7,7 @@ This is an implementation checklist derived from `docs/ui_audit.md`. Convert ite
 
 ## Checklist
 
-- [ ] P0: Run release-gate scans (3 modes) and fix any remaining missing `data-testid` failures.
+- [ ] P0: Run release-gate scans (signed-out + signed-in) and fix any remaining missing `data-testid` failures.
 - [ ] P0: Run dead-click scan and convert any dead elements to disabled-with-reason or implement an action.
 - [ ] P0: Verify Reader v2 footer controls (tap/sentences/glossary/save) at 360×800 and 390×844; remove any hover-only affordances.
 - [ ] P1: Standardize per-route bottom padding so content never sits under the mobile tab bar (`pb-24` + safe-area).

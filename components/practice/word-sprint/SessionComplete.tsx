@@ -37,11 +37,12 @@ export function SessionComplete({
         <Button
           variant="ghost"
           size="sm"
-          className="h-10 w-10 rounded-full p-0"
+          className="h-11 rounded-full px-3 gap-2 text-muted-foreground hover:text-foreground"
           onClick={onFinish}
           data-testid="word-sprint-complete-close"
         >
-          <X className="h-5 w-5" />
+          <X className="h-4 w-4" />
+          <span className="text-xs font-semibold">Exit</span>
         </Button>
         <span className="text-lg font-semibold">Session Complete</span>
       </header>

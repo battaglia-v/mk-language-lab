@@ -46,13 +46,8 @@ export function PracticeHub() {
   };
 
   // Practice mode cards configuration
+  // Note: Pronunciation/Speaking is hidden for beta - audio coming soon
   const modes: PracticeModeConfig[] = [
-    {
-      id: 'pronunciation',
-      href: `/${locale}/practice/pronunciation`,
-      icon: Volume2,
-      variant: 'default',
-    },
     {
       id: 'grammar',
       href: `/${locale}/practice/grammar`,

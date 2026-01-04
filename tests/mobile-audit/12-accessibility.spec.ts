@@ -1,5 +1,4 @@
-import { test, expect } from '@playwright/test';
-import { MOBILE_VIEWPORT, ALL_ROUTES } from './_helpers';
+import { test, expect, MOBILE_VIEWPORT, ALL_ROUTES } from './_helpers';
 
 test.use({ viewport: MOBILE_VIEWPORT });
 

@@ -10,6 +10,7 @@ import {
   getLevelProgress,
   getLeagueTierFromStreak,
 } from '@mk/gamification';
+import { cacheGetOrSet, CacheKeys } from '@/lib/cache';
 
 export const revalidate = 10; // Cache for 10 seconds - keep XP/streak fresh
 
@@ -100,7 +101,13 @@ export async function GET() {
   }
 
   try {
-    const { profile: payload, completeness } = await buildProfileSummary(session.user.id);
+    // Use Redis cache for cross-instance consistency (30s TTL, 60s SWR)
+    // This complements ISR by sharing cached data across all serverless instances
+    const { profile: payload, completeness } = await cacheGetOrSet(
+      CacheKeys.profileSummary(session.user.id),
+      () => buildProfileSummary(session.user.id),
+      { ttl: 30, swr: 60 }
+    );
     const requestDuration = Date.now() - requestStart;
 
     // Log successful request with performance metrics

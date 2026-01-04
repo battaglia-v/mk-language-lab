@@ -41,6 +41,7 @@
     "audit:mobile": "playwright test --project=mobile-audit --reporter=json --reporter=html > test-results/audit-results.json",
     "audit:mobile:headed": "playwright test --project=mobile-audit --headed",
     "audit:mobile:ui": "playwright test --project=mobile-audit --ui",
+    "audit:stage4": "playwright test tests/mobile-audit/14-stage4-gate.spec.ts --project=mobile-audit --workers=1 --retries=1 --grep-invert @slow",
     "audit:mobile:md": "node scripts/generate-mobile-audit-md.mjs",
     "audit:mobile:full": "npm run audit:mobile && npm run audit:mobile:md",
     "release-gate": "node scripts/run-release-gate.mjs",

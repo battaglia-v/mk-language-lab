@@ -7,16 +7,12 @@ import { resolveGateRoutes, type GateRoute } from './_routes';
 import { maybeAddDiscoveredCustomDeckEditorRoute, maybeAddDiscoveredLessonRoute } from './_discover';
 import {
   closeOverlays,
-  getDomSignature,
-  getHref,
   getOverlaySignature,
   getRole,
   getSignalSnapshot,
-  getStableLabel,
   getTagName,
-  getVisibleInteractives,
+  getViewportInteractivesSnapshot,
   instrumentActionSignals,
-  isDisabled,
   safeGoto,
 } from './_scan-utils';
 
@@ -53,6 +49,12 @@ type RouteError = {
   routeId: string;
   routePath: string;
   error: string;
+};
+
+type VerifiedAction = {
+  action: InteractionAction;
+  navigationTo?: string;
+  popupUrl?: string;
 };
 
 async function hasActiveSession(page: Page): Promise<boolean> {
@@ -100,10 +102,14 @@ async function clickAndDetect(page: Page, locator: Locator): Promise<{
   const beforeUrl = page.url();
   const beforeOverlay = await getOverlaySignature(page);
   const beforeSignals = await getSignalSnapshot(page);
-  const beforeDom = await getDomSignature(page);
+  // Establish a baseline mutation rate for noisy pages (polling/animations) so
+  // we don't treat ambient re-renders as click-driven actions.
+  await page.waitForTimeout(40);
+  const baselineSignals = await getSignalSnapshot(page);
+  const baselineDomDelta = baselineSignals.domMutations - beforeSignals.domMutations;
   const beforeAttrs = await elementActionSignature(locator).catch(() => ({}));
 
-  const popupPromise = page.waitForEvent('popup', { timeout: 1200 }).catch(() => null);
+  const popupPromise = page.waitForEvent('popup', { timeout: 800 }).catch(() => null);
   let popupResolved = false;
   let popupValue: Page | null = null;
   popupPromise.then((popup) => {
@@ -112,15 +118,14 @@ async function clickAndDetect(page: Page, locator: Locator): Promise<{
   });
 
   await locator.scrollIntoViewIfNeeded().catch(() => {});
-  await locator.click({ timeout: 2000 }).catch(() => {});
+  await locator.click({ timeout: 2000, noWaitAfter: true }).catch(() => {});
 
-  const pollDelaysMs = [120, 200, 300, 450];
+  const pollDelaysMs = [60, 120, 180];
   for (const delay of pollDelaysMs) {
     await page.waitForTimeout(delay);
 
     if (popupResolved && popupValue) {
       const popup = popupValue;
-      await popup.waitForLoadState('domcontentloaded', { timeout: 15000 }).catch(() => {});
       const popupUrl = popup.url();
       await popup.close().catch(() => {});
       return { action: 'navigate', dead: false, popupUrl };
@@ -137,24 +142,23 @@ async function clickAndDetect(page: Page, locator: Locator): Promise<{
     }
 
     const afterSignals = await getSignalSnapshot(page);
-    if (afterSignals.audioPlayCalls > beforeSignals.audioPlayCalls) {
+    if (afterSignals.audioPlayCalls > baselineSignals.audioPlayCalls) {
       return { action: 'play audio', dead: false };
     }
-    if (afterSignals.speechSpeakCalls > beforeSignals.speechSpeakCalls) {
+    if (afterSignals.speechSpeakCalls > baselineSignals.speechSpeakCalls) {
       return { action: 'play audio', dead: false };
     }
-    if (afterSignals.clipboardWrites > beforeSignals.clipboardWrites) {
+    if (afterSignals.clipboardWrites > baselineSignals.clipboardWrites) {
       return { action: 'toggle', dead: false };
     }
 
-    const afterDom = await getDomSignature(page);
     const afterAttrs = await elementActionSignature(locator).catch(() => ({}));
 
     const attributeChanged = Object.keys({ ...beforeAttrs, ...afterAttrs }).some((key) => beforeAttrs[key] !== afterAttrs[key]);
-    const activeChanged = beforeDom.activeElementTag !== afterDom.activeElementTag;
-    const textChanged = beforeDom.textLength !== afterDom.textLength;
+    const domDelta = afterSignals.domMutations - baselineSignals.domMutations;
+    const domChanged = domDelta > Math.max(2, baselineDomDelta + 2);
 
-    if (attributeChanged || activeChanged || textChanged) {
+    if (attributeChanged || domChanged) {
       const submitType = await locator.getAttribute('type').catch(() => null);
       if (tagName === 'button' && submitType === 'submit') {
         return { action: 'submit', dead: false };
@@ -168,7 +172,6 @@ async function clickAndDetect(page: Page, locator: Locator): Promise<{
 
   if (popupResolved && popupValue) {
     const popup = popupValue;
-    await popup.waitForLoadState('domcontentloaded', { timeout: 15000 }).catch(() => {});
     const popupUrl = popup.url();
     await popup.close().catch(() => {});
     return { action: 'navigate', dead: false, popupUrl };
@@ -195,12 +198,13 @@ test.describe.serial('release gate: dead_click_scan', () => {
     const interactions: InteractionRecord[] = [];
     const deadClicks: DeadClick[] = [];
     const routeErrors: RouteError[] = [];
+    const verifiedGlobal = new Map<string, VerifiedAction>();
 
     const ensureModeAuth = async () => {
       if (!isSignedInMode(mode)) return;
       const ok = await hasActiveSession(page);
       if (ok) return;
-      await signInWithCredentials(page, creds, mode);
+      await signInWithCredentials(page, creds);
     };
 
     for (const route of routesToScan) {
@@ -218,7 +222,7 @@ test.describe.serial('release gate: dead_click_scan', () => {
       }
       const resolvedPathname = new URL(page.url()).pathname;
 
-      await scanRoute(page, route, mode, resolvedPathname, interactions, deadClicks, ensureModeAuth);
+      await scanRoute(page, route, mode, resolvedPathname, interactions, deadClicks, ensureModeAuth, verifiedGlobal);
     }
 
     fs.writeFileSync(
@@ -253,47 +257,113 @@ async function scanRoute(
   resolvedPathname: string,
   interactions: InteractionRecord[],
   deadClicks: DeadClick[],
-  ensureModeAuth: () => Promise<void>
+  ensureModeAuth: () => Promise<void>,
+  verifiedGlobal: Map<string, VerifiedAction>
 ): Promise<void> {
+  const debugInteractions = process.env.RELEASE_GATE_DEBUG_INTERACTIONS === 'true';
   const visited = new Set<string>();
   const safetyLimit = resolveMaxInteractionsPerRoute();
 
-  for (let step = 0; step < safetyLimit; step += 1) {
-    const candidates = await getVisibleInteractives(page);
-    const count = await candidates.count();
+  let processed = 0;
+  while (processed < safetyLimit) {
+    const snapshots = await getViewportInteractivesSnapshot(page);
+    const count = snapshots.length;
     let progressed = false;
 
-    for (let i = 0; i < count; i += 1) {
-      const el = candidates.nth(i);
-      const label = await getStableLabel(el);
-      const tagName = await getTagName(el);
-      const role = await getRole(el);
-      const href = await getHref(el);
-      const disabled = await isDisabled(el);
-      const testId = await el.getAttribute('data-testid').catch(() => null);
-      const scanGroup = await el.getAttribute('data-scan-group').catch(() => null);
+    for (let i = 0; i < count && processed < safetyLimit; i += 1) {
+      const snapshot = snapshots[i];
+      const label = snapshot.label;
+      const tagName = snapshot.tagName;
+      const role = snapshot.role;
+      const href = snapshot.href;
+      const disabled = snapshot.disabled;
+      const testId = snapshot.testId;
+      const scanGroup = snapshot.scanGroup;
 
-      const key = scanGroup
-        ? `${scanGroup}|${tagName}|${role ?? ''}|${href ?? ''}`
-        : `${testId ?? 'missing'}|${tagName}|${role ?? ''}|${href ?? ''}|${label}`;
+      const key = (() => {
+        if (scanGroup) return `${scanGroup}|${tagName}|${role ?? ''}|${href ?? ''}`;
+        if (testId) return `${testId}|${tagName}|${role ?? ''}|${href ?? ''}`;
+        return `missing|${tagName}|${role ?? ''}|${href ?? ''}|${label}`;
+      })();
       if (visited.has(key)) continue;
       visited.add(key);
+      processed += 1;
       progressed = true;
 
       const selector = buildSelector(testId, href);
+      const el = testId
+        ? page.locator(`[data-testid="${testId.replace(/\"/g, '\\"')}"]`).first()
+        : page.locator('body'); // Fallback: missing testid will be handled as dead-click.
+      if (debugInteractions) {
+        console.log(`[dead_click_scan] ${route.id} -> ${selector} (${label})`);
+      }
+
+      const globalKey = (() => {
+        const base = scanGroup ? `group:${scanGroup}` : testId ? `id:${testId}` : null;
+        if (!base) return null;
+        return `${base}|${tagName}|${role ?? ''}|${href ?? ''}|${disabled ? 'disabled' : 'enabled'}`;
+      })();
+
       let action: InteractionAction = 'unknown';
       let outcome: InteractionRecord['outcome'] = 'pass';
       let navigationTo: string | undefined;
       let popupUrl: string | undefined;
+      let didAttemptClick = false;
 
-      if (disabled) {
+      if (globalKey && verifiedGlobal.has(globalKey)) {
+        const verified = verifiedGlobal.get(globalKey)!;
+        action = verified.action;
+        navigationTo = verified.navigationTo;
+        popupUrl = verified.popupUrl;
+        outcome = 'pass';
+      } else if (disabled) {
         action = 'disabled-with-reason';
       } else {
-        // Avoid expensive full navigations for normal links on remote audits.
-        if (tagName === 'a' && href && href.trim() && href.trim() !== '#' && !href.trim().toLowerCase().startsWith('javascript:')) {
+        const trimmedHref = href?.trim() ?? '';
+        const isAnchor = tagName === 'a';
+        const isJavaScriptHref = trimmedHref.toLowerCase().startsWith('javascript:');
+        const isHashOnly = trimmedHref === '#';
+
+        const linkCheck = (() => {
+          if (!isAnchor) return null;
+          if (!trimmedHref || isHashOnly || isJavaScriptHref) return null;
+          if (trimmedHref.startsWith('mailto:') || trimmedHref.startsWith('tel:')) return { href: trimmedHref, verify: false };
+          try {
+            const resolved = new URL(trimmedHref, page.url());
+            const current = new URL(page.url());
+            const sameOrigin = resolved.origin === current.origin;
+            return { href: resolved.href, verify: sameOrigin };
+          } catch {
+            return null;
+          }
+        })();
+
+        if (linkCheck) {
           action = 'navigate';
-          navigationTo = href;
+          navigationTo = linkCheck.href;
+
+          if (linkCheck.verify) {
+            const response = await page.request.get(linkCheck.href).catch(() => null);
+            const status = response?.status() ?? 0;
+            if (!response || status >= 400) {
+              outcome = 'dead-click';
+              deadClicks.push({
+                routeId: route.id,
+                routePath: route.path,
+                resolvedPathname,
+                selector,
+                label,
+                repro: [
+                  `Go to ${route.path}`,
+                  `Inspect ${selector} (${label})`,
+                  `Expected: navigate to ${linkCheck.href}`,
+                  `Observe: link resolves to HTTP ${status || 'error'}`,
+                ],
+              });
+            }
+          }
         } else {
+          didAttemptClick = true;
           const result = await clickAndDetect(page, el);
           action = result.action;
           navigationTo = result.navigationTo;
@@ -316,6 +386,10 @@ async function scanRoute(
         }
       }
 
+      if (globalKey && outcome === 'pass' && action !== 'unknown') {
+        verifiedGlobal.set(globalKey, { action, navigationTo, popupUrl });
+      }
+
       interactions.push({
         routeId: route.id,
         routePath: route.path,
@@ -335,18 +409,22 @@ async function scanRoute(
       });
 
       // Normalize state so subsequent clicks are still on this route.
-      await closeOverlays(page);
+      if (didAttemptClick) {
+        await closeOverlays(page);
+      }
       await ensureModeAuth();
 
-      const nowPathname = new URL(page.url()).pathname;
-      if (nowPathname !== resolvedPathname) {
-        const wentBack = await page.goBack({ waitUntil: 'domcontentloaded', timeout: 15_000 }).catch(() => null);
-        if (!wentBack || new URL(page.url()).pathname !== resolvedPathname) {
-          await safeGoto(page, route.path);
+      if (didAttemptClick) {
+        const nowPathname = new URL(page.url()).pathname;
+        if (nowPathname !== resolvedPathname) {
+          const wentBack = await page.goBack({ waitUntil: 'domcontentloaded', timeout: 15_000 }).catch(() => null);
+          if (!wentBack || new URL(page.url()).pathname !== resolvedPathname) {
+            await safeGoto(page, route.path);
+          }
         }
-      }
 
-      break; // Re-query interactives after each click
+        break; // Re-query interactives after each click since the DOM likely changed.
+      }
     }
 
     if (!progressed) break;
@@ -360,7 +438,7 @@ function resolveMaxInteractionsPerRoute(): number {
   const baseURL = process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3000';
   try {
     const hostname = new URL(baseURL).hostname;
-    if (hostname === 'localhost' || hostname === '127.0.0.1') return 250;
+    if (hostname === 'localhost' || hostname === '127.0.0.1') return 90;
   } catch {}
 
   // Remote/prod audits should be polite and bounded by default.

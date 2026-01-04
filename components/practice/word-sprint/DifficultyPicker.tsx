@@ -29,11 +29,12 @@ export function DifficultyPicker({ onSelect, title = 'Word Sprint' }: Props) {
         <Button
           variant="ghost"
           size="sm"
-          className="h-11 w-11 rounded-full p-0"
+          className="h-11 rounded-full px-3 gap-2 text-muted-foreground hover:text-foreground"
           onClick={() => router.back()}
           data-testid="word-sprint-picker-close"
         >
-          <X className="h-5 w-5" />
+          <X className="h-4 w-4" />
+          <span className="text-xs font-semibold">Back</span>
         </Button>
         <span className="text-lg font-semibold">{title}</span>
       </header>

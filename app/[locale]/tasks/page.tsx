@@ -368,7 +368,7 @@ export default function TasksPage() {
   };
 
   return (
-    <AuthGuard fallbackHeight="min-h-screen">
+    <AuthGuard fallbackHeight="min-h-screen" signInTestId="tasks-sign-in" cardTestId="tasks-sign-in-card">
       <div className="page-shell">
         <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6">
           <section data-testid="tasks-hero" className="glass-card rounded-3xl p-6 md:p-8 text-white">

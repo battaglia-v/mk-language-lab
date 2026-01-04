@@ -1,5 +1,4 @@
 import { expect, type Page } from '@playwright/test';
-import { PrismaClient } from '@prisma/client';
 import type { ReleaseGateMode } from './_mode';
 
 type Credentials = {
@@ -35,11 +34,11 @@ export async function ensureSignedIn(page: Page, mode: ReleaseGateMode): Promise
     return creds;
   }
 
-  await signInWithCredentials(page, creds, mode);
+  await signInWithCredentials(page, creds);
   return creds;
 }
 
-export async function signInWithCredentials(page: Page, creds: Credentials, mode: ReleaseGateMode): Promise<void> {
+export async function signInWithCredentials(page: Page, creds: Credentials): Promise<void> {
   // Create user (idempotent if email already exists).
   const register = await page.request.post('/api/auth/register', {
     data: {
@@ -75,99 +74,4 @@ export async function signInWithCredentials(page: Page, creds: Credentials, mode
   expect(sessionResp.ok()).toBeTruthy();
   const session = (await sessionResp.json()) as { user?: { email?: string } };
   expect(session.user?.email).toBe(creds.email);
-
-  if (mode === 'premium') {
-    if (shouldSeedPremiumDb()) {
-      try {
-        await ensurePremiumSubscription(creds.email);
-      } catch (error) {
-        console.warn('[release-gate] Premium DB seed failed, falling back to entitlement mock:', (error as Error)?.message || error);
-        await enablePremiumEntitlementMock(page);
-      }
-    } else {
-      await enablePremiumEntitlementMock(page);
-    }
-  }
-}
-
-function shouldSeedPremiumDb(): boolean {
-  const baseURL = process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3000';
-  let hostname = 'localhost';
-  try {
-    hostname = new URL(baseURL).hostname;
-  } catch {
-    hostname = 'localhost';
-  }
-
-  if (process.env.RELEASE_GATE_PREMIUM_MOCK === 'true') return false;
-  return hostname === 'localhost' || hostname === '127.0.0.1';
-}
-
-export async function enablePremiumEntitlementMock(page: Page): Promise<void> {
-  const now = new Date();
-  const expiresAt = new Date(now);
-  expiresAt.setDate(expiresAt.getDate() + 30);
-
-  const entitlement = {
-    isPro: true,
-    tier: 'pro',
-    source: 'promo',
-    expiresAt: expiresAt.toISOString(),
-    inGracePeriod: false,
-    purchasedAt: now.toISOString(),
-    period: 'monthly',
-    productId: 'pro_monthly',
-  };
-
-  await page.route('**/api/user/entitlement', async (route) => {
-    await route.fulfill({
-      status: 200,
-      contentType: 'application/json',
-      body: JSON.stringify({ entitlement }),
-    });
-  });
-
-  await page.route('**/api/subscription/status', async (route) => {
-    await route.fulfill({
-      status: 200,
-      contentType: 'application/json',
-      body: JSON.stringify({ entitlement, limits: null, features: [] }),
-    });
-  });
-}
-
-async function ensurePremiumSubscription(email: string): Promise<void> {
-  const prisma = new PrismaClient();
-  try {
-    const user = await prisma.user.findUnique({ where: { email }, select: { id: true } });
-    if (!user?.id) throw new Error(`Cannot grant premium: user not found for ${email}`);
-
-    const expiresAt = new Date();
-    expiresAt.setDate(expiresAt.getDate() + 30);
-
-    await prisma.subscription.upsert({
-      where: { userId: user.id },
-      create: {
-        userId: user.id,
-        status: 'active',
-        source: 'promo',
-        productId: 'pro_monthly',
-        period: 'monthly',
-        purchasedAt: new Date(),
-        expiresAt,
-        grantReason: 'release-gate-premium-mode',
-      },
-      update: {
-        status: 'active',
-        source: 'promo',
-        productId: 'pro_monthly',
-        period: 'monthly',
-        purchasedAt: new Date(),
-        expiresAt,
-        grantReason: 'release-gate-premium-mode',
-      },
-    });
-  } finally {
-    await prisma.$disconnect();
-  }
 }

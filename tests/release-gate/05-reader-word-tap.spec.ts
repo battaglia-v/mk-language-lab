@@ -18,11 +18,19 @@ test.describe.serial('release gate: reader word tap', () => {
     await firstWord.click();
     await expect(page.getByTestId('reader-word-sheet')).toBeVisible();
 
-    const beforeSignals = await page.evaluate(() => (window as any).__mkllSignals?.speechSpeakCalls ?? 0);
-    await page.getByTestId('reader-word-sheet-audio').click();
-    await page.waitForTimeout(100);
-    const afterSignals = await page.evaluate(() => (window as any).__mkllSignals?.speechSpeakCalls ?? 0);
-    expect(afterSignals).toBeGreaterThanOrEqual(beforeSignals + 1);
+    const audioButton = page.getByTestId('reader-word-sheet-audio');
+    await expect(audioButton).toBeVisible();
+
+    const audioDisabled = await audioButton.isDisabled().catch(() => false);
+    if (audioDisabled) {
+      await expect(page.getByTestId('reader-word-sheet-audio-unavailable')).toBeVisible();
+    } else {
+      const beforeSignals = await page.evaluate(() => (window as any).__mkllSignals?.speechSpeakCalls ?? 0);
+      await audioButton.click();
+      await page.waitForTimeout(100);
+      const afterSignals = await page.evaluate(() => (window as any).__mkllSignals?.speechSpeakCalls ?? 0);
+      expect(afterSignals).toBeGreaterThanOrEqual(beforeSignals + 1);
+    }
 
     const saveButton = page.getByTestId('reader-word-sheet-save');
     await saveButton.click();
@@ -32,4 +40,3 @@ test.describe.serial('release gate: reader word tap', () => {
     await expect(page.getByTestId('reader-word-sheet')).toBeHidden();
   });
 });
-
