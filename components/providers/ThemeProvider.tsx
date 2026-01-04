@@ -7,12 +7,20 @@ type ThemeProviderProps = {
   children: React.ReactNode;
 };
 
+/**
+ * Theme behavior:
+ * 1. Default to light mode when no preference exists
+ * 2. Respect prefers-color-scheme on first load (if no saved preference)
+ * 3. Persist user toggle choice and never override it
+ * 4. Do not auto-switch after initial load
+ */
 export function ThemeProvider({ children }: ThemeProviderProps) {
   return (
     <NextThemesProvider
       attribute="class"
-      defaultTheme="dark"
-      enableSystem={false}
+      defaultTheme="system"      // Respect system preference on first load
+      enableSystem={true}        // Allow reading prefers-color-scheme
+      disableTransitionOnChange  // Prevent flash during theme switch
       themes={['light', 'dark']}
       storageKey="mk-theme"
     >
@@ -34,7 +42,8 @@ function ThemeBodySync() {
   useEffect(() => {
     if (!mounted) return;
 
-    const currentTheme = resolvedTheme || 'dark';
+    // Default to light mode if no theme resolved (light mode is primary)
+    const currentTheme = resolvedTheme || 'light';
     const isLight = currentTheme === 'light';
     const html = document.documentElement;
     const body = document.body;
