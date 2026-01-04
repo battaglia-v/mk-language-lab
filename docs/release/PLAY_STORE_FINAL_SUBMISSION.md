@@ -24,7 +24,7 @@ MK Language Lab
 ## Short Description (80 chars max)
 
 ```
-Learn Macedonian: AI lessons, daily practice, translation & news. 100% Free!
+Learn Macedonian: AI lessons, daily practice, translation & news. Free!
 ```
 _(76 characters)_
 
@@ -129,7 +129,7 @@ Learning should feel rewarding:
 
 🚀 START YOUR JOURNEY TODAY
 
-Download now and learn your first Macedonian words in minutes. Completely free — no ads, no subscriptions, no hidden costs.
+Download now and learn your first Macedonian words in minutes. Free to use — no ads, no hidden costs.
 
 Добредојде! (Welcome!)
 ```
