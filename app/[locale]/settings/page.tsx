@@ -3,13 +3,14 @@
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
-import { ArrowLeft, Target, RotateCcw, Languages, Loader2 } from 'lucide-react';
+import { ArrowLeft, Target, RotateCcw, Languages, Loader2, Sun, Moon } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import { PageContainer } from '@/components/layout';
 import { cn } from '@/lib/utils';
 import { clearAllLocalProgress } from '@/lib/local-storage-reset';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 const DAILY_GOAL_OPTIONS = [10, 20, 30, 50];
 
@@ -19,14 +20,21 @@ export default function SettingsPage() {
   const router = useRouter();
   const pathname = usePathname();
   const { data: session, status } = useSession();
+  const { theme, setTheme, resolvedTheme } = useTheme();
 
   const [dailyGoal, setDailyGoal] = useState(20);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [resetComplete, setResetComplete] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   const isSignedIn = status === 'authenticated' && !!session?.user;
+
+  // Prevent hydration mismatch for theme
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Load settings from API (signed in) or localStorage (anonymous)
   useEffect(() => {
@@ -108,11 +116,48 @@ export default function SettingsPage() {
     setTimeout(() => setResetComplete(false), 3000);
   };
 
+  const currentTheme = mounted ? (resolvedTheme || theme || 'dark') : 'dark';
+
   const settingsGroups = [
     {
-      title: 'Language',
+      title: t('theme', { default: 'Theme' }),
+      icon: currentTheme === 'dark' ? Moon : Sun,
+      description: t('themeDesc', { default: 'Choose light or dark mode' }),
+      action: (
+        <div className="flex gap-2">
+          <button
+            onClick={() => setTheme('light')}
+            data-testid="settings-theme-light"
+            className={cn(
+              'flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
+              currentTheme === 'light'
+                ? 'bg-primary text-black'
+                : 'bg-muted/50 text-muted-foreground hover:bg-muted'
+            )}
+          >
+            <Sun className="h-4 w-4" />
+            {t('themeLight', { default: 'Light' })}
+          </button>
+          <button
+            onClick={() => setTheme('dark')}
+            data-testid="settings-theme-dark"
+            className={cn(
+              'flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
+              currentTheme === 'dark'
+                ? 'bg-primary text-black'
+                : 'bg-muted/50 text-muted-foreground hover:bg-muted'
+            )}
+          >
+            <Moon className="h-4 w-4" />
+            {t('themeDark', { default: 'Dark' })}
+          </button>
+        </div>
+      ),
+    },
+    {
+      title: t('language', { default: 'Language' }),
       icon: Languages,
-      description: 'Choose your preferred language',
+      description: t('languageDesc', { default: 'Choose your preferred language' }),
       action: (
         <div className="flex gap-2">
           <button
@@ -143,9 +188,9 @@ export default function SettingsPage() {
       ),
     },
     {
-      title: 'Daily Goal',
+      title: t('dailyGoal', { default: 'Daily Goal' }),
       icon: Target,
-      description: 'Set your daily XP target',
+      description: t('dailyGoalDesc', { default: 'Set your daily XP target' }),
       action: (
         <div className="flex gap-2">
           {DAILY_GOAL_OPTIONS.map((goal) => (

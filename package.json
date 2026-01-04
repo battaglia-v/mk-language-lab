@@ -43,6 +43,7 @@
     "audit:mobile:ui": "playwright test --project=mobile-audit --ui",
     "audit:mobile:md": "node scripts/generate-mobile-audit-md.mjs",
     "audit:mobile:full": "npm run audit:mobile && npm run audit:mobile:md",
+    "release-gate": "node scripts/run-release-gate.mjs",
     "content:validate": "tsx scripts/validate-content.ts",
     "content:validate:ci": "tsx scripts/validate-content.ts --ci",
     "content:validate:strict": "tsx scripts/validate-content.ts --strict"
@@ -102,6 +103,7 @@
     "next": "^16.0.10",
     "next-auth": "^5.0.0-beta.30",
     "next-intl": "^4.5.7",
+    "next-themes": "^0.4.6",
     "openai": "^6.7.0",
     "papaparse": "^5.5.3",
     "pdf-parse": "^2.4.5",

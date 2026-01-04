@@ -1,6 +1,6 @@
 import { getLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
-import { Newspaper, BookOpen, CircleUserRound, Settings, Info, HelpCircle, ChevronRight } from 'lucide-react';
+import { Newspaper, BookOpen, CircleUserRound, Settings, Info, HelpCircle, ChevronRight, FlaskConical } from 'lucide-react';
 import { PageContainer } from '@/components/layout';
 
 export default async function MorePage() {
@@ -8,14 +8,15 @@ export default async function MorePage() {
   const t = await getTranslations('nav');
 
   const menuItems = [
-    { id: 'news', href: `/${locale}/news`, icon: Newspaper, label: t('news'), description: 'Macedonian news articles' },
-    { id: 'resources', href: `/${locale}/resources`, icon: BookOpen, label: t('resources'), description: 'Learning resources' },
-    { id: 'profile', href: `/${locale}/profile`, icon: CircleUserRound, label: t('profile'), description: 'Your progress and stats' },
+    { id: 'lab', href: `/${locale}/lab`, icon: FlaskConical, label: t('languageLab', { default: 'Language Lab' }), description: t('languageLabDesc', { default: 'Translator, analyzer & pronunciation' }) },
+    { id: 'news', href: `/${locale}/news`, icon: Newspaper, label: t('news'), description: t('newsDesc', { default: 'Macedonian news articles' }) },
+    { id: 'resources', href: `/${locale}/resources`, icon: BookOpen, label: t('resources'), description: t('resourcesDesc', { default: 'Learning resources' }) },
+    { id: 'profile', href: `/${locale}/profile`, icon: CircleUserRound, label: t('profile'), description: t('profileDesc', { default: 'Your progress and stats' }) },
     // Upgrade temporarily hidden - app is free for launch
     // { id: 'upgrade', href: `/${locale}/upgrade`, icon: Crown, label: t('upgrade', { default: 'Upgrade' }), description: 'Unlock Pro features' },
-    { id: 'settings', href: `/${locale}/settings`, icon: Settings, label: t('settings', { default: 'Settings' }), description: 'App preferences' },
-    { id: 'about', href: `/${locale}/about`, icon: Info, label: t('about'), description: 'About MKLanguage' },
-    { id: 'help', href: `/${locale}/help`, icon: HelpCircle, label: t('help', { default: 'Help' }), description: 'Support and FAQ' },
+    { id: 'settings', href: `/${locale}/settings`, icon: Settings, label: t('settings', { default: 'Settings' }), description: t('settingsDesc', { default: 'App preferences' }) },
+    { id: 'about', href: `/${locale}/about`, icon: Info, label: t('about'), description: t('aboutDesc', { default: 'About MKLanguage' }) },
+    { id: 'help', href: `/${locale}/help`, icon: HelpCircle, label: t('help', { default: 'Help' }), description: t('helpDesc', { default: 'Support and FAQ' }) },
   ];
 
   return (

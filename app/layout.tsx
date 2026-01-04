@@ -3,6 +3,7 @@ import "./globals.css";
 import { SentryInit } from "@/components/SentryInit";
 import { Analytics } from "@vercel/analytics/react";
 import { brandColors, brandNames } from "@mk/tokens";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -115,7 +116,7 @@ export default function RootLayout({
   const enableVercelAnalytics = Boolean(process.env.VERCEL);
 
   return (
-    <html lang="en" className="dark notranslate overflow-x-hidden" translate="no" suppressHydrationWarning>
+    <html lang="en" className="notranslate overflow-x-hidden" translate="no" suppressHydrationWarning>
       <head>
         <meta name="google" content="notranslate" />
         {/* Preconnect to external services for faster loading */}
@@ -127,11 +128,13 @@ export default function RootLayout({
         {/* Preload critical font if using Google Fonts */}
       </head>
       <body
-        className="antialiased overflow-x-hidden theme-dark bg-[var(--mk-bg)] text-[var(--mk-text)]"
+        className="antialiased overflow-x-hidden bg-[var(--mk-bg)] text-[var(--mk-text)]"
       >
-        <SentryInit />
-        {children}
-        {enableVercelAnalytics ? <Analytics debug={false} /> : null}
+        <ThemeProvider>
+          <SentryInit />
+          {children}
+          {enableVercelAnalytics ? <Analytics debug={false} /> : null}
+        </ThemeProvider>
       </body>
     </html>
   );

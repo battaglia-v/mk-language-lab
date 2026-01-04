@@ -362,6 +362,7 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
                   variant="ghost"
                   size="sm"
                   onClick={goNext}
+                  title={t('drills.skipHint', { default: 'Skip this question (no XP earned)' })}
                   data-testid="practice-session-skip"
                 >
                   <SkipForward className="h-4 w-4 mr-1" />
@@ -388,7 +389,13 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
                   </Button>
                 ))}
               </div>
-              <Button variant="ghost" size="sm" onClick={goNext} data-testid="practice-session-skip">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={goNext}
+                title={t('drills.skipHint', { default: 'Skip this question (no XP earned)' })}
+                data-testid="practice-session-skip"
+              >
                 <SkipForward className="h-4 w-4 mr-1" />
                 {t('drills.skip')}
               </Button>
