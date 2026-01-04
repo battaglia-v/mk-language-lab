@@ -95,6 +95,7 @@ export default function TranslatePage() {
   const isCurrentSaved = Boolean(savedMatch);
   const inputChanged = inputText.trim() !== lastTranslatedInput && inputText.trim().length > 0;
   const showStickyButton = inputChanged && !translatedText;
+  const showInlineMobileButton = !showStickyButton;
 
   const handleSaveToggle = () => {
     if (!currentPayload) return;
@@ -214,6 +215,19 @@ export default function TranslatePage() {
         <div className="flex items-center justify-between text-xs text-muted-foreground px-1">
           <span>{inputText.length}/{MAX_CHARACTERS}</span>
         </div>
+
+        {/* Mobile Translate Button */}
+        {showInlineMobileButton && (
+          <Button
+            type="submit"
+            size="lg"
+            className="sm:hidden w-full min-h-[48px] bg-gradient-to-r from-primary to-amber-500 text-lg font-bold text-slate-950"
+            disabled={isTranslating || !inputText.trim()}
+            data-testid="translate-submit-mobile"
+          >
+            {isTranslating ? <><Loader2 className="mr-2 h-5 w-5 animate-spin" />{t('translatingStatus')}</> : t('translateButton')}
+          </Button>
+        )}
 
         {/* Desktop Translate Button */}
         <Button

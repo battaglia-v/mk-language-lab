@@ -14,7 +14,7 @@ type Props = {
 
 export function DifficultyPicker({ onSelect, title = 'Word Sprint' }: Props) {
   const router = useRouter();
-  const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty | null>(null);
+  const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty>('easy');
   const [selectedLength, setSelectedLength] = useState<SessionLength>(10);
 
   const handleStart = () => {
@@ -114,11 +114,9 @@ export function DifficultyPicker({ onSelect, title = 'Word Sprint' }: Props) {
               <Zap className="h-5 w-5" />
               Start session
             </Button>
-            {!selectedDifficulty && (
-              <p className="text-center text-sm text-muted-foreground">
-                Choose difficulty and length to start.
-              </p>
-            )}
+            <p className="text-center text-sm text-muted-foreground">
+              Adjust difficulty or length before starting.
+            </p>
           </div>
         </div>
       </div>

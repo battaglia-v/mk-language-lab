@@ -1,4 +1,22 @@
-import { Page, expect } from '@playwright/test';
+import { Page, expect as baseExpect, test as base } from '@playwright/test';
+import { bypassNetworkInterstitial } from '../../e2e/helpers/network-interstitial';
+
+export const test = base.extend({
+  page: async ({ page }, runWithPage) => {
+    const originalGoto = page.goto.bind(page);
+    page.goto = (async (url, options) => {
+      const response = await originalGoto(url, options);
+      const bypassed = await bypassNetworkInterstitial(page);
+      if (bypassed) {
+        return originalGoto(url, options);
+      }
+      return response;
+    }) as Page['goto'];
+    await runWithPage(page);
+  },
+});
+
+export const expect = baseExpect;
 
 /**
  * Playwright Mobile Audit Helpers
@@ -106,6 +124,7 @@ export async function expectUrlChangeOrDialog(
  */
 export async function waitForInteractive(page: Page): Promise<void> {
   await page.waitForLoadState('domcontentloaded');
+  await page.waitForLoadState('networkidle', { timeout: 5000 }).catch(() => {});
   // Wait for hydration
   await page.waitForTimeout(500);
 }

@@ -39,7 +39,12 @@ export default function SettingsPage() {
   // Load settings from API (signed in) or localStorage (anonymous)
   useEffect(() => {
     const loadSettings = async () => {
-      if (status === 'loading') return;
+      if (status === 'loading') {
+        const stored = localStorage.getItem('mk-daily-goal');
+        if (stored) setDailyGoal(parseInt(stored, 10));
+        setIsLoading(false);
+        return;
+      }
 
       if (isSignedIn) {
         try {

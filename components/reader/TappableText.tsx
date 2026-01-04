@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback, useMemo, useRef } from 'react';
-import { WordDetailPopup } from './WordDetailPopup';
+import { WordBottomSheet } from './WordBottomSheet';
 import { cn } from '@/lib/utils';
 import { toggleFavorite, isFavorite } from '@/lib/favorites';
 
@@ -239,13 +239,6 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
   // Split text into words while preserving punctuation
   const words = text.split(/(\s+)/);
 
-  const translations = {
-    addToDeck: locale === 'mk' ? 'Додај во колекција' : 'Add to Collection',
-    alreadyInDeck: locale === 'mk' ? 'Веќе додадено' : 'Already Saved',
-    playAudio: locale === 'mk' ? 'Слушај' : 'Listen',
-    difficulty: locale === 'mk' ? 'Ниво' : 'Level',
-  };
-
   return (
     <>
       <p className={cn('leading-relaxed select-none', className)}>
@@ -291,14 +284,13 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
         })}
       </p>
 
-      <WordDetailPopup
-        isOpen={!!selectedWord}
-        word={selectedWord || { original: '', translation: '' }}
+      <WordBottomSheet
+        open={!!selectedWord}
+        word={selectedWord}
         onClose={handleClose}
-        onAddToDeck={handleAddToDeck}
-        onPlayAudio={handlePlayAudio}
-        isInDeck={isInDeck}
-        t={translations}
+        onSaveToGlossary={handleAddToDeck}
+        isSaved={isInDeck}
+        locale={locale}
       />
     </>
   );
