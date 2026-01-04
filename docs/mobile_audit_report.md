@@ -7,6 +7,7 @@
 - Command: PLAYWRIGHT_BASE_URL=https://www.mklanguage.com npx playwright test --project=mobile-audit tests/mobile-audit/13-stage4-critical.spec.ts
 - Tests: 9 total (6 passed, 3 failed)
 - Notes: Re-run after fixes were pushed to main; production still shows failures (likely deploy lag).
+- Proxy Check: Re-ran with PLAYWRIGHT_NO_PROXY=true; same 3 failures.
 
 ## Local Verification
 - Base URL: http://localhost:3000
