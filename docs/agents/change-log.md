@@ -9,6 +9,12 @@ Add an entry whenever you introduce a change that affects other contributors (AP
 
 ---
 
+### 29. 2026-01-04 – Mobile beta audit fixes + Stage 5 polish (`bfcda66`)
+**Files**: `app/[locale]/practice/word-sprint/page.tsx`, `components/learn/LearnPageClient.tsx`, `components/practice/PracticeSession.tsx`, `components/practice/types.ts`, `components/practice/word-sprint/{DifficultyPicker,WordSprintSession}.tsx`, `components/reader/{ReaderLayout,TappableText,WordBottomSheet}.tsx`, `docs/projects/2025-12-mobile-beta-audit/*`
+**What Changed**: Hardened mobile practice + reader flows (level selection linkability, practice-session empty/loading states, Word Sprint start fallback, word-tap reliability) and applied tap-target/spacing polish; added a project doc set for the beta audit workstream.
+**Impact**: Critical mobile journeys no longer stall on skeletons, taps have clearer affordances, and the audit work is documented for follow-up runs.
+**Action for Agents**: Re-run the Stage 4 critical Playwright spec after deploy to validate the fixes; update the audit report with final pass/fail status.
+
 ### 28. 2025-11-18 – Sub-agent relaunch CLI (`TBD`)
 **Files**: `scripts/launch-sub-agents.ts`, `docs/SUB_AGENTS.md`, `data/sub-agents-status.json`
 **What Changed**: Added a `--force` flag to the `agents:launch` script so we can restamp in-progress sub-agents with fresh `launchedAt` metadata + context notes, updated the sub-agent handbook, and re-launched every roadmap task with the "Launched via ChatGPT thread sync" note.
