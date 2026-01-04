@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BookmarkPlus, BookmarkCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -22,6 +22,13 @@ export function TapWords({
   const [tappedWords, setTappedWords] = useState<Set<string>>(new Set());
   const [savedWords, setSavedWords] = useState<Set<string>>(new Set());
   const [activeWordIndex, setActiveWordIndex] = useState<number | null>(null);
+
+  // Reset state when step changes to prevent state carryover
+  useEffect(() => {
+    setTappedWords(new Set());
+    setSavedWords(new Set());
+    setActiveWordIndex(null);
+  }, [step.id]);
 
   const minimumTaps = step.minimumTaps || 3;
   const canContinue = tappedWords.size >= minimumTaps;
