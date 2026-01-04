@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Volume2, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ChoiceButton } from '@/components/ui/ChoiceButton';
@@ -23,6 +23,11 @@ export function MultipleChoice({
 }: StepComponentProps<MultipleChoiceStep>) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+
+  // Reset selection when step changes to prevent answer flash on next question
+  useEffect(() => {
+    setSelectedIndex(null);
+  }, [step.id]);
 
   const handleSelect = (index: number) => {
     if (disabled || feedback) return; // Can't change after answered/feedback shown

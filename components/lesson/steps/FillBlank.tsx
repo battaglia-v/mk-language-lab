@@ -21,6 +21,11 @@ export function FillBlank({
   const [answer, setAnswer] = useState('');
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
 
+  // Reset answer when step changes to prevent answer flash on next question
+  useEffect(() => {
+    setAnswer('');
+  }, [step.id]);
+
   // Submit answer when user types
   useEffect(() => {
     if (answer.trim() && !feedback) {

@@ -469,6 +469,11 @@ function ErrorCorrectionContent({ exercise, userAnswer, setUserAnswer, result, t
   const words = exercise.sentenceWithErrorMk.split(' ');
   const [selectedWordIndex, setSelectedWordIndex] = useState<number | null>(null);
 
+  // Reset selection when exercise changes
+  useEffect(() => {
+    setSelectedWordIndex(null);
+  }, [exercise.id]);
+
   const handleWordClick = (index: number) => {
     if (result === 'correct') return;
     setSelectedWordIndex(index);

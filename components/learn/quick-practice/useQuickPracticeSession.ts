@@ -220,6 +220,7 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
   const [answer, setAnswer] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [revealedAnswer, setRevealedAnswer] = useState('');
+  const [feedbackItemKey, setFeedbackItemKey] = useState<string | null>(null);
   const [totalAttempts, setTotalAttempts] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
   const [isCelebrating, setIsCelebrating] = useState(false);
@@ -337,6 +338,7 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     setFeedback(null);
     setRevealedAnswer('');
     setIsCelebrating(false);
+    setFeedbackItemKey(null);
   }, [currentItemKey]);
 
   useEffect(() => {
