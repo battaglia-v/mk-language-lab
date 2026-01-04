@@ -1,8 +1,10 @@
 'use client';
 
 import { useState, useCallback, useEffect, useRef, ImgHTMLAttributes } from 'react';
+import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { getSourceFallbackImage, getSourceBranding } from '@/lib/news-source-branding';
+import { getSourceFallbackImage, getSourceColors } from '@/lib/news-source-branding';
+import type { ThemeMode } from '@/lib/news-source-branding';
 
 interface ProxiedNewsImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'onError'> {
   /** Original image URL (will be proxied) */
@@ -54,11 +56,13 @@ export function ProxiedNewsImage({
   const [isLoaded, setIsLoaded] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
   const maxTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { resolvedTheme } = useTheme();
 
-  // Get source branding for fallback
-  const branding = getSourceBranding(sourceId);
-  const fallbackImage = getSourceFallbackImage(sourceId);
-  const displayName = sourceName || branding.name;
+  // Get theme-aware branding for fallback
+  const themeMode: ThemeMode = resolvedTheme === 'light' ? 'light' : 'dark';
+  const colors = getSourceColors(sourceId, themeMode);
+  const fallbackImage = getSourceFallbackImage(sourceId, themeMode);
+  const displayName = sourceName || sourceId.replace('-', '.');
 
   // Reset state when imageUrl changes
   useEffect(() => {
@@ -130,19 +134,34 @@ export function ProxiedNewsImage({
         containerClassName
       )}
       style={{
-        backgroundColor: branding.primaryColor,
+        backgroundColor: colors.bgColor1,
       }}
     >
-      {/* Branded fallback - always rendered as background */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={fallbackImage}
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+      {/* Branded fallback - only show when confirmed failed or no URL */}
+      {showFallback && (
+        <>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={fallbackImage}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute bottom-3 left-3">
+            <span
+              className="px-2 py-1 text-[10px] font-semibold uppercase tracking-wide rounded"
+              style={{
+                backgroundColor: `${colors.textColor}20`,
+                color: colors.textColor,
+              }}
+            >
+              {displayName}
+            </span>
+          </div>
+        </>
+      )}
 
-      {/* Actual image - overlays fallback when loaded */}
+      {/* Actual image - show when we have a URL and haven't failed */}
       {proxyUrl && !showFallback && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
@@ -164,24 +183,9 @@ export function ProxiedNewsImage({
         />
       )}
 
-      {/* Loading overlay - subtle pulse on top of branded fallback */}
+      {/* Loading state - show placeholder color with subtle animation */}
       {isLoading && (
-        <div className="absolute inset-0 bg-black/20 animate-pulse" />
-      )}
-
-      {/* Source badge - shown on fallback */}
-      {showFallback && (
-        <div className="absolute bottom-3 left-3">
-          <span
-            className="px-2 py-1 text-[10px] font-semibold uppercase tracking-wide rounded"
-            style={{
-              backgroundColor: `${branding.textColor}20`,
-              color: branding.textColor,
-            }}
-          >
-            {displayName}
-          </span>
-        </div>
+        <div className="absolute inset-0 animate-pulse" style={{ backgroundColor: colors.bgColor1 }} />
       )}
     </div>
   );

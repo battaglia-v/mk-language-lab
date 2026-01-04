@@ -4,60 +4,122 @@
  * Provides branded fallback images and colors for each news source.
  * When images fail to load, we show a branded placeholder that looks
  * intentional rather than broken.
+ *
+ * Now supports light/dark themes for consistent appearance.
  */
 
 export type NewsSourceId = 'time-mk' | 'meta-mk' | 'makfax' | 'a1on' | 'unknown';
+export type ThemeMode = 'light' | 'dark';
+
+interface ThemeColors {
+  bgColor1: string;
+  bgColor2: string;
+  textColor: string;
+}
 
 interface SourceBranding {
   name: string;
   shortName: string;
+  /** Colors for dark mode (default) */
+  dark: ThemeColors;
+  /** Colors for light mode */
+  light: ThemeColors;
+  /** Legacy: primary color (dark mode) */
   primaryColor: string;
+  /** Legacy: secondary color (dark mode) */
   secondaryColor: string;
+  /** Legacy: text color (dark mode) */
   textColor: string;
-  /** SVG data URL for fallback image */
-  fallbackSvg: string;
 }
 
 const SOURCE_BRANDING: Record<NewsSourceId, SourceBranding> = {
   'time-mk': {
     name: 'Time.mk',
     shortName: 'TIME',
+    // Dark mode - original colors
+    dark: {
+      bgColor1: '#1a1a2e',
+      bgColor2: '#16213e',
+      textColor: '#e94560',
+    },
+    // Light mode - softer, inverted
+    light: {
+      bgColor1: '#fef2f4',
+      bgColor2: '#fce4e8',
+      textColor: '#be123c',
+    },
+    // Legacy fields
     primaryColor: '#1a1a2e',
     secondaryColor: '#16213e',
     textColor: '#e94560',
-    fallbackSvg: generateBrandedSvg('TIME.MK', '#e94560', '#1a1a2e', '#16213e'),
   },
   'meta-mk': {
     name: 'Meta.mk',
     shortName: 'META',
+    dark: {
+      bgColor1: '#0f4c75',
+      bgColor2: '#1b262c',
+      textColor: '#3282b8',
+    },
+    light: {
+      bgColor1: '#eff6ff',
+      bgColor2: '#dbeafe',
+      textColor: '#1d4ed8',
+    },
     primaryColor: '#0f4c75',
     secondaryColor: '#1b262c',
     textColor: '#3282b8',
-    fallbackSvg: generateBrandedSvg('META.MK', '#3282b8', '#0f4c75', '#1b262c'),
   },
   'makfax': {
     name: 'Makfax',
     shortName: 'MKF',
+    dark: {
+      bgColor1: '#2d3436',
+      bgColor2: '#636e72',
+      textColor: '#dfe6e9',
+    },
+    light: {
+      bgColor1: '#f8fafc',
+      bgColor2: '#f1f5f9',
+      textColor: '#475569',
+    },
     primaryColor: '#2d3436',
     secondaryColor: '#636e72',
     textColor: '#dfe6e9',
-    fallbackSvg: generateBrandedSvg('MAKFAX', '#dfe6e9', '#2d3436', '#636e72'),
   },
   'a1on': {
     name: 'A1on',
     shortName: 'A1',
+    dark: {
+      bgColor1: '#c0392b',
+      bgColor2: '#922b21',
+      textColor: '#ffffff',
+    },
+    light: {
+      bgColor1: '#fef2f2',
+      bgColor2: '#fee2e2',
+      textColor: '#b91c1c',
+    },
     primaryColor: '#c0392b',
     secondaryColor: '#922b21',
     textColor: '#ffffff',
-    fallbackSvg: generateBrandedSvg('A1ON', '#ffffff', '#c0392b', '#922b21'),
   },
   'unknown': {
     name: 'News',
     shortName: 'MK',
+    dark: {
+      bgColor1: '#1e293b',
+      bgColor2: '#334155',
+      textColor: '#94a3b8',
+    },
+    light: {
+      bgColor1: '#f8fafc',
+      bgColor2: '#f1f5f9',
+      textColor: '#64748b',
+    },
     primaryColor: '#1e293b',
     secondaryColor: '#334155',
     textColor: '#94a3b8',
-    fallbackSvg: generateBrandedSvg('MK NEWS', '#94a3b8', '#1e293b', '#334155'),
   },
 };
 
@@ -94,8 +156,28 @@ export function getSourceBranding(sourceId: string): SourceBranding {
   return SOURCE_BRANDING[sourceId as NewsSourceId] || SOURCE_BRANDING.unknown;
 }
 
-export function getSourceFallbackImage(sourceId: string): string {
-  return getSourceBranding(sourceId).fallbackSvg;
+/**
+ * Get the fallback image SVG for a news source.
+ * @param sourceId - The news source ID
+ * @param theme - 'light' or 'dark' (defaults to 'dark')
+ */
+export function getSourceFallbackImage(sourceId: string, theme: ThemeMode = 'dark'): string {
+  const branding = getSourceBranding(sourceId);
+  const colors = theme === 'light' ? branding.light : branding.dark;
+  return generateBrandedSvg(
+    branding.shortName === 'MK' ? 'MK NEWS' : `${branding.shortName}.MK`,
+    colors.textColor,
+    colors.bgColor1,
+    colors.bgColor2
+  );
+}
+
+/**
+ * Get theme-appropriate colors for a news source
+ */
+export function getSourceColors(sourceId: string, theme: ThemeMode = 'dark'): ThemeColors {
+  const branding = getSourceBranding(sourceId);
+  return theme === 'light' ? branding.light : branding.dark;
 }
 
 export function normalizeSourceId(sourceId: string | null | undefined): NewsSourceId {
