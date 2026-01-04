@@ -14,11 +14,6 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
       defaultTheme="dark"
       enableSystem={false}
       themes={['light', 'dark']}
-      // Map next-themes classes to our theme classes
-      value={{
-        light: 'theme-light',
-        dark: 'theme-dark dark',
-      }}
       storageKey="mk-theme"
     >
       <ThemeBodySync />
@@ -29,7 +24,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 
 // Syncs theme to body classes for our CSS variables
 function ThemeBodySync() {
-  const { theme, resolvedTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -39,15 +34,20 @@ function ThemeBodySync() {
   useEffect(() => {
     if (!mounted) return;
 
-    const body = document.body;
-    const currentTheme = resolvedTheme || theme || 'dark';
+    const currentTheme = resolvedTheme || 'dark';
+    const isLight = currentTheme === 'light';
 
-    // Remove old theme classes
-    body.classList.remove('theme-light', 'theme-dark');
+    // Update body theme class for our CSS variables
+    document.body.classList.remove('theme-light', 'theme-dark');
+    document.body.classList.add(isLight ? 'theme-light' : 'theme-dark');
 
-    // Add new theme class
-    body.classList.add(currentTheme === 'light' ? 'theme-light' : 'theme-dark');
-  }, [theme, resolvedTheme, mounted]);
+    // Update html dark class for Tailwind
+    if (isLight) {
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+    }
+  }, [resolvedTheme, mounted]);
 
   return null;
 }
