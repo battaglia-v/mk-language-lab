@@ -18,7 +18,7 @@ export default async function LanguageLabPage() {
     },
     {
       id: 'analyzer',
-      href: `/${locale}/translate?tab=reader`,
+      href: `/${locale}/reader/analyze`,
       icon: BookOpenText,
       title: t('analyzer.title'),
       description: t('analyzer.description'),
