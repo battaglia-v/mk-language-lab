@@ -96,10 +96,9 @@ export function LearnPageClient({
     : 0;
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-4rem)] pb-24 sm:pb-6">
-      {/* Main Content */}
-      <div className="flex-1 px-4 py-6">
-        <div className="max-w-lg mx-auto space-y-6">
+    <div className="flex flex-col min-h-[calc(100vh-4rem)]">
+      {/* Main Content - Full width, no extra padding (AppShell handles it) */}
+      <div className="flex-1 space-y-6">
           {/* Hero Section */}
           <div className="text-center space-y-2">
             <h1 className="text-2xl font-bold text-foreground">
@@ -285,7 +284,6 @@ export function LearnPageClient({
               <span className="text-sm text-muted-foreground">{pathProgress}%</span>
             </div>
           </section>
-        </div>
       </div>
     </div>
   );
