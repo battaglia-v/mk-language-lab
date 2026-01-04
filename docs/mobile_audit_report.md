@@ -1,12 +1,20 @@
 # Stage 4 Mobile Audit Report
 
-## Run Details
+## Run Details (Production)
 - Base URL: https://www.mklanguage.com
 - Viewport: iPhone 12 (390x844)
 - Project: mobile-audit
 - Command: PLAYWRIGHT_BASE_URL=https://www.mklanguage.com npx playwright test --project=mobile-audit tests/mobile-audit/13-stage4-critical.spec.ts
 - Tests: 9 total (6 passed, 3 failed)
 - Notes: Re-run after fixes were pushed to main; production still shows failures (likely deploy lag).
+
+## Local Verification
+- Base URL: http://localhost:3000
+- Viewport: iPhone 12 (390x844)
+- Project: mobile-audit
+- Command: npx playwright test tests/mobile-audit/13-stage4-critical.spec.ts --project=mobile-audit
+- Tests: 9 total (9 passed)
+- Notes: Local run confirms fixes for level toggle, Word Sprint start, and reader taps.
 
 ## Failures
 
