@@ -75,9 +75,9 @@ export function useTranslatorWorkspace({
   );
 
   const handleTranslate = useCallback(
-    async (event?: FormEvent<HTMLFormElement>) => {
+    async (event?: FormEvent<HTMLFormElement>, overrideText?: string) => {
       event?.preventDefault();
-      const text = inputText.trim();
+      const text = (overrideText ?? inputText).trim();
 
       if (!text) {
         setTranslatedText('');

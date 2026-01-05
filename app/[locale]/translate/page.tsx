@@ -78,10 +78,21 @@ export default function TranslatePage() {
 
   const { phrases, savePhrase, deletePhrase, findMatchingPhrase } = useSavedPhrases();
 
+  const normalizedInputText = inputText.trim();
+  const [fallbackInputText, setFallbackInputText] = useState('');
+  const resolvedInputText = normalizedInputText || fallbackInputText;
+
   // Wrap translate to track last input
   const handleTranslate = async (e: FormEvent<HTMLFormElement>) => {
-    await originalHandleTranslate(e);
-    setLastTranslatedInput(inputText.trim());
+    const shouldOverride = !normalizedInputText && fallbackInputText.length > 0;
+    if (shouldOverride) {
+      setInputText(fallbackInputText.slice(0, MAX_CHARACTERS));
+    }
+    await originalHandleTranslate(e, shouldOverride ? fallbackInputText : undefined);
+    const usedText = shouldOverride ? fallbackInputText : normalizedInputText;
+    if (usedText) {
+      setLastTranslatedInput(usedText);
+    }
   };
 
   const currentPayload = useMemo(() => {
@@ -93,17 +104,24 @@ export default function TranslatePage() {
 
   const savedMatch = currentPayload ? findMatchingPhrase(currentPayload) : undefined;
   const isCurrentSaved = Boolean(savedMatch);
-  const inputChanged = inputText.trim() !== lastTranslatedInput && inputText.trim().length > 0;
+  const inputChanged = resolvedInputText !== lastTranslatedInput && resolvedInputText.length > 0;
   const showStickyButton = inputChanged && !translatedText;
   const showInlineMobileButton = !showStickyButton;
 
   useEffect(() => {
-    if (inputText.trim()) return;
+    if (normalizedInputText) {
+      setFallbackInputText('');
+      return;
+    }
     const pendingValue = textareaRef.current?.value?.trim() ?? '';
     if (pendingValue) {
-      setInputText(pendingValue.slice(0, MAX_CHARACTERS));
+      const trimmed = pendingValue.slice(0, MAX_CHARACTERS);
+      setFallbackInputText(trimmed);
+      setInputText(trimmed);
+      return;
     }
-  }, [inputText, setInputText]);
+    setFallbackInputText('');
+  }, [normalizedInputText, setInputText]);
 
   const handleSaveToggle = () => {
     if (!currentPayload) return;
@@ -233,7 +251,7 @@ export default function TranslatePage() {
             type="submit"
             size="lg"
             className="sm:hidden w-full min-h-[48px] bg-gradient-to-r from-primary to-amber-500 text-lg font-bold text-slate-950"
-            disabled={isTranslating || !inputText.trim()}
+            disabled={isTranslating || !resolvedInputText}
             data-testid="translate-submit-mobile"
           >
             {isTranslating ? <><Loader2 className="mr-2 h-5 w-5 animate-spin" />{t('translatingStatus')}</> : t('translateButton')}
@@ -303,7 +321,7 @@ export default function TranslatePage() {
             onClick={(e) => { e.preventDefault(); void handleTranslate(e as unknown as FormEvent<HTMLFormElement>); }}
             size="lg"
             className="w-full min-h-[48px] bg-gradient-to-r from-primary to-amber-500 text-lg font-bold text-slate-950"
-            disabled={isTranslating}
+            disabled={isTranslating || !resolvedInputText}
             data-testid="translate-submit-sticky"
           >
             {isTranslating ? <><Loader2 className="mr-2 h-5 w-5 animate-spin" />{t('translatingStatus')}</> : t('translateButton')}
