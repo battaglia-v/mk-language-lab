@@ -32,12 +32,14 @@ test.describe('i18n Regression Tests', () => {
     await page.waitForLoadState('networkidle');
 
     // Check for the 30-Day Challenge section
-    const challengeSection = page.getByText('30-Day Reading Challenge');
+    const challengeSection = page.getByTestId('reader-30day-section');
     await expect(challengeSection).toBeVisible();
+    await expect(
+      challengeSection.getByRole('heading', { name: '30-Day Reading Challenge' })
+    ).toBeVisible();
 
     // Verify "The Little Prince" reference
-    const littlePrince = page.getByText(/Little Prince|Малиот Принц/i);
-    await expect(littlePrince).toBeVisible();
+    await expect(challengeSection).toContainText(/Little Prince|Малиот Принц/i);
   });
 
   test('alphabet lesson should not display raw translation keys', async ({ page }) => {
@@ -70,8 +72,9 @@ test.describe('i18n Regression Tests', () => {
     expect(pageContent).not.toContain('upgrade.monthlyDesc');
 
     // Verify actual content
-    expect(pageContent).toContain('Upgrade to Pro');
-    expect(pageContent).toContain('$4.99');
+    const hero = page.getByTestId('upgrade-hero');
+    await expect(hero).toContainText('The app is free for launch');
+    await expect(hero).toContainText('full access for free');
   });
 
   test('30-day sample page should load without 404', async ({ page }) => {
