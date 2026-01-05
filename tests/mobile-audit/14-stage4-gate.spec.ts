@@ -89,8 +89,12 @@ test.describe('Stage 4 gate - critical journeys', () => {
     await input.type('Hello', { delay: 20 });
     await expect(input).toHaveValue('Hello');
 
+    const submitSticky = page.getByTestId('translate-submit-sticky');
     const submitMobile = page.getByTestId('translate-submit-mobile');
-    if (await submitMobile.isVisible()) {
+    if (await submitSticky.isVisible()) {
+      await expect(submitSticky).toBeEnabled();
+      await submitSticky.click();
+    } else if (await submitMobile.isVisible()) {
       await expect(submitMobile).toBeEnabled();
       await submitMobile.click();
     } else {

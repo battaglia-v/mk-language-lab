@@ -8,21 +8,17 @@
 - Workers: 1
 - Retries: 1
 - Timeouts: test 60s, expect 15s, global 15m
-- Tests: 7 total (3 passed, 4 failed)
+- Tests: 7 total (7 passed, 0 failed)
 - Result: Completed without global timeout
 
 ## Pass/Fail Summary
-- Passed: home loads, bottom nav navigation, paths hub opens a detail
-- Failed: A2 level toggle, Word Sprint start/exit, Reader word sheet, Translate submit
+- Passed: home loads, bottom nav navigation, level toggle A1↔A2, paths hub opens a detail, word sprint start/exit, reader word sheet, translate submit
+- Failed: none
 
 ## Failures
 | Test | Failure | Screenshot | Trace |
 | --- | --- | --- | --- |
-| Learn level toggle switches between A1 and A2 | A2 title never appears after selecting Intermediate | `test-results/playwright/14-stage4-gate-Stage-4-gat-43bb5--switches-between-A1-and-A2-mobile-audit/test-failed-1.png` | `test-results/playwright/14-stage4-gate-Stage-4-gat-43bb5--switches-between-A1-and-A2-mobile-audit-retry1/trace.zip` |
-| Word Sprint starts and exits | Start session never shows exit control | `test-results/playwright/14-stage4-gate-Stage-4-gat-a63a3-ord-sprint-starts-and-exits-mobile-audit/test-failed-1.png` | `test-results/playwright/14-stage4-gate-Stage-4-gat-a63a3-ord-sprint-starts-and-exits-mobile-audit-retry1/trace.zip` |
-| Reader sample opens and word sheet toggles | Word tap never opens bottom sheet | `test-results/playwright/14-stage4-gate-Stage-4-gat-c0994-pens-and-word-sheet-toggles-mobile-audit/test-failed-1.png` | `test-results/playwright/14-stage4-gate-Stage-4-gat-c0994-pens-and-word-sheet-toggles-mobile-audit-retry1/trace.zip` |
-| Translate smoke | Translate button remains disabled after input | `test-results/playwright/14-stage4-gate-Stage-4-gat-808c1-al-journeys-translate-smoke-mobile-audit/test-failed-1.png` | `test-results/playwright/14-stage4-gate-Stage-4-gat-808c1-al-journeys-translate-smoke-mobile-audit-retry1/trace.zip` |
+None.
 
 ## Notes
-- Fixes are implemented locally and pending deploy: level toggle link fallback, Word Sprint start link fallback, reader tap handling (touch-move threshold + click fallback), translate input hydration sync.
-- Suspected deploy lag: A2 toggle, Word Sprint start/exit, reader word sheet, and translate submit remain failing on production until new build is live.
+- Deploy now includes the Level toggle, Word Sprint start/exit, reader tap fixes, and translate CTA selection; all Stage 4 tests pass on production.
