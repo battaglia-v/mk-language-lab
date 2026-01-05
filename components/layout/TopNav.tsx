@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
-import { Flame, Heart, Loader2, AlertCircle, ArrowRight } from 'lucide-react';
+import { Flame, Heart, Loader2, AlertCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AjvarLogo } from '@/components/AjvarLogo';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
@@ -217,22 +217,14 @@ function MissionSummaryBanner({ mission, state, error, onRefresh, t, buildHref }
         </div>
       </div>
 
-      <div className="flex w-full flex-col gap-2 md:w-[240px]">
+      <div className="flex w-full md:w-[240px]">
         <Link
           href={buildHref('/practice')}
           data-testid="topnav-quick-practice"
-          className="flex min-h-[48px] flex-col justify-center rounded-xl bg-[var(--brand-red)] px-4 py-2.5 text-white shadow-lg shadow-[rgba(255,79,94,0.35)] transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-red)] focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:rounded-2xl sm:py-3"
+          className="flex w-full min-h-[48px] flex-col justify-center rounded-xl bg-[var(--brand-red)] px-4 py-2.5 text-white shadow-lg shadow-[rgba(255,79,94,0.35)] transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-red)] focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:rounded-2xl sm:py-3"
         >
           <span className="text-sm font-semibold">{t('quickActionPractice')}</span>
           <span className="text-xs text-white/85">{continueSubtitle}</span>
-        </Link>
-        <Link
-          href={buildHref('/translate')}
-          data-testid="topnav-quick-translate"
-          className="flex min-h-[48px] items-center justify-between rounded-xl border border-border/70 bg-background/80 px-4 py-2.5 text-sm font-semibold text-foreground transition hover:border-[var(--brand-red)] hover:text-[var(--brand-red)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-red)] focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:rounded-2xl sm:py-3"
-        >
-          <span>{t('quickActionTranslate')}</span>
-          <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { test, expect, MOBILE_VIEWPORT, expectUrlChangeOrDialog, getElementState, ALL_ROUTES } from '../mobile-audit/_helpers';
+import { test, expect, MOBILE_VIEWPORT, expectUrlChangeOrDialog, getElementState, ALL_ROUTES, waitForInteractive } from '../mobile-audit/_helpers';
 
 test.use({ viewport: MOBILE_VIEWPORT });
 
@@ -142,6 +142,7 @@ test.describe('@slow Critical Button Validation', () => {
 
   test('Translate - translate button triggers action', async ({ page }) => {
     await page.goto('/en/translate', { waitUntil: 'domcontentloaded' });
+    await waitForInteractive(page);
 
     // Fill input first
     const input = page.getByTestId('translate-input');
@@ -153,12 +154,32 @@ test.describe('@slow Critical Button Validation', () => {
     const submitSticky = page.getByTestId('translate-submit-sticky');
     const submitMobile = page.getByTestId('translate-submit-mobile');
     const submitDesktop = page.getByTestId('translate-submit-desktop');
+
+    await page.waitForFunction(
+      () => {
+        const ids = ['translate-submit-sticky', 'translate-submit-mobile', 'translate-submit-desktop'];
+        return ids.some((id) => {
+          const el = document.querySelector(`[data-testid="${id}"]`);
+          return el && !el.hasAttribute('disabled');
+        });
+      },
+      { timeout: 2000 }
+    );
+
+    const isEnabledVisible = async (locator: ReturnType<typeof page.getByTestId>) => {
+      try {
+        return (await locator.isVisible()) && (await locator.isEnabled());
+      } catch {
+        return false;
+      }
+    };
+
     let submit = submitSticky;
-    if (await submitSticky.isVisible()) {
+    if (await isEnabledVisible(submitSticky)) {
       submit = submitSticky;
-    } else if (await submitMobile.isVisible()) {
+    } else if (await isEnabledVisible(submitMobile)) {
       submit = submitMobile;
-    } else {
+    } else if (await isEnabledVisible(submitDesktop)) {
       submit = submitDesktop;
     }
     await expect(submit).toBeVisible();
