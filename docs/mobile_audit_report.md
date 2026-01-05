@@ -1,7 +1,7 @@
 # Stage 4 Mobile Audit Report
 
 ## Run Details (Production)
-- Base URL: https://mklanguage.com
+- Base URL: https://mklanguage.com (apex; www redirects here)
 - Viewport: iPhone 12 (390x844)
 - Project: mobile-audit
 - Command: `PLAYWRIGHT_BASE_URL=https://mklanguage.com npm run audit:stage4`
