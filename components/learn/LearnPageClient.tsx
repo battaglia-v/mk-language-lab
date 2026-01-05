@@ -193,17 +193,18 @@ export function LearnPageClient({
                 aria-current={activeLevel === 'beginner' ? 'page' : undefined}
                 aria-pressed={activeLevel === 'beginner'}
                 className={cn(
-                  'flex-1 flex items-center gap-2 rounded-lg px-3 py-3 text-left transition-all min-h-[44px]',
+                  'flex-1 flex flex-col gap-1 rounded-lg px-3 py-3 text-left transition-all min-h-[44px]',
                   activeLevel === 'beginner'
                     ? 'bg-background text-foreground shadow-sm'
                     : 'text-muted-foreground hover:text-foreground'
                 )}
               >
-                <GraduationCap className="h-4 w-4 shrink-0" />
-                <div className="flex flex-col leading-tight">
+                <div className="flex items-center gap-2">
+                  <GraduationCap className="h-4 w-4 shrink-0" />
                   <span className="text-sm font-semibold">{t('basics')}</span>
                   <span className="text-[10px] uppercase tracking-wide text-muted-foreground">A1</span>
                 </div>
+                <span className="text-[11px] text-muted-foreground pl-6">{t('recommendedBeginner')}</span>
               </Link>
               <Link
                 href={`/${locale}/learn?level=intermediate`}
@@ -216,17 +217,18 @@ export function LearnPageClient({
                 aria-current={activeLevel === 'intermediate' ? 'page' : undefined}
                 aria-pressed={activeLevel === 'intermediate'}
                 className={cn(
-                  'flex-1 flex items-center gap-2 rounded-lg px-3 py-3 text-left transition-all min-h-[44px]',
+                  'flex-1 flex flex-col gap-1 rounded-lg px-3 py-3 text-left transition-all min-h-[44px]',
                   activeLevel === 'intermediate'
                     ? 'bg-background text-foreground shadow-sm'
                     : 'text-muted-foreground hover:text-foreground'
                 )}
               >
-                <Sparkles className="h-4 w-4 shrink-0" />
-                <div className="flex flex-col leading-tight">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="h-4 w-4 shrink-0" />
                   <span className="text-sm font-semibold">{t('speaking')}</span>
                   <span className="text-[10px] uppercase tracking-wide text-muted-foreground">A2</span>
                 </div>
+                <span className="text-[11px] text-muted-foreground pl-6">{t('recommendedIntermediate')}</span>
               </Link>
             </div>
           </div>
