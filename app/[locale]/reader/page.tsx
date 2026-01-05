@@ -194,6 +194,8 @@ export default function ReaderPage() {
                       variant="outline"
                       size="sm"
                       onClick={() => setSelectedDifficulty(selectedDifficulty === level ? null : level)}
+                      aria-pressed={selectedDifficulty === level}
+                      data-active={selectedDifficulty === level ? 'true' : 'false'}
                       className={cn(
                         'rounded-full h-7 px-3 text-xs font-medium transition-all',
                         selectedDifficulty === level

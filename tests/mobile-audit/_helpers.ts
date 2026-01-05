@@ -1,4 +1,4 @@
-import { Page, expect as baseExpect, test as base } from '@playwright/test';
+import { Page, Locator, expect as baseExpect, test as base } from '@playwright/test';
 import { bypassNetworkInterstitial } from '../../e2e/helpers/network-interstitial';
 
 export const test = base.extend({
@@ -75,20 +75,38 @@ export async function assertNoRawTranslationKeys(page: Page): Promise<void> {
 /**
  * Expect URL to change or a dialog/overlay to appear after click
  */
+export type ElementState = {
+  ariaPressed: string | null;
+  ariaSelected: string | null;
+  ariaExpanded: string | null;
+  dataState: string | null;
+  dataActive: string | null;
+};
+
+export async function getElementState(element?: Locator): Promise<ElementState | null> {
+  if (!element) return null;
+  try {
+    return {
+      ariaPressed: await element.getAttribute('aria-pressed'),
+      ariaSelected: await element.getAttribute('aria-selected'),
+      ariaExpanded: await element.getAttribute('aria-expanded'),
+      dataState: await element.getAttribute('data-state'),
+      dataActive: await element.getAttribute('data-active'),
+    };
+  } catch {
+    return null;
+  }
+}
+
 export async function expectUrlChangeOrDialog(
   page: Page,
   beforeUrl: string,
-  timeout = 2000
+  options?: { element?: Locator; beforeState?: ElementState | null; timeout?: number }
 ): Promise<void> {
-  // Wait a bit for navigation or dialog
-  await page.waitForTimeout(300);
-
-  const afterUrl = page.url();
-  if (afterUrl !== beforeUrl) {
-    return; // URL changed, action worked
-  }
-
-  // Check for common dialog/overlay indicators
+  const timeout = options?.timeout ?? 3000;
+  const target = options?.element;
+  const startedAt = Date.now();
+  const beforeState = options?.beforeState ?? await getElementState(target);
   const dialogSelectors = [
     '[role="dialog"]',
     '[role="alertdialog"]',
@@ -103,17 +121,34 @@ export async function expectUrlChangeOrDialog(
     '[class*="Sheet"]',
   ];
 
-  for (const selector of dialogSelectors) {
-    const dialog = page.locator(selector);
-    if (await dialog.count() > 0 && await dialog.first().isVisible()) {
-      return; // Dialog appeared, action worked
+  while (Date.now() - startedAt < timeout) {
+    if (page.url() !== beforeUrl) {
+      return;
     }
-  }
 
-  // Check if any new content appeared (state change)
-  const newContent = await page.locator('[data-state="open"], [aria-expanded="true"]').count();
-  if (newContent > 0) {
-    return;
+    if (target) {
+      const afterState = await getElementState(target);
+      if (beforeState && !afterState) {
+        return;
+      }
+      if (beforeState && afterState && JSON.stringify(beforeState) !== JSON.stringify(afterState)) {
+        return;
+      }
+    }
+
+    for (const selector of dialogSelectors) {
+      const dialog = page.locator(selector);
+      if (await dialog.count() > 0 && await dialog.first().isVisible()) {
+        return;
+      }
+    }
+
+    const newContent = await page.locator('[data-state="open"], [aria-expanded="true"]').count();
+    if (newContent > 0) {
+      return;
+    }
+
+    await page.waitForTimeout(150);
   }
 
   throw new Error('No URL change or dialog detected');
