@@ -1,10 +1,10 @@
 # Stage 4 Mobile Audit Report
 
 ## Run Details (Production)
-- Base URL: https://www.mklanguage.com
+- Base URL: https://mklanguage.com
 - Viewport: iPhone 12 (390x844)
 - Project: mobile-audit
-- Command: `PLAYWRIGHT_BASE_URL=https://www.mklanguage.com npm run audit:stage4`
+- Command: `PLAYWRIGHT_BASE_URL=https://mklanguage.com npm run audit:stage4`
 - Workers: 1
 - Retries: 1
 - Timeouts: test 60s, expect 15s, global 15m
@@ -21,4 +21,4 @@
 None.
 
 ## Notes
-- Deploy now includes the Level toggle, Word Sprint start/exit, reader tap fixes, and translate CTA selection; all Stage 4 tests pass on production.
+- No deploy lag observed; Stage 4 gate passes on production.
