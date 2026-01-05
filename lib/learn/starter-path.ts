@@ -82,27 +82,26 @@ export const starterPathNodes: LessonNode[] = [
 /**
  * Create a starter path with progress applied
  *
- * Note: All lessons are now unlocked by default for free navigation.
- * Users can start anywhere - no forced sequential locking.
+ * Note: Lessons are sequential - only the next lesson is available,
+ * and future lessons stay locked until prior ones are completed.
  */
 export function createStarterPath(completedNodeIds: string[] = []): LessonPath {
-  // Apply completion status - all nodes are available (no locking)
+  const firstIncompleteIndex = starterPathNodes.findIndex(
+    (node) => !completedNodeIds.includes(node.id)
+  );
+  const nextIndex = firstIncompleteIndex === -1 ? starterPathNodes.length : firstIncompleteIndex;
+
   const nodes = starterPathNodes.map((node, index) => {
     const isCompleted = completedNodeIds.includes(node.id);
-
-    // Find the first incomplete node to highlight as "next"
-    const firstIncompleteIndex = starterPathNodes.findIndex(
-      (n) => !completedNodeIds.includes(n.id)
-    );
 
     let status = node.status;
     if (isCompleted) {
       status = 'completed';
-    } else if (index === firstIncompleteIndex) {
-      // Highlight next recommended lesson
+    } else if (index === nextIndex) {
       status = 'available';
+    } else if (index > nextIndex) {
+      status = 'locked';
     } else {
-      // All other lessons are available (not locked)
       status = 'available';
     }
 
