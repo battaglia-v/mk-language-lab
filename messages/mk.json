@@ -1118,6 +1118,10 @@
     "hub": {
       "title": "Вежбај",
       "subtitle": "Избери брза сесија (2–5 мин)",
+      "recommendedTitle": "Почни тука",
+      "recommendedSubtitle": "Најдобар следен чекор за денес",
+      "recommendedBadge": "Препорачано",
+      "moreModesTitle": "Повеќе начини за вежбање",
       "settingsLink": "Поставки",
       "emptyDeck": "Нема картички"
     },

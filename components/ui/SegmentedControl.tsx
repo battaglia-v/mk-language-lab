@@ -38,7 +38,7 @@ export function SegmentedControl<T extends string>({
           aria-pressed={value === opt.value}
           data-testid={testId ? `${testId}-${opt.value}` : undefined}
           className={cn(
-            'min-w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap rounded-lg font-medium transition-all',
+            'min-h-[44px] min-w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap rounded-lg font-medium transition-all',
             size === 'sm' ? 'px-3 py-1.5 text-xs' : 'px-3 py-2 text-xs sm:px-4 sm:py-2 sm:text-sm',
             value === opt.value
               ? 'bg-background text-foreground shadow-sm'
