@@ -23,6 +23,7 @@ const eslintConfig = [
       "public/**",
       "coverage/**",
       ".vercel/**",
+      "apps/mobile/.expo/**",
       "next-env.d.ts",
       "e2e/**",
       "**/*.config.js",

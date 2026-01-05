@@ -56,7 +56,6 @@ async function getDigitalGoodsService(): Promise<DigitalGoodsService | null> {
 
 function getPaymentRequestCtor(): typeof PaymentRequest | null {
   if (typeof window === 'undefined') return null;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const ctor = (window as any).PaymentRequest as typeof PaymentRequest | undefined;
   return typeof ctor === 'function' ? ctor : null;
 }
@@ -105,11 +104,9 @@ export function isGooglePlayBillingAvailable(): boolean {
   if (typeof window === 'undefined') return false;
   
   // Preferred: Digital Goods API (TWA via Play Billing)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   if (typeof (window as any).getDigitalGoodsService === 'function') return true;
 
   // Fallback: custom native bridge (not provided by Bubblewrap defaults)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return typeof (window as any).Android?.launchBillingFlow === 'function';
 }
 
@@ -137,7 +134,6 @@ async function launchPurchaseFlowWithPaymentRequest(productId: string): Promise<
   try {
     // For Google Play Billing, Chrome handles pricing; total is a required placeholder.
     // Google Play Billing requires specific Payment API types that don't match standard types
-    /* eslint-disable @typescript-eslint/no-explicit-any */
     const methodData = {
       supportedMethods: PLAY_BILLING_PAYMENT_METHOD,
       data: {
@@ -152,12 +148,10 @@ async function launchPurchaseFlowWithPaymentRequest(productId: string): Promise<
         amount: { currency: 'USD', value: '0.00' },
       },
     } as any;
-    /* eslint-enable @typescript-eslint/no-explicit-any */
 
     const request = new PaymentRequestCtor([methodData], paymentDetails);
 
     const response = await request.show();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const details = (response as any).details ?? {};
 
     const purchaseToken = details.purchaseToken ?? details.token ?? null;

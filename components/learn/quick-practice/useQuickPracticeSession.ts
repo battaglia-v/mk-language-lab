@@ -592,6 +592,7 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
   }, [
     applyAttempt,
     currentItem,
+    currentItemKey,
     direction,
     showCompletionModal,
     showGameOverModal,
