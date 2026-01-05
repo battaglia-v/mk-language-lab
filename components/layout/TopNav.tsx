@@ -84,7 +84,7 @@ export function TopNav({
 
       <nav
         className={cn(
-          'nav-surface w-full border-b border-white/10 bg-[var(--mk-bg-surface)]/95 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.45)] text-white',
+          'nav-surface w-full border-b border-border/50 bg-background/95 backdrop-blur-xl shadow-sm',
           sticky && 'sticky safe-top',
           className
         )}
@@ -98,7 +98,7 @@ export function TopNav({
             data-testid="topnav-home"
           >
             <AjvarLogo size={32} />
-            <span className="text-base font-semibold text-white">{brandLabel}</span>
+            <span className="text-base font-semibold text-foreground">{brandLabel}</span>
           </Link>
 
           <div className="flex items-center gap-2 lg:gap-3">
