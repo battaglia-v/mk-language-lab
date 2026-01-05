@@ -1118,6 +1118,10 @@
     "hub": {
       "title": "Practice",
       "subtitle": "Pick a quick session (2–5 min)",
+      "recommendedTitle": "Start here",
+      "recommendedSubtitle": "Best next step for today",
+      "recommendedBadge": "Recommended",
+      "moreModesTitle": "More ways to practice",
       "settingsLink": "Settings",
       "emptyDeck": "No cards yet"
     },

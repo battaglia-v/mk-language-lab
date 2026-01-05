@@ -152,8 +152,8 @@ export default function TranslatePage() {
         <h1 className="text-2xl font-bold">{t('title', { default: 'Translate' })}</h1>
         <Button
           variant="ghost"
-          size="icon"
-          className="h-10 w-10 rounded-full"
+          size="icon-sm"
+          className="rounded-full"
           onClick={() => setMoreOpen(true)}
           data-testid="translate-more-open"
         >
@@ -171,14 +171,17 @@ export default function TranslatePage() {
           ariaLabel={t('directionsGroupLabel', { default: 'Translation direction' })}
           testId="translate-direction"
         />
-        <button
+        <Button
+          type="button"
+          variant="outline"
+          size="icon-sm"
+          className="rounded-xl border-border/40 bg-muted/30 text-muted-foreground hover:bg-muted hover:text-foreground"
           onClick={handleSwapDirections}
-          className="flex h-10 w-10 items-center justify-center rounded-xl border border-border/40 bg-muted/30 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
           aria-label={t('swapDirections', { default: 'Swap' })}
           data-testid="translate-swap-directions"
         >
           <ArrowLeftRight className="h-4 w-4" />
-        </button>
+        </Button>
       </div>
 
       {/* Input */}
@@ -190,15 +193,15 @@ export default function TranslatePage() {
             onChange={(e) => setInputText(e.target.value.slice(0, MAX_CHARACTERS))}
             placeholder={selectedDirection?.placeholder}
             maxLength={MAX_CHARACTERS}
-            className="min-h-[140px] resize-none rounded-2xl border-border/40 bg-muted/20 p-4 text-base placeholder:text-muted-foreground focus-visible:ring-primary/40"
+            className="min-h-[140px] resize-none rounded-2xl border-border/40 bg-muted/20 p-4 pr-24 pb-14 text-base placeholder:text-muted-foreground focus-visible:ring-primary/40"
             data-testid="translate-input"
           />
           <div className="absolute bottom-3 right-3 flex gap-1">
             <Button
               type="button"
               variant="ghost"
-              size="icon"
-              className="h-8 w-8"
+              size="icon-sm"
+              className="rounded-xl"
               onClick={handlePaste}
               aria-label={t('paste', { default: 'Paste text' })}
               data-testid="translate-paste"
@@ -209,8 +212,8 @@ export default function TranslatePage() {
               <Button
                 type="button"
                 variant="ghost"
-                size="icon"
-                className="h-8 w-8"
+                size="icon-sm"
+                className="rounded-xl"
                 onClick={handleClear}
                 aria-label={t('clearButton', { default: 'Clear' })}
                 data-testid="translate-clear"

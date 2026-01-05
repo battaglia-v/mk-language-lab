@@ -312,7 +312,7 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
               variant="ghost"
               size="sm"
               onClick={speak}
-              className={cn('h-9 rounded-full', isSpeaking && 'text-primary')}
+              className={cn('h-11 rounded-full px-4', isSpeaking && 'text-primary')}
               data-testid="word-sprint-listen"
             >
               <Volume2 className="h-4 w-4 mr-2" />Listen
@@ -343,7 +343,7 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
 
       {feedback === 'incorrect' && (
         <footer className="border-t border-border/40 px-4 py-3 safe-bottom">
-          <Button className="w-full min-h-[48px] rounded-xl" onClick={goNext} data-testid="word-sprint-continue">
+          <Button className="w-full min-h-[52px] rounded-xl" onClick={goNext} data-testid="word-sprint-continue">
             Continue
           </Button>
         </footer>

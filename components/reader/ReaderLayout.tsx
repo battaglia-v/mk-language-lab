@@ -38,7 +38,7 @@ export function ReaderLayout({ sample, locale }: ReaderLayoutProps) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div className="sticky top-0 z-30 -mx-4 border-b border-border/40 bg-background/90 px-4 py-3 backdrop-blur">
         <div className="flex items-center gap-2">
           <Button asChild variant="ghost" size="sm" className="gap-1 px-3">
@@ -130,14 +130,16 @@ export function ReaderLayout({ sample, locale }: ReaderLayoutProps) {
         </div>
       )}
 
-      <section className="rounded-2xl border border-border/40 bg-card p-4">
-        <div className="space-y-1 border-b border-border/30 pb-3">
+      <section className="rounded-2xl border border-border/40 bg-card p-5">
+        <div className="space-y-1 border-b border-border/30 pb-4">
           <h2 className="text-base font-semibold text-foreground">Reading</h2>
           <p className="text-xs text-muted-foreground">
-            {locale === 'mk' ? 'Допрете збор за превод' : 'Tap any word for translation'}
+            {locale === 'mk'
+              ? 'Допрете збор за превод, па зачувајте го во речник'
+              : 'Tap any word for translation, then save it to your glossary'}
           </p>
         </div>
-        <div className="space-y-4 pt-4">
+        <div className="space-y-5 pt-5">
           {sample.text_blocks_mk.map((block, idx) => {
             if (block.type === 'p') {
               return (
@@ -181,7 +183,9 @@ export function ReaderLayout({ sample, locale }: ReaderLayoutProps) {
             testId="reader-vocabulary-section"
           >
             {sample.vocabulary.length === 0 ? (
-              <p className="text-sm text-muted-foreground">No vocabulary listed yet.</p>
+              <p className="text-sm text-muted-foreground">
+                No vocabulary listed yet. Tap words in the text to save them.
+              </p>
             ) : (
               <div className="space-y-2">
                 {sample.vocabulary.map((vocab, idx) => (
@@ -206,7 +210,9 @@ export function ReaderLayout({ sample, locale }: ReaderLayoutProps) {
             testId="reader-grammar-section"
           >
             {sample.grammar_highlights.length === 0 ? (
-              <p className="text-sm text-muted-foreground">No grammar notes for this text.</p>
+              <p className="text-sm text-muted-foreground">
+                No grammar notes yet. Focus on reading and check back later.
+              </p>
             ) : (
               <div className="space-y-3">
                 {sample.grammar_highlights.map((highlight, idx) => (
@@ -259,7 +265,7 @@ export function ReaderLayout({ sample, locale }: ReaderLayoutProps) {
           </CollapsibleSection>
 
           <div className="space-y-3">
-            <div className="rounded-2xl border border-primary/30 bg-primary/5 p-4 space-y-3">
+            <div className="rounded-2xl border border-border/40 bg-card/60 p-5 space-y-3">
               <div className="space-y-1 text-center">
                 <h3 className="text-lg font-semibold">Analyze This Text</h3>
                 <p className="text-sm text-muted-foreground">
@@ -269,7 +275,7 @@ export function ReaderLayout({ sample, locale }: ReaderLayoutProps) {
               <QuickAnalyzeButton sample={sample} locale={locale} />
             </div>
 
-            <div className="rounded-2xl border border-border/40 bg-card p-4 space-y-3">
+            <div className="rounded-2xl border border-primary/30 bg-primary/5 p-5 space-y-3">
               <div className="space-y-1">
                 <h3 className="text-lg font-semibold">Finished Reading?</h3>
                 <p className="text-sm text-muted-foreground">
@@ -302,8 +308,8 @@ function CollapsibleSection({
     <section className="rounded-2xl border border-border/40 bg-card">
       <button
         type="button"
-        onClick={() => setOpen((current) => !current)}
-        className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left"
+      onClick={() => setOpen((current) => !current)}
+        className="flex w-full min-h-[52px] items-center justify-between gap-3 px-4 py-4 text-left transition-colors hover:bg-muted/20"
         aria-expanded={open}
         data-testid={testId}
       >

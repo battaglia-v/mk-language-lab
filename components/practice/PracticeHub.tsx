@@ -77,6 +77,8 @@ export function PracticeHub() {
       disabledReason: t('savedDeck.lockedReason', { default: 'Save a phrase in Translate to unlock.' }),
     },
   ];
+  const recommendedMode = modes.find((modeConfig) => modeConfig.id === 'wordSprint');
+  const otherModes = modes.filter((modeConfig) => modeConfig.id !== 'wordSprint');
 
   return (
     <div className="flex flex-col gap-6">
@@ -93,7 +95,7 @@ export function PracticeHub() {
         <Button
           variant="ghost"
           size="sm"
-          className="h-9 gap-1.5 rounded-full text-muted-foreground"
+          className="gap-1.5 rounded-full text-muted-foreground"
           onClick={() => setSettingsOpen(true)}
           data-testid="practice-settings-open"
         >
@@ -102,16 +104,38 @@ export function PracticeHub() {
         </Button>
       </header>
 
-      {/* Practice Mode Cards - Full width, one per row */}
-      <div className="flex flex-col gap-3">
-        {modes.map((modeConfig) => (
+      {/* Recommended */}
+      {recommendedMode && (
+        <section className="space-y-3">
+          <div className="space-y-1">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              {t('hub.recommendedTitle')}
+            </p>
+            <p className="text-sm text-muted-foreground">{t('hub.recommendedSubtitle')}</p>
+          </div>
           <PracticeModeCard
-            key={modeConfig.id}
-            config={modeConfig}
+            config={recommendedMode}
             t={t}
+            highlightLabel={t('hub.recommendedBadge')}
           />
-        ))}
-      </div>
+        </section>
+      )}
+
+      {/* More practice modes */}
+      <section className="space-y-3">
+        <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+          {t('hub.moreModesTitle')}
+        </p>
+        <div className="flex flex-col gap-3">
+          {otherModes.map((modeConfig) => (
+            <PracticeModeCard
+              key={modeConfig.id}
+              config={modeConfig}
+              t={t}
+            />
+          ))}
+        </div>
+      </section>
 
       {/* Settings Bottom Sheet */}
       <BottomSheet
@@ -236,9 +260,11 @@ export function PracticeHub() {
 function PracticeModeCard({
   config,
   t,
+  highlightLabel,
 }: {
   config: PracticeModeConfig;
   t: ReturnType<typeof useTranslations<'practiceHub'>>;
+  highlightLabel?: string;
 }) {
   const Icon = config.icon;
   const testId = `practice-mode-${config.id}`;
@@ -294,7 +320,12 @@ function PracticeModeCard({
       </div>
 
       {/* Metadata: time + XP */}
-      <div className="flex flex-col items-end gap-1 min-w-[64px] max-w-[96px] text-right">
+      <div className="flex flex-col items-end gap-1.5 min-w-[64px] max-w-[96px] text-right">
+        {highlightLabel && (
+          <span className="rounded-full border border-primary/30 bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">
+            {highlightLabel}
+          </span>
+        )}
         <span className="text-xs text-muted-foreground sm:flex sm:items-center sm:gap-1">
           <Clock className="hidden h-3 w-3 sm:inline" aria-hidden="true" />
           {time}
