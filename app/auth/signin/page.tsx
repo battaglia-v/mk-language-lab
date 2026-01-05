@@ -4,6 +4,7 @@ import { Suspense, useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { AjvarLogo } from '@/components/AjvarLogo';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -123,15 +124,8 @@ function SignInContent() {
         <div className="w-full max-w-sm space-y-8">
           {/* App branding */}
           <div className="text-center space-y-2">
-            <div className="mx-auto h-16 w-16 overflow-hidden rounded-2xl shadow-lg shadow-primary/25">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/icon-192.png"
-                alt="App icon"
-                width={64}
-                height={64}
-                className="h-full w-full object-cover"
-              />
+            <div className="mx-auto flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#FF5A2C] to-[#D63616] shadow-lg shadow-primary/25">
+              <AjvarLogo size={48} simplified={false} />
             </div>
             <h1 className="text-2xl font-bold tracking-tight">Welcome back</h1>
             <p className="text-sm text-muted-foreground">

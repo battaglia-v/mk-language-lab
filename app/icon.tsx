@@ -9,6 +9,10 @@ export const size = {
 
 export const contentType = 'image/png';
 
+/**
+ * Favicon (32x32) - Simplified Ajvar jar with М
+ * Design: Bold, simple shapes that read well at small sizes
+ */
 export default function Icon() {
   return new ImageResponse(
     (
@@ -20,25 +24,26 @@ export default function Icon() {
           alignItems: 'center',
           justifyContent: 'center',
           background: 'linear-gradient(135deg, #FF5A2C 0%, #D63616 100%)',
+          borderRadius: '6px',
         }}
       >
-        {/* Ajvar jar simplified for 32x32 favicon */}
+        {/* Simplified Ajvar jar */}
         <div
           style={{
-            width: 18,
-            height: 22,
+            width: 22,
+            height: 26,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
-          {/* Jar lid */}
+          {/* Jar lid - simplified */}
           <div
             style={{
-              width: 16,
-              height: 3,
+              width: 18,
+              height: 4,
               borderRadius: '1px',
-              background: 'linear-gradient(135deg, #CDD2DB 0%, #A8ADB8 100%)',
+              background: 'linear-gradient(180deg, #E8EAED 0%, #B8BDC6 100%)',
               marginBottom: 1,
             }}
           />
@@ -46,8 +51,8 @@ export default function Icon() {
           {/* Jar body */}
           <div
             style={{
-              width: 18,
-              height: 18,
+              width: 22,
+              height: 21,
               borderRadius: '4px',
               background: '#E63E2A',
               display: 'flex',
@@ -56,50 +61,28 @@ export default function Icon() {
               position: 'relative',
             }}
           >
-            {/* Glass shine effect */}
+            {/* Label with М */}
             <div
               style={{
-                position: 'absolute',
-                top: 2,
-                left: 2,
-                width: 7,
-                height: 10,
-                borderRadius: '50%',
-                background: 'rgba(255, 255, 255, 0.25)',
-              }}
-            />
-
-            {/* Label */}
-            <div
-              style={{
-                width: 10,
-                height: 8,
+                width: 14,
+                height: 12,
                 borderRadius: '2px',
                 background: 'rgba(255, 255, 255, 0.95)',
                 display: 'flex',
-                flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: 1,
               }}
             >
-              {/* Label lines */}
-              <div
+              <span
                 style={{
-                  width: 7,
-                  height: 1,
-                  borderRadius: '1px',
-                  background: 'rgba(44, 62, 80, 0.8)',
+                  fontSize: 10,
+                  fontWeight: 800,
+                  color: '#2C3E50',
+                  fontFamily: 'system-ui, sans-serif',
                 }}
-              />
-              <div
-                style={{
-                  width: 6,
-                  height: 1,
-                  borderRadius: '1px',
-                  background: 'rgba(44, 62, 80, 0.6)',
-                }}
-              />
+              >
+                М
+              </span>
             </div>
           </div>
         </div>
