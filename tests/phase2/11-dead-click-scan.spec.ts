@@ -1,4 +1,4 @@
-import { test, expect, MOBILE_VIEWPORT, expectUrlChangeOrDialog, ALL_ROUTES } from '../mobile-audit/_helpers';
+import { test, expect, MOBILE_VIEWPORT, expectUrlChangeOrDialog, getElementState, ALL_ROUTES } from '../mobile-audit/_helpers';
 
 test.use({ viewport: MOBILE_VIEWPORT });
 
@@ -43,11 +43,18 @@ test.describe('@slow Dead Click Scanner', () => {
           const href = await el.getAttribute('href');
           const disabled = await el.getAttribute('disabled');
           const ariaDisabled = await el.getAttribute('aria-disabled');
+          const ariaPressed = await el.getAttribute('aria-pressed');
+          const ariaSelected = await el.getAttribute('aria-selected');
+          const dataState = await el.getAttribute('data-state');
+          const dataActive = await el.getAttribute('data-active');
 
           // Skip certain elements
           if (!label || label.length < 2) continue;
           if (/cookie|privacy|analytics/i.test(label)) continue;
           if (disabled || ariaDisabled === 'true') continue;
+          if (ariaPressed === 'true' || ariaSelected === 'true' || dataState === 'active' || dataActive === 'true') {
+            continue;
+          }
           if (tagName === 'a' && href && href !== '#') continue; // Links with href are fine
 
           // For buttons without href, test if they do something
@@ -55,13 +62,14 @@ test.describe('@slow Dead Click Scanner', () => {
             const before = page.url();
 
             // Trial click first
+            const beforeState = await getElementState(el);
             await el.click({ trial: true }).catch(() => null);
 
             // Actual click
             await el.click({ timeout: 1000 }).catch(() => null);
 
             try {
-              await expectUrlChangeOrDialog(page, before);
+              await expectUrlChangeOrDialog(page, before, { element: el, beforeState, timeout: 4500 });
             } catch {
               // Dead click detected
               deadClicks.push(`"${label}" at ${route}`);
@@ -94,7 +102,7 @@ test.describe('@slow Critical Button Validation', () => {
   test('Home - Start Learning is not dead', async ({ page }) => {
     await page.goto('/en', { waitUntil: 'domcontentloaded' });
 
-    const btn = page.getByRole('link', { name: /start learning/i }).first();
+    const btn = page.getByTestId('home-start-learning');
     await expect(btn).toBeVisible();
 
     const href = await btn.getAttribute('href');
@@ -105,7 +113,7 @@ test.describe('@slow Critical Button Validation', () => {
   test('Learn - Start today\'s lesson is not dead', async ({ page }) => {
     await page.goto('/en/learn', { waitUntil: 'domcontentloaded' });
 
-    const btn = page.getByRole('link', { name: /start today/i }).first();
+    const btn = page.getByTestId('learn-start-todays-lesson');
     await expect(btn).toBeVisible();
 
     const href = await btn.getAttribute('href');
@@ -115,7 +123,7 @@ test.describe('@slow Critical Button Validation', () => {
   test('Practice - Word Sprint card is not dead', async ({ page }) => {
     await page.goto('/en/practice', { waitUntil: 'domcontentloaded' });
 
-    const card = page.locator('a').filter({ hasText: /word sprint/i }).first();
+    const card = page.getByTestId('practice-mode-wordSprint');
     await expect(card).toBeVisible();
 
     const href = await card.getAttribute('href');
@@ -125,7 +133,7 @@ test.describe('@slow Critical Button Validation', () => {
   test('Reader - sample cards are not dead', async ({ page }) => {
     await page.goto('/en/reader', { waitUntil: 'domcontentloaded' });
 
-    const cards = page.locator('a').filter({ hasText: /cafe|day|challenge/i }).first();
+    const cards = page.getByTestId('reader-sample-cafe-conversation-cta');
     await expect(cards).toBeVisible();
 
     const href = await cards.getAttribute('href');
@@ -136,15 +144,28 @@ test.describe('@slow Critical Button Validation', () => {
     await page.goto('/en/translate', { waitUntil: 'domcontentloaded' });
 
     // Fill input first
-    const input = page.getByRole('textbox').first();
-    await input.fill('Hello');
+    const input = page.getByTestId('translate-input');
+    await input.click();
+    await input.fill('');
+    await input.type('Hello', { delay: 20 });
+    await expect(input).toHaveValue('Hello');
 
-    const btn = page.getByRole('button', { name: /translate/i }).first();
-    await expect(btn).toBeVisible();
-    await expect(btn).not.toBeDisabled();
+    const submitSticky = page.getByTestId('translate-submit-sticky');
+    const submitMobile = page.getByTestId('translate-submit-mobile');
+    const submitDesktop = page.getByTestId('translate-submit-desktop');
+    let submit = submitSticky;
+    if (await submitSticky.isVisible()) {
+      submit = submitSticky;
+    } else if (await submitMobile.isVisible()) {
+      submit = submitMobile;
+    } else {
+      submit = submitDesktop;
+    }
+    await expect(submit).toBeVisible();
+    await expect(submit).toBeEnabled();
 
     // Click should not be dead
-    await btn.click();
+    await submit.click();
 
     // Wait for response
     await page.waitForTimeout(2000);

@@ -133,6 +133,8 @@ export default function SettingsPage() {
           <button
             onClick={() => setTheme('light')}
             data-testid="settings-theme-light"
+            aria-pressed={currentTheme === 'light'}
+            data-active={currentTheme === 'light' ? 'true' : 'false'}
             className={cn(
               'flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
               currentTheme === 'light'
@@ -146,6 +148,8 @@ export default function SettingsPage() {
           <button
             onClick={() => setTheme('dark')}
             data-testid="settings-theme-dark"
+            aria-pressed={currentTheme === 'dark'}
+            data-active={currentTheme === 'dark' ? 'true' : 'false'}
             className={cn(
               'flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
               currentTheme === 'dark'
@@ -168,6 +172,8 @@ export default function SettingsPage() {
           <button
             onClick={() => handleLanguageChange('en')}
             data-testid="settings-language-en"
+            aria-pressed={locale === 'en'}
+            data-active={locale === 'en' ? 'true' : 'false'}
             className={cn(
               'rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
               locale === 'en'
@@ -180,6 +186,8 @@ export default function SettingsPage() {
           <button
             onClick={() => handleLanguageChange('mk')}
             data-testid="settings-language-mk"
+            aria-pressed={locale === 'mk'}
+            data-active={locale === 'mk' ? 'true' : 'false'}
             className={cn(
               'rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
               locale === 'mk'
@@ -203,6 +211,8 @@ export default function SettingsPage() {
               key={goal}
               onClick={() => handleGoalChange(goal)}
               data-testid={`settings-daily-goal-${goal}`}
+              aria-pressed={dailyGoal === goal}
+              data-active={dailyGoal === goal ? 'true' : 'false'}
               className={cn(
                 'rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
                 dailyGoal === goal
