@@ -7,6 +7,10 @@ export const size = {
 
 export const contentType = 'image/png';
 
+/**
+ * Apple Touch Icon (180x180) - Full detail Ajvar jar with М
+ * Design: Traditional Macedonian ajvar jar with learning element
+ */
 export default function AppleIcon() {
   return new ImageResponse(
     (
@@ -20,36 +24,36 @@ export default function AppleIcon() {
           background: 'linear-gradient(135deg, #FF5A2C 0%, #D63616 100%)',
         }}
       >
-        {/* Ajvar jar silhouette */}
+        {/* Ajvar jar with full detail */}
         <div
           style={{
-            width: 90,
-            height: 108,
+            width: 100,
+            height: 120,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
-          {/* Jar lid */}
+          {/* Jar lid with shine */}
           <div
             style={{
-              width: 81,
+              width: 85,
               height: 18,
               borderRadius: '4px',
-              background: 'linear-gradient(135deg, #CDD2DB 0%, #A8ADB8 100%)',
+              background: 'linear-gradient(180deg, #E8EAED 0%, #B8BDC6 100%)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              marginBottom: 2,
+              marginBottom: 3,
             }}
           >
             {/* Lid shine */}
             <div
               style={{
-                width: 54,
-                height: 5,
+                width: 50,
+                height: 6,
                 borderRadius: '3px',
-                background: 'rgba(255, 255, 255, 0.4)',
+                background: 'rgba(255, 255, 255, 0.5)',
               }}
             />
           </div>
@@ -57,68 +61,53 @@ export default function AppleIcon() {
           {/* Jar body */}
           <div
             style={{
-              width: 90,
-              height: 90,
+              width: 100,
+              height: 99,
               borderRadius: '14px',
               background: '#E63E2A',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               position: 'relative',
+              boxShadow: 'inset 3px 3px 10px rgba(255, 255, 255, 0.2)',
             }}
           >
             {/* Glass shine effect */}
             <div
               style={{
                 position: 'absolute',
-                top: 10,
-                left: 10,
-                width: 36,
-                height: 54,
+                top: 12,
+                left: 12,
+                width: 30,
+                height: 50,
                 borderRadius: '50%',
-                background: 'rgba(255, 255, 255, 0.2)',
+                background: 'rgba(255, 255, 255, 0.15)',
               }}
             />
 
-            {/* Label */}
+            {/* Label with М */}
             <div
               style={{
-                width: 54,
-                height: 45,
-                borderRadius: '7px',
+                width: 60,
+                height: 50,
+                borderRadius: '8px',
                 background: 'rgba(255, 255, 255, 0.95)',
                 display: 'flex',
-                flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: 5,
+                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
               }}
             >
-              {/* Label text lines */}
-              <div
+              <span
                 style={{
-                  width: 36,
-                  height: 5,
-                  borderRadius: '3px',
-                  background: 'rgba(44, 62, 80, 0.8)',
+                  fontSize: 36,
+                  fontWeight: 700,
+                  color: '#2C3E50',
+                  fontFamily: 'system-ui, sans-serif',
                 }}
-              />
-              <div
-                style={{
-                  width: 31,
-                  height: 4,
-                  borderRadius: '2px',
-                  background: 'rgba(44, 62, 80, 0.6)',
-                }}
-              />
-              <div
-                style={{
-                  width: 27,
-                  height: 4,
-                  borderRadius: '2px',
-                  background: 'rgba(44, 62, 80, 0.5)',
-                }}
-              />
+              >
+                М
+              </span>
             </div>
           </div>
         </div>
