@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
-import { ArrowLeft, Volume2, Check, Sparkles, BookOpen, Mic, Loader2 } from 'lucide-react';
+import { ArrowLeft, Check, Sparkles, BookOpen, Mic, Loader2, Volume2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -139,50 +139,12 @@ export default function AlphabetLessonPage() {
     }
   }, [progress, isCompleted, markLessonComplete]);
 
-  const speakLetter = (letter: AlphabetLetter) => {
-    // Mark as viewed immediately (even if audio fails)
+  const markLetterViewed = (letter: AlphabetLetter) => {
+    // Mark as viewed (audio coming soon - no TTS)
     setViewedLetters(prev => new Set([...prev, letter.id]));
     setPlayingLetter(letter.id);
-
-    // Try to play audio
-    if (window.speechSynthesis) {
-      window.speechSynthesis.cancel();
-
-      // Speak the letter itself
-      const utterance = new SpeechSynthesisUtterance(letter.letter.split(' ')[0]);
-      // Try multiple language codes - not all browsers support sr-RS
-      utterance.lang = 'sr'; // Serbian (simpler code)
-      utterance.rate = 0.7;
-      utterance.onend = () => setPlayingLetter(null);
-      utterance.onerror = () => setPlayingLetter(null);
-
-      // Get available voices and try to find a Slavic one
-      const voices = window.speechSynthesis.getVoices();
-      const slavicVoice = voices.find(v =>
-        v.lang.startsWith('sr') ||
-        v.lang.startsWith('hr') ||
-        v.lang.startsWith('bs') ||
-        v.lang.startsWith('ru')
-      );
-      if (slavicVoice) {
-        utterance.voice = slavicVoice;
-      }
-
-      window.speechSynthesis.speak(utterance);
-    } else {
-      // No speech synthesis - just clear playing state after a delay
-      setTimeout(() => setPlayingLetter(null), 500);
-    }
-  };
-
-  const speakWord = (word: string) => {
-    if (!window.speechSynthesis) return;
-
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(word);
-    utterance.lang = 'sr-RS';
-    utterance.rate = 0.8;
-    window.speechSynthesis.speak(utterance);
+    // Brief visual feedback then clear
+    setTimeout(() => setPlayingLetter(null), 300);
   };
 
   return (
@@ -253,14 +215,14 @@ export default function AlphabetLessonPage() {
                 {/* eslint-disable-next-line react/forbid-elements -- transparent overlay needs raw button */}
                 <button
                   type="button"
-                  aria-label={`Letter ${letter.letter}, ${letter.latinEquiv}. Tap to hear pronunciation.`}
+                  aria-label={`Letter ${letter.letter}, ${letter.latinEquiv}. Tap to mark as viewed.`}
                   data-testid={`alphabet-letter-${letter.id}`}
                   className="absolute inset-0 z-10 cursor-pointer touch-manipulation"
-                  onClick={() => speakLetter(letter)}
+                  onClick={() => markLetterViewed(letter)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
-                      speakLetter(letter);
+                      markLetterViewed(letter);
                     }
                   }}
                 />
@@ -272,24 +234,22 @@ export default function AlphabetLessonPage() {
                     )}
                   </div>
                   <div className="text-4xl sm:text-3xl font-bold mb-1">{letter.letter}</div>
-                  <div className="text-sm text-muted-foreground mb-3">{letter.ipa}</div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="w-full gap-2 text-sm min-h-[44px] pointer-events-auto relative z-20"
-                    data-testid={`alphabet-example-audio-${letter.id}`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      speakWord(letter.exampleWord.mk);
-                    }}
-                  >
-                    <Volume2 className="h-4 w-4" />
-                    {letter.exampleWord.mk}
-                  </Button>
-                  <p className="text-sm text-muted-foreground mt-1">{letter.exampleWord.en}</p>
+                  <div className="text-sm text-muted-foreground mb-2">{letter.ipa}</div>
+                  <div className="text-sm font-medium">{letter.exampleWord.mk}</div>
+                  <p className="text-xs text-muted-foreground">{letter.exampleWord.en}</p>
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          {/* Audio Coming Soon Notice */}
+          <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4">
+            <div className="flex items-start gap-2">
+              <Volume2 className="h-4 w-4 text-amber-400 mt-0.5 shrink-0" />
+              <p className="text-sm text-amber-200">
+                <strong>Native audio coming soon</strong> — we&apos;re recording proper pronunciations. For now, tap letters to mark them as viewed.
+              </p>
+            </div>
           </div>
 
           {/* Pronunciation Notes */}
@@ -302,7 +262,7 @@ export default function AlphabetLessonPage() {
             <CardContent className="space-y-2 text-sm text-muted-foreground">
               <p>{t('tip1', { default: 'Macedonian is phonetic - each letter makes one sound, always.' })}</p>
               <p>{t('tip2', { default: 'The stress usually falls on the third-to-last syllable (antepenultimate).' })}</p>
-              <p>{t('tip3', { default: 'Tap any letter to hear its pronunciation!' })}</p>
+              <p>{t('tip3', { default: 'Use the IPA guides above to learn each sound.' })}</p>
             </CardContent>
           </Card>
         </TabsContent>
@@ -330,10 +290,10 @@ export default function AlphabetLessonPage() {
                       {/* eslint-disable-next-line react/forbid-elements -- transparent overlay needs raw button */}
                       <button
                         type="button"
-                        aria-label={`Letter ${letter.letter}. Tap to hear.`}
+                        aria-label={`Letter ${letter.letter}. Tap to view.`}
                         data-testid={`alphabet-special-letter-${letter.id}`}
                         className="absolute inset-0 z-10 cursor-pointer touch-manipulation"
-                        onClick={() => speakLetter(letter)}
+                        onClick={() => markLetterViewed(letter)}
                       />
                       <CardContent className="p-4 pointer-events-none">
                         <div className="flex items-center gap-4 sm:flex-col sm:text-center sm:gap-2">
