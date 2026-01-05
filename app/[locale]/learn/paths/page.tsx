@@ -64,7 +64,7 @@ export default async function LearningPathsPage() {
       level: "A1",
       difficulty: "Beginner",
       title: "Foundations",
-      description: "Alphabet, pronunciation, greetings, numbers, and everyday verbs.",
+      description: "Alphabet, pronunciation, greetings, simple sentences, numbers, and everyday verbs.",
       units: starterPath.totalCount,
       icon: <BookOpen className="h-6 w-6" />,
       color: "bg-emerald-500",
@@ -81,7 +81,7 @@ export default async function LearningPathsPage() {
       level: "A2",
       difficulty: "Intermediate",
       title: "Momentum",
-      description: "Daily routines, past tense intro, directions, and short dialogues.",
+      description: "Daily routines, past tense intro, ordering food, directions, and short dialogues.",
       units: a2Path.totalCount,
       icon: <Sparkles className="h-6 w-6" />,
       color: "bg-sky-500",
@@ -110,15 +110,15 @@ export default async function LearningPathsPage() {
           Learning Paths
         </h1>
         <p className="text-base text-muted-foreground">
-          Choose where you want to start — you can jump around anytime.
+          Start at the top and move step by step - we will highlight your next lesson.
         </p>
       </div>
 
       {/* Explainer Banner */}
       <div className="rounded-xl border border-primary/20 bg-primary/5 p-4">
         <p className="text-sm text-muted-foreground">
-          <strong className="text-foreground">No prerequisites required.</strong> Pick any path that matches your level.
-          Lessons are designed to work independently — start wherever feels right for you.
+          <strong className="text-foreground">Pick the path that matches your level.</strong> A1 is for beginners.
+          A2 builds on the basics, so complete lessons in order to unlock the next step.
         </p>
       </div>
 

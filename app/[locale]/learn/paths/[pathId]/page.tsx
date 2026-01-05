@@ -29,7 +29,7 @@ const pathConfigs: Record<string, {
 }> = {
   a1: {
     title: "A1 Foundations",
-    description: "Alphabet, pronunciation, greetings, and everyday basics.",
+    description: "Alphabet, pronunciation, greetings, simple sentences, numbers, and everyday verbs.",
     badge: "A1",
     difficulty: "Beginner",
     badgeClass: "bg-emerald-500/15 text-emerald-600",
@@ -37,7 +37,7 @@ const pathConfigs: Record<string, {
   },
   a2: {
     title: "A2 Momentum",
-    description: "Daily routines, past tense intro, directions, and short dialogues.",
+    description: "Daily routines, past tense intro, ordering food, directions, and short dialogues.",
     badge: "A2",
     difficulty: "Intermediate",
     badgeClass: "bg-sky-500/15 text-sky-600",
