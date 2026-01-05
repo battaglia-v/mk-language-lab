@@ -20,31 +20,58 @@ jobs:
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
     steps:
+      - name: Determine Vercel prerequisites
+        id: vercel_prereqs
+        run: |
+          reason=""
+          if [ -z "${VERCEL_TOKEN}" ]; then
+            reason="missing VERCEL_TOKEN secret"
+          elif [ -z "${VERCEL_ORG_ID}" ]; then
+            reason="missing VERCEL_ORG_ID secret"
+          elif [ -z "${VERCEL_PROJECT_ID}" ]; then
+            reason="missing VERCEL_PROJECT_ID secret"
+          fi
+
+          if [ -n "$reason" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "reason=$reason" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            echo "reason=" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Checkout repository
+        if: steps.vercel_prereqs.outputs.skip == 'false'
         uses: actions/checkout@v4
 
       - name: Setup Node.js
+        if: steps.vercel_prereqs.outputs.skip == 'false'
         uses: actions/setup-node@v6
         with:
           node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
+        if: steps.vercel_prereqs.outputs.skip == 'false'
         run: npm ci
 
       - name: Pull Vercel environment
+        if: steps.vercel_prereqs.outputs.skip == 'false'
         run: npx vercel pull --yes --environment=production --token "$VERCEL_TOKEN"
 
       - name: Build project
+        if: steps.vercel_prereqs.outputs.skip == 'false'
         run: npx vercel build --prod --token "$VERCEL_TOKEN"
 
       - name: Deploy to production
         id: deploy
+        if: steps.vercel_prereqs.outputs.skip == 'false'
         run: |
           DEPLOY_URL=$(npx vercel deploy --prebuilt --prod --token "$VERCEL_TOKEN" --yes)
           echo "deployment_url=$DEPLOY_URL" >> "$GITHUB_OUTPUT"
 
       - name: Add deployment summary
+        if: steps.vercel_prereqs.outputs.skip == 'false'
         run: |
           echo "## 🚀 Production Deployment" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
@@ -52,3 +79,10 @@ jobs:
           echo "**Deployment URL:** ${{ steps.deploy.outputs.deployment_url }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "Deployment initiated via \`.github/workflows/codex-deploy.yml\`." >> $GITHUB_STEP_SUMMARY
+
+      - name: Skip notice
+        if: steps.vercel_prereqs.outputs.skip == 'true'
+        env:
+          SKIP_REASON: ${{ steps.vercel_prereqs.outputs.reason }}
+        run: |
+          echo "Skipping deployment. $SKIP_REASON"

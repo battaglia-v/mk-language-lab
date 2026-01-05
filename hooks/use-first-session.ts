@@ -65,7 +65,7 @@ export function useFirstSession(): FirstSessionState {
       // localStorage not available, default to showing hints
       setSessionCount(1);
     }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   const dismissHints = useCallback(() => {
     setHintsDismissed(true);

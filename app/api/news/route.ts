@@ -402,7 +402,6 @@ async function resolveTimeMkLink(url: URL, signal: AbortSignal): Promise<string 
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function resolveExternalLinks(items: NewsItem[], signal: AbortSignal): Promise<void> {
   const requestCache = new Map<string, string | null>();
 

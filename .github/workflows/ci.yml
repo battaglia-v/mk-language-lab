@@ -181,6 +181,7 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - name: Run E2E tests
+        id: e2e
         run: npm run test:e2e
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
@@ -299,16 +300,19 @@ jobs:
   ci-success:
     name: CI Pipeline Success
     runs-on: ubuntu-latest
-    needs: [lint, type-check, build, e2e, unit-tests, mobile-maestro]
+    needs: [lint, i18n-check, type-check, build, content-qa, e2e, unit-tests, mobile-maestro]
     if: always()
 
     steps:
       - name: Check all jobs
         run: |
           if [ "${{ needs.lint.result }}" != "success" ] || \
+             [ "${{ needs.i18n-check.result }}" != "success" ] || \
              [ "${{ needs.type-check.result }}" != "success" ] || \
              [ "${{ needs.build.result }}" != "success" ] || \
+             [ "${{ needs.content-qa.result }}" != "success" ] || \
              [ "${{ needs.e2e.result }}" != "success" ] || \
+             [ "${{ needs.unit-tests.result }}" != "success" ] || \
              [ "${{ needs.mobile-maestro.result }}" != "success" ]; then
             echo "❌ One or more CI jobs failed"
             exit 1
