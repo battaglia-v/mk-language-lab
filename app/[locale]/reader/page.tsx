@@ -270,7 +270,7 @@ export default function ReaderPage() {
             )}
 
             {/* All Readings */}
-            <section className="space-y-4">
+            <section className="space-y-4" data-testid="reader-30day-section">
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-semibold">
                   {hasActiveFilters ? 'Search Results' : 'All Readings'}
