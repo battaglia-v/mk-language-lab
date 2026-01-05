@@ -38,14 +38,14 @@ export function UserMenu() {
     .toUpperCase() || '?';
 
   const menuItemClass =
-    'group flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-white transition-colors focus:bg-white/5 focus:text-white';
-  const iconClass = 'h-5 w-5 text-white/60 transition-colors group-hover:text-white';
+    'group flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-foreground transition-colors focus:bg-accent focus:text-accent-foreground';
+  const iconClass = 'h-5 w-5 text-muted-foreground transition-colors group-hover:text-foreground';
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button
-          className="flex items-center gap-2 rounded-full border border-white/10 bg-slate-900/70 p-0.5 shadow-lg shadow-black/30 transition focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-slate-900"
+          className="flex items-center gap-2 rounded-full border border-border p-0.5 shadow-sm transition focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
           aria-label="Open user menu"
           data-testid="user-menu-trigger"
         >
@@ -59,13 +59,13 @@ export function UserMenu() {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        className="w-64 rounded-2xl border border-white/10 bg-slate-950/95 p-2 text-white shadow-2xl shadow-black/40 backdrop-blur"
+        className="w-64 rounded-2xl border border-border bg-popover p-2 text-popover-foreground shadow-lg backdrop-blur"
       >
         <DropdownMenuLabel className="flex flex-col space-y-1 rounded-xl px-3 py-2">
-          <p className="text-sm font-semibold leading-tight text-white">{session.user.name}</p>
-          <p className="text-xs leading-none text-white/60">{session.user.email}</p>
+          <p className="text-sm font-semibold leading-tight text-foreground">{session.user.name}</p>
+          <p className="text-xs leading-none text-muted-foreground">{session.user.email}</p>
         </DropdownMenuLabel>
-        <DropdownMenuSeparator className="bg-white/5" />
+        <DropdownMenuSeparator className="bg-border" />
         <DropdownMenuItem asChild className={menuItemClass}>
           <Link href={`/${locale}/profile`} className="flex w-full items-center" data-testid="user-menu-profile">
             <User className={iconClass} />
@@ -80,10 +80,10 @@ export function UserMenu() {
             </Link>
           </DropdownMenuItem>
         )}
-        <DropdownMenuSeparator className="bg-white/5" />
-        <DropdownMenuLabel className="px-3 py-1.5 text-xs font-medium text-white/60">
+        <DropdownMenuSeparator className="bg-border" />
+        <DropdownMenuLabel className="px-3 py-1.5 text-xs font-medium text-muted-foreground">
           <p>{t('socialHeader')}</p>
-          <p className="text-[11px] text-white/50">{t('socialSubtitle')}</p>
+          <p className="text-[11px] text-muted-foreground/70">{t('socialSubtitle')}</p>
         </DropdownMenuLabel>
         <DropdownMenuItem asChild className={menuItemClass}>
           <a
@@ -95,7 +95,7 @@ export function UserMenu() {
           >
             <Instagram className={iconClass} />
             <span className="text-sm font-medium">{t('instagram')}</span>
-            <ExternalLink className="ml-auto h-4 w-4 text-blue-300" />
+            <ExternalLink className="ml-auto h-4 w-4 text-muted-foreground" />
           </a>
         </DropdownMenuItem>
         <DropdownMenuItem asChild className={menuItemClass}>
@@ -108,7 +108,7 @@ export function UserMenu() {
           >
             <Youtube className={iconClass} />
             <span className="text-sm font-medium">{t('youtube')}</span>
-            <ExternalLink className="ml-auto h-4 w-4 text-blue-300" />
+            <ExternalLink className="ml-auto h-4 w-4 text-muted-foreground" />
           </a>
         </DropdownMenuItem>
         <DropdownMenuItem asChild className={menuItemClass}>
@@ -121,17 +121,17 @@ export function UserMenu() {
           >
             <ExternalLink className={iconClass} />
             <span className="text-sm font-medium">{t('allLinks')}</span>
-            <ExternalLink className="ml-auto h-4 w-4 text-blue-300" />
+            <ExternalLink className="ml-auto h-4 w-4 text-muted-foreground" />
           </a>
         </DropdownMenuItem>
-        <DropdownMenuSeparator className="bg-white/5" />
+        <DropdownMenuSeparator className="bg-border" />
         <DropdownMenuItem asChild className={menuItemClass}>
           <div className="w-full">
             <SignOutButton
               variant="ghost"
               size="sm"
               dataTestId="user-menu-signout"
-              className="w-full justify-start px-0 text-sm font-medium text-white hover:text-blue-200"
+              className="w-full justify-start px-0 text-sm font-medium text-foreground hover:text-primary"
             />
           </div>
         </DropdownMenuItem>
