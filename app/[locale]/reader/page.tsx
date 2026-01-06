@@ -169,7 +169,7 @@ export default function ReaderPage() {
                   placeholder="Search readings..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-9 pr-9"
+                  className="min-h-[48px] pl-10 pr-12"
                   data-testid="reader-search-input"
                 />
                 {searchQuery && (
@@ -177,7 +177,7 @@ export default function ReaderPage() {
                     variant="ghost"
                     size="icon"
                     onClick={() => setSearchQuery('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 h-6 w-6 text-muted-foreground hover:text-foreground"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 h-11 w-11 text-muted-foreground hover:text-foreground"
                     data-testid="reader-search-clear"
                   >
                     <X className="h-4 w-4" />
@@ -192,12 +192,11 @@ export default function ReaderPage() {
                     <Button
                       key={level}
                       variant="outline"
-                      size="sm"
                       onClick={() => setSelectedDifficulty(selectedDifficulty === level ? null : level)}
                       aria-pressed={selectedDifficulty === level}
                       data-active={selectedDifficulty === level ? 'true' : 'false'}
                       className={cn(
-                        'rounded-full h-7 px-3 text-xs font-medium transition-all',
+                        'rounded-full min-h-[44px] px-4 text-sm font-semibold transition-all',
                         selectedDifficulty === level
                           ? level === 'A1' ? 'bg-emerald-500 text-white border-emerald-500 hover:bg-emerald-600'
                           : level === 'A2' ? 'bg-blue-500 text-white border-blue-500 hover:bg-blue-600'
@@ -213,9 +212,8 @@ export default function ReaderPage() {
                   {hasActiveFilters && (
                     <Button
                       variant="ghost"
-                      size="sm"
                       onClick={clearFilters}
-                      className="rounded-full h-7 px-3 text-xs font-medium text-muted-foreground"
+                      className="rounded-full min-h-[44px] px-4 text-sm font-medium text-muted-foreground"
                       data-testid="reader-filter-clear-all"
                     >
                       Clear all
@@ -227,7 +225,7 @@ export default function ReaderPage() {
 
             {/* 30-Day Challenge Section */}
             {!hasActiveFilters && (
-              <section className="space-y-4">
+              <section className="space-y-4" data-testid="reader-30day-section">
                 <div className="flex items-center justify-between">
                   <h2 className="text-lg font-semibold flex items-center gap-2">
                     <span>30-Day Reading Challenge</span>
@@ -244,6 +242,17 @@ export default function ReaderPage() {
                 <p className="text-sm text-muted-foreground">
                   Read &ldquo;The Little Prince&rdquo; in Macedonian, one chapter at a time.
                 </p>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Button
+                    asChild
+                    className="min-h-[44px] rounded-full px-4 text-black"
+                    data-testid="reader-30day-start"
+                  >
+                    <Link href={`/${locale}/reader/samples/day01-maliot-princ`}>
+                      Start Day 1
+                    </Link>
+                  </Button>
+                </div>
                 <div className="grid gap-4 sm:grid-cols-2">
                   {allSamples
                     .filter(s => s.tags.includes('30-day-challenge'))
@@ -270,7 +279,7 @@ export default function ReaderPage() {
             )}
 
             {/* All Readings */}
-            <section className="space-y-4" data-testid="reader-30day-section">
+            <section className="space-y-4">
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-semibold">
                   {hasActiveFilters ? 'Search Results' : 'All Readings'}
@@ -318,7 +327,28 @@ export default function ReaderPage() {
               ) : (
                 <div className="text-center py-12 text-muted-foreground">
                   <BookOpen className="h-12 w-12 mx-auto mb-4 opacity-30" />
-                  <p>Nothing yet — open a story to start.</p>
+                  <p>Nothing yet. Start Day 1 or paste your own text.</p>
+                  <div className="mt-4 flex flex-col gap-2">
+                    <Button
+                      asChild
+                      className="min-h-[44px]"
+                      data-testid="reader-empty-start-day1"
+                    >
+                      <Link href={`/${locale}/reader/samples/day01-maliot-princ`}>
+                        Start Day 1
+                      </Link>
+                    </Button>
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="min-h-[44px]"
+                      data-testid="reader-empty-paste-text"
+                    >
+                      <Link href={`/${locale}/reader/analyze`}>
+                        Paste text
+                      </Link>
+                    </Button>
+                  </div>
                 </div>
               )}
             </section>
