@@ -108,3 +108,71 @@ None.
 ## Pass/Fail Summary
 - Passed: home, learn, paths hub, path detail (A1/A2/30day), alphabet lesson, auth smoke
 - Failed: none
+
+---
+
+# Mobile Audit Batch: Core (Production)
+
+## Run Details
+- Base URL: https://mklanguage.com (apex; www redirects here)
+- Viewport: iPhone 12 (390x844)
+- Project: mobile-audit
+- Run Timestamp: 2026-01-06 10:41 CST
+- Command: `PLAYWRIGHT_BASE_URL=https://mklanguage.com npm run audit:mobile:core`
+- Workers: 1
+- Retries: 1
+- Timeouts: test 60s, expect 15s, global 15m
+- Tests: 52 total (47 passed, 5 failed)
+- Result: Failed (see failures below)
+
+## Pass/Fail Summary
+- Passed: practice hub cards, word sprint start, grammar practice, reader library basics, reader samples, word tap, translate smoke
+- Failed: practice settings sheet, reader workspace tab, reader quick analyze, translate submit, translate history
+
+## Failures
+| Test | Failure | Screenshot | Trace |
+| --- | --- | --- | --- |
+| Practice Hub — Settings button opens bottom sheet | `practice-settings-sheet` not visible after click | `test-results/playwright/05-practice-Practice-Hub-Settings-button-opens-bottom-sheet-mobile-audit/test-failed-1.png` | `test-results/playwright/05-practice-Practice-Hub-Settings-button-opens-bottom-sheet-mobile-audit-retry1/trace.zip` |
+| Reader Library — Library/Workspace tabs work | `reader-workspace-analyze` not visible after switching tabs | `test-results/playwright/06-reader-Reader-Library-Library-Workspace-tabs-work-mobile-audit/test-failed-1.png` | `test-results/playwright/06-reader-Reader-Library-Library-Workspace-tabs-work-mobile-audit-retry1/trace.zip` |
+| Reader Sample Page — Quick Analyze button works | URL did not change to `/reader/analyze` | `test-results/playwright/06-reader-Reader-Sample-Page-Quick-Analyze-button-works-mobile-audit/test-failed-1.png` | `test-results/playwright/06-reader-Reader-Sample-Page-Quick-Analyze-button-works-mobile-audit-retry1/trace.zip` |
+| Translate Page — can enter text and translate | `translate-submit-mobile` remained disabled | `test-results/playwright/07-translate-Translate-Page-can-enter-text-and-translate-mobile-audit/test-failed-1.png` | `test-results/playwright/07-translate-Translate-Page-can-enter-text-and-translate-mobile-audit-retry1/trace.zip` |
+| Translate Page — history tab/section accessible | `translate-open-history` not found (More sheet closed) | `test-results/playwright/07-translate-Translate-Page-history-tab-section-accessible-mobile-audit/test-failed-1.png` | `test-results/playwright/07-translate-Translate-Page-history-tab-section-accessible-mobile-audit-retry1/trace.zip` |
+
+## Failure Triage (Step 2)
+| Test | Triage | Action |
+| --- | --- | --- |
+| Practice Hub — Settings button opens bottom sheet | TEST DRIFT | Wait for hydration (`waitForInteractive`) before clicking; if still failing, treat as a dead-click regression. |
+| Reader Library — Library/Workspace tabs work | REAL REGRESSION | Fix tab switching so workspace content renders when `reader-tab-workspace` is selected. |
+| Reader Sample Page — Quick Analyze button works | TEST DRIFT | Add `waitForInteractive` + `scrollIntoViewIfNeeded()` before click; if still failing, treat as a dead-click regression. |
+| Translate Page — can enter text and translate | TEST DRIFT | Ensure hydration before fill, then click the enabled submit (sticky or inline). |
+| Translate Page — history tab/section accessible | TEST DRIFT | Update test to open `translate-more-open` before clicking `translate-open-history`. |
+
+---
+
+# Mobile Audit Batch: Core (Production) — Rerun
+
+## Run Details
+- Base URL: https://mklanguage.com (apex; www redirects here)
+- Viewport: iPhone 12 (390x844)
+- Project: mobile-audit
+- Run Timestamp: 2026-01-06 11:05 CST
+- Command: `PLAYWRIGHT_BASE_URL=https://mklanguage.com npm run audit:mobile:core`
+- Workers: 1
+- Retries: 1
+- Timeouts: test 60s, expect 15s, global 15m
+- Tests: 52 total (52 passed, 0 failed)
+- Result: Completed
+
+## Pass/Fail Summary
+- Passed: practice hub + word sprint, grammar practice, reader library + samples, word tap, translate flows
+- Failed: none
+
+## Failures
+| Test | Failure | Screenshot | Trace |
+| --- | --- | --- | --- |
+None.
+
+## Notes
+- Reader workspace tab now renders correctly after sync fix.
+- Translate submit and history are stable after hydration waits and opening the More sheet.
+- Quick Analyze navigation is stable after scrolling into view.

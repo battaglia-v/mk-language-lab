@@ -44,10 +44,8 @@ export default function ReaderPage() {
   // Update tab when URL changes
   useEffect(() => {
     const newTab = tabParam === 'workspace' ? 'workspace' : 'library';
-    if (newTab !== activeTab) {
-      setActiveTab(newTab);
-    }
-  }, [tabParam, activeTab]);
+    setActiveTab(newTab);
+  }, [tabParam]);
 
   // Handle tab change - update URL
   const handleTabChange = (value: string) => {

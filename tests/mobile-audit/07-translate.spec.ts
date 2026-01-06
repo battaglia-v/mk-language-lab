@@ -1,4 +1,4 @@
-import { test, expect, assertNoRawTranslationKeys, MOBILE_VIEWPORT } from './_helpers';
+import { test, expect, assertNoRawTranslationKeys, MOBILE_VIEWPORT, waitForInteractive } from './_helpers';
 
 test.use({ viewport: MOBILE_VIEWPORT });
 
@@ -44,6 +44,7 @@ test.describe('Translate Page', () => {
 
   test('can enter text and translate', async ({ page }) => {
     await page.goto('/en/translate', { waitUntil: 'domcontentloaded' });
+    await waitForInteractive(page);
 
     // Enter text
     const textbox = page.getByTestId('translate-input');
@@ -53,6 +54,16 @@ test.describe('Translate Page', () => {
     const submitSticky = page.getByTestId('translate-submit-sticky');
     const submitMobile = page.getByTestId('translate-submit-mobile');
     const submitDesktop = page.getByTestId('translate-submit-desktop');
+
+    await expect.poll(async () => {
+      if (await submitSticky.isVisible()) {
+        return await submitSticky.isEnabled();
+      }
+      if (await submitMobile.isVisible()) {
+        return await submitMobile.isEnabled();
+      }
+      return await submitDesktop.isEnabled();
+    }).toBeTruthy();
 
     if (await submitSticky.isVisible()) {
       await submitSticky.click();
@@ -79,7 +90,10 @@ test.describe('Translate Page', () => {
 
   test('history tab/section accessible', async ({ page }) => {
     await page.goto('/en/translate', { waitUntil: 'domcontentloaded' });
+    await waitForInteractive(page);
 
+    await page.getByTestId('translate-more-open').click();
+    await expect(page.getByTestId('translate-more-sheet')).toBeVisible();
     const historyEl = page.getByTestId('translate-open-history');
     await historyEl.click();
     await expect(page.getByTestId('translate-history-sheet')).toBeVisible();
