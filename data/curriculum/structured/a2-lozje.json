@@ -1,0 +1,282 @@
+{
+  "id": "a2-lozje",
+  "journeyId": "ukim-a2",
+  "title": "Лозје",
+  "level": "A2",
+  "chapters": [
+    {
+      "lessonNumber": 1,
+      "title": "Lesson 1: Кои сме – што сме",
+      "titleMk": "Лекција 1: Кои сме – што сме",
+      "startPage": 10,
+      "endPage": 27,
+      "themes": [],
+      "vocabularyItems": [],
+      "grammarNotes": [
+        {
+          "title": "Сегашно време (презент)",
+          "content": "Grammar topic covered in Lesson 1",
+          "examples": []
+        },
+        {
+          "title": "Определеностa кај именките – членување",
+          "content": "Grammar topic covered in Lesson 1",
+          "examples": []
+        },
+        {
+          "title": "Придавки од имиња на географски поими",
+          "content": "Grammar topic covered in Lesson 1",
+          "examples": []
+        },
+        {
+          "title": "Прашални реченици",
+          "content": "Grammar topic covered in Lesson 1",
+          "examples": []
+        }
+      ]
+    },
+    {
+      "lessonNumber": 2,
+      "title": "Lesson 2: Градот на мојата душа и душата на мојот град",
+      "titleMk": "Лекција 2: Градот на мојата душа и душата на мојот град",
+      "startPage": 28,
+      "endPage": 43,
+      "themes": [],
+      "vocabularyItems": [],
+      "grammarNotes": [
+        {
+          "title": "Да-конструкција",
+          "content": "Grammar topic covered in Lesson 2",
+          "examples": []
+        },
+        {
+          "title": "Бројни придавки со редно значење",
+          "content": "Grammar topic covered in Lesson 2",
+          "examples": []
+        },
+        {
+          "title": "Долги и кратки заменски форми за директен и за индиректен предмет",
+          "content": "Grammar topic covered in Lesson 2",
+          "examples": []
+        },
+        {
+          "title": "Идно време (футур)",
+          "content": "Grammar topic covered in Lesson 2",
+          "examples": []
+        },
+        {
+          "title": "Прилози (адверби)",
+          "content": "Grammar topic covered in Lesson 2",
+          "examples": []
+        },
+        {
+          "title": "Предлози (препозиции)",
+          "content": "Grammar topic covered in Lesson 2",
+          "examples": []
+        }
+      ]
+    },
+    {
+      "lessonNumber": 3,
+      "title": "Lesson 3: Нејзиното височество – храната",
+      "titleMk": "Лекција 3: Нејзиното височество – храната",
+      "startPage": 44,
+      "endPage": 59,
+      "themes": [],
+      "vocabularyItems": [],
+      "grammarNotes": [
+        {
+          "title": "Заповеден начин (императив)",
+          "content": "Grammar topic covered in Lesson 3",
+          "examples": []
+        },
+        {
+          "title": "Глаголска л-форма",
+          "content": "Grammar topic covered in Lesson 3",
+          "examples": []
+        },
+        {
+          "title": "Можен начин (потенцијал)",
+          "content": "Grammar topic covered in Lesson 3",
+          "examples": []
+        },
+        {
+          "title": "Модални зборови и изрази",
+          "content": "Grammar topic covered in Lesson 3",
+          "examples": []
+        }
+      ]
+    },
+    {
+      "lessonNumber": 4,
+      "title": "Lesson 4: Во светот на купувањето",
+      "titleMk": "Лекција 4: Во светот на купувањето",
+      "startPage": 60,
+      "endPage": 79,
+      "themes": [],
+      "vocabularyItems": [],
+      "grammarNotes": [
+        {
+          "title": "Минато определено несвршено време (имперфект)",
+          "content": "Grammar topic covered in Lesson 4",
+          "examples": []
+        },
+        {
+          "title": "Минато определено свршено време (аорист)",
+          "content": "Grammar topic covered in Lesson 4",
+          "examples": []
+        },
+        {
+          "title": "Глаголска придавка",
+          "content": "Grammar topic covered in Lesson 4",
+          "examples": []
+        },
+        {
+          "title": "Глаголска сум-конструкција",
+          "content": "Grammar topic covered in Lesson 4",
+          "examples": []
+        },
+        {
+          "title": "Глаголска именка",
+          "content": "Grammar topic covered in Lesson 4",
+          "examples": []
+        },
+        {
+          "title": "Индиректен предмет",
+          "content": "Grammar topic covered in Lesson 4",
+          "examples": []
+        },
+        {
+          "title": "Реален услов",
+          "content": "Grammar topic covered in Lesson 4",
+          "examples": []
+        }
+      ]
+    },
+    {
+      "lessonNumber": 5,
+      "title": "Lesson 5: Професијата – сон или реалност",
+      "titleMk": "Лекција 5: Професијата – сон или реалност",
+      "startPage": 80,
+      "endPage": 93,
+      "themes": [],
+      "vocabularyItems": [],
+      "grammarNotes": [
+        {
+          "title": "Минато неопределено време (перфект)",
+          "content": "Grammar topic covered in Lesson 5",
+          "examples": []
+        },
+        {
+          "title": "Прилози (адверби)",
+          "content": "Grammar topic covered in Lesson 5",
+          "examples": []
+        },
+        {
+          "title": "Честички (партикули)",
+          "content": "Grammar topic covered in Lesson 5",
+          "examples": []
+        }
+      ]
+    },
+    {
+      "lessonNumber": 6,
+      "title": "Lesson 6: Светот на дланка",
+      "titleMk": "Лекција 6: Светот на дланка",
+      "startPage": 94,
+      "endPage": 109,
+      "themes": [],
+      "vocabularyItems": [],
+      "grammarNotes": [
+        {
+          "title": "Минато-идно време",
+          "content": "Grammar topic covered in Lesson 6",
+          "examples": []
+        },
+        {
+          "title": "Нереален услов",
+          "content": "Grammar topic covered in Lesson 6",
+          "examples": []
+        },
+        {
+          "title": "Глаголска има-конструкција",
+          "content": "Grammar topic covered in Lesson 6",
+          "examples": []
+        },
+        {
+          "title": "Извици (интерјекции)",
+          "content": "Grammar topic covered in Lesson 6",
+          "examples": []
+        }
+      ]
+    },
+    {
+      "lessonNumber": 7,
+      "title": "Lesson 7: Празнуваме, одбележуваме, честитаме, подаруваме...",
+      "titleMk": "Лекција 7: Празнуваме, одбележуваме, честитаме, подаруваме...",
+      "startPage": 110,
+      "endPage": 123,
+      "themes": [],
+      "vocabularyItems": [],
+      "grammarNotes": [
+        {
+          "title": "Можен услов",
+          "content": "Grammar topic covered in Lesson 7",
+          "examples": []
+        },
+        {
+          "title": "Глаголски прилог",
+          "content": "Grammar topic covered in Lesson 7",
+          "examples": []
+        },
+        {
+          "title": "Пасивни реченици",
+          "content": "Grammar topic covered in Lesson 7",
+          "examples": []
+        }
+      ]
+    },
+    {
+      "lessonNumber": 8,
+      "title": "Lesson 8: Најди време!",
+      "titleMk": "Лекција 8: Најди време!",
+      "startPage": 124,
+      "endPage": 138,
+      "themes": [],
+      "vocabularyItems": [],
+      "grammarNotes": [
+        {
+          "title": "Предминато време (плусквамперфект)",
+          "content": "Grammar topic covered in Lesson 8",
+          "examples": []
+        },
+        {
+          "title": "Сврзници (конјункции)",
+          "content": "Grammar topic covered in Lesson 8",
+          "examples": []
+        },
+        {
+          "title": "Пресказ",
+          "content": "Grammar topic covered in Lesson 8",
+          "examples": []
+        }
+      ]
+    }
+  ],
+  "supplementarySections": [
+    {
+      "label": "Текстови за слушање и цитати",
+      "startPage": 139
+    },
+    {
+      "label": "Граматика",
+      "startPage": 156
+    }
+  ],
+  "metadata": {
+    "totalLessons": 8,
+    "totalPages": 178,
+    "extractedAt": "2026-01-06T23:42:51.580Z",
+    "parsedAt": "2026-01-06T23:46:19.365Z"
+  }
+}
