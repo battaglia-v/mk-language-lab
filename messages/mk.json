@@ -2486,6 +2486,7 @@
     "overallProgress": "Целокупен напредок",
     "lessonsCompleted": "{completed} од {total} лекции завршени",
     "locked": "Заврши ги претходните лекции за да отклучиш",
+    "recommended": "Препорачано",
     "exercises": "вежби",
     "minutes": "мин",
     "exit": "Излез",

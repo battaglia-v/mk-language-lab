@@ -2486,6 +2486,7 @@
     "overallProgress": "Overall Progress",
     "lessonsCompleted": "{completed} of {total} lessons completed",
     "locked": "Complete previous lessons to unlock",
+    "recommended": "Recommended",
     "exercises": "exercises",
     "minutes": "min",
     "exit": "Exit",

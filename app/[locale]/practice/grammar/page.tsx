@@ -3,7 +3,7 @@
 import { useState, useCallback } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
-import { ArrowLeft, BookOpen, CheckCircle2, Lock, ChevronRight, Trophy } from 'lucide-react';
+import { ArrowLeft, BookOpen, CheckCircle2, ChevronRight, Trophy, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -67,13 +67,16 @@ export default function GrammarPracticePage() {
     return progress.find(p => p.lessonId === lessonId);
   };
 
-  const isLessonUnlocked = (index: number): boolean => {
-    if (index === 0) return true;
-    // Lesson unlocked if previous lesson is completed
-    const previousLesson = lessons[index - 1];
-    const previousProgress = getLessonProgress(previousLesson.id);
-    return previousProgress?.completed ?? false;
+  // Find the first incomplete lesson (recommended next)
+  const getRecommendedLessonIndex = (): number => {
+    const firstIncomplete = lessons.findIndex(lesson => {
+      const lessonProgress = getLessonProgress(lesson.id);
+      return !lessonProgress?.completed;
+    });
+    return firstIncomplete === -1 ? 0 : firstIncomplete;
   };
+
+  const recommendedIndex = getRecommendedLessonIndex();
 
   const handleStartLesson = (lesson: GrammarLesson) => {
     setActiveLesson(lesson);
@@ -237,26 +240,22 @@ export default function GrammarPracticePage() {
         <div className="space-y-3">
           {lessons.map((lesson, index) => {
             const lessonProgress = getLessonProgress(lesson.id);
-            const isUnlocked = isLessonUnlocked(index);
             const isCompleted = lessonProgress?.completed ?? false;
+            const isRecommended = index === recommendedIndex;
 
             return (
               // eslint-disable-next-line react/forbid-elements -- Clickable card wrapper pattern
               <button
                 key={lesson.id}
                 type="button"
-                disabled={!isUnlocked}
                 onClick={() => handleStartLesson(lesson)}
                 className="w-full text-left"
                 data-testid={`grammar-lesson-${lesson.id}`}
-                title={!isUnlocked ? t('lockedReason', { default: 'Complete the previous lesson to unlock.' }) : undefined}
               >
                 <Card
                   className={cn(
-                    'transition-all',
-                    isUnlocked
-                      ? 'border-white/8 bg-white/5 hover:border-accent/30 hover:bg-white/8'
-                      : 'cursor-not-allowed border-white/5 bg-white/2 opacity-60'
+                    'transition-all border-white/8 bg-white/5 hover:border-accent/30 hover:bg-white/8',
+                    isRecommended && !isCompleted && 'border-primary/40 bg-primary/5 ring-1 ring-primary/20'
                   )}
                 >
                   <CardContent className="flex items-center gap-4 py-4">
@@ -266,23 +265,23 @@ export default function GrammarPracticePage() {
                         'flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold',
                         isCompleted
                           ? 'bg-emerald-500/20 text-emerald-400'
-                          : isUnlocked
-                          ? 'bg-accent/20 text-accent'
-                          : 'bg-white/10 text-muted-foreground'
+                          : isRecommended
+                          ? 'bg-primary/20 text-primary'
+                          : 'bg-accent/20 text-accent'
                       )}
                     >
                       {isCompleted ? (
                         <CheckCircle2 className="h-5 w-5" />
-                      ) : isUnlocked ? (
-                        index + 1
+                      ) : isRecommended ? (
+                        <Sparkles className="h-5 w-5" />
                       ) : (
-                        <Lock className="h-4 w-4" />
+                        index + 1
                       )}
                     </div>
 
                     {/* Lesson Info */}
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 flex-wrap">
                         <h3 className="font-medium truncate">
                           {locale === 'mk' ? lesson.titleMk : lesson.titleEn}
                         </h3>
@@ -292,6 +291,14 @@ export default function GrammarPracticePage() {
                         >
                           {lesson.difficulty}
                         </Badge>
+                        {isRecommended && !isCompleted && (
+                          <Badge
+                            variant="outline"
+                            className="shrink-0 text-xs bg-primary/10 text-primary border-primary/30"
+                          >
+                            {t('recommended', { default: 'Recommended' })}
+                          </Badge>
+                        )}
                       </div>
                       <p className="text-sm text-muted-foreground truncate">
                         {locale === 'mk' ? lesson.descriptionMk : lesson.descriptionEn}
@@ -306,9 +313,7 @@ export default function GrammarPracticePage() {
                     </div>
 
                     {/* Arrow */}
-                    {isUnlocked && (
-                      <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground" />
-                    )}
+                    <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground" />
                   </CardContent>
                 </Card>
               </button>
