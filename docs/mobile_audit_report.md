@@ -88,3 +88,23 @@ None.
 
 ## Notes
 - Full audit did not complete due to the 15 minute tool timeout. Needs batched runs to finish.
+
+---
+
+# Mobile Audit Batch: Smoke (Production)
+
+## Run Details
+- Base URL: https://mklanguage.com (apex; www redirects here)
+- Viewport: iPhone 12 (390x844)
+- Project: mobile-audit
+- Run Timestamp: 2026-01-06 10:13 CST
+- Command: `PLAYWRIGHT_BASE_URL=https://mklanguage.com npm run audit:mobile:smoke`
+- Workers: 1
+- Retries: 1
+- Timeouts: test 60s, expect 15s, global 15m
+- Tests: 47 total (47 passed, 0 failed)
+- Result: Completed
+
+## Pass/Fail Summary
+- Passed: home, learn, paths hub, path detail (A1/A2/30day), alphabet lesson, auth smoke
+- Failed: none

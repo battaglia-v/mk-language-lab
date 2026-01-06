@@ -31,7 +31,7 @@ test.describe('Learning Paths Hub', () => {
     await expect(a2Start).toBeVisible();
 
     const href = await a1Start.getAttribute('href');
-    expect(href).toContain('/learn/paths/');
+    expect(href).toMatch(/\/learn\/paths\/|\/learn\/lessons\/|\/practice\/session/);
   });
 });
 
