@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -20,10 +20,12 @@ export function WordBankInput({
   disabled,
 }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
-  const [shuffledWords, setShuffledWords] = useState<string[]>([]);
+  const [shuffledWords, setShuffledWords] = useState<string[]>(() =>
+    [...wordBank].sort(() => Math.random() - 0.5)
+  );
 
-  useEffect(() => {
-    // Shuffle word bank on mount
+  useLayoutEffect(() => {
+    // Shuffle word bank on mount/update before paint to avoid stale flashes.
     setShuffledWords([...wordBank].sort(() => Math.random() - 0.5));
     setSelected(null);
   }, [wordBank]);
