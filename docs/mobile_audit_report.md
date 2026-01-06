@@ -176,3 +176,56 @@ None.
 - Reader workspace tab now renders correctly after sync fix.
 - Translate submit and history are stable after hydration waits and opening the More sheet.
 - Quick Analyze navigation is stable after scrolling into view.
+
+---
+
+# Mobile Audit Batch: Nav (Production)
+
+## Run Details
+- Base URL: https://mklanguage.com (apex; www redirects here)
+- Viewport: iPhone 12 (390x844)
+- Project: mobile-audit
+- Run Timestamp: 2026-01-06 11:19 CST
+- Command: `PLAYWRIGHT_BASE_URL=https://mklanguage.com npm run audit:mobile:nav`
+- Workers: 1
+- Retries: 1
+- Timeouts: test 60s, expect 15s, global 15m
+- Tests: 29 total (29 passed, 0 failed)
+- Result: Completed
+
+## Pass/Fail Summary
+- Passed: More menu links, settings/profile/help/about/news pages, bottom nav, back nav, breadcrumb context
+- Failed: none
+
+## Failures
+| Test | Failure | Screenshot | Trace |
+| --- | --- | --- | --- |
+None.
+
+## Notes
+- Phase 2 dead-click scan moved to `npm run audit:mobile:phase2` and not run as part of Stage 4.
+
+---
+
+# Mobile Audit Batch: Accessibility (Production)
+
+## Run Details
+- Base URL: https://mklanguage.com (apex; www redirects here)
+- Viewport: iPhone 12 (390x844)
+- Project: mobile-audit
+- Run Timestamp: 2026-01-06 12:09 CST
+- Command: `PLAYWRIGHT_BASE_URL=https://mklanguage.com npm run audit:mobile:a11y`
+- Workers: 1
+- Retries: 1
+- Timeouts: test 60s, expect 15s, global 15m
+- Tests: 13 total (13 passed, 0 failed)
+- Result: Completed
+
+## Pass/Fail Summary
+- Passed: touch targets, headings, form labels, focus, keyboard nav, screen reader labels
+- Failed: none
+
+## Failures
+| Test | Failure | Screenshot | Trace |
+| --- | --- | --- | --- |
+None.
