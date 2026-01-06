@@ -6,10 +6,10 @@ on:
   pull_request:
     branches: [main, develop]
 
-# Cancel in-progress runs for the same workflow
+# Cancel in-progress runs for the same workflow (reduces noise from rapid pushes)
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  cancel-in-progress: true
 
 jobs:
   lint:
@@ -182,7 +182,8 @@ jobs:
 
       - name: Run E2E tests
         id: e2e
-        run: npm run test:e2e
+        # Run desktop-only in CI for speed (full matrix runs in scheduled e2e.yml)
+        run: npx playwright test --project=chromium
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           DIRECT_URL: ${{ secrets.DIRECT_URL }}
