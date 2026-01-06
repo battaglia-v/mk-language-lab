@@ -1,0 +1,307 @@
+#!/usr/bin/env npx tsx
+/**
+ * Parse A1 (Тешкото) raw extraction into structured curriculum JSON
+ * Maps to Prisma models: Module, CurriculumLesson, VocabularyItem, GrammarNote
+ */
+
+import * as fs from 'fs';
+import type { ExtractedPage, ExtractedTextItem } from './types';
+
+const INPUT_PATH = 'data/curriculum/extracted/a1-raw.json';
+const OUTPUT_PATH = 'data/curriculum/structured/a1-teskoto.json';
+
+// Structured output types matching Prisma models
+interface StructuredLesson {
+  lessonNumber: number;
+  title: string;
+  titleMk: string;
+  startPage: number;
+  endPage: number;
+  themes: StructuredTheme[];
+  vocabularyItems: StructuredVocabulary[];
+  grammarNotes: StructuredGrammar[];
+}
+
+interface StructuredTheme {
+  themeNumber: number;
+  title: string;
+  exercises: string[];
+}
+
+interface StructuredVocabulary {
+  macedonian: string;
+  english: string;
+  context?: string;
+}
+
+interface StructuredGrammar {
+  title: string;
+  content: string;
+  examples: string[];
+}
+
+interface StructuredTextbook {
+  id: string;
+  journeyId: string;
+  title: string;
+  level: string;
+  chapters: StructuredLesson[];
+  learningPages: { label: string; startPage: number }[];
+  metadata: {
+    totalLessons: number;
+    totalPages: number;
+    extractedAt: string;
+    parsedAt: string;
+  };
+}
+
+// Lesson info from table of contents
+const LESSON_INFO: { num: number; title: string; page: number }[] = [
+  { num: 1, title: 'Јас и ти', page: 6 },
+  { num: 2, title: 'Семејство', page: 15 },
+  { num: 3, title: 'Прашуваме', page: 31 },
+  { num: 4, title: 'Околу нас', page: 39 },
+  { num: 5, title: 'Има...', page: 57 },
+  { num: 6, title: 'Твојот дом', page: 65 },
+  { num: 7, title: 'Што прават луѓето?', page: 78 },
+  { num: 8, title: 'Јадење и пиење', page: 85 },
+  { num: 9, title: 'Дали...?', page: 99 },
+  { num: 10, title: 'Што купуваат луѓето?', page: 106 },
+  { num: 11, title: 'Што се случува?', page: 120 },
+  { num: 12, title: 'Опишување луѓе', page: 126 },
+  { num: 13, title: 'Колку чини?', page: 139 },
+  { num: 14, title: 'Преку годината', page: 144 },
+  { num: 15, title: 'Во минатото 1', page: 156 },
+  { num: 16, title: 'Околу светот', page: 160 },
+  { num: 17, title: 'Во минатото 2', page: 168 },
+  { num: 18, title: 'Како да стигнеш таму?', page: 171 },
+  { num: 19, title: 'Не смееш да го правиш тоа!', page: 177 },
+  { num: 20, title: 'Тело', page: 183 },
+  { num: 21, title: 'Добро, подобро, најдобро', page: 191 },
+  { num: 22, title: 'Слободно време', page: 194 },
+  { num: 23, title: 'Идни планови', page: 202 },
+  { num: 24, title: 'Чувства', page: 207 },
+];
+
+// Learning pages sections
+const LEARNING_PAGES: { label: string; page: number }[] = [
+  { label: 'А', page: 23 },
+  { label: 'Б', page: 48 },
+  { label: 'В', page: 71 },
+  { label: 'Г', page: 92 },
+  { label: 'Д', page: 114 },
+  { label: 'Ѓ', page: 133 },
+  { label: 'Е', page: 151 },
+  { label: 'Ж', page: 164 },
+  { label: 'З', page: 174 },
+  { label: 'Ѕ', page: 188 },
+  { label: 'И', page: 198 },
+];
+
+/**
+ * Extract text from pages within a range
+ */
+function extractPagesText(pages: ExtractedPage[], startPage: number, endPage: number): string {
+  return pages
+    .filter(p => p.pageNum >= startPage && p.pageNum < endPage)
+    .map(p => p.text)
+    .join('\n');
+}
+
+/**
+ * Extract themes from lesson text
+ */
+function extractThemes(lessonText: string): StructuredTheme[] {
+  const themes: StructuredTheme[] = [];
+
+  // Match "Тема X." or "Тема X:" patterns
+  const themePattern = /Тема\s+(\d+)\s*[.:]\s*([^\n]+)/gi;
+  let match;
+
+  while ((match = themePattern.exec(lessonText)) !== null) {
+    const themeNum = parseInt(match[1]);
+    const themeTitle = match[2].trim();
+
+    // Extract exercises for this theme (simplified)
+    const exercises: string[] = [];
+    const exercisePattern = /Вежба\s+(\d+)/g;
+    let exMatch;
+    while ((exMatch = exercisePattern.exec(lessonText)) !== null) {
+      exercises.push(`Вежба ${exMatch[1]}`);
+    }
+
+    themes.push({
+      themeNumber: themeNum,
+      title: themeTitle,
+      exercises: [...new Set(exercises)], // Dedupe
+    });
+  }
+
+  return themes;
+}
+
+/**
+ * Extract vocabulary items from text
+ * Looks for patterns like "word - translation" or tabular vocabulary
+ */
+function extractVocabulary(lessonText: string): StructuredVocabulary[] {
+  const vocab: StructuredVocabulary[] = [];
+
+  // Common vocabulary patterns in textbooks
+  // Pattern 1: "Macedonian - English" format
+  const dashPattern = /([А-Яа-яЀ-ӿ]+(?:\s+[А-Яа-яЀ-ӿ]+)*)\s+[-–—]\s+([a-zA-Z]+(?:\s+[a-zA-Z]+)*)/g;
+
+  let match;
+  while ((match = dashPattern.exec(lessonText)) !== null) {
+    const mk = match[1].trim();
+    const en = match[2].trim();
+
+    // Filter out very short matches or common words
+    if (mk.length > 2 && en.length > 2) {
+      vocab.push({ macedonian: mk, english: en });
+    }
+  }
+
+  return vocab;
+}
+
+/**
+ * Extract grammar notes from text
+ */
+function extractGrammarNotes(lessonText: string): StructuredGrammar[] {
+  const notes: StructuredGrammar[] = [];
+
+  // Look for pronoun tables (common grammar pattern)
+  if (lessonText.includes('Јас сум') && lessonText.includes('Ти си')) {
+    notes.push({
+      title: 'Глаголот "сум" (To be)',
+      content: 'Present tense conjugation of "to be"',
+      examples: ['Јас сум', 'Ти си', 'Тој/Таа/Тоа е', 'Ние сме', 'Вие сте', 'Тие се'],
+    });
+  }
+
+  // Look for possessive patterns
+  if (lessonText.includes('мој') && lessonText.includes('моја') && lessonText.includes('мое')) {
+    notes.push({
+      title: 'Присвојни заменки (Possessive pronouns)',
+      content: 'Macedonian possessive pronouns agree with noun gender',
+      examples: ['мој (m)', 'моја (f)', 'мое (n)'],
+    });
+  }
+
+  return notes;
+}
+
+/**
+ * Parse a single lesson from the extracted pages
+ */
+function parseLesson(
+  pages: ExtractedPage[],
+  lessonInfo: typeof LESSON_INFO[0],
+  nextLessonPage: number
+): StructuredLesson {
+  const lessonText = extractPagesText(pages, lessonInfo.page, nextLessonPage);
+
+  return {
+    lessonNumber: lessonInfo.num,
+    title: `Lesson ${lessonInfo.num}: ${lessonInfo.title}`,
+    titleMk: `Лекција ${lessonInfo.num}: ${lessonInfo.title}`,
+    startPage: lessonInfo.page,
+    endPage: nextLessonPage - 1,
+    themes: extractThemes(lessonText),
+    vocabularyItems: extractVocabulary(lessonText),
+    grammarNotes: extractGrammarNotes(lessonText),
+  };
+}
+
+async function main() {
+  console.log('='.repeat(60));
+  console.log('A1 Тешкото Structure Parser');
+  console.log('='.repeat(60));
+  console.log();
+
+  // Load raw extraction
+  if (!fs.existsSync(INPUT_PATH)) {
+    console.error(`Error: Raw extraction not found at ${INPUT_PATH}`);
+    console.error('Run extract-a1.ts first');
+    process.exit(1);
+  }
+
+  console.log(`Loading: ${INPUT_PATH}`);
+  const rawData = JSON.parse(fs.readFileSync(INPUT_PATH, 'utf-8'));
+  const pages: ExtractedPage[] = rawData.pages;
+  console.log(`Loaded ${pages.length} pages`);
+  console.log();
+
+  // Parse each lesson
+  console.log('Parsing lessons...');
+  const chapters: StructuredLesson[] = [];
+
+  for (let i = 0; i < LESSON_INFO.length; i++) {
+    const lesson = LESSON_INFO[i];
+    const nextPage = i < LESSON_INFO.length - 1
+      ? LESSON_INFO[i + 1].page
+      : 213; // Final test starts at page 213
+
+    const parsed = parseLesson(pages, lesson, nextPage);
+    chapters.push(parsed);
+
+    console.log(`  Lesson ${lesson.num}: ${lesson.title}`);
+    console.log(`    Pages: ${parsed.startPage}-${parsed.endPage}`);
+    console.log(`    Themes: ${parsed.themes.length}`);
+    console.log(`    Vocabulary: ${parsed.vocabularyItems.length} items`);
+    console.log(`    Grammar: ${parsed.grammarNotes.length} notes`);
+  }
+
+  console.log();
+
+  // Build structured output
+  const output: StructuredTextbook = {
+    id: 'a1-teskoto',
+    journeyId: 'ukim-a1',
+    title: 'Тешкото',
+    level: 'A1',
+    chapters,
+    learningPages: LEARNING_PAGES.map(lp => ({
+      label: lp.label,
+      startPage: lp.page,
+    })),
+    metadata: {
+      totalLessons: chapters.length,
+      totalPages: pages.length,
+      extractedAt: rawData.extractedAt,
+      parsedAt: new Date().toISOString(),
+    },
+  };
+
+  // Summary statistics
+  const totalVocab = chapters.reduce((sum, ch) => sum + ch.vocabularyItems.length, 0);
+  const totalGrammar = chapters.reduce((sum, ch) => sum + ch.grammarNotes.length, 0);
+  const totalThemes = chapters.reduce((sum, ch) => sum + ch.themes.length, 0);
+
+  console.log('Summary');
+  console.log('-'.repeat(40));
+  console.log(`  Lessons: ${chapters.length}`);
+  console.log(`  Learning pages: ${LEARNING_PAGES.length}`);
+  console.log(`  Total themes: ${totalThemes}`);
+  console.log(`  Total vocabulary items: ${totalVocab}`);
+  console.log(`  Total grammar notes: ${totalGrammar}`);
+  console.log();
+
+  // Save output
+  fs.writeFileSync(OUTPUT_PATH, JSON.stringify(output, null, 2));
+  console.log(`Saved to: ${OUTPUT_PATH}`);
+  console.log(`File size: ${(fs.statSync(OUTPUT_PATH).size / 1024).toFixed(2)} KB`);
+  console.log();
+  console.log('='.repeat(60));
+  console.log('Parsing complete!');
+  console.log('='.repeat(60));
+  console.log();
+  console.log('Note: This is an initial structure extraction.');
+  console.log('Vocabulary and grammar detection is basic - manual review recommended.');
+}
+
+main().catch(error => {
+  console.error('Parsing failed:', error);
+  process.exit(1);
+});
