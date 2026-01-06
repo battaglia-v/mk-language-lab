@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { Volume2, Brain, FileText, Sparkles, Heart, Settings2, Clock, Zap, ChevronRight } from 'lucide-react';
+import { Volume2, Brain, FileText, Sparkles, Heart, Settings2, Clock, Zap, ChevronRight, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { BottomSheet } from '@/components/ui/BottomSheet';
 import { usePracticeDecks } from './usePracticeDecks';
@@ -95,7 +95,7 @@ export function PracticeHub() {
         <Button
           variant="ghost"
           size="sm"
-          className="gap-1.5 rounded-full text-muted-foreground"
+          className="h-11 min-h-[44px] gap-1.5 rounded-full px-3 text-muted-foreground"
           onClick={() => setSettingsOpen(true)}
           data-testid="practice-settings-open"
         >
@@ -153,7 +153,7 @@ export function PracticeHub() {
             <div className="flex gap-2">
               <Button
                 variant={mode === 'typing' ? 'secondary' : 'outline'}
-                className="flex-1"
+                className="flex-1 min-h-[44px]"
                 onClick={() => setMode('typing')}
                 data-testid="practice-settings-mode-typing"
               >
@@ -161,7 +161,7 @@ export function PracticeHub() {
               </Button>
               <Button
                 variant={mode === 'multiple-choice' ? 'secondary' : 'outline'}
-                className="flex-1"
+                className="flex-1 min-h-[44px]"
                 onClick={() => setMode('multiple-choice')}
                 data-testid="practice-settings-mode-multiple-choice"
               >
@@ -180,9 +180,9 @@ export function PracticeHub() {
                 <Button
                   key={d}
                   variant={difficulty === d ? 'secondary' : 'outline'}
-                  size="sm"
                   onClick={() => setDifficulty(d)}
                   data-testid={`practice-settings-difficulty-${d}`}
+                  className="min-h-[44px] px-4"
                 >
                   {d === 'all'
                     ? t('drills.allLevels', { default: 'All' })
@@ -238,7 +238,7 @@ export function PracticeHub() {
           {deckType === 'mistakes' && mistakesDeck.length > 0 && (
             <Button
               variant="destructive"
-              className="w-full"
+              className="w-full min-h-[44px]"
               onClick={() => {
                 clearMistakes();
                 handleDeckSelect('curated');
@@ -317,6 +317,12 @@ function PracticeModeCard({
         {config.disabled && config.disabledReason ? (
           <p className="mt-1 text-xs text-muted-foreground">{config.disabledReason}</p>
         ) : null}
+        {config.variant === 'primary' && !config.disabled && (
+          <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-primary">
+            <Play className="h-3 w-3" />
+            Start now
+          </span>
+        )}
       </div>
 
       {/* Metadata: time + XP */}

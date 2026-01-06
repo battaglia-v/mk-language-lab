@@ -163,7 +163,7 @@ export function ReaderV2Layout({
             {/* Back button */}
             <Link
               href={backUrl}
-              className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-muted transition-colors"
+              className="flex h-11 w-11 items-center justify-center rounded-full hover:bg-muted transition-colors"
               aria-label={t.back}
               data-testid="reader-v2-back"
             >
@@ -198,7 +198,7 @@ export function ReaderV2Layout({
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-10 w-10 rounded-full"
+                className="h-11 w-11 rounded-full"
                 onClick={onSettingsClick}
                 aria-label="Settings"
                 data-testid="reader-v2-settings"
@@ -237,7 +237,7 @@ export function ReaderV2Layout({
             <button
               onClick={() => setTapTranslateEnabled(!tapTranslateEnabled)}
               className={cn(
-                'flex flex-col items-center gap-1 px-3 py-2 rounded-lg transition-colors min-w-[60px]',
+                'flex flex-col items-center gap-1.5 px-3 py-2.5 rounded-lg transition-colors min-w-[64px] min-h-[52px]',
                 tapTranslateEnabled
                   ? 'bg-primary/15 text-primary'
                   : 'text-muted-foreground hover:bg-muted'
@@ -253,7 +253,7 @@ export function ReaderV2Layout({
             <button
               onClick={() => setSentenceModeEnabled(!sentenceModeEnabled)}
               className={cn(
-                'flex flex-col items-center gap-1 px-3 py-2 rounded-lg transition-colors min-w-[60px]',
+                'flex flex-col items-center gap-1.5 px-3 py-2.5 rounded-lg transition-colors min-w-[64px] min-h-[52px]',
                 sentenceModeEnabled
                   ? 'bg-primary/15 text-primary'
                   : 'text-muted-foreground hover:bg-muted'
@@ -269,7 +269,7 @@ export function ReaderV2Layout({
             <button
               onClick={() => setGlossaryOpen(true)}
               className={cn(
-                'flex flex-col items-center gap-1 px-3 py-2 rounded-lg transition-colors min-w-[60px] relative',
+                'flex flex-col items-center gap-1.5 px-3 py-2.5 rounded-lg transition-colors min-w-[64px] min-h-[52px] relative',
                 'text-muted-foreground hover:bg-muted'
               )}
               data-testid="reader-v2-open-glossary"
@@ -290,7 +290,7 @@ export function ReaderV2Layout({
               aria-disabled="true"
               title={t.saveComingSoon}
               className={cn(
-                'flex flex-col items-center gap-1 px-3 py-2 rounded-lg transition-colors min-w-[60px]',
+                'flex flex-col items-center gap-1.5 px-3 py-2.5 rounded-lg transition-colors min-w-[64px] min-h-[52px]',
                 'text-muted-foreground opacity-50 cursor-not-allowed'
               )}
               data-testid="reader-v2-save-disabled"
