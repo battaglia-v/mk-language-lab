@@ -4,8 +4,8 @@
 - Base URL: https://mklanguage.com (apex; www redirects here)
 - Viewport: iPhone 12 (390x844)
 - Project: mobile-audit
-- Run Timestamp: 2026-01-06 15:27 CST
-- Commit: aaa8fd3 (local changes: quick practice timer regression test)
+- Run Timestamp: 2026-01-06 17:00 CST
+- Commit: 7dcfe46
 - Command: `PLAYWRIGHT_BASE_URL=https://mklanguage.com npm run audit:stage4`
 - Workers: 1
 - Retries: 1
