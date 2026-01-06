@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import { useSession } from 'next-auth/react';
@@ -72,6 +72,7 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
   }, [initialCount, initialDifficulty, startSession]);
 
   const card = queue[index];
+  const cardId = card?.id;
   const total = queue.length || 1;
   const progress = Math.round(((index + 1) / total) * 100);
 
@@ -81,6 +82,11 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
     if (window.speechSynthesis) window.speechSynthesis.cancel();
     setIsSpeaking(false);
   }, []);
+
+  useLayoutEffect(() => {
+    if (!cardId) return;
+    resetCard();
+  }, [cardId, resetCard]);
 
   const syncXPToServer = useCallback(async (xp: number, diff: Difficulty, correct: number, total: number, bestStreak: number) => {
     if (!authSession?.user) return;

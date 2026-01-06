@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import practicePrompts from '@/data/practice-vocabulary.json';
 import { fetchPracticePrompts } from '@mk/api-client';
 import {
@@ -332,7 +332,7 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     currentIndex >= 0 && currentIndex < practiceItems.length ? practiceItems[currentIndex] : undefined;
   const currentItemKey = currentItem?.id ?? currentItem?.macedonian ?? null;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!currentItemKey) return;
     setAnswer('');
     setFeedback(null);

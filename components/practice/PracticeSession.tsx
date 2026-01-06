@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { CheckCircle2, XCircle, Volume2, VolumeX, Lightbulb, SkipForward, Heart, X } from 'lucide-react';
@@ -146,6 +146,7 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
   ]);
 
   const card = deck[index];
+  const cardId = card?.id;
   const total = deck.length || 1;
   const progress = Math.round(((index + 1) / total) * 100);
 
@@ -159,6 +160,11 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
     if (window.speechSynthesis) window.speechSynthesis.cancel();
     setIsSpeaking(false);
   }, []);
+
+  useLayoutEffect(() => {
+    if (!cardId) return;
+    resetCard();
+  }, [cardId, resetCard]);
 
   const endSession = useCallback(() => {
     const duration = Math.floor((Date.now() - sessionStart.current) / 1000);
