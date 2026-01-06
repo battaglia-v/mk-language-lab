@@ -59,7 +59,7 @@ export function TextImporter({ onImportURL, onImportFile, isImporting }: TextImp
           type="button"
           variant="outline"
           size="sm"
-          className="min-h-[40px] px-3 text-xs rounded-full border-border/60"
+          className="min-h-[44px] px-4 text-xs rounded-full border-border/60 sm:text-sm"
           data-testid="reader-import-open"
         >
           <Upload className="h-3.5 w-3.5" aria-hidden="true" />
@@ -73,12 +73,12 @@ export function TextImporter({ onImportURL, onImportFile, isImporting }: TextImp
         </DialogHeader>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-3">
-          <TabsList className="grid w-full grid-cols-2 h-10">
-            <TabsTrigger value="url" className="text-xs sm:text-sm" data-testid="reader-import-tab-url">
+          <TabsList className="grid w-full grid-cols-2 min-h-[44px]">
+            <TabsTrigger value="url" className="min-h-[44px] text-xs sm:text-sm" data-testid="reader-import-tab-url">
               <LinkIcon className="h-3.5 w-3.5 mr-1.5" />
               {t('readerImportFromURL')}
             </TabsTrigger>
-            <TabsTrigger value="file" className="text-xs sm:text-sm" data-testid="reader-import-tab-file">
+            <TabsTrigger value="file" className="min-h-[44px] text-xs sm:text-sm" data-testid="reader-import-tab-file">
               <FileText className="h-3.5 w-3.5 mr-1.5" />
               {t('readerImportFromFile')}
             </TabsTrigger>
@@ -94,7 +94,7 @@ export function TextImporter({ onImportURL, onImportFile, isImporting }: TextImp
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 disabled={isImporting}
-                className="h-10"
+                className="h-11"
                 data-testid="reader-import-url-input"
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
@@ -110,7 +110,7 @@ export function TextImporter({ onImportURL, onImportFile, isImporting }: TextImp
             <Button
               onClick={() => void handleURLImport()}
               disabled={!url.trim() || isImporting}
-              className="w-full h-10"
+              className="w-full min-h-[44px]"
               data-testid="reader-import-url-submit"
             >
               {isImporting ? t('readerImporting') : t('readerImportButton')}
@@ -128,7 +128,7 @@ export function TextImporter({ onImportURL, onImportFile, isImporting }: TextImp
                   accept=".txt,.pdf,text/plain,application/pdf"
                   onChange={(e) => void handleFileSelect(e)}
                   disabled={isImporting}
-                  className="cursor-pointer h-10 text-sm file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-primary file:text-black hover:file:bg-primary/90 file:cursor-pointer"
+                  className="cursor-pointer h-11 text-sm file:mr-3 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-primary file:text-black hover:file:bg-primary/90 file:cursor-pointer"
                   data-testid="reader-import-file-input"
                 />
               </div>

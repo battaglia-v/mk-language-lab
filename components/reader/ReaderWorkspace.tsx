@@ -65,7 +65,7 @@ function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel
               onClick={() => onChange(option.id)}
               data-testid={`reader-workspace-direction-${option.id}`}
               className={cn(
-                'min-h-[36px] rounded-lg px-2.5 py-1.5 text-xs font-semibold transition-all sm:min-h-[40px] sm:px-3.5 sm:py-2 sm:text-sm',
+                'min-h-[44px] rounded-lg px-3.5 py-2 text-xs font-semibold transition-all sm:text-sm',
                 isActive
                   ? `${bgClass} text-white shadow-md`
                   : 'text-muted-foreground hover:text-foreground'
@@ -82,7 +82,7 @@ function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel
         variant="ghost"
         size="sm"
         onClick={onSwap}
-        className="min-h-[36px] rounded-full border border-border/60 px-2.5 sm:min-h-[40px] sm:px-3.5"
+        className="min-h-[44px] rounded-full border border-border/60 px-3.5"
         aria-label={swapLabel}
         data-testid="reader-workspace-swap-directions"
       >
@@ -541,7 +541,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                   size="sm"
                   onClick={handleClear}
                   disabled={!inputText && !analyzedData}
-                  className="rounded-full border border-border/60 min-h-[40px] px-3 text-xs"
+                  className="rounded-full border border-border/60 min-h-[44px] px-3 text-xs"
                   data-testid="reader-workspace-clear"
                 >
                   {t('clearButton')}
@@ -738,11 +738,11 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
               <div className="flex items-center gap-2">
                 <Button
                   type="button"
-                  size="sm"
+                  size="icon-sm"
                   variant="ghost"
                   onClick={() => handleListen(analyzedData.fullTranslation)}
                   disabled={isPlaying}
-                  className="rounded-full h-8 w-8 p-0"
+                  className="rounded-full"
                   aria-label={t('readerListen', { default: 'Listen' })}
                   data-testid="reader-workspace-full-translation-listen"
                 >
@@ -754,12 +754,12 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                 </Button>
                 <Button
                   type="button"
-                  size="sm"
+                  size="icon-sm"
                   variant="ghost"
                   onClick={() => {
                     void navigator.clipboard.writeText(analyzedData.fullTranslation);
                   }}
-                  className="rounded-full h-8 w-8 p-0"
+                  className="rounded-full"
                   aria-label={t('readerCopy', { default: 'Copy' })}
                   data-testid="reader-workspace-full-translation-copy"
                 >

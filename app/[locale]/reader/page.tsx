@@ -121,12 +121,12 @@ export default function ReaderPage() {
 
       <PageContainer size="lg">
         <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-6">
-            <TabsTrigger value="library" className="gap-2" data-testid="reader-tab-library">
+          <TabsList className="grid w-full grid-cols-2 mb-6 min-h-[48px]">
+            <TabsTrigger value="library" className="gap-2 min-h-[44px]" data-testid="reader-tab-library">
               <Library className="h-4 w-4" />
               Library
             </TabsTrigger>
-            <TabsTrigger value="workspace" className="gap-2" data-testid="reader-tab-workspace">
+            <TabsTrigger value="workspace" className="gap-2 min-h-[44px]" data-testid="reader-tab-workspace">
               <FileText className="h-4 w-4" />
               Workspace
             </TabsTrigger>
@@ -362,13 +362,22 @@ export default function ReaderPage() {
                 Paste text and break it down.
               </p>
               <div className="flex flex-col gap-3 max-w-xs mx-auto">
-                <Button asChild className="active:scale-[0.99]" data-testid="reader-workspace-analyze">
+                <Button
+                  asChild
+                  className="min-h-[48px] active:scale-[0.99]"
+                  data-testid="reader-workspace-analyze"
+                >
                   <Link href={`/${locale}/reader/analyze`}>
                     <Wrench className="h-4 w-4 mr-2" />
                     Paste text
                   </Link>
                 </Button>
-                <Button asChild variant="outline" className="active:scale-[0.99]" data-testid="reader-workspace-browse-stories">
+                <Button
+                  asChild
+                  variant="outline"
+                  className="min-h-[48px] active:scale-[0.99]"
+                  data-testid="reader-workspace-browse-stories"
+                >
                   <Link href={`/${locale}/reader?tab=library`}>
                     <BookOpen className="h-4 w-4 mr-2" />
                     Browse stories

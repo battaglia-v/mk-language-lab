@@ -161,8 +161,8 @@ export function WordDetailPopup({
                     >
                       <Button
                         variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 rounded-full hover:bg-primary/20 hover:scale-110 transition-all"
+                        size="icon-sm"
+                        className="rounded-full hover:bg-primary/20 hover:scale-110 transition-all"
                         onClick={handlePlayAudio}
                         aria-label={t.playAudio}
                         data-testid="reader-word-popup-audio"
@@ -185,8 +185,8 @@ export function WordDetailPopup({
               </div>
               <Button
                 variant="ghost"
-                size="icon"
-                className="h-8 w-8 rounded-full relative z-10 hover:bg-white/10"
+                size="icon-sm"
+                className="rounded-full relative z-10 hover:bg-white/10"
                 onClick={onClose}
                 aria-label="Close"
                 data-testid="reader-word-popup-close"
