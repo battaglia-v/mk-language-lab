@@ -22,6 +22,31 @@
 | --- | --- | --- | --- |
 None.
 
+---
+
+# Mobile Audit Batch: Phase 2 Dead-Click Scan (Production)
+
+## Run Details
+- Base URL: https://mklanguage.com (apex; www redirects here)
+- Viewport: iPhone 12 (390x844)
+- Project: phase2-mobile
+- Run Timestamp: 2026-01-06 14:00 CST
+- Command: `PLAYWRIGHT_BASE_URL=https://mklanguage.com npm run audit:mobile:phase2`
+- Workers: 1
+- Retries: 1
+- Timeouts: test 60s, expect 15s, global 15m
+- Tests: 14 total (14 passed, 0 failed)
+- Result: Completed
+
+## Pass/Fail Summary
+- Passed: dead-click scan on core routes + critical CTA checks
+- Failed: none
+
+## Failures
+| Test | Failure | Screenshot | Trace |
+| --- | --- | --- | --- |
+None.
+
 ## Notes
 - No deploy lag observed; Stage 4 gate passes on production.
 
