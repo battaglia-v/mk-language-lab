@@ -54,7 +54,8 @@
     "content:validate": "tsx scripts/validate-content.ts",
     "content:validate:ci": "tsx scripts/validate-content.ts --ci",
     "content:validate:strict": "tsx scripts/validate-content.ts --strict",
-    "extract:pdf": "npx tsx scripts/curriculum/extract-pdf.ts"
+    "extract:pdf": "npx tsx scripts/curriculum/extract-pdf.ts",
+    "curriculum:download": "npx tsx scripts/curriculum/download-pdfs.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
