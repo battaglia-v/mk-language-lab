@@ -53,7 +53,8 @@
     "release-gate": "node scripts/run-release-gate.mjs",
     "content:validate": "tsx scripts/validate-content.ts",
     "content:validate:ci": "tsx scripts/validate-content.ts --ci",
-    "content:validate:strict": "tsx scripts/validate-content.ts --strict"
+    "content:validate:strict": "tsx scripts/validate-content.ts --strict",
+    "extract:pdf": "npx tsx scripts/curriculum/extract-pdf.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
@@ -114,6 +115,7 @@
     "openai": "^6.7.0",
     "papaparse": "^5.5.3",
     "pdf-parse": "^2.4.5",
+    "pdfjs-dist": "^5.4.530",
     "pg": "^8.16.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
