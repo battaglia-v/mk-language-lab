@@ -13,7 +13,7 @@ test.describe('Reader Library', () => {
   test('shows 30-Day Reading Challenge section', async ({ page }) => {
     await page.goto('/en/reader', { waitUntil: 'domcontentloaded' });
 
-    await expect(page.locator('body')).toContainText(/30-day reading challenge/i);
+    await expect(page.getByTestId('reader-30day-section')).toBeVisible();
   });
 
   test('shows All Readings section with count', async ({ page }) => {
@@ -27,36 +27,26 @@ test.describe('Reader Library', () => {
   test('Library/Workspace tabs work', async ({ page }) => {
     await page.goto('/en/reader', { waitUntil: 'domcontentloaded' });
 
-    const libraryTab = page.getByRole('tab', { name: /library/i }).first();
-    const workspaceTab = page.getByRole('tab', { name: /workspace/i }).first();
+    const libraryTab = page.getByTestId('reader-tab-library');
+    const workspaceTab = page.getByTestId('reader-tab-workspace');
 
-    if (await workspaceTab.count() > 0) {
-      await workspaceTab.click();
-      await expect(page.locator('body')).toContainText(/workspace|paste text/i);
+    await workspaceTab.click();
+    await expect(page.getByTestId('reader-workspace-analyze')).toBeVisible();
 
-      await libraryTab.click();
-      await expect(page.locator('body')).toContainText(/30-day|all readings/i);
-    }
+    await libraryTab.click();
+    await expect(page.getByTestId('reader-30day-section')).toBeVisible();
   });
 
   test('search input is present', async ({ page }) => {
     await page.goto('/en/reader', { waitUntil: 'domcontentloaded' });
 
-    const searchInput = page.getByRole('textbox', { name: /search/i }).first();
-    if (await searchInput.count() === 0) {
-      // Try placeholder
-      const searchByPlaceholder = page.locator('input[placeholder*="search" i]').first();
-      await expect(searchByPlaceholder).toBeVisible();
-    } else {
-      await expect(searchInput).toBeVisible();
-    }
+    await expect(page.getByTestId('reader-search-input')).toBeVisible();
   });
 
   test('difficulty filter chips visible', async ({ page }) => {
     await page.goto('/en/reader', { waitUntil: 'domcontentloaded' });
 
-    // Should have difficulty level chips
-    await expect(page.locator('body')).toContainText(/A1|A2|B1|B2/);
+    await expect(page.getByTestId('reader-filter-difficulty-A1')).toBeVisible();
   });
 
   test('reading cards are clickable', async ({ page }) => {
@@ -97,9 +87,8 @@ test.describe('Reader Sample Page', () => {
   test('Back to Reader link works', async ({ page }) => {
     await page.goto('/en/reader/samples/cafe-conversation', { waitUntil: 'domcontentloaded' });
 
-    const backLink = page.getByRole('link', { name: /back to reader/i }).first();
+    const backLink = page.getByTestId('reader-back');
     await expect(backLink).toBeVisible();
-
     await backLink.click();
     await expect(page).toHaveURL(/\/reader$/);
   });
@@ -107,9 +96,9 @@ test.describe('Reader Sample Page', () => {
   test('Text/Grammar/Vocabulary tabs exist', async ({ page }) => {
     await page.goto('/en/reader/samples/cafe-conversation', { waitUntil: 'domcontentloaded' });
 
-    await expect(page.locator('body')).toContainText(/text|reading/i);
-    await expect(page.locator('body')).toContainText(/grammar/i);
-    await expect(page.locator('body')).toContainText(/vocabulary/i);
+    await expect(page.getByTestId('reader-sample-tab-text')).toBeVisible();
+    await expect(page.getByTestId('reader-sample-tab-grammar')).toBeVisible();
+    await expect(page.getByTestId('reader-sample-tab-vocabulary')).toBeVisible();
   });
 
   test('Grammar tab shows content', async ({ page }) => {
@@ -118,10 +107,7 @@ test.describe('Reader Sample Page', () => {
 
     const grammarTab = page.getByTestId('reader-sample-tab-grammar');
     await grammarTab.click();
-    const grammarTitle = page
-      .locator('[data-slot="card-title"]')
-      .filter({ hasText: /sakam|with \/ without|сакам|со \/ без/i });
-    await expect(grammarTitle.first()).toBeVisible();
+    await expect(page.locator('body')).toContainText(/Сакам|With \/ Without|Со \/ Без/i);
   });
 
   test('Vocabulary tab shows word list', async ({ page }) => {
@@ -130,25 +116,21 @@ test.describe('Reader Sample Page', () => {
 
     const vocabTab = page.getByTestId('reader-sample-tab-vocabulary');
     await vocabTab.click();
-    const vocabTitle = page.locator('[data-slot="card-title"]').filter({ hasText: /key vocabulary/i });
-    await expect(vocabTitle.first()).toBeVisible();
+    await expect(page.locator('body')).toContainText(/кафе|cafe|coffee/i);
   });
 
   test('Quick Analyze button works', async ({ page }) => {
     await page.goto('/en/reader/samples/cafe-conversation', { waitUntil: 'domcontentloaded' });
 
-    const analyzeBtn = page.getByRole('link', { name: /analyze|quick analyze/i }).first();
-    if (await analyzeBtn.count() > 0) {
-      await analyzeBtn.click();
-      await expect(page).toHaveURL(/\/analyze|workspace/);
-    }
+    const analyzeBtn = page.getByTestId('reader-quick-analyze');
+    await analyzeBtn.click();
+    await expect(page).toHaveURL(/\/reader\/analyze/);
   });
 
   test('Mark Complete button visible', async ({ page }) => {
     await page.goto('/en/reader/samples/cafe-conversation', { waitUntil: 'domcontentloaded' });
 
-    // Should have a completion CTA
-    await expect(page.locator('body')).toContainText(/mark.*complete|finished reading/i);
+    await expect(page.getByTestId('reader-mark-complete')).toBeVisible();
   });
 
   test('Tap any word instruction visible', async ({ page }) => {

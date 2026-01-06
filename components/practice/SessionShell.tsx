@@ -119,7 +119,7 @@ export function SessionShell({
           className="h-10 w-10 rounded-full p-0 hover:bg-white/10"
           onClick={handleExitClick}
           aria-label={t('drills.endSession', { default: 'End Session' })}
-          data-testid="session-shell-exit"
+          data-testid="session-exit"
         >
           <X className="h-5 w-5" />
         </Button>

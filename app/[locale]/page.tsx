@@ -58,7 +58,7 @@ export default async function LocaleHome({ params }: LocalePageProps) {
               asChild
               size="lg"
               className="w-full gap-2 text-lg min-h-[56px] text-black"
-              data-testid="home-start-learning"
+              data-testid="cta-start-here"
             >
               <Link href={beginnerHref}>
                 <Play className="h-5 w-5" fill="currentColor" />

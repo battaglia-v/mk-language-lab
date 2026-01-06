@@ -11,25 +11,26 @@ test.describe('Home Page', () => {
     await assertNoRawTranslationKeys(page);
 
     // Core CTAs exist
-    await expect(page.getByRole('link', { name: /start learning/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /sign in/i })).toBeVisible();
+    await expect(page.getByTestId('cta-start-here')).toBeVisible();
+    await expect(page.getByTestId('home-level-intermediate')).toBeVisible();
+    await expect(page.getByTestId('home-sign-in')).toBeVisible();
 
     const errors = getErrors();
     const jsErrors = errors.filter(e => /(TypeError|ReferenceError|SyntaxError)/.test(e));
     expect(jsErrors.length, `JS errors found: ${jsErrors.join(', ')}`).toBe(0);
   });
 
-  test('Start Learning CTA navigates to a practice session', async ({ page }) => {
+  test('Beginner CTA navigates to Learn with beginner level', async ({ page }) => {
     await page.goto('/en', { waitUntil: 'domcontentloaded' });
 
-    await page.getByRole('link', { name: /start learning/i }).click();
-    await expect(page).toHaveURL(/\/en\/practice\/session\?deck=curated/);
+    await page.getByTestId('cta-start-here').click();
+    await expect(page).toHaveURL(/\/en\/learn\?level=beginner/);
   });
 
   test('Sign In CTA navigates to auth', async ({ page }) => {
     await page.goto('/en', { waitUntil: 'domcontentloaded' });
 
-    await page.getByRole('link', { name: /sign in/i }).click();
+    await page.getByTestId('home-sign-in').click();
     await expect(page).toHaveURL(/\/auth\/signin|\/sign-in/);
   });
 
@@ -37,7 +38,7 @@ test.describe('Home Page', () => {
     await page.goto('/en', { waitUntil: 'domcontentloaded' });
 
     // Should have nav items
-    const nav = page.getByRole('navigation', { name: /main navigation|главна навигација/i });
+    const nav = page.getByTestId('bottom-nav');
     await expect(nav).toBeVisible();
   });
 

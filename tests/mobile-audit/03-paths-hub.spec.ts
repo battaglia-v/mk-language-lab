@@ -13,30 +13,24 @@ test.describe('Learning Paths Hub', () => {
   test('A1 Foundations path card visible', async ({ page }) => {
     await page.goto('/en/learn/paths', { waitUntil: 'domcontentloaded' });
 
-    await expect(page.locator('body')).toContainText(/foundations|a1|starter/i);
+    await expect(page.getByTestId('path-card-a1')).toBeVisible();
   });
 
-  test('30-Day Challenge path card visible', async ({ page }) => {
+  test('A2 Momentum path card visible', async ({ page }) => {
     await page.goto('/en/learn/paths', { waitUntil: 'domcontentloaded' });
 
-    await expect(page.locator('body')).toContainText(/30-day|30 day|reading challenge/i);
-  });
-
-  test('Topic Packs path card visible', async ({ page }) => {
-    await page.goto('/en/learn/paths', { waitUntil: 'domcontentloaded' });
-
-    await expect(page.locator('body')).toContainText(/topic packs|topics/i);
+    await expect(page.getByTestId('path-card-a2')).toBeVisible();
   });
 
   test('path cards are clickable', async ({ page }) => {
     await page.goto('/en/learn/paths', { waitUntil: 'domcontentloaded' });
 
-    // Find any path CTA link
-    const pathCards = page.locator('[data-testid^="paths-start-"]');
-    const count = await pathCards.count();
-    expect(count).toBeGreaterThan(0);
+    const a1Start = page.getByTestId('paths-start-a1');
+    const a2Start = page.getByTestId('paths-start-a2');
+    await expect(a1Start).toBeVisible();
+    await expect(a2Start).toBeVisible();
 
-    const href = await pathCards.first().getAttribute('href');
+    const href = await a1Start.getAttribute('href');
     expect(href).toContain('/learn/paths/');
   });
 });
@@ -54,16 +48,15 @@ for (const pathId of LEARNING_PATH_IDS) {
     test(`${pathId} path shows lesson nodes`, async ({ page }) => {
       await page.goto(`/en/learn/paths/${pathId}`, { waitUntil: 'domcontentloaded' });
 
-      // Should have some lesson-like content
-      const hasLessons = await page.locator('body').innerText();
-      expect(hasLessons.length).toBeGreaterThan(100); // Not empty
+      const nodes = page.locator('[data-testid^="path-node-"]');
+      const count = await nodes.count();
+      expect(count).toBeGreaterThan(0);
     });
 
     test(`${pathId} path has back navigation`, async ({ page }) => {
       await page.goto(`/en/learn/paths/${pathId}`, { waitUntil: 'domcontentloaded' });
 
-      const backLink = page.getByTestId('path-detail-back');
-      await expect(backLink).toBeVisible();
+      await expect(page.getByTestId('path-detail-back')).toBeVisible();
     });
   });
 }

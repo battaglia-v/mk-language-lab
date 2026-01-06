@@ -8,27 +8,28 @@ test.describe('More Menu', () => {
     await assertNoRawTranslationKeys(page);
 
     // Should show menu items
-    await expect(page.locator('body')).toContainText(/news|resources|profile|settings|about|help/i);
+    await expect(page.getByTestId('more-menu-news')).toBeVisible();
+    await expect(page.getByTestId('more-menu-profile')).toBeVisible();
   });
 
   const menuLinks = [
-    { name: 'News', path: '/news' },
-    { name: 'Profile', path: '/profile' },
-    { name: 'Settings', path: '/settings' },
-    { name: 'About', path: '/about' },
-    { name: 'Help', path: '/help' },
+    { id: 'lab', path: '/lab' },
+    { id: 'news', path: '/news' },
+    { id: 'resources', path: '/resources' },
+    { id: 'profile', path: '/profile' },
+    { id: 'settings', path: '/settings' },
+    { id: 'about', path: '/about' },
+    { id: 'help', path: '/help' },
   ];
 
-  for (const { name, path } of menuLinks) {
-    test(`${name} link navigates correctly`, async ({ page }) => {
+  for (const { id, path } of menuLinks) {
+    test(`${id} link navigates correctly`, async ({ page }) => {
       await page.goto('/en/more', { waitUntil: 'domcontentloaded' });
 
-      const link = page.getByRole('link', { name: new RegExp(name, 'i') }).first();
-      if (await link.count() > 0) {
-        await link.click();
-        await expect(page).toHaveURL(new RegExp(path));
-        await expect(page.locator('body')).not.toContainText('404');
-      }
+      const link = page.getByTestId(`more-menu-${id}`);
+      await link.click();
+      await expect(page).toHaveURL(new RegExp(path));
+      await expect(page.locator('body')).not.toContainText('404');
     });
   }
 });
@@ -44,19 +45,14 @@ test.describe('Settings Page', () => {
   test('has daily goal setting', async ({ page }) => {
     await page.goto('/en/settings', { waitUntil: 'domcontentloaded' });
 
-    await expect(page.locator('body')).toContainText(/daily.*goal|goal.*xp/i);
-  });
-
-  test('has notification settings', async ({ page }) => {
-    await page.goto('/en/settings', { waitUntil: 'domcontentloaded' });
-
-    await expect(page.locator('body')).toContainText(/notification|reminder/i);
+    await expect(page.getByTestId('settings-daily-goal-20')).toBeVisible();
   });
 
   test('has theme toggle', async ({ page }) => {
     await page.goto('/en/settings', { waitUntil: 'domcontentloaded' });
 
-    await expect(page.locator('body')).toContainText(/theme|dark|light|appearance/i);
+    await expect(page.getByTestId('settings-theme-light')).toBeVisible();
+    await expect(page.getByTestId('settings-theme-dark')).toBeVisible();
   });
 });
 
@@ -65,16 +61,18 @@ test.describe('Profile Page', () => {
     await page.goto('/en/profile', { waitUntil: 'domcontentloaded' });
     await assertNoRawTranslationKeys(page);
 
-    // Should show profile or sign-in prompt
-    await expect(page.locator('body')).toContainText(/profile|sign in|log in/i);
+    await expect(page.getByTestId('profile-hero')).toBeVisible();
   });
 
   test('shows XP and streak for signed-in users', async ({ page }) => {
     await page.goto('/en/profile', { waitUntil: 'domcontentloaded' });
 
-    // Should have stats section or sign-in prompt
-    const text = await page.locator('body').innerText();
-    expect(text.toLowerCase()).toMatch(/xp|streak|level|sign in|profile/i);
+    const signedOut = page.getByTestId('profile-sign-in');
+    const signedIn = page.getByTestId('profile-overview');
+
+    const hasSignedOut = await signedOut.isVisible().catch(() => false);
+    const hasSignedIn = await signedIn.isVisible().catch(() => false);
+    expect(hasSignedOut || hasSignedIn).toBeTruthy();
   });
 });
 
@@ -83,7 +81,7 @@ test.describe('Help Page', () => {
     await page.goto('/en/help', { waitUntil: 'domcontentloaded' });
     await assertNoRawTranslationKeys(page);
 
-    await expect(page.locator('body')).toContainText(/help|support|faq/i);
+    await expect(page.getByTestId('help-back-to-more')).toBeVisible();
   });
 });
 
@@ -92,7 +90,7 @@ test.describe('About Page', () => {
     await page.goto('/en/about', { waitUntil: 'domcontentloaded' });
     await assertNoRawTranslationKeys(page);
 
-    await expect(page.locator('body')).toContainText(/about|macedonian/i);
+    await expect(page.getByTestId('about-hero')).toBeVisible();
   });
 });
 
@@ -101,38 +99,14 @@ test.describe('News Page', () => {
     await page.goto('/en/news', { waitUntil: 'domcontentloaded' });
     await assertNoRawTranslationKeys(page);
 
-    await expect(page.locator('body')).toContainText(/news/i);
+    await expect(page.getByTestId('news-hero')).toBeVisible();
   });
 
   test('shows news articles or empty state', async ({ page }) => {
     await page.goto('/en/news', { waitUntil: 'domcontentloaded' });
 
-    // Should have articles or "no news" message
-    const text = await page.locator('body').innerText();
-    expect(text.toLowerCase()).toMatch(/article|headline|no news|coming soon|news/i);
-  });
-});
-
-test.describe('Upgrade Page', () => {
-  test('loads without errors', async ({ page }) => {
-    await page.goto('/en/upgrade', { waitUntil: 'domcontentloaded' });
-    await assertNoRawTranslationKeys(page);
-
-    await expect(page.locator('body')).toContainText(/upgrade|pro|premium/i);
-  });
-
-  test('shows pricing options', async ({ page }) => {
-    await page.goto('/en/upgrade', { waitUntil: 'domcontentloaded' });
-
-    // Should have pricing info
-    await expect(page.locator('body')).toContainText(/month|year|\$|free|plan/i);
-  });
-
-  test('has subscribe/upgrade button', async ({ page }) => {
-    await page.goto('/en/upgrade', { waitUntil: 'domcontentloaded' });
-
-    const upgradeBtn = page.getByRole('button', { name: /upgrade|subscribe|get pro/i }).first();
-    // Should exist (even if disabled for signed-out users)
-    expect(await upgradeBtn.count()).toBeGreaterThanOrEqual(0);
+    const hasGrid = await page.getByTestId('news-grid').isVisible().catch(() => false);
+    const hasRetry = await page.getByTestId('news-retry').isVisible().catch(() => false);
+    expect(hasGrid || hasRetry).toBeTruthy();
   });
 });

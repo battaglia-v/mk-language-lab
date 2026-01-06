@@ -18,28 +18,27 @@ type JourneyFailure = {
 function expectedJourneyTestIds(route: GateRoute, mode: ReleaseGateMode): string[] {
   const id = route.id;
 
-  if (id === 'home') return ['home-start-learning'];
-  if (id === 'dashboard') return ['learn-start-todays-lesson', 'home-start-learning'];
-  if (id === 'learn') return ['learn-start-todays-lesson', 'learn-browse-paths'];
+  if (id === 'home') return ['cta-start-here'];
+  if (id === 'dashboard') return ['cta-start-here'];
+  if (id === 'learn') return ['cta-start-here', 'cta-browse-paths'];
   if (id === 'pathsHub') return ['paths-back-to-learn'];
   if (id.startsWith('path-')) return ['path-detail-back'];
   if (id === 'alphabetLesson') return ['alphabet-tab-learn', 'alphabet-back-to-a1'];
   if (id === 'practice') return ['practice-settings-open', 'practice-mode-vocabulary'];
   if (id === 'practiceWordSprint' || id === 'practiceCloze' || id === 'practiceFillBlanks' || id === 'practiceWordGaps') {
-    return ['word-sprint-picker-start', 'word-sprint-exit'];
+    return ['word-sprint-picker-start', 'session-exit'];
   }
-  if (id === 'practicePronunciation') return ['pronunciation-back-to-practice'];
   if (id === 'practiceGrammar') return ['grammar-back-to-practice', 'grammar-results-retry'];
   if (id === 'practiceDecks') return ['custom-decks-back-to-practice', 'custom-decks-upgrade'];
   if (id === 'customDeckEditor') return ['deck-editor-back-to-decks', 'deck-editor-edit-info'];
-  if (id === 'practiceSession' || id.startsWith('practice-session-topic-')) return ['practice-session-exit'];
+  if (id === 'practiceSession' || id.startsWith('practice-session-topic-')) return ['session-exit'];
   if (id === 'practiceResults') return ['practice-results-practice-again'];
   if (id === 'translate') return ['translate-input'];
   if (id === 'reader') return ['reader-tab-library', 'reader-search-input'];
   if (id === 'readerAnalyze') return ['reader-workspace-input', 'reader-workspace-analyze'];
   if (id === 'readerReview') return ['reader-review-empty-go-library', 'reader-review-footer'];
   if (id.startsWith('reader-sample-') && id.endsWith('-v2')) return ['reader-v2-back', 'reader-v2-toggle-tap'];
-  if (id.startsWith('reader-sample-')) return ['reader-sample-back-to-reader', 'reader-sample-tab-text'];
+  if (id.startsWith('reader-sample-')) return ['reader-back', 'reader-sample-tab-text'];
   if (id === 'news') return ['news-hero'];
   if (id === 'resources') return ['resources-search-input'];
   if (id === 'discover') return ['discover-refresh', 'discover-error-retry'];

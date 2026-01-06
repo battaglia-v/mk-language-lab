@@ -24,7 +24,7 @@ test.describe('Stage 4 critical mobile audit', () => {
     await page.goto('/en', { waitUntil: 'domcontentloaded' });
     await waitForInteractive(page);
 
-    await expect(page.getByTestId('home-start-learning')).toBeVisible();
+    await expect(page.getByTestId('cta-start-here')).toBeVisible();
     await expect(page.getByTestId('home-level-intermediate')).toBeVisible();
 
     await assertNoRawTranslationKeys(page);
@@ -32,10 +32,10 @@ test.describe('Stage 4 critical mobile audit', () => {
 
   test('beginner CTA navigates to A1 learn path', async ({ page }) => {
     await page.goto('/en', { waitUntil: 'domcontentloaded' });
-    await page.getByTestId('home-start-learning').click();
+    await page.getByTestId('cta-start-here').click();
     await waitForInteractive(page);
 
-    await expect(page.getByTestId('learn-start-todays-lesson')).toBeVisible();
+    await expect(page.getByTestId('cta-start-here')).toBeVisible();
     await expect(page.getByText('A1 Foundations')).toBeVisible();
   });
 
@@ -49,7 +49,7 @@ test.describe('Stage 4 critical mobile audit', () => {
 
   test('learning paths hub shows A1 and A2 cards', async ({ page }) => {
     await page.goto('/en/learn', { waitUntil: 'domcontentloaded' });
-    await page.getByTestId('learn-browse-paths').click();
+    await page.getByTestId('cta-browse-paths').click();
     await waitForInteractive(page);
 
     await expect(page.getByTestId('paths-start-a1')).toBeVisible();
@@ -70,7 +70,7 @@ test.describe('Stage 4 critical mobile audit', () => {
     await page.getByTestId('paths-start-a2').click();
     await waitForInteractive(page);
 
-    await expect(page.getByTestId('practice-session-exit')).toBeVisible();
+    await expect(page.getByTestId('session-exit')).toBeVisible();
   });
 
   test('word sprint starts and exits', async ({ page }) => {
@@ -78,9 +78,9 @@ test.describe('Stage 4 critical mobile audit', () => {
     await waitForInteractive(page);
 
     await page.getByTestId('word-sprint-picker-start').click();
-    await expect(page.getByTestId('word-sprint-exit')).toBeVisible();
+    await expect(page.getByTestId('session-exit')).toBeVisible();
 
-    await page.getByTestId('word-sprint-exit').click();
+    await page.getByTestId('session-exit').click();
     await expect(page).toHaveURL(/\/practice/);
   });
 

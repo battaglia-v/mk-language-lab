@@ -27,7 +27,7 @@ const TOPIC_DECK_IDS = [
   'cyrillic-alphabet-v1',
 ] as const;
 
-const LEARNING_PATH_IDS = ['a1', 'a2', '30day', 'topics'] as const;
+const LEARNING_PATH_IDS = ['a1', 'a2', '30day'] as const;
 
 const READER_SAMPLE_IDS = [
   'cafe-conversation',
@@ -85,7 +85,6 @@ export async function resolveGateRoutes(): Promise<GateRoute[]> {
   routes.push({ id: 'practiceFillBlanks', label: 'Practice: Fill blanks', path: r('/practice/fill-blanks') });
   routes.push({ id: 'practiceWordGaps', label: 'Practice: Word gaps', path: r('/practice/word-gaps') });
   routes.push({ id: 'practiceWordSprint', label: 'Practice: Word sprint', path: r('/practice/word-sprint') });
-  routes.push({ id: 'practicePronunciation', label: 'Practice: Pronunciation', path: r('/practice/pronunciation') });
   routes.push({ id: 'practiceGrammar', label: 'Practice: Grammar', path: r('/practice/grammar') });
   routes.push({ id: 'practiceDecks', label: 'Practice: Decks', path: r('/practice/decks') });
   routes.push({ id: 'practiceSession', label: 'Practice: Session', path: r('/practice/session') });

@@ -143,7 +143,7 @@ export function LearnPageClient({
           {/* Primary CTA - Start Here */}
           <Link
             href={startHref}
-            data-testid="learn-start-todays-lesson"
+            data-testid="cta-start-here"
             className={cn(
               'group flex flex-col items-center gap-1 rounded-2xl p-5',
               'bg-gradient-to-r from-primary to-amber-500',
@@ -167,7 +167,7 @@ export function LearnPageClient({
           {/* Secondary CTA - Browse Learning Paths */}
           <Link
             href={`/${locale}/learn/paths`}
-            data-testid="learn-browse-paths-cta"
+            data-testid="cta-browse-paths"
             className="flex items-center justify-center gap-2 rounded-xl border border-border/50 bg-card/50 p-4 transition-colors hover:bg-card hover:border-primary/30 active:scale-[0.99]"
           >
             <BookOpen className="h-5 w-5 text-muted-foreground" />
