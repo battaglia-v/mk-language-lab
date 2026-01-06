@@ -84,3 +84,6 @@ test change
 # Test results and reports
 test-results/
 playwright-report/
+
+# Curriculum PDFs (large files, copyrighted)
+data/curriculum/raw/*.pdf
