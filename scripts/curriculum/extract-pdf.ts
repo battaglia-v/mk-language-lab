@@ -8,11 +8,14 @@ import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist/legacy/build/pdf.mj
 import type { TextItem } from 'pdfjs-dist/types/src/display/api';
 import * as fs from 'fs';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
 import type { ExtractedPage, ExtractedTextItem, ExtractedTextbook } from './types';
 import { containsMacedonianChars } from './types';
 
-// Disable worker for Node.js environment
-GlobalWorkerOptions.workerSrc = '';
+// Set up worker for Node.js environment
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const workerPath = path.resolve(__dirname, '../../node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs');
+GlobalWorkerOptions.workerSrc = workerPath;
 
 /**
  * Extract text with position data from a PDF file
@@ -25,7 +28,12 @@ export async function extractPdfText(pdfPath: string): Promise<ExtractedPage[]> 
   }
 
   const data = new Uint8Array(fs.readFileSync(absolutePath));
-  const pdf = await getDocument({ data }).promise;
+  const pdf = await getDocument({
+    data,
+    useWorkerFetch: false,
+    isEvalSupported: false,
+    useSystemFonts: true,
+  }).promise;
 
   const pages: ExtractedPage[] = [];
 
@@ -177,4 +185,8 @@ Example:
   }
 }
 
-main();
+// Only run main when executed directly, not when imported
+const isMainModule = process.argv[1] === fileURLToPath(import.meta.url);
+if (isMainModule) {
+  main();
+}
