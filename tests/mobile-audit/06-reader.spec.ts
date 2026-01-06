@@ -26,6 +26,7 @@ test.describe('Reader Library', () => {
 
   test('Library/Workspace tabs work', async ({ page }) => {
     await page.goto('/en/reader', { waitUntil: 'domcontentloaded' });
+    await waitForInteractive(page);
 
     const libraryTab = page.getByTestId('reader-tab-library');
     const workspaceTab = page.getByTestId('reader-tab-workspace');
@@ -121,8 +122,10 @@ test.describe('Reader Sample Page', () => {
 
   test('Quick Analyze button works', async ({ page }) => {
     await page.goto('/en/reader/samples/cafe-conversation', { waitUntil: 'domcontentloaded' });
+    await waitForInteractive(page);
 
     const analyzeBtn = page.getByTestId('reader-quick-analyze');
+    await analyzeBtn.scrollIntoViewIfNeeded();
     await analyzeBtn.click();
     await expect(page).toHaveURL(/\/reader\/analyze/);
   });

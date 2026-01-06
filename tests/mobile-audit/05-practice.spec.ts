@@ -53,10 +53,10 @@ test.describe('Practice Hub', () => {
 
   test('Settings button opens bottom sheet', async ({ page }) => {
     await page.goto('/en/practice', { waitUntil: 'domcontentloaded' });
+    await waitForInteractive(page);
 
     const settingsBtn = page.getByTestId('practice-settings-open');
     await settingsBtn.click();
-    await page.waitForTimeout(300);
 
     await expect(page.getByTestId('practice-settings-sheet')).toBeVisible();
   });
