@@ -80,8 +80,10 @@ export function PracticeHub() {
   const recommendedMode = modes.find((modeConfig) => modeConfig.id === 'wordSprint');
   const otherModes = modes.filter((modeConfig) => modeConfig.id !== 'wordSprint');
 
+  const translateHref = `/${locale}/translate`;
+
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-7">
       {/* Header */}
       <header className="flex items-center justify-between">
         <div>
@@ -135,6 +137,17 @@ export function PracticeHub() {
             />
           ))}
         </div>
+        {savedDeck.length === 0 && (
+          <div className="rounded-xl border border-border/50 bg-muted/20 p-4 text-sm text-muted-foreground">
+            <p className="font-semibold text-foreground">No saved phrases yet.</p>
+            <p className="mt-1">
+              Save a phrase in Translate to unlock the Saved practice deck.
+              <Link href={translateHref} className="ml-1 font-semibold text-primary hover:underline">
+                Open Translate
+              </Link>
+            </p>
+          </div>
+        )}
       </section>
 
       {/* Settings Bottom Sheet */}
@@ -271,7 +284,7 @@ function PracticeModeCard({
 
   const variantStyles = {
     default: 'bg-card border-border hover:border-primary/30 hover:bg-accent/50',
-    primary: 'bg-primary/10 border-primary/30 hover:border-primary/50',
+    primary: 'bg-primary/10 border-primary/30 hover:border-primary/50 shadow-sm shadow-primary/10',
     accent: 'bg-amber-500/10 border-amber-500/30 hover:border-amber-500/50',
     saved: 'bg-pink-500/10 border-pink-500/30 hover:border-pink-500/50',
   };
@@ -292,8 +305,8 @@ function PracticeModeCard({
   const content = (
     <div
       className={cn(
-        'group flex items-center gap-4 rounded-2xl border p-4 transition-all duration-200',
-        'min-h-[80px] active:scale-[0.99]',
+        'group flex items-center gap-4 rounded-2xl border p-5 transition-all duration-200',
+        'min-h-[88px] active:scale-[0.99]',
         variantStyles[config.variant],
         config.disabled && 'opacity-50'
       )}
@@ -318,7 +331,7 @@ function PracticeModeCard({
           <p className="mt-1 text-xs text-muted-foreground">{config.disabledReason}</p>
         ) : null}
         {config.variant === 'primary' && !config.disabled && (
-          <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-primary">
+          <span className="mt-2 inline-flex items-center gap-1 rounded-full bg-primary/15 px-2 py-1 text-[11px] font-semibold text-primary">
             <Play className="h-3 w-3" />
             Start now
           </span>

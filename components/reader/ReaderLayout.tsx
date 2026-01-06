@@ -38,7 +38,7 @@ export function ReaderLayout({ sample, locale }: ReaderLayoutProps) {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <div className="sticky top-0 z-30 -mx-4 border-b border-border/40 bg-background/90 px-4 py-3 backdrop-blur">
         <div className="flex items-center gap-2">
           <Button asChild variant="ghost" size="sm" className="gap-1 px-3">
@@ -130,8 +130,8 @@ export function ReaderLayout({ sample, locale }: ReaderLayoutProps) {
         </div>
       )}
 
-      <section className="rounded-2xl border border-border/40 bg-card p-5" data-testid="reader-sample-tab-text">
-        <div className="space-y-1 border-b border-border/30 pb-4">
+      <section className="rounded-2xl border border-border/40 bg-card p-6" data-testid="reader-sample-tab-text">
+        <div className="space-y-1 border-b border-border/30 pb-5">
           <h2 className="text-base font-semibold text-foreground">Reading</h2>
           <p className="text-xs text-muted-foreground">
             {locale === 'mk'
@@ -139,7 +139,7 @@ export function ReaderLayout({ sample, locale }: ReaderLayoutProps) {
               : 'Tap any word for translation, then save it to your glossary'}
           </p>
         </div>
-        <div className="space-y-5 pt-5">
+        <div className="space-y-6 pt-5">
           {sample.text_blocks_mk.map((block, idx) => {
             if (block.type === 'p') {
               return (
@@ -265,7 +265,7 @@ export function ReaderLayout({ sample, locale }: ReaderLayoutProps) {
           </CollapsibleSection>
 
           <div className="space-y-3">
-            <div className="rounded-2xl border border-border/40 bg-card/60 p-5 space-y-3">
+            <div className="rounded-2xl border border-border/40 bg-card/60 p-6 space-y-3">
               <div className="space-y-1 text-center">
                 <h3 className="text-lg font-semibold">Analyze This Text</h3>
                 <p className="text-sm text-muted-foreground">
@@ -275,7 +275,7 @@ export function ReaderLayout({ sample, locale }: ReaderLayoutProps) {
               <QuickAnalyzeButton sample={sample} locale={locale} />
             </div>
 
-            <div className="rounded-2xl border border-primary/30 bg-primary/5 p-5 space-y-3">
+            <div className="rounded-2xl border border-primary/30 bg-primary/5 p-6 space-y-3">
               <div className="space-y-1">
                 <h3 className="text-lg font-semibold">Finished Reading?</h3>
                 <p className="text-sm text-muted-foreground">
@@ -308,8 +308,8 @@ function CollapsibleSection({
     <section className="rounded-2xl border border-border/40 bg-card">
       <button
         type="button"
-      onClick={() => setOpen((current) => !current)}
-        className="flex w-full min-h-[52px] items-center justify-between gap-3 px-4 py-4 text-left transition-colors hover:bg-muted/20"
+        onClick={() => setOpen((current) => !current)}
+        className="flex w-full min-h-[56px] items-center justify-between gap-3 px-5 py-4 text-left transition-colors hover:bg-muted/20"
         aria-expanded={open}
         data-testid={testId}
       >
@@ -319,7 +319,7 @@ function CollapsibleSection({
         </div>
         <ChevronDown className={cn('h-5 w-5 text-muted-foreground transition-transform', open && 'rotate-180')} />
       </button>
-      {open && <div className="px-4 pb-4">{children}</div>}
+      {open && <div className="px-5 pb-5">{children}</div>}
     </section>
   );
 }

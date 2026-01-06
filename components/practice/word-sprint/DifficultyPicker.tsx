@@ -3,7 +3,7 @@
 import { useState, type MouseEvent } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { X, Zap, Clock } from 'lucide-react';
+import { ArrowLeft, Zap, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { type Difficulty, type SessionLength, DIFFICULTY_COLORS, SESSION_LENGTH_OPTIONS, BASE_XP_PER_QUESTION } from './types';
@@ -37,7 +37,7 @@ export function DifficultyPicker({ onSelect, title = 'Word Sprint' }: Props) {
           onClick={() => router.back()}
           data-testid="word-sprint-picker-close"
         >
-          <X className="h-4 w-4" />
+          <ArrowLeft className="h-4 w-4" />
           <span className="text-xs font-semibold">Back</span>
         </Button>
         <span className="text-lg font-semibold">{title}</span>
