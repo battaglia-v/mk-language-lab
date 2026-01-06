@@ -18,6 +18,7 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "postinstall": "prisma generate",
     "prisma:seed": "tsx prisma/seed.ts",
+    "db:seed:ukim": "tsx prisma/seed-curriculum-ukim.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
