@@ -283,7 +283,7 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
             size="sm"
             className="h-11 w-11 rounded-full p-0"
             onClick={() => router.push(`/${locale}/practice`)}
-            data-testid="practice-session-exit"
+            data-testid="session-exit"
           >
             <X className="h-5 w-5" />
           </Button>
@@ -353,7 +353,7 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
           size="sm"
           className="h-11 w-11 rounded-full p-0"
           onClick={endSession}
-          data-testid="practice-session-exit"
+          data-testid="session-exit"
         >
           <X className="h-5 w-5" />
         </Button>

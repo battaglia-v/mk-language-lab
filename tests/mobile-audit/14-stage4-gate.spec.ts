@@ -5,7 +5,7 @@ test.describe('Stage 4 gate - critical journeys', () => {
     await page.goto('/en', { waitUntil: 'domcontentloaded' });
     await waitForInteractive(page);
 
-    await expect(page.getByTestId('home-start-learning')).toBeVisible();
+    await expect(page.getByTestId('cta-start-here')).toBeVisible();
     await expect(page.locator('[data-testid="nav-learn"]:visible')).toBeVisible();
     await assertNoRawTranslationKeys(page);
   });
@@ -58,9 +58,9 @@ test.describe('Stage 4 gate - critical journeys', () => {
     await waitForInteractive(page);
 
     await page.getByTestId('word-sprint-picker-start').click();
-    await expect(page.getByTestId('word-sprint-exit')).toBeVisible();
+    await expect(page.getByTestId('session-exit')).toBeVisible();
 
-    await page.getByTestId('word-sprint-exit').click();
+    await page.getByTestId('session-exit').click();
     await expect(page).toHaveURL(/\/practice/);
   });
 

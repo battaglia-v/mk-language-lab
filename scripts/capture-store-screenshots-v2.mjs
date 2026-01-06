@@ -40,7 +40,7 @@ const SCREENSHOTS = [
     path: '/en/learn',
     locale: 'en',
     description: 'Learn page with lesson paths',
-    waitFor: '[data-testid="learn-browse-paths"], [data-testid="learn-start-todays-lesson"]',
+    waitFor: '[data-testid="cta-browse-paths"], [data-testid="cta-start-here"]',
     caption: { title: 'Structured Learning', subtitle: 'Paths from alphabet to fluency' },
   },
   {
@@ -130,7 +130,7 @@ const SCREENSHOTS = [
     path: '/mk/learn',
     locale: 'mk',
     description: 'Macedonian locale to show bilingual support',
-    waitFor: '[data-testid="learn-browse-paths"], [data-testid="learn-start-todays-lesson"]',
+    waitFor: '[data-testid="cta-browse-paths"], [data-testid="cta-start-here"]',
     caption: { title: 'Двојазична Апликација', subtitle: 'Bilingual: English & Macedonian UI' },
   },
 ];

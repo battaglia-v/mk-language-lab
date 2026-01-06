@@ -7,21 +7,21 @@ test.describe('Alphabet Lesson', () => {
     await page.goto('/en/learn/lessons/alphabet', { waitUntil: 'domcontentloaded' });
     await assertNoRawTranslationKeys(page);
 
-    await expect(page.locator('body')).toContainText(/alphabet|cyrillic/i);
+    await expect(page.getByTestId('alphabet-tab-learn')).toBeVisible();
   });
 
   test('shows 31 letters in grid', async ({ page }) => {
     await page.goto('/en/learn/lessons/alphabet', { waitUntil: 'domcontentloaded' });
 
-    // Should mention letter count
-    await expect(page.locator('body')).toContainText(/31|letters/i);
+    const letters = page.locator('[data-testid^="alphabet-letter-"]');
+    const count = await letters.count();
+    expect(count).toBeGreaterThanOrEqual(31);
   });
 
   test('letter cards are tappable', async ({ page }) => {
     await page.goto('/en/learn/lessons/alphabet', { waitUntil: 'domcontentloaded' });
 
-    // Find a letter card (they have Cyrillic letters)
-    const letterCard = page.locator('[role="button"], button').filter({ hasText: /^[А-Ша-ш]$/ }).first();
+    const letterCard = page.locator('[data-testid^="alphabet-letter-"]').first();
 
     if (await letterCard.count() > 0) {
       await letterCard.click();
@@ -33,41 +33,36 @@ test.describe('Alphabet Lesson', () => {
   test('has Learn, Special, Practice tabs', async ({ page }) => {
     await page.goto('/en/learn/lessons/alphabet', { waitUntil: 'domcontentloaded' });
 
-    await expect(page.locator('body')).toContainText(/learn/i);
-    await expect(page.locator('body')).toContainText(/special/i);
-    await expect(page.locator('body')).toContainText(/practice/i);
+    await expect(page.getByTestId('alphabet-tab-learn')).toBeVisible();
+    await expect(page.getByTestId('alphabet-tab-special')).toBeVisible();
+    await expect(page.getByTestId('alphabet-tab-practice')).toBeVisible();
   });
 
   test('Special tab shows unique Macedonian letters', async ({ page }) => {
     await page.goto('/en/learn/lessons/alphabet', { waitUntil: 'domcontentloaded' });
 
     // Click Special tab
-    const specialTab = page.getByRole('tab', { name: /special/i }).first();
-    if (await specialTab.count() > 0) {
-      await specialTab.click();
-      await expect(page.locator('body')).toContainText(/unique|macedonian/i);
-    }
+    const specialTab = page.getByTestId('alphabet-tab-special');
+    await specialTab.click();
+    const specialLetters = page.locator('[data-testid^="alphabet-special-letter-"]');
+    expect(await specialLetters.count()).toBeGreaterThan(0);
   });
 
   test('Practice tab has quiz links', async ({ page }) => {
     await page.goto('/en/learn/lessons/alphabet', { waitUntil: 'domcontentloaded' });
 
     // Click Practice tab
-    const practiceTab = page.getByRole('tab', { name: /practice/i }).first();
-    if (await practiceTab.count() > 0) {
-      await practiceTab.click();
-      await expect(page.locator('body')).toContainText(/quiz|practice/i);
-    }
+    const practiceTab = page.getByTestId('alphabet-tab-practice');
+    await practiceTab.click();
+    await expect(page.getByTestId('alphabet-go-alphabet-quiz')).toBeVisible();
   });
 
   test('back button returns to path', async ({ page }) => {
     await page.goto('/en/learn/lessons/alphabet', { waitUntil: 'domcontentloaded' });
 
-    const backLink = page.getByRole('link', { name: /back/i }).first();
-    if (await backLink.count() > 0) {
-      await backLink.click();
-      await expect(page).toHaveURL(/\/learn\/paths|\/learn$/);
-    }
+    const backLink = page.getByTestId('alphabet-back-to-a1');
+    await backLink.click();
+    await expect(page).toHaveURL(/\/learn\/paths|\/learn$/);
   });
 
   test('progress bar visible', async ({ page }) => {
@@ -80,8 +75,7 @@ test.describe('Alphabet Lesson', () => {
   test('minimum touch target size (44px)', async ({ page }) => {
     await page.goto('/en/learn/lessons/alphabet', { waitUntil: 'domcontentloaded' });
 
-    // Check that letter cards have adequate size
-    const letterCards = page.locator('[role="button"]').first();
+    const letterCards = page.locator('[data-testid^="alphabet-letter-"]').first();
     if (await letterCards.count() > 0) {
       const box = await letterCards.boundingBox();
       if (box) {

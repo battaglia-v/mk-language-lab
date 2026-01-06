@@ -112,7 +112,7 @@ test.describe('Form Labels', () => {
   test('translate input has label', async ({ page }) => {
     await page.goto('/en/translate', { waitUntil: 'domcontentloaded' });
 
-    const textbox = page.getByRole('textbox').first();
+    const textbox = page.getByTestId('translate-input');
     const ariaLabel = await textbox.getAttribute('aria-label');
     const placeholder = await textbox.getAttribute('placeholder');
 
@@ -124,7 +124,7 @@ test.describe('Focus Visibility', () => {
   test('buttons show focus state', async ({ page }) => {
     await page.goto('/en', { waitUntil: 'domcontentloaded' });
 
-    const btn = page.getByRole('link', { name: /start learning/i }).first();
+    const btn = page.getByTestId('cta-start-here');
     await btn.focus();
 
     // Check for focus ring (outline or ring class)
@@ -155,8 +155,8 @@ test.describe('Keyboard Navigation', () => {
   test('Enter activates focused button', async ({ page }) => {
     await page.goto('/en', { waitUntil: 'domcontentloaded' });
 
-    // Tab to Start Learning link
-    const startBtn = page.getByRole('link', { name: /start learning/i }).first();
+    // Tab to primary CTA
+    const startBtn = page.getByTestId('cta-start-here');
     await startBtn.focus();
 
     // Press Enter

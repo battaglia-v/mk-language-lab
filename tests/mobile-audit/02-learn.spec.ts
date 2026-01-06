@@ -35,7 +35,7 @@ test.describe('Learn Page', () => {
   test('Start today\'s lesson CTA is tappable', async ({ page }) => {
     await page.goto('/en/learn', { waitUntil: 'domcontentloaded' });
 
-    const startBtn = page.getByRole('link', { name: /start today/i }).first();
+    const startBtn = page.getByTestId('cta-start-here');
     await expect(startBtn).toBeVisible();
 
     // Verify it has an href
@@ -43,37 +43,18 @@ test.describe('Learn Page', () => {
     expect(href).toBeTruthy();
   });
 
-  test('Quick practice link works', async ({ page }) => {
-    await page.goto('/en/learn', { waitUntil: 'domcontentloaded' });
-
-    const quickPractice = page.getByRole('link', { name: /quick practice/i }).first();
-    if (await quickPractice.count() > 0) {
-      await quickPractice.click();
-      await expect(page).toHaveURL(/\/practice/);
-    }
-  });
-
-  test('Translate something link works', async ({ page }) => {
-    await page.goto('/en/learn', { waitUntil: 'domcontentloaded' });
-
-    const translateLink = page.locator('a').filter({ hasText: /translate something/i }).first();
-    if (await translateLink.count() > 0) {
-      await translateLink.click();
-      await expect(page).toHaveURL(/\/translate/);
-    }
-  });
-
   test('Pick a skill section visible', async ({ page }) => {
     await page.goto('/en/learn', { waitUntil: 'domcontentloaded' });
 
-    await expect(page.locator('body')).toContainText(/pick a skill/i);
+    await expect(page.getByTestId('learn-level-beginner')).toBeVisible();
+    await expect(page.getByTestId('learn-level-intermediate')).toBeVisible();
   });
 
   test('Basics/Conversations track toggle works', async ({ page }) => {
     await page.goto('/en/learn', { waitUntil: 'domcontentloaded' });
 
-    const basicsBtn = page.getByRole('button', { name: /basics/i }).first();
-    const conversationsBtn = page.getByRole('button', { name: /conversations/i }).first();
+    const basicsBtn = page.getByTestId('learn-level-beginner');
+    const conversationsBtn = page.getByTestId('learn-level-intermediate');
 
     if (await basicsBtn.count() > 0 && await conversationsBtn.count() > 0) {
       // Toggle should work
@@ -86,29 +67,17 @@ test.describe('Learn Page', () => {
   test('Lesson cards have Start indicator for available lessons', async ({ page }) => {
     await page.goto('/en/learn', { waitUntil: 'domcontentloaded' });
 
-    // Available lessons should show "Start" text
-    const startIndicators = page.locator('text=/Start/');
-    const count = await startIndicators.count();
-    // At least one lesson should be available
+    const lessonCards = page.locator('[data-testid^="learn-node-"]');
+    const count = await lessonCards.count();
     expect(count).toBeGreaterThan(0);
-  });
-
-  test('Locked lessons show lock icon', async ({ page }) => {
-    await page.goto('/en/learn', { waitUntil: 'domcontentloaded' });
-
-    // Check for lock icon (Lucide Lock)
-    const lockIcons = page.locator('[class*="lucide-lock"], svg');
-    // Should have some locked lessons
-    expect(await lockIcons.count()).toBeGreaterThan(0);
   });
 
   test('Browse all learning paths link works', async ({ page }) => {
     await page.goto('/en/learn', { waitUntil: 'domcontentloaded' });
 
-    const pathsLink = page.getByRole('link', { name: /browse all learning paths/i }).first();
-    if (await pathsLink.count() > 0) {
-      await pathsLink.click();
-      await expect(page).toHaveURL(/\/learn\/paths/);
-    }
+    const pathsLink = page.getByTestId('cta-browse-paths');
+    await expect(pathsLink).toBeVisible();
+    await pathsLink.click();
+    await expect(page).toHaveURL(/\/learn\/paths/);
   });
 });

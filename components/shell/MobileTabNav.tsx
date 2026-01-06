@@ -26,6 +26,7 @@ export function MobileTabNav() {
         "safe-area-bottom"
       )}
       aria-label={t("label")}
+      data-testid="bottom-nav"
       style={{
         paddingBottom: "env(safe-area-inset-bottom, 0px)",
       }}

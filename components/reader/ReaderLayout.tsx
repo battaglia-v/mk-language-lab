@@ -42,7 +42,7 @@ export function ReaderLayout({ sample, locale }: ReaderLayoutProps) {
       <div className="sticky top-0 z-30 -mx-4 border-b border-border/40 bg-background/90 px-4 py-3 backdrop-blur">
         <div className="flex items-center gap-2">
           <Button asChild variant="ghost" size="sm" className="gap-1 px-3">
-            <Link href={`/${locale}/reader`} data-testid="reader-sample-back-to-reader">
+            <Link href={`/${locale}/reader`} data-testid="reader-back">
               <ArrowLeft className="h-4 w-4" />
               <span className="text-sm">Back</span>
             </Link>
@@ -130,7 +130,7 @@ export function ReaderLayout({ sample, locale }: ReaderLayoutProps) {
         </div>
       )}
 
-      <section className="rounded-2xl border border-border/40 bg-card p-5">
+      <section className="rounded-2xl border border-border/40 bg-card p-5" data-testid="reader-sample-tab-text">
         <div className="space-y-1 border-b border-border/30 pb-4">
           <h2 className="text-base font-semibold text-foreground">Reading</h2>
           <p className="text-xs text-muted-foreground">
@@ -180,7 +180,7 @@ export function ReaderLayout({ sample, locale }: ReaderLayoutProps) {
           <CollapsibleSection
             title="Vocabulary"
             subtitle={`${sample.vocabulary.length} words`}
-            testId="reader-vocabulary-section"
+            testId="reader-sample-tab-vocabulary"
           >
             {sample.vocabulary.length === 0 ? (
               <p className="text-sm text-muted-foreground">
@@ -207,7 +207,7 @@ export function ReaderLayout({ sample, locale }: ReaderLayoutProps) {
           <CollapsibleSection
             title="Grammar"
             subtitle={`${sample.grammar_highlights.length} highlights`}
-            testId="reader-grammar-section"
+            testId="reader-sample-tab-grammar"
           >
             {sample.grammar_highlights.length === 0 ? (
               <p className="text-sm text-muted-foreground">

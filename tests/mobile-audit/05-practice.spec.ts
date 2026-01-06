@@ -10,16 +10,6 @@ test.describe('Practice Hub', () => {
     await expect(page.locator('body')).toContainText(/practice/i);
   });
 
-  test('Pronunciation card visible and clickable', async ({ page }) => {
-    await page.goto('/en/practice', { waitUntil: 'domcontentloaded' });
-
-    const card = page.getByTestId('practice-mode-pronunciation');
-    await expect(card).toBeVisible();
-
-    await card.click();
-    await expect(page).toHaveURL(/\/practice\/pronunciation/);
-  });
-
   test('Grammar card visible and clickable', async ({ page }) => {
     await page.goto('/en/practice', { waitUntil: 'domcontentloaded' });
 
@@ -64,14 +54,11 @@ test.describe('Practice Hub', () => {
   test('Settings button opens bottom sheet', async ({ page }) => {
     await page.goto('/en/practice', { waitUntil: 'domcontentloaded' });
 
-    const settingsBtn = page.getByRole('button', { name: /settings/i }).first();
-    if (await settingsBtn.count() > 0) {
-      await settingsBtn.click();
-      await page.waitForTimeout(300);
+    const settingsBtn = page.getByTestId('practice-settings-open');
+    await settingsBtn.click();
+    await page.waitForTimeout(300);
 
-      // Should show settings options
-      await expect(page.locator('body')).toContainText(/mode|difficulty|deck/i);
-    }
+    await expect(page.getByTestId('practice-settings-sheet')).toBeVisible();
   });
 });
 
@@ -116,23 +103,7 @@ test.describe('Word Sprint', () => {
     await expect(startBtn).toBeEnabled();
     await startBtn.click();
 
-    await expect(page.getByTestId('word-sprint-exit')).toBeVisible();
-  });
-});
-
-test.describe('Pronunciation Practice', () => {
-  test('page loads', async ({ page }) => {
-    await page.goto('/en/practice/pronunciation', { waitUntil: 'domcontentloaded' });
-
-    await expect(page.locator('body')).toContainText(/pronunciation/i);
-  });
-
-  test('has audio controls or speak button', async ({ page }) => {
-    await page.goto('/en/practice/pronunciation', { waitUntil: 'domcontentloaded' });
-
-    const audioBtn = page.locator('button').filter({ hasText: /play|speak|listen|hear/i }).first();
-    // Should have some audio interaction
-    expect(await audioBtn.count()).toBeGreaterThanOrEqual(0);
+    await expect(page.getByTestId('session-exit')).toBeVisible();
   });
 });
 
@@ -153,14 +124,11 @@ test.describe('Grammar Practice', () => {
   test('exit button is at least 44px', async ({ page }) => {
     await page.goto('/en/practice/grammar', { waitUntil: 'domcontentloaded' });
 
-    // If there's an exit/X button, verify size
-    const exitBtn = page.locator('button').filter({ hasText: /×|exit|close/i }).first();
-    if (await exitBtn.count() > 0) {
-      const box = await exitBtn.boundingBox();
-      if (box) {
-        expect(box.height).toBeGreaterThanOrEqual(40);
-        expect(box.width).toBeGreaterThanOrEqual(40);
-      }
+    const backBtn = page.getByTestId('grammar-back-to-practice');
+    const box = await backBtn.boundingBox();
+    if (box) {
+      expect(box.height).toBeGreaterThanOrEqual(40);
+      expect(box.width).toBeGreaterThanOrEqual(40);
     }
   });
 });

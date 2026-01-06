@@ -66,5 +66,25 @@ None.
 | Bottom Navigation — bottom nav shows Home item | Nav locator resolved to hidden navigation | `test-results/playwright/10-navigation-Bottom-Navigation-bottom-nav-shows-Home-item-mobile-audit/test-failed-1.png` | `test-results/playwright/10-navigation-Bottom-Navigation-bottom-nav-shows-Home-item-mobile-audit-retry1/trace.zip` |
 | Bottom Navigation — bottom nav shows Learn item | Nav locator resolved to hidden navigation | `test-results/playwright/10-navigation-Bottom-Navigation-bottom-nav-shows-Learn-item-mobile-audit/test-failed-1.png` | n/a |
 
+## Failure Triage (Option 1)
+| Test | Triage | Action |
+| --- | --- | --- |
+| Home Page — loads without JS errors and shows CTAs | TEST DRIFT | Update to use level CTAs (`cta-start-here`, `home-level-intermediate`) instead of legacy “Start Learning.” |
+| Home Page — Start Learning CTA navigates to a practice session | TEST DRIFT | Expect `/en/learn?level=beginner` (guest flow) and use testid. |
+| Learn Page — Start today's lesson CTA is tappable | TEST DRIFT | Update to `cta-start-here` and current copy. |
+| Learn Page — Pick a skill section visible | TEST DRIFT | Assert level toggle via testids, not legacy copy. |
+| Learning Paths Hub — path cards are clickable | TESTABILITY | Assert `paths-start-a1`/`paths-start-a2` visibility and hrefs. |
+| Learning Paths Hub — 30-Day Challenge path card visible | TEST DRIFT | Remove from hub expectations (challenge is surfaced in Reader). |
+| Learning Paths Hub — Topic Packs path card visible | TEST DRIFT | Remove from hub expectations (not in beta). |
+| Learning Path — path shows lesson nodes | TEST DRIFT | Remove `topics` path from path list. |
+| Learning Path — path has back navigation | TEST DRIFT | Remove `topics` path from path list. |
+| Practice Hub — Pronunciation card visible and clickable | TEST DRIFT | Remove Pronunciation checks (feature hidden in beta). |
+| Reader Sample Page — Back to Reader link works | TEST DRIFT | Use `reader-back` testid (label is “Back”). |
+| Reader Sample Page — Grammar tab shows content | TESTABILITY | Add `reader-sample-tab-grammar` testid and assert content. |
+| Reader Sample Page — Vocabulary tab shows word list | TESTABILITY | Add `reader-sample-tab-vocabulary` testid and assert content. |
+| Settings Page — has notification settings | TEST DRIFT | Remove notification expectation (not in beta). |
+| Bottom Navigation — bottom nav shows Home item | TESTABILITY | Use `bottom-nav` testid and avoid hidden desktop nav. |
+| Bottom Navigation — bottom nav shows Learn item | TESTABILITY | Use `bottom-nav` testid and nav testids. |
+
 ## Notes
 - Full audit did not complete due to the 15 minute tool timeout. Needs batched runs to finish.

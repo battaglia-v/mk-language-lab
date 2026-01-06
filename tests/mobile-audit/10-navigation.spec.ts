@@ -16,7 +16,7 @@ test.describe('Bottom Navigation', () => {
       await page.goto(route.url, { waitUntil: 'domcontentloaded' });
 
       // Check that nav exists
-      const nav = page.locator('nav, [role="navigation"]').first();
+      const nav = page.getByTestId('bottom-nav');
       await expect(nav).toBeVisible();
 
       // Check that we're on the right page
@@ -32,25 +32,22 @@ test.describe('Bottom Navigation', () => {
     await page.waitForTimeout(300);
 
     // Nav should still be visible
-    const nav = page.locator('nav, [role="navigation"]').first();
-    await expect(nav).toBeVisible();
+    await expect(page.getByTestId('bottom-nav')).toBeVisible();
   });
 
   test('tapping nav item navigates', async ({ page }) => {
     await page.goto('/en', { waitUntil: 'domcontentloaded' });
 
     // Find Practice nav item
-    const practiceNav = page.locator('nav a, [role="navigation"] a').filter({ hasText: /practice/i }).first();
-    if (await practiceNav.count() > 0) {
-      await practiceNav.click();
-      await expect(page).toHaveURL(/\/practice/);
-    }
+    const practiceNav = page.getByTestId('bottom-nav').getByTestId('nav-practice');
+    await practiceNav.click();
+    await expect(page).toHaveURL(/\/practice/);
   });
 
   test('nav items have adequate touch targets', async ({ page }) => {
     await page.goto('/en', { waitUntil: 'domcontentloaded' });
 
-    const navItems = page.locator('nav a, [role="navigation"] a');
+    const navItems = page.getByTestId('bottom-nav').locator('a');
     const count = await navItems.count();
 
     for (let i = 0; i < Math.min(count, 5); i++) {
@@ -75,14 +72,15 @@ test.describe('Back Navigation', () => {
     test(`${path} has back navigation`, async ({ page }) => {
       await page.goto(path, { waitUntil: 'domcontentloaded' });
 
-      const backLink = page.locator('a').filter({ hasText: /back|←/i }).first();
-      if (await backLink.count() > 0) {
-        await expect(backLink).toBeVisible();
+      const backLink = path.includes('/alphabet')
+        ? page.getByTestId('alphabet-back-to-a1')
+        : path.includes('/reader/samples/')
+          ? page.getByTestId('reader-back')
+          : page.getByTestId('path-detail-back');
 
-        // Should navigate
-        await backLink.click();
-        expect(page.url()).not.toBe(path);
-      }
+      await expect(backLink).toBeVisible();
+      await backLink.click();
+      expect(page.url()).not.toBe(path);
     });
   }
 });

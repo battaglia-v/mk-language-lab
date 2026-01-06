@@ -102,7 +102,7 @@ test.describe('@slow Critical Button Validation', () => {
   test('Home - Start Learning is not dead', async ({ page }) => {
     await page.goto('/en', { waitUntil: 'domcontentloaded' });
 
-    const btn = page.getByTestId('home-start-learning');
+    const btn = page.getByTestId('cta-start-here');
     await expect(btn).toBeVisible();
 
     const href = await btn.getAttribute('href');
@@ -113,7 +113,7 @@ test.describe('@slow Critical Button Validation', () => {
   test('Learn - Start today\'s lesson is not dead', async ({ page }) => {
     await page.goto('/en/learn', { waitUntil: 'domcontentloaded' });
 
-    const btn = page.getByTestId('learn-start-todays-lesson');
+    const btn = page.getByTestId('cta-start-here');
     await expect(btn).toBeVisible();
 
     const href = await btn.getAttribute('href');

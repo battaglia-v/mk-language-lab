@@ -214,14 +214,12 @@ export const ALL_ROUTES = {
   pathA1: '/en/learn/paths/a1',
   pathA2: '/en/learn/paths/a2',
   path30Day: '/en/learn/paths/30day',
-  pathTopicPacks: '/en/learn/paths/topics',
 
   // Lessons
   lessonAlphabet: '/en/learn/lessons/alphabet',
 
   // Practice modes
   practiceWordSprint: '/en/practice/word-sprint',
-  practicePronunciation: '/en/practice/pronunciation',
   practiceGrammar: '/en/practice/grammar',
 
   // Reader samples (first 5 days)
@@ -307,5 +305,4 @@ export const LEARNING_PATH_IDS = [
   'a1',
   'a2',
   '30day',
-  'topics',
 ];
