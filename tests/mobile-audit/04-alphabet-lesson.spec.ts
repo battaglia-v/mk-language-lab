@@ -1,4 +1,4 @@
-import { test, expect, assertNoRawTranslationKeys, MOBILE_VIEWPORT } from './_helpers';
+import { test, expect, assertNoRawTranslationKeys, MOBILE_VIEWPORT, waitForInteractive } from './_helpers';
 
 test.use({ viewport: MOBILE_VIEWPORT });
 
@@ -40,16 +40,17 @@ test.describe('Alphabet Lesson', () => {
 
   test('Special tab shows unique Macedonian letters', async ({ page }) => {
     await page.goto('/en/learn/lessons/alphabet', { waitUntil: 'domcontentloaded' });
+    await waitForInteractive(page);
 
     // Click Special tab
     const specialTab = page.getByTestId('alphabet-tab-special');
     await specialTab.click();
-    const specialLetters = page.locator('[data-testid^="alphabet-special-letter-"]');
-    expect(await specialLetters.count()).toBeGreaterThan(0);
+    await page.waitForSelector('[data-testid^="alphabet-special-letter-"]', { state: 'visible', timeout: 15000 });
   });
 
   test('Practice tab has quiz links', async ({ page }) => {
     await page.goto('/en/learn/lessons/alphabet', { waitUntil: 'domcontentloaded' });
+    await waitForInteractive(page);
 
     // Click Practice tab
     const practiceTab = page.getByTestId('alphabet-tab-practice');
