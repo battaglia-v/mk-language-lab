@@ -1,5 +1,5 @@
-# Run lint check (must pass with max 10 warnings)
-npm run lint
+# Run lint on staged files (faster than full-repo lint)
+npm run lint:staged
 
 # Run TypeScript type check
 npm run type-check

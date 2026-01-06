@@ -106,6 +106,44 @@ describe('useQuickPracticeSession', () => {
     expect(trackEventMock).toHaveBeenCalledWith('practice_answer_incorrect', expect.any(Object));
   });
 
+  it('pauses the timer after feedback to avoid answer flashes on the next prompt', async () => {
+    vi.useFakeTimers();
+    const { result, unmount } = renderHook(() =>
+      useQuickPracticeSession({
+        prompts: SAMPLE_PROMPTS,
+      })
+    );
+
+    await act(async () => {
+      result.current.setDifficulty('blitz');
+    });
+
+    expect(result.current.timeRemaining).toBeGreaterThan(0);
+
+    act(() => {
+      result.current.setAnswer('hello');
+    });
+
+    await act(async () => {
+      await result.current.handleCheck();
+    });
+
+    const remainingAfterAnswer = result.current.timeRemaining;
+
+    act(() => {
+      vi.advanceTimersByTime(1000);
+    });
+
+    expect(result.current.feedback).toBe('correct');
+    expect(result.current.timeRemaining).toBe(remainingAfterAnswer);
+
+    act(() => {
+      vi.clearAllTimers();
+    });
+    unmount();
+    vi.useRealTimers();
+  });
+
   it('resets the session state when handleReset is called', async () => {
     const { result } = renderHook(() =>
       useQuickPracticeSession({

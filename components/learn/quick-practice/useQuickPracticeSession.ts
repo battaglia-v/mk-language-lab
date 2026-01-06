@@ -512,6 +512,10 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
   );
 
   const handleNext = () => {
+    if (autoAdvanceTimeoutRef.current) {
+      clearTimeout(autoAdvanceTimeoutRef.current);
+      autoAdvanceTimeoutRef.current = null;
+    }
     if (!practiceItems.length) return;
     if (practiceItems.length === 1) {
       setAnswer('');
@@ -544,6 +548,13 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
   };
 
   useEffect(() => {
+    if (feedback) {
+      if (timerIntervalRef.current) {
+        clearInterval(timerIntervalRef.current);
+        timerIntervalRef.current = null;
+      }
+      return;
+    }
     if (!timerDuration || timeRemaining === null) {
       if (timerIntervalRef.current) {
         clearInterval(timerIntervalRef.current);
@@ -594,6 +605,7 @@ export function useQuickPracticeSession(options: QuickPracticeSessionOptions = {
     currentItem,
     currentItemKey,
     direction,
+    feedback,
     showCompletionModal,
     showGameOverModal,
     timeRemaining,
