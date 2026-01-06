@@ -346,7 +346,7 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
                 }
               }}
               className={cn(
-                'cursor-pointer rounded-sm px-1 py-0.5 -mx-1 transition-all duration-150 inline-block',
+                'cursor-pointer rounded-md px-1.5 py-1 -mx-1.5 transition-all duration-150 inline-block',
                 'hover:bg-primary/20 focus:bg-primary/20 focus:outline-none',
                 'touch-manipulation', // Better mobile touch handling
                 // Show selected state with prominent highlight
