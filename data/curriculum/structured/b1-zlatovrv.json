@@ -1,0 +1,61 @@
+{
+  "id": "b1-zlatovrv",
+  "journeyId": "ukim-b1",
+  "title": "Златоврв",
+  "level": "B1",
+  "note": "B1 skeleton structure only - full content extraction pending (per PROJECT.md Phase 1)",
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "Chapter 1: Дали се разбираме?",
+      "titleMk": "Лекција 1: Дали се разбираме?",
+      "note": "Content pending - B1 skeleton only"
+    },
+    {
+      "chapterNumber": 2,
+      "title": "Chapter 2: Има ли надеж?",
+      "titleMk": "Лекција 2: Има ли надеж?",
+      "note": "Content pending - B1 skeleton only"
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Chapter 3: Моето здравје",
+      "titleMk": "Лекција 3: Моето здравје",
+      "note": "Content pending - B1 skeleton only"
+    },
+    {
+      "chapterNumber": 4,
+      "title": "Chapter 4: Што (ќе) јадеме (денес)?",
+      "titleMk": "Лекција 4: Што (ќе) јадеме (денес)?",
+      "note": "Content pending - B1 skeleton only"
+    },
+    {
+      "chapterNumber": 5,
+      "title": "Chapter 5: Дајте музика!",
+      "titleMk": "Лекција 5: Дајте музика!",
+      "note": "Content pending - B1 skeleton only"
+    },
+    {
+      "chapterNumber": 6,
+      "title": "Chapter 6: Патуваме, сонуваме!",
+      "titleMk": "Лекција 6: Патуваме, сонуваме!",
+      "note": "Content pending - B1 skeleton only"
+    },
+    {
+      "chapterNumber": 7,
+      "title": "Chapter 7: Луѓето се луѓе",
+      "titleMk": "Лекција 7: Луѓето се луѓе",
+      "note": "Content pending - B1 skeleton only"
+    },
+    {
+      "chapterNumber": 8,
+      "title": "Chapter 8: Градска џунгла",
+      "titleMk": "Лекција 8: Градска џунгла",
+      "note": "Content pending - B1 skeleton only"
+    }
+  ],
+  "metadata": {
+    "totalChapters": 8,
+    "extractedAt": "2026-01-06T23:52:32.118Z"
+  }
+}
