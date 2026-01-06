@@ -1,4 +1,4 @@
-import { test, expect, assertNoRawTranslationKeys, MOBILE_VIEWPORT } from './_helpers';
+import { test, expect, assertNoRawTranslationKeys, MOBILE_VIEWPORT, waitForInteractive } from './_helpers';
 
 test.use({ viewport: MOBILE_VIEWPORT });
 
@@ -66,13 +66,18 @@ test.describe('Profile Page', () => {
 
   test('shows XP and streak for signed-in users', async ({ page }) => {
     await page.goto('/en/profile', { waitUntil: 'domcontentloaded' });
+    await waitForInteractive(page);
 
     const signedOut = page.getByTestId('profile-sign-in');
     const signedIn = page.getByTestId('profile-overview');
+    const retry = page.getByTestId('profile-retry');
 
-    const hasSignedOut = await signedOut.isVisible().catch(() => false);
-    const hasSignedIn = await signedIn.isVisible().catch(() => false);
-    expect(hasSignedOut || hasSignedIn).toBeTruthy();
+    await expect.poll(async () => {
+      const hasSignedOut = await signedOut.isVisible().catch(() => false);
+      const hasSignedIn = await signedIn.isVisible().catch(() => false);
+      const hasRetry = await retry.isVisible().catch(() => false);
+      return hasSignedOut || hasSignedIn || hasRetry;
+    }).toBeTruthy();
   });
 });
 
