@@ -39,7 +39,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - Златоврв (B1) — Advanced (skeleton only)
 
 Plans:
-- [ ] 01-01: Set up PDF parsing infrastructure and download textbooks
+- [x] 01-01: Set up PDF parsing infrastructure and download textbooks
 - [ ] 01-02: Extract and structure A1 curriculum (Тешкото)
 - [ ] 01-03: Extract and structure A2 curriculum (Лозје)
 - [ ] 01-04: Create B1 skeleton (Златоврв) and integrate curriculum ordering
@@ -116,7 +116,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Curriculum Backbone | 0/4 | Not started | - |
+| 1. Curriculum Backbone | 1/4 | In progress | - |
 | 2. Progress & Dashboard | 0/3 | Not started | - |
 | 3. Lesson Practice Integrity | 0/3 | Not started | - |
 | 4. Vocabulary System | 0/3 | Not started | - |
