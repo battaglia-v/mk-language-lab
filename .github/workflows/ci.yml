@@ -302,20 +302,45 @@ jobs:
     name: CI Pipeline Success
     runs-on: ubuntu-latest
     needs: [lint, i18n-check, type-check, build, content-qa, e2e, unit-tests, mobile-maestro]
-    if: always()
+    # Only run if the workflow wasn't cancelled (avoids false failure notifications)
+    if: ${{ !cancelled() }}
 
     steps:
       - name: Check all jobs
         run: |
-          if [ "${{ needs.lint.result }}" != "success" ] || \
-             [ "${{ needs.i18n-check.result }}" != "success" ] || \
-             [ "${{ needs.type-check.result }}" != "success" ] || \
-             [ "${{ needs.build.result }}" != "success" ] || \
-             [ "${{ needs.content-qa.result }}" != "success" ] || \
-             [ "${{ needs.e2e.result }}" != "success" ] || \
-             [ "${{ needs.unit-tests.result }}" != "success" ] || \
-             [ "${{ needs.mobile-maestro.result }}" != "success" ]; then
-            echo "❌ One or more CI jobs failed"
+          # Track results
+          FAILED=""
+          CANCELLED=""
+
+          # Check each job - cancelled jobs should not trigger failure notifications
+          for job in lint i18n-check type-check build content-qa e2e unit-tests mobile-maestro; do
+            result="${{ needs.lint.result }}"
+            case "$job" in
+              lint) result="${{ needs.lint.result }}" ;;
+              i18n-check) result="${{ needs.i18n-check.result }}" ;;
+              type-check) result="${{ needs.type-check.result }}" ;;
+              build) result="${{ needs.build.result }}" ;;
+              content-qa) result="${{ needs.content-qa.result }}" ;;
+              e2e) result="${{ needs.e2e.result }}" ;;
+              unit-tests) result="${{ needs.unit-tests.result }}" ;;
+              mobile-maestro) result="${{ needs.mobile-maestro.result }}" ;;
+            esac
+
+            if [ "$result" = "failure" ]; then
+              FAILED="$FAILED $job"
+            elif [ "$result" = "cancelled" ]; then
+              CANCELLED="$CANCELLED $job"
+            fi
+          done
+
+          # Only fail if there are actual failures (not cancellations)
+          if [ -n "$FAILED" ]; then
+            echo "❌ CI jobs failed:$FAILED"
             exit 1
+          elif [ -n "$CANCELLED" ]; then
+            echo "⏹️ CI jobs cancelled (superseded by newer run):$CANCELLED"
+            echo "This is expected behavior - no action needed."
+            exit 0
+          else
+            echo "✅ All CI jobs passed successfully"
           fi
-          echo "✅ All CI jobs passed successfully"
