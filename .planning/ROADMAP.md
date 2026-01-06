@@ -27,17 +27,22 @@ Decimal phases appear between their surrounding integers in numeric order.
 ## Phase Details
 
 ### Phase 1: Curriculum Backbone
-**Goal**: Parse UKIM public curriculum PDFs into structured data; structure A1 and A2 levels with concepts, vocabulary, grammar per lesson; create B1 skeleton; replace ad-hoc lesson ordering with UKIM curriculum order.
+**Goal**: Parse UKIM textbook PDFs into structured data; structure A1 (Тешкото) and A2 (Лозје) levels with concepts, vocabulary, grammar per lesson; create B1 skeleton (Златоврв); replace ad-hoc lesson ordering with UKIM curriculum order.
 **Depends on**: Nothing (first phase)
-**Research**: Likely (PDF parsing, external curriculum format)
-**Research topics**: PDF parsing libraries (pdf-parse, pdfjs-dist), UKIM curriculum structure, extracting structured data from educational PDFs
+**Research**: Likely (PDF parsing, textbook structure analysis)
+**Research topics**: PDF parsing libraries (pdf-parse, pdfjs-dist), Тешкото/Лозје/Златоврв internal structure (chapters, vocab lists, grammar sections)
 **Plans**: TBD
 
+**Source**: https://archive.ukim.edu.mk/mk_content.php?glavno=34&meni=201
+- Тешкото (A1) — Beginner
+- Лозје (A2) — Intermediate
+- Златоврв (B1) — Advanced (skeleton only)
+
 Plans:
-- [ ] 01-01: Set up PDF parsing infrastructure
-- [ ] 01-02: Extract and structure A1 curriculum
-- [ ] 01-03: Extract and structure A2 curriculum
-- [ ] 01-04: Create B1 skeleton and integrate curriculum ordering
+- [ ] 01-01: Set up PDF parsing infrastructure and download textbooks
+- [ ] 01-02: Extract and structure A1 curriculum (Тешкото)
+- [ ] 01-03: Extract and structure A2 curriculum (Лозје)
+- [ ] 01-04: Create B1 skeleton (Златоврв) and integrate curriculum ordering
 
 ### Phase 2: Progress & Dashboard
 **Goal**: Implement progress tracking (currentPath, currentLesson, lastActivity); update dashboard with "Continue where you left off"; remove static "Start here" after first use; prevent auto-redirect to alphabet.

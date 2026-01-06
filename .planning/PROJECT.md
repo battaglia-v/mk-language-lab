@@ -117,6 +117,19 @@ Advanced and returning users don't know where they are, what they've completed, 
 - **Tech stack**: Next.js 16 App Router, Prisma/PostgreSQL, NextAuth, Vercel — no major changes
 - **Content source**: UKIM curriculum available as PDFs requiring extraction/parsing
 
+## Curriculum Source
+
+**UKIM Archive**: https://archive.ukim.edu.mk/mk_content.php?glavno=34&meni=201
+
+| Textbook | Level | CEFR | Notes |
+|----------|-------|------|-------|
+| **Тешкото** (Teshkoto) | Beginner | A1 | 2022 edition has audio |
+| **Лозје** (Lozje) | Intermediate | A2 | 2022 edition available |
+| **Златоврв** (Zlatovrv) | Advanced | B1 | Skeleton only for beta |
+| **Везилка** (Vezilka) | Culture/Literature | — | Supplementary, out of scope |
+
+Additional materials available: "Macedonian for Foreigners" courses, "Macedonian so maka" (Tasevska)
+
 ## Key Decisions
 
 <!-- Decisions that constrain future work. Add throughout project lifecycle. -->
