@@ -5,32 +5,33 @@
 See: .planning/PROJECT.md (updated 2026-01-06)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** Phase 1 — Curriculum Backbone
+**Current focus:** Phase 2 — Progress & Dashboard
 
 ## Current Position
 
-Phase: 1 of 7 (Curriculum Backbone)
-Plan: 4 of 4 in current phase
-Status: Phase complete
-Last activity: 2026-01-07 — Completed 01-04-PLAN.md
+Phase: 2 of 7 (Progress & Dashboard)
+Plan: 1 of 3 in current phase
+Status: In progress
+Last activity: 2026-01-07 — Completed 02-01-PLAN.md
 
-Progress: ██░░░░░░░░ 19%
+Progress: ██░░░░░░░░ 24%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
-- Average duration: 11 min
-- Total execution time: 0.7 hours
+- Total plans completed: 5
+- Average duration: 9 min
+- Total execution time: 0.8 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 1 | 4 | 43 min | 11 min |
+| 2 | 1 | 3 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 9, 10, 5, 19 min
+- Last 5 plans: 10, 5, 19, 3 min
 - Trend: →
 
 ## Accumulated Context
@@ -46,6 +47,7 @@ Recent decisions affecting current work:
 - [01-02]: Used TOC-based lesson boundaries; journeyId naming: ukim-{level}
 - [01-03]: A2 has 8 comprehensive lessons vs A1's 24; grammar from TOC metadata
 - [01-04]: B1 skeleton (chapter titles only); upsert seeding pattern; journeyIds ukim-a1/a2/b1
+- [02-01]: Journey becomes active on first lesson completion; currentLessonId points to NEXT lesson
 
 ### Deferred Issues
 
@@ -57,6 +59,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-07T00:09:12Z
-Stopped at: Completed 01-04-PLAN.md (Phase 1 complete)
+Last session: 2026-01-07T00:20:08Z
+Stopped at: Completed 02-01-PLAN.md
 Resume file: None
