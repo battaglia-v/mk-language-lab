@@ -20,7 +20,7 @@ interface LearnPageClientProps {
   streak: number;
   todayXP: number;
   dailyGoalXP: number;
-  starterPath: LessonPathData;
+  a1Path: LessonPathData;
   a2Path: LessonPathData;
   currentLesson?: { id: string; title: string; moduleTitle: string; lessonNumber: number };
   journeyProgress?: { completedCount: number; totalCount: number };
@@ -31,7 +31,7 @@ export function LearnPageClient({
   streak: initialStreak,
   todayXP: initialTodayXP,
   dailyGoalXP,
-  starterPath,
+  a1Path,
   a2Path,
   currentLesson,
   journeyProgress,
@@ -85,7 +85,7 @@ export function LearnPageClient({
   const goalProgress = dailyGoalXP > 0 ? Math.min(100, Math.round((todayXP / dailyGoalXP) * 100)) : 0;
   const isGoalComplete = todayXP >= dailyGoalXP;
 
-  const currentPath = activeLevel === 'beginner' ? starterPath : a2Path;
+  const currentPath = activeLevel === 'beginner' ? a1Path : a2Path;
   const levelLabel = activeLevel === 'beginner' ? t('basics') : t('speaking');
   const levelBadge = activeLevel === 'beginner' ? 'A1' : 'A2';
   const nextNode = getNextNode(currentPath);

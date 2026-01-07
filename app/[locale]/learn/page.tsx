@@ -2,8 +2,7 @@ import { getLocale } from "next-intl/server";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { LearnPageClient } from "@/components/learn/LearnPageClient";
-import { createStarterPath, starterPathNodes } from "@/lib/learn/starter-path";
-import { createA2Path, a2PathNodes } from "@/lib/learn/a2-path";
+import { getA1Path, getA2Path } from "@/lib/learn/curriculum-path";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -18,18 +17,17 @@ export default async function LearnPage() {
     streak: 0,
     dailyGoalXP: 20,
     todayXP: 0,
-    totalLessons: 0,
   };
 
-  let completedNodeIds: string[] = [];
   let currentLesson: { id: string; title: string; moduleTitle: string; lessonNumber: number } | undefined;
   let journeyProgress: { completedCount: number; totalCount: number } | undefined;
+  const userId = session?.user?.id;
 
-  if (session?.user?.id) {
+  if (userId) {
     try {
       // Fetch game progress
       const progress = await prisma.gameProgress.findUnique({
-        where: { userId: session.user.id },
+        where: { userId },
       });
       if (progress) {
         gameProgress = {
@@ -37,19 +35,12 @@ export default async function LearnPage() {
           streak: progress.streak,
           dailyGoalXP: progress.dailyGoalXP || 20,
           todayXP: progress.todayXP,
-          totalLessons: progress.totalLessons,
         };
-
-        const completedCount = Math.min(progress.totalLessons, starterPathNodes.length);
-        completedNodeIds = Array.from(
-          { length: completedCount },
-          (_, i) => `node-${i + 1}`
-        );
       }
 
-      // Fetch journey progress for current curriculum position
+      // Fetch journey progress for current curriculum position (Continue CTA)
       const journey = await prisma.journeyProgress.findFirst({
-        where: { userId: session.user.id, isActive: true },
+        where: { userId, isActive: true },
         include: {
           currentLesson: {
             select: {
@@ -79,7 +70,7 @@ export default async function LearnPage() {
         // Get completed lessons count
         const completedLessons = await prisma.userLessonProgress.count({
           where: {
-            userId: session.user.id,
+            userId,
             status: 'completed',
             lesson: {
               module: {
@@ -106,15 +97,11 @@ export default async function LearnPage() {
     }
   }
 
-  // Create learning paths
-  const starterPath = createStarterPath(completedNodeIds);
-
-  const a2CompletedCount = Math.max(0, gameProgress.totalLessons - starterPathNodes.length);
-  const a2CompletedIds = Array.from(
-    { length: Math.min(a2CompletedCount, a2PathNodes.length) },
-    (_, i) => `a2-${i + 1}`
-  );
-  const a2Path = createA2Path(a2CompletedIds);
+  // Fetch curriculum paths from database (with user completion status if logged in)
+  const [a1Path, a2Path] = await Promise.all([
+    getA1Path(userId),
+    getA2Path(userId),
+  ]);
 
   return (
     <LearnPageClient
@@ -122,7 +109,7 @@ export default async function LearnPage() {
       streak={gameProgress.streak}
       todayXP={gameProgress.todayXP}
       dailyGoalXP={gameProgress.dailyGoalXP}
-      starterPath={starterPath}
+      a1Path={a1Path}
       a2Path={a2Path}
       currentLesson={currentLesson}
       journeyProgress={journeyProgress}
