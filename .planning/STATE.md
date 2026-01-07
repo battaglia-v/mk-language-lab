@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-06)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** Phase 4 complete — Ready for Phase 5
+**Current focus:** Phase 5 complete — Ready for Phase 6
 
 ## Current Position
 
-Phase: 5 of 7 (Reader Reorganization)
-Plan: 2 of 3 in current phase
-Status: Plan complete
-Last activity: 2026-01-07 — Completed 05-02-PLAN.md
+Phase: 5 of 7 (Reader Reorganization) — COMPLETE
+Plan: 3 of 3 in current phase
+Status: Phase complete
+Last activity: 2026-01-07 — Completed 05-03-PLAN.md
 
 Progress: ████████░░ 76%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 13
+- Total plans completed: 16
 - Average duration: 6 min
-- Total execution time: 1.6 hours
+- Total execution time: 1.8 hours
 
 **By Phase:**
 
@@ -31,9 +31,10 @@ Progress: ████████░░ 76%
 | 2 | 3 | 16 min | 5 min |
 | 3 | 3 | 14 min | 5 min |
 | 4 | 3 | 14 min | 5 min |
+| 5 | 3 | 15 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 5, 5, 4, 5 min
+- Last 5 plans: 4, 5, 5, 4, 6 min
 - Trend: → (stable)
 
 ## Accumulated Context
@@ -57,6 +58,7 @@ Recent decisions affecting current work:
 - [04-02]: useVocabulary hook integrated into usePracticeDecks; loadUserVocabDeck fetches 15 due + 5 new words
 - [04-03]: Mode selector is UI-only; actual deck filtering deferred to practice session integration
 - [05-02]: Inject category at runtime rather than adding to JSON files
+- [05-03]: Featured 30-Day Challenge card within Reading Challenges section; search results remain flat
 
 ### Deferred Issues
 
@@ -69,5 +71,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-07
-Stopped at: Completed 05-02-PLAN.md (Migrate reader content)
+Stopped at: Completed 05-03-PLAN.md (Update reader UI navigation) — Phase 5 complete
 Resume file: None
