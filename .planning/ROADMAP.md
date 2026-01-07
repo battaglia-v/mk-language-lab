@@ -16,7 +16,7 @@ None
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Curriculum Backbone** - Parse UKIM PDFs and structure A1/A2 curriculum
+- [x] **Phase 1: Curriculum Backbone** - Parse UKIM PDFs and structure A1/A2 curriculum
 - [ ] **Phase 2: Progress & Dashboard** - Implement progression tracking and "continue" UX
 - [ ] **Phase 3: Lesson Practice Integrity** - Practice pulls only from completed content
 - [ ] **Phase 4: Vocabulary System** - Simple SRS with new/learning/mastered states
@@ -42,7 +42,7 @@ Plans:
 - [x] 01-01: Set up PDF parsing infrastructure and download textbooks
 - [x] 01-02: Extract and structure A1 curriculum (Тешкото)
 - [x] 01-03: Extract and structure A2 curriculum (Лозје)
-- [ ] 01-04: Create B1 skeleton (Златоврв) and integrate curriculum ordering
+- [x] 01-04: Create B1 skeleton (Златоврв) and integrate curriculum ordering
 
 ### Phase 2: Progress & Dashboard
 **Goal**: Implement progress tracking (currentPath, currentLesson, lastActivity); update dashboard with "Continue where you left off"; remove static "Start here" after first use; prevent auto-redirect to alphabet.
@@ -116,7 +116,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Curriculum Backbone | 3/4 | In progress | - |
+| 1. Curriculum Backbone | 4/4 | Complete | 2026-01-07 |
 | 2. Progress & Dashboard | 0/3 | Not started | - |
 | 3. Lesson Practice Integrity | 0/3 | Not started | - |
 | 4. Vocabulary System | 0/3 | Not started | - |
