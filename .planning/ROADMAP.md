@@ -77,10 +77,21 @@ Plans:
 **Goal**: Fill A2 vocabulary arrays and grammar notes from Лозје PDF
 **Depends on**: Phase 11
 **Research**: Unlikely (parallel to A1 work)
-**Plans**: TBD
+**Plans**: 1
 
 Plans:
-- [ ] 12-01: TBD
+- [ ] 12-01: A2 content quality fix with grammar templates and vocabulary filtering
+
+#### Phase 12.1: UX Fixes (INSERTED)
+
+**Goal**: Fix reset progress, remove reader audio, add English translations
+**Depends on**: Phase 12
+**Research**: No
+**Plans**: 2
+
+Plans:
+- [ ] 12.1-01: Reset progress API, remove reader audio, translate A1 vocabulary
+- [ ] 12.1-02: Translate A2 vocabulary and grammar examples
 
 #### Phase 13: B1 Content Bootstrap
 
@@ -115,7 +126,7 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 → 11 → 12 → 13 → 14 → 15
+Phases execute in numeric order: 1 → 2 → ... → 11 → 12 → 12.1 → 13 → 14 → 15
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
@@ -130,7 +141,8 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 9. Extraction Pipeline Fix | v1.1 | 3/3 | Complete | 2026-01-07 |
 | 10. A1 Vocabulary Extraction | v1.1 | 1/1 | Complete | 2026-01-07 |
 | 11. A1 Grammar Content | v1.1 | 1/1 | Complete | 2026-01-07 |
-| 12. A2 Content Population | v1.1 | 0/? | Not started | - |
+| 12. A2 Content Population | v1.1 | 0/1 | Not started | - |
+| 12.1 UX Fixes (INSERTED) | v1.1 | 0/2 | Not started | - |
 | 13. B1 Content Bootstrap | v1.1 | 0/? | Not started | - |
 | 14. Content Validation | v1.1 | 0/? | Not started | - |
 | 15. Practice Integration | v1.1 | 0/? | Not started | - |
