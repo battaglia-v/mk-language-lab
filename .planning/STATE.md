@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-06)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** Phase 7 planned — Ready to execute (3 plans)
+**Current focus:** Phase 7 in progress — Executing validation (1/3 plans complete)
 
 ## Current Position
 
-Phase: 7 of 7 (Validation) — PLANNED
-Plan: 0 of 3 in current phase
-Status: Ready for execution
-Last activity: 2026-01-07 — Created Phase 7 plans (07-01, 07-02, 07-03)
+Phase: 7 of 7 (Validation) — IN PROGRESS
+Plan: 1 of 3 in current phase
+Status: Executing
+Last activity: 2026-01-07 — Completed 07-01 (Update Playwright tests)
 
-Progress: █████████░ 86%
+Progress: █████████░ 90%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 18
+- Total plans completed: 19
 - Average duration: 6 min
-- Total execution time: 2.0 hours
+- Total execution time: 2.1 hours
 
 **By Phase:**
 
@@ -33,9 +33,10 @@ Progress: █████████░ 86%
 | 4 | 3 | 14 min | 5 min |
 | 5 | 3 | 15 min | 5 min |
 | 6 | 2 | 9 min | 5 min |
+| 7 | 1 | 6 min | 6 min |
 
 **Recent Trend:**
-- Last 5 plans: 5, 4, 6, 5, 4 min
+- Last 5 plans: 4, 6, 5, 4, 6 min
 - Trend: → (stable)
 
 ## Accumulated Context
@@ -62,6 +63,7 @@ Recent decisions affecting current work:
 - [05-03]: Featured 30-Day Challenge card within Reading Challenges section; search results remain flat
 - [06-01]: Comment routes rather than delete for easy re-enabling when audio ready; keep pages with placeholders to avoid 404
 - [06-02]: Skipped Task 2 (practice mode descriptions) because they already exist and are clear
+- [07-01]: Replaced pronunciation test suite with Coming Soon validation (155→55 lines); removed pronunciation expectations from practice and mobile tests
 
 ### Deferred Issues
 
@@ -74,6 +76,6 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-07
-Stopped at: Created Phase 7 plans
+Stopped at: Completed 07-01 (Update Playwright tests)
 Resume file: None
-Next step: Execute 07-01-PLAN.md (Update Playwright tests)
+Next step: Execute 07-02-PLAN.md (Update documentation)

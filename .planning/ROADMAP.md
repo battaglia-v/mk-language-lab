@@ -105,7 +105,7 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 07-01: Update Playwright tests for new UX (pronunciation tests → Coming Soon validation)
+- [x] 07-01: Update Playwright tests for new UX (pronunciation tests → Coming Soon validation)
 - [ ] 07-02: Update documentation (intended-beta-ux.md, beta_readiness_assessment.md)
 - [ ] 07-03: Conduct agent feedback review (learning flow, UX risks, recommendations)
 
@@ -122,4 +122,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 4. Vocabulary System | 3/3 | Complete | 2026-01-07 |
 | 5. Reader Reorganization | 3/3 | Complete | 2026-01-07 |
 | 6. Clean Up Confusion | 2/2 | Complete | 2026-01-07 |
-| 7. Validation | 0/3 | Not started | - |
+| 7. Validation | 1/3 | In progress | - |
