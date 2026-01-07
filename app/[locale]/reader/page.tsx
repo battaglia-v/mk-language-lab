@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ReadingSampleCard } from '@/components/reader/ReadingSampleCard';
-import { getAllReaderSamples, type ReaderSample } from '@/lib/reader-samples';
+import { getAllReaderSamples, getReaderSamplesByCategory, type ReaderSample } from '@/lib/reader-samples';
 import { readFavorites } from '@/lib/favorites';
 import { cn } from '@/lib/utils';
 import { useEntitlement } from '@/hooks/use-entitlement';
@@ -30,6 +30,9 @@ export default function ReaderPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const allSamples = useMemo(() => getAllReaderSamples(), []);
+  const challengeSamples = useMemo(() => getReaderSamplesByCategory('challenge'), []);
+  const conversationSamples = useMemo(() => getReaderSamplesByCategory('conversation'), []);
+  const storySamples = useMemo(() => getReaderSamplesByCategory('story'), []);
   const { config } = useAppConfig();
   const { entitlement } = useEntitlement();
   const [savedCount] = useState(() => {
@@ -221,41 +224,19 @@ export default function ReaderPage() {
               )}
             </div>
 
-            {/* 30-Day Challenge Section */}
-            {!hasActiveFilters && (
-              <section className="space-y-4" data-testid="reader-30day-section">
+            {/* Search Results (when filters active) */}
+            {hasActiveFilters && (
+              <section className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-lg font-semibold flex items-center gap-2">
-                    <span>30-Day Reading Challenge</span>
-                    <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">NEW</span>
-                  </h2>
-                  <Link
-                    href={`/${locale}/learn/paths/30day`}
-                    className="text-sm text-primary hover:underline"
-                    data-testid="reader-30day-view-all"
-                  >
-                    View all →
-                  </Link>
+                  <h2 className="text-lg font-semibold">Search Results</h2>
+                  <span className="text-sm text-muted-foreground">
+                    {filteredSamples.length} of {allSamples.length}
+                  </span>
                 </div>
-                <p className="text-sm text-muted-foreground">
-                  Read &ldquo;The Little Prince&rdquo; in Macedonian, one chapter at a time.
-                </p>
-                <div className="flex flex-wrap items-center gap-3">
-                  <Button
-                    asChild
-                    className="min-h-[44px] rounded-full px-4 text-black"
-                    data-testid="reader-30day-start"
-                  >
-                    <Link href={`/${locale}/reader/samples/day01-maliot-princ`}>
-                      Start Day 1
-                    </Link>
-                  </Button>
-                </div>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {allSamples
-                    .filter(s => s.tags.includes('30-day-challenge'))
-                    .slice(0, 4)
-                    .map((sample) => {
+
+                {filteredSamples.length > 0 ? (
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {filteredSamples.map((sample) => {
                       const isPremium = isPremiumSample(sample);
                       const isLocked = paywallEnabled && isPremium && !isPro;
 
@@ -272,84 +253,123 @@ export default function ReaderPage() {
                         />
                       );
                     })}
-                </div>
+                  </div>
+                ) : (
+                  <div className="text-center py-12 text-muted-foreground">
+                    <Search className="h-12 w-12 mx-auto mb-4 opacity-30" />
+                    <p>No readings match your filters.</p>
+                    <Button
+                      variant="link"
+                      onClick={clearFilters}
+                      className="mt-2"
+                      data-testid="reader-filter-clear-empty"
+                    >
+                      Clear filters
+                    </Button>
+                  </div>
+                )}
               </section>
             )}
 
-            {/* All Readings */}
-            <section className="space-y-4">
-              <div className="flex items-center justify-between">
-                <h2 className="text-lg font-semibold">
-                  {hasActiveFilters ? 'Search Results' : 'All Readings'}
-                </h2>
-                <span className="text-sm text-muted-foreground">
-                  {filteredSamples.length === allSamples.length
-                    ? `${allSamples.length} texts`
-                    : `${filteredSamples.length} of ${allSamples.length}`}
-                </span>
-              </div>
+            {/* Category-based browsing (when no filters) */}
+            {!hasActiveFilters && (
+              <>
+                {/* Reading Challenges Section */}
+                <section className="space-y-4" data-testid="reader-challenges-section">
+                  <div className="flex items-center justify-between">
+                    <h2 className="text-lg font-semibold">Reading Challenges</h2>
+                    <Link
+                      href={`/${locale}/learn/paths/30day`}
+                      className="text-sm text-primary hover:underline"
+                      data-testid="reader-challenges-view-all"
+                    >
+                      View all {challengeSamples.length} chapters →
+                    </Link>
+                  </div>
 
-              {filteredSamples.length > 0 ? (
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {filteredSamples.map((sample) => {
-                    const isPremium = isPremiumSample(sample);
-                    const isLocked = paywallEnabled && isPremium && !isPro;
-
-                    return (
-                      <ReadingSampleCard
-                        key={sample.id}
-                        sample={sample}
-                        locale={locale}
-                        isPremium={isPremium}
-                        isLocked={isLocked}
-                        ctaHref={
-                          isLocked ? `/${locale}/upgrade?from=${encodeURIComponent(`/${locale}/reader`)}` : undefined
-                        }
-                      />
-                    );
-                  })}
-                </div>
-              ) : hasActiveFilters ? (
-                <div className="text-center py-12 text-muted-foreground">
-                  <Search className="h-12 w-12 mx-auto mb-4 opacity-30" />
-                  <p>No readings match your filters.</p>
-                  <Button
-                    variant="link"
-                    onClick={clearFilters}
-                    className="mt-2"
-                    data-testid="reader-filter-clear-empty"
-                  >
-                    Clear filters
-                  </Button>
-                </div>
-              ) : (
-                <div className="text-center py-12 text-muted-foreground">
-                  <BookOpen className="h-12 w-12 mx-auto mb-4 opacity-30" />
-                  <p>Nothing yet. Start Day 1 or paste your own text.</p>
-                  <div className="mt-4 flex flex-col gap-2">
+                  {/* 30-Day Challenge Featured */}
+                  <div className="rounded-xl border bg-gradient-to-br from-primary/5 to-primary/10 p-4 space-y-3">
+                    <div className="flex items-center gap-2">
+                      <span className="font-semibold">30-Day Reading Challenge</span>
+                      <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">NEW</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      Read &ldquo;The Little Prince&rdquo; in Macedonian, one chapter at a time.
+                    </p>
                     <Button
                       asChild
-                      className="min-h-[44px]"
-                      data-testid="reader-empty-start-day1"
+                      className="min-h-[44px] rounded-full px-4 text-black"
+                      data-testid="reader-30day-start"
                     >
                       <Link href={`/${locale}/reader/samples/day01-maliot-princ`}>
                         Start Day 1
                       </Link>
                     </Button>
-                    <Button
-                      asChild
-                      variant="outline"
-                      className="min-h-[44px]"
-                      data-testid="reader-empty-paste-text"
-                    >
-                      <Link href={`/${locale}/reader/analyze`}>
-                        Paste text
-                      </Link>
-                    </Button>
                   </div>
-                </div>
-              )}
-            </section>
+
+                  {/* Preview of challenge content */}
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {challengeSamples.slice(0, 4).map((sample) => {
+                      const isPremium = isPremiumSample(sample);
+                      const isLocked = paywallEnabled && isPremium && !isPro;
+
+                      return (
+                        <ReadingSampleCard
+                          key={sample.id}
+                          sample={sample}
+                          locale={locale}
+                          isPremium={isPremium}
+                          isLocked={isLocked}
+                          ctaHref={
+                            isLocked ? `/${locale}/upgrade?from=${encodeURIComponent(`/${locale}/reader`)}` : undefined
+                          }
+                        />
+                      );
+                    })}
+                  </div>
+                </section>
+
+                {/* Conversations Section */}
+                <section className="space-y-4" data-testid="reader-conversations-section">
+                  <h2 className="text-lg font-semibold">Conversations</h2>
+                  {conversationSamples.length > 0 ? (
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      {conversationSamples.map((sample) => (
+                        <ReadingSampleCard
+                          key={sample.id}
+                          sample={sample}
+                          locale={locale}
+                          isPremium={false}
+                          isLocked={false}
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-sm text-muted-foreground py-4">More conversations coming soon</p>
+                  )}
+                </section>
+
+                {/* Stories Section */}
+                <section className="space-y-4" data-testid="reader-stories-section">
+                  <h2 className="text-lg font-semibold">Stories</h2>
+                  {storySamples.length > 0 ? (
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      {storySamples.map((sample) => (
+                        <ReadingSampleCard
+                          key={sample.id}
+                          sample={sample}
+                          locale={locale}
+                          isPremium={false}
+                          isLocked={false}
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-sm text-muted-foreground py-4">More stories coming soon</p>
+                  )}
+                </section>
+              </>
+            )}
           </TabsContent>
 
           {/* Workspace Tab */}
