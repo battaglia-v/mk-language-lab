@@ -692,6 +692,24 @@ export const A2_GRAMMAR_CONTENT: GrammarTemplate[] = [
       'Не можам да дојдам. (I cannot come)',
     ],
   },
+
+  // 36. Nouns (supplementary - matches generic noun sections)
+  {
+    title: 'Именки (Nouns)',
+    titleVariants: ['именки', 'именка', 'nouns', 'noun'],
+    explanation:
+      'Macedonian nouns have three genders (masculine, feminine, neuter) which affect article attachment, adjective agreement, and plural formation. Gender is typically predictable from noun endings.',
+    examples: [
+      'маж, град, студент (masculine - consonant ending)',
+      'жена, книга, улица (feminine - -а ending)',
+      'дете, село, јајце (neuter - -о/-е ending)',
+      'маж → мажи (m. plural)',
+      'жена → жени (f. plural)',
+      'дете → деца (n. plural)',
+      'Градот е голем. (m. definite)',
+      'Книгата е интересна. (f. definite)',
+    ],
+  },
 ];
 
 /**
