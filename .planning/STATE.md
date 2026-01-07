@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-06)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** Phase 2 complete — ready for Phase 3
+**Current focus:** Phase 3 in progress — Practice integrity
 
 ## Current Position
 
-Phase: 2 of 7 (Progress & Dashboard)
-Plan: 3 of 3 in current phase
-Status: Phase complete
-Last activity: 2026-01-07 — Completed 02-03-PLAN.md
+Phase: 3 of 7 (Lesson Practice Integrity)
+Plan: 1 of 3 in current phase
+Status: In progress
+Last activity: 2026-01-07 — Completed 03-01-PLAN.md
 
-Progress: ███░░░░░░░ 33%
+Progress: ███░░░░░░░ 38%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 7
+- Total plans completed: 8
 - Average duration: 8 min
-- Total execution time: 1.0 hours
+- Total execution time: 1.1 hours
 
 **By Phase:**
 
@@ -29,9 +29,10 @@ Progress: ███░░░░░░░ 33%
 |-------|-------|-------|----------|
 | 1 | 4 | 43 min | 11 min |
 | 2 | 3 | 16 min | 5 min |
+| 3 | 1 | 5 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 19, 3, 8, 5 min
+- Last 5 plans: 3, 8, 5, 5 min
 - Trend: ↓ (faster)
 
 ## Accumulated Context
@@ -50,6 +51,7 @@ Recent decisions affecting current work:
 - [02-01]: Journey becomes active on first lesson completion; currentLessonId points to NEXT lesson
 - [02-02]: Continue CTA shows only when isActive=true; uses optional props for backward compatibility
 - [02-03]: Curriculum paths server-side from DB; lesson hrefs use database IDs
+- [03-01]: Phase 3 is infrastructure focus; vocabulary seeding is future work (outside scope)
 
 ### Deferred Issues
 
@@ -61,6 +63,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-07T00:57:05Z
-Stopped at: Completed 02-03-PLAN.md (Phase 2 complete)
+Last session: 2026-01-07
+Stopped at: Completed 03-01-PLAN.md (practice audit documentation)
 Resume file: None
