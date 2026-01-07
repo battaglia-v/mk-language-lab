@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-06)
 ## Current Position
 
 Phase: 5 of 7 (Reader Reorganization)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: Plan complete
-Last activity: 2026-01-07 — Completed 05-01-PLAN.md
+Last activity: 2026-01-07 — Completed 05-02-PLAN.md
 
-Progress: ███████░░░ 70%
+Progress: ████████░░ 76%
 
 ## Performance Metrics
 
@@ -56,6 +56,7 @@ Recent decisions affecting current work:
 - [04-01]: Vocabulary API uses existing VocabularyWord model; SRS intervals match lib/srs.ts Leitner pattern
 - [04-02]: useVocabulary hook integrated into usePracticeDecks; loadUserVocabDeck fetches 15 due + 5 new words
 - [04-03]: Mode selector is UI-only; actual deck filtering deferred to practice session integration
+- [05-02]: Inject category at runtime rather than adding to JSON files
 
 ### Deferred Issues
 
@@ -68,5 +69,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-07
-Stopped at: Completed 05-01-PLAN.md (Design folder taxonomy)
+Stopped at: Completed 05-02-PLAN.md (Migrate reader content)
 Resume file: None
