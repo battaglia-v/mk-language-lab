@@ -94,6 +94,9 @@ async function checkForOverflow(page: Page): Promise<string[]> {
 }
 
 test.describe('Mobile Viewport QA Audit', () => {
+  // Skip in CI - comprehensive audit runs locally or on schedule
+  test.skip(!!process.env.CI, 'Comprehensive audit skipped in CI');
+
   const screenshotDir = 'e2e/screenshots/mobile-audit';
 
   test.beforeAll(async () => {

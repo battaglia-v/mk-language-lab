@@ -14,6 +14,8 @@ test.describe('Static Pages', () => {
     });
 
     test(`${pageDef.path} hero snapshot`, async ({ page }) => {
+      // Skip snapshot tests in CI - they differ across environments
+      test.skip(!!process.env.CI, 'Visual snapshot skipped in CI');
       await page.goto(pageDef.path);
       await page.setViewportSize({ width: 1280, height: 720 });
       await page.waitForTimeout(500);

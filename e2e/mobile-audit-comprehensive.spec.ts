@@ -127,6 +127,9 @@ async function checkBrokenImages(page: Page): Promise<string[]> {
 }
 
 test.describe('Comprehensive Mobile Audit', () => {
+  // Skip in CI - comprehensive audit runs locally or on schedule
+  test.skip(!!process.env.CI, 'Comprehensive audit skipped in CI');
+
   const screenshotDir = path.join(process.cwd(), 'e2e/screenshots', AUDIT_TARGET);
   const logsDir = path.join(screenshotDir, 'logs');
 
@@ -253,6 +256,9 @@ test.describe('Comprehensive Mobile Audit', () => {
 
 // Audio availability test
 test.describe('Audio Availability', () => {
+  // Skip in CI - comprehensive audit runs locally or on schedule
+  test.skip(!!process.env.CI, 'Comprehensive audit skipped in CI');
+
   test('Word of the Day audio works or falls back to TTS', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(`${BASE_URL}/en/learn`, { waitUntil: 'networkidle' });
@@ -275,6 +281,9 @@ test.describe('Audio Availability', () => {
 
 // News images test
 test.describe('News Images', () => {
+  // Skip in CI - comprehensive audit runs locally or on schedule
+  test.skip(!!process.env.CI, 'Comprehensive audit skipped in CI');
+
   test('News page loads with images (or proper placeholders)', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(`${BASE_URL}/en/news`, { waitUntil: 'networkidle', timeout: 20000 });
