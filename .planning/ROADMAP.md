@@ -80,7 +80,7 @@ Plans:
 **Plans**: 1
 
 Plans:
-- [ ] 12-01: A2 content quality fix with grammar templates and vocabulary filtering
+- [x] 12-01: A2 content quality fix with grammar templates and vocabulary filtering — completed 2026-01-07
 
 #### Phase 12.1: UX Fixes (INSERTED)
 
@@ -141,7 +141,7 @@ Phases execute in numeric order: 1 → 2 → ... → 11 → 12 → 12.1 → 13 �
 | 9. Extraction Pipeline Fix | v1.1 | 3/3 | Complete | 2026-01-07 |
 | 10. A1 Vocabulary Extraction | v1.1 | 1/1 | Complete | 2026-01-07 |
 | 11. A1 Grammar Content | v1.1 | 1/1 | Complete | 2026-01-07 |
-| 12. A2 Content Population | v1.1 | 0/1 | Not started | - |
+| 12. A2 Content Population | v1.1 | 1/1 | Complete | 2026-01-07 |
 | 12.1 UX Fixes (INSERTED) | v1.1 | 0/2 | Not started | - |
 | 13. B1 Content Bootstrap | v1.1 | 0/? | Not started | - |
 | 14. Content Validation | v1.1 | 0/? | Not started | - |
