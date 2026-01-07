@@ -95,7 +95,7 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 06-01: Audit and hide audio/speaking features
+- [x] 06-01: Audit and hide audio/speaking features
 - [ ] 06-02: Remove dead settings and add explainers
 
 ### Phase 7: Validation
@@ -121,5 +121,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 3. Lesson Practice Integrity | 3/3 | Complete | 2026-01-07 |
 | 4. Vocabulary System | 3/3 | Complete | 2026-01-07 |
 | 5. Reader Reorganization | 3/3 | Complete | 2026-01-07 |
-| 6. Clean Up Confusion | 0/2 | Not started | - |
+| 6. Clean Up Confusion | 1/2 | In progress | - |
 | 7. Validation | 0/3 | Not started | - |
