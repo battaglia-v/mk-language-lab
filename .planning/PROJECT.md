@@ -2,7 +2,7 @@
 
 ## What This Is
 
-MKLanguage is a Macedonian language learning app being refactored from a quiz-centric experience into a structured, CEFR-aligned learning system. This overhaul fixes progression, practice, and vocabulary issues identified by advanced users who feel lost, tested on unseen content, and trapped in beginner loops.
+MKLanguage is a Macedonian language learning app with a CEFR-aligned learning system based on official UKIM curriculum (Teshkoto/Lozje/Zlatovrv textbooks). The v1.0 Beta delivers structured progression tracking, lesson-first practice integrity, and vocabulary SRS management — ensuring users always know where they are and what to do next.
 
 ## Core Value
 
@@ -14,65 +14,52 @@ If the app nails progression, users will forgive incomplete content; if it doesn
 
 ### Validated
 
-<!-- Shipped and working. Inferred from existing codebase. -->
+<!-- Shipped and working in v1.0 Beta -->
 
-- ✓ User authentication (NextAuth, email/social login) — existing
-- ✓ Practice exercises with multiple question types — existing
-- ✓ Reader with text content and vocabulary highlighting — existing
-- ✓ Translation tool with AI assistance — existing
-- ✓ Gamification system (XP, streaks, hearts) — existing
-- ✓ User profiles with settings — existing
-- ✓ Internationalization (en/mk) — existing
-- ✓ Lesson content (ad-hoc ordering) — existing
+- User authentication (NextAuth, email/social login) — existing
+- Practice exercises with multiple question types — existing
+- Reader with text content and vocabulary highlighting — existing
+- Translation tool with AI assistance — existing
+- Gamification system (XP, streaks, hearts) — existing
+- User profiles with settings — existing
+- Internationalization (en/mk) — existing
+- Lesson content (ad-hoc ordering) — existing
+- Parse UKIM public curriculum PDFs into structured data — v1.0
+- Structure A1 level (Teshkoto) with concepts, vocabulary, grammar per lesson — v1.0
+- Structure A2 level (Lozje) with concepts, vocabulary, grammar per lesson — v1.0
+- Create B1 skeleton (Zlatovrv placeholder structure only) — v1.0
+- Replace ad-hoc lesson ordering with UKIM curriculum order — v1.0
+- Implement progress tracking: currentPath, currentLesson, lastActivity — v1.0
+- Update dashboard: "Continue where you left off" when progress exists — v1.0
+- Remove static "Start here" after first use — v1.0
+- Never auto-redirect users back to alphabet — v1.0
+- Practice pulls ONLY from completed lessons or explicitly selected vocab sets — v1.0
+- Remove any practice that quizzes unseen content — v1.0
+- Grammar drills reference the lesson they come from — v1.0
+- Implement vocab states: new / learning / mastered — v1.0
+- Allow: Save word, Mark "don't know" — v1.0
+- Practice modes: Learn new, Review weak, Mixed — v1.0
+- Refactor Reader into folders: Reading Challenges, Short Conversations, Grammar-aligned — v1.0
+- Move 30-Day content into its own folder — v1.0
+- Do not mix challenge content with casual reading — v1.0
+- Hide/disable all audio & speaking references — v1.0
+- Remove dead or unclear settings (e.g., Saved Phrases if unused) — v1.0
+- Add lightweight explainers where ambiguity exists — v1.0
+- Update Playwright tests to reflect intended beta UX — v1.0
+- Update docs: intended-beta-ux.md, beta_readiness_assessment.md — v1.0
+- Agent feedback: critique learning flow, UX risks, PM improvement suggestion — v1.0
 
 ### Active
 
-<!-- Current scope. Building toward these. -->
+<!-- Next milestone scope -->
 
-**Phase 1 — Curriculum Backbone**
-- [ ] Parse UKIM public curriculum PDFs into structured data
-- [ ] Structure A1 level with concepts, vocabulary, grammar per lesson
-- [ ] Structure A2 level with concepts, vocabulary, grammar per lesson
-- [ ] Create B1 skeleton (placeholder structure only)
-- [ ] Replace ad-hoc lesson ordering with UKIM curriculum order
-
-**Phase 2 — Progress & Dashboard**
-- [ ] Implement progress tracking: currentPath, currentLesson, lastActivity
-- [ ] Update dashboard: "Continue where you left off" when progress exists
-- [ ] Remove static "Start here" after first use
-- [ ] Never auto-redirect users back to alphabet
-
-**Phase 3 — Lesson → Practice Integrity**
-- [ ] Practice pulls ONLY from completed lessons or explicitly selected vocab sets
-- [ ] Remove any practice that quizzes unseen content
-- [ ] Grammar drills reference the lesson they come from
-
-**Phase 4 — Vocabulary System (Simple SRS)**
-- [ ] Implement vocab states: new / learning / mastered
-- [ ] Allow: Save word, Mark "don't know"
-- [ ] Practice modes: Learn new, Review weak, Mixed
-
-**Phase 5 — Reader Reorganization**
-- [ ] Refactor Reader into folders: Reading Challenges, Short Conversations, Grammar-aligned
-- [ ] Move 30-Day content into its own folder
-- [ ] Do not mix challenge content with casual reading
-
-**Phase 6 — Clean Up Confusion**
-- [ ] Hide/disable all audio & speaking references
-- [ ] Remove dead or unclear settings (e.g., Saved Phrases if unused)
-- [ ] Add lightweight explainers where ambiguity exists
-
-**Phase 7 — Validation**
-- [ ] Update Playwright tests to reflect intended beta UX
-- [ ] Do NOT reintroduce removed features to satisfy tests
-- [ ] Update docs: docs/intended-beta-ux.md, docs/beta_learning_model.md
-- [ ] Agent feedback: critique learning flow, UX risks, PM improvement suggestion
+(None yet — planning v1.1)
 
 ### Out of Scope
 
 <!-- Explicit boundaries. Includes reasoning to prevent re-adding. -->
 
-- Audio/speaking features — not ready for beta; hide completely to avoid confusion
+- Audio/speaking features — not ready for beta; hidden completely to avoid confusion
 - B1+ content (beyond skeleton) — focus on A1/A2 quality first
 - Gamification expansion — no new badges, streaks, or social features
 - AI chat/conversational bots — adds complexity without solving core progression issues
@@ -83,52 +70,39 @@ If the app nails progression, users will forgive incomplete content; if it doesn
 
 ## Context
 
-### The Problem
+### Current State (v1.0 Beta)
 
-Advanced and returning users don't know where they are, what they've completed, or what to do next. The app doesn't communicate a clear learning model or progression state. Users get tested on words/grammar before being introduced via lessons, which breaks trust and makes practice feel random rather than reinforcing.
+- **Codebase:** ~24,400 lines of TypeScript
+- **Tech stack:** Next.js 16 App Router, Prisma/PostgreSQL, NextAuth, Vercel
+- **Curriculum:** 40 lessons (24 A1 + 8 A2 + 8 B1 skeleton), 41 grammar notes
+- **Database:** UKIM curriculum seeded (ukim-a1, ukim-a2, ukim-b1 modules)
 
-### Root Cause Chain
+### The Problem (Solved)
 
-1. **No clear progression** → users don't know where they are
-2. **Practice quizzes unseen content** → breaks trust, feels random
-3. **Alphabet loop trap** → symptom of 1 & 2; users get redirected back to basics
+Advanced and returning users didn't know where they were, what they'd completed, or what to do next. The app didn't communicate a clear learning model or progression state. Users got tested on words/grammar before being introduced via lessons, which broke trust.
 
-### Design Principle
+### How v1.0 Solved It
 
-"A guided course you can move freely within — not a quiz engine that happens to have lessons."
+1. **Clear progression** — Journey progress tracking with "Continue where you left off" dashboard
+2. **Lesson-first practice** — Practice API filters to completed content only
+3. **Curriculum backbone** — UKIM textbooks provide real educational structure
+4. **Vocabulary management** — SRS system tracks new/learning/mastered states
 
-### User Feedback (Direct Quote)
+### User Feedback (Addressed)
 
-> "I started getting asked questions for words that I hadn't been introduced to yet on the site... That meant I'm either picking the right answer from that but not actually learning the word or shooting in the dark. Either way, it would also distort it knowing what I've mastered and what I need to still work on."
+> "I started getting asked questions for words that I hadn't been introduced to yet on the site..."
+**Fixed:** Lesson-first practice integrity (Phase 3)
 
 > "How do I systematically get walked through learning new words? And how can I go back to drilling them somehow?"
+**Fixed:** UKIM curriculum backbone (Phase 1) + Vocabulary SRS (Phase 4)
 
-> "Seems like I'm getting asked questions in the 'start here' to then be able to practice but never really got the lesson to begin with to put context around the rest."
-
-### Current State
-
-- **Lessons**: Content exists but ordering is arbitrary (not curriculum-aligned)
-- **Progress tracking**: Partial state exists but unreliable for resumption
-- **Practice system**: Quiz mechanics work, but pulls from wrong content pool
-- **Curriculum source**: UKIM PDFs need parsing and structuring
+> "Seems like I'm getting asked questions in the 'start here' to then be able to practice but never really got the lesson to begin with..."
+**Fixed:** Progress tracking and dashboard continuation UX (Phase 2)
 
 ## Constraints
 
-- **Tech stack**: Next.js 16 App Router, Prisma/PostgreSQL, NextAuth, Vercel — no major changes
-- **Content source**: UKIM curriculum available as PDFs requiring extraction/parsing
-
-## Curriculum Source
-
-**UKIM Archive**: https://archive.ukim.edu.mk/mk_content.php?glavno=34&meni=201
-
-| Textbook | Level | CEFR | Notes |
-|----------|-------|------|-------|
-| **Тешкото** (Teshkoto) | Beginner | A1 | 2022 edition has audio |
-| **Лозје** (Lozje) | Intermediate | A2 | 2022 edition available |
-| **Златоврв** (Zlatovrv) | Advanced | B1 | Skeleton only for beta |
-| **Везилка** (Vezilka) | Culture/Literature | — | Supplementary, out of scope |
-
-Additional materials available: "Macedonian for Foreigners" courses, "Macedonian so maka" (Tasevska)
+- **Tech stack:** Next.js 16 App Router, Prisma/PostgreSQL, NextAuth, Vercel — no major changes
+- **Content source:** UKIM curriculum available as PDFs (parsed and seeded in v1.0)
 
 ## Key Decisions
 
@@ -136,19 +110,23 @@ Additional materials available: "Macedonian for Foreigners" courses, "Macedonian
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Progression clarity is the north star | If progression works, other issues resolve naturally; if it doesn't, even perfect content feels broken | — Pending |
-| UKIM curriculum as backbone | Real Macedonian educational standard provides legitimacy and structure | — Pending |
-| Lesson-first practice (strict) | Trust requires users never be tested on content they haven't been taught | — Pending |
-| Hide audio/speaking entirely | Partially working features confuse users; better to hide than show broken | — Pending |
-| Simple SRS over complex algorithm | Start with new/learning/mastered states; complexity can come later | — Pending |
+| Progression clarity is the north star | If progression works, other issues resolve naturally | Good |
+| UKIM curriculum as backbone | Real Macedonian educational standard provides legitimacy | Good |
+| Lesson-first practice (strict) | Trust requires users never be tested on unseen content | Good |
+| Hide audio/speaking entirely | Partially working features confuse users; better to hide | Good |
+| Simple SRS over complex algorithm | Start with new/learning/mastered; complexity can come later | Good |
+| pdfjs-dist legacy build | Standard build has worker issues in Node.js ESM | Good |
+| Upsert pattern for curriculum seeding | Idempotent, safe to re-run | Good |
+| Comment audio routes vs delete | Easy to re-enable when audio ready | Good |
+| Mode selector UI-only | Deck filtering deferred to practice session integration | Pending |
 
 ## Success Criteria
 
-- [ ] New user can land and immediately know where to start, what they're learning, and why
-- [ ] Practice only reinforces content already introduced (no surprise words/grammar)
-- [ ] Progress feels continuous: always a clear "Continue where you left off" state
-- [ ] Advanced learner can jump in and never feel trapped in alphabet/beginner loop
+- [x] New user can land and immediately know where to start, what they're learning, and why
+- [x] Practice only reinforces content already introduced (no surprise words/grammar)
+- [x] Progress feels continuous: always a clear "Continue where you left off" state
+- [x] Advanced learner can jump in and never feel trapped in alphabet/beginner loop
 - [ ] 2-3 named beta users say: "This finally makes sense — I always know what to do next"
 
 ---
-*Last updated: 2026-01-06 after initialization*
+*Last updated: 2026-01-07 after v1.0 Beta milestone*

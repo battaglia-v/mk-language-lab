@@ -2,19 +2,28 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-01-06)
+See: .planning/PROJECT.md (updated 2026-01-07)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** Milestone Complete — All 7 phases finished (21/21 plans)
+**Current focus:** v1.0 Beta shipped — planning next milestone
 
 ## Current Position
 
-Phase: 7 of 7 (Validation) — COMPLETE
-Plan: 3 of 3 in current phase
-Status: Milestone Complete
-Last activity: 2026-01-07 — Completed 07-03 (Agent feedback review)
+Phase: 7 of 7 (Validation) — MILESTONE COMPLETE
+Plan: All plans complete
+Status: v1.0 Beta shipped
+Last activity: 2026-01-07 — Completed /gsd:complete-milestone
 
-Progress: ██████████ 100%
+Progress: All phases complete
+
+## Milestone Summary
+
+**v1.0 Beta shipped 2026-01-07**
+- 7 phases, 21 plans, 57 commits
+- 102 files modified (+6,342 / -737 lines)
+- ~24,400 lines of TypeScript
+
+See `.planning/MILESTONES.md` for full details.
 
 ## Performance Metrics
 
@@ -35,49 +44,23 @@ Progress: ██████████ 100%
 | 6 | 2 | 9 min | 5 min |
 | 7 | 3 | 18 min | 6 min |
 
-**Recent Trend:**
-- Last 5 plans: 5, 4, 6, 8, 4 min
-- Trend: → (stable)
-
 ## Accumulated Context
 
 ### Decisions
 
-Decisions are logged in PROJECT.md Key Decisions table.
-Recent decisions affecting current work:
-
-- [Phase 1]: UKIM curriculum source identified — three core textbooks (Тешкото/Лозје/Златоврв) map to A1/A2/B1
-- [01-01]: Used pdfjs-dist legacy build for Node.js ESM compatibility
-- [01-01]: Extract position data (x/y/fontSize) for structure detection
-- [01-02]: Used TOC-based lesson boundaries; journeyId naming: ukim-{level}
-- [01-03]: A2 has 8 comprehensive lessons vs A1's 24; grammar from TOC metadata
-- [01-04]: B1 skeleton (chapter titles only); upsert seeding pattern; journeyIds ukim-a1/a2/b1
-- [02-01]: Journey becomes active on first lesson completion; currentLessonId points to NEXT lesson
-- [02-02]: Continue CTA shows only when isActive=true; uses optional props for backward compatibility
-- [02-03]: Curriculum paths server-side from DB; lesson hrefs use database IDs
-- [03-01]: Phase 3 is infrastructure focus; vocabulary seeding is future work (outside scope)
-- [04-01]: Vocabulary API uses existing VocabularyWord model; SRS intervals match lib/srs.ts Leitner pattern
-- [04-02]: useVocabulary hook integrated into usePracticeDecks; loadUserVocabDeck fetches 15 due + 5 new words
-- [04-03]: Mode selector is UI-only; actual deck filtering deferred to practice session integration
-- [05-02]: Inject category at runtime rather than adding to JSON files
-- [05-03]: Featured 30-Day Challenge card within Reading Challenges section; search results remain flat
-- [06-01]: Comment routes rather than delete for easy re-enabling when audio ready; keep pages with placeholders to avoid 404
-- [06-02]: Skipped Task 2 (practice mode descriptions) because they already exist and are clear
-- [07-01]: Replaced pronunciation test suite with Coming Soon validation (155→55 lines); removed pronunciation expectations from practice and mobile tests
-- [07-02]: Updated intended-beta-ux.md and beta_readiness_assessment.md with Phase 1-6 changes (curriculum, progress, vocabulary, reader folders)
-- [07-03]: Core promise validated; beta verdict: ready for public release; biggest remaining risk: audio expectations (medium severity)
+All decisions logged in PROJECT.md Key Decisions table with outcomes.
 
 ### Deferred Issues
 
-None yet.
+None — v1.0 shipped clean.
 
 ### Blockers/Concerns
 
-None yet.
+None.
 
 ## Session Continuity
 
 Last session: 2026-01-07
-Stopped at: Completed 07-03 (Agent feedback review) — MILESTONE COMPLETE
+Stopped at: v1.0 Beta milestone complete
 Resume file: None
-Next step: Run /gsd:complete-milestone to archive and prepare for next milestone
+Next step: Run /gsd:discuss-milestone or /gsd:new-milestone to plan v1.1
