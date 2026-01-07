@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-01-06)
 ## Current Position
 
 Phase: 2 of 7 (Progress & Dashboard)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: In progress
-Last activity: 2026-01-07 — Completed 02-01-PLAN.md
+Last activity: 2026-01-07 — Completed 02-02-PLAN.md
 
-Progress: ██░░░░░░░░ 24%
+Progress: ███░░░░░░░ 29%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
+- Total plans completed: 6
 - Average duration: 9 min
-- Total execution time: 0.8 hours
+- Total execution time: 0.9 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 1 | 4 | 43 min | 11 min |
-| 2 | 1 | 3 min | 3 min |
+| 2 | 2 | 11 min | 6 min |
 
 **Recent Trend:**
-- Last 5 plans: 10, 5, 19, 3 min
+- Last 5 plans: 5, 19, 3, 8 min
 - Trend: →
 
 ## Accumulated Context
@@ -48,6 +48,7 @@ Recent decisions affecting current work:
 - [01-03]: A2 has 8 comprehensive lessons vs A1's 24; grammar from TOC metadata
 - [01-04]: B1 skeleton (chapter titles only); upsert seeding pattern; journeyIds ukim-a1/a2/b1
 - [02-01]: Journey becomes active on first lesson completion; currentLessonId points to NEXT lesson
+- [02-02]: Continue CTA shows only when isActive=true; uses optional props for backward compatibility
 
 ### Deferred Issues
 
@@ -59,6 +60,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-07T00:20:08Z
-Stopped at: Completed 02-01-PLAN.md
+Last session: 2026-01-07T00:49:53Z
+Stopped at: Completed 02-02-PLAN.md
 Resume file: None
