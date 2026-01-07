@@ -1,35 +1,35 @@
-import cafeConversation from '@/data/reader/samples/cafe-conversation.json';
-import day01 from '@/data/reader/samples/day01-maliot-princ.json';
-import day02 from '@/data/reader/samples/day02-maliot-princ.json';
-import day03 from '@/data/reader/samples/day03-maliot-princ.json';
-import day04 from '@/data/reader/samples/day04-maliot-princ.json';
-import day05 from '@/data/reader/samples/day05-maliot-princ.json';
-import day06 from '@/data/reader/samples/day06-maliot-princ.json';
-import day07 from '@/data/reader/samples/day07-maliot-princ.json';
-import day08 from '@/data/reader/samples/day08-maliot-princ.json';
-import day09 from '@/data/reader/samples/day09-maliot-princ.json';
-import day10 from '@/data/reader/samples/day10-maliot-princ.json';
-import day11 from '@/data/reader/samples/day11-maliot-princ.json';
-import day12 from '@/data/reader/samples/day12-maliot-princ.json';
-import day13 from '@/data/reader/samples/day13-maliot-princ.json';
-import day14 from '@/data/reader/samples/day14-maliot-princ.json';
-import day15 from '@/data/reader/samples/day15-maliot-princ.json';
-import day16 from '@/data/reader/samples/day16-maliot-princ.json';
-import day17 from '@/data/reader/samples/day17-maliot-princ.json';
-import day18 from '@/data/reader/samples/day18-maliot-princ.json';
-import day19 from '@/data/reader/samples/day19-maliot-princ.json';
-import day20 from '@/data/reader/samples/day20-maliot-princ.json';
-import day21 from '@/data/reader/samples/day21-maliot-princ.json';
-import day22 from '@/data/reader/samples/day22-maliot-princ.json';
-import day23 from '@/data/reader/samples/day23-maliot-princ.json';
-import day24 from '@/data/reader/samples/day24-maliot-princ.json';
-import day25 from '@/data/reader/samples/day25-maliot-princ.json';
-import day26 from '@/data/reader/samples/day26-maliot-princ.json';
-import day27 from '@/data/reader/samples/day27-maliot-princ.json';
-import day28 from '@/data/reader/samples/day28-maliot-princ.json';
-import day29 from '@/data/reader/samples/day29-maliot-princ.json';
-import day30 from '@/data/reader/samples/day30-maliot-princ.json';
-import dayInSkopje from '@/data/reader/samples/day-in-skopje.json';
+import cafeConversation from '@/data/reader/conversations/cafe-conversation.json';
+import day01 from '@/data/reader/challenges/30-day-little-prince/day01-maliot-princ.json';
+import day02 from '@/data/reader/challenges/30-day-little-prince/day02-maliot-princ.json';
+import day03 from '@/data/reader/challenges/30-day-little-prince/day03-maliot-princ.json';
+import day04 from '@/data/reader/challenges/30-day-little-prince/day04-maliot-princ.json';
+import day05 from '@/data/reader/challenges/30-day-little-prince/day05-maliot-princ.json';
+import day06 from '@/data/reader/challenges/30-day-little-prince/day06-maliot-princ.json';
+import day07 from '@/data/reader/challenges/30-day-little-prince/day07-maliot-princ.json';
+import day08 from '@/data/reader/challenges/30-day-little-prince/day08-maliot-princ.json';
+import day09 from '@/data/reader/challenges/30-day-little-prince/day09-maliot-princ.json';
+import day10 from '@/data/reader/challenges/30-day-little-prince/day10-maliot-princ.json';
+import day11 from '@/data/reader/challenges/30-day-little-prince/day11-maliot-princ.json';
+import day12 from '@/data/reader/challenges/30-day-little-prince/day12-maliot-princ.json';
+import day13 from '@/data/reader/challenges/30-day-little-prince/day13-maliot-princ.json';
+import day14 from '@/data/reader/challenges/30-day-little-prince/day14-maliot-princ.json';
+import day15 from '@/data/reader/challenges/30-day-little-prince/day15-maliot-princ.json';
+import day16 from '@/data/reader/challenges/30-day-little-prince/day16-maliot-princ.json';
+import day17 from '@/data/reader/challenges/30-day-little-prince/day17-maliot-princ.json';
+import day18 from '@/data/reader/challenges/30-day-little-prince/day18-maliot-princ.json';
+import day19 from '@/data/reader/challenges/30-day-little-prince/day19-maliot-princ.json';
+import day20 from '@/data/reader/challenges/30-day-little-prince/day20-maliot-princ.json';
+import day21 from '@/data/reader/challenges/30-day-little-prince/day21-maliot-princ.json';
+import day22 from '@/data/reader/challenges/30-day-little-prince/day22-maliot-princ.json';
+import day23 from '@/data/reader/challenges/30-day-little-prince/day23-maliot-princ.json';
+import day24 from '@/data/reader/challenges/30-day-little-prince/day24-maliot-princ.json';
+import day25 from '@/data/reader/challenges/30-day-little-prince/day25-maliot-princ.json';
+import day26 from '@/data/reader/challenges/30-day-little-prince/day26-maliot-princ.json';
+import day27 from '@/data/reader/challenges/30-day-little-prince/day27-maliot-princ.json';
+import day28 from '@/data/reader/challenges/30-day-little-prince/day28-maliot-princ.json';
+import day29 from '@/data/reader/challenges/30-day-little-prince/day29-maliot-princ.json';
+import day30 from '@/data/reader/challenges/30-day-little-prince/day30-maliot-princ.json';
+import dayInSkopje from '@/data/reader/stories/day-in-skopje.json';
 
 export interface ReaderSampleVocab {
   mk: string;
@@ -99,6 +99,8 @@ export interface AnalyzedTextData {
   };
 }
 
+export type ReaderCategory = 'challenge' | 'conversation' | 'story';
+
 export interface ReaderSample {
   id: string;
   locale: string;
@@ -107,6 +109,7 @@ export interface ReaderSample {
   difficulty: 'A1' | 'A2' | 'B1' | 'B2';
   estimatedMinutes: number;
   tags: string[];
+  category: ReaderCategory;
   text_blocks_mk: Array<{
     type: 'p' | 'h1' | 'h2' | 'h3' | 'note';
     value: string;
@@ -119,40 +122,45 @@ export interface ReaderSample {
   analyzedData?: AnalyzedTextData;
 }
 
+// Helper to add category to imported JSON
+function withCategory<T>(data: T, category: ReaderCategory): T & { category: ReaderCategory } {
+  return { ...data, category };
+}
+
 // Reader samples - add new samples here
 const samples: Record<string, ReaderSample> = {
-  'cafe-conversation': cafeConversation as ReaderSample,
-  'day01-maliot-princ': day01 as ReaderSample,
-  'day02-maliot-princ': day02 as ReaderSample,
-  'day03-maliot-princ': day03 as ReaderSample,
-  'day04-maliot-princ': day04 as ReaderSample,
-  'day05-maliot-princ': day05 as ReaderSample,
-  'day06-maliot-princ': day06 as ReaderSample,
-  'day07-maliot-princ': day07 as ReaderSample,
-  'day08-maliot-princ': day08 as ReaderSample,
-  'day09-maliot-princ': day09 as ReaderSample,
-  'day10-maliot-princ': day10 as ReaderSample,
-  'day11-maliot-princ': day11 as ReaderSample,
-  'day12-maliot-princ': day12 as ReaderSample,
-  'day13-maliot-princ': day13 as ReaderSample,
-  'day14-maliot-princ': day14 as ReaderSample,
-  'day15-maliot-princ': day15 as ReaderSample,
-  'day16-maliot-princ': day16 as ReaderSample,
-  'day17-maliot-princ': day17 as ReaderSample,
-  'day18-maliot-princ': day18 as ReaderSample,
-  'day19-maliot-princ': day19 as ReaderSample,
-  'day20-maliot-princ': day20 as ReaderSample,
-  'day21-maliot-princ': day21 as ReaderSample,
-  'day22-maliot-princ': day22 as ReaderSample,
-  'day23-maliot-princ': day23 as ReaderSample,
-  'day24-maliot-princ': day24 as ReaderSample,
-  'day25-maliot-princ': day25 as ReaderSample,
-  'day26-maliot-princ': day26 as ReaderSample,
-  'day27-maliot-princ': day27 as ReaderSample,
-  'day28-maliot-princ': day28 as ReaderSample,
-  'day29-maliot-princ': day29 as ReaderSample,
-  'day30-maliot-princ': day30 as ReaderSample,
-  'day-in-skopje': dayInSkopje as ReaderSample,
+  'cafe-conversation': withCategory(cafeConversation, 'conversation') as ReaderSample,
+  'day01-maliot-princ': withCategory(day01, 'challenge') as ReaderSample,
+  'day02-maliot-princ': withCategory(day02, 'challenge') as ReaderSample,
+  'day03-maliot-princ': withCategory(day03, 'challenge') as ReaderSample,
+  'day04-maliot-princ': withCategory(day04, 'challenge') as ReaderSample,
+  'day05-maliot-princ': withCategory(day05, 'challenge') as ReaderSample,
+  'day06-maliot-princ': withCategory(day06, 'challenge') as ReaderSample,
+  'day07-maliot-princ': withCategory(day07, 'challenge') as ReaderSample,
+  'day08-maliot-princ': withCategory(day08, 'challenge') as ReaderSample,
+  'day09-maliot-princ': withCategory(day09, 'challenge') as ReaderSample,
+  'day10-maliot-princ': withCategory(day10, 'challenge') as ReaderSample,
+  'day11-maliot-princ': withCategory(day11, 'challenge') as ReaderSample,
+  'day12-maliot-princ': withCategory(day12, 'challenge') as ReaderSample,
+  'day13-maliot-princ': withCategory(day13, 'challenge') as ReaderSample,
+  'day14-maliot-princ': withCategory(day14, 'challenge') as ReaderSample,
+  'day15-maliot-princ': withCategory(day15, 'challenge') as ReaderSample,
+  'day16-maliot-princ': withCategory(day16, 'challenge') as ReaderSample,
+  'day17-maliot-princ': withCategory(day17, 'challenge') as ReaderSample,
+  'day18-maliot-princ': withCategory(day18, 'challenge') as ReaderSample,
+  'day19-maliot-princ': withCategory(day19, 'challenge') as ReaderSample,
+  'day20-maliot-princ': withCategory(day20, 'challenge') as ReaderSample,
+  'day21-maliot-princ': withCategory(day21, 'challenge') as ReaderSample,
+  'day22-maliot-princ': withCategory(day22, 'challenge') as ReaderSample,
+  'day23-maliot-princ': withCategory(day23, 'challenge') as ReaderSample,
+  'day24-maliot-princ': withCategory(day24, 'challenge') as ReaderSample,
+  'day25-maliot-princ': withCategory(day25, 'challenge') as ReaderSample,
+  'day26-maliot-princ': withCategory(day26, 'challenge') as ReaderSample,
+  'day27-maliot-princ': withCategory(day27, 'challenge') as ReaderSample,
+  'day28-maliot-princ': withCategory(day28, 'challenge') as ReaderSample,
+  'day29-maliot-princ': withCategory(day29, 'challenge') as ReaderSample,
+  'day30-maliot-princ': withCategory(day30, 'challenge') as ReaderSample,
+  'day-in-skopje': withCategory(dayInSkopje, 'story') as ReaderSample,
 };
 
 export function getReaderSample(id: string): ReaderSample | null {
@@ -165,6 +173,10 @@ export function getAllReaderSamples(): ReaderSample[] {
 
 export function getReaderSamplesByLocale(locale: string): ReaderSample[] {
   return Object.values(samples).filter((sample) => sample.locale === locale);
+}
+
+export function getReaderSamplesByCategory(category: ReaderCategory): ReaderSample[] {
+  return Object.values(samples).filter((sample) => sample.category === category);
 }
 
 export function getDifficultyColor(difficulty: string): string {
