@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-06)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** Phase 7 in progress — Executing validation (1/3 plans complete)
+**Current focus:** Phase 7 in progress — Executing validation (2/3 plans complete)
 
 ## Current Position
 
 Phase: 7 of 7 (Validation) — IN PROGRESS
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: Executing
-Last activity: 2026-01-07 — Completed 07-01 (Update Playwright tests)
+Last activity: 2026-01-07 — Completed 07-02 (Update documentation)
 
-Progress: █████████░ 90%
+Progress: █████████░ 95%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 19
+- Total plans completed: 20
 - Average duration: 6 min
-- Total execution time: 2.1 hours
+- Total execution time: 2.2 hours
 
 **By Phase:**
 
@@ -33,10 +33,10 @@ Progress: █████████░ 90%
 | 4 | 3 | 14 min | 5 min |
 | 5 | 3 | 15 min | 5 min |
 | 6 | 2 | 9 min | 5 min |
-| 7 | 1 | 6 min | 6 min |
+| 7 | 2 | 14 min | 7 min |
 
 **Recent Trend:**
-- Last 5 plans: 4, 6, 5, 4, 6 min
+- Last 5 plans: 6, 5, 4, 6, 8 min
 - Trend: → (stable)
 
 ## Accumulated Context
@@ -64,6 +64,7 @@ Recent decisions affecting current work:
 - [06-01]: Comment routes rather than delete for easy re-enabling when audio ready; keep pages with placeholders to avoid 404
 - [06-02]: Skipped Task 2 (practice mode descriptions) because they already exist and are clear
 - [07-01]: Replaced pronunciation test suite with Coming Soon validation (155→55 lines); removed pronunciation expectations from practice and mobile tests
+- [07-02]: Updated intended-beta-ux.md and beta_readiness_assessment.md with Phase 1-6 changes (curriculum, progress, vocabulary, reader folders)
 
 ### Deferred Issues
 
@@ -76,6 +77,6 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-07
-Stopped at: Completed 07-01 (Update Playwright tests)
+Stopped at: Completed 07-02 (Update documentation)
 Resume file: None
-Next step: Execute 07-02-PLAN.md (Update documentation)
+Next step: Execute 07-03-PLAN.md (Agent feedback review)
