@@ -1,12 +1,15 @@
 # NOTE: Vercel's native cron (configured in vercel.json) is the primary reminder delivery mechanism.
 # This workflow serves as a fallback smoke test and can be triggered manually via workflow_dispatch.
 # Vercel cron automatically bypasses deployment protection; this workflow requires REMINDER_CRON_BASE_URL.
+#
+# Scheduled runs disabled - Vercel cron handles this automatically.
+# To re-enable, uncomment the schedule block and set REMINDER_CRON_BASE_URL secret.
 
 name: Reminder Cron Smoke
 
 on:
-  schedule:
-    - cron: '10 9 * * *'
+  # schedule:
+  #   - cron: '10 9 * * *'
   workflow_dispatch:
 
 concurrency:
