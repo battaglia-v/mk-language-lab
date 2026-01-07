@@ -22,7 +22,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 4: Vocabulary System** - Simple SRS with new/learning/mastered states
 - [x] **Phase 5: Reader Reorganization** - Folder structure for reading content types
 - [x] **Phase 6: Clean Up Confusion** - Hide audio, remove dead settings, add explainers
-- [ ] **Phase 7: Validation** - Update tests and docs, agent feedback
+- [x] **Phase 7: Validation** - Update tests and docs, agent feedback
 
 ## Phase Details
 
@@ -107,7 +107,7 @@ Plans:
 Plans:
 - [x] 07-01: Update Playwright tests for new UX (pronunciation tests → Coming Soon validation)
 - [x] 07-02: Update documentation (intended-beta-ux.md, beta_readiness_assessment.md)
-- [ ] 07-03: Conduct agent feedback review (learning flow, UX risks, recommendations)
+- [x] 07-03: Conduct agent feedback review (learning flow, UX risks, recommendations)
 
 ## Progress
 
@@ -122,4 +122,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 4. Vocabulary System | 3/3 | Complete | 2026-01-07 |
 | 5. Reader Reorganization | 3/3 | Complete | 2026-01-07 |
 | 6. Clean Up Confusion | 2/2 | Complete | 2026-01-07 |
-| 7. Validation | 2/3 | In progress | - |
+| 7. Validation | 3/3 | Complete | 2026-01-07 |
