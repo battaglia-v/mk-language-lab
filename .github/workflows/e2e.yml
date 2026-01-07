@@ -2,8 +2,10 @@ name: E2E Tests
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '30 5 * * *'
+  # Scheduled E2E disabled - CI pipeline runs E2E on every push
+  # Re-enable when test suite is more stable
+  # schedule:
+  #   - cron: '30 5 * * *'
 
 concurrency:
   group: e2e-${{ github.ref }}
@@ -47,6 +49,7 @@ jobs:
       - name: Run E2E tests (desktop only in CI for speed)
         run: npx playwright test --project=chromium
         env:
+          CI: true
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           DIRECT_URL: ${{ secrets.DIRECT_URL }}
           GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
