@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-06)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** Phase 5 complete — Ready for Phase 6
+**Current focus:** Phase 6 in progress — Clean Up Confusion
 
 ## Current Position
 
-Phase: 5 of 7 (Reader Reorganization) — COMPLETE
-Plan: 3 of 3 in current phase
-Status: Phase complete
-Last activity: 2026-01-07 — Completed 05-03-PLAN.md
+Phase: 6 of 7 (Clean Up Confusion)
+Plan: 1 of 2 in current phase
+Status: In progress
+Last activity: 2026-01-07 — Completed 06-01-PLAN.md
 
-Progress: ████████░░ 76%
+Progress: █████████░ 81%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 16
+- Total plans completed: 17
 - Average duration: 6 min
-- Total execution time: 1.8 hours
+- Total execution time: 1.9 hours
 
 **By Phase:**
 
@@ -32,9 +32,10 @@ Progress: ████████░░ 76%
 | 3 | 3 | 14 min | 5 min |
 | 4 | 3 | 14 min | 5 min |
 | 5 | 3 | 15 min | 5 min |
+| 6 | 1 | 5 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 4, 5, 5, 4, 6 min
+- Last 5 plans: 5, 5, 4, 6, 5 min
 - Trend: → (stable)
 
 ## Accumulated Context
@@ -59,6 +60,7 @@ Recent decisions affecting current work:
 - [04-03]: Mode selector is UI-only; actual deck filtering deferred to practice session integration
 - [05-02]: Inject category at runtime rather than adding to JSON files
 - [05-03]: Featured 30-Day Challenge card within Reading Challenges section; search results remain flat
+- [06-01]: Comment routes rather than delete for easy re-enabling when audio ready; keep pages with placeholders to avoid 404
 
 ### Deferred Issues
 
@@ -71,5 +73,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-07
-Stopped at: Completed 05-03-PLAN.md (Update reader UI navigation) — Phase 5 complete
+Stopped at: Completed 06-01-PLAN.md (Audit and hide audio/speaking features)
 Resume file: None
