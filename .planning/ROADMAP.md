@@ -62,7 +62,7 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 03-01: Audit current practice content sources
+- [x] 03-01: Audit current practice content sources
 - [ ] 03-02: Implement completed-content-only practice filtering
 - [ ] 03-03: Add lesson references to grammar drills
 
@@ -118,7 +118,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 |-------|----------------|--------|-----------|
 | 1. Curriculum Backbone | 4/4 | Complete | 2026-01-07 |
 | 2. Progress & Dashboard | 3/3 | Complete | 2026-01-07 |
-| 3. Lesson Practice Integrity | 0/3 | Not started | - |
+| 3. Lesson Practice Integrity | 1/3 | In progress | - |
 | 4. Vocabulary System | 0/3 | Not started | - |
 | 5. Reader Reorganization | 0/3 | Not started | - |
 | 6. Clean Up Confusion | 0/2 | Not started | - |
