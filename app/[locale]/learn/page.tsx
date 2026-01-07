@@ -22,9 +22,12 @@ export default async function LearnPage() {
   };
 
   let completedNodeIds: string[] = [];
+  let currentLesson: { id: string; title: string; moduleTitle: string; lessonNumber: number } | undefined;
+  let journeyProgress: { completedCount: number; totalCount: number } | undefined;
 
   if (session?.user?.id) {
     try {
+      // Fetch game progress
       const progress = await prisma.gameProgress.findUnique({
         where: { userId: session.user.id },
       });
@@ -43,8 +46,63 @@ export default async function LearnPage() {
           (_, i) => `node-${i + 1}`
         );
       }
+
+      // Fetch journey progress for current curriculum position
+      const journey = await prisma.journeyProgress.findFirst({
+        where: { userId: session.user.id, isActive: true },
+        include: {
+          currentLesson: {
+            select: {
+              id: true,
+              title: true,
+              orderIndex: true,
+            },
+          },
+          currentModule: {
+            select: {
+              title: true,
+            },
+          },
+        },
+      });
+
+      if (journey?.currentLesson && journey.currentModule) {
+        // Get total lessons in this journey
+        const totalLessons = await prisma.curriculumLesson.count({
+          where: {
+            module: {
+              journeyId: journey.journeyId,
+            },
+          },
+        });
+
+        // Get completed lessons count
+        const completedLessons = await prisma.userLessonProgress.count({
+          where: {
+            userId: session.user.id,
+            status: 'completed',
+            lesson: {
+              module: {
+                journeyId: journey.journeyId,
+              },
+            },
+          },
+        });
+
+        currentLesson = {
+          id: journey.currentLesson.id,
+          title: journey.currentLesson.title,
+          moduleTitle: journey.currentModule.title,
+          lessonNumber: journey.currentLesson.orderIndex,
+        };
+
+        journeyProgress = {
+          completedCount: completedLessons,
+          totalCount: totalLessons,
+        };
+      }
     } catch (error) {
-      console.error("[learn] Failed to load game progress:", error);
+      console.error("[learn] Failed to load progress:", error);
     }
   }
 
@@ -66,6 +124,8 @@ export default async function LearnPage() {
       dailyGoalXP={gameProgress.dailyGoalXP}
       starterPath={starterPath}
       a2Path={a2Path}
+      currentLesson={currentLesson}
+      journeyProgress={journeyProgress}
     />
   );
 }
