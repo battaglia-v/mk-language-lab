@@ -1,6 +1,6 @@
 # MKLanguage Beta Readiness Assessment
 
-**Date:** January 4, 2025
+**Date:** January 7, 2025 (Updated after system overhaul milestone)
 **Author:** Claude Code Agent
 **Status:** BETA READY
 
@@ -84,13 +84,16 @@ Even with the pronunciation mode hidden, users may tap on letter cards expecting
 2. **Path Navigation Freedom** - No artificial gates, users explore naturally
 3. **Content Quality** - Alphabet deck is educational and accurate
 4. **Visual Identity** - Red/yellow gradient feels authentically Macedonian
+5. **UKIM Curriculum Backbone** - Content sourced from authentic textbooks (Тешкото A1, Лозје A2, Златоврв B1)
+6. **Progress Tracking** - Users always resume in the right place; journey becomes active on first lesson completion
+7. **Vocabulary SRS System** - Spaced repetition with Leitner intervals for effective learning
 
 ### What Still Feels Fragile
 
-1. **Audio Absence** - Users will notice and may feel the app is incomplete
+1. **Audio Absence** - Users will notice; pronunciation page now shows "Coming Soon" placeholder
 2. **Practice Session Depth** - Grammar drills could use more variety
 3. **Reader Content** - Only a few samples; needs expansion for retention
-4. **A2 Content** - Path exists but lessons need more substance
+4. **B1 Content** - Skeleton only (chapter titles exist, no lesson content yet)
 
 ### What Should NOT Be Added Yet
 
@@ -117,6 +120,10 @@ Even with the pronunciation mode hidden, users may tap on letter cards expecting
 | Brand colors updated | ✅ |
 | Mobile audit report complete | ✅ |
 | No robot audio in app | ✅ |
+| Curriculum from UKIM textbooks | ✅ |
+| Progress tracking implemented | ✅ |
+| Vocabulary SRS system | ✅ |
+| Reader folder reorganization | ✅ |
 
 ---
 
