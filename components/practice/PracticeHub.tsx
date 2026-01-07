@@ -3,10 +3,12 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
+import { useSession } from 'next-auth/react';
 import { Volume2, Brain, FileText, Sparkles, Heart, Settings2, Clock, Zap, ChevronRight, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { BottomSheet } from '@/components/ui/BottomSheet';
 import { usePracticeDecks } from './usePracticeDecks';
+import { PracticeModeSelector, type PracticeMode as VocabPracticeMode } from './PracticeModeSelector';
 import { cn } from '@/lib/utils';
 import type { DeckType, PracticeMode, DifficultyFilter } from './types';
 
@@ -28,17 +30,23 @@ type PracticeModeConfig = {
 export function PracticeHub() {
   const t = useTranslations('practiceHub');
   const locale = useLocale();
+  const { status } = useSession();
   const {
     savedDeck, curatedDeck,
     mistakesDeck, srsDueDeck,
     clearCustomDeck, clearMistakes,
     recommendedDeck,
+    vocabCounts,
   } = usePracticeDecks();
 
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [deckType, setDeckType] = useState<DeckType>(recommendedDeck);
   const [mode, setMode] = useState<PracticeMode>('multiple-choice');
   const [difficulty, setDifficulty] = useState<DifficultyFilter>('all');
+  const [vocabMode, setVocabMode] = useState<VocabPracticeMode>('mixed');
+
+  const isAuthenticated = status === 'authenticated';
+  const hasVocabulary = vocabCounts.total > 0;
 
   const handleDeckSelect = (type: DeckType) => {
     setDeckType(type);
@@ -105,6 +113,26 @@ export function PracticeHub() {
           <span className="hidden sm:inline">{t('hub.settingsLink')}</span>
         </Button>
       </header>
+
+      {/* Vocabulary Practice - for authenticated users */}
+      {isAuthenticated && (
+        <section className="space-y-3">
+          {hasVocabulary ? (
+            <PracticeModeSelector
+              counts={vocabCounts}
+              selectedMode={vocabMode}
+              onModeSelect={setVocabMode}
+            />
+          ) : (
+            <div className="rounded-xl border border-border/50 bg-muted/20 p-4 text-sm text-muted-foreground">
+              <p className="font-semibold text-foreground">No vocabulary saved yet</p>
+              <p className="mt-1">
+                Save words while reading or translating to build your personal vocabulary deck.
+              </p>
+            </div>
+          )}
+        </section>
+      )}
 
       {/* Recommended */}
       {recommendedMode && (
