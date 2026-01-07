@@ -8,6 +8,7 @@ import { fetchUserDecks } from '@/lib/custom-decks';
 import { readWrongAnswers, getDueCards, clearWrongAnswers, type WrongAnswerRecord, type SRSCardData } from '@/lib/spaced-repetition';
 import { readFavorites, type FavoriteItem } from '@/lib/favorites';
 import { getSRSCounts, getReviewQueue } from '@/lib/srs';
+import { useVocabulary, type VocabWord } from './useVocabulary';
 import type { CustomDeckSummary } from '@/lib/custom-decks';
 import type { Flashcard, DeckType, DifficultyFilter } from './types';
 import { normalizeDifficulty } from './types';
@@ -26,6 +27,7 @@ type PromptResponse = {
 export function usePracticeDecks() {
   const { phrases } = useSavedPhrases();
   const { status } = useSession();
+  const vocabulary = useVocabulary();
   const [historySnapshot, setHistorySnapshot] = useState<ReturnType<typeof readTranslatorHistory>>([]);
   const [customDecks, setCustomDecks] = useState<CustomDeckSummary[]>([]);
   const [curatedDeck, setCuratedDeck] = useState<Flashcard[]>([]);
@@ -36,6 +38,7 @@ export function usePracticeDecks() {
   const [favoritesDeck, setFavoritesDeck] = useState<Flashcard[]>([]);
   const [favoritesSRSCounts, setFavoritesSRSCounts] = useState({ due: 0, new_: 0, learned: 0 });
   const [lessonReviewDeck, setLessonReviewDeck] = useState<Flashcard[]>([]);
+  const [userVocabDeck, setUserVocabDeck] = useState<Flashcard[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   // Load history on mount
@@ -204,6 +207,43 @@ export function usePracticeDecks() {
     }
   }, [status]);
 
+  // Convert VocabWord to Flashcard
+  const vocabWordToFlashcard = useCallback((word: VocabWord): Flashcard => ({
+    id: word.id,
+    source: word.wordMk,
+    target: word.wordEn,
+    direction: 'mk-en' as const,
+    category: word.category ?? 'vocabulary',
+    difficulty: 'user-vocab',
+    audioClip: null,
+    macedonian: word.wordMk,
+  }), []);
+
+  // Load user vocabulary deck (due + new words for practice)
+  const loadUserVocabDeck = useCallback(async () => {
+    if (status !== 'authenticated') {
+      setUserVocabDeck([]);
+      return [];
+    }
+    try {
+      // Get due words first, then new words
+      const [dueWords, newWords] = await Promise.all([
+        vocabulary.getDueWords(15),
+        vocabulary.getNewWords(5),
+      ]);
+
+      // Interleave: due words take priority, then new words
+      const combined = [...dueWords, ...newWords];
+      const flashcards = combined.map(vocabWordToFlashcard);
+      setUserVocabDeck(flashcards);
+      return flashcards;
+    } catch (error) {
+      console.error('Failed to load user vocab deck:', error);
+      setUserVocabDeck([]);
+      return [];
+    }
+  }, [status, vocabulary, vocabWordToFlashcard]);
+
   // Convert saved phrases to flashcards
   const savedDeck = useMemo<Flashcard[]>(
     () =>
@@ -254,6 +294,8 @@ export function usePracticeDecks() {
         return favoritesDeck;
       case 'lesson-review':
         return lessonReviewDeck;
+      case 'user-vocab':
+        return userVocabDeck;
       case 'curated':
       default:
         if (difficultyFilter === 'all') {
@@ -261,7 +303,7 @@ export function usePracticeDecks() {
         }
         return curatedDeck.filter((card) => card.difficulty === difficultyFilter);
     }
-  }, [customDeckCards, savedDeck, historyDeck, mistakesDeck, srsDueDeck, favoritesDeck, lessonReviewDeck, curatedDeck]);
+  }, [customDeckCards, savedDeck, historyDeck, mistakesDeck, srsDueDeck, favoritesDeck, lessonReviewDeck, userVocabDeck, curatedDeck]);
 
   // Determine recommended deck (for "Continue" CTA)
   const recommendedDeck = useMemo((): DeckType => {
@@ -282,6 +324,7 @@ export function usePracticeDecks() {
     srsDueDeck,
     favoritesDeck,
     lessonReviewDeck,
+    userVocabDeck,
     customDecks,
 
     // State
@@ -295,7 +338,17 @@ export function usePracticeDecks() {
     clearMistakes,
     refreshSpecialDecks,
     loadLessonReviewDeck,
+    loadUserVocabDeck,
     getDeck,
+
+    // Vocabulary actions (for save/review during practice)
+    vocabActions: {
+      saveWord: vocabulary.saveWord,
+      recordReview: vocabulary.recordReview,
+    },
+
+    // Vocabulary state
+    vocabCounts: vocabulary.counts,
 
     // Counts for UI
     deckCounts: {
@@ -307,6 +360,7 @@ export function usePracticeDecks() {
       srs: srsDueDeck.length,
       favorites: favoritesDeck.length,
       lessonReview: lessonReviewDeck.length,
+      userVocab: userVocabDeck.length,
     },
 
     // SRS counts for favorites
