@@ -44,7 +44,7 @@
     "language": "Language",
     "languageDesc": "Choose your preferred language",
     "dailyGoal": "Daily Goal",
-    "dailyGoalDesc": "Set your daily XP target",
+    "dailyGoalDesc": "Set your daily XP target. Progress bar on the Learn page tracks your goal.",
     "notifications": "Notifications",
     "profile": "Profile",
     "upgrade": "Upgrade",
