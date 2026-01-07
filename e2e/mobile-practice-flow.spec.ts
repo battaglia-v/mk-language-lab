@@ -37,10 +37,7 @@ test.describe('Mobile Practice Flow', () => {
     // Should show practice title (mobile shows "Train your Macedonian skills")
     await expect(page.getByRole('heading', { name: /Train your Macedonian skills/i })).toBeVisible();
 
-    // Should show pronunciation mode card (link containing "pronunciation" in URL)
-    const pronunciationLink = page.locator('a[href*="pronunciation"]');
-    await expect(pronunciationLink).toBeVisible();
-
+    // Should show available practice modes (pronunciation is hidden in beta)
     // Should show cloze mode card (link containing "cloze" in URL)
     const clozeLink = page.locator('a[href*="cloze"]');
     await expect(clozeLink).toBeVisible();
