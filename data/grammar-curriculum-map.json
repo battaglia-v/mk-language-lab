@@ -1,0 +1,121 @@
+{
+  "mappings": [
+    {
+      "grammarLessonId": "definite-article-basics",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-a1",
+          "lessonNumber": 3,
+          "lessonTitle": "Работа",
+          "relevance": "Definite article forms introduced with nouns describing professions and objects"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "present-tense-sum",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-a1",
+          "lessonNumber": 1,
+          "lessonTitle": "Јас и ти",
+          "relevance": "Core grammar: conjugation of 'сум' (to be) for introductions"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "negation-basics",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-a1",
+          "lessonNumber": 4,
+          "lessonTitle": "Слободно време",
+          "relevance": "Negation patterns with 'не' introduced in daily activities context"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "plural-nouns",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-a1",
+          "lessonNumber": 2,
+          "lessonTitle": "Семејство",
+          "relevance": "Plural forms for family members and numbers"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "prepositions-basics",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-a1",
+          "lessonNumber": 5,
+          "lessonTitle": "Дома",
+          "relevance": "Spatial prepositions for describing locations in the home"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "question-words",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-a1",
+          "lessonNumber": 1,
+          "lessonTitle": "Јас и ти",
+          "relevance": "Basic question words: Како?, Од каде?, Кој?"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "past-tense-intro",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-a1",
+          "lessonNumber": 8,
+          "lessonTitle": "Патување",
+          "relevance": "Past tense for describing travel experiences and completed actions"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "future-tense-basics",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-a1",
+          "lessonNumber": 6,
+          "lessonTitle": "Купување",
+          "relevance": "Future tense with 'ќе' for plans and intentions"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "possessive-pronouns",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-a1",
+          "lessonNumber": 1,
+          "lessonTitle": "Јас и ти",
+          "relevance": "Possessive pronouns introduced: мој/моја/мое for describing possessions"
+        },
+        {
+          "journeyId": "ukim-a1",
+          "lessonNumber": 2,
+          "lessonTitle": "Семејство",
+          "relevance": "Extended use of possessives for family relationships"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "adjective-agreement",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-a1",
+          "lessonNumber": 3,
+          "lessonTitle": "Работа",
+          "relevance": "Adjective-noun agreement when describing people and professions"
+        }
+      ]
+    }
+  ],
+  "unmapped": []
+}
