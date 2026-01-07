@@ -17,7 +17,7 @@ None
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Curriculum Backbone** - Parse UKIM PDFs and structure A1/A2 curriculum
-- [ ] **Phase 2: Progress & Dashboard** - Implement progression tracking and "continue" UX (In progress)
+- [x] **Phase 2: Progress & Dashboard** - Implement progression tracking and "continue" UX
 - [ ] **Phase 3: Lesson Practice Integrity** - Practice pulls only from completed content
 - [ ] **Phase 4: Vocabulary System** - Simple SRS with new/learning/mastered states
 - [ ] **Phase 5: Reader Reorganization** - Folder structure for reading content types
@@ -53,7 +53,7 @@ Plans:
 Plans:
 - [x] 02-01: Implement user progress tracking schema and API
 - [x] 02-02: Update dashboard with continuation UX
-- [ ] 02-03: Remove beginner loop redirect behavior
+- [x] 02-03: Remove beginner loop redirect behavior
 
 ### Phase 3: Lesson Practice Integrity
 **Goal**: Practice pulls ONLY from completed lessons or explicitly selected vocab sets; remove practice that quizzes unseen content; grammar drills reference source lesson.
@@ -117,7 +117,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Curriculum Backbone | 4/4 | Complete | 2026-01-07 |
-| 2. Progress & Dashboard | 2/3 | In progress | - |
+| 2. Progress & Dashboard | 3/3 | Complete | 2026-01-07 |
 | 3. Lesson Practice Integrity | 0/3 | Not started | - |
 | 4. Vocabulary System | 0/3 | Not started | - |
 | 5. Reader Reorganization | 0/3 | Not started | - |
