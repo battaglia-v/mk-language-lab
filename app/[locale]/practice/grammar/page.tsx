@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import grammarLessonsData from '@/data/grammar-lessons.json';
+import grammarCurriculumMap from '@/data/grammar-curriculum-map.json';
 import { type GrammarLesson } from '@/lib/grammar-engine';
 import { PageContainer } from '@/components/layout';
 import type { LessonResults } from '@/lib/lesson-runner/types';
@@ -34,6 +35,12 @@ interface LessonProgress {
   score: number;
   completedAt?: string;
 }
+
+// Helper to get curriculum references for a grammar lesson
+const getCurriculumRefs = (grammarLessonId: string) => {
+  const mapping = grammarCurriculumMap.mappings.find(m => m.grammarLessonId === grammarLessonId);
+  return mapping?.curriculumRefs ?? [];
+};
 
 export default function GrammarPracticePage() {
   const t = useTranslations('grammar');
@@ -291,6 +298,15 @@ export default function GrammarPracticePage() {
                         >
                           {lesson.difficulty}
                         </Badge>
+                        {getCurriculumRefs(lesson.id).length > 0 && (
+                          <Badge
+                            variant="outline"
+                            className="shrink-0 text-xs bg-blue-500/10 text-blue-400 border-blue-500/30"
+                          >
+                            <BookOpen className="h-3 w-3 mr-1" />
+                            {locale === 'mk' ? 'Лекција' : 'Lesson'} {getCurriculumRefs(lesson.id)[0].lessonNumber}
+                          </Badge>
+                        )}
                         {isRecommended && !isCompleted && (
                           <Badge
                             variant="outline"
