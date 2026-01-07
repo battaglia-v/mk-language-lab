@@ -105,9 +105,9 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 07-01: Update Playwright tests for new UX
-- [ ] 07-02: Update documentation
-- [ ] 07-03: Conduct agent feedback review
+- [ ] 07-01: Update Playwright tests for new UX (pronunciation tests → Coming Soon validation)
+- [ ] 07-02: Update documentation (intended-beta-ux.md, beta_readiness_assessment.md)
+- [ ] 07-03: Conduct agent feedback review (learning flow, UX risks, recommendations)
 
 ## Progress
 

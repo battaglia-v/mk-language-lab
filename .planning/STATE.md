@@ -5,14 +5,14 @@
 See: .planning/PROJECT.md (updated 2026-01-06)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** Phase 6 complete — Ready for Phase 7 (Validation)
+**Current focus:** Phase 7 planned — Ready to execute (3 plans)
 
 ## Current Position
 
-Phase: 6 of 7 (Clean Up Confusion) — COMPLETE
-Plan: 2 of 2 in current phase
-Status: Phase complete
-Last activity: 2026-01-07 — Completed 06-02-PLAN.md
+Phase: 7 of 7 (Validation) — PLANNED
+Plan: 0 of 3 in current phase
+Status: Ready for execution
+Last activity: 2026-01-07 — Created Phase 7 plans (07-01, 07-02, 07-03)
 
 Progress: █████████░ 86%
 
@@ -74,6 +74,6 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-07
-Stopped at: Completed 06-02-PLAN.md (Remove dead settings and add explainers) — Phase 6 complete
+Stopped at: Created Phase 7 plans
 Resume file: None
-Next step: Plan and execute Phase 7 (Validation)
+Next step: Execute 07-01-PLAN.md (Update Playwright tests)
