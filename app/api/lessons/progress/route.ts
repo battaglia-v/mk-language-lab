@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
       });
 
       if (lessonModule) {
-        // Find or create journey progress
+        // Find or create journey progress with isActive=true
         const journeyProgress = await prisma.journeyProgress.upsert({
           where: {
             userId_journeyId: {
@@ -82,17 +82,22 @@ export async function POST(request: NextRequest) {
             totalMinutes: {
               increment: timeSpent || 0,
             },
+            // Mark journey as active when user completes a lesson
+            isActive: true,
           },
           create: {
             userId: session.user.id,
             journeyId: lessonModule.journeyId,
             lastSessionDate: new Date(),
             totalMinutes: timeSpent || 0,
+            isActive: true,
+            currentModuleId: lessonModule.id,
+            currentLessonId: lesson.id,
           },
         });
 
-        // Find next lesson in this module or next module
-        const nextLesson = await prisma.curriculumLesson.findFirst({
+        // Find next lesson in this module
+        let nextLesson = await prisma.curriculumLesson.findFirst({
           where: {
             moduleId: lesson.moduleId,
             orderIndex: {
@@ -102,16 +107,40 @@ export async function POST(request: NextRequest) {
           orderBy: { orderIndex: 'asc' },
         });
 
-        if (nextLesson) {
-          // Update current lesson pointer
-          await prisma.journeyProgress.update({
-            where: { id: journeyProgress.id },
-            data: {
-              currentLessonId: nextLesson.id,
-              currentModuleId: lessonModule.id,
+        let nextModuleId = lessonModule.id;
+
+        // If no next lesson in current module, find first lesson of next module
+        if (!nextLesson) {
+          const nextModule = await prisma.module.findFirst({
+            where: {
+              journeyId: lessonModule.journeyId,
+              orderIndex: {
+                gt: lessonModule.orderIndex,
+              },
+            },
+            orderBy: { orderIndex: 'asc' },
+            include: {
+              lessons: {
+                orderBy: { orderIndex: 'asc' },
+                take: 1,
+              },
             },
           });
+
+          if (nextModule && nextModule.lessons.length > 0) {
+            nextLesson = nextModule.lessons[0];
+            nextModuleId = nextModule.id;
+          }
         }
+
+        // Update current position to next lesson (or keep at completed lesson if journey done)
+        await prisma.journeyProgress.update({
+          where: { id: journeyProgress.id },
+          data: {
+            currentLessonId: nextLesson ? nextLesson.id : lesson.id,
+            currentModuleId: nextLesson ? nextModuleId : lessonModule.id,
+          },
+        });
       }
     }
 
