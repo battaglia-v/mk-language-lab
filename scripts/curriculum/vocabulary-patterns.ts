@@ -149,19 +149,17 @@ export function extractWordLists(text: string): VocabularyItem[] {
   while ((match = wordListPattern.exec(text)) !== null) {
     const wordString = match[1];
 
-    // Split by commas or newlines, filter to valid words
+    // Split by commas or newlines
     const words = wordString
       .split(/[,\n]/)
       .map(w => w.trim())
-      // Keep only Cyrillic words, minimum 2 characters
-      .filter(w => /^[А-Яа-яЀ-ӿ\s]+$/.test(w) && w.length >= 2)
-      // Remove common noise words (articles, particles)
-      .filter(w => !['и', 'а', 'во', 'на', 'со', 'од', 'за', 'до', 'ги', 'се'].includes(w.toLowerCase()));
+      // Use comprehensive validation
+      .filter(isValidVocabularyWord);
 
     for (const word of words) {
       const normalized = word.toLowerCase().trim();
-      // Skip if we've seen this word or it's too short after trimming
-      if (normalized.length < 2 || seen.has(normalized)) continue;
+      // Skip if we've seen this word
+      if (seen.has(normalized)) continue;
       seen.add(normalized);
 
       vocab.push({
@@ -201,14 +199,16 @@ export function extractSingularPluralPairs(text: string): SingularPluralPair[] {
     const singularSection = match[1];
     const pluralSection = match[2];
 
-    // Extract words (skip blanks marked with _)
+    // Extract words (skip blanks marked with _, use 3+ char minimum, filter stop words)
     const singularWords = singularSection
       .split(/\s+/)
-      .filter(w => /^[А-Яа-яЀ-ӿ]+$/.test(w) && w.length >= 2);
+      .filter(w => /^[А-Яа-яЀ-ӿ]+$/.test(w) && w.length >= 3)
+      .filter(w => !MACEDONIAN_STOP_WORDS.has(w.toLowerCase()));
 
     const pluralWords = pluralSection
       .split(/\s+/)
-      .filter(w => /^[А-Яа-яЀ-ӿ]+$/.test(w) && w.length >= 2);
+      .filter(w => /^[А-Яа-яЀ-ӿ]+$/.test(w) && w.length >= 3)
+      .filter(w => !MACEDONIAN_STOP_WORDS.has(w.toLowerCase()));
 
     // Pair them up (assume same order)
     const pairCount = Math.min(singularWords.length, pluralWords.length);
@@ -230,6 +230,11 @@ export function extractSingularPluralPairs(text: string): SingularPluralPair[] {
   while ((match = linePattern.exec(text)) !== null) {
     const singular = match[1];
     const plural = match[2];
+
+    // Skip if singular is a stop word or too short
+    if (singular.length < 3 || MACEDONIAN_STOP_WORDS.has(singular.toLowerCase())) {
+      continue;
+    }
 
     // Basic validation: plural should be longer or have typical suffixes
     if (
@@ -273,19 +278,16 @@ export function extractThematicVocabulary(
   const adjEndings = ['ен', 'на', 'но', 'ски', 'ска', 'ско', 'ален', 'ален'];
 
   // Find lists of Cyrillic words (comma-separated or newline-separated)
-  // that appear to be vocabulary sections
-  const listPattern = /([А-Яа-яЀ-ӿ]+(?:[,\s]+[А-Яа-яЀ-ӿ]+){4,})/g;
+  // that appear to be vocabulary sections - require 6+ words for more selectivity
+  const listPattern = /([А-Яа-яЀ-ӿ]+(?:[,\s]+[А-Яа-яЀ-ӿ]+){5,})/g;
 
   let match;
   while ((match = listPattern.exec(text)) !== null) {
     const wordString = match[1];
     const words = wordString
       .split(/[,\s]+/)
-      .filter(w => /^[А-Яа-яЀ-ӿ]+$/.test(w) && w.length >= 2)
-      .filter(
-        w =>
-          !['и', 'а', 'во', 'на', 'со', 'од', 'за', 'до', 'ги', 'се', 'ја'].includes(w.toLowerCase())
-      );
+      // Use comprehensive validation (3+ chars, not stop word, not all-caps, Cyrillic)
+      .filter(isValidVocabularyWord);
 
     for (const word of words) {
       const normalized = word.toLowerCase();
