@@ -7,6 +7,13 @@
 import * as fs from 'fs';
 import type { ExtractedPage, StructuredVocabulary } from './types';
 import { extractAllVocabulary, type VocabularyItem } from './vocabulary-patterns';
+import {
+  extractGrammarSections,
+  extractGrammarExamples,
+  extractConjugationTables,
+  extractA2GrammarReference,
+  searchForGrammarTopic,
+} from './grammar-patterns';
 
 const INPUT_PATH = 'data/curriculum/extracted/a2-raw.json';
 const OUTPUT_PATH = 'data/curriculum/structured/a2-lozje.json';
@@ -185,29 +192,89 @@ function extractVocabulary(lessonText: string): StructuredVocabulary[] {
 
 /**
  * Extract grammar notes from lesson - using known grammar topics from TOC
+ * and searching lesson text for actual content to replace placeholders
  */
-function extractGrammarNotes(lessonNum: number, lessonText: string): StructuredGrammar[] {
+function extractGrammarNotes(
+  lessonNum: number,
+  lessonText: string,
+  grammarReferenceText: string
+): StructuredGrammar[] {
   const notes: StructuredGrammar[] = [];
   const grammarTopics = LESSON_GRAMMAR[lessonNum] || [];
+  const seenTitles = new Set<string>();
 
+  // 1. For each grammar topic from TOC, search for actual content
   for (const topic of grammarTopics) {
+    const titleKey = topic.toLowerCase();
+    if (seenTitles.has(titleKey)) continue;
+
+    // Search in lesson text first
+    let result = searchForGrammarTopic(lessonText, topic);
+
+    // If not found in lesson, search in grammar reference section (pages 156+)
+    if (!result && grammarReferenceText) {
+      result = searchForGrammarTopic(grammarReferenceText, topic);
+    }
+
+    if (result && result.content.length > 20) {
+      notes.push({
+        title: topic,
+        content: result.content,
+        examples: result.examples,
+      });
+      seenTitles.add(titleKey);
+    } else {
+      // Fallback: try to extract examples from lesson text for this topic
+      const examples = extractGrammarExamples(lessonText).slice(0, 3);
+      notes.push({
+        title: topic,
+        content: `Grammar: ${topic}`,
+        examples: examples.length > 0 ? examples : [],
+      });
+      seenTitles.add(titleKey);
+    }
+  }
+
+  // 2. Extract additional grammar sections found in lesson text
+  const sections = extractGrammarSections(lessonText);
+  for (const section of sections) {
+    const titleKey = section.title.toLowerCase();
+    if (seenTitles.has(titleKey)) continue;
+
+    // Don't add duplicates that match existing topics
+    const isDuplicate = grammarTopics.some(
+      t => t.toLowerCase().includes(titleKey) || titleKey.includes(t.toLowerCase())
+    );
+    if (isDuplicate) continue;
+
+    seenTitles.add(titleKey);
+    const examples = extractGrammarExamples(section.content);
+
     notes.push({
-      title: topic,
-      content: `Grammar topic covered in Lesson ${lessonNum}`,
-      examples: [], // Would need deeper parsing to extract examples
+      title: section.title,
+      content: section.content,
+      examples: examples.length > 0 ? examples : [],
     });
   }
 
-  // Also detect common grammar patterns in text
-  if (lessonText.includes('Јас сум') && lessonText.includes('Ти си')) {
-    const existing = notes.find(n => n.title.includes('сум'));
-    if (!existing) {
-      notes.push({
-        title: 'Глаголот "сум" (To be)',
-        content: 'Present tense conjugation of "to be"',
-        examples: ['Јас сум', 'Ти си', 'Тој/Таа/Тоа е', 'Ние сме', 'Вие сте', 'Тие се'],
-      });
-    }
+  // 3. Extract verb conjugation tables
+  const conjugations = extractConjugationTables(lessonText);
+  for (const conj of conjugations) {
+    const title = `Глаголот "${conj.verb}"`;
+    const titleKey = title.toLowerCase();
+    if (seenTitles.has(titleKey)) continue;
+
+    // Don't add if similar verb already covered
+    const hasVerb = [...seenTitles].some(t => t.includes(conj.verb));
+    if (hasVerb) continue;
+
+    seenTitles.add(titleKey);
+    const examples = Object.entries(conj.forms).map(([pronoun, form]) => `${pronoun} ${form}`);
+    notes.push({
+      title,
+      content: `Conjugation of the verb "${conj.verb}"`,
+      examples,
+    });
   }
 
   return notes;
@@ -219,7 +286,8 @@ function extractGrammarNotes(lessonNum: number, lessonText: string): StructuredG
 function parseLesson(
   pages: ExtractedPage[],
   lessonInfo: typeof LESSON_INFO[0],
-  nextLessonPage: number
+  nextLessonPage: number,
+  grammarReferenceText: string
 ): StructuredLesson {
   const lessonText = extractPagesText(pages, lessonInfo.page, nextLessonPage);
 
@@ -231,7 +299,7 @@ function parseLesson(
     endPage: nextLessonPage - 1,
     themes: extractThemes(lessonText),
     vocabularyItems: extractVocabulary(lessonText),
-    grammarNotes: extractGrammarNotes(lessonInfo.num, lessonText),
+    grammarNotes: extractGrammarNotes(lessonInfo.num, lessonText, grammarReferenceText),
   };
 }
 
@@ -254,6 +322,12 @@ async function main() {
   console.log(`Loaded ${pages.length} pages`);
   console.log();
 
+  // Extract grammar reference section (pages 156+) for use across all lessons
+  const grammarSectionStart = SUPPLEMENTARY_SECTIONS.find(s => s.label === 'Граматика')?.page || 156;
+  const grammarReferenceText = extractPagesText(pages, grammarSectionStart, pages.length + 1);
+  console.log(`Extracted grammar reference section (${grammarSectionStart}+): ${grammarReferenceText.length} chars`);
+  console.log();
+
   // Parse each lesson
   console.log('Parsing lessons...');
   const chapters: StructuredLesson[] = [];
@@ -264,7 +338,7 @@ async function main() {
       ? LESSON_INFO[i + 1].page
       : SUPPLEMENTARY_SECTIONS[0].page; // First supplementary section
 
-    const parsed = parseLesson(pages, lesson, nextPage);
+    const parsed = parseLesson(pages, lesson, nextPage, grammarReferenceText);
     chapters.push(parsed);
 
     console.log(`  Lesson ${lesson.num}: ${lesson.title}`);
