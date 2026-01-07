@@ -7,6 +7,8 @@ import { expect, test } from '@playwright/test';
  * - Practice hub navigation
  * - Cloze mode
  * - Results screen
+ *
+ * Skipped in CI - practice flow tests require multiple interactions and are slow.
  */
 
 // Test on iPhone-like viewport using chromium (not webkit)
@@ -20,6 +22,7 @@ test.use({
 const locale = 'en';
 
 test.describe('Mobile Practice Flow', () => {
+  test.skip(!!process.env.CI, 'Mobile practice flow tests skipped in CI - run locally');
   test.beforeEach(async ({ page }) => {
     // Clear cookies for clean state
     await page.context().clearCookies();

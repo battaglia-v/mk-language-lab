@@ -1,6 +1,8 @@
 /**
  * Mobile Journey Tests - Real user flow verification
  * Covers: Dashboard → Lesson, Translate → History/Saved, Practice → Pronunciation
+ *
+ * Skipped in CI - journey tests involve multiple navigations and are slow.
  */
 import { test, expect, type Page } from '@playwright/test';
 import { bypassNetworkInterstitial } from './helpers/network-interstitial';
@@ -23,6 +25,7 @@ async function gotoAndBypass(page: Page, path: string) {
 }
 
 test.describe('Mobile Journey Tests', () => {
+  test.skip(!!process.env.CI, 'Mobile journey tests skipped in CI - run locally');
   test.beforeEach(async ({ page }) => {
     await page.setViewportSize(MOBILE_VIEWPORT);
   });

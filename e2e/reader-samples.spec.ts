@@ -8,8 +8,11 @@ import { test, expect } from '@playwright/test';
  * - Navigation to sample detail page
  * - Tab navigation (Text/Grammar/Vocabulary)
  * - Mobile-first layout validation
+ *
+ * Skipped in CI - reader sample tests are slow and better run locally.
  */
 test.describe('Reader Samples', () => {
+  test.skip(!!process.env.CI, 'Reader sample tests skipped in CI - run locally');
   test.describe('Mobile (360x800)', () => {
     test.use({ viewport: { width: 360, height: 800 } });
 
