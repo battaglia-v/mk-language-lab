@@ -5,7 +5,8 @@
  */
 
 import * as fs from 'fs';
-import type { ExtractedPage } from './types';
+import type { ExtractedPage, StructuredVocabulary } from './types';
+import { extractAllVocabulary, type VocabularyItem } from './vocabulary-patterns';
 
 const INPUT_PATH = 'data/curriculum/extracted/a2-raw.json';
 const OUTPUT_PATH = 'data/curriculum/structured/a2-lozje.json';
@@ -28,11 +29,7 @@ interface StructuredTheme {
   exercises: string[];
 }
 
-interface StructuredVocabulary {
-  macedonian: string;
-  english: string;
-  context?: string;
-}
+// StructuredVocabulary imported from ./types
 
 interface StructuredGrammar {
   title: string;
@@ -171,28 +168,19 @@ function extractThemes(lessonText: string): StructuredTheme[] {
 }
 
 /**
- * Extract vocabulary items from text
- * Looks for patterns like "word - translation" or tabular vocabulary
+ * Extract vocabulary items from text using new vocabulary extraction patterns
+ * UKIM textbooks are Macedonian-only - no English translations exist
  */
 function extractVocabulary(lessonText: string): StructuredVocabulary[] {
-  const vocab: StructuredVocabulary[] = [];
+  // Use the new vocabulary extraction module
+  const extracted = extractAllVocabulary(lessonText);
 
-  // Common vocabulary patterns in textbooks
-  // Pattern 1: "Macedonian - English" format
-  const dashPattern = /([А-Яа-яЀ-ӿ]+(?:\s+[А-Яа-яЀ-ӿ]+)*)\s+[-–—]\s+([a-zA-Z]+(?:\s+[a-zA-Z]+)*)/g;
-
-  let match;
-  while ((match = dashPattern.exec(lessonText)) !== null) {
-    const mk = match[1].trim();
-    const en = match[2].trim();
-
-    // Filter out very short matches or common words
-    if (mk.length > 2 && en.length > 2) {
-      vocab.push({ macedonian: mk, english: en });
-    }
-  }
-
-  return vocab;
+  // Convert to StructuredVocabulary format
+  return extracted.map((item: VocabularyItem) => ({
+    word: item.word,
+    partOfSpeech: item.partOfSpeech,
+    context: item.context,
+  }));
 }
 
 /**
