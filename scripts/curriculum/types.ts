@@ -59,3 +59,13 @@ export const MACEDONIAN_SPECIFIC_CHARS = ['Ѓ', 'ѓ', 'Ќ', 'ќ', 'Љ', 'љ', '�
 export function containsMacedonianChars(text: string): boolean {
   return MACEDONIAN_SPECIFIC_CHARS.some(char => text.includes(char));
 }
+
+/**
+ * Structured vocabulary item for parsed output
+ * UKIM textbooks are Macedonian-only - no English translations exist
+ */
+export interface StructuredVocabulary {
+  word: string;
+  partOfSpeech?: 'noun' | 'verb' | 'adjective' | 'adverb' | 'other';
+  context?: string;
+}
