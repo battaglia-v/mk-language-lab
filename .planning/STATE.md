@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-06)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** Phase 4 in progress — Vocabulary System
+**Current focus:** Phase 4 complete — Ready for Phase 5
 
 ## Current Position
 
 Phase: 4 of 7 (Vocabulary System)
-Plan: 2 of 3 in current phase
-Status: Plan complete
-Last activity: 2026-01-07 — Completed 04-02-PLAN.md
+Plan: 3 of 3 in current phase
+Status: Phase complete
+Last activity: 2026-01-07 — Completed 04-03-PLAN.md
 
-Progress: ██████░░░░ 57%
+Progress: ██████░░░░ 62%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 12
+- Total plans completed: 13
 - Average duration: 6 min
-- Total execution time: 1.5 hours
+- Total execution time: 1.6 hours
 
 **By Phase:**
 
@@ -30,10 +30,10 @@ Progress: ██████░░░░ 57%
 | 1 | 4 | 43 min | 11 min |
 | 2 | 3 | 16 min | 5 min |
 | 3 | 3 | 14 min | 5 min |
-| 4 | 2 | 9 min | 5 min |
+| 4 | 3 | 14 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 4, 5, 5, 4 min
+- Last 5 plans: 5, 5, 4, 5 min
 - Trend: → (stable)
 
 ## Accumulated Context
@@ -55,6 +55,7 @@ Recent decisions affecting current work:
 - [03-01]: Phase 3 is infrastructure focus; vocabulary seeding is future work (outside scope)
 - [04-01]: Vocabulary API uses existing VocabularyWord model; SRS intervals match lib/srs.ts Leitner pattern
 - [04-02]: useVocabulary hook integrated into usePracticeDecks; loadUserVocabDeck fetches 15 due + 5 new words
+- [04-03]: Mode selector is UI-only; actual deck filtering deferred to practice session integration
 
 ### Deferred Issues
 
@@ -67,5 +68,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-07
-Stopped at: Completed 04-02 (Vocabulary hooks and practice integration)
+Stopped at: Completed Phase 4 (Vocabulary System)
 Resume file: None
