@@ -21,7 +21,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 3: Lesson Practice Integrity** - Practice pulls only from completed content
 - [x] **Phase 4: Vocabulary System** - Simple SRS with new/learning/mastered states
 - [x] **Phase 5: Reader Reorganization** - Folder structure for reading content types
-- [ ] **Phase 6: Clean Up Confusion** - Hide audio, remove dead settings, add explainers
+- [x] **Phase 6: Clean Up Confusion** - Hide audio, remove dead settings, add explainers
 - [ ] **Phase 7: Validation** - Update tests and docs, agent feedback
 
 ## Phase Details
@@ -96,7 +96,7 @@ Plans:
 
 Plans:
 - [x] 06-01: Audit and hide audio/speaking features
-- [ ] 06-02: Remove dead settings and add explainers
+- [x] 06-02: Remove dead settings and add explainers
 
 ### Phase 7: Validation
 **Goal**: Update Playwright tests to reflect intended beta UX (don't reintroduce removed features); update docs (intended-beta-ux.md, beta_learning_model.md); agent feedback on learning flow and UX risks.
@@ -121,5 +121,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 3. Lesson Practice Integrity | 3/3 | Complete | 2026-01-07 |
 | 4. Vocabulary System | 3/3 | Complete | 2026-01-07 |
 | 5. Reader Reorganization | 3/3 | Complete | 2026-01-07 |
-| 6. Clean Up Confusion | 1/2 | In progress | - |
+| 6. Clean Up Confusion | 2/2 | Complete | 2026-01-07 |
 | 7. Validation | 0/3 | Not started | - |

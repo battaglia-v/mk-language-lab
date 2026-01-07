@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-06)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** Phase 6 in progress — Clean Up Confusion
+**Current focus:** Phase 6 complete — Ready for Phase 7 (Validation)
 
 ## Current Position
 
-Phase: 6 of 7 (Clean Up Confusion)
-Plan: 1 of 2 in current phase
-Status: In progress
-Last activity: 2026-01-07 — Completed 06-01-PLAN.md
+Phase: 6 of 7 (Clean Up Confusion) — COMPLETE
+Plan: 2 of 2 in current phase
+Status: Phase complete
+Last activity: 2026-01-07 — Completed 06-02-PLAN.md
 
-Progress: █████████░ 81%
+Progress: █████████░ 86%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 17
+- Total plans completed: 18
 - Average duration: 6 min
-- Total execution time: 1.9 hours
+- Total execution time: 2.0 hours
 
 **By Phase:**
 
@@ -32,10 +32,10 @@ Progress: █████████░ 81%
 | 3 | 3 | 14 min | 5 min |
 | 4 | 3 | 14 min | 5 min |
 | 5 | 3 | 15 min | 5 min |
-| 6 | 1 | 5 min | 5 min |
+| 6 | 2 | 9 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 5, 5, 4, 6, 5 min
+- Last 5 plans: 5, 4, 6, 5, 4 min
 - Trend: → (stable)
 
 ## Accumulated Context
@@ -61,6 +61,7 @@ Recent decisions affecting current work:
 - [05-02]: Inject category at runtime rather than adding to JSON files
 - [05-03]: Featured 30-Day Challenge card within Reading Challenges section; search results remain flat
 - [06-01]: Comment routes rather than delete for easy re-enabling when audio ready; keep pages with placeholders to avoid 404
+- [06-02]: Skipped Task 2 (practice mode descriptions) because they already exist and are clear
 
 ### Deferred Issues
 
@@ -73,5 +74,6 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-07
-Stopped at: Completed 06-01-PLAN.md (Audit and hide audio/speaking features)
+Stopped at: Completed 06-02-PLAN.md (Remove dead settings and add explainers) — Phase 6 complete
 Resume file: None
+Next step: Plan and execute Phase 7 (Validation)
