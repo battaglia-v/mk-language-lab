@@ -56,6 +56,8 @@
     "content:validate:ci": "tsx scripts/validate-content.ts --ci",
     "content:validate:strict": "tsx scripts/validate-content.ts --strict",
     "extract:pdf": "npx tsx scripts/curriculum/extract-pdf.ts",
+    "extract:pdf:b1": "npx tsx scripts/curriculum/extract-b1.ts",
+    "parse:b1": "npx tsx scripts/curriculum/parse-b1-structure.ts",
     "curriculum:download": "npx tsx scripts/curriculum/download-pdfs.ts"
   },
   "prisma": {
