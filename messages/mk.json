@@ -2538,7 +2538,10 @@
       "complete": "завршено",
       "goalMet": "Постигнато!",
       "start": "Почни",
-      "lockTooltip": "Заврши ги претходните лекции за отклучување"
+      "lockTooltip": "Заврши ги претходните лекции за отклучување",
+      "continueLearning": "Продолжи со учење",
+      "continueLesson": "Продолжи: {lessonTitle}",
+      "lessonOf": "Лекција {current} од {total}"
     },
     "reader": {
       "title": "Читач",
