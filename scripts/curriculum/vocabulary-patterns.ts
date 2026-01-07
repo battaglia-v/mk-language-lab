@@ -375,12 +375,12 @@ export function extractAllVocabulary(text: string): VocabularyItem[] {
     }
   }
 
-  // 2. Extract singular/plural pairs
+  // 2. Extract singular/plural pairs (filter with isValidVocabularyWord)
   const pairs = extractSingularPluralPairs(text);
   const pairItems = pairsToVocabularyItems(pairs);
   for (const item of pairItems) {
     const key = item.word.toLowerCase();
-    if (!seen.has(key)) {
+    if (!seen.has(key) && isValidVocabularyWord(item.word)) {
       seen.add(key);
       vocab.push(item);
     }
