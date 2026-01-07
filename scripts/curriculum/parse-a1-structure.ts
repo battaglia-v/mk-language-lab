@@ -7,6 +7,12 @@
 import * as fs from 'fs';
 import type { ExtractedPage, StructuredVocabulary } from './types';
 import { extractAllVocabulary, type VocabularyItem } from './vocabulary-patterns';
+import {
+  extractGrammarSections,
+  extractGrammarExamples,
+  extractConjugationTables,
+  type GrammarSection,
+} from './grammar-patterns';
 
 const INPUT_PATH = 'data/curriculum/extracted/a1-raw.json';
 const OUTPUT_PATH = 'data/curriculum/structured/a1-teskoto.json';
@@ -154,27 +160,115 @@ function extractVocabulary(lessonText: string): StructuredVocabulary[] {
 }
 
 /**
- * Extract grammar notes from text
+ * Extract grammar notes from text using both hardcoded patterns and section-based extraction
  */
 function extractGrammarNotes(lessonText: string): StructuredGrammar[] {
   const notes: StructuredGrammar[] = [];
+  const seenTitles = new Set<string>();
 
-  // Look for pronoun tables (common grammar pattern)
-  if (lessonText.includes('Јас сум') && lessonText.includes('Ти си')) {
+  // 1. Extract grammar sections using pattern-based extraction
+  const sections = extractGrammarSections(lessonText);
+  for (const section of sections) {
+    const titleKey = section.title.toLowerCase();
+    if (seenTitles.has(titleKey)) continue;
+    seenTitles.add(titleKey);
+
+    // Get examples for this section
+    const examples = extractGrammarExamples(section.content);
+
     notes.push({
-      title: 'Глаголот "сум" (To be)',
-      content: 'Present tense conjugation of "to be"',
-      examples: ['Јас сум', 'Ти си', 'Тој/Таа/Тоа е', 'Ние сме', 'Вие сте', 'Тие се'],
+      title: section.title,
+      content: section.content,
+      examples: examples.length > 0 ? examples : [],
     });
   }
 
-  // Look for possessive patterns
-  if (lessonText.includes('мој') && lessonText.includes('моја') && lessonText.includes('мое')) {
+  // 2. Extract verb conjugation tables
+  const conjugations = extractConjugationTables(lessonText);
+  for (const conj of conjugations) {
+    const title = `Глаголот "${conj.verb}"`;
+    const titleKey = title.toLowerCase();
+    if (seenTitles.has(titleKey)) continue;
+    seenTitles.add(titleKey);
+
+    const examples = Object.entries(conj.forms).map(([pronoun, form]) => `${pronoun} ${form}`);
     notes.push({
-      title: 'Присвојни заменки (Possessive pronouns)',
-      content: 'Macedonian possessive pronouns agree with noun gender',
-      examples: ['мој (m)', 'моја (f)', 'мое (n)'],
+      title,
+      content: `Conjugation of the verb "${conj.verb}"`,
+      examples,
     });
+  }
+
+  // 3. Fallback: Look for pronoun tables (common grammar pattern) - keep as backup
+  if (!seenTitles.has('глаголот "сум"') && !seenTitles.has('глаголот сум')) {
+    if (lessonText.includes('Јас сум') && lessonText.includes('Ти си')) {
+      notes.push({
+        title: 'Глаголот "сум" (To be)',
+        content: 'Present tense conjugation of "to be"',
+        examples: ['Јас сум', 'Ти си', 'Тој/Таа/Тоа е', 'Ние сме', 'Вие сте', 'Тие се'],
+      });
+      seenTitles.add('глаголот "сум"');
+    }
+  }
+
+  // 4. Fallback: Look for possessive patterns
+  if (!seenTitles.has('присвојни заменки')) {
+    if (lessonText.includes('мој') && lessonText.includes('моја') && lessonText.includes('мое')) {
+      notes.push({
+        title: 'Присвојни заменки (Possessive pronouns)',
+        content: 'Macedonian possessive pronouns agree with noun gender',
+        examples: ['мој (m)', 'моја (f)', 'мое (n)'],
+      });
+      seenTitles.add('присвојни заменки');
+    }
+  }
+
+  // 5. Additional grammar patterns common in A1
+  // Demonstratives (ова, тоа, оној)
+  if (!seenTitles.has('показни заменки')) {
+    if (lessonText.includes('ова') && lessonText.includes('тоа') &&
+        (lessonText.includes('оној') || lessonText.includes('онаа'))) {
+      const examples = extractGrammarExamples(lessonText).filter(ex =>
+        ex.includes('ова') || ex.includes('тоа') || ex.includes('оној')
+      );
+      notes.push({
+        title: 'Показни заменки (Demonstratives)',
+        content: 'Macedonian demonstrative pronouns: ова (this), тоа (that), оној/онаа (that over there)',
+        examples: examples.length > 0 ? examples.slice(0, 5) : ['Ова е...', 'Тоа е...', 'Оној/онаа е...'],
+      });
+      seenTitles.add('показни заменки');
+    }
+  }
+
+  // Numbers (броеви)
+  if (!seenTitles.has('броеви')) {
+    if (lessonText.includes('еден') && lessonText.includes('два') && lessonText.includes('три')) {
+      notes.push({
+        title: 'Броеви (Numbers)',
+        content: 'Macedonian cardinal numbers',
+        examples: ['еден/една/едно (1)', 'два/две (2)', 'три (3)', 'четири (4)', 'пет (5)'],
+      });
+      seenTitles.add('броеви');
+    }
+  }
+
+  // Prepositions (предлози)
+  if (!seenTitles.has('предлози')) {
+    const prepositionKeywords = ['во', 'на', 'со', 'од', 'за', 'до', 'кај'];
+    const hasPrepositions = prepositionKeywords.filter(p => lessonText.includes(` ${p} `)).length >= 4;
+    if (hasPrepositions) {
+      const examples = extractGrammarExamples(lessonText).filter(ex =>
+        prepositionKeywords.some(p => ex.includes(` ${p} `))
+      );
+      if (examples.length >= 2) {
+        notes.push({
+          title: 'Предлози (Prepositions)',
+          content: 'Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)',
+          examples: examples.slice(0, 5),
+        });
+        seenTitles.add('предлози');
+      }
+    }
   }
 
   return notes;
