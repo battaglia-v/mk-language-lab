@@ -20,7 +20,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Progress & Dashboard** - Implement progression tracking and "continue" UX
 - [x] **Phase 3: Lesson Practice Integrity** - Practice pulls only from completed content
 - [x] **Phase 4: Vocabulary System** - Simple SRS with new/learning/mastered states
-- [ ] **Phase 5: Reader Reorganization** - Folder structure for reading content types
+- [x] **Phase 5: Reader Reorganization** - Folder structure for reading content types
 - [ ] **Phase 6: Clean Up Confusion** - Hide audio, remove dead settings, add explainers
 - [ ] **Phase 7: Validation** - Update tests and docs, agent feedback
 
@@ -86,7 +86,7 @@ Plans:
 Plans:
 - [x] 05-01: Design reader folder taxonomy
 - [x] 05-02: Migrate content to new folder structure
-- [ ] 05-03: Update reader UI navigation
+- [x] 05-03: Update reader UI navigation
 
 ### Phase 6: Clean Up Confusion
 **Goal**: Hide/disable all audio & speaking references; remove dead or unclear settings; add lightweight explainers where ambiguity exists.
@@ -120,6 +120,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 2. Progress & Dashboard | 3/3 | Complete | 2026-01-07 |
 | 3. Lesson Practice Integrity | 3/3 | Complete | 2026-01-07 |
 | 4. Vocabulary System | 3/3 | Complete | 2026-01-07 |
-| 5. Reader Reorganization | 2/3 | In Progress | - |
+| 5. Reader Reorganization | 3/3 | Complete | 2026-01-07 |
 | 6. Clean Up Confusion | 0/2 | Not started | - |
 | 7. Validation | 0/3 | Not started | - |
