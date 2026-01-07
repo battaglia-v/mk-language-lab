@@ -19,8 +19,8 @@ export default defineConfig({
   outputDir: 'test-results/playwright',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  // Retries help with flaky tests - reduced in CI for speed
-  retries: process.env.CI ? 1 : 1,
+  // No retries in CI to avoid timeout; local gets 1 retry for flaky tests
+  retries: process.env.CI ? 0 : 1,
   // More workers now that CI only runs desktop project
   // CI: 2 workers (faster), Local: 2 workers for speed with stability
   // Remote/prod audits should be polite by default.
@@ -28,7 +28,8 @@ export default defineConfig({
   reporter: 'html',
   // Reasonable timeout for most tests
   timeout: 60000,
-  globalTimeout: 15 * 60 * 1000,
+  // 25 min global timeout for CI (was 15, causing timeouts with large test suite)
+  globalTimeout: 25 * 60 * 1000,
   expect: {
     timeout: 15000,
   },
