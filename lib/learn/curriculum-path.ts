@@ -113,7 +113,7 @@ export async function getCurriculumPath(
       description,
       status,
       xpReward: 20,
-      href: `/learn/lessons/${lesson.id}`,
+      href: `/lesson/${lesson.id}`,
       contentId: lesson.id,
     };
   });
