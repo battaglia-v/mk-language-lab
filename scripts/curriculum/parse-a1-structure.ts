@@ -13,6 +13,7 @@ import {
   extractConjugationTables,
   type GrammarSection,
 } from './grammar-patterns';
+import { findGrammarTemplate } from './a1-grammar-content';
 
 const INPUT_PATH = 'data/curriculum/extracted/a1-raw.json';
 const OUTPUT_PATH = 'data/curriculum/structured/a1-teskoto.json';
@@ -160,7 +161,45 @@ function extractVocabulary(lessonText: string): StructuredVocabulary[] {
 }
 
 /**
+ * Enhance a grammar note with quality template content if needed
+ * Uses templates as fallback when extracted content is insufficient
+ */
+function enhanceWithTemplate(note: StructuredGrammar): StructuredGrammar {
+  const template = findGrammarTemplate(note.title);
+  if (!template) {
+    return note;
+  }
+
+  // Use template explanation if extracted is too short
+  const extractedContent = note.content || '';
+  const useTemplateExplanation = extractedContent.length < 50;
+
+  // Use template examples if extracted has too few
+  const extractedExamples = note.examples || [];
+  const needMoreExamples = extractedExamples.length < 3;
+
+  // Merge examples: keep unique extracted + add from template to reach 5+
+  let finalExamples = [...extractedExamples];
+  if (needMoreExamples) {
+    const extractedLower = new Set(extractedExamples.map((e) => e.toLowerCase()));
+    for (const templateEx of template.examples) {
+      if (!extractedLower.has(templateEx.toLowerCase())) {
+        finalExamples.push(templateEx);
+        if (finalExamples.length >= 5) break;
+      }
+    }
+  }
+
+  return {
+    title: note.title,
+    content: useTemplateExplanation ? template.explanation : extractedContent,
+    examples: finalExamples.length > 0 ? finalExamples : template.examples.slice(0, 5),
+  };
+}
+
+/**
  * Extract grammar notes from text using both hardcoded patterns and section-based extraction
+ * Enhanced with quality templates for topics with thin extracted content
  */
 function extractGrammarNotes(lessonText: string): StructuredGrammar[] {
   const notes: StructuredGrammar[] = [];
@@ -176,11 +215,14 @@ function extractGrammarNotes(lessonText: string): StructuredGrammar[] {
     // Get examples for this section
     const examples = extractGrammarExamples(section.content);
 
-    notes.push({
+    const note: StructuredGrammar = {
       title: section.title,
       content: section.content,
       examples: examples.length > 0 ? examples : [],
-    });
+    };
+
+    // Enhance with template content if needed
+    notes.push(enhanceWithTemplate(note));
   }
 
   // 2. Extract verb conjugation tables
@@ -192,21 +234,23 @@ function extractGrammarNotes(lessonText: string): StructuredGrammar[] {
     seenTitles.add(titleKey);
 
     const examples = Object.entries(conj.forms).map(([pronoun, form]) => `${pronoun} ${form}`);
-    notes.push({
+    const note: StructuredGrammar = {
       title,
       content: `Conjugation of the verb "${conj.verb}"`,
       examples,
-    });
+    };
+    notes.push(enhanceWithTemplate(note));
   }
 
   // 3. Fallback: Look for pronoun tables (common grammar pattern) - keep as backup
   if (!seenTitles.has('глаголот "сум"') && !seenTitles.has('глаголот сум')) {
     if (lessonText.includes('Јас сум') && lessonText.includes('Ти си')) {
-      notes.push({
+      const note: StructuredGrammar = {
         title: 'Глаголот "сум" (To be)',
         content: 'Present tense conjugation of "to be"',
         examples: ['Јас сум', 'Ти си', 'Тој/Таа/Тоа е', 'Ние сме', 'Вие сте', 'Тие се'],
-      });
+      };
+      notes.push(enhanceWithTemplate(note));
       seenTitles.add('глаголот "сум"');
     }
   }
@@ -214,11 +258,12 @@ function extractGrammarNotes(lessonText: string): StructuredGrammar[] {
   // 4. Fallback: Look for possessive patterns
   if (!seenTitles.has('присвојни заменки')) {
     if (lessonText.includes('мој') && lessonText.includes('моја') && lessonText.includes('мое')) {
-      notes.push({
+      const note: StructuredGrammar = {
         title: 'Присвојни заменки (Possessive pronouns)',
         content: 'Macedonian possessive pronouns agree with noun gender',
         examples: ['мој (m)', 'моја (f)', 'мое (n)'],
-      });
+      };
+      notes.push(enhanceWithTemplate(note));
       seenTitles.add('присвојни заменки');
     }
   }
@@ -231,11 +276,12 @@ function extractGrammarNotes(lessonText: string): StructuredGrammar[] {
       const examples = extractGrammarExamples(lessonText).filter(ex =>
         ex.includes('ова') || ex.includes('тоа') || ex.includes('оној')
       );
-      notes.push({
+      const note: StructuredGrammar = {
         title: 'Показни заменки (Demonstratives)',
         content: 'Macedonian demonstrative pronouns: ова (this), тоа (that), оној/онаа (that over there)',
         examples: examples.length > 0 ? examples.slice(0, 5) : ['Ова е...', 'Тоа е...', 'Оној/онаа е...'],
-      });
+      };
+      notes.push(enhanceWithTemplate(note));
       seenTitles.add('показни заменки');
     }
   }
@@ -243,11 +289,12 @@ function extractGrammarNotes(lessonText: string): StructuredGrammar[] {
   // Numbers (броеви)
   if (!seenTitles.has('броеви')) {
     if (lessonText.includes('еден') && lessonText.includes('два') && lessonText.includes('три')) {
-      notes.push({
+      const note: StructuredGrammar = {
         title: 'Броеви (Numbers)',
         content: 'Macedonian cardinal numbers',
         examples: ['еден/една/едно (1)', 'два/две (2)', 'три (3)', 'четири (4)', 'пет (5)'],
-      });
+      };
+      notes.push(enhanceWithTemplate(note));
       seenTitles.add('броеви');
     }
   }
@@ -261,11 +308,12 @@ function extractGrammarNotes(lessonText: string): StructuredGrammar[] {
         prepositionKeywords.some(p => ex.includes(` ${p} `))
       );
       if (examples.length >= 2) {
-        notes.push({
+        const note: StructuredGrammar = {
           title: 'Предлози (Prepositions)',
           content: 'Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)',
           examples: examples.slice(0, 5),
-        });
+        };
+        notes.push(enhanceWithTemplate(note));
         seenTitles.add('предлози');
       }
     }

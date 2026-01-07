@@ -465,7 +465,7 @@
       "grammarNotes": [
         {
           "title": "Глаголот \"сум\"",
-          "content": "Conjugation of the verb \"сум\"",
+          "content": "Present tense conjugation of \"to be\" (сум). The verb changes form based on the subject pronoun. Used to express identity, origin, profession, and states.",
           "examples": [
             "Јас сум",
             "Ти си",
@@ -491,7 +491,10 @@
           "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
           "examples": [
             "Употреби ги дијалозите од претходната вежба.",
-            "Додади други реченици и поврзи ги со сликите ."
+            "Додади други реченици и поврзи ги со сликите .",
+            "Јас живеам во Скопје.",
+            "Книгата е на масата.",
+            "Одам со пријател."
           ]
         }
       ]
@@ -1559,17 +1562,27 @@
           "title": "Еднина и множина",
           "content": "маж мажи жена жени кола коли куќа куќи птица птици бебе бебиња куче кучиња мачка мачки дете деца 11 единаесет 12 ____ 13 ____ 14 ____ 15 ____ 16 ____ 17 ____ 18 ____ 19 ____ 20 дваесет 21 ЛЕКЦИЈА 2 Тема В. Семејство",
           "examples": [
-            "маж мажи жена жени кола коли куќа куќи птица птици бебе бебиња куче кучиња мачка мачки дете деца 11 единаесет 12 ____ 13 ____ 14 ____ 15 ____ 16 ____ 17 ____ 18 ____ 19 ____ 20 дваесет 21 ЛЕКЦИЈА 2 Тема В."
+            "маж мажи жена жени кола коли куќа куќи птица птици бебе бебиња куче кучиња мачка мачки дете деца 11 единаесет 12 ____ 13 ____ 14 ____ 15 ____ 16 ____ 17 ____ 18 ____ 19 ____ 20 дваесет 21 ЛЕКЦИЈА 2 Тема В.",
+            "маж → мажи",
+            "жена → жени",
+            "дете → деца",
+            "книга → книги"
           ]
         },
         {
           "title": "Броеви",
-          "content": "се напишани?",
-          "examples": []
+          "content": "Macedonian cardinal numbers 1-10. Numbers 1 (еден/една/едно) and 2 (два/две) have gender forms. Numbers 3-10 are invariable.",
+          "examples": [
+            "еден човек / една жена / едно дете",
+            "два брата / две сестри",
+            "три книги",
+            "четири маси",
+            "пет студенти"
+          ]
         },
         {
           "title": "Глаголот \"сум\"",
-          "content": "Conjugation of the verb \"сум\"",
+          "content": "Present tense conjugation of \"to be\" (сум). The verb changes form based on the subject pronoun. Used to express identity, origin, profession, and states.",
           "examples": [
             "Јас сум",
             "Тој е",
@@ -1581,7 +1594,7 @@
         },
         {
           "title": "Глаголот \"има\"",
-          "content": "Conjugation of the verb \"има\"",
+          "content": "Present tense conjugation of \"to have\" (има). Regular -а verb conjugation pattern. Used for possession and existence (There is/are).",
           "examples": [
             "Јас имам",
             "Тој има",
@@ -1604,7 +1617,10 @@
           "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
           "examples": [
             "Напиши имиња на земји во квадратчињата.",
-            "Тој е ____ ____ од ____ ."
+            "Тој е ____ ____ од ____ .",
+            "Јас живеам во Скопје.",
+            "Книгата е на масата.",
+            "Одам со пријател."
           ]
         }
       ]
@@ -2217,11 +2233,17 @@
         {
           "title": "Броеви",
           "content": "1 ____ 12 ____ 3 ____ 15 ____ 4____ 17 ____ 6____ 19 ____",
-          "examples": []
+          "examples": [
+            "еден човек / една жена / едно дете",
+            "два брата / две сестри",
+            "три книги",
+            "четири маси",
+            "пет студенти"
+          ]
         },
         {
           "title": "Глаголот \"сум\"",
-          "content": "Conjugation of the verb \"сум\"",
+          "content": "Present tense conjugation of \"to be\" (сум). The verb changes form based on the subject pronoun. Used to express identity, origin, profession, and states.",
           "examples": [
             "Јас сум",
             "Ти си",
@@ -3566,7 +3588,13 @@
         {
           "title": "Предлози",
           "content": "те: над, под, пред, на, до . 43 ЛЕКЦИЈА 4 Тема 4. Скапоцени камења",
-          "examples": []
+          "examples": [
+            "Јас живеам во Скопје.",
+            "Книгата е на масата.",
+            "Одам со пријател.",
+            "Доаѓам од Охрид.",
+            "Ова е за тебе."
+          ]
         },
         {
           "title": "Броеви",
@@ -3580,7 +3608,7 @@
         },
         {
           "title": "Глаголот \"сум\"",
-          "content": "Conjugation of the verb \"сум\"",
+          "content": "Present tense conjugation of \"to be\" (сум). The verb changes form based on the subject pronoun. Used to express identity, origin, profession, and states.",
           "examples": [
             "Јас сум",
             "Тој е",
@@ -3602,7 +3630,11 @@
           "title": "Показни заменки (Demonstratives)",
           "content": "Macedonian demonstrative pronouns: ова (this), тоа (that), оној/онаа (that over there)",
           "examples": [
-            "Слушање: Нови зборови (слушање вежби 3 ) Зборовите на оваа слика се нови."
+            "Слушање: Нови зборови (слушање вежби 3 ) Зборовите на оваа слика се нови.",
+            "Ова е мојата книга.",
+            "Овој човек е мој пријател.",
+            "Оваа жена е учителка.",
+            "Тоа е интересно."
           ]
         }
       ]
@@ -5960,7 +5992,13 @@
         {
           "title": "Придавки",
           "content": "Кој спрат го покажуваат? 1 ____ 2 ____ 3 ____ 4____ 5 ____ 6 ____ 7 ____ 8 ____ 9 ____ 10 ____ 11 ____ 12 ____",
-          "examples": []
+          "examples": [
+            "голем маж / голема жена / големо дете",
+            "убав ден / убава ноќ / убаво време",
+            "нов дом / нова книга / ново село",
+            "млад студент / млада студентка",
+            "Куќата е голема."
+          ]
         },
         {
           "title": "Еднина и множина",
@@ -5977,7 +6015,11 @@
           "title": "Броеви",
           "content": "во лифт. Граматички тие се придавки. Кој спрат го покажуваат? 1 ____ 2 ____ 3 ____ 4____ 5 ____ 6 ____ 7 ____ 8 ____ 9 ____ 10 ____ 11 ____ 12 ____",
           "examples": [
-            "Граматички тие се придавки."
+            "Граматички тие се придавки.",
+            "еден човек / една жена / едно дете",
+            "два брата / две сестри",
+            "три книги",
+            "четири маси"
           ]
         },
         {
@@ -6940,12 +6982,18 @@
       "grammarNotes": [
         {
           "title": "Еднина и множина",
-          "content": "Тема 4.2. Потврдни и одречни форми",
-          "examples": []
+          "content": "Macedonian nouns change endings to form plurals. Common patterns: masculine -и/-ови, feminine -и, neuter -а. The plural depends on the noun gender and ending.",
+          "examples": [
+            "маж → мажи",
+            "жена → жени",
+            "дете → деца",
+            "книга → книги",
+            "студент → студенти"
+          ]
         },
         {
           "title": "Глаголот \"зборув\"",
-          "content": "Conjugation of the verb \"зборув\"",
+          "content": "Present tense conjugation of \"to speak\" (зборува). Regular -а verb pattern. Used to express language ability and verbal communication.",
           "examples": [
             "Јас зборувам",
             "Ти зборуваш",
@@ -8372,11 +8420,17 @@
         {
           "title": "Именки",
           "content": "за женски лица од следниве именки за машки лица. богаташ ____ велосипедист ____ возач ____ градител ____ зборувач ____ кафеџија ____ лажго ____ лекар ____ љубовник ____ љубител ____ музичар ____ гитарист ____ миленик ____ месар ____ наставник ____ непријател ____ обожавател ____ писател ____ пријател ____ продавач ____ противник ____ професор ____ сликар ____ слушател ____ сопруг ____ студент ____ турист ____ фудбалер ____ старец ____ убавец ____ Зборови",
-          "examples": []
+          "examples": [
+            "маж, брат, студент (masculine)",
+            "жена, сестра, книга (feminine)",
+            "дете, село, јајце (neuter)",
+            "Тој е маж. (m)",
+            "Таа е жена. (f)"
+          ]
         },
         {
           "title": "Броеви (Numbers)",
-          "content": "Macedonian cardinal numbers",
+          "content": "Macedonian cardinal numbers 1-10. Numbers 1 (еден/една/едно) and 2 (два/две) have gender forms. Numbers 3-10 are invariable.",
           "examples": [
             "еден/една/едно (1)",
             "два/две (2)",
@@ -8390,7 +8444,10 @@
           "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
           "examples": [
             "Таа е од Струга .",
-            "Напиши ги одговорите во крстозборот."
+            "Напиши ги одговорите во крстозборот.",
+            "Јас живеам во Скопје.",
+            "Книгата е на масата.",
+            "Одам со пријател."
           ]
         }
       ]
@@ -9174,7 +9231,7 @@
       "grammarNotes": [
         {
           "title": "Броеви (Numbers)",
-          "content": "Macedonian cardinal numbers",
+          "content": "Macedonian cardinal numbers 1-10. Numbers 1 (еден/една/едно) and 2 (два/две) have gender forms. Numbers 3-10 are invariable.",
           "examples": [
             "еден/една/едно (1)",
             "два/две (2)",
@@ -10827,7 +10884,7 @@
       "grammarNotes": [
         {
           "title": "Глаголот \"сум\"",
-          "content": "Conjugation of the verb \"сум\"",
+          "content": "Present tense conjugation of \"to be\" (сум). The verb changes form based on the subject pronoun. Used to express identity, origin, profession, and states.",
           "examples": [
             "Таа е",
             "Тоа е",
@@ -10839,12 +10896,15 @@
           "content": "Macedonian demonstrative pronouns: ова (this), тоа (that), оној/онаа (that over there)",
           "examples": [
             "Прочитај што кажува, потоа напиши ги прашањата што недостасуваат.",
-            "Потоа гледа телевизија или чита книга."
+            "Потоа гледа телевизија или чита книга.",
+            "Ова е мојата книга.",
+            "Овој човек е мој пријател.",
+            "Оваа жена е учителка."
           ]
         },
         {
           "title": "Броеви (Numbers)",
-          "content": "Macedonian cardinal numbers",
+          "content": "Macedonian cardinal numbers 1-10. Numbers 1 (еден/една/едно) and 2 (два/две) have gender forms. Numbers 3-10 are invariable.",
           "examples": [
             "еден/една/едно (1)",
             "два/две (2)",
@@ -11711,7 +11771,13 @@
         {
           "title": "Именки",
           "content": "пие пиење слуша слушање игра играње чита читање мие миење гледа гледање бања бањање прави правење суши сушење готви готвење",
-          "examples": []
+          "examples": [
+            "маж, брат, студент (masculine)",
+            "жена, сестра, книга (feminine)",
+            "дете, село, јајце (neuter)",
+            "Тој е маж. (m)",
+            "Таа е жена. (f)"
+          ]
         },
         {
           "title": "Предлози (Prepositions)",
@@ -13288,12 +13354,24 @@
         {
           "title": "Придавки",
           "content": "јас, ти, тој, таа, ние, вие , тие, мој, твоја, негова, нејзин, наша, ваш, нивно н т н ј в т в",
-          "examples": []
+          "examples": [
+            "голем маж / голема жена / големо дете",
+            "убав ден / убава ноќ / убаво време",
+            "нов дом / нова книга / ново село",
+            "млад студент / млада студентка",
+            "Куќата е голема."
+          ]
         },
         {
           "title": "Заменки",
           "content": "и заменски придавки: јас, ти, тој, таа, ние, вие , тие, мој, твоја, негова, нејзин, наша, ваш, нивно н т н ј в т в",
-          "examples": []
+          "examples": [
+            "Ова е мојот брат. (m)",
+            "Ова е мојата сестра. (f)",
+            "Ова е моето куче. (n)",
+            "Твојот дом е голем.",
+            "Нејзината книга е нова."
+          ]
         },
         {
           "title": "Предлози",
@@ -13312,7 +13390,7 @@
         },
         {
           "title": "Глаголот \"сум\"",
-          "content": "Conjugation of the verb \"сум\"",
+          "content": "Present tense conjugation of \"to be\" (сум). The verb changes form based on the subject pronoun. Used to express identity, origin, profession, and states.",
           "examples": [
             "Јас сум",
             "Тој е",
@@ -13321,7 +13399,7 @@
         },
         {
           "title": "Броеви (Numbers)",
-          "content": "Macedonian cardinal numbers",
+          "content": "Macedonian cardinal numbers 1-10. Numbers 1 (еден/една/едно) and 2 (два/две) have gender forms. Numbers 3-10 are invariable.",
           "examples": [
             "еден/една/едно (1)",
             "два/две (2)",
@@ -14395,15 +14473,24 @@
       "grammarNotes": [
         {
           "title": "Именки",
-          "content": "во еднина: ____ ____ именки во множина: ____ ____",
-          "examples": []
+          "content": "Macedonian nouns have three genders. Masculine: usually end in consonant. Feminine: usually end in -а. Neuter: usually end in -о or -е. Gender affects adjective and pronoun agreement.",
+          "examples": [
+            "маж, брат, студент (masculine)",
+            "жена, сестра, книга (feminine)",
+            "дете, село, јајце (neuter)",
+            "Тој е маж. (m)",
+            "Таа е жена. (f)"
+          ]
         },
         {
           "title": "Показни заменки (Demonstratives)",
           "content": "Macedonian demonstrative pronouns: ова (this), тоа (that), оној/онаа (that over there)",
           "examples": [
             "Потоа прочитај го пасусот.",
-            "Прво напиши белешки, потоа напиши пасус."
+            "Прво напиши белешки, потоа напиши пасус.",
+            "Ова е мојата книга.",
+            "Овој човек е мој пријател.",
+            "Оваа жена е учителка."
           ]
         },
         {
@@ -14411,7 +14498,10 @@
           "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
           "examples": [
             "Избери од рамката.",
-            "Тие гледаат низ прозорец во излог."
+            "Тие гледаат низ прозорец во излог.",
+            "Јас живеам во Скопје.",
+            "Книгата е на масата.",
+            "Одам со пријател."
           ]
         }
       ]
@@ -16213,18 +16303,33 @@
           "content": "Во крстозбор Б сите одговори се ____ именки. Под 4 вертикално се добиваат зборовите: ____ и ____ . Тема Б . Во фрижидерот Замислете дека овој фрижидер е во вашата кујна а Во фрижидерот има многу зеленчук . Направете реченици како во првиот пример. б. ____ овошје . в. ____ вода . г. ____ млеко. д. ____ сок . ѓ. ____ компири . е. ____ месо. ж. ____ јајца . 1 2 3 4 5 1 2 3 4 5 6 143 ЛЕКЦИЈА 13 Слушање: Сакам...",
           "examples": [
             "Под 4 вертикално се добиваат зборовите: ____ и ____ .",
-            "Во крстозбор Б сите одговори се ____ именки."
+            "Во крстозбор Б сите одговори се ____ именки.",
+            "маж, брат, студент (masculine)",
+            "жена, сестра, книга (feminine)",
+            "дете, село, јајце (neuter)"
           ]
         },
         {
           "title": "Предлози",
           "content": "те: до, пред, по, како и изразите лево од, десно од .",
-          "examples": []
+          "examples": [
+            "Јас живеам во Скопје.",
+            "Книгата е на масата.",
+            "Одам со пријател.",
+            "Доаѓам од Охрид.",
+            "Ова е за тебе."
+          ]
         },
         {
           "title": "Броеви",
           "content": "те со зборови наместо со цифри . 20 дена ____ 21 ден ____",
-          "examples": []
+          "examples": [
+            "еден човек / една жена / едно дете",
+            "два брата / две сестри",
+            "три книги",
+            "четири маси",
+            "пет студенти"
+          ]
         }
       ]
     },
@@ -17122,17 +17227,27 @@
           "title": "Предлози",
           "content": "те во горните реченици. Што обично доаѓа по предлогот во? Како се употребува предлогот за? Што означува предлогот на? Продолжи ги следниве реченици.",
           "examples": [
-            "Што обично доаѓа по предлогот во?"
+            "Што обично доаѓа по предлогот во?",
+            "Јас живеам во Скопје.",
+            "Книгата е на масата.",
+            "Одам со пријател.",
+            "Доаѓам од Охрид."
           ]
         },
         {
           "title": "Броеви",
-          "content": "со зборови. 278 ____ 2532 ____ 574389 ____",
-          "examples": []
+          "content": "Macedonian cardinal numbers 1-10. Numbers 1 (еден/една/едно) and 2 (два/две) have gender forms. Numbers 3-10 are invariable.",
+          "examples": [
+            "еден човек / една жена / едно дете",
+            "два брата / две сестри",
+            "три книги",
+            "четири маси",
+            "пет студенти"
+          ]
         },
         {
           "title": "Глаголот \"сум\"",
-          "content": "Conjugation of the verb \"сум\"",
+          "content": "Present tense conjugation of \"to be\" (сум). The verb changes form based on the subject pronoun. Used to express identity, origin, profession, and states.",
           "examples": [
             "Јас сум",
             "Тој е",
@@ -18820,7 +18935,13 @@
         {
           "title": "Придавки",
           "content": "? прв ____ ____ ____ ____ ____ ____ ____ ____ ____",
-          "examples": []
+          "examples": [
+            "голем маж / голема жена / големо дете",
+            "убав ден / убава ноќ / убаво време",
+            "нов дом / нова книга / ново село",
+            "млад студент / млада студентка",
+            "Куќата е голема."
+          ]
         },
         {
           "title": "Предлози (Prepositions)",
@@ -21090,7 +21211,7 @@
         },
         {
           "title": "Глаголот \"сум\"",
-          "content": "Conjugation of the verb \"сум\"",
+          "content": "Present tense conjugation of \"to be\" (сум). The verb changes form based on the subject pronoun. Used to express identity, origin, profession, and states.",
           "examples": [
             "Јас сум",
             "Тој е",
@@ -21100,7 +21221,7 @@
         },
         {
           "title": "Броеви (Numbers)",
-          "content": "Macedonian cardinal numbers",
+          "content": "Macedonian cardinal numbers 1-10. Numbers 1 (еден/една/едно) and 2 (два/две) have gender forms. Numbers 3-10 are invariable.",
           "examples": [
             "еден/една/едно (1)",
             "два/две (2)",
@@ -23999,7 +24120,7 @@
         },
         {
           "title": "Броеви (Numbers)",
-          "content": "Macedonian cardinal numbers",
+          "content": "Macedonian cardinal numbers 1-10. Numbers 1 (еден/една/едно) and 2 (два/две) have gender forms. Numbers 3-10 are invariable.",
           "examples": [
             "еден/една/едно (1)",
             "два/две (2)",
@@ -24433,13 +24554,23 @@
           "title": "Придавки",
           "content": "Мислам дека ____ е подобро место за живеење од ____ зашто ...",
           "examples": [
-            "Мислам дека ____ е подобро место за живеење од ____ зашто ."
+            "Мислам дека ____ е подобро место за живеење од ____ зашто .",
+            "голем маж / голема жена / големо дете",
+            "убав ден / убава ноќ / убаво време",
+            "нов дом / нова книга / ново село",
+            "млад студент / млада студентка"
           ]
         },
         {
           "title": "Предлози",
-          "content": "со, во , на, од",
-          "examples": []
+          "content": "Common Macedonian prepositions indicate location, direction, accompaniment, and relationships. Key prepositions: во (in), на (on), со (with), од (from), за (for), до (to).",
+          "examples": [
+            "Јас живеам во Скопје.",
+            "Книгата е на масата.",
+            "Одам со пријател.",
+            "Доаѓам од Охрид.",
+            "Ова е за тебе."
+          ]
         }
       ]
     },
@@ -26129,7 +26260,13 @@
         {
           "title": "Придавки",
           "content": "• од Сакам... ... самсунг ...сони Кој...? Самсунгот... Сонито... Кој...? Сонито... Самсунгот... Во ред, ... суперлативи висок повисок највисок голем убав познат добар успешен 193 ЛЕКЦИЈА 21",
-          "examples": []
+          "examples": [
+            "голем маж / голема жена / големо дете",
+            "убав ден / убава ноќ / убаво време",
+            "нов дом / нова книга / ново село",
+            "млад студент / млада студентка",
+            "Куќата е голема."
+          ]
         },
         {
           "title": "Броеви",
@@ -26899,7 +27036,7 @@
       "grammarNotes": [
         {
           "title": "Броеви (Numbers)",
-          "content": "Macedonian cardinal numbers",
+          "content": "Macedonian cardinal numbers 1-10. Numbers 1 (еден/една/едно) and 2 (два/две) have gender forms. Numbers 3-10 are invariable.",
           "examples": [
             "еден/една/едно (1)",
             "два/две (2)",
@@ -28357,6 +28494,6 @@
     "totalLessons": 24,
     "totalPages": 286,
     "extractedAt": "2026-01-06T23:29:43.813Z",
-    "parsedAt": "2026-01-07T20:22:57.097Z"
+    "parsedAt": "2026-01-07T21:03:47.336Z"
   }
 }
