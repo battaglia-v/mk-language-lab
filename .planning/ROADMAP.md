@@ -57,10 +57,10 @@ Plans:
 **Goal**: Extract ~300-500 structured vocabulary items from Тешкото PDF
 **Depends on**: Phase 9
 **Research**: Unlikely (using improved extraction pipeline)
-**Plans**: TBD
+**Plans**: 1
 
 Plans:
-- [ ] 10-01: TBD
+- [x] 10-01: A1 vocabulary quality fix with comprehensive stop word filtering — completed 2026-01-07
 
 #### Phase 11: A1 Grammar Content
 
@@ -128,7 +128,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 7. Validation | v1.0 | 3/3 | Complete | 2026-01-07 |
 | 8. PDF Extraction Audit | v1.1 | 1/1 | Complete | 2026-01-07 |
 | 9. Extraction Pipeline Fix | v1.1 | 3/3 | Complete | 2026-01-07 |
-| 10. A1 Vocabulary Extraction | v1.1 | 0/? | Not started | - |
+| 10. A1 Vocabulary Extraction | v1.1 | 1/1 | Complete | 2026-01-07 |
 | 11. A1 Grammar Content | v1.1 | 0/? | Not started | - |
 | 12. A2 Content Population | v1.1 | 0/? | Not started | - |
 | 13. B1 Content Bootstrap | v1.1 | 0/? | Not started | - |

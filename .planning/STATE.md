@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-07)
 
 ## Current Position
 
-Phase: 9 of 15 (Extraction Pipeline Fix)
-Plan: 3 of 3 complete
+Phase: 10 of 15 (A1 Vocabulary Extraction)
+Plan: 1 of 1 complete
 Status: Complete
-Last activity: 2026-01-07 — Completed 09-03-PLAN.md
+Last activity: 2026-01-07 — Completed 10-01-PLAN.md
 
-Progress: █░░░░░░░░░ 25%
+Progress: ██░░░░░░░░ 30%
 
 ## Milestone Summary
 
