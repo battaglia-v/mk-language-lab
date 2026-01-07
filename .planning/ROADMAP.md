@@ -44,12 +44,13 @@ Plans:
 
 **Goal**: Improve PDF extraction scripts to produce cleaner, structured output
 **Depends on**: Phase 8
-**Research**: Likely (PDF parsing libraries, OCR cleanup techniques)
-**Research topics**: pdf-parse vs pdf.js for text extraction, OCR cleanup patterns
-**Plans**: TBD
+**Research**: No (using existing extraction patterns, fixing regex logic)
+**Plans**: 3
 
 Plans:
-- [ ] 09-01: TBD
+- [ ] 09-01: Fix vocabulary extraction regex patterns
+- [ ] 09-02: Fix grammar extraction and populate placeholders
+- [ ] 09-03: Extract B1 (Златоврв) PDF
 
 #### Phase 10: A1 Vocabulary Extraction
 
@@ -126,7 +127,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 6. Clean Up Confusion | v1.0 | 2/2 | Complete | 2026-01-07 |
 | 7. Validation | v1.0 | 3/3 | Complete | 2026-01-07 |
 | 8. PDF Extraction Audit | v1.1 | 1/1 | Complete | 2026-01-07 |
-| 9. Extraction Pipeline Fix | v1.1 | 0/? | Not started | - |
+| 9. Extraction Pipeline Fix | v1.1 | 0/3 | Ready | - |
 | 10. A1 Vocabulary Extraction | v1.1 | 0/? | Not started | - |
 | 11. A1 Grammar Content | v1.1 | 0/? | Not started | - |
 | 12. A2 Content Population | v1.1 | 0/? | Not started | - |
