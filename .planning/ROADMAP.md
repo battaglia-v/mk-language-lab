@@ -35,10 +35,10 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 **Goal**: Analyze current extraction output quality, document specific issues per level
 **Depends on**: v1.0 complete
 **Research**: Unlikely (internal codebase analysis)
-**Plans**: TBD
+**Plans**: 1
 
 Plans:
-- [ ] 08-01: TBD (run /gsd:plan-phase 8 to break down)
+- [x] 08-01: Create audit script and generate AUDIT.md report — completed 2026-01-07
 
 #### Phase 9: Extraction Pipeline Fix
 
@@ -125,7 +125,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 5. Reader Reorganization | v1.0 | 3/3 | Complete | 2026-01-07 |
 | 6. Clean Up Confusion | v1.0 | 2/2 | Complete | 2026-01-07 |
 | 7. Validation | v1.0 | 3/3 | Complete | 2026-01-07 |
-| 8. PDF Extraction Audit | v1.1 | 0/? | Not started | - |
+| 8. PDF Extraction Audit | v1.1 | 1/1 | Complete | 2026-01-07 |
 | 9. Extraction Pipeline Fix | v1.1 | 0/? | Not started | - |
 | 10. A1 Vocabulary Extraction | v1.1 | 0/? | Not started | - |
 | 11. A1 Grammar Content | v1.1 | 0/? | Not started | - |
