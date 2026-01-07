@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-06)
 ## Current Position
 
 Phase: 4 of 7 (Vocabulary System)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: Plan complete
-Last activity: 2026-01-07 — Completed 04-01-PLAN.md
+Last activity: 2026-01-07 — Completed 04-02-PLAN.md
 
-Progress: █████░░░░░ 52%
+Progress: ██████░░░░ 57%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 11
-- Average duration: 7 min
-- Total execution time: 1.4 hours
+- Total plans completed: 12
+- Average duration: 6 min
+- Total execution time: 1.5 hours
 
 **By Phase:**
 
@@ -30,10 +30,10 @@ Progress: █████░░░░░ 52%
 | 1 | 4 | 43 min | 11 min |
 | 2 | 3 | 16 min | 5 min |
 | 3 | 3 | 14 min | 5 min |
-| 4 | 1 | 5 min | 5 min |
+| 4 | 2 | 9 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 5, 4, 5, 5 min
+- Last 5 plans: 4, 5, 5, 4 min
 - Trend: → (stable)
 
 ## Accumulated Context
@@ -54,6 +54,7 @@ Recent decisions affecting current work:
 - [02-03]: Curriculum paths server-side from DB; lesson hrefs use database IDs
 - [03-01]: Phase 3 is infrastructure focus; vocabulary seeding is future work (outside scope)
 - [04-01]: Vocabulary API uses existing VocabularyWord model; SRS intervals match lib/srs.ts Leitner pattern
+- [04-02]: useVocabulary hook integrated into usePracticeDecks; loadUserVocabDeck fetches 15 due + 5 new words
 
 ### Deferred Issues
 
@@ -66,5 +67,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-07
-Stopped at: Completed 04-01 (Vocabulary API endpoints)
+Stopped at: Completed 04-02 (Vocabulary hooks and practice integration)
 Resume file: None
