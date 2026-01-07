@@ -2538,7 +2538,10 @@
       "complete": "complete",
       "goalMet": "Goal met!",
       "start": "Start",
-      "lockTooltip": "Complete previous lessons to unlock"
+      "lockTooltip": "Complete previous lessons to unlock",
+      "continueLearning": "Continue Learning",
+      "continueLesson": "Continue: {lessonTitle}",
+      "lessonOf": "Lesson {current} of {total}"
     },
     "reader": {
       "title": "Reader",

@@ -22,6 +22,8 @@ interface LearnPageClientProps {
   dailyGoalXP: number;
   starterPath: LessonPathData;
   a2Path: LessonPathData;
+  currentLesson?: { id: string; title: string; moduleTitle: string; lessonNumber: number };
+  journeyProgress?: { completedCount: number; totalCount: number };
 }
 
 export function LearnPageClient({
@@ -31,6 +33,8 @@ export function LearnPageClient({
   dailyGoalXP,
   starterPath,
   a2Path,
+  currentLesson,
+  journeyProgress,
 }: LearnPageClientProps) {
   const t = useTranslations('mobile.learn');
   const searchParams = useSearchParams();
@@ -86,14 +90,26 @@ export function LearnPageClient({
   const levelBadge = activeLevel === 'beginner' ? 'A1' : 'A2';
   const nextNode = getNextNode(currentPath);
   const startNode = nextNode ?? currentPath.nodes[0];
-  const startHref = startNode?.href
-    ? `/${locale}${startNode.href}`
-    : `/${locale}/learn/paths/${activeLevel === 'beginner' ? 'a1' : 'a2'}`;
-  const startTitle = startNode?.title ?? currentPath.title;
-  const startDescription = startNode?.description ?? currentPath.description;
   const pathProgress = currentPath.totalCount > 0
     ? Math.round((currentPath.completedCount / currentPath.totalCount) * 100)
     : 0;
+
+  // Determine if we should show Continue CTA with journey progress
+  const showContinueCTA = currentLesson && journeyProgress;
+  const ctaHref = showContinueCTA
+    ? `/${locale}/learn/lessons/${currentLesson.id}`
+    : startNode?.href
+      ? `/${locale}${startNode.href}`
+      : `/${locale}/learn/paths/${activeLevel === 'beginner' ? 'a1' : 'a2'}`;
+  const ctaTitle = showContinueCTA
+    ? t('continueLesson', { lessonTitle: currentLesson.title })
+    : startNode?.title ?? currentPath.title;
+  const ctaLabel = showContinueCTA
+    ? t('continueLearning')
+    : t('startLesson');
+  const ctaDescription = showContinueCTA
+    ? `${currentLesson.moduleTitle} • ${t('lessonOf', { current: currentLesson.lessonNumber, total: journeyProgress.totalCount })}`
+    : startNode?.description ?? currentPath.description;
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-4rem)]">
@@ -140,9 +156,9 @@ export function LearnPageClient({
             </p>
           </div>
 
-          {/* Primary CTA - Start Here */}
+          {/* Primary CTA - Start or Continue */}
           <Link
-            href={startHref}
+            href={ctaHref}
             data-testid="cta-start-here"
             className={cn(
               'group flex flex-col items-center gap-1 rounded-2xl p-5',
@@ -154,12 +170,12 @@ export function LearnPageClient({
           >
             <div className="flex items-center gap-2">
               <Play className="h-5 w-5" fill="currentColor" />
-              <span className="text-sm font-medium uppercase tracking-wide opacity-80">{t('startLesson')}</span>
+              <span className="text-sm font-medium uppercase tracking-wide opacity-80">{ctaLabel}</span>
             </div>
-            <span className="text-xl font-bold text-center">{startTitle}</span>
-            {startDescription && (
+            <span className="text-xl font-bold text-center">{ctaTitle}</span>
+            {ctaDescription && (
               <span className="text-xs font-medium text-black/70 text-center line-clamp-2">
-                {startDescription}
+                {ctaDescription}
               </span>
             )}
           </Link>
