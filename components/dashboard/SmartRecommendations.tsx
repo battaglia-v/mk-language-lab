@@ -75,15 +75,16 @@ export function SmartRecommendations({
     }
 
     // Medium priority: Pronunciation practice
-    recs.push({
-      type: 'pronunciation-practice',
-      title: t('pronunciation.title'),
-      description: t('pronunciation.description'),
-      estimatedMinutes: 10,
-      xpReward: 25,
-      priority: 3,
-      href: buildLocalizedRoute(locale, ROUTES.PRACTICE_PRONUNCIATION),
-    });
+    // Hidden for beta - audio not ready
+    // recs.push({
+    //   type: 'pronunciation-practice',
+    //   title: t('pronunciation.title'),
+    //   description: t('pronunciation.description'),
+    //   estimatedMinutes: 10,
+    //   xpReward: 25,
+    //   priority: 3,
+    //   href: buildLocalizedRoute(locale, ROUTES.PRACTICE_PRONUNCIATION),
+    // });
 
     // Medium priority: Grammar drills
     recs.push({

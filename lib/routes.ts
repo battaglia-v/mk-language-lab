@@ -23,7 +23,8 @@ export const ROUTES = {
   DISCOVER: '/discover',
   
   // Practice sub-routes
-  PRACTICE_PRONUNCIATION: '/practice/pronunciation',
+  // Hidden for beta - audio not ready
+  // PRACTICE_PRONUNCIATION: '/practice/pronunciation',
   PRACTICE_GRAMMAR: '/practice/grammar',
   PRACTICE_DECKS: '/practice/decks',
   
@@ -91,7 +92,8 @@ export const QUEST_CATEGORY_ROUTES: Record<string, RoutePath> = {
   translation: ROUTES.TRANSLATE,
   social: ROUTES.DISCOVER,
   lesson: ROUTES.LEARN,
-  pronunciation: ROUTES.PRACTICE_PRONUNCIATION,
+  // Hidden for beta - audio not ready
+  // pronunciation: ROUTES.PRACTICE_PRONUNCIATION,
   grammar: ROUTES.PRACTICE_GRAMMAR,
   reading: ROUTES.NEWS,
   vocabulary: ROUTES.PRACTICE,
