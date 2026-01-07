@@ -31,13 +31,6 @@ export type ModeTileGridProps = {
 
 const defaultTiles: Omit<ModeTile, 'href'>[] = [
   {
-    id: 'pronunciation',
-    title: 'Pronunciation',
-    description: 'Perfect your accent',
-    icon: Volume2,
-    variant: 'default',
-  },
-  {
     id: 'grammar',
     title: 'Grammar',
     description: 'Master patterns',
