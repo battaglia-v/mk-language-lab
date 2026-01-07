@@ -24,7 +24,7 @@ export type Flashcard = {
 /**
  * Available deck types
  */
-export type DeckType = 'saved' | 'history' | 'curated' | 'custom' | 'mistakes' | 'srs' | 'favorites' | 'lesson-review';
+export type DeckType = 'saved' | 'history' | 'curated' | 'custom' | 'mistakes' | 'srs' | 'favorites' | 'lesson-review' | 'user-vocab';
 
 /**
  * Practice mode
