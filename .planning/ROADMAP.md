@@ -73,7 +73,7 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 04-01: Implement vocab state schema and transitions
+- [x] 04-01: Implement vocab state schema and transitions
 - [ ] 04-02: Add user vocab actions (save, mark unknown)
 - [ ] 04-03: Build practice mode selection and filtering
 
@@ -119,7 +119,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 1. Curriculum Backbone | 4/4 | Complete | 2026-01-07 |
 | 2. Progress & Dashboard | 3/3 | Complete | 2026-01-07 |
 | 3. Lesson Practice Integrity | 3/3 | Complete | 2026-01-07 |
-| 4. Vocabulary System | 0/3 | Not started | - |
+| 4. Vocabulary System | 1/3 | In progress | - |
 | 5. Reader Reorganization | 0/3 | Not started | - |
 | 6. Clean Up Confusion | 0/2 | Not started | - |
 | 7. Validation | 0/3 | Not started | - |

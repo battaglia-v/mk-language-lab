@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-06)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** Phase 3 complete — Ready for Phase 4
+**Current focus:** Phase 4 in progress — Vocabulary System
 
 ## Current Position
 
-Phase: 3 of 7 (Lesson Practice Integrity)
-Plan: 3 of 3 in current phase
-Status: Phase complete
-Last activity: 2026-01-07 — Completed 03-03-PLAN.md
+Phase: 4 of 7 (Vocabulary System)
+Plan: 1 of 3 in current phase
+Status: Plan complete
+Last activity: 2026-01-07 — Completed 04-01-PLAN.md
 
-Progress: █████░░░░░ 48%
+Progress: █████░░░░░ 52%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 10
+- Total plans completed: 11
 - Average duration: 7 min
-- Total execution time: 1.3 hours
+- Total execution time: 1.4 hours
 
 **By Phase:**
 
@@ -30,9 +30,10 @@ Progress: █████░░░░░ 48%
 | 1 | 4 | 43 min | 11 min |
 | 2 | 3 | 16 min | 5 min |
 | 3 | 3 | 14 min | 5 min |
+| 4 | 1 | 5 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 5, 5, 4, 5 min
+- Last 5 plans: 5, 4, 5, 5 min
 - Trend: → (stable)
 
 ## Accumulated Context
@@ -52,6 +53,7 @@ Recent decisions affecting current work:
 - [02-02]: Continue CTA shows only when isActive=true; uses optional props for backward compatibility
 - [02-03]: Curriculum paths server-side from DB; lesson hrefs use database IDs
 - [03-01]: Phase 3 is infrastructure focus; vocabulary seeding is future work (outside scope)
+- [04-01]: Vocabulary API uses existing VocabularyWord model; SRS intervals match lib/srs.ts Leitner pattern
 
 ### Deferred Issues
 
@@ -64,5 +66,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-07
-Stopped at: Completed Phase 3 (Lesson Practice Integrity)
+Stopped at: Completed 04-01 (Vocabulary API endpoints)
 Resume file: None
