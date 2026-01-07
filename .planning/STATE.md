@@ -5,34 +5,34 @@
 See: .planning/PROJECT.md (updated 2026-01-06)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** Phase 2 — Progress & Dashboard
+**Current focus:** Phase 2 complete — ready for Phase 3
 
 ## Current Position
 
 Phase: 2 of 7 (Progress & Dashboard)
-Plan: 2 of 3 in current phase
-Status: In progress
-Last activity: 2026-01-07 — Completed 02-02-PLAN.md
+Plan: 3 of 3 in current phase
+Status: Phase complete
+Last activity: 2026-01-07 — Completed 02-03-PLAN.md
 
-Progress: ███░░░░░░░ 29%
+Progress: ███░░░░░░░ 33%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 6
-- Average duration: 9 min
-- Total execution time: 0.9 hours
+- Total plans completed: 7
+- Average duration: 8 min
+- Total execution time: 1.0 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 1 | 4 | 43 min | 11 min |
-| 2 | 2 | 11 min | 6 min |
+| 2 | 3 | 16 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 5, 19, 3, 8 min
-- Trend: →
+- Last 5 plans: 19, 3, 8, 5 min
+- Trend: ↓ (faster)
 
 ## Accumulated Context
 
@@ -49,6 +49,7 @@ Recent decisions affecting current work:
 - [01-04]: B1 skeleton (chapter titles only); upsert seeding pattern; journeyIds ukim-a1/a2/b1
 - [02-01]: Journey becomes active on first lesson completion; currentLessonId points to NEXT lesson
 - [02-02]: Continue CTA shows only when isActive=true; uses optional props for backward compatibility
+- [02-03]: Curriculum paths server-side from DB; lesson hrefs use database IDs
 
 ### Deferred Issues
 
@@ -60,6 +61,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-07T00:49:53Z
-Stopped at: Completed 02-02-PLAN.md
+Last session: 2026-01-07T00:57:05Z
+Stopped at: Completed 02-03-PLAN.md (Phase 2 complete)
 Resume file: None
