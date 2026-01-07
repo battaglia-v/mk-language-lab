@@ -35,6 +35,7 @@ export function usePracticeDecks() {
   const [srsDueDeck, setSrsDueDeck] = useState<Flashcard[]>([]);
   const [favoritesDeck, setFavoritesDeck] = useState<Flashcard[]>([]);
   const [favoritesSRSCounts, setFavoritesSRSCounts] = useState({ due: 0, new_: 0, learned: 0 });
+  const [lessonReviewDeck, setLessonReviewDeck] = useState<Flashcard[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   // Load history on mount
@@ -174,6 +175,35 @@ export function usePracticeDecks() {
     setMistakesDeck([]);
   }, []);
 
+  // Load lesson review vocabulary (from completed lessons)
+  const loadLessonReviewDeck = useCallback(async () => {
+    if (status !== 'authenticated') {
+      setLessonReviewDeck([]);
+      return [];
+    }
+    try {
+      const res = await fetch('/api/practice/lesson-vocab');
+      if (!res.ok) throw new Error('Failed to fetch lesson vocab');
+      const data = await res.json();
+      const flashcards: Flashcard[] = data.map((item: { id: string; macedonian: string; english: string; lessonTitle?: string }) => ({
+        id: item.id,
+        source: item.macedonian,
+        target: item.english,
+        direction: 'mk-en' as const,
+        category: item.lessonTitle ?? 'lesson-vocab',
+        difficulty: 'lesson-review',
+        audioClip: null,
+        macedonian: item.macedonian,
+      }));
+      setLessonReviewDeck(flashcards);
+      return flashcards;
+    } catch (error) {
+      console.error('Failed to load lesson review deck:', error);
+      setLessonReviewDeck([]);
+      return [];
+    }
+  }, [status]);
+
   // Convert saved phrases to flashcards
   const savedDeck = useMemo<Flashcard[]>(
     () =>
@@ -222,6 +252,8 @@ export function usePracticeDecks() {
         return srsDueDeck;
       case 'favorites':
         return favoritesDeck;
+      case 'lesson-review':
+        return lessonReviewDeck;
       case 'curated':
       default:
         if (difficultyFilter === 'all') {
@@ -229,7 +261,7 @@ export function usePracticeDecks() {
         }
         return curatedDeck.filter((card) => card.difficulty === difficultyFilter);
     }
-  }, [customDeckCards, savedDeck, historyDeck, mistakesDeck, srsDueDeck, favoritesDeck, curatedDeck]);
+  }, [customDeckCards, savedDeck, historyDeck, mistakesDeck, srsDueDeck, favoritesDeck, lessonReviewDeck, curatedDeck]);
 
   // Determine recommended deck (for "Continue" CTA)
   const recommendedDeck = useMemo((): DeckType => {
@@ -249,6 +281,7 @@ export function usePracticeDecks() {
     mistakesDeck,
     srsDueDeck,
     favoritesDeck,
+    lessonReviewDeck,
     customDecks,
 
     // State
@@ -261,6 +294,7 @@ export function usePracticeDecks() {
     clearCustomDeck,
     clearMistakes,
     refreshSpecialDecks,
+    loadLessonReviewDeck,
     getDeck,
 
     // Counts for UI
@@ -272,6 +306,7 @@ export function usePracticeDecks() {
       mistakes: mistakesDeck.length,
       srs: srsDueDeck.length,
       favorites: favoritesDeck.length,
+      lessonReview: lessonReviewDeck.length,
     },
 
     // SRS counts for favorites
