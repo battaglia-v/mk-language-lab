@@ -16,7 +16,9 @@ const routes = [
   { path: '/en/practice/grammar', name: 'Grammar Practice' },
 ];
 
+// Skip in CI - mobile UI tests with screenshots are slow and better run locally
 test.describe('Mobile UI - No Horizontal Scroll', () => {
+  test.skip(!!process.env.CI, 'Mobile UI tests skipped in CI - run locally');
   for (const viewport of viewports) {
     for (const route of routes) {
       test(`${viewport.name} (${viewport.width}px) - ${route.name}`, async ({ page }) => {

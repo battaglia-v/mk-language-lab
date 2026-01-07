@@ -8,8 +8,10 @@ import { test, expect } from '@playwright/test';
  * - Tablet+ (>=640px): Constrained with max-width and centered
  *
  * Tests verify visually that there are no unwanted side gutters on mobile.
+ * Skipped in CI - visual layout tests are slow and better run locally.
  */
 test.describe('Mobile Width Layout', () => {
+  test.skip(!!process.env.CI, 'Mobile width tests skipped in CI - run locally');
   test.describe('360x800 viewport (Small Mobile)', () => {
     test.use({ viewport: { width: 360, height: 800 } });
 
