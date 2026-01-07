@@ -9,6 +9,92 @@
  */
 
 /**
+ * Comprehensive Macedonian stop words - function words to exclude from vocabulary extraction.
+ * These are grammatically important but not useful for vocabulary learning.
+ */
+export const MACEDONIAN_STOP_WORDS = new Set([
+  // Personal pronouns (лични заменки)
+  'јас', 'ти', 'тој', 'таа', 'тоа', 'ние', 'вие', 'тие',
+  // Personal pronoun short forms (кратки форми)
+  'ме', 'те', 'го', 'ја', 'не', 'ве', 'ги',
+  'ми', 'му', 'ѝ', 'ни', 'ви', 'им',
+  // Reflexive pronouns
+  'себе', 'себеси', 'си',
+  // Accusative/dative forms
+  'мене', 'тебе', 'него', 'неа', 'нас', 'вас', 'нив',
+
+  // Possessive pronouns (присвојни заменки)
+  'мој', 'моја', 'мое', 'мои',
+  'твој', 'твоја', 'твое', 'твои',
+  'негов', 'негова', 'негово', 'негови',
+  'нејзин', 'нејзина', 'нејзино', 'нејзини',
+  'наш', 'наша', 'наше', 'наши',
+  'ваш', 'ваша', 'ваше', 'ваши',
+  'нивни', 'нивна', 'нивно', 'нивните',
+  'свој', 'своја', 'свое', 'свои',
+
+  // Demonstrative pronouns (показни заменки)
+  'ова', 'овој', 'оваа', 'овие',
+  'тоа', 'тој', 'таа', 'тие',
+  'она', 'оној', 'онаа', 'оние',
+
+  // Interrogative/relative pronouns (прашални заменки)
+  'што', 'кој', 'која', 'кое', 'кои',
+  'чиј', 'чија', 'чие', 'чии',
+  'каков', 'каква', 'какво', 'какви',
+  'колкав', 'колкава', 'колкаво', 'колкави',
+
+  // Question words
+  'каде', 'кога', 'како', 'колку', 'зошто', 'дали',
+
+  // Prepositions (предлози)
+  'во', 'на', 'со', 'од', 'за', 'до', 'по', 'под', 'над', 'пред', 'зад',
+  'кај', 'меѓу', 'покрај', 'низ', 'преку', 'според', 'без', 'при', 'околу',
+  'помеѓу', 'спроти', 'наспроти', 'поради', 'заради', 'благодарение',
+
+  // Conjunctions (сврзници)
+  'и', 'а', 'но', 'или', 'да', 'ако', 'кога', 'бидејќи', 'затоа', 'додека',
+  'дека', 'оти', 'иако', 'освен', 'туку', 'ама', 'та', 'па', 'ни', 'ниту',
+  'било', 'односно', 'значи', 'пак', 'сепак', 'бидејки',
+
+  // Particles and adverbs (честички и прилози)
+  'не', 'да', 'ќе', 'би', 'нека', 'ли',
+  'многу', 'малку', 'веќе', 'уште', 'само', 'дури', 'токму', 'баш',
+  'сега', 'тогаш', 'денес', 'утре', 'вчера', 'потоа', 'претходно',
+  'овде', 'таму', 'тука', 'онде', 'некаде', 'секаде', 'никаде',
+  'секогаш', 'никогаш', 'понекогаш', 'често', 'ретко',
+  'така', 'толку', 'инаку', 'исто', 'слично',
+
+  // Auxiliary verbs (помошни глаголи)
+  'сум', 'си', 'е', 'сме', 'сте', 'се',
+  'бев', 'беше', 'бевме', 'бевте', 'беа',
+  'бил', 'била', 'било', 'биле',
+  'има', 'имам', 'имаш', 'имаме', 'имате', 'имаат',
+  'нема', 'немам', 'немаш', 'немаме', 'немате', 'немаат',
+  'може', 'можам', 'можеш', 'можеме', 'можете', 'можат',
+  'мора', 'морам', 'мораш', 'мораме', 'морате', 'мораат',
+  'треба', 'требам', 'требаш', 'требаме', 'требате', 'требаат',
+  'сака', 'сакам', 'сакаш', 'сакаме', 'сакате', 'сакаат',
+
+  // Numbers (броеви) - basic cardinal numbers
+  'еден', 'една', 'едно', 'едни',
+  'два', 'две', 'двајца', 'двете',
+  'три', 'трите', 'тројца',
+  'четири', 'четирите',
+  'пет', 'петте',
+  'шест', 'шесте',
+  'седум', 'седумте',
+  'осум', 'осумте',
+  'девет', 'деветте',
+  'десет', 'десетте',
+
+  // Common short/noise words
+  'еве', 'ете', 'ене', 'еј', 'ај', 'ох', 'ах',
+  'мм', 'ем', 'хм', 'оф',
+  'итн', 'т.е.', 'т.н.', 'др.',
+]);
+
+/**
  * Extracted vocabulary item - Macedonian only (no English translations in source)
  */
 export interface VocabularyItem {
@@ -23,6 +109,27 @@ export interface VocabularyItem {
 export interface SingularPluralPair {
   singular: string;
   plural: string;
+}
+
+/**
+ * Check if a word is valid vocabulary (not a stop word, proper length, only Cyrillic)
+ */
+export function isValidVocabularyWord(word: string): boolean {
+  const normalized = word.toLowerCase().trim();
+
+  // Must be at least 3 characters
+  if (normalized.length < 3) return false;
+
+  // Must not be a stop word
+  if (MACEDONIAN_STOP_WORDS.has(normalized)) return false;
+
+  // Must not be all uppercase (headers/labels)
+  if (word === word.toUpperCase() && word.length > 2) return false;
+
+  // Must contain only Cyrillic characters (and optional spaces for compound words)
+  if (!/^[А-Яа-яЀ-ӿ\s]+$/.test(word)) return false;
+
+  return true;
 }
 
 /**
