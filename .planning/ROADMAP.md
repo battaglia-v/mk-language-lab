@@ -6,7 +6,8 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 
 ## Milestones
 
-- [v1.0 Beta](milestones/v1.0-ROADMAP.md) (Phases 1-7) — SHIPPED 2026-01-07
+- ✅ [v1.0 Beta](milestones/v1.0-ROADMAP.md) (Phases 1-7) — SHIPPED 2026-01-07
+- 🚧 **v1.1 Curriculum Quality Fix** — Phases 8-15 (in progress)
 
 ## Completed Milestones
 
@@ -25,10 +26,95 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 
 </details>
 
+### 🚧 v1.1 Curriculum Quality Fix (In Progress)
+
+**Milestone Goal:** Fix the existing UKIM curriculum content which is currently repetitive, inaccurate, and not usable. Re-extract and populate vocabulary, grammar notes, and lesson content across A1, A2, and B1 levels.
+
+#### Phase 8: PDF Extraction Audit
+
+**Goal**: Analyze current extraction output quality, document specific issues per level
+**Depends on**: v1.0 complete
+**Research**: Unlikely (internal codebase analysis)
+**Plans**: TBD
+
+Plans:
+- [ ] 08-01: TBD (run /gsd:plan-phase 8 to break down)
+
+#### Phase 9: Extraction Pipeline Fix
+
+**Goal**: Improve PDF extraction scripts to produce cleaner, structured output
+**Depends on**: Phase 8
+**Research**: Likely (PDF parsing libraries, OCR cleanup techniques)
+**Research topics**: pdf-parse vs pdf.js for text extraction, OCR cleanup patterns
+**Plans**: TBD
+
+Plans:
+- [ ] 09-01: TBD
+
+#### Phase 10: A1 Vocabulary Extraction
+
+**Goal**: Extract ~300-500 structured vocabulary items from Тешкото PDF
+**Depends on**: Phase 9
+**Research**: Unlikely (using improved extraction pipeline)
+**Plans**: TBD
+
+Plans:
+- [ ] 10-01: TBD
+
+#### Phase 11: A1 Grammar Content
+
+**Goal**: Populate A1 grammar note explanations with actual content and 3+ examples each
+**Depends on**: Phase 10
+**Research**: Unlikely (content extraction)
+**Plans**: TBD
+
+Plans:
+- [ ] 11-01: TBD
+
+#### Phase 12: A2 Content Population
+
+**Goal**: Fill A2 vocabulary arrays and grammar notes from Лозје PDF
+**Depends on**: Phase 11
+**Research**: Unlikely (parallel to A1 work)
+**Plans**: TBD
+
+Plans:
+- [ ] 12-01: TBD
+
+#### Phase 13: B1 Content Bootstrap
+
+**Goal**: Create initial vocabulary and grammar structure for B1 from Златоврв PDF
+**Depends on**: Phase 12
+**Research**: Unlikely (same extraction approach)
+**Plans**: TBD
+
+Plans:
+- [ ] 13-01: TBD
+
+#### Phase 14: Content Validation
+
+**Goal**: Verify all content meets quality criteria (no garbled text, sufficient items per lesson)
+**Depends on**: Phase 13
+**Research**: Unlikely (testing and validation)
+**Plans**: TBD
+
+Plans:
+- [ ] 14-01: TBD
+
+#### Phase 15: Practice Integration
+
+**Goal**: Ensure practice mode functions correctly with populated content
+**Depends on**: Phase 14
+**Research**: Unlikely (internal testing)
+**Plans**: TBD
+
+Plans:
+- [ ] 15-01: TBD
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
+Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 → 11 → 12 → 13 → 14 → 15
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
@@ -39,6 +125,14 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 5. Reader Reorganization | v1.0 | 3/3 | Complete | 2026-01-07 |
 | 6. Clean Up Confusion | v1.0 | 2/2 | Complete | 2026-01-07 |
 | 7. Validation | v1.0 | 3/3 | Complete | 2026-01-07 |
+| 8. PDF Extraction Audit | v1.1 | 0/? | Not started | - |
+| 9. Extraction Pipeline Fix | v1.1 | 0/? | Not started | - |
+| 10. A1 Vocabulary Extraction | v1.1 | 0/? | Not started | - |
+| 11. A1 Grammar Content | v1.1 | 0/? | Not started | - |
+| 12. A2 Content Population | v1.1 | 0/? | Not started | - |
+| 13. B1 Content Bootstrap | v1.1 | 0/? | Not started | - |
+| 14. Content Validation | v1.1 | 0/? | Not started | - |
+| 15. Practice Integration | v1.1 | 0/? | Not started | - |
 
 ## Domain Expertise
 

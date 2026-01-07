@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-07)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** v1.0 Beta shipped — planning next milestone
+**Current focus:** v1.1 Curriculum Quality Fix — Fix repetitive, inaccurate, and unusable UKIM curriculum content
 
 ## Current Position
 
-Phase: 7 of 7 (Validation) — MILESTONE COMPLETE
-Plan: All plans complete
-Status: v1.0 Beta shipped
-Last activity: 2026-01-07 — Completed /gsd:complete-milestone
+Phase: 8 of 15 (PDF Extraction Audit)
+Plan: Not started
+Status: Ready to plan
+Last activity: 2026-01-07 — Milestone v1.1 created
 
-Progress: All phases complete
+Progress: ░░░░░░░░░░ 0%
 
 ## Milestone Summary
 
@@ -24,6 +24,15 @@ Progress: All phases complete
 - ~24,400 lines of TypeScript
 
 See `.planning/MILESTONES.md` for full details.
+
+## v1.1 Success Criteria
+
+- [ ] A1 lessons have 20+ vocabulary items each
+- [ ] A1 grammar notes have explanations and 3+ examples each
+- [ ] A2 lessons have vocabulary and grammar populated
+- [ ] B1 has at least skeleton vocabulary per lesson
+- [ ] No garbled OCR text in user-facing content
+- [ ] Practice mode has sufficient content to function
 
 ## Performance Metrics
 
@@ -58,9 +67,13 @@ None — v1.0 shipped clean.
 
 None.
 
+### Roadmap Evolution
+
+- Milestone v1.1 created: Curriculum quality fix, 8 phases (Phase 8-15)
+
 ## Session Continuity
 
 Last session: 2026-01-07
-Stopped at: v1.0 Beta milestone complete
+Stopped at: Milestone v1.1 initialization
 Resume file: None
-Next step: Run /gsd:discuss-milestone or /gsd:new-milestone to plan v1.1
+Next step: Run /gsd:plan-phase 8 to break down PDF Extraction Audit
