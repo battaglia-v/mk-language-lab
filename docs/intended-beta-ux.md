@@ -16,10 +16,12 @@
 
 ### Learn (Signed-in Home) — `/en/learn`
 - Daily goal ring + streak chip.
-- Primary CTA: “Start here” -> next lesson node.
-- Secondary CTA: “Browse learning paths” -> `/en/learn/paths`.
+- Primary CTA: "Continue" -> next lesson (shown only after first lesson completion).
+- Secondary CTA: "Browse learning paths" -> `/en/learn/paths`.
 - Level toggle (Beginner A1 / Intermediate A2) switches path content.
 - Path preview cards list current path lessons with progress.
+- **Curriculum Source:** UKIM textbooks (Тешкото A1, Лозје A2, Златоврв B1).
+- **Progress Tracking:** `currentLessonId` points to next lesson; journey becomes `isActive` on first completion.
 
 ### Paths Hub — `/en/learn/paths`
 - Only A1 Foundations and A2 Momentum paths are visible.
@@ -39,10 +41,11 @@
 - Practice modes shown:
   - Word Sprint (recommended)
   - Grammar
-  - Vocabulary
+  - Vocabulary (SRS-based with new/learning/mastered states)
   - Saved
-- Pronunciation/Speaking is hidden for beta.
+- Pronunciation/Speaking is hidden for beta (page shows "Coming Soon").
 - Settings bottom sheet for mode/difficulty/deck.
+- **Vocabulary SRS:** Spaced repetition with Leitner intervals; loads 15 due + 5 new words per session.
 
 ### Word Sprint — `/en/practice/word-sprint`
 - Difficulty + session length selection.
@@ -51,9 +54,10 @@
 
 ### Reader Library — `/en/reader`
 - Tabs: Library / Workspace.
-- 30-Day Reading Challenge section in Library.
+- **Folder Organization:** Reading Challenges, Short Conversations, Grammar-aligned Readings.
+- 30-Day Reading Challenge featured within Reading Challenges folder.
 - Reading cards open sample pages.
-- Search input + difficulty filters.
+- Search input + difficulty filters (search results remain flat).
 
 ### Reader Sample — `/en/reader/samples/{id}`
 - Sticky top bar with Back, font size controls, focus mode.
@@ -66,7 +70,8 @@
 - Settings includes Theme, Language, Daily Goal; no Notifications in beta.
 
 ## Explicitly Not In Beta
-- Pronunciation/Speaking practice mode.
+- Pronunciation/Speaking practice mode (page shows "Coming Soon" placeholder).
 - Notifications/reminders settings.
 - Topic Packs path hub entry.
-- Old “Start Learning” CTA and legacy 30-day/topic cards on Paths hub.
+- Old "Start Learning" CTA and legacy 30-day/topic cards on Paths hub.
+- B1 content (skeleton only — chapter titles exist but no lesson content).
