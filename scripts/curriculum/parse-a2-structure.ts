@@ -6,7 +6,7 @@
 
 import * as fs from 'fs';
 import type { ExtractedPage, StructuredVocabulary } from './types';
-import { extractAllVocabulary, type VocabularyItem } from './vocabulary-patterns';
+import { extractAllVocabulary, isValidVocabularyWord, type VocabularyItem } from './vocabulary-patterns';
 import {
   extractGrammarSections,
   extractGrammarExamples,
@@ -14,6 +14,7 @@ import {
   extractA2GrammarReference,
   searchForGrammarTopic,
 } from './grammar-patterns';
+import { findA2GrammarTemplate } from './a2-grammar-content';
 
 const INPUT_PATH = 'data/curriculum/extracted/a2-raw.json';
 const OUTPUT_PATH = 'data/curriculum/structured/a2-lozje.json';
@@ -175,19 +176,59 @@ function extractThemes(lessonText: string): StructuredTheme[] {
 }
 
 /**
+ * Enhance a grammar note with quality template content if needed
+ * Uses templates as fallback when extracted content is insufficient
+ */
+function enhanceWithTemplate(note: StructuredGrammar): StructuredGrammar {
+  const template = findA2GrammarTemplate(note.title);
+  if (!template) {
+    return note;
+  }
+
+  // Use template explanation if extracted is too short
+  const extractedContent = note.content || '';
+  const useTemplateExplanation = extractedContent.length < 50;
+
+  // Use template examples if extracted has too few
+  const extractedExamples = note.examples || [];
+  const needMoreExamples = extractedExamples.length < 3;
+
+  // Merge examples: keep unique extracted + add from template to reach 5+
+  let finalExamples = [...extractedExamples];
+  if (needMoreExamples) {
+    const extractedLower = new Set(extractedExamples.map((e) => e.toLowerCase()));
+    for (const templateEx of template.examples) {
+      if (!extractedLower.has(templateEx.toLowerCase())) {
+        finalExamples.push(templateEx);
+        if (finalExamples.length >= 5) break;
+      }
+    }
+  }
+
+  return {
+    title: note.title,
+    content: useTemplateExplanation ? template.explanation : extractedContent,
+    examples: finalExamples.length > 0 ? finalExamples : template.examples.slice(0, 5),
+  };
+}
+
+/**
  * Extract vocabulary items from text using new vocabulary extraction patterns
  * UKIM textbooks are Macedonian-only - no English translations exist
+ * Now includes stop word filtering via isValidVocabularyWord()
  */
 function extractVocabulary(lessonText: string): StructuredVocabulary[] {
   // Use the new vocabulary extraction module
   const extracted = extractAllVocabulary(lessonText);
 
-  // Convert to StructuredVocabulary format
-  return extracted.map((item: VocabularyItem) => ({
-    word: item.word,
-    partOfSpeech: item.partOfSpeech,
-    context: item.context,
-  }));
+  // Filter with stop words and convert to StructuredVocabulary format
+  return extracted
+    .filter((item: VocabularyItem) => isValidVocabularyWord(item.word))
+    .map((item: VocabularyItem) => ({
+      word: item.word,
+      partOfSpeech: item.partOfSpeech,
+      context: item.context,
+    }));
 }
 
 /**
@@ -217,20 +258,20 @@ function extractGrammarNotes(
     }
 
     if (result && result.content.length > 20) {
-      notes.push({
+      notes.push(enhanceWithTemplate({
         title: topic,
         content: result.content,
         examples: result.examples,
-      });
+      }));
       seenTitles.add(titleKey);
     } else {
       // Fallback: try to extract examples from lesson text for this topic
       const examples = extractGrammarExamples(lessonText).slice(0, 3);
-      notes.push({
+      notes.push(enhanceWithTemplate({
         title: topic,
         content: `Grammar: ${topic}`,
         examples: examples.length > 0 ? examples : [],
-      });
+      }));
       seenTitles.add(titleKey);
     }
   }
@@ -250,11 +291,11 @@ function extractGrammarNotes(
     seenTitles.add(titleKey);
     const examples = extractGrammarExamples(section.content);
 
-    notes.push({
+    notes.push(enhanceWithTemplate({
       title: section.title,
       content: section.content,
       examples: examples.length > 0 ? examples : [],
-    });
+    }));
   }
 
   // 3. Extract verb conjugation tables
@@ -270,11 +311,11 @@ function extractGrammarNotes(
 
     seenTitles.add(titleKey);
     const examples = Object.entries(conj.forms).map(([pronoun, form]) => `${pronoun} ${form}`);
-    notes.push({
+    notes.push(enhanceWithTemplate({
       title,
       content: `Conjugation of the verb "${conj.verb}"`,
       examples,
-    });
+    }));
   }
 
   return notes;
