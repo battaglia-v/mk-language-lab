@@ -16,6 +16,7 @@ import {
   Clock,
   Award,
   Sparkles,
+  Dumbbell,
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import VocabularySection from './VocabularySection';
@@ -359,16 +360,31 @@ export default function LessonContent({
               </p>
             </div>
 
-            {nextLesson ? (
-              <Button size="lg" onClick={handleCompleteLesson} className="mt-4">
-                Continue to Next Lesson
-                <ArrowRight className="h-4 w-4 ml-2" />
-              </Button>
-            ) : (
-              <Button size="lg" onClick={() => router.push('/')} className="mt-4">
-                Return to Home
+            {/* Practice CTA - primary action */}
+            {lesson.vocabularyItems.length > 0 && (
+              <Button
+                size="lg"
+                onClick={() => router.push('/practice/session?deck=lesson-review&mode=multiple-choice')}
+                className="mt-4 bg-primary"
+              >
+                <Dumbbell className="h-4 w-4 mr-2" />
+                Practice This Vocabulary
               </Button>
             )}
+
+            {/* Navigation options */}
+            <div className="flex flex-col sm:flex-row gap-2 mt-2">
+              {nextLesson ? (
+                <Button variant="outline" size="lg" onClick={handleCompleteLesson}>
+                  Next Lesson
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </Button>
+              ) : (
+                <Button variant="outline" size="lg" onClick={() => router.push('/')}>
+                  Return to Home
+                </Button>
+              )}
+            </div>
           </div>
         </Card>
       )}
