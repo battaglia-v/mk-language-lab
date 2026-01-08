@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Eye, EyeOff, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -20,7 +20,94 @@ interface VocabularySectionProps {
   items: VocabularyItem[];
 }
 
+// Words to exclude (instructional/meta text from textbook)
+const EXCLUDED_WORDS = new Set([
+  'вежба', 'лекција', 'тема', 'состави', 'реченици', 'прочитај',
+  'напиши', 'одговори', 'пример', 'примери', 'слушај', 'говори',
+]);
+
+// Common country names to exclude
+const COUNTRY_NAMES = new Set([
+  'македонија', 'германија', 'франција', 'италија', 'шпанија',
+  'англија', 'русија', 'кина', 'јапонија', 'америка', 'австралија',
+  'бразил', 'мексико', 'канада', 'ирска', 'грција', 'турција',
+  'србија', 'хрватска', 'бугарија', 'албанија', 'словенија',
+]);
+
+/**
+ * Filter vocabulary items to remove:
+ * 1. Items where English matches Macedonian (untranslated)
+ * 2. Proper nouns (names) - capital letter + bad translation
+ * 3. Instructional/meta words from textbook
+ * 4. Very short words (1-2 chars)
+ * 5. Country names
+ */
+function filterVocabulary(items: VocabularyItem[]): VocabularyItem[] {
+  return items.filter(item => {
+    const mk = item.macedonianText?.trim() || '';
+    const en = item.englishText?.trim() || '';
+    const mkLower = mk.toLowerCase();
+    const enLower = en.toLowerCase();
+
+    // Skip empty items
+    if (!mk || !en) return false;
+
+    // Skip very short words
+    if (mk.length <= 2) return false;
+
+    // Skip if English is same as Macedonian (untranslated)
+    if (mkLower === enLower) return false;
+
+    // Skip if English looks like transliteration (similar length, similar characters)
+    if (Math.abs(mk.length - en.length) <= 2 && enLower.match(/^[a-z]+$/)) {
+      // Check if it's just transliterated (no real translation)
+      const mkLatinized = mkLower
+        .replace(/[ѓќљњџ]/g, '')
+        .replace(/[а-ш]/g, 'x');
+      if (mkLatinized.length > 0 && enLower.length <= mk.length + 1) {
+        // Likely a proper noun that was transliterated, not translated
+        const firstCharMk = mk[0];
+        // Check if starts with capital (Cyrillic А-Я)
+        if (firstCharMk >= 'А' && firstCharMk <= 'Ш') {
+          return false; // Skip proper nouns
+        }
+      }
+    }
+
+    // Skip excluded instructional words
+    if (EXCLUDED_WORDS.has(mkLower)) return false;
+
+    // Skip country names
+    if (COUNTRY_NAMES.has(mkLower)) return false;
+
+    // Skip if it looks like a name (capital letter + the English is lowercase same word)
+    const firstChar = mk[0];
+    if (firstChar >= 'А' && firstChar <= 'Ш') {
+      // Starts with capital - check if translation is suspicious
+      if (enLower === mk.toLowerCase() ||
+          en.length <= 3 ||
+          !en.includes(' ') && en[0] === en[0].toLowerCase()) {
+        // Likely a name - skip unless English is a real translation
+        const realTranslationPatterns = /^(the |a |to |is |are |my |your |his |her )/i;
+        if (!realTranslationPatterns.test(en)) {
+          return false;
+        }
+      }
+    }
+
+    return true;
+  });
+}
+
+// Maximum vocabulary items to display per lesson
+const MAX_VOCAB_DISPLAY = 20;
+
 export default function VocabularySection({ items }: VocabularySectionProps) {
+  // Filter and limit vocabulary
+  const filteredItems = useMemo(() => {
+    const filtered = filterVocabulary(items);
+    return filtered.slice(0, MAX_VOCAB_DISPLAY);
+  }, [items]);
   const [revealedCards, setRevealedCards] = useState<Set<string>>(new Set());
   const [showAll, setShowAll] = useState(false);
 
@@ -42,12 +129,21 @@ export default function VocabularySection({ items }: VocabularySectionProps) {
 
   const isRevealed = (id: string) => showAll || revealedCards.has(id);
 
+  // Show message if no valid vocabulary
+  if (filteredItems.length === 0) {
+    return (
+      <div className="text-center py-8 text-muted-foreground">
+        <p>No vocabulary items available for this lesson.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-4">
       {/* Controls */}
       <div className="flex items-center justify-between gap-4 pb-2">
         <p className="text-sm text-muted-foreground">
-          Tap cards to reveal translations
+          {filteredItems.length} words to learn • Tap cards to reveal
         </p>
         <div className="flex items-center gap-2">
           <Button
@@ -78,7 +174,7 @@ export default function VocabularySection({ items }: VocabularySectionProps) {
 
       {/* Vocabulary Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {items.map((item) => {
+        {filteredItems.map((item) => {
           const revealed = isRevealed(item.id);
 
           return (
