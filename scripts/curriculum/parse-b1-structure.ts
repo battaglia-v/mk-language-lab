@@ -6,7 +6,7 @@
 
 import * as fs from 'fs';
 import type { ExtractedPage, StructuredVocabulary } from './types';
-import { extractAllVocabulary, type VocabularyItem } from './vocabulary-patterns';
+import { extractAllVocabulary, isValidVocabularyWord, type VocabularyItem } from './vocabulary-patterns';
 import {
   extractGrammarSections,
   extractGrammarExamples,
@@ -119,12 +119,14 @@ function extractVocabulary(lessonText: string): StructuredVocabulary[] {
   // Use the vocabulary extraction module
   const extracted = extractAllVocabulary(lessonText);
 
-  // Convert to StructuredVocabulary format
-  return extracted.map((item: VocabularyItem) => ({
-    word: item.word,
-    partOfSpeech: item.partOfSpeech,
-    context: item.context,
-  }));
+  // Filter with stop words and convert to StructuredVocabulary format
+  return extracted
+    .filter((item: VocabularyItem) => isValidVocabularyWord(item.word))
+    .map((item: VocabularyItem) => ({
+      word: item.word,
+      partOfSpeech: item.partOfSpeech,
+      context: item.context,
+    }));
 }
 
 /**
