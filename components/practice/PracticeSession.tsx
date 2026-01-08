@@ -30,7 +30,7 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
   const t = useTranslations('practiceHub');
   const locale = useLocale();
   const router = useRouter();
-  const { getDeck, loadCustomDeck, isLoading: isDecksLoading } = usePracticeDecks();
+  const { getDeck, loadCustomDeck, loadLessonReviewDeck, isLoading: isDecksLoading } = usePracticeDecks();
   const { config } = useAppConfig();
   const { entitlement, isPracticeLimitReached, recordPracticeSession } = useEntitlement();
 
@@ -122,6 +122,12 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
         const fallback = getDeck('curated', difficulty);
         applyDeck(fallback);
       });
+    } else if (deckType === 'lesson-review') {
+      // Load lesson review deck
+      loadLessonReviewDeck().then((cards) => {
+        if (!isActive) return;
+        applyDeck(cards, cards.length > 0 ? 'ready' : 'empty');
+      });
     } else {
       // Cast to DeckType for standard decks (unknown types fall back to curated)
       const cards = getDeck(deckType as DeckType, difficulty);
@@ -140,6 +146,7 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
     customDeckId,
     getDeck,
     loadCustomDeck,
+    loadLessonReviewDeck,
     isDecksLoading,
     locale,
     router,
@@ -308,9 +315,13 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
           ) : (
             <div className="mx-auto flex max-w-sm flex-col items-center gap-4 text-center">
               <div className="space-y-2">
-                <p className="text-lg font-semibold text-foreground">No cards ready yet</p>
+                <p className="text-lg font-semibold text-foreground">
+                  {deckType === 'lesson-review' ? 'No vocabulary available' : 'No cards ready yet'}
+                </p>
                 <p className="text-sm text-muted-foreground">
-                  Try a different deck or return to practice to pick another mode.
+                  {deckType === 'lesson-review'
+                    ? 'Complete some lessons first to unlock vocabulary review!'
+                    : 'Try a different deck or return to practice to pick another mode.'}
                 </p>
               </div>
               <div className="flex w-full flex-col gap-2">
