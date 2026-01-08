@@ -246,15 +246,6 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
     setIsInDeck(wasAdded);
   }, []);
 
-  const handlePlayAudio = useCallback((text: string) => {
-    if (!window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'sr-RS'; // Serbian is closest to Macedonian
-    utterance.rate = 0.8;
-    window.speechSynthesis.speak(utterance);
-  }, []);
-
   const triggerWord = useCallback((word: string, wordIndex: number) => {
     const now = Date.now();
     // Reduced debounce from 250ms to 100ms for faster response

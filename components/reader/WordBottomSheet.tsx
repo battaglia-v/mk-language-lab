@@ -1,7 +1,7 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
-import { Volume2, Plus, BookOpen, Sparkles, Check } from 'lucide-react';
+import { useCallback, useState } from 'react';
+import { Plus, BookOpen, Sparkles, Check } from 'lucide-react';
 import { BottomSheet } from '@/components/ui/BottomSheet';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -59,44 +59,17 @@ export function WordBottomSheet({
   locale,
 }: WordBottomSheetProps) {
   const [justSaved, setJustSaved] = useState(false);
-  const [audioSupported, setAudioSupported] = useState(true);
 
   const t = {
     saveToGlossary: locale === 'mk' ? 'Зачувај во речник' : 'Save to Glossary',
     saved: locale === 'mk' ? 'Зачувано!' : 'Saved!',
     alreadySaved: locale === 'mk' ? 'Веќе зачувано' : 'Already Saved',
-    listen: locale === 'mk' ? 'Слушај' : 'Listen',
     alsoMeans: locale === 'mk' ? 'Исто значи:' : 'Also:',
     inContext: locale === 'mk' ? 'Во овој контекст:' : 'In this context:',
     examples: locale === 'mk' ? 'Примери' : 'Examples',
     translating: locale === 'mk' ? 'Се преведува...' : 'Translating...',
     noTranslation: locale === 'mk' ? 'Превод не е достапен' : 'Translation not available',
-    audioUnavailable: locale === 'mk' ? 'Аудиото не е достапно на овој уред.' : 'Audio isn’t available on this device.',
   };
-
-  useEffect(() => {
-    const supported =
-      typeof window !== 'undefined' &&
-      'speechSynthesis' in window &&
-      typeof window.speechSynthesis?.speak === 'function' &&
-      typeof (window as any).SpeechSynthesisUtterance === 'function';
-    setAudioSupported(Boolean(supported));
-  }, []);
-
-  const handlePlayAudio = useCallback(() => {
-    if (!word || !audioSupported || !window.speechSynthesis) return;
-    try {
-      const signals = (window as any).__mkllSignals;
-      if (signals && typeof signals === 'object') {
-        signals.speechSpeakCalls = Number(signals.speechSpeakCalls || 0) + 1;
-      }
-    } catch {}
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(word.original);
-    utterance.lang = 'sr-RS';
-    utterance.rate = 0.8;
-    window.speechSynthesis.speak(utterance);
-  }, [audioSupported, word]);
 
   const handleSave = useCallback(() => {
     if (!word || !onSaveToGlossary || isSaved) return;
@@ -124,29 +97,9 @@ export function WordBottomSheet({
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-1">
             {/* Original word */}
-            <div className="flex items-center gap-3">
-              <h3 className="text-2xl font-bold text-foreground">
-                {word.original}
-              </h3>
-              {/* Audio button */}
-              <Button
-                variant="ghost"
-                size="icon-sm"
-                className="rounded-full hover:bg-primary/20"
-                onClick={handlePlayAudio}
-                disabled={!audioSupported}
-                aria-label={t.listen}
-                data-testid="reader-word-sheet-audio"
-              >
-                <Volume2 className="h-5 w-5 text-primary" />
-              </Button>
-            </div>
-
-            {!audioSupported && (
-              <p data-testid="reader-word-sheet-audio-unavailable" className="text-xs text-muted-foreground">
-                {t.audioUnavailable}
-              </p>
-            )}
+            <h3 className="text-2xl font-bold text-foreground">
+              {word.original}
+            </h3>
 
             {/* Phonetic */}
             {word.phonetic && (
