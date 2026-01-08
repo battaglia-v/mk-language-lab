@@ -1,13 +1,27 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { CheckCircle, Circle, ArrowRight, Clock, Award } from 'lucide-react';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+import {
+  CheckCircle,
+  Circle,
+  ArrowRight,
+  Clock,
+  Award,
+  Sparkles,
+} from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import VocabularySection from './VocabularySection';
 import GrammarSection from './GrammarSection';
 import ExerciseSection from './ExerciseSection';
+import { cn } from '@/lib/utils';
 
 interface LessonContentProps {
   lesson: {
@@ -34,33 +48,43 @@ export default function LessonContent({
 }: LessonContentProps) {
   const router = useRouter();
   const [completedSections, setCompletedSections] = useState<Set<string>>(new Set());
+  const [currentSection, setCurrentSection] = useState<string>('');
   const [startTime] = useState(Date.now());
 
-  const sections = [
-    { id: 'intro', title: 'Introduction', hasContent: !!lesson.summary },
-    {
-      id: 'vocabulary',
-      title: 'Vocabulary',
-      hasContent: lesson.vocabularyItems.length > 0,
-    },
-    { id: 'grammar', title: 'Grammar', hasContent: lesson.grammarNotes.length > 0 },
-    { id: 'practice', title: 'Practice', hasContent: lesson.exercises.length > 0 },
-  ].filter(section => section.hasContent);
+  // Build sections list based on available content
+  const sections = useMemo(
+    () =>
+      [
+        { id: 'intro', title: 'Introduction', hasContent: !!lesson.summary },
+        {
+          id: 'vocabulary',
+          title: 'Vocabulary',
+          hasContent: lesson.vocabularyItems.length > 0,
+        },
+        { id: 'grammar', title: 'Grammar', hasContent: lesson.grammarNotes.length > 0 },
+        { id: 'practice', title: 'Practice', hasContent: lesson.exercises.length > 0 },
+      ].filter(section => section.hasContent),
+    [lesson]
+  );
 
   const progress = sections.length > 0 ? (completedSections.size / sections.length) * 100 : 0;
   const isComplete = progress === 100;
 
-  // Load saved progress
+  // Load saved progress and set initial section
   useEffect(() => {
     if (userProgress?.progress === 100) {
       setCompletedSections(new Set(sections.map(s => s.id)));
     }
-  }, [userProgress, sections]);
+    // Open first section by default
+    if (sections.length > 0 && !currentSection) {
+      setCurrentSection(sections[0].id);
+    }
+  }, [userProgress, sections, currentSection]);
 
   const handleCompleteLesson = async () => {
     if (!userId) return;
 
-    const timeSpent = Math.floor((Date.now() - startTime) / 60000); // minutes
+    const timeSpent = Math.floor((Date.now() - startTime) / 60000);
 
     try {
       await fetch('/api/lessons/progress', {
@@ -109,104 +133,176 @@ export default function LessonContent({
     }
   };
 
+  const handleContinue = () => {
+    const currentIndex = sections.findIndex(s => s.id === currentSection);
+    const isCurrentCompleted = completedSections.has(currentSection);
+
+    // If current section is not completed, mark it complete
+    if (!isCurrentCompleted) {
+      handleSectionComplete(currentSection);
+    }
+
+    // Move to next section if available
+    if (currentIndex < sections.length - 1) {
+      setCurrentSection(sections[currentIndex + 1].id);
+    }
+  };
+
+  const currentIndex = sections.findIndex(s => s.id === currentSection);
+  const isLastSection = currentIndex === sections.length - 1;
+  const isCurrentCompleted = completedSections.has(currentSection);
+
   return (
-    <div className="max-w-4xl mx-auto p-4 md:p-6 space-y-6 pb-24 lg:pb-8">
-      {/* Header */}
-      <Card className="p-6 bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20">
+    <div className="max-w-4xl mx-auto p-4 md:p-6 space-y-6 pb-32 lg:pb-8">
+      {/* Compact Header */}
+      <Card className="p-4 sm:p-6 bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20">
         <div className="space-y-4">
           <div>
             <p className="text-sm text-muted-foreground mb-1">{lesson.module.title}</p>
-            <h1 className="text-3xl font-bold">{lesson.title}</h1>
-            {lesson.summary && (
-              <p className="text-muted-foreground mt-2">{lesson.summary}</p>
+            <h1 className="text-2xl sm:text-3xl font-bold">{lesson.title}</h1>
+          </div>
+
+          {/* Metadata */}
+          <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+            {lesson.estimatedMinutes && (
+              <span className="flex items-center gap-1.5">
+                <Clock className="h-4 w-4" />
+                {lesson.estimatedMinutes} min
+              </span>
+            )}
+            {lesson.difficultyLevel && (
+              <span className="flex items-center gap-1.5">
+                <Award className="h-4 w-4" />
+                <span className="capitalize">{lesson.difficultyLevel}</span>
+              </span>
             )}
           </div>
 
-          <div className="lesson-card-meta">
-            <span className="metadata-item">
-              <Clock className="h-4 w-4 text-muted-foreground" />
-              <span className="duration-display">{lesson.estimatedMinutes} min</span>
-            </span>
-            <span className="metadata-item">
-              <Award className="h-4 w-4 text-muted-foreground" />
-              <span className="label-nowrap capitalize">{lesson.difficultyLevel}</span>
-            </span>
-          </div>
+          {/* Progress Stepper */}
+          <div className="flex items-center gap-2 pt-2">
+            {sections.map((section, index) => {
+              const isCompleted = completedSections.has(section.id);
+              const isCurrent = section.id === currentSection;
 
-          {/* Progress Bar */}
-          <div>
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium">Your Progress</span>
-              <span className="text-sm text-muted-foreground">
-                {Math.round(progress)}%
-              </span>
-            </div>
-            <div className="w-full bg-muted rounded-full h-3">
-              <div
-                className="bg-gradient-to-r from-primary to-secondary h-3 rounded-full transition-all duration-500"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
+              return (
+                <div key={section.id} className="flex items-center">
+                  {/* Step indicator */}
+                  <button
+                    onClick={() => setCurrentSection(section.id)}
+                    className={cn(
+                      'flex items-center justify-center w-8 h-8 rounded-full transition-all',
+                      'focus:outline-none focus:ring-2 focus:ring-primary/50',
+                      isCompleted
+                        ? 'bg-green-500 text-white'
+                        : isCurrent
+                        ? 'bg-primary text-primary-foreground ring-2 ring-primary/30'
+                        : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                    )}
+                    title={section.title}
+                  >
+                    {isCompleted ? (
+                      <CheckCircle className="h-4 w-4" />
+                    ) : (
+                      <span className="text-xs font-medium">{index + 1}</span>
+                    )}
+                  </button>
+
+                  {/* Connector line */}
+                  {index < sections.length - 1 && (
+                    <div
+                      className={cn(
+                        'w-6 sm:w-10 h-0.5 mx-1',
+                        completedSections.has(sections[index + 1]?.id) || isCompleted
+                          ? 'bg-green-500'
+                          : 'bg-muted'
+                      )}
+                    />
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </Card>
 
-      {/* Lesson Sections */}
-      {sections.map(section => (
-        <Card key={section.id} className="p-6">
-          <div className="flex items-center gap-2 mb-6">
-            {completedSections.has(section.id) ? (
-              <CheckCircle className="h-6 w-6 text-green-500 flex-shrink-0" />
-            ) : (
-              <Circle className="h-6 w-6 text-muted-foreground flex-shrink-0" />
-            )}
-            <h2 className="text-2xl font-semibold">{section.title}</h2>
-          </div>
+      {/* Accordion Sections */}
+      <Accordion
+        type="single"
+        value={currentSection}
+        onValueChange={setCurrentSection}
+        className="space-y-4"
+      >
+        {sections.map(section => {
+          const isCompleted = completedSections.has(section.id);
 
-          {/* Section Content */}
-          {section.id === 'intro' && (
-            <div className="prose prose-sm max-w-none mb-6">
-              <p className="text-lg leading-relaxed">{lesson.summary}</p>
-            </div>
-          )}
-
-          {section.id === 'vocabulary' && (
-            <VocabularySection items={lesson.vocabularyItems as never[]} />
-          )}
-
-          {section.id === 'grammar' && (
-            <GrammarSection notes={lesson.grammarNotes as never[]} />
-          )}
-
-          {section.id === 'practice' && (
-            <ExerciseSection exercises={lesson.exercises as never[]} />
-          )}
-
-          {/* Complete Section Button */}
-          {!completedSections.has(section.id) && (
-            <Button
-              onClick={() => handleSectionComplete(section.id)}
-              className="mt-6"
-              size="lg"
+          return (
+            <AccordionItem
+              key={section.id}
+              value={section.id}
+              className="border rounded-lg overflow-hidden bg-card"
             >
-              <CheckCircle className="h-4 w-4 mr-2" />
-              Mark Section as Complete
-            </Button>
-          )}
-        </Card>
-      ))}
+              <AccordionTrigger className="px-4 sm:px-6 py-4 hover:no-underline">
+                <div className="flex items-center gap-3">
+                  {isCompleted ? (
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                  ) : (
+                    <Circle className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+                  )}
+                  <span className="text-lg font-semibold">{section.title}</span>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="px-4 sm:px-6 pb-6">
+                {/* Section Content */}
+                {section.id === 'intro' && (
+                  <div className="prose prose-sm max-w-none">
+                    <p className="text-lg leading-relaxed text-muted-foreground">
+                      {lesson.summary}
+                    </p>
+                  </div>
+                )}
 
-      {/* Completion Card */}
+                {section.id === 'vocabulary' && (
+                  <VocabularySection items={lesson.vocabularyItems as never[]} />
+                )}
+
+                {section.id === 'grammar' && (
+                  <GrammarSection notes={lesson.grammarNotes as never[]} />
+                )}
+
+                {section.id === 'practice' && (
+                  <ExerciseSection exercises={lesson.exercises as never[]} />
+                )}
+
+                {/* Complete Section Button (inline, for desktop) */}
+                {!isCompleted && (
+                  <Button
+                    onClick={() => handleSectionComplete(section.id)}
+                    className="mt-6 hidden lg:inline-flex"
+                    size="lg"
+                  >
+                    <CheckCircle className="h-4 w-4 mr-2" />
+                    Mark Section as Complete
+                  </Button>
+                )}
+              </AccordionContent>
+            </AccordionItem>
+          );
+        })}
+      </Accordion>
+
+      {/* Completion Celebration */}
       {isComplete && (
-        <Card className="p-8 bg-gradient-to-br from-green-500/10 to-emerald-500/10 border-green-500/20 text-center">
+        <Card className="p-6 sm:p-8 bg-gradient-to-br from-green-500/10 to-emerald-500/10 border-green-500/20 text-center">
           <div className="flex flex-col items-center gap-4">
-            <div className="h-16 w-16 rounded-full bg-green-500/20 flex items-center justify-center">
-              <CheckCircle className="h-10 w-10 text-green-500" />
+            <div className="h-20 w-20 rounded-full bg-green-500/20 flex items-center justify-center animate-bounce">
+              <Sparkles className="h-10 w-10 text-green-500" />
             </div>
             <div>
-              <h3 className="text-2xl font-bold mb-2">Lesson Complete! 🎉</h3>
-              <p className="text-muted-foreground">
-                Great job! You&apos;ve completed this lesson.
+              <h3 className="text-2xl sm:text-3xl font-bold mb-2">
+                Congratulations!
+              </h3>
+              <p className="text-muted-foreground text-lg">
+                You&apos;ve completed this lesson. Great job!
               </p>
             </div>
 
@@ -222,6 +318,32 @@ export default function LessonContent({
             )}
           </div>
         </Card>
+      )}
+
+      {/* Floating Continue Button (mobile only, hidden when complete) */}
+      {!isComplete && (
+        <div className="fixed bottom-20 left-0 right-0 p-4 bg-gradient-to-t from-background via-background to-transparent lg:hidden">
+          <Button
+            onClick={isLastSection && isCurrentCompleted ? handleCompleteLesson : handleContinue}
+            size="lg"
+            className="w-full h-14 text-base font-semibold shadow-lg"
+          >
+            {isLastSection && isCurrentCompleted ? (
+              <>
+                Complete Lesson
+                <CheckCircle className="h-5 w-5 ml-2" />
+              </>
+            ) : (
+              <>
+                <span className="text-primary-foreground/70 mr-2">
+                  Section {currentIndex + 1} of {sections.length}
+                </span>
+                Continue
+                <ArrowRight className="h-5 w-5 ml-2" />
+              </>
+            )}
+          </Button>
+        </div>
       )}
     </div>
   );
