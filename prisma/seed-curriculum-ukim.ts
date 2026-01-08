@@ -115,13 +115,13 @@ async function seedFullCurriculum(textbook: StructuredTextbook) {
       },
       update: {
         title: chapter.title,
-        summary: chapter.titleMk,
+        summary: (chapter as any).intro || chapter.titleMk,
         content: `Lesson ${chapter.lessonNumber} from ${textbook.title}`,
       },
       create: {
         moduleId: curriculumModule.id,
         title: chapter.title,
-        summary: chapter.titleMk,
+        summary: (chapter as any).intro || chapter.titleMk,
         content: `Lesson ${chapter.lessonNumber} from ${textbook.title}`,
         orderIndex: chapter.lessonNumber,
         estimatedMinutes: 30, // Default estimate
@@ -216,13 +216,13 @@ async function seedB1Skeleton(skeleton: B1Skeleton) {
       },
       update: {
         title: chapter.title,
-        summary: chapter.titleMk,
+        summary: (chapter as any).intro || chapter.titleMk,
         content: (chapter as any).note || `Lesson ${lessonNum} from ${skeleton.title}`,
       },
       create: {
         moduleId: curriculumModule.id,
         title: chapter.title,
-        summary: chapter.titleMk,
+        summary: (chapter as any).intro || chapter.titleMk,
         content: (chapter as any).note || `Lesson ${lessonNum} from ${skeleton.title}`,
         orderIndex: lessonNum,
         estimatedMinutes: 45,
