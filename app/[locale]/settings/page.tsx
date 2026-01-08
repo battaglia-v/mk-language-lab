@@ -25,8 +25,10 @@ export default function SettingsPage() {
   const [dailyGoal, setDailyGoal] = useState(20);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [resetComplete, setResetComplete] = useState(false);
+  const [resetError, setResetError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
+  const [isResetting, setIsResetting] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   const isSignedIn = status === 'authenticated' && !!session?.user;
@@ -113,12 +115,36 @@ export default function SettingsPage() {
     router.push(newPath);
   };
 
-  const handleResetProgress = () => {
-    clearAllLocalProgress();
-    setShowResetConfirm(false);
-    setResetComplete(true);
-    setDailyGoal(20);
-    setTimeout(() => setResetComplete(false), 3000);
+  const handleResetProgress = async () => {
+    setIsResetting(true);
+    setResetError(null);
+
+    try {
+      // If signed in, call the API to reset server data first
+      if (isSignedIn) {
+        const response = await fetch('/api/user/reset-progress', {
+          method: 'POST',
+        });
+
+        if (!response.ok) {
+          const data = await response.json();
+          throw new Error(data.error || 'Failed to reset progress');
+        }
+      }
+
+      // Always clear localStorage
+      clearAllLocalProgress();
+
+      setShowResetConfirm(false);
+      setResetComplete(true);
+      setDailyGoal(20);
+      setTimeout(() => setResetComplete(false), 3000);
+    } catch (error) {
+      console.error('Failed to reset progress:', error);
+      setResetError(error instanceof Error ? error.message : 'Failed to reset progress');
+    } finally {
+      setIsResetting(false);
+    }
   };
 
   const currentTheme = mounted ? (resolvedTheme || theme || 'dark') : 'dark';
@@ -316,6 +342,7 @@ export default function SettingsPage() {
                     variant="outline"
                     size="sm"
                     onClick={() => setShowResetConfirm(false)}
+                    disabled={isResetting}
                     data-testid="settings-reset-cancel"
                   >
                     Cancel
@@ -324,9 +351,17 @@ export default function SettingsPage() {
                     variant="destructive"
                     size="sm"
                     onClick={handleResetProgress}
+                    disabled={isResetting}
                     data-testid="settings-reset-confirm"
                   >
-                    Confirm
+                    {isResetting ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin mr-1" />
+                        Resetting...
+                      </>
+                    ) : (
+                      'Confirm'
+                    )}
                   </Button>
                 </div>
               )}
@@ -334,6 +369,9 @@ export default function SettingsPage() {
           </div>
           {resetComplete && (
             <p className="mt-2 text-sm text-emerald-500 text-center">Progress reset successfully!</p>
+          )}
+          {resetError && (
+            <p className="mt-2 text-sm text-destructive text-center">{resetError}</p>
           )}
         </div>
       </div>
