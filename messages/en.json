@@ -1113,6 +1113,13 @@
         "description": "Practice phrases you saved from translator",
         "time": "2–5 min",
         "xp": "+10 XP"
+      },
+      "lessonReview": {
+        "title": "Lesson Review",
+        "description": "Practice vocabulary from completed lessons",
+        "time": "5–10 min",
+        "xp": "+15 XP",
+        "disabledReason": "Complete a lesson to unlock vocabulary review"
       }
     },
     "hub": {
