@@ -101,7 +101,7 @@ Plans:
 **Plans**: 3
 
 Plans:
-- [ ] 13-01: B1 vocabulary quality fix (stop word filtering)
+- [x] 13-01: B1 vocabulary quality fix (stop word filtering) — completed 2026-01-08
 - [ ] 13-02: B1 grammar templates
 - [ ] 13-03: B1 translations (vocabulary + grammar)
 
@@ -145,7 +145,7 @@ Phases execute in numeric order: 1 → 2 → ... → 11 → 12 → 12.1 → 13 �
 | 11. A1 Grammar Content | v1.1 | 1/1 | Complete | 2026-01-07 |
 | 12. A2 Content Population | v1.1 | 1/1 | Complete | 2026-01-07 |
 | 12.1 UX Fixes (INSERTED) | v1.1 | 2/2 | Complete | 2026-01-08 |
-| 13. B1 Content Bootstrap | v1.1 | 0/3 | Not started | - |
+| 13. B1 Content Bootstrap | v1.1 | 1/3 | In progress | - |
 | 14. Content Validation | v1.1 | 0/? | Not started | - |
 | 15. Practice Integration | v1.1 | 0/? | Not started | - |
 
