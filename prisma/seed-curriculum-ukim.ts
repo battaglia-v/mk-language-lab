@@ -273,9 +273,62 @@ async function seedB1Skeleton(skeleton: B1Skeleton) {
   console.log(`   📊 Total: ${totalVocab} vocabulary items, ${totalGrammar} grammar notes`);
 }
 
+/**
+ * Validate JSON structure without database writes (dry-run mode)
+ */
+function validateDryRun(textbook: StructuredTextbook | B1Skeleton, levelName: string): { vocabCount: number; grammarCount: number; errors: string[] } {
+  const errors: string[] = [];
+  let vocabCount = 0;
+  let grammarCount = 0;
+
+  console.log(`\n📋 Validating ${levelName} - ${textbook.title} (${textbook.journeyId})`);
+  console.log(`   Chapters: ${textbook.chapters.length}`);
+
+  for (const chapter of textbook.chapters) {
+    const lessonNum = (chapter as StructuredLesson).lessonNumber || (chapter as B1Chapter).chapterNumber || 0;
+
+    // Validate required fields
+    if (!chapter.title) {
+      errors.push(`${levelName} Lesson ${lessonNum}: Missing title`);
+    }
+    if (!chapter.titleMk) {
+      errors.push(`${levelName} Lesson ${lessonNum}: Missing titleMk`);
+    }
+
+    // Count vocabulary
+    const vocabItems = (chapter as StructuredLesson).vocabularyItems || [];
+    vocabCount += vocabItems.length;
+
+    // Validate vocabulary items
+    for (const vocab of vocabItems) {
+      const word = (vocab as any).word || (vocab as any).macedonian || '';
+      if (!word) {
+        errors.push(`${levelName} Lesson ${lessonNum}: Vocabulary item missing word`);
+      }
+    }
+
+    // Count grammar
+    const grammarNotes = (chapter as StructuredLesson).grammarNotes || [];
+    grammarCount += grammarNotes.length;
+
+    // Validate grammar notes
+    for (const grammar of grammarNotes) {
+      if (!grammar.title) {
+        errors.push(`${levelName} Lesson ${lessonNum}: Grammar note missing title`);
+      }
+    }
+
+    console.log(`   ✓ Lesson ${lessonNum}: ${vocabItems.length} vocab, ${grammarNotes.length} grammar`);
+  }
+
+  return { vocabCount, grammarCount, errors };
+}
+
 async function main() {
+  const isDryRun = process.argv.includes('--dry-run');
+
   console.log('='.repeat(60));
-  console.log('🌱 Seeding UKIM Curriculum (A1, A2, B1)');
+  console.log(isDryRun ? '🔍 Validating UKIM Curriculum (Dry Run)' : '🌱 Seeding UKIM Curriculum (A1, A2, B1)');
   console.log('='.repeat(60));
 
   try {
@@ -284,25 +337,56 @@ async function main() {
     const a2 = loadJSON<StructuredTextbook>('data/curriculum/structured/a2-lozje.json');
     const b1 = loadJSON<B1Skeleton>('data/curriculum/structured/b1-zlatovrv.json');
 
-    // Seed A1
-    await seedFullCurriculum(a1);
+    if (isDryRun) {
+      // Dry run - validate without database writes
+      const results = {
+        a1: validateDryRun(a1, 'A1'),
+        a2: validateDryRun(a2, 'A2'),
+        b1: validateDryRun(b1, 'B1'),
+      };
 
-    // Seed A2
-    await seedFullCurriculum(a2);
+      const totalVocab = results.a1.vocabCount + results.a2.vocabCount + results.b1.vocabCount;
+      const totalGrammar = results.a1.grammarCount + results.a2.grammarCount + results.b1.grammarCount;
+      const allErrors = [...results.a1.errors, ...results.a2.errors, ...results.b1.errors];
 
-    // Seed B1 (skeleton only)
-    await seedB1Skeleton(b1);
+      console.log('\n' + '='.repeat(60));
+      console.log('📊 Dry Run Summary');
+      console.log('='.repeat(60));
+      console.log(`\nLevels validated: 3`);
+      console.log(`Total lessons: ${a1.chapters.length + a2.chapters.length + b1.chapters.length}`);
+      console.log(`Total vocabulary items: ${totalVocab}`);
+      console.log(`Total grammar notes: ${totalGrammar}`);
+      console.log(`\nBreakdown:`);
+      console.log(`  A1: ${results.a1.vocabCount} vocab, ${results.a1.grammarCount} grammar`);
+      console.log(`  A2: ${results.a2.vocabCount} vocab, ${results.a2.grammarCount} grammar`);
+      console.log(`  B1: ${results.b1.vocabCount} vocab, ${results.b1.grammarCount} grammar`);
 
-    console.log('\n' + '='.repeat(60));
-    console.log('🎉 UKIM curriculum seeding complete!');
-    console.log('='.repeat(60));
-    console.log('\nCreated/Updated:');
-    console.log('- 3 Modules (ukim-a1, ukim-a2, ukim-b1)');
-    console.log(`- ${a1.chapters.length + a2.chapters.length + b1.chapters.length} Lessons total`);
-    console.log('- Vocabulary items from A1 and A2');
-    console.log('- Grammar notes from A1 and A2');
-    console.log('- B1 skeleton structure (content pending)');
-    console.log();
+      if (allErrors.length > 0) {
+        console.log(`\n⚠️  Validation errors (${allErrors.length}):`);
+        allErrors.forEach(err => console.log(`  - ${err}`));
+        console.log('\n❌ Dry run completed with errors');
+        process.exit(1);
+      } else {
+        console.log('\n✅ Dry run completed - all JSON files valid');
+        console.log('   Ready for database seeding with: npm run db:seed:ukim');
+      }
+    } else {
+      // Actual seeding
+      await seedFullCurriculum(a1);
+      await seedFullCurriculum(a2);
+      await seedB1Skeleton(b1);
+
+      console.log('\n' + '='.repeat(60));
+      console.log('🎉 UKIM curriculum seeding complete!');
+      console.log('='.repeat(60));
+      console.log('\nCreated/Updated:');
+      console.log('- 3 Modules (ukim-a1, ukim-a2, ukim-b1)');
+      console.log(`- ${a1.chapters.length + a2.chapters.length + b1.chapters.length} Lessons total`);
+      console.log('- Vocabulary items from A1 and A2');
+      console.log('- Grammar notes from A1 and A2');
+      console.log('- B1 skeleton structure (content pending)');
+      console.log();
+    }
   } catch (error) {
     console.error('❌ Error during seeding:', error);
     throw error;
