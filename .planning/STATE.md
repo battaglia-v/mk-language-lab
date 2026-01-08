@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-07)
 
 ## Current Position
 
-Phase: 12 of 15 (A2 Content Population)
-Plan: 1 of 1 complete
-Status: Phase complete
-Last activity: 2026-01-07 — Completed 12-01-PLAN.md
+Phase: 12.1 of 15 (UX Fixes - INSERTED)
+Plan: 1 of 2 complete
+Status: Plan 12.1-01 complete
+Last activity: 2026-01-08 — UX fixes plan executed (eae4e87)
 
-Progress: ████░░░░░░ 42%
+Progress: ████░░░░░░ 45%
 
 ## Milestone Summary
 
@@ -77,7 +77,7 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-01-07
-Stopped at: Completed 11-01-PLAN.md (A1 Grammar Content) - Phase 11 complete
+Last session: 2026-01-08
+Stopped at: Plan 12.1-01 complete
 Resume file: None
-Next step: Run /gsd:plan-phase 12 (A2 Content Population)
+Next step: Run /gsd:execute-plan .planning/phases/12.1-ux-fixes/12.1-02-PLAN.md
