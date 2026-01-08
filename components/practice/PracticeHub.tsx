@@ -1,10 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useSession } from 'next-auth/react';
-import { Volume2, Brain, FileText, Sparkles, Heart, Settings2, Clock, Zap, ChevronRight, Play } from 'lucide-react';
+import { Volume2, Brain, FileText, Sparkles, Heart, Settings2, Clock, Zap, ChevronRight, Play, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { BottomSheet } from '@/components/ui/BottomSheet';
 import { usePracticeDecks } from './usePracticeDecks';
@@ -37,6 +37,8 @@ export function PracticeHub() {
     clearCustomDeck, clearMistakes,
     recommendedDeck,
     vocabCounts,
+    lessonReviewDeck,
+    loadLessonReviewDeck,
   } = usePracticeDecks();
 
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -47,6 +49,13 @@ export function PracticeHub() {
 
   const isAuthenticated = status === 'authenticated';
   const hasVocabulary = vocabCounts.total > 0;
+
+  // Load lesson review deck on mount
+  useEffect(() => {
+    if (isAuthenticated) {
+      loadLessonReviewDeck();
+    }
+  }, [isAuthenticated, loadLessonReviewDeck]);
 
   const handleDeckSelect = (type: DeckType) => {
     setDeckType(type);
@@ -67,6 +76,15 @@ export function PracticeHub() {
       href: `/${locale}/practice/word-sprint`,
       icon: FileText,
       variant: 'primary',
+    },
+    {
+      id: 'lessonReview',
+      href: `/${locale}/practice/session?deck=lesson-review&mode=multiple-choice`,
+      icon: BookOpen,
+      variant: 'default',
+      cardCount: lessonReviewDeck.length,
+      disabled: lessonReviewDeck.length === 0,
+      disabledReason: t('modes.lessonReview.disabledReason', { default: 'Complete a lesson to unlock vocabulary review' }),
     },
     {
       id: 'vocabulary',
