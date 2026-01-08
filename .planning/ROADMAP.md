@@ -91,7 +91,7 @@ Plans:
 
 Plans:
 - [x] 12.1-01: Reset progress API, remove reader audio, translate A1 vocabulary — completed 2026-01-08
-- [ ] 12.1-02: Translate A2 vocabulary and grammar examples
+- [x] 12.1-02: Translate A2 vocabulary and grammar examples — completed 2026-01-08
 
 #### Phase 13: B1 Content Bootstrap
 
@@ -142,7 +142,7 @@ Phases execute in numeric order: 1 → 2 → ... → 11 → 12 → 12.1 → 13 �
 | 10. A1 Vocabulary Extraction | v1.1 | 1/1 | Complete | 2026-01-07 |
 | 11. A1 Grammar Content | v1.1 | 1/1 | Complete | 2026-01-07 |
 | 12. A2 Content Population | v1.1 | 1/1 | Complete | 2026-01-07 |
-| 12.1 UX Fixes (INSERTED) | v1.1 | 1/2 | In progress | - |
+| 12.1 UX Fixes (INSERTED) | v1.1 | 2/2 | Complete | 2026-01-08 |
 | 13. B1 Content Bootstrap | v1.1 | 0/? | Not started | - |
 | 14. Content Validation | v1.1 | 0/? | Not started | - |
 | 15. Practice Integration | v1.1 | 0/? | Not started | - |
