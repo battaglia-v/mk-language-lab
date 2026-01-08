@@ -138,9 +138,9 @@ async function seedFullCurriculum(textbook: StructuredTextbook) {
       await prisma.vocabularyItem.createMany({
         data: chapter.vocabularyItems.map((vocab, idx) => ({
           lessonId: lesson.id,
-          macedonianText: vocab.macedonian,
-          englishText: vocab.english,
-          exampleSentenceMk: vocab.context || null,
+          macedonianText: (vocab as any).word || (vocab as any).macedonian || '',
+          englishText: (vocab as any).translation || (vocab as any).english || '',
+          exampleSentenceMk: (vocab as any).context || null,
           orderIndex: idx,
         })),
       });
@@ -200,35 +200,77 @@ async function seedB1Skeleton(skeleton: B1Skeleton) {
 
   console.log(`   ✅ Module created/updated: ${curriculumModule.title} (ID: ${curriculumModule.id})`);
 
-  // Seed chapter placeholders
+  // Seed chapters with full content (like A1/A2)
+  let totalVocab = 0;
+  let totalGrammar = 0;
+
   for (const chapter of skeleton.chapters) {
-    await prisma.curriculumLesson.upsert({
+    const lessonNum = (chapter as any).lessonNumber || (chapter as any).chapterNumber || 1;
+
+    const lesson = await prisma.curriculumLesson.upsert({
       where: {
         moduleId_orderIndex: {
           moduleId: curriculumModule.id,
-          orderIndex: chapter.chapterNumber,
+          orderIndex: lessonNum,
         },
       },
       update: {
         title: chapter.title,
         summary: chapter.titleMk,
-        content: chapter.note,
+        content: (chapter as any).note || `Lesson ${lessonNum} from ${skeleton.title}`,
       },
       create: {
         moduleId: curriculumModule.id,
         title: chapter.title,
         summary: chapter.titleMk,
-        content: chapter.note,
-        orderIndex: chapter.chapterNumber,
-        estimatedMinutes: 45, // Default estimate for B1
+        content: (chapter as any).note || `Lesson ${lessonNum} from ${skeleton.title}`,
+        orderIndex: lessonNum,
+        estimatedMinutes: 45,
         difficultyLevel: 'intermediate',
       },
     });
 
-    console.log(`   ✅ Chapter ${chapter.chapterNumber}: ${chapter.titleMk}`);
+    // Delete existing vocabulary and grammar for this lesson
+    await prisma.vocabularyItem.deleteMany({ where: { lessonId: lesson.id } });
+    await prisma.grammarNote.deleteMany({ where: { lessonId: lesson.id } });
+
+    // Create vocabulary items if present
+    const vocabItems = (chapter as any).vocabularyItems || [];
+    if (vocabItems.length > 0) {
+      await prisma.vocabularyItem.createMany({
+        data: vocabItems.map((vocab: any, idx: number) => ({
+          lessonId: lesson.id,
+          macedonianText: vocab.word || vocab.macedonian || '',
+          englishText: vocab.translation || vocab.english || '',
+          exampleSentenceMk: vocab.context || null,
+          orderIndex: idx,
+        })),
+      });
+      totalVocab += vocabItems.length;
+    }
+
+    // Create grammar notes if present
+    const grammarNotes = (chapter as any).grammarNotes || [];
+    if (grammarNotes.length > 0) {
+      for (const [idx, grammar] of grammarNotes.entries()) {
+        await prisma.grammarNote.create({
+          data: {
+            lessonId: lesson.id,
+            title: grammar.title,
+            explanation: grammar.content,
+            examples: JSON.stringify(grammar.examples),
+            orderIndex: idx,
+          },
+        });
+      }
+      totalGrammar += grammarNotes.length;
+    }
+
+    console.log(`   ✅ Lesson ${lessonNum}: ${chapter.titleMk}`);
+    console.log(`      Vocab: ${vocabItems.length}, Grammar: ${grammarNotes.length}`);
   }
 
-  console.log(`   📊 B1 skeleton complete (no vocab/grammar yet)`);
+  console.log(`   📊 Total: ${totalVocab} vocabulary items, ${totalGrammar} grammar notes`);
 }
 
 async function main() {
