@@ -12,6 +12,7 @@ import {
   extractGrammarExamples,
   extractConjugationTables,
 } from './grammar-patterns';
+import { findB1GrammarTemplate } from './b1-grammar-content';
 
 const INPUT_PATH = 'data/curriculum/extracted/b1-raw.json';
 const OUTPUT_PATH = 'data/curriculum/structured/b1-zlatovrv.json';
@@ -130,6 +131,35 @@ function extractVocabulary(lessonText: string): StructuredVocabulary[] {
 }
 
 /**
+ * Enhance thin grammar content with template data
+ * Uses templates when extracted content is insufficient
+ */
+function enhanceWithTemplate(note: StructuredGrammar): StructuredGrammar {
+  const template = findB1GrammarTemplate(note.title);
+  if (!template) {
+    return note; // No template available
+  }
+
+  let enhanced = { ...note };
+  let wasEnhanced = false;
+
+  // If explanation is too short (< 50 chars), use template explanation
+  if (note.content.length < 50) {
+    enhanced.content = template.explanation;
+    wasEnhanced = true;
+  }
+
+  // If too few examples (< 3), merge with template examples
+  if (note.examples.length < 3) {
+    const combinedExamples = [...note.examples, ...template.examples];
+    enhanced.examples = [...new Set(combinedExamples)].slice(0, 10); // Dedupe and limit
+    wasEnhanced = true;
+  }
+
+  return enhanced;
+}
+
+/**
  * Extract grammar notes from text using both section-based and pattern extraction
  */
 function extractGrammarNotes(lessonText: string): StructuredGrammar[] {
@@ -223,7 +253,10 @@ function extractGrammarNotes(lessonText: string): StructuredGrammar[] {
     }
   }
 
-  return notes;
+  // 4. Enhance thin content with templates
+  const enhancedNotes = notes.map(note => enhanceWithTemplate(note));
+
+  return enhancedNotes;
 }
 
 /**
