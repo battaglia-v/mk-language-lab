@@ -1,0 +1,2021 @@
+{
+  "validationDate": "2026-01-08T18:44:35.201Z",
+  "summary": {
+    "totalLevels": 3,
+    "totalVocabulary": 25577,
+    "totalGrammar": 146,
+    "totalIssues": 240,
+    "passedAllChecks": true,
+    "criticalIssues": 240
+  },
+  "levels": [
+    {
+      "level": "A1",
+      "totalLessons": 24,
+      "totalVocabulary": 5201,
+      "totalGrammar": 73,
+      "vocabWithTranslations": 4968,
+      "grammarWithExplanations": 73,
+      "grammarWithExamples": 73,
+      "grammarWith3PlusExamples": 73,
+      "grammarWithTranslatedExamples": 73,
+      "avgVocabPerLesson": 217,
+      "minVocabPerLesson": 74,
+      "maxVocabPerLesson": 343,
+      "lessonsBelow20Vocab": 0,
+      "issues": [
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Училиштето → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Марко → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "колата → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Ангела → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Мирјана → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Миле → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Црвената → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "нашите → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "соседи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "присвојни → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "гледаш → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Зборувајте → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "студентите → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "познати → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "цел → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "свет → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Слушајте → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "гласовите → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "крајот → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "мобилни → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "брои → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "крој → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "допаѓа → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "спои → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "минусот → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "плусот → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "кабелот → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "албум → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "бој → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "крои → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "спој → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Повели → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Фала → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "молам → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Повелете → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "шолја → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "чаша → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "банана → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "сок → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "трети → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "јаболкото → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "однос → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "кутијата → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "ред → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Вметни → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "испуштените → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "согласки → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Ванчо → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Наталија → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "множински → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Составете → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "село → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "учили → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "списание → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "видеоигри → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "филмови → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "гледа → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "телевизија → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "сендви → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "чита → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "весни → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "антоними → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "кого → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "седи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "носам → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "високи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "зборувам → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "германски → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Предавам → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "кенд → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "плани → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "слатки → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "глаголи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Неговите → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "хотелска → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "ред → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "работи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "хотел → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "спротивно → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "гледаш → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Марта → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Соколова → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "паузата → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "ручек → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "обично → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "играме → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "уморна → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "болна → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "прават → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "ситуација → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "сендвич → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "пинг → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "понг → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "слуша → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 8,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "сок → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 8,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "чаша → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 8,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "свет → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 8,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "цел → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 8,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "допаѓа → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 8,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "албум → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 8,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "обично → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 8,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "зборувам → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 8,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "слуша → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 8,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "чита → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 8,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "гледа → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 9,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Обично → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 9,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "допаѓа → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 9,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "ручек → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 10,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "работи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 10,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "гледа → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 10,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "телевизија → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 10,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "чита → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 10,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "неговите → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 10,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "продаваат → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 10,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "спротивно → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 10,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "хотел → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 10,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "молам → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 11,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "хотел → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 11,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Обично → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 11,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "зборувам → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 11,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "молам → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 11,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "прават → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 11,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "глаголи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 11,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "пуши → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 11,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "гледа → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 11,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "седи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 11,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "слуша → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 11,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "чита → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 12,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "чита → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 12,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "хотел → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 12,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "работи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 12,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "кого → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 12,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "обично → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 12,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "ред → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 12,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "прават → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 12,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "пуши → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 12,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "слатки → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 12,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "глаголи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 13,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "гледаш → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 13,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "шолја → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 13,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "држење → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 13,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "работи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 13,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "прават → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 13,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "сок → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 14,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "свет → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 14,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "обично → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 14,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "спротивно → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 14,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "прават → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 14,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "цел → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 14,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "продаваат → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 14,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "неговите → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 14,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "гледаш → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 15,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "прават → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 15,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "работи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 15,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "обично → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 15,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Играме → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 15,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "глаголи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 15,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "гледа → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 15,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "гледаш → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 16,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "чита → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 16,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "глаголи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 16,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "гледа → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 16,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "пуши → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 16,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "слуша → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 16,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "село → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 16,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "германски → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 16,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "трети → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 17,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "молам → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 17,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "крајот → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 17,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "почна → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 17,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "свиреше → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 17,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "напиша → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 17,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "титули → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 17,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "првак → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Потсети → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "гледаше → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Тест → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "помнење → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "јадеше → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "пиеше → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "ручаше → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "глаголи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "носеше → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "земаше → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "чинеше → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "правеше → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "победи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "испи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "облече → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "потроши → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "доцнам → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "обично → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "возам → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "автобуска → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "постојка → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "левата → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "ред → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Библиотеката → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "крајот → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 18,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "познати → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 19,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "работи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 19,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "свет → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 19,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "пуши → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 19,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "видеоигри → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 19,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "колата → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 19,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "хотел → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 20,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Високи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 20,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "однос → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 20,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "глаголи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 20,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "телевизија → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 20,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "колата → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 21,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "пуши → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 21,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "гледа → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 21,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "хотел → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 21,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "хотелска → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 21,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "глаголи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 22,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "работи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 22,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "прават → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 22,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "кого → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 22,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "победи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 22,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "крајот → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 22,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "телевизија → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 23,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "гледаш → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 23,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "носам → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 23,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "прават → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 23,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "работи → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 23,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "Миле → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 24,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "играме → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 24,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "чаша → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 24,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "прават → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 24,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "филмови → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 24,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "село → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A1",
+          "lesson": 24,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "телевизија → ",
+          "issue": "Empty translation"
+        }
+      ]
+    },
+    {
+      "level": "A2",
+      "totalLessons": 8,
+      "totalVocabulary": 8372,
+      "totalGrammar": 46,
+      "vocabWithTranslations": 8368,
+      "grammarWithExplanations": 46,
+      "grammarWithExamples": 46,
+      "grammarWith3PlusExamples": 46,
+      "grammarWithTranslatedExamples": 46,
+      "avgVocabPerLesson": 1047,
+      "minVocabPerLesson": 819,
+      "maxVocabPerLesson": 1197,
+      "lessonsBelow20Vocab": 0,
+      "issues": [
+        {
+          "level": "A2",
+          "lesson": 2,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "почувствувате → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A2",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "хотели → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A2",
+          "lesson": 6,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "почувствувате → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "A2",
+          "lesson": 8,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "планирале → ",
+          "issue": "Empty translation"
+        }
+      ]
+    },
+    {
+      "level": "B1",
+      "totalLessons": 8,
+      "totalVocabulary": 12004,
+      "totalGrammar": 27,
+      "vocabWithTranslations": 12001,
+      "grammarWithExplanations": 27,
+      "grammarWithExamples": 27,
+      "grammarWith3PlusExamples": 27,
+      "grammarWithTranslatedExamples": 27,
+      "avgVocabPerLesson": 1501,
+      "minVocabPerLesson": 1198,
+      "maxVocabPerLesson": 2000,
+      "lessonsBelow20Vocab": 0,
+      "issues": [
+        {
+          "level": "B1",
+          "lesson": 5,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "даден → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "B1",
+          "lesson": 7,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "даден → ",
+          "issue": "Empty translation"
+        },
+        {
+          "level": "B1",
+          "lesson": 8,
+          "type": "vocabulary",
+          "field": "translation",
+          "value": "сојузник → ",
+          "issue": "Empty translation"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "A1 vocabulary coverage (20+ per lesson)",
+      "passed": true,
+      "details": "✅ All 24 lessons have 20+ vocab items (min: 74, avg: 217)"
+    },
+    {
+      "name": "A1 grammar quality (explanations + 3+ examples)",
+      "passed": true,
+      "details": "✅ All 73 grammar notes have explanations and 3+ examples"
+    },
+    {
+      "name": "A2 vocabulary populated (5000+ items)",
+      "passed": true,
+      "details": "✅ A2 has 8372 vocabulary items"
+    },
+    {
+      "name": "A2 grammar populated (40+ notes)",
+      "passed": true,
+      "details": "✅ A2 has 46 grammar notes"
+    },
+    {
+      "name": "B1 vocabulary skeleton (10000+ items)",
+      "passed": true,
+      "details": "✅ B1 has 12004 vocabulary items"
+    },
+    {
+      "name": "No garbled OCR text in content",
+      "passed": true,
+      "details": "✅ No garbled OCR text detected"
+    },
+    {
+      "name": "Vocabulary has translations (95%+ coverage)",
+      "passed": true,
+      "details": "✅ 99.1% of vocabulary has translations (25337/25577)"
+    }
+  ]
+}
