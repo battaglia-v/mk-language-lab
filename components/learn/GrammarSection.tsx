@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { BookOpen, ChevronDown, ChevronUp } from 'lucide-react';
-import { Card } from '@/components/ui/card';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -18,7 +17,7 @@ interface GrammarSectionProps {
 }
 
 // Number of characters to show before truncating
-const TRUNCATE_THRESHOLD = 200;
+const TRUNCATE_THRESHOLD = 150;
 
 export default function GrammarSection({ notes }: GrammarSectionProps) {
   const [expandedNotes, setExpandedNotes] = useState<Set<string>>(new Set());
@@ -34,8 +33,8 @@ export default function GrammarSection({ notes }: GrammarSectionProps) {
   };
 
   return (
-    <div className="space-y-8">
-      {notes.map((note, noteIndex) => {
+    <div className="space-y-4">
+      {notes.map((note) => {
         let examples: string[] = [];
         try {
           examples = JSON.parse(note.examples);
@@ -48,94 +47,73 @@ export default function GrammarSection({ notes }: GrammarSectionProps) {
         const shouldTruncate = isLong && !isExpanded;
 
         return (
-          <Card
+          <div
             key={note.id}
-            className="p-4 sm:p-6 bg-gradient-to-br from-secondary/5 to-secondary/10 border-secondary/20"
+            className="p-4 rounded-lg bg-secondary/5 border border-secondary/20"
           >
-            {/* Header with icon and title */}
-            <div className="flex items-start gap-3 sm:gap-4 mb-4">
-              <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0">
-                <BookOpen className="h-5 w-5 sm:h-6 sm:w-6 text-secondary" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <h3 className="text-lg sm:text-xl font-semibold leading-tight">
-                  {note.title}
-                </h3>
-              </div>
-            </div>
+            {/* Compact title */}
+            <h3 className="text-base font-semibold text-secondary mb-2">
+              {note.title}
+            </h3>
 
-            {/* Explanation with expand/collapse */}
-            <div className="mb-4">
-              <p
-                className={cn(
-                  'text-base sm:text-lg text-muted-foreground leading-relaxed',
-                  shouldTruncate && 'line-clamp-3'
-                )}
-              >
-                {note.explanation}
-              </p>
-
-              {isLong && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => toggleNote(note.id)}
-                  className="mt-2 h-11 min-h-[44px] px-3 text-secondary hover:text-secondary/80"
-                >
-                  {isExpanded ? (
-                    <>
-                      <ChevronUp className="h-4 w-4 mr-1" />
-                      Show less
-                    </>
-                  ) : (
-                    <>
-                      <ChevronDown className="h-4 w-4 mr-1" />
-                      Read more
-                    </>
-                  )}
-                </Button>
+            {/* Explanation */}
+            <p
+              className={cn(
+                'text-sm text-muted-foreground leading-relaxed',
+                shouldTruncate && 'line-clamp-2'
               )}
-            </div>
+            >
+              {note.explanation}
+            </p>
 
-            {/* Examples section */}
+            {isLong && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => toggleNote(note.id)}
+                className="mt-1 h-8 px-2 text-xs text-secondary hover:text-secondary/80"
+              >
+                {isExpanded ? (
+                  <>
+                    <ChevronUp className="h-3 w-3 mr-1" />
+                    Less
+                  </>
+                ) : (
+                  <>
+                    <ChevronDown className="h-3 w-3 mr-1" />
+                    More
+                  </>
+                )}
+              </Button>
+            )}
+
+            {/* Examples - compact list */}
             {examples.length > 0 && (
-              <div className="pt-4 border-t border-border/50">
-                <p className="text-sm font-semibold text-foreground mb-3">
-                  Examples:
-                </p>
-                <ol className="space-y-3">
-                  {examples.map((example, index) => {
-                    // Try to split Macedonian and English if separated by common patterns
-                    // Patterns: " - ", " – ", " — ", newline, or if contains parentheses
+              <div className="mt-3 pt-3 border-t border-secondary/10">
+                <ul className="space-y-2">
+                  {examples.slice(0, 4).map((example, index) => {
                     const parts = splitExample(example);
 
                     return (
-                      <li
-                        key={index}
-                        className="pl-4 sm:pl-6 border-l-2 border-secondary/40"
-                      >
-                        <div className="flex items-start gap-2">
-                          <span className="text-sm font-medium text-secondary/70 flex-shrink-0">
-                            {noteIndex + 1}.{index + 1}
+                      <li key={index} className="text-sm">
+                        <span className="font-medium">{parts.macedonian}</span>
+                        {parts.english && (
+                          <span className="text-muted-foreground ml-2">
+                            — {parts.english}
                           </span>
-                          <div className="space-y-1">
-                            <p className="text-base sm:text-lg font-medium">
-                              {parts.macedonian}
-                            </p>
-                            {parts.english && (
-                              <p className="text-sm sm:text-base text-muted-foreground italic">
-                                {parts.english}
-                              </p>
-                            )}
-                          </div>
-                        </div>
+                        )}
                       </li>
                     );
                   })}
-                </ol>
+                  {examples.length > 4 && (
+                    <li className="text-xs text-muted-foreground">
+                      +{examples.length - 4} more examples
+                    </li>
+                  )}
+                </ul>
               </div>
             )}
-          </Card>
+          </div>
         );
       })}
     </div>
