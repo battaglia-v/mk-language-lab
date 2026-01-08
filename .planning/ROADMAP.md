@@ -130,7 +130,7 @@ Plans:
 **Goal**: Fix practice/lesson UX issues discovered during Phase 15 testing
 **Depends on**: Phase 15
 **Research**: No
-**Plans**: TBD (3 estimated)
+**Plans**: 2
 
 **Issues to address:**
 1. Vocabulary practice shows curated deck instead of lesson-specific content
@@ -138,9 +138,8 @@ Plans:
 3. Grammar notes render poorly on mobile
 
 Plans:
-- [ ] 16-01: TBD - Expose lesson vocabulary in practice hub
-- [ ] 16-02: TBD - Redesign lesson content UI
-- [ ] 16-03: TBD - Fix grammar mobile rendering
+- [ ] 16-01: Expose lesson vocabulary in practice hub (add Lesson Review mode card)
+- [ ] 16-02: Redesign lesson content UI + fix grammar mobile (interactive vocabulary, collapsible sections, mobile spacing)
 
 ## Progress
 
@@ -165,7 +164,7 @@ Phases execute in numeric order: 1 → 2 → ... → 11 → 12 → 12.1 → 13 �
 | 13. B1 Content Bootstrap | v1.1 | 3/3 | Complete | 2026-01-08 |
 | 14. Content Validation | v1.1 | 1/1 | Complete | 2026-01-08 |
 | 15. Practice Integration | v1.1 | 1/1 | Complete | 2026-01-08 |
-| 16. Practice UX Redesign | v1.1 | 0/3 | Not started | - |
+| 16. Practice UX Redesign | v1.1 | 0/2 | Not started | - |
 
 ## Domain Expertise
 
