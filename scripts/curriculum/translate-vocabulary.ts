@@ -1,10 +1,11 @@
 #!/usr/bin/env npx tsx
 /**
- * Translate A1/A2 vocabulary using free Google Translate API
+ * Translate A1/A2/B1 vocabulary using free Google Translate API
  *
  * Usage:
  *   npx tsx scripts/curriculum/translate-vocabulary.ts --level a1
  *   npx tsx scripts/curriculum/translate-vocabulary.ts --level a2
+ *   npx tsx scripts/curriculum/translate-vocabulary.ts --level b1
  */
 
 import * as fs from 'fs';
@@ -13,6 +14,7 @@ import * as path from 'path';
 const LEVEL_FILES: Record<string, string> = {
   a1: 'data/curriculum/structured/a1-teskoto.json',
   a2: 'data/curriculum/structured/a2-lozje.json',
+  b1: 'data/curriculum/structured/b1-zlatovrv.json',
 };
 
 const CACHE_FILE = 'data/curriculum/structured/.translation-cache.json';
@@ -132,7 +134,7 @@ async function main() {
   const level = levelIndex !== -1 ? args[levelIndex + 1]?.toLowerCase() : 'a1';
 
   if (!LEVEL_FILES[level]) {
-    console.error(`Unknown level: ${level}. Use --level a1 or --level a2`);
+    console.error(`Unknown level: ${level}. Use --level a1, --level a2, or --level b1`);
     process.exit(1);
   }
 
