@@ -254,10 +254,63 @@ export default function LessonContent({
               <AccordionContent className="px-4 sm:px-6 pb-6">
                 {/* Section Content */}
                 {section.id === 'intro' && (
-                  <div className="prose prose-sm max-w-none">
-                    <p className="text-lg leading-relaxed text-muted-foreground">
-                      {lesson.summary}
-                    </p>
+                  <div className="space-y-6">
+                    {/* Lesson summary/theme */}
+                    {lesson.summary && (
+                      <div className="p-4 rounded-lg bg-primary/5 border border-primary/10">
+                        <p className="text-xl font-medium text-primary mb-2">
+                          {lesson.summary}
+                        </p>
+                        <p className="text-muted-foreground">
+                          This lesson&apos;s Macedonian theme
+                        </p>
+                      </div>
+                    )}
+
+                    {/* What you'll learn */}
+                    <div>
+                      <h4 className="font-semibold text-lg mb-3">What you&apos;ll learn:</h4>
+                      <ul className="space-y-2">
+                        {lesson.vocabularyItems.length > 0 && (
+                          <li className="flex items-start gap-2">
+                            <span className="text-primary font-bold">•</span>
+                            <span>
+                              <strong>{Math.min(lesson.vocabularyItems.length, 20)}+ vocabulary words</strong>
+                              {' '}related to the lesson theme
+                            </span>
+                          </li>
+                        )}
+                        {lesson.grammarNotes.length > 0 && (
+                          <li className="flex items-start gap-2">
+                            <span className="text-primary font-bold">•</span>
+                            <span>
+                              <strong>{lesson.grammarNotes.length} grammar concept{lesson.grammarNotes.length > 1 ? 's' : ''}</strong>
+                              {' '}with examples and explanations
+                            </span>
+                          </li>
+                        )}
+                        {lesson.exercises.length > 0 && (
+                          <li className="flex items-start gap-2">
+                            <span className="text-primary font-bold">•</span>
+                            <span>
+                              <strong>Practice exercises</strong>
+                              {' '}to test your understanding
+                            </span>
+                          </li>
+                        )}
+                      </ul>
+                    </div>
+
+                    {/* Instructions */}
+                    <div className="p-4 rounded-lg bg-muted/50">
+                      <h4 className="font-semibold mb-2">How to use this lesson:</h4>
+                      <ol className="text-sm text-muted-foreground space-y-1 list-decimal list-inside">
+                        <li>Work through each section in order</li>
+                        <li>Tap vocabulary cards to reveal translations</li>
+                        <li>Read grammar explanations and study the examples</li>
+                        <li>Mark each section complete as you finish</li>
+                      </ol>
+                    </div>
                   </div>
                 )}
 
