@@ -7,7 +7,7 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 ## Milestones
 
 - ✅ [v1.0 Beta](milestones/v1.0-ROADMAP.md) (Phases 1-7) — SHIPPED 2026-01-07
-- 🚧 **v1.1 Curriculum Quality Fix** — Phases 8-15 (in progress)
+- 🚧 **v1.1 Curriculum Quality Fix** — Phases 8-16 (in progress)
 
 ## Completed Milestones
 
@@ -117,18 +117,35 @@ Plans:
 
 #### Phase 15: Practice Integration
 
-**Goal**: Ensure practice mode functions correctly with populated content
+**Goal**: Seed curriculum content and verify practice mode connects to it
 **Depends on**: Phase 14
-**Research**: Unlikely (internal testing)
-**Plans**: TBD
+**Research**: No
+**Plans**: 1
 
 Plans:
-- [ ] 15-01: TBD
+- [x] 15-01: Seed curriculum and run E2E tests — completed 2026-01-08 (content seeded, UX issues discovered)
+
+#### Phase 16: Practice UX Redesign
+
+**Goal**: Fix practice/lesson UX issues discovered during Phase 15 testing
+**Depends on**: Phase 15
+**Research**: No
+**Plans**: TBD (3 estimated)
+
+**Issues to address:**
+1. Vocabulary practice shows curated deck instead of lesson-specific content
+2. Lesson UI is "scrolling wall" - needs interactive step-by-step flow
+3. Grammar notes render poorly on mobile
+
+Plans:
+- [ ] 16-01: TBD - Expose lesson vocabulary in practice hub
+- [ ] 16-02: TBD - Redesign lesson content UI
+- [ ] 16-03: TBD - Fix grammar mobile rendering
 
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → ... → 11 → 12 → 12.1 → 13 → 14 → 15
+Phases execute in numeric order: 1 → 2 → ... → 11 → 12 → 12.1 → 13 → 14 → 15 → 16
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
@@ -147,7 +164,8 @@ Phases execute in numeric order: 1 → 2 → ... → 11 → 12 → 12.1 → 13 �
 | 12.1 UX Fixes (INSERTED) | v1.1 | 2/2 | Complete | 2026-01-08 |
 | 13. B1 Content Bootstrap | v1.1 | 3/3 | Complete | 2026-01-08 |
 | 14. Content Validation | v1.1 | 1/1 | Complete | 2026-01-08 |
-| 15. Practice Integration | v1.1 | 0/? | Not started | - |
+| 15. Practice Integration | v1.1 | 1/1 | Complete | 2026-01-08 |
+| 16. Practice UX Redesign | v1.1 | 0/3 | Not started | - |
 
 ## Domain Expertise
 

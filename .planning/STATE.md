@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-07)
 
 ## Current Position
 
-Phase: 14 of 15 (Content Validation)
-Plan: 1 of 1 (complete)
-Status: Phase complete
-Last activity: 2026-01-08 — Completed 14-01-PLAN.md
+Phase: 16 of 16 (Practice UX Redesign)
+Plan: 0 of 3 (not started)
+Status: Ready to plan
+Last activity: 2026-01-08 — Completed 15-01-PLAN.md (UX issues discovered)
 
-Progress: ███████░░░ 65%
+Progress: █████████░ 90%
 
 ## Milestone Summary
 
@@ -27,19 +27,24 @@ See `.planning/MILESTONES.md` for full details.
 
 ## v1.1 Success Criteria
 
+**Content Quality (all met):**
 - [x] A1 lessons have 20+ vocabulary items each ✓ (Phase 10)
 - [x] A1 grammar notes have explanations and 3+ examples each ✓ (Phase 11)
 - [x] A2 lessons have vocabulary and grammar populated ✓ (Phase 12, 12.1)
 - [x] B1 has at least skeleton vocabulary per lesson ✓ (Phase 13-01: 12,004 items filtered)
-- [ ] No garbled OCR text in user-facing content
-- [ ] Practice mode has sufficient content to function
+- [x] No garbled OCR text in user-facing content ✓ (Phase 14, 15)
+
+**UX Quality (Phase 16 needed):**
+- [ ] Practice mode displays lesson-specific vocabulary (not generic deck)
+- [ ] Lesson UI is interactive (not scrolling wall)
+- [ ] Grammar renders properly on mobile
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 28
+- Total plans completed: 29
 - Average duration: 9 min
-- Total execution time: 6.0 hours
+- Total execution time: 6.1 hours
 
 **By Phase:**
 
@@ -60,6 +65,7 @@ See `.planning/MILESTONES.md` for full details.
 | 12.1 | 2 | 15 min | 8 min |
 | 13 | 3 | 176 min | 59 min |
 | 14 | 1 | 5 min | 5 min |
+| 15 | 1 | 8 min | 8 min |
 
 ## Accumulated Context
 
@@ -82,6 +88,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-08
-Stopped at: Phase 14 complete
+Stopped at: Phase 15 complete (UX issues discovered)
 Resume file: None
-Next step: Run /gsd:plan-phase 15
+Next step: Run /gsd:plan-phase 16
