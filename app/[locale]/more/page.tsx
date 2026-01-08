@@ -1,6 +1,6 @@
 import { getLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
-import { Newspaper, BookOpen, CircleUserRound, Settings, Info, HelpCircle, ChevronRight, FlaskConical } from 'lucide-react';
+import { Newspaper, CircleUserRound, Settings, Info, HelpCircle, ChevronRight, FlaskConical } from 'lucide-react';
 import { PageContainer } from '@/components/layout';
 
 export default async function MorePage() {
@@ -10,7 +10,8 @@ export default async function MorePage() {
   const menuItems = [
     { id: 'lab', href: `/${locale}/lab`, icon: FlaskConical, label: t('languageLab', { default: 'Language Lab' }), description: t('languageLabDesc', { default: 'Translator, analyzer & pronunciation' }) },
     { id: 'news', href: `/${locale}/news`, icon: Newspaper, label: t('news'), description: t('newsDesc', { default: 'Macedonian news articles' }) },
-    { id: 'resources', href: `/${locale}/resources`, icon: BookOpen, label: t('resources'), description: t('resourcesDesc', { default: 'Learning resources' }) },
+    // Resources temporarily hidden
+    // { id: 'resources', href: `/${locale}/resources`, icon: BookOpen, label: t('resources'), description: t('resourcesDesc', { default: 'Learning resources' }) },
     { id: 'profile', href: `/${locale}/profile`, icon: CircleUserRound, label: t('profile'), description: t('profileDesc', { default: 'Your progress and stats' }) },
     // Upgrade temporarily hidden - app is free for launch
     // { id: 'upgrade', href: `/${locale}/upgrade`, icon: Crown, label: t('upgrade', { default: 'Upgrade' }), description: 'Unlock Pro features' },

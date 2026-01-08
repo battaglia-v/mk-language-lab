@@ -100,45 +100,6 @@ export default function AboutPage() {
           </Card>
         </section>
 
-        <section data-testid="about-credits" className="space-y-6">
-          <div className="text-center">
-            <h2 className="text-3xl font-semibold">{t('creditsTitle')}</h2>
-          </div>
-          <Card className="glass-card rounded-3xl p-6 text-center mx-auto max-w-md">
-            <CardHeader className="flex flex-col items-center space-y-4">
-              <div className="relative h-24 w-24 rounded-full overflow-hidden ring-4 ring-primary/30 shadow-xl bg-primary/20 flex items-center justify-center">
-                <span className="text-3xl">🇲🇰</span>
-              </div>
-              <div>
-                <CardTitle className="text-2xl text-foreground">Macedonian Language Corner</CardTitle>
-                <p className="text-sm text-muted-foreground mt-1">Content Partner</p>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-4 text-sm text-muted-foreground">
-              <p>{t('creditsContent')}</p>
-              <div className="flex flex-wrap justify-center gap-2 text-xs">
-                <a
-                  href="https://macedonianlanguagecorner.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-full border border-primary/40 px-3 py-1 text-primary hover:bg-primary/10"
-                  data-testid="about-credit-mlc"
-                >
-                  Website
-                </a>
-                <a
-                  href="https://instagram.com/macedonianlanguagecorner"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-full border border-primary/40 px-3 py-1 text-primary hover:bg-primary/10"
-                  data-testid="about-credit-instagram"
-                >
-                  Instagram
-                </a>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
       </div>
     </div>
   );
