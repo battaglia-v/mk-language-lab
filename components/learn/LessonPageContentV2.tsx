@@ -32,6 +32,49 @@ import GrammarSection from './GrammarSection';
 import ExerciseSection from './ExerciseSection';
 
 // ============================================================================
+// Vocabulary Filtering
+// ============================================================================
+
+// Common country names to exclude from vocabulary
+const COUNTRY_NAMES = new Set([
+  'македонија', 'германија', 'франција', 'италија', 'шпанија',
+  'англија', 'русија', 'кина', 'јапонија', 'америка', 'австралија',
+  'бразил', 'мексико', 'канада', 'ирска', 'грција', 'турција',
+  'србија', 'хрватска', 'бугарија', 'албанија', 'словенија',
+]);
+
+// Common Macedonian names to exclude from vocabulary
+const COMMON_NAMES = new Set([
+  'ана', 'марко', 'петар', 'ива', 'маја', 'сара', 'лука', 'ема',
+  'влатко', 'андреј', 'весна', 'марија', 'ивана', 'ѓорѓи', 'новак', 'томислав',
+]);
+
+/**
+ * Filter vocabulary items to remove proper nouns (names, countries)
+ * that aren't useful as learnable vocabulary
+ */
+function filterVocabularyForDisplay(items: VocabularyItem[]): VocabularyItem[] {
+  return items.filter(item => {
+    const mkLower = (item.macedonianText?.trim() || '').toLowerCase();
+    const enLower = (item.englishText?.trim() || '').toLowerCase();
+
+    // Skip items with partOfSpeech === "proper noun"
+    if (item.partOfSpeech?.toLowerCase() === 'proper noun') return false;
+
+    // Skip items where englishText contains "(name)"
+    if (enLower.includes('(name)')) return false;
+
+    // Skip common Macedonian names
+    if (COMMON_NAMES.has(mkLower)) return false;
+
+    // Skip country names
+    if (COUNTRY_NAMES.has(mkLower)) return false;
+
+    return true;
+  });
+}
+
+// ============================================================================
 // Types
 // ============================================================================
 
@@ -250,7 +293,7 @@ export default function LessonPageContentV2({
 
   // Handle continuing to next section
   const handleContinue = useCallback(async () => {
-    if (isTransitioning) return;
+    if (isTransitioning || !currentSection) return;
 
     // Mark current section as complete
     const newCompleted = new Set(completedSections);
@@ -299,14 +342,17 @@ export default function LessonPageContentV2({
 
   // Group vocabulary by category with smart limits
   const groupedVocabulary = useMemo(() => {
+    // Filter out proper nouns (names, countries) before grouping
+    const filteredItems = filterVocabularyForDisplay(lesson.vocabularyItems);
+
     const groups: Record<string, VocabularyItem[]> = {};
     const uncategorized: VocabularyItem[] = [];
-    
+
     // Limit vocabulary display for better UX
     const MAX_UNCATEGORIZED = 20;
     const MAX_PER_CATEGORY = 15;
 
-    lesson.vocabularyItems.forEach(item => {
+    filteredItems.forEach(item => {
       if (item.category) {
         if (!groups[item.category]) {
           groups[item.category] = [];
@@ -324,26 +370,26 @@ export default function LessonPageContentV2({
     // If no categories, group alphabetically
     if (Object.keys(groups).length === 0 && uncategorized.length > 0) {
       const alphabetGroups: Record<string, VocabularyItem[]> = {};
-      lesson.vocabularyItems.slice(0, 30).forEach(item => {
+      filteredItems.slice(0, 30).forEach(item => {
         const firstLetter = item.macedonianText.charAt(0).toUpperCase();
         if (!alphabetGroups[firstLetter]) {
           alphabetGroups[firstLetter] = [];
         }
         alphabetGroups[firstLetter].push(item);
       });
-      return { 
-        groups: alphabetGroups, 
-        uncategorized: [], 
-        totalCount: lesson.vocabularyItems.length,
-        isAlphabetical: true 
+      return {
+        groups: alphabetGroups,
+        uncategorized: [],
+        totalCount: filteredItems.length,
+        isAlphabetical: true
       };
     }
 
-    return { 
-      groups, 
-      uncategorized, 
-      totalCount: lesson.vocabularyItems.length,
-      isAlphabetical: false 
+    return {
+      groups,
+      uncategorized,
+      totalCount: filteredItems.length,
+      isAlphabetical: false
     };
   }, [lesson.vocabularyItems]);
 
@@ -547,7 +593,10 @@ export default function LessonPageContentV2({
 
       case 'grammar':
         // Separate notes with conjugation tables from standard notes
-        const notesWithTables = lesson.grammarNotes.filter(n => n.conjugationTable);
+        const notesWithTables = lesson.grammarNotes.filter(
+          (n): n is GrammarNote & { conjugationTable: NonNullable<GrammarNote['conjugationTable']> } =>
+            n.conjugationTable != null
+        );
         const standardNotes = lesson.grammarNotes.filter(n => !n.conjugationTable);
 
         return (
@@ -563,10 +612,10 @@ export default function LessonPageContentV2({
             {notesWithTables.map((note) => (
               <div key={note.id} className="space-y-4">
                 <ConjugationTable
-                  verb={note.conjugationTable!.verb}
-                  verbEn={note.conjugationTable!.verbEn}
-                  tense={note.conjugationTable!.tense}
-                  rows={note.conjugationTable!.rows}
+                  verb={note.conjugationTable.verb}
+                  verbEn={note.conjugationTable.verbEn}
+                  tense={note.conjugationTable.tense}
+                  rows={note.conjugationTable.rows}
                   showTransliteration={true}
                 />
               </div>
