@@ -91,7 +91,7 @@ function ModeTileCard({ tile }: { tile: ModeTile }) {
             ? 'bg-primary/20 text-primary'
             : tile.variant === 'accent'
             ? 'bg-amber-500/20 text-amber-400'
-            : 'bg-white/10 text-white/80'
+            : 'bg-muted/30 text-muted-foreground'
         )}
       >
         <Icon className="h-5 w-5" />

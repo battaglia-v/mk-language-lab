@@ -189,7 +189,7 @@ export function PracticeHub() {
                 href={`/${locale}/practice/session?deck=saved&mode=multiple-choice`}
                 className="flex-1"
               >
-                <Button className="w-full gap-2 bg-pink-500 hover:bg-pink-600 text-white">
+                <Button className="w-full gap-2 bg-pink-500 hover:bg-pink-600 text-white dark:text-black">
                   <Play className="h-4 w-4" />
                   Practice Saved Words
                   <ArrowRight className="h-4 w-4 ml-auto" />

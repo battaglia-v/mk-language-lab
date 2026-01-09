@@ -589,7 +589,7 @@ export function PronunciationCard({
                   "flex h-24 w-24 items-center justify-center rounded-full transition-all",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                   recorderState === 'recording' 
-                    ? "bg-destructive text-white scale-110 shadow-lg" 
+                    ? "bg-destructive text-destructive-foreground scale-110 shadow-lg" 
                     : "bg-primary text-[#0a0a0a] hover:bg-primary/90",
                   recordButtonState.disabled && "opacity-50 cursor-not-allowed"
                 )}

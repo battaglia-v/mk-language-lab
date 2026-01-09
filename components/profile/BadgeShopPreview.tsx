@@ -74,19 +74,19 @@ export function BadgeShopPreview({ className }: BadgeShopPreviewProps) {
   const featuredBadges = useMemo(() => data?.badges.slice(0, 3) ?? [], [data?.badges]);
 
   return (
-    <section className={cn('glass-card rounded-3xl p-6 md:p-8 text-white', className)} data-testid="badge-shop">
+    <section className={cn('glass-card rounded-3xl p-6 md:p-8 text-foreground', className)} data-testid="badge-shop">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-amber-200">{t('title')}</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-amber-400 dark:text-amber-300">{t('title')}</p>
           <h2 className="text-2xl font-semibold">{t('subtitle')}</h2>
-          <p className="text-sm text-slate-200">{t('description')}</p>
+          <p className="text-sm text-muted-foreground">{t('description')}</p>
         </div>
         {data ? (
-          <div className="text-right text-sm text-amber-200">
+          <div className="text-right text-sm text-amber-400 dark:text-amber-300">
             <p className="font-semibold">
               {t('balance', { gems: data.currency.gems.toLocaleString() })}
             </p>
-            <p className="text-xs text-slate-300">{t('balanceCaption')}</p>
+            <p className="text-xs text-muted-foreground">{t('balanceCaption')}</p>
           </div>
         ) : null}
       </div>
@@ -110,14 +110,14 @@ export function BadgeShopPreview({ className }: BadgeShopPreviewProps) {
                 'rounded-2xl border p-4 text-center shadow-inner',
                 badge.isOwned
                   ? 'border-emerald-300/50 bg-emerald-500/10'
-                  : 'border-white/10 bg-white/5'
+                  : 'border-border/30 bg-muted/20'
               )}
             >
               <div className="text-4xl mb-2">{badge.iconUrl ? '🧿' : '✨'}</div>
               <h3 className="text-base font-semibold">{badge.name}</h3>
-              <p className="mt-1 text-xs text-slate-200 line-clamp-3">{badge.description}</p>
-              <div className="mt-3 flex items-center justify-center gap-2 text-xs text-amber-200">
-                <Badge variant="outline" className="border-amber-200/40 bg-amber-200/10 text-amber-200">
+              <p className="mt-1 text-xs text-muted-foreground line-clamp-3">{badge.description}</p>
+              <div className="mt-3 flex items-center justify-center gap-2 text-xs text-amber-400 dark:text-amber-300">
+                <Badge variant="outline" className="border-amber-400/40 dark:border-amber-300/40 bg-amber-400/10 dark:bg-amber-300/10 text-amber-600 dark:text-amber-300">
                   {t('rarity.' + badge.rarityTier, { defaultValue: badge.rarityTier })}
                 </Badge>
                 <span>·</span>

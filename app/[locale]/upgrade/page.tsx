@@ -10,7 +10,7 @@ export default async function UpgradePage({ params }: UpgradePageProps) {
 
   return (
     <div className="page-shell">
-      <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6 text-white">
+      <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6 text-foreground">
         <section data-testid="upgrade-hero" className="glass-card rounded-3xl p-6 md:p-8 text-center">
           <header className="page-header mx-auto">
             <div className="page-header-content">

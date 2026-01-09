@@ -28,17 +28,17 @@ export function ProfileActivityMap({ entries }: ProfileActivityMapProps) {
   const totalXP = entries.reduce((sum, entry) => sum + entry.xp, 0);
 
   return (
-    <section className="glass-card rounded-3xl p-6 md:p-8 text-white" data-testid="profile-activity-map">
+    <section className="glass-card rounded-3xl p-6 md:p-8 text-foreground" data-testid="profile-activity-map">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h2 className="text-lg font-semibold">{t('title')}</h2>
-          <p className="text-sm text-slate-200">{t('subtitle')}</p>
-          <p className="mt-2 text-xs text-slate-200/90">
+          <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
+          <p className="mt-2 text-xs text-muted-foreground">
             {t('summary', { completed: completedDays, total: entries.length })}
           </p>
-          <p className="text-xs text-slate-200/90">{t('xpLabel', { value: totalXP.toLocaleString() })}</p>
+          <p className="text-xs text-muted-foreground">{t('xpLabel', { value: totalXP.toLocaleString() })}</p>
         </div>
-        <div className="flex flex-wrap items-center gap-4 text-xs text-slate-200">
+        <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
           {STATUS_KEYS.map((status) => (
             <div key={status} className="flex items-center gap-2">
               <span className={cn('h-3 w-3 rounded-sm border', STATUS_STYLES[status])} aria-hidden />
