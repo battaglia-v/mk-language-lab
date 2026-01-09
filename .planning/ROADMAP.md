@@ -146,6 +146,25 @@ Plans:
 
 **Milestone Goal:** Improve CI pipeline reliability and evaluate Cloudflare as an alternative hosting platform to reduce costs and improve deploy process.
 
+#### Phase 18.1: Lesson Quality Audit (INSERTED)
+
+**Goal**: Address remaining audit findings: A2/B1 vocab translations, dark mode compliance, exercise variety, content completeness
+**Depends on**: Phase 18
+**Research**: No (following established patterns from prior work)
+**Plans**: 4
+
+**Audit Findings Being Addressed:**
+1. A2/B1 vocabulary has same auto-generated translation errors as A1 (names as words, truncations)
+2. Dark mode compliance only 40% - remaining hardcoded colors need fixing
+3. Exercise variety 6.5/10 - only 3 types, need more interactive options
+4. Content completeness - some lessons missing dialogues/exercises
+
+Plans:
+- [ ] 18.1-01: A2/B1 vocabulary corrections (same approach as A1)
+- [ ] 18.1-02: Dark mode deep audit (comprehensive color scan and fix)
+- [ ] 18.1-03: Exercise variety (add matching, word_order types)
+- [ ] 18.1-04: Content completeness verification (audit and fill gaps)
+
 #### Phase 17: CI Pipeline Audit
 
 **Goal**: Review current GitHub Actions workflows, document gaps, benchmark build times
@@ -213,6 +232,7 @@ Phases execute in numeric order: 1 → 2 → ... → 16 → 17 → 18 → 19 →
 | 16. Practice UX Redesign | v1.1 | 2/2 | Complete | 2026-01-09 |
 | 17. CI Pipeline Audit | v1.2 | 1/1 | Complete | 2026-01-09 |
 | 18. CI Pipeline Improvements | v1.2 | 1/1 | Complete | 2026-01-09 |
+| 18.1 Lesson Quality Audit (INSERTED) | v1.2 | 0/4 | Not started | - |
 | 19. Cloudflare Research & PoC | v1.2 | 0/? | Not started | - |
 | 20. Migration Decision | v1.2 | 0/? | Not started | - |
 
