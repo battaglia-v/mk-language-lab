@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
+import { useLocale } from 'next-intl';
 import { AlertCircle, RefreshCw, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,6 +14,8 @@ export default function GrammarError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const locale = useLocale();
+  
   useEffect(() => {
     // Log error to console for debugging
     console.error('[Grammar Practice Error]', error);
@@ -49,7 +52,7 @@ export default function GrammarError({
             <RefreshCw className="h-4 w-4" />
             Try Again
           </Button>
-          <Link href="/en/practice" className="w-full sm:flex-1">
+          <Link href={`/${locale}/practice`} className="w-full sm:flex-1">
             <Button variant="outline" className="w-full gap-2">
               <Home className="h-4 w-4" />
               Back to Practice
