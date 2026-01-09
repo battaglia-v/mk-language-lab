@@ -501,7 +501,7 @@ function LessonNodeCard({
       <div
         className={cn(
           'flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-bold text-sm',
-          isCompleted && 'bg-emerald-500 text-white',
+          isCompleted && 'bg-emerald-500 text-white dark:text-black',
           isNext && 'bg-primary text-black',
           isNotStarted && 'bg-muted text-muted-foreground'
         )}

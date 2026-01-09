@@ -41,7 +41,7 @@ const statusColors: Record<LessonNodeStatus, string> = {
   locked: 'bg-muted/60 text-muted-foreground border-muted/80',
   available: 'bg-primary text-black border-primary shadow-lg shadow-primary/20',
   in_progress: 'bg-amber-500 text-black border-amber-500 shadow-lg shadow-amber-500/20',
-  completed: 'bg-green-500 text-white border-green-500',
+  completed: 'bg-green-500 text-white dark:text-black border-green-500',
 };
 
 export function LessonPathNode({ node, locale, index, isContinueNode, totalNodes = 10 }: LessonPathNodeProps) {
@@ -87,7 +87,7 @@ export function LessonPathNode({ node, locale, index, isContinueNode, totalNodes
 
         {/* Continue play icon */}
         {isContinueNode && (
-          <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-green-500 text-white shadow">
+          <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-green-500 text-white dark:text-black shadow">
             <Play className="h-3 w-3 ml-0.5" fill="currentColor" />
           </span>
         )}

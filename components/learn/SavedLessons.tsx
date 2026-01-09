@@ -146,7 +146,7 @@ export function SavedLessons() {
         <CardHeader>
           <div className="flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-yellow-500 to-orange-600">
-              <Bookmark className="h-6 w-6 text-white" />
+              <Bookmark className="h-6 w-6 text-white dark:text-black" />
             </div>
             <div>
               <CardTitle className="text-2xl">Saved Lessons</CardTitle>
@@ -172,7 +172,7 @@ export function SavedLessons() {
         <CardHeader>
           <div className="flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-yellow-500 to-orange-600">
-              <Bookmark className="h-6 w-6 text-white" />
+              <Bookmark className="h-6 w-6 text-white dark:text-black" />
             </div>
             <div>
               <CardTitle className="text-2xl">Saved Lessons</CardTitle>
@@ -195,7 +195,7 @@ export function SavedLessons() {
         <CardHeader>
           <div className="flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-yellow-500 to-orange-600">
-              <Bookmark className="h-6 w-6 text-white" />
+              <Bookmark className="h-6 w-6 text-white dark:text-black" />
             </div>
             <div>
               <CardTitle className="text-2xl">Saved Lessons</CardTitle>
@@ -223,7 +223,7 @@ export function SavedLessons() {
       <CardHeader>
         <div className="flex items-center gap-3">
           <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-yellow-500 to-orange-600">
-            <Bookmark className="h-6 w-6 text-white" />
+            <Bookmark className="h-6 w-6 text-white dark:text-black" />
           </div>
           <div>
             <CardTitle className="text-2xl">Saved Lessons</CardTitle>

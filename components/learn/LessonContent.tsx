@@ -196,7 +196,7 @@ export default function LessonContent({
                       'flex items-center justify-center w-8 h-8 rounded-full transition-all',
                       'focus:outline-none focus:ring-2 focus:ring-primary/50',
                       isCompleted
-                        ? 'bg-green-500 text-white'
+                        ? 'bg-green-500 text-white dark:text-black'
                         : isCurrent
                         ? 'bg-primary text-primary-foreground ring-2 ring-primary/30'
                         : 'bg-muted text-muted-foreground hover:bg-muted/80'
