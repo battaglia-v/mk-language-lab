@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { CheckCircle, XCircle, Target } from 'lucide-react';
+import { CheckCircle, XCircle, Target, Lightbulb, RotateCcw } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface Exercise {
@@ -23,17 +23,49 @@ export default function ExerciseSection({ exercises }: ExerciseSectionProps) {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   const [results, setResults] = useState<Record<string, boolean>>({});
+  const [hintsShown, setHintsShown] = useState<Record<string, boolean>>({});
+  // Matching exercise state: { exerciseId: { macedonianWord: englishMatch, ... } }
+  const [matchingSelections, setMatchingSelections] = useState<Record<string, Record<string, string>>>({});
+  const [selectedMacedonian, setSelectedMacedonian] = useState<Record<string, string | null>>({});
+
+  // Get first letter hint for fill-in-blank exercises
+  const getFirstLetterHint = (correctAnswer: string) => {
+    const firstChar = correctAnswer.trim().charAt(0);
+    const answerLength = correctAnswer.trim().length;
+    return `${firstChar}${'_'.repeat(Math.min(answerLength - 1, 5))}`;
+  };
+
+  // Handle retry for an exercise
+  const handleRetry = (exerciseId: string) => {
+    setAnswers(prev => ({ ...prev, [exerciseId]: '' }));
+    setChecked(prev => ({ ...prev, [exerciseId]: false }));
+    setResults(prev => {
+      const newResults = { ...prev };
+      delete newResults[exerciseId];
+      return newResults;
+    });
+  };
 
   const handleCheck = (exerciseId: string, correctAnswer: string) => {
     const userAnswer = answers[exerciseId] || '';
-    const isCorrect = userAnswer.trim().toLowerCase() === correctAnswer.trim().toLowerCase();
+    // Use Unicode normalization for proper Macedonian character comparison
+    const normalizedUser = userAnswer.trim().toLowerCase().normalize('NFC');
+    const normalizedCorrect = correctAnswer.trim().toLowerCase().normalize('NFC');
+    const isCorrect = normalizedUser === normalizedCorrect;
 
     setResults(prev => ({ ...prev, [exerciseId]: isCorrect }));
     setChecked(prev => ({ ...prev, [exerciseId]: true }));
   };
 
   const renderMultipleChoice = (exercise: Exercise) => {
-    const options = exercise.options.split('|').map(opt => opt.trim());
+    // Guard against null/undefined options
+    const options = (exercise.options ?? '').split('|').map(opt => opt.trim()).filter(Boolean);
+
+    // Don't render if no valid options
+    if (options.length === 0) {
+      return <p className="text-muted-foreground italic">No options available for this exercise.</p>;
+    }
+
     const userAnswer = answers[exercise.id];
     const isChecked = checked[exercise.id];
     const isCorrect = results[exercise.id];
@@ -76,36 +108,75 @@ export default function ExerciseSection({ exercises }: ExerciseSectionProps) {
   const renderFillBlank = (exercise: Exercise) => {
     const isChecked = checked[exercise.id];
     const isCorrect = results[exercise.id];
+    const hintShown = hintsShown[exercise.id];
 
     return (
       <div className="space-y-3">
+        {/* Hint section - shown before checking */}
+        {!isChecked && (
+          <div className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setHintsShown(prev => ({ ...prev, [exercise.id]: !prev[exercise.id] }))}
+              className="text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300"
+            >
+              <Lightbulb className="h-4 w-4 mr-1" />
+              {hintShown ? 'Hide Hint' : 'Show Hint'}
+            </Button>
+            {hintShown && (
+              <span className="text-sm text-amber-600 dark:text-amber-400 font-mono">
+                Answer starts with: <strong>{getFirstLetterHint(exercise.correctAnswer)}</strong>
+              </span>
+            )}
+          </div>
+        )}
+
         <Input
           value={answers[exercise.id] || ''}
           onChange={(e) => setAnswers(prev => ({ ...prev, [exercise.id]: e.target.value }))}
-          disabled={isChecked}
-          placeholder="Type your answer..."
+          disabled={isChecked && isCorrect}
+          placeholder="Type your answer in Macedonian..."
           className={cn(
+            'text-lg',
             isChecked && isCorrect && 'border-green-500 bg-green-500/5',
             isChecked && !isCorrect && 'border-red-500 bg-red-500/5'
           )}
         />
+
         {isChecked && (
-          <p className={cn(
-            'text-sm flex items-center gap-2',
-            isCorrect ? 'text-green-600' : 'text-red-600'
+          <div className={cn(
+            'flex items-center justify-between p-3 rounded-lg',
+            isCorrect ? 'bg-green-500/10' : 'bg-red-500/10'
           )}>
-            {isCorrect ? (
-              <>
-                <CheckCircle className="h-4 w-4" />
-                Correct!
-              </>
-            ) : (
-              <>
-                <XCircle className="h-4 w-4" />
-                Incorrect. The correct answer is: <strong>{exercise.correctAnswer}</strong>
-              </>
+            <p className={cn(
+              'text-sm flex items-center gap-2',
+              isCorrect ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
+            )}>
+              {isCorrect ? (
+                <>
+                  <CheckCircle className="h-4 w-4" />
+                  Correct!
+                </>
+              ) : (
+                <>
+                  <XCircle className="h-4 w-4" />
+                  The correct answer is: <strong>{exercise.correctAnswer}</strong>
+                </>
+              )}
+            </p>
+            {!isCorrect && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => handleRetry(exercise.id)}
+                className="text-muted-foreground hover:text-foreground"
+              >
+                <RotateCcw className="h-4 w-4 mr-1" />
+                Try Again
+              </Button>
             )}
-          </p>
+          </div>
         )}
       </div>
     );
@@ -114,43 +185,309 @@ export default function ExerciseSection({ exercises }: ExerciseSectionProps) {
   const renderTranslation = (exercise: Exercise) => {
     const isChecked = checked[exercise.id];
     const isCorrect = results[exercise.id];
+    const hintShown = hintsShown[exercise.id];
 
     return (
       <div className="space-y-3">
+        {/* Hint section for translation */}
+        {!isChecked && (
+          <div className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setHintsShown(prev => ({ ...prev, [exercise.id]: !prev[exercise.id] }))}
+              className="text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300"
+            >
+              <Lightbulb className="h-4 w-4 mr-1" />
+              {hintShown ? 'Hide Hint' : 'Show Hint'}
+            </Button>
+            {hintShown && (
+              <span className="text-sm text-amber-600 dark:text-amber-400 font-mono">
+                First letter: <strong>{getFirstLetterHint(exercise.correctAnswer)}</strong>
+              </span>
+            )}
+          </div>
+        )}
+
         <Input
           value={answers[exercise.id] || ''}
           onChange={(e) => setAnswers(prev => ({ ...prev, [exercise.id]: e.target.value }))}
-          disabled={isChecked}
+          disabled={isChecked && isCorrect}
           placeholder="Type your translation..."
           className={cn(
+            'text-lg',
             isChecked && isCorrect && 'border-green-500 bg-green-500/5',
             isChecked && !isCorrect && 'border-red-500 bg-red-500/5'
           )}
         />
+
         {isChecked && (
-          <p className={cn(
-            'text-sm flex items-center gap-2',
-            isCorrect ? 'text-green-600' : 'text-red-600'
+          <div className={cn(
+            'flex items-center justify-between p-3 rounded-lg',
+            isCorrect ? 'bg-green-500/10' : 'bg-red-500/10'
           )}>
-            {isCorrect ? (
-              <>
-                <CheckCircle className="h-4 w-4" />
-                Excellent translation!
-              </>
-            ) : (
-              <>
-                <XCircle className="h-4 w-4" />
-                Suggested translation: <strong>{exercise.correctAnswer}</strong>
-              </>
+            <p className={cn(
+              'text-sm flex items-center gap-2',
+              isCorrect ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
+            )}>
+              {isCorrect ? (
+                <>
+                  <CheckCircle className="h-4 w-4" />
+                  Excellent translation!
+                </>
+              ) : (
+                <>
+                  <XCircle className="h-4 w-4" />
+                  Suggested translation: <strong>{exercise.correctAnswer}</strong>
+                </>
+              )}
+            </p>
+            {!isCorrect && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => handleRetry(exercise.id)}
+                className="text-muted-foreground hover:text-foreground"
+              >
+                <RotateCcw className="h-4 w-4 mr-1" />
+                Try Again
+              </Button>
             )}
-          </p>
+          </div>
         )}
       </div>
     );
   };
 
+  const renderMatching = (exercise: Exercise) => {
+    // Parse pipe-separated words
+    const macedonianWords = (exercise.options ?? '').split('|').map(w => w.trim()).filter(Boolean);
+    const englishWords = (exercise.correctAnswer ?? '').split('|').map(w => w.trim()).filter(Boolean);
+
+    if (macedonianWords.length === 0 || englishWords.length !== macedonianWords.length) {
+      return <p className="text-muted-foreground italic">Invalid matching exercise format.</p>;
+    }
+
+    const isChecked = checked[exercise.id];
+    const isCorrect = results[exercise.id];
+    const currentMatches = matchingSelections[exercise.id] || {};
+    const selectedMk = selectedMacedonian[exercise.id];
+
+    // Shuffle English words for display (seeded by exercise id for consistency)
+    const shuffledEnglish = [...englishWords].sort((a, b) => {
+      const hashA = a.split('').reduce((acc, c) => acc + c.charCodeAt(0), exercise.id.charCodeAt(0));
+      const hashB = b.split('').reduce((acc, c) => acc + c.charCodeAt(0), exercise.id.charCodeAt(0));
+      return hashA - hashB;
+    });
+
+    const handleMacedonianClick = (mkWord: string) => {
+      if (isChecked) return;
+      // If already matched, unmatch it
+      if (currentMatches[mkWord]) {
+        setMatchingSelections(prev => {
+          const newMatches = { ...prev[exercise.id] };
+          delete newMatches[mkWord];
+          return { ...prev, [exercise.id]: newMatches };
+        });
+        return;
+      }
+      // Select/deselect
+      setSelectedMacedonian(prev => ({
+        ...prev,
+        [exercise.id]: prev[exercise.id] === mkWord ? null : mkWord
+      }));
+    };
+
+    const handleEnglishClick = (enWord: string) => {
+      if (isChecked) return;
+      // If this English word is already matched, ignore
+      const alreadyMatchedTo = Object.entries(currentMatches).find(([, en]) => en === enWord);
+      if (alreadyMatchedTo) {
+        // Unmatch it
+        setMatchingSelections(prev => {
+          const newMatches = { ...prev[exercise.id] };
+          delete newMatches[alreadyMatchedTo[0]];
+          return { ...prev, [exercise.id]: newMatches };
+        });
+        return;
+      }
+      // If a Macedonian word is selected, create match
+      if (selectedMk) {
+        setMatchingSelections(prev => ({
+          ...prev,
+          [exercise.id]: { ...(prev[exercise.id] || {}), [selectedMk]: enWord }
+        }));
+        setSelectedMacedonian(prev => ({ ...prev, [exercise.id]: null }));
+      }
+    };
+
+    const handleMatchingCheck = () => {
+      // Check if all matches are correct
+      let allCorrect = true;
+      for (let i = 0; i < macedonianWords.length; i++) {
+        const mk = macedonianWords[i];
+        const expectedEn = englishWords[i];
+        if (currentMatches[mk] !== expectedEn) {
+          allCorrect = false;
+          break;
+        }
+      }
+      setResults(prev => ({ ...prev, [exercise.id]: allCorrect }));
+      setChecked(prev => ({ ...prev, [exercise.id]: true }));
+    };
+
+    const matchedEnglishWords = new Set(Object.values(currentMatches));
+    const allMatched = Object.keys(currentMatches).length === macedonianWords.length;
+
+    return (
+      <div className="space-y-4">
+        <p className="text-sm text-muted-foreground mb-2">
+          Tap a Macedonian word, then tap its English translation to match them.
+        </p>
+
+        <div className="grid grid-cols-2 gap-4">
+          {/* Macedonian column */}
+          <div className="space-y-2">
+            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">Macedonian</p>
+            {macedonianWords.map((word, idx) => {
+              const isMatched = !!currentMatches[word];
+              const isSelected = selectedMk === word;
+              const matchedTo = currentMatches[word];
+
+              // Check correctness after submit
+              let matchCorrect: boolean | null = null;
+              if (isChecked && isMatched) {
+                matchCorrect = matchedTo === englishWords[idx];
+              }
+
+              return (
+                <Button
+                  key={`mk-${idx}`}
+                  variant="choice"
+                  onClick={() => handleMacedonianClick(word)}
+                  disabled={isChecked}
+                  className={cn(
+                    'w-full justify-start text-left h-auto py-2 px-3',
+                    isSelected && !isMatched && 'ring-2 ring-primary',
+                    isMatched && !isChecked && 'bg-primary/10 border-primary/30',
+                    isChecked && matchCorrect === true && 'bg-green-500/10 border-green-500/30',
+                    isChecked && matchCorrect === false && 'bg-red-500/10 border-red-500/30'
+                  )}
+                >
+                  <span>{word}</span>
+                  {isMatched && !isChecked && (
+                    <span className="ml-auto text-xs text-primary">→ {matchedTo}</span>
+                  )}
+                  {isChecked && matchCorrect === true && (
+                    <CheckCircle className="h-4 w-4 text-green-500 ml-auto flex-shrink-0" />
+                  )}
+                  {isChecked && matchCorrect === false && (
+                    <XCircle className="h-4 w-4 text-red-500 ml-auto flex-shrink-0" />
+                  )}
+                </Button>
+              );
+            })}
+          </div>
+
+          {/* English column */}
+          <div className="space-y-2">
+            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">English</p>
+            {shuffledEnglish.map((word, idx) => {
+              const isMatchedTo = matchedEnglishWords.has(word);
+
+              return (
+                <Button
+                  key={`en-${idx}`}
+                  variant="choice"
+                  onClick={() => handleEnglishClick(word)}
+                  disabled={isChecked}
+                  className={cn(
+                    'w-full justify-start text-left h-auto py-2 px-3',
+                    isMatchedTo && !isChecked && 'opacity-50',
+                    selectedMk && !isMatchedTo && !isChecked && 'hover:ring-2 hover:ring-primary/50'
+                  )}
+                >
+                  {word}
+                </Button>
+              );
+            })}
+          </div>
+        </div>
+
+        {isChecked && !isCorrect && (
+          <div className="p-3 rounded-lg bg-red-500/10 space-y-2">
+            <p className="text-sm text-red-600 dark:text-red-400 flex items-center gap-2">
+              <XCircle className="h-4 w-4" />
+              Some matches are incorrect. Correct answers:
+            </p>
+            <ul className="text-sm text-muted-foreground ml-6 space-y-1">
+              {macedonianWords.map((mk, i) => (
+                <li key={i}>{mk} → {englishWords[i]}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {isChecked && isCorrect && (
+          <div className="p-3 rounded-lg bg-green-500/10">
+            <p className="text-sm text-green-600 dark:text-green-400 flex items-center gap-2">
+              <CheckCircle className="h-4 w-4" />
+              Perfect! All matches are correct.
+            </p>
+          </div>
+        )}
+
+        {!isChecked && (
+          <Button
+            onClick={handleMatchingCheck}
+            disabled={!allMatched}
+            className="mt-2"
+          >
+            Check Matches
+          </Button>
+        )}
+      </div>
+    );
+  };
+
+  // Calculate progress stats
+  const totalExercises = exercises.length;
+  const completedCount = Object.keys(checked).filter(id => checked[id]).length;
+  const correctCount = Object.values(results).filter(Boolean).length;
+  const progressPercentage = totalExercises > 0 ? (completedCount / totalExercises) * 100 : 0;
+
   return (
     <div className="space-y-6">
+      {/* Progress Header */}
+      {totalExercises > 1 && (
+        <div className="p-4 rounded-xl bg-muted/30 border border-border/50 space-y-3">
+          <div className="flex items-center justify-between text-sm">
+            <span className="font-medium text-foreground">
+              Progress: {completedCount} of {totalExercises} completed
+            </span>
+            {completedCount > 0 && (
+              <span className={cn(
+                'font-medium',
+                correctCount === completedCount ? 'text-green-600 dark:text-green-400' : 'text-muted-foreground'
+              )}>
+                {correctCount}/{completedCount} correct
+              </span>
+            )}
+          </div>
+          <div className="h-2 bg-muted rounded-full overflow-hidden">
+            <div
+              className={cn(
+                'h-full rounded-full transition-all duration-500 ease-out',
+                correctCount === completedCount && completedCount > 0
+                  ? 'bg-green-500'
+                  : 'bg-primary'
+              )}
+              style={{ width: `${progressPercentage}%` }}
+            />
+          </div>
+        </div>
+      )}
+
       {exercises.map((exercise, index) => (
         <div
           key={exercise.id}
@@ -163,7 +500,7 @@ export default function ExerciseSection({ exercises }: ExerciseSectionProps) {
             <div className="exercise-header flex-1 min-w-0">
               <div className="exercise-meta">
                 <span className="metadata-item">
-                  <span className="label-nowrap">Exercise {index + 1}</span>
+                  <span className="label-nowrap">Exercise {index + 1} of {totalExercises}</span>
                 </span>
                 <span className="card-meta-separator">·</span>
                 <span className="mode-badge bg-primary/10 text-primary">
@@ -178,9 +515,11 @@ export default function ExerciseSection({ exercises }: ExerciseSectionProps) {
             {exercise.type === 'multiple_choice' && renderMultipleChoice(exercise)}
             {exercise.type === 'fill_blank' && renderFillBlank(exercise)}
             {exercise.type === 'translation' && renderTranslation(exercise)}
+            {exercise.type === 'matching' && renderMatching(exercise)}
           </div>
 
-          {!checked[exercise.id] && (
+          {/* Check button for standard exercise types (not matching - it has its own) */}
+          {!checked[exercise.id] && exercise.type !== 'matching' && (
             <Button
               onClick={() => handleCheck(exercise.id, exercise.correctAnswer)}
               disabled={!answers[exercise.id]}
