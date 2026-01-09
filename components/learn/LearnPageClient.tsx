@@ -11,7 +11,7 @@ import { getLocalXP } from '@/lib/gamification/local-xp';
 import { getNextNode } from '@/lib/learn/lesson-path-types';
 import type { LessonPath as LessonPathData, LessonNode } from '@/lib/learn/lesson-path-types';
 
-type LevelId = 'beginner' | 'intermediate';
+type LevelId = 'beginner' | 'intermediate' | 'advanced' | 'challenge';
 
 const LEVEL_STORAGE_KEY = 'mklanguage-level';
 
@@ -22,6 +22,8 @@ interface LearnPageClientProps {
   dailyGoalXP: number;
   a1Path: LessonPathData;
   a2Path: LessonPathData;
+  b1Path: LessonPathData;
+  challengePath: LessonPathData;
   currentLesson?: { id: string; title: string; moduleTitle: string; lessonNumber: number };
   journeyProgress?: { completedCount: number; totalCount: number };
 }
@@ -33,6 +35,8 @@ export function LearnPageClient({
   dailyGoalXP,
   a1Path,
   a2Path,
+  b1Path,
+  challengePath,
   currentLesson,
   journeyProgress,
 }: LearnPageClientProps) {
@@ -49,8 +53,9 @@ export function LearnPageClient({
   }, []);
 
   useEffect(() => {
-    const levelParam = searchParams.get('level');
-    if (levelParam === 'beginner' || levelParam === 'intermediate') {
+    const validLevels: LevelId[] = ['beginner', 'intermediate', 'advanced', 'challenge'];
+    const levelParam = searchParams.get('level') as LevelId | null;
+    if (levelParam && validLevels.includes(levelParam)) {
       setActiveLevel(levelParam);
       try {
         window.localStorage.setItem(LEVEL_STORAGE_KEY, levelParam);
@@ -61,8 +66,8 @@ export function LearnPageClient({
     }
 
     try {
-      const storedLevel = window.localStorage.getItem(LEVEL_STORAGE_KEY);
-      if (storedLevel === 'beginner' || storedLevel === 'intermediate') {
+      const storedLevel = window.localStorage.getItem(LEVEL_STORAGE_KEY) as LevelId | null;
+      if (storedLevel && validLevels.includes(storedLevel)) {
         setActiveLevel(storedLevel);
       }
     } catch {
@@ -85,9 +90,34 @@ export function LearnPageClient({
   const goalProgress = dailyGoalXP > 0 ? Math.min(100, Math.round((todayXP / dailyGoalXP) * 100)) : 0;
   const isGoalComplete = todayXP >= dailyGoalXP;
 
-  const currentPath = activeLevel === 'beginner' ? a1Path : a2Path;
-  const levelLabel = activeLevel === 'beginner' ? t('basics') : t('speaking');
-  const levelBadge = activeLevel === 'beginner' ? 'A1' : 'A2';
+  const pathMap: Record<LevelId, LessonPathData> = {
+    beginner: a1Path,
+    intermediate: a2Path,
+    advanced: b1Path,
+    challenge: challengePath,
+  };
+  const labelMap: Record<LevelId, string> = {
+    beginner: t('basics'),
+    intermediate: t('speaking'),
+    advanced: t('advanced', { default: 'Advanced' }),
+    challenge: t('challenge', { default: '30-Day' }),
+  };
+  const badgeMap: Record<LevelId, string> = {
+    beginner: 'A1',
+    intermediate: 'A2',
+    advanced: 'B1',
+    challenge: '📖',
+  };
+  const pathIdMap: Record<LevelId, string> = {
+    beginner: 'a1',
+    intermediate: 'a2',
+    advanced: 'b1',
+    challenge: '30day-challenge',
+  };
+
+  const currentPath = pathMap[activeLevel];
+  const levelLabel = labelMap[activeLevel];
+  const levelBadge = badgeMap[activeLevel];
   const nextNode = getNextNode(currentPath);
   const startNode = nextNode ?? currentPath.nodes[0];
   const pathProgress = currentPath.totalCount > 0
@@ -95,12 +125,12 @@ export function LearnPageClient({
     : 0;
 
   // Determine if we should show Continue CTA with journey progress
-  const showContinueCTA = currentLesson && journeyProgress;
+  const showContinueCTA = currentLesson && journeyProgress && activeLevel !== 'challenge';
   const ctaHref = showContinueCTA
     ? `/${locale}/learn/lessons/${currentLesson.id}`
     : startNode?.href
       ? `/${locale}${startNode.href}`
-      : `/${locale}/learn/paths/${activeLevel === 'beginner' ? 'a1' : 'a2'}`;
+      : `/${locale}/learn/paths/${pathIdMap[activeLevel]}`;
   const ctaTitle = showContinueCTA
     ? t('continueLesson', { lessonTitle: currentLesson.title })
     : startNode?.title ?? currentPath.title;
@@ -197,7 +227,8 @@ export function LearnPageClient({
               <h2 className="text-lg font-bold">{t('pickSkill')}</h2>
               <p className="text-sm text-muted-foreground">{t('pickSkillHelper')}</p>
             </div>
-            <div className="flex gap-2 rounded-xl bg-muted/50 p-1.5">
+            <div className="grid grid-cols-2 gap-2 rounded-xl bg-muted/50 p-1.5">
+              {/* A1 - Beginner */}
               <Link
                 href={`/${locale}/learn?level=beginner`}
                 onClick={(event) => {
@@ -209,7 +240,7 @@ export function LearnPageClient({
                 aria-current={activeLevel === 'beginner' ? 'page' : undefined}
                 aria-pressed={activeLevel === 'beginner'}
                 className={cn(
-                  'flex-1 flex flex-col gap-1 rounded-lg px-3 py-3 text-left transition-all min-h-[44px]',
+                  'flex flex-col gap-0.5 rounded-lg px-3 py-2.5 text-left transition-all min-h-[44px]',
                   activeLevel === 'beginner'
                     ? 'bg-background text-foreground shadow-sm'
                     : 'text-muted-foreground hover:text-foreground'
@@ -220,8 +251,8 @@ export function LearnPageClient({
                   <span className="text-sm font-semibold">{t('basics')}</span>
                   <span className="text-[10px] uppercase tracking-wide text-muted-foreground">A1</span>
                 </div>
-                <span className="text-[11px] text-muted-foreground pl-6">{t('recommendedBeginner')}</span>
               </Link>
+              {/* A2 - Intermediate */}
               <Link
                 href={`/${locale}/learn?level=intermediate`}
                 onClick={(event) => {
@@ -233,7 +264,7 @@ export function LearnPageClient({
                 aria-current={activeLevel === 'intermediate' ? 'page' : undefined}
                 aria-pressed={activeLevel === 'intermediate'}
                 className={cn(
-                  'flex-1 flex flex-col gap-1 rounded-lg px-3 py-3 text-left transition-all min-h-[44px]',
+                  'flex flex-col gap-0.5 rounded-lg px-3 py-2.5 text-left transition-all min-h-[44px]',
                   activeLevel === 'intermediate'
                     ? 'bg-background text-foreground shadow-sm'
                     : 'text-muted-foreground hover:text-foreground'
@@ -244,7 +275,54 @@ export function LearnPageClient({
                   <span className="text-sm font-semibold">{t('speaking')}</span>
                   <span className="text-[10px] uppercase tracking-wide text-muted-foreground">A2</span>
                 </div>
-                <span className="text-[11px] text-muted-foreground pl-6">{t('recommendedIntermediate')}</span>
+              </Link>
+              {/* B1 - Advanced */}
+              <Link
+                href={`/${locale}/learn?level=advanced`}
+                onClick={(event) => {
+                  event.preventDefault();
+                  handleLevelChange('advanced');
+                }}
+                role="button"
+                data-testid="learn-level-advanced"
+                aria-current={activeLevel === 'advanced' ? 'page' : undefined}
+                aria-pressed={activeLevel === 'advanced'}
+                className={cn(
+                  'flex flex-col gap-0.5 rounded-lg px-3 py-2.5 text-left transition-all min-h-[44px]',
+                  activeLevel === 'advanced'
+                    ? 'bg-background text-foreground shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                )}
+              >
+                <div className="flex items-center gap-2">
+                  <Zap className="h-4 w-4 shrink-0" />
+                  <span className="text-sm font-semibold">{t('advanced', { default: 'Advanced' })}</span>
+                  <span className="text-[10px] uppercase tracking-wide text-muted-foreground">B1</span>
+                </div>
+              </Link>
+              {/* 30-Day Challenge */}
+              <Link
+                href={`/${locale}/learn?level=challenge`}
+                onClick={(event) => {
+                  event.preventDefault();
+                  handleLevelChange('challenge');
+                }}
+                role="button"
+                data-testid="learn-level-challenge"
+                aria-current={activeLevel === 'challenge' ? 'page' : undefined}
+                aria-pressed={activeLevel === 'challenge'}
+                className={cn(
+                  'flex flex-col gap-0.5 rounded-lg px-3 py-2.5 text-left transition-all min-h-[44px]',
+                  activeLevel === 'challenge'
+                    ? 'bg-gradient-to-br from-amber-500/20 to-orange-500/20 text-foreground shadow-sm border border-amber-500/30'
+                    : 'text-muted-foreground hover:text-foreground'
+                )}
+              >
+                <div className="flex items-center gap-2">
+                  <BookOpen className="h-4 w-4 shrink-0" />
+                  <span className="text-sm font-semibold">{t('challenge', { default: '30-Day' })}</span>
+                  <span className="text-[10px] uppercase tracking-wide text-muted-foreground">📖</span>
+                </div>
               </Link>
             </div>
           </div>

@@ -2,7 +2,8 @@ import { getLocale } from "next-intl/server";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { LearnPageClient } from "@/components/learn/LearnPageClient";
-import { getA1Path, getA2Path } from "@/lib/learn/curriculum-path";
+import { getA1Path, getA2Path, getB1Path } from "@/lib/learn/curriculum-path";
+import { create30DayChallengePath } from "@/lib/learn/challenge-30day-path";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -98,10 +99,14 @@ export default async function LearnPage() {
   }
 
   // Fetch curriculum paths from database (with user completion status if logged in)
-  const [a1Path, a2Path] = await Promise.all([
+  const [a1Path, a2Path, b1Path] = await Promise.all([
     getA1Path(userId),
     getA2Path(userId),
+    getB1Path(userId),
   ]);
+
+  // Get 30-day challenge progress (stored in localStorage, so empty for SSR)
+  const challengePath = create30DayChallengePath([]);
 
   return (
     <LearnPageClient
@@ -111,6 +116,8 @@ export default async function LearnPage() {
       dailyGoalXP={gameProgress.dailyGoalXP}
       a1Path={a1Path}
       a2Path={a2Path}
+      b1Path={b1Path}
+      challengePath={challengePath}
       currentLesson={currentLesson}
       journeyProgress={journeyProgress}
     />

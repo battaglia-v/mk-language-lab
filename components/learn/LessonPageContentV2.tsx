@@ -546,6 +546,10 @@ export default function LessonPageContentV2({
         );
 
       case 'grammar':
+        // Separate notes with conjugation tables from standard notes
+        const notesWithTables = lesson.grammarNotes.filter(n => n.conjugationTable);
+        const standardNotes = lesson.grammarNotes.filter(n => !n.conjugationTable);
+
         return (
           <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
             <div className="space-y-2">
@@ -555,23 +559,23 @@ export default function LessonPageContentV2({
               </p>
             </div>
 
-            {lesson.grammarNotes.map((note) => (
+            {/* Render conjugation tables for notes that have them */}
+            {notesWithTables.map((note) => (
               <div key={note.id} className="space-y-4">
-                {/* If grammar note has a conjugation table, render it */}
-                {note.conjugationTable ? (
-                  <ConjugationTable
-                    verb={note.conjugationTable.verb}
-                    verbEn={note.conjugationTable.verbEn}
-                    tense={note.conjugationTable.tense}
-                    rows={note.conjugationTable.rows}
-                    showTransliteration={true}
-                  />
-                ) : null}
+                <ConjugationTable
+                  verb={note.conjugationTable!.verb}
+                  verbEn={note.conjugationTable!.verbEn}
+                  tense={note.conjugationTable!.tense}
+                  rows={note.conjugationTable!.rows}
+                  showTransliteration={true}
+                />
               </div>
             ))}
 
-            {/* Fallback to existing GrammarSection for notes without conjugation tables */}
-            <GrammarSection notes={lesson.grammarNotes as never[]} />
+            {/* Render standard grammar notes (without conjugation tables) */}
+            {standardNotes.length > 0 && (
+              <GrammarSection notes={standardNotes as never[]} />
+            )}
           </div>
         );
 

@@ -2541,6 +2541,7 @@
       "daysCount": "{count} days",
       "basics": "Beginner",
       "speaking": "Intermediate",
+      "advanced": "Advanced",
       "challenge": "30-Day",
       "complete": "complete",
       "goalMet": "Goal met!",
