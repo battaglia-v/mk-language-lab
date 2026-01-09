@@ -116,38 +116,77 @@ export function EnhancedVocabularyCard({
     return POS_COLORS[pos.toLowerCase()] || POS_COLORS.default;
   };
 
+  // Check if item has an example sentence
+  const hasExample = !!(item.exampleSentenceMk || item.exampleSentenceEn);
+
+  // Handle compact mode click
+  const handleCompactClick = () => {
+    if (hasExample) {
+      setShowExample(!showExample);
+    }
+  };
+
   // Render compact mode
   if (mode === 'compact') {
     return (
       <Card
+        onClick={hasExample ? handleCompactClick : undefined}
         className={cn(
-          'p-3 flex items-center gap-3 transition-all duration-200',
+          'p-3 transition-all duration-200',
           'hover:shadow-md hover:scale-[1.01]',
+          hasExample && 'cursor-pointer',
           className
         )}
         style={{ animationDelay: `${animationDelay}ms` }}
       >
-        {/* Word */}
-        <div className="flex-1 min-w-0">
-          <div className="flex items-baseline gap-2 flex-wrap">
-            <span className="font-semibold text-primary">{item.macedonianText}</span>
-            {showTransliteration && item.transliteration && (
-              <span className="text-xs text-muted-foreground font-mono">
-                /{item.transliteration}/
-              </span>
+        <div className="flex items-center gap-3">
+          {/* Word */}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-baseline gap-2 flex-wrap">
+              <span className="font-semibold text-primary">{item.macedonianText}</span>
+              {showTransliteration && item.transliteration && (
+                <span className="text-xs text-muted-foreground font-mono">
+                  /{item.transliteration}/
+                </span>
+              )}
+            </div>
+            {showTranslation && (
+              <p className="text-sm text-muted-foreground truncate">{item.englishText}</p>
             )}
           </div>
-          {showTranslation && (
-            <p className="text-sm text-muted-foreground truncate">{item.englishText}</p>
+
+          {/* Part of speech badge */}
+          {item.partOfSpeech && (
+            <Badge variant="outline" className={cn('text-xs', getPosColor(item.partOfSpeech))}>
+              {item.partOfSpeech}
+              {item.gender && ` (${GENDER_LABELS[item.gender] || item.gender})`}
+            </Badge>
           )}
         </div>
 
-        {/* Part of speech badge */}
-        {item.partOfSpeech && (
-          <Badge variant="outline" className={cn('text-xs', getPosColor(item.partOfSpeech))}>
-            {item.partOfSpeech}
-            {item.gender && ` (${GENDER_LABELS[item.gender] || item.gender})`}
-          </Badge>
+        {/* Example sentence reveal */}
+        <div
+          className={cn(
+            'transition-all duration-300 overflow-hidden',
+            showExample ? 'opacity-100 max-h-40 mt-3 pt-3 border-t border-border/50' : 'opacity-0 max-h-0'
+          )}
+        >
+          {item.exampleSentenceMk && (
+            <p className="text-sm font-medium">{item.exampleSentenceMk}</p>
+          )}
+          {item.exampleSentenceEn && (
+            <p className="text-sm text-muted-foreground italic mt-1">
+              {item.exampleSentenceEn}
+            </p>
+          )}
+        </div>
+
+        {/* Tap for example hint */}
+        {hasExample && !showExample && (
+          <p className="text-xs text-muted-foreground mt-2 flex items-center gap-1">
+            <BookOpen className="h-3 w-3" />
+            Tap for example
+          </p>
         )}
       </Card>
     );
