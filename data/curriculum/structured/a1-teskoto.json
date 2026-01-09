@@ -63,33 +63,21 @@
       "vocabularyItems": [
         {
           "word": "мојот",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "singular",
-          "translation": "mine"
-        },
-        {
-          "word": "прија",
-          "partOfSpeech": "noun",
-          "context": "plural",
-          "translation": "priya"
-        },
-        {
-          "word": "тел",
-          "partOfSpeech": "noun",
-          "context": "singular",
-          "translation": "tel"
+          "translation": "my (masculine definite)"
         },
         {
           "word": "Ѓорѓи",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "plural",
-          "translation": "George"
+          "translation": "Gjorgji (name)"
         },
         {
           "word": "Состави",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "singular",
-          "translation": "composed"
+          "translation": "compose/create (imperative)"
         },
         {
           "word": "реченици",
@@ -99,63 +87,45 @@
         },
         {
           "word": "мала",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "singular",
-          "translation": "small"
+          "translation": "small (feminine)"
         },
         {
           "word": "Бразил",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "singular",
           "translation": "Brazil"
         },
         {
           "word": "Германија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "plural",
           "translation": "Germany"
         },
         {
           "word": "Ирска",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "singular",
           "translation": "Ireland"
         },
         {
           "word": "Јапонија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "plural",
-          "translation": "japan"
-        },
-        {
-          "word": "Моника",
-          "partOfSpeech": "noun",
-          "context": "singular",
-          "translation": "monica"
-        },
-        {
-          "word": "Белучи",
-          "partOfSpeech": "noun",
-          "context": "plural",
-          "translation": "beluchi"
+          "translation": "Japan"
         },
         {
           "word": "Новак",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "singular",
-          "translation": "novice"
-        },
-        {
-          "word": "Ѓокови",
-          "partOfSpeech": "noun",
-          "context": "plural",
-          "translation": "jocks"
+          "translation": "Novak (name)"
         },
         {
           "word": "лекција",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a lesson"
+          "translation": "lesson"
         },
         {
           "word": "смееш",
@@ -171,9 +141,9 @@
         },
         {
           "word": "Влатко",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "damp"
+          "translation": "Vlatko (name)"
         },
         {
           "word": "среќава",
@@ -197,7 +167,7 @@
           "word": "факултет",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "faculty"
+          "translation": "university/college"
         },
         {
           "word": "Слушај",
@@ -225,9 +195,9 @@
         },
         {
           "word": "Здраво",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "interjection",
           "context": "thematic vocabulary",
-          "translation": "hi"
+          "translation": "Hello/Hi"
         },
         {
           "word": "Запознај",
@@ -315,37 +285,37 @@
         },
         {
           "word": "Австралија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Australia"
         },
         {
           "word": "Англија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "England"
         },
         {
           "word": "Македонија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Macedonia"
         },
         {
           "word": "Турција",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Turkey"
         },
         {
           "word": "Швајцарија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Switzerland"
         },
         {
           "word": "Шпанија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Spain"
         },
@@ -417,9 +387,9 @@
         },
         {
           "word": "знам",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
-          "translation": "I know"
+          "translation": "know"
         },
         {
           "word": "Колдплеј",
@@ -441,7 +411,7 @@
         },
         {
           "word": "Србија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Serbia"
         },
@@ -483,9 +453,9 @@
         },
         {
           "word": "Скопје",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "Skopje"
+          "translation": "Skopje (capital of North Macedonia)"
         },
         {
           "word": "професор",
@@ -507,9 +477,9 @@
         },
         {
           "word": "изговори",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
-          "translation": "excuses"
+          "translation": "pronounce (imperative)"
         },
         {
           "word": "Стави",
@@ -775,9 +745,9 @@
         },
         {
           "word": "Марија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "plural",
-          "translation": "Maria"
+          "translation": "Maria (name)"
         },
         {
           "word": "моите",
@@ -807,7 +777,7 @@
           "word": "дете",
           "partOfSpeech": "noun",
           "context": "singular",
-          "translation": "a child"
+          "translation": "child"
         },
         {
           "word": "множи",
@@ -837,7 +807,7 @@
           "word": "маж",
           "partOfSpeech": "noun",
           "context": "singular",
-          "translation": "a man"
+          "translation": "man/husband"
         },
         {
           "word": "мажи",
@@ -849,7 +819,7 @@
           "word": "жена",
           "partOfSpeech": "noun",
           "context": "singular",
-          "translation": "a woman"
+          "translation": "woman/wife"
         },
         {
           "word": "жени",
@@ -873,7 +843,7 @@
           "word": "куќа",
           "partOfSpeech": "noun",
           "context": "singular",
-          "translation": "a house"
+          "translation": "house"
         },
         {
           "word": "куќи",
@@ -937,9 +907,9 @@
         },
         {
           "word": "Состави",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "singular",
-          "translation": "composed"
+          "translation": "compose/create (imperative)"
         },
         {
           "word": "реченици",
@@ -997,9 +967,9 @@
         },
         {
           "word": "стар",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "singular",
-          "translation": "old"
+          "translation": "old (masculine)"
         },
         {
           "word": "велоси",
@@ -1009,9 +979,9 @@
         },
         {
           "word": "одам",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "singular",
-          "translation": "I'm going"
+          "translation": "go"
         },
         {
           "word": "секоја",
@@ -1033,15 +1003,9 @@
         },
         {
           "word": "мојот",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "singular",
-          "translation": "mine"
-        },
-        {
-          "word": "прија",
-          "partOfSpeech": "noun",
-          "context": "plural",
-          "translation": "priya"
+          "translation": "my (masculine definite)"
         },
         {
           "word": "Пополни",
@@ -1123,9 +1087,9 @@
         },
         {
           "word": "Скопје",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "Skopje"
+          "translation": "Skopje (capital of North Macedonia)"
         },
         {
           "word": "пријатели",
@@ -1405,9 +1369,9 @@
         },
         {
           "word": "мислам",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
-          "translation": "I think"
+          "translation": "think"
         },
         {
           "word": "Агњешка",
@@ -1423,9 +1387,9 @@
         },
         {
           "word": "Петар",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "peter"
+          "translation": "Petar (name)"
         },
         {
           "word": "Тамара",
@@ -1447,9 +1411,9 @@
         },
         {
           "word": "Влатко",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "damp"
+          "translation": "Vlatko (name)"
         },
         {
           "word": "Дарко",
@@ -2062,9 +2026,9 @@
         },
         {
           "word": "твојот",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (masculine definite)"
         },
         {
           "word": "мајчин",
@@ -2094,13 +2058,13 @@
           "word": "пријателка",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a friend"
+          "translation": "friend (female)"
         },
         {
           "word": "Ива",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "iva"
+          "translation": "Iva (name)"
         },
         {
           "word": "Пасус",
@@ -2154,7 +2118,7 @@
           "word": "пријател",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a friend"
+          "translation": "friend (male)"
         },
         {
           "word": "член",
@@ -2164,9 +2128,9 @@
         },
         {
           "word": "твоето",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (neuter definite)"
         },
         {
           "word": "семејство",
@@ -2238,7 +2202,7 @@
           "word": "град",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "town"
+          "translation": "city/town"
         },
         {
           "word": "Полска",
@@ -2302,9 +2266,9 @@
         },
         {
           "word": "Скопје",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "Skopje"
+          "translation": "Skopje (capital of North Macedonia)"
         },
         {
           "word": "градските",
@@ -2644,9 +2608,9 @@
         },
         {
           "word": "нов",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "new"
+          "translation": "new (masculine)"
         },
         {
           "word": "пенкало",
@@ -2668,7 +2632,7 @@
         },
         {
           "word": "Ирска",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Ireland"
         }
@@ -2812,7 +2776,8 @@
         {
           "word": "маса",
           "context": "word list",
-          "translation": "table"
+          "translation": "table",
+          "partOfSpeech": "noun"
         },
         {
           "word": "врата",
@@ -2827,7 +2792,8 @@
         {
           "word": "книга",
           "context": "word list",
-          "translation": "a book"
+          "translation": "book",
+          "partOfSpeech": "noun"
         },
         {
           "word": "лице",
@@ -2990,9 +2956,9 @@
         },
         {
           "word": "Состави",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
-          "translation": "composed"
+          "translation": "compose/create (imperative)"
         },
         {
           "word": "реченици",
@@ -3242,21 +3208,21 @@
         },
         {
           "word": "Турција",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Turkey"
         },
         {
           "word": "Швајцарија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Switzerland"
         },
         {
           "word": "Јапонија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "japan"
+          "translation": "Japan"
         },
         {
           "word": "Кипар",
@@ -3374,9 +3340,9 @@
         },
         {
           "word": "твојот",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (masculine definite)"
         },
         {
           "word": "јазик",
@@ -3536,7 +3502,7 @@
         },
         {
           "word": "Австралија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Australia"
         },
@@ -4078,7 +4044,7 @@
           "word": "пријател",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a friend"
+          "translation": "friend (male)"
         },
         {
           "word": "вујна",
@@ -4106,9 +4072,9 @@
         },
         {
           "word": "мојот",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "mine"
+          "translation": "my (masculine definite)"
         },
         {
           "word": "брат",
@@ -4462,9 +4428,9 @@
         },
         {
           "word": "моето",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "mine"
+          "translation": "my (neuter definite)"
         },
         {
           "word": "бебе",
@@ -4504,9 +4470,9 @@
         },
         {
           "word": "мојот",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "mine"
+          "translation": "my (masculine definite)"
         },
         {
           "word": "стан",
@@ -4534,15 +4500,15 @@
         },
         {
           "word": "мојата",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "mine"
+          "translation": "my (feminine definite)"
         },
         {
           "word": "девојка",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a girl"
+          "translation": "girl"
         },
         {
           "word": "слика",
@@ -5068,15 +5034,15 @@
         },
         {
           "word": "твојот",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (masculine definite)"
         },
         {
           "word": "град",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "town"
+          "translation": "city/town"
         }
       ],
       "grammarNotes": [
@@ -5259,7 +5225,7 @@
           "word": "град",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "town"
+          "translation": "city/town"
         },
         {
           "word": "добри",
@@ -5275,9 +5241,9 @@
         },
         {
           "word": "твоето",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (neuter definite)"
         },
         {
           "word": "луѓе",
@@ -5299,9 +5265,9 @@
         },
         {
           "word": "твојот",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (masculine definite)"
         },
         {
           "word": "вежба",
@@ -5407,9 +5373,9 @@
         },
         {
           "word": "мала",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "small"
+          "translation": "small (feminine)"
         },
         {
           "word": "библиотека",
@@ -5565,7 +5531,7 @@
           "word": "куќа",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a house"
+          "translation": "house"
         },
         {
           "word": "Претпостави",
@@ -5647,19 +5613,19 @@
         },
         {
           "word": "дневна",
-          "partOfSpeech": "adjective",
+          "partOfSpeech": "noun",
           "context": "thematic vocabulary",
           "translation": "living room"
         },
         {
           "word": "кујна",
-          "partOfSpeech": "adjective",
+          "partOfSpeech": "noun",
           "context": "thematic vocabulary",
           "translation": "kitchen"
         },
         {
           "word": "спална",
-          "partOfSpeech": "adjective",
+          "partOfSpeech": "noun",
           "context": "thematic vocabulary",
           "translation": "bedroom"
         },
@@ -5851,9 +5817,9 @@
         },
         {
           "word": "големо",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "big"
+          "translation": "big (neuter)"
         },
         {
           "word": "подот",
@@ -6013,9 +5979,9 @@
         },
         {
           "word": "твојата",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (feminine definite)"
         },
         {
           "word": "адреса",
@@ -6199,9 +6165,9 @@
         },
         {
           "word": "голема",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "big"
+          "translation": "big (feminine)"
         },
         {
           "word": "трпезарија",
@@ -6590,7 +6556,8 @@
         {
           "word": "Училиштето",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "the school"
         },
         {
           "word": "англиски",
@@ -6702,19 +6669,21 @@
         },
         {
           "word": "Марко",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "proper noun",
+          "context": "thematic vocabulary",
+          "translation": "Marko (name)"
         },
         {
           "word": "моето",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "mine"
+          "translation": "my (neuter definite)"
         },
         {
           "word": "колата",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "the car"
         },
         {
           "word": "татко",
@@ -6736,33 +6705,39 @@
         },
         {
           "word": "Ангела",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "proper noun",
+          "context": "thematic vocabulary",
+          "translation": "Angela (name)"
         },
         {
           "word": "Мирјана",
-          "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "proper noun",
+          "context": "thematic vocabulary",
+          "translation": "Mirjana (name)"
         },
         {
           "word": "Миле",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "proper noun",
+          "context": "thematic vocabulary",
+          "translation": "Mile (name)"
         },
         {
           "word": "Црвената",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "the red (feminine definite)"
         },
         {
           "word": "нашите",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "possessive",
+          "context": "thematic vocabulary",
+          "translation": "our (plural definite)"
         },
         {
           "word": "соседи",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "neighbors"
         },
         {
           "word": "Нашата",
@@ -6790,18 +6765,21 @@
         },
         {
           "word": "присвојни",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "possessive (grammar)"
         },
         {
           "word": "гледаш",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "you watch/look at"
         },
         {
           "word": "Зборувајте",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "speak (formal imperative)"
         },
         {
           "word": "имињата",
@@ -6812,7 +6790,8 @@
         {
           "word": "студентите",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "the students"
         },
         {
           "word": "класот",
@@ -6828,23 +6807,27 @@
         },
         {
           "word": "познати",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "famous/known"
         },
         {
           "word": "цел",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "whole/goal"
         },
         {
           "word": "свет",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "world"
         },
         {
           "word": "Слушајте",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "listen (formal imperative)"
         },
         {
           "word": "изговорот",
@@ -6855,17 +6838,20 @@
         {
           "word": "гласовите",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "the voices"
         },
         {
           "word": "крајот",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "the end"
         },
         {
           "word": "мобилни",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "mobile (plural)"
         },
         {
           "word": "Читај",
@@ -6887,38 +6873,45 @@
         },
         {
           "word": "брои",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "counts"
         },
         {
           "word": "крој",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "cut/style"
         },
         {
           "word": "допаѓа",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "pleases/likes"
         },
         {
           "word": "спои",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "joins/connects"
         },
         {
           "word": "минусот",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "the minus"
         },
         {
           "word": "плусот",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "the plus"
         },
         {
           "word": "кабелот",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "the cable"
         },
         {
           "word": "струја",
@@ -6929,12 +6922,14 @@
         {
           "word": "албум",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "album"
         },
         {
           "word": "бој",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "battle/color"
         },
         {
           "word": "бои",
@@ -6944,13 +6939,15 @@
         },
         {
           "word": "крои",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "cuts/tailors"
         },
         {
           "word": "спој",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "connection/joint"
         },
         {
           "word": "Изрази",
@@ -6962,38 +6959,43 @@
           "word": "пријател",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a friend"
+          "translation": "friend (male)"
         },
         {
           "word": "Повели",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "interjection",
+          "context": "thematic vocabulary",
+          "translation": "Here you go (informal)"
         },
         {
           "word": "Фала",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "interjection",
+          "context": "thematic vocabulary",
+          "translation": "Thanks (colloquial)"
         },
         {
           "word": "молам",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "please"
         },
         {
           "word": "Благодарам",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "interjection",
           "context": "thematic vocabulary",
-          "translation": "thank you"
+          "translation": "Thank you"
         },
         {
           "word": "Повелете",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "interjection",
+          "context": "thematic vocabulary",
+          "translation": "Here you go (formal)"
         },
         {
           "word": "шолја",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "cup (for coffee)"
         },
         {
           "word": "кафе",
@@ -7004,7 +7006,8 @@
         {
           "word": "чаша",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "glass/cup"
         },
         {
           "word": "вода",
@@ -7014,18 +7017,21 @@
         },
         {
           "word": "банана",
-          "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "banana"
         },
         {
           "word": "сок",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "juice"
         },
         {
           "word": "трети",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "numeral",
+          "context": "thematic vocabulary",
+          "translation": "third"
         },
         {
           "word": "втор",
@@ -7042,17 +7048,20 @@
         {
           "word": "јаболкото",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "the apple"
         },
         {
           "word": "однос",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "relationship/ratio"
         },
         {
           "word": "кутијата",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "the box"
         },
         {
           "word": "Дополни",
@@ -7069,22 +7078,26 @@
         {
           "word": "ред",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "order/row"
         },
         {
           "word": "Вметни",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "insert (imperative)"
         },
         {
           "word": "испуштените",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "the omitted ones"
         },
         {
           "word": "согласки",
-          "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "consonants"
         },
         {
           "word": "списокот",
@@ -7094,14 +7107,15 @@
         },
         {
           "word": "Ванчо",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "proper noun",
+          "context": "thematic vocabulary",
+          "translation": "Vancho (name)"
         },
         {
           "word": "мојата",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "mine"
+          "translation": "my (feminine definite)"
         },
         {
           "word": "сестра",
@@ -7111,13 +7125,15 @@
         },
         {
           "word": "Наталија",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "proper noun",
+          "context": "thematic vocabulary",
+          "translation": "Natalija (name)"
         },
         {
           "word": "множински",
           "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "plural (grammar)"
         },
         {
           "word": "форми",
@@ -7127,8 +7143,9 @@
         },
         {
           "word": "Составете",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "compose/create (formal imperative)"
         },
         {
           "word": "врска",
@@ -7287,12 +7304,14 @@
         {
           "word": "село",
           "partOfSpeech": "noun",
-          "context": "singular"
+          "context": "singular",
+          "translation": "village"
         },
         {
           "word": "учили",
-          "partOfSpeech": "noun",
-          "context": "plural"
+          "partOfSpeech": "verb",
+          "context": "plural",
+          "translation": "studied/learned (plural past)"
         },
         {
           "word": "Напиши",
@@ -7309,33 +7328,38 @@
         {
           "word": "списание",
           "partOfSpeech": "noun",
-          "context": "singular"
+          "context": "singular",
+          "translation": "magazine"
         },
         {
           "word": "видеоигри",
           "partOfSpeech": "noun",
-          "context": "plural"
+          "context": "plural",
+          "translation": "video games"
         },
         {
           "word": "книга",
           "partOfSpeech": "noun",
           "context": "singular",
-          "translation": "a book"
+          "translation": "book"
         },
         {
           "word": "филмови",
           "partOfSpeech": "noun",
-          "context": "plural"
+          "context": "plural",
+          "translation": "movies"
         },
         {
           "word": "гледа",
-          "partOfSpeech": "noun",
-          "context": "singular"
+          "partOfSpeech": "verb",
+          "context": "singular",
+          "translation": "watches/looks at"
         },
         {
           "word": "телевизија",
           "partOfSpeech": "noun",
-          "context": "plural"
+          "context": "plural",
+          "translation": "television"
         },
         {
           "word": "јаде",
@@ -7344,19 +7368,10 @@
           "translation": "he eats"
         },
         {
-          "word": "сендви",
-          "partOfSpeech": "noun",
-          "context": "plural"
-        },
-        {
           "word": "чита",
-          "partOfSpeech": "noun",
-          "context": "singular"
-        },
-        {
-          "word": "весни",
-          "partOfSpeech": "noun",
-          "context": "plural"
+          "partOfSpeech": "verb",
+          "context": "singular",
+          "translation": "reads"
         },
         {
           "word": "Најди",
@@ -7367,13 +7382,8 @@
         {
           "word": "антоними",
           "partOfSpeech": "noun",
-          "context": "plural"
-        },
-        {
-          "word": "тел",
-          "partOfSpeech": "noun",
-          "context": "singular",
-          "translation": "tel"
+          "context": "plural",
+          "translation": "antonyms"
         },
         {
           "word": "точните",
@@ -7395,33 +7405,39 @@
         },
         {
           "word": "кого",
-          "partOfSpeech": "noun",
-          "context": "singular"
+          "partOfSpeech": "pronoun",
+          "context": "singular",
+          "translation": "whom"
         },
         {
           "word": "седи",
-          "partOfSpeech": "noun",
-          "context": "plural"
+          "partOfSpeech": "verb",
+          "context": "plural",
+          "translation": "sits"
         },
         {
           "word": "носам",
-          "partOfSpeech": "noun",
-          "context": "singular"
+          "partOfSpeech": "verb",
+          "context": "singular",
+          "translation": "carry/wear"
         },
         {
           "word": "високи",
-          "partOfSpeech": "noun",
-          "context": "plural"
+          "partOfSpeech": "adjective",
+          "context": "plural",
+          "translation": "tall (plural)"
         },
         {
           "word": "зборувам",
-          "partOfSpeech": "noun",
-          "context": "singular"
+          "partOfSpeech": "verb",
+          "context": "singular",
+          "translation": "speak"
         },
         {
           "word": "германски",
-          "partOfSpeech": "noun",
-          "context": "plural"
+          "partOfSpeech": "adjective",
+          "context": "plural",
+          "translation": "German (adjective)"
         },
         {
           "word": "следниве",
@@ -7443,24 +7459,15 @@
         },
         {
           "word": "Предавам",
-          "partOfSpeech": "noun",
-          "context": "singular"
+          "partOfSpeech": "verb",
+          "context": "singular",
+          "translation": "I teach/lecture"
         },
         {
           "word": "англиски",
           "partOfSpeech": "noun",
           "context": "plural",
           "translation": "English"
-        },
-        {
-          "word": "кенд",
-          "partOfSpeech": "noun",
-          "context": "singular"
-        },
-        {
-          "word": "плани",
-          "partOfSpeech": "noun",
-          "context": "plural"
         },
         {
           "word": "јадам",
@@ -7470,8 +7477,9 @@
         },
         {
           "word": "слатки",
-          "partOfSpeech": "noun",
-          "context": "plural"
+          "partOfSpeech": "adjective",
+          "context": "plural",
+          "translation": "sweet (plural)"
         },
         {
           "word": "Користи",
@@ -7482,7 +7490,8 @@
         {
           "word": "глаголи",
           "partOfSpeech": "noun",
-          "context": "plural"
+          "context": "plural",
+          "translation": "verbs"
         },
         {
           "word": "Мојот",
@@ -7491,15 +7500,10 @@
           "translation": "mine"
         },
         {
-          "word": "прија",
-          "partOfSpeech": "noun",
-          "context": "plural",
-          "translation": "priya"
-        },
-        {
           "word": "Неговите",
-          "partOfSpeech": "noun",
-          "context": "singular"
+          "partOfSpeech": "possessive",
+          "context": "singular",
+          "translation": "his (plural definite)"
         },
         {
           "word": "родители",
@@ -7509,9 +7513,9 @@
         },
         {
           "word": "добро",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "singular",
-          "translation": "good"
+          "translation": "good (neuter)"
         },
         {
           "word": "Блиску",
@@ -7552,7 +7556,8 @@
         {
           "word": "хотелска",
           "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "hotel (adjective)"
         },
         {
           "word": "соба",
@@ -7563,7 +7568,8 @@
         {
           "word": "ред",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "order/row"
         },
         {
           "word": "Пишувај",
@@ -7573,14 +7579,15 @@
         },
         {
           "word": "работи",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "works"
         },
         {
           "word": "куќа",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a house"
+          "translation": "house"
         },
         {
           "word": "стан",
@@ -7592,7 +7599,7 @@
           "word": "град",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "town"
+          "translation": "city/town"
         },
         {
           "word": "училиште",
@@ -7603,7 +7610,8 @@
         {
           "word": "хотел",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "hotel"
         },
         {
           "word": "значење",
@@ -7619,8 +7627,9 @@
         },
         {
           "word": "спротивно",
-          "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "adverb",
+          "context": "thematic vocabulary",
+          "translation": "opposite/contrary"
         },
         {
           "word": "дијалози",
@@ -7630,8 +7639,9 @@
         },
         {
           "word": "гледаш",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "you watch/look at"
         },
         {
           "word": "сликата",
@@ -7641,23 +7651,25 @@
         },
         {
           "word": "Марта",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "proper noun",
+          "context": "thematic vocabulary",
+          "translation": "Marta (name)"
         },
         {
           "word": "Соколова",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "proper noun",
+          "context": "thematic vocabulary",
+          "translation": "Sokolova (surname)"
         },
         {
           "word": "Скопје",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "Skopje"
+          "translation": "Skopje (capital of North Macedonia)"
         },
         {
           "word": "Македонија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Macedonia"
         },
@@ -7670,18 +7682,20 @@
         {
           "word": "паузата",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "the break/pause"
         },
         {
           "word": "ручек",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "lunch"
         },
         {
           "word": "одам",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
-          "translation": "I'm going"
+          "translation": "go"
         },
         {
           "word": "ресторан",
@@ -7697,13 +7711,15 @@
         },
         {
           "word": "обично",
-          "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "adverb",
+          "context": "thematic vocabulary",
+          "translation": "usually"
         },
         {
           "word": "играме",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "we play"
         },
         {
           "word": "некогаш",
@@ -7714,12 +7730,14 @@
         {
           "word": "уморна",
           "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "tired (feminine)"
         },
         {
           "word": "болна",
           "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "sick (feminine)"
         },
         {
           "word": "луѓе",
@@ -7735,8 +7753,9 @@
         },
         {
           "word": "прават",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "they do/make"
         },
         {
           "word": "Слушај",
@@ -7753,7 +7772,8 @@
         {
           "word": "ситуација",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "situation"
         },
         {
           "word": "прозорец",
@@ -7764,7 +7784,8 @@
         {
           "word": "сендвич",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "sandwich"
         },
         {
           "word": "игра",
@@ -7773,19 +7794,10 @@
           "translation": "game"
         },
         {
-          "word": "пинг",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
-        },
-        {
-          "word": "понг",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
-        },
-        {
           "word": "слуша",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "listens"
         },
         {
           "word": "радио",
@@ -7875,7 +7887,7 @@
           "word": "пријател",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a friend"
+          "translation": "friend (male)"
         },
         {
           "word": "член",
@@ -7885,9 +7897,9 @@
         },
         {
           "word": "твоето",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (neuter definite)"
         },
         {
           "word": "семејство",
@@ -7987,9 +7999,9 @@
         },
         {
           "word": "старо",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "old"
+          "translation": "old (neuter)"
         },
         {
           "word": "ниско",
@@ -8017,9 +8029,9 @@
         },
         {
           "word": "ново",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "new"
+          "translation": "new (neuter)"
         },
         {
           "word": "Милан",
@@ -8071,9 +8083,9 @@
         },
         {
           "word": "нова",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "new"
+          "translation": "new (feminine)"
         },
         {
           "word": "носи",
@@ -8157,7 +8169,7 @@
           "word": "работа",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "work"
+          "translation": "work/job"
         },
         {
           "word": "викенд",
@@ -8217,7 +8229,7 @@
           "word": "девојка",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a girl"
+          "translation": "girl"
         },
         {
           "word": "глагол",
@@ -8605,9 +8617,9 @@
         },
         {
           "word": "Состави",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
-          "translation": "composed"
+          "translation": "compose/create (imperative)"
         },
         {
           "word": "список",
@@ -8635,9 +8647,9 @@
         },
         {
           "word": "твојот",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (masculine definite)"
         },
         {
           "word": "соученик",
@@ -8738,7 +8750,8 @@
         {
           "word": "сок",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "juice"
         },
         {
           "word": "анкета",
@@ -8791,7 +8804,8 @@
         {
           "word": "чаша",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "glass/cup"
         },
         {
           "word": "салвета",
@@ -8892,7 +8906,8 @@
         {
           "word": "свет",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "world"
         },
         {
           "word": "најголемиот",
@@ -9047,7 +9062,8 @@
         {
           "word": "цел",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "whole/goal"
         },
         {
           "word": "милиони",
@@ -9105,7 +9121,7 @@
         },
         {
           "word": "Македонија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Macedonia"
         },
@@ -9671,13 +9687,13 @@
           "word": "жена",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a woman"
+          "translation": "woman/wife"
         },
         {
           "word": "мојата",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "mine"
+          "translation": "my (feminine definite)"
         },
         {
           "word": "бело",
@@ -9729,8 +9745,9 @@
         },
         {
           "word": "допаѓа",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "pleases/likes"
         },
         {
           "word": "канат",
@@ -9759,7 +9776,8 @@
         {
           "word": "албум",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "album"
         },
         {
           "word": "Мајкл",
@@ -9811,9 +9829,9 @@
         },
         {
           "word": "одам",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
-          "translation": "I'm going"
+          "translation": "go"
         },
         {
           "word": "часови",
@@ -9835,8 +9853,9 @@
         },
         {
           "word": "обично",
-          "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "adverb",
+          "context": "thematic vocabulary",
+          "translation": "usually"
         },
         {
           "word": "одиме",
@@ -9876,14 +9895,15 @@
         },
         {
           "word": "зборувам",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "speak"
         },
         {
           "word": "Маја",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "Maya"
+          "translation": "Maja (name)"
         },
         {
           "word": "Субјект",
@@ -9959,8 +9979,9 @@
         },
         {
           "word": "слуша",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "listens"
         },
         {
           "word": "прави",
@@ -9970,13 +9991,15 @@
         },
         {
           "word": "чита",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "reads"
         },
         {
           "word": "гледа",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "watches/looks at"
         },
         {
           "word": "Борче",
@@ -9986,9 +10009,9 @@
         },
         {
           "word": "Весна",
-          "partOfSpeech": "adjective",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "spring"
+          "translation": "Vesna (name)"
         }
       ],
       "grammarNotes": [
@@ -10148,8 +10171,9 @@
         },
         {
           "word": "Обично",
-          "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "adverb",
+          "context": "thematic vocabulary",
+          "translation": "usually"
         },
         {
           "word": "јадам",
@@ -10183,9 +10207,9 @@
         },
         {
           "word": "твојот",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (masculine definite)"
         },
         {
           "word": "вообичаен",
@@ -10309,8 +10333,9 @@
         },
         {
           "word": "допаѓа",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "pleases/likes"
         },
         {
           "word": "излезе",
@@ -10380,9 +10405,9 @@
         },
         {
           "word": "твоето",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (neuter definite)"
         },
         {
           "word": "мислење",
@@ -10470,9 +10495,9 @@
         },
         {
           "word": "Скопје",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "Skopje"
+          "translation": "Skopje (capital of North Macedonia)"
         },
         {
           "word": "Велес",
@@ -10562,7 +10587,7 @@
           "word": "жена",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a woman"
+          "translation": "woman/wife"
         },
         {
           "word": "економија",
@@ -10740,9 +10765,9 @@
         },
         {
           "word": "твојата",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (feminine definite)"
         },
         {
           "word": "другарка",
@@ -10844,7 +10869,7 @@
           "word": "работа",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "work"
+          "translation": "work/job"
         },
         {
           "word": "положи",
@@ -10891,7 +10916,8 @@
         {
           "word": "ручек",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "lunch"
         },
         {
           "word": "скара",
@@ -11267,8 +11293,9 @@
         },
         {
           "word": "работи",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "works"
         },
         {
           "word": "банка",
@@ -11374,24 +11401,27 @@
         },
         {
           "word": "гледа",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "watches/looks at"
         },
         {
           "word": "телевизија",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "television"
         },
         {
           "word": "чита",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "reads"
         },
         {
           "word": "книга",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a book"
+          "translation": "book"
         },
         {
           "word": "повторно",
@@ -11409,7 +11439,7 @@
           "word": "работа",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "work"
+          "translation": "work/job"
         },
         {
           "word": "мажот",
@@ -11803,8 +11833,9 @@
         },
         {
           "word": "неговите",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "possessive",
+          "context": "thematic vocabulary",
+          "translation": "his (plural definite)"
         },
         {
           "word": "станбената",
@@ -11964,9 +11995,9 @@
         },
         {
           "word": "Скопје",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "Skopje"
+          "translation": "Skopje (capital of North Macedonia)"
         },
         {
           "word": "одговориш",
@@ -12018,8 +12049,9 @@
         },
         {
           "word": "продаваат",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "they sell"
         },
         {
           "word": "списанија",
@@ -12221,9 +12253,9 @@
         },
         {
           "word": "твојата",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (feminine definite)"
         },
         {
           "word": "земја",
@@ -12233,9 +12265,9 @@
         },
         {
           "word": "Состави",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
-          "translation": "composed"
+          "translation": "compose/create (imperative)"
         },
         {
           "word": "реченици",
@@ -12299,8 +12331,9 @@
         },
         {
           "word": "спротивно",
-          "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "adverb",
+          "context": "thematic vocabulary",
+          "translation": "opposite/contrary"
         },
         {
           "word": "втор",
@@ -12418,9 +12451,9 @@
         },
         {
           "word": "твојот",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (masculine definite)"
         },
         {
           "word": "јазик",
@@ -12515,7 +12548,8 @@
         {
           "word": "хотел",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "hotel"
         },
         {
           "word": "учи",
@@ -12675,8 +12709,9 @@
         },
         {
           "word": "молам",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "please"
         },
         {
           "word": "киоск",
@@ -12800,7 +12835,7 @@
         },
         {
           "word": "Македонија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Macedonia"
         },
@@ -12809,12 +12844,6 @@
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
           "translation": "Europe"
-        },
-        {
-          "word": "тел",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary",
-          "translation": "tel"
         },
         {
           "word": "Изберете",
@@ -12842,15 +12871,15 @@
         },
         {
           "word": "убаво",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "nice"
+          "translation": "beautiful (neuter)"
         },
         {
           "word": "големо",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "big"
+          "translation": "big (neuter)"
         },
         {
           "word": "кратко",
@@ -12884,9 +12913,9 @@
         },
         {
           "word": "старо",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "old"
+          "translation": "old (neuter)"
         },
         {
           "word": "ладно",
@@ -12926,9 +12955,9 @@
         },
         {
           "word": "младо",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "young"
+          "translation": "young (neuter)"
         },
         {
           "word": "скапо",
@@ -12938,9 +12967,9 @@
         },
         {
           "word": "мало",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "little"
+          "translation": "small (neuter)"
         },
         {
           "word": "богато",
@@ -13213,7 +13242,8 @@
         {
           "word": "хотел",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "hotel"
         },
         {
           "word": "месарница",
@@ -13253,9 +13283,9 @@
         },
         {
           "word": "Скопје",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "Skopje"
+          "translation": "Skopje (capital of North Macedonia)"
         },
         {
           "word": "сити",
@@ -13363,7 +13393,7 @@
           "word": "град",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "town"
+          "translation": "city/town"
         },
         {
           "word": "купи",
@@ -13409,7 +13439,7 @@
         },
         {
           "word": "кујна",
-          "partOfSpeech": "adjective",
+          "partOfSpeech": "noun",
           "context": "thematic vocabulary",
           "translation": "kitchen"
         },
@@ -13469,14 +13499,15 @@
         },
         {
           "word": "Обично",
-          "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "adverb",
+          "context": "thematic vocabulary",
+          "translation": "usually"
         },
         {
           "word": "одам",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
-          "translation": "I'm going"
+          "translation": "go"
         },
         {
           "word": "пријатели",
@@ -13534,9 +13565,9 @@
         },
         {
           "word": "твојот",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (masculine definite)"
         },
         {
           "word": "мајчин",
@@ -13654,19 +13685,21 @@
         },
         {
           "word": "зборувам",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "speak"
         },
         {
           "word": "Маја",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "Maya"
+          "translation": "Maja (name)"
         },
         {
           "word": "молам",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "please"
         },
         {
           "word": "понеделник",
@@ -13802,8 +13835,9 @@
         },
         {
           "word": "прават",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "they do/make"
         },
         {
           "word": "луѓе",
@@ -13821,7 +13855,7 @@
           "word": "книга",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a book"
+          "translation": "book"
         },
         {
           "word": "Пополни",
@@ -13850,12 +13884,14 @@
         {
           "word": "глаголи",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "verbs"
         },
         {
           "word": "пуши",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "smokes"
         },
         {
           "word": "игра",
@@ -13865,8 +13901,9 @@
         },
         {
           "word": "гледа",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "watches/looks at"
         },
         {
           "word": "забавува",
@@ -13900,8 +13937,9 @@
         },
         {
           "word": "седи",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "sits"
         },
         {
           "word": "Глагол",
@@ -13935,8 +13973,9 @@
         },
         {
           "word": "слуша",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "listens"
         },
         {
           "word": "слушање",
@@ -13952,8 +13991,9 @@
         },
         {
           "word": "чита",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "reads"
         },
         {
           "word": "читање",
@@ -14151,8 +14191,9 @@
         },
         {
           "word": "чита",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "reads"
         },
         {
           "word": "весник",
@@ -14164,7 +14205,7 @@
           "word": "книга",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a book"
+          "translation": "book"
         },
         {
           "word": "престојувате",
@@ -14175,7 +14216,8 @@
         {
           "word": "хотел",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "hotel"
         },
         {
           "word": "пријатели",
@@ -14235,7 +14277,7 @@
           "word": "факултет",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "faculty"
+          "translation": "university/college"
         },
         {
           "word": "кино",
@@ -14263,8 +14305,9 @@
         },
         {
           "word": "работи",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "works"
         },
         {
           "word": "дома",
@@ -14276,7 +14319,7 @@
           "word": "работа",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "work"
+          "translation": "work/job"
         },
         {
           "word": "некој",
@@ -14466,8 +14509,9 @@
         },
         {
           "word": "кого",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "pronoun",
+          "context": "thematic vocabulary",
+          "translation": "whom"
         },
         {
           "word": "зборуваш",
@@ -14669,9 +14713,9 @@
         },
         {
           "word": "твоето",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (neuter definite)"
         },
         {
           "word": "семејство",
@@ -14777,8 +14821,9 @@
         },
         {
           "word": "обично",
-          "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "adverb",
+          "context": "thematic vocabulary",
+          "translation": "usually"
         },
         {
           "word": "очила",
@@ -14800,9 +14845,9 @@
         },
         {
           "word": "твојот",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (masculine definite)"
         },
         {
           "word": "соученик",
@@ -14844,7 +14889,7 @@
           "word": "пријател",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a friend"
+          "translation": "friend (male)"
         },
         {
           "word": "позната",
@@ -14909,7 +14954,8 @@
         {
           "word": "ред",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "order/row"
         },
         {
           "word": "година",
@@ -15069,9 +15115,9 @@
         },
         {
           "word": "голем",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "big"
+          "translation": "big (masculine)"
         },
         {
           "word": "хит",
@@ -15129,7 +15175,7 @@
         },
         {
           "word": "Македонија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Macedonia"
         },
@@ -15285,15 +15331,15 @@
         },
         {
           "word": "мојата",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "mine"
+          "translation": "my (feminine definite)"
         },
         {
           "word": "куќа",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a house"
+          "translation": "house"
         },
         {
           "word": "викаат",
@@ -15399,8 +15445,9 @@
         },
         {
           "word": "прават",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "they do/make"
         },
         {
           "word": "физички",
@@ -15416,8 +15463,9 @@
         },
         {
           "word": "пуши",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "smokes"
         },
         {
           "word": "јади",
@@ -15427,8 +15475,9 @@
         },
         {
           "word": "слатки",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "sweet (plural)"
         },
         {
           "word": "пиј",
@@ -15691,7 +15740,8 @@
         {
           "word": "глаголи",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "verbs"
         },
         {
           "word": "рамките",
@@ -15703,7 +15753,7 @@
           "word": "девојка",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a girl"
+          "translation": "girl"
         },
         {
           "word": "студенти",
@@ -16067,8 +16117,9 @@
         },
         {
           "word": "гледаш",
-          "partOfSpeech": "noun",
-          "context": "singular"
+          "partOfSpeech": "verb",
+          "context": "singular",
+          "translation": "you watch/look at"
         },
         {
           "word": "отвори",
@@ -16223,7 +16274,8 @@
         {
           "word": "шолја",
           "partOfSpeech": "noun",
-          "context": "plural"
+          "context": "plural",
+          "translation": "cup (for coffee)"
         },
         {
           "word": "топчиња",
@@ -16511,13 +16563,13 @@
           "word": "маж",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a man"
+          "translation": "man/husband"
         },
         {
           "word": "жена",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a woman"
+          "translation": "woman/wife"
         },
         {
           "word": "Сликата",
@@ -16751,7 +16803,7 @@
           "word": "книга",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a book"
+          "translation": "book"
         },
         {
           "word": "готвење",
@@ -16858,7 +16910,8 @@
         {
           "word": "држење",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "holding/behavior"
         },
         {
           "word": "жешки",
@@ -16916,8 +16969,9 @@
         },
         {
           "word": "работи",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "works"
         },
         {
           "word": "лица",
@@ -16927,8 +16981,9 @@
         },
         {
           "word": "прават",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "they do/make"
         },
         {
           "word": "список",
@@ -16986,13 +17041,13 @@
         },
         {
           "word": "твојата",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (feminine definite)"
         },
         {
           "word": "кујна",
-          "partOfSpeech": "adjective",
+          "partOfSpeech": "noun",
           "context": "thematic vocabulary",
           "translation": "kitchen"
         },
@@ -17089,7 +17144,8 @@
         {
           "word": "сок",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "juice"
         },
         {
           "word": "портокал",
@@ -17119,7 +17175,7 @@
           "word": "дете",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a child"
+          "translation": "child"
         },
         {
           "word": "шолји",
@@ -17479,7 +17535,7 @@
         },
         {
           "word": "кујна",
-          "partOfSpeech": "adjective",
+          "partOfSpeech": "noun",
           "context": "thematic vocabulary",
           "translation": "kitchen"
         },
@@ -17624,7 +17680,8 @@
         {
           "word": "свет",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "world"
         },
         {
           "word": "Алис",
@@ -17898,8 +17955,9 @@
         },
         {
           "word": "обично",
-          "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "adverb",
+          "context": "thematic vocabulary",
+          "translation": "usually"
         },
         {
           "word": "Направи",
@@ -17915,8 +17973,9 @@
         },
         {
           "word": "спротивно",
-          "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "adverb",
+          "context": "thematic vocabulary",
+          "translation": "opposite/contrary"
         },
         {
           "word": "неколку",
@@ -17932,9 +17991,9 @@
         },
         {
           "word": "твојата",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (feminine definite)"
         },
         {
           "word": "земја",
@@ -17962,9 +18021,9 @@
         },
         {
           "word": "твојот",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (masculine definite)"
         },
         {
           "word": "роденден",
@@ -18394,8 +18453,9 @@
         },
         {
           "word": "прават",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "they do/make"
         },
         {
           "word": "статуи",
@@ -18448,7 +18508,8 @@
         {
           "word": "цел",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "whole/goal"
         },
         {
           "word": "најпознат",
@@ -18464,7 +18525,7 @@
         },
         {
           "word": "Бразил",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Brazil"
         },
@@ -18554,8 +18615,9 @@
         },
         {
           "word": "продаваат",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "they sell"
         },
         {
           "word": "прав",
@@ -18781,7 +18843,7 @@
         },
         {
           "word": "Македонија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Macedonia"
         },
@@ -18991,9 +19053,9 @@
         },
         {
           "word": "мојата",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "mine"
+          "translation": "my (feminine definite)"
         },
         {
           "word": "учебната",
@@ -19093,8 +19155,9 @@
         },
         {
           "word": "неговите",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "possessive",
+          "context": "thematic vocabulary",
+          "translation": "his (plural definite)"
         },
         {
           "word": "поени",
@@ -19170,9 +19233,9 @@
         },
         {
           "word": "знам",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
-          "translation": "I know"
+          "translation": "know"
         },
         {
           "word": "Сто",
@@ -19398,8 +19461,9 @@
         },
         {
           "word": "гледаш",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "you watch/look at"
         },
         {
           "word": "секоја",
@@ -19427,9 +19491,9 @@
         },
         {
           "word": "Состави",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
-          "translation": "composed"
+          "translation": "compose/create (imperative)"
         },
         {
           "word": "дијалози",
@@ -19539,8 +19603,9 @@
         },
         {
           "word": "прават",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "they do/make"
         },
         {
           "word": "Марјан",
@@ -19586,8 +19651,9 @@
         },
         {
           "word": "работи",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "works"
         },
         {
           "word": "Напиши",
@@ -19639,8 +19705,9 @@
         },
         {
           "word": "обично",
-          "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "adverb",
+          "context": "thematic vocabulary",
+          "translation": "usually"
         },
         {
           "word": "Канам",
@@ -19728,9 +19795,9 @@
         },
         {
           "word": "моето",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "mine"
+          "translation": "my (neuter definite)"
         },
         {
           "word": "Вечерта",
@@ -19764,8 +19831,9 @@
         },
         {
           "word": "Играме",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "we play"
         },
         {
           "word": "игри",
@@ -19937,9 +20005,9 @@
         },
         {
           "word": "одам",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
-          "translation": "I'm going"
+          "translation": "go"
         },
         {
           "word": "веце",
@@ -20063,9 +20131,9 @@
         },
         {
           "word": "голема",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "big"
+          "translation": "big (feminine)"
         },
         {
           "word": "торба",
@@ -20268,7 +20336,8 @@
         {
           "word": "глаголи",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "verbs"
         },
         {
           "word": "слушај",
@@ -20320,8 +20389,9 @@
         },
         {
           "word": "гледа",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "watches/looks at"
         },
         {
           "word": "носи",
@@ -20379,8 +20449,9 @@
         },
         {
           "word": "гледаш",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "you watch/look at"
         },
         {
           "word": "потсетиш",
@@ -20786,15 +20857,15 @@
         },
         {
           "word": "мало",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "little"
+          "translation": "small (neuter)"
         },
         {
           "word": "дете",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a child"
+          "translation": "child"
         },
         {
           "word": "коешто",
@@ -20840,8 +20911,9 @@
         },
         {
           "word": "чита",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "reads"
         },
         {
           "word": "прочита",
@@ -20918,7 +20990,8 @@
         {
           "word": "глаголи",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "verbs"
         },
         {
           "word": "Пополни",
@@ -20952,8 +21025,9 @@
         },
         {
           "word": "гледа",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "watches/looks at"
         },
         {
           "word": "живее",
@@ -20969,13 +21043,15 @@
         },
         {
           "word": "пуши",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "smokes"
         },
         {
           "word": "слуша",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "listens"
         },
         {
           "word": "поделиш",
@@ -21021,20 +21097,21 @@
         },
         {
           "word": "стара",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "old"
+          "translation": "old (feminine)"
         },
         {
           "word": "куќа",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a house"
+          "translation": "house"
         },
         {
           "word": "село",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "village"
         },
         {
           "word": "Собри",
@@ -21416,9 +21493,9 @@
         },
         {
           "word": "твојата",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (feminine definite)"
         },
         {
           "word": "земја",
@@ -21442,7 +21519,7 @@
           "word": "град",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "town"
+          "translation": "city/town"
         },
         {
           "word": "Охридско",
@@ -21506,9 +21583,9 @@
         },
         {
           "word": "Струга",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "scraper"
+          "translation": "Struga (city in Macedonia)"
         },
         {
           "word": "втор",
@@ -21818,7 +21895,7 @@
         },
         {
           "word": "Турција",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Turkey"
         },
@@ -21831,7 +21908,8 @@
         {
           "word": "германски",
           "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "German (adjective)"
         },
         {
           "word": "турски",
@@ -21853,9 +21931,9 @@
         },
         {
           "word": "Јапонија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "japan"
+          "translation": "Japan"
         },
         {
           "word": "некои",
@@ -21895,7 +21973,7 @@
         },
         {
           "word": "Германија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Germany"
         },
@@ -21907,7 +21985,7 @@
         },
         {
           "word": "Швајцарија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Switzerland"
         },
@@ -21931,7 +22009,7 @@
         },
         {
           "word": "Шпанија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Spain"
         },
@@ -22357,14 +22435,15 @@
         },
         {
           "word": "Ана",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "Anna"
+          "translation": "Ana (name)"
         },
         {
           "word": "трети",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "numeral",
+          "context": "thematic vocabulary",
+          "translation": "third"
         },
         {
           "word": "март",
@@ -22741,15 +22820,15 @@
         },
         {
           "word": "мојата",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "mine"
+          "translation": "my (feminine definite)"
         },
         {
           "word": "девојка",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a girl"
+          "translation": "girl"
         },
         {
           "word": "Келнер",
@@ -22765,8 +22844,9 @@
         },
         {
           "word": "молам",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "please"
         },
         {
           "word": "Децата",
@@ -22794,7 +22874,7 @@
         },
         {
           "word": "Македонија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Macedonia"
         },
@@ -22916,7 +22996,7 @@
           "word": "град",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "town"
+          "translation": "city/town"
         },
         {
           "word": "земјата",
@@ -23053,7 +23133,8 @@
         {
           "word": "крајот",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "the end"
         },
         {
           "word": "провери",
@@ -23123,9 +23204,9 @@
         },
         {
           "word": "твоето",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (neuter definite)"
         },
         {
           "word": "Лудвиг",
@@ -23177,8 +23258,9 @@
         },
         {
           "word": "почна",
-          "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "started"
         },
         {
           "word": "заврши",
@@ -23188,17 +23270,19 @@
         },
         {
           "word": "свиреше",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "was playing (music)"
         },
         {
           "word": "напиша",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "wrote"
         },
         {
           "word": "Германија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Germany"
         },
@@ -23211,7 +23295,8 @@
         {
           "word": "титули",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "titles"
         },
         {
           "word": "светски",
@@ -23222,7 +23307,8 @@
         {
           "word": "првак",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "champion/first-grader"
         },
         {
           "word": "фудбал",
@@ -23378,8 +23464,9 @@
         },
         {
           "word": "Потсети",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "remind (imperative)"
         },
         {
           "word": "нешто",
@@ -23389,8 +23476,9 @@
         },
         {
           "word": "гледаше",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "was watching"
         },
         {
           "word": "неодамна",
@@ -23401,12 +23489,14 @@
         {
           "word": "Тест",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "test"
         },
         {
           "word": "помнење",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "memory/remembering"
         },
         {
           "word": "сеќаваш",
@@ -23440,13 +23530,15 @@
         },
         {
           "word": "јадеше",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "was eating"
         },
         {
           "word": "пиеше",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "was drinking"
         },
         {
           "word": "појадок",
@@ -23468,8 +23560,9 @@
         },
         {
           "word": "ручаше",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "was having lunch"
         },
         {
           "word": "ресторан",
@@ -23660,7 +23753,8 @@
         {
           "word": "глаголи",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "verbs"
         },
         {
           "word": "Избери",
@@ -23736,18 +23830,21 @@
         },
         {
           "word": "носеше",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "was carrying/wearing"
         },
         {
           "word": "земаше",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "was taking"
         },
         {
           "word": "чинеше",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "was costing"
         },
         {
           "word": "победуваше",
@@ -23763,8 +23860,9 @@
         },
         {
           "word": "правеше",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "was doing/making"
         },
         {
           "word": "свршено",
@@ -23774,8 +23872,9 @@
         },
         {
           "word": "победи",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "won"
         },
         {
           "word": "напушти",
@@ -23791,8 +23890,9 @@
         },
         {
           "word": "испи",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "drank up"
         },
         {
           "word": "направи",
@@ -23802,13 +23902,15 @@
         },
         {
           "word": "облече",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "put on (clothes)"
         },
         {
           "word": "потроши",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "spent/used up"
         },
         {
           "word": "раскажуваат",
@@ -23826,7 +23928,7 @@
           "word": "работа",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "work"
+          "translation": "work/job"
         },
         {
           "word": "секое",
@@ -23872,9 +23974,9 @@
         },
         {
           "word": "твоето",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (neuter definite)"
         },
         {
           "word": "семејство",
@@ -23884,8 +23986,9 @@
         },
         {
           "word": "доцнам",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "be late"
         },
         {
           "word": "некогаш",
@@ -23913,26 +24016,27 @@
         },
         {
           "word": "мојата",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "mine"
+          "translation": "my (feminine definite)"
         },
         {
           "word": "куќа",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a house"
+          "translation": "house"
         },
         {
           "word": "обично",
-          "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "adverb",
+          "context": "thematic vocabulary",
+          "translation": "usually"
         },
         {
           "word": "убаво",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "nice"
+          "translation": "beautiful (neuter)"
         },
         {
           "word": "времето",
@@ -23942,9 +24046,9 @@
         },
         {
           "word": "одам",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
-          "translation": "I'm going"
+          "translation": "go"
         },
         {
           "word": "воз",
@@ -23966,8 +24070,9 @@
         },
         {
           "word": "возам",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "drive"
         },
         {
           "word": "кола",
@@ -23996,12 +24101,14 @@
         {
           "word": "автобуска",
           "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "bus (adjective)"
         },
         {
           "word": "постојка",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "stop/station"
         },
         {
           "word": "наоѓа",
@@ -24012,7 +24119,8 @@
         {
           "word": "левата",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "the left (one)"
         },
         {
           "word": "страна",
@@ -24029,17 +24137,20 @@
         {
           "word": "ред",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "order/row"
         },
         {
           "word": "Библиотеката",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "the library"
         },
         {
           "word": "крајот",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "the end"
         },
         {
           "word": "улицата",
@@ -24171,13 +24282,13 @@
           "word": "пријател",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a friend"
+          "translation": "friend (male)"
         },
         {
           "word": "твојата",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (feminine definite)"
         },
         {
           "word": "Нацртај",
@@ -24235,7 +24346,7 @@
         },
         {
           "word": "Македонија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Macedonia"
         },
@@ -24379,9 +24490,9 @@
         },
         {
           "word": "мал",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "small"
+          "translation": "small (masculine)"
         },
         {
           "word": "бројот",
@@ -24667,9 +24778,9 @@
         },
         {
           "word": "голем",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "big"
+          "translation": "big (masculine)"
         },
         {
           "word": "број",
@@ -24781,8 +24892,9 @@
         },
         {
           "word": "познати",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "famous/known"
         },
         {
           "word": "уметници",
@@ -25092,9 +25204,9 @@
         },
         {
           "word": "голема",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "big"
+          "translation": "big (feminine)"
         },
         {
           "word": "атракција",
@@ -25146,9 +25258,9 @@
         },
         {
           "word": "Скопје",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "Skopje"
+          "translation": "Skopje (capital of North Macedonia)"
         },
         {
           "word": "продолжуваат",
@@ -25230,15 +25342,15 @@
         },
         {
           "word": "мало",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "little"
+          "translation": "small (neuter)"
         },
         {
           "word": "големо",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "big"
+          "translation": "big (neuter)"
         },
         {
           "word": "Нашиот",
@@ -25260,9 +25372,9 @@
         },
         {
           "word": "стара",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "old"
+          "translation": "old (feminine)"
         },
         {
           "word": "Сестра",
@@ -25510,9 +25622,9 @@
         },
         {
           "word": "Ана",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "Anna"
+          "translation": "Ana (name)"
         },
         {
           "word": "Франк",
@@ -25576,7 +25688,7 @@
         },
         {
           "word": "Швајцарија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Switzerland"
         },
@@ -25624,8 +25736,9 @@
         },
         {
           "word": "работи",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "works"
         },
         {
           "word": "Принцезата",
@@ -25701,9 +25814,9 @@
         },
         {
           "word": "Лондон",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "london"
+          "translation": "London"
         },
         {
           "word": "декември",
@@ -25827,9 +25940,9 @@
         },
         {
           "word": "голема",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "big"
+          "translation": "big (feminine)"
         },
         {
           "word": "Ријад",
@@ -26086,7 +26199,8 @@
         {
           "word": "свет",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "world"
         },
         {
           "word": "Јужна",
@@ -26336,9 +26450,9 @@
         },
         {
           "word": "голем",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "big"
+          "translation": "big (masculine)"
         },
         {
           "word": "сите",
@@ -26432,9 +26546,9 @@
         },
         {
           "word": "твојата",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (feminine definite)"
         },
         {
           "word": "група",
@@ -26468,8 +26582,9 @@
         },
         {
           "word": "пуши",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "smokes"
         },
         {
           "word": "станот",
@@ -26534,7 +26649,8 @@
         {
           "word": "видеоигри",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "video games"
         },
         {
           "word": "компјутер",
@@ -26544,9 +26660,9 @@
         },
         {
           "word": "твојот",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (masculine definite)"
         },
         {
           "word": "стан",
@@ -26563,7 +26679,8 @@
         {
           "word": "колата",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "the car"
         },
         {
           "word": "Кучето",
@@ -26573,9 +26690,9 @@
         },
         {
           "word": "старо",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "old"
+          "translation": "old (neuter)"
         },
         {
           "word": "оди",
@@ -26651,9 +26768,9 @@
         },
         {
           "word": "работам",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
-          "translation": "I work"
+          "translation": "work"
         },
         {
           "word": "часови",
@@ -26731,7 +26848,7 @@
           "word": "работа",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "work"
+          "translation": "work/job"
         },
         {
           "word": "собарка",
@@ -26742,7 +26859,8 @@
         {
           "word": "хотел",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "hotel"
         },
         {
           "word": "Работата",
@@ -26924,9 +27042,9 @@
         },
         {
           "word": "твојата",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (feminine definite)"
         },
         {
           "word": "земја",
@@ -27050,7 +27168,7 @@
         },
         {
           "word": "Македонија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Macedonia"
         },
@@ -27134,15 +27252,15 @@
         },
         {
           "word": "одам",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
-          "translation": "I'm going"
+          "translation": "go"
         },
         {
           "word": "работа",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "work"
+          "translation": "work/job"
         },
         {
           "word": "Мојот",
@@ -27380,9 +27498,9 @@
         },
         {
           "word": "голема",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "big"
+          "translation": "big (feminine)"
         },
         {
           "word": "широка",
@@ -27440,9 +27558,9 @@
         },
         {
           "word": "мала",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "small"
+          "translation": "small (feminine)"
         },
         {
           "word": "големи",
@@ -27488,8 +27606,9 @@
         },
         {
           "word": "Високи",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "tall (plural)"
         },
         {
           "word": "метар",
@@ -27638,7 +27757,8 @@
         {
           "word": "однос",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "relationship/ratio"
         },
         {
           "word": "телото",
@@ -27985,7 +28105,8 @@
         {
           "word": "глаголи",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "verbs"
         },
         {
           "word": "искачува",
@@ -28080,7 +28201,8 @@
         {
           "word": "телевизија",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "television"
         },
         {
           "word": "позната",
@@ -28108,15 +28230,15 @@
         },
         {
           "word": "млад",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "young"
+          "translation": "young (masculine)"
         },
         {
           "word": "маж",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a man"
+          "translation": "man/husband"
         },
         {
           "word": "својот",
@@ -28138,9 +28260,9 @@
         },
         {
           "word": "убава",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "beautiful"
+          "translation": "beautiful (feminine)"
         },
         {
           "word": "сопруга",
@@ -28228,9 +28350,9 @@
         },
         {
           "word": "мал",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "small"
+          "translation": "small (masculine)"
         },
         {
           "word": "аеродром",
@@ -28582,9 +28704,9 @@
         },
         {
           "word": "голем",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "big"
+          "translation": "big (masculine)"
         },
         {
           "word": "брзо",
@@ -28667,7 +28789,8 @@
         {
           "word": "колата",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "the car"
         },
         {
           "word": "Бродот",
@@ -28898,8 +29021,9 @@
         },
         {
           "word": "пуши",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "smokes"
         },
         {
           "word": "Слушај",
@@ -28969,8 +29093,9 @@
         },
         {
           "word": "гледа",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "watches/looks at"
         },
         {
           "word": "внимание",
@@ -28988,7 +29113,7 @@
           "word": "пријател",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a friend"
+          "translation": "friend (male)"
         },
         {
           "word": "пристигнува",
@@ -29005,7 +29130,8 @@
         {
           "word": "хотел",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "hotel"
         },
         {
           "word": "престојува",
@@ -29016,7 +29142,8 @@
         {
           "word": "хотелска",
           "partOfSpeech": "adjective",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "hotel (adjective)"
         },
         {
           "word": "соба",
@@ -29051,7 +29178,8 @@
         {
           "word": "глаголи",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "verbs"
         },
         {
           "word": "формите",
@@ -29187,9 +29315,9 @@
         },
         {
           "word": "твојата",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (feminine definite)"
         },
         {
           "word": "земја",
@@ -29518,8 +29646,9 @@
         },
         {
           "word": "работи",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "works"
         },
         {
           "word": "Сите",
@@ -29615,7 +29744,7 @@
           "word": "град",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "town"
+          "translation": "city/town"
         },
         {
           "word": "Париз",
@@ -29711,7 +29840,7 @@
           "word": "жена",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "a woman"
+          "translation": "woman/wife"
         },
         {
           "word": "пејач",
@@ -29817,15 +29946,15 @@
         },
         {
           "word": "голем",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "big"
+          "translation": "big (masculine)"
         },
         {
           "word": "убав",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "handsome"
+          "translation": "beautiful (masculine)"
         },
         {
           "word": "познат",
@@ -29835,9 +29964,9 @@
         },
         {
           "word": "добар",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "good"
+          "translation": "good (masculine)"
         },
         {
           "word": "успешен",
@@ -30045,9 +30174,9 @@
         },
         {
           "word": "млад",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "young"
+          "translation": "young (masculine)"
         },
         {
           "word": "прецизен",
@@ -30057,9 +30186,9 @@
         },
         {
           "word": "стар",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "old"
+          "translation": "old (masculine)"
         },
         {
           "word": "ефикасен",
@@ -30125,7 +30254,7 @@
           "word": "работа",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "work"
+          "translation": "work/job"
         },
         {
           "word": "училиште",
@@ -30153,7 +30282,7 @@
         },
         {
           "word": "Македонија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Macedonia"
         },
@@ -30171,9 +30300,9 @@
         },
         {
           "word": "мал",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "small"
+          "translation": "small (masculine)"
         },
         {
           "word": "бројот",
@@ -30249,9 +30378,9 @@
         },
         {
           "word": "твојот",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (masculine definite)"
         },
         {
           "word": "список",
@@ -30327,14 +30456,15 @@
         },
         {
           "word": "прават",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "they do/make"
         },
         {
           "word": "правам",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
-          "translation": "I do"
+          "translation": "do/make"
         },
         {
           "word": "релаксирачки",
@@ -30356,9 +30486,9 @@
         },
         {
           "word": "читам",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
-          "translation": "I'm reading"
+          "translation": "read"
         },
         {
           "word": "сликам",
@@ -30404,9 +30534,9 @@
         },
         {
           "word": "добро",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "good"
+          "translation": "good (neuter)"
         },
         {
           "word": "забавувам",
@@ -30452,8 +30582,9 @@
         },
         {
           "word": "кого",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "pronoun",
+          "context": "thematic vocabulary",
+          "translation": "whom"
         },
         {
           "word": "четворица",
@@ -30871,13 +31002,15 @@
         },
         {
           "word": "победи",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "won"
         },
         {
           "word": "крајот",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "the end"
         },
         {
           "word": "завршија",
@@ -31019,9 +31152,9 @@
         },
         {
           "word": "нов",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "new"
+          "translation": "new (masculine)"
         },
         {
           "word": "смени",
@@ -31043,9 +31176,9 @@
         },
         {
           "word": "стара",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "old"
+          "translation": "old (feminine)"
         },
         {
           "word": "живееше",
@@ -31272,7 +31405,8 @@
         {
           "word": "телевизија",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "television"
         },
         {
           "word": "чекам",
@@ -31487,8 +31621,9 @@
         },
         {
           "word": "гледаш",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "you watch/look at"
         },
         {
           "word": "сликите",
@@ -31540,9 +31675,9 @@
         },
         {
           "word": "мојата",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "mine"
+          "translation": "my (feminine definite)"
         },
         {
           "word": "соба",
@@ -31588,8 +31723,9 @@
         },
         {
           "word": "носам",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "carry/wear"
         },
         {
           "word": "јакна",
@@ -31601,7 +31737,7 @@
           "word": "работа",
           "partOfSpeech": "noun",
           "context": "thematic vocabulary",
-          "translation": "work"
+          "translation": "work/job"
         },
         {
           "word": "дадоа",
@@ -31677,7 +31813,7 @@
         },
         {
           "word": "Македонија",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
           "translation": "Macedonia"
         },
@@ -31881,8 +32017,9 @@
         },
         {
           "word": "прават",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "they do/make"
         },
         {
           "word": "бидат",
@@ -31928,8 +32065,9 @@
         },
         {
           "word": "работи",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "works"
         },
         {
           "word": "правиш",
@@ -32215,14 +32353,15 @@
         },
         {
           "word": "Миле",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "proper noun",
+          "context": "thematic vocabulary",
+          "translation": "Mile (name)"
         },
         {
           "word": "Сара",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "Sarah"
+          "translation": "Sara (name)"
         },
         {
           "word": "Бојан",
@@ -32396,8 +32535,9 @@
         },
         {
           "word": "играме",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "we play"
         },
         {
           "word": "карти",
@@ -32443,9 +32583,9 @@
         },
         {
           "word": "одам",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
-          "translation": "I'm going"
+          "translation": "go"
         },
         {
           "word": "скијање",
@@ -32509,9 +32649,9 @@
         },
         {
           "word": "правам",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
-          "translation": "I do"
+          "translation": "do/make"
         },
         {
           "word": "час",
@@ -32528,7 +32668,8 @@
         {
           "word": "чаша",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "glass/cup"
         },
         {
           "word": "планински",
@@ -32550,9 +32691,9 @@
         },
         {
           "word": "твоето",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "possessive",
           "context": "thematic vocabulary",
-          "translation": "yours"
+          "translation": "your (neuter definite)"
         },
         {
           "word": "семејство",
@@ -32622,8 +32763,9 @@
         },
         {
           "word": "прават",
-          "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "they do/make"
         },
         {
           "word": "луѓе",
@@ -33149,9 +33291,9 @@
         },
         {
           "word": "добро",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "adjective",
           "context": "thematic vocabulary",
-          "translation": "good"
+          "translation": "good (neuter)"
         },
         {
           "word": "лошо",
@@ -33179,9 +33321,9 @@
         },
         {
           "word": "Ана",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "proper noun",
           "context": "thematic vocabulary",
-          "translation": "Anna"
+          "translation": "Ana (name)"
         },
         {
           "word": "вознемирена",
@@ -33239,9 +33381,9 @@
         },
         {
           "word": "знам",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
-          "translation": "I know"
+          "translation": "know"
         },
         {
           "word": "среќа",
@@ -33324,7 +33466,8 @@
         {
           "word": "филмови",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "movies"
         },
         {
           "word": "гледаа",
@@ -33713,7 +33856,8 @@
         {
           "word": "село",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "village"
         },
         {
           "word": "немаа",
@@ -33724,7 +33868,8 @@
         {
           "word": "телевизија",
           "partOfSpeech": "noun",
-          "context": "thematic vocabulary"
+          "context": "thematic vocabulary",
+          "translation": "television"
         },
         {
           "word": "познаваа",
