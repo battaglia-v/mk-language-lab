@@ -210,35 +210,73 @@ export function PracticeHub() {
           </Card>
         ) : (
           <Card className="p-5 border-dashed border-2 border-border/50 bg-muted/10">
-            <div className="text-center space-y-4">
-              <div className="h-16 w-16 rounded-full bg-pink-500/10 flex items-center justify-center mx-auto">
-                <BookmarkPlus className="h-8 w-8 text-pink-500" />
-              </div>
-              <div>
-                <p className="font-semibold text-foreground">Build your personal word bank</p>
+            <div className="space-y-5">
+              <div className="text-center">
+                <div className="h-16 w-16 rounded-full bg-pink-500/10 flex items-center justify-center mx-auto mb-3">
+                  <BookmarkPlus className="h-8 w-8 text-pink-500" />
+                </div>
+                <p className="font-semibold text-foreground text-lg">Build your personal word bank</p>
                 <p className="text-sm text-muted-foreground mt-1">
                   Save words you want to remember and practice them here
                 </p>
               </div>
-              <div className="flex flex-col gap-2 text-sm">
-                <p className="text-muted-foreground font-medium">Ways to save words:</p>
-                <div className="flex flex-wrap justify-center gap-2">
+              
+              {/* Step-by-step instructions */}
+              <div className="space-y-3 text-left">
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground text-center">
+                  How to save words
+                </p>
+                
+                {/* Translate method */}
+                <div className="flex gap-3 p-3 rounded-lg bg-blue-500/5 border border-blue-500/20">
+                  <div className="h-8 w-8 rounded-lg bg-blue-500/20 flex items-center justify-center shrink-0">
+                    <Languages className="h-4 w-4 text-blue-500" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium text-sm">In Translate</p>
+                    <p className="text-xs text-muted-foreground">
+                      Translate a word or phrase, then tap the <Heart className="h-3 w-3 inline text-pink-500" /> heart icon to save it
+                    </p>
+                  </div>
                   <Link href={`/${locale}/translate`}>
-                    <Button variant="outline" size="sm" className="gap-1.5 h-9">
-                      <Languages className="h-3.5 w-3.5" />
-                      Translate
+                    <Button variant="ghost" size="sm" className="h-8 px-2 text-blue-500">
+                      Try it <ChevronRight className="h-3 w-3 ml-1" />
                     </Button>
                   </Link>
+                </div>
+                
+                {/* Reader method */}
+                <div className="flex gap-3 p-3 rounded-lg bg-green-500/5 border border-green-500/20">
+                  <div className="h-8 w-8 rounded-lg bg-green-500/20 flex items-center justify-center shrink-0">
+                    <BookText className="h-4 w-4 text-green-500" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium text-sm">In Reader</p>
+                    <p className="text-xs text-muted-foreground">
+                      Tap any word while reading, then tap &ldquo;Save word&rdquo; in the popup
+                    </p>
+                  </div>
                   <Link href={`/${locale}/reader`}>
-                    <Button variant="outline" size="sm" className="gap-1.5 h-9">
-                      <BookText className="h-3.5 w-3.5" />
-                      Reader
+                    <Button variant="ghost" size="sm" className="h-8 px-2 text-green-500">
+                      Try it <ChevronRight className="h-3 w-3 ml-1" />
                     </Button>
                   </Link>
+                </div>
+                
+                {/* Lessons method */}
+                <div className="flex gap-3 p-3 rounded-lg bg-primary/5 border border-primary/20">
+                  <div className="h-8 w-8 rounded-lg bg-primary/20 flex items-center justify-center shrink-0">
+                    <BookOpen className="h-4 w-4 text-primary" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium text-sm">In Lessons</p>
+                    <p className="text-xs text-muted-foreground">
+                      Complete lessons to automatically add vocabulary to your review deck
+                    </p>
+                  </div>
                   <Link href={`/${locale}/learn`}>
-                    <Button variant="outline" size="sm" className="gap-1.5 h-9">
-                      <BookOpen className="h-3.5 w-3.5" />
-                      Lessons
+                    <Button variant="ghost" size="sm" className="h-8 px-2 text-primary">
+                      Try it <ChevronRight className="h-3 w-3 ml-1" />
                     </Button>
                   </Link>
                 </div>
