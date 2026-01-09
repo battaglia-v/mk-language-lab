@@ -632,11 +632,11 @@ export default function LessonPageContentV2({
               {lesson.vocabularyItems.length > 0 && (
                 <Button
                   size="lg"
-                  onClick={() => router.push('/practice/session?deck=lesson-review&mode=multiple-choice')}
-                  className="gap-2"
+                  onClick={() => router.push(`/practice/session?deck=lesson-${lesson.id}&mode=multiple-choice`)}
+                  className="gap-2 bg-primary hover:bg-primary/90"
                 >
                   <Dumbbell className="h-4 w-4" />
-                  Practice Vocabulary
+                  Practice {lesson.vocabularyItems.length} Words
                 </Button>
               )}
 

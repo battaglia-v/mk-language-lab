@@ -30,7 +30,7 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
   const t = useTranslations('practiceHub');
   const locale = useLocale();
   const router = useRouter();
-  const { getDeck, loadCustomDeck, loadLessonReviewDeck, isLoading: isDecksLoading } = usePracticeDecks();
+  const { getDeck, loadCustomDeck, loadLessonReviewDeck, loadLessonVocabById, isLoading: isDecksLoading } = usePracticeDecks();
   const { config } = useAppConfig();
   const { entitlement, isPracticeLimitReached, recordPracticeSession } = useEntitlement();
 
@@ -123,8 +123,15 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
         applyDeck(fallback);
       });
     } else if (deckType === 'lesson-review') {
-      // Load lesson review deck
+      // Load all lesson review vocabulary (from all completed lessons)
       loadLessonReviewDeck().then((cards) => {
+        if (!isActive) return;
+        applyDeck(cards, cards.length > 0 ? 'ready' : 'empty');
+      });
+    } else if (deckType.startsWith('lesson-')) {
+      // Load vocabulary from a specific lesson (e.g., lesson-abc123)
+      const lessonId = deckType.replace('lesson-', '');
+      loadLessonVocabById(lessonId).then((cards) => {
         if (!isActive) return;
         applyDeck(cards, cards.length > 0 ? 'ready' : 'empty');
       });
@@ -147,6 +154,7 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
     getDeck,
     loadCustomDeck,
     loadLessonReviewDeck,
+    loadLessonVocabById,
     isDecksLoading,
     locale,
     router,
