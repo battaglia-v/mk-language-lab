@@ -161,10 +161,10 @@ Plans:
 **Goal**: Add type-check, lint, test gates; optimize build speed
 **Depends on**: Phase 17
 **Research**: Unlikely (established CI patterns)
-**Plans**: TBD
+**Plans**: 1
 
 Plans:
-- [ ] 18-01: TBD (run /gsd:plan-phase 18 to break down)
+- [x] 18-01: CI pipeline caching optimizations (Next.js build cache, Playwright browser cache) — completed 2026-01-09
 
 #### Phase 19: Cloudflare Research & PoC
 
@@ -212,7 +212,7 @@ Phases execute in numeric order: 1 → 2 → ... → 16 → 17 → 18 → 19 →
 | 15. Practice Integration | v1.1 | 1/1 | Complete | 2026-01-08 |
 | 16. Practice UX Redesign | v1.1 | 2/2 | Complete | 2026-01-09 |
 | 17. CI Pipeline Audit | v1.2 | 1/1 | Complete | 2026-01-09 |
-| 18. CI Pipeline Improvements | v1.2 | 0/? | Not started | - |
+| 18. CI Pipeline Improvements | v1.2 | 1/1 | Complete | 2026-01-09 |
 | 19. Cloudflare Research & PoC | v1.2 | 0/? | Not started | - |
 | 20. Migration Decision | v1.2 | 0/? | Not started | - |
 
