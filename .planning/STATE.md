@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-09)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** Planning next milestone (v1.3)
+**Current focus:** v1.3 Content Quality & User Journey
 
 ## Current Position
 
-Phase: Complete (v1.2 shipped)
-Plan: N/A
-Status: Ready to plan next milestone
-Last activity: 2026-01-09 — v1.2 Infrastructure & CI Overhaul milestone complete
+Phase: 21 of 26 (Bug Fixes)
+Plan: Not started
+Status: Ready to plan
+Last activity: 2026-01-09 — Milestone v1.3 created
 
-Progress: ██████████ 100%
+Progress: ░░░░░░░░░░ 0%
 
 ## Milestone Summary
 
@@ -36,28 +36,32 @@ Progress: ██████████ 100%
 
 See `.planning/MILESTONES.md` for full details.
 
-## Success Criteria (v1.2)
+## Success Criteria (v1.3)
 
-**CI Pipeline:**
-- [x] All existing workflows documented and gaps identified — Phase 17 complete
-- [x] Type checking gate added to CI — Already exists (ci.yml)
-- [x] Linting gate added to CI — Already exists (ci.yml)
-- [x] Unit test gate added to CI — Already exists (ci.yml)
-- [x] E2E test gate added to CI — Already exists (ci.yml)
-- [x] Build validation before deploy — Already exists (ci.yml)
-- [x] CI optimizations applied (Phase 18) — Next.js build cache, Playwright browser cache
+**Bug Fixes (Phase 21):**
+- [ ] Clickable vocabulary cards working
+- [ ] Vocabulary names/surnames cleaned up
 
-**Cloudflare Evaluation:**
-- [x] Cloudflare Pages/Workers compatibility tested — BLOCKED (Next.js 16 not supported)
-- [x] Cost comparison documented — ~$19/month savings, negative ROI
-- [x] Migration feasibility assessed — NOT feasible at current time
-- [x] Go/no-go decision documented — NO-GO (DEFER)
+**Content Effectiveness (Phase 22):**
+- [ ] Learning progression audited
+- [ ] Exercise quality verified
+- [ ] Translation accuracy checked
 
-**Quality Audit (Phase 18.1):**
-- [x] A2/B1 vocabulary corrections — 476 fixes applied
-- [x] Dark mode compliance — ~95% (up from ~40%)
-- [x] Exercise variety — 5 types (up from 3)
-- [x] Content completeness — All 40 lessons pass audit
+**Practice UX (Phase 23):**
+- [ ] My Saved Words section restyled
+- [ ] Post-lesson practice flow improved
+
+**User Journey (Phase 24):**
+- [ ] Learn → Practice → Reader flow connected
+
+**Content Expansion (Phase 25):**
+- [ ] A1/A2/B1 vocabulary expanded
+- [ ] Additional grammar exercises
+- [ ] More dialogues and reading content
+
+**Validation (Phase 26):**
+- [ ] All features tested end-to-end
+- [ ] Polish and refinements complete
 
 ## Performance Metrics
 
@@ -93,10 +97,11 @@ None.
 - Milestone v1.0 shipped: Complete learning system overhaul (Phases 1-7)
 - Milestone v1.1 shipped: Curriculum quality fix (Phases 8-16)
 - Milestone v1.2 shipped: Infrastructure & CI overhaul (Phases 17-20)
+- Milestone v1.3 created: Content quality & user journey (Phases 21-26)
 
 ## Session Continuity
 
 Last session: 2026-01-09
-Stopped at: v1.2 milestone complete
+Stopped at: Milestone v1.3 initialization
 Resume file: None
-Next step: `/gsd:discuss-milestone` to plan v1.3
+Next step: `/gsd:plan-phase 21` to begin Phase 21: Bug Fixes
