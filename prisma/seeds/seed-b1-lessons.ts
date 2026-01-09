@@ -1,8 +1,8 @@
 /**
  * Batch Seed Script: B1 Lessons (Златоврв)
- * 
+ *
  * This script adds enhanced content (dialogues, exercises)
- * to all B1 lessons (2-8). Lesson 1 already has content.
+ * to all B1 lessons (1-8).
  */
 
 import { PrismaClient } from '@prisma/client';
@@ -40,7 +40,40 @@ interface LessonEnhancement {
 }
 
 // ============================================================================
-// B1 Lesson Enhancements (Lessons 2-8)
+// B1 Lesson Content Data (Lessons 1-8)
+// ============================================================================
+
+interface LessonContentData {
+  lessonNumber: number;
+  dialogues: DialogueData[];
+  exercises: ExerciseData[];
+}
+
+const B1_LESSON_CONTENT: LessonContentData[] = [
+  // Lesson 1: Дали се разбираме? (Do we understand each other?)
+  {
+    lessonNumber: 1,
+    dialogues: [{
+      title: 'Недоразбирање (Misunderstanding)',
+      lines: [
+        { speaker: 'Марко', textMk: 'Извини, можеш ли да ми објасниш уште еднаш?', textEn: 'Sorry, can you explain to me once more?', transliteration: 'Izvini, mozhesh li da mi objashnish ushte ednash?' },
+        { speaker: 'Ана', textMk: 'Секако. Кажав дека состанокот е преместен.', textEn: 'Of course. I said the meeting was moved.', transliteration: 'Sekako. Kazhav deka sostanokot e premesten.' },
+        { speaker: 'Марко', textMk: 'А, јас разбрав дека е откажан!', textEn: 'Ah, I understood that it was cancelled!', transliteration: 'A, jas razbrav deka e otkzhan!' },
+        { speaker: 'Ана', textMk: 'Не, не е откажан. Само е во друга сала.', textEn: 'No, it\'s not cancelled. It\'s just in a different room.', transliteration: 'Ne, ne e otkazhan. Samo e vo druga sala.' },
+        { speaker: 'Марко', textMk: 'Сега разбирам. Извини за конфузијата.', textEn: 'Now I understand. Sorry for the confusion.', transliteration: 'Sega razbiram. Izvini za konfuzijata.' },
+        { speaker: 'Ана', textMk: 'Нема проблем. Важно е да се разбереме.', textEn: 'No problem. The important thing is that we understand each other.', transliteration: 'Nema problem. Vazhno e da se razbereme.' },
+      ]
+    }],
+    exercises: [
+      { type: 'multiple_choice', question: 'What does "разбирам" mean?', options: ['I speak', 'I understand', 'I hear', 'I think'], correctAnswer: 'B', explanation: '"Разбирам" means "I understand" - the key concept of this lesson.' },
+      { type: 'fill_blank', question: 'Важно е да се ___. (It\'s important that we understand each other.)', options: [], correctAnswer: 'разбереме', explanation: '"Разбереме" is the 1st person plural perfective form of "разбира".' },
+      { type: 'translation', question: 'Translate: "Can you explain to me once more?"', options: [], correctAnswer: 'Можеш ли да ми објасниш уште еднаш?', explanation: '"Објасни" means "explain" and "уште еднаш" means "once more".' },
+    ]
+  },
+];
+
+// ============================================================================
+// B1 Lesson Enhancements with IDs (Lessons 2-8)
 // ============================================================================
 
 const B1_ENHANCEMENTS: LessonEnhancement[] = [
@@ -263,6 +296,87 @@ async function seedLessonEnhancement(enhancement: LessonEnhancement) {
 }
 
 // ============================================================================
+// Seed by Lesson Number (for lessons without hardcoded IDs)
+// ============================================================================
+
+async function seedLessonByNumber(lessonContent: LessonContentData) {
+  const { lessonNumber, dialogues, exercises } = lessonContent;
+
+  // Find the B1 module
+  const b1Module = await prisma.module.findFirst({
+    where: { journeyId: 'ukim-b1' },
+  });
+
+  if (!b1Module) {
+    console.log(`  ⚠️  B1 module not found, skipping Lesson ${lessonNumber}...`);
+    return false;
+  }
+
+  // Find the lesson by module and order index
+  const lesson = await prisma.curriculumLesson.findFirst({
+    where: {
+      moduleId: b1Module.id,
+      orderIndex: lessonNumber,
+    },
+    select: { id: true, title: true },
+  });
+
+  if (!lesson) {
+    console.log(`  ⚠️  B1 Lesson ${lessonNumber} not found, skipping...`);
+    return false;
+  }
+
+  console.log(`  📝 ${lesson.title}`);
+
+  // Clear existing dialogues and exercises
+  await prisma.dialogueLine.deleteMany({ where: { dialogue: { lessonId: lesson.id } } });
+  await prisma.dialogue.deleteMany({ where: { lessonId: lesson.id } });
+  await prisma.exercise.deleteMany({ where: { lessonId: lesson.id } });
+
+  // Add dialogues
+  for (let i = 0; i < dialogues.length; i++) {
+    const dialogue = dialogues[i];
+    await prisma.dialogue.create({
+      data: {
+        lessonId: lesson.id,
+        title: dialogue.title,
+        orderIndex: i,
+        lines: {
+          create: dialogue.lines.map((line, index) => ({
+            speaker: line.speaker,
+            textMk: line.textMk,
+            textEn: line.textEn,
+            transliteration: line.transliteration,
+            hasBlanks: false,
+            orderIndex: index,
+          })),
+        },
+      },
+    });
+  }
+  console.log(`      ✓ ${dialogues.length} dialogue(s)`);
+
+  // Add exercises
+  for (let i = 0; i < exercises.length; i++) {
+    const ex = exercises[i];
+    await prisma.exercise.create({
+      data: {
+        lessonId: lesson.id,
+        type: ex.type,
+        question: ex.question,
+        options: ex.options.join('|'),
+        correctAnswer: ex.correctAnswer,
+        explanation: ex.explanation,
+        orderIndex: i,
+      },
+    });
+  }
+  console.log(`      ✓ ${exercises.length} exercise(s)`);
+
+  return true;
+}
+
+// ============================================================================
 // Main Execution
 // ============================================================================
 
@@ -271,13 +385,24 @@ async function main() {
   console.log('=' .repeat(60));
 
   let success = 0;
+
+  // Seed lessons using dynamic lookup (Lesson 1)
+  console.log('\n📖 Seeding Lesson 1 (dynamic lookup)...\n');
+  for (const content of B1_LESSON_CONTENT) {
+    const result = await seedLessonByNumber(content);
+    if (result) success++;
+  }
+
+  // Seed lessons using hardcoded IDs (Lessons 2-8)
+  console.log('\n📖 Seeding Lessons 2-8 (hardcoded IDs)...\n');
   for (const enhancement of B1_ENHANCEMENTS) {
     const result = await seedLessonEnhancement(enhancement);
     if (result) success++;
   }
 
+  const totalLessons = B1_LESSON_CONTENT.length + B1_ENHANCEMENTS.length;
   console.log('\n' + '=' .repeat(60));
-  console.log(`\n🎉 Complete! ${success}/${B1_ENHANCEMENTS.length} B1 lessons enhanced.\n`);
+  console.log(`\n🎉 Complete! ${success}/${totalLessons} B1 lessons enhanced.\n`);
 }
 
 main()
