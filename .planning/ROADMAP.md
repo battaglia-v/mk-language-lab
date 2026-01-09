@@ -61,7 +61,7 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 
 **Milestone Goal:** Fix broken interactions, audit content effectiveness, improve Practice UX, and deepen A1/A2/B1 content while maintaining the core promise: "always resume in the right place, next step obvious."
 
-#### Phase 21: Bug Fixes
+#### Phase 21: Bug Fixes — COMPLETE
 
 **Goal**: Fix clickable vocabulary cards and continue vocabulary name cleanup
 **Depends on**: v1.2 complete
@@ -69,7 +69,7 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 **Plans**: 1
 
 Plans:
-- [ ] 21-01: Vocabulary card interactivity and proper noun filtering
+- [x] 21-01: Vocabulary card interactivity and proper noun filtering — completed 2026-01-09
 
 #### Phase 22: Content Effectiveness Audit
 
@@ -125,7 +125,7 @@ Plans:
 
 | Phase | Milestone | Plans | Status | Completed |
 |-------|-----------|-------|--------|-----------|
-| 21. Bug Fixes | v1.3 | 0/1 | Planned | - |
+| 21. Bug Fixes | v1.3 | 1/1 | Complete | 2026-01-09 |
 | 22. Content Effectiveness Audit | v1.3 | 0/? | Not started | - |
 | 23. Practice Feature Audit & UX | v1.3 | 0/? | Not started | - |
 | 24. User Journey Cohesion | v1.3 | 0/? | Not started | - |
