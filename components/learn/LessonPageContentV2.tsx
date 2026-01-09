@@ -438,9 +438,9 @@ export default function LessonPageContentV2({
         return (
           <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
             <div className="space-y-2">
-              <h3 className="text-lg font-semibold">Listen & Learn</h3>
+              <h3 className="text-lg font-semibold">Read & Practice</h3>
               <p className="text-muted-foreground">
-                Follow along with the dialogue. Toggle translation to check your understanding.
+                Read through the dialogue. Toggle translation to check your understanding.
               </p>
             </div>
 
@@ -775,12 +775,14 @@ export default function LessonPageContentV2({
             <div className="flex gap-3">
               {currentSectionIndex > 0 && (
                 <Button
-                  variant="outline"
+                  variant="secondary"
                   size="lg"
                   onClick={handleBack}
-                  className="h-14 w-14 shrink-0"
+                  className="h-14 px-4 shrink-0 gap-1"
+                  aria-label="Go back to previous section"
                 >
                   <ChevronLeft className="h-5 w-5" />
+                  <span className="text-sm">Back</span>
                 </Button>
               )}
 
