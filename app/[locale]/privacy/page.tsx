@@ -18,15 +18,15 @@ export default function PrivacyPolicyPage() {
 
   return (
     <div className="page-shell">
-      <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6 text-white">
+      <div className="page-shell-content section-container section-container-xl section-spacing-md space-y-6 text-foreground">
         <section data-testid="privacy-hero" className="glass-card rounded-3xl p-6 md:p-8 text-center">
           <p className="inline-flex items-center justify-center gap-2 rounded-full border border-primary/40 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-primary">
             <Shield className="h-4 w-4" />
             {t('badge')}
           </p>
           <h1 className="mt-4 text-3xl font-bold md:text-5xl">{t('title')}</h1>
-          <p className="mt-2 text-slate-300">{t('subtitle')}</p>
-          <p className="text-sm text-slate-400">{t('lastUpdated')}</p>
+          <p className="mt-2 text-muted-foreground">{t('subtitle')}</p>
+          <p className="text-sm text-muted-foreground/80">{t('lastUpdated')}</p>
         </section>
 
         <section data-testid="privacy-content" className="space-y-6">
@@ -35,12 +35,12 @@ export default function PrivacyPolicyPage() {
             return (
               <Card key={index} className="glass-card rounded-3xl p-6 md:p-8">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-xl text-white">
+                  <CardTitle className="flex items-center gap-2 text-xl text-foreground">
                     <Icon className="h-5 w-5 text-primary" />
                     {section.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4 text-slate-200">
+                <CardContent className="space-y-4 text-muted-foreground">
                   <p className="leading-relaxed">{section.content}</p>
                   {section.items && (
                     <ul className="space-y-2 ml-4">
@@ -59,24 +59,24 @@ export default function PrivacyPolicyPage() {
 
           <Card className="glass-card rounded-3xl p-6 md:p-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-xl text-white">
+              <CardTitle className="flex items-center gap-2 text-xl text-foreground">
                 <Database className="h-5 w-5 text-primary" />
                 {t('section6.title')}
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-slate-200">
+            <CardContent className="text-muted-foreground">
               <p className="leading-relaxed">{t('section6.content')}</p>
             </CardContent>
           </Card>
 
           <Card className="glass-card rounded-3xl border border-primary/30 bg-gradient-to-br from-primary/10 to-transparent p-6 md:p-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-xl text-white">
+              <CardTitle className="flex items-center gap-2 text-xl text-foreground">
                 <Shield className="h-5 w-5 text-primary" />
                 {t('gdpr.title')}
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4 text-slate-200">
+            <CardContent className="space-y-4 text-muted-foreground">
               <p className="leading-relaxed">{t('gdpr.content')}</p>
               <ul className="space-y-2 ml-4">
                 {(t.raw('gdpr.rights') as string[]).map((right, idx) => (
@@ -91,12 +91,12 @@ export default function PrivacyPolicyPage() {
 
           <Card className="glass-card rounded-3xl p-6 md:p-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-xl text-white">
+              <CardTitle className="flex items-center gap-2 text-xl text-foreground">
                 <Mail className="h-5 w-5 text-primary" />
                 {t('contact.title')}
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-slate-200">
+            <CardContent className="text-muted-foreground">
               <p className="leading-relaxed mb-4">{t('contact.content')}</p>
               <a
                 href="mailto:contact@mklanguage.com?subject=Privacy%20Policy%20Inquiry%20-%20Macedonian%20Learning%20App"
@@ -109,13 +109,13 @@ export default function PrivacyPolicyPage() {
           </Card>
         </section>
 
-        <div className="text-center text-slate-300">
+        <div className="text-center text-muted-foreground">
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href={`/${locale}/terms`} className="text-primary hover:underline font-medium" data-testid="privacy-view-terms">
               {t('viewTerms')}
             </Link>
-            <span className="hidden sm:inline text-slate-500">•</span>
-            <Link href={`/${locale}`} className="text-slate-400 hover:text-white transition-colors" data-testid="privacy-back-home">
+            <span className="hidden sm:inline text-muted-foreground/50">•</span>
+            <Link href={`/${locale}`} className="text-muted-foreground hover:text-foreground transition-colors" data-testid="privacy-back-home">
               {t('backHome')}
             </Link>
           </div>
