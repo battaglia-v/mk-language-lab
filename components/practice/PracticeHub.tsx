@@ -64,7 +64,20 @@ export function PracticeHub() {
 
   // Practice mode cards configuration
   // Note: Pronunciation/Speaking is hidden for beta - audio coming soon
+  // Lesson Review is recommended when user has completed lessons
+  const hasLessonVocabulary = lessonReviewDeck.length > 0;
+  
   const modes: PracticeModeConfig[] = [
+    {
+      id: 'lessonReview',
+      href: `/${locale}/practice/session?deck=lesson-review&mode=multiple-choice`,
+      icon: BookOpen,
+      // Primary variant when user has lesson vocabulary, otherwise default
+      variant: hasLessonVocabulary ? 'primary' : 'default',
+      cardCount: lessonReviewDeck.length,
+      disabled: lessonReviewDeck.length === 0,
+      disabledReason: t('modes.lessonReview.disabledReason', { default: 'Complete a lesson to unlock vocabulary review' }),
+    },
     {
       id: 'grammar',
       href: `/${locale}/practice/grammar`,
@@ -75,16 +88,8 @@ export function PracticeHub() {
       id: 'wordSprint',
       href: `/${locale}/practice/word-sprint`,
       icon: FileText,
-      variant: 'primary',
-    },
-    {
-      id: 'lessonReview',
-      href: `/${locale}/practice/session?deck=lesson-review&mode=multiple-choice`,
-      icon: BookOpen,
-      variant: 'default',
-      cardCount: lessonReviewDeck.length,
-      disabled: lessonReviewDeck.length === 0,
-      disabledReason: t('modes.lessonReview.disabledReason', { default: 'Complete a lesson to unlock vocabulary review' }),
+      // Primary only if no lesson vocabulary
+      variant: hasLessonVocabulary ? 'default' : 'primary',
     },
     {
       id: 'vocabulary',
@@ -103,8 +108,11 @@ export function PracticeHub() {
       disabledReason: t('savedDeck.lockedReason', { default: 'Save a phrase in Translate to unlock.' }),
     },
   ];
-  const recommendedMode = modes.find((modeConfig) => modeConfig.id === 'wordSprint');
-  const otherModes = modes.filter((modeConfig) => modeConfig.id !== 'wordSprint');
+  
+  // Recommended mode: Lesson Review if user has lesson vocabulary, otherwise Word Sprint
+  const recommendedModeId = hasLessonVocabulary ? 'lessonReview' : 'wordSprint';
+  const recommendedMode = modes.find((modeConfig) => modeConfig.id === recommendedModeId);
+  const otherModes = modes.filter((modeConfig) => modeConfig.id !== recommendedModeId);
 
   const translateHref = `/${locale}/translate`;
 

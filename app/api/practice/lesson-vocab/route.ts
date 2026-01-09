@@ -38,12 +38,55 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const lessonId = searchParams.get('lessonId');
 
-    // Get completed lesson IDs for this user
+    // If specific lessonId provided, return vocabulary from that lesson directly
+    // (regardless of completion status - allows practice during lesson)
+    if (lessonId) {
+      const lesson = await prisma.curriculumLesson.findUnique({
+        where: { id: lessonId },
+        select: { id: true, title: true },
+      });
+
+      if (!lesson) {
+        log.info('Lesson not found', { lessonId });
+        return NextResponse.json([]);
+      }
+
+      const vocabularyItems = await prisma.vocabularyItem.findMany({
+        where: { lessonId },
+        orderBy: { orderIndex: 'asc' },
+        select: {
+          id: true,
+          macedonianText: true,
+          englishText: true,
+          lessonId: true,
+          pronunciation: true,
+        },
+      });
+
+      const vocab = vocabularyItems.map((item) => ({
+        id: item.id,
+        macedonian: item.macedonianText,
+        english: item.englishText,
+        lessonId: item.lessonId,
+        lessonTitle: lesson.title,
+        category: 'lesson-vocab',
+        pronunciation: item.pronunciation,
+      }));
+
+      log.info('Returning vocabulary for specific lesson', {
+        userId: session.user.id,
+        lessonId,
+        vocabCount: vocab.length,
+      });
+
+      return NextResponse.json(vocab);
+    }
+
+    // No specific lessonId - return vocabulary from all completed lessons
     const completedLessons = await prisma.userLessonProgress.findMany({
       where: {
         userId: session.user.id,
         status: 'completed',
-        ...(lessonId ? { lessonId } : {}),
       },
       select: {
         lessonId: true,

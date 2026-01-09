@@ -207,6 +207,30 @@ export function usePracticeDecks() {
     }
   }, [status]);
 
+  // Load vocabulary from a specific lesson by ID
+  const loadLessonVocabById = useCallback(async (lessonId: string): Promise<Flashcard[]> => {
+    try {
+      const res = await fetch(`/api/practice/lesson-vocab?lessonId=${encodeURIComponent(lessonId)}`);
+      if (!res.ok) throw new Error('Failed to fetch lesson vocab');
+      const data = await res.json();
+      const flashcards: Flashcard[] = data.map((item: { id: string; macedonian: string; english: string; lessonTitle?: string }) => ({
+        id: item.id,
+        source: item.macedonian,
+        target: item.english,
+        direction: 'mk-en' as const,
+        category: item.lessonTitle ?? 'lesson-vocab',
+        difficulty: 'lesson-vocab',
+        audioClip: null,
+        macedonian: item.macedonian,
+      }));
+      // Shuffle for variety
+      return flashcards.sort(() => Math.random() - 0.5);
+    } catch (error) {
+      console.error('Failed to load lesson vocab by ID:', error);
+      return [];
+    }
+  }, []);
+
   // Convert VocabWord to Flashcard
   const vocabWordToFlashcard = useCallback((word: VocabWord): Flashcard => ({
     id: word.id,
@@ -307,12 +331,14 @@ export function usePracticeDecks() {
 
   // Determine recommended deck (for "Continue" CTA)
   const recommendedDeck = useMemo((): DeckType => {
-    // Priority: SRS due > Mistakes > Favorites > Curated
+    // Priority: SRS due > Mistakes > Lesson Review (from completed lessons) > Favorites > Curated
+    // Lesson review should be prioritized when user has completed lessons
     if (srsDueDeck.length > 0) return 'srs';
     if (mistakesDeck.length > 0) return 'mistakes';
+    if (lessonReviewDeck.length > 0) return 'lesson-review';
     if (favoritesDeck.length > 0) return 'favorites';
     return 'curated';
-  }, [srsDueDeck.length, mistakesDeck.length, favoritesDeck.length]);
+  }, [srsDueDeck.length, mistakesDeck.length, lessonReviewDeck.length, favoritesDeck.length]);
 
   return {
     // Decks
@@ -338,6 +364,7 @@ export function usePracticeDecks() {
     clearMistakes,
     refreshSpecialDecks,
     loadLessonReviewDeck,
+    loadLessonVocabById,
     loadUserVocabDeck,
     getDeck,
 
