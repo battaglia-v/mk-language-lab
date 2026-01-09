@@ -11,6 +11,16 @@
 
 This evaluation assesses Cloudflare Pages/Workers as an alternative hosting platform for the mk-language-lab Next.js application. The analysis covers technical compatibility, feature support, database connectivity, and identifies blockers or required changes.
 
+**Verdict: NO-GO (DEFER)**
+
+| Aspect | Finding |
+|--------|---------|
+| Technical Compatibility | BLOCKED - Next.js 16 not supported |
+| Cost Savings | ~$19/month (~$228/year) |
+| Migration Effort | 40+ hours |
+| ROI Payback | 13+ years |
+| Recommendation | Stay on Vercel, re-evaluate when conditions change |
+
 ---
 
 ## 1. Technical Compatibility Analysis
@@ -345,16 +355,110 @@ Assuming developer cost of $75/hour:
 
 ---
 
-## 7. Next Steps (If Proceeding)
+## 7. Go/No-Go Recommendation
 
-### 7.1 Prerequisites Before Migration
+### 7.1 Feasibility Assessment
+
+| Dimension | Assessment | Details |
+|-----------|------------|---------|
+| **Technical** | **BLOCKED** | Next.js 16 not supported by OpenNext adapter |
+| **Effort** | HIGH | 24-48 hours dev + testing for uncertain outcome |
+| **Risk** | HIGH | Multiple Preview/beta components (Prisma edge, NextAuth) |
+| **Benefit** | LOW | ~$19/month savings, 13+ year payback |
+
+### 7.2 Decision Matrix
+
+| Factor | Weight | Vercel | Cloudflare | Winner |
+|--------|--------|--------|------------|--------|
+| **Cost** | Medium | $24/mo | $5/mo | Cloudflare |
+| **Developer Experience** | High | Excellent | Good | Vercel |
+| **Next.js Support** | Critical | Native | Via adapter | Vercel |
+| **Version Compatibility** | Critical | All versions | v14-15 only | Vercel |
+| **Prisma Support** | High | Full | Preview/Edge | Vercel |
+| **Performance** | Medium | Excellent | Excellent | Tie |
+| **Reliability** | High | Proven | Proven | Tie |
+| **Vendor Lock-in** | Low | Medium | Low | Cloudflare |
+| **Migration Effort** | High | None | 40+ hours | Vercel |
+
+**Weighted Score:**
+- Vercel: Wins on 5/9 factors, ties on 2
+- Cloudflare: Wins on 2/9 factors, ties on 2
+
+### 7.3 Critical Blockers Summary
+
+1. **Next.js 16 Not Supported** - The project uses Next.js 16.0.10, but OpenNext Cloudflare adapter only documents support for v14-15. This is a hard blocker until adapter is updated.
+
+2. **Prisma Edge is Preview** - Running Prisma on Cloudflare Workers is in Preview status with potential instability and missing features.
+
+3. **NextAuth v5 Untested** - NextAuth v5 beta on Cloudflare Workers is not documented or tested, creating significant auth risk.
+
+4. **ROI is Negative** - At current scale, 13+ year payback period means migration cost exceeds lifetime savings.
+
+### 7.4 Recommendation
+
+## **NO-GO** (with DEFER condition)
+
+**Rationale:**
+The combination of:
+- Hard blocker (Next.js 16 not supported)
+- Multiple technical risks (Prisma Preview, NextAuth untested)
+- Negative ROI at current scale
+- High migration effort for uncertain outcome
+
+...makes Cloudflare migration inadvisable at this time.
+
+### 7.5 Conditions for Re-Evaluation
+
+Re-evaluate Cloudflare migration when ANY of these conditions are met:
+
+| Condition | Trigger | Priority |
+|-----------|---------|----------|
+| Next.js 16 support added | OpenNext adapter v2.0+ releases | HIGH |
+| Traffic scales 10x | Monthly requests > 5M | MEDIUM |
+| Vercel costs spike | Monthly bill > $100 | MEDIUM |
+| Prisma edge goes GA | Prisma announces stable edge | LOW |
+| Vendor diversification needed | Strategic decision | LOW |
+
+### 7.6 Recommended Actions
+
+**Immediate (v1.2):**
+1. Document this evaluation for future reference
+2. Close Cloudflare research - no further action needed
+3. Continue with Vercel deployment
+4. Monitor OpenNext releases for Next.js 16 support
+
+**Future (v1.3+, if conditions change):**
+1. Create PoC branch to test Next.js on Cloudflare
+2. Test NextAuth on Workers runtime
+3. Benchmark Prisma edge performance
+4. Re-run cost analysis with actual traffic data
+
+### 7.7 Alternative Cost Optimizations
+
+Instead of platform migration, consider these lower-effort optimizations:
+
+| Optimization | Effort | Potential Savings |
+|--------------|--------|-------------------|
+| Downgrade to Vercel Hobby | None | $20/month |
+| Optimize function execution time | Low | Variable |
+| Add aggressive caching | Medium | Reduce function calls |
+| Migrate images to R2 (S3-compatible) | Low | ~$9/month on egress |
+| Review API rate limits | Low | Reduce abuse costs |
+
+**Note:** The project may already be eligible for Vercel Hobby tier if traffic is low enough.
+
+---
+
+## 8. Next Steps (If Proceeding)
+
+### 8.1 Prerequisites Before Migration
 
 1. **Verify Next.js 16 support** - Contact OpenNext team or test locally
 2. **Test NextAuth on Workers** - Create PoC for auth flows
 3. **Benchmark Prisma edge performance** - Compare to current latency
 4. **Audit bundle size** - Ensure < 10 MiB compressed
 
-### 7.2 Migration Checklist (Phase 20)
+### 8.2 Migration Checklist (Phase 20)
 
 - [ ] Update Prisma schema for edge
 - [ ] Install and configure Neon adapter
