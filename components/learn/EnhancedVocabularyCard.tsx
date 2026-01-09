@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { Plus, BookOpen, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -175,11 +176,15 @@ export function EnhancedVocabularyCard({
             )}
           >
             {item.imageUrl && (
-              <img
-                src={item.imageUrl}
-                alt={item.englishText}
-                className="h-16 w-16 object-cover rounded-lg mb-4"
-              />
+              <div className="relative h-16 w-16 mb-4">
+                <Image
+                  src={item.imageUrl}
+                  alt={item.englishText}
+                  fill
+                  className="object-cover rounded-lg"
+                  sizes="64px"
+                />
+              </div>
             )}
             <p className="text-2xl font-bold text-primary mb-2">{item.macedonianText}</p>
             {showTransliteration && item.transliteration && (
@@ -226,11 +231,15 @@ export function EnhancedVocabularyCard({
       <div className="flex items-start gap-3">
         {/* Optional image */}
         {item.imageUrl && (
-          <img
-            src={item.imageUrl}
-            alt={item.englishText}
-            className="h-16 w-16 object-cover rounded-lg flex-shrink-0"
-          />
+          <div className="relative h-16 w-16 flex-shrink-0">
+            <Image
+              src={item.imageUrl}
+              alt={item.englishText}
+              fill
+              className="object-cover rounded-lg"
+              sizes="64px"
+            />
+          </div>
         )}
 
         {/* Main content */}
