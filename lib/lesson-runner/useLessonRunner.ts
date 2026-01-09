@@ -204,8 +204,19 @@ export function useLessonRunner(
 
         // Auto-save progress if enabled
         if (autoSave && lessonId) {
-          // TODO: Call API to save progress
-          // await saveProgress(lessonId, currentIndex, answers);
+          try {
+            await fetch('/api/lessons/progress', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                lessonId,
+                status: 'in_progress',
+                progress: Math.round(((currentIndex + 1) / steps.length) * 100),
+              }),
+            });
+          } catch (saveError) {
+            console.error('Failed to auto-save progress:', saveError);
+          }
         }
       } catch (error) {
         console.error('Error validating answer:', error);
@@ -221,7 +232,7 @@ export function useLessonRunner(
         setIsEvaluating(false);
       }
     },
-    [currentStep, validateAnswer, autoSave, lessonId]
+    [currentStep, currentIndex, steps.length, validateAnswer, autoSave, lessonId]
   );
 
   /**
@@ -279,6 +290,7 @@ export function useLessonRunner(
   useEffect(() => {
     if (completedAt) {
       const totalTime = completedAt - startTimeRef.current;
+      const timeSpentMinutes = Math.ceil(totalTime / 60000);
 
       const results: LessonResults = {
         lessonId,
@@ -298,6 +310,20 @@ export function useLessonRunner(
           };
         }),
       };
+
+      // Save completion to database
+      if (lessonId) {
+        fetch('/api/lessons/progress', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            lessonId,
+            status: 'completed',
+            progress: 100,
+            timeSpent: timeSpentMinutes,
+          }),
+        }).catch((err) => console.error('Failed to save lesson completion:', err));
+      }
 
       onComplete(results);
     }

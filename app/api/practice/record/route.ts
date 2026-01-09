@@ -39,6 +39,7 @@ export async function POST(request: NextRequest) {
       create: {
         userId: session.user.id,
         xp: xpEarned,
+        weeklyXP: xpEarned,
         todayXP: xpEarned,
         level: 'beginner',
         streak: 1,
@@ -49,6 +50,9 @@ export async function POST(request: NextRequest) {
       },
       update: {
         xp: {
+          increment: xpEarned,
+        },
+        weeklyXP: {
           increment: xpEarned,
         },
         todayXP: {

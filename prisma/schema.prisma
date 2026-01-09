@@ -649,10 +649,12 @@ model GameProgress {
   userId           String    @unique
   streak           Int       @default(0) // consecutive days of practice
   xp               Int       @default(0) // total experience points
+  weeklyXP         Int       @default(0) // XP earned this week (resets weekly)
   level            String    @default("beginner") // beginner | intermediate | advanced
   hearts           Int       @default(5) // current heart count (max 5)
   lastPracticeDate DateTime? // last date user practiced (for streak calculation)
   streakUpdatedAt  DateTime? // last time streak was updated
+  weekResetAt      DateTime? // last time weekly XP was reset
   dailyGoalXP      Int       @default(20) // daily XP target
   todayXP          Int       @default(0) // resets daily at midnight
   longestStreak    Int       @default(0) // all-time best streak

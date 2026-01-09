@@ -102,7 +102,7 @@ async function getGlobalLeaderboard(period: string, limit: number) {
     name: progress.user.name,
     image: progress.user.image,
     xp: progress.xp,
-    weeklyXP: 0, // TODO: Implement weeklyXP tracking in GameProgress
+    weeklyXP: progress.weeklyXP,
     streak: progress.streak,
     level: progress.level,
   }));

@@ -11,16 +11,31 @@ import type { LessonResults } from '@/lib/lesson-runner/types';
 export function ReaderQuizButton({ sample }: { sample: ReaderSample }) {
   const [showQuiz, setShowQuiz] = useState(false);
 
+  const handleQuizComplete = async (results: LessonResults) => {
+    setShowQuiz(false);
+    
+    // Save quiz results to user progress
+    try {
+      await fetch('/api/practice/record', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          correctCount: results.correctAnswers,
+          totalCount: results.totalSteps,
+        }),
+      });
+    } catch (error) {
+      console.error('Failed to save quiz results:', error);
+    }
+  };
+
   if (showQuiz) {
     const steps = generateQuizFromSample(sample, { maxQuestions: 8 });
 
     return (
       <LessonRunner
         steps={steps}
-        onComplete={(_results: LessonResults) => {
-          setShowQuiz(false);
-          // TODO: Save results to user progress
-        }}
+        onComplete={handleQuizComplete}
         lessonTitle={sample.title_en}
         difficulty={getQuizDifficulty(sample.difficulty)}
         onExit={() => setShowQuiz(false)}

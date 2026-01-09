@@ -85,10 +85,12 @@ export async function POST(request: Request) {
         where: { userId: session.user.id },
         update: {
           xp: { increment: quest.xpReward },
+          weeklyXP: { increment: quest.xpReward },
         },
         create: {
           userId: session.user.id,
           xp: quest.xpReward,
+          weeklyXP: quest.xpReward,
         },
       });
 

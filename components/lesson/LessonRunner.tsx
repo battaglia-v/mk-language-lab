@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { X, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -40,12 +41,30 @@ export function LessonRunner({
   onExit,
   autoSave = false,
 }: LessonRunnerProps) {
+  // Fetch user's current streak
+  const [userStreak, setUserStreak] = useState(0);
+
+  useEffect(() => {
+    async function fetchStreak() {
+      try {
+        const response = await fetch('/api/user/progress');
+        if (response.ok) {
+          const data = await response.json();
+          setUserStreak(data.progress?.streak || 0);
+        }
+      } catch (error) {
+        console.error('Failed to fetch user streak:', error);
+      }
+    }
+    fetchStreak();
+  }, []);
+
   // Calculate XP and add Summary step
   const handleRawComplete = (results: Omit<LessonResults, 'xpEarned'>) => {
     const xpData = calculateLessonXP({
       totalSteps: results.totalSteps,
       correctAnswers: results.correctAnswers,
-      streak: 0, // TODO: Get from user profile
+      streak: userStreak,
     });
 
     onComplete({
@@ -95,7 +114,7 @@ export function LessonRunner({
     const xpData = calculateLessonXP({
       totalSteps: totalSteps - 1, // Exclude summary step
       correctAnswers: correctCount,
-      streak: 0, // TODO: Get from user profile
+      streak: userStreak,
     });
 
     summaryStep.xpEarned = xpData.totalXP;
