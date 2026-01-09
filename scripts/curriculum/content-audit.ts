@@ -200,6 +200,14 @@ function parseSeedFileEnhancements(): Map<number, { dialogues: Dialogue[]; exerc
   const b1SeedFilePath = path.join(SEEDS_DIR, 'seed-b1-lessons.ts');
   if (fs.existsSync(b1SeedFilePath)) {
     const b1Content = fs.readFileSync(b1SeedFilePath, 'utf-8');
+
+    // Parse B1_LESSON_CONTENT (uses lessonNumber instead of lessonId)
+    const b1ContentMatch = b1Content.match(/const B1_LESSON_CONTENT[\s\S]*?(?=\/\/\s*=+\s*\n\s*\/\/\s*B1 Lesson Enhancements|$)/);
+    if (b1ContentMatch) {
+      parseB1LessonContent(b1ContentMatch[0], 200, results);
+    }
+
+    // Parse B1_ENHANCEMENTS (uses lessonId for lessons 2-8)
     const b1Match = b1Content.match(/const B1_ENHANCEMENTS[\s\S]*?(?=\/\/\s*=+\s*\n\s*\/\/\s*Seeding|$)/);
     if (b1Match) {
       parseEnhancementsSection(b1Match[0], 200, results); // Use 200+ for B1 lessons
@@ -207,6 +215,52 @@ function parseSeedFileEnhancements(): Map<number, { dialogues: Dialogue[]; exerc
   }
 
   return results;
+}
+
+/**
+ * Parse B1_LESSON_CONTENT which uses lessonNumber instead of lessonId.
+ */
+function parseB1LessonContent(
+  section: string,
+  levelOffset: number,
+  results: Map<number, { dialogues: Dialogue[]; exercises: Exercise[] }>
+): void {
+  // Split by lesson number blocks using the new format
+  const lessonBlocks = section.split(/\n\s*\/\/\s*Lesson\s+(\d+):/i);
+
+  for (let i = 1; i < lessonBlocks.length; i += 2) {
+    const lessonNum = parseInt(lessonBlocks[i], 10);
+    const block = lessonBlocks[i + 1] || '';
+
+    // Count dialogues
+    const dialoguesMatch = block.match(/dialogues:\s*\[\{[\s\S]*?\}\]/);
+    let dialogueCount = 0;
+    let lineCount = 0;
+
+    if (dialoguesMatch) {
+      const titleMatches = dialoguesMatch[0].match(/title:\s*['"`]/g);
+      dialogueCount = titleMatches ? titleMatches.length : 0;
+      const speakerMatches = dialoguesMatch[0].match(/speaker:\s*['"`]/g);
+      lineCount = speakerMatches ? speakerMatches.length : 0;
+    }
+
+    // Count exercises - use greedy matching to capture all exercises in the array
+    // Look for 'exercises: [' until we find the closing ']' followed by newline or comma
+    const exercisesMatch = block.match(/exercises:\s*\[([\s\S]*?)\],?\s*\n\s*\}/);
+    let exerciseCount = 0;
+
+    if (exercisesMatch) {
+      const typeMatches = exercisesMatch[0].matchAll(/type:\s*['"`](\w+)['"`]/g);
+      for (const _match of typeMatches) {
+        exerciseCount++;
+      }
+    }
+
+    results.set(lessonNum + levelOffset, {
+      dialogues: dialogueCount > 0 ? [{ title: 'From seed', lines: new Array(lineCount).fill({}) as DialogueLine[] }] : [],
+      exercises: new Array(exerciseCount).fill({ type: 'unknown', question: '' }) as Exercise[],
+    });
+  }
 }
 
 /**

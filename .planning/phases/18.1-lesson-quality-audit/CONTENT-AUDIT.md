@@ -1,6 +1,6 @@
 # Content Completeness Audit Report
 
-Generated: 2026-01-09T22:44:17.483Z
+Generated: 2026-01-09T22:52:54.549Z
 
 ## Summary
 
@@ -8,7 +8,7 @@ Generated: 2026-01-09T22:44:17.483Z
 |-------|-------|------|------|------|
 | A1 (Тешкото) | 24 | 24 | 0 | 0 |
 | A2 (Лозје) | 8 | 8 | 0 | 0 |
-| B1 (Златоврв) | 8 | 7 | 0 | 1 |
+| B1 (Златоврв) | 8 | 8 | 0 | 0 |
 
 ## Minimum Requirements
 
@@ -63,7 +63,7 @@ Generated: 2026-01-09T22:44:17.483Z
 
 | Lesson | Title | Vocab | Dialogues | Exercises | Grammar | Status | Issues |
 |--------|-------|-------|-----------|-----------|---------|--------|--------|
-| 1 | Lesson 1: Дали се разбираме? | 1198 | 0 | 0 | 5 | ❌ | Dialogues: 0/1, Exercises: 0/3 |
+| 1 | Lesson 1: Дали се разбираме? | 1198 | 1 (6 lines) | 3 (unknown) | 5 | ✅ | - |
 | 2 | Lesson 2: Има ли надеж? | 1342 | 1 (6 lines) | 3 (unknown) | 2 | ✅ | - |
 | 3 | Lesson 3: Моето здравје | 1420 | 1 (7 lines) | 3 (unknown) | 1 | ✅ | - |
 | 4 | Lesson 4: Што (ќе) јадеме (... | 1651 | 1 (6 lines) | 3 (unknown) | 3 | ✅ | - |
@@ -73,11 +73,3 @@ Generated: 2026-01-09T22:44:17.483Z
 | 8 | Lesson 8: Градска џунгла | 1640 | 1 (7 lines) | 3 (unknown) | 5 | ✅ | - |
 
 ## Gap Analysis
-
-### B1 (Златоврв)
-
-**Lessons missing dialogues:**
-- Lesson 1: Lesson 1: Дали се разбираме?
-
-**Lessons below exercise minimum (< 3):**
-- Lesson 1: Lesson 1: Дали се разбираме? (has 0)
