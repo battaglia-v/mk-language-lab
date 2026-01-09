@@ -9,6 +9,7 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 - ✅ [v1.0 Beta](milestones/v1.0-ROADMAP.md) (Phases 1-7) — SHIPPED 2026-01-07
 - ✅ **v1.1 Curriculum Quality Fix** — Phases 8-16 (shipped 2026-01-09)
 - ✅ [v1.2 Infrastructure & CI Overhaul](milestones/v1.2-ROADMAP.md) (Phases 17-20) — SHIPPED 2026-01-09
+- 🚧 **v1.3 Content Quality & User Journey** — Phases 21-26 (in progress)
 
 ## Completed Milestones
 
@@ -56,18 +57,84 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 
 </details>
 
+### 🚧 v1.3 Content Quality & User Journey (In Progress)
+
+**Milestone Goal:** Fix broken interactions, audit content effectiveness, improve Practice UX, and deepen A1/A2/B1 content while maintaining the core promise: "always resume in the right place, next step obvious."
+
+#### Phase 21: Bug Fixes
+
+**Goal**: Fix clickable vocabulary cards and continue vocabulary name cleanup
+**Depends on**: v1.2 complete
+**Research**: Unlikely (existing codebase patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 21-01: TBD (run /gsd:plan-phase 21 to break down)
+
+#### Phase 22: Content Effectiveness Audit
+
+**Goal**: Verify learning progression, exercise quality, and translation accuracy
+**Depends on**: Phase 21
+**Research**: Unlikely (CEFR standards already established in codebase)
+**Plans**: TBD
+
+Plans:
+- [ ] 22-01: TBD
+
+#### Phase 23: Practice Feature Audit & UX
+
+**Goal**: Fix My Saved Words section styling and improve post-lesson practice flow
+**Depends on**: Phase 22
+**Research**: Unlikely (existing component patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 23-01: TBD
+
+#### Phase 24: User Journey Cohesion
+
+**Goal**: Connect Learn → Practice → Reader sections into cohesive navigation flow
+**Depends on**: Phase 23
+**Research**: Unlikely (internal routing patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 24-01: TBD
+
+#### Phase 25: Content Expansion
+
+**Goal**: Expand vocabulary, grammar exercises, and dialogues for A1/A2/B1 levels
+**Depends on**: Phase 24
+**Research**: Unlikely (following existing curriculum structure)
+**Plans**: TBD
+
+Plans:
+- [ ] 25-01: TBD
+
+#### Phase 26: Validation & Polish
+
+**Goal**: Final testing, polish, and refinements before milestone completion
+**Depends on**: Phase 25
+**Research**: Unlikely (internal testing patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 26-01: TBD
+
 ## Progress
 
-All milestones through v1.2 are complete. See archived roadmaps for phase details:
-- [v1.0 Beta](milestones/v1.0-ROADMAP.md) — 7 phases, 21 plans
-- [v1.2 Infrastructure & CI](milestones/v1.2-ROADMAP.md) — 4 phases (+1 skipped), 7 plans
+| Phase | Milestone | Plans | Status | Completed |
+|-------|-----------|-------|--------|-----------|
+| 21. Bug Fixes | v1.3 | 0/? | Not started | - |
+| 22. Content Effectiveness Audit | v1.3 | 0/? | Not started | - |
+| 23. Practice Feature Audit & UX | v1.3 | 0/? | Not started | - |
+| 24. User Journey Cohesion | v1.3 | 0/? | Not started | - |
+| 25. Content Expansion | v1.3 | 0/? | Not started | - |
+| 26. Validation & Polish | v1.3 | 0/? | Not started | - |
 
-**Summary:**
-| Milestone | Phases | Plans | Status | Shipped |
-|-----------|--------|-------|--------|---------|
-| v1.0 Beta | 1-7 | 21 | Complete | 2026-01-07 |
-| v1.1 Curriculum Quality | 8-16 | 18 | Complete | 2026-01-09 |
-| v1.2 Infrastructure & CI | 17-20 | 7 | Complete | 2026-01-09 |
+**Completed Milestones:**
+- [v1.0 Beta](milestones/v1.0-ROADMAP.md) — 7 phases, 21 plans (shipped 2026-01-07)
+- [v1.2 Infrastructure & CI](milestones/v1.2-ROADMAP.md) — 4 phases, 7 plans (shipped 2026-01-09)
 
 ## Domain Expertise
 
