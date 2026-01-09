@@ -53,7 +53,7 @@ If the app nails progression, users will forgive incomplete content; if it doesn
 
 <!-- Next milestone scope -->
 
-(None yet — planning v1.1)
+(None yet — planning v1.3)
 
 ### Out of Scope
 
@@ -70,12 +70,14 @@ If the app nails progression, users will forgive incomplete content; if it doesn
 
 ## Context
 
-### Current State (v1.0 Beta)
+### Current State (v1.2)
 
-- **Codebase:** ~24,400 lines of TypeScript
+- **Codebase:** ~118,700 lines of TypeScript
 - **Tech stack:** Next.js 16 App Router, Prisma/PostgreSQL, NextAuth, Vercel
-- **Curriculum:** 40 lessons (24 A1 + 8 A2 + 8 B1 skeleton), 41 grammar notes
-- **Database:** UKIM curriculum seeded (ukim-a1, ukim-a2, ukim-b1 modules)
+- **Curriculum:** 40 lessons (24 A1 + 8 A2 + 8 B1), 41 grammar notes, 25,568 vocabulary items
+- **Database:** UKIM curriculum seeded with corrected translations (A1/A2/B1)
+- **CI Pipeline:** 7 workflows with Next.js and Playwright caching optimized
+- **Dark mode:** ~95% compliance across all components
 
 ### The Problem (Solved)
 
@@ -119,6 +121,9 @@ Advanced and returning users didn't know where they were, what they'd completed,
 | Upsert pattern for curriculum seeding | Idempotent, safe to re-run | Good |
 | Comment audio routes vs delete | Easy to re-enable when audio ready | Good |
 | Mode selector UI-only | Deck filtering deferred to practice session integration | Pending |
+| Cloudflare NO-GO | Next.js 16 not supported by OpenNext adapter; ~$19/mo savings insufficient | Good |
+| Tap-to-select UX | Better mobile compatibility than drag-drop for exercises | Good |
+| Dynamic lesson lookup | Query by module/orderIndex more maintainable than hardcoded IDs | Good |
 
 ## Success Criteria
 
@@ -129,4 +134,4 @@ Advanced and returning users didn't know where they were, what they'd completed,
 - [ ] 2-3 named beta users say: "This finally makes sense — I always know what to do next"
 
 ---
-*Last updated: 2026-01-07 after v1.0 Beta milestone*
+*Last updated: 2026-01-09 after v1.2 Infrastructure & CI Overhaul milestone*
