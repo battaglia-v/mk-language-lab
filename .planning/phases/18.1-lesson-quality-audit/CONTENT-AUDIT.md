@@ -1,14 +1,14 @@
 # Content Completeness Audit Report
 
-Generated: 2026-01-09T22:41:11.059Z
+Generated: 2026-01-09T22:44:17.483Z
 
 ## Summary
 
 | Level | Total | Pass | Warn | Fail |
 |-------|-------|------|------|------|
-| A1 (Тешкото) | 24 | 22 | 0 | 2 |
+| A1 (Тешкото) | 24 | 24 | 0 | 0 |
 | A2 (Лозје) | 8 | 8 | 0 | 0 |
-| B1 (Златоврв) | 8 | 0 | 0 | 8 |
+| B1 (Златоврв) | 8 | 7 | 0 | 1 |
 
 ## Minimum Requirements
 
@@ -21,8 +21,8 @@ Generated: 2026-01-09T22:41:11.059Z
 
 | Lesson | Title | Vocab | Dialogues | Exercises | Grammar | Status | Issues |
 |--------|-------|-------|-----------|-----------|---------|--------|--------|
-| 1 | Lesson 1: Јас и ти | 75 | 0 | 0 | 3 | ❌ | Dialogues: 0/1, Exercises: 0/3 |
-| 2 | Lesson 2: Семејство | 187 | 0 | 0 | 6 | ❌ | Dialogues: 0/1, Exercises: 0/3 |
+| 1 | Lesson 1: Јас и ти | 75 | 1 (6 lines) | 6 (unknown) | 3 | ✅ | - |
+| 2 | Lesson 2: Семејство | 187 | 1 (6 lines) | 6 (unknown) | 6 | ✅ | - |
 | 3 | Lesson 3: Прашуваме | 111 | 1 (6 lines) | 3 (unknown) | 2 | ✅ | - |
 | 4 | Lesson 4: Околу нас | 249 | 1 (4 lines) | 3 (unknown) | 6 | ✅ | - |
 | 5 | Lesson 5: Има... | 105 | 1 (6 lines) | 3 (unknown) | 2 | ✅ | - |
@@ -64,44 +64,20 @@ Generated: 2026-01-09T22:41:11.059Z
 | Lesson | Title | Vocab | Dialogues | Exercises | Grammar | Status | Issues |
 |--------|-------|-------|-----------|-----------|---------|--------|--------|
 | 1 | Lesson 1: Дали се разбираме? | 1198 | 0 | 0 | 5 | ❌ | Dialogues: 0/1, Exercises: 0/3 |
-| 2 | Lesson 2: Има ли надеж? | 1342 | 0 | 0 | 2 | ❌ | Dialogues: 0/1, Exercises: 0/3 |
-| 3 | Lesson 3: Моето здравје | 1420 | 0 | 0 | 1 | ❌ | Dialogues: 0/1, Exercises: 0/3 |
-| 4 | Lesson 4: Што (ќе) јадеме (... | 1651 | 0 | 0 | 3 | ❌ | Dialogues: 0/1, Exercises: 0/3 |
-| 5 | Lesson 5: Дајте музика! | 1327 | 0 | 0 | 4 | ❌ | Dialogues: 0/1, Exercises: 0/3 |
-| 6 | Lesson 6: Патуваме, сонуваме! | 2000 | 0 | 0 | 4 | ❌ | Dialogues: 0/1, Exercises: 0/3 |
-| 7 | Lesson 7: Луѓето се луѓе | 1426 | 0 | 0 | 3 | ❌ | Dialogues: 0/1, Exercises: 0/3 |
-| 8 | Lesson 8: Градска џунгла | 1640 | 0 | 0 | 5 | ❌ | Dialogues: 0/1, Exercises: 0/3 |
+| 2 | Lesson 2: Има ли надеж? | 1342 | 1 (6 lines) | 3 (unknown) | 2 | ✅ | - |
+| 3 | Lesson 3: Моето здравје | 1420 | 1 (7 lines) | 3 (unknown) | 1 | ✅ | - |
+| 4 | Lesson 4: Што (ќе) јадеме (... | 1651 | 1 (6 lines) | 3 (unknown) | 3 | ✅ | - |
+| 5 | Lesson 5: Дајте музика! | 1327 | 1 (7 lines) | 3 (unknown) | 4 | ✅ | - |
+| 6 | Lesson 6: Патуваме, сонуваме! | 2000 | 1 (6 lines) | 3 (unknown) | 4 | ✅ | - |
+| 7 | Lesson 7: Луѓето се луѓе | 1426 | 1 (6 lines) | 3 (unknown) | 3 | ✅ | - |
+| 8 | Lesson 8: Градска џунгла | 1640 | 1 (7 lines) | 3 (unknown) | 5 | ✅ | - |
 
 ## Gap Analysis
-
-### A1 (Тешкото)
-
-**Lessons missing dialogues:**
-- Lesson 1: Lesson 1: Јас и ти
-- Lesson 2: Lesson 2: Семејство
-
-**Lessons below exercise minimum (< 3):**
-- Lesson 1: Lesson 1: Јас и ти (has 0)
-- Lesson 2: Lesson 2: Семејство (has 0)
 
 ### B1 (Златоврв)
 
 **Lessons missing dialogues:**
 - Lesson 1: Lesson 1: Дали се разбираме?
-- Lesson 2: Lesson 2: Има ли надеж?
-- Lesson 3: Lesson 3: Моето здравје
-- Lesson 4: Lesson 4: Што (ќе) јадеме (денес)?
-- Lesson 5: Lesson 5: Дајте музика!
-- Lesson 6: Lesson 6: Патуваме, сонуваме!
-- Lesson 7: Lesson 7: Луѓето се луѓе
-- Lesson 8: Lesson 8: Градска џунгла
 
 **Lessons below exercise minimum (< 3):**
 - Lesson 1: Lesson 1: Дали се разбираме? (has 0)
-- Lesson 2: Lesson 2: Има ли надеж? (has 0)
-- Lesson 3: Lesson 3: Моето здравје (has 0)
-- Lesson 4: Lesson 4: Што (ќе) јадеме (денес)? (has 0)
-- Lesson 5: Lesson 5: Дајте музика! (has 0)
-- Lesson 6: Lesson 6: Патуваме, сонуваме! (has 0)
-- Lesson 7: Lesson 7: Луѓето се луѓе (has 0)
-- Lesson 8: Lesson 8: Градска џунгла (has 0)
