@@ -33,7 +33,7 @@ export default function GrammarSection({ notes }: GrammarSectionProps) {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6 sm:space-y-8">
       {notes.map((note) => {
         let examples: string[] = [];
         try {
@@ -49,17 +49,17 @@ export default function GrammarSection({ notes }: GrammarSectionProps) {
         return (
           <div
             key={note.id}
-            className="p-4 rounded-lg bg-secondary/5 border border-secondary/20"
+            className="p-4 sm:p-5 rounded-lg bg-secondary/5 border border-secondary/20 mx-0"
           >
-            {/* Compact title */}
-            <h3 className="text-base font-semibold text-secondary mb-2">
+            {/* Title - larger on mobile for better readability */}
+            <h3 className="text-lg sm:text-xl font-semibold text-secondary mb-3">
               {note.title}
             </h3>
 
-            {/* Explanation */}
+            {/* Explanation - larger text for readability */}
             <p
               className={cn(
-                'text-sm text-muted-foreground leading-relaxed',
+                'text-base text-muted-foreground leading-relaxed',
                 shouldTruncate && 'line-clamp-2'
               )}
             >
@@ -71,46 +71,56 @@ export default function GrammarSection({ notes }: GrammarSectionProps) {
                 variant="ghost"
                 size="sm"
                 onClick={() => toggleNote(note.id)}
-                className="mt-1 h-8 px-2 text-xs text-secondary hover:text-secondary/80"
+                className="mt-2 min-h-[44px] px-3 text-sm text-secondary hover:text-secondary/80"
               >
                 {isExpanded ? (
                   <>
-                    <ChevronUp className="h-3 w-3 mr-1" />
-                    Less
+                    <ChevronUp className="h-4 w-4 mr-1.5" />
+                    Show less
                   </>
                 ) : (
                   <>
-                    <ChevronDown className="h-3 w-3 mr-1" />
-                    More
+                    <ChevronDown className="h-4 w-4 mr-1.5" />
+                    Read more
                   </>
                 )}
               </Button>
             )}
 
-            {/* Examples - compact list */}
+            {/* Examples - numbered list with clear Mk/En distinction */}
             {examples.length > 0 && (
-              <div className="mt-3 pt-3 border-t border-secondary/10">
-                <ul className="space-y-2">
+              <div className="mt-4 pt-4 border-t border-secondary/10">
+                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3">
+                  Examples
+                </p>
+                <ol className="space-y-4 list-none">
                   {examples.slice(0, 4).map((example, index) => {
                     const parts = splitExample(example);
 
                     return (
-                      <li key={index} className="text-sm">
-                        <span className="font-medium">{parts.macedonian}</span>
-                        {parts.english && (
-                          <span className="text-muted-foreground ml-2">
-                            — {parts.english}
-                          </span>
-                        )}
+                      <li key={index} className="flex gap-3">
+                        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-secondary/10 text-secondary text-xs font-medium flex items-center justify-center">
+                          {index + 1}
+                        </span>
+                        <div className="flex-1 min-w-0 space-y-1">
+                          <p className="text-base font-medium leading-relaxed">
+                            {parts.macedonian}
+                          </p>
+                          {parts.english && (
+                            <p className="text-sm text-muted-foreground italic">
+                              {parts.english}
+                            </p>
+                          )}
+                        </div>
                       </li>
                     );
                   })}
                   {examples.length > 4 && (
-                    <li className="text-xs text-muted-foreground">
+                    <li className="text-sm text-muted-foreground pl-9">
                       +{examples.length - 4} more examples
                     </li>
                   )}
-                </ul>
+                </ol>
               </div>
             )}
           </div>
