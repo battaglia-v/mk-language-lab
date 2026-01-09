@@ -59,7 +59,7 @@ jobs:
 
       - name: Checkout repository
         if: steps.cron_prereqs.outputs.skip == 'false'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
         if: steps.cron_prereqs.outputs.skip == 'false'
