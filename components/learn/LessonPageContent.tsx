@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { CurriculumLessonWrapper } from './CurriculumLessonWrapper';
 import LessonContent from './LessonContent';
+import LessonPageContentV2 from './LessonPageContentV2';
 import type { LessonResults, Step } from '@/lib/lesson-runner/types';
 
 interface LessonPageContentProps {
@@ -15,6 +16,7 @@ interface LessonPageContentProps {
     vocabularyItems: unknown[];
     grammarNotes: unknown[];
     exercises: unknown[];
+    dialogues?: unknown[]; // New: dialogues support
     module: { title: string };
   };
   userProgress: { progress?: number } | null;
@@ -22,6 +24,8 @@ interface LessonPageContentProps {
   userId?: string;
   useLessonRunner?: boolean;
   lessonRunnerConfig?: string | null;
+  /** Use the new guided step-by-step lesson flow (V2) */
+  useNewLessonFlow?: boolean;
 }
 
 export function LessonPageContent({
@@ -31,8 +35,21 @@ export function LessonPageContent({
   userId,
   useLessonRunner,
   lessonRunnerConfig,
+  useNewLessonFlow = true, // Default to new system
 }: LessonPageContentProps) {
   const router = useRouter();
+
+  // If using new guided lesson flow (V2)
+  if (useNewLessonFlow && !useLessonRunner) {
+    return (
+      <LessonPageContentV2
+        lesson={lesson as Parameters<typeof LessonPageContentV2>[0]['lesson']}
+        userProgress={userProgress}
+        nextLesson={nextLesson}
+        userId={userId}
+      />
+    );
+  }
 
   // If using LessonRunner system
   if (useLessonRunner && lessonRunnerConfig) {

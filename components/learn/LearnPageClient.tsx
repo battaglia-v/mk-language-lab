@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { Zap, Play, BookOpen, ChevronRight, Lock, Check, GraduationCap, Sparkles } from 'lucide-react';
+import { Zap, Play, BookOpen, ChevronRight, Check, GraduationCap, Sparkles } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import { getLocalXP } from '@/lib/gamification/local-xp';
@@ -378,23 +378,23 @@ function DailyGoalRing({
 
 /**
  * Individual lesson node card in the path
+ * Note: All lessons are clickable - users can skip around freely
  */
 function LessonNodeCard({
   node,
   locale,
   lessonNumber,
   startLabel,
-  lockTooltip,
 }: {
   node: LessonNode;
   locale: string;
   lessonNumber: number;
   startLabel: string;
-  lockTooltip: string;
+  lockTooltip?: string; // Kept for backwards compatibility but not used
 }) {
   const isCompleted = node.status === 'completed';
   const isNext = node.status === 'available' || node.status === 'in_progress';
-  const isLocked = node.status === 'locked';
+  const isNotStarted = node.status === 'locked'; // Renamed for clarity - not actually locked
 
   // Type-based styling
   const getTypeStyle = () => {
@@ -406,18 +406,17 @@ function LessonNodeCard({
       case 'review':
         return 'border-amber-500/30 bg-amber-500/5';
       default:
-        return '';
+        return 'border-border/50 bg-card/50';
     }
   };
 
   const content = (
     <div
       className={cn(
-        'flex items-center gap-4 rounded-xl border p-4 transition-all',
+        'flex items-center gap-4 rounded-xl border p-4 transition-all hover:shadow-md',
         isCompleted && 'border-emerald-500/30 bg-emerald-500/5',
         isNext && 'border-primary/50 bg-primary/5 shadow-md shadow-primary/10',
-        isLocked && 'border-border/30 bg-muted/10 opacity-60',
-        !isCompleted && !isNext && !isLocked && getTypeStyle()
+        !isCompleted && !isNext && getTypeStyle()
       )}
     >
       {/* Lesson number / status */}
@@ -426,15 +425,15 @@ function LessonNodeCard({
           'flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-bold text-sm',
           isCompleted && 'bg-emerald-500 text-white',
           isNext && 'bg-primary text-black',
-          isLocked && 'bg-muted text-muted-foreground'
+          isNotStarted && 'bg-muted text-muted-foreground'
         )}
       >
-        {isCompleted ? <Check className="h-5 w-5" /> : isLocked ? <Lock className="h-4 w-4" /> : lessonNumber}
+        {isCompleted ? <Check className="h-5 w-5" /> : lessonNumber}
       </div>
 
       {/* Lesson info */}
       <div className="flex-1 min-w-0">
-        <p className={cn('font-semibold', isLocked && 'text-muted-foreground')}>
+        <p className="font-semibold">
           {node.title}
         </p>
         <p className="text-sm text-muted-foreground truncate">
@@ -442,8 +441,8 @@ function LessonNodeCard({
         </p>
       </div>
 
-      {/* XP reward */}
-      {!isCompleted && !isLocked && (
+      {/* XP reward - show for all non-completed lessons */}
+      {!isCompleted && (
         <div className="flex items-center gap-1 text-sm">
           <Zap className="h-4 w-4 text-amber-500" />
           <span className="font-medium text-amber-500">+{node.xpReward}</span>
@@ -455,22 +454,24 @@ function LessonNodeCard({
         <Check className="h-5 w-5 text-emerald-500" />
       )}
 
-      {/* Arrow for next lesson - or "Start" text for clarity */}
+      {/* Arrow for next/recommended lesson */}
       {isNext && (
         <span className="flex items-center gap-1 text-sm font-medium text-primary">
           {startLabel}
           <ChevronRight className="h-4 w-4" />
         </span>
       )}
+
+      {/* Arrow for other lessons - subtle indicator they're clickable */}
+      {!isNext && !isCompleted && (
+        <ChevronRight className="h-4 w-4 text-muted-foreground" />
+      )}
     </div>
   );
 
-  if (isLocked || !node.href) {
-    return (
-      <div className="cursor-not-allowed" title={lockTooltip}>
-        {content}
-      </div>
-    );
+  // All lessons with href are clickable - no locking!
+  if (!node.href) {
+    return <div>{content}</div>;
   }
 
   return (
