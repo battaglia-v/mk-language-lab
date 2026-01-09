@@ -4,8 +4,9 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useSession } from 'next-auth/react';
-import { Volume2, Brain, FileText, Sparkles, Heart, Settings2, Clock, Zap, ChevronRight, Play, BookOpen } from 'lucide-react';
+import { Volume2, Brain, FileText, Sparkles, Heart, Settings2, Clock, Zap, ChevronRight, Play, BookOpen, BookmarkPlus, Languages, BookText, Plus, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import { BottomSheet } from '@/components/ui/BottomSheet';
 import { usePracticeDecks } from './usePracticeDecks';
 import { PracticeModeSelector, type PracticeMode as VocabPracticeMode } from './PracticeModeSelector';
@@ -34,11 +35,14 @@ export function PracticeHub() {
   const {
     savedDeck, curatedDeck,
     mistakesDeck, srsDueDeck,
+    favoritesDeck,
     clearCustomDeck, clearMistakes,
     recommendedDeck,
     vocabCounts,
     lessonReviewDeck,
     loadLessonReviewDeck,
+    userVocabDeck,
+    loadUserVocabDeck,
   } = usePracticeDecks();
 
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -50,12 +54,16 @@ export function PracticeHub() {
   const isAuthenticated = status === 'authenticated';
   const hasVocabulary = vocabCounts.total > 0;
 
-  // Load lesson review deck on mount
+  // Load lesson review deck and user vocab on mount
   useEffect(() => {
     if (isAuthenticated) {
       loadLessonReviewDeck();
+      loadUserVocabDeck();
     }
-  }, [isAuthenticated, loadLessonReviewDeck]);
+  }, [isAuthenticated, loadLessonReviewDeck, loadUserVocabDeck]);
+
+  // Total saved words across all sources
+  const totalSavedWords = savedDeck.length + favoritesDeck.length + userVocabDeck.length;
 
   const handleDeckSelect = (type: DeckType) => {
     setDeckType(type);
@@ -98,23 +106,12 @@ export function PracticeHub() {
       variant: 'accent',
       cardCount: curatedDeck.length,
     },
-    {
-      id: 'saved',
-      href: `/${locale}/practice/session?deck=saved&mode=multiple-choice`,
-      icon: Heart,
-      variant: 'saved',
-      cardCount: savedDeck.length,
-      disabled: savedDeck.length === 0,
-      disabledReason: t('savedDeck.lockedReason', { default: 'Save a phrase in Translate to unlock.' }),
-    },
   ];
   
   // Recommended mode: Lesson Review if user has lesson vocabulary, otherwise Word Sprint
   const recommendedModeId = hasLessonVocabulary ? 'lessonReview' : 'wordSprint';
   const recommendedMode = modes.find((modeConfig) => modeConfig.id === recommendedModeId);
   const otherModes = modes.filter((modeConfig) => modeConfig.id !== recommendedModeId);
-
-  const translateHref = `/${locale}/translate`;
 
   return (
     <div className="flex flex-col gap-7">
@@ -140,23 +137,125 @@ export function PracticeHub() {
         </Button>
       </header>
 
-      {/* Vocabulary Practice - for authenticated users */}
-      {isAuthenticated && (
-        <section className="space-y-3">
-          {hasVocabulary ? (
-            <PracticeModeSelector
-              counts={vocabCounts}
-              selectedMode={vocabMode}
-              onModeSelect={setVocabMode}
-            />
-          ) : (
-            <div className="rounded-xl border border-border/50 bg-muted/20 p-4 text-sm text-muted-foreground">
-              <p className="font-semibold text-foreground">No vocabulary saved yet</p>
-              <p className="mt-1">
-                Save words while reading or translating to build your personal vocabulary deck.
-              </p>
-            </div>
+      {/* My Saved Words - Prominent section for saved vocabulary */}
+      <section className="space-y-3">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
+              <BookmarkPlus className="h-5 w-5 text-pink-500" />
+              My Saved Words
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              Words you&apos;ve saved from lessons, reading, or translating
+            </p>
+          </div>
+          {totalSavedWords > 0 && (
+            <span className="text-2xl font-bold text-pink-500">{totalSavedWords}</span>
           )}
+        </div>
+
+        {totalSavedWords > 0 ? (
+          <Card className="p-4 bg-gradient-to-br from-pink-500/10 to-rose-500/5 border-pink-500/20">
+            {/* Word count breakdown */}
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex flex-wrap gap-3 text-sm">
+                {savedDeck.length > 0 && (
+                  <div className="flex items-center gap-1.5">
+                    <Languages className="h-4 w-4 text-blue-500" />
+                    <span>{savedDeck.length} from Translate</span>
+                  </div>
+                )}
+                {favoritesDeck.length > 0 && (
+                  <div className="flex items-center gap-1.5">
+                    <BookText className="h-4 w-4 text-green-500" />
+                    <span>{favoritesDeck.length} from Reader</span>
+                  </div>
+                )}
+                {userVocabDeck.length > 0 && (
+                  <div className="flex items-center gap-1.5">
+                    <BookOpen className="h-4 w-4 text-primary" />
+                    <span>{userVocabDeck.length} due for review</span>
+                  </div>
+                )}
+              </div>
+              <Link href={`/${locale}/saved-words`} className="text-sm text-pink-500 hover:underline font-medium">
+                Manage →
+              </Link>
+            </div>
+
+            {/* Practice CTA */}
+            <div className="flex flex-col sm:flex-row gap-2">
+              <Link
+                href={`/${locale}/practice/session?deck=saved&mode=multiple-choice`}
+                className="flex-1"
+              >
+                <Button className="w-full gap-2 bg-pink-500 hover:bg-pink-600 text-white">
+                  <Play className="h-4 w-4" />
+                  Practice Saved Words
+                  <ArrowRight className="h-4 w-4 ml-auto" />
+                </Button>
+              </Link>
+              {favoritesDeck.length > 0 && (
+                <Link
+                  href={`/${locale}/practice/session?deck=favorites&mode=multiple-choice`}
+                  className="flex-1"
+                >
+                  <Button variant="outline" className="w-full gap-2 border-pink-500/30 hover:bg-pink-500/10">
+                    <Heart className="h-4 w-4 text-pink-500" />
+                    Review Favorites ({favoritesDeck.length})
+                  </Button>
+                </Link>
+              )}
+            </div>
+          </Card>
+        ) : (
+          <Card className="p-5 border-dashed border-2 border-border/50 bg-muted/10">
+            <div className="text-center space-y-4">
+              <div className="h-16 w-16 rounded-full bg-pink-500/10 flex items-center justify-center mx-auto">
+                <BookmarkPlus className="h-8 w-8 text-pink-500" />
+              </div>
+              <div>
+                <p className="font-semibold text-foreground">Build your personal word bank</p>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Save words you want to remember and practice them here
+                </p>
+              </div>
+              <div className="flex flex-col gap-2 text-sm">
+                <p className="text-muted-foreground font-medium">Ways to save words:</p>
+                <div className="flex flex-wrap justify-center gap-2">
+                  <Link href={`/${locale}/translate`}>
+                    <Button variant="outline" size="sm" className="gap-1.5 h-9">
+                      <Languages className="h-3.5 w-3.5" />
+                      Translate
+                    </Button>
+                  </Link>
+                  <Link href={`/${locale}/reader`}>
+                    <Button variant="outline" size="sm" className="gap-1.5 h-9">
+                      <BookText className="h-3.5 w-3.5" />
+                      Reader
+                    </Button>
+                  </Link>
+                  <Link href={`/${locale}/learn`}>
+                    <Button variant="outline" size="sm" className="gap-1.5 h-9">
+                      <BookOpen className="h-3.5 w-3.5" />
+                      Lessons
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </Card>
+        )}
+      </section>
+
+      {/* Vocabulary Practice - SRS mode selector for authenticated users */}
+      {isAuthenticated && hasVocabulary && (
+        <section className="space-y-3">
+          <PracticeModeSelector
+            counts={vocabCounts}
+            selectedMode={vocabMode}
+            onModeSelect={setVocabMode}
+          />
         </section>
       )}
 
@@ -191,17 +290,6 @@ export function PracticeHub() {
             />
           ))}
         </div>
-        {savedDeck.length === 0 && (
-          <div className="rounded-xl border border-border/50 bg-muted/20 p-4 text-sm text-muted-foreground">
-            <p className="font-semibold text-foreground">No saved phrases yet.</p>
-            <p className="mt-1">
-              Save a phrase in Translate to unlock the Saved practice deck.
-              <Link href={translateHref} className="ml-1 font-semibold text-primary hover:underline">
-                Open Translate
-              </Link>
-            </p>
-          </div>
-        )}
       </section>
 
       {/* Settings Bottom Sheet */}
