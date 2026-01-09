@@ -151,10 +151,10 @@ Plans:
 **Goal**: Review current GitHub Actions workflows, document gaps, benchmark build times
 **Depends on**: v1.1 complete
 **Research**: Unlikely (internal codebase analysis)
-**Plans**: TBD
+**Plans**: 1
 
 Plans:
-- [ ] 17-01: TBD (run /gsd:plan-phase 17 to break down)
+- [x] 17-01: Comprehensive CI audit report (7 workflows, gap analysis, benchmarks) — completed 2026-01-09
 
 #### Phase 18: CI Pipeline Improvements
 
@@ -211,7 +211,7 @@ Phases execute in numeric order: 1 → 2 → ... → 16 → 17 → 18 → 19 →
 | 14. Content Validation | v1.1 | 1/1 | Complete | 2026-01-08 |
 | 15. Practice Integration | v1.1 | 1/1 | Complete | 2026-01-08 |
 | 16. Practice UX Redesign | v1.1 | 2/2 | Complete | 2026-01-09 |
-| 17. CI Pipeline Audit | v1.2 | 0/? | Not started | - |
+| 17. CI Pipeline Audit | v1.2 | 1/1 | Complete | 2026-01-09 |
 | 18. CI Pipeline Improvements | v1.2 | 0/? | Not started | - |
 | 19. Cloudflare Research & PoC | v1.2 | 0/? | Not started | - |
 | 20. Migration Decision | v1.2 | 0/? | Not started | - |
