@@ -13,6 +13,7 @@ import {
   Trash2,
   Search,
   ChevronLeft,
+  ChevronRight,
   Volume2,
   ArrowRight,
   Filter,
@@ -180,35 +181,80 @@ export default function SavedWordsPage() {
       </div>
       
       {counts.total === 0 ? (
-        /* Empty state */
-        <Card className="p-8 text-center border-dashed border-2 border-border/50">
-          <div className="h-20 w-20 rounded-full bg-pink-500/10 flex items-center justify-center mx-auto mb-4">
-            <BookmarkPlus className="h-10 w-10 text-pink-500" />
+        /* Empty state with step-by-step instructions */
+        <Card className="p-6 sm:p-8 border-dashed border-2 border-border/50">
+          <div className="text-center mb-6">
+            <div className="h-20 w-20 rounded-full bg-pink-500/10 flex items-center justify-center mx-auto mb-4">
+              <BookmarkPlus className="h-10 w-10 text-pink-500" />
+            </div>
+            <h2 className="text-xl font-semibold mb-2">Start building your word bank</h2>
+            <p className="text-muted-foreground max-w-md mx-auto">
+              Save words you want to remember and they&apos;ll appear here for easy review and practice.
+            </p>
           </div>
-          <h2 className="text-xl font-semibold mb-2">No saved words yet</h2>
-          <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-            Save words you want to remember from lessons, reading, or translating.
-            They&apos;ll appear here for easy review and practice.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Link href={`/${locale}/translate`}>
-              <Button variant="outline" className="gap-2">
-                <Languages className="h-4 w-4" />
-                Go to Translate
-              </Button>
-            </Link>
-            <Link href={`/${locale}/reader`}>
-              <Button variant="outline" className="gap-2">
-                <BookText className="h-4 w-4" />
-                Go to Reader
-              </Button>
-            </Link>
-            <Link href={`/${locale}/learn`}>
-              <Button variant="outline" className="gap-2">
-                <BookOpen className="h-4 w-4" />
-                Go to Lessons
-              </Button>
-            </Link>
+          
+          {/* Step-by-step instructions */}
+          <div className="space-y-4 max-w-lg mx-auto">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground text-center">
+              3 ways to save words
+            </p>
+            
+            {/* Method 1: Translate */}
+            <div className="flex gap-4 p-4 rounded-xl bg-blue-500/5 border border-blue-500/20">
+              <div className="h-12 w-12 rounded-xl bg-blue-500/20 flex items-center justify-center shrink-0">
+                <Languages className="h-6 w-6 text-blue-500" />
+              </div>
+              <div className="flex-1">
+                <p className="font-semibold text-foreground">Translate</p>
+                <p className="text-sm text-muted-foreground mt-0.5">
+                  Translate any word or phrase, then tap the <span className="inline-flex items-center gap-1 text-pink-500 font-medium">♡ heart</span> icon to save it to your deck.
+                </p>
+                <Link href={`/${locale}/translate`} className="inline-block mt-2">
+                  <Button size="sm" variant="outline" className="gap-1.5 h-8 text-blue-600 border-blue-500/30 hover:bg-blue-500/10">
+                    Open Translate
+                    <ChevronRight className="h-3.5 w-3.5" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            
+            {/* Method 2: Reader */}
+            <div className="flex gap-4 p-4 rounded-xl bg-green-500/5 border border-green-500/20">
+              <div className="h-12 w-12 rounded-xl bg-green-500/20 flex items-center justify-center shrink-0">
+                <BookText className="h-6 w-6 text-green-500" />
+              </div>
+              <div className="flex-1">
+                <p className="font-semibold text-foreground">Reader</p>
+                <p className="text-sm text-muted-foreground mt-0.5">
+                  While reading, tap any word to see its meaning. Then tap <span className="font-medium">&ldquo;Save word&rdquo;</span> to add it to your deck.
+                </p>
+                <Link href={`/${locale}/reader`} className="inline-block mt-2">
+                  <Button size="sm" variant="outline" className="gap-1.5 h-8 text-green-600 border-green-500/30 hover:bg-green-500/10">
+                    Open Reader
+                    <ChevronRight className="h-3.5 w-3.5" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            
+            {/* Method 3: Lessons */}
+            <div className="flex gap-4 p-4 rounded-xl bg-primary/5 border border-primary/20">
+              <div className="h-12 w-12 rounded-xl bg-primary/20 flex items-center justify-center shrink-0">
+                <BookOpen className="h-6 w-6 text-primary" />
+              </div>
+              <div className="flex-1">
+                <p className="font-semibold text-foreground">Lessons</p>
+                <p className="text-sm text-muted-foreground mt-0.5">
+                  Complete lessons and the vocabulary will automatically be added to your <span className="font-medium">Lesson Review</span> practice deck.
+                </p>
+                <Link href={`/${locale}/learn`} className="inline-block mt-2">
+                  <Button size="sm" variant="outline" className="gap-1.5 h-8 text-primary border-primary/30 hover:bg-primary/10">
+                    Start Learning
+                    <ChevronRight className="h-3.5 w-3.5" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         </Card>
       ) : (
