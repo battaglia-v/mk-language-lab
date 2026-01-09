@@ -295,23 +295,54 @@ export default function LessonPageContentV2({
     }
   }, [saveProgress, nextLesson, router]);
 
-  // Group vocabulary by category
+  // Group vocabulary by category with smart limits
   const groupedVocabulary = useMemo(() => {
     const groups: Record<string, VocabularyItem[]> = {};
     const uncategorized: VocabularyItem[] = [];
+    
+    // Limit vocabulary display for better UX
+    const MAX_UNCATEGORIZED = 20;
+    const MAX_PER_CATEGORY = 15;
 
     lesson.vocabularyItems.forEach(item => {
       if (item.category) {
         if (!groups[item.category]) {
           groups[item.category] = [];
         }
-        groups[item.category].push(item);
+        if (groups[item.category].length < MAX_PER_CATEGORY) {
+          groups[item.category].push(item);
+        }
       } else {
-        uncategorized.push(item);
+        if (uncategorized.length < MAX_UNCATEGORIZED) {
+          uncategorized.push(item);
+        }
       }
     });
 
-    return { groups, uncategorized };
+    // If no categories, group alphabetically
+    if (Object.keys(groups).length === 0 && uncategorized.length > 0) {
+      const alphabetGroups: Record<string, VocabularyItem[]> = {};
+      lesson.vocabularyItems.slice(0, 30).forEach(item => {
+        const firstLetter = item.macedonianText.charAt(0).toUpperCase();
+        if (!alphabetGroups[firstLetter]) {
+          alphabetGroups[firstLetter] = [];
+        }
+        alphabetGroups[firstLetter].push(item);
+      });
+      return { 
+        groups: alphabetGroups, 
+        uncategorized: [], 
+        totalCount: lesson.vocabularyItems.length,
+        isAlphabetical: true 
+      };
+    }
+
+    return { 
+      groups, 
+      uncategorized, 
+      totalCount: lesson.vocabularyItems.length,
+      isAlphabetical: false 
+    };
   }, [lesson.vocabularyItems]);
 
   // Render section content
@@ -418,50 +449,90 @@ export default function LessonPageContentV2({
         );
 
       case 'vocabulary':
+        const displayedCount = Object.values(groupedVocabulary.groups).flat().length + groupedVocabulary.uncategorized.length;
+        const hasMore = groupedVocabulary.totalCount > displayedCount;
+        
         return (
           <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
             <div className="space-y-2">
-              <h3 className="text-lg font-semibold">Vocabulary</h3>
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-semibold">Vocabulary</h3>
+                <span className="text-sm text-muted-foreground">
+                  {groupedVocabulary.totalCount} words
+                </span>
+              </div>
               <p className="text-muted-foreground">
-                Learn these key words and phrases. Click on a card to see the example sentence.
+                {groupedVocabulary.isAlphabetical 
+                  ? 'Key words organized alphabetically. Tap a card to see details.'
+                  : 'Learn these key words and phrases. Tap a card to see the example sentence.'}
               </p>
             </div>
 
-            {/* Categorized vocabulary */}
-            {Object.entries(groupedVocabulary.groups).map(([category, items]) => (
-              <div key={category} className="space-y-3">
-                <h4 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
-                  {category}
-                </h4>
+            {/* Categorized/Grouped vocabulary */}
+            {Object.entries(groupedVocabulary.groups)
+              .sort(([a], [b]) => a.localeCompare(b))
+              .map(([category, items]) => (
+                <div key={category} className="space-y-3">
+                  <h4 className="text-sm font-semibold text-primary uppercase tracking-wide flex items-center gap-2">
+                    <span className="h-px flex-1 bg-primary/20" />
+                    {category}
+                    <span className="h-px flex-1 bg-primary/20" />
+                  </h4>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {items.map((item, index) => (
+                      <EnhancedVocabularyCard
+                        key={item.id}
+                        item={item}
+                        mode="compact"
+                        showTranslation={true}
+                        showTransliteration={true}
+                        animationDelay={Math.min(index * 30, 300)}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ))}
+
+            {/* Uncategorized vocabulary */}
+            {groupedVocabulary.uncategorized.length > 0 && (
+              <div className="space-y-3">
+                {Object.keys(groupedVocabulary.groups).length > 0 && (
+                  <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide flex items-center gap-2">
+                    <span className="h-px flex-1 bg-muted" />
+                    Other Words
+                    <span className="h-px flex-1 bg-muted" />
+                  </h4>
+                )}
                 <div className="grid gap-3 sm:grid-cols-2">
-                  {items.map((item, index) => (
+                  {groupedVocabulary.uncategorized.map((item, index) => (
                     <EnhancedVocabularyCard
                       key={item.id}
                       item={item}
-                      mode="full"
+                      mode="compact"
                       showTranslation={true}
                       showTransliteration={true}
-                      animationDelay={index * 50}
+                      animationDelay={Math.min(index * 30, 300)}
                     />
                   ))}
                 </div>
               </div>
-            ))}
+            )}
 
-            {/* Uncategorized vocabulary */}
-            {groupedVocabulary.uncategorized.length > 0 && (
-              <div className="grid gap-3 sm:grid-cols-2">
-                {groupedVocabulary.uncategorized.map((item, index) => (
-                  <EnhancedVocabularyCard
-                    key={item.id}
-                    item={item}
-                    mode="full"
-                    showTranslation={true}
-                    showTransliteration={true}
-                    animationDelay={index * 50}
-                  />
-                ))}
-              </div>
+            {/* Show more indicator */}
+            {hasMore && (
+              <Card className="p-4 bg-muted/30 border-dashed text-center">
+                <p className="text-sm text-muted-foreground">
+                  + {groupedVocabulary.totalCount - displayedCount} more words available in Practice mode
+                </p>
+                <Button 
+                  variant="link" 
+                  className="mt-1 text-primary"
+                  onClick={() => router.push(`/practice/session?deck=lesson-${lesson.id}&mode=flashcard`)}
+                >
+                  <Dumbbell className="h-4 w-4 mr-1" />
+                  Practice All Vocabulary
+                </Button>
+              </Card>
             )}
           </div>
         );
@@ -592,7 +663,7 @@ export default function LessonPageContentV2({
   }
 
   return (
-    <div className="max-w-4xl mx-auto pb-32 lg:pb-8">
+    <div className="max-w-4xl mx-auto pb-44 lg:pb-8">
       {/* Fixed Header with Progress */}
       <div className="sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
         <div className="p-4">
@@ -689,36 +760,41 @@ export default function LessonPageContentV2({
       </div>
 
       {/* Floating Navigation (mobile) */}
-      <div className="fixed bottom-20 left-0 right-0 p-4 bg-gradient-to-t from-background via-background to-transparent lg:hidden">
-        <div className="flex gap-2">
-          {currentSectionIndex > 0 && (
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={handleBack}
-              className="h-14"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </Button>
-          )}
+      <div className="fixed bottom-0 left-0 right-0 lg:hidden z-20">
+        {/* Gradient background for smooth transition */}
+        <div className="bg-gradient-to-t from-background via-background/95 to-transparent pt-6 pb-safe">
+          <div className="px-4 pb-24">
+            <div className="flex gap-3">
+              {currentSectionIndex > 0 && (
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={handleBack}
+                  className="h-14 w-14 shrink-0"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </Button>
+              )}
 
-          <Button
-            onClick={isLastSection ? handleCompleteLesson : handleContinue}
-            size="lg"
-            className="flex-1 h-14 text-base font-semibold shadow-lg gap-2"
-          >
-            {isLastSection ? (
-              <>
-                Complete Lesson
-                <CheckCircle className="h-5 w-5" />
-              </>
-            ) : (
-              <>
-                Continue
-                <ChevronRight className="h-5 w-5" />
-              </>
-            )}
-          </Button>
+              <Button
+                onClick={isLastSection ? handleCompleteLesson : handleContinue}
+                size="lg"
+                className="flex-1 h-14 text-base font-semibold shadow-xl gap-2"
+              >
+                {isLastSection ? (
+                  <>
+                    Complete Lesson
+                    <CheckCircle className="h-5 w-5" />
+                  </>
+                ) : (
+                  <>
+                    Continue
+                    <ChevronRight className="h-5 w-5" />
+                  </>
+                )}
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
 
