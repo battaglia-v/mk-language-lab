@@ -27,6 +27,8 @@ export default function ExerciseSection({ exercises }: ExerciseSectionProps) {
   // Matching exercise state: { exerciseId: { macedonianWord: englishMatch, ... } }
   const [matchingSelections, setMatchingSelections] = useState<Record<string, Record<string, string>>>({});
   const [selectedMacedonian, setSelectedMacedonian] = useState<Record<string, string | null>>({});
+  // Word order exercise state: { exerciseId: [selected words in order] }
+  const [wordOrderSelections, setWordOrderSelections] = useState<Record<string, string[]>>({});
 
   // Get first letter hint for fill-in-blank exercises
   const getFirstLetterHint = (correctAnswer: string) => {
@@ -450,6 +452,178 @@ export default function ExerciseSection({ exercises }: ExerciseSectionProps) {
     );
   };
 
+  const renderWordOrder = (exercise: Exercise) => {
+    // Parse shuffled words from options
+    const shuffledWords = (exercise.options ?? '').split('|').map(w => w.trim()).filter(Boolean);
+    const correctAnswer = (exercise.correctAnswer ?? '').trim();
+
+    if (shuffledWords.length === 0) {
+      return <p className="text-muted-foreground italic">Invalid word order exercise format.</p>;
+    }
+
+    const isChecked = checked[exercise.id];
+    const isCorrect = results[exercise.id];
+    const selectedWords = wordOrderSelections[exercise.id] || [];
+
+    // Words still available in the pool (not yet selected)
+    const availableWords = shuffledWords.filter((word, idx) => {
+      // Count how many times this word appears in shuffledWords up to this index
+      const countInShuffled = shuffledWords.slice(0, idx + 1).filter(w => w === word).length;
+      // Count how many times this word appears in selectedWords
+      const countInSelected = selectedWords.filter(w => w === word).length;
+      // This specific instance is available if we haven't selected enough of this word yet
+      return countInSelected < countInShuffled;
+    });
+
+    const handleWordClick = (word: string) => {
+      if (isChecked) return;
+      setWordOrderSelections(prev => ({
+        ...prev,
+        [exercise.id]: [...(prev[exercise.id] || []), word]
+      }));
+    };
+
+    const handleRemoveWord = (index: number) => {
+      if (isChecked) return;
+      setWordOrderSelections(prev => {
+        const current = prev[exercise.id] || [];
+        return {
+          ...prev,
+          [exercise.id]: [...current.slice(0, index), ...current.slice(index + 1)]
+        };
+      });
+    };
+
+    const handleClear = () => {
+      if (isChecked) return;
+      setWordOrderSelections(prev => ({
+        ...prev,
+        [exercise.id]: []
+      }));
+    };
+
+    const handleWordOrderCheck = () => {
+      // Join selected words with space and compare (normalize whitespace)
+      const userAnswer = selectedWords.join(' ').replace(/\s+/g, ' ').trim().normalize('NFC');
+      const expected = correctAnswer.replace(/\s+/g, ' ').trim().normalize('NFC');
+      const correct = userAnswer === expected;
+
+      setResults(prev => ({ ...prev, [exercise.id]: correct }));
+      setChecked(prev => ({ ...prev, [exercise.id]: true }));
+    };
+
+    const allWordsUsed = availableWords.length === 0;
+
+    return (
+      <div className="space-y-4">
+        <p className="text-sm text-muted-foreground mb-2">
+          Tap words to arrange them in the correct order.
+        </p>
+
+        {/* Answer area - selected words */}
+        <div className="min-h-14 p-3 rounded-lg border-2 border-dashed border-border bg-muted/20">
+          {selectedWords.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {selectedWords.map((word, idx) => (
+                <button
+                  key={`selected-${idx}`}
+                  onClick={() => handleRemoveWord(idx)}
+                  disabled={isChecked}
+                  className={cn(
+                    'px-3 py-1.5 rounded-full text-sm font-medium transition-colors',
+                    'bg-primary text-primary-foreground hover:bg-primary/90',
+                    isChecked && 'cursor-default'
+                  )}
+                >
+                  {word}
+                </button>
+              ))}
+            </div>
+          ) : (
+            <p className="text-sm text-muted-foreground text-center">
+              Tap words below to build your answer
+            </p>
+          )}
+        </div>
+
+        {/* Word pool - available words */}
+        <div className="flex flex-wrap gap-2">
+          {shuffledWords.map((word, idx) => {
+            // Check if this specific instance is in the pool
+            const countInShuffledUpToHere = shuffledWords.slice(0, idx + 1).filter(w => w === word).length;
+            const countInSelected = selectedWords.filter(w => w === word).length;
+            const isAvailable = countInSelected < countInShuffledUpToHere;
+
+            return (
+              <button
+                key={`pool-${idx}`}
+                onClick={() => isAvailable && handleWordClick(word)}
+                disabled={isChecked || !isAvailable}
+                className={cn(
+                  'px-3 py-1.5 rounded-full text-sm font-medium transition-all',
+                  'bg-muted hover:bg-muted/80 border border-border',
+                  !isAvailable && 'opacity-30 cursor-default',
+                  isChecked && 'cursor-default'
+                )}
+              >
+                {word}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Clear button */}
+        {!isChecked && selectedWords.length > 0 && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleClear}
+            className="text-muted-foreground hover:text-foreground"
+          >
+            <RotateCcw className="h-4 w-4 mr-1" />
+            Clear
+          </Button>
+        )}
+
+        {/* Result display */}
+        {isChecked && (
+          <div className={cn(
+            'p-3 rounded-lg',
+            isCorrect ? 'bg-green-500/10' : 'bg-red-500/10'
+          )}>
+            <p className={cn(
+              'text-sm flex items-center gap-2',
+              isCorrect ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
+            )}>
+              {isCorrect ? (
+                <>
+                  <CheckCircle className="h-4 w-4" />
+                  Perfect! Correct word order.
+                </>
+              ) : (
+                <>
+                  <XCircle className="h-4 w-4" />
+                  Correct answer: <strong>{correctAnswer}</strong>
+                </>
+              )}
+            </p>
+          </div>
+        )}
+
+        {/* Check button */}
+        {!isChecked && (
+          <Button
+            onClick={handleWordOrderCheck}
+            disabled={!allWordsUsed}
+            className="mt-2"
+          >
+            Check Order
+          </Button>
+        )}
+      </div>
+    );
+  };
+
   // Calculate progress stats
   const totalExercises = exercises.length;
   const completedCount = Object.keys(checked).filter(id => checked[id]).length;
@@ -516,10 +690,11 @@ export default function ExerciseSection({ exercises }: ExerciseSectionProps) {
             {exercise.type === 'fill_blank' && renderFillBlank(exercise)}
             {exercise.type === 'translation' && renderTranslation(exercise)}
             {exercise.type === 'matching' && renderMatching(exercise)}
+            {exercise.type === 'word_order' && renderWordOrder(exercise)}
           </div>
 
-          {/* Check button for standard exercise types (not matching - it has its own) */}
-          {!checked[exercise.id] && exercise.type !== 'matching' && (
+          {/* Check button for standard exercise types (not matching/word_order - they have their own) */}
+          {!checked[exercise.id] && exercise.type !== 'matching' && exercise.type !== 'word_order' && (
             <Button
               onClick={() => handleCheck(exercise.id, exercise.correctAnswer)}
               disabled={!answers[exercise.id]}

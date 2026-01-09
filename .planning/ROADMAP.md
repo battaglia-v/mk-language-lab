@@ -191,20 +191,22 @@ Plans:
 **Depends on**: Phase 18
 **Research**: Likely (external platform, new integration)
 **Research topics**: Cloudflare Pages vs Workers, Next.js SSR support, API routes compatibility, edge functions, cost comparison
-**Plans**: TBD
+**Plans**: 1
 
 Plans:
-- [ ] 19-01: TBD (run /gsd:plan-phase 19 to break down)
+- [x] 19-01: Cloudflare evaluation (compatibility, cost, recommendation) — completed 2026-01-09 — **NO-GO**
 
 #### Phase 20: Migration Decision
 
 **Goal**: Document findings, make go/no-go decision, create migration plan if proceeding
 **Depends on**: Phase 19
 **Research**: Unlikely (decision based on Phase 19 findings)
-**Plans**: TBD
+**Plans**: 0 (skipped — NO-GO decision in Phase 19)
 
-Plans:
-- [ ] 20-01: TBD (run /gsd:plan-phase 20 to break down)
+**Status:** SKIPPED — Cloudflare migration deferred per Phase 19 recommendation. Re-evaluate when:
+- OpenNext adapter supports Next.js 16
+- Traffic scales 10x (>5M requests/month)
+- Vercel costs exceed $100/month
 
 ## Progress
 
@@ -233,8 +235,8 @@ Phases execute in numeric order: 1 → 2 → ... → 16 → 17 → 18 → 19 →
 | 17. CI Pipeline Audit | v1.2 | 1/1 | Complete | 2026-01-09 |
 | 18. CI Pipeline Improvements | v1.2 | 1/1 | Complete | 2026-01-09 |
 | 18.1 Lesson Quality Audit (INSERTED) | v1.2 | 2/4 | In progress | - |
-| 19. Cloudflare Research & PoC | v1.2 | 0/? | Not started | - |
-| 20. Migration Decision | v1.2 | 0/? | Not started | - |
+| 19. Cloudflare Research & PoC | v1.2 | 1/1 | Complete | 2026-01-09 |
+| 20. Migration Decision | v1.2 | 0/0 | Skipped | - |
 
 ## Domain Expertise
 
