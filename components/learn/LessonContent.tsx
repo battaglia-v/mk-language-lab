@@ -19,6 +19,7 @@ import {
   Dumbbell,
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { useLocale } from 'next-intl';
 import VocabularySection from './VocabularySection';
 import GrammarSection from './GrammarSection';
 import ExerciseSection from './ExerciseSection';
@@ -48,6 +49,7 @@ export default function LessonContent({
   userId,
 }: LessonContentProps) {
   const router = useRouter();
+  const locale = useLocale();
   const [completedSections, setCompletedSections] = useState<Set<string>>(new Set());
   const [currentSection, setCurrentSection] = useState<string>('');
   const [startTime] = useState(Date.now());
@@ -100,9 +102,9 @@ export default function LessonContent({
       });
 
       if (nextLesson) {
-        router.push(`/lesson/${nextLesson.id}`);
+        router.push(`/${locale}/lesson/${nextLesson.id}`);
       } else {
-        router.push('/');
+        router.push(`/${locale}/learn`);
       }
     } catch (error) {
       console.error('Failed to save progress:', error);
@@ -364,7 +366,7 @@ export default function LessonContent({
             {lesson.vocabularyItems.length > 0 && (
               <Button
                 size="lg"
-                onClick={() => router.push('/practice/session?deck=lesson-review&mode=multiple-choice')}
+                onClick={() => router.push(`/${locale}/practice/session?deck=lesson-review&mode=multiple-choice`)}
                 className="mt-4 bg-primary"
               >
                 <Dumbbell className="h-4 w-4 mr-2" />
@@ -380,7 +382,7 @@ export default function LessonContent({
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
               ) : (
-                <Button variant="outline" size="lg" onClick={() => router.push('/')}>
+                <Button variant="outline" size="lg" onClick={() => router.push(`/${locale}/learn`)}>
                   Return to Home
                 </Button>
               )}

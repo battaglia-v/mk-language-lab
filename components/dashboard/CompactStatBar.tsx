@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useLocale } from 'next-intl';
 import { StreakFlameCompact } from '@/components/gamification/StreakFlame';
 import { HeartCounter } from '@/components/gamification/HeartCounter';
 import { XPBar } from '@/components/gamification/XPBar';
@@ -41,6 +42,8 @@ export function CompactStatBar({
   levelName,
   className,
 }: CompactStatBarProps) {
+  const locale = useLocale();
+  
   return (
     <header
       className={cn(
@@ -52,10 +55,10 @@ export function CompactStatBar({
     >
       {/* Left: Streak + Hearts */}
       <div className="flex items-center gap-3">
-        <Link href="/profile?tab=streak" className="transition-transform hover:scale-105">
+        <Link href={`/${locale}/profile?tab=streak`} className="transition-transform hover:scale-105">
           <StreakFlameCompact streak={streak} />
         </Link>
-        <Link href="/profile?tab=hearts" className="transition-transform hover:scale-105">
+        <Link href={`/${locale}/profile?tab=hearts`} className="transition-transform hover:scale-105">
           <HeartCounter hearts={hearts} maxHearts={maxHearts} variant="compact" size="sm" />
         </Link>
       </div>

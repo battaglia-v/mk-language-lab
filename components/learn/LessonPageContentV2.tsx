@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useLocale } from 'next-intl';
 import { cn } from '@/lib/utils';
 
 // Import new enhanced components
@@ -149,6 +150,7 @@ export default function LessonPageContentV2({
   userId,
 }: LessonPageContentV2Props) {
   const router = useRouter();
+  const locale = useLocale();
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const [completedSections, setCompletedSections] = useState<Set<string>>(new Set());
   const [startTime] = useState(Date.now());
@@ -289,11 +291,11 @@ export default function LessonPageContentV2({
     await saveProgress(100, 'completed');
 
     if (nextLesson) {
-      router.push(`/lesson/${nextLesson.id}`);
+      router.push(`/${locale}/lesson/${nextLesson.id}`);
     } else {
-      router.push('/');
+      router.push(`/${locale}/learn`);
     }
-  }, [saveProgress, nextLesson, router]);
+  }, [saveProgress, nextLesson, router, locale]);
 
   // Group vocabulary by category with smart limits
   const groupedVocabulary = useMemo(() => {
@@ -533,7 +535,7 @@ export default function LessonPageContentV2({
                 <Button 
                   variant="link" 
                   className="mt-1 text-primary"
-                  onClick={() => router.push(`/practice/session?deck=lesson-${lesson.id}&mode=flashcard`)}
+                  onClick={() => router.push(`/${locale}/practice/session?deck=lesson-${lesson.id}&mode=flashcard`)}
                 >
                   <Dumbbell className="h-4 w-4 mr-1" />
                   Practice All Vocabulary
@@ -632,7 +634,7 @@ export default function LessonPageContentV2({
               {lesson.vocabularyItems.length > 0 && (
                 <Button
                   size="lg"
-                  onClick={() => router.push(`/practice/session?deck=lesson-${lesson.id}&mode=multiple-choice`)}
+                  onClick={() => router.push(`/${locale}/practice/session?deck=lesson-${lesson.id}&mode=multiple-choice`)}
                   className="gap-2 bg-primary hover:bg-primary/90"
                 >
                   <Dumbbell className="h-4 w-4" />
@@ -654,7 +656,7 @@ export default function LessonPageContentV2({
                 <Button
                   variant="outline"
                   size="lg"
-                  onClick={() => router.push('/')}
+                  onClick={() => router.push(`/${locale}/learn`)}
                   className="gap-2"
                 >
                   <Home className="h-4 w-4" />
@@ -676,7 +678,7 @@ export default function LessonPageContentV2({
           {/* Back to Lessons link */}
           <div className="mb-2">
             <Link
-              href="/learn"
+              href={`/${locale}/learn`}
               className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
             >
               <List className="h-3.5 w-3.5" />
