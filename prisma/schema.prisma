@@ -35,40 +35,40 @@ model Session {
 }
 
 model User {
-  id                   String                  @id @default(cuid())
-  name                 String?
-  email                String?                 @unique
-  emailVerified        DateTime?
-  password             String? // Hashed password (optional for OAuth users)
-  image                String?
-  role                 String                  @default("user") // "user" | "admin"
-  locale               String?                 @default("en") // "en" | "mk" - user's preferred language
-  dailyGoal            Int?                    @default(20) // daily XP target (10, 20, 30, 50)
-  createdAt            DateTime                @default(now())
-  updatedAt            DateTime                @updatedAt
-  accounts             Account[]
-  boards               Board[]
-  lessons              Lesson[]
-  sessions             Session[]
-  tutorSessions        TutorSession[]
-  savedPosts           SavedPost[]
-  journeyProgress      JourneyProgress[]
-  lessonProgress       UserLessonProgress[]
-  exerciseAttempts     ExerciseAttempt[]
-  gameProgress         GameProgress?
-  mobilePushTokens     MobilePushToken[]
-  mission              Mission?
-  questProgress        UserQuestProgress[]
-  badges               UserBadge[]
-  currency             Currency?
-  currencyTransactions CurrencyTransaction[]
-  leagueMemberships    LeagueMembership[]
-  notifications        Notification[]
-  reminderSettings     ReminderSettings?
-  customDecks          CustomDeck[]
-  friendRequestsSent     Friendship[] @relation("FriendRequestsSent")
-  friendRequestsReceived Friendship[] @relation("FriendRequestsReceived")
-  subscription         Subscription?
+  id                     String                @id @default(cuid())
+  name                   String?
+  email                  String?               @unique
+  emailVerified          DateTime?
+  password               String? // Hashed password (optional for OAuth users)
+  image                  String?
+  role                   String                @default("user") // "user" | "admin"
+  locale                 String?               @default("en") // "en" | "mk" - user's preferred language
+  dailyGoal              Int?                  @default(20) // daily XP target (10, 20, 30, 50)
+  createdAt              DateTime              @default(now())
+  updatedAt              DateTime              @updatedAt
+  accounts               Account[]
+  boards                 Board[]
+  lessons                Lesson[]
+  sessions               Session[]
+  tutorSessions          TutorSession[]
+  savedPosts             SavedPost[]
+  journeyProgress        JourneyProgress[]
+  lessonProgress         UserLessonProgress[]
+  exerciseAttempts       ExerciseAttempt[]
+  gameProgress           GameProgress?
+  mobilePushTokens       MobilePushToken[]
+  mission                Mission?
+  questProgress          UserQuestProgress[]
+  badges                 UserBadge[]
+  currency               Currency?
+  currencyTransactions   CurrencyTransaction[]
+  leagueMemberships      LeagueMembership[]
+  notifications          Notification[]
+  reminderSettings       ReminderSettings?
+  customDecks            CustomDeck[]
+  friendRequestsSent     Friendship[]          @relation("FriendRequestsSent")
+  friendRequestsReceived Friendship[]          @relation("FriendRequestsReceived")
+  subscription           Subscription?
 }
 
 model VerificationToken {
@@ -234,22 +234,25 @@ model CurriculumLesson {
   videoUrl         String?
 
   // LessonRunner migration fields
-  useLessonRunner      Boolean @default(false) // Enable new LessonRunner system
-  lessonRunnerConfig   String? @db.Text        // JSON config for step-based lessons
+  useLessonRunner    Boolean @default(false) // Enable new LessonRunner system
+  lessonRunnerConfig String? @db.Text // JSON config for step-based lessons
 
   // Content review workflow fields
-  contentStatus  ContentStatus @default(draft)
-  lastEditedBy   String?       // User ID who last edited
-  lastEditedAt   DateTime?     // Timestamp of last edit
-  approvedBy     String?       // User ID who approved
-  approvedAt     DateTime?     // Timestamp of approval
-  publishedBy    String?       // User ID who published
-  publishedAt    DateTime?     // Timestamp of publication
+  contentStatus ContentStatus @default(draft)
+  lastEditedBy  String? // User ID who last edited
+  lastEditedAt  DateTime? // Timestamp of last edit
+  approvedBy    String? // User ID who approved
+  approvedAt    DateTime? // Timestamp of approval
+  publishedBy   String? // User ID who published
+  publishedAt   DateTime? // Timestamp of publication
 
   // Content sections
-  vocabularyItems VocabularyItem[]
-  grammarNotes    GrammarNote[]
-  exercises       Exercise[]
+  vocabularyItems    VocabularyItem[]
+  grammarNotes       GrammarNote[]
+  exercises          Exercise[]
+  dialogues          Dialogue[]
+  pictureExercises   PictureExercise[]
+  listeningExercises ListeningExercise[]
 
   // Relations
   module       Module               @relation(fields: [moduleId], references: [id], onDelete: Cascade)
@@ -293,9 +296,15 @@ model VocabularyItem {
   macedonianText    String
   englishText       String
   pronunciation     String?
+  transliteration   String? // Latin script pronunciation
+  partOfSpeech      String? // noun, verb, adjective, etc.
+  gender            String? // masculine, feminine, neuter
+  category          String? // greetings, pronouns, family, etc.
   audioUrl          String?
   exampleSentenceMk String? @db.Text
   exampleSentenceEn String? @db.Text
+  imageUrl          String?
+  isCore            Boolean @default(true) // Core vs supplementary vocab
   orderIndex        Int
 
   lesson CurriculumLesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
@@ -303,18 +312,22 @@ model VocabularyItem {
   createdAt DateTime @default(now())
 
   @@index([lessonId, orderIndex])
+  @@index([category])
 }
 
 // Grammar explanations
 model GrammarNote {
-  id          String @id @default(cuid())
+  id          String  @id @default(cuid())
   lessonId    String
   title       String
-  explanation String @db.Text
-  examples    String @db.Text // JSON array of examples
+  explanation String  @db.Text
+  examples    String  @db.Text // JSON array of examples
+  category    String? // verb conjugation, noun declension, etc.
+  relatedVerb String? // For conjugation-related notes
   orderIndex  Int
 
-  lesson CurriculumLesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  lesson            CurriculumLesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  conjugationTables ConjugationTable[]
 
   createdAt DateTime @default(now())
 
@@ -356,6 +369,135 @@ model ExerciseAttempt {
   @@index([userId, attemptedAt])
 }
 
+// =====================================================
+// LESSON OVERHAUL: New Content Models
+// =====================================================
+
+// Dialogue - conversational content for lessons
+model Dialogue {
+  id         String   @id @default(cuid())
+  lessonId   String
+  title      String?
+  orderIndex Int
+  createdAt  DateTime @default(now())
+
+  lesson CurriculumLesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  lines  DialogueLine[]
+
+  @@index([lessonId, orderIndex])
+}
+
+// DialogueLine - individual lines in a dialogue
+model DialogueLine {
+  id              String  @id @default(cuid())
+  dialogueId      String
+  speaker         String?
+  textMk          String  @db.Text
+  textEn          String  @db.Text
+  transliteration String?
+  hasBlanks       Boolean @default(false)
+  blanksData      String? @db.Text // JSON: [{ position, answer, hint }]
+  orderIndex      Int
+
+  dialogue Dialogue @relation(fields: [dialogueId], references: [id], onDelete: Cascade)
+
+  @@index([dialogueId, orderIndex])
+}
+
+// ConjugationTable - verb conjugation tables for grammar notes
+model ConjugationTable {
+  id            String   @id @default(cuid())
+  grammarNoteId String
+  verb          String
+  verbEn        String?
+  tense         String   @default("present")
+  type          String   @default("affirmative") // affirmative, negative, interrogative
+  createdAt     DateTime @default(now())
+
+  grammarNote GrammarNote      @relation(fields: [grammarNoteId], references: [id], onDelete: Cascade)
+  rows        ConjugationRow[]
+
+  @@index([grammarNoteId])
+}
+
+// ConjugationRow - individual rows in a conjugation table
+model ConjugationRow {
+  id              String  @id @default(cuid())
+  tableId         String
+  person          String // 1sg, 2sg, 3sg, 1pl, 2pl, 3pl
+  pronoun         String // јас, ти, тој/таа/тоа, etc.
+  conjugation     String
+  transliteration String?
+  orderIndex      Int
+
+  table ConjugationTable @relation(fields: [tableId], references: [id], onDelete: Cascade)
+
+  @@index([tableId, orderIndex])
+}
+
+// PictureExercise - picture-matching exercises
+model PictureExercise {
+  id           String   @id @default(cuid())
+  lessonId     String
+  title        String?
+  instructions String
+  orderIndex   Int
+  createdAt    DateTime @default(now())
+
+  lesson CurriculumLesson      @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  items  PictureExerciseItem[]
+
+  @@index([lessonId, orderIndex])
+}
+
+// PictureExerciseItem - individual items in a picture exercise
+model PictureExerciseItem {
+  id         String @id @default(cuid())
+  exerciseId String
+  imageUrl   String
+  imageAlt   String
+  textMk     String
+  textEn     String
+  orderIndex Int
+
+  exercise PictureExercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+
+  @@index([exerciseId, orderIndex])
+}
+
+// ListeningExercise - comprehension tasks (audio support in future)
+model ListeningExercise {
+  id           String   @id @default(cuid())
+  lessonId     String
+  title        String
+  instructions String
+  transcriptMk String?  @db.Text
+  transcriptEn String?  @db.Text
+  orderIndex   Int
+  createdAt    DateTime @default(now())
+
+  lesson    CurriculumLesson    @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  questions ListeningQuestion[]
+
+  @@index([lessonId, orderIndex])
+}
+
+// ListeningQuestion - questions for listening exercises
+model ListeningQuestion {
+  id            String  @id @default(cuid())
+  exerciseId    String
+  question      String
+  type          String  @default("multiple_choice") // multiple_choice, fill_blank, true_false
+  options       String? @db.Text // JSON array for MC
+  correctAnswer String
+  explanation   String?
+  orderIndex    Int
+
+  exercise ListeningExercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+
+  @@index([exerciseId, orderIndex])
+}
+
 // Word of the Day - managed by admins
 model WordOfTheDay {
   id            String   @id @default(cuid())
@@ -370,14 +512,14 @@ model WordOfTheDay {
   isActive      Boolean  @default(true)
 
   // Content review workflow fields
-  contentStatus  ContentStatus @default(published) // Default to published for backward compat
-  lastEditedBy   String?       // User ID who last edited
-  lastEditedAt   DateTime?     // Timestamp of last edit
-  approvedBy     String?       // User ID who approved
-  approvedAt     DateTime?     // Timestamp of approval
+  contentStatus ContentStatus @default(published) // Default to published for backward compat
+  lastEditedBy  String? // User ID who last edited
+  lastEditedAt  DateTime? // Timestamp of last edit
+  approvedBy    String? // User ID who approved
+  approvedAt    DateTime? // Timestamp of approval
 
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([scheduledDate, isActive])
   @@index([isActive])
@@ -405,11 +547,11 @@ model PracticeVocabulary {
   usageContext  String?   @db.Text // Usage context and situational notes
 
   // Content review workflow fields
-  contentStatus  ContentStatus @default(published) // Default to published for backward compat
-  lastEditedBy   String?       // User ID who last edited
-  lastEditedAt   DateTime?     // Timestamp of last edit
-  approvedBy     String?       // User ID who approved
-  approvedAt     DateTime?     // Timestamp of approval
+  contentStatus ContentStatus @default(published) // Default to published for backward compat
+  lastEditedBy  String? // User ID who last edited
+  lastEditedAt  DateTime? // Timestamp of last edit
+  approvedBy    String? // User ID who approved
+  approvedAt    DateTime? // Timestamp of approval
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -422,28 +564,28 @@ model PracticeVocabulary {
 }
 
 model PracticeAudio {
-  id          String               @id @default(cuid())
-  promptId    String               @unique
-  language    String               @default("mk")
-  speaker     String?
-  speed       String? // normal, slow
-  variant     String? // female, male, etc.
-  duration    Float?
-  status      PracticeAudioStatus  @default(draft)
-  sourceType  PracticeAudioSource  @default(human)
-  cdnUrl      String
-  slowUrl     String?
-  waveform    Json?
-  notes       String?              @db.Text
+  id         String              @id @default(cuid())
+  promptId   String              @unique
+  language   String              @default("mk")
+  speaker    String?
+  speed      String? // normal, slow
+  variant    String? // female, male, etc.
+  duration   Float?
+  status     PracticeAudioStatus @default(draft)
+  sourceType PracticeAudioSource @default(human)
+  cdnUrl     String
+  slowUrl    String?
+  waveform   Json?
+  notes      String?             @db.Text
 
   // Content review workflow fields
-  lastEditedBy   String?       // User ID who last edited
-  lastEditedAt   DateTime?     // Timestamp of last edit
-  approvedBy     String?       // User ID who approved
-  approvedAt     DateTime?     // Timestamp of approval
+  lastEditedBy String? // User ID who last edited
+  lastEditedAt DateTime? // Timestamp of last edit
+  approvedBy   String? // User ID who approved
+  approvedAt   DateTime? // Timestamp of approval
 
-  createdAt   DateTime             @default(now())
-  updatedAt   DateTime             @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
   publishedAt DateTime?
 
   @@index([promptId])
@@ -464,15 +606,15 @@ enum PracticeAudioSource {
 
 // Custom Deck - user-created practice decks
 model CustomDeck {
-  id          String          @id @default(cuid())
+  id          String   @id @default(cuid())
   userId      String
   name        String
-  description String?         @db.Text
+  description String?  @db.Text
   category    String?
-  isArchived  Boolean         @default(false)
-  cardCount   Int             @default(0)
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt
+  isArchived  Boolean  @default(false)
+  cardCount   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   user  User             @relation(fields: [userId], references: [id], onDelete: Cascade)
   cards CustomDeckCard[]
@@ -525,16 +667,16 @@ model GameProgress {
 
 // Mission - stores onboarding wizard results and daily mission config
 model Mission {
-  id                    String   @id @default(cuid())
-  userId                String   @unique
+  id                    String    @id @default(cuid())
+  userId                String    @unique
   goal                  String // 'conversation' | 'travel' | 'culture' | 'reading' | 'professional'
   level                 String // 'beginner' | 'intermediate' | 'advanced'
-  dailyGoalMinutes      Int      @default(20) // minutes per day
-  reminderWindows       String[] @default([]) // e.g., ["09:00-10:00", "19:00-20:00"]
-  questSeeds            String[] @default([]) // initial quest IDs to unlock
+  dailyGoalMinutes      Int       @default(20) // minutes per day
+  reminderWindows       String[]  @default([]) // e.g., ["09:00-10:00", "19:00-20:00"]
+  questSeeds            String[]  @default([]) // initial quest IDs to unlock
   onboardingCompletedAt DateTime?
-  createdAt             DateTime @default(now())
-  updatedAt             DateTime @updatedAt
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -544,21 +686,21 @@ model Mission {
 
 // Quest - daily/weekly challenges for learners
 model Quest {
-  id              String   @id @default(cuid())
+  id              String    @id @default(cuid())
   type            String // 'daily' | 'weekly' | 'squad'
   title           String
-  description     String   @db.Text
+  description     String    @db.Text
   category        String // 'practice' | 'translation' | 'social' | 'lesson'
   target          Int // target count (e.g., 5 exercises, 20 XP, 3 translations)
   targetUnit      String // 'exercises' | 'xp' | 'translations' | 'minutes'
-  xpReward        Int      @default(50)
-  currencyReward  Int      @default(10) // gems earned on completion
-  difficultyLevel String   @default("medium") // 'easy' | 'medium' | 'hard'
-  isActive        Boolean  @default(true)
+  xpReward        Int       @default(50)
+  currencyReward  Int       @default(10) // gems earned on completion
+  difficultyLevel String    @default("medium") // 'easy' | 'medium' | 'hard'
+  isActive        Boolean   @default(true)
   startDate       DateTime?
   endDate         DateTime?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 
   // Relations
   userProgress UserQuestProgress[]
@@ -590,18 +732,18 @@ model UserQuestProgress {
 
 // Badge - achievements and cosmetics
 model Badge {
-  id               String   @id @default(cuid())
-  name             String   @unique
-  description      String   @db.Text
-  iconUrl          String?
-  category         String // 'achievement' | 'cosmetic' | 'seasonal'
-  rarityTier       String   @default("common") // 'common' | 'rare' | 'epic' | 'legendary'
-  unlockCondition  String   @db.Text // JSON describing unlock criteria
-  costGems         Int      @default(0) // 0 for achievements, > 0 for shop purchases
-  isAvailableInShop Boolean @default(false)
-  isActive         Boolean  @default(true)
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  id                String   @id @default(cuid())
+  name              String   @unique
+  description       String   @db.Text
+  iconUrl           String?
+  category          String // 'achievement' | 'cosmetic' | 'seasonal'
+  rarityTier        String   @default("common") // 'common' | 'rare' | 'epic' | 'legendary'
+  unlockCondition   String   @db.Text // JSON describing unlock criteria
+  costGems          Int      @default(0) // 0 for achievements, > 0 for shop purchases
+  isAvailableInShop Boolean  @default(false)
+  isActive          Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 
   // Relations
   userBadges UserBadge[]
@@ -612,13 +754,13 @@ model Badge {
 
 // UserBadge - tracks which badges a user has earned/purchased
 model UserBadge {
-  id        String    @id @default(cuid())
-  userId    String
-  badgeId   String
-  earnedAt  DateTime?
+  id          String    @id @default(cuid())
+  userId      String
+  badgeId     String
+  earnedAt    DateTime?
   purchasedAt DateTime?
-  isEquipped Boolean  @default(false) // for display badges
-  createdAt DateTime  @default(now())
+  isEquipped  Boolean   @default(false) // for display badges
+  createdAt   DateTime  @default(now())
 
   user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
   badge Badge @relation(fields: [badgeId], references: [id], onDelete: Cascade)
@@ -631,13 +773,13 @@ model UserBadge {
 
 // Currency - tracks gems, coins, or other in-app currency
 model Currency {
-  id                String   @id @default(cuid())
-  userId            String   @unique
-  gems              Int      @default(0) // premium currency earned via quests/achievements
-  coins             Int      @default(0) // optional secondary currency
-  lifetimeGemsEarned Int     @default(0)
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  id                 String   @id @default(cuid())
+  userId             String   @unique
+  gems               Int      @default(0) // premium currency earned via quests/achievements
+  coins              Int      @default(0) // optional secondary currency
+  lifetimeGemsEarned Int      @default(0)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -646,13 +788,13 @@ model Currency {
 
 // CurrencyTransaction - audit log for currency changes
 model CurrencyTransaction {
-  id          String   @id @default(cuid())
-  userId      String
+  id           String   @id @default(cuid())
+  userId       String
   currencyType String // 'gems' | 'coins'
-  amount      Int // positive for earn, negative for spend
-  reason      String // 'quest_reward' | 'badge_purchase' | 'admin_grant'
-  metadata    String?  @db.Text // JSON with additional context
-  createdAt   DateTime @default(now())
+  amount       Int // positive for earn, negative for spend
+  reason       String // 'quest_reward' | 'badge_purchase' | 'admin_grant'
+  metadata     String?  @db.Text // JSON with additional context
+  createdAt    DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -680,15 +822,15 @@ model ReminderSettings {
 
 // League - streak-based leaderboards
 model League {
-  id          String   @id @default(cuid())
-  name        String   @unique
-  tier        Int // 1 = bronze, 2 = silver, 3 = gold, etc.
-  minStreak   Int // minimum streak to qualify
-  maxStreak   Int? // maximum streak (null for top tier)
-  xpMultiplier Float   @default(1.0)
-  icon        String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id           String   @id @default(cuid())
+  name         String   @unique
+  tier         Int // 1 = bronze, 2 = silver, 3 = gold, etc.
+  minStreak    Int // minimum streak to qualify
+  maxStreak    Int? // maximum streak (null for top tier)
+  xpMultiplier Float    @default(1.0)
+  icon         String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   // Relations
   members LeagueMembership[]
@@ -719,17 +861,17 @@ model LeagueMembership {
 
 // Notification - inbox messages for reminder intelligence
 model Notification {
-  id          String    @id @default(cuid())
-  userId      String
-  type        String // 'streak_warning' | 'quest_invite' | 'admin_note' | 'friend_activity'
-  title       String
-  body        String    @db.Text
-  actionUrl   String?
-  isRead      Boolean   @default(false)
-  readAt      DateTime?
+  id           String    @id @default(cuid())
+  userId       String
+  type         String // 'streak_warning' | 'quest_invite' | 'admin_note' | 'friend_activity'
+  title        String
+  body         String    @db.Text
+  actionUrl    String?
+  isRead       Boolean   @default(false)
+  readAt       DateTime?
   scheduledFor DateTime?
-  sentAt      DateTime?
-  createdAt   DateTime  @default(now())
+  sentAt       DateTime?
+  createdAt    DateTime  @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -767,18 +909,18 @@ enum FriendshipStatus {
 
 // ReaderText - Graded reading content for the Reader feature
 model ReaderText {
-  id            String          @id @default(cuid())
-  slug          String          @unique
+  id            String      @id @default(cuid())
+  slug          String      @unique
   level         ReaderLevel
   category      String
   titleEn       String
   titleMk       String
   wordCount     Int
   estimatedMins Int
-  xpReward      Int             @default(20)
-  isPublished   Boolean         @default(true)
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
+  xpReward      Int         @default(20)
+  isPublished   Boolean     @default(true)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
 
   sentences ReaderSentence[]
   sessions  ReaderSession[]
@@ -789,16 +931,16 @@ model ReaderText {
 
 // ReaderSentence - Individual sentences within a reading text
 model ReaderSentence {
-  id          String   @id @default(cuid())
-  textId      String
-  orderIndex  Int
-  contentMk   String   @db.Text
-  contentEn   String   @db.Text
-  audioUrl    String?
-  vocabulary  Json?    // Array of {word, meaning, pos}
-  grammarNote String?
+  id           String   @id @default(cuid())
+  textId       String
+  orderIndex   Int
+  contentMk    String   @db.Text
+  contentEn    String   @db.Text
+  audioUrl     String?
+  vocabulary   Json? // Array of {word, meaning, pos}
+  grammarNote  String?
   culturalNote String?
-  createdAt   DateTime @default(now())
+  createdAt    DateTime @default(now())
 
   text ReaderText @relation(fields: [textId], references: [id], onDelete: Cascade)
 
@@ -808,17 +950,17 @@ model ReaderSentence {
 
 // ReaderSession - User's reading session progress
 model ReaderSession {
-  id              String   @id @default(cuid())
+  id              String    @id @default(cuid())
   userId          String
   textId          String
-  currentSentence Int      @default(0)
-  sentencesRead   Int      @default(0)
+  currentSentence Int       @default(0)
+  sentencesRead   Int       @default(0)
   totalSentences  Int
-  timeSpentSecs   Int      @default(0)
-  xpEarned        Int      @default(0)
+  timeSpentSecs   Int       @default(0)
+  xpEarned        Int       @default(0)
   completedAt     DateTime?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 
   text ReaderText @relation(fields: [textId], references: [id], onDelete: Cascade)
 
@@ -851,29 +993,29 @@ model StreakFreeze {
   earnedAt  DateTime  @default(now())
   usedAt    DateTime?
   expiresAt DateTime?
-  source    String    // 'purchase' | 'quest_reward' | 'achievement'
+  source    String // 'purchase' | 'quest_reward' | 'achievement'
 
   @@index([userId, usedAt])
 }
 
 // VocabularyWord - User's personal vocabulary list
 model VocabularyWord {
-  id            String   @id @default(cuid())
+  id            String    @id @default(cuid())
   userId        String
   wordMk        String
   wordEn        String
   phonetic      String?
   category      String?
-  notes         String?  @db.Text
+  notes         String?   @db.Text
   audioUrl      String?
-  mastery       Int      @default(0) // 0-5 SRS level
+  mastery       Int       @default(0) // 0-5 SRS level
   nextReviewAt  DateTime?
-  timesReviewed Int      @default(0)
-  timesCorrect  Int      @default(0)
-  source        String?  // 'reader' | 'translator' | 'practice' | 'manual'
-  sourceId      String?  // ID of source content
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  timesReviewed Int       @default(0)
+  timesCorrect  Int       @default(0)
+  source        String? // 'reader' | 'translator' | 'practice' | 'manual'
+  sourceId      String? // ID of source content
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 
   @@unique([userId, wordMk])
   @@index([userId, mastery])
@@ -882,15 +1024,15 @@ model VocabularyWord {
 
 // AnalyticsEvent - Track user behavior for insights
 model AnalyticsEvent {
-  id          String   @id @default(cuid())
-  userId      String?
-  sessionId   String?
-  eventName   String
-  eventData   Json?
-  screenName  String?
-  deviceType  String?
-  locale      String?
-  createdAt   DateTime @default(now())
+  id         String   @id @default(cuid())
+  userId     String?
+  sessionId  String?
+  eventName  String
+  eventData  Json?
+  screenName String?
+  deviceType String?
+  locale     String?
+  createdAt  DateTime @default(now())
 
   @@index([userId, eventName])
   @@index([eventName, createdAt])
@@ -912,29 +1054,29 @@ enum ReaderLevel {
 
 // Subscription - tracks user's Pro subscription status
 model Subscription {
-  id            String              @id @default(cuid())
-  userId        String              @unique
-  status        SubscriptionStatus  @default(inactive)
-  source        SubscriptionSource  @default(none)
-  productId     String?             // e.g., "pro_monthly", "pro_yearly"
-  period        String?             // "monthly" | "yearly"
-  
+  id        String             @id @default(cuid())
+  userId    String             @unique
+  status    SubscriptionStatus @default(inactive)
+  source    SubscriptionSource @default(none)
+  productId String? // e.g., "pro_monthly", "pro_yearly"
+  period    String? // "monthly" | "yearly"
+
   // Purchase details
-  purchaseToken String?             // Google Play purchase token
-  orderId       String?             // Order ID from store
+  purchaseToken String? // Google Play purchase token
+  orderId       String? // Order ID from store
   purchasedAt   DateTime?
   expiresAt     DateTime?
-  
+
   // Stripe fields (for web payments - future)
   stripeCustomerId     String?
   stripeSubscriptionId String?
-  
+
   // Admin/promo grants
-  grantedBy     String?             // Admin user ID who granted
-  grantReason   String?             // Reason for promotional grant
-  
-  createdAt     DateTime            @default(now())
-  updatedAt     DateTime            @updatedAt
+  grantedBy   String? // Admin user ID who granted
+  grantReason String? // Reason for promotional grant
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -965,28 +1107,27 @@ enum SubscriptionSource {
 
 // ContentStatus - workflow states for content items
 enum ContentStatus {
-  draft          // Initial state, not visible to learners
-  needs_review   // Submitted for review
-  approved       // Approved by reviewer, ready for publish
-  published      // Live and visible to learners
+  draft // Initial state, not visible to learners
+  needs_review // Submitted for review
+  approved // Approved by reviewer, ready for publish
+  published // Live and visible to learners
 }
 
 // ContentEditLog - audit trail for content changes
 model ContentEditLog {
-  id           String   @id @default(cuid())
-  contentType  String   // 'curriculum_lesson' | 'practice_vocabulary' | 'word_of_the_day' | 'practice_audio'
-  contentId    String   // ID of the content item
-  userId       String   // User who made the edit
-  action       String   // 'create' | 'update' | 'status_change' | 'approve' | 'publish'
-  changes      Json?    // JSON diff of field changes
+  id             String   @id @default(cuid())
+  contentType    String // 'curriculum_lesson' | 'practice_vocabulary' | 'word_of_the_day' | 'practice_audio'
+  contentId      String // ID of the content item
+  userId         String // User who made the edit
+  action         String // 'create' | 'update' | 'status_change' | 'approve' | 'publish'
+  changes        Json? // JSON diff of field changes
   previousStatus String? // Previous content status
-  newStatus    String?  // New content status
-  notes        String?  @db.Text // Optional notes about the change
-  createdAt    DateTime @default(now())
+  newStatus      String? // New content status
+  notes          String?  @db.Text // Optional notes about the change
+  createdAt      DateTime @default(now())
 
   @@index([contentType, contentId])
   @@index([userId])
   @@index([createdAt])
   @@index([action])
 }
-

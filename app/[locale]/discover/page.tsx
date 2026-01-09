@@ -16,11 +16,10 @@ import type {
   DiscoverCardAccent,
   DiscoverCategory,
   DiscoverCommunityHighlight,
-  DiscoverEvent,
   DiscoverFeed,
   DiscoverQuestHighlight,
 } from '@mk/api-client';
-import { ArrowLeft, CalendarClock, MapPin, RefreshCcw, ExternalLink, Sparkles, Compass } from 'lucide-react';
+import { ArrowLeft, CalendarClock, RefreshCcw, ExternalLink, Sparkles, Compass } from 'lucide-react';
 
 const CATEGORY_SKELETONS = Array.from({ length: 2 }, (_, index) => index);
 const CARD_SKELETONS = Array.from({ length: 4 }, (_, index) => index);
@@ -96,7 +95,6 @@ export default function DiscoverPage() {
   }, [loadFeed]);
 
   const categories = useMemo(() => feed?.categories ?? [], [feed]);
-  const events = useMemo(() => feed?.events ?? [], [feed]);
   const questHighlights = useMemo(() => feed?.quests ?? [], [feed]);
   const communityHighlights = useMemo(() => feed?.community ?? [], [feed]);
 
@@ -273,36 +271,6 @@ export default function DiscoverPage() {
         onRetry={handleRefresh}
       />
 
-      <section aria-labelledby="discover-events" className="space-y-4">
-        <div>
-          <p className="text-xs uppercase tracking-wide text-muted-foreground">{t('events.label')}</p>
-          <h2 id="discover-events" className="text-2xl font-semibold text-foreground">
-            {t('events.title')}
-          </h2>
-          <p className="text-sm text-muted-foreground">{t('events.subtitle')}</p>
-        </div>
-        {isLoading && !feed ? (
-          <div className="grid gap-4 md:grid-cols-2">
-            {CARD_SKELETONS.slice(0, 2).map((card) => (
-              <Skeleton key={card} className="h-36 rounded-2xl" />
-            ))}
-          </div>
-        ) : events.length ? (
-          <div className="grid gap-4 md:grid-cols-2">
-            {events.map((event) => (
-              <EventCard key={event.id} event={event} formatter={formatter} now={now} />
-            ))}
-          </div>
-        ) : (
-          <Card className="glass-card border border-dashed border-white/10">
-            <CardContent className="space-y-2 py-8 text-center">
-              <p className="text-base font-medium text-foreground">{t('events.emptyTitle')}</p>
-              <p className="text-sm text-muted-foreground">{t('events.emptyBody')}</p>
-            </CardContent>
-          </Card>
-        )}
-      </section>
-
       <CommunityRail
         isLoading={isLoading && !feed}
         highlights={communityHighlights}
@@ -368,64 +336,6 @@ function DiscoverCardEntry({ card }: DiscoverCardEntryProps) {
       <CardContent className="flex flex-col gap-4 text-sm text-white/80">
         <span>{card.duration}</span>
         <div>{Action}</div>
-      </CardContent>
-    </Card>
-  );
-}
-
-type EventCardProps = {
-  event: DiscoverEvent;
-  formatter: Formatter;
-  now: Date;
-};
-
-function EventCard({ event, formatter, now }: EventCardProps) {
-  const startDate = new Date(event.startAt);
-  const relativeLabel = Number.isNaN(startDate.getTime())
-    ? null
-    : formatter.relativeTime(startDate, { now, style: 'narrow' });
-  const absoluteLabel = Number.isNaN(startDate.getTime())
-    ? null
-    : formatter.dateTime(startDate, { dateStyle: 'medium', timeStyle: 'short' });
-  const isExternal = event.ctaTarget === 'external';
-  const href = event.ctaUrl ?? '#';
-
-  const CTA = (
-    <Button size="sm" variant="secondary" className="gap-2" asChild>
-      {isExternal ? (
-        <a href={href} target="_blank" rel="noreferrer" data-testid={`discover-event-cta-${event.id}`}>
-          {event.cta}
-          <CTAIcon />
-        </a>
-      ) : (
-        <Link href={href} data-testid={`discover-event-cta-${event.id}`}>
-          {event.cta}
-          <CTAIcon />
-        </Link>
-      )}
-    </Button>
-  );
-
-  return (
-    <Card className="glass-card border border-white/10">
-      <CardHeader>
-        <CardTitle className="text-lg text-foreground">{event.title}</CardTitle>
-        <CardDescription className="text-sm text-muted-foreground">{event.description}</CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-3 text-sm text-muted-foreground">
-        <div className="flex items-center gap-2 text-foreground">
-          <CalendarClock className="h-4 w-4 text-primary" aria-hidden />
-          <div className="flex flex-col">
-            {absoluteLabel ? <span>{absoluteLabel}</span> : null}
-            {relativeLabel ? <span className="text-xs text-muted-foreground">{relativeLabel}</span> : null}
-          </div>
-        </div>
-        <div className="flex items-center gap-2">
-          <MapPin className="h-4 w-4 text-primary" aria-hidden />
-          <span>{event.location}</span>
-        </div>
-        <div className="text-xs uppercase tracking-wide text-muted-foreground">{event.host}</div>
-        {CTA}
       </CardContent>
     </Card>
   );

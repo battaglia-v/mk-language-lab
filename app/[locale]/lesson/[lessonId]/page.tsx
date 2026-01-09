@@ -31,9 +31,26 @@ export default async function LessonPage({ params }: LessonPageProps) {
       },
       grammarNotes: {
         orderBy: { orderIndex: 'asc' },
+        include: {
+          conjugationTables: {
+            include: {
+              rows: {
+                orderBy: { orderIndex: 'asc' },
+              },
+            },
+          },
+        },
       },
       exercises: {
         orderBy: { orderIndex: 'asc' },
+      },
+      dialogues: {
+        orderBy: { orderIndex: 'asc' },
+        include: {
+          lines: {
+            orderBy: { orderIndex: 'asc' },
+          },
+        },
       },
       module: {
         select: { title: true },
