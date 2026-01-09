@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-07)
 
 ## Current Position
 
-Phase: 17 of 20 (CI Pipeline Audit)
+Phase: 18 of 20 (CI Pipeline Improvements)
 Plan: 1 of 1 complete
 Status: Phase complete
-Last activity: 2026-01-09 — Completed 17-01-PLAN.md
+Last activity: 2026-01-09 — Completed 18-01-PLAN.md
 
-Progress: █░░░░░░░░░ 5%
+Progress: ██░░░░░░░░ 10%
 
 ## Milestone Summary
 
@@ -39,7 +39,7 @@ See `.planning/MILESTONES.md` for full details.
 - [x] Unit test gate added to CI — Already exists (ci.yml)
 - [x] E2E test gate added to CI — Already exists (ci.yml)
 - [x] Build validation before deploy — Already exists (ci.yml)
-- [ ] CI optimizations applied (Phase 18)
+- [x] CI optimizations applied (Phase 18) — Next.js build cache, Playwright browser cache
 
 **Cloudflare Evaluation:**
 - [ ] Cloudflare Pages/Workers compatibility tested
@@ -98,6 +98,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-09
-Stopped at: Completed Phase 17 (CI Pipeline Audit)
+Stopped at: Completed Phase 18 (CI Pipeline Improvements)
 Resume file: None
-Next step: Run /gsd:plan-phase 18 (CI Pipeline Improvements)
+Next step: Run /gsd:plan-phase 19 (Cloudflare Research & PoC)
