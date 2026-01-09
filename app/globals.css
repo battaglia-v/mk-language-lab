@@ -1100,3 +1100,129 @@ a:active,
 .animate-loading-dot {
   animation: loading-dot 1.4s ease-in-out infinite;
 }
+
+/* ===========================================
+   3D FLASHCARD TRANSFORM UTILITIES
+   For EnhancedVocabularyCard flip animation
+   =========================================== */
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* ===========================================
+   LESSON TYPOGRAPHY SCALE
+   Consistent typography for lesson components
+   =========================================== */
+
+/* Section headers (e.g., "Vocabulary", "Exercises") */
+.lesson-section-title {
+  @apply text-lg font-semibold text-foreground;
+}
+
+/* Card titles (e.g., vocab word, exercise header) */
+.lesson-card-title {
+  @apply text-base font-semibold text-foreground;
+}
+
+/* Subtitles and descriptions */
+.lesson-subtitle {
+  @apply text-sm text-muted-foreground;
+}
+
+/* Body text for content */
+.lesson-body {
+  @apply text-base text-foreground leading-relaxed;
+}
+
+/* Large display text (e.g., main word in flashcard) */
+.lesson-display {
+  @apply text-2xl md:text-3xl font-bold text-foreground;
+}
+
+/* Small metadata (e.g., counts, badges) */
+.lesson-meta {
+  @apply text-xs text-muted-foreground;
+}
+
+/* ===========================================
+   LESSON CARD PADDING UTILITIES
+   Standardized padding for lesson cards
+   =========================================== */
+
+/* Compact card padding (vocab items, small cards) */
+.lesson-card-compact {
+  @apply p-4;
+}
+
+/* Standard card padding (exercises, main cards) */
+.lesson-card-standard {
+  @apply p-5 md:p-6;
+}
+
+/* Spacious card padding (feature sections) */
+.lesson-card-spacious {
+  @apply p-6 md:p-8;
+}
+
+/* ===========================================
+   LESSON BORDER-RADIUS UTILITIES
+   Unified border-radius patterns
+   =========================================== */
+
+/* Standard card radius */
+.lesson-rounded {
+  @apply rounded-xl;
+}
+
+/* Large radius (feature cards, modals) */
+.lesson-rounded-lg {
+  @apply rounded-2xl;
+}
+
+/* Extra large radius (hero sections) */
+.lesson-rounded-xl {
+  @apply rounded-3xl;
+}
+
+/* ===========================================
+   LESSON CARD VARIANTS
+   Pre-composed card styles for consistency
+   =========================================== */
+
+/* Default lesson card */
+.lesson-card {
+  @apply p-5 md:p-6 rounded-xl border border-border bg-card;
+}
+
+/* Highlighted/featured card */
+.lesson-card-highlight {
+  @apply p-5 md:p-6 rounded-xl border border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10;
+}
+
+/* Muted/secondary card */
+.lesson-card-muted {
+  @apply p-5 md:p-6 rounded-xl border border-border/50 bg-muted/50;
+}
+
+/* Success state card */
+.lesson-card-success {
+  @apply p-5 md:p-6 rounded-xl border border-green-500/20 bg-green-500/5;
+}
+
+/* Warning state card */
+.lesson-card-warning {
+  @apply p-5 md:p-6 rounded-xl border border-amber-500/20 bg-amber-500/5;
+}
