@@ -130,89 +130,136 @@ function loadJSON(filename: string): CurriculumJSON | null {
 }
 
 /**
+ * Parse a single lesson seed file (e.g., seed-lesson1-sample.ts)
+ */
+function parseLessonSeedFile(
+  filepath: string,
+  lessonNum: number,
+  results: Map<number, { dialogues: Dialogue[]; exercises: Exercise[] }>
+): void {
+  if (!fs.existsSync(filepath)) {
+    return;
+  }
+
+  const content = fs.readFileSync(filepath, 'utf-8');
+
+  // Count dialogue lines (speaker entries)
+  const dialogueMatch = content.match(/const dialogue1\s*=\s*\{[\s\S]*?lines:\s*\[([\s\S]*?)\],?\s*\};/);
+  let lineCount = 0;
+  if (dialogueMatch) {
+    const speakerMatches = dialogueMatch[0].match(/speaker:\s*['"`]/g);
+    lineCount = speakerMatches ? speakerMatches.length : 0;
+  }
+
+  // Count exercises
+  const exercisesMatch = content.match(/const exercises\s*=\s*\[([\s\S]*?)\];/);
+  let exerciseCount = 0;
+  if (exercisesMatch) {
+    const typeMatches = exercisesMatch[0].match(/type:\s*['"`]\w+['"`]/g);
+    exerciseCount = typeMatches ? typeMatches.length : 0;
+  }
+
+  if (lineCount > 0 || exerciseCount > 0) {
+    results.set(lessonNum, {
+      dialogues: lineCount > 0 ? [{ title: 'From seed', lines: new Array(lineCount).fill({}) as DialogueLine[] }] : [],
+      exercises: new Array(exerciseCount).fill({ type: 'unknown', question: '' }) as Exercise[],
+    });
+  }
+}
+
+/**
  * Parse seed file to extract lesson enhancements.
  * This is a simple regex-based parser since the seed file is TypeScript.
  */
 function parseSeedFileEnhancements(): Map<number, { dialogues: Dialogue[]; exercises: Exercise[] }> {
-  const seedFilePath = path.join(SEEDS_DIR, 'seed-all-lessons.ts');
-
-  if (!fs.existsSync(seedFilePath)) {
-    console.error(`Seed file not found: ${seedFilePath}`);
-    return new Map();
-  }
-
-  const content = fs.readFileSync(seedFilePath, 'utf-8');
   const results = new Map<number, { dialogues: Dialogue[]; exercises: Exercise[] }>();
 
-  // Parse A1_ENHANCEMENTS and A2_ENHANCEMENTS arrays
-  // This is a simplified parser - we look for patterns in the file
+  // First, parse the separate seed files for lessons 1 and 2
+  parseLessonSeedFile(path.join(SEEDS_DIR, 'seed-lesson1-sample.ts'), 1, results);
+  parseLessonSeedFile(path.join(SEEDS_DIR, 'seed-lesson2-semejstvo.ts'), 2, results);
 
-  // Match lesson comments like "// Lesson 3: ..."
-  const lessonPattern = /\/\/\s*Lesson\s+(\d+):/gi;
-  const dialoguePattern = /dialogues:\s*\[\{[\s\S]*?lines:\s*\[([\s\S]*?)\]/g;
-  const exercisePattern = /exercises:\s*\[([\s\S]*?)\]\s*\}/g;
+  // Now parse seed-all-lessons.ts for A1 lessons 3+ and A2 lessons
+  const seedFilePath = path.join(SEEDS_DIR, 'seed-all-lessons.ts');
 
-  // Simpler approach: count occurrences per lesson in A1_ENHANCEMENTS
-  // Look for the structure and count dialogues/exercises
+  if (fs.existsSync(seedFilePath)) {
+    const content = fs.readFileSync(seedFilePath, 'utf-8');
 
-  // Extract A1 enhancements section
-  const a1Match = content.match(/const A1_ENHANCEMENTS[\s\S]*?(?=const A2_ENHANCEMENTS|$)/);
-  const a2Match = content.match(/const A2_ENHANCEMENTS[\s\S]*?(?=\/\/\s*=+\s*\n\s*\/\/\s*Seeding|$)/);
+    // Extract A1 enhancements section
+    const a1Match = content.match(/const A1_ENHANCEMENTS[\s\S]*?(?=const A2_ENHANCEMENTS|$)/);
+    const a2Match = content.match(/const A2_ENHANCEMENTS[\s\S]*?(?=\/\/\s*=+\s*\n\s*\/\/\s*Seeding|$)/);
 
-  function parseEnhancements(section: string, levelOffset: number): void {
-    // Split by lesson blocks
-    const lessonBlocks = section.split(/\n\s*\/\/\s*Lesson\s+(\d+):/i);
-
-    for (let i = 1; i < lessonBlocks.length; i += 2) {
-      const lessonNum = parseInt(lessonBlocks[i], 10);
-      const block = lessonBlocks[i + 1] || '';
-
-      // Count dialogues by looking for "title:" within dialogues array
-      const dialoguesMatch = block.match(/dialogues:\s*\[\{[\s\S]*?\}\]/);
-      let dialogueCount = 0;
-      let lineCount = 0;
-
-      if (dialoguesMatch) {
-        // Count dialogue titles
-        const titleMatches = dialoguesMatch[0].match(/title:\s*['"`]/g);
-        dialogueCount = titleMatches ? titleMatches.length : 0;
-
-        // Count lines (speaker entries)
-        const speakerMatches = dialoguesMatch[0].match(/speaker:\s*['"`]/g);
-        lineCount = speakerMatches ? speakerMatches.length : 0;
-      }
-
-      // Count exercises
-      const exercisesMatch = block.match(/exercises:\s*\[([\s\S]*?)\]\s*\}/);
-      let exerciseCount = 0;
-      const exerciseTypes: string[] = [];
-
-      if (exercisesMatch) {
-        // Count exercise types
-        const typeMatches = exercisesMatch[0].matchAll(/type:\s*['"`](\w+)['"`]/g);
-        for (const match of typeMatches) {
-          exerciseCount++;
-          if (!exerciseTypes.includes(match[1])) {
-            exerciseTypes.push(match[1]);
-          }
-        }
-      }
-
-      results.set(lessonNum + levelOffset, {
-        dialogues: dialogueCount > 0 ? [{ title: 'From seed', lines: new Array(lineCount).fill({}) as DialogueLine[] }] : [],
-        exercises: new Array(exerciseCount).fill({ type: 'unknown', question: '' }) as Exercise[],
-      });
+    if (a1Match) {
+      parseEnhancementsSection(a1Match[0], 0, results);
+    }
+    if (a2Match) {
+      parseEnhancementsSection(a2Match[0], 100, results); // Use 100+ for A2 lessons
     }
   }
 
-  if (a1Match) {
-    parseEnhancements(a1Match[0], 0);
-  }
-  if (a2Match) {
-    parseEnhancements(a2Match[0], 100); // Use 100+ for A2 lessons
+  // Parse B1 seed file
+  const b1SeedFilePath = path.join(SEEDS_DIR, 'seed-b1-lessons.ts');
+  if (fs.existsSync(b1SeedFilePath)) {
+    const b1Content = fs.readFileSync(b1SeedFilePath, 'utf-8');
+    const b1Match = b1Content.match(/const B1_ENHANCEMENTS[\s\S]*?(?=\/\/\s*=+\s*\n\s*\/\/\s*Seeding|$)/);
+    if (b1Match) {
+      parseEnhancementsSection(b1Match[0], 200, results); // Use 200+ for B1 lessons
+    }
   }
 
   return results;
+}
+
+/**
+ * Parse an enhancements section from a seed file.
+ */
+function parseEnhancementsSection(
+  section: string,
+  levelOffset: number,
+  results: Map<number, { dialogues: Dialogue[]; exercises: Exercise[] }>
+): void {
+  // Split by lesson blocks
+  const lessonBlocks = section.split(/\n\s*\/\/\s*Lesson\s+(\d+):/i);
+
+  for (let i = 1; i < lessonBlocks.length; i += 2) {
+    const lessonNum = parseInt(lessonBlocks[i], 10);
+    const block = lessonBlocks[i + 1] || '';
+
+    // Count dialogues by looking for "title:" within dialogues array
+    const dialoguesMatch = block.match(/dialogues:\s*\[\{[\s\S]*?\}\]/);
+    let dialogueCount = 0;
+    let lineCount = 0;
+
+    if (dialoguesMatch) {
+      // Count dialogue titles
+      const titleMatches = dialoguesMatch[0].match(/title:\s*['"`]/g);
+      dialogueCount = titleMatches ? titleMatches.length : 0;
+
+      // Count lines (speaker entries)
+      const speakerMatches = dialoguesMatch[0].match(/speaker:\s*['"`]/g);
+      lineCount = speakerMatches ? speakerMatches.length : 0;
+    }
+
+    // Count exercises
+    const exercisesMatch = block.match(/exercises:\s*\[([\s\S]*?)\]\s*\}/);
+    let exerciseCount = 0;
+    const exerciseTypes: string[] = [];
+
+    if (exercisesMatch) {
+      // Count exercise types
+      const typeMatches = exercisesMatch[0].matchAll(/type:\s*['"`](\w+)['"`]/g);
+      for (const match of typeMatches) {
+        exerciseCount++;
+        if (!exerciseTypes.includes(match[1])) {
+          exerciseTypes.push(match[1]);
+        }
+      }
+    }
+
+    results.set(lessonNum + levelOffset, {
+      dialogues: dialogueCount > 0 ? [{ title: 'From seed', lines: new Array(lineCount).fill({}) as DialogueLine[] }] : [],
+      exercises: new Array(exerciseCount).fill({ type: 'unknown', question: '' }) as Exercise[],
+    });
+  }
 }
 
 // ============================================================================
@@ -442,8 +489,8 @@ async function main() {
   audits.push(a2Audit);
   console.log(`   A2: ${a2Audit.summary.total} lessons (${a2Audit.summary.pass} pass, ${a2Audit.summary.warn} warn, ${a2Audit.summary.fail} fail)`);
 
-  // B1 (lessons 1-8) - no seed enhancements yet
-  const b1Audit = auditLevel('b1-zlatovrv.json', 'B1 (Златоврв)', new Map(), 0);
+  // B1 (lessons 1-8) - use offset 200 for seed data mapping
+  const b1Audit = auditLevel('b1-zlatovrv.json', 'B1 (Златоврв)', seedEnhancements, 200);
   audits.push(b1Audit);
   console.log(`   B1: ${b1Audit.summary.total} lessons (${b1Audit.summary.pass} pass, ${b1Audit.summary.warn} warn, ${b1Audit.summary.fail} fail)`);
 
