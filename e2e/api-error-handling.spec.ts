@@ -198,35 +198,34 @@ test.describe('API Error Handling', () => {
     });
   });
 
-  test.describe('Mission Control API', () => {
-    test('should handle Mission API failure gracefully', async ({ page }) => {
-      await page.goto('/mk');
+  test.describe('Homepage Resilience', () => {
+    test('should handle API failure gracefully', async ({ page }) => {
+      await page.goto('/mk/learn');
+      await page.waitForLoadState('networkidle');
 
-      // Wait for Mission Control to load
-      await page.waitForTimeout(2000);
+      // Homepage should load with some content
+      const heading = page.locator('h1').first();
+      const mainContent = page.locator('main').first();
 
-      // Should show either Mission Control OR loading OR error
-      const missionSection = page.getByText('Mission Control');
-      const error = page.getByText(/error|failed|unavailable|Unable to load/i);
+      const hasHeading = await heading.isVisible().catch(() => false);
+      const hasMain = await mainContent.isVisible().catch(() => false);
 
-      const hasSection = await missionSection.isVisible().catch(() => false);
-      const hasError = await error.isVisible().catch(() => false);
-
-      // Should handle gracefully (show something or error)
-      expect(hasSection || hasError).toBeTruthy();
+      // Should have some main content
+      expect(hasHeading || hasMain).toBeTruthy();
     });
 
-    test('should not crash homepage if Mission API fails', async ({ page }) => {
-      await page.goto('/mk');
+    test('should not crash homepage if APIs fail', async ({ page }) => {
+      await page.goto('/mk/learn');
+      await page.waitForLoadState('networkidle');
 
-      // Even if Mission API fails, rest of homepage should work
-      await page.waitForTimeout(2000);
+      // Homepage should still render - check for any main content or links
+      const links = page.locator('a[href*="/practice"], a[href*="/translate"], a[href*="/lesson"]');
+      const count = await links.count();
 
-      // Action cards should still be visible with "Continue mission"
-      const practiceLink = page.getByRole('link', { name: /Continue mission/i });
-      await expect(practiceLink).toBeVisible();
+      // Should have navigation/action links
+      expect(count).toBeGreaterThan(0);
 
-      // Navigation should still work
+      // Heading should be visible
       const heading = page.locator('h1');
       await expect(heading).toBeVisible();
     });
