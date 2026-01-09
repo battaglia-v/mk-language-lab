@@ -765,11 +765,11 @@ export default function LessonPageContentV2({
         {renderSectionContent()}
       </div>
 
-      {/* Floating Navigation (mobile) */}
-      <div className="fixed bottom-0 left-0 right-0 lg:hidden z-20">
+      {/* Floating Navigation (mobile) - sits above bottom nav */}
+      <div className="fixed bottom-[calc(4rem+env(safe-area-inset-bottom,0px))] left-0 right-0 lg:hidden z-30">
         {/* Gradient background for smooth transition */}
-        <div className="bg-gradient-to-t from-background via-background/95 to-transparent pt-6 pb-safe">
-          <div className="px-4 pb-24">
+        <div className="bg-gradient-to-t from-background via-background to-transparent pt-8 pb-4">
+          <div className="px-4">
             <div className="flex gap-3">
               {currentSectionIndex > 0 && (
                 <Button
