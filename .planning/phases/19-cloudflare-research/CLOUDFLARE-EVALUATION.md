@@ -193,9 +193,126 @@ const prisma = new PrismaClient({ adapter })
 
 ---
 
-## 5. Migration Effort Estimate
+## 5. Cost Comparison Analysis
 
-### 5.1 Code Changes
+### 5.1 Platform Pricing Overview
+
+#### Vercel Pricing (Pro Plan - $20/month base)
+
+| Resource | Included | Overage |
+|----------|----------|---------|
+| Edge Requests | 10M/month | $2 per 1M |
+| Fast Data Transfer | 1TB/month | $0.15/GB |
+| Function Invocations | Included in $20 | $0.60 per 1M |
+| Active CPU | Included in $20 | $0.128/hour |
+| Build Minutes | Varies | $0.014-$0.126/min |
+| Image Optimization | Included | Usage-based |
+| Web Analytics | 50K events/month | $3 per 100K events |
+
+#### Cloudflare Pricing (Workers Paid - $5/month base)
+
+| Resource | Included | Overage |
+|----------|----------|---------|
+| Workers Requests | 10M/month | $0.30 per 1M |
+| CPU Milliseconds | 30M/month | $0.02 per 1M ms |
+| Static Assets | **Unlimited** | Free |
+| Bandwidth/Egress | **Unlimited** | Free |
+| Build Minutes | 500/month (Pages) | Additional at cost |
+| Image Optimization | Separate service | Usage-based |
+| Web Analytics | **Unlimited** | Free |
+
+### 5.2 Estimated Monthly Cost Comparison
+
+Based on a small-to-medium language learning app with typical usage:
+
+**Assumed Usage Profile:**
+- Monthly page views: ~50,000
+- API requests: ~200,000/month
+- Function invocations: ~500,000/month
+- Average CPU per request: ~20ms
+- Bandwidth: ~50GB/month
+- Build frequency: ~30 builds/month (~5 min each)
+- Image optimizations: ~10,000/month
+
+| Cost Category | Vercel Pro | Cloudflare | Savings |
+|---------------|------------|------------|---------|
+| **Base Plan** | $20/month | $5/month | $15/month |
+| **Compute** | Included | Included | - |
+| **Bandwidth** | Included | Free | - |
+| **Analytics** | ~$1.50/month | Free | $1.50/month |
+| **Builds** | ~$2/month | Included | $2/month |
+| **Total Estimated** | **~$24/month** | **~$5/month** | **~$19/month** |
+| **Annual Savings** | - | - | **~$228/year** |
+
+### 5.3 Cost Comparison at Scale
+
+For higher traffic scenarios:
+
+| Monthly Traffic | Vercel Pro | Cloudflare | Savings |
+|-----------------|------------|------------|---------|
+| 100K requests | ~$25 | ~$5 | $20 (80%) |
+| 1M requests | ~$35 | ~$5 | $30 (86%) |
+| 10M requests | ~$60 | ~$5 | $55 (92%) |
+| 50M requests | ~$120+ | ~$17 | $103+ (86%) |
+
+**Key Cost Advantages of Cloudflare:**
+- **Free egress bandwidth** - No data transfer costs
+- **Free static assets** - Unlimited static file serving
+- **Free analytics** - No per-event charges
+- **Lower base price** - $5 vs $20/month
+
+### 5.4 Additional Service Costs
+
+#### Image Storage (S3 vs R2)
+
+| Aspect | AWS S3 | Cloudflare R2 | Notes |
+|--------|--------|---------------|-------|
+| Storage | $0.023/GB | $0.015/GB | R2 35% cheaper |
+| Egress | $0.09/GB | **Free** | Major savings |
+| Requests | $0.0004/1K | $0.36/1M | Similar |
+
+**R2 Potential Savings:** If serving 100GB/month of images, R2 saves ~$9/month in egress alone.
+
+#### Database (Neon)
+
+No change in database costs - Neon PostgreSQL pricing remains the same regardless of hosting platform.
+
+#### Monitoring (Sentry)
+
+No change - Sentry pricing is independent of hosting platform.
+
+### 5.5 Hidden Costs to Consider
+
+| Factor | Vercel | Cloudflare | Notes |
+|--------|--------|------------|-------|
+| Migration effort | N/A | 24-48 hours | One-time dev cost |
+| Learning curve | None | Medium | Team ramp-up time |
+| Debugging complexity | Low | Higher | Less familiar tooling |
+| Support quality | Excellent | Good | Vercel has better Next.js support |
+| Incident risk | Low | Medium | New platform risks |
+
+### 5.6 Break-Even Analysis
+
+**Migration investment:** ~40 hours of development time
+
+Assuming developer cost of $75/hour:
+- Migration cost: ~$3,000 one-time
+
+**Payback period at current scale:**
+- Monthly savings: ~$19/month
+- Payback: ~158 months (13+ years)
+
+**At higher scale (1M+ requests):**
+- Monthly savings: ~$30/month
+- Payback: ~100 months (8+ years)
+
+**Conclusion:** Cost savings alone do not justify migration at current scale. Other factors (performance, features, vendor diversification) would need to drive the decision.
+
+---
+
+## 6. Migration Effort Estimate
+
+### 6.1 Code Changes
 
 | Category | Files Affected | Estimated Hours |
 |----------|---------------|-----------------|
@@ -206,7 +323,7 @@ const prisma = new PrismaClient({ adapter })
 | Environment updates | .env files | 1 hour |
 | **Total estimate** | **8-12 files** | **8-16 hours** |
 
-### 5.2 Testing Requirements
+### 6.2 Testing Requirements
 
 | Test Type | Scope | Estimated Hours |
 |-----------|-------|-----------------|
@@ -217,7 +334,7 @@ const prisma = new PrismaClient({ adapter })
 | API route testing | 36+ routes | 4-8 hours |
 | **Total testing** | | **16-32 hours** |
 
-### 5.3 Risk Assessment
+### 6.3 Risk Assessment
 
 | Risk | Probability | Impact | Mitigation |
 |------|-------------|--------|------------|
@@ -228,16 +345,16 @@ const prisma = new PrismaClient({ adapter })
 
 ---
 
-## 6. Next Steps (If Proceeding)
+## 7. Next Steps (If Proceeding)
 
-### 6.1 Prerequisites Before Migration
+### 7.1 Prerequisites Before Migration
 
 1. **Verify Next.js 16 support** - Contact OpenNext team or test locally
 2. **Test NextAuth on Workers** - Create PoC for auth flows
 3. **Benchmark Prisma edge performance** - Compare to current latency
 4. **Audit bundle size** - Ensure < 10 MiB compressed
 
-### 6.2 Migration Checklist (Phase 20)
+### 7.2 Migration Checklist (Phase 20)
 
 - [ ] Update Prisma schema for edge
 - [ ] Install and configure Neon adapter
