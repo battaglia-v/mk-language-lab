@@ -351,19 +351,25 @@ export default function LessonPageContentV2({
 
     switch (currentSection.id) {
       case 'intro':
+        // Extract short title from summary (before any punctuation or dash)
+        const shortTheme = lesson.summary
+          ? lesson.summary.split(/[.!?\-–—]/)[0].trim()
+          : lesson.title;
+        const hasLongDescription = lesson.summary && lesson.summary.length > 60;
+        
         return (
           <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
-            {/* Lesson theme */}
-            {lesson.summary && (
-              <Card className="p-6 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
-                <p className="text-xl sm:text-2xl font-medium text-primary mb-2">
+            {/* Lesson theme - always short */}
+            <Card className="p-5 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
+              <p className="text-lg sm:text-xl font-semibold text-primary">
+                {shortTheme.length > 50 ? lesson.title : shortTheme}
+              </p>
+              {hasLongDescription && (
+                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
                   {lesson.summary}
                 </p>
-                <p className="text-muted-foreground">
-                  This lesson&apos;s theme
-                </p>
-              </Card>
-            )}
+              )}
+            </Card>
 
             {/* Learning objectives */}
             <div className="space-y-4">
