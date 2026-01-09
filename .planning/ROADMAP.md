@@ -163,7 +163,7 @@ Plans:
 - [x] 18.1-01: A2/B1 vocabulary corrections (same approach as A1) — completed 2026-01-09
 - [x] 18.1-02: Dark mode deep audit (comprehensive color scan and fix) — completed 2026-01-09
 - [x] 18.1-03: Exercise variety (add matching, word_order types) — completed 2026-01-09
-- [ ] 18.1-04: Content completeness verification (audit and fill gaps)
+- [x] 18.1-04: Content completeness verification (audit and fill gaps) — completed 2026-01-09
 
 #### Phase 17: CI Pipeline Audit
 
@@ -234,7 +234,7 @@ Phases execute in numeric order: 1 → 2 → ... → 16 → 17 → 18 → 19 →
 | 16. Practice UX Redesign | v1.1 | 2/2 | Complete | 2026-01-09 |
 | 17. CI Pipeline Audit | v1.2 | 1/1 | Complete | 2026-01-09 |
 | 18. CI Pipeline Improvements | v1.2 | 1/1 | Complete | 2026-01-09 |
-| 18.1 Lesson Quality Audit (INSERTED) | v1.2 | 3/4 | In progress | - |
+| 18.1 Lesson Quality Audit (INSERTED) | v1.2 | 4/4 | Complete | 2026-01-09 |
 | 19. Cloudflare Research & PoC | v1.2 | 1/1 | Complete | 2026-01-09 |
 | 20. Migration Decision | v1.2 | 0/0 | Skipped | - |
 
