@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-07)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** v1.1 Curriculum Quality Fix — Fix repetitive, inaccurate, and unusable UKIM curriculum content
+**Current focus:** v1.2 Infrastructure & CI Overhaul — Improve CI pipeline and evaluate Cloudflare migration
 
 ## Current Position
 
-Phase: 16 of 16 (Practice UX Redesign)
-Plan: 1 of 2 in current phase
-Status: In progress
-Last activity: 2026-01-08 — Completed 16-01-PLAN.md
+Phase: 17 of 20 (CI Pipeline Audit)
+Plan: Not started
+Status: Ready to plan
+Last activity: 2026-01-09 — Milestone v1.2 created
 
-Progress: █████████░ 94%
+Progress: ░░░░░░░░░░ 0%
 
 ## Milestone Summary
 
@@ -23,28 +23,35 @@ Progress: █████████░ 94%
 - 102 files modified (+6,342 / -737 lines)
 - ~24,400 lines of TypeScript
 
+**v1.1 Curriculum Quality Fix shipped 2026-01-09**
+- 9 phases (8-16), 18 plans
+- Content quality fixes across A1, A2, B1 levels
+- Practice UX redesign
+
 See `.planning/MILESTONES.md` for full details.
 
-## v1.1 Success Criteria
+## v1.2 Success Criteria
 
-**Content Quality (all met):**
-- [x] A1 lessons have 20+ vocabulary items each ✓ (Phase 10)
-- [x] A1 grammar notes have explanations and 3+ examples each ✓ (Phase 11)
-- [x] A2 lessons have vocabulary and grammar populated ✓ (Phase 12, 12.1)
-- [x] B1 has at least skeleton vocabulary per lesson ✓ (Phase 13-01: 12,004 items filtered)
-- [x] No garbled OCR text in user-facing content ✓ (Phase 14, 15)
+**CI Pipeline:**
+- [ ] All existing workflows documented and gaps identified
+- [ ] Type checking gate added to CI
+- [ ] Linting gate added to CI
+- [ ] Unit test gate added to CI
+- [ ] E2E test gate added to CI
+- [ ] Build validation before deploy
 
-**UX Quality (Phase 16 needed):**
-- [ ] Practice mode displays lesson-specific vocabulary (not generic deck)
-- [ ] Lesson UI is interactive (not scrolling wall)
-- [ ] Grammar renders properly on mobile
+**Cloudflare Evaluation:**
+- [ ] Cloudflare Pages/Workers compatibility tested
+- [ ] Cost comparison documented
+- [ ] Migration feasibility assessed
+- [ ] Go/no-go decision documented
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 29
-- Average duration: 9 min
-- Total execution time: 6.1 hours
+- Total plans completed: 39
+- Average duration: ~9 min
+- Total execution time: ~6.5 hours
 
 **By Phase:**
 
@@ -66,6 +73,7 @@ See `.planning/MILESTONES.md` for full details.
 | 13 | 3 | 176 min | 59 min |
 | 14 | 1 | 5 min | 5 min |
 | 15 | 1 | 8 min | 8 min |
+| 16 | 2 | TBD | TBD |
 
 ## Accumulated Context
 
@@ -75,7 +83,7 @@ All decisions logged in PROJECT.md Key Decisions table with outcomes.
 
 ### Deferred Issues
 
-None — v1.0 shipped clean.
+None — v1.1 shipped clean.
 
 ### Blockers/Concerns
 
@@ -83,11 +91,12 @@ None.
 
 ### Roadmap Evolution
 
-- Milestone v1.1 created: Curriculum quality fix, 8 phases (Phase 8-15)
+- Milestone v1.1 created: Curriculum quality fix, 9 phases (Phase 8-16)
+- Milestone v1.2 created: Infrastructure & CI overhaul, 4 phases (Phase 17-20)
 
 ## Session Continuity
 
-Last session: 2026-01-08
-Stopped at: Completed 16-01-PLAN.md
+Last session: 2026-01-09
+Stopped at: Milestone v1.2 initialization
 Resume file: None
-Next step: Run /gsd:execute-plan .planning/phases/16-practice-ux-redesign/16-02-PLAN.md
+Next step: Run /gsd:plan-phase 17
