@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useLocale } from 'next-intl';
 import { CurriculumLessonWrapper } from './CurriculumLessonWrapper';
 import LessonContent from './LessonContent';
 import LessonPageContentV2 from './LessonPageContentV2';
@@ -38,6 +39,7 @@ export function LessonPageContent({
   useNewLessonFlow = true, // Default to new system
 }: LessonPageContentProps) {
   const router = useRouter();
+  const locale = useLocale();
 
   // If using new guided lesson flow (V2)
   if (useNewLessonFlow && !useLessonRunner) {
@@ -73,9 +75,9 @@ export function LessonPageContent({
       if (!userId) {
         // Navigate without saving
         if (nextLesson) {
-          router.push(`/lesson/${nextLesson.id}`);
+          router.push(`/${locale}/lesson/${nextLesson.id}`);
         } else {
-          router.push('/');
+          router.push(`/${locale}/learn`);
         }
         return;
       }
@@ -95,9 +97,9 @@ export function LessonPageContent({
 
         // Navigate to next lesson or home
         if (nextLesson) {
-          router.push(`/lesson/${nextLesson.id}`);
+          router.push(`/${locale}/lesson/${nextLesson.id}`);
         } else {
-          router.push('/');
+          router.push(`/${locale}/learn`);
         }
       } catch (error) {
         console.error('Failed to save progress:', error);
