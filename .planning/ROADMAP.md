@@ -66,10 +66,10 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 **Goal**: Fix clickable vocabulary cards and continue vocabulary name cleanup
 **Depends on**: v1.2 complete
 **Research**: Unlikely (existing codebase patterns)
-**Plans**: TBD
+**Plans**: 1
 
 Plans:
-- [ ] 21-01: TBD (run /gsd:plan-phase 21 to break down)
+- [ ] 21-01: Vocabulary card interactivity and proper noun filtering
 
 #### Phase 22: Content Effectiveness Audit
 
@@ -125,7 +125,7 @@ Plans:
 
 | Phase | Milestone | Plans | Status | Completed |
 |-------|-----------|-------|--------|-----------|
-| 21. Bug Fixes | v1.3 | 0/? | Not started | - |
+| 21. Bug Fixes | v1.3 | 0/1 | Planned | - |
 | 22. Content Effectiveness Audit | v1.3 | 0/? | Not started | - |
 | 23. Practice Feature Audit & UX | v1.3 | 0/? | Not started | - |
 | 24. User Journey Cohesion | v1.3 | 0/? | Not started | - |
