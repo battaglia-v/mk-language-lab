@@ -14,7 +14,6 @@ import {
   Search,
   ChevronLeft,
   ChevronRight,
-  Volume2,
   ArrowRight,
   Filter,
   CheckCircle2,
@@ -144,13 +143,6 @@ export default function SavedWordsPage() {
     setDeletedIds(new Set());
   };
   
-  const handleSpeak = (text: string) => {
-    if ('speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'mk-MK';
-      window.speechSynthesis.speak(utterance);
-    }
-  };
   
   return (
     <PageContainer size="lg" className="pb-24 sm:pb-6">
@@ -335,15 +327,6 @@ export default function SavedWordsPage() {
                 
                 {/* Actions */}
                 <div className="flex items-center gap-1">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-9 w-9"
-                    onClick={() => handleSpeak(word.macedonian)}
-                    title="Listen"
-                  >
-                    <Volume2 className="h-4 w-4" />
-                  </Button>
                   <Button
                     variant="ghost"
                     size="icon"
