@@ -335,6 +335,7 @@ export function PracticeHub() {
             config={recommendedMode}
             t={t}
             highlightLabel={t('hub.recommendedBadge')}
+            locale={locale}
           />
         </section>
       )}
@@ -350,6 +351,7 @@ export function PracticeHub() {
               key={modeConfig.id}
               config={modeConfig}
               t={t}
+              locale={locale}
             />
           ))}
         </div>
@@ -479,10 +481,12 @@ function PracticeModeCard({
   config,
   t,
   highlightLabel,
+  locale,
 }: {
   config: PracticeModeConfig;
   t: ReturnType<typeof useTranslations<'practiceHub'>>;
   highlightLabel?: string;
+  locale?: string;
 }) {
   const Icon = config.icon;
   const testId = `practice-mode-${config.id}`;
@@ -506,6 +510,48 @@ function PracticeModeCard({
   const description = t(`modes.${config.id}.description`, { default: '' });
   const time = t(`modes.${config.id}.time`, { default: '2–5 min' });
   const xp = t(`modes.${config.id}.xp`, { default: '+10 XP' });
+
+  // Special empty state for Lesson Review when disabled
+  if (config.id === 'lessonReview' && config.disabled && locale) {
+    const emptyTitle = t('modes.lessonReview.emptyTitle', { default: 'Build your vocabulary deck' });
+    const emptySubtitle = t('modes.lessonReview.emptySubtitle', { default: 'Complete lessons to add words here' });
+    const getStarted = t('modes.lessonReview.getStarted', { default: 'Start Learning' });
+
+    return (
+      <div
+        className="rounded-2xl border-2 border-dashed border-border/50 bg-muted/10 p-5"
+        data-testid={testId}
+      >
+        <div className="flex items-start gap-4">
+          {/* Icon */}
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+            <Icon className="h-6 w-6 text-primary" />
+          </div>
+
+          {/* Content */}
+          <div className="flex-1 min-w-0 space-y-3">
+            <div>
+              <h3 className="text-base font-semibold text-foreground sm:text-lg">
+                {emptyTitle}
+              </h3>
+              <p className="text-sm text-muted-foreground mt-1">
+                {emptySubtitle}
+              </p>
+            </div>
+
+            {/* CTA Button */}
+            <Link href={`/${locale}/learn`}>
+              <Button size="sm" className="gap-1.5">
+                <BookOpen className="h-4 w-4" />
+                {getStarted}
+                <ArrowRight className="h-3 w-3" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const content = (
     <div

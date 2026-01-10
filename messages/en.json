@@ -1156,7 +1156,10 @@
         "description": "Vocabulary from your completed lessons",
         "time": "5–10 min",
         "xp": "+15 XP",
-        "disabledReason": "Complete a lesson to unlock vocabulary review"
+        "disabledReason": "Complete a lesson to unlock vocabulary review",
+        "emptyTitle": "Build your vocabulary deck",
+        "emptySubtitle": "Complete lessons to add words here",
+        "getStarted": "Start Learning"
       }
     },
     "hub": {
