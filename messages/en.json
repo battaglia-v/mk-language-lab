@@ -2744,5 +2744,15 @@
       "badge": "Speaking"
     },
     "hint": "These tools help you understand, translate, and speak Macedonian. Use them alongside your lessons for faster progress."
+  },
+  "reader": {
+    "workspace": {
+      "practiceReady": "Ready to practice?",
+      "savedWordsCount": "{count} saved words",
+      "practiceNow": "Practice Now"
+    },
+    "library": {
+      "continueLearning": "Continue your lessons"
+    }
   }
 }

@@ -4,7 +4,8 @@ import { useMemo, useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { BookOpen, Wrench, BookmarkPlus, Zap, ChevronRight, Library, FileText, Search, X } from 'lucide-react';
+import { BookOpen, Wrench, BookmarkPlus, Zap, ChevronRight, Library, FileText, Search, X, Dumbbell } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { PageContainer } from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -29,6 +30,7 @@ export default function ReaderPage() {
   const locale = useLocale();
   const router = useRouter();
   const searchParams = useSearchParams();
+  const t = useTranslations('reader');
   const allSamples = useMemo(() => getAllReaderSamples(), []);
   const challengeSamples = useMemo(() => getReaderSamplesByCategory('challenge'), []);
   const conversationSamples = useMemo(() => getReaderSamplesByCategory('conversation'), []);
@@ -405,6 +407,31 @@ export default function ReaderPage() {
                 </Button>
               </div>
             </div>
+
+            {/* Practice saved words CTA */}
+            {savedCount > 0 && (
+              <Link
+                href={`/${locale}/practice/session?deck=saved`}
+                data-testid="reader-workspace-practice-saved"
+                className={cn(
+                  'flex items-center gap-4 rounded-2xl p-4',
+                  'bg-gradient-to-r from-primary/10 to-emerald-500/10',
+                  'border border-primary/30 hover:border-primary/50',
+                  'transition-all hover:shadow-lg'
+                )}
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/20">
+                  <Dumbbell className="h-6 w-6 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <p className="font-semibold">{t('workspace.practiceReady', { default: 'Ready to practice?' })}</p>
+                  <p className="text-sm text-muted-foreground">{t('workspace.savedWordsCount', { count: savedCount, default: `${savedCount} saved words` })}</p>
+                </div>
+                <Button size="sm" className="rounded-full" data-testid="reader-workspace-practice-btn">
+                  {t('workspace.practiceNow', { default: 'Practice Now' })}
+                </Button>
+              </Link>
+            )}
 
             {/* Saved words shortcut */}
             {savedCount > 0 && (
