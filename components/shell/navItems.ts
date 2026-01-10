@@ -1,7 +1,7 @@
-import { Home, Languages, Sparkles, BookOpen, MoreHorizontal } from "lucide-react";
+import { Home, Languages, Sparkles, BookOpen, FolderOpen } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
-type NavItemId = "learn" | "translate" | "practice" | "reader" | "more";
+type NavItemId = "learn" | "translate" | "practice" | "reader" | "resources";
 
 export type ShellNavItem = {
   id: NavItemId;
@@ -9,13 +9,13 @@ export type ShellNavItem = {
   icon: LucideIcon;
 };
 
-// Primary tabs: Home, Translate, Practice (center), Reader, More
+// Primary tabs: Home, Translate, Practice (center), Reader, Resources
 export const shellNavItems: ShellNavItem[] = [
   { id: "learn", path: "/learn", icon: Home },
   { id: "translate", path: "/translate", icon: Languages },
   { id: "practice", path: "/practice", icon: Sparkles },
   { id: "reader", path: "/reader", icon: BookOpen },
-  { id: "more", path: "/more", icon: MoreHorizontal },
+  { id: "resources", path: "/resources", icon: FolderOpen },
 ];
 
 const supportedLocales = ["en", "mk"] as const;
