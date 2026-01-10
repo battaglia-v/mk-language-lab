@@ -11,8 +11,8 @@ See: .planning/PROJECT.md (updated 2026-01-10)
 
 Phase: 35 of 35 (Practice Improvements)
 Plan: 1 of 1 in current phase
-Status: Phase complete
-Last activity: 2026-01-10 — Completed 35-01-PLAN.md (practice content visibility)
+Status: Milestone complete
+Last activity: 2026-01-10 — v1.5 milestone archived
 
 Progress: [██████████] 100% (v1.5 complete)
 
@@ -48,50 +48,21 @@ Progress: [██████████] 100% (v1.5 complete)
 - Session persistence for practice
 - Alphabet curriculum integration
 
+**v1.5 Audio Cleanup & Final Polish shipped 2026-01-10**
+- 3 phases (33-35), 6 plans, 27 commits
+- 59 files modified (+1,782 / -5,846 lines)
+- Complete audio removal (-4,064 lines net)
+- About page credits, quiz retake, section stepper navigation
+- Practice Hub improvements with lesson progress indicator
+
 See `.planning/MILESTONES.md` for full details.
-
-## Success Criteria (v1.4)
-
-**Bug Fixes (Phase 27):** COMPLETE
-- [x] Light mode color fixes across 15+ components
-- [x] Back button i18n for Learn/Reader pages
-- [x] Expandable grammar examples with "show more"
-- [x] Macedonian keyboard hints for text inputs
-
-**Navigation Overhaul (Phase 28):** COMPLETE
-- [x] More menu → Resources page
-- [x] UserMenu consolidation with Settings/Help/About
-- [x] Tools merge (Translate + Analyzer unified)
-- [x] Learning Paths removed
-
-**Lesson Enhancements (Phase 29):** COMPLETE
-- [x] Save-to-glossary on vocabulary cards
-- [x] Vocabulary sort toggle (Category/A-Ш/Type)
-- [x] Section stepper dots for mobile
-- [x] Vocabulary practice CTA
-
-**Vocabulary Display (Phase 30):** COMPLETE
-- [x] Gender annotations with color coding (sky=m, rose=f, amber=n)
-- [x] Definite article display for nouns
-- [x] Redundant Back to Dashboard links removed
-
-**State Persistence (Phase 31):** COMPLETE
-- [x] Practice session persistence (localStorage)
-- [x] Resume prompt with i18n
-- [x] 24-hour staleness threshold, debounced saves
-
-**Content & Polish (Phase 32):** COMPLETE
-- [x] Alphabet lesson as first A1 curriculum node
-- [x] Missing pronouns (наш/нивни) exercises added
-- [x] MLC badge attribution restored in Reader
-- [x] Translation UX audit (already consistent)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 69
+- Total plans completed: 75 (69 + 6 from v1.5)
 - Average duration: ~9 min
-- Total execution time: ~10.5 hours
+- Total execution time: ~11.5 hours
 
 **By Milestone:**
 
@@ -102,6 +73,7 @@ See `.planning/MILESTONES.md` for full details.
 | v1.2 Infrastructure | 4 | 7 | 25 | 1 day |
 | v1.3 User Journey | 6 | 9 | ~30 | 1 day |
 | v1.4 Power User | 6 | 13 | 67 | 1 day |
+| v1.5 Audio Cleanup | 3 | 6 | 27 | Same day |
 
 ## Accumulated Context
 
@@ -113,8 +85,6 @@ All decisions logged in PROJECT.md Key Decisions table with outcomes.
 
 - Cloudflare migration — Re-evaluate when OpenNext supports Next.js 16
 - ISS-001: Wire A2 graded readers to reader UI — content exists, not wired
-- Quiz retake button — not implemented in v1.4
-- Section stepper forward navigation — partial implementation
 
 ### Blockers/Concerns
 
@@ -127,11 +97,11 @@ None.
 - Milestone v1.2 shipped: Infrastructure & CI overhaul (Phases 17-20)
 - Milestone v1.3 shipped: Content quality & user journey (Phases 21-26)
 - Milestone v1.4 shipped: Power user feedback (Phases 27-32)
-- Milestone v1.5 planned: Audio removal + remaining polish + practice improvements
+- Milestone v1.5 shipped: Audio cleanup & final polish (Phases 33-35)
 
 ## Session Continuity
 
 Last session: 2026-01-10
-Stopped at: Completed 35-01-PLAN.md (Phase 35 and v1.5 milestone complete)
+Stopped at: v1.5 milestone complete and archived
 Resume file: None
-Next step: /gsd:complete-milestone (archive v1.5 and prepare for next milestone)
+Next step: /gsd:discuss-milestone or /gsd:new-milestone (plan next version)
