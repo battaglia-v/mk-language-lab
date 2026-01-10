@@ -142,6 +142,7 @@ Plans:
 
 Plans:
 - [x] 27-01: Light mode colors & back button i18n — completed 2026-01-10
+- [x] 27-02: Expandable grammar examples & conditional tap hints — completed 2026-01-10
 
 #### Phase 28: Navigation Overhaul
 
@@ -197,7 +198,7 @@ Plans:
 
 | Phase | Milestone | Plans | Status | Completed |
 |-------|-----------|-------|--------|-----------|
-| 27. Bug Fixes | v1.4 | 1/? | In progress | - |
+| 27. Bug Fixes | v1.4 | 2/? | In progress | - |
 | 28. Navigation Overhaul | v1.4 | 0/? | Not started | - |
 | 29. Lesson Enhancements | v1.4 | 0/? | Not started | - |
 | 30. Vocabulary Display | v1.4 | 0/? | Not started | - |
