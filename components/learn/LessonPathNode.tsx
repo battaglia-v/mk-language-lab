@@ -39,8 +39,8 @@ const nodeIcons = {
 
 const statusColors: Record<LessonNodeStatus, string> = {
   locked: 'bg-muted/60 text-muted-foreground border-muted/80',
-  available: 'bg-primary text-black border-primary shadow-lg shadow-primary/20',
-  in_progress: 'bg-amber-500 text-black border-amber-500 shadow-lg shadow-amber-500/20',
+  available: 'bg-primary text-primary-foreground border-primary shadow-lg shadow-primary/20',
+  in_progress: 'bg-amber-500 text-primary-foreground border-amber-500 shadow-lg shadow-amber-500/20',
   completed: 'bg-green-500 text-white dark:text-black border-green-500',
 };
 

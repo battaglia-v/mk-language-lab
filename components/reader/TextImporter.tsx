@@ -128,7 +128,7 @@ export function TextImporter({ onImportURL, onImportFile, isImporting }: TextImp
                   accept=".txt,.pdf,text/plain,application/pdf"
                   onChange={(e) => void handleFileSelect(e)}
                   disabled={isImporting}
-                  className="cursor-pointer h-11 text-sm file:mr-3 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-primary file:text-black hover:file:bg-primary/90 file:cursor-pointer"
+                  className="cursor-pointer h-11 text-sm file:mr-3 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 file:cursor-pointer"
                   data-testid="reader-import-file-input"
                 />
               </div>
