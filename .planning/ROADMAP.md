@@ -149,10 +149,11 @@ Plans:
 **Goal**: Eliminate More menu, create Resources section, add Translate+Analyzer toggle, consolidate user menu, remove Learning Paths
 **Depends on**: Phase 27
 **Research**: Unlikely (internal routing and component patterns)
-**Plans**: 1/? complete
+**Plans**: 2/? complete
 
 Plans:
 - [x] 28-01: Navigation simplification (More → Resources, UserMenu consolidation) — completed 2026-01-10
+- [x] 28-02: Tools merge (Translate + Analyze unified page with toggle) — completed 2026-01-10
 
 #### Phase 29: Lesson Enhancements
 
@@ -199,7 +200,7 @@ Plans:
 | Phase | Milestone | Plans | Status | Completed |
 |-------|-----------|-------|--------|-----------|
 | 27. Bug Fixes | v1.4 | 4/4 | Complete | 2026-01-10 |
-| 28. Navigation Overhaul | v1.4 | 1/? | In progress | - |
+| 28. Navigation Overhaul | v1.4 | 2/? | In progress | - |
 | 29. Lesson Enhancements | v1.4 | 0/? | Not started | - |
 | 30. Vocabulary Display | v1.4 | 0/? | Not started | - |
 | 31. State Persistence | v1.4 | 0/? | Not started | - |
