@@ -2758,5 +2758,10 @@
     "library": {
       "continueLearning": "Продолжи со лекциите"
     }
+  },
+  "tools": {
+    "title": "Алатки",
+    "translateTab": "Преведи",
+    "analyzeTab": "Анализирај"
   }
 }
