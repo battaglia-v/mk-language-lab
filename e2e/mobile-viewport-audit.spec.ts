@@ -18,7 +18,6 @@ const VIEWPORTS = [
 const PAGES_TO_AUDIT = [
   { path: '/en/learn', name: 'Dashboard' },
   { path: '/en/practice', name: 'Practice' },
-  { path: '/en/practice/pronunciation', name: 'Pronunciation' },
   { path: '/en/practice/grammar', name: 'Grammar' },
   { path: '/en/translate', name: 'Translate' },
   { path: '/en/reader', name: 'Reader' },

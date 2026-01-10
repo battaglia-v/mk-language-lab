@@ -203,20 +203,7 @@ export function generateRecommendations(
     });
   }
 
-  // Priority 5: Pronunciation practice (if low completion)
-  if (progress.pronunciationSessionsCompleted < 3) {
-    recommendations.push({
-      type: 'pronunciation-practice',
-      title: t.pronunciationTitle,
-      description: t.pronunciationDesc,
-      priority: 6,
-      estimatedMinutes: 4,
-      xpReward: 15,
-      href: '/practice/pronunciation',
-    });
-  }
-
-  // Priority 6: New topic exploration
+  // Priority 5: New topic exploration
   if (progress.newTopicsAvailable.length > 0) {
     const newTopic = progress.newTopicsAvailable[0];
     recommendations.push({

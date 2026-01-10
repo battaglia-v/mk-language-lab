@@ -25,20 +25,11 @@ test.describe('Production Assertions', () => {
     expect(bodyText).not.toContain('Pronunciation');
   });
 
-  test('2. /en/practice/pronunciation is blocked or shows Coming Soon', async ({ page }) => {
-    await gotoAndBypass(page, '/en/practice/pronunciation');
+  test('2. /en/practice/pronunciation returns 404 (removed feature)', async ({ page }) => {
+    const response = await page.goto('/en/practice/pronunciation', { waitUntil: 'domcontentloaded' });
 
-    // Should either redirect, show 404, or show "Coming Soon"
-    const url = page.url();
-    const bodyText = await page.locator('body').innerText();
-
-    const isBlocked =
-      url.includes('/practice') && !url.includes('/pronunciation') || // Redirected away
-      bodyText.toLowerCase().includes('coming soon') ||
-      bodyText.toLowerCase().includes('not found') ||
-      bodyText.includes('404');
-
-    expect(isBlocked).toBe(true);
+    // Should return 404 since the pronunciation page was removed
+    expect(response?.status()).toBe(404);
   });
 
   test('3. Alphabet lesson has correct O/Ѓ descriptions and full њ text', async ({ page }) => {

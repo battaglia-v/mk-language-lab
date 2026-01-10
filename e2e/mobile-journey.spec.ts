@@ -97,24 +97,6 @@ test.describe('Mobile Journey Tests', () => {
     }
   });
 
-  test('Pronunciation: Has record + continue flow', async ({ page }) => {
-    await gotoAndBypass(page, '/en/practice/pronunciation');
-
-    // Find and click a session card to start
-    const sessionCard = page.locator('[data-testid="session-card"], .cursor-pointer').first();
-    if (await sessionCard.isVisible()) {
-      await sessionCard.click();
-      await page.waitForTimeout(1000);
-    }
-
-    // Should have: Listen button, Record or fallback, Continue/Next/Skip
-    const hasListenUI = await page.locator('button:has-text("Listen"), button[aria-label*="Listen"], button[aria-label*="Play"]').count() > 0;
-    const hasProgressUI = await page.locator('button:has-text("Next"), button:has-text("Continue"), button:has-text("Skip")').count() > 0;
-
-    // At minimum, should have listen functionality
-    expect(hasListenUI || hasProgressUI).toBe(true);
-  });
-
   test('Grammar: Can start a lesson without server error', async ({ page }) => {
     await gotoAndBypass(page, '/en/practice/grammar');
 
