@@ -20,27 +20,21 @@ interface GrammarSectionProps {
 const TRUNCATE_THRESHOLD = 150;
 
 export default function GrammarSection({ notes }: GrammarSectionProps) {
-  const [expandedNotes, setExpandedNotes] = useState<Set<string>>(new Set());
-  const [expandedExamples, setExpandedExamples] = useState<Set<string>>(new Set());
+  const [expandedNotes, setExpandedNotes] = useState<Record<string, boolean>>({});
+  const [expandedExamples, setExpandedExamples] = useState<Record<string, boolean>>({});
 
   const toggleNote = (id: string) => {
-    const newSet = new Set(expandedNotes);
-    if (newSet.has(id)) {
-      newSet.delete(id);
-    } else {
-      newSet.add(id);
-    }
-    setExpandedNotes(newSet);
+    setExpandedNotes((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
   };
 
   const toggleExamples = (id: string) => {
-    const newSet = new Set(expandedExamples);
-    if (newSet.has(id)) {
-      newSet.delete(id);
-    } else {
-      newSet.add(id);
-    }
-    setExpandedExamples(newSet);
+    setExpandedExamples((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
   };
 
   return (
@@ -59,7 +53,7 @@ export default function GrammarSection({ notes }: GrammarSectionProps) {
         }
 
         const isLong = note.explanation.length > TRUNCATE_THRESHOLD;
-        const isExpanded = expandedNotes.has(note.id);
+        const isExpanded = expandedNotes[note.id];
         const shouldTruncate = isLong && !isExpanded;
 
         return (
@@ -110,7 +104,7 @@ export default function GrammarSection({ notes }: GrammarSectionProps) {
                   Examples
                 </p>
                 <ol className="space-y-4 list-none">
-                  {(expandedExamples.has(note.id) ? examples : examples.slice(0, 4)).map((example, index) => {
+                  {(expandedExamples[note.id] ? examples : examples.slice(0, 4)).map((example, index) => {
                     const parts = splitExample(example);
 
                     return (
@@ -131,20 +125,22 @@ export default function GrammarSection({ notes }: GrammarSectionProps) {
                       </li>
                     );
                   })}
-                  {examples.length > 4 && !expandedExamples.has(note.id) && (
+                  {examples.length > 4 && !expandedExamples[note.id] && (
                     <li>
                       <button
+                        type="button"
                         onClick={() => toggleExamples(note.id)}
                         className="text-sm text-primary hover:text-primary/80 pl-9 flex items-center gap-1"
                       >
                         <ChevronDown className="h-3 w-3" />
-                        Show {examples.length - 4} more examples
+                        Show {examples.length - 4} more example{examples.length - 4 === 1 ? '' : 's'}
                       </button>
                     </li>
                   )}
-                  {expandedExamples.has(note.id) && examples.length > 4 && (
+                  {expandedExamples[note.id] && examples.length > 4 && (
                     <li>
                       <button
+                        type="button"
                         onClick={() => toggleExamples(note.id)}
                         className="text-sm text-muted-foreground hover:text-foreground pl-9 flex items-center gap-1"
                       >

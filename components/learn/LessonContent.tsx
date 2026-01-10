@@ -310,7 +310,7 @@ export default function LessonContent({
                       <ol className="text-sm text-muted-foreground space-y-1 list-decimal list-inside">
                         <li>Work through each section in order</li>
                         <li>Tap vocabulary cards to reveal translations</li>
-                        <li>Read grammar explanations and study the examples</li>
+                        <li>Review grammar explanations and examples</li>
                         <li>Mark each section complete as you finish</li>
                       </ol>
                     </div>
