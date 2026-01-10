@@ -28,7 +28,6 @@
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:fast": "playwright test --workers=4",
     "prepare": "husky",
-    "practice-audio:sync": "tsx scripts/practice-audio-sync.ts",
     "agents:launch": "tsx scripts/launch-sub-agents.ts",
     "agents:orchestrate": "tsx scripts/orchestrate-agents.ts",
     "agents:create-issues": "tsx scripts/create-agent-issues.ts",

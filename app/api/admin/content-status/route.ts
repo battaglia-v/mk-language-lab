@@ -7,7 +7,7 @@ import { canPerformAction, checkReviewerOrAdmin } from '@/lib/admin';
 export const dynamic = 'force-dynamic';
 
 const statusChangeSchema = z.object({
-  contentType: z.enum(['curriculum_lesson', 'practice_vocabulary', 'word_of_the_day', 'practice_audio']),
+  contentType: z.enum(['curriculum_lesson', 'practice_vocabulary', 'word_of_the_day']),
   contentId: z.string(),
   action: z.enum(['submit_for_review', 'approve', 'publish', 'unpublish']),
   notes: z.string().optional(),
@@ -65,38 +65,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
     }
 
-    // For now, use the existing status field for practice_audio
-    // Other content types need migration for contentStatus field
-    if (data.contentType === 'practice_audio') {
-      const audio = await prisma.practiceAudio.findUnique({
-        where: { id: data.contentId },
-        select: { status: true },
-      });
-      
-      if (!audio) {
-        return NextResponse.json({ error: 'Content not found' }, { status: 404 });
-      }
-
-      const currentStatus = audio.status;
-      const audioStatus = newStatus === 'published' ? 'published' : 'draft';
-      
-      await prisma.practiceAudio.update({
-        where: { id: data.contentId },
-        data: { 
-          status: audioStatus as 'draft' | 'published',
-          publishedAt: newStatus === 'published' ? new Date() : undefined,
-        },
-      });
-
-      return NextResponse.json({
-        success: true,
-        previousStatus: currentStatus,
-        newStatus: audioStatus,
-        message: `Content ${data.action.replace('_', ' ')}ed successfully`,
-      });
-    }
-
-    // For other content types, the contentStatus field needs migration
+    // For content types, the contentStatus field needs migration
     // Return a helpful message until migration is applied
     return NextResponse.json({
       error: 'Content workflow not yet available for this content type. Run prisma migrate to enable.',

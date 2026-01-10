@@ -247,12 +247,11 @@ model CurriculumLesson {
   publishedAt   DateTime? // Timestamp of publication
 
   // Content sections
-  vocabularyItems    VocabularyItem[]
-  grammarNotes       GrammarNote[]
-  exercises          Exercise[]
-  dialogues          Dialogue[]
-  pictureExercises   PictureExercise[]
-  listeningExercises ListeningExercise[]
+  vocabularyItems  VocabularyItem[]
+  grammarNotes     GrammarNote[]
+  exercises        Exercise[]
+  dialogues        Dialogue[]
+  pictureExercises PictureExercise[]
 
   // Relations
   module       Module               @relation(fields: [moduleId], references: [id], onDelete: Cascade)
@@ -465,39 +464,6 @@ model PictureExerciseItem {
   @@index([exerciseId, orderIndex])
 }
 
-// ListeningExercise - comprehension tasks (audio support in future)
-model ListeningExercise {
-  id           String   @id @default(cuid())
-  lessonId     String
-  title        String
-  instructions String
-  transcriptMk String?  @db.Text
-  transcriptEn String?  @db.Text
-  orderIndex   Int
-  createdAt    DateTime @default(now())
-
-  lesson    CurriculumLesson    @relation(fields: [lessonId], references: [id], onDelete: Cascade)
-  questions ListeningQuestion[]
-
-  @@index([lessonId, orderIndex])
-}
-
-// ListeningQuestion - questions for listening exercises
-model ListeningQuestion {
-  id            String  @id @default(cuid())
-  exerciseId    String
-  question      String
-  type          String  @default("multiple_choice") // multiple_choice, fill_blank, true_false
-  options       String? @db.Text // JSON array for MC
-  correctAnswer String
-  explanation   String?
-  orderIndex    Int
-
-  exercise ListeningExercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
-
-  @@index([exerciseId, orderIndex])
-}
-
 // Word of the Day - managed by admins
 model WordOfTheDay {
   id            String   @id @default(cuid())
@@ -561,47 +527,6 @@ model PracticeVocabulary {
   @@index([includeInWOTD, scheduledDate])
   @@index([formality])
   @@index([contentStatus])
-}
-
-model PracticeAudio {
-  id         String              @id @default(cuid())
-  promptId   String              @unique
-  language   String              @default("mk")
-  speaker    String?
-  speed      String? // normal, slow
-  variant    String? // female, male, etc.
-  duration   Float?
-  status     PracticeAudioStatus @default(draft)
-  sourceType PracticeAudioSource @default(human)
-  cdnUrl     String
-  slowUrl    String?
-  waveform   Json?
-  notes      String?             @db.Text
-
-  // Content review workflow fields
-  lastEditedBy String? // User ID who last edited
-  lastEditedAt DateTime? // Timestamp of last edit
-  approvedBy   String? // User ID who approved
-  approvedAt   DateTime? // Timestamp of approval
-
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  publishedAt DateTime?
-
-  @@index([promptId])
-  @@index([status])
-}
-
-enum PracticeAudioStatus {
-  draft
-  processing
-  published
-  archived
-}
-
-enum PracticeAudioSource {
-  human
-  tts
 }
 
 // Custom Deck - user-created practice decks
