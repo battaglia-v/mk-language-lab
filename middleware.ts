@@ -16,12 +16,30 @@ const intlMiddleware = createMiddleware({
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Redirect legacy /translator/history to /translate with history sheet
+  // Redirect legacy /translator/history to /tools with history sheet
   if (pathname.match(/^\/(en|mk)\/translator\/history$/)) {
     const locale = pathname.split('/')[1];
     const url = request.nextUrl.clone();
-    url.pathname = `/${locale}/translate`;
+    url.pathname = `/${locale}/tools`;
     url.searchParams.set('sheet', 'history');
+    return NextResponse.redirect(url, 301);
+  }
+
+  // Redirect /translate to /tools (translate is now part of unified tools page)
+  if (pathname.match(/^\/(en|mk)\/translate$/)) {
+    const locale = pathname.split('/')[1];
+    const url = request.nextUrl.clone();
+    url.pathname = `/${locale}/tools`;
+    url.searchParams.set('mode', 'translate');
+    return NextResponse.redirect(url, 301);
+  }
+
+  // Redirect /reader/analyze to /tools?mode=analyze
+  if (pathname.match(/^\/(en|mk)\/reader\/analyze$/)) {
+    const locale = pathname.split('/')[1];
+    const url = request.nextUrl.clone();
+    url.pathname = `/${locale}/tools`;
+    url.searchParams.set('mode', 'analyze');
     return NextResponse.redirect(url, 301);
   }
 

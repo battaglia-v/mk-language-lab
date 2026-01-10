@@ -418,22 +418,24 @@ export default function ToolsPageClient({ initialMode, labels }: ToolsPageClient
             testId="tools-more-sheet"
           >
             <div className="space-y-2">
-              <button
+              <Button
+                variant="ghost"
                 onClick={() => { setMoreOpen(false); setHistoryOpen(true); }}
-                className="flex w-full items-center gap-3 rounded-xl p-4 hover:bg-muted/30"
+                className="flex w-full items-center justify-start gap-3 rounded-xl p-4 h-auto hover:bg-muted/30"
                 data-testid="tools-open-history"
               >
                 <History className="h-5 w-5" /><span className="flex-1 text-left font-medium">{t('history', { default: 'History' })}</span>
                 <span className="text-sm text-muted-foreground">{history.length}</span>
-              </button>
-              <button
+              </Button>
+              <Button
+                variant="ghost"
                 onClick={() => { setMoreOpen(false); setSavedOpen(true); }}
-                className="flex w-full items-center gap-3 rounded-xl p-4 hover:bg-muted/30"
+                className="flex w-full items-center justify-start gap-3 rounded-xl p-4 h-auto hover:bg-muted/30"
                 data-testid="tools-open-saved"
               >
                 <BookmarkPlus className="h-5 w-5" /><span className="flex-1 text-left font-medium">{t('savedTitle', { default: 'Saved phrases' })}</span>
                 <span className="text-sm text-muted-foreground">{phrases.length}</span>
-              </button>
+              </Button>
             </div>
           </BottomSheet>
 
