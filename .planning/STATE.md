@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-10)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** v1.4 Power User Feedback - Phase 28 Navigation Overhaul
+**Current focus:** v1.4 Power User Feedback - Phase 29 Lesson Enhancements
 
 ## Current Position
 
-Phase: 28 of 32 (Navigation Overhaul)
-Plan: 3 of 3 in current phase
-Status: Phase complete
-Last activity: 2026-01-10 — Completed 28-03-PLAN.md
+Phase: 29 of 32 (Lesson Enhancements)
+Plan: 1 of ? in current phase
+Status: In progress
+Last activity: 2026-01-10 — Completed 29-01-PLAN.md
 
-Progress: [███░░░░░░░] 30% (Phase 28 complete, ready for Phase 29)
+Progress: [████░░░░░░] 35% (Phase 29 started)
 
 ## Milestone Summary
 
@@ -76,9 +76,9 @@ See `.planning/MILESTONES.md` for full details.
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 51
+- Total plans completed: 52
 - Average duration: ~9 min
-- Total execution time: ~7.8 hours
+- Total execution time: ~8.0 hours
 
 **By Milestone:**
 
@@ -114,6 +114,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-10
-Stopped at: Completed 28-03-PLAN.md (Learning Paths Removal)
+Stopped at: Completed 29-01-PLAN.md (Vocabulary Save & Sort)
 Resume file: None
-Next step: Plan Phase 29 (Lesson Enhancements)
+Next step: Plan 29-02 or continue Phase 29
