@@ -2071,6 +2071,225 @@
           ]
         }
       ]
+    },
+    {
+      "id": "reader-b1-004",
+      "title": {
+        "mk": "Македонски легенди",
+        "en": "Macedonian Legends"
+      },
+      "level": "B1",
+      "category": "culture",
+      "estimatedMinutes": 8,
+      "wordCount": 200,
+      "xpReward": 50,
+      "sentences": [
+        {
+          "id": "s1",
+          "mk": "Во Македонија постојат многу легенди што се пренесуваат од генерација на генерација.",
+          "en": "In Macedonia there are many legends that are passed from generation to generation.",
+          "audio": "/audio/reader/b1-004/s1.mp3",
+          "vocabulary": [
+            {"word": "легенди", "meaning": "legends", "pos": "noun"},
+            {"word": "постојат", "meaning": "exist", "pos": "verb"},
+            {"word": "се пренесуваат", "meaning": "are passed/transmitted", "pos": "passive verb"}
+          ],
+          "culturalNote": "Oral tradition (усна традиција) is an important part of Macedonian cultural heritage"
+        },
+        {
+          "id": "s2",
+          "mk": "Една од најпознатите е легендата за Охридското Езеро.",
+          "en": "One of the most famous is the legend of Lake Ohrid.",
+          "audio": "/audio/reader/b1-004/s2.mp3",
+          "vocabulary": [
+            {"word": "најпознатите", "meaning": "the most famous", "pos": "superlative adj"},
+            {"word": "легендата", "meaning": "the legend", "pos": "noun (def)"}
+          ]
+        },
+        {
+          "id": "s3",
+          "mk": "Се раскажува дека некогаш, на местото на езерото, имало големо село.",
+          "en": "It is told that once, in the place of the lake, there was a large village.",
+          "audio": "/audio/reader/b1-004/s3.mp3",
+          "vocabulary": [
+            {"word": "се раскажува", "meaning": "it is told/narrated", "pos": "passive verb"},
+            {"word": "некогаш", "meaning": "once upon a time/long ago", "pos": "adverb"},
+            {"word": "имало", "meaning": "there was (past)", "pos": "verb (past)"}
+          ],
+          "grammarNote": "се раскажува дека - impersonal passive for storytelling; имало - past tense neuter for 'there was'"
+        },
+        {
+          "id": "s4",
+          "mk": "Во тоа село, жителите биле среќни и богати.",
+          "en": "In that village, the inhabitants were happy and rich.",
+          "audio": "/audio/reader/b1-004/s4.mp3",
+          "vocabulary": [
+            {"word": "жителите", "meaning": "the inhabitants", "pos": "noun (def)"},
+            {"word": "биле", "meaning": "were (past)", "pos": "verb (past)"},
+            {"word": "богати", "meaning": "rich", "pos": "adjective"}
+          ],
+          "grammarNote": "биле - past tense plural of 'to be' (narrative mode)"
+        },
+        {
+          "id": "s5",
+          "mk": "Еден ден, во селото дошла стара жена која барала вода и леб.",
+          "en": "One day, an old woman came to the village who was asking for water and bread.",
+          "audio": "/audio/reader/b1-004/s5.mp3",
+          "vocabulary": [
+            {"word": "дошла", "meaning": "came (fem)", "pos": "verb (past)"},
+            {"word": "барала", "meaning": "was asking for", "pos": "verb (past)"},
+            {"word": "леб", "meaning": "bread", "pos": "noun"}
+          ],
+          "grammarNote": "Relative clause: која барала - 'who was asking'"
+        },
+        {
+          "id": "s6",
+          "mk": "Никој не сакал да ѝ помогне.",
+          "en": "No one wanted to help her.",
+          "audio": "/audio/reader/b1-004/s6.mp3",
+          "vocabulary": [
+            {"word": "никој", "meaning": "no one", "pos": "pronoun"},
+            {"word": "сакал", "meaning": "wanted (past)", "pos": "verb (past)"},
+            {"word": "ѝ помогне", "meaning": "to help her", "pos": "verb phrase"}
+          ]
+        },
+        {
+          "id": "s7",
+          "mk": "Само едно младо момиче, чие име било Охрида, ѝ дало вода и леб.",
+          "en": "Only one young girl, whose name was Ohrida, gave her water and bread.",
+          "audio": "/audio/reader/b1-004/s7.mp3",
+          "vocabulary": [
+            {"word": "момиче", "meaning": "girl", "pos": "noun"},
+            {"word": "чие", "meaning": "whose", "pos": "relative pronoun"},
+            {"word": "дало", "meaning": "gave (neut)", "pos": "verb (past)"}
+          ],
+          "grammarNote": "чие име - relative clause with 'whose' (чиј/чија/чие)"
+        },
+        {
+          "id": "s8",
+          "mk": "Старата жена рекла: \"Оваа ноќ, бегај од селото. Утре ќе биде доцна.\"",
+          "en": "The old woman said: \"Tonight, flee from the village. Tomorrow will be too late.\"",
+          "audio": "/audio/reader/b1-004/s8.mp3",
+          "vocabulary": [
+            {"word": "рекла", "meaning": "said (fem)", "pos": "verb (past)"},
+            {"word": "бегај", "meaning": "flee (imperative)", "pos": "verb"},
+            {"word": "доцна", "meaning": "late", "pos": "adverb"}
+          ],
+          "grammarNote": "Direct speech in narrative: рекла + quoted speech"
+        },
+        {
+          "id": "s9",
+          "mk": "Момичето послушало и избегало од селото истата ноќ.",
+          "en": "The girl obeyed and fled from the village that same night.",
+          "audio": "/audio/reader/b1-004/s9.mp3",
+          "vocabulary": [
+            {"word": "послушало", "meaning": "obeyed (neut)", "pos": "verb (past)"},
+            {"word": "избегало", "meaning": "fled (neut)", "pos": "verb (past)"},
+            {"word": "истата", "meaning": "the same", "pos": "adjective (def)"}
+          ]
+        },
+        {
+          "id": "s10",
+          "mk": "На утрото, целото село било потопено под вода.",
+          "en": "In the morning, the entire village had been submerged under water.",
+          "audio": "/audio/reader/b1-004/s10.mp3",
+          "vocabulary": [
+            {"word": "на утрото", "meaning": "in the morning", "pos": "phrase"},
+            {"word": "потопено", "meaning": "submerged", "pos": "past participle"},
+            {"word": "под вода", "meaning": "under water", "pos": "phrase"}
+          ]
+        },
+        {
+          "id": "s11",
+          "mk": "На тоа место се создало прекрасно езеро.",
+          "en": "In that place, a beautiful lake was created.",
+          "audio": "/audio/reader/b1-004/s11.mp3",
+          "vocabulary": [
+            {"word": "се создало", "meaning": "was created", "pos": "passive verb"},
+            {"word": "прекрасно", "meaning": "beautiful", "pos": "adjective"}
+          ]
+        },
+        {
+          "id": "s12",
+          "mk": "Езерото го добило името по момичето - Охрид.",
+          "en": "The lake received its name after the girl - Ohrid.",
+          "audio": "/audio/reader/b1-004/s12.mp3",
+          "vocabulary": [
+            {"word": "добило", "meaning": "received (neut)", "pos": "verb (past)"},
+            {"word": "името", "meaning": "the name", "pos": "noun (def)"},
+            {"word": "по", "meaning": "after/according to", "pos": "preposition"}
+          ]
+        },
+        {
+          "id": "s13",
+          "mk": "Луѓето велат дека на дното на езерото сè уште може да се видат остатоци од селото.",
+          "en": "People say that at the bottom of the lake, remains of the village can still be seen.",
+          "audio": "/audio/reader/b1-004/s13.mp3",
+          "vocabulary": [
+            {"word": "велат", "meaning": "say/tell", "pos": "verb"},
+            {"word": "дното", "meaning": "the bottom", "pos": "noun (def)"},
+            {"word": "остатоци", "meaning": "remains", "pos": "noun"},
+            {"word": "сè уште", "meaning": "still", "pos": "adverb"}
+          ]
+        },
+        {
+          "id": "s14",
+          "mk": "Оваа легенда нè учи дека добрината секогаш се наградува.",
+          "en": "This legend teaches us that kindness is always rewarded.",
+          "audio": "/audio/reader/b1-004/s14.mp3",
+          "vocabulary": [
+            {"word": "нè учи", "meaning": "teaches us", "pos": "verb phrase"},
+            {"word": "добрината", "meaning": "kindness/goodness", "pos": "noun (def)"},
+            {"word": "се наградува", "meaning": "is rewarded", "pos": "passive verb"}
+          ]
+        },
+        {
+          "id": "s15",
+          "mk": "Легендите како оваа ја чуваат душата на македонскиот народ.",
+          "en": "Legends like this one preserve the soul of the Macedonian people.",
+          "audio": "/audio/reader/b1-004/s15.mp3",
+          "vocabulary": [
+            {"word": "ја чуваат", "meaning": "preserve/keep", "pos": "verb phrase"},
+            {"word": "душата", "meaning": "the soul", "pos": "noun (def)"},
+            {"word": "народ", "meaning": "people/nation", "pos": "noun"}
+          ]
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "question": {
+            "mk": "Зошто старата жена ѝ рекла на момичето да бега?",
+            "en": "Why did the old woman tell the girl to flee?"
+          },
+          "options": [
+            {"mk": "Затоа што имало војна", "correct": false},
+            {"mk": "Затоа што селото ќе било уништено", "correct": true},
+            {"mk": "Затоа што жената била болна", "correct": false}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Што симболизира оваа легенда?",
+            "en": "What does this legend symbolize?"
+          },
+          "options": [
+            {"mk": "Важноста на богатството", "correct": false},
+            {"mk": "Дека добрината се наградува", "correct": true},
+            {"mk": "Дека езерата се опасни", "correct": false}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Како езерото го добило своето име?",
+            "en": "How did the lake get its name?"
+          },
+          "options": [
+            {"mk": "По името на селото", "correct": false},
+            {"mk": "По името на момичето Охрида", "correct": true},
+            {"mk": "По старата жена", "correct": false}
+          ]
+        }
+      ]
     }
   ],
   "levels": {
