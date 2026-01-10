@@ -1619,6 +1619,9 @@
   "userMenu": {
     "signIn": "Најави се",
     "profile": "Профил",
+    "moreHeader": "Повеќе",
+    "settings": "Подесувања",
+    "help": "Помош",
     "about": "За нас",
     "socialHeader": "Македонски Јазичен Кут",
     "socialSubtitle": "Следи за повеќе македонска содржина",

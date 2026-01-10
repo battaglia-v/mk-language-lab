@@ -1619,6 +1619,9 @@
   "userMenu": {
     "signIn": "Sign In",
     "profile": "Profile",
+    "moreHeader": "More",
+    "settings": "Settings",
+    "help": "Help",
     "about": "About",
     "socialHeader": "Macedonian Language Corner",
     "socialSubtitle": "Follow for more Macedonian content",
