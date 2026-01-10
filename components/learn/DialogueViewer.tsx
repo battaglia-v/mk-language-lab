@@ -1,9 +1,15 @@
 'use client';
 
 import { useState, useCallback, useRef } from 'react';
-import { Eye, EyeOff, RotateCcw, ChevronRight } from 'lucide-react';
+import { Eye, EyeOff, RotateCcw, ChevronRight, Lightbulb } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
 
 // ============================================================================
@@ -87,10 +93,31 @@ export function DialogueViewer({
   const [showTransliteration, setShowTransliteration] = useState(initialShowTransliteration);
   const [blankAnswers, setBlankAnswers] = useState<Record<string, Record<number, string>>>({});
   const [checkedBlanks, setCheckedBlanks] = useState<Record<string, Record<number, boolean>>>({});
+  const [hintsVisible, setHintsVisible] = useState<Record<string, Record<number, boolean>>>({});
   const [isComplete, setIsComplete] = useState(false);
 
   // Refs
   const lineRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+
+  // Generate hint from answer (first letter + underscores showing length)
+  const generateHint = useCallback((answer: string) => {
+    const trimmed = answer.trim();
+    if (trimmed.length <= 1) return trimmed;
+    const firstChar = trimmed.charAt(0);
+    const length = Math.min(trimmed.length - 1, 5);
+    return `${firstChar}${'_'.repeat(length)}`;
+  }, []);
+
+  // Toggle hint visibility for a specific blank
+  const toggleHint = useCallback((lineId: string, position: number) => {
+    setHintsVisible(prev => ({
+      ...prev,
+      [lineId]: {
+        ...prev[lineId],
+        [position]: !prev[lineId]?.[position],
+      },
+    }));
+  }, []);
 
   // Handle blank input change
   const handleBlankChange = useCallback((lineId: string, position: number, value: string) => {
@@ -149,6 +176,7 @@ export function DialogueViewer({
   const handleResetBlanks = useCallback(() => {
     setBlankAnswers({});
     setCheckedBlanks({});
+    setHintsVisible({});
     setIsComplete(false);
   }, []);
 
@@ -171,33 +199,64 @@ export function DialogueViewer({
       <span className="flex flex-wrap items-baseline gap-1">
         {words.map((word, idx) => {
           if (blankPositions.has(idx)) {
-            const blank = line.blanksData!.find(b => b.position === idx)!;
+            const blank = line.blanksData?.find(b => b.position === idx);
+            // Skip rendering blank input if blank data not found
+            if (!blank) return <span key={idx}>{word}</span>;
+
             const userAnswer = blankAnswers[line.id]?.[idx] || '';
             const isChecked = checkedBlanks[line.id]?.[idx] !== undefined;
             const isCorrect = checkedBlanks[line.id]?.[idx];
 
+            const hintText = blank.hint || generateHint(blank.answer);
+            const isHintVisible = hintsVisible[line.id]?.[idx];
+
             return (
-              <span key={idx} className="inline-flex flex-col items-center">
-                <input
-                  type="text"
-                  value={userAnswer}
-                  onChange={(e) => handleBlankChange(line.id, idx, e.target.value)}
-                  placeholder={blank.hint || '...'}
-                  disabled={isChecked && isCorrect}
-                  className={cn(
-                    'w-24 px-2 py-1 text-center border-b-2 bg-transparent outline-none transition-colors',
-                    'text-base font-medium',
-                    !isChecked && 'border-primary/50 focus:border-primary',
-                    isChecked && isCorrect && 'border-green-500 text-green-600',
-                    isChecked && !isCorrect && 'border-red-500 text-red-600'
+              <TooltipProvider key={idx}>
+                <span className="inline-flex flex-col items-center gap-0.5">
+                  <span className="inline-flex items-center gap-1">
+                    <input
+                      type="text"
+                      value={userAnswer}
+                      onChange={(e) => handleBlankChange(line.id, idx, e.target.value)}
+                      placeholder={isHintVisible ? hintText : '____'}
+                      disabled={isChecked && isCorrect}
+                      className={cn(
+                        'w-28 px-2 py-1 text-center border-b-2 bg-transparent outline-none transition-colors',
+                        'text-base font-medium',
+                        !isChecked && 'border-primary/50 focus:border-primary',
+                        isChecked && isCorrect && 'border-green-500 text-green-600 dark:text-green-400',
+                        isChecked && !isCorrect && 'border-red-500 text-red-600 dark:text-red-400'
+                      )}
+                      autoComplete="off"
+                      spellCheck={false}
+                    />
+                    {!isChecked && (
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <button
+                            type="button"
+                            onClick={() => toggleHint(line.id, idx)}
+                            className={cn(
+                              'p-1 rounded-full transition-colors',
+                              isHintVisible
+                                ? 'text-amber-500 bg-amber-500/20'
+                                : 'text-muted-foreground hover:text-amber-500 hover:bg-amber-500/10'
+                            )}
+                          >
+                            <Lightbulb className="h-3.5 w-3.5" />
+                          </button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          {isHintVisible ? 'Hide hint' : 'Show hint'}
+                        </TooltipContent>
+                      </Tooltip>
+                    )}
+                  </span>
+                  {isChecked && !isCorrect && (
+                    <span className="text-xs text-green-600 dark:text-green-400 font-medium">{blank.answer}</span>
                   )}
-                  autoComplete="off"
-                  spellCheck={false}
-                />
-                {isChecked && !isCorrect && (
-                  <span className="text-xs text-green-600 mt-1">{blank.answer}</span>
-                )}
-              </span>
+                </span>
+              </TooltipProvider>
             );
           }
           return <span key={idx}>{word}</span>;
@@ -208,9 +267,11 @@ export function DialogueViewer({
 
   // Check if all blanks are filled
   const allBlanksFilled = dialogue.lines
-    .filter(l => l.hasBlanks && l.blanksData)
-    .every(line => 
-      line.blanksData!.every(blank => 
+    .filter((l): l is DialogueLine & { blanksData: BlankData[] } =>
+      l.hasBlanks && Array.isArray(l.blanksData) && l.blanksData.length > 0
+    )
+    .every(line =>
+      line.blanksData.every(blank =>
         blankAnswers[line.id]?.[blank.position]?.trim()
       )
     );

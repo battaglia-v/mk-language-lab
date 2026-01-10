@@ -313,12 +313,12 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
         <CardHeader>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-black">
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-primary-foreground">
                 <Instagram className="h-6 w-6" />
               </div>
               <div>
-                <CardTitle className="text-2xl font-semibold text-white">{t('title')}</CardTitle>
-                <CardDescription className="text-slate-300">{t('subtitle')}</CardDescription>
+                <CardTitle className="text-2xl font-semibold text-foreground">{t('title')}</CardTitle>
+                <CardDescription className="text-muted-foreground">{t('subtitle')}</CardDescription>
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -353,12 +353,12 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
         <CardHeader>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-black">
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-primary-foreground">
                 <Instagram className="h-6 w-6" />
               </div>
               <div>
-                <CardTitle className="text-2xl font-semibold text-white">{t('title')}</CardTitle>
-                <CardDescription className="text-slate-300">{t('subtitle')}</CardDescription>
+                <CardTitle className="text-2xl font-semibold text-foreground">{t('title')}</CardTitle>
+                <CardDescription className="text-muted-foreground">{t('subtitle')}</CardDescription>
               </div>
             </div>
             <Button variant="outline" size="sm" asChild>
@@ -389,12 +389,12 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
       <CardHeader>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-black">
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-primary-foreground">
               <Instagram className="h-6 w-6" />
             </div>
             <div>
-              <CardTitle className="text-2xl font-semibold text-white">{t('title')}</CardTitle>
-              <CardDescription className="text-slate-300">{t('subtitle')}</CardDescription>
+              <CardTitle className="text-2xl font-semibold text-foreground">{t('title')}</CardTitle>
+              <CardDescription className="text-muted-foreground">{t('subtitle')}</CardDescription>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -465,9 +465,10 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
                     onClick={() => toggleTagFilter(tag.id)}
                     style={
                       isSelected
-                        ? { backgroundColor: tag.color, borderColor: tag.color, color: '#fff' }
+                        ? { backgroundColor: tag.color, borderColor: tag.color }
                         : undefined
                     }
+                    className={isSelected ? 'text-white dark:text-black' : undefined}
                     data-testid={`daily-lessons-tag-${tag.id}`}
                   >
                     {tag.icon && <span className="text-sm">{tag.icon}</span>}
@@ -557,7 +558,7 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
                               className={`h-4 w-4 transition-all ${
                                 savedPostIds.has(post.id)
                                   ? 'fill-yellow-400 text-yellow-400'
-                                  : 'text-white'
+                                  : 'text-foreground'
                               }`}
                             />
                           </Button>
@@ -680,7 +681,7 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
                               className={`h-4 w-4 transition-all ${
                                 savedPostIds.has(post.id)
                                   ? 'fill-yellow-400 text-yellow-400'
-                                  : 'text-white'
+                                  : 'text-foreground'
                               }`}
                             />
                           </Button>

@@ -6,11 +6,11 @@ import type { PracticeAudioClip } from '@/components/learn/quick-practice/types'
 type MasteryLevel = 'new' | 'learning' | 'familiar' | 'practiced' | 'mastered';
 
 const MASTERY_CONFIG: Record<MasteryLevel, { label: string; color: string; bgColor: string }> = {
-  new: { label: 'New', color: 'text-slate-400', bgColor: 'bg-slate-500/20' },
-  learning: { label: 'Learning', color: 'text-amber-400', bgColor: 'bg-amber-500/20' },
-  familiar: { label: 'Familiar', color: 'text-sky-400', bgColor: 'bg-sky-500/20' },
-  practiced: { label: 'Practiced', color: 'text-violet-400', bgColor: 'bg-violet-500/20' },
-  mastered: { label: 'Mastered', color: 'text-emerald-400', bgColor: 'bg-emerald-500/20' },
+  new: { label: 'New', color: 'text-slate-600 dark:text-slate-400', bgColor: 'bg-slate-500/20' },
+  learning: { label: 'Learning', color: 'text-amber-600 dark:text-amber-400', bgColor: 'bg-amber-500/20' },
+  familiar: { label: 'Familiar', color: 'text-sky-600 dark:text-sky-400', bgColor: 'bg-sky-500/20' },
+  practiced: { label: 'Practiced', color: 'text-violet-600 dark:text-violet-400', bgColor: 'bg-violet-500/20' },
+  mastered: { label: 'Mastered', color: 'text-emerald-600 dark:text-emerald-400', bgColor: 'bg-emerald-500/20' },
 };
 
 type QuickPracticePromptProps = {
@@ -73,7 +73,7 @@ export function QuickPracticePrompt({
       </div>
       <p
         className={cn(
-          'break-words font-bold leading-tight text-slate-50 text-balance',
+          'break-words font-bold leading-tight text-foreground text-balance',
           isModalVariant ? 'text-3xl md:text-4xl' : 'text-3xl md:text-[34px]',
         )}
       >

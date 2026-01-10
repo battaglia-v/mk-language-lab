@@ -34,6 +34,9 @@ const COUNTRY_NAMES = new Set([
   'србија', 'хрватска', 'бугарија', 'албанија', 'словенија',
 ]);
 
+// Regex for Macedonian Cyrillic capital letters (А-Я plus Ќ, Ѓ, Ѕ, Љ, Њ, Џ)
+const CYRILLIC_CAPITAL_REGEX = /^[\u0400-\u042F\u0403\u0405\u0408-\u040B\u040F]/;
+
 /**
  * Filter vocabulary items to remove:
  * 1. Items where English matches Macedonian (untranslated)
@@ -66,9 +69,8 @@ function filterVocabulary(items: VocabularyItem[]): VocabularyItem[] {
         .replace(/[а-ш]/g, 'x');
       if (mkLatinized.length > 0 && enLower.length <= mk.length + 1) {
         // Likely a proper noun that was transliterated, not translated
-        const firstCharMk = mk[0];
-        // Check if starts with capital (Cyrillic А-Я)
-        if (firstCharMk >= 'А' && firstCharMk <= 'Ш') {
+        // Check if starts with Cyrillic capital letter
+        if (CYRILLIC_CAPITAL_REGEX.test(mk)) {
           return false; // Skip proper nouns
         }
       }
@@ -81,8 +83,7 @@ function filterVocabulary(items: VocabularyItem[]): VocabularyItem[] {
     if (COUNTRY_NAMES.has(mkLower)) return false;
 
     // Skip if it looks like a name (capital letter + the English is lowercase same word)
-    const firstChar = mk[0];
-    if (firstChar >= 'А' && firstChar <= 'Ш') {
+    if (CYRILLIC_CAPITAL_REGEX.test(mk)) {
       // Starts with capital - check if translation is suspicious
       if (enLower === mk.toLowerCase() ||
           en.length <= 3 ||
