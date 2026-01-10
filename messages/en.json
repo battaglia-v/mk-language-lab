@@ -382,6 +382,13 @@
       "practiceDesc": "Reinforce what you learned",
       "continueNext": "Next Lesson",
       "backToLessons": "Back to Lessons"
+    },
+    "curriculumSource": {
+      "title": "About Our Curriculum",
+      "description": "Our lessons follow official Macedonian language textbooks from UKIM (University of Ss. Cyril and Methodius).",
+      "a1": "A1: Based on Тешкото (Teshkoto)",
+      "a2": "A2: Based on Лозје (Lozje)",
+      "b1": "B1: Based on Златоврв (Zlatovrv)"
     }
   },
   "grammarExercise": {
