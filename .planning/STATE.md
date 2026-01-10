@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-10)
 
 ## Current Position
 
-Phase: 36 of 41 (A2 Reader Wiring)
-Plan: Not started
-Status: Ready to plan
-Last activity: 2026-01-10 — Milestone v1.6 created
+Phase: 36 of 41 (A2 Reader Wiring) — COMPLETE
+Plan: 1 of 1 in current phase
+Status: Phase complete
+Last activity: 2026-01-10 — Completed 36-01-PLAN.md
 
-Progress: ░░░░░░░░░░ 0%
+Progress: █░░░░░░░░░ 17%
 
 ## Milestone Summary
 
@@ -84,7 +84,6 @@ All decisions logged in PROJECT.md Key Decisions table with outcomes.
 ### Deferred Issues
 
 - Cloudflare migration — Re-evaluate when OpenNext supports Next.js 16
-- ISS-001: Wire A2 graded readers to reader UI — content exists, not wired
 
 ### Blockers/Concerns
 
@@ -103,5 +102,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-10
-Stopped at: Milestone v1.6 initialization
+Stopped at: Completed Phase 36 (A2 Reader Wiring)
 Resume file: None
