@@ -1,9 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { CheckCircle, XCircle, Target, Lightbulb, RotateCcw } from 'lucide-react';
+import { CheckCircle, XCircle, Target, Lightbulb, RotateCcw, Trophy } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface Exercise {
@@ -20,6 +22,7 @@ interface ExerciseSectionProps {
 }
 
 export default function ExerciseSection({ exercises }: ExerciseSectionProps) {
+  const t = useTranslations('learn.exercises');
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   const [results, setResults] = useState<Record<string, boolean>>({});
@@ -29,6 +32,17 @@ export default function ExerciseSection({ exercises }: ExerciseSectionProps) {
   const [selectedMacedonian, setSelectedMacedonian] = useState<Record<string, string | null>>({});
   // Word order exercise state: { exerciseId: [selected words in order] }
   const [wordOrderSelections, setWordOrderSelections] = useState<Record<string, string[]>>({});
+
+  // Handle retake all exercises (reset quiz)
+  const handleRetakeAll = () => {
+    setAnswers({});
+    setChecked({});
+    setResults({});
+    setHintsShown({});
+    setMatchingSelections({});
+    setSelectedMacedonian({});
+    setWordOrderSelections({});
+  };
 
   // Get first letter hint for fill-in-blank exercises
   const getFirstLetterHint = (correctAnswer: string) => {
@@ -629,6 +643,7 @@ export default function ExerciseSection({ exercises }: ExerciseSectionProps) {
   const completedCount = Object.keys(checked).filter(id => checked[id]).length;
   const correctCount = Object.values(results).filter(Boolean).length;
   const progressPercentage = totalExercises > 0 ? (completedCount / totalExercises) * 100 : 0;
+  const quizCompleted = completedCount === totalExercises && totalExercises > 0;
 
   return (
     <div className="space-y-6">
@@ -713,6 +728,36 @@ export default function ExerciseSection({ exercises }: ExerciseSectionProps) {
           )}
         </div>
       ))}
+
+      {/* Quiz Complete - Retake Section */}
+      {quizCompleted && (
+        <Card className="p-6 bg-muted/30 border-border/50">
+          <div className="flex flex-col items-center text-center space-y-4">
+            <div className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center">
+              <Trophy className="h-6 w-6 text-primary" />
+            </div>
+            <div className="space-y-2">
+              <h3 className="font-semibold text-lg">{t('quizComplete')}</h3>
+              <p className={cn(
+                'text-sm',
+                correctCount === totalExercises
+                  ? 'text-green-600 dark:text-green-400'
+                  : 'text-muted-foreground'
+              )}>
+                {t('scoreText', { correct: correctCount, total: totalExercises })}
+              </p>
+            </div>
+            <Button
+              onClick={handleRetakeAll}
+              variant="outline"
+              className="min-h-[44px]"
+            >
+              <RotateCcw className="h-4 w-4 mr-2" />
+              {t('retakeQuiz')}
+            </Button>
+          </div>
+        </Card>
+      )}
     </div>
   );
 }

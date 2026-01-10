@@ -364,6 +364,11 @@
       "practiceDescription": "Тестирај се на овие {count} зборови",
       "practiceNow": "Вежбај сега"
     },
+    "exercises": {
+      "quizComplete": "Квизот е завршен!",
+      "scoreText": "Имате {correct} од {total} точни",
+      "retakeQuiz": "Повтори квиз"
+    },
     "lessonComplete": {
       "title": "Лекцијата е завршена!",
       "subtitle": "Одлична работа со оваа лекција",
