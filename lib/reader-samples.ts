@@ -30,6 +30,21 @@ import day28 from '@/data/reader/challenges/30-day-little-prince/day28-maliot-pr
 import day29 from '@/data/reader/challenges/30-day-little-prince/day29-maliot-princ.json';
 import day30 from '@/data/reader/challenges/30-day-little-prince/day30-maliot-princ.json';
 import dayInSkopje from '@/data/reader/stories/day-in-skopje.json';
+// Graded Readers - A1
+import a1AnasFamily from '@/data/reader/graded/a1-anas-family.json';
+import a1MyMorning from '@/data/reader/graded/a1-my-morning.json';
+import a1AtTheStore from '@/data/reader/graded/a1-at-the-store.json';
+import a1MyBestFriend from '@/data/reader/graded/a1-my-best-friend.json';
+// Graded Readers - A2
+import a2DayInOhrid from '@/data/reader/graded/a2-day-in-ohrid.json';
+import a2MyJob from '@/data/reader/graded/a2-my-job.json';
+import a2Hobbies from '@/data/reader/graded/a2-hobbies.json';
+import a2TheHoliday from '@/data/reader/graded/a2-the-holiday.json';
+// Graded Readers - B1
+import b1EasterTraditions from '@/data/reader/graded/b1-easter-traditions.json';
+import b1MacedonianCuisine from '@/data/reader/graded/b1-macedonian-cuisine.json';
+import b1CityVsVillage from '@/data/reader/graded/b1-city-vs-village.json';
+import b1MacedonianLegends from '@/data/reader/graded/b1-macedonian-legends.json';
 
 export interface ReaderSampleVocab {
   mk: string;
@@ -161,6 +176,21 @@ const samples: Record<string, ReaderSample> = {
   'day29-maliot-princ': withCategory(day29, 'challenge') as ReaderSample,
   'day30-maliot-princ': withCategory(day30, 'challenge') as ReaderSample,
   'day-in-skopje': withCategory(dayInSkopje, 'story') as ReaderSample,
+  // Graded Readers - A1
+  'a1-anas-family': withCategory(a1AnasFamily, 'story') as ReaderSample,
+  'a1-my-morning': withCategory(a1MyMorning, 'story') as ReaderSample,
+  'a1-at-the-store': withCategory(a1AtTheStore, 'story') as ReaderSample,
+  'a1-my-best-friend': withCategory(a1MyBestFriend, 'story') as ReaderSample,
+  // Graded Readers - A2
+  'a2-day-in-ohrid': withCategory(a2DayInOhrid, 'story') as ReaderSample,
+  'a2-my-job': withCategory(a2MyJob, 'story') as ReaderSample,
+  'a2-hobbies': withCategory(a2Hobbies, 'story') as ReaderSample,
+  'a2-the-holiday': withCategory(a2TheHoliday, 'story') as ReaderSample,
+  // Graded Readers - B1
+  'b1-easter-traditions': withCategory(b1EasterTraditions, 'story') as ReaderSample,
+  'b1-macedonian-cuisine': withCategory(b1MacedonianCuisine, 'story') as ReaderSample,
+  'b1-city-vs-village': withCategory(b1CityVsVillage, 'story') as ReaderSample,
+  'b1-macedonian-legends': withCategory(b1MacedonianLegends, 'story') as ReaderSample,
 };
 
 export function getReaderSample(id: string): ReaderSample | null {
