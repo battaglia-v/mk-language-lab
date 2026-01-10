@@ -11,7 +11,7 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 - ✅ [v1.2 Infrastructure & CI Overhaul](milestones/v1.2-ROADMAP.md) (Phases 17-20) — SHIPPED 2026-01-09
 - ✅ **v1.3 Content Quality & User Journey** — Phases 21-26 (shipped 2026-01-10)
 - ✅ [v1.4 Power User Feedback](milestones/v1.4-ROADMAP.md) (Phases 27-32) — SHIPPED 2026-01-10
-- 🚧 **v1.5 Audio Cleanup & Final Polish** — Phases 33-35 (in progress)
+- ✅ **v1.5 Audio Cleanup & Final Polish** — Phases 33-35 (shipped 2026-01-10)
 
 ## Completed Milestones
 
@@ -143,7 +143,7 @@ Plans:
 
 </details>
 
-### 🚧 v1.5 Audio Cleanup & Final Polish (In Progress)
+### ✅ v1.5 Audio Cleanup & Final Polish (Shipped 2026-01-10)
 
 **Milestone Goal:** Remove all audio/listening functionality (unused feature cluttering codebase), address remaining polish items from user feedback, and improve Practice page flow.
 
@@ -201,7 +201,7 @@ Items:
 | 32. Content & Polish | v1.4 | 2/2 | Complete | 2026-01-10 |
 | 33. Audio Removal | v1.5 | 2/2 | Complete | 2026-01-10 |
 | 34. Remaining Polish | v1.5 | 3/3 | Complete | 2026-01-10 |
-| 35. Practice Improvements | v1.5 | 0/? | Not started | - |
+| 35. Practice Improvements | v1.5 | 1/1 | Complete | 2026-01-10 |
 
 **Completed Milestones:**
 - [v1.0 Beta](milestones/v1.0-ROADMAP.md) — 7 phases, 21 plans (shipped 2026-01-07)
