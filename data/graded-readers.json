@@ -339,6 +339,181 @@
       ]
     },
     {
+      "id": "reader-a1-003",
+      "title": {
+        "mk": "Во продавница",
+        "en": "At the Store"
+      },
+      "level": "A1",
+      "category": "food",
+      "estimatedMinutes": 3,
+      "wordCount": 95,
+      "xpReward": 20,
+      "grammarHighlight": {
+        "topic": "Asking prices and numbers with nouns",
+        "topicMk": "Прашување за цени и броеви со именки",
+        "examples": ["колку чини?", "сакам", "треба ми"]
+      },
+      "sentences": [
+        {
+          "id": "s1",
+          "mk": "Денес одам во продавница.",
+          "en": "Today I go to the store.",
+          "audio": "/audio/reader/a1-003/s1.mp3",
+          "vocabulary": [
+            {"word": "денес", "meaning": "today", "pos": "adverb"},
+            {"word": "продавница", "meaning": "store/shop", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s2",
+          "mk": "Треба ми леб, млеко и јајца.",
+          "en": "I need bread, milk, and eggs.",
+          "audio": "/audio/reader/a1-003/s2.mp3",
+          "vocabulary": [
+            {"word": "треба ми", "meaning": "I need", "pos": "verb phrase"},
+            {"word": "млеко", "meaning": "milk", "pos": "noun"},
+            {"word": "јајца", "meaning": "eggs", "pos": "noun"}
+          ],
+          "grammarNote": "треба ми - impersonal 'I need' construction"
+        },
+        {
+          "id": "s3",
+          "mk": "Влегувам во продавницата.",
+          "en": "I enter the store.",
+          "audio": "/audio/reader/a1-003/s3.mp3",
+          "vocabulary": [
+            {"word": "влегувам", "meaning": "I enter", "pos": "verb"},
+            {"word": "продавницата", "meaning": "the store", "pos": "noun (def)"}
+          ]
+        },
+        {
+          "id": "s4",
+          "mk": "– Добар ден! Колку чини лебот?",
+          "en": "– Good day! How much does the bread cost?",
+          "audio": "/audio/reader/a1-003/s4.mp3",
+          "vocabulary": [
+            {"word": "колку чини", "meaning": "how much does it cost", "pos": "phrase"},
+            {"word": "лебот", "meaning": "the bread", "pos": "noun (def)"}
+          ]
+        },
+        {
+          "id": "s5",
+          "mk": "– Лебот чини триесет денари.",
+          "en": "– The bread costs thirty denars.",
+          "audio": "/audio/reader/a1-003/s5.mp3",
+          "vocabulary": [
+            {"word": "триесет", "meaning": "thirty", "pos": "number"},
+            {"word": "денари", "meaning": "denars (currency)", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s6",
+          "mk": "– А млекото?",
+          "en": "– And the milk?",
+          "audio": "/audio/reader/a1-003/s6.mp3",
+          "vocabulary": [
+            {"word": "млекото", "meaning": "the milk", "pos": "noun (def)"}
+          ]
+        },
+        {
+          "id": "s7",
+          "mk": "– Млекото е шеесет денари.",
+          "en": "– The milk is sixty denars.",
+          "audio": "/audio/reader/a1-003/s7.mp3",
+          "vocabulary": [
+            {"word": "шеесет", "meaning": "sixty", "pos": "number"}
+          ]
+        },
+        {
+          "id": "s8",
+          "mk": "Земам и овошје – јаболка и портокали.",
+          "en": "I also take fruit – apples and oranges.",
+          "audio": "/audio/reader/a1-003/s8.mp3",
+          "vocabulary": [
+            {"word": "овошје", "meaning": "fruit", "pos": "noun"},
+            {"word": "јаболка", "meaning": "apples", "pos": "noun"},
+            {"word": "портокали", "meaning": "oranges", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s9",
+          "mk": "– Колку чини сè заедно?",
+          "en": "– How much does everything cost together?",
+          "audio": "/audio/reader/a1-003/s9.mp3",
+          "vocabulary": [
+            {"word": "сè", "meaning": "everything", "pos": "pronoun"},
+            {"word": "заедно", "meaning": "together", "pos": "adverb"}
+          ]
+        },
+        {
+          "id": "s10",
+          "mk": "– Двесте денари.",
+          "en": "– Two hundred denars.",
+          "audio": "/audio/reader/a1-003/s10.mp3",
+          "vocabulary": [
+            {"word": "двесте", "meaning": "two hundred", "pos": "number"}
+          ]
+        },
+        {
+          "id": "s11",
+          "mk": "Плаќам со пари. Повелете!",
+          "en": "I pay with cash. Here you go!",
+          "audio": "/audio/reader/a1-003/s11.mp3",
+          "vocabulary": [
+            {"word": "плаќам", "meaning": "I pay", "pos": "verb"},
+            {"word": "пари", "meaning": "money/cash", "pos": "noun"},
+            {"word": "повелете", "meaning": "here you go/please", "pos": "interjection"}
+          ]
+        },
+        {
+          "id": "s12",
+          "mk": "– Благодарам! Пријатно!",
+          "en": "– Thank you! Have a nice day!",
+          "audio": "/audio/reader/a1-003/s12.mp3",
+          "vocabulary": [
+            {"word": "благодарам", "meaning": "thank you", "pos": "verb"},
+            {"word": "пријатно", "meaning": "pleasant/have a nice day", "pos": "adverb"}
+          ]
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "question": {
+            "mk": "Колку чини лебот?",
+            "en": "How much does the bread cost?"
+          },
+          "options": [
+            {"mk": "Дваесет денари", "correct": false},
+            {"mk": "Триесет денари", "correct": true},
+            {"mk": "Четириесет денари", "correct": false}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Кое овошје зема?",
+            "en": "What fruit does he/she take?"
+          },
+          "options": [
+            {"mk": "Банани", "correct": false},
+            {"mk": "Јаболка и портокали", "correct": true},
+            {"mk": "Грозје", "correct": false}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Колку плаќа за сè заедно?",
+            "en": "How much does he/she pay for everything?"
+          },
+          "options": [
+            {"mk": "Сто денари", "correct": false},
+            {"mk": "Двесте денари", "correct": true},
+            {"mk": "Триста денари", "correct": false}
+          ]
+        }
+      ]
+    },
+    {
       "id": "reader-a2-001",
       "title": {
         "mk": "Еден ден во Охрид",
