@@ -68,6 +68,8 @@ export function TypedInput({
           feedback === 'correct' && 'border-emerald-400 bg-emerald-500/20',
           feedback === 'incorrect' && 'border-amber-400 bg-amber-500/20'
         )}
+        lang="mk"
+        inputMode="text"
         autoComplete="off"
         autoCapitalize="off"
         spellCheck={false}

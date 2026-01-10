@@ -283,6 +283,10 @@ function FillBlankContent({ exercise, userAnswer, setUserAnswer, result }: FillB
             result === 'correct' && "border-success bg-success/10",
             result === 'incorrect' && "border-destructive bg-destructive/10"
           )}
+          lang="mk"
+          inputMode="text"
+          autoComplete="off"
+          spellCheck={false}
           disabled={result === 'correct'}
         />
         {parts[1]}
@@ -528,6 +532,10 @@ function ErrorCorrectionContent({ exercise, userAnswer, setUserAnswer, result, t
             onChange={(e) => setUserAnswer(e.target.value)}
             placeholder="Type correction..."
             className="flex-1 max-w-[200px]"
+            lang="mk"
+            inputMode="text"
+            autoComplete="off"
+            spellCheck={false}
             disabled={result === 'correct'}
           />
         </motion.div>
