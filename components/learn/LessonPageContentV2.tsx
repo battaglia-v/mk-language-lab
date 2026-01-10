@@ -695,14 +695,38 @@ export default function LessonPageContentV2({
               </div>
             )}
 
+            {/* Quick practice action */}
+            <Card className="p-4 bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center">
+                    <Target className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-medium">{t('vocabulary.readyToPractice')}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {t('vocabulary.practiceDescription', { count: groupedVocabulary.totalCount })}
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  onClick={() => router.push(`/${locale}/practice/session?deck=lesson-${lesson.id}&mode=flashcard`)}
+                  className="shrink-0"
+                >
+                  <Dumbbell className="h-4 w-4 mr-2" />
+                  {t('vocabulary.practiceNow')}
+                </Button>
+              </div>
+            </Card>
+
             {/* Show more indicator */}
             {hasMore && (
               <Card className="p-4 bg-muted/30 border-dashed text-center">
                 <p className="text-sm text-muted-foreground">
                   + {groupedVocabulary.totalCount - displayedCount} more words available in Practice mode
                 </p>
-                <Button 
-                  variant="link" 
+                <Button
+                  variant="link"
                   className="mt-1 text-primary"
                   onClick={() => router.push(`/${locale}/practice/session?deck=lesson-${lesson.id}&mode=flashcard`)}
                 >

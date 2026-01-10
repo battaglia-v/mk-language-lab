@@ -362,7 +362,10 @@
     "vocabulary": {
       "sortCategory": "Категорија",
       "sortPos": "Вид",
-      "wordSaved": "Зачувано \"{word}\" во вашиот речник"
+      "wordSaved": "Зачувано \"{word}\" во вашиот речник",
+      "readyToPractice": "Подготвен за вежбање?",
+      "practiceDescription": "Тестирај се на овие {count} зборови",
+      "practiceNow": "Вежбај сега"
     },
     "lessonComplete": {
       "title": "Лекцијата е завршена!",

@@ -362,7 +362,10 @@
     "vocabulary": {
       "sortCategory": "Category",
       "sortPos": "Type",
-      "wordSaved": "Saved \"{word}\" to your glossary"
+      "wordSaved": "Saved \"{word}\" to your glossary",
+      "readyToPractice": "Ready to practice?",
+      "practiceDescription": "Test yourself on these {count} vocabulary words",
+      "practiceNow": "Practice Now"
     },
     "lessonComplete": {
       "title": "Lesson Complete!",
