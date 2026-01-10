@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { useFormatter, useLocale, useNow, useTranslations } from 'next-intl';
+import { useFormatter, useNow, useTranslations } from 'next-intl';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -19,7 +19,7 @@ import type {
   DiscoverFeed,
   DiscoverQuestHighlight,
 } from '@mk/api-client';
-import { ArrowLeft, CalendarClock, RefreshCcw, ExternalLink, Sparkles, Compass } from 'lucide-react';
+import { CalendarClock, RefreshCcw, ExternalLink, Sparkles, Compass } from 'lucide-react';
 
 const CATEGORY_SKELETONS = Array.from({ length: 2 }, (_, index) => index);
 const CARD_SKELETONS = Array.from({ length: 4 }, (_, index) => index);
@@ -42,8 +42,6 @@ type Formatter = ReturnType<typeof useFormatter>;
 
 export default function DiscoverPage() {
   const t = useTranslations('discover');
-  const navT = useTranslations('nav');
-  const locale = useLocale();
   const formatter = useFormatter();
   const now = useNow({ updateInterval: 60_000 });
   const [feed, setFeed] = useState<DiscoverFeed | null>(null);
@@ -122,21 +120,6 @@ export default function DiscoverPage() {
 
   return (
     <PageContainer size="2xl" className="flex flex-col gap-8 pb-24 pt-6 sm:gap-10 sm:pb-12 sm:pt-8">
-      <div className="flex flex-wrap items-center gap-3">
-        <Link
-          href={`/${locale}/learn`}
-          className="inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-1.5 text-xs text-muted-foreground"
-          aria-label={navT('backToDashboard')}
-          data-testid="discover-back-to-learn"
-        >
-          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-          {navT('backToDashboard')}
-        </Link>
-        <div className="hidden sm:inline-flex items-center gap-2 rounded-full border border-border/60 px-3 py-1.5 text-xs text-muted-foreground">
-          <Compass className="h-3.5 w-3.5" aria-hidden />
-          <span>{navT('lessonsPathHint')}</span>
-        </div>
-      </div>
       <section className="rounded-3xl border border-white/10 bg-gradient-to-b from-primary/10 via-background to-background p-6 text-foreground shadow-lg sm:p-8">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="space-y-4">

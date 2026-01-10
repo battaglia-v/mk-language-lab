@@ -1,7 +1,6 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
@@ -12,7 +11,7 @@ import { FilterChip } from '@/components/ui/filter-chip';
 import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ProxiedNewsImage } from '@/components/news/ProxiedNewsImage';
-import { ArrowLeft, ExternalLink, Loader2, Newspaper, PlayCircle, RefreshCcw, Search, Video, Clock3 } from 'lucide-react';
+import { ExternalLink, Loader2, Newspaper, PlayCircle, RefreshCcw, Search, Video, Clock3 } from 'lucide-react';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
 const SOURCE_IDS = ['all', 'time-mk', 'meta-mk', 'makfax', 'a1on'] as const;
@@ -91,7 +90,6 @@ export default function NewsClient({
   initialVideosOnly: boolean;
 }) {
   const t = useTranslations('news');
-  const navT = useTranslations('nav');
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -256,18 +254,6 @@ export default function NewsClient({
     <div className="space-y-4 px-4 sm:space-y-6 sm:px-5 md:px-6">
       <section className="lab-hero" data-testid="news-hero">
         <div className="flex flex-col gap-3 sm:gap-4">
-          <Button
-            asChild
-            variant="ghost"
-            size="sm"
-            className="inline-flex min-h-[44px] w-fit items-center gap-2 rounded-full border border-border/60 px-4 text-sm text-muted-foreground"
-            data-testid="news-back-to-dashboard"
-          >
-            <Link href={`/${locale}/learn`} aria-label={navT('backToDashboard')}>
-              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-              {navT('backToDashboard')}
-            </Link>
-          </Button>
           <header className="page-header">
             <div className="page-header-content">
               <p className="page-header-badge">
