@@ -358,14 +358,7 @@ export default function AlphabetLessonPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Button asChild className="w-full" data-testid="alphabet-go-pronunciation-practice">
-                <Link href={`/${locale}/practice/pronunciation`}>
-                  <Mic className="h-4 w-4 mr-2" />
-                  {t('pronunciationPractice', { default: 'Pronunciation Practice' })}
-                </Link>
-              </Button>
-
-              <Button asChild variant="outline" className="w-full" data-testid="alphabet-go-alphabet-quiz">
+              <Button asChild className="w-full" data-testid="alphabet-go-alphabet-quiz">
                 <Link href={`/${locale}/practice/session?deck=cyrillic-alphabet-v1&difficulty=all`}>
                   <BookOpen className="h-4 w-4 mr-2" />
                   {t('alphabetQuiz', { default: 'Alphabet Quiz' })}

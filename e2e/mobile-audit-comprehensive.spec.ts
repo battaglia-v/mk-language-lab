@@ -40,7 +40,6 @@ const ROUTES_TO_AUDIT = [
   { path: '/en', name: 'Home' },
   { path: '/en/learn', name: 'LearnDashboard' },
   { path: '/en/practice', name: 'Practice' },
-  { path: '/en/practice/pronunciation', name: 'Pronunciation' },
   { path: '/en/practice/grammar', name: 'Grammar' },
   { path: '/en/translate', name: 'Translate' },
   { path: '/en/reader', name: 'Reader' },

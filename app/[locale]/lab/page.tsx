@@ -1,6 +1,6 @@
 import { getLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
-import { Languages, BookOpenText, Mic, ChevronRight, FlaskConical } from 'lucide-react';
+import { Languages, BookOpenText, ChevronRight, FlaskConical } from 'lucide-react';
 import { PageContainer } from '@/components/layout';
 
 export default async function LanguageLabPage() {
@@ -23,14 +23,6 @@ export default async function LanguageLabPage() {
       title: t('analyzer.title'),
       description: t('analyzer.description'),
       badge: t('analyzer.badge'),
-    },
-    {
-      id: 'pronunciation',
-      href: `/${locale}/practice/pronunciation`,
-      icon: Mic,
-      title: t('pronunciation.title'),
-      description: t('pronunciation.description'),
-      badge: t('pronunciation.badge'),
     },
   ];
 
