@@ -12,6 +12,7 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 - ✅ **v1.3 Content Quality & User Journey** — Phases 21-26 (shipped 2026-01-10)
 - ✅ [v1.4 Power User Feedback](milestones/v1.4-ROADMAP.md) (Phases 27-32) — SHIPPED 2026-01-10
 - ✅ [v1.5 Audio Cleanup & Final Polish](milestones/v1.5-ROADMAP.md) (Phases 33-35) — SHIPPED 2026-01-10
+- 🚧 **v1.6 Reader Overhaul** — Phases 36-41 (in progress)
 
 ## Completed Milestones
 
@@ -154,19 +155,81 @@ Plans:
 
 </details>
 
+### 🚧 v1.6 Reader Overhaul (In Progress)
+
+**Milestone Goal:** Transform the Reader section into a comprehensive, mobile-first reading experience with interactive vocabulary features and better content discovery.
+
+#### Phase 36: A2 Reader Wiring
+
+**Goal**: Wire existing A2 graded reader content to the reader UI and audit all reader content
+**Depends on**: v1.5 complete
+**Research**: Unlikely (internal patterns, existing content)
+**Plans**: TBD
+
+Plans:
+- [ ] 36-01: TBD (run /gsd:plan-phase 36 to break down)
+
+#### Phase 37: Tap-to-Translate
+
+**Goal**: Implement tap-to-translate word lookup system for reader content
+**Depends on**: Phase 36
+**Research**: Likely (dictionary integration, word tokenization)
+**Research topics**: Dictionary API options, Cyrillic word tokenization, mobile touch handling
+**Plans**: TBD
+
+Plans:
+- [ ] 37-01: TBD
+
+#### Phase 38: Reader Vocabulary Save
+
+**Goal**: Enable saving words directly to glossary while reading stories
+**Depends on**: Phase 37
+**Research**: Unlikely (extends existing save-to-glossary patterns from v1.4)
+**Plans**: TBD
+
+Plans:
+- [ ] 38-01: TBD
+
+#### Phase 39: Reading Progress
+
+**Goal**: Track story completion, reading time, and per-story progress
+**Depends on**: Phase 38
+**Research**: Unlikely (similar to existing lesson progress tracking)
+**Plans**: TBD
+
+Plans:
+- [ ] 39-01: TBD
+
+#### Phase 40: Discovery & Navigation
+
+**Goal**: Better filtering by level/topic, improved story browsing experience
+**Depends on**: Phase 39
+**Research**: Unlikely (internal UI patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 40-01: TBD
+
+#### Phase 41: Content & Validation
+
+**Goal**: Fill gaps in level coverage, add topic variety, validate reader experience
+**Depends on**: Phase 40
+**Research**: Unlikely (following existing curriculum structure)
+**Plans**: TBD
+
+Plans:
+- [ ] 41-01: TBD
+
 ## Progress
 
 | Phase | Milestone | Plans | Status | Completed |
 |-------|-----------|-------|--------|-----------|
-| 27. Bug Fixes | v1.4 | 4/4 | Complete | 2026-01-10 |
-| 28. Navigation Overhaul | v1.4 | 3/3 | Complete | 2026-01-10 |
-| 29. Lesson Enhancements | v1.4 | 2/2 | Complete | 2026-01-10 |
-| 30. Vocabulary Display | v1.4 | 2/2 | Complete | 2026-01-10 |
-| 31. State Persistence | v1.4 | 1/1 | Complete | 2026-01-10 |
-| 32. Content & Polish | v1.4 | 2/2 | Complete | 2026-01-10 |
-| 33. Audio Removal | v1.5 | 2/2 | Complete | 2026-01-10 |
-| 34. Remaining Polish | v1.5 | 3/3 | Complete | 2026-01-10 |
-| 35. Practice Improvements | v1.5 | 1/1 | Complete | 2026-01-10 |
+| 36. A2 Reader Wiring | v1.6 | 0/? | Not started | - |
+| 37. Tap-to-Translate | v1.6 | 0/? | Not started | - |
+| 38. Reader Vocabulary Save | v1.6 | 0/? | Not started | - |
+| 39. Reading Progress | v1.6 | 0/? | Not started | - |
+| 40. Discovery & Navigation | v1.6 | 0/? | Not started | - |
+| 41. Content & Validation | v1.6 | 0/? | Not started | - |
 
 **Completed Milestones:**
 - [v1.0 Beta](milestones/v1.0-ROADMAP.md) — 7 phases, 21 plans (shipped 2026-01-07)

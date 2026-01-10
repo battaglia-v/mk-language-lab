@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-10)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** v1.5 complete — all milestones shipped
+**Current focus:** v1.6 Reader Overhaul — mobile-first reading experience with interactive vocabulary
 
 ## Current Position
 
-Phase: 35 of 35 (Practice Improvements)
-Plan: 1 of 1 in current phase
-Status: Milestone complete
-Last activity: 2026-01-10 — v1.5 milestone archived
+Phase: 36 of 41 (A2 Reader Wiring)
+Plan: Not started
+Status: Ready to plan
+Last activity: 2026-01-10 — Milestone v1.6 created
 
-Progress: [██████████] 100% (v1.5 complete)
+Progress: ░░░░░░░░░░ 0%
 
 ## Milestone Summary
 
@@ -98,10 +98,10 @@ None.
 - Milestone v1.3 shipped: Content quality & user journey (Phases 21-26)
 - Milestone v1.4 shipped: Power user feedback (Phases 27-32)
 - Milestone v1.5 shipped: Audio cleanup & final polish (Phases 33-35)
+- Milestone v1.6 created: Reader overhaul, 6 phases (Phase 36-41)
 
 ## Session Continuity
 
 Last session: 2026-01-10
-Stopped at: v1.5 milestone complete and archived
+Stopped at: Milestone v1.6 initialization
 Resume file: None
-Next step: /gsd:discuss-milestone or /gsd:new-milestone (plan next version)
