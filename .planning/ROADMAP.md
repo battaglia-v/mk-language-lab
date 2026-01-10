@@ -110,7 +110,7 @@ Plans:
 
 Plans:
 - [x] 25-01: A1 reader stories (My Morning, At the Store, My Best Friend) — completed 2026-01-10
-- [ ] 25-02: A2 reader stories (My Job, Hobbies, The Holiday)
+- [x] 25-02: A2 reader stories (My Job, Hobbies, The Holiday) — completed 2026-01-10
 - [ ] 25-03: B1 reader stories (Macedonian Cuisine, City vs Village, Macedonian Legends)
 
 #### Phase 26: Validation & Polish
@@ -131,7 +131,7 @@ Plans:
 | 22. Content Effectiveness Audit | v1.3 | 1/1 | Complete | 2026-01-09 |
 | 23. Practice Feature Audit & UX | v1.3 | 1/1 | Complete | 2026-01-09 |
 | 24. User Journey Cohesion | v1.3 | 1/1 | Complete | 2026-01-10 |
-| 25. Content Expansion | v1.3 | 1/3 | In progress | - |
+| 25. Content Expansion | v1.3 | 2/3 | In progress | - |
 | 26. Validation & Polish | v1.3 | 0/? | Not started | - |
 
 **Completed Milestones:**

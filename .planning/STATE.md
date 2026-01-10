@@ -10,9 +10,9 @@ See: .planning/PROJECT.md (updated 2026-01-09)
 ## Current Position
 
 Phase: 25 of 26 (Content Expansion) — IN PROGRESS
-Plan: 1 of 3 in Phase 25
+Plan: 2 of 3 in Phase 25
 Status: In progress
-Last activity: 2026-01-10 — Completed 25-01-PLAN.md (A1 reader stories)
+Last activity: 2026-01-10 — Completed 25-02-PLAN.md (A2 reader stories)
 
 Progress: ██████░░░░ 67% (4 of 6 phases in v1.3)
 
@@ -57,9 +57,9 @@ See `.planning/MILESTONES.md` for full details.
 - [x] Reader workspace shows "Practice Now" CTA → Practice (when saved words > 0)
 - [x] Reader library shows "Continue your lessons" → Learn
 
-**Content Expansion (Phase 25):** PLANNED
-- [ ] A1 graded reader stories (3 new stories)
-- [ ] A2 graded reader stories (3 new stories)
+**Content Expansion (Phase 25):** IN PROGRESS
+- [x] A1 graded reader stories (3 new stories)
+- [x] A2 graded reader stories (3 new stories)
 - [ ] B1 graded reader stories (3 new stories)
 
 **Validation (Phase 26):**
@@ -69,9 +69,9 @@ See `.planning/MILESTONES.md` for full details.
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 49
+- Total plans completed: 50
 - Average duration: ~9 min
-- Total execution time: ~7.5 hours
+- Total execution time: ~7.6 hours
 
 **By Milestone:**
 
@@ -105,6 +105,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-10
-Stopped at: Completed 25-01-PLAN.md (A1 reader stories)
+Stopped at: Completed 25-02-PLAN.md (A2 reader stories)
 Resume file: None
-Next step: `/gsd:execute-plan .planning/phases/25-content-expansion/25-02-PLAN.md`
+Next step: `/gsd:execute-plan .planning/phases/25-content-expansion/25-03-PLAN.md`
