@@ -177,6 +177,16 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
 
         {/* Attribution */}
         <div className="text-xs text-muted-foreground pt-4 border-t border-border/30">
+          {/* MLC Badge for curated content */}
+          {(sample.attribution.handle === '@mklanguagelab' ||
+            sample.attribution.handle?.toLowerCase().includes('mlc')) && (
+            <Badge
+              variant="secondary"
+              className="mb-2 text-xs bg-amber-500/20 text-amber-300 border-amber-500/30"
+            >
+              {locale === 'mk' ? 'Содржина од МЈК' : 'Content by MLC'}
+            </Badge>
+          )}
           <p>
             {sample.attribution.series}
             {sample.attribution.day && ` • Day ${sample.attribution.day}`}

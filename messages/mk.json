@@ -2767,6 +2767,10 @@
     },
     "library": {
       "continueLearning": "Продолжи со лекциите"
+    },
+    "attribution": {
+      "mlcBadge": "Содржина од МЈК",
+      "contentBy": "Содржина од {handle}"
     }
   },
   "tools": {
