@@ -21,6 +21,7 @@ const TRUNCATE_THRESHOLD = 150;
 
 export default function GrammarSection({ notes }: GrammarSectionProps) {
   const [expandedNotes, setExpandedNotes] = useState<Set<string>>(new Set());
+  const [expandedExamples, setExpandedExamples] = useState<Set<string>>(new Set());
 
   const toggleNote = (id: string) => {
     const newSet = new Set(expandedNotes);
@@ -30,6 +31,16 @@ export default function GrammarSection({ notes }: GrammarSectionProps) {
       newSet.add(id);
     }
     setExpandedNotes(newSet);
+  };
+
+  const toggleExamples = (id: string) => {
+    const newSet = new Set(expandedExamples);
+    if (newSet.has(id)) {
+      newSet.delete(id);
+    } else {
+      newSet.add(id);
+    }
+    setExpandedExamples(newSet);
   };
 
   return (
@@ -99,7 +110,7 @@ export default function GrammarSection({ notes }: GrammarSectionProps) {
                   Examples
                 </p>
                 <ol className="space-y-4 list-none">
-                  {examples.slice(0, 4).map((example, index) => {
+                  {(expandedExamples.has(note.id) ? examples : examples.slice(0, 4)).map((example, index) => {
                     const parts = splitExample(example);
 
                     return (
@@ -120,9 +131,26 @@ export default function GrammarSection({ notes }: GrammarSectionProps) {
                       </li>
                     );
                   })}
-                  {examples.length > 4 && (
-                    <li className="text-sm text-muted-foreground pl-9">
-                      +{examples.length - 4} more examples
+                  {examples.length > 4 && !expandedExamples.has(note.id) && (
+                    <li>
+                      <button
+                        onClick={() => toggleExamples(note.id)}
+                        className="text-sm text-primary hover:text-primary/80 pl-9 flex items-center gap-1"
+                      >
+                        <ChevronDown className="h-3 w-3" />
+                        Show {examples.length - 4} more examples
+                      </button>
+                    </li>
+                  )}
+                  {expandedExamples.has(note.id) && examples.length > 4 && (
+                    <li>
+                      <button
+                        onClick={() => toggleExamples(note.id)}
+                        className="text-sm text-muted-foreground hover:text-foreground pl-9 flex items-center gap-1"
+                      >
+                        <ChevronUp className="h-3 w-3" />
+                        Show fewer
+                      </button>
                     </li>
                   )}
                 </ol>
