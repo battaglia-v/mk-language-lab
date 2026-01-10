@@ -103,13 +103,15 @@ Plans:
 
 #### Phase 25: Content Expansion
 
-**Goal**: Expand vocabulary, grammar exercises, and dialogues for A1/A2/B1 levels
+**Goal**: Expand graded reader stories for A1/A2/B1 levels
 **Depends on**: Phase 24
 **Research**: Unlikely (following existing curriculum structure)
-**Plans**: TBD
+**Plans**: 3
 
 Plans:
-- [ ] 25-01: TBD
+- [x] 25-01: A1 reader stories (My Morning, At the Store, My Best Friend) — completed 2026-01-10
+- [ ] 25-02: A2 reader stories (My Job, Hobbies, The Holiday)
+- [ ] 25-03: B1 reader stories (Macedonian Cuisine, City vs Village, Macedonian Legends)
 
 #### Phase 26: Validation & Polish
 
@@ -129,7 +131,7 @@ Plans:
 | 22. Content Effectiveness Audit | v1.3 | 1/1 | Complete | 2026-01-09 |
 | 23. Practice Feature Audit & UX | v1.3 | 1/1 | Complete | 2026-01-09 |
 | 24. User Journey Cohesion | v1.3 | 1/1 | Complete | 2026-01-10 |
-| 25. Content Expansion | v1.3 | 0/? | Not started | - |
+| 25. Content Expansion | v1.3 | 1/3 | In progress | - |
 | 26. Validation & Polish | v1.3 | 0/? | Not started | - |
 
 **Completed Milestones:**
