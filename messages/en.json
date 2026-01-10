@@ -364,6 +364,11 @@
       "practiceDescription": "Test yourself on these {count} vocabulary words",
       "practiceNow": "Practice Now"
     },
+    "exercises": {
+      "quizComplete": "Quiz Complete!",
+      "scoreText": "You got {correct} of {total} correct",
+      "retakeQuiz": "Retake Quiz"
+    },
     "lessonComplete": {
       "title": "Lesson Complete!",
       "subtitle": "Great work finishing this lesson",
