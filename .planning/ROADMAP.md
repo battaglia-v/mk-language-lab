@@ -113,15 +113,16 @@ Plans:
 - [x] 25-02: A2 reader stories (My Job, Hobbies, The Holiday) — completed 2026-01-10
 - [x] 25-03: B1 reader stories (Macedonian Cuisine, City vs Village, Macedonian Legends) — completed 2026-01-10
 
-#### Phase 26: Validation & Polish
+#### Phase 26: Validation & Polish — IN PROGRESS
 
 **Goal**: Final testing, polish, and refinements before milestone completion
 **Depends on**: Phase 25
 **Research**: Unlikely (internal testing patterns)
-**Plans**: TBD
+**Plans**: 2
 
 Plans:
-- [ ] 26-01: TBD
+- [x] 26-01: Dark Mode & Component Polish — completed 2026-01-10
+- [ ] 26-02: User Journey E2E Validation
 
 ## Progress
 
@@ -132,7 +133,7 @@ Plans:
 | 23. Practice Feature Audit & UX | v1.3 | 1/1 | Complete | 2026-01-09 |
 | 24. User Journey Cohesion | v1.3 | 1/1 | Complete | 2026-01-10 |
 | 25. Content Expansion | v1.3 | 3/3 | Complete | 2026-01-10 |
-| 26. Validation & Polish | v1.3 | 0/? | Not started | - |
+| 26. Validation & Polish | v1.3 | 1/2 | In progress | - |
 
 **Completed Milestones:**
 - [v1.0 Beta](milestones/v1.0-ROADMAP.md) — 7 phases, 21 plans (shipped 2026-01-07)
