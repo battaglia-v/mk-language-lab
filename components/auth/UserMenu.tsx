@@ -13,7 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { User, Instagram, Youtube, ExternalLink, LayoutDashboard } from 'lucide-react';
+import { User, Instagram, Youtube, ExternalLink, LayoutDashboard, Settings, HelpCircle, Info } from 'lucide-react';
 import Link from 'next/link';
 
 export function UserMenu() {
@@ -80,6 +80,28 @@ export function UserMenu() {
             </Link>
           </DropdownMenuItem>
         )}
+        <DropdownMenuSeparator className="bg-border" />
+        <DropdownMenuLabel className="px-3 py-1.5 text-xs font-medium text-muted-foreground">
+          {t('moreHeader')}
+        </DropdownMenuLabel>
+        <DropdownMenuItem asChild className={menuItemClass}>
+          <Link href={`/${locale}/settings`} className="flex w-full items-center" data-testid="user-menu-settings">
+            <Settings className={iconClass} />
+            <span className="text-sm font-medium">{t('settings')}</span>
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild className={menuItemClass}>
+          <Link href={`/${locale}/help`} className="flex w-full items-center" data-testid="user-menu-help">
+            <HelpCircle className={iconClass} />
+            <span className="text-sm font-medium">{t('help')}</span>
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild className={menuItemClass}>
+          <Link href={`/${locale}/about`} className="flex w-full items-center" data-testid="user-menu-about">
+            <Info className={iconClass} />
+            <span className="text-sm font-medium">{t('about')}</span>
+          </Link>
+        </DropdownMenuItem>
         <DropdownMenuSeparator className="bg-border" />
         <DropdownMenuLabel className="px-3 py-1.5 text-xs font-medium text-muted-foreground">
           <p>{t('socialHeader')}</p>
