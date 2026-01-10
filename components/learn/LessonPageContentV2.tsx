@@ -205,6 +205,7 @@ export default function LessonPageContentV2({
   const [completedSections, setCompletedSections] = useState<Set<string>>(new Set());
   const [startTime] = useState(Date.now());
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [vocabSortMode, setVocabSortMode] = useState<'category' | 'alphabetical' | 'partOfSpeech'>('category');
 
   // Vocabulary hook for save-to-glossary functionality
   const { vocabulary, saveWord } = useVocabulary();
@@ -379,17 +380,63 @@ export default function LessonPageContentV2({
     }
   }, [saveProgress, nextLesson, router, locale]);
 
-  // Group vocabulary by category with smart limits
+  // Group vocabulary by category/alphabet/part-of-speech with smart limits
   const groupedVocabulary = useMemo(() => {
     // Filter out proper nouns (names, countries) before grouping
     const filteredItems = filterVocabularyForDisplay(lesson.vocabularyItems);
 
-    const groups: Record<string, VocabularyItem[]> = {};
-    const uncategorized: VocabularyItem[] = [];
-
     // Limit vocabulary display for better UX
     const MAX_UNCATEGORIZED = 20;
     const MAX_PER_CATEGORY = 15;
+
+    // Alphabetical sorting mode
+    if (vocabSortMode === 'alphabetical') {
+      const alphabetGroups: Record<string, VocabularyItem[]> = {};
+      filteredItems.forEach(item => {
+        const firstLetter = item.macedonianText.charAt(0).toUpperCase();
+        if (!alphabetGroups[firstLetter]) {
+          alphabetGroups[firstLetter] = [];
+        }
+        if (alphabetGroups[firstLetter].length < MAX_PER_CATEGORY) {
+          alphabetGroups[firstLetter].push(item);
+        }
+      });
+      return {
+        groups: alphabetGroups,
+        uncategorized: [],
+        totalCount: filteredItems.length,
+        sortMode: 'alphabetical' as const,
+      };
+    }
+
+    // Part of speech sorting mode
+    if (vocabSortMode === 'partOfSpeech') {
+      const posGroups: Record<string, VocabularyItem[]> = {};
+      const noPos: VocabularyItem[] = [];
+      filteredItems.forEach(item => {
+        if (item.partOfSpeech) {
+          const pos = item.partOfSpeech.toLowerCase();
+          if (!posGroups[pos]) posGroups[pos] = [];
+          if (posGroups[pos].length < MAX_PER_CATEGORY) {
+            posGroups[pos].push(item);
+          }
+        } else {
+          if (noPos.length < MAX_UNCATEGORIZED) {
+            noPos.push(item);
+          }
+        }
+      });
+      return {
+        groups: posGroups,
+        uncategorized: noPos,
+        totalCount: filteredItems.length,
+        sortMode: 'partOfSpeech' as const,
+      };
+    }
+
+    // Default: category grouping
+    const groups: Record<string, VocabularyItem[]> = {};
+    const uncategorized: VocabularyItem[] = [];
 
     filteredItems.forEach(item => {
       if (item.category) {
@@ -406,7 +453,7 @@ export default function LessonPageContentV2({
       }
     });
 
-    // If no categories, group alphabetically
+    // If no categories, fall back to alphabetical grouping
     if (Object.keys(groups).length === 0 && uncategorized.length > 0) {
       const alphabetGroups: Record<string, VocabularyItem[]> = {};
       filteredItems.slice(0, 30).forEach(item => {
@@ -420,7 +467,7 @@ export default function LessonPageContentV2({
         groups: alphabetGroups,
         uncategorized: [],
         totalCount: filteredItems.length,
-        isAlphabetical: true
+        sortMode: 'alphabetical' as const,
       };
     }
 
@@ -428,9 +475,9 @@ export default function LessonPageContentV2({
       groups,
       uncategorized,
       totalCount: filteredItems.length,
-      isAlphabetical: false
+      sortMode: 'category' as const,
     };
-  }, [lesson.vocabularyItems]);
+  }, [lesson.vocabularyItems, vocabSortMode]);
 
   // Render section content
   const renderSectionContent = () => {
@@ -544,19 +591,48 @@ export default function LessonPageContentV2({
       case 'vocabulary':
         const displayedCount = Object.values(groupedVocabulary.groups).flat().length + groupedVocabulary.uncategorized.length;
         const hasMore = groupedVocabulary.totalCount > displayedCount;
-        
+
         return (
           <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
-            <div className="space-y-2">
+            <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-semibold">Vocabulary</h3>
                 <span className="text-sm text-muted-foreground">
                   {groupedVocabulary.totalCount} words
                 </span>
               </div>
+              {/* Sort toggle */}
+              <div className="flex items-center gap-1 border rounded-lg p-0.5 w-fit">
+                <Button
+                  variant={vocabSortMode === 'category' ? 'secondary' : 'ghost'}
+                  size="sm"
+                  className="h-7 px-2 text-xs"
+                  onClick={() => setVocabSortMode('category')}
+                >
+                  {t('vocabulary.sortCategory')}
+                </Button>
+                <Button
+                  variant={vocabSortMode === 'alphabetical' ? 'secondary' : 'ghost'}
+                  size="sm"
+                  className="h-7 px-2 text-xs"
+                  onClick={() => setVocabSortMode('alphabetical')}
+                >
+                  A-Ш
+                </Button>
+                <Button
+                  variant={vocabSortMode === 'partOfSpeech' ? 'secondary' : 'ghost'}
+                  size="sm"
+                  className="h-7 px-2 text-xs"
+                  onClick={() => setVocabSortMode('partOfSpeech')}
+                >
+                  {t('vocabulary.sortPos')}
+                </Button>
+              </div>
               <p className="text-muted-foreground">
-                {groupedVocabulary.isAlphabetical 
+                {groupedVocabulary.sortMode === 'alphabetical'
                   ? 'Key words organized alphabetically. Tap a card to see details.'
+                  : groupedVocabulary.sortMode === 'partOfSpeech'
+                  ? 'Key words organized by type (noun, verb, etc.). Tap a card to see details.'
                   : 'Learn these key words and phrases. Tap a card to see the example sentence.'}
               </p>
             </div>

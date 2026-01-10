@@ -359,6 +359,11 @@
     "sessionEndPerfectAccuracy": "Perfect accuracy! You're mastering this material! 🏆",
     "sessionEndGoodAccuracy": "Solid session! A few more rounds and you'll have it! 📈",
     "sessionEndKeepPracticing": "Practice makes progress! Keep at it! 💪",
+    "vocabulary": {
+      "sortCategory": "Category",
+      "sortPos": "Type",
+      "wordSaved": "Saved \"{word}\" to your glossary"
+    },
     "lessonComplete": {
       "title": "Lesson Complete!",
       "subtitle": "Great work finishing this lesson",
