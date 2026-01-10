@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
-import { CheckCircle2, XCircle, Volume2, X, Plus } from 'lucide-react';
+import { CheckCircle2, XCircle, X, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
@@ -27,7 +27,6 @@ export function ClozeSession({ initialCount = 10 }: Props) {
   const [totalAnswered, setTotalAnswered] = useState(0);
   const [showXP, setShowXP] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
-  const [isSpeaking, setIsSpeaking] = useState(false);
   const sessionStart = useRef(Date.now());
 
   // Initialize session
@@ -43,8 +42,6 @@ export function ClozeSession({ initialCount = 10 }: Props) {
   const resetCard = useCallback(() => {
     setFeedback(null);
     setSelectedChoice(null);
-    if (window.speechSynthesis) window.speechSynthesis.cancel();
-    setIsSpeaking(false);
   }, []);
 
   const goNext = useCallback(() => {
@@ -83,17 +80,6 @@ export function ClozeSession({ initialCount = 10 }: Props) {
       return () => clearTimeout(t);
     }
   }, [feedback, goNext]);
-
-  const speak = () => {
-    if (!card || !window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(card.mk);
-    u.lang = 'sr-RS';
-    u.rate = 0.85;
-    u.onstart = () => setIsSpeaking(true);
-    u.onend = () => setIsSpeaking(false);
-    window.speechSynthesis.speak(u);
-  };
 
   const addMore = () => {
     const moreItems = getClozeSession(5).map(refreshItemOptions);
@@ -195,12 +181,6 @@ export function ClozeSession({ initialCount = 10 }: Props) {
             <p className="text-2xl font-bold text-foreground leading-relaxed">{card?.maskedMk}</p>
             <p className="text-sm text-muted-foreground">{card?.en}</p>
           </div>
-
-          {/* Audio button */}
-          <Button variant="ghost" size="sm" onClick={speak} className={cn('h-9 rounded-full', isSpeaking && 'text-primary')}>
-            <Volume2 className="h-4 w-4 mr-2" />
-            {t('drills.listen', { default: 'Listen' })}
-          </Button>
 
           {/* Answer choices */}
           <div className="grid grid-cols-2 gap-2">
