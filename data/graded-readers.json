@@ -161,6 +161,184 @@
       ]
     },
     {
+      "id": "reader-a1-002",
+      "title": {
+        "mk": "Моето утро",
+        "en": "My Morning"
+      },
+      "level": "A1",
+      "category": "daily-life",
+      "estimatedMinutes": 3,
+      "wordCount": 90,
+      "xpReward": 20,
+      "grammarHighlight": {
+        "topic": "Present tense verbs for daily routine",
+        "topicMk": "Сегашно време за секојдневни активности",
+        "examples": ["станувам", "јадам", "пијам", "одам"]
+      },
+      "sentences": [
+        {
+          "id": "s1",
+          "mk": "Секое утро станувам во седум часот.",
+          "en": "Every morning I wake up at seven o'clock.",
+          "audio": "/audio/reader/a1-002/s1.mp3",
+          "vocabulary": [
+            {"word": "секое", "meaning": "every", "pos": "adjective"},
+            {"word": "утро", "meaning": "morning", "pos": "noun"},
+            {"word": "станувам", "meaning": "I wake up/get up", "pos": "verb"}
+          ],
+          "grammarNote": "станувам - present tense, 1st person singular"
+        },
+        {
+          "id": "s2",
+          "mk": "Јас одам во бањата и се мијам.",
+          "en": "I go to the bathroom and wash myself.",
+          "audio": "/audio/reader/a1-002/s2.mp3",
+          "vocabulary": [
+            {"word": "бањата", "meaning": "the bathroom", "pos": "noun (def)"},
+            {"word": "се мијам", "meaning": "I wash myself", "pos": "reflexive verb"}
+          ]
+        },
+        {
+          "id": "s3",
+          "mk": "Си ги мијам забите.",
+          "en": "I brush my teeth.",
+          "audio": "/audio/reader/a1-002/s3.mp3",
+          "vocabulary": [
+            {"word": "заби", "meaning": "teeth", "pos": "noun"},
+            {"word": "си ги мијам", "meaning": "I wash/brush (my)", "pos": "verb phrase"}
+          ]
+        },
+        {
+          "id": "s4",
+          "mk": "Потоа се облекувам.",
+          "en": "Then I get dressed.",
+          "audio": "/audio/reader/a1-002/s4.mp3",
+          "vocabulary": [
+            {"word": "потоа", "meaning": "then", "pos": "adverb"},
+            {"word": "се облекувам", "meaning": "I get dressed", "pos": "reflexive verb"}
+          ]
+        },
+        {
+          "id": "s5",
+          "mk": "Јас одам во кујната за појадок.",
+          "en": "I go to the kitchen for breakfast.",
+          "audio": "/audio/reader/a1-002/s5.mp3",
+          "vocabulary": [
+            {"word": "кујната", "meaning": "the kitchen", "pos": "noun (def)"},
+            {"word": "појадок", "meaning": "breakfast", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s6",
+          "mk": "За појадок јадам леб со мед.",
+          "en": "For breakfast I eat bread with honey.",
+          "audio": "/audio/reader/a1-002/s6.mp3",
+          "vocabulary": [
+            {"word": "јадам", "meaning": "I eat", "pos": "verb"},
+            {"word": "леб", "meaning": "bread", "pos": "noun"},
+            {"word": "мед", "meaning": "honey", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s7",
+          "mk": "Пијам чај или сок.",
+          "en": "I drink tea or juice.",
+          "audio": "/audio/reader/a1-002/s7.mp3",
+          "vocabulary": [
+            {"word": "пијам", "meaning": "I drink", "pos": "verb"},
+            {"word": "чај", "meaning": "tea", "pos": "noun"},
+            {"word": "сок", "meaning": "juice", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s8",
+          "mk": "Мајка ми прави кафе секое утро.",
+          "en": "My mother makes coffee every morning.",
+          "audio": "/audio/reader/a1-002/s8.mp3",
+          "vocabulary": [
+            {"word": "прави", "meaning": "makes", "pos": "verb"},
+            {"word": "кафе", "meaning": "coffee", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s9",
+          "mk": "Во осум часот сум готов.",
+          "en": "At eight o'clock I am ready.",
+          "audio": "/audio/reader/a1-002/s9.mp3",
+          "vocabulary": [
+            {"word": "осум", "meaning": "eight", "pos": "number"},
+            {"word": "готов", "meaning": "ready", "pos": "adjective"}
+          ]
+        },
+        {
+          "id": "s10",
+          "mk": "Ја земам мојата торба.",
+          "en": "I take my bag.",
+          "audio": "/audio/reader/a1-002/s10.mp3",
+          "vocabulary": [
+            {"word": "земам", "meaning": "I take", "pos": "verb"},
+            {"word": "торба", "meaning": "bag", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s11",
+          "mk": "Се поздравувам со семејството.",
+          "en": "I say goodbye to my family.",
+          "audio": "/audio/reader/a1-002/s11.mp3",
+          "vocabulary": [
+            {"word": "се поздравувам", "meaning": "I say goodbye", "pos": "reflexive verb"},
+            {"word": "семејството", "meaning": "the family", "pos": "noun (def)"}
+          ]
+        },
+        {
+          "id": "s12",
+          "mk": "Одам на работа со автобус.",
+          "en": "I go to work by bus.",
+          "audio": "/audio/reader/a1-002/s12.mp3",
+          "vocabulary": [
+            {"word": "работа", "meaning": "work", "pos": "noun"},
+            {"word": "автобус", "meaning": "bus", "pos": "noun"}
+          ]
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "question": {
+            "mk": "Во колку часот станува?",
+            "en": "What time does he/she wake up?"
+          },
+          "options": [
+            {"mk": "Шест", "correct": false},
+            {"mk": "Седум", "correct": true},
+            {"mk": "Осум", "correct": false}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Што јаде за појадок?",
+            "en": "What does he/she eat for breakfast?"
+          },
+          "options": [
+            {"mk": "Јајца", "correct": false},
+            {"mk": "Леб со мед", "correct": true},
+            {"mk": "Овошје", "correct": false}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Како оди на работа?",
+            "en": "How does he/she go to work?"
+          },
+          "options": [
+            {"mk": "Со автомобил", "correct": false},
+            {"mk": "Пешки", "correct": false},
+            {"mk": "Со автобус", "correct": true}
+          ]
+        }
+      ]
+    },
+    {
       "id": "reader-a2-001",
       "title": {
         "mk": "Еден ден во Охрид",
