@@ -143,10 +143,10 @@ export function PracticeHub() {
           <div>
             <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
               <BookmarkPlus className="h-5 w-5 text-pink-500" />
-              My Saved Words
+              {t('savedWords.title')}
             </h2>
             <p className="text-sm text-muted-foreground">
-              Words you&apos;ve saved from lessons, reading, or translating
+              {t('savedWords.subtitle')}
             </p>
           </div>
           {totalSavedWords > 0 && (
@@ -162,24 +162,24 @@ export function PracticeHub() {
                 {savedDeck.length > 0 && (
                   <div className="flex items-center gap-1.5">
                     <Languages className="h-4 w-4 text-blue-500" />
-                    <span>{savedDeck.length} from Translate</span>
+                    <span>{savedDeck.length} {t('savedWords.fromTranslate')}</span>
                   </div>
                 )}
                 {favoritesDeck.length > 0 && (
                   <div className="flex items-center gap-1.5">
                     <BookText className="h-4 w-4 text-green-500" />
-                    <span>{favoritesDeck.length} from Reader</span>
+                    <span>{favoritesDeck.length} {t('savedWords.fromReader')}</span>
                   </div>
                 )}
                 {userVocabDeck.length > 0 && (
                   <div className="flex items-center gap-1.5">
                     <BookOpen className="h-4 w-4 text-primary" />
-                    <span>{userVocabDeck.length} due for review</span>
+                    <span>{userVocabDeck.length} {t('savedWords.dueForReview')}</span>
                   </div>
                 )}
               </div>
               <Link href={`/${locale}/saved-words`} className="text-sm text-pink-500 hover:underline font-medium">
-                Manage →
+                {t('savedWords.manage')} →
               </Link>
             </div>
 
@@ -191,7 +191,7 @@ export function PracticeHub() {
               >
                 <Button className="w-full gap-2 bg-pink-500 hover:bg-pink-600 text-white dark:text-black">
                   <Play className="h-4 w-4" />
-                  Practice Saved Words
+                  {t('savedWords.practiceButton')}
                   <ArrowRight className="h-4 w-4 ml-auto" />
                 </Button>
               </Link>
@@ -202,7 +202,7 @@ export function PracticeHub() {
                 >
                   <Button variant="outline" className="w-full gap-2 border-pink-500/30 hover:bg-pink-500/10">
                     <Heart className="h-4 w-4 text-pink-500" />
-                    Review Favorites ({favoritesDeck.length})
+                    {t('savedWords.reviewFavorites')} ({favoritesDeck.length})
                   </Button>
                 </Link>
               )}
@@ -215,68 +215,68 @@ export function PracticeHub() {
                 <div className="h-16 w-16 rounded-full bg-pink-500/10 flex items-center justify-center mx-auto mb-3">
                   <BookmarkPlus className="h-8 w-8 text-pink-500" />
                 </div>
-                <p className="font-semibold text-foreground text-lg">Build your personal word bank</p>
+                <p className="font-semibold text-foreground text-lg">{t('savedWords.emptyTitle')}</p>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Save words you want to remember and practice them here
+                  {t('savedWords.emptySubtitle')}
                 </p>
               </div>
-              
+
               {/* Step-by-step instructions */}
               <div className="space-y-3 text-left">
                 <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground text-center">
-                  How to save words
+                  {t('savedWords.howToSave')}
                 </p>
-                
+
                 {/* Translate method */}
                 <div className="flex gap-3 p-3 rounded-lg bg-blue-500/5 border border-blue-500/20">
                   <div className="h-8 w-8 rounded-lg bg-blue-500/20 flex items-center justify-center shrink-0">
                     <Languages className="h-4 w-4 text-blue-500" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-medium text-sm">In Translate</p>
+                    <p className="font-medium text-sm">{t('savedWords.methodTranslate')}</p>
                     <p className="text-xs text-muted-foreground">
-                      Translate a word or phrase, then tap the <Heart className="h-3 w-3 inline text-pink-500" /> heart icon to save it
+                      {t('savedWords.methodTranslateDesc')}
                     </p>
                   </div>
                   <Link href={`/${locale}/translate`}>
                     <Button variant="ghost" size="sm" className="h-8 px-2 text-blue-500">
-                      Try it <ChevronRight className="h-3 w-3 ml-1" />
+                      {t('savedWords.tryIt')} <ChevronRight className="h-3 w-3 ml-1" />
                     </Button>
                   </Link>
                 </div>
-                
+
                 {/* Reader method */}
                 <div className="flex gap-3 p-3 rounded-lg bg-green-500/5 border border-green-500/20">
                   <div className="h-8 w-8 rounded-lg bg-green-500/20 flex items-center justify-center shrink-0">
                     <BookText className="h-4 w-4 text-green-500" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-medium text-sm">In Reader</p>
+                    <p className="font-medium text-sm">{t('savedWords.methodReader')}</p>
                     <p className="text-xs text-muted-foreground">
-                      Tap any word while reading, then tap &ldquo;Save word&rdquo; in the popup
+                      {t('savedWords.methodReaderDesc')}
                     </p>
                   </div>
                   <Link href={`/${locale}/reader`}>
                     <Button variant="ghost" size="sm" className="h-8 px-2 text-green-500">
-                      Try it <ChevronRight className="h-3 w-3 ml-1" />
+                      {t('savedWords.tryIt')} <ChevronRight className="h-3 w-3 ml-1" />
                     </Button>
                   </Link>
                 </div>
-                
+
                 {/* Lessons method */}
                 <div className="flex gap-3 p-3 rounded-lg bg-primary/5 border border-primary/20">
                   <div className="h-8 w-8 rounded-lg bg-primary/20 flex items-center justify-center shrink-0">
                     <BookOpen className="h-4 w-4 text-primary" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-medium text-sm">In Lessons</p>
+                    <p className="font-medium text-sm">{t('savedWords.methodLessons')}</p>
                     <p className="text-xs text-muted-foreground">
-                      Complete lessons to automatically add vocabulary to your review deck
+                      {t('savedWords.methodLessonsDesc')}
                     </p>
                   </div>
                   <Link href={`/${locale}/learn`}>
                     <Button variant="ghost" size="sm" className="h-8 px-2 text-primary">
-                      Try it <ChevronRight className="h-3 w-3 ml-1" />
+                      {t('savedWords.tryIt')} <ChevronRight className="h-3 w-3 ml-1" />
                     </Button>
                   </Link>
                 </div>
