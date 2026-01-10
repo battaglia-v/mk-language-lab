@@ -50,14 +50,14 @@ function expectedJourneyTestIds(route: GateRoute, mode: ReleaseGateMode): string
   if (id === 'profile') {
     return mode === 'signed-out' ? ['profile-sign-in'] : ['profile-overview', 'profile-sign-in'];
   }
-  if (id === 'settings') return ['settings-back-to-more', 'settings-reset-open'];
-  if (id === 'help') return ['help-back-to-more', 'help-email-support'];
+  if (id === 'settings') return ['settings-hero', 'settings-reset-open'];
+  if (id === 'help') return ['help-hero', 'help-email-support'];
   if (id === 'about') return ['about-hero'];
   if (id === 'feedback') return ['feedback-message', 'feedback-submit', 'feedback-back'];
   if (id === 'terms') return ['terms-back-home', 'terms-contact-email'];
   if (id === 'privacy') return ['privacy-hero'];
   if (id === 'upgrade') return ['upgrade-hero', 'upgrade-back-to-learn'];
-  if (id === 'more') return ['more-menu-news', 'more-menu-profile'];
+  if (id === 'resources') return ['resources-menu-savedWords', 'resources-menu-lab', 'resources-menu-news'];
   if (id === 'onboarding') return ['onboarding-start', 'onboarding-next'];
   if (id === 'localizedSignIn' || id === 'authSignIn') return ['auth-signin-email', 'auth-signin-submit'];
   if (id === 'authSignUp') return ['auth-signup-name', 'auth-signup-submit'];

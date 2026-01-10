@@ -8,7 +8,7 @@ test.describe('Bottom Navigation', () => {
     { name: 'Learn', url: '/en/learn', expected: /learn macedonian/i },
     { name: 'Practice', url: '/en/practice', expected: /practice/i },
     { name: 'Reader', url: '/en/reader', expected: /reader/i },
-    { name: 'More', url: '/en/more', expected: /news|profile|settings/i },
+    { name: 'Resources', url: '/en/resources', expected: /resources|saved|lab|news/i },
   ];
 
   for (const route of navRoutes) {
