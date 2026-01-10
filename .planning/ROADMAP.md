@@ -156,15 +156,16 @@ Plans:
 - [x] 28-02: Tools merge (Translate + Analyze unified page with toggle) — completed 2026-01-10
 - [x] 28-03: Learning Paths removal — completed 2026-01-10
 
-#### Phase 29: Lesson Enhancements — IN PROGRESS
+#### Phase 29: Lesson Enhancements — COMPLETE
 
 **Goal**: Wire save-to-glossary on vocab cards, add vocab sort toggle, quick actions, section progress indicator
 **Depends on**: Phase 28
 **Research**: Unlikely (existing infrastructure for save functionality)
-**Plans**: 1/? complete
+**Plans**: 2/2 complete
 
 Plans:
 - [x] 29-01: Vocabulary Save & Sort (save-to-glossary + sort toggle) — completed 2026-01-10
+- [x] 29-02: Section Stepper & Quick Actions (mobile stepper dots + vocabulary practice CTA) — completed 2026-01-10
 
 #### Phase 30: Vocabulary Display
 
@@ -202,7 +203,7 @@ Plans:
 |-------|-----------|-------|--------|-----------|
 | 27. Bug Fixes | v1.4 | 4/4 | Complete | 2026-01-10 |
 | 28. Navigation Overhaul | v1.4 | 3/3 | Complete | 2026-01-10 |
-| 29. Lesson Enhancements | v1.4 | 1/? | In progress | - |
+| 29. Lesson Enhancements | v1.4 | 2/2 | Complete | 2026-01-10 |
 | 30. Vocabulary Display | v1.4 | 0/? | Not started | - |
 | 31. State Persistence | v1.4 | 0/? | Not started | - |
 | 32. Content & Polish | v1.4 | 0/? | Not started | - |
