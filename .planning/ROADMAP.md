@@ -167,16 +167,16 @@ Plans:
 - [x] 29-01: Vocabulary Save & Sort (save-to-glossary + sort toggle) — completed 2026-01-10
 - [x] 29-02: Section Stepper & Quick Actions (mobile stepper dots + vocabulary practice CTA) — completed 2026-01-10
 
-#### Phase 30: Vocabulary Display — IN PROGRESS
+#### Phase 30: Vocabulary Display — COMPLETE
 
-**Goal**: Show adjective gender indication, noun definite articles, standardize pronoun order, implement vocabulary chunking
+**Goal**: Show adjective gender indication, noun definite articles, remove redundant navigation
 **Depends on**: Phase 29
 **Research**: Unlikely (linguistic display patterns established)
-**Plans**: 1/2 complete
+**Plans**: 2/2 complete
 
 Plans:
 - [x] 30-01: Gender annotations & definite articles — completed 2026-01-10
-- [ ] 30-02: Vocabulary grouping & content audit
+- [x] 30-02: Remove redundant Back to Dashboard links — completed 2026-01-10
 
 #### Phase 31: State Persistence
 
@@ -205,7 +205,7 @@ Plans:
 | 27. Bug Fixes | v1.4 | 4/4 | Complete | 2026-01-10 |
 | 28. Navigation Overhaul | v1.4 | 3/3 | Complete | 2026-01-10 |
 | 29. Lesson Enhancements | v1.4 | 2/2 | Complete | 2026-01-10 |
-| 30. Vocabulary Display | v1.4 | 1/2 | In progress | - |
+| 30. Vocabulary Display | v1.4 | 2/2 | Complete | 2026-01-10 |
 | 31. State Persistence | v1.4 | 0/? | Not started | - |
 | 32. Content & Polish | v1.4 | 0/? | Not started | - |
 
