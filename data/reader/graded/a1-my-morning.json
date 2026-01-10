@@ -1,0 +1,61 @@
+{
+  "id": "a1-my-morning",
+  "locale": "mk",
+  "title_mk": "Моето утро",
+  "title_en": "My Morning",
+  "difficulty": "A1",
+  "estimatedMinutes": 3,
+  "tags": ["graded-reader", "A1", "daily-life"],
+  "text_blocks_mk": [
+    { "type": "p", "value": "Секое утро станувам во седум часот. Јас одам во бањата и се мијам. Си ги мијам забите." },
+    { "type": "p", "value": "Потоа се облекувам. Јас одам во кујната за појадок. За појадок јадам леб со мед." },
+    { "type": "p", "value": "Пијам чај или сок. Мајка ми прави кафе секое утро. Во осум часот сум готов." },
+    { "type": "p", "value": "Ја земам мојата торба. Се поздравувам со семејството. Одам на работа со автобус." }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Сегашно време за секојдневни активности",
+      "title_en": "Present tense verbs for daily routine",
+      "examples": [
+        { "mk": "станувам", "en": "I wake up/get up" },
+        { "mk": "јадам", "en": "I eat" },
+        { "mk": "пијам", "en": "I drink" },
+        { "mk": "одам", "en": "I go" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "секое", "en": "every", "pos": "adjective" },
+    { "mk": "утро", "en": "morning", "pos": "noun" },
+    { "mk": "станувам", "en": "I wake up/get up", "pos": "verb" },
+    { "mk": "бањата", "en": "the bathroom", "pos": "noun" },
+    { "mk": "се мијам", "en": "I wash myself", "pos": "reflexive verb" },
+    { "mk": "заби", "en": "teeth", "pos": "noun" },
+    { "mk": "потоа", "en": "then", "pos": "adverb" },
+    { "mk": "се облекувам", "en": "I get dressed", "pos": "reflexive verb" },
+    { "mk": "кујната", "en": "the kitchen", "pos": "noun" },
+    { "mk": "појадок", "en": "breakfast", "pos": "noun" },
+    { "mk": "јадам", "en": "I eat", "pos": "verb" },
+    { "mk": "леб", "en": "bread", "pos": "noun" },
+    { "mk": "мед", "en": "honey", "pos": "noun" },
+    { "mk": "пијам", "en": "I drink", "pos": "verb" },
+    { "mk": "чај", "en": "tea", "pos": "noun" },
+    { "mk": "сок", "en": "juice", "pos": "noun" },
+    { "mk": "прави", "en": "makes", "pos": "verb" },
+    { "mk": "кафе", "en": "coffee", "pos": "noun" },
+    { "mk": "осум", "en": "eight", "pos": "number" },
+    { "mk": "готов", "en": "ready", "pos": "adjective" },
+    { "mk": "земам", "en": "I take", "pos": "verb" },
+    { "mk": "торба", "en": "bag", "pos": "noun" },
+    { "mk": "се поздравувам", "en": "I say goodbye", "pos": "reflexive verb" },
+    { "mk": "семејството", "en": "the family", "pos": "noun" },
+    { "mk": "работа", "en": "work", "pos": "noun" },
+    { "mk": "автобус", "en": "bus", "pos": "noun" }
+  ],
+  "expressions": [],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "Graded Readers",
+    "day": "daily-life"
+  }
+}

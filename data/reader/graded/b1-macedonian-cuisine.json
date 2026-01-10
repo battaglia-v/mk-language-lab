@@ -1,0 +1,75 @@
+{
+  "id": "b1-macedonian-cuisine",
+  "locale": "mk",
+  "title_mk": "Македонската кујна",
+  "title_en": "Macedonian Cuisine",
+  "difficulty": "B1",
+  "estimatedMinutes": 7,
+  "tags": ["graded-reader", "B1", "food"],
+  "text_blocks_mk": [
+    { "type": "p", "value": "Македонската кујна е позната по своето богатство на вкусови и традиции. Многу јадења се подготвуваат со состојки што се одгледуваат локално. Едно од најпопуларните јадења е тавче гравче." },
+    { "type": "p", "value": "Ова јадење се пече во глинен сад и се послужува топло. Ајварот е уште еден симбол на македонската кујна. Се прави од црвени пиперки кои се печат и се мелат." },
+    { "type": "p", "value": "Пастрмајлијата е поповкусна од многу брзи јадења. Кога гостин дојде дома, домаќинот мора да понуди мезе и ракија. Ова е дел од македонското гостопримство што се пренесува од генерација на генерација." },
+    { "type": "p", "value": "Секој регион има свои специјалитети. Во Охрид се јаде најдобрата пастрмка, а во Струмица најубавите домати. Домашната храна секогаш ќе биде повкусна од ресторанската. Затоа, ако ја посетите Македонија, обидете се да пробате домашно готвена храна. Таа е најавтентичниот начин да ја почувствувате македонската култура." }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Пасивни конструкции со 'се'",
+      "title_en": "Passive constructions with 'се'",
+      "examples": [
+        { "mk": "се подготвуваат", "en": "are prepared" },
+        { "mk": "се одгледуваат", "en": "are grown" },
+        { "mk": "се пече", "en": "is baked" },
+        { "mk": "се послужува", "en": "is served" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "кујна", "en": "cuisine/kitchen", "pos": "noun" },
+    { "mk": "богатство", "en": "richness", "pos": "noun" },
+    { "mk": "вкусови", "en": "flavors", "pos": "noun" },
+    { "mk": "се подготвуваат", "en": "are prepared", "pos": "passive verb" },
+    { "mk": "состојки", "en": "ingredients", "pos": "noun" },
+    { "mk": "одгледуваат", "en": "are grown", "pos": "passive verb" },
+    { "mk": "најпопуларните", "en": "the most popular", "pos": "superlative adj" },
+    { "mk": "тавче гравче", "en": "baked beans (traditional dish)", "pos": "noun phrase" },
+    { "mk": "се пече", "en": "is baked", "pos": "passive verb" },
+    { "mk": "глинен сад", "en": "clay pot", "pos": "noun phrase" },
+    { "mk": "се послужува", "en": "is served", "pos": "passive verb" },
+    { "mk": "ајвар", "en": "ajvar (pepper relish)", "pos": "noun" },
+    { "mk": "симбол", "en": "symbol", "pos": "noun" },
+    { "mk": "се прави", "en": "is made", "pos": "passive verb" },
+    { "mk": "пиперки", "en": "peppers", "pos": "noun" },
+    { "mk": "се печат", "en": "are roasted", "pos": "passive verb" },
+    { "mk": "се мелат", "en": "are ground", "pos": "passive verb" },
+    { "mk": "пастрмајлија", "en": "pastrmajlija (meat pie)", "pos": "noun" },
+    { "mk": "поповкусна од", "en": "more delicious than", "pos": "comparative" },
+    { "mk": "гостин", "en": "guest", "pos": "noun" },
+    { "mk": "домаќин", "en": "host", "pos": "noun" },
+    { "mk": "мезе", "en": "appetizers/small dishes", "pos": "noun" },
+    { "mk": "ракија", "en": "rakija (fruit brandy)", "pos": "noun" },
+    { "mk": "гостопримство", "en": "hospitality", "pos": "noun" },
+    { "mk": "се пренесува", "en": "is passed/transmitted", "pos": "passive verb" },
+    { "mk": "генерација", "en": "generation", "pos": "noun" },
+    { "mk": "регион", "en": "region", "pos": "noun" },
+    { "mk": "специјалитети", "en": "specialties", "pos": "noun" },
+    { "mk": "најдобрата", "en": "the best (fem)", "pos": "superlative adj" },
+    { "mk": "пастрмка", "en": "trout", "pos": "noun" },
+    { "mk": "најубавите", "en": "the best/most beautiful", "pos": "superlative adj" },
+    { "mk": "домашната", "en": "homemade", "pos": "adjective" },
+    { "mk": "повкусна од", "en": "more delicious than", "pos": "comparative" },
+    { "mk": "ресторанската", "en": "restaurant (adj)", "pos": "adjective" },
+    { "mk": "ако", "en": "if", "pos": "conjunction" },
+    { "mk": "посетите", "en": "you visit (formal)", "pos": "verb" },
+    { "mk": "обидете се", "en": "try (imperative)", "pos": "verb" },
+    { "mk": "пробате", "en": "taste", "pos": "verb" },
+    { "mk": "најавтентичниот", "en": "the most authentic", "pos": "superlative adj" },
+    { "mk": "почувствувате", "en": "to experience/feel", "pos": "verb" }
+  ],
+  "expressions": [],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "Graded Readers",
+    "day": "food"
+  }
+}

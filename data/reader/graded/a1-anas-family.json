@@ -1,0 +1,42 @@
+{
+  "id": "a1-anas-family",
+  "locale": "mk",
+  "title_mk": "Семејството на Ана",
+  "title_en": "Ana's Family",
+  "difficulty": "A1",
+  "estimatedMinutes": 3,
+  "tags": ["graded-reader", "A1", "family"],
+  "text_blocks_mk": [
+    { "type": "p", "value": "Јас се викам Ана. Имам дваесет години. Живеам во Скопје со моето семејство." },
+    { "type": "p", "value": "Моите родители се Марко и Лена. Татко ми е доктор. Мајка ми е учителка." },
+    { "type": "p", "value": "Имам еден брат и една сестра. Мојот брат се вика Петар. Тој има осумнаесет години." },
+    { "type": "p", "value": "Мојата сестра се вика Марија. Таа има петнаесет години. Ние сме среќно семејство." }
+  ],
+  "grammar_highlights": [],
+  "vocabulary": [
+    { "mk": "се викам", "en": "my name is", "pos": "verb phrase" },
+    { "mk": "дваесет", "en": "twenty", "pos": "number" },
+    { "mk": "години", "en": "years", "pos": "noun" },
+    { "mk": "живеам", "en": "I live", "pos": "verb" },
+    { "mk": "семејство", "en": "family", "pos": "noun" },
+    { "mk": "родители", "en": "parents", "pos": "noun" },
+    { "mk": "моите", "en": "my (plural)", "pos": "possessive" },
+    { "mk": "татко", "en": "father", "pos": "noun" },
+    { "mk": "доктор", "en": "doctor", "pos": "noun" },
+    { "mk": "мајка", "en": "mother", "pos": "noun" },
+    { "mk": "учителка", "en": "teacher (f)", "pos": "noun" },
+    { "mk": "брат", "en": "brother", "pos": "noun" },
+    { "mk": "сестра", "en": "sister", "pos": "noun" },
+    { "mk": "мојот", "en": "my (masc.)", "pos": "possessive" },
+    { "mk": "осумнаесет", "en": "eighteen", "pos": "number" },
+    { "mk": "мојата", "en": "my (fem.)", "pos": "possessive" },
+    { "mk": "петнаесет", "en": "fifteen", "pos": "number" },
+    { "mk": "среќно", "en": "happy", "pos": "adjective" }
+  ],
+  "expressions": [],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "Graded Readers",
+    "day": "family"
+  }
+}
