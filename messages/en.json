@@ -2758,5 +2758,10 @@
     "library": {
       "continueLearning": "Continue your lessons"
     }
+  },
+  "tools": {
+    "title": "Tools",
+    "translateTab": "Translate",
+    "analyzeTab": "Analyze"
   }
 }
