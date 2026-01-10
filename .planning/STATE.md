@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-09)
 
 ## Current Position
 
-Phase: 22 of 26 (Content Effectiveness Audit) — COMPLETE
-Plan: 1 of 1 in Phase 22
+Phase: 23 of 26 (Practice Feature Audit) — COMPLETE
+Plan: 1 of 1 in Phase 23
 Status: Phase complete
-Last activity: 2026-01-09 — Completed 22-01-PLAN.md
+Last activity: 2026-01-09 — Completed 23-01-PLAN.md
 
-Progress: ████░░░░░░ 33% (2 of 6 phases in v1.3)
+Progress: █████░░░░░ 50% (3 of 6 phases in v1.3)
 
 ## Milestone Summary
 
@@ -47,9 +47,9 @@ See `.planning/MILESTONES.md` for full details.
 - [x] Exercise quality verified (21 exercises sampled, all pass)
 - [x] Translation accuracy checked (240 → 0 issues)
 
-**Practice UX (Phase 23):**
-- [ ] My Saved Words section restyled
-- [ ] Post-lesson practice flow improved
+**Practice UX (Phase 23):** COMPLETE
+- [x] My Saved Words section internationalized
+- [x] Post-lesson practice flow improved with i18n
 
 **User Journey (Phase 24):**
 - [ ] Learn → Practice → Reader flow connected
@@ -102,6 +102,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-09
-Stopped at: Completed 22-01-PLAN.md (Phase 22 complete)
+Stopped at: Completed 23-01-PLAN.md (Phase 23 complete)
 Resume file: None
-Next step: `/gsd:plan-phase 23` (Practice Feature Audit & UX)
+Next step: `/gsd:plan-phase 24` (User Journey Cohesion)
