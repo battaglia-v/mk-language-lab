@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 
 // Import new enhanced components
@@ -194,6 +194,7 @@ export default function LessonPageContentV2({
 }: LessonPageContentV2Props) {
   const router = useRouter();
   const locale = useLocale();
+  const t = useTranslations('learn');
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const [completedSections, setCompletedSections] = useState<Set<string>>(new Set());
   const [startTime] = useState(Date.now());
@@ -659,10 +660,10 @@ export default function LessonPageContentV2({
 
             <div className="space-y-2">
               <h2 className="text-3xl sm:text-4xl font-bold">
-                Congratulations! 🎉
+                {t('lessonComplete.title')} 🎉
               </h2>
               <p className="text-lg text-muted-foreground">
-                You&apos;ve completed <strong>{lesson.title}</strong>
+                {t('lessonComplete.subtitle')}: <strong>{lesson.title}</strong>
               </p>
             </div>
 
@@ -670,15 +671,11 @@ export default function LessonPageContentV2({
             <div className="flex gap-6 py-4">
               <div className="text-center">
                 <p className="text-2xl font-bold text-primary">{lesson.vocabularyItems.length}</p>
-                <p className="text-sm text-muted-foreground">Words Learned</p>
+                <p className="text-sm text-muted-foreground">{t('lessonComplete.vocabularyLearned', { count: lesson.vocabularyItems.length })}</p>
               </div>
               <div className="text-center">
                 <p className="text-2xl font-bold text-primary">{lesson.grammarNotes.length}</p>
-                <p className="text-sm text-muted-foreground">Grammar Points</p>
-              </div>
-              <div className="text-center">
-                <p className="text-2xl font-bold text-primary">{lesson.exercises.length}</p>
-                <p className="text-sm text-muted-foreground">Exercises</p>
+                <p className="text-sm text-muted-foreground">{t('lessonComplete.grammarCovered', { count: lesson.grammarNotes.length })}</p>
               </div>
             </div>
 
@@ -687,11 +684,11 @@ export default function LessonPageContentV2({
               {lesson.vocabularyItems.length > 0 && (
                 <Button
                   size="lg"
-                  onClick={() => router.push(`/${locale}/practice/session?deck=lesson-${lesson.id}&mode=multiple-choice`)}
+                  onClick={() => router.push(`/${locale}/practice/session?deck=lesson-review&mode=multiple-choice`)}
                   className="gap-2 bg-primary hover:bg-primary/90"
                 >
                   <Dumbbell className="h-4 w-4" />
-                  Practice {lesson.vocabularyItems.length} Words
+                  {t('lessonComplete.practiceNow')}
                 </Button>
               )}
 
@@ -702,7 +699,7 @@ export default function LessonPageContentV2({
                   onClick={handleCompleteLesson}
                   className="gap-2"
                 >
-                  Next Lesson
+                  {t('lessonComplete.continueNext')}
                   <ChevronRight className="h-4 w-4" />
                 </Button>
               ) : (
@@ -713,7 +710,7 @@ export default function LessonPageContentV2({
                   className="gap-2"
                 >
                   <Home className="h-4 w-4" />
-                  Return Home
+                  {t('lessonComplete.backToLessons')}
                 </Button>
               )}
             </div>
