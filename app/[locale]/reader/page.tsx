@@ -370,6 +370,18 @@ export default function ReaderPage() {
                     <p className="text-sm text-muted-foreground py-4">More stories coming soon</p>
                   )}
                 </section>
+
+                {/* Continue Learning Link */}
+                <div className="text-center pt-6 pb-2">
+                  <Link
+                    href={`/${locale}/learn`}
+                    className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    data-testid="reader-library-continue-learning"
+                  >
+                    {t('library.continueLearning', { default: 'Continue your lessons' })}
+                    <ChevronRight className="h-4 w-4" />
+                  </Link>
+                </div>
               </>
             )}
           </TabsContent>
