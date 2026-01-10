@@ -875,6 +875,198 @@
       ]
     },
     {
+      "id": "reader-a2-002",
+      "title": {
+        "mk": "Мојата работа",
+        "en": "My Job"
+      },
+      "level": "A2",
+      "category": "daily-life",
+      "estimatedMinutes": 5,
+      "wordCount": 125,
+      "xpReward": 35,
+      "grammarHighlight": {
+        "topic": "Present habitual actions and time expressions",
+        "topicMk": "Сегашни вообичаени дејства и временски изрази",
+        "examples": ["секој ден", "обично", "понекогаш", "рано"]
+      },
+      "sentences": [
+        {
+          "id": "s1",
+          "mk": "Јас работам како програмер во една фирма во Скопје.",
+          "en": "I work as a programmer in a company in Skopje.",
+          "audio": "/audio/reader/a2-002/s1.mp3",
+          "vocabulary": [
+            {"word": "програмер", "meaning": "programmer", "pos": "noun"},
+            {"word": "фирма", "meaning": "company/firm", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s2",
+          "mk": "Секој ден станувам во шест часот наутро.",
+          "en": "Every day I wake up at six o'clock in the morning.",
+          "audio": "/audio/reader/a2-002/s2.mp3",
+          "vocabulary": [
+            {"word": "секој ден", "meaning": "every day", "pos": "phrase"},
+            {"word": "наутро", "meaning": "in the morning", "pos": "adverb"}
+          ],
+          "grammarNote": "секој ден - time expression for habitual actions"
+        },
+        {
+          "id": "s3",
+          "mk": "Појадувам брзо и одам на работа со автомобил.",
+          "en": "I have breakfast quickly and go to work by car.",
+          "audio": "/audio/reader/a2-002/s3.mp3",
+          "vocabulary": [
+            {"word": "појадувам", "meaning": "I have breakfast", "pos": "verb"},
+            {"word": "брзо", "meaning": "quickly", "pos": "adverb"},
+            {"word": "автомобил", "meaning": "car", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s4",
+          "mk": "Мојата канцеларија е на петтиот кат.",
+          "en": "My office is on the fifth floor.",
+          "audio": "/audio/reader/a2-002/s4.mp3",
+          "vocabulary": [
+            {"word": "канцеларија", "meaning": "office", "pos": "noun"},
+            {"word": "петтиот", "meaning": "the fifth", "pos": "ordinal (def)"},
+            {"word": "кат", "meaning": "floor/storey", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s5",
+          "mk": "Имам многу добри колеги и работиме заедно на проекти.",
+          "en": "I have very good colleagues and we work together on projects.",
+          "audio": "/audio/reader/a2-002/s5.mp3",
+          "vocabulary": [
+            {"word": "колеги", "meaning": "colleagues", "pos": "noun"},
+            {"word": "проекти", "meaning": "projects", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s6",
+          "mk": "Обично имаме состанок секое утро во девет часот.",
+          "en": "Usually we have a meeting every morning at nine o'clock.",
+          "audio": "/audio/reader/a2-002/s6.mp3",
+          "vocabulary": [
+            {"word": "обично", "meaning": "usually", "pos": "adverb"},
+            {"word": "состанок", "meaning": "meeting", "pos": "noun"}
+          ],
+          "grammarNote": "обично - frequency adverb for typical/usual actions"
+        },
+        {
+          "id": "s7",
+          "mk": "На состанокот разговараме за нашите задачи.",
+          "en": "At the meeting we discuss our tasks.",
+          "audio": "/audio/reader/a2-002/s7.mp3",
+          "vocabulary": [
+            {"word": "разговараме", "meaning": "we discuss", "pos": "verb"},
+            {"word": "задачи", "meaning": "tasks", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s8",
+          "mk": "Понекогаш работата е стресна, но ми се допаѓа.",
+          "en": "Sometimes the work is stressful, but I like it.",
+          "audio": "/audio/reader/a2-002/s8.mp3",
+          "vocabulary": [
+            {"word": "понекогаш", "meaning": "sometimes", "pos": "adverb"},
+            {"word": "стресна", "meaning": "stressful", "pos": "adjective"},
+            {"word": "ми се допаѓа", "meaning": "I like it", "pos": "verb phrase"}
+          ]
+        },
+        {
+          "id": "s9",
+          "mk": "Минатата недела завршивме еден голем проект.",
+          "en": "Last week we finished a big project.",
+          "audio": "/audio/reader/a2-002/s9.mp3",
+          "vocabulary": [
+            {"word": "минатата недела", "meaning": "last week", "pos": "phrase"},
+            {"word": "завршивме", "meaning": "we finished", "pos": "verb (past)"}
+          ],
+          "grammarNote": "завршивме - past tense (aorist) for completed action"
+        },
+        {
+          "id": "s10",
+          "mk": "Шефот рече: \"Одлична работа, тимот!\"",
+          "en": "The boss said: \"Excellent work, team!\"",
+          "audio": "/audio/reader/a2-002/s10.mp3",
+          "vocabulary": [
+            {"word": "шефот", "meaning": "the boss", "pos": "noun (def)"},
+            {"word": "рече", "meaning": "said", "pos": "verb (past)"},
+            {"word": "одлична", "meaning": "excellent", "pos": "adjective"}
+          ]
+        },
+        {
+          "id": "s11",
+          "mk": "За ручек одам во ресторанот близу фирмата.",
+          "en": "For lunch I go to the restaurant near the company.",
+          "audio": "/audio/reader/a2-002/s11.mp3",
+          "vocabulary": [
+            {"word": "ручек", "meaning": "lunch", "pos": "noun"},
+            {"word": "близу", "meaning": "near", "pos": "preposition"}
+          ]
+        },
+        {
+          "id": "s12",
+          "mk": "Завршувам со работа во пет часот попладне.",
+          "en": "I finish work at five o'clock in the afternoon.",
+          "audio": "/audio/reader/a2-002/s12.mp3",
+          "vocabulary": [
+            {"word": "завршувам", "meaning": "I finish", "pos": "verb"},
+            {"word": "попладне", "meaning": "in the afternoon", "pos": "adverb"}
+          ]
+        },
+        {
+          "id": "s13",
+          "mk": "Најмногу сакам кога работам од дома петоците.",
+          "en": "I like it most when I work from home on Fridays.",
+          "audio": "/audio/reader/a2-002/s13.mp3",
+          "vocabulary": [
+            {"word": "најмногу", "meaning": "most", "pos": "adverb"},
+            {"word": "од дома", "meaning": "from home", "pos": "phrase"},
+            {"word": "петоците", "meaning": "on Fridays", "pos": "noun (def)"}
+          ]
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "question": {
+            "mk": "Каде работи?",
+            "en": "Where does he/she work?"
+          },
+          "options": [
+            {"mk": "Во болница", "correct": false},
+            {"mk": "Во фирма во Скопје", "correct": true},
+            {"mk": "Во училиште", "correct": false}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Во колку часот имаат состанок?",
+            "en": "What time do they have a meeting?"
+          },
+          "options": [
+            {"mk": "Осум часот", "correct": false},
+            {"mk": "Девет часот", "correct": true},
+            {"mk": "Десет часот", "correct": false}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Кога сака да работи од дома?",
+            "en": "When does he/she like to work from home?"
+          },
+          "options": [
+            {"mk": "Понеделници", "correct": false},
+            {"mk": "Петоците", "correct": true},
+            {"mk": "Секој ден", "correct": false}
+          ]
+        }
+      ]
+    },
+    {
       "id": "reader-b1-001",
       "title": {
         "mk": "Македонските традиции за Велигден",
