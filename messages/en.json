@@ -72,10 +72,7 @@
     "quickActionPractice": "Continue practice",
     "quickActionTranslate": "Open translator",
     "quickActions": "Quick actions",
-    "backToDashboard": "Back to dashboard",
-    "backToSection": "Back to {section}",
     "flashcardShortcuts": "Space to flip · ← → to move",
-    "lessonsPathHint": "Lessons, events, and playlists",
     "roadmap": "Roadmap",
     "roadmapBlurb": "Next sprint ships translator skeletons"
   },
