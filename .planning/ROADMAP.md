@@ -132,28 +132,27 @@ Plans:
 
 **Milestone Goal:** Systematic response to real user feedback - bugs, navigation, lesson UX, vocabulary display, state persistence, and content polish.
 
-#### Phase 27: Bug Fixes
+#### Phase 27: Bug Fixes — COMPLETE
 
 **Goal**: Fix light mode colors, back button labels, expandable examples, conditional tap hints, grammar tone, keyboard hints
 **Depends on**: v1.3 complete
-**Research**: Likely (keyboard inputmode/lang attributes for Macedonian)
-**Research topics**: `inputmode` attribute for mobile keyboards, `lang` attribute behavior for Cyrillic input
-**Plans**: TBD
+**Plans**: 4
 
 Plans:
 - [x] 27-01: Light mode colors & back button i18n — completed 2026-01-10
 - [x] 27-02: Expandable grammar examples & conditional tap hints — completed 2026-01-10
 - [x] 27-03: Macedonian keyboard hints — completed 2026-01-10
+- [x] 27-04: Grammar tone & expand/collapse fix — completed 2026-01-10
 
-#### Phase 28: Navigation Overhaul
+#### Phase 28: Navigation Overhaul — IN PROGRESS
 
 **Goal**: Eliminate More menu, create Resources section, add Translate+Analyzer toggle, consolidate user menu, remove Learning Paths
 **Depends on**: Phase 27
 **Research**: Unlikely (internal routing and component patterns)
-**Plans**: TBD
+**Plans**: 1/? complete
 
 Plans:
-- [ ] 28-01: TBD
+- [x] 28-01: Navigation simplification (More → Resources, UserMenu consolidation) — completed 2026-01-10
 
 #### Phase 29: Lesson Enhancements
 
@@ -199,8 +198,8 @@ Plans:
 
 | Phase | Milestone | Plans | Status | Completed |
 |-------|-----------|-------|--------|-----------|
-| 27. Bug Fixes | v1.4 | 3/? | In progress | - |
-| 28. Navigation Overhaul | v1.4 | 0/? | Not started | - |
+| 27. Bug Fixes | v1.4 | 4/4 | Complete | 2026-01-10 |
+| 28. Navigation Overhaul | v1.4 | 1/? | In progress | - |
 | 29. Lesson Enhancements | v1.4 | 0/? | Not started | - |
 | 30. Vocabulary Display | v1.4 | 0/? | Not started | - |
 | 31. State Persistence | v1.4 | 0/? | Not started | - |
