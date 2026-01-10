@@ -9,6 +9,23 @@ import prisma from '@/lib/prisma';
 import type { LessonPath, LessonNode, LessonNodeStatus } from './lesson-path-types';
 
 /**
+ * Alphabet lesson node - prepended to A1 path
+ * Completion is tracked via localStorage (mkll:alphabet-progress)
+ * Status is set to 'available' here and updated client-side based on localStorage
+ */
+const ALPHABET_NODE: LessonNode = {
+  id: 'alphabet',
+  type: 'lesson',
+  title: 'The Alphabet',
+  titleMk: 'Азбуката',
+  description: 'Learn the Cyrillic alphabet and basic pronunciation',
+  status: 'available', // Will be updated client-side based on localStorage
+  xpReward: 20,
+  href: '/learn/lessons/alphabet',
+  contentId: 'alphabet',
+};
+
+/**
  * Journey ID to path configuration mapping
  */
 const JOURNEY_CONFIG: Record<string, { title: string; description: string }> = {
@@ -122,6 +139,21 @@ export async function getCurriculumPath(
     title: journeyId,
     description: '',
   };
+
+  // For A1, prepend alphabet lesson as the first node
+  // Alphabet completion is tracked client-side via localStorage
+  // The status will be updated in LearnPageClient based on localStorage
+  if (journeyId === 'ukim-a1') {
+    nodes.unshift({ ...ALPHABET_NODE });
+    return {
+      id: `curriculum-${journeyId}`,
+      title: config.title,
+      description: config.description,
+      nodes,
+      completedCount: completedLessonIds.size, // Alphabet completion added client-side
+      totalCount: allLessons.length + 1, // +1 for alphabet
+    };
+  }
 
   return {
     id: `curriculum-${journeyId}`,
