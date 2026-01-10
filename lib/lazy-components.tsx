@@ -88,28 +88,6 @@ export const LazyXPGainAnimation = dynamic(
 // ============================================================================
 
 /**
- * Lazy-loaded PronunciationCard with audio recording
- */
-export const LazyPronunciationCard = dynamic(
-  () => import('@/components/practice/PronunciationCard').then(mod => mod.PronunciationCard),
-  {
-    loading: CardLoadingFallback,
-    ssr: false, // MediaRecorder API
-  }
-);
-
-/**
- * Lazy-loaded PronunciationSession
- */
-export const LazyPronunciationSession = dynamic(
-  () => import('@/components/practice/PronunciationSession').then(mod => mod.PronunciationSession),
-  {
-    loading: DashboardLoadingFallback,
-    ssr: false,
-  }
-);
-
-/**
  * Lazy-loaded GrammarExerciseCard
  */
 export const LazyGrammarExerciseCard = dynamic(
@@ -196,14 +174,6 @@ export function preloadComponent<T>(importFn: () => Promise<T>): void {
  */
 export function preloadAchievementAnimations(): void {
   void import('@/components/gamification/AchievementAnimations');
-}
-
-/**
- * Preload pronunciation components when user navigates to practice
- */
-export function preloadPronunciationComponents(): void {
-  void import('@/components/practice/PronunciationCard');
-  void import('@/components/practice/PronunciationSession');
 }
 
 /**
