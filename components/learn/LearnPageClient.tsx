@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Zap, Play, BookOpen, ChevronRight, Check, GraduationCap, Sparkles } from 'lucide-react';
@@ -14,6 +14,8 @@ import type { LessonPath as LessonPathData, LessonNode } from '@/lib/learn/lesso
 type LevelId = 'beginner' | 'intermediate' | 'advanced' | 'challenge';
 
 const LEVEL_STORAGE_KEY = 'mklanguage-level';
+const ALPHABET_PROGRESS_KEY = 'mkll:alphabet-progress';
+const ALPHABET_TOTAL_LETTERS = 31;
 
 interface LearnPageClientProps {
   locale: string;
@@ -46,10 +48,24 @@ export function LearnPageClient({
   // Use local XP state for real-time updates
   const [localState, setLocalState] = useState({ todayXP: initialTodayXP, streak: initialStreak });
   const [activeLevel, setActiveLevel] = useState<LevelId>('beginner');
+  const [alphabetCompleted, setAlphabetCompleted] = useState(false);
 
   useEffect(() => {
     const state = getLocalXP();
     setLocalState({ todayXP: state.todayXP, streak: state.streak });
+
+    // Check alphabet completion from localStorage
+    try {
+      const saved = localStorage.getItem(ALPHABET_PROGRESS_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length >= ALPHABET_TOTAL_LETTERS) {
+          setAlphabetCompleted(true);
+        }
+      }
+    } catch {
+      // Ignore storage errors
+    }
   }, []);
 
   useEffect(() => {
@@ -90,8 +106,30 @@ export function LearnPageClient({
   const goalProgress = dailyGoalXP > 0 ? Math.min(100, Math.round((todayXP / dailyGoalXP) * 100)) : 0;
   const isGoalComplete = todayXP >= dailyGoalXP;
 
+  // Update A1 path with alphabet completion status from localStorage
+  const a1PathWithAlphabet = useMemo((): LessonPathData => {
+    // Find alphabet node and update its status
+    const updatedNodes = a1Path.nodes.map((node, index) => {
+      if (node.id === 'alphabet') {
+        return { ...node, status: alphabetCompleted ? 'completed' : 'available' } as LessonNode;
+      }
+      // If alphabet is not completed, mark all other lessons as locked
+      // (keeping their original status if alphabet is completed)
+      if (!alphabetCompleted && index > 0) {
+        return { ...node, status: 'locked' } as LessonNode;
+      }
+      return node;
+    });
+
+    return {
+      ...a1Path,
+      nodes: updatedNodes,
+      completedCount: a1Path.completedCount + (alphabetCompleted ? 1 : 0),
+    };
+  }, [a1Path, alphabetCompleted]);
+
   const pathMap: Record<LevelId, LessonPathData> = {
-    beginner: a1Path,
+    beginner: a1PathWithAlphabet,
     intermediate: a2Path,
     advanced: b1Path,
     challenge: challengePath,
