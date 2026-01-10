@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-10)
 
 ## Current Position
 
-Phase: 34 of 35 (Remaining Polish)
-Plan: 3 of 3 in current phase
-Status: Complete
-Last activity: 2026-01-10 — Completed 34-03-PLAN.md (content messaging polish)
+Phase: 35 of 35 (Practice Improvements)
+Plan: 0 of 1 in current phase
+Status: Planning complete
+Last activity: 2026-01-10 — Created 35-01-PLAN.md (practice content visibility)
 
-Progress: [██████░░░░] ~60% (v1.5 in progress)
+Progress: [████████░░] ~80% (v1.5 in progress)
 
 ## Milestone Summary
 
@@ -132,6 +132,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-10
-Stopped at: Completed 34-03-PLAN.md (Phase 34 complete)
+Stopped at: Created 35-01-PLAN.md (Phase 35 planning complete)
 Resume file: None
-Next step: /gsd:plan-phase 35 (or /gsd:complete-milestone v1.5 when ready)
+Next step: /gsd:execute-plan .planning/phases/35-practice-improvements/35-01-PLAN.md
