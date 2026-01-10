@@ -4,6 +4,14 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { CheckCircle2, XCircle, Volume2, VolumeX, Lightbulb, SkipForward, Heart, X } from 'lucide-react';
+import {
+  savePracticeSession,
+  loadPracticeSession,
+  clearPracticeSession,
+  isSessionStale,
+  generateSessionId,
+  type PracticeSessionState,
+} from '@/lib/session-persistence';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Progress } from '@/components/ui/progress';
@@ -52,6 +60,12 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
   const [xpAmount, setXpAmount] = useState(0);
   const [showGoalCelebration, setShowGoalCelebration] = useState(false);
   const [goalWasCompleteAtStart, setGoalWasCompleteAtStart] = useState(false);
+
+  // Session persistence state
+  const [pendingRestore, setPendingRestore] = useState(false);
+  const [savedSession, setSavedSession] = useState<PracticeSessionState | null>(null);
+  const [sessionId] = useState(() => generateSessionId());
+  const saveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Check if goal was already complete when session started
   useEffect(() => {
@@ -170,6 +184,96 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
     if (card?.id) setIsFav(isFavorite(card.id));
   }, [card?.id]);
 
+  // Check for saved session after deck loads
+  useEffect(() => {
+    if (deckStatus !== 'ready' || deck.length === 0) return;
+
+    const saved = loadPracticeSession();
+    if (!saved) return;
+
+    // Check if saved session matches current deck type and isn't stale
+    if (saved.deckType === deckType && !isSessionStale(24)) {
+      setSavedSession(saved);
+      setPendingRestore(true);
+    } else {
+      // Clear stale or mismatched session
+      clearPracticeSession();
+    }
+  }, [deckStatus, deck.length, deckType]);
+
+  // Handle session restore
+  const handleRestore = useCallback(() => {
+    if (!savedSession) return;
+
+    // Restore session state
+    if (savedSession.deckSnapshot.length > 0) {
+      setDeck(savedSession.deckSnapshot);
+    }
+    setIndex(savedSession.currentIndex);
+    setReviewedCount(savedSession.reviewedCount);
+    setCorrectAnswers(savedSession.correctAnswers);
+    setMaxStreak(savedSession.maxStreak);
+
+    // Clear the pending restore
+    setPendingRestore(false);
+    setSavedSession(null);
+  }, [savedSession]);
+
+  // Handle starting fresh (discard saved session)
+  const handleStartFresh = useCallback(() => {
+    clearPracticeSession();
+    setPendingRestore(false);
+    setSavedSession(null);
+  }, []);
+
+  // Debounced save of session state
+  useEffect(() => {
+    // Don't save if pending restore (user hasn't chosen yet) or deck not ready
+    if (pendingRestore || deckStatus !== 'ready' || deck.length === 0) return;
+
+    // Clear any pending save
+    if (saveTimeoutRef.current) {
+      clearTimeout(saveTimeoutRef.current);
+    }
+
+    // Debounce save by 500ms
+    saveTimeoutRef.current = setTimeout(() => {
+      savePracticeSession({
+        sessionId,
+        deckType,
+        customDeckId: customDeckId ?? null,
+        difficulty,
+        mode,
+        deckSnapshot: deck,
+        currentIndex: index,
+        reviewedCount,
+        correctAnswers,
+        maxStreak,
+        startedAt: new Date(sessionStart.current).toISOString(),
+        lastUpdatedAt: new Date().toISOString(),
+      });
+    }, 500);
+
+    return () => {
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+    };
+  }, [
+    pendingRestore,
+    deckStatus,
+    deck,
+    sessionId,
+    deckType,
+    customDeckId,
+    difficulty,
+    mode,
+    index,
+    reviewedCount,
+    correctAnswers,
+    maxStreak,
+  ]);
+
   const resetCard = useCallback(() => {
     setGuess(''); setFeedback(null); setRevealed(false); setHint(null); setSelectedChoice(null);
     if (window.speechSynthesis) window.speechSynthesis.cancel();
@@ -182,6 +286,9 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
   }, [cardId, resetCard]);
 
   const endSession = useCallback(() => {
+    // Clear saved session when ending (completed or exited)
+    clearPracticeSession();
+
     const duration = Math.floor((Date.now() - sessionStart.current) / 1000);
     const xp = calculateXP(correctAnswers, maxStreak);
     recordActivitySession(reviewedCount, correctAnswers, duration);
