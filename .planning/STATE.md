@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-09)
 ## Current Position
 
 Phase: 26 of 26 (Validation & Polish)
-Plan: 1 of 2 in Phase 26
-Status: In progress
-Last activity: 2026-01-10 — Completed 26-01-PLAN.md (Dark Mode & Component Polish)
+Plan: 2 of 2 in Phase 26
+Status: Milestone complete
+Last activity: 2026-01-10 — Completed 26-02-PLAN.md (User Journey E2E Validation)
 
-Progress: █████████░ 92% (5.5 of 6 phases in v1.3)
+Progress: ██████████ 100% (6 of 6 phases in v1.3)
 
 ## Milestone Summary
 
@@ -62,10 +62,10 @@ See `.planning/MILESTONES.md` for full details.
 - [x] A2 graded reader stories (3 new stories)
 - [x] B1 graded reader stories (3 new stories)
 
-**Validation (Phase 26):** IN PROGRESS
+**Validation (Phase 26):** COMPLETE
 - [x] Dark mode compliance verified (6 components updated)
 - [x] LessonSection compound component created
-- [ ] User journey E2E validation (26-02)
+- [x] User journey E2E validation (72 tests pass)
 
 ## Performance Metrics
 
@@ -91,6 +91,7 @@ All decisions logged in PROJECT.md Key Decisions table with outcomes.
 ### Deferred Issues
 
 - Cloudflare migration — Re-evaluate when OpenNext supports Next.js 16
+- ISS-001: Wire A2 graded readers to reader UI — content exists, not wired
 
 ### Blockers/Concerns
 
@@ -106,6 +107,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-10
-Stopped at: Completed 26-01-PLAN.md (Dark Mode & Component Polish)
+Stopped at: Completed 26-02-PLAN.md (User Journey E2E Validation)
 Resume file: None
-Next step: `/gsd:execute-plan .planning/phases/26-validation-polish/26-02-PLAN.md`
+Next step: `/gsd:complete-milestone` — v1.3 shipped, ready to archive

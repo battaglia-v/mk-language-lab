@@ -9,7 +9,7 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 - ✅ [v1.0 Beta](milestones/v1.0-ROADMAP.md) (Phases 1-7) — SHIPPED 2026-01-07
 - ✅ **v1.1 Curriculum Quality Fix** — Phases 8-16 (shipped 2026-01-09)
 - ✅ [v1.2 Infrastructure & CI Overhaul](milestones/v1.2-ROADMAP.md) (Phases 17-20) — SHIPPED 2026-01-09
-- 🚧 **v1.3 Content Quality & User Journey** — Phases 21-26 (in progress)
+- ✅ **v1.3 Content Quality & User Journey** — Phases 21-26 (shipped 2026-01-10)
 
 ## Completed Milestones
 
@@ -57,7 +57,8 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 
 </details>
 
-### 🚧 v1.3 Content Quality & User Journey (In Progress)
+<details>
+<summary>✅ v1.3 Content Quality & User Journey (Phases 21-26) — SHIPPED 2026-01-10</summary>
 
 **Milestone Goal:** Fix broken interactions, audit content effectiveness, improve Practice UX, and deepen A1/A2/B1 content while maintaining the core promise: "always resume in the right place, next step obvious."
 
@@ -113,7 +114,7 @@ Plans:
 - [x] 25-02: A2 reader stories (My Job, Hobbies, The Holiday) — completed 2026-01-10
 - [x] 25-03: B1 reader stories (Macedonian Cuisine, City vs Village, Macedonian Legends) — completed 2026-01-10
 
-#### Phase 26: Validation & Polish — IN PROGRESS
+#### Phase 26: Validation & Polish — COMPLETE
 
 **Goal**: Final testing, polish, and refinements before milestone completion
 **Depends on**: Phase 25
@@ -122,7 +123,9 @@ Plans:
 
 Plans:
 - [x] 26-01: Dark Mode & Component Polish — completed 2026-01-10
-- [ ] 26-02: User Journey E2E Validation
+- [x] 26-02: User Journey E2E Validation — completed 2026-01-10
+
+</details>
 
 ## Progress
 
@@ -133,11 +136,12 @@ Plans:
 | 23. Practice Feature Audit & UX | v1.3 | 1/1 | Complete | 2026-01-09 |
 | 24. User Journey Cohesion | v1.3 | 1/1 | Complete | 2026-01-10 |
 | 25. Content Expansion | v1.3 | 3/3 | Complete | 2026-01-10 |
-| 26. Validation & Polish | v1.3 | 1/2 | In progress | - |
+| 26. Validation & Polish | v1.3 | 2/2 | Complete | 2026-01-10 |
 
 **Completed Milestones:**
 - [v1.0 Beta](milestones/v1.0-ROADMAP.md) — 7 phases, 21 plans (shipped 2026-01-07)
 - [v1.2 Infrastructure & CI](milestones/v1.2-ROADMAP.md) — 4 phases, 7 plans (shipped 2026-01-09)
+- **v1.3 Content Quality & User Journey** — 6 phases, 8 plans (shipped 2026-01-10)
 
 ## Domain Expertise
 
