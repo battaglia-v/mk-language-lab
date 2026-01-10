@@ -1578,6 +1578,7 @@
     "goHome": "Go to Home",
     "tryAgain": "Try Again",
     "skipToContent": "Skip to main content",
+    "back": "Back",
     "commandMenu": {
       "trigger": "Quick search",
       "title": "Quick navigation",

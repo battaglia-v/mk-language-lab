@@ -2,6 +2,7 @@
 
 import { useState, type ReactNode } from 'react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { ArrowLeft, Clock, Eye, EyeOff, Minus, Plus, Tag, User, ChevronDown } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -24,6 +25,7 @@ const FONT_STEPS = [
 ];
 
 export function ReaderLayout({ sample, locale }: ReaderLayoutProps) {
+  const t = useTranslations('common');
   const title = locale === 'mk' ? sample.title_mk : sample.title_en;
   const [fontStep, setFontStep] = useState(1);
   const [focusMode, setFocusMode] = useState(false);
@@ -44,7 +46,7 @@ export function ReaderLayout({ sample, locale }: ReaderLayoutProps) {
           <Button asChild variant="ghost" size="sm" className="gap-1 px-3">
             <Link href={`/${locale}/reader`} data-testid="reader-back">
               <ArrowLeft className="h-4 w-4" />
-              <span className="text-sm">Back</span>
+              <span className="text-sm">{t('back')}</span>
             </Link>
           </Button>
 

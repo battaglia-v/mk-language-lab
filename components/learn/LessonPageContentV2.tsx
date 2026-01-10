@@ -195,6 +195,7 @@ export default function LessonPageContentV2({
   const router = useRouter();
   const locale = useLocale();
   const t = useTranslations('learn');
+  const tCommon = useTranslations('common');
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const [completedSections, setCompletedSections] = useState<Set<string>>(new Set());
   const [startTime] = useState(Date.now());
@@ -832,7 +833,7 @@ export default function LessonPageContentV2({
                   aria-label="Go back to previous section"
                 >
                   <ChevronLeft className="h-5 w-5" />
-                  <span className="text-sm">Back</span>
+                  <span className="text-sm">{tCommon('back')}</span>
                 </Button>
               )}
 
