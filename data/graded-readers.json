@@ -1652,6 +1652,216 @@
           ]
         }
       ]
+    },
+    {
+      "id": "reader-b1-002",
+      "title": {
+        "mk": "Македонската кујна",
+        "en": "Macedonian Cuisine"
+      },
+      "level": "B1",
+      "category": "food",
+      "estimatedMinutes": 7,
+      "wordCount": 185,
+      "xpReward": 50,
+      "sentences": [
+        {
+          "id": "s1",
+          "mk": "Македонската кујна е позната по своето богатство на вкусови и традиции.",
+          "en": "Macedonian cuisine is known for its richness of flavors and traditions.",
+          "audio": "/audio/reader/b1-002/s1.mp3",
+          "vocabulary": [
+            {"word": "кујна", "meaning": "cuisine/kitchen", "pos": "noun"},
+            {"word": "богатство", "meaning": "richness", "pos": "noun"},
+            {"word": "вкусови", "meaning": "flavors", "pos": "noun"}
+          ],
+          "grammarNote": "позната по - passive participle with preposition 'по' (known for)"
+        },
+        {
+          "id": "s2",
+          "mk": "Многу јадења се подготвуваат со состојки што се одгледуваат локално.",
+          "en": "Many dishes are prepared with ingredients that are grown locally.",
+          "audio": "/audio/reader/b1-002/s2.mp3",
+          "vocabulary": [
+            {"word": "се подготвуваат", "meaning": "are prepared", "pos": "passive verb"},
+            {"word": "состојки", "meaning": "ingredients", "pos": "noun"},
+            {"word": "одгледуваат", "meaning": "are grown", "pos": "passive verb"}
+          ],
+          "grammarNote": "се подготвуваат, се одгледуваат - passive constructions with 'се'"
+        },
+        {
+          "id": "s3",
+          "mk": "Едно од најпопуларните јадења е тавче гравче.",
+          "en": "One of the most popular dishes is tavche gravche.",
+          "audio": "/audio/reader/b1-002/s3.mp3",
+          "vocabulary": [
+            {"word": "најпопуларните", "meaning": "the most popular", "pos": "superlative adj"},
+            {"word": "тавче гравче", "meaning": "baked beans (traditional dish)", "pos": "noun phrase"}
+          ],
+          "culturalNote": "Тавче гравче (baked beans) is considered the national dish of Macedonia"
+        },
+        {
+          "id": "s4",
+          "mk": "Ова јадење се пече во глинен сад и се послужува топло.",
+          "en": "This dish is baked in a clay pot and served hot.",
+          "audio": "/audio/reader/b1-002/s4.mp3",
+          "vocabulary": [
+            {"word": "се пече", "meaning": "is baked", "pos": "passive verb"},
+            {"word": "глинен сад", "meaning": "clay pot", "pos": "noun phrase"},
+            {"word": "се послужува", "meaning": "is served", "pos": "passive verb"}
+          ]
+        },
+        {
+          "id": "s5",
+          "mk": "Ајварот е уште еден симбол на македонската кујна.",
+          "en": "Ajvar is another symbol of Macedonian cuisine.",
+          "audio": "/audio/reader/b1-002/s5.mp3",
+          "vocabulary": [
+            {"word": "ајвар", "meaning": "ajvar (pepper relish)", "pos": "noun"},
+            {"word": "симбол", "meaning": "symbol", "pos": "noun"}
+          ],
+          "culturalNote": "Ајвар - roasted pepper spread made in autumn, a family tradition"
+        },
+        {
+          "id": "s6",
+          "mk": "Се прави од црвени пиперки кои се печат и се мелат.",
+          "en": "It is made from red peppers that are roasted and ground.",
+          "audio": "/audio/reader/b1-002/s6.mp3",
+          "vocabulary": [
+            {"word": "се прави", "meaning": "is made", "pos": "passive verb"},
+            {"word": "пиперки", "meaning": "peppers", "pos": "noun"},
+            {"word": "се печат", "meaning": "are roasted", "pos": "passive verb"},
+            {"word": "се мелат", "meaning": "are ground", "pos": "passive verb"}
+          ]
+        },
+        {
+          "id": "s7",
+          "mk": "Пастрмајлијата е поповкусна од многу брзи јадења.",
+          "en": "Pastrmajlija is more delicious than many fast foods.",
+          "audio": "/audio/reader/b1-002/s7.mp3",
+          "vocabulary": [
+            {"word": "пастрмајлија", "meaning": "pastrmajlija (meat pie)", "pos": "noun"},
+            {"word": "поповкусна од", "meaning": "more delicious than", "pos": "comparative"}
+          ],
+          "grammarNote": "поповкусна од - comparative form with 'од' (than)",
+          "culturalNote": "Пастрмајлија - boat-shaped bread with meat, from Štip region"
+        },
+        {
+          "id": "s8",
+          "mk": "Кога гостин дојде дома, домаќинот мора да понуди мезе и ракија.",
+          "en": "When a guest comes home, the host must offer meze and rakija.",
+          "audio": "/audio/reader/b1-002/s8.mp3",
+          "vocabulary": [
+            {"word": "гостин", "meaning": "guest", "pos": "noun"},
+            {"word": "домаќин", "meaning": "host", "pos": "noun"},
+            {"word": "мезе", "meaning": "appetizers/small dishes", "pos": "noun"},
+            {"word": "ракија", "meaning": "rakija (fruit brandy)", "pos": "noun"}
+          ],
+          "culturalNote": "Гостопримство (hospitality) - guests must be offered food and drink, refusing is considered rude"
+        },
+        {
+          "id": "s9",
+          "mk": "Ова е дел од македонското гостопримство што се пренесува од генерација на генерација.",
+          "en": "This is part of Macedonian hospitality that is passed from generation to generation.",
+          "audio": "/audio/reader/b1-002/s9.mp3",
+          "vocabulary": [
+            {"word": "гостопримство", "meaning": "hospitality", "pos": "noun"},
+            {"word": "се пренесува", "meaning": "is passed/transmitted", "pos": "passive verb"},
+            {"word": "генерација", "meaning": "generation", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s10",
+          "mk": "Секој регион има свои специјалитети.",
+          "en": "Every region has its own specialties.",
+          "audio": "/audio/reader/b1-002/s10.mp3",
+          "vocabulary": [
+            {"word": "регион", "meaning": "region", "pos": "noun"},
+            {"word": "специјалитети", "meaning": "specialties", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s11",
+          "mk": "Во Охрид се јаде најдобрата пастрмка, а во Струмица најубавите домати.",
+          "en": "In Ohrid the best trout is eaten, and in Strumica the best tomatoes.",
+          "audio": "/audio/reader/b1-002/s11.mp3",
+          "vocabulary": [
+            {"word": "најдобрата", "meaning": "the best (fem)", "pos": "superlative adj"},
+            {"word": "пастрмка", "meaning": "trout", "pos": "noun"},
+            {"word": "најубавите", "meaning": "the best/most beautiful", "pos": "superlative adj"}
+          ]
+        },
+        {
+          "id": "s12",
+          "mk": "Домашната храна секогаш ќе биде повкусна од ресторанската.",
+          "en": "Homemade food will always be more delicious than restaurant food.",
+          "audio": "/audio/reader/b1-002/s12.mp3",
+          "vocabulary": [
+            {"word": "домашната", "meaning": "homemade", "pos": "adjective"},
+            {"word": "повкусна од", "meaning": "more delicious than", "pos": "comparative"},
+            {"word": "ресторанската", "meaning": "restaurant (adj)", "pos": "adjective"}
+          ],
+          "grammarNote": "Future tense: ќе биде - expresses certainty/conviction"
+        },
+        {
+          "id": "s13",
+          "mk": "Затоа, ако ја посетите Македонија, обидете се да пробате домашно готвена храна.",
+          "en": "Therefore, if you visit Macedonia, try to taste home-cooked food.",
+          "audio": "/audio/reader/b1-002/s13.mp3",
+          "vocabulary": [
+            {"word": "ако", "meaning": "if", "pos": "conjunction"},
+            {"word": "посетите", "meaning": "you visit (formal)", "pos": "verb"},
+            {"word": "обидете се", "meaning": "try (imperative)", "pos": "verb"},
+            {"word": "пробате", "meaning": "taste", "pos": "verb"}
+          ],
+          "grammarNote": "Conditional with 'ако' + imperative 'обидете се' for advice"
+        },
+        {
+          "id": "s14",
+          "mk": "Таа е најавтентичниот начин да ја почувствувате македонската култура.",
+          "en": "It is the most authentic way to experience Macedonian culture.",
+          "audio": "/audio/reader/b1-002/s14.mp3",
+          "vocabulary": [
+            {"word": "најавтентичниот", "meaning": "the most authentic", "pos": "superlative adj"},
+            {"word": "почувствувате", "meaning": "to experience/feel", "pos": "verb"}
+          ]
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "question": {
+            "mk": "Кое јадење се смета за национално?",
+            "en": "Which dish is considered national?"
+          },
+          "options": [
+            {"mk": "Ајвар", "correct": false},
+            {"mk": "Тавче гравче", "correct": true},
+            {"mk": "Пастрмајлија", "correct": false}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Што мора да понуди домаќинот кога гостин дојде?",
+            "en": "What must the host offer when a guest comes?"
+          },
+          "options": [
+            {"mk": "Кафе и колачи", "correct": false},
+            {"mk": "Мезе и ракија", "correct": true},
+            {"mk": "Чај и овошје", "correct": false}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Зошто авторот препорачува домашна храна?",
+            "en": "Why does the author recommend homemade food?"
+          },
+          "options": [
+            {"mk": "Затоа што е поевтина", "correct": false},
+            {"mk": "Затоа што е најавтентичен начин да се почувствува културата", "correct": true},
+            {"mk": "Затоа што ресторани нема", "correct": false}
+          ]
+        }
+      ]
     }
   ],
   "levels": {
