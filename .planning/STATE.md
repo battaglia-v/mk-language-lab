@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-10)
 ## Current Position
 
 Phase: 28 of 32 (Navigation Overhaul)
-Plan: 2 of ? in current phase
+Plan: 2 of 3 in current phase
 Status: In progress
 Last activity: 2026-01-10 — Completed 28-02-PLAN.md
 
-Progress: [██░░░░░░░░] 25% (Phase 28 started, 1 of 6 phases in v1.4)
+Progress: [███░░░░░░░] 30% (Phase 28, 2 of 3 plans complete)
 
 ## Milestone Summary
 

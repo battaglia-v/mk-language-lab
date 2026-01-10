@@ -1,60 +1,97 @@
+---
+phase: 28-navigation-overhaul
+plan: 02
+subsystem: ui
+tags: [navigation, next-intl, middleware, redirect]
+
+requires:
+  - phase: 28-01
+    provides: Navigation simplification foundation (Resources page, UserMenu consolidation)
+provides:
+  - Unified /tools page with Translate/Analyze toggle
+  - 301 redirects from /translate and /reader/analyze
+  - Simplified nav (Wrench icon Tools item)
+affects: [user-journey, navigation]
+
+tech-stack:
+  added: []
+  patterns: [URL-synced mode toggle, middleware redirects]
+
+key-files:
+  created:
+    - app/[locale]/tools/page.tsx
+    - components/tools/ToolsPageClient.tsx
+  modified:
+    - components/shell/navItems.ts
+    - middleware.ts
+    - messages/en.json
+    - messages/mk.json
+
+key-decisions:
+  - "Embedded translate logic inline rather than extracting to separate component"
+  - "Used Wrench icon for Tools nav item"
+  - "301 permanent redirects in middleware for SEO"
+
+patterns-established:
+  - "URL-synced mode toggle with router.replace"
+
+issues-created: []
+
+duration: 10min
+completed: 2026-01-10
+---
+
 # Phase 28-02: Tools Merge Plan Summary
 
-**Status:** Completed
-**Duration:** Single session
-**Commits:**
-- `0eb58c9` feat(28-02): create unified Tools page with Translate/Analyze toggle
-- `cda6d0f` feat(28-02): update navigation and add redirects for tools page
+**Unified Translate and Analyze tools into single /tools page with mode toggle**
 
-## What Was Done
+## Performance
 
-### Task 1: Create unified Tools page with Translate/Analyze toggle
-- Created `/app/[locale]/tools/page.tsx` - server component that reads `?mode` param (defaults to `translate`)
-- Created `/components/tools/ToolsPageClient.tsx` - client component with:
-  - SegmentedControl toggle between "Translate" and "Analyze" modes
-  - URL-synced mode state using `router.replace`
-  - Full translate functionality inline (matching original translate page)
-  - ReaderWorkspace for analyze mode
-- Added i18n keys in both `en.json` and `mk.json`:
-  - `tools.title`, `tools.translateTab`, `tools.analyzeTab`
+- **Duration:** 10 min
+- **Started:** 2026-01-10T16:32:35Z
+- **Completed:** 2026-01-10T16:42:51Z
+- **Tasks:** 2
+- **Files modified:** 6
 
-### Task 2: Update navigation and add redirects
-- Updated `navItems.ts`:
-  - Changed "translate" nav item to "tools"
-  - Updated path from `/translate` to `/tools`
-  - Changed icon from `Languages` to `Wrench`
-- Added 301 redirects in `middleware.ts`:
-  - `/translate` -> `/tools?mode=translate`
-  - `/reader/analyze` -> `/tools?mode=analyze`
-  - Updated legacy `/translator/history` redirect to use `/tools`
-- Added `nav.tools` i18n key for both locales
+## Accomplishments
+- Created unified Tools page with Translate/Analyze segmented control
+- URL-synced mode state for shareable links
+- 301 redirects for backward compatibility
+- Navigation simplified with Wrench icon Tools item
 
-## Files Changed
-- `app/[locale]/tools/page.tsx` (new)
-- `components/tools/ToolsPageClient.tsx` (new)
-- `components/shell/navItems.ts` (modified)
-- `middleware.ts` (modified)
-- `messages/en.json` (modified)
-- `messages/mk.json` (modified)
+## Task Commits
 
-## Verification Results
-- `npm run type-check` - Passes
-- `npm run lint` - Passes (3 pre-existing warnings unrelated to this plan)
-- `/tools` page shows unified view with Translate/Analyze toggle
-- Toggle state persists in URL params
-- Old `/translate` path redirects to `/tools?mode=translate`
-- Old `/reader/analyze` path redirects to `/tools?mode=analyze`
-- Bottom nav shows "Tools" tab with Wrench icon
+1. **Task 1: Create unified Tools page** - `0eb58c9` (feat)
+2. **Task 2: Update navigation and redirects** - `cda6d0f` (feat)
 
-## Design Decisions
-1. **Embedded vs Extracted Components**: Rather than extracting TranslatorTool and AnalyzerTool to separate files, the translate logic was embedded directly in ToolsPageClient (matching the existing inline pattern in translate/page.tsx) while analyze mode uses the existing ReaderWorkspace component.
+**Plan metadata:** `451926f` (docs: complete plan)
 
-2. **Icon Choice**: Used `Wrench` icon for the Tools nav item instead of `Languages` to better represent the unified "tools" concept.
+## Files Created/Modified
+- `app/[locale]/tools/page.tsx` (new) - Server component reading mode param
+- `components/tools/ToolsPageClient.tsx` (new) - Client component with toggle
+- `components/shell/navItems.ts` - Changed translate to tools
+- `middleware.ts` - Added 301 redirects
+- `messages/en.json` - Added tools i18n keys
+- `messages/mk.json` - Added tools i18n keys
 
-3. **Redirect Strategy**: Used 301 permanent redirects in middleware rather than page-level redirects for better SEO and simpler maintenance.
+## Decisions Made
+- Embedded translate logic inline rather than extracting (no reuse benefit)
+- Used Wrench icon for Tools nav (better represents unified concept)
+- 301 permanent redirects in middleware (SEO-friendly, centralized)
 
-## Impact
-- Navigation reduced from 5 distinct destinations to 4 conceptually cleaner ones
-- Users can switch between translate and analyze without leaving the page
-- Backward compatibility maintained via 301 redirects
-- All existing translate functionality preserved
+## Deviations from Plan
+
+None - plan executed exactly as written.
+
+## Issues Encountered
+
+None.
+
+## Next Phase Readiness
+- Ready for 28-03-PLAN.md (Learning Paths removal)
+- Navigation now has: Learn, Practice, Reader, Tools, Resources
+- 2 of 3 plans complete for Phase 28
+
+---
+*Phase: 28-navigation-overhaul*
+*Completed: 2026-01-10*
