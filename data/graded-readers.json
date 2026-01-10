@@ -1067,6 +1067,204 @@
       ]
     },
     {
+      "id": "reader-a2-003",
+      "title": {
+        "mk": "Хобија",
+        "en": "Hobbies"
+      },
+      "level": "A2",
+      "category": "culture",
+      "estimatedMinutes": 5,
+      "wordCount": 130,
+      "xpReward": 35,
+      "grammarHighlight": {
+        "topic": "Expressing preferences and frequency",
+        "topicMk": "Изразување преференции и честота",
+        "examples": ["сакам", "ми се допаѓа", "секогаш", "никогаш"]
+      },
+      "sentences": [
+        {
+          "id": "s1",
+          "mk": "Сите луѓе имаат хобија.",
+          "en": "All people have hobbies.",
+          "audio": "/audio/reader/a2-003/s1.mp3",
+          "vocabulary": [
+            {"word": "сите", "meaning": "all", "pos": "pronoun"},
+            {"word": "луѓе", "meaning": "people", "pos": "noun"},
+            {"word": "хобија", "meaning": "hobbies", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s2",
+          "mk": "Мојата пријателка Марија обожава да чита книги.",
+          "en": "My friend Marija loves to read books.",
+          "audio": "/audio/reader/a2-003/s2.mp3",
+          "vocabulary": [
+            {"word": "обожава", "meaning": "loves/adores", "pos": "verb"},
+            {"word": "чита", "meaning": "to read", "pos": "verb"},
+            {"word": "книги", "meaning": "books", "pos": "noun"}
+          ],
+          "grammarNote": "обожава + да + verb - expressing strong preference"
+        },
+        {
+          "id": "s3",
+          "mk": "Таа секогаш носи книга со себе.",
+          "en": "She always carries a book with her.",
+          "audio": "/audio/reader/a2-003/s3.mp3",
+          "vocabulary": [
+            {"word": "секогаш", "meaning": "always", "pos": "adverb"},
+            {"word": "носи", "meaning": "carries", "pos": "verb"},
+            {"word": "со себе", "meaning": "with her(self)", "pos": "phrase"}
+          ]
+        },
+        {
+          "id": "s4",
+          "mk": "Јас, пак, повеќе сакам да цртам.",
+          "en": "I, on the other hand, prefer to draw.",
+          "audio": "/audio/reader/a2-003/s4.mp3",
+          "vocabulary": [
+            {"word": "пак", "meaning": "on the other hand/however", "pos": "particle"},
+            {"word": "повеќе", "meaning": "more/prefer", "pos": "adverb"},
+            {"word": "цртам", "meaning": "to draw", "pos": "verb"}
+          ]
+        },
+        {
+          "id": "s5",
+          "mk": "Почнав да цртам кога бев дете.",
+          "en": "I started drawing when I was a child.",
+          "audio": "/audio/reader/a2-003/s5.mp3",
+          "vocabulary": [
+            {"word": "почнав", "meaning": "I started", "pos": "verb (past)"},
+            {"word": "бев", "meaning": "I was", "pos": "verb (past)"},
+            {"word": "дете", "meaning": "child", "pos": "noun"}
+          ],
+          "grammarNote": "почнав + да + verb - past tense construction for starting an activity"
+        },
+        {
+          "id": "s6",
+          "mk": "Ми се допаѓа да цртам пејзажи и портрети.",
+          "en": "I like to draw landscapes and portraits.",
+          "audio": "/audio/reader/a2-003/s6.mp3",
+          "vocabulary": [
+            {"word": "ми се допаѓа", "meaning": "I like (it pleases me)", "pos": "verb phrase"},
+            {"word": "пејзажи", "meaning": "landscapes", "pos": "noun"},
+            {"word": "портрети", "meaning": "portraits", "pos": "noun"}
+          ],
+          "grammarNote": "ми се допаѓа - impersonal construction expressing liking"
+        },
+        {
+          "id": "s7",
+          "mk": "Мојот брат често свири гитара.",
+          "en": "My brother often plays guitar.",
+          "audio": "/audio/reader/a2-003/s7.mp3",
+          "vocabulary": [
+            {"word": "често", "meaning": "often", "pos": "adverb"},
+            {"word": "свири", "meaning": "plays (instrument)", "pos": "verb"},
+            {"word": "гитара", "meaning": "guitar", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s8",
+          "mk": "Тој никогаш не пропушта да вежба.",
+          "en": "He never misses practicing.",
+          "audio": "/audio/reader/a2-003/s8.mp3",
+          "vocabulary": [
+            {"word": "никогаш", "meaning": "never", "pos": "adverb"},
+            {"word": "пропушта", "meaning": "misses/skips", "pos": "verb"},
+            {"word": "вежба", "meaning": "to practice", "pos": "verb"}
+          ]
+        },
+        {
+          "id": "s9",
+          "mk": "Летото сакаме да пливаме во езерото.",
+          "en": "In summer we like to swim in the lake.",
+          "audio": "/audio/reader/a2-003/s9.mp3",
+          "vocabulary": [
+            {"word": "летото", "meaning": "in summer", "pos": "noun (def)"},
+            {"word": "пливаме", "meaning": "we swim", "pos": "verb"},
+            {"word": "езерото", "meaning": "the lake", "pos": "noun (def)"}
+          ]
+        },
+        {
+          "id": "s10",
+          "mk": "Ретко готвам, но кога готвам, правам традиционална храна.",
+          "en": "I rarely cook, but when I cook, I make traditional food.",
+          "audio": "/audio/reader/a2-003/s10.mp3",
+          "vocabulary": [
+            {"word": "ретко", "meaning": "rarely", "pos": "adverb"},
+            {"word": "готвам", "meaning": "I cook", "pos": "verb"},
+            {"word": "традиционална", "meaning": "traditional", "pos": "adjective"}
+          ]
+        },
+        {
+          "id": "s11",
+          "mk": "На моето семејство многу му се допаѓа кога готвам.",
+          "en": "My family really likes it when I cook.",
+          "audio": "/audio/reader/a2-003/s11.mp3",
+          "vocabulary": [
+            {"word": "многу", "meaning": "very much/really", "pos": "adverb"},
+            {"word": "моето семејство", "meaning": "my family", "pos": "phrase"}
+          ]
+        },
+        {
+          "id": "s12",
+          "mk": "Хобијата ни помагаат да се релаксираме.",
+          "en": "Hobbies help us relax.",
+          "audio": "/audio/reader/a2-003/s12.mp3",
+          "vocabulary": [
+            {"word": "помагаат", "meaning": "help", "pos": "verb"},
+            {"word": "се релаксираме", "meaning": "to relax", "pos": "reflexive verb"}
+          ]
+        },
+        {
+          "id": "s13",
+          "mk": "Секој треба да има барем едно хоби.",
+          "en": "Everyone should have at least one hobby.",
+          "audio": "/audio/reader/a2-003/s13.mp3",
+          "vocabulary": [
+            {"word": "секој", "meaning": "everyone", "pos": "pronoun"},
+            {"word": "треба", "meaning": "should/must", "pos": "verb"},
+            {"word": "барем", "meaning": "at least", "pos": "adverb"}
+          ]
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "question": {
+            "mk": "Што обожава Марија?",
+            "en": "What does Marija love?"
+          },
+          "options": [
+            {"mk": "Да црта", "correct": false},
+            {"mk": "Да чита книги", "correct": true},
+            {"mk": "Да готви", "correct": false}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Што свири братот?",
+            "en": "What does the brother play?"
+          },
+          "options": [
+            {"mk": "Пијано", "correct": false},
+            {"mk": "Гитара", "correct": true},
+            {"mk": "Виолина", "correct": false}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Колку често готви?",
+            "en": "How often does he/she cook?"
+          },
+          "options": [
+            {"mk": "Секој ден", "correct": false},
+            {"mk": "Често", "correct": false},
+            {"mk": "Ретко", "correct": true}
+          ]
+        }
+      ]
+    },
+    {
       "id": "reader-b1-001",
       "title": {
         "mk": "Македонските традиции за Велигден",
