@@ -2,10 +2,10 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-01-09)
+See: .planning/PROJECT.md (updated 2026-01-10)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** v1.3 Content Quality & User Journey
+**Current focus:** Planning next milestone
 
 ## Current Position
 
@@ -33,6 +33,12 @@ Progress: ██████████ 100% (6 of 6 phases in v1.3)
 - CI pipeline audit and caching optimizations
 - Cloudflare migration evaluated (NO-GO)
 - Dark mode ~95%, exercise variety 5 types, content completeness verified
+
+**v1.3 Content Quality & User Journey shipped 2026-01-10**
+- 6 phases (21-26), 9 plans
+- User journey CTAs connecting Learn → Practice → Reader
+- 9 new graded reader stories (A1/A2/B1)
+- 72 E2E tests validating core promise
 
 See `.planning/MILESTONES.md` for full details.
 
@@ -102,11 +108,11 @@ None.
 - Milestone v1.0 shipped: Complete learning system overhaul (Phases 1-7)
 - Milestone v1.1 shipped: Curriculum quality fix (Phases 8-16)
 - Milestone v1.2 shipped: Infrastructure & CI overhaul (Phases 17-20)
-- Milestone v1.3 created: Content quality & user journey (Phases 21-26)
+- Milestone v1.3 shipped: Content quality & user journey (Phases 21-26)
 
 ## Session Continuity
 
 Last session: 2026-01-10
-Stopped at: Completed 26-02-PLAN.md (User Journey E2E Validation)
+Stopped at: v1.3 milestone archived
 Resume file: None
-Next step: `/gsd:complete-milestone` — v1.3 shipped, ready to archive
+Next step: `/gsd:discuss-milestone` — plan next milestone
