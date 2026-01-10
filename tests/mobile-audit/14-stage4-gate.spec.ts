@@ -23,8 +23,8 @@ test.describe('Stage 4 gate - critical journeys', () => {
     await page.locator('[data-testid="nav-reader"]:visible').click();
     await expect(page).toHaveURL(/\/reader/);
 
-    await page.locator('[data-testid="nav-more"]:visible').click();
-    await expect(page).toHaveURL(/\/more/);
+    await page.locator('[data-testid="nav-resources"]:visible').click();
+    await expect(page).toHaveURL(/\/resources/);
 
     await page.locator('[data-testid="nav-learn"]:visible').click();
     await expect(page).toHaveURL(/\/learn/);

@@ -208,7 +208,7 @@ export const ALL_ROUTES = {
   practice: '/en/practice',
   reader: '/en/reader',
   translate: '/en/translate',
-  more: '/en/more',
+  resources: '/en/resources',
 
   // Learning paths
   pathA1: '/en/learn/paths/a1',

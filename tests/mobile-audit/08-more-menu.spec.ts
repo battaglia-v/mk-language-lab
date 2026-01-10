@@ -2,31 +2,28 @@ import { test, expect, assertNoRawTranslationKeys, MOBILE_VIEWPORT, waitForInter
 
 test.use({ viewport: MOBILE_VIEWPORT });
 
-test.describe('More Menu', () => {
+test.describe('Resources Page', () => {
   test('loads and shows menu options', async ({ page }) => {
-    await page.goto('/en/more', { waitUntil: 'domcontentloaded' });
+    await page.goto('/en/resources', { waitUntil: 'domcontentloaded' });
     await assertNoRawTranslationKeys(page);
 
-    // Should show menu items
-    await expect(page.getByTestId('more-menu-news')).toBeVisible();
-    await expect(page.getByTestId('more-menu-profile')).toBeVisible();
+    // Should show menu items (Resources page now has: savedWords, lab, news)
+    await expect(page.getByTestId('resources-menu-savedWords')).toBeVisible();
+    await expect(page.getByTestId('resources-menu-lab')).toBeVisible();
+    await expect(page.getByTestId('resources-menu-news')).toBeVisible();
   });
 
   const menuLinks = [
+    { id: 'savedWords', path: '/saved-words' },
     { id: 'lab', path: '/lab' },
     { id: 'news', path: '/news' },
-    { id: 'resources', path: '/resources' },
-    { id: 'profile', path: '/profile' },
-    { id: 'settings', path: '/settings' },
-    { id: 'about', path: '/about' },
-    { id: 'help', path: '/help' },
   ];
 
   for (const { id, path } of menuLinks) {
     test(`${id} link navigates correctly`, async ({ page }) => {
-      await page.goto('/en/more', { waitUntil: 'domcontentloaded' });
+      await page.goto('/en/resources', { waitUntil: 'domcontentloaded' });
 
-      const link = page.getByTestId(`more-menu-${id}`);
+      const link = page.getByTestId(`resources-menu-${id}`);
       await link.click();
       await expect(page).toHaveURL(new RegExp(path));
       await expect(page.locator('body')).not.toContainText('404');
@@ -86,7 +83,8 @@ test.describe('Help Page', () => {
     await page.goto('/en/help', { waitUntil: 'domcontentloaded' });
     await assertNoRawTranslationKeys(page);
 
-    await expect(page.getByTestId('help-back-to-more')).toBeVisible();
+    // Help page is now accessed via UserMenu, back button goes to previous page
+    await expect(page.getByTestId('help-hero')).toBeVisible();
   });
 });
 

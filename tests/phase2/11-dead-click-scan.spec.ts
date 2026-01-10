@@ -16,7 +16,7 @@ const ROUTES_TO_SCAN = [
   ALL_ROUTES.practice,
   ALL_ROUTES.reader,
   ALL_ROUTES.translate,
-  ALL_ROUTES.more,
+  ALL_ROUTES.resources,
   ALL_ROUTES.settings,
   ALL_ROUTES.lessonAlphabet,
 ];

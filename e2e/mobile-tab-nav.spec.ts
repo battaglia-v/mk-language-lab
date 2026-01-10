@@ -10,13 +10,13 @@ test.use({
 
 const locale = 'mk';
 
-// Updated: New nav structure - Learn | Translate | Practice | Reader | More
+// Updated: New nav structure - Learn | Translate | Practice | Reader | Resources
 const bottomNavDestinations = [
   { path: '/learn', name: /Learn|Учи/i },
   { path: '/translate', name: /Translate|Преведи/i },
   { path: '/practice', name: /Practice|Вежбање/i },
   { path: '/reader', name: /Reader|Читач/i },
-  { path: '/more', name: /More|Повеќе/i },
+  { path: '/resources', name: /Resources|Ресурси/i },
 ];
 
 // Skip in CI - mobile tab nav tests can be flaky with timing
@@ -95,22 +95,22 @@ test.describe('Mobile tab navigation', () => {
     expect(paddingBottom).toBeGreaterThanOrEqual(6);
   });
 
-  test('More tab navigates to More menu', async ({ page }) => {
+  test('Resources tab navigates to Resources page', async ({ page }) => {
     await page.goto(`/${locale}/learn`);
     await page.waitForLoadState('networkidle');
 
     const nav = page.locator('nav.fixed[aria-label]').first();
-    const moreLink = nav.getByRole('link', { name: /More|Повеќе/i });
+    const resourcesLink = nav.getByRole('link', { name: /Resources|Ресурси/i });
 
-    await moreLink.click();
+    await resourcesLink.click();
     await page.waitForLoadState('networkidle');
 
-    // Should navigate to More page
-    await expect(page).toHaveURL(/\/more/);
+    // Should navigate to Resources page
+    await expect(page).toHaveURL(/\/resources/);
 
-    // More page should have links to News, Resources, Profile
-    await expect(page.getByRole('link', { name: /News|Вести/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /Resources|Ресурси/i })).toBeVisible();
+    // Resources page should have links to Saved Words, Language Lab, News
+    await expect(page.getByTestId('resources-menu-savedWords')).toBeVisible();
+    await expect(page.getByTestId('resources-menu-lab')).toBeVisible();
   });
 
   test('Reader tab navigates to Reader page', async ({ page }) => {
