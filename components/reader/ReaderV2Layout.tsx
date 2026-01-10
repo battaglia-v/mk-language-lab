@@ -3,6 +3,7 @@
 import { ReactNode, useState, createContext, useContext, useCallback } from 'react';
 import { ArrowLeft, Settings, BookOpen, MessageSquare, Library, Bookmark } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
@@ -135,13 +136,14 @@ export function ReaderV2Layout({
     locale,
   };
 
-  const t = {
+  const tCommon = useTranslations('common');
+  const labels = {
     tapTranslate: locale === 'mk' ? 'Допир' : 'Tap',
     sentenceMode: locale === 'mk' ? 'Реченици' : 'Sentences',
     glossary: locale === 'mk' ? 'Речник' : 'Glossary',
     save: locale === 'mk' ? 'Зачувај' : 'Save',
     saveComingSoon: locale === 'mk' ? 'Наскоро' : 'Coming soon',
-    back: locale === 'mk' ? 'Назад' : 'Back',
+    back: tCommon('back'),
     minRead: locale === 'mk' ? 'мин' : 'min',
   };
 
@@ -164,7 +166,7 @@ export function ReaderV2Layout({
             <Link
               href={backUrl}
               className="flex h-11 w-11 items-center justify-center rounded-full hover:bg-muted transition-colors"
-              aria-label={t.back}
+              aria-label={labels.back}
               data-testid="reader-v2-back"
             >
               <ArrowLeft className="h-5 w-5 text-muted-foreground" />
@@ -177,7 +179,7 @@ export function ReaderV2Layout({
               </h1>
               <div className="flex items-center gap-2 text-xs text-muted-foreground">
                 {estimatedMinutes && (
-                  <span>~{estimatedMinutes} {t.minRead}</span>
+                  <span>~{estimatedMinutes} {labels.minRead}</span>
                 )}
                 {difficulty && (
                   <span className={cn(
@@ -246,7 +248,7 @@ export function ReaderV2Layout({
               data-testid="reader-v2-toggle-tap"
             >
               <BookOpen className="h-5 w-5" />
-              <span className="text-xs font-medium">{t.tapTranslate}</span>
+              <span className="text-xs font-medium">{labels.tapTranslate}</span>
             </button>
 
             {/* Sentence Mode Toggle */}
@@ -262,7 +264,7 @@ export function ReaderV2Layout({
               data-testid="reader-v2-toggle-sentences"
             >
               <MessageSquare className="h-5 w-5" />
-              <span className="text-xs font-medium">{t.sentenceMode}</span>
+              <span className="text-xs font-medium">{labels.sentenceMode}</span>
             </button>
 
             {/* Glossary Button */}
@@ -275,7 +277,7 @@ export function ReaderV2Layout({
               data-testid="reader-v2-open-glossary"
             >
               <Library className="h-5 w-5" />
-              <span className="text-xs font-medium">{t.glossary}</span>
+              <span className="text-xs font-medium">{labels.glossary}</span>
               {savedWords.length > 0 && (
                 <span className="absolute top-1 right-1 h-4 w-4 rounded-full bg-primary text-[10px] font-bold text-primary-foreground flex items-center justify-center">
                   {savedWords.length}
@@ -288,7 +290,7 @@ export function ReaderV2Layout({
               type="button"
               disabled
               aria-disabled="true"
-              title={t.saveComingSoon}
+              title={labels.saveComingSoon}
               className={cn(
                 'flex flex-col items-center gap-1.5 px-3 py-2.5 rounded-lg transition-colors min-w-[64px] min-h-[52px]',
                 'text-muted-foreground opacity-50 cursor-not-allowed'
@@ -296,7 +298,7 @@ export function ReaderV2Layout({
               data-testid="reader-v2-save-disabled"
             >
               <Bookmark className="h-5 w-5" />
-              <span className="text-xs font-medium">{t.save}</span>
+              <span className="text-xs font-medium">{labels.save}</span>
             </button>
           </div>
         </footer>
