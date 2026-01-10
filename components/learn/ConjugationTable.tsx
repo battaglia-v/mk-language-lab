@@ -59,13 +59,13 @@ const PERSON_LABELS: Record<string, { singular: string; plural: string }> = {
   '3pl': { singular: '3rd person', plural: 'plural' },
 };
 
-// Tense colors
+// Tense colors - with dark mode variants for readability
 const TENSE_COLORS: Record<string, string> = {
-  present: 'bg-blue-500/10 text-blue-600 border-blue-500/20',
-  past: 'bg-amber-500/10 text-amber-600 border-amber-500/20',
-  future: 'bg-green-500/10 text-green-600 border-green-500/20',
-  imperfect: 'bg-purple-500/10 text-purple-600 border-purple-500/20',
-  aorist: 'bg-red-500/10 text-red-600 border-red-500/20',
+  present: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20',
+  past: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',
+  future: 'bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20',
+  imperfect: 'bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20',
+  aorist: 'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20',
   default: 'bg-muted text-muted-foreground border-border',
 };
 

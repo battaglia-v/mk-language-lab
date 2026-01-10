@@ -36,10 +36,15 @@ export default function GrammarSection({ notes }: GrammarSectionProps) {
     <div className="space-y-6 sm:space-y-8">
       {notes.map((note) => {
         let examples: string[] = [];
-        try {
-          examples = JSON.parse(note.examples);
-        } catch {
-          // Handle empty or invalid JSON
+        // Guard against null/undefined/empty examples before parsing
+        if (note.examples && note.examples.trim()) {
+          try {
+            const parsed = JSON.parse(note.examples);
+            // Ensure parsed result is an array
+            examples = Array.isArray(parsed) ? parsed : [];
+          } catch {
+            // Handle invalid JSON
+          }
         }
 
         const isLong = note.explanation.length > TRUNCATE_THRESHOLD;
