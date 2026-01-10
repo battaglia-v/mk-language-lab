@@ -81,15 +81,15 @@ Plans:
 Plans:
 - [x] 22-01: Translation fixes + progression audit + exercise quality review — completed 2026-01-09
 
-#### Phase 23: Practice Feature Audit & UX
+#### Phase 23: Practice Feature Audit & UX — COMPLETE
 
 **Goal**: Fix My Saved Words section styling and improve post-lesson practice flow
 **Depends on**: Phase 22
 **Research**: Unlikely (existing component patterns)
-**Plans**: TBD
+**Plans**: 1
 
 Plans:
-- [ ] 23-01: TBD
+- [x] 23-01: i18n for My Saved Words + post-lesson practice prompt — completed 2026-01-09
 
 #### Phase 24: User Journey Cohesion
 
@@ -127,7 +127,7 @@ Plans:
 |-------|-----------|-------|--------|-----------|
 | 21. Bug Fixes | v1.3 | 1/1 | Complete | 2026-01-09 |
 | 22. Content Effectiveness Audit | v1.3 | 1/1 | Complete | 2026-01-09 |
-| 23. Practice Feature Audit & UX | v1.3 | 0/? | Not started | - |
+| 23. Practice Feature Audit & UX | v1.3 | 1/1 | Complete | 2026-01-09 |
 | 24. User Journey Cohesion | v1.3 | 0/? | Not started | - |
 | 25. Content Expansion | v1.3 | 0/? | Not started | - |
 | 26. Validation & Polish | v1.3 | 0/? | Not started | - |
