@@ -894,6 +894,55 @@ export default function LessonPageContentV2({
             </div>
           </div>
 
+          {/* Section stepper (mobile only - desktop has tabs) */}
+          <div className="flex items-center justify-center gap-2 mt-3 lg:hidden">
+            {sections.map((section, index) => {
+              const isCompleted = completedSections.has(section.id);
+              const isCurrent = index === currentSectionIndex;
+              const isPast = index < currentSectionIndex;
+
+              return (
+                <div key={section.id} className="flex items-center gap-2">
+                  <button
+                    onClick={() => {
+                      if (index <= currentSectionIndex || isCompleted) {
+                        setCurrentSectionIndex(index);
+                      }
+                    }}
+                    disabled={index > currentSectionIndex && !isCompleted}
+                    className={cn(
+                      'flex items-center justify-center rounded-full transition-all duration-200',
+                      // Size: current is larger
+                      isCurrent ? 'h-8 w-8' : 'h-6 w-6',
+                      // Colors
+                      isCompleted && 'bg-green-500 text-white',
+                      isCurrent && !isCompleted && 'bg-primary text-primary-foreground ring-2 ring-primary/30',
+                      isPast && !isCompleted && 'bg-muted text-muted-foreground',
+                      !isCurrent && !isCompleted && !isPast && 'bg-muted/50 text-muted-foreground/50',
+                      // Interactive
+                      (index <= currentSectionIndex || isCompleted) && 'hover:scale-110 cursor-pointer',
+                      index > currentSectionIndex && !isCompleted && 'cursor-not-allowed'
+                    )}
+                    aria-label={`${section.title} - ${isCompleted ? 'completed' : isCurrent ? 'current' : 'upcoming'}`}
+                  >
+                    {isCompleted ? (
+                      <CheckCircle className="h-4 w-4" />
+                    ) : (
+                      <span className="text-xs font-medium">{index + 1}</span>
+                    )}
+                  </button>
+                  {/* Connector line */}
+                  {index < sections.length - 1 && (
+                    <div className={cn(
+                      'h-0.5 w-4 rounded-full transition-colors',
+                      isCompleted || isPast ? 'bg-green-500/50' : 'bg-muted'
+                    )} />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
           {/* Section tabs (desktop) */}
           <div className="hidden lg:flex items-center gap-1 mt-4 overflow-x-auto">
             {sections.map((section, index) => {
