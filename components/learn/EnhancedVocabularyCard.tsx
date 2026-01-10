@@ -142,6 +142,20 @@ export function EnhancedVocabularyCard({
   // Get effective gender (from item.gender or parsed from englishText)
   const effectiveGender = item.gender || parseGenderFromText(item.englishText);
 
+  // Generate definite form for nouns
+  // Macedonian definite articles are suffixes: -от (m), -та (f), -то (n)
+  const getDefiniteForm = (word: string, gender: string | null): string | null => {
+    if (item.partOfSpeech?.toLowerCase() !== 'noun' || !gender) return null;
+    const g = gender.toLowerCase();
+    // Use most common suffixes
+    if (g === 'masculine' || g === 'm') return word + 'от';
+    if (g === 'feminine' || g === 'f') return word + 'та';
+    if (g === 'neuter' || g === 'n') return word + 'то';
+    return null;
+  };
+
+  const definiteForm = getDefiniteForm(item.macedonianText, effectiveGender);
+
   // Check if item has an example sentence
   const hasExample = !!(item.exampleSentenceMk || item.exampleSentenceEn);
 
@@ -170,6 +184,11 @@ export function EnhancedVocabularyCard({
           <div className="flex-1 min-w-0">
             <div className="flex items-baseline gap-2 flex-wrap">
               <span className="font-semibold text-primary">{item.macedonianText}</span>
+              {definiteForm && (
+                <span className="text-xs text-muted-foreground">
+                  → {definiteForm}
+                </span>
+              )}
               {showTransliteration && item.transliteration && (
                 <span className="text-xs text-muted-foreground font-mono">
                   /{item.transliteration}/
@@ -320,6 +339,11 @@ export function EnhancedVocabularyCard({
             <span className="text-xl font-bold text-primary">
               {item.macedonianText}
             </span>
+            {definiteForm && (
+              <span className="text-sm text-muted-foreground">
+                → {definiteForm}
+              </span>
+            )}
             {item.pronunciation && (
               <span className="text-sm text-muted-foreground">
                 [{item.pronunciation}]
