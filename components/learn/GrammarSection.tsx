@@ -130,7 +130,7 @@ export default function GrammarSection({ notes }: GrammarSectionProps) {
                       <button
                         type="button"
                         onClick={() => toggleExamples(note.id)}
-                        className="text-sm text-primary hover:text-primary/80 pl-9 flex items-center gap-1"
+                        className="min-h-[44px] text-sm text-primary hover:text-primary/80 pl-9 flex items-center gap-1"
                       >
                         <ChevronDown className="h-3 w-3" />
                         Show {examples.length - 4} more example{examples.length - 4 === 1 ? '' : 's'}
@@ -142,7 +142,7 @@ export default function GrammarSection({ notes }: GrammarSectionProps) {
                       <button
                         type="button"
                         onClick={() => toggleExamples(note.id)}
-                        className="text-sm text-muted-foreground hover:text-foreground pl-9 flex items-center gap-1"
+                        className="min-h-[44px] text-sm text-muted-foreground hover:text-foreground pl-9 flex items-center gap-1"
                       >
                         <ChevronUp className="h-3 w-3" />
                         Show fewer
