@@ -360,7 +360,7 @@ function MultipleChoiceContent({ exercise, userAnswer, setUserAnswer, result }: 
             >
               <span className={cn(
                 "flex h-8 w-8 items-center justify-center rounded-full border-2 text-sm font-medium",
-                isSelected ? "border-primary bg-primary text-black" : "border-muted-foreground/30"
+                isSelected ? "border-primary bg-primary text-primary-foreground" : "border-muted-foreground/30"
               )}>
                 {String.fromCharCode(65 + index)}
               </span>
@@ -425,7 +425,7 @@ function SentenceBuilderContent({ exercise, userAnswer, setUserAnswer, result, t
               onClick={() => !result && removeWord(index)}
               disabled={result === 'correct'}
               className={cn(
-                "px-3 py-1.5 rounded-md bg-primary text-black font-medium",
+                "px-3 py-1.5 rounded-md bg-primary text-primary-foreground font-medium",
                 "hover:bg-primary/80 transition-colors",
                 result === 'correct' && "cursor-default"
               )}

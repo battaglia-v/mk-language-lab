@@ -277,7 +277,7 @@ export function ReaderV2Layout({
               <Library className="h-5 w-5" />
               <span className="text-xs font-medium">{t.glossary}</span>
               {savedWords.length > 0 && (
-                <span className="absolute top-1 right-1 h-4 w-4 rounded-full bg-primary text-[10px] font-bold text-black flex items-center justify-center">
+                <span className="absolute top-1 right-1 h-4 w-4 rounded-full bg-primary text-[10px] font-bold text-primary-foreground flex items-center justify-center">
                   {savedWords.length}
                 </span>
               )}
