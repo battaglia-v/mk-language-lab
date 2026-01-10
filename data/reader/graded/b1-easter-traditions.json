@@ -1,0 +1,69 @@
+{
+  "id": "b1-easter-traditions",
+  "locale": "mk",
+  "title_mk": "Македонските традиции за Велигден",
+  "title_en": "Macedonian Easter Traditions",
+  "difficulty": "B1",
+  "estimatedMinutes": 7,
+  "tags": ["graded-reader", "B1", "culture"],
+  "text_blocks_mk": [
+    { "type": "p", "value": "Велигден е еден од најважните празници во Македонија. Се слави според православниот календар, обично во април или мај. Подготовките почнуваат со Великиот Пост, четириесет дена пред Велигден." },
+    { "type": "p", "value": "За време на постот, верниците не јадат месо, млечни производи и јајца. Во Велика Сабота, семејствата се собираат за да бојадисуваат јајца. Првото јајце секогаш се бојадисува во црвена боја." },
+    { "type": "p", "value": "Ова јајце се чува во куќата цела година како заштита. На Велигден, по полноќната литургија, луѓето се поздравуваат со зборовите \"Христос воскресе!\" Одговорот е \"Навистина воскресе!\"" },
+    { "type": "p", "value": "Потоа следува празнична трпеза со традиционална храна. Најпопуларните јадења се печено јагне и велигденски колач. Децата ги кршат јајцата едно со друго — победникот е оној чие јајце останува цело. Овие традиции ги поврзуваат генерациите и ја чуваат македонската култура жива." }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Суперлативи",
+      "title_en": "Superlatives",
+      "description_en": "нај- + adjective + definite ending",
+      "examples": [
+        { "mk": "најважните", "en": "the most important" },
+        { "mk": "најпопуларните", "en": "the most popular" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "најважните", "en": "the most important", "pos": "superlative adj" },
+    { "mk": "празници", "en": "holidays", "pos": "noun" },
+    { "mk": "се слави", "en": "is celebrated", "pos": "passive verb" },
+    { "mk": "според", "en": "according to", "pos": "preposition" },
+    { "mk": "православниот", "en": "the Orthodox", "pos": "adjective (def)" },
+    { "mk": "подготовките", "en": "the preparations", "pos": "noun (def)" },
+    { "mk": "почнуваат", "en": "begin", "pos": "verb" },
+    { "mk": "пост", "en": "fast/Lent", "pos": "noun" },
+    { "mk": "верниците", "en": "the believers", "pos": "noun (def)" },
+    { "mk": "млечни производи", "en": "dairy products", "pos": "noun phrase" },
+    { "mk": "се собираат", "en": "gather", "pos": "reflexive verb" },
+    { "mk": "бојадисуваат", "en": "dye/paint", "pos": "verb" },
+    { "mk": "првото", "en": "the first (neut)", "pos": "ordinal (def)" },
+    { "mk": "боја", "en": "color", "pos": "noun" },
+    { "mk": "се чува", "en": "is kept", "pos": "passive verb" },
+    { "mk": "заштита", "en": "protection", "pos": "noun" },
+    { "mk": "полноќната", "en": "the midnight", "pos": "adjective (def)" },
+    { "mk": "литургија", "en": "liturgy", "pos": "noun" },
+    { "mk": "се поздравуваат", "en": "greet each other", "pos": "reciprocal verb" },
+    { "mk": "одговорот", "en": "the response", "pos": "noun (def)" },
+    { "mk": "навистина", "en": "truly", "pos": "adverb" },
+    { "mk": "празнична", "en": "festive", "pos": "adjective" },
+    { "mk": "трпеза", "en": "table/feast", "pos": "noun" },
+    { "mk": "најпопуларните", "en": "the most popular", "pos": "superlative adj (def)" },
+    { "mk": "јагне", "en": "lamb", "pos": "noun" },
+    { "mk": "колач", "en": "bread/cake", "pos": "noun" },
+    { "mk": "кршат", "en": "crack/break", "pos": "verb" },
+    { "mk": "победникот", "en": "the winner", "pos": "noun (def)" },
+    { "mk": "цело", "en": "whole", "pos": "adjective" },
+    { "mk": "поврзуваат", "en": "connect", "pos": "verb" },
+    { "mk": "генерациите", "en": "the generations", "pos": "noun (def)" },
+    { "mk": "жива", "en": "alive", "pos": "adjective" }
+  ],
+  "expressions": [
+    { "mk": "Христос воскресе!", "en": "Christ is risen!", "usage": "Easter greeting" },
+    { "mk": "Навистина воскресе!", "en": "Truly He is risen!", "usage": "Response to Easter greeting" }
+  ],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "Graded Readers",
+    "day": "culture"
+  }
+}

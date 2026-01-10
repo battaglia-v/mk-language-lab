@@ -1,0 +1,76 @@
+{
+  "id": "a2-the-holiday",
+  "locale": "mk",
+  "title_mk": "Празникот",
+  "title_en": "The Holiday",
+  "difficulty": "A2",
+  "estimatedMinutes": 5,
+  "tags": ["graded-reader", "A2", "culture"],
+  "text_blocks_mk": [
+    { "type": "p", "value": "Минатата недела беше роденденот на мојата баба. Таа наполни седумдесет години. Целото семејство дојде да го прослави." },
+    { "type": "p", "value": "Гостите почнаа да доаѓаат во пет часот. Секој донесе подарок за баба. Јас и купив убав шал и цвеќе. Таа беше многу среќна и возбудена." },
+    { "type": "p", "value": "Мајка ми направи голема торта со седумдесет свеќи. Кога баба ги дувна свеќите, сите извикаа: \"Среќен роденден!\" Баба рече: \"Ви благодарам на сите. Ова е најубавиот ден!\"" },
+    { "type": "p", "value": "Потоа јадевме многу вкусна храна и разговаравме. Децата играа во дворот, а возрасните седеа на терасата. Тоа беше прекрасен семеен празник што нема да го заборавиме." }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Минато време во раскажување и директен говор",
+      "title_en": "Past tense narrative and direct speech",
+      "examples": [
+        { "mk": "беше", "en": "was" },
+        { "mk": "дојдоа", "en": "they came" },
+        { "mk": "рече", "en": "said" },
+        { "mk": "честитаа", "en": "they congratulated" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "минатата недела", "en": "last week", "pos": "phrase" },
+    { "mk": "роденденот", "en": "the birthday", "pos": "noun (def)" },
+    { "mk": "баба", "en": "grandmother", "pos": "noun" },
+    { "mk": "наполни", "en": "turned (age)", "pos": "verb (past)" },
+    { "mk": "седумдесет", "en": "seventy", "pos": "number" },
+    { "mk": "целото", "en": "the whole", "pos": "adjective (def)" },
+    { "mk": "дојде", "en": "came", "pos": "verb (past)" },
+    { "mk": "прослави", "en": "celebrate", "pos": "verb" },
+    { "mk": "гостите", "en": "the guests", "pos": "noun (def)" },
+    { "mk": "почнаа", "en": "started", "pos": "verb (past)" },
+    { "mk": "доаѓаат", "en": "to arrive", "pos": "verb" },
+    { "mk": "секој", "en": "everyone", "pos": "pronoun" },
+    { "mk": "донесе", "en": "brought", "pos": "verb (past)" },
+    { "mk": "подарок", "en": "gift", "pos": "noun" },
+    { "mk": "и купив", "en": "I bought her", "pos": "verb phrase (past)" },
+    { "mk": "шал", "en": "scarf", "pos": "noun" },
+    { "mk": "цвеќе", "en": "flowers", "pos": "noun" },
+    { "mk": "среќна", "en": "happy", "pos": "adjective" },
+    { "mk": "возбудена", "en": "excited", "pos": "adjective" },
+    { "mk": "направи", "en": "made", "pos": "verb (past)" },
+    { "mk": "торта", "en": "cake", "pos": "noun" },
+    { "mk": "свеќи", "en": "candles", "pos": "noun" },
+    { "mk": "дувна", "en": "blew", "pos": "verb (past)" },
+    { "mk": "извикаа", "en": "shouted", "pos": "verb (past)" },
+    { "mk": "среќен", "en": "happy", "pos": "adjective" },
+    { "mk": "рече", "en": "said", "pos": "verb (past)" },
+    { "mk": "ви благодарам", "en": "thank you (formal/plural)", "pos": "phrase" },
+    { "mk": "најубавиот", "en": "the most beautiful", "pos": "superlative (def)" },
+    { "mk": "јадевме", "en": "we ate", "pos": "verb (past)" },
+    { "mk": "вкусна", "en": "delicious", "pos": "adjective" },
+    { "mk": "разговаравме", "en": "we talked", "pos": "verb (past)" },
+    { "mk": "децата", "en": "the children", "pos": "noun (def)" },
+    { "mk": "играа", "en": "played", "pos": "verb (past)" },
+    { "mk": "возрасните", "en": "the adults", "pos": "noun (def)" },
+    { "mk": "седеа", "en": "sat", "pos": "verb (past)" },
+    { "mk": "прекрасен", "en": "wonderful", "pos": "adjective" },
+    { "mk": "семеен", "en": "family (adj)", "pos": "adjective" },
+    { "mk": "заборавиме", "en": "forget", "pos": "verb" }
+  ],
+  "expressions": [
+    { "mk": "Среќен роденден!", "en": "Happy birthday!", "usage": "Birthday greeting" },
+    { "mk": "Ви благодарам на сите", "en": "Thank you all", "usage": "Formal/plural thanks" }
+  ],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "Graded Readers",
+    "day": "culture"
+  }
+}

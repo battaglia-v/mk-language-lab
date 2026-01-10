@@ -1,0 +1,66 @@
+{
+  "id": "a2-my-job",
+  "locale": "mk",
+  "title_mk": "Мојата работа",
+  "title_en": "My Job",
+  "difficulty": "A2",
+  "estimatedMinutes": 5,
+  "tags": ["graded-reader", "A2", "daily-life"],
+  "text_blocks_mk": [
+    { "type": "p", "value": "Јас работам како програмер во една фирма во Скопје. Секој ден станувам во шест часот наутро. Појадувам брзо и одам на работа со автомобил." },
+    { "type": "p", "value": "Мојата канцеларија е на петтиот кат. Имам многу добри колеги и работиме заедно на проекти. Обично имаме состанок секое утро во девет часот." },
+    { "type": "p", "value": "На состанокот разговараме за нашите задачи. Понекогаш работата е стресна, но ми се допаѓа. Минатата недела завршивме еден голем проект." },
+    { "type": "p", "value": "Шефот рече: \"Одлична работа, тимот!\" За ручек одам во ресторанот близу фирмата. Завршувам со работа во пет часот попладне. Најмногу сакам кога работам од дома петоците." }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Сегашни вообичаени дејства и временски изрази",
+      "title_en": "Present habitual actions and time expressions",
+      "examples": [
+        { "mk": "секој ден", "en": "every day" },
+        { "mk": "обично", "en": "usually" },
+        { "mk": "понекогаш", "en": "sometimes" },
+        { "mk": "рано", "en": "early" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "програмер", "en": "programmer", "pos": "noun" },
+    { "mk": "фирма", "en": "company/firm", "pos": "noun" },
+    { "mk": "секој ден", "en": "every day", "pos": "phrase" },
+    { "mk": "наутро", "en": "in the morning", "pos": "adverb" },
+    { "mk": "појадувам", "en": "I have breakfast", "pos": "verb" },
+    { "mk": "брзо", "en": "quickly", "pos": "adverb" },
+    { "mk": "автомобил", "en": "car", "pos": "noun" },
+    { "mk": "канцеларија", "en": "office", "pos": "noun" },
+    { "mk": "петтиот", "en": "the fifth", "pos": "ordinal (def)" },
+    { "mk": "кат", "en": "floor/storey", "pos": "noun" },
+    { "mk": "колеги", "en": "colleagues", "pos": "noun" },
+    { "mk": "проекти", "en": "projects", "pos": "noun" },
+    { "mk": "обично", "en": "usually", "pos": "adverb" },
+    { "mk": "состанок", "en": "meeting", "pos": "noun" },
+    { "mk": "разговараме", "en": "we discuss", "pos": "verb" },
+    { "mk": "задачи", "en": "tasks", "pos": "noun" },
+    { "mk": "понекогаш", "en": "sometimes", "pos": "adverb" },
+    { "mk": "стресна", "en": "stressful", "pos": "adjective" },
+    { "mk": "ми се допаѓа", "en": "I like it", "pos": "verb phrase" },
+    { "mk": "минатата недела", "en": "last week", "pos": "phrase" },
+    { "mk": "завршивме", "en": "we finished", "pos": "verb (past)" },
+    { "mk": "шефот", "en": "the boss", "pos": "noun (def)" },
+    { "mk": "рече", "en": "said", "pos": "verb (past)" },
+    { "mk": "одлична", "en": "excellent", "pos": "adjective" },
+    { "mk": "ручек", "en": "lunch", "pos": "noun" },
+    { "mk": "близу", "en": "near", "pos": "preposition" },
+    { "mk": "завршувам", "en": "I finish", "pos": "verb" },
+    { "mk": "попладне", "en": "in the afternoon", "pos": "adverb" },
+    { "mk": "најмногу", "en": "most", "pos": "adverb" },
+    { "mk": "од дома", "en": "from home", "pos": "phrase" },
+    { "mk": "петоците", "en": "on Fridays", "pos": "noun (def)" }
+  ],
+  "expressions": [],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "Graded Readers",
+    "day": "daily-life"
+  }
+}

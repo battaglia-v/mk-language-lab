@@ -1,0 +1,71 @@
+{
+  "id": "a2-hobbies",
+  "locale": "mk",
+  "title_mk": "Хобија",
+  "title_en": "Hobbies",
+  "difficulty": "A2",
+  "estimatedMinutes": 5,
+  "tags": ["graded-reader", "A2", "culture"],
+  "text_blocks_mk": [
+    { "type": "p", "value": "Сите луѓе имаат хобија. Мојата пријателка Марија обожава да чита книги. Таа секогаш носи книга со себе." },
+    { "type": "p", "value": "Јас, пак, повеќе сакам да цртам. Почнав да цртам кога бев дете. Ми се допаѓа да цртам пејзажи и портрети." },
+    { "type": "p", "value": "Мојот брат често свири гитара. Тој никогаш не пропушта да вежба. Летото сакаме да пливаме во езерото." },
+    { "type": "p", "value": "Ретко готвам, но кога готвам, правам традиционална храна. На моето семејство многу му се допаѓа кога готвам. Хобијата ни помагаат да се релаксираме. Секој треба да има барем едно хоби." }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Изразување преференции и честота",
+      "title_en": "Expressing preferences and frequency",
+      "examples": [
+        { "mk": "сакам", "en": "I want/like" },
+        { "mk": "ми се допаѓа", "en": "I like (it pleases me)" },
+        { "mk": "секогаш", "en": "always" },
+        { "mk": "никогаш", "en": "never" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "сите", "en": "all", "pos": "pronoun" },
+    { "mk": "луѓе", "en": "people", "pos": "noun" },
+    { "mk": "хобија", "en": "hobbies", "pos": "noun" },
+    { "mk": "обожава", "en": "loves/adores", "pos": "verb" },
+    { "mk": "чита", "en": "to read", "pos": "verb" },
+    { "mk": "книги", "en": "books", "pos": "noun" },
+    { "mk": "секогаш", "en": "always", "pos": "adverb" },
+    { "mk": "носи", "en": "carries", "pos": "verb" },
+    { "mk": "со себе", "en": "with her(self)", "pos": "phrase" },
+    { "mk": "пак", "en": "on the other hand/however", "pos": "particle" },
+    { "mk": "повеќе", "en": "more/prefer", "pos": "adverb" },
+    { "mk": "цртам", "en": "to draw", "pos": "verb" },
+    { "mk": "почнав", "en": "I started", "pos": "verb (past)" },
+    { "mk": "бев", "en": "I was", "pos": "verb (past)" },
+    { "mk": "дете", "en": "child", "pos": "noun" },
+    { "mk": "ми се допаѓа", "en": "I like (it pleases me)", "pos": "verb phrase" },
+    { "mk": "пејзажи", "en": "landscapes", "pos": "noun" },
+    { "mk": "портрети", "en": "portraits", "pos": "noun" },
+    { "mk": "често", "en": "often", "pos": "adverb" },
+    { "mk": "свири", "en": "plays (instrument)", "pos": "verb" },
+    { "mk": "гитара", "en": "guitar", "pos": "noun" },
+    { "mk": "никогаш", "en": "never", "pos": "adverb" },
+    { "mk": "пропушта", "en": "misses/skips", "pos": "verb" },
+    { "mk": "вежба", "en": "to practice", "pos": "verb" },
+    { "mk": "летото", "en": "in summer", "pos": "noun (def)" },
+    { "mk": "пливаме", "en": "we swim", "pos": "verb" },
+    { "mk": "езерото", "en": "the lake", "pos": "noun (def)" },
+    { "mk": "ретко", "en": "rarely", "pos": "adverb" },
+    { "mk": "готвам", "en": "I cook", "pos": "verb" },
+    { "mk": "традиционална", "en": "traditional", "pos": "adjective" },
+    { "mk": "многу", "en": "very much/really", "pos": "adverb" },
+    { "mk": "помагаат", "en": "help", "pos": "verb" },
+    { "mk": "се релаксираме", "en": "to relax", "pos": "reflexive verb" },
+    { "mk": "секој", "en": "everyone", "pos": "pronoun" },
+    { "mk": "треба", "en": "should/must", "pos": "verb" },
+    { "mk": "барем", "en": "at least", "pos": "adverb" }
+  ],
+  "expressions": [],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "Graded Readers",
+    "day": "culture"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "id": "a1-at-the-store",
+  "locale": "mk",
+  "title_mk": "Во продавница",
+  "title_en": "At the Store",
+  "difficulty": "A1",
+  "estimatedMinutes": 3,
+  "tags": ["graded-reader", "A1", "food"],
+  "text_blocks_mk": [
+    { "type": "p", "value": "Денес одам во продавница. Треба ми леб, млеко и јајца. Влегувам во продавницата." },
+    { "type": "p", "value": "— Добар ден! Колку чини лебот? — Лебот чини триесет денари. — А млекото? — Млекото е шеесет денари." },
+    { "type": "p", "value": "Земам и овошје — јаболка и портокали. — Колку чини сè заедно? — Двесте денари." },
+    { "type": "p", "value": "Плаќам со пари. Повелете! — Благодарам! Пријатно!" }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Прашување за цени и броеви со именки",
+      "title_en": "Asking prices and numbers with nouns",
+      "examples": [
+        { "mk": "колку чини?", "en": "how much does it cost?" },
+        { "mk": "сакам", "en": "I want" },
+        { "mk": "треба ми", "en": "I need" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "денес", "en": "today", "pos": "adverb" },
+    { "mk": "продавница", "en": "store/shop", "pos": "noun" },
+    { "mk": "треба ми", "en": "I need", "pos": "verb phrase" },
+    { "mk": "млеко", "en": "milk", "pos": "noun" },
+    { "mk": "јајца", "en": "eggs", "pos": "noun" },
+    { "mk": "влегувам", "en": "I enter", "pos": "verb" },
+    { "mk": "продавницата", "en": "the store", "pos": "noun" },
+    { "mk": "колку чини", "en": "how much does it cost", "pos": "phrase" },
+    { "mk": "лебот", "en": "the bread", "pos": "noun" },
+    { "mk": "триесет", "en": "thirty", "pos": "number" },
+    { "mk": "денари", "en": "denars (currency)", "pos": "noun" },
+    { "mk": "млекото", "en": "the milk", "pos": "noun" },
+    { "mk": "шеесет", "en": "sixty", "pos": "number" },
+    { "mk": "овошје", "en": "fruit", "pos": "noun" },
+    { "mk": "јаболка", "en": "apples", "pos": "noun" },
+    { "mk": "портокали", "en": "oranges", "pos": "noun" },
+    { "mk": "сè", "en": "everything", "pos": "pronoun" },
+    { "mk": "заедно", "en": "together", "pos": "adverb" },
+    { "mk": "двесте", "en": "two hundred", "pos": "number" },
+    { "mk": "плаќам", "en": "I pay", "pos": "verb" },
+    { "mk": "пари", "en": "money/cash", "pos": "noun" },
+    { "mk": "повелете", "en": "here you go/please", "pos": "interjection" },
+    { "mk": "благодарам", "en": "thank you", "pos": "verb" },
+    { "mk": "пријатно", "en": "pleasant/have a nice day", "pos": "adverb" }
+  ],
+  "expressions": [
+    { "mk": "Колку чини?", "en": "How much does it cost?", "usage": "Asking price" },
+    { "mk": "Повелете!", "en": "Here you go!", "usage": "Offering something" }
+  ],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "Graded Readers",
+    "day": "food"
+  }
+}

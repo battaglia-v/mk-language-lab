@@ -1,0 +1,63 @@
+{
+  "id": "a1-my-best-friend",
+  "locale": "mk",
+  "title_mk": "Мојот најдобар пријател",
+  "title_en": "My Best Friend",
+  "difficulty": "A1",
+  "estimatedMinutes": 3,
+  "tags": ["graded-reader", "A1", "family"],
+  "text_blocks_mk": [
+    { "type": "p", "value": "Мојот најдобар пријател се вика Марко. Тој има дваесет и една година. Тој е висок и има кафеава коса." },
+    { "type": "p", "value": "Неговите очи се сини. Марко е многу добар човек. Тој е смешен и секогаш ме насмевнува." },
+    { "type": "p", "value": "Ние заедно учиме на факултет. Секој ден одиме во библиотека. Викендот играме фудбал во паркот." },
+    { "type": "p", "value": "Понекогаш гледаме филмови заедно. Неговото семејство е многу мило. Јас сум среќен што го имам како пријател." }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Присвојни заменки",
+      "title_en": "Possessive pronouns",
+      "examples": [
+        { "mk": "мојот", "en": "my (masc. def.)" },
+        { "mk": "неговата", "en": "his (fem. def.)" },
+        { "mk": "нејзините", "en": "her (plural def.)" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "мојот", "en": "my (masc. def.)", "pos": "possessive" },
+    { "mk": "најдобар", "en": "best", "pos": "adjective" },
+    { "mk": "пријател", "en": "friend", "pos": "noun" },
+    { "mk": "дваесет и една", "en": "twenty-one", "pos": "number" },
+    { "mk": "висок", "en": "tall", "pos": "adjective" },
+    { "mk": "кафеава", "en": "brown", "pos": "adjective" },
+    { "mk": "коса", "en": "hair", "pos": "noun" },
+    { "mk": "неговите", "en": "his (plural def.)", "pos": "possessive" },
+    { "mk": "очи", "en": "eyes", "pos": "noun" },
+    { "mk": "сини", "en": "blue", "pos": "adjective" },
+    { "mk": "добар", "en": "good", "pos": "adjective" },
+    { "mk": "човек", "en": "person", "pos": "noun" },
+    { "mk": "смешен", "en": "funny", "pos": "adjective" },
+    { "mk": "секогаш", "en": "always", "pos": "adverb" },
+    { "mk": "насмевнува", "en": "makes laugh", "pos": "verb" },
+    { "mk": "учиме", "en": "we study", "pos": "verb" },
+    { "mk": "факултет", "en": "university/faculty", "pos": "noun" },
+    { "mk": "секој ден", "en": "every day", "pos": "phrase" },
+    { "mk": "библиотека", "en": "library", "pos": "noun" },
+    { "mk": "викендот", "en": "the weekend", "pos": "noun" },
+    { "mk": "играме", "en": "we play", "pos": "verb" },
+    { "mk": "фудбал", "en": "football", "pos": "noun" },
+    { "mk": "понекогаш", "en": "sometimes", "pos": "adverb" },
+    { "mk": "гледаме", "en": "we watch", "pos": "verb" },
+    { "mk": "филмови", "en": "movies", "pos": "noun" },
+    { "mk": "неговото", "en": "his (neut. def.)", "pos": "possessive" },
+    { "mk": "мило", "en": "kind/nice", "pos": "adjective" },
+    { "mk": "среќен", "en": "happy", "pos": "adjective" },
+    { "mk": "го имам", "en": "I have him", "pos": "verb phrase" }
+  ],
+  "expressions": [],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "Graded Readers",
+    "day": "family"
+  }
+}

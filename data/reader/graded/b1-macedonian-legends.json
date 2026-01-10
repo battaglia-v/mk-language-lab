@@ -1,0 +1,88 @@
+{
+  "id": "b1-macedonian-legends",
+  "locale": "mk",
+  "title_mk": "Македонски легенди",
+  "title_en": "Macedonian Legends",
+  "difficulty": "B1",
+  "estimatedMinutes": 8,
+  "tags": ["graded-reader", "B1", "culture"],
+  "text_blocks_mk": [
+    { "type": "p", "value": "Во Македонија постојат многу легенди што се пренесуваат од генерација на генерација. Една од најпознатите е легендата за Охридското Езеро. Се раскажува дека некогаш, на местото на езерото, имало големо село." },
+    { "type": "p", "value": "Во тоа село, жителите биле среќни и богати. Еден ден, во селото дошла стара жена која барала вода и леб. Никој не сакал да ѝ помогне. Само едно младо момиче, чие име било Охрида, ѝ дало вода и леб." },
+    { "type": "p", "value": "Старата жена рекла: \"Оваа ноќ, бегај од селото. Утре ќе биде доцна.\" Момичето послушало и избегало од селото истата ноќ. На утрото, целото село било потопено под вода." },
+    { "type": "p", "value": "На тоа место се создало прекрасно езеро. Езерото го добило името по момичето — Охрид. Луѓето велат дека на дното на езерото сè уште може да се видат остатоци од селото. Оваа легенда нè учи дека добрината секогаш се наградува. Легендите како оваа ја чуваат душата на македонскиот народ." }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Минато раскажувачко време",
+      "title_en": "Past narrative tense",
+      "description_en": "Used for storytelling",
+      "examples": [
+        { "mk": "се раскажува дека", "en": "it is told that" },
+        { "mk": "имало", "en": "there was (past)" },
+        { "mk": "биле", "en": "were (past)" },
+        { "mk": "дошла", "en": "came (fem. past)" }
+      ]
+    },
+    {
+      "title_mk": "Релативни заменки",
+      "title_en": "Relative pronouns",
+      "examples": [
+        { "mk": "чие име", "en": "whose name" },
+        { "mk": "која барала", "en": "who was asking" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "легенди", "en": "legends", "pos": "noun" },
+    { "mk": "постојат", "en": "exist", "pos": "verb" },
+    { "mk": "се пренесуваат", "en": "are passed/transmitted", "pos": "passive verb" },
+    { "mk": "најпознатите", "en": "the most famous", "pos": "superlative adj" },
+    { "mk": "легендата", "en": "the legend", "pos": "noun (def)" },
+    { "mk": "се раскажува", "en": "it is told/narrated", "pos": "passive verb" },
+    { "mk": "некогаш", "en": "once upon a time/long ago", "pos": "adverb" },
+    { "mk": "имало", "en": "there was (past)", "pos": "verb (past)" },
+    { "mk": "жителите", "en": "the inhabitants", "pos": "noun (def)" },
+    { "mk": "биле", "en": "were (past)", "pos": "verb (past)" },
+    { "mk": "богати", "en": "rich", "pos": "adjective" },
+    { "mk": "дошла", "en": "came (fem)", "pos": "verb (past)" },
+    { "mk": "барала", "en": "was asking for", "pos": "verb (past)" },
+    { "mk": "леб", "en": "bread", "pos": "noun" },
+    { "mk": "никој", "en": "no one", "pos": "pronoun" },
+    { "mk": "сакал", "en": "wanted (past)", "pos": "verb (past)" },
+    { "mk": "ѝ помогне", "en": "to help her", "pos": "verb phrase" },
+    { "mk": "момиче", "en": "girl", "pos": "noun" },
+    { "mk": "чие", "en": "whose", "pos": "relative pronoun" },
+    { "mk": "дало", "en": "gave (neut)", "pos": "verb (past)" },
+    { "mk": "рекла", "en": "said (fem)", "pos": "verb (past)" },
+    { "mk": "бегај", "en": "flee (imperative)", "pos": "verb" },
+    { "mk": "доцна", "en": "late", "pos": "adverb" },
+    { "mk": "послушало", "en": "obeyed (neut)", "pos": "verb (past)" },
+    { "mk": "избегало", "en": "fled (neut)", "pos": "verb (past)" },
+    { "mk": "истата", "en": "the same", "pos": "adjective (def)" },
+    { "mk": "на утрото", "en": "in the morning", "pos": "phrase" },
+    { "mk": "потопено", "en": "submerged", "pos": "past participle" },
+    { "mk": "под вода", "en": "under water", "pos": "phrase" },
+    { "mk": "се создало", "en": "was created", "pos": "passive verb" },
+    { "mk": "прекрасно", "en": "beautiful", "pos": "adjective" },
+    { "mk": "добило", "en": "received (neut)", "pos": "verb (past)" },
+    { "mk": "името", "en": "the name", "pos": "noun (def)" },
+    { "mk": "по", "en": "after/according to", "pos": "preposition" },
+    { "mk": "велат", "en": "say/tell", "pos": "verb" },
+    { "mk": "дното", "en": "the bottom", "pos": "noun (def)" },
+    { "mk": "остатоци", "en": "remains", "pos": "noun" },
+    { "mk": "сè уште", "en": "still", "pos": "adverb" },
+    { "mk": "нè учи", "en": "teaches us", "pos": "verb phrase" },
+    { "mk": "добрината", "en": "kindness/goodness", "pos": "noun (def)" },
+    { "mk": "се наградува", "en": "is rewarded", "pos": "passive verb" },
+    { "mk": "ја чуваат", "en": "preserve/keep", "pos": "verb phrase" },
+    { "mk": "душата", "en": "the soul", "pos": "noun (def)" },
+    { "mk": "народ", "en": "people/nation", "pos": "noun" }
+  ],
+  "expressions": [],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "Graded Readers",
+    "day": "culture"
+  }
+}

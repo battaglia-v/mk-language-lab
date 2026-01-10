@@ -1,0 +1,87 @@
+{
+  "id": "b1-city-vs-village",
+  "locale": "mk",
+  "title_mk": "Животот во град vs село",
+  "title_en": "City Life vs Village Life",
+  "difficulty": "B1",
+  "estimatedMinutes": 7,
+  "tags": ["graded-reader", "B1", "culture"],
+  "text_blocks_mk": [
+    { "type": "p", "value": "Македонија е земја каде што повеќето луѓе живеат или во големите градови или во малите села. Секој начин на живот има свои предности и недостатоци. Во градот, наспроти селото, има повеќе можности за работа и забава." },
+    { "type": "p", "value": "Скопје, на пример, има универзитети, театри и модерни продавници. Додека градот нуди динамичен живот, селото е помирно и поздраво. Луѓето во селата јадат свежа храна од своите градини." },
+    { "type": "p", "value": "Споредено со градскиот живот, селскиот живот е поевтин. Меѓутоа, многу млади луѓе се селат од селата во градовите. Ако живееш во село, мораш да имаш автомобил за секојдневни потреби. Ако живееше во Скопје, ќе имаше пристап до јавен превоз." },
+    { "type": "p", "value": "Некои луѓе мислат дека селото е здодевно, но други го сакаат мирот. Градот, пак, може да биде стресен и загаден. Според мене, најдобро е да живееш во мал град, како Битола или Прилеп. Така имаш предности од двата света — и можности и мир." }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Изразување контраст",
+      "title_en": "Expressing contrast",
+      "examples": [
+        { "mk": "наспроти", "en": "as opposed to/in contrast to" },
+        { "mk": "додека", "en": "while/whereas" },
+        { "mk": "споредено со", "en": "compared to" },
+        { "mk": "меѓутоа", "en": "however" }
+      ]
+    },
+    {
+      "title_mk": "Условни реченици",
+      "title_en": "Conditional sentences",
+      "examples": [
+        { "mk": "ако живееш", "en": "if you live (real condition)" },
+        { "mk": "ако живееше", "en": "if you lived (unreal condition)" }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "mk": "земја", "en": "country", "pos": "noun" },
+    { "mk": "повеќето", "en": "most", "pos": "pronoun" },
+    { "mk": "или...или", "en": "either...or", "pos": "conjunction" },
+    { "mk": "начин на живот", "en": "way of life", "pos": "noun phrase" },
+    { "mk": "предности", "en": "advantages", "pos": "noun" },
+    { "mk": "недостатоци", "en": "disadvantages", "pos": "noun" },
+    { "mk": "наспроти", "en": "as opposed to/in contrast to", "pos": "preposition" },
+    { "mk": "можности", "en": "opportunities", "pos": "noun" },
+    { "mk": "забава", "en": "entertainment", "pos": "noun" },
+    { "mk": "на пример", "en": "for example", "pos": "phrase" },
+    { "mk": "универзитети", "en": "universities", "pos": "noun" },
+    { "mk": "театри", "en": "theaters", "pos": "noun" },
+    { "mk": "додека", "en": "while/whereas", "pos": "conjunction" },
+    { "mk": "нуди", "en": "offers", "pos": "verb" },
+    { "mk": "помирно", "en": "calmer", "pos": "comparative adj" },
+    { "mk": "поздраво", "en": "healthier", "pos": "comparative adj" },
+    { "mk": "свежа", "en": "fresh", "pos": "adjective" },
+    { "mk": "градини", "en": "gardens", "pos": "noun" },
+    { "mk": "споредено со", "en": "compared to", "pos": "phrase" },
+    { "mk": "градскиот", "en": "city/urban (adj)", "pos": "adjective" },
+    { "mk": "поевтин", "en": "cheaper", "pos": "comparative adj" },
+    { "mk": "меѓутоа", "en": "however", "pos": "conjunction" },
+    { "mk": "се селат", "en": "move/relocate", "pos": "reflexive verb" },
+    { "mk": "ако", "en": "if", "pos": "conjunction" },
+    { "mk": "живееш", "en": "you live", "pos": "verb" },
+    { "mk": "мораш", "en": "you must", "pos": "verb" },
+    { "mk": "потреби", "en": "needs", "pos": "noun" },
+    { "mk": "живееше", "en": "you lived (conditional)", "pos": "verb" },
+    { "mk": "ќе имаше", "en": "you would have", "pos": "conditional" },
+    { "mk": "пристап", "en": "access", "pos": "noun" },
+    { "mk": "јавен превоз", "en": "public transport", "pos": "noun phrase" },
+    { "mk": "мислат", "en": "think", "pos": "verb" },
+    { "mk": "здодевно", "en": "boring", "pos": "adjective" },
+    { "mk": "мирот", "en": "the peace", "pos": "noun (def)" },
+    { "mk": "пак", "en": "on the other hand", "pos": "particle" },
+    { "mk": "стресен", "en": "stressful", "pos": "adjective" },
+    { "mk": "загаден", "en": "polluted", "pos": "adjective" },
+    { "mk": "според мене", "en": "in my opinion", "pos": "phrase" },
+    { "mk": "најдобро", "en": "best", "pos": "superlative adv" },
+    { "mk": "така", "en": "that way/thus", "pos": "adverb" },
+    { "mk": "двата света", "en": "both worlds", "pos": "noun phrase" },
+    { "mk": "и...и", "en": "both...and", "pos": "conjunction" }
+  ],
+  "expressions": [
+    { "mk": "Според мене", "en": "In my opinion", "usage": "Expressing personal view" }
+  ],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "Graded Readers",
+    "day": "culture"
+  }
+}
