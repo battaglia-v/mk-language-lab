@@ -1265,6 +1265,206 @@
       ]
     },
     {
+      "id": "reader-a2-004",
+      "title": {
+        "mk": "Празникот",
+        "en": "The Holiday"
+      },
+      "level": "A2",
+      "category": "culture",
+      "estimatedMinutes": 5,
+      "wordCount": 135,
+      "xpReward": 35,
+      "grammarHighlight": {
+        "topic": "Past tense narrative and direct speech",
+        "topicMk": "Минато време во раскажување и директен говор",
+        "examples": ["беше", "дојдоа", "рече", "честитаа"]
+      },
+      "sentences": [
+        {
+          "id": "s1",
+          "mk": "Минатата недела беше роденденот на мојата баба.",
+          "en": "Last week was my grandmother's birthday.",
+          "audio": "/audio/reader/a2-004/s1.mp3",
+          "vocabulary": [
+            {"word": "минатата недела", "meaning": "last week", "pos": "phrase"},
+            {"word": "роденденот", "meaning": "the birthday", "pos": "noun (def)"},
+            {"word": "баба", "meaning": "grandmother", "pos": "noun"}
+          ],
+          "grammarNote": "беше - past tense of 'to be' for singular"
+        },
+        {
+          "id": "s2",
+          "mk": "Таа наполни седумдесет години.",
+          "en": "She turned seventy years old.",
+          "audio": "/audio/reader/a2-004/s2.mp3",
+          "vocabulary": [
+            {"word": "наполни", "meaning": "turned (age)", "pos": "verb (past)"},
+            {"word": "седумдесет", "meaning": "seventy", "pos": "number"}
+          ]
+        },
+        {
+          "id": "s3",
+          "mk": "Целото семејство дојде да го прослави.",
+          "en": "The whole family came to celebrate it.",
+          "audio": "/audio/reader/a2-004/s3.mp3",
+          "vocabulary": [
+            {"word": "целото", "meaning": "the whole", "pos": "adjective (def)"},
+            {"word": "дојде", "meaning": "came", "pos": "verb (past)"},
+            {"word": "прослави", "meaning": "celebrate", "pos": "verb"}
+          ],
+          "grammarNote": "дојде - past tense (aorist) of доаѓа"
+        },
+        {
+          "id": "s4",
+          "mk": "Гостите почнаа да доаѓаат во пет часот.",
+          "en": "The guests started arriving at five o'clock.",
+          "audio": "/audio/reader/a2-004/s4.mp3",
+          "vocabulary": [
+            {"word": "гостите", "meaning": "the guests", "pos": "noun (def)"},
+            {"word": "почнаа", "meaning": "started", "pos": "verb (past)"},
+            {"word": "доаѓаат", "meaning": "to arrive", "pos": "verb"}
+          ]
+        },
+        {
+          "id": "s5",
+          "mk": "Секој донесе подарок за баба.",
+          "en": "Everyone brought a gift for grandma.",
+          "audio": "/audio/reader/a2-004/s5.mp3",
+          "vocabulary": [
+            {"word": "секој", "meaning": "everyone", "pos": "pronoun"},
+            {"word": "донесе", "meaning": "brought", "pos": "verb (past)"},
+            {"word": "подарок", "meaning": "gift", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s6",
+          "mk": "Јас и купив убав шал и цвеќе.",
+          "en": "I bought her a nice scarf and flowers.",
+          "audio": "/audio/reader/a2-004/s6.mp3",
+          "vocabulary": [
+            {"word": "и купив", "meaning": "I bought her", "pos": "verb phrase (past)"},
+            {"word": "шал", "meaning": "scarf", "pos": "noun"},
+            {"word": "цвеќе", "meaning": "flowers", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s7",
+          "mk": "Таа беше многу среќна и возбудена.",
+          "en": "She was very happy and excited.",
+          "audio": "/audio/reader/a2-004/s7.mp3",
+          "vocabulary": [
+            {"word": "среќна", "meaning": "happy", "pos": "adjective"},
+            {"word": "возбудена", "meaning": "excited", "pos": "adjective"}
+          ]
+        },
+        {
+          "id": "s8",
+          "mk": "Мајка ми направи голема торта со седумдесет свеќи.",
+          "en": "My mother made a big cake with seventy candles.",
+          "audio": "/audio/reader/a2-004/s8.mp3",
+          "vocabulary": [
+            {"word": "направи", "meaning": "made", "pos": "verb (past)"},
+            {"word": "торта", "meaning": "cake", "pos": "noun"},
+            {"word": "свеќи", "meaning": "candles", "pos": "noun"}
+          ],
+          "culturalNote": "Homemade cakes are traditional for family celebrations in Macedonia"
+        },
+        {
+          "id": "s9",
+          "mk": "Кога баба ги дувна свеќите, сите извикаа: \"Среќен роденден!\"",
+          "en": "When grandma blew out the candles, everyone shouted: \"Happy birthday!\"",
+          "audio": "/audio/reader/a2-004/s9.mp3",
+          "vocabulary": [
+            {"word": "дувна", "meaning": "blew", "pos": "verb (past)"},
+            {"word": "извикаа", "meaning": "shouted", "pos": "verb (past)"},
+            {"word": "среќен", "meaning": "happy", "pos": "adjective"}
+          ],
+          "grammarNote": "Direct speech with past tense narrative"
+        },
+        {
+          "id": "s10",
+          "mk": "Баба рече: \"Ви благодарам на сите. Ова е најубавиот ден!\"",
+          "en": "Grandma said: \"Thank you all. This is the most beautiful day!\"",
+          "audio": "/audio/reader/a2-004/s10.mp3",
+          "vocabulary": [
+            {"word": "рече", "meaning": "said", "pos": "verb (past)"},
+            {"word": "ви благодарам", "meaning": "thank you (formal/plural)", "pos": "phrase"},
+            {"word": "најубавиот", "meaning": "the most beautiful", "pos": "superlative (def)"}
+          ]
+        },
+        {
+          "id": "s11",
+          "mk": "Потоа јадевме многу вкусна храна и разговаравме.",
+          "en": "Then we ate very delicious food and talked.",
+          "audio": "/audio/reader/a2-004/s11.mp3",
+          "vocabulary": [
+            {"word": "јадевме", "meaning": "we ate", "pos": "verb (past)"},
+            {"word": "вкусна", "meaning": "delicious", "pos": "adjective"},
+            {"word": "разговаравме", "meaning": "we talked", "pos": "verb (past)"}
+          ]
+        },
+        {
+          "id": "s12",
+          "mk": "Децата играа во дворот, а возрасните седеа на терасата.",
+          "en": "The children played in the yard, while the adults sat on the terrace.",
+          "audio": "/audio/reader/a2-004/s12.mp3",
+          "vocabulary": [
+            {"word": "децата", "meaning": "the children", "pos": "noun (def)"},
+            {"word": "играа", "meaning": "played", "pos": "verb (past)"},
+            {"word": "возрасните", "meaning": "the adults", "pos": "noun (def)"},
+            {"word": "седеа", "meaning": "sat", "pos": "verb (past)"}
+          ]
+        },
+        {
+          "id": "s13",
+          "mk": "Тоа беше прекрасен семеен празник што нема да го заборавиме.",
+          "en": "It was a wonderful family celebration that we will not forget.",
+          "audio": "/audio/reader/a2-004/s13.mp3",
+          "vocabulary": [
+            {"word": "прекрасен", "meaning": "wonderful", "pos": "adjective"},
+            {"word": "семеен", "meaning": "family (adj)", "pos": "adjective"},
+            {"word": "заборавиме", "meaning": "forget", "pos": "verb"}
+          ]
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "question": {
+            "mk": "Колку години наполни баба?",
+            "en": "How old did grandma turn?"
+          },
+          "options": [
+            {"mk": "Шеесет", "correct": false},
+            {"mk": "Седумдесет", "correct": true},
+            {"mk": "Осумдесет", "correct": false}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Што и купи за подарок?",
+            "en": "What did he/she buy her as a gift?"
+          },
+          "options": [
+            {"mk": "Книга", "correct": false},
+            {"mk": "Шал и цвеќе", "correct": true},
+            {"mk": "Торта", "correct": false}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Кој направи торта?",
+            "en": "Who made the cake?"
+          },
+          "options": [
+            {"mk": "Баба", "correct": false},
+            {"mk": "Мајка", "correct": true},
+            {"mk": "Татко", "correct": false}
+          ]
+        }
+      ]
+    },
+    {
       "id": "reader-b1-001",
       "title": {
         "mk": "Македонските традиции за Велигден",
