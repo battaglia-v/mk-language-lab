@@ -302,6 +302,8 @@ export default function LessonPageContentV2({
     : 0;
   const isComplete = completedSections.size === sections.length;
   const isLastSection = currentSectionIndex === sections.length - 1;
+  // Track if lesson was previously completed to allow free navigation
+  const wasPreviouslyCompleted = userProgress?.progress === 100;
 
   // Load saved progress
   useEffect(() => {
@@ -924,16 +926,18 @@ export default function LessonPageContentV2({
               const isCompleted = completedSections.has(section.id);
               const isCurrent = index === currentSectionIndex;
               const isPast = index < currentSectionIndex;
+              // Allow navigation if: lesson was previously completed, or navigating to past/current section, or section is completed
+              const canNavigate = wasPreviouslyCompleted || index <= currentSectionIndex || isCompleted;
 
               return (
                 <div key={section.id} className="flex items-center gap-2">
                   <button
                     onClick={() => {
-                      if (index <= currentSectionIndex || isCompleted) {
+                      if (canNavigate) {
                         setCurrentSectionIndex(index);
                       }
                     }}
-                    disabled={index > currentSectionIndex && !isCompleted}
+                    disabled={!canNavigate}
                     className={cn(
                       'flex items-center justify-center rounded-full transition-all duration-200',
                       // Size: current is larger
@@ -943,9 +947,9 @@ export default function LessonPageContentV2({
                       isCurrent && !isCompleted && 'bg-primary text-primary-foreground ring-2 ring-primary/30',
                       isPast && !isCompleted && 'bg-muted text-muted-foreground',
                       !isCurrent && !isCompleted && !isPast && 'bg-muted/50 text-muted-foreground/50',
-                      // Interactive
-                      (index <= currentSectionIndex || isCompleted) && 'hover:scale-110 cursor-pointer',
-                      index > currentSectionIndex && !isCompleted && 'cursor-not-allowed'
+                      // Interactive - enabled when can navigate
+                      canNavigate && 'hover:scale-110 cursor-pointer',
+                      !canNavigate && 'cursor-not-allowed'
                     )}
                     aria-label={`${section.title} - ${isCompleted ? 'completed' : isCurrent ? 'current' : 'upcoming'}`}
                   >
@@ -972,22 +976,24 @@ export default function LessonPageContentV2({
             {sections.map((section, index) => {
               const isCompleted = completedSections.has(section.id);
               const isCurrent = index === currentSectionIndex;
+              // Allow navigation if: lesson was previously completed, or navigating to past/current section, or section is completed
+              const canNavigate = wasPreviouslyCompleted || index <= currentSectionIndex || isCompleted;
 
               return (
                 <button
                   key={section.id}
                   onClick={() => {
-                    if (index <= currentSectionIndex || isCompleted) {
+                    if (canNavigate) {
                       setCurrentSectionIndex(index);
                     }
                   }}
-                  disabled={index > currentSectionIndex && !isCompleted}
+                  disabled={!canNavigate}
                   className={cn(
                     'flex items-center gap-2 px-3 py-2 rounded-lg text-sm whitespace-nowrap transition-colors',
                     isCurrent && 'bg-primary text-primary-foreground',
                     isCompleted && !isCurrent && 'bg-green-500/10 text-green-600',
-                    !isCurrent && !isCompleted && index <= currentSectionIndex && 'hover:bg-muted',
-                    index > currentSectionIndex && !isCompleted && 'opacity-50 cursor-not-allowed'
+                    canNavigate && !isCurrent && !isCompleted && 'hover:bg-muted',
+                    !canNavigate && 'opacity-50 cursor-not-allowed'
                   )}
                 >
                   {isCompleted ? (
