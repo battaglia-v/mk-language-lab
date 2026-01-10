@@ -144,16 +144,17 @@ Plans:
 - [x] 27-03: Macedonian keyboard hints — completed 2026-01-10
 - [x] 27-04: Grammar tone & expand/collapse fix — completed 2026-01-10
 
-#### Phase 28: Navigation Overhaul — IN PROGRESS
+#### Phase 28: Navigation Overhaul — COMPLETE
 
 **Goal**: Eliminate More menu, create Resources section, add Translate+Analyzer toggle, consolidate user menu, remove Learning Paths
 **Depends on**: Phase 27
 **Research**: Unlikely (internal routing and component patterns)
-**Plans**: 2/3 complete
+**Plans**: 3/3 complete
 
 Plans:
 - [x] 28-01: Navigation simplification (More → Resources, UserMenu consolidation) — completed 2026-01-10
 - [x] 28-02: Tools merge (Translate + Analyze unified page with toggle) — completed 2026-01-10
+- [x] 28-03: Learning Paths removal — completed 2026-01-10
 
 #### Phase 29: Lesson Enhancements
 
@@ -200,7 +201,7 @@ Plans:
 | Phase | Milestone | Plans | Status | Completed |
 |-------|-----------|-------|--------|-----------|
 | 27. Bug Fixes | v1.4 | 4/4 | Complete | 2026-01-10 |
-| 28. Navigation Overhaul | v1.4 | 2/3 | In progress | - |
+| 28. Navigation Overhaul | v1.4 | 3/3 | Complete | 2026-01-10 |
 | 29. Lesson Enhancements | v1.4 | 0/? | Not started | - |
 | 30. Vocabulary Display | v1.4 | 0/? | Not started | - |
 | 31. State Persistence | v1.4 | 0/? | Not started | - |
