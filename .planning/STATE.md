@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-10)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** v1.5 planning (audio removal, remaining polish, practice improvements)
+**Current focus:** v1.5 complete — all milestones shipped
 
 ## Current Position
 
 Phase: 35 of 35 (Practice Improvements)
-Plan: 0 of 1 in current phase
-Status: Planning complete
-Last activity: 2026-01-10 — Created 35-01-PLAN.md (practice content visibility)
+Plan: 1 of 1 in current phase
+Status: Phase complete
+Last activity: 2026-01-10 — Completed 35-01-PLAN.md (practice content visibility)
 
-Progress: [████████░░] ~80% (v1.5 in progress)
+Progress: [██████████] 100% (v1.5 complete)
 
 ## Milestone Summary
 
@@ -132,6 +132,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-10
-Stopped at: Created 35-01-PLAN.md (Phase 35 planning complete)
+Stopped at: Completed 35-01-PLAN.md (Phase 35 and v1.5 milestone complete)
 Resume file: None
-Next step: /gsd:execute-plan .planning/phases/35-practice-improvements/35-01-PLAN.md
+Next step: /gsd:complete-milestone (archive v1.5 and prepare for next milestone)
