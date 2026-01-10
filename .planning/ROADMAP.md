@@ -199,7 +199,7 @@ Items:
 | 30. Vocabulary Display | v1.4 | 2/2 | Complete | 2026-01-10 |
 | 31. State Persistence | v1.4 | 1/1 | Complete | 2026-01-10 |
 | 32. Content & Polish | v1.4 | 2/2 | Complete | 2026-01-10 |
-| 33. Audio Removal | v1.5 | 1/2 | In progress | - |
+| 33. Audio Removal | v1.5 | 2/2 | Complete | 2026-01-10 |
 | 34. Remaining Polish | v1.5 | 0/? | Not started | - |
 | 35. Practice Improvements | v1.5 | 0/? | Not started | - |
 
