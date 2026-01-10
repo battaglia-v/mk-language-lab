@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-10)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** v1.4 Power User Feedback - Phase 30 Vocabulary Display
+**Current focus:** v1.4 Power User Feedback - Phase 31 State Persistence
 
 ## Current Position
 
-Phase: 30 of 32 (Vocabulary Display)
-Plan: 2 of 2 in current phase
+Phase: 31 of 32 (State Persistence)
+Plan: 1 of 1 in current phase
 Status: Phase complete
-Last activity: 2026-01-10 — Completed 30-02-PLAN.md
+Last activity: 2026-01-10 — Completed 31-01-PLAN.md
 
-Progress: [██████░░░░] 60% (Phase 30 complete)
+Progress: [███████░░░] 70% (Phase 31 complete)
 
 ## Milestone Summary
 
@@ -76,9 +76,9 @@ See `.planning/MILESTONES.md` for full details.
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 53
+- Total plans completed: 54
 - Average duration: ~9 min
-- Total execution time: ~8.1 hours
+- Total execution time: ~8.2 hours
 
 **By Milestone:**
 
@@ -114,6 +114,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-10
-Stopped at: Completed 30-02-PLAN.md
+Stopped at: Completed 31-01-PLAN.md
 Resume file: None
-Next step: Plan Phase 31 (State Persistence)
+Next step: Plan Phase 32 (Content & Polish)
