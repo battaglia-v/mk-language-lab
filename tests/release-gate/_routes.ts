@@ -11,7 +11,6 @@ const LOCALE = process.env.RELEASE_GATE_LOCALE ?? 'en';
 export const MAJOR_ROUTE_IDS = [
   'home',
   'learn',
-  'pathsHub',
   'alphabetLesson',
   'lesson',
   'practice',
@@ -27,7 +26,7 @@ const TOPIC_DECK_IDS = [
   'cyrillic-alphabet-v1',
 ] as const;
 
-const LEARNING_PATH_IDS = ['a1', 'a2', '30day'] as const;
+// Learning paths routes removed - now use /learn?level= instead
 
 const READER_SAMPLE_IDS = [
   'cafe-conversation',
@@ -44,7 +43,6 @@ export async function resolveGateRoutes(): Promise<GateRoute[]> {
     { id: 'home', label: 'Home', path: r('') },
     { id: 'dashboard', label: 'Dashboard (legacy)', path: r('/dashboard') },
     { id: 'learn', label: 'Learn', path: r('/learn') },
-    { id: 'pathsHub', label: 'Paths', path: r('/learn/paths') },
     { id: 'alphabetLesson', label: 'Alphabet lesson', path: r('/learn/lessons/alphabet') },
     { id: 'practice', label: 'Practice', path: r('/practice') },
     { id: 'translate', label: 'Translate', path: r('/translate') },
@@ -73,13 +71,10 @@ export async function resolveGateRoutes(): Promise<GateRoute[]> {
     { id: 'offline', label: 'Offline', path: '/offline' },
   ];
 
-  for (const id of LEARNING_PATH_IDS) {
-    routes.push({
-      id: `path-${id}`,
-      label: `Path: ${id.toUpperCase()}`,
-      path: r(`/learn/paths/${id}`),
-    });
-  }
+  // Learning path level routes (via query params)
+  routes.push({ id: 'learn-beginner', label: 'Learn: A1 Beginner', path: r('/learn?level=beginner') });
+  routes.push({ id: 'learn-intermediate', label: 'Learn: A2 Intermediate', path: r('/learn?level=intermediate') });
+  routes.push({ id: 'learn-challenge', label: 'Learn: 30-Day Challenge', path: r('/learn?level=challenge') });
 
   routes.push({ id: 'practiceCloze', label: 'Practice: Cloze', path: r('/practice/cloze') });
   routes.push({ id: 'practiceFillBlanks', label: 'Practice: Fill blanks', path: r('/practice/fill-blanks') });

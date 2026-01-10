@@ -177,10 +177,9 @@ The following routes were tested:
 
 - \`/en\` - Home
 - \`/en/learn\` - Learn
-- \`/en/learn/paths\` - Paths Hub
-- \`/en/learn/paths/a1\` - A1 Path
-- \`/en/learn/paths/a2\` - A2 Path
-- \`/en/learn/paths/30day\` - 30-Day Challenge
+- \`/en/learn?level=beginner\` - A1 Beginner Level
+- \`/en/learn?level=intermediate\` - A2 Intermediate Level
+- \`/en/learn?level=challenge\` - 30-Day Challenge
 - \`/en/learn/lessons/alphabet\` - Alphabet Lesson
 - \`/en/practice\` - Practice Hub
 - \`/en/practice/word-sprint\` - Word Sprint

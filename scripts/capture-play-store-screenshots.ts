@@ -37,15 +37,15 @@ const SCREENSHOTS: ScreenshotConfig[] = [
     header: 'Start Your Journey',
     subheader: 'Structured paths from alphabet to fluency',
     locale: 'en',
-    waitForSelector: '[data-testid="learn-page"]',
+    waitForSelector: '[data-testid="cta-start-here"]',
   },
   {
     name: '02-a1-path',
-    path: '/en/learn/paths/a1',
+    path: '/en/learn?level=beginner',
     header: 'Learn Step by Step',
     subheader: 'Unlock lessons as you progress',
     locale: 'en',
-    waitForSelector: '[data-testid="lesson-path"]',
+    waitForSelector: '[data-testid="learn-level-beginner"]',
   },
   {
     name: '03-practice-hub',

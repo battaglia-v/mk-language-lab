@@ -89,12 +89,16 @@ test.describe('i18n Regression Tests', () => {
     expect(pageContent).toContain('Drawing');
   });
 
-  test('learning paths page should display path cards', async ({ page }) => {
-    await page.goto('/en/learn/paths');
+  test('learn page should display level selection tabs', async ({ page }) => {
+    await page.goto('/en/learn');
 
     await page.waitForLoadState('networkidle');
 
-    // Check for learning path cards
+    // Check for level selection tabs
+    const beginnerLevel = page.getByTestId('learn-level-beginner');
+    await expect(beginnerLevel).toBeVisible();
+
+    // Check for A1 Foundations content
     const a1Path = page.getByText(/A1|Foundations|Beginner/i);
     await expect(a1Path).toBeVisible();
   });
