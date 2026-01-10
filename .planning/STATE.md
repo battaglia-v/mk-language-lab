@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-10)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** v1.4 Power User Feedback - Phase 27 Bug Fixes
+**Current focus:** v1.4 Power User Feedback - Phase 28 Navigation Overhaul
 
 ## Current Position
 
-Phase: 27 of 32 (Bug Fixes)
-Plan: 3 of ? in current phase
+Phase: 28 of 32 (Navigation Overhaul)
+Plan: 1 of ? in current phase
 Status: In progress
-Last activity: 2026-01-10 — Completed 27-03-PLAN.md
+Last activity: 2026-01-10 — Completed 28-01-PLAN.md
 
-Progress: ░░░░░░░░░░ 0% (0 of 6 phases in v1.4)
+Progress: [██░░░░░░░░] 25% (Phase 28 started, 1 of 6 phases in v1.4)
 
 ## Milestone Summary
 
@@ -114,6 +114,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-10
-Stopped at: Completed 27-03-PLAN.md (Macedonian keyboard hints)
+Stopped at: Completed 28-01-PLAN.md (Navigation Simplification)
 Resume file: None
-Next step: Plan remaining Phase 27 work or execute next plan
+Next step: Execute next plan in Phase 28 or plan remaining work
