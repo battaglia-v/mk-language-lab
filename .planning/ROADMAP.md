@@ -193,10 +193,11 @@ Plans:
 **Goal**: Move alphabet to A1 start, add missing pronouns (наш/нивни), restore MLC credit, standardize translation UX
 **Depends on**: Phase 31
 **Research**: Unlikely (content and UX patterns established)
-**Plans**: TBD
+**Plans**: 2
 
 Plans:
-- [ ] 32-01: TBD
+- [ ] 32-01: Pronouns & MLC Credit (наш/нивни exercises, MLC badge restoration)
+- [ ] 32-02: Alphabet & Translation UX (A1 curriculum integration, result display standardization)
 
 ## Progress
 
@@ -207,7 +208,7 @@ Plans:
 | 29. Lesson Enhancements | v1.4 | 2/2 | Complete | 2026-01-10 |
 | 30. Vocabulary Display | v1.4 | 2/2 | Complete | 2026-01-10 |
 | 31. State Persistence | v1.4 | 1/1 | Complete | 2026-01-10 |
-| 32. Content & Polish | v1.4 | 0/? | Not started | - |
+| 32. Content & Polish | v1.4 | 0/2 | Planned | - |
 
 **Completed Milestones:**
 - [v1.0 Beta](milestones/v1.0-ROADMAP.md) — 7 phases, 21 plans (shipped 2026-01-07)
