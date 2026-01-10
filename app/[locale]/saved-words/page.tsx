@@ -156,17 +156,17 @@ export default function SavedWordsPage() {
         <div className="flex-1">
           <h1 className="text-2xl font-bold flex items-center gap-2">
             <BookmarkPlus className="h-6 w-6 text-pink-500" />
-            My Saved Words
+            {t('savedWordsPage.title')}
           </h1>
           <p className="text-sm text-muted-foreground">
-            {counts.total} words saved
+            {t('savedWordsPage.wordsSaved', { count: counts.total })}
           </p>
         </div>
         {counts.total > 0 && (
           <Link href={`/${locale}/practice/session?deck=saved&mode=multiple-choice`}>
             <Button className="gap-2 bg-pink-500 hover:bg-pink-600">
               <Play className="h-4 w-4" />
-              Practice All
+              {t('savedWordsPage.practiceAll')}
             </Button>
           </Link>
         )}
@@ -179,69 +179,69 @@ export default function SavedWordsPage() {
             <div className="h-20 w-20 rounded-full bg-pink-500/10 flex items-center justify-center mx-auto mb-4">
               <BookmarkPlus className="h-10 w-10 text-pink-500" />
             </div>
-            <h2 className="text-xl font-semibold mb-2">Start building your word bank</h2>
+            <h2 className="text-xl font-semibold mb-2">{t('savedWordsPage.emptyTitle')}</h2>
             <p className="text-muted-foreground max-w-md mx-auto">
-              Save words you want to remember and they&apos;ll appear here for easy review and practice.
+              {t('savedWordsPage.emptySubtitle')}
             </p>
           </div>
-          
+
           {/* Step-by-step instructions */}
           <div className="space-y-4 max-w-lg mx-auto">
             <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground text-center">
-              3 ways to save words
+              {t('savedWordsPage.waysToSave')}
             </p>
-            
+
             {/* Method 1: Translate */}
             <div className="flex gap-4 p-4 rounded-xl bg-blue-500/5 border border-blue-500/20">
               <div className="h-12 w-12 rounded-xl bg-blue-500/20 flex items-center justify-center shrink-0">
                 <Languages className="h-6 w-6 text-blue-500" />
               </div>
               <div className="flex-1">
-                <p className="font-semibold text-foreground">Translate</p>
+                <p className="font-semibold text-foreground">{t('savedWordsPage.methodTranslate')}</p>
                 <p className="text-sm text-muted-foreground mt-0.5">
-                  Translate any word or phrase, then tap the <span className="inline-flex items-center gap-1 text-pink-500 font-medium">♡ heart</span> icon to save it to your deck.
+                  {t('savedWordsPage.methodTranslateDesc')}
                 </p>
                 <Link href={`/${locale}/translate`} className="inline-block mt-2">
                   <Button size="sm" variant="outline" className="gap-1.5 h-8 text-blue-600 border-blue-500/30 hover:bg-blue-500/10">
-                    Open Translate
+                    {t('savedWordsPage.openTranslate')}
                     <ChevronRight className="h-3.5 w-3.5" />
                   </Button>
                 </Link>
               </div>
             </div>
-            
+
             {/* Method 2: Reader */}
             <div className="flex gap-4 p-4 rounded-xl bg-green-500/5 border border-green-500/20">
               <div className="h-12 w-12 rounded-xl bg-green-500/20 flex items-center justify-center shrink-0">
                 <BookText className="h-6 w-6 text-green-500" />
               </div>
               <div className="flex-1">
-                <p className="font-semibold text-foreground">Reader</p>
+                <p className="font-semibold text-foreground">{t('savedWordsPage.methodReader')}</p>
                 <p className="text-sm text-muted-foreground mt-0.5">
-                  While reading, tap any word to see its meaning. Then tap <span className="font-medium">&ldquo;Save word&rdquo;</span> to add it to your deck.
+                  {t('savedWordsPage.methodReaderDesc')}
                 </p>
                 <Link href={`/${locale}/reader`} className="inline-block mt-2">
                   <Button size="sm" variant="outline" className="gap-1.5 h-8 text-green-600 border-green-500/30 hover:bg-green-500/10">
-                    Open Reader
+                    {t('savedWordsPage.openReader')}
                     <ChevronRight className="h-3.5 w-3.5" />
                   </Button>
                 </Link>
               </div>
             </div>
-            
+
             {/* Method 3: Lessons */}
             <div className="flex gap-4 p-4 rounded-xl bg-primary/5 border border-primary/20">
               <div className="h-12 w-12 rounded-xl bg-primary/20 flex items-center justify-center shrink-0">
                 <BookOpen className="h-6 w-6 text-primary" />
               </div>
               <div className="flex-1">
-                <p className="font-semibold text-foreground">Lessons</p>
+                <p className="font-semibold text-foreground">{t('savedWordsPage.methodLessons')}</p>
                 <p className="text-sm text-muted-foreground mt-0.5">
-                  Complete lessons and the vocabulary will automatically be added to your <span className="font-medium">Lesson Review</span> practice deck.
+                  {t('savedWordsPage.methodLessonsDesc')}
                 </p>
                 <Link href={`/${locale}/learn`} className="inline-block mt-2">
                   <Button size="sm" variant="outline" className="gap-1.5 h-8 text-primary border-primary/30 hover:bg-primary/10">
-                    Start Learning
+                    {t('savedWordsPage.startLearning')}
                     <ChevronRight className="h-3.5 w-3.5" />
                   </Button>
                 </Link>
@@ -256,7 +256,7 @@ export default function SavedWordsPage() {
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Search saved words..."
+                placeholder={t('savedWordsPage.searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-9"
@@ -270,7 +270,7 @@ export default function SavedWordsPage() {
                 className="gap-1.5"
               >
                 <Filter className="h-3.5 w-3.5" />
-                All ({counts.total})
+                {t('savedWordsPage.filterAll')} ({counts.total})
               </Button>
               <Button
                 variant={sourceFilter === 'translate' ? 'secondary' : 'outline'}
@@ -279,7 +279,7 @@ export default function SavedWordsPage() {
                 className="gap-1.5"
               >
                 <Languages className="h-3.5 w-3.5" />
-                Translate ({counts.translate})
+                {t('savedWordsPage.filterTranslate')} ({counts.translate})
               </Button>
               <Button
                 variant={sourceFilter === 'reader' ? 'secondary' : 'outline'}
@@ -288,7 +288,7 @@ export default function SavedWordsPage() {
                 className="gap-1.5"
               >
                 <BookText className="h-3.5 w-3.5" />
-                Reader ({counts.reader})
+                {t('savedWordsPage.filterReader')} ({counts.reader})
               </Button>
             </div>
           </div>
@@ -343,11 +343,11 @@ export default function SavedWordsPage() {
             {filteredWords.length === 0 && searchQuery && (
               <div className="text-center py-8 text-muted-foreground">
                 <AlertCircle className="h-8 w-8 mx-auto mb-2 opacity-50" />
-                <p>No words match &ldquo;{searchQuery}&rdquo;</p>
+                <p>{t('savedWordsPage.noResults', { query: searchQuery })}</p>
               </div>
             )}
           </div>
-          
+
           {/* Clear All */}
           {counts.total > 0 && (
             <div className="mt-6 pt-6 border-t">
@@ -355,24 +355,23 @@ export default function SavedWordsPage() {
                 <AlertDialogTrigger asChild>
                   <Button variant="outline" className="w-full text-destructive hover:text-destructive">
                     <Trash2 className="h-4 w-4 mr-2" />
-                    Clear All Saved Words
+                    {t('savedWordsPage.clearAll')}
                   </Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
-                    <AlertDialogTitle>Clear all saved words?</AlertDialogTitle>
+                    <AlertDialogTitle>{t('savedWordsPage.clearAllTitle')}</AlertDialogTitle>
                     <AlertDialogDescription>
-                      This will permanently delete all {counts.total} saved words from both
-                      Translate and Reader. This action cannot be undone.
+                      {t('savedWordsPage.clearAllDesc', { count: counts.total })}
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogCancel>{t('savedWordsPage.cancel')}</AlertDialogCancel>
                     <AlertDialogAction
                       onClick={handleClearAll}
                       className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
                     >
-                      Clear All
+                      {t('savedWordsPage.clearAllConfirm')}
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
