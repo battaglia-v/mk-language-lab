@@ -100,6 +100,24 @@ export default function AboutPage() {
           </Card>
         </section>
 
+        <section data-testid="about-credits" className="space-y-6">
+          <div className="text-center">
+            <h2 className="text-3xl font-semibold">{t('creditsTitle')}</h2>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 max-w-2xl mx-auto">
+            <Card className="glass-card rounded-3xl p-6 text-center">
+              <CardContent className="pt-4">
+                <p className="text-muted-foreground">{t('creditsContent')}</p>
+              </CardContent>
+            </Card>
+            <Card className="glass-card rounded-3xl p-6 text-center">
+              <CardContent className="pt-4">
+                <p className="text-muted-foreground">{t('andriCredit')}</p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
       </div>
     </div>
   );
