@@ -714,7 +714,7 @@
     "descriptionEn": "Learn possessive pronouns: my, your, his, her...",
     "difficulty": "beginner",
     "tags": ["pronouns", "possessives", "basics"],
-    "totalXp": 60,
+    "totalXp": 100,
     "grammarNote": {
       "titleMk": "Присвојни заменки",
       "titleEn": "Possessive Pronouns",
@@ -729,7 +729,11 @@
       {"id": "pp-3", "type": "fill-blank", "instructionMk": "Пополни со правилна заменка", "instructionEn": "Fill in with correct pronoun", "sentenceMk": "Тоа е ___ (тој) автомобил.", "translationEn": "That is his car.", "correctAnswers": ["негов"], "xp": 10},
       {"id": "pp-4", "type": "multiple-choice", "instructionMk": "Која заменка одговара на 'her'?", "instructionEn": "Which pronoun matches 'her'?", "questionMk": "___ дете е убаво.", "questionEn": "Her child is beautiful.", "options": ["негово", "нејзино", "нивно", "ваше"], "correctIndex": 1, "xp": 10, "hintMk": "Дете е среден род", "hintEn": "Дете is neuter"},
       {"id": "pp-5", "type": "sentence-builder", "instructionMk": "Подреди ги зборовите", "instructionEn": "Arrange the words", "targetSentenceMk": "Нашите пријатели се тука", "translationEn": "Our friends are here", "words": ["Нашите", "пријатели", "се", "тука"], "xp": 15},
-      {"id": "pp-6", "type": "error-correction", "instructionMk": "Поправи ја грешката", "instructionEn": "Fix the error", "sentenceWithErrorMk": "Тоа е мој сестра", "translationEn": "That is my sister", "errorWord": "мој", "correctedWord": "моја", "errorPosition": 2, "xp": 15, "explanationMk": "Сестра е женски род, затоа 'моја'", "explanationEn": "Сестра is feminine, so use 'моја'"}
+      {"id": "pp-6", "type": "error-correction", "instructionMk": "Поправи ја грешката", "instructionEn": "Fix the error", "sentenceWithErrorMk": "Тоа е мој сестра", "translationEn": "That is my sister", "errorWord": "мој", "correctedWord": "моја", "errorPosition": 2, "xp": 15, "explanationMk": "Сестра е женски род, затоа 'моја'", "explanationEn": "Сестра is feminine, so use 'моја'"},
+      {"id": "pp-7", "type": "fill-blank", "instructionMk": "Избери ја правилната присвојна заменка", "instructionEn": "Choose the correct possessive pronoun", "sentenceMk": "Тоа е ___ (ние) куќа.", "translationEn": "That is our house.", "correctAnswers": ["наша"], "xp": 10, "hintMk": "Куќа е женски род", "hintEn": "Куќа is feminine"},
+      {"id": "pp-8", "type": "multiple-choice", "instructionMk": "Избери ја правилната форма", "instructionEn": "Choose the correct form", "questionMk": "___ автомобил е црвен.", "questionEn": "Their car is red.", "options": ["Нивен", "Нивна", "Нивно", "Нивни"], "correctIndex": 0, "xp": 10, "hintMk": "Автомобил е машки род", "hintEn": "Автомобил is masculine"},
+      {"id": "pp-9", "type": "fill-blank", "instructionMk": "Избери ја правилната присвојна заменка", "instructionEn": "Choose the correct possessive pronoun", "sentenceMk": "___ (тие) деца играат надвор.", "translationEn": "Their children play outside.", "correctAnswers": ["Нивните", "Нивни"], "xp": 10, "hintMk": "Деца е множина, треба множинска форма", "hintEn": "Деца is plural, needs plural form"},
+      {"id": "pp-10", "type": "error-correction", "instructionMk": "Поправи ја грешката", "instructionEn": "Fix the error", "sentenceWithErrorMk": "Ние сакаме нивна дом", "translationEn": "We like their home", "errorWord": "нивна", "correctedWord": "нивен", "errorPosition": 2, "xp": 10, "explanationMk": "Дом е машки род, треба 'нивен'", "explanationEn": "Дом is masculine, should be 'нивен'"}
     ]
   },
   {
