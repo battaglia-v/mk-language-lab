@@ -1862,6 +1862,215 @@
           ]
         }
       ]
+    },
+    {
+      "id": "reader-b1-003",
+      "title": {
+        "mk": "Животот во град vs село",
+        "en": "City Life vs Village Life"
+      },
+      "level": "B1",
+      "category": "culture",
+      "estimatedMinutes": 7,
+      "wordCount": 190,
+      "xpReward": 50,
+      "sentences": [
+        {
+          "id": "s1",
+          "mk": "Македонија е земја каде што повеќето луѓе живеат или во големите градови или во малите села.",
+          "en": "Macedonia is a country where most people live either in big cities or in small villages.",
+          "audio": "/audio/reader/b1-003/s1.mp3",
+          "vocabulary": [
+            {"word": "земја", "meaning": "country", "pos": "noun"},
+            {"word": "повеќето", "meaning": "most", "pos": "pronoun"},
+            {"word": "или...или", "meaning": "either...or", "pos": "conjunction"}
+          ]
+        },
+        {
+          "id": "s2",
+          "mk": "Секој начин на живот има свои предности и недостатоци.",
+          "en": "Each way of life has its own advantages and disadvantages.",
+          "audio": "/audio/reader/b1-003/s2.mp3",
+          "vocabulary": [
+            {"word": "начин на живот", "meaning": "way of life", "pos": "noun phrase"},
+            {"word": "предности", "meaning": "advantages", "pos": "noun"},
+            {"word": "недостатоци", "meaning": "disadvantages", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s3",
+          "mk": "Во градот, наспроти селото, има повеќе можности за работа и забава.",
+          "en": "In the city, as opposed to the village, there are more opportunities for work and entertainment.",
+          "audio": "/audio/reader/b1-003/s3.mp3",
+          "vocabulary": [
+            {"word": "наспроти", "meaning": "as opposed to/in contrast to", "pos": "preposition"},
+            {"word": "можности", "meaning": "opportunities", "pos": "noun"},
+            {"word": "забава", "meaning": "entertainment", "pos": "noun"}
+          ],
+          "grammarNote": "наспроти - preposition for expressing contrast"
+        },
+        {
+          "id": "s4",
+          "mk": "Скопје, на пример, има универзитети, театри и модерни продавници.",
+          "en": "Skopje, for example, has universities, theaters, and modern shops.",
+          "audio": "/audio/reader/b1-003/s4.mp3",
+          "vocabulary": [
+            {"word": "на пример", "meaning": "for example", "pos": "phrase"},
+            {"word": "универзитети", "meaning": "universities", "pos": "noun"},
+            {"word": "театри", "meaning": "theaters", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s5",
+          "mk": "Додека градот нуди динамичен живот, селото е помирно и поздраво.",
+          "en": "While the city offers a dynamic life, the village is calmer and healthier.",
+          "audio": "/audio/reader/b1-003/s5.mp3",
+          "vocabulary": [
+            {"word": "додека", "meaning": "while/whereas", "pos": "conjunction"},
+            {"word": "нуди", "meaning": "offers", "pos": "verb"},
+            {"word": "помирно", "meaning": "calmer", "pos": "comparative adj"},
+            {"word": "поздраво", "meaning": "healthier", "pos": "comparative adj"}
+          ],
+          "grammarNote": "додека - conjunction for expressing contrast between two situations"
+        },
+        {
+          "id": "s6",
+          "mk": "Луѓето во селата јадат свежа храна од своите градини.",
+          "en": "People in villages eat fresh food from their gardens.",
+          "audio": "/audio/reader/b1-003/s6.mp3",
+          "vocabulary": [
+            {"word": "свежа", "meaning": "fresh", "pos": "adjective"},
+            {"word": "градини", "meaning": "gardens", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s7",
+          "mk": "Споредено со градскиот живот, селскиот живот е поевтин.",
+          "en": "Compared to city life, village life is cheaper.",
+          "audio": "/audio/reader/b1-003/s7.mp3",
+          "vocabulary": [
+            {"word": "споредено со", "meaning": "compared to", "pos": "phrase"},
+            {"word": "градскиот", "meaning": "city/urban (adj)", "pos": "adjective"},
+            {"word": "поевтин", "meaning": "cheaper", "pos": "comparative adj"}
+          ],
+          "grammarNote": "споредено со - past participle used as preposition for comparison"
+        },
+        {
+          "id": "s8",
+          "mk": "Меѓутоа, многу млади луѓе се селат од селата во градовите.",
+          "en": "However, many young people move from villages to cities.",
+          "audio": "/audio/reader/b1-003/s8.mp3",
+          "vocabulary": [
+            {"word": "меѓутоа", "meaning": "however", "pos": "conjunction"},
+            {"word": "се селат", "meaning": "move/relocate", "pos": "reflexive verb"}
+          ],
+          "culturalNote": "Внатрешна миграција (internal migration) - a major trend where young Macedonians leave villages for cities seeking education and jobs"
+        },
+        {
+          "id": "s9",
+          "mk": "Ако живееш во село, мораш да имаш автомобил за секојдневни потреби.",
+          "en": "If you live in a village, you must have a car for daily needs.",
+          "audio": "/audio/reader/b1-003/s9.mp3",
+          "vocabulary": [
+            {"word": "ако", "meaning": "if", "pos": "conjunction"},
+            {"word": "живееш", "meaning": "you live", "pos": "verb"},
+            {"word": "мораш", "meaning": "you must", "pos": "verb"},
+            {"word": "потреби", "meaning": "needs", "pos": "noun"}
+          ],
+          "grammarNote": "Conditional construction: ако + present tense + present tense (real/likely condition)"
+        },
+        {
+          "id": "s10",
+          "mk": "Ако живееше во Скопје, ќе имаше пристап до јавен превоз.",
+          "en": "If you lived in Skopje, you would have access to public transport.",
+          "audio": "/audio/reader/b1-003/s10.mp3",
+          "vocabulary": [
+            {"word": "живееше", "meaning": "you lived (conditional)", "pos": "verb"},
+            {"word": "ќе имаше", "meaning": "you would have", "pos": "conditional"},
+            {"word": "пристап", "meaning": "access", "pos": "noun"},
+            {"word": "јавен превоз", "meaning": "public transport", "pos": "noun phrase"}
+          ],
+          "grammarNote": "Unreal conditional: ако + imperfect + ќе + imperfect (hypothetical situation)"
+        },
+        {
+          "id": "s11",
+          "mk": "Некои луѓе мислат дека селото е здодевно, но други го сакаат мирот.",
+          "en": "Some people think the village is boring, but others love the peace.",
+          "audio": "/audio/reader/b1-003/s11.mp3",
+          "vocabulary": [
+            {"word": "мислат", "meaning": "think", "pos": "verb"},
+            {"word": "здодевно", "meaning": "boring", "pos": "adjective"},
+            {"word": "мирот", "meaning": "the peace", "pos": "noun (def)"}
+          ]
+        },
+        {
+          "id": "s12",
+          "mk": "Градот, пак, може да биде стресен и загаден.",
+          "en": "The city, on the other hand, can be stressful and polluted.",
+          "audio": "/audio/reader/b1-003/s12.mp3",
+          "vocabulary": [
+            {"word": "пак", "meaning": "on the other hand", "pos": "particle"},
+            {"word": "стресен", "meaning": "stressful", "pos": "adjective"},
+            {"word": "загаден", "meaning": "polluted", "pos": "adjective"}
+          ]
+        },
+        {
+          "id": "s13",
+          "mk": "Според мене, најдобро е да живееш во мал град, како Битола или Прилеп.",
+          "en": "In my opinion, it is best to live in a small city, like Bitola or Prilep.",
+          "audio": "/audio/reader/b1-003/s13.mp3",
+          "vocabulary": [
+            {"word": "според мене", "meaning": "in my opinion", "pos": "phrase"},
+            {"word": "најдобро", "meaning": "best", "pos": "superlative adv"}
+          ]
+        },
+        {
+          "id": "s14",
+          "mk": "Така имаш предности од двата света - и можности и мир.",
+          "en": "That way you have the advantages of both worlds - both opportunities and peace.",
+          "audio": "/audio/reader/b1-003/s14.mp3",
+          "vocabulary": [
+            {"word": "така", "meaning": "that way/thus", "pos": "adverb"},
+            {"word": "двата света", "meaning": "both worlds", "pos": "noun phrase"},
+            {"word": "и...и", "meaning": "both...and", "pos": "conjunction"}
+          ]
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "question": {
+            "mk": "Што е главната причина младите се селат во градови?",
+            "en": "What is the main reason young people move to cities?"
+          },
+          "options": [
+            {"mk": "Подобра храна", "correct": false},
+            {"mk": "Повеќе можности за работа", "correct": true},
+            {"mk": "Почист воздух", "correct": false}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Според текстот, што е недостаток на градскиот живот?",
+            "en": "According to the text, what is a disadvantage of city life?"
+          },
+          "options": [
+            {"mk": "Нема театри", "correct": false},
+            {"mk": "Може да биде стресен и загаден", "correct": true},
+            {"mk": "Нема јавен превоз", "correct": false}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Каде авторот мисли дека е најдобро да се живее?",
+            "en": "Where does the author think is best to live?"
+          },
+          "options": [
+            {"mk": "Во големо село", "correct": false},
+            {"mk": "Во мал град", "correct": true},
+            {"mk": "Во Скопје", "correct": false}
+          ]
+        }
+      ]
     }
   ],
   "levels": {
