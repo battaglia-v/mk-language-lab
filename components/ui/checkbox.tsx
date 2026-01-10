@@ -27,12 +27,12 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             "h-4 w-4 shrink-0 rounded border border-primary ring-offset-background",
             "peer-focus-visible:outline-none peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2",
             "peer-disabled:cursor-not-allowed peer-disabled:opacity-50",
-            "peer-checked:bg-primary peer-checked:text-black",
+            "peer-checked:bg-primary peer-checked:text-primary-foreground",
             "cursor-pointer transition-colors",
             className
           )}
         >
-          <Check className="h-3.5 w-3.5 opacity-0 peer-checked:opacity-100 text-black transition-opacity" strokeWidth={3} />
+          <Check className="h-3.5 w-3.5 opacity-0 peer-checked:opacity-100 text-primary-foreground transition-opacity" strokeWidth={3} />
         </div>
       </label>
     )

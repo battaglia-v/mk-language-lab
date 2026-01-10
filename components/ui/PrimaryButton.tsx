@@ -71,7 +71,7 @@ export const PrimaryButton = forwardRef<HTMLButtonElement, PrimaryButtonProps>(
 
           // Color variants
           variant === 'default' && [
-            'bg-primary text-black',
+            'bg-primary text-primary-foreground',
             'hover:bg-primary/90',
             'shadow-md shadow-primary/20',
           ],
