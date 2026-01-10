@@ -1123,7 +1123,7 @@
       },
       "grammar": {
         "title": "Grammar",
-        "description": "Master Macedonian patterns",
+        "description": "Practice patterns from all CEFR levels (A1–B1)",
         "time": "2–4 min",
         "xp": "+10 XP"
       },
@@ -1135,13 +1135,13 @@
       },
       "wordSprint": {
         "title": "Word Sprint",
-        "description": "Fill gaps at 3 difficulty levels",
+        "description": "A1–B1 vocabulary at 3 difficulty levels",
         "time": "2–5 min",
         "xp": "+2–5 XP/q"
       },
       "vocabulary": {
         "title": "Vocabulary",
-        "description": "Build your word bank with flashcards",
+        "description": "Starter deck with essential words",
         "time": "3–5 min",
         "xp": "+12 XP"
       },
@@ -1153,7 +1153,7 @@
       },
       "lessonReview": {
         "title": "Lesson Review",
-        "description": "Practice vocabulary from completed lessons",
+        "description": "Vocabulary from your completed lessons",
         "time": "5–10 min",
         "xp": "+15 XP",
         "disabledReason": "Complete a lesson to unlock vocabulary review"
