@@ -1,5 +1,34 @@
 # Project Milestones: MKLanguage Learning System
 
+## v1.5 Audio Cleanup & Final Polish (Shipped: 2026-01-10)
+
+**Delivered:** Complete audio/listening feature removal (-4,064 lines), About page credits, quiz retake button, section stepper navigation for completed lessons, curriculum source explanation, and Practice Hub improvements with lesson progress indicator.
+
+**Phases completed:** 33-35 (6 plans total)
+
+**Key accomplishments:**
+
+- Removed all audio infrastructure (87 files, 5 database models) — codebase reduced by 4,064 lines
+- Added About page credits section (MLC and Andri acknowledgment)
+- Quiz retake button with score display after completing all exercises
+- Section stepper allows free navigation when revisiting completed lessons
+- Curriculum source explanation (UKIM textbooks: Teshkoto/Lozje/Zlatovrv)
+- Practice Hub lesson progress indicator with "Go to Learn" CTA
+- Actionable empty state for Lesson Review mode
+
+**Stats:**
+
+- 59 files modified
+- +1,782 / -5,846 lines changed (net -4,064 lines)
+- 3 phases, 6 plans, 27 commits
+- Same day (2026-01-10)
+
+**Git range:** `docs(33)` → `docs(35-01)`
+
+**What's next:** TBD (user to decide next focus)
+
+---
+
 ## v1.4 Power User Feedback (Shipped: 2026-01-10)
 
 **Delivered:** Systematic response to real user feedback — bug fixes (light mode, expandable examples, keyboard hints), navigation overhaul (More → Resources, UserMenu consolidation), lesson enhancements (save-to-glossary, sort toggle, section stepper), vocabulary display improvements (gender colors, definite articles), session persistence for practice, and content polish (alphabet at A1 start, missing pronouns).

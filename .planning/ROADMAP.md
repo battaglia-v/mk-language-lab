@@ -11,7 +11,7 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 - ✅ [v1.2 Infrastructure & CI Overhaul](milestones/v1.2-ROADMAP.md) (Phases 17-20) — SHIPPED 2026-01-09
 - ✅ **v1.3 Content Quality & User Journey** — Phases 21-26 (shipped 2026-01-10)
 - ✅ [v1.4 Power User Feedback](milestones/v1.4-ROADMAP.md) (Phases 27-32) — SHIPPED 2026-01-10
-- ✅ **v1.5 Audio Cleanup & Final Polish** — Phases 33-35 (shipped 2026-01-10)
+- ✅ [v1.5 Audio Cleanup & Final Polish](milestones/v1.5-ROADMAP.md) (Phases 33-35) — SHIPPED 2026-01-10
 
 ## Completed Milestones
 
@@ -143,51 +143,16 @@ Plans:
 
 </details>
 
-### ✅ v1.5 Audio Cleanup & Final Polish (Shipped 2026-01-10)
+<details>
+<summary>✅ v1.5 Audio Cleanup & Final Polish (Phases 33-35) — SHIPPED 2026-01-10</summary>
 
-**Milestone Goal:** Remove all audio/listening functionality (unused feature cluttering codebase), address remaining polish items from user feedback, and improve Practice page flow.
+- [x] Phase 33: Audio Removal (2/2 plans) — completed 2026-01-10
+- [x] Phase 34: Remaining Polish (3/3 plans) — completed 2026-01-10
+- [x] Phase 35: Practice Improvements (1/1 plan) — completed 2026-01-10
 
-#### Phase 33: Audio Removal
+[Full details](milestones/v1.5-ROADMAP.md)
 
-**Goal**: Remove all audio/listening feature code and UI references
-**Depends on**: v1.4 complete
-**Research**: Unlikely (deletion task)
-**Plans**: 2-3 (estimated)
-
-Scope:
-- Delete audio-related components (46+ files in components/)
-- Delete audio-related routes/pages (37+ files in app/)
-- Remove audio i18n keys from messages
-- Update tests that reference audio features
-- Remove audio-related hooks and utilities
-
-#### Phase 34: Remaining Polish
-
-**Goal**: Address remaining items from power user feedback audit
-**Depends on**: Phase 33
-**Research**: Unlikely (known issues)
-**Plans**: 2 (estimated)
-
-Items:
-- About page MLC/Andri credit
-- Remove MLC links from UserMenu
-- Grammar "+X more examples" expansion fix
-- Quiz retake button
-- Section stepper forward navigation after first visit
-- Softer vocabulary section heading tone
-- Тешкото curriculum explanation
-
-#### Phase 35: Practice Improvements
-
-**Goal**: Improve Practice page flow and lesson synchronization
-**Depends on**: Phase 34
-**Research**: Maybe (need to understand current practice state)
-**Plans**: 1-2 (estimated)
-
-Items:
-- Practice page shows what content is available
-- Practice syncs with lesson completion
-- Better onboarding for Practice section
+</details>
 
 ## Progress
 
@@ -208,6 +173,7 @@ Items:
 - [v1.2 Infrastructure & CI](milestones/v1.2-ROADMAP.md) — 4 phases, 7 plans (shipped 2026-01-09)
 - **v1.3 Content Quality & User Journey** — 6 phases, 8 plans (shipped 2026-01-10)
 - [v1.4 Power User Feedback](milestones/v1.4-ROADMAP.md) — 6 phases, 13 plans (shipped 2026-01-10)
+- [v1.5 Audio Cleanup & Final Polish](milestones/v1.5-ROADMAP.md) — 3 phases, 6 plans (shipped 2026-01-10)
 
 ## Domain Expertise
 

@@ -71,13 +71,19 @@ If the app nails progression, users will forgive incomplete content; if it doesn
 - Expandable grammar examples with "show more" functionality — v1.4
 - Macedonian keyboard hints for text inputs — v1.4
 - Learning Paths removed (simplified UX) — v1.4
+- Remove all audio/listening feature code and UI references — v1.5
+- About page credits (MLC and Andri acknowledgment) — v1.5
+- Quiz retake button with score display — v1.5
+- Section stepper free navigation for completed lessons — v1.5
+- Curriculum source explanation (UKIM textbooks) — v1.5
+- Practice Hub lesson progress indicator — v1.5
+- Actionable Lesson Review empty state — v1.5
 
 ### Active
 
 <!-- Next milestone scope -->
 
-- Remove all audio/listening feature code and references
-- Remaining polish items (About page credits, quiz retake, section stepper improvements)
+- (No active requirements — ready for next milestone planning)
 
 ### Out of Scope
 
@@ -94,9 +100,9 @@ If the app nails progression, users will forgive incomplete content; if it doesn
 
 ## Context
 
-### Current State (v1.4)
+### Current State (v1.5)
 
-- **Codebase:** ~30,000 lines of TypeScript
+- **Codebase:** ~26,000 lines of TypeScript (reduced from ~30,000 after audio removal)
 - **Tech stack:** Next.js 16 App Router, Prisma/PostgreSQL, NextAuth, Vercel
 - **Curriculum:** 40 lessons (24 A1 + 8 A2 + 8 B1), 41 grammar notes, 25,568 vocabulary items
 - **Graded Readers:** 12 stories (4 A1, 4 A2, 4 B1) in data/graded-readers.json
@@ -105,7 +111,8 @@ If the app nails progression, users will forgive incomplete content; if it doesn
 - **Dark mode:** ~98% compliance across all components
 - **E2E Tests:** 72 user journey tests across 4 viewports
 - **Navigation:** Resources page (replaced More), unified Tools (Translate + Analyzer)
-- **Practice:** Session persistence with localStorage, resume prompt, save-to-glossary
+- **Practice:** Session persistence, resume prompt, save-to-glossary, lesson progress indicator
+- **Audio:** Fully removed (was unused, now -4,064 lines cleaner)
 
 ### The Problem (Solved)
 
@@ -162,4 +169,4 @@ Advanced and returning users didn't know where they were, what they'd completed,
 - [ ] 2-3 named beta users say: "This finally makes sense — I always know what to do next"
 
 ---
-*Last updated: 2026-01-10 after v1.4 Power User Feedback milestone*
+*Last updated: 2026-01-10 after v1.5 Audio Cleanup & Final Polish milestone*
