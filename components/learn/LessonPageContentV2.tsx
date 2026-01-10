@@ -303,7 +303,8 @@ export default function LessonPageContentV2({
   const isComplete = completedSections.size === sections.length;
   const isLastSection = currentSectionIndex === sections.length - 1;
   // Track if lesson was previously completed to allow free navigation
-  const wasPreviouslyCompleted = userProgress?.progress === 100;
+  // Also allow free navigation for unauthenticated users (they can't save progress anyway)
+  const wasPreviouslyCompleted = userProgress?.progress === 100 || !userId;
 
   // Load saved progress
   useEffect(() => {
