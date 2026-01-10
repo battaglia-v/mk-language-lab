@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
-import { Trophy, Clock, Target, Flame, ArrowRight, RotateCcw } from 'lucide-react';
+import { Trophy, Clock, Target, Flame, ArrowRight, RotateCcw, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PageContainer } from '@/components/layout';
 
@@ -66,6 +66,12 @@ export default function ResultsPage() {
           <Link href={`/${locale}/practice`}>
             <ArrowRight className="h-5 w-5 mr-2" />
             {t('drills.backToHub', { default: 'Back to Practice' })}
+          </Link>
+        </Button>
+        <Button asChild variant="outline" size="lg" className="w-full min-h-[52px] rounded-xl" data-testid="practice-results-explore-reader">
+          <Link href={`/${locale}/reader`}>
+            <BookOpen className="h-5 w-5 mr-2" />
+            {t('drills.exploreReader', { default: 'Read Something' })}
           </Link>
         </Button>
         <Button asChild variant="ghost" size="lg" className="w-full min-h-[52px] rounded-xl" data-testid="practice-results-go-home">
