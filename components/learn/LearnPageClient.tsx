@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { Zap, Play, BookOpen, ChevronRight, Check, GraduationCap, Sparkles } from 'lucide-react';
+import { Zap, Play, BookOpen, ChevronRight, Check, GraduationCap, Sparkles, Info, ChevronDown } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import { getLocalXP } from '@/lib/gamification/local-xp';
@@ -43,12 +43,14 @@ export function LearnPageClient({
   journeyProgress,
 }: LearnPageClientProps) {
   const t = useTranslations('mobile.learn');
+  const tCurriculum = useTranslations('learn.curriculumSource');
   const searchParams = useSearchParams();
   const router = useRouter();
   // Use local XP state for real-time updates
   const [localState, setLocalState] = useState({ todayXP: initialTodayXP, streak: initialStreak });
   const [activeLevel, setActiveLevel] = useState<LevelId>('beginner');
   const [alphabetCompleted, setAlphabetCompleted] = useState(false);
+  const [showCurriculumInfo, setShowCurriculumInfo] = useState(false);
 
   useEffect(() => {
     const state = getLocalXP();
@@ -400,6 +402,33 @@ export function LearnPageClient({
               <span className="text-sm text-muted-foreground">{pathProgress}%</span>
             </div>
           </section>
+
+          {/* Curriculum Source Info - Collapsible */}
+          <div className="border-t border-border/50 pt-4">
+            <button
+              onClick={() => setShowCurriculumInfo(!showCurriculumInfo)}
+              className="w-full flex items-center gap-2 text-left text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Info className="h-4 w-4 shrink-0" />
+              <span className="flex-1">{tCurriculum('title')}</span>
+              <ChevronDown
+                className={cn(
+                  'h-4 w-4 transition-transform duration-200',
+                  showCurriculumInfo && 'rotate-180'
+                )}
+              />
+            </button>
+            {showCurriculumInfo && (
+              <div className="mt-3 pl-6 space-y-2 text-sm text-muted-foreground">
+                <p>{tCurriculum('description')}</p>
+                <ul className="space-y-1 list-disc pl-4">
+                  <li>{tCurriculum('a1')}</li>
+                  <li>{tCurriculum('a2')}</li>
+                  <li>{tCurriculum('b1')}</li>
+                </ul>
+              </div>
+            )}
+          </div>
       </div>
     </div>
   );
