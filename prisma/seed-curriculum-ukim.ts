@@ -140,7 +140,11 @@ async function seedFullCurriculum(textbook: StructuredTextbook) {
           lessonId: lesson.id,
           macedonianText: (vocab as any).word || (vocab as any).macedonian || '',
           englishText: (vocab as any).translation || (vocab as any).english || '',
-          exampleSentenceMk: (vocab as any).context || null,
+          partOfSpeech: (vocab as any).partOfSpeech || null,
+          // Note: 'context' is grammatical context (singular/plural), not an example sentence
+          // Example sentences should be in exampleSentenceMk/exampleSentenceEn fields
+          exampleSentenceMk: null,
+          exampleSentenceEn: null,
           orderIndex: idx,
         })),
       });
@@ -242,7 +246,10 @@ async function seedB1Skeleton(skeleton: B1Skeleton) {
           lessonId: lesson.id,
           macedonianText: vocab.word || vocab.macedonian || '',
           englishText: vocab.translation || vocab.english || '',
-          exampleSentenceMk: vocab.context || null,
+          partOfSpeech: vocab.partOfSpeech || null,
+          // Note: 'context' is grammatical context (singular/plural), not an example sentence
+          exampleSentenceMk: null,
+          exampleSentenceEn: null,
           orderIndex: idx,
         })),
       });

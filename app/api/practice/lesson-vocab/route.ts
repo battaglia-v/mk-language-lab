@@ -30,16 +30,11 @@ const log = createScopedLogger('api.practice.lesson-vocab');
 export async function GET(request: NextRequest) {
   try {
     const session = await auth();
-
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
     const { searchParams } = new URL(request.url);
     const lessonId = searchParams.get('lessonId');
 
     // If specific lessonId provided, return vocabulary from that lesson directly
-    // (regardless of completion status - allows practice during lesson)
+    // (no auth required - lesson content is public)
     if (lessonId) {
       const lesson = await prisma.curriculumLesson.findUnique({
         where: { id: lessonId },
@@ -74,12 +69,17 @@ export async function GET(request: NextRequest) {
       }));
 
       log.info('Returning vocabulary for specific lesson', {
-        userId: session.user.id,
+        userId: session?.user?.id ?? 'anonymous',
         lessonId,
         vocabCount: vocab.length,
       });
 
       return NextResponse.json(vocab);
+    }
+
+    // For lesson-review deck (all completed lessons), auth is required
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     // No specific lessonId - return vocabulary from all completed lessons

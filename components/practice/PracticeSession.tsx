@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
-import { CheckCircle2, XCircle, Volume2, VolumeX, Lightbulb, SkipForward, Heart, X } from 'lucide-react';
+import { CheckCircle2, XCircle, Lightbulb, SkipForward, Heart, X } from 'lucide-react';
 import {
   savePracticeSession,
   loadPracticeSession,
@@ -55,7 +55,6 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
   const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
   const [hint, setHint] = useState<string | null>(null);
   const [isFav, setIsFav] = useState(false);
-  const [isSpeaking, setIsSpeaking] = useState(false);
   const [showXP, setShowXP] = useState(false);
   const [xpAmount, setXpAmount] = useState(0);
   const [showGoalCelebration, setShowGoalCelebration] = useState(false);
@@ -276,8 +275,6 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
 
   const resetCard = useCallback(() => {
     setGuess(''); setFeedback(null); setRevealed(false); setHint(null); setSelectedChoice(null);
-    if (window.speechSynthesis) window.speechSynthesis.cancel();
-    setIsSpeaking(false);
   }, []);
 
   useLayoutEffect(() => {
@@ -372,16 +369,6 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
     const unique = [...new Set(others)].sort(() => Math.random() - 0.5).slice(0, 3);
     return [card.target, ...unique].sort(() => Math.random() - 0.5);
   }, [card, deck]);
-
-  const speak = () => {
-    if (!card || !window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(card.macedonian || card.source);
-    u.lang = 'mk-MK'; u.rate = 0.85;
-    u.onstart = () => setIsSpeaking(true);
-    u.onend = () => setIsSpeaking(false);
-    window.speechSynthesis.speak(u);
-  };
 
   const showHint = () => {
     if (!card) return;
@@ -537,15 +524,6 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
 
           {/* Controls */}
           <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon-sm"
-              onClick={speak}
-              className={cn('rounded-full', isSpeaking && 'text-primary')}
-              data-testid="practice-session-speak"
-            >
-              {isSpeaking ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
-            </Button>
             <Button
               variant="ghost"
               size="icon-sm"
