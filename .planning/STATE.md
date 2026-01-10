@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-09)
 
 ## Current Position
 
-Phase: 23 of 26 (Practice Feature Audit) — COMPLETE
-Plan: 1 of 1 in Phase 23
+Phase: 24 of 26 (User Journey Cohesion) — COMPLETE
+Plan: 1 of 1 in Phase 24
 Status: Phase complete
-Last activity: 2026-01-09 — Completed 23-01-PLAN.md
+Last activity: 2026-01-10 — Completed 24-01-PLAN.md
 
-Progress: █████░░░░░ 50% (3 of 6 phases in v1.3)
+Progress: ██████░░░░ 67% (4 of 6 phases in v1.3)
 
 ## Milestone Summary
 
@@ -51,8 +51,11 @@ See `.planning/MILESTONES.md` for full details.
 - [x] My Saved Words section internationalized
 - [x] Post-lesson practice flow improved with i18n
 
-**User Journey (Phase 24):**
-- [ ] Learn → Practice → Reader flow connected
+**User Journey (Phase 24):** COMPLETE
+- [x] Learn → Practice → Reader flow connected
+- [x] Practice results shows "Read Something" CTA → Reader
+- [x] Reader workspace shows "Practice Now" CTA → Practice (when saved words > 0)
+- [x] Reader library shows "Continue your lessons" → Learn
 
 **Content Expansion (Phase 25):**
 - [ ] A1/A2/B1 vocabulary expanded
@@ -66,9 +69,9 @@ See `.planning/MILESTONES.md` for full details.
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 48
+- Total plans completed: 49
 - Average duration: ~9 min
-- Total execution time: ~7 hours
+- Total execution time: ~7.5 hours
 
 **By Milestone:**
 
@@ -101,7 +104,7 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-01-09
-Stopped at: Completed 23-01-PLAN.md (Phase 23 complete)
+Last session: 2026-01-10
+Stopped at: Completed 24-01-PLAN.md (Phase 24 complete)
 Resume file: None
-Next step: `/gsd:plan-phase 24` (User Journey Cohesion)
+Next step: `/gsd:plan-phase 25` (Content Expansion)

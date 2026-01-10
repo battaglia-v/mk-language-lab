@@ -91,15 +91,15 @@ Plans:
 Plans:
 - [x] 23-01: i18n for My Saved Words + post-lesson practice prompt — completed 2026-01-09
 
-#### Phase 24: User Journey Cohesion
+#### Phase 24: User Journey Cohesion — COMPLETE
 
 **Goal**: Connect Learn → Practice → Reader sections into cohesive navigation flow
 **Depends on**: Phase 23
 **Research**: Unlikely (internal routing patterns)
-**Plans**: TBD
+**Plans**: 1
 
 Plans:
-- [ ] 24-01: TBD
+- [x] 24-01: User journey cohesion CTAs — completed 2026-01-10
 
 #### Phase 25: Content Expansion
 
@@ -128,7 +128,7 @@ Plans:
 | 21. Bug Fixes | v1.3 | 1/1 | Complete | 2026-01-09 |
 | 22. Content Effectiveness Audit | v1.3 | 1/1 | Complete | 2026-01-09 |
 | 23. Practice Feature Audit & UX | v1.3 | 1/1 | Complete | 2026-01-09 |
-| 24. User Journey Cohesion | v1.3 | 0/? | Not started | - |
+| 24. User Journey Cohesion | v1.3 | 1/1 | Complete | 2026-01-10 |
 | 25. Content Expansion | v1.3 | 0/? | Not started | - |
 | 26. Validation & Polish | v1.3 | 0/? | Not started | - |
 
