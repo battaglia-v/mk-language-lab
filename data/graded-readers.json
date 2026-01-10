@@ -514,6 +514,187 @@
       ]
     },
     {
+      "id": "reader-a1-004",
+      "title": {
+        "mk": "Мојот најдобар пријател",
+        "en": "My Best Friend"
+      },
+      "level": "A1",
+      "category": "family",
+      "estimatedMinutes": 3,
+      "wordCount": 90,
+      "xpReward": 20,
+      "grammarHighlight": {
+        "topic": "Possessive pronouns",
+        "topicMk": "Присвојни заменки",
+        "examples": ["мојот", "неговата", "нејзините"]
+      },
+      "sentences": [
+        {
+          "id": "s1",
+          "mk": "Мојот најдобар пријател се вика Марко.",
+          "en": "My best friend is called Marko.",
+          "audio": "/audio/reader/a1-004/s1.mp3",
+          "vocabulary": [
+            {"word": "мојот", "meaning": "my (masc. def.)", "pos": "possessive"},
+            {"word": "најдобар", "meaning": "best", "pos": "adjective"},
+            {"word": "пријател", "meaning": "friend", "pos": "noun"}
+          ],
+          "grammarNote": "мојот - masculine definite possessive"
+        },
+        {
+          "id": "s2",
+          "mk": "Тој има дваесет и една година.",
+          "en": "He is twenty-one years old.",
+          "audio": "/audio/reader/a1-004/s2.mp3",
+          "vocabulary": [
+            {"word": "дваесет и една", "meaning": "twenty-one", "pos": "number"}
+          ]
+        },
+        {
+          "id": "s3",
+          "mk": "Тој е висок и има кафеава коса.",
+          "en": "He is tall and has brown hair.",
+          "audio": "/audio/reader/a1-004/s3.mp3",
+          "vocabulary": [
+            {"word": "висок", "meaning": "tall", "pos": "adjective"},
+            {"word": "кафеава", "meaning": "brown", "pos": "adjective"},
+            {"word": "коса", "meaning": "hair", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s4",
+          "mk": "Неговите очи се сини.",
+          "en": "His eyes are blue.",
+          "audio": "/audio/reader/a1-004/s4.mp3",
+          "vocabulary": [
+            {"word": "неговите", "meaning": "his (plural def.)", "pos": "possessive"},
+            {"word": "очи", "meaning": "eyes", "pos": "noun"},
+            {"word": "сини", "meaning": "blue", "pos": "adjective"}
+          ]
+        },
+        {
+          "id": "s5",
+          "mk": "Марко е многу добар човек.",
+          "en": "Marko is a very good person.",
+          "audio": "/audio/reader/a1-004/s5.mp3",
+          "vocabulary": [
+            {"word": "добар", "meaning": "good", "pos": "adjective"},
+            {"word": "човек", "meaning": "person", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s6",
+          "mk": "Тој е смешен и секогаш ме насмевнува.",
+          "en": "He is funny and always makes me laugh.",
+          "audio": "/audio/reader/a1-004/s6.mp3",
+          "vocabulary": [
+            {"word": "смешен", "meaning": "funny", "pos": "adjective"},
+            {"word": "секогаш", "meaning": "always", "pos": "adverb"},
+            {"word": "насмевнува", "meaning": "makes laugh", "pos": "verb"}
+          ]
+        },
+        {
+          "id": "s7",
+          "mk": "Ние заедно учиме на факултет.",
+          "en": "We study at university together.",
+          "audio": "/audio/reader/a1-004/s7.mp3",
+          "vocabulary": [
+            {"word": "учиме", "meaning": "we study", "pos": "verb"},
+            {"word": "факултет", "meaning": "university/faculty", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s8",
+          "mk": "Секој ден одиме во библиотека.",
+          "en": "Every day we go to the library.",
+          "audio": "/audio/reader/a1-004/s8.mp3",
+          "vocabulary": [
+            {"word": "секој ден", "meaning": "every day", "pos": "phrase"},
+            {"word": "библиотека", "meaning": "library", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s9",
+          "mk": "Викендот играме фудбал во паркот.",
+          "en": "On weekends we play football in the park.",
+          "audio": "/audio/reader/a1-004/s9.mp3",
+          "vocabulary": [
+            {"word": "викендот", "meaning": "the weekend", "pos": "noun (def)"},
+            {"word": "играме", "meaning": "we play", "pos": "verb"},
+            {"word": "фудбал", "meaning": "football", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s10",
+          "mk": "Понекогаш гледаме филмови заедно.",
+          "en": "Sometimes we watch movies together.",
+          "audio": "/audio/reader/a1-004/s10.mp3",
+          "vocabulary": [
+            {"word": "понекогаш", "meaning": "sometimes", "pos": "adverb"},
+            {"word": "гледаме", "meaning": "we watch", "pos": "verb"},
+            {"word": "филмови", "meaning": "movies", "pos": "noun"}
+          ]
+        },
+        {
+          "id": "s11",
+          "mk": "Неговото семејство е многу мило.",
+          "en": "His family is very kind.",
+          "audio": "/audio/reader/a1-004/s11.mp3",
+          "vocabulary": [
+            {"word": "неговото", "meaning": "his (neut. def.)", "pos": "possessive"},
+            {"word": "мило", "meaning": "kind/nice", "pos": "adjective"}
+          ],
+          "grammarNote": "неговото - neuter definite possessive (семејство is neuter)"
+        },
+        {
+          "id": "s12",
+          "mk": "Јас сум среќен што го имам како пријател.",
+          "en": "I am happy to have him as a friend.",
+          "audio": "/audio/reader/a1-004/s12.mp3",
+          "vocabulary": [
+            {"word": "среќен", "meaning": "happy", "pos": "adjective"},
+            {"word": "го имам", "meaning": "I have him", "pos": "verb phrase"}
+          ]
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "question": {
+            "mk": "Како се вика пријателот?",
+            "en": "What is the friend's name?"
+          },
+          "options": [
+            {"mk": "Петар", "correct": false},
+            {"mk": "Марко", "correct": true},
+            {"mk": "Ана", "correct": false}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Каква боја се неговите очи?",
+            "en": "What color are his eyes?"
+          },
+          "options": [
+            {"mk": "Кафеави", "correct": false},
+            {"mk": "Зелени", "correct": false},
+            {"mk": "Сини", "correct": true}
+          ]
+        },
+        {
+          "question": {
+            "mk": "Што прават викендот?",
+            "en": "What do they do on weekends?"
+          },
+          "options": [
+            {"mk": "Учат", "correct": false},
+            {"mk": "Играат фудбал", "correct": true},
+            {"mk": "Работат", "correct": false}
+          ]
+        }
+      ]
+    },
+    {
       "id": "reader-a2-001",
       "title": {
         "mk": "Еден ден во Охрид",
