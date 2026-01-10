@@ -10,6 +10,7 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 - ✅ **v1.1 Curriculum Quality Fix** — Phases 8-16 (shipped 2026-01-09)
 - ✅ [v1.2 Infrastructure & CI Overhaul](milestones/v1.2-ROADMAP.md) (Phases 17-20) — SHIPPED 2026-01-09
 - ✅ **v1.3 Content Quality & User Journey** — Phases 21-26 (shipped 2026-01-10)
+- 🚧 **v1.4 Power User Feedback** — Phases 27-32 (in progress)
 
 ## Completed Milestones
 
@@ -127,16 +128,81 @@ Plans:
 
 </details>
 
+### 🚧 v1.4 Power User Feedback (In Progress)
+
+**Milestone Goal:** Systematic response to real user feedback - bugs, navigation, lesson UX, vocabulary display, state persistence, and content polish.
+
+#### Phase 27: Bug Fixes
+
+**Goal**: Fix light mode colors, back button labels, expandable examples, conditional tap hints, grammar tone, keyboard hints
+**Depends on**: v1.3 complete
+**Research**: Likely (keyboard inputmode/lang attributes for Macedonian)
+**Research topics**: `inputmode` attribute for mobile keyboards, `lang` attribute behavior for Cyrillic input
+**Plans**: TBD
+
+Plans:
+- [ ] 27-01: TBD (run /gsd:plan-phase 27 to break down)
+
+#### Phase 28: Navigation Overhaul
+
+**Goal**: Eliminate More menu, create Resources section, add Translate+Analyzer toggle, consolidate user menu, remove Learning Paths
+**Depends on**: Phase 27
+**Research**: Unlikely (internal routing and component patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 28-01: TBD
+
+#### Phase 29: Lesson Enhancements
+
+**Goal**: Wire save-to-glossary on vocab cards, add vocab sort toggle, quick actions, section progress indicator
+**Depends on**: Phase 28
+**Research**: Unlikely (existing infrastructure for save functionality)
+**Plans**: TBD
+
+Plans:
+- [ ] 29-01: TBD
+
+#### Phase 30: Vocabulary Display
+
+**Goal**: Show adjective gender indication, noun definite articles, standardize pronoun order, implement vocabulary chunking
+**Depends on**: Phase 29
+**Research**: Unlikely (linguistic display patterns established)
+**Plans**: TBD
+
+Plans:
+- [ ] 30-01: TBD
+
+#### Phase 31: State Persistence
+
+**Goal**: Persist practice session state, lesson quick practice state, add quiz retake capability
+**Depends on**: Phase 30
+**Research**: Unlikely (localStorage patterns established in codebase)
+**Plans**: TBD
+
+Plans:
+- [ ] 31-01: TBD
+
+#### Phase 32: Content & Polish
+
+**Goal**: Move alphabet to A1 start, add missing pronouns (наш/нивни), restore MLC credit, standardize translation UX
+**Depends on**: Phase 31
+**Research**: Unlikely (content and UX patterns established)
+**Plans**: TBD
+
+Plans:
+- [ ] 32-01: TBD
+
 ## Progress
 
 | Phase | Milestone | Plans | Status | Completed |
 |-------|-----------|-------|--------|-----------|
-| 21. Bug Fixes | v1.3 | 1/1 | Complete | 2026-01-09 |
-| 22. Content Effectiveness Audit | v1.3 | 1/1 | Complete | 2026-01-09 |
-| 23. Practice Feature Audit & UX | v1.3 | 1/1 | Complete | 2026-01-09 |
-| 24. User Journey Cohesion | v1.3 | 1/1 | Complete | 2026-01-10 |
-| 25. Content Expansion | v1.3 | 3/3 | Complete | 2026-01-10 |
-| 26. Validation & Polish | v1.3 | 2/2 | Complete | 2026-01-10 |
+| 27. Bug Fixes | v1.4 | 0/? | Not started | - |
+| 28. Navigation Overhaul | v1.4 | 0/? | Not started | - |
+| 29. Lesson Enhancements | v1.4 | 0/? | Not started | - |
+| 30. Vocabulary Display | v1.4 | 0/? | Not started | - |
+| 31. State Persistence | v1.4 | 0/? | Not started | - |
+| 32. Content & Polish | v1.4 | 0/? | Not started | - |
 
 **Completed Milestones:**
 - [v1.0 Beta](milestones/v1.0-ROADMAP.md) — 7 phases, 21 plans (shipped 2026-01-07)

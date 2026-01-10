@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-10)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** Planning next milestone
+**Current focus:** v1.4 Power User Feedback - Phase 27 Bug Fixes
 
 ## Current Position
 
-Phase: 26 of 26 (Validation & Polish)
-Plan: 2 of 2 in Phase 26
-Status: Milestone complete
-Last activity: 2026-01-10 — Completed 26-02-PLAN.md (User Journey E2E Validation)
+Phase: 27 of 32 (Bug Fixes)
+Plan: Not started
+Status: Ready to plan
+Last activity: 2026-01-10 — Milestone v1.4 created
 
-Progress: ██████████ 100% (6 of 6 phases in v1.3)
+Progress: ░░░░░░░░░░ 0% (0 of 6 phases in v1.4)
 
 ## Milestone Summary
 
@@ -109,10 +109,11 @@ None.
 - Milestone v1.1 shipped: Curriculum quality fix (Phases 8-16)
 - Milestone v1.2 shipped: Infrastructure & CI overhaul (Phases 17-20)
 - Milestone v1.3 shipped: Content quality & user journey (Phases 21-26)
+- Milestone v1.4 created: Power user feedback (Phases 27-32)
 
 ## Session Continuity
 
 Last session: 2026-01-10
-Stopped at: v1.3 milestone archived
+Stopped at: Milestone v1.4 initialization
 Resume file: None
-Next step: `/gsd:discuss-milestone` — plan next milestone
+Next step: `/gsd:plan-phase 27` — plan Bug Fixes phase
