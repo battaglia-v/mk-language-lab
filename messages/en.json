@@ -2767,6 +2767,10 @@
     },
     "library": {
       "continueLearning": "Continue your lessons"
+    },
+    "attribution": {
+      "mlcBadge": "Content by MLC",
+      "contentBy": "Content by {handle}"
     }
   },
   "tools": {
