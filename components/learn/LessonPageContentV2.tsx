@@ -22,7 +22,10 @@ import {
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
+import { useSession } from 'next-auth/react';
 import { cn } from '@/lib/utils';
+import { useVocabulary } from '@/components/practice/useVocabulary';
+import { useToast } from '@/components/ui/use-toast';
 
 // Import new enhanced components
 import { DialogueViewer } from './DialogueViewer';
@@ -196,10 +199,44 @@ export default function LessonPageContentV2({
   const locale = useLocale();
   const t = useTranslations('learn');
   const tCommon = useTranslations('common');
+  const { data: session } = useSession();
+  const { addToast } = useToast();
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const [completedSections, setCompletedSections] = useState<Set<string>>(new Set());
   const [startTime] = useState(Date.now());
   const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // Vocabulary hook for save-to-glossary functionality
+  const { vocabulary, saveWord } = useVocabulary();
+
+  // Handler to save a word to the user's review deck
+  const handleSaveWord = useCallback(
+    async (word: { mk: string; en: string }) => {
+      if (!session?.user?.id) {
+        addToast({ title: 'Sign in to save words', type: 'error' });
+        return;
+      }
+      try {
+        await saveWord({
+          wordMk: word.mk,
+          wordEn: word.en,
+          source: 'manual',
+        });
+        addToast({ title: 'Word saved to review deck', type: 'success' });
+      } catch {
+        addToast({ title: 'Failed to save word', type: 'error' });
+      }
+    },
+    [session?.user?.id, saveWord, addToast]
+  );
+
+  // Check if a vocabulary item is already in the review deck
+  const isWordInReviewDeck = useCallback(
+    (mk: string) => {
+      return vocabulary.some((w) => w.wordMk === mk);
+    },
+    [vocabulary]
+  );
 
   // Build sections list based on available content
   const sections = useMemo<Section[]>(() => {
@@ -543,6 +580,10 @@ export default function LessonPageContentV2({
                         showTranslation={true}
                         showTransliteration={true}
                         animationDelay={Math.min(index * 30, 300)}
+                        onAddToReview={() =>
+                          handleSaveWord({ mk: item.macedonianText, en: item.englishText })
+                        }
+                        isInReviewDeck={isWordInReviewDeck(item.macedonianText)}
                       />
                     ))}
                   </div>
@@ -568,6 +609,10 @@ export default function LessonPageContentV2({
                       showTranslation={true}
                       showTransliteration={true}
                       animationDelay={Math.min(index * 30, 300)}
+                      onAddToReview={() =>
+                        handleSaveWord({ mk: item.macedonianText, en: item.englishText })
+                      }
+                      isInReviewDeck={isWordInReviewDeck(item.macedonianText)}
                     />
                   ))}
                 </div>
