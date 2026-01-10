@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { google } from 'googleapis';
 import type { OAuth2Client } from 'google-auth-library';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import prisma from '@/lib/prisma';
 
 // Helper function to parse Google credentials (handles both raw JSON and base64-encoded)
 const parseCredentials = (value: string) => {
@@ -248,6 +246,4 @@ async function syncContentFromSheets() {
       }
     }
   }
-
-  await prisma.$disconnect();
 }
