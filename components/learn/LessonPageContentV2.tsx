@@ -606,7 +606,8 @@ export default function LessonPageContentV2({
             <div className="space-y-2">
               <h3 className="text-lg font-semibold">Grammar</h3>
               <p className="text-muted-foreground">
-                Understand the patterns and rules. Study the examples carefully.
+                Identify patterns and rules when reviewing the examples to deepen
+                your learning.
               </p>
             </div>
 
