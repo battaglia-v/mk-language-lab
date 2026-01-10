@@ -1167,7 +1167,12 @@
       "recommendedBadge": "Препорачано",
       "moreModesTitle": "Повеќе начини за вежбање",
       "settingsLink": "Поставки",
-      "emptyDeck": "Нема картички"
+      "emptyDeck": "Нема картички",
+      "lessonProgress": {
+        "withWords": "{count, plural, one {# збор} other {# зборови}} за преглед од завршените лекции",
+        "noLessons": "Започни ја првата лекција за да отклучиш вежбање вокабулар",
+        "goToLearn": "Оди на Учење"
+      }
     },
     "cloze": {
       "sessionComplete": "Сесијата заврши",

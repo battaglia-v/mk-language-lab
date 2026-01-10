@@ -137,6 +137,31 @@ export function PracticeHub() {
         </Button>
       </header>
 
+      {/* Lesson Progress Indicator - Shows relationship between Learn → Practice */}
+      {isAuthenticated && (
+        <div className="flex items-center gap-3 rounded-xl bg-primary/5 border border-primary/10 p-3">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+            <BookOpen className="h-4 w-4 text-primary" />
+          </div>
+          <div className="flex-1 min-w-0">
+            {lessonReviewDeck.length > 0 ? (
+              <p className="text-sm text-foreground">
+                {t('hub.lessonProgress.withWords', { count: lessonReviewDeck.length })}
+              </p>
+            ) : (
+              <p className="text-sm text-muted-foreground">
+                {t('hub.lessonProgress.noLessons')}
+              </p>
+            )}
+          </div>
+          <Link href={`/${locale}/learn`}>
+            <Button variant="ghost" size="sm" className="h-8 px-2 text-primary shrink-0">
+              {t('hub.lessonProgress.goToLearn')} <ChevronRight className="h-3 w-3 ml-1" />
+            </Button>
+          </Link>
+        </div>
+      )}
+
       {/* My Saved Words - Prominent section for saved vocabulary */}
       <section className="space-y-3">
         <div className="flex items-center justify-between">

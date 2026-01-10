@@ -1167,7 +1167,12 @@
       "recommendedBadge": "Recommended",
       "moreModesTitle": "More ways to practice",
       "settingsLink": "Settings",
-      "emptyDeck": "No cards yet"
+      "emptyDeck": "No cards yet",
+      "lessonProgress": {
+        "withWords": "{count, plural, one {# word} other {# words}} to review from your completed lessons",
+        "noLessons": "Start your first lesson to unlock vocabulary practice",
+        "goToLearn": "Go to Learn"
+      }
     },
     "cloze": {
       "sessionComplete": "Session Complete",
