@@ -204,16 +204,15 @@ export const ALL_ROUTES = {
   // Core pages
   home: '/en',
   learn: '/en/learn',
-  pathsHub: '/en/learn/paths',
   practice: '/en/practice',
   reader: '/en/reader',
   translate: '/en/translate',
   resources: '/en/resources',
 
-  // Learning paths
-  pathA1: '/en/learn/paths/a1',
-  pathA2: '/en/learn/paths/a2',
-  path30Day: '/en/learn/paths/30day',
+  // Learning levels (via query params)
+  learnBeginner: '/en/learn?level=beginner',
+  learnIntermediate: '/en/learn?level=intermediate',
+  learnChallenge: '/en/learn?level=challenge',
 
   // Lessons
   lessonAlphabet: '/en/learn/lessons/alphabet',
@@ -299,10 +298,10 @@ export const PRACTICE_DECKS = [
 ];
 
 /**
- * Learning path IDs
+ * Learning level IDs (used via query params)
  */
-export const LEARNING_PATH_IDS = [
-  'a1',
-  'a2',
-  '30day',
+export const LEARNING_LEVEL_IDS = [
+  'beginner',
+  'intermediate',
+  'challenge',
 ];

@@ -65,7 +65,6 @@ test.describe('Back Navigation', () => {
   const pagesWithBackButton = [
     '/en/learn/lessons/alphabet',
     '/en/reader/samples/cafe-conversation',
-    '/en/learn/paths/a1',
   ];
 
   for (const path of pagesWithBackButton) {
@@ -73,10 +72,8 @@ test.describe('Back Navigation', () => {
       await page.goto(path, { waitUntil: 'domcontentloaded' });
 
       const backLink = path.includes('/alphabet')
-        ? page.getByTestId('alphabet-back-to-a1')
-        : path.includes('/reader/samples/')
-          ? page.getByTestId('reader-back')
-          : page.getByTestId('path-detail-back');
+        ? page.getByTestId('alphabet-back-to-learn')
+        : page.getByTestId('reader-back');
 
       await expect(backLink).toBeVisible();
       await backLink.click();

@@ -15,7 +15,7 @@ const PROFILE_PIC_URL = '/images/vinny-profile.png';
 
 const SCREENSHOTS = [
   { name: '01-learn-home', path: '/en/learn', header: 'Start Your Journey', sub: 'Structured paths from alphabet to fluency' },
-  { name: '02-a1-path', path: '/en/learn/paths/a1', header: 'Learn Step by Step', sub: 'Unlock lessons as you progress' },
+  { name: '02-a1-path', path: '/en/learn?level=beginner', header: 'Learn Step by Step', sub: 'Unlock lessons as you progress' },
   { name: '03-practice', path: '/en/practice', header: 'Practice That Sticks', sub: 'Quick 5-minute drills that build fluency' },
   { name: '04-translator', path: '/en/translate', header: 'Instant Translation', sub: 'Macedonian to English in a tap' },
   { name: '05-reader', path: '/en/reader', header: 'Read Real Macedonian', sub: 'Tap any word to translate instantly' },

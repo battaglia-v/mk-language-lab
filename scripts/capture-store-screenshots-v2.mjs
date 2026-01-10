@@ -40,15 +40,15 @@ const SCREENSHOTS = [
     path: '/en/learn',
     locale: 'en',
     description: 'Learn page with lesson paths',
-    waitFor: '[data-testid="cta-browse-paths"], [data-testid="cta-start-here"]',
+    waitFor: '[data-testid="cta-start-here"]',
     caption: { title: 'Structured Learning', subtitle: 'Paths from alphabet to fluency' },
   },
   {
     name: '02-lesson-tree',
-    path: '/en/learn/paths/a1',
+    path: '/en/learn?level=beginner',
     locale: 'en',
     description: 'Lesson path tree showing unlock progression',
-    waitFor: '[data-testid="path-detail-back"], [data-testid="lesson-node"]',
+    waitFor: '[data-testid="learn-level-beginner"], [data-testid="learn-node-node-1"]',
     caption: { title: 'Unlock Your Path', subtitle: 'Complete lessons to progress' },
   },
   {
@@ -130,7 +130,7 @@ const SCREENSHOTS = [
     path: '/mk/learn',
     locale: 'mk',
     description: 'Macedonian locale to show bilingual support',
-    waitFor: '[data-testid="cta-browse-paths"], [data-testid="cta-start-here"]',
+    waitFor: '[data-testid="cta-start-here"]',
     caption: { title: 'Двојазична Апликација', subtitle: 'Bilingual: English & Macedonian UI' },
   },
 ];

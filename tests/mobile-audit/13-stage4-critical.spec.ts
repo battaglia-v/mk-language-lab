@@ -5,9 +5,8 @@ test.describe('Stage 4 critical mobile audit', () => {
     const routes = [
       '/en',
       '/en/learn',
-      '/en/learn/paths',
-      '/en/learn/paths/a1',
-      '/en/learn/paths/a2',
+      '/en/learn?level=beginner',
+      '/en/learn?level=intermediate',
       '/en/practice/word-sprint',
       '/en/reader/samples/cafe-conversation',
     ];
@@ -47,30 +46,27 @@ test.describe('Stage 4 critical mobile audit', () => {
     await expect(page.getByText('A2 Momentum')).toBeVisible();
   });
 
-  test('learning paths hub shows A1 and A2 cards', async ({ page }) => {
+  test('learn page shows A1 and A2 level options', async ({ page }) => {
     await page.goto('/en/learn', { waitUntil: 'domcontentloaded' });
-    await page.getByTestId('cta-browse-paths').click();
     await waitForInteractive(page);
 
-    await expect(page.getByTestId('paths-start-a1')).toBeVisible();
-    await expect(page.getByTestId('paths-start-a2')).toBeVisible();
+    await expect(page.getByTestId('learn-level-beginner')).toBeVisible();
+    await expect(page.getByTestId('learn-level-intermediate')).toBeVisible();
     await assertNoRawTranslationKeys(page);
   });
 
-  test('A1 start here opens alphabet lesson', async ({ page }) => {
-    await page.goto('/en/learn/paths', { waitUntil: 'domcontentloaded' });
-    await page.getByTestId('paths-start-a1').click();
+  test('A1 level shows alphabet lesson path', async ({ page }) => {
+    await page.goto('/en/learn?level=beginner', { waitUntil: 'domcontentloaded' });
     await waitForInteractive(page);
 
-    await expect(page.getByTestId('alphabet-tab-learn')).toBeVisible();
+    await expect(page.getByText('A1 Foundations')).toBeVisible();
   });
 
-  test('A2 start here opens practice session', async ({ page }) => {
-    await page.goto('/en/learn/paths', { waitUntil: 'domcontentloaded' });
-    await page.getByTestId('paths-start-a2').click();
+  test('A2 level shows momentum path', async ({ page }) => {
+    await page.goto('/en/learn?level=intermediate', { waitUntil: 'domcontentloaded' });
     await waitForInteractive(page);
 
-    await expect(page.getByTestId('session-exit')).toBeVisible();
+    await expect(page.getByText('A2 Momentum')).toBeVisible();
   });
 
   test('word sprint starts and exits', async ({ page }) => {

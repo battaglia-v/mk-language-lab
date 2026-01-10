@@ -43,14 +43,17 @@ test.describe('Stage 4 gate - critical journeys', () => {
     await expect(page.getByText('A1 Foundations')).toBeVisible();
   });
 
-  test('paths hub opens a path detail', async ({ page }) => {
-    await page.goto('/en/learn/paths', { waitUntil: 'domcontentloaded' });
+  test('learn level tabs switch content', async ({ page }) => {
+    await page.goto('/en/learn', { waitUntil: 'domcontentloaded' });
     await waitForInteractive(page);
 
-    const viewLink = page.getByRole('link', { name: /view full path/i }).first();
-    await viewLink.click();
+    // Click intermediate level
+    await page.getByTestId('learn-level-intermediate').click();
+    await expect(page.getByText('A2 Momentum')).toBeVisible();
 
-    await expect(page.getByTestId('path-detail-start-here')).toBeVisible();
+    // Click challenge level
+    await page.getByTestId('learn-level-challenge').click();
+    await expect(page.getByText('30-Day')).toBeVisible();
   });
 
   test('word sprint starts and exits', async ({ page }) => {

@@ -281,7 +281,7 @@ export default function ReaderPage() {
                   <div className="flex items-center justify-between">
                     <h2 className="text-lg font-semibold">Reading Challenges</h2>
                     <Link
-                      href={`/${locale}/learn/paths/30day`}
+                      href={`/${locale}/learn?level=challenge`}
                       className="text-sm text-primary hover:underline"
                       data-testid="reader-challenges-view-all"
                     >
