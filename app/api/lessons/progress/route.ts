@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
-import { PrismaClient } from '@prisma/client';
+import prisma from '@/lib/prisma';
 import { createScopedLogger } from '@/lib/logger';
-
-const prisma = new PrismaClient();
 const log = createScopedLogger('api.lessons.progress');
 
 export async function POST(request: NextRequest) {
@@ -166,8 +164,6 @@ export async function POST(request: NextRequest) {
       { error: 'Failed to update progress' },
       { status: 500 }
     );
-  } finally {
-    await prisma.$disconnect();
   }
 }
 
@@ -210,7 +206,5 @@ export async function GET(request: NextRequest) {
       { error: 'Failed to fetch progress' },
       { status: 500 }
     );
-  } finally {
-    await prisma.$disconnect();
   }
 }

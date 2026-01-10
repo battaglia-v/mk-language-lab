@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
-import { PrismaClient } from '@prisma/client';
+import prisma from '@/lib/prisma';
 import { createScopedLogger } from '@/lib/logger';
-
-const prisma = new PrismaClient();
 const log = createScopedLogger('api.user.vocabulary.id');
 
 // SRS intervals in days (Leitner-style, matching lib/srs.ts)
@@ -104,7 +102,5 @@ export async function PATCH(
       { error: 'Failed to update vocabulary word' },
       { status: 500 }
     );
-  } finally {
-    await prisma.$disconnect();
   }
 }
