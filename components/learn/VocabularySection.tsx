@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { useTranslations } from 'next-intl';
 import { Eye, EyeOff, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -104,6 +105,7 @@ function filterVocabulary(items: VocabularyItem[]): VocabularyItem[] {
 const MAX_VOCAB_DISPLAY = 20;
 
 export default function VocabularySection({ items }: VocabularySectionProps) {
+  const t = useTranslations('learn.vocabulary');
   // Filter and limit vocabulary
   const filteredItems = useMemo(() => {
     const filtered = filterVocabulary(items);
@@ -134,7 +136,7 @@ export default function VocabularySection({ items }: VocabularySectionProps) {
   if (filteredItems.length === 0) {
     return (
       <div className="text-center py-8 text-muted-foreground">
-        <p>No vocabulary items available for this lesson.</p>
+        <p>{t('noItems')}</p>
       </div>
     );
   }
@@ -144,7 +146,7 @@ export default function VocabularySection({ items }: VocabularySectionProps) {
       {/* Controls */}
       <div className="flex items-center justify-between gap-4 pb-2">
         <p className="text-sm text-muted-foreground">
-          {filteredItems.length} words to learn • Tap cards to reveal
+          {t('sectionTitle')} {t('wordCount', { count: filteredItems.length })}
         </p>
         <div className="flex items-center gap-2">
           <Button
@@ -229,7 +231,7 @@ export default function VocabularySection({ items }: VocabularySectionProps) {
                 {!revealed && (
                   <p className="text-sm text-muted-foreground flex items-center gap-1">
                     <Eye className="h-3 w-3" />
-                    Tap to reveal
+                    {t('tapToReveal')}
                   </p>
                 )}
               </div>

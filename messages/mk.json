@@ -362,7 +362,11 @@
       "wordSaved": "Зачувано \"{word}\" во вашиот речник",
       "readyToPractice": "Подготвен за вежбање?",
       "practiceDescription": "Тестирај се на овие {count} зборови",
-      "practiceNow": "Вежбај сега"
+      "practiceNow": "Вежбај сега",
+      "sectionTitle": "Нови зборови за оваа лекција",
+      "wordCount": "({count} зборови)",
+      "tapToReveal": "Допри за превод",
+      "noItems": "Нема зборови за оваа лекција."
     },
     "exercises": {
       "quizComplete": "Квизот е завршен!",

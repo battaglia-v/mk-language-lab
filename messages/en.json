@@ -362,7 +362,11 @@
       "wordSaved": "Saved \"{word}\" to your glossary",
       "readyToPractice": "Ready to practice?",
       "practiceDescription": "Test yourself on these {count} vocabulary words",
-      "practiceNow": "Practice Now"
+      "practiceNow": "Practice Now",
+      "sectionTitle": "New words for this lesson",
+      "wordCount": "({count} words)",
+      "tapToReveal": "Tap to see translation",
+      "noItems": "No vocabulary items available for this lesson."
     },
     "exercises": {
       "quizComplete": "Quiz Complete!",
