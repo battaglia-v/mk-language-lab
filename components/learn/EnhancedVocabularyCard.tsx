@@ -68,6 +68,17 @@ const GENDER_LABELS: Record<string, string> = {
   n: 'n.',
 };
 
+// Gender colors - distinct from POS colors for clear grammatical indication
+const GENDER_COLORS: Record<string, string> = {
+  masculine: 'bg-sky-500/15 text-sky-700 dark:text-sky-300 border-sky-500/30',
+  feminine: 'bg-rose-500/15 text-rose-700 dark:text-rose-300 border-rose-500/30',
+  neuter: 'bg-amber-500/15 text-amber-700 dark:text-amber-300 border-amber-500/30',
+  m: 'bg-sky-500/15 text-sky-700 dark:text-sky-300 border-sky-500/30',
+  f: 'bg-rose-500/15 text-rose-700 dark:text-rose-300 border-rose-500/30',
+  n: 'bg-amber-500/15 text-amber-700 dark:text-amber-300 border-amber-500/30',
+  default: 'bg-muted text-muted-foreground border-border',
+};
+
 // ============================================================================
 // EnhancedVocabularyCard Component
 // ============================================================================
@@ -116,6 +127,21 @@ export function EnhancedVocabularyCard({
     return POS_COLORS[pos.toLowerCase()] || POS_COLORS.default;
   };
 
+  // Get gender color
+  const getGenderColor = (gender?: string | null) => {
+    if (!gender) return GENDER_COLORS.default;
+    return GENDER_COLORS[gender.toLowerCase()] || GENDER_COLORS.default;
+  };
+
+  // Parse gender from translation text (for adjectives where gender may be in parentheses)
+  const parseGenderFromText = (text: string): string | null => {
+    const match = text.match(/\((masculine|feminine|neuter)\)/i);
+    return match ? match[1].toLowerCase() : null;
+  };
+
+  // Get effective gender (from item.gender or parsed from englishText)
+  const effectiveGender = item.gender || parseGenderFromText(item.englishText);
+
   // Check if item has an example sentence
   const hasExample = !!(item.exampleSentenceMk || item.exampleSentenceEn);
 
@@ -155,13 +181,19 @@ export function EnhancedVocabularyCard({
             )}
           </div>
 
-          {/* Part of speech badge */}
-          {item.partOfSpeech && (
-            <Badge variant="outline" className={cn('text-xs', getPosColor(item.partOfSpeech))}>
-              {item.partOfSpeech}
-              {item.gender && ` (${GENDER_LABELS[item.gender] || item.gender})`}
-            </Badge>
-          )}
+          {/* Part of speech and gender badges */}
+          <div className="flex items-center gap-1.5 flex-shrink-0">
+            {item.partOfSpeech && (
+              <Badge variant="outline" className={cn('text-xs', getPosColor(item.partOfSpeech))}>
+                {item.partOfSpeech}
+              </Badge>
+            )}
+            {effectiveGender && (
+              <Badge variant="outline" className={cn('text-xs', getGenderColor(effectiveGender))}>
+                {GENDER_LABELS[effectiveGender] || effectiveGender}
+              </Badge>
+            )}
+          </div>
         </div>
 
         {/* Example sentence reveal */}
@@ -312,9 +344,9 @@ export function EnhancedVocabularyCard({
                 {item.partOfSpeech}
               </Badge>
             )}
-            {item.gender && (
-              <Badge variant="outline" className="text-xs">
-                {GENDER_LABELS[item.gender] || item.gender}
+            {effectiveGender && (
+              <Badge variant="outline" className={cn('text-xs', getGenderColor(effectiveGender))}>
+                {GENDER_LABELS[effectiveGender] || effectiveGender}
               </Badge>
             )}
             {item.category && (
