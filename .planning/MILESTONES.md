@@ -1,5 +1,33 @@
 # Project Milestones: MKLanguage Learning System
 
+## v1.3 Content Quality & User Journey (Shipped: 2026-01-10)
+
+**Delivered:** User journey CTAs connecting Learn → Practice → Reader sections, 9 new graded reader stories, and comprehensive E2E validation of the core promise "always resume in the right place, next step obvious."
+
+**Phases completed:** 21-26 (9 plans total)
+
+**Key accomplishments:**
+
+- User journey CTAs: Practice results → Reader, Reader → Practice (conditional), Reader → Learn
+- 9 new graded reader stories (A1: 3, A2: 3, B1: 3) covering daily life, workplace, cultural topics
+- Full i18n for My Saved Words section and post-lesson practice flow
+- 240 translation issues fixed (100% curriculum validation)
+- Dark mode compliance across 6 learn components with semantic design tokens
+- 72 E2E tests validating user journey flows across 4 viewports
+
+**Stats:**
+
+- 46 files created/modified
+- +7,910 / -3,456 lines changed
+- 6 phases, 9 plans
+- 2 days (2026-01-09 → 2026-01-10)
+
+**Git range:** `feat(21-01)` → `docs(26-02)`
+
+**What's next:** TBD (user to decide next focus)
+
+---
+
 ## v1.2 Infrastructure & CI Overhaul (Shipped: 2026-01-09)
 
 **Delivered:** CI pipeline audit and optimization with Cloudflare migration evaluation. Improved dark mode compliance, exercise variety, and content completeness.

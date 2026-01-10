@@ -48,12 +48,23 @@ If the app nails progression, users will forgive incomplete content; if it doesn
 - Update Playwright tests to reflect intended beta UX — v1.0
 - Update docs: intended-beta-ux.md, beta_readiness_assessment.md — v1.0
 - Agent feedback: critique learning flow, UX risks, PM improvement suggestion — v1.0
+- User journey CTAs connecting Learn → Practice → Reader sections — v1.3
+- Practice results → Reader "Read Something" CTA — v1.3
+- Reader workspace → Practice "Practice Now" CTA (conditional) — v1.3
+- Reader library → Learn "Continue your lessons" link — v1.3
+- A1 graded reader stories (My Morning, At the Store, My Best Friend) — v1.3
+- A2 graded reader stories (My Job, Hobbies, The Holiday) — v1.3
+- B1 graded reader stories (Macedonian Cuisine, City vs Village, Macedonian Legends) — v1.3
+- Full i18n for My Saved Words section and post-lesson practice flow — v1.3
+- 100% curriculum translation validation (240 issues fixed) — v1.3
+- Dark mode compliance with semantic design tokens — v1.3
+- E2E tests validating user journey flows — v1.3
 
 ### Active
 
 <!-- Next milestone scope -->
 
-(None yet — planning v1.3)
+(None yet — planning next milestone)
 
 ### Out of Scope
 
@@ -70,14 +81,16 @@ If the app nails progression, users will forgive incomplete content; if it doesn
 
 ## Context
 
-### Current State (v1.2)
+### Current State (v1.3)
 
-- **Codebase:** ~118,700 lines of TypeScript
+- **Codebase:** ~120,000 lines of TypeScript
 - **Tech stack:** Next.js 16 App Router, Prisma/PostgreSQL, NextAuth, Vercel
 - **Curriculum:** 40 lessons (24 A1 + 8 A2 + 8 B1), 41 grammar notes, 25,568 vocabulary items
-- **Database:** UKIM curriculum seeded with corrected translations (A1/A2/B1)
+- **Graded Readers:** 12 stories (4 A1, 4 A2, 4 B1) in data/graded-readers.json
+- **Database:** UKIM curriculum seeded with 100% validated translations
 - **CI Pipeline:** 7 workflows with Next.js and Playwright caching optimized
 - **Dark mode:** ~95% compliance across all components
+- **E2E Tests:** 72 user journey tests across 4 viewports
 
 ### The Problem (Solved)
 
@@ -134,4 +147,4 @@ Advanced and returning users didn't know where they were, what they'd completed,
 - [ ] 2-3 named beta users say: "This finally makes sense — I always know what to do next"
 
 ---
-*Last updated: 2026-01-09 after v1.2 Infrastructure & CI Overhaul milestone*
+*Last updated: 2026-01-10 after v1.3 Content Quality & User Journey milestone*
