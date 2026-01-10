@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-10)
 
 ## Current Position
 
-Phase: 33 of 35 (Audio Removal)
-Plan: 2 of 2 in current phase
-Status: Phase complete
-Last activity: 2026-01-10 — Completed 33-02-PLAN.md
+Phase: 34 of 35 (Remaining Polish)
+Plan: 1 of ? in current phase
+Status: Plan complete
+Last activity: 2026-01-10 — Completed 34-01-PLAN.md
 
-Progress: [██░░░░░░░░] ~20% (v1.5 in progress)
+Progress: [████░░░░░░] ~40% (v1.5 in progress)
 
 ## Milestone Summary
 
@@ -113,7 +113,6 @@ All decisions logged in PROJECT.md Key Decisions table with outcomes.
 
 - Cloudflare migration — Re-evaluate when OpenNext supports Next.js 16
 - ISS-001: Wire A2 graded readers to reader UI — content exists, not wired
-- About page MLC/Andri credits — not implemented in v1.4
 - Quiz retake button — not implemented in v1.4
 - Section stepper forward navigation — partial implementation
 
@@ -133,6 +132,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-10
-Stopped at: Completed 33-02-PLAN.md (audio removal phase complete)
+Stopped at: Completed 34-01-PLAN.md (About credits & UserMenu cleanup)
 Resume file: None
-Next step: /gsd:plan-phase 34
+Next step: /gsd:plan-phase 34 (plan 02 for remaining polish items)
