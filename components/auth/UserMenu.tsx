@@ -13,7 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { User, Instagram, Youtube, ExternalLink, LayoutDashboard, Settings, HelpCircle, Info } from 'lucide-react';
+import { User, LayoutDashboard, Settings, HelpCircle, Info } from 'lucide-react';
 import Link from 'next/link';
 
 export function UserMenu() {
@@ -101,50 +101,6 @@ export function UserMenu() {
             <Info className={iconClass} />
             <span className="text-sm font-medium">{t('about')}</span>
           </Link>
-        </DropdownMenuItem>
-        <DropdownMenuSeparator className="bg-border" />
-        <DropdownMenuLabel className="px-3 py-1.5 text-xs font-medium text-muted-foreground">
-          <p>{t('socialHeader')}</p>
-          <p className="text-[11px] text-muted-foreground/70">{t('socialSubtitle')}</p>
-        </DropdownMenuLabel>
-        <DropdownMenuItem asChild className={menuItemClass}>
-          <a
-            href="https://www.instagram.com/macedonianlanguagecorner/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex w-full items-center"
-            data-testid="user-menu-instagram"
-          >
-            <Instagram className={iconClass} />
-            <span className="text-sm font-medium">{t('instagram')}</span>
-            <ExternalLink className="ml-auto h-4 w-4 text-muted-foreground" />
-          </a>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild className={menuItemClass}>
-          <a
-            href="https://www.youtube.com/@macedonianlanguagecorner"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex w-full items-center"
-            data-testid="user-menu-youtube"
-          >
-            <Youtube className={iconClass} />
-            <span className="text-sm font-medium">{t('youtube')}</span>
-            <ExternalLink className="ml-auto h-4 w-4 text-muted-foreground" />
-          </a>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild className={menuItemClass}>
-          <a
-            href="https://linktr.ee/macedonianlanguagecorner"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex w-full items-center"
-            data-testid="user-menu-linktree"
-          >
-            <ExternalLink className={iconClass} />
-            <span className="text-sm font-medium">{t('allLinks')}</span>
-            <ExternalLink className="ml-auto h-4 w-4 text-muted-foreground" />
-          </a>
         </DropdownMenuItem>
         <DropdownMenuSeparator className="bg-border" />
         <DropdownMenuItem asChild className={menuItemClass}>
