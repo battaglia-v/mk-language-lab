@@ -11,6 +11,7 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 - ✅ [v1.2 Infrastructure & CI Overhaul](milestones/v1.2-ROADMAP.md) (Phases 17-20) — SHIPPED 2026-01-09
 - ✅ **v1.3 Content Quality & User Journey** — Phases 21-26 (shipped 2026-01-10)
 - ✅ [v1.4 Power User Feedback](milestones/v1.4-ROADMAP.md) (Phases 27-32) — SHIPPED 2026-01-10
+- 🚧 **v1.5 Audio Cleanup & Final Polish** — Phases 33-35 (in progress)
 
 ## Completed Milestones
 
@@ -142,6 +143,52 @@ Plans:
 
 </details>
 
+### 🚧 v1.5 Audio Cleanup & Final Polish (In Progress)
+
+**Milestone Goal:** Remove all audio/listening functionality (unused feature cluttering codebase), address remaining polish items from user feedback, and improve Practice page flow.
+
+#### Phase 33: Audio Removal
+
+**Goal**: Remove all audio/listening feature code and UI references
+**Depends on**: v1.4 complete
+**Research**: Unlikely (deletion task)
+**Plans**: 2-3 (estimated)
+
+Scope:
+- Delete audio-related components (46+ files in components/)
+- Delete audio-related routes/pages (37+ files in app/)
+- Remove audio i18n keys from messages
+- Update tests that reference audio features
+- Remove audio-related hooks and utilities
+
+#### Phase 34: Remaining Polish
+
+**Goal**: Address remaining items from power user feedback audit
+**Depends on**: Phase 33
+**Research**: Unlikely (known issues)
+**Plans**: 2 (estimated)
+
+Items:
+- About page MLC/Andri credit
+- Remove MLC links from UserMenu
+- Grammar "+X more examples" expansion fix
+- Quiz retake button
+- Section stepper forward navigation after first visit
+- Softer vocabulary section heading tone
+- Тешкото curriculum explanation
+
+#### Phase 35: Practice Improvements
+
+**Goal**: Improve Practice page flow and lesson synchronization
+**Depends on**: Phase 34
+**Research**: Maybe (need to understand current practice state)
+**Plans**: 1-2 (estimated)
+
+Items:
+- Practice page shows what content is available
+- Practice syncs with lesson completion
+- Better onboarding for Practice section
+
 ## Progress
 
 | Phase | Milestone | Plans | Status | Completed |
@@ -152,11 +199,15 @@ Plans:
 | 30. Vocabulary Display | v1.4 | 2/2 | Complete | 2026-01-10 |
 | 31. State Persistence | v1.4 | 1/1 | Complete | 2026-01-10 |
 | 32. Content & Polish | v1.4 | 2/2 | Complete | 2026-01-10 |
+| 33. Audio Removal | v1.5 | 0/? | Not started | - |
+| 34. Remaining Polish | v1.5 | 0/? | Not started | - |
+| 35. Practice Improvements | v1.5 | 0/? | Not started | - |
 
 **Completed Milestones:**
 - [v1.0 Beta](milestones/v1.0-ROADMAP.md) — 7 phases, 21 plans (shipped 2026-01-07)
 - [v1.2 Infrastructure & CI](milestones/v1.2-ROADMAP.md) — 4 phases, 7 plans (shipped 2026-01-09)
 - **v1.3 Content Quality & User Journey** — 6 phases, 8 plans (shipped 2026-01-10)
+- [v1.4 Power User Feedback](milestones/v1.4-ROADMAP.md) — 6 phases, 13 plans (shipped 2026-01-10)
 
 ## Domain Expertise
 
