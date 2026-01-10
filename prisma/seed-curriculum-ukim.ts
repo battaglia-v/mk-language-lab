@@ -154,12 +154,21 @@ async function seedFullCurriculum(textbook: StructuredTextbook) {
     // Create grammar notes
     if (chapter.grammarNotes.length > 0) {
       for (const [idx, grammar] of chapter.grammarNotes.entries()) {
+        // Combine Macedonian examples with English translations
+        // Format: "Mk example - English translation"
+        const rawExamples = grammar.examples || [];
+        const translations = (grammar as any).translatedExamples || [];
+        const combinedExamples = rawExamples.map((mk: string, i: number) => {
+          const en = translations[i];
+          return en ? `${mk} - ${en}` : mk;
+        });
+
         await prisma.grammarNote.create({
           data: {
             lessonId: lesson.id,
             title: grammar.title,
             explanation: grammar.content,
-            examples: JSON.stringify(grammar.examples),
+            examples: JSON.stringify(combinedExamples),
             orderIndex: idx,
           },
         });
@@ -260,12 +269,20 @@ async function seedB1Skeleton(skeleton: B1Skeleton) {
     const grammarNotes = (chapter as any).grammarNotes || [];
     if (grammarNotes.length > 0) {
       for (const [idx, grammar] of grammarNotes.entries()) {
+        // Combine Macedonian examples with English translations
+        const rawExamples = grammar.examples || [];
+        const translations = grammar.translatedExamples || [];
+        const combinedExamples = rawExamples.map((mk: string, i: number) => {
+          const en = translations[i];
+          return en ? `${mk} - ${en}` : mk;
+        });
+
         await prisma.grammarNote.create({
           data: {
             lessonId: lesson.id,
             title: grammar.title,
             explanation: grammar.content,
-            examples: JSON.stringify(grammar.examples),
+            examples: JSON.stringify(combinedExamples),
             orderIndex: idx,
           },
         });
