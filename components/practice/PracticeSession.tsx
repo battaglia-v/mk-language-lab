@@ -472,6 +472,38 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
           onClose={() => setShowGoalCelebration(false)}
         />
       )}
+
+      {/* Resume Session Prompt */}
+      {pendingRestore && savedSession && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+          <div className="glass-card w-full max-w-sm rounded-2xl border border-border/40 bg-card p-6 shadow-xl animate-in fade-in zoom-in-95 duration-200">
+            <h2 className="text-xl font-semibold text-foreground mb-2">
+              {t('drills.resumeSessionTitle')}
+            </h2>
+            <p className="text-sm text-muted-foreground mb-6">
+              {t('drills.resumeSessionDescription', { reviewed: savedSession.reviewedCount })}
+            </p>
+            <div className="flex flex-col gap-2">
+              <Button
+                onClick={handleRestore}
+                className="w-full rounded-xl"
+                data-testid="session-resume"
+              >
+                {t('drills.resumeSessionResume')}
+              </Button>
+              <Button
+                variant="outline"
+                onClick={handleStartFresh}
+                className="w-full rounded-xl"
+                data-testid="session-start-fresh"
+              >
+                {t('drills.resumeSessionStartFresh')}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <header className="flex items-center gap-3 border-b border-border/40 px-4 py-3 safe-top">
         <Button
