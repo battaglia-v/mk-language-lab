@@ -10,7 +10,7 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 - ✅ **v1.1 Curriculum Quality Fix** — Phases 8-16 (shipped 2026-01-09)
 - ✅ [v1.2 Infrastructure & CI Overhaul](milestones/v1.2-ROADMAP.md) (Phases 17-20) — SHIPPED 2026-01-09
 - ✅ **v1.3 Content Quality & User Journey** — Phases 21-26 (shipped 2026-01-10)
-- 🚧 **v1.4 Power User Feedback** — Phases 27-32 (in progress)
+- ✅ [v1.4 Power User Feedback](milestones/v1.4-ROADMAP.md) (Phases 27-32) — SHIPPED 2026-01-10
 
 ## Completed Milestones
 
@@ -128,76 +128,19 @@ Plans:
 
 </details>
 
-### 🚧 v1.4 Power User Feedback (In Progress)
+<details>
+<summary>v1.4 Power User Feedback (Phases 27-32) — SHIPPED 2026-01-10</summary>
 
-**Milestone Goal:** Systematic response to real user feedback - bugs, navigation, lesson UX, vocabulary display, state persistence, and content polish.
+- [x] Phase 27: Bug Fixes (4/4 plans) — completed 2026-01-10
+- [x] Phase 28: Navigation Overhaul (3/3 plans) — completed 2026-01-10
+- [x] Phase 29: Lesson Enhancements (2/2 plans) — completed 2026-01-10
+- [x] Phase 30: Vocabulary Display (2/2 plans) — completed 2026-01-10
+- [x] Phase 31: State Persistence (1/1 plans) — completed 2026-01-10
+- [x] Phase 32: Content & Polish (2/2 plans) — completed 2026-01-10
 
-#### Phase 27: Bug Fixes — COMPLETE
+[Full details](milestones/v1.4-ROADMAP.md)
 
-**Goal**: Fix light mode colors, back button labels, expandable examples, conditional tap hints, grammar tone, keyboard hints
-**Depends on**: v1.3 complete
-**Plans**: 4
-
-Plans:
-- [x] 27-01: Light mode colors & back button i18n — completed 2026-01-10
-- [x] 27-02: Expandable grammar examples & conditional tap hints — completed 2026-01-10
-- [x] 27-03: Macedonian keyboard hints — completed 2026-01-10
-- [x] 27-04: Grammar tone & expand/collapse fix — completed 2026-01-10
-
-#### Phase 28: Navigation Overhaul — COMPLETE
-
-**Goal**: Eliminate More menu, create Resources section, add Translate+Analyzer toggle, consolidate user menu, remove Learning Paths
-**Depends on**: Phase 27
-**Research**: Unlikely (internal routing and component patterns)
-**Plans**: 3/3 complete
-
-Plans:
-- [x] 28-01: Navigation simplification (More → Resources, UserMenu consolidation) — completed 2026-01-10
-- [x] 28-02: Tools merge (Translate + Analyze unified page with toggle) — completed 2026-01-10
-- [x] 28-03: Learning Paths removal — completed 2026-01-10
-
-#### Phase 29: Lesson Enhancements — COMPLETE
-
-**Goal**: Wire save-to-glossary on vocab cards, add vocab sort toggle, quick actions, section progress indicator
-**Depends on**: Phase 28
-**Research**: Unlikely (existing infrastructure for save functionality)
-**Plans**: 2/2 complete
-
-Plans:
-- [x] 29-01: Vocabulary Save & Sort (save-to-glossary + sort toggle) — completed 2026-01-10
-- [x] 29-02: Section Stepper & Quick Actions (mobile stepper dots + vocabulary practice CTA) — completed 2026-01-10
-
-#### Phase 30: Vocabulary Display — COMPLETE
-
-**Goal**: Show adjective gender indication, noun definite articles, remove redundant navigation
-**Depends on**: Phase 29
-**Research**: Unlikely (linguistic display patterns established)
-**Plans**: 2/2 complete
-
-Plans:
-- [x] 30-01: Gender annotations & definite articles — completed 2026-01-10
-- [x] 30-02: Remove redundant Back to Dashboard links — completed 2026-01-10
-
-#### Phase 31: State Persistence — COMPLETE
-
-**Goal**: Persist practice session state, lesson quick practice state, add quiz retake capability
-**Depends on**: Phase 30
-**Research**: Unlikely (localStorage patterns established in codebase)
-**Plans**: 1/1 complete
-
-Plans:
-- [x] 31-01: Session persistence infrastructure — completed 2026-01-10
-
-#### Phase 32: Content & Polish — COMPLETE
-
-**Goal**: Move alphabet to A1 start, add missing pronouns (наш/нивни), restore MLC credit, standardize translation UX
-**Depends on**: Phase 31
-**Research**: Unlikely (content and UX patterns established)
-**Plans**: 2
-
-Plans:
-- [x] 32-01: Pronouns & MLC Credit (наш/нивни exercises, MLC badge restoration) — completed 2026-01-10
-- [x] 32-02: Alphabet & Translation UX (A1 curriculum integration, result display standardization) — completed 2026-01-10
+</details>
 
 ## Progress
 
