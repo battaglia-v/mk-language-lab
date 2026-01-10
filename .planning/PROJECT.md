@@ -59,12 +59,25 @@ If the app nails progression, users will forgive incomplete content; if it doesn
 - 100% curriculum translation validation (240 issues fixed) — v1.3
 - Dark mode compliance with semantic design tokens — v1.3
 - E2E tests validating user journey flows — v1.3
+- Light mode color fixes with semantic design tokens — v1.4
+- Navigation overhaul: More → Resources page, UserMenu consolidation — v1.4
+- Tools merge: Translate + Analyzer unified page with toggle — v1.4
+- Save-to-glossary on vocabulary cards with sort toggle — v1.4
+- Gender annotations with color coding and definite articles — v1.4
+- Session persistence for practice with resume prompt — v1.4
+- Alphabet lesson integrated as first A1 curriculum node — v1.4
+- Missing pronouns (наш/нивни possessive forms) added — v1.4
+- MLC badge attribution restored in Reader — v1.4
+- Expandable grammar examples with "show more" functionality — v1.4
+- Macedonian keyboard hints for text inputs — v1.4
+- Learning Paths removed (simplified UX) — v1.4
 
 ### Active
 
 <!-- Next milestone scope -->
 
-(None yet — planning next milestone)
+- Remove all audio/listening feature code and references
+- Remaining polish items (About page credits, quiz retake, section stepper improvements)
 
 ### Out of Scope
 
@@ -81,16 +94,18 @@ If the app nails progression, users will forgive incomplete content; if it doesn
 
 ## Context
 
-### Current State (v1.3)
+### Current State (v1.4)
 
-- **Codebase:** ~120,000 lines of TypeScript
+- **Codebase:** ~30,000 lines of TypeScript
 - **Tech stack:** Next.js 16 App Router, Prisma/PostgreSQL, NextAuth, Vercel
 - **Curriculum:** 40 lessons (24 A1 + 8 A2 + 8 B1), 41 grammar notes, 25,568 vocabulary items
 - **Graded Readers:** 12 stories (4 A1, 4 A2, 4 B1) in data/graded-readers.json
 - **Database:** UKIM curriculum seeded with 100% validated translations
 - **CI Pipeline:** 7 workflows with Next.js and Playwright caching optimized
-- **Dark mode:** ~95% compliance across all components
+- **Dark mode:** ~98% compliance across all components
 - **E2E Tests:** 72 user journey tests across 4 viewports
+- **Navigation:** Resources page (replaced More), unified Tools (Translate + Analyzer)
+- **Practice:** Session persistence with localStorage, resume prompt, save-to-glossary
 
 ### The Problem (Solved)
 
@@ -147,4 +162,4 @@ Advanced and returning users didn't know where they were, what they'd completed,
 - [ ] 2-3 named beta users say: "This finally makes sense — I always know what to do next"
 
 ---
-*Last updated: 2026-01-10 after v1.3 Content Quality & User Journey milestone*
+*Last updated: 2026-01-10 after v1.4 Power User Feedback milestone*

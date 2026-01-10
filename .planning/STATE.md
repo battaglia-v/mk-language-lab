@@ -5,14 +5,14 @@
 See: .planning/PROJECT.md (updated 2026-01-10)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** v1.4 Power User Feedback - Phase 32 Content & Polish
+**Current focus:** v1.5 planning (audio removal, remaining polish, practice improvements)
 
 ## Current Position
 
-Phase: 32 of 32 (Content & Polish)
-Plan: 2 of 2 in current phase
-Status: Phase complete
-Last activity: 2026-01-10 — Completed 32-02-PLAN.md
+Phase: Milestone complete
+Plan: N/A
+Status: Ready to plan v1.5
+Last activity: 2026-01-10 — v1.4 Power User Feedback shipped
 
 Progress: [██████████] 100% (v1.4 milestone complete)
 
@@ -40,45 +40,58 @@ Progress: [██████████] 100% (v1.4 milestone complete)
 - 9 new graded reader stories (A1/A2/B1)
 - 72 E2E tests validating core promise
 
+**v1.4 Power User Feedback shipped 2026-01-10**
+- 6 phases (27-32), 13 plans, 67 commits
+- 89 files modified (+5,514 / -1,193 lines)
+- Navigation overhaul (More → Resources, Tools merge)
+- Vocabulary enhancements (save-to-glossary, gender colors, definite articles)
+- Session persistence for practice
+- Alphabet curriculum integration
+
 See `.planning/MILESTONES.md` for full details.
 
-## Success Criteria (v1.3)
+## Success Criteria (v1.4)
 
-**Bug Fixes (Phase 21):** COMPLETE
-- [x] Clickable vocabulary cards working
-- [x] Vocabulary names/surnames cleaned up
+**Bug Fixes (Phase 27):** COMPLETE
+- [x] Light mode color fixes across 15+ components
+- [x] Back button i18n for Learn/Reader pages
+- [x] Expandable grammar examples with "show more"
+- [x] Macedonian keyboard hints for text inputs
 
-**Content Effectiveness (Phase 22):** COMPLETE
-- [x] Learning progression audited (6.5 → 7.5 → 7.6 avg chars)
-- [x] Exercise quality verified (21 exercises sampled, all pass)
-- [x] Translation accuracy checked (240 → 0 issues)
+**Navigation Overhaul (Phase 28):** COMPLETE
+- [x] More menu → Resources page
+- [x] UserMenu consolidation with Settings/Help/About
+- [x] Tools merge (Translate + Analyzer unified)
+- [x] Learning Paths removed
 
-**Practice UX (Phase 23):** COMPLETE
-- [x] My Saved Words section internationalized
-- [x] Post-lesson practice flow improved with i18n
+**Lesson Enhancements (Phase 29):** COMPLETE
+- [x] Save-to-glossary on vocabulary cards
+- [x] Vocabulary sort toggle (Category/A-Ш/Type)
+- [x] Section stepper dots for mobile
+- [x] Vocabulary practice CTA
 
-**User Journey (Phase 24):** COMPLETE
-- [x] Learn → Practice → Reader flow connected
-- [x] Practice results shows "Read Something" CTA → Reader
-- [x] Reader workspace shows "Practice Now" CTA → Practice (when saved words > 0)
-- [x] Reader library shows "Continue your lessons" → Learn
+**Vocabulary Display (Phase 30):** COMPLETE
+- [x] Gender annotations with color coding (sky=m, rose=f, amber=n)
+- [x] Definite article display for nouns
+- [x] Redundant Back to Dashboard links removed
 
-**Content Expansion (Phase 25):** COMPLETE
-- [x] A1 graded reader stories (3 new stories)
-- [x] A2 graded reader stories (3 new stories)
-- [x] B1 graded reader stories (3 new stories)
+**State Persistence (Phase 31):** COMPLETE
+- [x] Practice session persistence (localStorage)
+- [x] Resume prompt with i18n
+- [x] 24-hour staleness threshold, debounced saves
 
-**Validation (Phase 26):** COMPLETE
-- [x] Dark mode compliance verified (6 components updated)
-- [x] LessonSection compound component created
-- [x] User journey E2E validation (72 tests pass)
+**Content & Polish (Phase 32):** COMPLETE
+- [x] Alphabet lesson as first A1 curriculum node
+- [x] Missing pronouns (наш/нивни) exercises added
+- [x] MLC badge attribution restored in Reader
+- [x] Translation UX audit (already consistent)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 55
+- Total plans completed: 68
 - Average duration: ~9 min
-- Total execution time: ~8.3 hours
+- Total execution time: ~10 hours
 
 **By Milestone:**
 
@@ -87,6 +100,8 @@ See `.planning/MILESTONES.md` for full details.
 | v1.0 Beta | 7 | 21 | 57 | 1 day |
 | v1.1 Curriculum | 9 | 18 | ~40 | 2 days |
 | v1.2 Infrastructure | 4 | 7 | 25 | 1 day |
+| v1.3 User Journey | 6 | 9 | ~30 | 1 day |
+| v1.4 Power User | 6 | 13 | 67 | 1 day |
 
 ## Accumulated Context
 
@@ -98,6 +113,9 @@ All decisions logged in PROJECT.md Key Decisions table with outcomes.
 
 - Cloudflare migration — Re-evaluate when OpenNext supports Next.js 16
 - ISS-001: Wire A2 graded readers to reader UI — content exists, not wired
+- About page MLC/Andri credits — not implemented in v1.4
+- Quiz retake button — not implemented in v1.4
+- Section stepper forward navigation — partial implementation
 
 ### Blockers/Concerns
 
@@ -109,11 +127,12 @@ None.
 - Milestone v1.1 shipped: Curriculum quality fix (Phases 8-16)
 - Milestone v1.2 shipped: Infrastructure & CI overhaul (Phases 17-20)
 - Milestone v1.3 shipped: Content quality & user journey (Phases 21-26)
-- Milestone v1.4 created: Power user feedback (Phases 27-32)
+- Milestone v1.4 shipped: Power user feedback (Phases 27-32)
+- Milestone v1.5 planned: Audio removal + remaining polish + practice improvements
 
 ## Session Continuity
 
 Last session: 2026-01-10
-Stopped at: Completed 32-02-PLAN.md
+Stopped at: v1.4 milestone complete
 Resume file: None
-Next step: /gsd:complete-milestone (v1.4 Power User Feedback complete)
+Next step: /gsd:new-milestone to create v1.5

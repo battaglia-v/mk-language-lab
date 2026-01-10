@@ -1,5 +1,36 @@
 # Project Milestones: MKLanguage Learning System
 
+## v1.4 Power User Feedback (Shipped: 2026-01-10)
+
+**Delivered:** Systematic response to real user feedback — bug fixes (light mode, expandable examples, keyboard hints), navigation overhaul (More → Resources, UserMenu consolidation), lesson enhancements (save-to-glossary, sort toggle, section stepper), vocabulary display improvements (gender colors, definite articles), session persistence for practice, and content polish (alphabet at A1 start, missing pronouns).
+
+**Phases completed:** 27-32 (13 plans total)
+
+**Key accomplishments:**
+
+- Light mode color fixes with semantic design tokens across 15+ components
+- Navigation overhaul: More → Resources page, UserMenu consolidation with Settings/Help/About
+- Tools merge: Translate + Analyzer unified into single page with toggle
+- Save-to-glossary on vocabulary cards with 3-mode sort toggle (Category/A-Ш/Type)
+- Gender annotations with color coding (sky=m, rose=f, amber=n) and definite articles
+- Session persistence for practice (localStorage with 24-hour staleness, debounced save)
+- Alphabet lesson integrated as first A1 curriculum node with localStorage completion tracking
+- Missing pronouns added (наш/нивни exercises for possessive forms)
+- MLC badge attribution restored in Reader workspace
+
+**Stats:**
+
+- 89 files created/modified
+- +5,514 / -1,193 lines changed
+- 6 phases, 13 plans, 67 commits
+- 1 day (2026-01-10)
+
+**Git range:** `docs(27)` → `docs(32-02)`
+
+**What's next:** v1.5 (audio removal, remaining polish, practice improvements)
+
+---
+
 ## v1.3 Content Quality & User Journey (Shipped: 2026-01-10)
 
 **Delivered:** User journey CTAs connecting Learn → Practice → Reader sections, 9 new graded reader stories, and comprehensive E2E validation of the core promise "always resume in the right place, next step obvious."
