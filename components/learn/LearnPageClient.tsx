@@ -5,6 +5,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Zap, Play, BookOpen, ChevronRight, Check, GraduationCap, Sparkles, Info, ChevronDown } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import { getLocalXP } from '@/lib/gamification/local-xp';
@@ -227,44 +228,39 @@ export function LearnPageClient({
           </div>
 
           {/* Primary CTA - Start or Continue */}
-          <Link
-            href={ctaHref}
-            data-testid="cta-start-here"
-            aria-label={ctaLabel}
+          <div
             className={cn(
-              'group rounded-2xl border border-border/60 bg-card p-4 shadow-sm',
-              'transition-all duration-200 hover:border-primary/30 hover:shadow-md',
-              'active:scale-[0.99]'
+              'rounded-xl border border-border/60 bg-card/80 px-3 py-2.5 shadow-sm',
+              'transition-colors duration-200 hover:border-primary/30'
             )}
           >
-            <div className="flex items-center gap-4">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                <Play className="h-5 w-5" fill="currentColor" />
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <Play className="h-4 w-4" fill="currentColor" />
               </div>
-              <div className="min-w-0 flex-1 space-y-1">
-                <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                  {ctaLabel}
-                </div>
-                <div className="text-base font-semibold text-foreground line-clamp-2">
+              <div className="min-w-0 flex-1 space-y-0.5">
+                <div className="text-sm font-semibold text-foreground line-clamp-1">
                   {ctaTitle}
                 </div>
                 {ctaDescription && (
-                  <div className="text-xs text-muted-foreground line-clamp-2">
+                  <div className="text-xs text-muted-foreground line-clamp-1">
                     {ctaDescription}
                   </div>
                 )}
               </div>
-              <div
-                className={cn(
-                  'flex h-10 w-10 items-center justify-center rounded-full',
-                  'bg-primary text-primary-foreground shadow-sm',
-                  'transition-colors group-hover:bg-primary/90'
-                )}
+              <Link
+                href={ctaHref}
+                data-testid="cta-start-here"
+                aria-label={ctaLabel}
+                className="shrink-0"
               >
-                <ChevronRight className="h-4 w-4" />
-              </div>
+                <Button size="sm" className="rounded-full px-3 gap-1.5">
+                  {ctaLabel}
+                  <ChevronRight className="h-4 w-4" />
+                </Button>
+              </Link>
             </div>
-          </Link>
+          </div>
 
 
           {/* Level Selection */}

@@ -1,8 +1,15 @@
 #!/usr/bin/expect -f
 set timeout 300
 spawn bubblewrap build --skipPwaValidation
-expect "Password for the Key Store:"
-send "MKLanguage2025!\r"
-expect "Password for the Key:"
+expect {
+  -re "There are changes in twa-manifest.json" {
+    send "y\r"
+    exp_continue
+  }
+  -re "Password for the Key Store:" {
+    send "MKLanguage2025!\r"
+  }
+}
+expect -re "Password for the Key:"
 send "MKLanguage2025!\r"
 expect eof
