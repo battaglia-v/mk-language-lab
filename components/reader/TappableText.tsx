@@ -339,11 +339,11 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
               className={cn(
                 'cursor-pointer rounded-md px-1.5 py-1 -mx-1.5 transition-all duration-150 inline-block',
                 'hover:bg-primary/20 focus:bg-primary/20 focus:outline-none',
-                'touch-manipulation', // Better mobile touch handling
-                // Show selected state with prominent highlight
+                'touch-manipulation select-none', // Better mobile touch handling, prevent selection
+                // Show selected state with prominent highlight and subtle depth
                 isSelected
-                  ? 'bg-primary/40 text-primary-foreground ring-2 ring-primary/60 scale-105'
-                  : 'active:bg-primary/30 active:scale-105',
+                  ? 'bg-primary/40 text-primary-foreground ring-2 ring-primary/60 scale-105 shadow-sm shadow-primary/20'
+                  : 'active:bg-primary/30 active:scale-105 active:shadow-sm',
                 // Subtle underline for words with known translations
                 !isSelected && hasAnalysis && 'underline decoration-primary/40 decoration-dotted underline-offset-4'
               )}
