@@ -42,7 +42,7 @@ export const APP_META = {
   /**
    * Version
    */
-  version: '1.0.0',
+  version: '2',
 
   /**
    * i18n keys for localized display names

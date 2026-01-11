@@ -5,7 +5,7 @@
 
 > **Ready to Submit**: January 2026
 > **Package**: `com.mklanguage.twa`
-> **Version**: 1.0.0
+> **Version**: 2
 
 ---
 

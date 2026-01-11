@@ -153,7 +153,7 @@ New: Custom flashcard decks and improved practice sessions! Learn Macedonian wit
 ## What's New (Release Notes Template)
 *500 characters max*
 
-### Version 1.0.0 (Launch)
+### Version 2 (Launch)
 • Interactive Macedonian grammar lessons
 • Quick Practice with adaptive difficulty
 • Real Macedonian news and reader content
