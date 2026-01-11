@@ -184,55 +184,45 @@ Plans:
 Plans:
 - [x] 42-01: Remove intro section and enable free navigation — completed 2026-01-11
 
-#### Phase 43: Vocabulary Audit & Improvements
+#### Phase 43: Vocabulary & Grammar Audit
 
-**Goal**: Curate words relevant to lesson themes, fix translations, align difficulty per lesson
+**Goal**: Curate vocabulary to 30-50 theme-relevant words per lesson, clean grammar notes to remove PDF artifacts and ensure pedagogical clarity. Merges original Phases 43 (Vocabulary) and 44 (Grammar) since Macedonian vocabulary and grammar are deeply intertwined.
 **Depends on**: Phase 42
 **Research**: Unlikely (content editing, existing structures)
-**Plans**: TBD
+**Plans**: 2
 
 Plans:
-- [ ] 43-01: TBD
+- [ ] 43-01: Vocabulary audit and curation (audit, curate, reseed)
+- [ ] 43-02: Grammar audit and cleanup (audit, clean PDF artifacts, standardize)
 
-#### Phase 44: Grammar Audit & Improvements
+#### Phase 44: Content Completeness Audit
 
-**Goal**: Rewrite unclear explanations, add context to examples, ensure patterns are clear
+**Goal**: Ensure lessons deliver what they promise in intro/summary, fill content gaps
 **Depends on**: Phase 43
-**Research**: Unlikely (content editing, existing structures)
+**Research**: Unlikely (content audit, existing formats)
 **Plans**: TBD
 
 Plans:
 - [ ] 44-01: TBD
 
-#### Phase 45: Content Completeness Audit
-
-**Goal**: Ensure lessons deliver what they promise in intro/summary, fill content gaps
-**Depends on**: Phase 44
-**Research**: Unlikely (content audit, existing formats)
-**Plans**: TBD
-
-Plans:
-- [ ] 45-01: TBD
-
-#### Phase 46: Validation & Polish
+#### Phase 45: Validation & Polish
 
 **Goal**: E2E tests for new lesson flow, user journey validation
-**Depends on**: Phase 45
+**Depends on**: Phase 44
 **Research**: Unlikely (internal E2E patterns)
 **Plans**: TBD
 
 Plans:
-- [ ] 46-01: TBD
+- [ ] 45-01: TBD
 
 ## Progress
 
 | Phase | Milestone | Plans | Status | Completed |
 |-------|-----------|-------|--------|-----------|
 | 42. Lesson Flow Simplification | v1.7 | 1/1 | Complete | 2026-01-11 |
-| 43. Vocabulary Audit | v1.7 | 0/? | Not started | - |
-| 44. Grammar Audit | v1.7 | 0/? | Not started | - |
-| 45. Content Completeness | v1.7 | 0/? | Not started | - |
-| 46. Validation & Polish | v1.7 | 0/? | Not started | - |
+| 43. Vocabulary & Grammar Audit | v1.7 | 0/2 | Not started | - |
+| 44. Content Completeness | v1.7 | 0/? | Not started | - |
+| 45. Validation & Polish | v1.7 | 0/? | Not started | - |
 
 **Completed Milestones:**
 - [v1.0 Beta](milestones/v1.0-ROADMAP.md) — 7 phases, 21 plans (shipped 2026-01-07)
