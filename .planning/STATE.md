@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-11)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** Planning next milestone
+**Current focus:** v1.7 Learn Experience Overhaul
 
 ## Current Position
 
-Phase: All phases complete (41 total)
-Plan: N/A
-Status: Ready for next milestone planning
-Last activity: 2026-01-11 — v1.6 Reader Overhaul shipped
+Phase: 42 of 46 (Lesson Flow Simplification)
+Plan: Not started
+Status: Ready to plan
+Last activity: 2026-01-11 — Milestone v1.7 created
 
-Progress: All milestones complete through v1.6
+Progress: ░░░░░░░░░░ 0%
 
 ## Milestone Summary
 
@@ -68,7 +68,7 @@ See `.planning/MILESTONES.md` for full details.
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 81 (75 + 6 from v1.5 + 7 from v1.6 - counted correctly: 21+18+7+9+13+6+7 = 81)
+- Total plans completed: 81
 - Average duration: ~9 min
 - Total execution time: ~12 hours
 
@@ -107,9 +107,10 @@ None.
 - Milestone v1.4 shipped: Power user feedback (Phases 27-32)
 - Milestone v1.5 shipped: Audio cleanup & final polish (Phases 33-35)
 - Milestone v1.6 shipped: Reader overhaul (Phases 36-41)
+- Milestone v1.7 created: Learn experience overhaul (Phases 42-46)
 
 ## Session Continuity
 
 Last session: 2026-01-11
-Stopped at: v1.6 milestone complete — ready for next milestone planning
+Stopped at: Milestone v1.7 initialization
 Resume file: None
