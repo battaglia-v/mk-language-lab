@@ -1,0 +1,4193 @@
+{
+  "id": "b1-zlatovrv",
+  "journeyId": "ukim-b1",
+  "title": "Златоврв",
+  "level": "B1",
+  "chapters": [
+    {
+      "lessonNumber": 1,
+      "title": "Lesson 1: Дали се разбираме?",
+      "titleMk": "Лекција 1: Дали се разбираме?",
+      "startPage": 8,
+      "endPage": 23,
+      "themes": [],
+      "vocabularyItems": [
+        {
+          "word": "рамниште",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "plain",
+          "gender": "neuter",
+          "transliteration": "ramnishte",
+          "isCore": true
+        },
+        {
+          "word": "надоврзување",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "follow-up",
+          "gender": "neuter",
+          "transliteration": "nadovrzuvanje",
+          "isCore": true
+        },
+        {
+          "word": "учебникот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the textbook",
+          "gender": "masculine",
+          "transliteration": "uchebnikot",
+          "isCore": true
+        },
+        {
+          "word": "изработен",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "made",
+          "transliteration": "izraboten",
+          "isCore": true
+        },
+        {
+          "word": "Универзитетот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the university",
+          "gender": "masculine",
+          "transliteration": "Univerzitetot",
+          "isCore": true
+        },
+        {
+          "word": "Надградување",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "upgrade",
+          "gender": "neuter",
+          "transliteration": "Nadgraduvanje",
+          "isCore": true
+        },
+        {
+          "word": "студиските",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the studies",
+          "gender": "neuter",
+          "transliteration": "studiskite",
+          "isCore": true
+        },
+        {
+          "word": "јазик",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "language",
+          "gender": "masculine",
+          "transliteration": "jazik",
+          "isCore": true
+        },
+        {
+          "word": "однос",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "relationship/ratio",
+          "gender": "masculine",
+          "transliteration": "odnos",
+          "isCore": true
+        },
+        {
+          "word": "задржувањето",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the retention",
+          "gender": "neuter",
+          "transliteration": "zadrzhuvanjeto",
+          "isCore": true
+        },
+        {
+          "word": "комуникативниот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the communicative one",
+          "gender": "masculine",
+          "transliteration": "komunikativniot",
+          "isCore": true
+        },
+        {
+          "word": "основните",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the basic ones",
+          "gender": "neuter",
+          "transliteration": "osnovnite",
+          "isCore": true
+        },
+        {
+          "word": "јазични",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "linguistic",
+          "transliteration": "jazichni",
+          "isCore": true
+        },
+        {
+          "word": "изостанува",
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "is missing",
+          "transliteration": "izostanuva",
+          "isCore": true
+        },
+        {
+          "word": "прилог",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "attachment",
+          "gender": "masculine",
+          "transliteration": "prilog",
+          "isCore": true
+        },
+        {
+          "word": "јазичен",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "linguistic",
+          "transliteration": "jazichen",
+          "isCore": true
+        },
+        {
+          "word": "вештината",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the skill",
+          "gender": "feminine",
+          "transliteration": "veshtinata",
+          "isCore": true
+        },
+        {
+          "word": "настан",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "an event",
+          "gender": "masculine",
+          "transliteration": "nastan",
+          "isCore": true
+        },
+        {
+          "word": "голема",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "big (feminine)",
+          "transliteration": "golema",
+          "isCore": true
+        },
+        {
+          "word": "мера",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "measure",
+          "gender": "feminine",
+          "transliteration": "mera",
+          "isCore": true
+        },
+        {
+          "word": "темите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the topics",
+          "gender": "neuter",
+          "transliteration": "temite",
+          "isCore": true
+        },
+        {
+          "word": "преосмислени",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "rethought",
+          "transliteration": "preosmisleni",
+          "isCore": true
+        },
+        {
+          "word": "преземени",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "taken over",
+          "transliteration": "prezemeni",
+          "isCore": true
+        },
+        {
+          "word": "текстови",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "texts",
+          "transliteration": "tekstovi",
+          "isCore": true
+        },
+        {
+          "word": "вежби",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "exercises",
+          "transliteration": "vezhbi",
+          "isCore": true
+        },
+        {
+          "word": "изразувам",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "I express",
+          "gender": "masculine",
+          "transliteration": "izrazuvam",
+          "isCore": true
+        },
+        {
+          "word": "благодарност",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "gratitude",
+          "gender": "masculine",
+          "transliteration": "blagodarnost",
+          "isCore": true
+        },
+        {
+          "word": "согласноста",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the consent",
+          "gender": "feminine",
+          "transliteration": "soglasnosta",
+          "isCore": true
+        },
+        {
+          "word": "слушателите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the listeners",
+          "gender": "neuter",
+          "transliteration": "slushatelite",
+          "isCore": true
+        },
+        {
+          "word": "напреднатиот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the advanced one",
+          "gender": "masculine",
+          "transliteration": "naprednatiot",
+          "isCore": true
+        },
+        {
+          "word": "рамките",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the framework",
+          "gender": "neuter",
+          "transliteration": "ramkite",
+          "isCore": true
+        },
+        {
+          "word": "Летната",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the summer one",
+          "gender": "feminine",
+          "transliteration": "Letnata",
+          "isCore": true
+        },
+        {
+          "word": "Меѓународниот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the international",
+          "gender": "masculine",
+          "transliteration": "Megjunarodniot",
+          "isCore": true
+        },
+        {
+          "word": "студентите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the students",
+          "gender": "neuter",
+          "transliteration": "studentite",
+          "isCore": true
+        },
+        {
+          "word": "изучуваат",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "they study",
+          "gender": "masculine",
+          "transliteration": "izuchuvaat",
+          "isCore": true
+        },
+        {
+          "word": "лекторатите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the lectureships",
+          "gender": "neuter",
+          "transliteration": "lektoratite",
+          "isCore": true
+        },
+        {
+          "word": "странските",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the foreign ones",
+          "gender": "neuter",
+          "transliteration": "stranskite",
+          "isCore": true
+        },
+        {
+          "word": "истовремено",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "simultaneously",
+          "transliteration": "istovremeno",
+          "isCore": true
+        },
+        {
+          "word": "користи",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "uses",
+          "transliteration": "koristi",
+          "isCore": true
+        },
+        {
+          "word": "наставно",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "educational",
+          "transliteration": "nastavno",
+          "isCore": true
+        },
+        {
+          "word": "помагало",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "aid",
+          "gender": "neuter",
+          "transliteration": "pomagalo",
+          "isCore": true
+        },
+        {
+          "word": "македонските",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the Macedonian ones",
+          "gender": "neuter",
+          "transliteration": "makedonskite",
+          "isCore": true
+        },
+        {
+          "word": "студиски",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "study",
+          "transliteration": "studiski",
+          "isCore": true
+        },
+        {
+          "word": "универзитетите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the universities",
+          "gender": "neuter",
+          "transliteration": "univerzitetite",
+          "isCore": true
+        },
+        {
+          "word": "отвореноста",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "openness",
+          "gender": "feminine",
+          "transliteration": "otvorenosta",
+          "isCore": true
+        },
+        {
+          "word": "подготвеноста",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the readiness",
+          "gender": "feminine",
+          "transliteration": "podgotvenosta",
+          "isCore": true
+        },
+        {
+          "word": "сите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "everyone",
+          "gender": "neuter",
+          "transliteration": "site",
+          "isCore": true
+        },
+        {
+          "word": "слушаа",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "they listened",
+          "gender": "feminine",
+          "transliteration": "slushaa",
+          "isCore": true
+        },
+        {
+          "word": "работата",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the job",
+          "gender": "feminine",
+          "transliteration": "rabotata",
+          "isCore": true
+        },
+        {
+          "word": "надевам",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "I hope",
+          "gender": "masculine",
+          "transliteration": "nadevam",
+          "isCore": true
+        }
+      ],
+      "grammarNotes": [
+        {
+          "title": "Глаголот нема",
+          "content": "B1 verbs focus on aspect (perfective vs. imperfective), complex tense usage, and verb derivation. Perfective verbs indicate completed actions (прочита), imperfective indicate ongoing/repeated actions (чита). Aspect affects tense formation and meaning. Important for expressing nuanced time relationships.",
+          "examples": [
+            "чита (imperfective) → прочита (perfective)",
+            "пишува → напишува (perfective)",
+            "Јас читам книга. (ongoing)",
+            "Јас ја прочитав книгата. (completed)",
+            "Секој ден одев на работа. (repeated)",
+            "Вчера отидов на концерт. (single event)"
+          ],
+          "translatedExamples": [
+            "read (imperfective) → read (perfective)",
+            "writes → writes (perfective)",
+            "I am reading a book. (ongoing)",
+            "I read the book. (completed)",
+            "I went to work every day. (repeated)",
+            "I went to a concert yesterday. (single event)"
+          ]
+        },
+        {
+          "title": "Именки",
+          "content": "At B1 level, noun usage includes advanced declension patterns, vocative case for direct address, and complex plural formations. Macedonian nouns show gender through articles and agreement patterns. Special attention to irregular plurals and collective nouns.",
+          "examples": [
+            "Татко! (vocative - direct address)",
+            "Марија, дојди овде! (vocative)",
+            "човек → луѓе (irregular plural)",
+            "дете → деца (irregular plural)",
+            "брат → браќа (collective)",
+            "книга → книги → книгите (definite plural)"
+          ],
+          "translatedExamples": [
+            "Father! (vocative - direct address)",
+            "Maria, come here! (vocative)",
+            "man → people (irregular plural)",
+            "child → children (irregular plural)",
+            "brother → brothers (collective)",
+            "book → books → the books (definite plural)"
+          ]
+        },
+        {
+          "title": "Придавки",
+          "content": "B1 adjectives include comparative and superlative forms. Comparatives use \"по-\" prefix (по-добар), superlatives use \"нај-\" (најдобар). Irregular forms exist (добар → подобар → најдобар). Adjectives agree in gender, number, and definiteness with modified nouns.",
+          "examples": [
+            "добар → подобар → најдобар",
+            "висок → повисок → највисок",
+            "убав → поубав → најубав",
+            "Оваа книга е поинтересна.",
+            "Тој е најдобриот студент.",
+            "Денес е потопло отколку вчера."
+          ],
+          "translatedExamples": [
+            "good → better → best",
+            "tall → taller → highest",
+            "beautiful → more beautiful → most beautiful",
+            "This book is more interesting.",
+            "He is the best student.",
+            "Today is warmer than yesterday."
+          ]
+        },
+        {
+          "title": "Броеви",
+          "content": "те на тастатурата. Ми се јавува од странство!! Ме бара од нејзиниот службен!!! Застанувам втренчено како вкопан на пусија, откако најпосле сепак сум ја заслушнал нагорната мелодичност на повикот – на прво борбено",
+          "examples": [
+            "Ми се јавува од странство!",
+            "прв, прва, прво (first)",
+            "втор, втора, второ (second)",
+            "трет, трета, трето (third)",
+            "четврт, четврта, четврто (fourth)",
+            "Живеам на петтиот кат.",
+            "Ова е втората лекција.",
+            "Првиот ден беше тежок.",
+            "Третата книга е најдобра.",
+            "Дојдов на десеттото место."
+          ],
+          "translatedExamples": [
+            "He is calling me from abroad!",
+            "first",
+            "second, second",
+            "third, third, third",
+            "fourth, fourth",
+            "I live on the fifth floor.",
+            "This is the second lesson.",
+            "The first day was tough.",
+            "The third book is the best.",
+            "I came in tenth place."
+          ]
+        },
+        {
+          "title": "Условен начин (Conditional)",
+          "content": "The conditional mood in Macedonian uses the particle \"би\" + L-form to express hypothetical situations, polite requests, and wishes. Three types: real (possible), unreal (contrary to fact), and possible (unlikely but theoretically possible). Used for politeness, imagination, and expressing conditions.",
+          "examples": [
+            "Би сакал да дојдам, но не можам.",
+            "Би ли можеле да ми помогнете?",
+            "Таа би студирала медицина, но не положи.",
+            "Кога би имал пари, би патувал по светот.",
+            "Би било убаво да се видиме.",
+            "Што би правел на мое место?"
+          ],
+          "translatedExamples": [
+            "I would like to come, but I can't.",
+            "Could you help me?",
+            "She would have studied medicine, but she didn't pass.",
+            "If I had money, I would travel the world.",
+            "It would be nice to see you.",
+            "What would you do in my place?"
+          ]
+        }
+      ],
+      "intro": "Do we understand each other? This B1 lesson focuses on communication and comprehension. Learn the negative verb 'нема' (there isn't/don't have), expand your noun vocabulary, and refine your adjective usage for nuanced expression."
+    },
+    {
+      "lessonNumber": 2,
+      "title": "Lesson 2: Има ли надеж?",
+      "titleMk": "Лекција 2: Има ли надеж?",
+      "startPage": 24,
+      "endPage": 39,
+      "themes": [],
+      "vocabularyItems": [
+        {
+          "word": "предизвикот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the challenge",
+          "gender": "masculine",
+          "transliteration": "predizvikot",
+          "isCore": true
+        },
+        {
+          "word": "новата",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the new one",
+          "gender": "feminine",
+          "transliteration": "novata",
+          "isCore": true
+        },
+        {
+          "word": "заѕвонам",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "I ring the bell",
+          "gender": "masculine",
+          "transliteration": "zadzvonam",
+          "isCore": true
+        },
+        {
+          "word": "Сто",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "a hundred",
+          "gender": "neuter",
+          "transliteration": "Sto",
+          "isCore": true
+        },
+        {
+          "word": "никако",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "no way",
+          "gender": "neuter",
+          "transliteration": "nikako",
+          "isCore": true
+        },
+        {
+          "word": "сфатам",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "I understand",
+          "gender": "masculine",
+          "transliteration": "sfatam",
+          "isCore": true
+        },
+        {
+          "word": "научам",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "I learn",
+          "gender": "masculine",
+          "transliteration": "naucham",
+          "isCore": true
+        },
+        {
+          "word": "чаршијата",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the bazaar",
+          "gender": "feminine",
+          "transliteration": "charshijata",
+          "isCore": true
+        },
+        {
+          "word": "црквата",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the church",
+          "gender": "feminine",
+          "transliteration": "crkvata",
+          "isCore": true
+        },
+        {
+          "word": "обоените",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the colored ones",
+          "gender": "neuter",
+          "transliteration": "oboenite",
+          "isCore": true
+        },
+        {
+          "word": "употребен",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "used",
+          "transliteration": "upotreben",
+          "isCore": true
+        },
+        {
+          "word": "збороред",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "word order",
+          "gender": "masculine",
+          "transliteration": "zborored",
+          "isCore": true
+        },
+        {
+          "word": "синтагмата",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the phrase",
+          "gender": "feminine",
+          "transliteration": "sintagmata",
+          "isCore": true
+        },
+        {
+          "word": "направите",
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "make/do (2nd person plural/formal)",
+          "transliteration": "napravite",
+          "isCore": true
+        },
+        {
+          "word": "разликата",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the difference",
+          "gender": "feminine",
+          "transliteration": "razlikata",
+          "isCore": true
+        },
+        {
+          "word": "модификатори",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "modifiers",
+          "transliteration": "modifikatori",
+          "isCore": true
+        },
+        {
+          "word": "нов",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "new (masculine)",
+          "transliteration": "nov",
+          "isCore": true
+        },
+        {
+          "word": "новодобиените",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the newly acquired",
+          "gender": "neuter",
+          "transliteration": "novodobienite",
+          "isCore": true
+        },
+        {
+          "word": "членска",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "membership",
+          "transliteration": "chlenska",
+          "isCore": true
+        },
+        {
+          "word": "пресметувам",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "I calculate",
+          "gender": "masculine",
+          "transliteration": "presmetuvam",
+          "isCore": true
+        },
+        {
+          "word": "љубената",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the beloved",
+          "gender": "feminine",
+          "transliteration": "ljubenata",
+          "isCore": true
+        },
+        {
+          "word": "државата",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the state",
+          "gender": "feminine",
+          "transliteration": "drzhavata",
+          "isCore": true
+        },
+        {
+          "word": "загледувам",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "I stare",
+          "gender": "masculine",
+          "transliteration": "zagleduvam",
+          "isCore": true
+        },
+        {
+          "word": "бандерата",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the flag",
+          "gender": "feminine",
+          "transliteration": "banderata",
+          "isCore": true
+        },
+        {
+          "word": "извишува",
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "rises up",
+          "transliteration": "izvishuva",
+          "isCore": true
+        },
+        {
+          "word": "дворот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the yard",
+          "gender": "masculine",
+          "transliteration": "dvorot",
+          "isCore": true
+        },
+        {
+          "word": "црковен",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "ecclesiastical",
+          "transliteration": "crkoven",
+          "isCore": true
+        },
+        {
+          "word": "станот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the apartment",
+          "gender": "masculine",
+          "transliteration": "stanot",
+          "isCore": true
+        },
+        {
+          "word": "изгледа",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "it seems",
+          "gender": "feminine",
+          "transliteration": "izgleda",
+          "isCore": true
+        },
+        {
+          "word": "посебно",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "separately",
+          "transliteration": "posebno",
+          "isCore": true
+        },
+        {
+          "word": "раката",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the hand",
+          "gender": "feminine",
+          "transliteration": "rakata",
+          "isCore": true
+        },
+        {
+          "word": "наведна",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "bent over",
+          "transliteration": "navedna",
+          "isCore": true
+        },
+        {
+          "word": "измазни",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "smooth out",
+          "transliteration": "izmazni",
+          "isCore": true
+        },
+        {
+          "word": "чаршафот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the sheet",
+          "gender": "masculine",
+          "transliteration": "charshafot",
+          "isCore": true
+        },
+        {
+          "word": "имав",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "I had",
+          "gender": "masculine",
+          "transliteration": "imav",
+          "isCore": true
+        },
+        {
+          "word": "очите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the eyes",
+          "gender": "neuter",
+          "transliteration": "ochite",
+          "isCore": true
+        },
+        {
+          "word": "извлекле",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "they pulled out",
+          "gender": "neuter",
+          "transliteration": "izvlekle",
+          "isCore": true
+        },
+        {
+          "word": "изгледав",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "I looked",
+          "gender": "masculine",
+          "transliteration": "izgledav",
+          "isCore": true
+        },
+        {
+          "word": "стрчеа",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "they ran",
+          "gender": "feminine",
+          "transliteration": "strchea",
+          "isCore": true
+        },
+        {
+          "word": "соодветените",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the appropriate ones",
+          "gender": "neuter",
+          "transliteration": "soodvetenite",
+          "isCore": true
+        },
+        {
+          "word": "определбите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the determinations",
+          "gender": "neuter",
+          "transliteration": "opredelbite",
+          "isCore": true
+        },
+        {
+          "word": "нозете",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the legs",
+          "gender": "neuter",
+          "transliteration": "nozete",
+          "isCore": true
+        },
+        {
+          "word": "видиш",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "you see",
+          "gender": "masculine",
+          "transliteration": "vidish",
+          "isCore": true
+        },
+        {
+          "word": "сигурно",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "for sure",
+          "transliteration": "sigurno",
+          "isCore": true
+        },
+        {
+          "word": "знаете",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "you know",
+          "gender": "neuter",
+          "transliteration": "znaete",
+          "isCore": true
+        },
+        {
+          "word": "испретуриле",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "searched",
+          "gender": "neuter",
+          "transliteration": "ispreturile",
+          "isCore": true
+        },
+        {
+          "word": "пајакот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the spider",
+          "gender": "masculine",
+          "transliteration": "pajakot",
+          "isCore": true
+        },
+        {
+          "word": "исчезнал",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "disappeared",
+          "gender": "masculine",
+          "transliteration": "ischeznal",
+          "isCore": true
+        },
+        {
+          "word": "вземи",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "take it",
+          "transliteration": "vzemi",
+          "isCore": true
+        },
+        {
+          "word": "пропаднал",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "failed",
+          "gender": "masculine",
+          "transliteration": "propadnal",
+          "isCore": true
+        }
+      ],
+      "grammarNotes": [
+        {
+          "title": "Именки",
+          "content": "At B1 level, noun usage includes advanced declension patterns, vocative case for direct address, and complex plural formations. Macedonian nouns show gender through articles and agreement patterns. Special attention to irregular plurals and collective nouns.",
+          "examples": [
+            "Татко! (vocative - direct address)",
+            "Марија, дојди овде! (vocative)",
+            "човек → луѓе (irregular plural)",
+            "дете → деца (irregular plural)",
+            "брат → браќа (collective)",
+            "книга → книги → книгите (definite plural)"
+          ],
+          "translatedExamples": [
+            "Father! (vocative - direct address)",
+            "Maria, come here! (vocative)",
+            "man → people (irregular plural)",
+            "child → children (irregular plural)",
+            "brother → brothers (collective)",
+            "book → books → the books (definite plural)"
+          ]
+        },
+        {
+          "title": "Заменки",
+          "content": "Relative pronouns connect clauses: кој/која/кое (who/which - for people/things), што (that/what), каде (where), кога (when), како (how). They introduce relative clauses that modify nouns or provide additional information. Gender and number agreement required.",
+          "examples": [
+            "наместо заменките да употребите соодветна членска наставка (на пример: ова прекрасно утро -- прекрасново утро); б.",
+            "да ја коментирате евентуалната разлика меѓу двете варијанти; г.",
+            "да се обидете во синтагмата да ги употребите и заменката и членската наставка ."
+          ],
+          "translatedExamples": [
+            "instead of pronouns, use an appropriate article suffix (for example: this beautiful morning -- this beautiful morning); b.",
+            "to comment on the possible difference between the two variants; d.",
+            "try to use both the pronoun and the article suffix in the sentence."
+          ]
+        }
+      ],
+      "intro": "Is there hope? Explore deeper topics of optimism, future outlook, and abstract concepts. Build advanced noun and pronoun skills for discussing complex ideas and emotional states."
+    },
+    {
+      "lessonNumber": 3,
+      "title": "Lesson 3: Моето здравје",
+      "titleMk": "Лекција 3: Моето здравје",
+      "startPage": 40,
+      "endPage": 55,
+      "themes": [],
+      "vocabularyItems": [
+        {
+          "word": "личностите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the persons",
+          "gender": "neuter",
+          "transliteration": "lichnostite",
+          "isCore": true
+        },
+        {
+          "word": "изјави",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "he declared",
+          "transliteration": "izjavi",
+          "isCore": true
+        },
+        {
+          "word": "свеста",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "consciousness",
+          "gender": "feminine",
+          "transliteration": "svesta",
+          "isCore": true
+        },
+        {
+          "word": "потребата",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the need",
+          "gender": "feminine",
+          "transliteration": "potrebata",
+          "isCore": true
+        },
+        {
+          "word": "замена",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "replacement",
+          "transliteration": "zamena",
+          "isCore": true
+        },
+        {
+          "word": "пластичните",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the plastic ones",
+          "gender": "neuter",
+          "transliteration": "plastichnite",
+          "isCore": true
+        },
+        {
+          "word": "Кралството",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the kingdom",
+          "gender": "neuter",
+          "transliteration": "Kralstvoto",
+          "isCore": true
+        },
+        {
+          "word": "Лончар",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "a potter",
+          "gender": "masculine",
+          "transliteration": "Lonchar",
+          "isCore": true
+        },
+        {
+          "word": "претседателка",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "president",
+          "gender": "feminine",
+          "transliteration": "pretsedatelka",
+          "isCore": true
+        },
+        {
+          "word": "Неразградливите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the non-degradable",
+          "gender": "neuter",
+          "transliteration": "Nerazgradlivite",
+          "isCore": true
+        },
+        {
+          "word": "огромен",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "huge",
+          "transliteration": "ogromen",
+          "isCore": true
+        },
+        {
+          "word": "целокупната",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the whole",
+          "gender": "feminine",
+          "transliteration": "celokupnata",
+          "isCore": true
+        },
+        {
+          "word": "животинскиот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the animal",
+          "gender": "masculine",
+          "transliteration": "zhivotinskiot",
+          "isCore": true
+        },
+        {
+          "word": "реките",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the rivers",
+          "gender": "neuter",
+          "transliteration": "rekite",
+          "isCore": true
+        },
+        {
+          "word": "морињата",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the seas",
+          "gender": "feminine",
+          "transliteration": "morinjata",
+          "isCore": true
+        },
+        {
+          "word": "океаните",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the oceans",
+          "gender": "neuter",
+          "transliteration": "okeanite",
+          "isCore": true
+        },
+        {
+          "word": "Лично",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "personally",
+          "transliteration": "Lichno",
+          "isCore": true
+        },
+        {
+          "word": "денешната",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "today's",
+          "gender": "feminine",
+          "transliteration": "deneshnata",
+          "isCore": true
+        },
+        {
+          "word": "секојдневни",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "everyday",
+          "transliteration": "sekojdnevni",
+          "isCore": true
+        },
+        {
+          "word": "учествуваме",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "we participate",
+          "gender": "neuter",
+          "transliteration": "uchestvuvame",
+          "isCore": true
+        },
+        {
+          "word": "бидеме",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "let's be",
+          "gender": "neuter",
+          "transliteration": "bideme",
+          "isCore": true
+        },
+        {
+          "word": "колеги",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "colleagues",
+          "transliteration": "kolegi",
+          "isCore": true
+        },
+        {
+          "word": "спроведуваме",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "we implement",
+          "gender": "neuter",
+          "transliteration": "sproveduvame",
+          "isCore": true
+        },
+        {
+          "word": "нова",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "new (feminine)",
+          "transliteration": "nova",
+          "isCore": true
+        },
+        {
+          "word": "испраќаме",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "we send",
+          "gender": "neuter",
+          "transliteration": "isprakjame",
+          "isCore": true
+        },
+        {
+          "word": "поединци",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "individuals",
+          "transliteration": "poedinci",
+          "isCore": true
+        },
+        {
+          "word": "своето",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "his own",
+          "gender": "neuter",
+          "transliteration": "svoeto",
+          "isCore": true
+        },
+        {
+          "word": "придонесеме",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "let's contribute",
+          "gender": "neuter",
+          "transliteration": "pridoneseme",
+          "isCore": true
+        },
+        {
+          "word": "унапредувањето",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the promotion",
+          "gender": "neuter",
+          "transliteration": "unapreduvanjeto",
+          "isCore": true
+        },
+        {
+          "word": "апелирам",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "I appeal",
+          "gender": "masculine",
+          "transliteration": "apeliram",
+          "isCore": true
+        },
+        {
+          "word": "останатите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the rest",
+          "gender": "neuter",
+          "transliteration": "ostanatite",
+          "isCore": true
+        },
+        {
+          "word": "целото",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the whole",
+          "gender": "neuter",
+          "transliteration": "celoto",
+          "isCore": true
+        },
+        {
+          "word": "одговорноста",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the responsibility",
+          "gender": "feminine",
+          "transliteration": "odgovornosta",
+          "isCore": true
+        },
+        {
+          "word": "ангажираат",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "hire",
+          "gender": "masculine",
+          "transliteration": "angazhiraat",
+          "isCore": true
+        },
+        {
+          "word": "решавањето",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the solution",
+          "gender": "neuter",
+          "transliteration": "reshavanjeto",
+          "isCore": true
+        },
+        {
+          "word": "креираме",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "we create",
+          "gender": "neuter",
+          "transliteration": "kreirame",
+          "isCore": true
+        },
+        {
+          "word": "услови",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "conditions",
+          "transliteration": "uslovi",
+          "isCore": true
+        },
+        {
+          "word": "одржлива",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "sustainable",
+          "gender": "feminine",
+          "transliteration": "odrzhliva",
+          "isCore": true
+        },
+        {
+          "word": "идните",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "future ones",
+          "gender": "neuter",
+          "transliteration": "idnite",
+          "isCore": true
+        },
+        {
+          "word": "пластиката",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the plastic",
+          "gender": "feminine",
+          "transliteration": "plastikata",
+          "isCore": true
+        },
+        {
+          "word": "намалиме",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "let's reduce",
+          "gender": "neuter",
+          "transliteration": "namalime",
+          "isCore": true
+        },
+        {
+          "word": "подолготрајни",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "longer lasting",
+          "transliteration": "podolgotrajni",
+          "isCore": true
+        },
+        {
+          "word": "повеќекратна",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "multiple",
+          "transliteration": "povekjekratna",
+          "isCore": true
+        },
+        {
+          "word": "најопасно",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "most dangerous",
+          "transliteration": "najopasno",
+          "isCore": true
+        },
+        {
+          "word": "разградуваат",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "decompose",
+          "gender": "masculine",
+          "transliteration": "razgraduvaat",
+          "isCore": true
+        },
+        {
+          "word": "знаеме",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "we know",
+          "gender": "neuter",
+          "transliteration": "znaeme",
+          "isCore": true
+        },
+        {
+          "word": "сметаме",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "we count",
+          "gender": "neuter",
+          "transliteration": "smetame",
+          "isCore": true
+        },
+        {
+          "word": "употребуваме",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "we use",
+          "gender": "neuter",
+          "transliteration": "upotrebuvame",
+          "isCore": true
+        },
+        {
+          "word": "завршува",
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "ends",
+          "transliteration": "zavrshuva",
+          "isCore": true
+        },
+        {
+          "word": "природата",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "nature",
+          "gender": "feminine",
+          "transliteration": "prirodata",
+          "isCore": true
+        }
+      ],
+      "grammarNotes": [
+        {
+          "title": "Глаголот честита",
+          "content": "B1 verbs focus on aspect (perfective vs. imperfective), complex tense usage, and verb derivation. Perfective verbs indicate completed actions (прочита), imperfective indicate ongoing/repeated actions (чита). Aspect affects tense formation and meaning. Important for expressing nuanced time relationships.",
+          "examples": [
+            "Пасус Г.",
+            "Од ваша гледна точка толкувајте ги причината и начинот на кој ликот во расказот го троши кусурот.",
+            "Во какво расположение се наоѓа ликот?",
+            "Дали функцијата и значењето на дативната кратка заменска форма во деловите Ви падна нешто и Ми рекоа е иста?",
+            "Што значи зборот на во делот ‘на, земи си го’ ?"
+          ],
+          "translatedExamples": [
+            "Passage G.",
+            "Interpret from your point of view why and how the character in the story spends the change.",
+            "What mood is the character in?",
+            "Is the function and meaning of the dative short pronoun in the sections Did something happen to you and They told me the same?",
+            "What does the word na mean in the section 'na, take it for yourself'?"
+          ]
+        }
+      ],
+      "intro": "My health matters! Dive into comprehensive health vocabulary - symptoms, treatments, and wellness. Learn congratulatory expressions and medical terminology for healthcare conversations."
+    },
+    {
+      "lessonNumber": 4,
+      "title": "Lesson 4: Што (ќе) јадеме (денес)?",
+      "titleMk": "Лекција 4: Што (ќе) јадеме (денес)?",
+      "startPage": 56,
+      "endPage": 71,
+      "themes": [],
+      "vocabularyItems": [
+        {
+          "word": "ценат",
+          "partOfSpeech": "noun",
+          "context": "singular",
+          "translation": "appreciate",
+          "gender": "masculine",
+          "transliteration": "cenat",
+          "isCore": true
+        },
+        {
+          "word": "странци",
+          "partOfSpeech": "noun",
+          "context": "plural",
+          "translation": "foreigners",
+          "transliteration": "stranci",
+          "isCore": true
+        },
+        {
+          "word": "младата",
+          "partOfSpeech": "noun",
+          "context": "singular",
+          "translation": "the young one",
+          "gender": "feminine",
+          "transliteration": "mladata",
+          "isCore": true
+        },
+        {
+          "word": "автомоби",
+          "partOfSpeech": "noun",
+          "context": "plural",
+          "translation": "cars",
+          "transliteration": "avtomobi",
+          "isCore": true
+        },
+        {
+          "word": "избегнуваме",
+          "partOfSpeech": "noun",
+          "context": "singular",
+          "translation": "we avoid",
+          "gender": "neuter",
+          "transliteration": "izbegnuvame",
+          "isCore": true
+        },
+        {
+          "word": "сообраќајни",
+          "partOfSpeech": "noun",
+          "context": "plural",
+          "translation": "traffic",
+          "transliteration": "soobrakjajni",
+          "isCore": true
+        },
+        {
+          "word": "возат",
+          "partOfSpeech": "noun",
+          "context": "singular",
+          "translation": "they drive",
+          "gender": "masculine",
+          "transliteration": "vozat",
+          "isCore": true
+        },
+        {
+          "word": "полуксузни",
+          "partOfSpeech": "noun",
+          "context": "plural",
+          "translation": "more luxurious",
+          "transliteration": "poluksuzni",
+          "isCore": true
+        },
+        {
+          "word": "Кожув",
+          "partOfSpeech": "noun",
+          "context": "singular",
+          "translation": "leather jacket",
+          "gender": "masculine",
+          "transliteration": "Kozhuv",
+          "isCore": true
+        },
+        {
+          "word": "изоби",
+          "partOfSpeech": "noun",
+          "context": "plural",
+          "translation": "a lot",
+          "transliteration": "izobi",
+          "isCore": true
+        },
+        {
+          "word": "велат",
+          "partOfSpeech": "noun",
+          "context": "singular",
+          "translation": "they say",
+          "gender": "masculine",
+          "transliteration": "velat",
+          "isCore": true
+        },
+        {
+          "word": "млади",
+          "partOfSpeech": "noun",
+          "context": "plural",
+          "translation": "young people",
+          "transliteration": "mladi",
+          "isCore": true
+        },
+        {
+          "word": "прити",
+          "partOfSpeech": "noun",
+          "context": "plural",
+          "translation": "hurry up",
+          "transliteration": "priti",
+          "isCore": true
+        },
+        {
+          "word": "најпрво",
+          "partOfSpeech": "noun",
+          "context": "singular",
+          "translation": "first of all",
+          "gender": "neuter",
+          "transliteration": "najprvo",
+          "isCore": true
+        },
+        {
+          "word": "патници",
+          "partOfSpeech": "noun",
+          "context": "plural",
+          "translation": "passengers",
+          "transliteration": "patnici",
+          "isCore": true
+        },
+        {
+          "word": "шири",
+          "partOfSpeech": "noun",
+          "context": "singular",
+          "translation": "spreads",
+          "transliteration": "shiri",
+          "isCore": true
+        },
+        {
+          "word": "психоакти",
+          "partOfSpeech": "noun",
+          "context": "plural",
+          "translation": "psycho acts",
+          "transliteration": "psihoakti",
+          "isCore": true
+        },
+        {
+          "word": "општ",
+          "partOfSpeech": "noun",
+          "context": "singular",
+          "translation": "general",
+          "gender": "masculine",
+          "transliteration": "opsht",
+          "isCore": true
+        },
+        {
+          "word": "зачувани",
+          "partOfSpeech": "noun",
+          "context": "plural",
+          "translation": "saved",
+          "transliteration": "zachuvani",
+          "isCore": true
+        },
+        {
+          "word": "давам",
+          "partOfSpeech": "noun",
+          "context": "singular",
+          "translation": "I give",
+          "gender": "masculine",
+          "transliteration": "davam",
+          "isCore": true
+        },
+        {
+          "word": "задолженија",
+          "partOfSpeech": "noun",
+          "context": "plural",
+          "translation": "chores",
+          "gender": "feminine",
+          "transliteration": "zadolzhenija",
+          "isCore": true
+        },
+        {
+          "word": "наспрема",
+          "partOfSpeech": "preposition",
+          "context": "singular",
+          "translation": "compared to/versus",
+          "transliteration": "nasprema",
+          "isCore": true
+        },
+        {
+          "word": "изедоа",
+          "partOfSpeech": "noun",
+          "context": "singular",
+          "translation": "they ate",
+          "gender": "feminine",
+          "transliteration": "izedoa",
+          "isCore": true
+        },
+        {
+          "word": "украсна",
+          "partOfSpeech": "noun",
+          "context": "singular",
+          "translation": "decorative",
+          "gender": "feminine",
+          "transliteration": "ukrasna",
+          "isCore": true
+        },
+        {
+          "word": "ајварот",
+          "partOfSpeech": "noun",
+          "context": "singular",
+          "translation": "the ajvar",
+          "gender": "masculine",
+          "transliteration": "ajvarot",
+          "isCore": true
+        },
+        {
+          "word": "Последни",
+          "partOfSpeech": "noun",
+          "context": "plural",
+          "translation": "last ones",
+          "transliteration": "Posledni",
+          "isCore": true
+        },
+        {
+          "word": "лупат",
+          "partOfSpeech": "noun",
+          "context": "singular",
+          "translation": "they peel",
+          "gender": "masculine",
+          "transliteration": "lupat",
+          "isCore": true
+        },
+        {
+          "word": "полупроѕи",
+          "partOfSpeech": "noun",
+          "context": "plural",
+          "translation": "semi see through",
+          "transliteration": "poluprodzi",
+          "isCore": true
+        },
+        {
+          "word": "многуми",
+          "partOfSpeech": "noun",
+          "context": "plural",
+          "translation": "many",
+          "transliteration": "mnogumi",
+          "isCore": true
+        },
+        {
+          "word": "вната",
+          "partOfSpeech": "noun",
+          "context": "singular",
+          "translation": "the inflammation",
+          "gender": "feminine",
+          "transliteration": "vnata",
+          "isCore": true
+        },
+        {
+          "word": "испечени",
+          "partOfSpeech": "noun",
+          "context": "plural",
+          "translation": "baked",
+          "transliteration": "ispecheni",
+          "isCore": true
+        },
+        {
+          "word": "обожаватели",
+          "partOfSpeech": "noun",
+          "context": "plural",
+          "translation": "fans",
+          "transliteration": "obozhavateli",
+          "isCore": true
+        },
+        {
+          "word": "апети",
+          "partOfSpeech": "noun",
+          "context": "plural",
+          "translation": "appetites",
+          "transliteration": "apeti",
+          "isCore": true
+        },
+        {
+          "word": "граѓанската",
+          "partOfSpeech": "noun",
+          "context": "singular",
+          "translation": "civil",
+          "gender": "feminine",
+          "transliteration": "gragjanskata",
+          "isCore": true
+        },
+        {
+          "word": "индиви",
+          "partOfSpeech": "noun",
+          "context": "plural",
+          "translation": "individuals",
+          "transliteration": "indivi",
+          "isCore": true
+        },
+        {
+          "word": "Буди",
+          "partOfSpeech": "noun",
+          "context": "singular",
+          "translation": "wake up",
+          "transliteration": "Budi",
+          "isCore": true
+        },
+        {
+          "word": "сети",
+          "partOfSpeech": "noun",
+          "context": "plural",
+          "translation": "remember",
+          "transliteration": "seti",
+          "isCore": true
+        },
+        {
+          "word": "јадат",
+          "partOfSpeech": "noun",
+          "context": "singular",
+          "translation": "they eat",
+          "gender": "masculine",
+          "transliteration": "jadat",
+          "isCore": true
+        },
+        {
+          "word": "француски",
+          "partOfSpeech": "noun",
+          "context": "plural",
+          "translation": "french",
+          "transliteration": "francuski",
+          "isCore": true
+        },
+        {
+          "word": "највкусни",
+          "partOfSpeech": "noun",
+          "context": "plural",
+          "translation": "the most delicious",
+          "transliteration": "najvkusni",
+          "isCore": true
+        },
+        {
+          "word": "одиграа",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "they played",
+          "gender": "feminine",
+          "transliteration": "odigraa",
+          "isCore": true
+        },
+        {
+          "word": "турнири",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "tournaments",
+          "transliteration": "turniri",
+          "isCore": true
+        },
+        {
+          "word": "странците",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the foreigners",
+          "gender": "neuter",
+          "transliteration": "strancite",
+          "isCore": true
+        },
+        {
+          "word": "трудат",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "they try",
+          "gender": "masculine",
+          "transliteration": "trudat",
+          "isCore": true
+        },
+        {
+          "word": "Допусните",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "allow",
+          "gender": "neuter",
+          "transliteration": "Dopusnite",
+          "isCore": true
+        },
+        {
+          "word": "сврзникот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the conjunction",
+          "gender": "masculine",
+          "transliteration": "svrznikot",
+          "isCore": true
+        },
+        {
+          "word": "поканиме",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "let's invite",
+          "gender": "neuter",
+          "transliteration": "pokanime",
+          "isCore": true
+        },
+        {
+          "word": "употребувајќи",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "using",
+          "transliteration": "upotrebuvajkji",
+          "isCore": true
+        },
+        {
+          "word": "можните",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the possible ones",
+          "gender": "neuter",
+          "transliteration": "mozhnite",
+          "isCore": true
+        },
+        {
+          "word": "направив",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "I did",
+          "gender": "masculine",
+          "transliteration": "napraviv",
+          "isCore": true
+        }
+      ],
+      "grammarNotes": [
+        {
+          "title": "Именки",
+          "content": "At B1 level, noun usage includes advanced declension patterns, vocative case for direct address, and complex plural formations. Macedonian nouns show gender through articles and agreement patterns. Special attention to irregular plurals and collective nouns.",
+          "examples": [
+            "Татко! (vocative - direct address)",
+            "Марија, дојди овде! (vocative)",
+            "човек → луѓе (irregular plural)",
+            "дете → деца (irregular plural)",
+            "брат → браќа (collective)",
+            "книга → книги → книгите (definite plural)"
+          ],
+          "translatedExamples": [
+            "Father! (vocative - direct address)",
+            "Maria, come here! (vocative)",
+            "man → people (irregular plural)",
+            "child → children (irregular plural)",
+            "brother → brothers (collective)",
+            "book → books → the books (definite plural)"
+          ]
+        },
+        {
+          "title": "Заменки",
+          "content": "7. Во пасусот 7 има две именки што добиваат ист тип определби како ѓ) сол и е) вино. Пронајдете ги. ѓ) Основната причина лежи во намаленото ниво на кислород при низок притисок. е) Луѓето што ја подготвуваат авионската храна употребуваат многу повеќе зачини. ж) Пробувањето различни вина е главен дел на експериментот. з) Авионската храна не е лошо зготвена, само е невкусна. ЗЛАТОВРВ 60 Денот не почнува без него Дали утрово испивте ваше кафе? Дали испивте ваш чај? Ништо страшно ако сè уште не сте у",
+          "examples": [
+            "Пронајдете ги.",
+            "е) Луѓето што ја подготвуваат авионската храна употребуваат многу повеќе зачини.",
+            "з) Авионската храна не е лошо зготвена, само е невкусна.",
+            "Во пасусот 7 има две именки што добиваат ист тип определби како ѓ) сол и е) вино."
+          ],
+          "translatedExamples": [
+            "Find them.",
+            "g) The people who prepare the airplane food use a lot more spices.",
+            "i) Airplane food is not badly cooked, just tasteless.",
+            "In paragraph 7 there are two nouns that receive the same type of determinations as f) salt and g) wine."
+          ]
+        },
+        {
+          "title": "Броеви",
+          "content": "B1 ordinal numbers function as adjectives: прв/втор/трет (first/second/third), четврт, петти, шести, etc. They agree in gender and number: прв/прва/прво. Used for dates, rankings, sequences, and ordering. Common in everyday B1-level communication.",
+          "examples": [
+            "прв, прва, прво (first)",
+            "втор, втора, второ (second)",
+            "трет, трета, трето (third)",
+            "четврт, четврта, четврто (fourth)",
+            "Живеам на петтиот кат.",
+            "Ова е втората лекција."
+          ],
+          "translatedExamples": [
+            "first",
+            "second, second",
+            "third, third, third",
+            "fourth, fourth",
+            "I live on the fifth floor.",
+            "This is the second lesson."
+          ]
+        }
+      ],
+      "intro": "What will we eat today? Advanced food discussions covering meal planning, dietary preferences, and culinary traditions. Master nouns, pronouns, and numbers in gastronomic contexts."
+    },
+    {
+      "lessonNumber": 5,
+      "title": "Lesson 5: Дајте музика!",
+      "titleMk": "Лекција 5: Дајте музика!",
+      "startPage": 72,
+      "endPage": 89,
+      "themes": [],
+      "vocabularyItems": [
+        {
+          "word": "Разговарајте",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "have a chat",
+          "gender": "neuter",
+          "transliteration": "Razgovarajte",
+          "isCore": true
+        },
+        {
+          "word": "омразено",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "hated",
+          "transliteration": "omrazeno",
+          "isCore": true
+        },
+        {
+          "word": "најубаво",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the most beautiful",
+          "gender": "neuter",
+          "transliteration": "najubavo",
+          "isCore": true
+        },
+        {
+          "word": "најлошо",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the worst",
+          "gender": "neuter",
+          "transliteration": "najlosho",
+          "isCore": true
+        },
+        {
+          "word": "странство",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "abroad",
+          "gender": "neuter",
+          "transliteration": "stranstvo",
+          "isCore": true
+        },
+        {
+          "word": "изматени",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "whipped up",
+          "transliteration": "izmateni",
+          "isCore": true
+        },
+        {
+          "word": "пржете",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "fry",
+          "gender": "neuter",
+          "transliteration": "przhete",
+          "isCore": true
+        },
+        {
+          "word": "пилешкото",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the chicken",
+          "gender": "neuter",
+          "transliteration": "pileshkoto",
+          "isCore": true
+        },
+        {
+          "word": "прженото",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the fried",
+          "gender": "neuter",
+          "transliteration": "przhenoto",
+          "isCore": true
+        },
+        {
+          "word": "излади",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "cool down",
+          "transliteration": "izladi",
+          "isCore": true
+        },
+        {
+          "word": "сомелете",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "grind",
+          "gender": "neuter",
+          "transliteration": "somelete",
+          "isCore": true
+        },
+        {
+          "word": "похувани",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "fried",
+          "transliteration": "pohuvani",
+          "isCore": true
+        },
+        {
+          "word": "распоредете",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "deploy",
+          "gender": "neuter",
+          "transliteration": "rasporedete",
+          "isCore": true
+        },
+        {
+          "word": "запржено",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "fried",
+          "transliteration": "zaprzheno",
+          "isCore": true
+        },
+        {
+          "word": "постапката",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the procedure",
+          "gender": "feminine",
+          "transliteration": "postapkata",
+          "isCore": true
+        },
+        {
+          "word": "преостанатите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the remaining ones",
+          "gender": "neuter",
+          "transliteration": "preostanatite",
+          "isCore": true
+        },
+        {
+          "word": "повратната",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "return",
+          "gender": "feminine",
+          "transliteration": "povratnata",
+          "isCore": true
+        },
+        {
+          "word": "Зелник",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "vegetable",
+          "gender": "masculine",
+          "transliteration": "Zelnik",
+          "isCore": true
+        },
+        {
+          "word": "филот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the filling",
+          "gender": "masculine",
+          "transliteration": "filot",
+          "isCore": true
+        },
+        {
+          "word": "сечкаат",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "chop",
+          "gender": "masculine",
+          "transliteration": "sechkaat",
+          "isCore": true
+        },
+        {
+          "word": "празот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the leek",
+          "gender": "masculine",
+          "transliteration": "prazot",
+          "isCore": true
+        },
+        {
+          "word": "сувите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the dry ones",
+          "gender": "neuter",
+          "transliteration": "suvite",
+          "isCore": true
+        },
+        {
+          "word": "запржуваат",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "they fry",
+          "gender": "masculine",
+          "transliteration": "zaprzhuvaat",
+          "isCore": true
+        },
+        {
+          "word": "црвениот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the red one",
+          "gender": "masculine",
+          "transliteration": "crveniot",
+          "isCore": true
+        },
+        {
+          "word": "рингла",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "hot plate",
+          "gender": "feminine",
+          "transliteration": "ringla",
+          "isCore": true
+        },
+        {
+          "word": "Квасецот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the yeast",
+          "gender": "masculine",
+          "transliteration": "Kvasecot",
+          "isCore": true
+        },
+        {
+          "word": "раствора",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "it dissolves",
+          "gender": "feminine",
+          "transliteration": "rastvora",
+          "isCore": true
+        },
+        {
+          "word": "стасува",
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "it happens",
+          "transliteration": "stasuva",
+          "isCore": true
+        },
+        {
+          "word": "додаваат",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "they add",
+          "gender": "masculine",
+          "transliteration": "dodavaat",
+          "isCore": true
+        },
+        {
+          "word": "брашното",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the flour",
+          "gender": "neuter",
+          "transliteration": "brashnoto",
+          "isCore": true
+        },
+        {
+          "word": "Тестото",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the dough",
+          "gender": "neuter",
+          "transliteration": "Testoto",
+          "isCore": true
+        },
+        {
+          "word": "откровение",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "a revelation",
+          "gender": "neuter",
+          "transliteration": "otkrovenie",
+          "isCore": true
+        },
+        {
+          "word": "доживувате",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "you experience",
+          "gender": "neuter",
+          "transliteration": "dozhivuvate",
+          "isCore": true
+        },
+        {
+          "word": "слушате",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "you listen",
+          "gender": "neuter",
+          "transliteration": "slushate",
+          "isCore": true
+        },
+        {
+          "word": "мисли",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "thoughts",
+          "transliteration": "misli",
+          "isCore": true
+        },
+        {
+          "word": "помрднува",
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "moves",
+          "transliteration": "pomrdnuva",
+          "isCore": true
+        },
+        {
+          "word": "скопската",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "Skopje",
+          "gender": "feminine",
+          "transliteration": "skopskata",
+          "isCore": true
+        },
+        {
+          "word": "парафразирам",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "I'm paraphrasing",
+          "gender": "masculine",
+          "transliteration": "parafraziram",
+          "isCore": true
+        },
+        {
+          "word": "светлина",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "light",
+          "transliteration": "svetlina",
+          "isCore": true
+        },
+        {
+          "word": "мрачните",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the dark ones",
+          "gender": "neuter",
+          "transliteration": "mrachnite",
+          "isCore": true
+        },
+        {
+          "word": "лавиринти",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "mazes",
+          "transliteration": "lavirinti",
+          "isCore": true
+        },
+        {
+          "word": "исполитизирани",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "politicized",
+          "transliteration": "ispolitizirani",
+          "isCore": true
+        },
+        {
+          "word": "совеста",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "conscience",
+          "gender": "feminine",
+          "transliteration": "sovesta",
+          "isCore": true
+        },
+        {
+          "word": "скопјаните",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the people of Skopje",
+          "gender": "neuter",
+          "transliteration": "skopjanite",
+          "isCore": true
+        },
+        {
+          "word": "Македонците",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the Macedonians",
+          "gender": "neuter",
+          "transliteration": "Makedoncite",
+          "isCore": true
+        },
+        {
+          "word": "музичкиот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the musical one",
+          "gender": "masculine",
+          "transliteration": "muzichkiot",
+          "isCore": true
+        },
+        {
+          "word": "пораките",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the messages",
+          "gender": "neuter",
+          "transliteration": "porakite",
+          "isCore": true
+        },
+        {
+          "word": "Хорската",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the choir",
+          "gender": "feminine",
+          "transliteration": "Horskata",
+          "isCore": true
+        },
+        {
+          "word": "состав",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "composition",
+          "gender": "masculine",
+          "transliteration": "sostav",
+          "isCore": true
+        },
+        {
+          "word": "израз",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "an expression",
+          "gender": "masculine",
+          "transliteration": "izraz",
+          "isCore": true
+        }
+      ],
+      "grammarNotes": [
+        {
+          "title": "Глаголот ако",
+          "content": "B1 verbs focus on aspect (perfective vs. imperfective), complex tense usage, and verb derivation. Perfective verbs indicate completed actions (прочита), imperfective indicate ongoing/repeated actions (чита). Aspect affects tense formation and meaning. Important for expressing nuanced time relationships.",
+          "examples": [
+            "чита (imperfective) → прочита (perfective)",
+            "пишува → напишува (perfective)",
+            "Јас читам книга. (ongoing)",
+            "Јас ја прочитав книгата. (completed)",
+            "Секој ден одев на работа. (repeated)",
+            "Вчера отидов на концерт. (single event)"
+          ],
+          "translatedExamples": [
+            "read (imperfective) → read (perfective)",
+            "writes → writes (perfective)",
+            "I am reading a book. (ongoing)",
+            "I read the book. (completed)",
+            "I went to work every day. (repeated)",
+            "I went to a concert yesterday. (single event)"
+          ]
+        },
+        {
+          "title": "Именки",
+          "content": "те. Пасус 3 Најдете два збора од областа на гастрономијата и заменети ги со други. За кои „познати адреси“ станува збор? Пасус 4 Што значи зборот резигнираност? Наведете синоним. Најдете два збора од областа на ботаниката и заменети ги со други. Пасус 5 Објаснете на кој начин хорот дејствува креативно , силно , суптилно . Објаснете ја секоја гледна точка – улицата, општеството, кабинетите. На кои кабинети се мисли? 7. Прочитајте го текстот и изработете ги вежбите дадени подолу. Македонски музичк",
+          "examples": [
+            "Пасус 3 Најдете два збора од областа на гастрономијата и заменети ги со други.",
+            "Најдете два збора од областа на ботаниката и заменети ги со други.",
+            "На кои кабинети се мисли?",
+            "Прочитајте го текстот и изработете ги вежбите дадени подолу."
+          ],
+          "translatedExamples": [
+            "Passage 3 Find two words from the field of gastronomy and replace them with others.",
+            "Find two words from the field of botany and replace them with others.",
+            "Which cabinets are you referring to?",
+            "Read the text and do the exercises given below."
+          ]
+        },
+        {
+          "title": "Придавки",
+          "content": "B1 adjectives include comparative and superlative forms. Comparatives use \"по-\" prefix (по-добар), superlatives use \"нај-\" (најдобар). Irregular forms exist (добар → подобар → најдобар). Adjectives agree in gender, number, and definiteness with modified nouns.",
+          "examples": [
+            "На пример: концерт-концертен-концертен клавир.",
+            "добар → подобар → најдобар",
+            "висок → повисок → највисок",
+            "убав → поубав → најубав",
+            "Оваа книга е поинтересна.",
+            "Тој е најдобриот студент.",
+            "Денес е потопло отколку вчера.",
+            "Скопје е поголемо од Охрид.",
+            "Ова е најважното прашање.",
+            "Марија е помлада од Петар."
+          ],
+          "translatedExamples": [
+            "For example: concert-concert-concert piano.",
+            "good → better → best",
+            "tall → taller → highest",
+            "beautiful → more beautiful → most beautiful",
+            "This book is more interesting.",
+            "He is the best student.",
+            "Today is warmer than yesterday.",
+            "Skopje is bigger than Ohrid.",
+            "This is the most important question.",
+            "Mary is younger than Peter."
+          ]
+        },
+        {
+          "title": "Глаголот \"сум\"",
+          "content": "B1 verbs focus on aspect (perfective vs. imperfective), complex tense usage, and verb derivation. Perfective verbs indicate completed actions (прочита), imperfective indicate ongoing/repeated actions (чита). Aspect affects tense formation and meaning. Important for expressing nuanced time relationships.",
+          "examples": [
+            "Јас сум",
+            "Тој е",
+            "Тоа е",
+            "Ние сме",
+            "Тие се"
+          ],
+          "translatedExamples": [
+            "I am",
+            "He is",
+            "It is",
+            "We are",
+            "They are"
+          ]
+        }
+      ],
+      "intro": "Let there be music! Express your passion for arts and entertainment. Learn conditional constructions with 'ако' (if), and vocabulary for discussing concerts, genres, and cultural events."
+    },
+    {
+      "lessonNumber": 6,
+      "title": "Lesson 6: Патуваме, сонуваме!",
+      "titleMk": "Лекција 6: Патуваме, сонуваме!",
+      "startPage": 90,
+      "endPage": 111,
+      "themes": [],
+      "vocabularyItems": [
+        {
+          "word": "историјатот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the history",
+          "gender": "masculine",
+          "transliteration": "istorijatot",
+          "isCore": true
+        },
+        {
+          "word": "единствен",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "unique",
+          "transliteration": "edinstven",
+          "isCore": true
+        },
+        {
+          "word": "репрезент",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "representative",
+          "gender": "masculine",
+          "transliteration": "reprezent",
+          "isCore": true
+        },
+        {
+          "word": "симфониското",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the symphonic",
+          "gender": "neuter",
+          "transliteration": "simfoniskoto",
+          "isCore": true
+        },
+        {
+          "word": "композиторот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the composer",
+          "gender": "masculine",
+          "transliteration": "kompozitorot",
+          "isCore": true
+        },
+        {
+          "word": "стожерите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the pivots",
+          "gender": "neuter",
+          "transliteration": "stozherite",
+          "isCore": true
+        },
+        {
+          "word": "формираат",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "form",
+          "gender": "masculine",
+          "transliteration": "formiraat",
+          "isCore": true
+        },
+        {
+          "word": "темелите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the foundations",
+          "gender": "neuter",
+          "transliteration": "temelite",
+          "isCore": true
+        },
+        {
+          "word": "невреме",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "a storm",
+          "gender": "neuter",
+          "transliteration": "nevreme",
+          "isCore": true
+        },
+        {
+          "word": "духовната",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the spiritual",
+          "gender": "feminine",
+          "transliteration": "duhovnata",
+          "isCore": true
+        },
+        {
+          "word": "неколкумина",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "a few",
+          "transliteration": "nekolkumina",
+          "isCore": true
+        },
+        {
+          "word": "чудесните",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the wonderful ones",
+          "gender": "neuter",
+          "transliteration": "chudesnite",
+          "isCore": true
+        },
+        {
+          "word": "најубавата",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the most beautiful",
+          "gender": "feminine",
+          "transliteration": "najubavata",
+          "isCore": true
+        },
+        {
+          "word": "погодувајќи",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "guessing",
+          "transliteration": "pogoduvajkji",
+          "isCore": true
+        },
+        {
+          "word": "седумдецениското",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the seven decades",
+          "gender": "neuter",
+          "transliteration": "sedumdeceniskoto",
+          "isCore": true
+        },
+        {
+          "word": "премиери",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "prime ministers",
+          "transliteration": "premieri",
+          "isCore": true
+        },
+        {
+          "word": "современи",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "contemporary",
+          "transliteration": "sovremeni",
+          "isCore": true
+        },
+        {
+          "word": "оживувајќи",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "coming alive",
+          "transliteration": "ozhivuvajkji",
+          "isCore": true
+        },
+        {
+          "word": "особена",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "particular",
+          "transliteration": "osobena",
+          "isCore": true
+        },
+        {
+          "word": "преименуван",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "renamed",
+          "gender": "masculine",
+          "transliteration": "preimenuvan",
+          "isCore": true
+        },
+        {
+          "word": "катастрофалниот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the catastrophic one",
+          "gender": "masculine",
+          "transliteration": "katastrofalniot",
+          "isCore": true
+        },
+        {
+          "word": "афирмираниот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the affirmed",
+          "gender": "masculine",
+          "transliteration": "afirmiraniot",
+          "isCore": true
+        },
+        {
+          "word": "остварува",
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "accomplishes",
+          "transliteration": "ostvaruva",
+          "isCore": true
+        },
+        {
+          "word": "настраданиот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the victim",
+          "gender": "masculine",
+          "transliteration": "nastradaniot",
+          "isCore": true
+        },
+        {
+          "word": "народите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the nations",
+          "gender": "neuter",
+          "transliteration": "narodite",
+          "isCore": true
+        },
+        {
+          "word": "редовните",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the regular ones",
+          "gender": "neuter",
+          "transliteration": "redovnite",
+          "isCore": true
+        },
+        {
+          "word": "домашната",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the home one",
+          "gender": "feminine",
+          "transliteration": "domashnata",
+          "isCore": true
+        },
+        {
+          "word": "симфонискиот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the symphonic one",
+          "gender": "masculine",
+          "transliteration": "simfoniskiot",
+          "isCore": true
+        },
+        {
+          "word": "остварено",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "accomplished",
+          "transliteration": "ostvareno",
+          "isCore": true
+        },
+        {
+          "word": "гостувања",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "visits",
+          "gender": "feminine",
+          "transliteration": "gostuvanja",
+          "isCore": true
+        },
+        {
+          "word": "презентирајќи",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "presenting",
+          "transliteration": "prezentirajkji",
+          "isCore": true
+        },
+        {
+          "word": "звучното",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the sound",
+          "gender": "neuter",
+          "transliteration": "zvuchnoto",
+          "isCore": true
+        },
+        {
+          "word": "диригентскиот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the conductor",
+          "gender": "masculine",
+          "transliteration": "dirigentskiot",
+          "isCore": true
+        },
+        {
+          "word": "пулт",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "counter",
+          "gender": "masculine",
+          "transliteration": "pult",
+          "isCore": true
+        },
+        {
+          "word": "застанале",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "they stopped",
+          "gender": "neuter",
+          "transliteration": "zastanale",
+          "isCore": true
+        },
+        {
+          "word": "основачите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the founders",
+          "gender": "neuter",
+          "transliteration": "osnovachite",
+          "isCore": true
+        },
+        {
+          "word": "Прокопиев",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "I copied",
+          "gender": "masculine",
+          "transliteration": "Prokopiev",
+          "isCore": true
+        },
+        {
+          "word": "маестрата",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the master",
+          "gender": "feminine",
+          "transliteration": "maestrata",
+          "isCore": true
+        },
+        {
+          "word": "фон",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "background",
+          "gender": "masculine",
+          "transliteration": "fon",
+          "isCore": true
+        },
+        {
+          "word": "Ангел",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "an angel",
+          "gender": "masculine",
+          "transliteration": "Angel",
+          "isCore": true
+        },
+        {
+          "word": "Шурев",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "I roared",
+          "gender": "masculine",
+          "transliteration": "Shurev",
+          "isCore": true
+        },
+        {
+          "word": "Нееме",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "we don't",
+          "gender": "neuter",
+          "transliteration": "Neeme",
+          "isCore": true
+        },
+        {
+          "word": "Перо",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "feather",
+          "gender": "neuter",
+          "transliteration": "Pero",
+          "isCore": true
+        },
+        {
+          "word": "поново",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "more recently",
+          "gender": "neuter",
+          "transliteration": "ponovo",
+          "isCore": true
+        },
+        {
+          "word": "подиумот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the podium",
+          "gender": "masculine",
+          "transliteration": "podiumot",
+          "isCore": true
+        },
+        {
+          "word": "гостувале",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "they visited",
+          "gender": "neuter",
+          "transliteration": "gostuvale",
+          "isCore": true
+        },
+        {
+          "word": "Соколов",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "a falconer",
+          "gender": "masculine",
+          "transliteration": "Sokolov",
+          "isCore": true
+        },
+        {
+          "word": "Суванаи",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "dried up",
+          "transliteration": "Suvanai",
+          "isCore": true
+        },
+        {
+          "word": "последната",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the last one",
+          "gender": "feminine",
+          "transliteration": "poslednata",
+          "isCore": true
+        },
+        {
+          "word": "звукот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the sound",
+          "gender": "masculine",
+          "transliteration": "zvukot",
+          "isCore": true
+        }
+      ],
+      "grammarNotes": [
+        {
+          "title": "Глаголот патува",
+          "content": "B1 verbs focus on aspect (perfective vs. imperfective), complex tense usage, and verb derivation. Perfective verbs indicate completed actions (прочита), imperfective indicate ongoing/repeated actions (чита). Aspect affects tense formation and meaning. Important for expressing nuanced time relationships.",
+          "examples": [
+            "ЗЛАТОВРВ 104 Дали може да се у потребат истите антоними во следниве синтагми: длабок глас, суво грозје, топли алишта, тесен резултат, културен настан.",
+            "Поврзете ги наведените придавки со соодветните именки: длабок клима сув однесување топол сад тесен ветер културен ходник Потоа наведете ги антонимите на добиените синтагми.",
+            "Во следните реченици употребен е сврзникот а со различни значења."
+          ],
+          "translatedExamples": [
+            "ZLATOVRV 104 Can the same antonyms be needed in the following syntagms: deep voice, raisins, warm clothes, narrow result, cultural event.",
+            "Match the given adjectives with the corresponding nouns: deep climate dry behavior hot bowl narrow wind cultural corridor Then give the antonyms of the resulting phrases.",
+            "In the following sentences, the conjunction a is used with different meanings."
+          ]
+        },
+        {
+          "title": "Именки",
+          "content": "At B1 level, noun usage includes advanced declension patterns, vocative case for direct address, and complex plural formations. Macedonian nouns show gender through articles and agreement patterns. Special attention to irregular plurals and collective nouns.",
+          "examples": [
+            "Татко! (vocative - direct address)",
+            "Марија, дојди овде! (vocative)",
+            "човек → луѓе (irregular plural)",
+            "дете → деца (irregular plural)",
+            "брат → браќа (collective)",
+            "книга → книги → книгите (definite plural)"
+          ],
+          "translatedExamples": [
+            "Father! (vocative - direct address)",
+            "Maria, come here! (vocative)",
+            "man → people (irregular plural)",
+            "child → children (irregular plural)",
+            "brother → brothers (collective)",
+            "book → books → the books (definite plural)"
+          ]
+        },
+        {
+          "title": "Придавки",
+          "content": "B1 adjectives include comparative and superlative forms. Comparatives use \"по-\" prefix (по-добар), superlatives use \"нај-\" (најдобар). Irregular forms exist (добар → подобар → најдобар). Adjectives agree in gender, number, and definiteness with modified nouns.",
+          "examples": [
+            "добар → подобар → најдобар",
+            "висок → повисок → највисок",
+            "убав → поубав → најубав",
+            "Оваа книга е поинтересна.",
+            "Тој е најдобриот студент.",
+            "Денес е потопло отколку вчера."
+          ],
+          "translatedExamples": [
+            "good → better → best",
+            "tall → taller → highest",
+            "beautiful → more beautiful → most beautiful",
+            "This book is more interesting.",
+            "He is the best student.",
+            "Today is warmer than yesterday."
+          ]
+        },
+        {
+          "title": "Условен начин (Conditional)",
+          "content": "The conditional mood in Macedonian uses the particle \"би\" + L-form to express hypothetical situations, polite requests, and wishes. Three types: real (possible), unreal (contrary to fact), and possible (unlikely but theoretically possible). Used for politeness, imagination, and expressing conditions.",
+          "examples": [
+            "Прво наведете кои се тие, а потоа (водејќи сметка за контекстот) образложете зошто се употребени тие форми, и дали може во текстот да се употреби во едно глаголско време.",
+            "Би сакал да дојдам, но не можам.",
+            "Би ли можеле да ми помогнете?",
+            "Таа би студирала медицина, но не положи.",
+            "Кога би имал пари, би патувал по светот.",
+            "Би било убаво да се видиме.",
+            "Што би правел на мое место?",
+            "Би ја препорачал оваа книга.",
+            "Би сакале да научите повеќе?",
+            "Ако би знаел, би ти кажал."
+          ],
+          "translatedExamples": [
+            "First state what they are, and then (taking into account the context) explain why those forms are used, and whether they can be used in the text in one verb tense.",
+            "I would like to come, but I can't.",
+            "Could you help me?",
+            "She would have studied medicine, but she didn't pass.",
+            "If I had money, I would travel the world.",
+            "It would be nice to see you.",
+            "What would you do in my place?",
+            "I would recommend this book.",
+            "Would you like to learn more?",
+            "If I knew, I would tell you."
+          ]
+        }
+      ],
+      "intro": "We travel, we dream! Plan adventures and share travel stories. Master travel verbs, destination vocabulary, and descriptive language for recounting journeys and future trip plans."
+    },
+    {
+      "lessonNumber": 7,
+      "title": "Lesson 7: Луѓето се луѓе",
+      "titleMk": "Лекција 7: Луѓето се луѓе",
+      "startPage": 112,
+      "endPage": 129,
+      "themes": [],
+      "vocabularyItems": [
+        {
+          "word": "зборообразувачкиот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the word-former",
+          "gender": "masculine",
+          "transliteration": "zboroobrazuvachkiot",
+          "isCore": true
+        },
+        {
+          "word": "најпродуктивните",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the most productive",
+          "gender": "neuter",
+          "transliteration": "najproduktivnite",
+          "isCore": true
+        },
+        {
+          "word": "жалба",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "complaint",
+          "gender": "feminine",
+          "transliteration": "zhalba",
+          "isCore": true
+        },
+        {
+          "word": "туристичката",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the tourist",
+          "gender": "feminine",
+          "transliteration": "turistichkata",
+          "isCore": true
+        },
+        {
+          "word": "ветените",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the promised ones",
+          "gender": "neuter",
+          "transliteration": "vetenite",
+          "isCore": true
+        },
+        {
+          "word": "претставите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the performances",
+          "gender": "neuter",
+          "transliteration": "pretstavite",
+          "isCore": true
+        },
+        {
+          "word": "ситуацијата",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the situation",
+          "gender": "feminine",
+          "transliteration": "situacijata",
+          "isCore": true
+        },
+        {
+          "word": "измислите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "invent",
+          "gender": "neuter",
+          "transliteration": "izmislite",
+          "isCore": true
+        },
+        {
+          "word": "водам",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "I lead",
+          "gender": "masculine",
+          "transliteration": "vodam",
+          "isCore": true
+        },
+        {
+          "word": "зборуваш",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "you speak",
+          "gender": "masculine",
+          "transliteration": "zboruvash",
+          "isCore": true
+        },
+        {
+          "word": "паметиш",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "you remember",
+          "gender": "masculine",
+          "transliteration": "pametish",
+          "isCore": true
+        },
+        {
+          "word": "тераат",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "they force",
+          "gender": "masculine",
+          "transliteration": "teraat",
+          "isCore": true
+        },
+        {
+          "word": "најголемо",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the biggest",
+          "gender": "neuter",
+          "transliteration": "najgolemo",
+          "isCore": true
+        },
+        {
+          "word": "бркаш",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "you chase",
+          "gender": "masculine",
+          "transliteration": "brkash",
+          "isCore": true
+        },
+        {
+          "word": "фатиш",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "you catch",
+          "gender": "masculine",
+          "transliteration": "fatish",
+          "isCore": true
+        },
+        {
+          "word": "бега",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "run away",
+          "gender": "feminine",
+          "transliteration": "bega",
+          "isCore": true
+        },
+        {
+          "word": "свртиш",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "you turn",
+          "gender": "masculine",
+          "transliteration": "svrtish",
+          "isCore": true
+        },
+        {
+          "word": "застане",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "stop",
+          "gender": "neuter",
+          "transliteration": "zastane",
+          "isCore": true
+        },
+        {
+          "word": "рамо",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "shoulder",
+          "gender": "neuter",
+          "transliteration": "ramo",
+          "isCore": true
+        },
+        {
+          "word": "човекови",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "human",
+          "transliteration": "chovekovi",
+          "isCore": true
+        },
+        {
+          "word": "поделите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "share",
+          "gender": "neuter",
+          "transliteration": "podelite",
+          "isCore": true
+        },
+        {
+          "word": "префиксот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the prefix",
+          "gender": "masculine",
+          "transliteration": "prefiksot",
+          "isCore": true
+        },
+        {
+          "word": "расеан",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "distracted",
+          "gender": "masculine",
+          "transliteration": "rasean",
+          "isCore": true
+        },
+        {
+          "word": "пријателски",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "friendly",
+          "transliteration": "prijatelski",
+          "isCore": true
+        },
+        {
+          "word": "мрзелив",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "lazy",
+          "gender": "masculine",
+          "transliteration": "mrzeliv",
+          "isCore": true
+        },
+        {
+          "word": "самозадоволен",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "smug",
+          "transliteration": "samozadovolen",
+          "isCore": true
+        },
+        {
+          "word": "самобендисан",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "self righteous",
+          "gender": "masculine",
+          "transliteration": "samobendisan",
+          "isCore": true
+        },
+        {
+          "word": "егоистичен",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "selfish",
+          "transliteration": "egoistichen",
+          "isCore": true
+        },
+        {
+          "word": "весел",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "cheerful",
+          "gender": "masculine",
+          "transliteration": "vesel",
+          "isCore": true
+        },
+        {
+          "word": "намќорест",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "grumpy",
+          "gender": "masculine",
+          "transliteration": "namkjorest",
+          "isCore": true
+        },
+        {
+          "word": "обѕирен",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "considerate",
+          "transliteration": "obdziren",
+          "isCore": true
+        },
+        {
+          "word": "одлучен",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "determined",
+          "transliteration": "odluchen",
+          "isCore": true
+        },
+        {
+          "word": "правичен",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "fair",
+          "transliteration": "pravichen",
+          "isCore": true
+        },
+        {
+          "word": "тесноград",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "narrow-minded",
+          "gender": "masculine",
+          "transliteration": "tesnograd",
+          "isCore": true
+        },
+        {
+          "word": "оптимист",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "an optimist",
+          "gender": "masculine",
+          "transliteration": "optimist",
+          "isCore": true
+        },
+        {
+          "word": "песимист",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "a pessimist",
+          "gender": "masculine",
+          "transliteration": "pesimist",
+          "isCore": true
+        },
+        {
+          "word": "перфекционист",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "a perfectionist",
+          "gender": "masculine",
+          "transliteration": "perfekcionist",
+          "isCore": true
+        },
+        {
+          "word": "непристоен",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "obscene",
+          "transliteration": "nepristoen",
+          "isCore": true
+        },
+        {
+          "word": "чувствителен",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "sensitive",
+          "transliteration": "chuvstvitelen",
+          "isCore": true
+        },
+        {
+          "word": "доверлив",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "trustworthy",
+          "gender": "masculine",
+          "transliteration": "doverliv",
+          "isCore": true
+        },
+        {
+          "word": "Учителот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the teacher",
+          "gender": "masculine",
+          "transliteration": "Uchitelot",
+          "isCore": true
+        },
+        {
+          "word": "испи",
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "drank up",
+          "transliteration": "ispi",
+          "isCore": true
+        },
+        {
+          "word": "сретна",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "met",
+          "transliteration": "sretna",
+          "isCore": true
+        },
+        {
+          "word": "авганистански",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "Afghan",
+          "transliteration": "avganistanski",
+          "isCore": true
+        },
+        {
+          "word": "бараше",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "he asked",
+          "gender": "neuter",
+          "transliteration": "barashe",
+          "isCore": true
+        },
+        {
+          "word": "насмевнува",
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "smiles",
+          "transliteration": "nasmevnuva",
+          "isCore": true
+        },
+        {
+          "word": "запознавам",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "meet",
+          "gender": "masculine",
+          "transliteration": "zapoznavam",
+          "isCore": true
+        },
+        {
+          "word": "разберам",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "i understand",
+          "gender": "masculine",
+          "transliteration": "razberam",
+          "isCore": true
+        },
+        {
+          "word": "разбирам",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "i understand",
+          "gender": "masculine",
+          "transliteration": "razbiram",
+          "isCore": true
+        },
+        {
+          "word": "гимназијата",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the high school",
+          "gender": "feminine",
+          "transliteration": "gimnazijata",
+          "isCore": true
+        }
+      ],
+      "grammarNotes": [
+        {
+          "title": "Глаголот сум",
+          "content": "B1 verbs focus on aspect (perfective vs. imperfective), complex tense usage, and verb derivation. Perfective verbs indicate completed actions (прочита), imperfective indicate ongoing/repeated actions (чита). Aspect affects tense formation and meaning. Important for expressing nuanced time relationships.",
+          "examples": [
+            "чита (imperfective) → прочита (perfective)",
+            "пишува → напишува (perfective)",
+            "Јас читам книга. (ongoing)",
+            "Јас ја прочитав книгата. (completed)",
+            "Секој ден одев на работа. (repeated)",
+            "Вчера отидов на концерт. (single event)"
+          ],
+          "translatedExamples": [
+            "read (imperfective) → read (perfective)",
+            "writes → writes (perfective)",
+            "I am reading a book. (ongoing)",
+            "I read the book. (completed)",
+            "I went to work every day. (repeated)",
+            "I went to a concert yesterday. (single event)"
+          ]
+        },
+        {
+          "title": "Именки",
+          "content": "At B1 level, noun usage includes advanced declension patterns, vocative case for direct address, and complex plural formations. Macedonian nouns show gender through articles and agreement patterns. Special attention to irregular plurals and collective nouns.",
+          "examples": [
+            "Татко! (vocative - direct address)",
+            "Марија, дојди овде! (vocative)",
+            "човек → луѓе (irregular plural)",
+            "дете → деца (irregular plural)",
+            "брат → браќа (collective)",
+            "книга → книги → книгите (definite plural)",
+            "Професоре, имам прашање.",
+            "Децата играат во паркот.",
+            "Браќата живеат заедно.",
+            "Луѓето се добри."
+          ],
+          "translatedExamples": [
+            "Father! (vocative - direct address)",
+            "Maria, come here! (vocative)",
+            "man → people (irregular plural)",
+            "child → children (irregular plural)",
+            "brother → brothers (collective)",
+            "book → books → the books (definite plural)",
+            "Professor, I have a question.",
+            "Children are playing in the park.",
+            "The brothers live together.",
+            "People are good."
+          ]
+        },
+        {
+          "title": "Придавки",
+          "content": ", имајќи предвид и други промени во речениците. ► Наведете синоним за визуелни уметници. ► Кој бил подреден во колона? ► Што значи зборот мангуп ? ЗЛАТОВРВ 120 З. Пикасо, подарен, па украден, па најден Речиси никој во историјата на уметноста, за време на животниот век, не бил толку вреднуван и славен како Пабло Руиз Пикасо. Неговото исклучително долго и плодно творештво го направило актуелен и во времето на основањето на МСУ – Скопје. S. „Главата на жена“ е сликата што Пикасо ја донирал на Музеј",
+          "examples": [
+            "Неговото исклучително долго и плодно творештво го направило актуелен и во времето на основањето на МСУ – Скопје.",
+            "добар → подобар → најдобар",
+            "висок → повисок → највисок",
+            "убав → поубав → најубав",
+            "Оваа книга е поинтересна.",
+            "Тој е најдобриот студент.",
+            "Денес е потопло отколку вчера.",
+            "Скопје е поголемо од Охрид.",
+            "Ова е најважното прашање.",
+            "Марија е помлада од Петар."
+          ],
+          "translatedExamples": [
+            "His extremely long and fruitful work made him relevant even at the time of the founding of MSU - Skopje.",
+            "good → better → best",
+            "tall → taller → highest",
+            "beautiful → more beautiful → most beautiful",
+            "This book is more interesting.",
+            "He is the best student.",
+            "Today is warmer than yesterday.",
+            "Skopje is bigger than Ohrid.",
+            "This is the most important question.",
+            "Mary is younger than Peter."
+          ]
+        }
+      ],
+      "intro": "People are people - explore human nature and relationships. Deepen your use of the verb 'сум' in philosophical and social contexts. Discuss personality, behavior, and social dynamics."
+    },
+    {
+      "lessonNumber": 8,
+      "title": "Lesson 8: Градска џунгла",
+      "titleMk": "Лекција 8: Градска џунгла",
+      "startPage": 130,
+      "endPage": 148,
+      "themes": [],
+      "vocabularyItems": [
+        {
+          "word": "поимот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the notion",
+          "gender": "masculine",
+          "transliteration": "poimot",
+          "isCore": true
+        },
+        {
+          "word": "народна",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "folk",
+          "transliteration": "narodna",
+          "isCore": true
+        },
+        {
+          "word": "занимава",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "deals with",
+          "gender": "feminine",
+          "transliteration": "zanimava",
+          "isCore": true
+        },
+        {
+          "word": "прашењето",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the question",
+          "gender": "neuter",
+          "transliteration": "prashenjeto",
+          "isCore": true
+        },
+        {
+          "word": "правејќи",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "doing",
+          "transliteration": "pravejkji",
+          "isCore": true
+        },
+        {
+          "word": "опфатите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the scopes",
+          "gender": "neuter",
+          "transliteration": "opfatite",
+          "isCore": true
+        },
+        {
+          "word": "психолозите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the psychologists",
+          "gender": "neuter",
+          "transliteration": "psiholozite",
+          "isCore": true
+        },
+        {
+          "word": "биолозите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the biologists",
+          "gender": "neuter",
+          "transliteration": "biolozite",
+          "isCore": true
+        },
+        {
+          "word": "занимаваат",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "deal with",
+          "gender": "masculine",
+          "transliteration": "zanimavaat",
+          "isCore": true
+        },
+        {
+          "word": "парите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the money",
+          "gender": "neuter",
+          "transliteration": "parite",
+          "isCore": true
+        },
+        {
+          "word": "насока",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "direction",
+          "gender": "feminine",
+          "transliteration": "nasoka",
+          "isCore": true
+        },
+        {
+          "word": "мери",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "measure",
+          "transliteration": "meri",
+          "isCore": true
+        },
+        {
+          "word": "Согласно",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "accordingly",
+          "transliteration": "Soglasno",
+          "isCore": true
+        },
+        {
+          "word": "однатре",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "from the inside",
+          "gender": "neuter",
+          "transliteration": "odnatre",
+          "isCore": true
+        },
+        {
+          "word": "одвива",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "takes place",
+          "gender": "feminine",
+          "transliteration": "odviva",
+          "isCore": true
+        },
+        {
+          "word": "однадвор",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "from the outside",
+          "gender": "masculine",
+          "transliteration": "odnadvor",
+          "isCore": true
+        },
+        {
+          "word": "Претпоставката",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the assumption",
+          "gender": "feminine",
+          "transliteration": "Pretpostavkata",
+          "isCore": true
+        },
+        {
+          "word": "прашаме",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "we ask",
+          "gender": "neuter",
+          "transliteration": "prashame",
+          "isCore": true
+        },
+        {
+          "word": "проценуваат",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "they estimate",
+          "gender": "masculine",
+          "transliteration": "procenuvaat",
+          "isCore": true
+        },
+        {
+          "word": "прашалници",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "questionnaires",
+          "transliteration": "prashalnici",
+          "isCore": true
+        },
+        {
+          "word": "испитаниците",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the respondents",
+          "gender": "neuter",
+          "transliteration": "ispitanicite",
+          "isCore": true
+        },
+        {
+          "word": "пополнуваат",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "they fill",
+          "gender": "masculine",
+          "transliteration": "popolnuvaat",
+          "isCore": true
+        },
+        {
+          "word": "пребројуваат",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "they count",
+          "gender": "masculine",
+          "transliteration": "prebrojuvaat",
+          "isCore": true
+        },
+        {
+          "word": "најзначајниот",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the most significant",
+          "gender": "masculine",
+          "transliteration": "najznachajniot",
+          "isCore": true
+        },
+        {
+          "word": "објективните",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the objective ones",
+          "gender": "neuter",
+          "transliteration": "objektivnite",
+          "isCore": true
+        },
+        {
+          "word": "заедницата",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the community",
+          "gender": "feminine",
+          "transliteration": "zaednicata",
+          "isCore": true
+        },
+        {
+          "word": "Напротив",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "on the contrary",
+          "gender": "masculine",
+          "transliteration": "Naprotiv",
+          "isCore": true
+        },
+        {
+          "word": "корелацијата",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the correlation",
+          "gender": "feminine",
+          "transliteration": "korelacijata",
+          "isCore": true
+        },
+        {
+          "word": "субјективните",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the subjective",
+          "gender": "neuter",
+          "transliteration": "subjektivnite",
+          "isCore": true
+        },
+        {
+          "word": "очекувања",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "expectations",
+          "gender": "feminine",
+          "transliteration": "ochekuvanja",
+          "isCore": true
+        },
+        {
+          "word": "половно",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "second hand",
+          "transliteration": "polovno",
+          "isCore": true
+        },
+        {
+          "word": "ускратено",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "denied",
+          "transliteration": "uskrateno",
+          "isCore": true
+        },
+        {
+          "word": "добивката",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the profit",
+          "gender": "feminine",
+          "transliteration": "dobivkata",
+          "isCore": true
+        },
+        {
+          "word": "истото",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the same thing",
+          "gender": "neuter",
+          "transliteration": "istoto",
+          "isCore": true
+        },
+        {
+          "word": "сообраќајка",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "accident",
+          "gender": "feminine",
+          "transliteration": "soobrakjajka",
+          "isCore": true
+        },
+        {
+          "word": "зголемуваат",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "increase",
+          "gender": "masculine",
+          "transliteration": "zgolemuvaat",
+          "isCore": true
+        },
+        {
+          "word": "подобруваат",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "improve",
+          "gender": "masculine",
+          "transliteration": "podobruvaat",
+          "isCore": true
+        },
+        {
+          "word": "намалуваат",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "reduce",
+          "gender": "masculine",
+          "transliteration": "namaluvaat",
+          "isCore": true
+        },
+        {
+          "word": "речете",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "say",
+          "gender": "neuter",
+          "transliteration": "rechete",
+          "isCore": true
+        },
+        {
+          "word": "Пророците",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the prophets",
+          "gender": "neuter",
+          "transliteration": "Prorocite",
+          "isCore": true
+        },
+        {
+          "word": "поетите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the poets",
+          "gender": "neuter",
+          "transliteration": "poetite",
+          "isCore": true
+        },
+        {
+          "word": "филозофите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the philosophers",
+          "gender": "neuter",
+          "transliteration": "filozofite",
+          "isCore": true
+        },
+        {
+          "word": "сфатиле",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "they understood",
+          "gender": "neuter",
+          "transliteration": "sfatile",
+          "isCore": true
+        },
+        {
+          "word": "посакуваме",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "we wish",
+          "gender": "neuter",
+          "transliteration": "posakuvame",
+          "isCore": true
+        },
+        {
+          "word": "Градовите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the cities",
+          "gender": "neuter",
+          "transliteration": "Gradovite",
+          "isCore": true
+        },
+        {
+          "word": "Божественета",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "divinity",
+          "gender": "feminine",
+          "transliteration": "Bozhestveneta",
+          "isCore": true
+        },
+        {
+          "word": "полињата",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the fields",
+          "gender": "feminine",
+          "transliteration": "polinjata",
+          "isCore": true
+        },
+        {
+          "word": "фотографиите",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "the photos",
+          "gender": "neuter",
+          "transliteration": "fotografiite",
+          "isCore": true
+        },
+        {
+          "word": "живееле",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "they lived",
+          "gender": "neuter",
+          "transliteration": "zhiveele",
+          "isCore": true
+        },
+        {
+          "word": "живеете",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "you live",
+          "gender": "neuter",
+          "transliteration": "zhiveete",
+          "isCore": true
+        }
+      ],
+      "grammarNotes": [
+        {
+          "title": "Именки",
+          "content": "At B1 level, noun usage includes advanced declension patterns, vocative case for direct address, and complex plural formations. Macedonian nouns show gender through articles and agreement patterns. Special attention to irregular plurals and collective nouns.",
+          "examples": [
+            "Татко! (vocative - direct address)",
+            "Марија, дојди овде! (vocative)",
+            "човек → луѓе (irregular plural)",
+            "дете → деца (irregular plural)",
+            "брат → браќа (collective)",
+            "книга → книги → книгите (definite plural)"
+          ],
+          "translatedExamples": [
+            "Father! (vocative - direct address)",
+            "Maria, come here! (vocative)",
+            "man → people (irregular plural)",
+            "child → children (irregular plural)",
+            "brother → brothers (collective)",
+            "book → books → the books (definite plural)"
+          ]
+        },
+        {
+          "title": "Придавки",
+          "content": "B1 adjectives include comparative and superlative forms. Comparatives use \"по-\" prefix (по-добар), superlatives use \"нај-\" (најдобар). Irregular forms exist (добар → подобар → најдобар). Adjectives agree in gender, number, and definiteness with modified nouns.",
+          "examples": [
+            "добар → подобар → најдобар",
+            "висок → повисок → највисок",
+            "убав → поубав → најубав",
+            "Оваа книга е поинтересна.",
+            "Тој е најдобриот студент.",
+            "Денес е потопло отколку вчера."
+          ],
+          "translatedExamples": [
+            "good → better → best",
+            "tall → taller → highest",
+            "beautiful → more beautiful → most beautiful",
+            "This book is more interesting.",
+            "He is the best student.",
+            "Today is warmer than yesterday."
+          ]
+        },
+        {
+          "title": "Заменки",
+          "content": "Relative pronouns connect clauses: кој/која/кое (who/which - for people/things), што (that/what), каде (where), кога (when), како (how). They introduce relative clauses that modify nouns or provide additional information. Gender and number agreement required.",
+          "examples": [
+            "Историјата и традицијата се важни елементи кои ги збогатуваат природните и уметничките убавини што се битен елемент за туристичката понуда на една земја.",
+            "на Културно-уметнички м анифестации Градот Скопје прави еден сплет од нови иницијативи на полето 0.",
+            "Човекот кој дојде е мој пријател.",
+            "Жената која работи тука е учителка.",
+            "Детето кое игра е мало.",
+            "Книгата што ја читам е интересна.",
+            "Градот каде живеам е голем.",
+            "Денот кога дојде беше убав.",
+            "Начинот како зборува е чуден.",
+            "Оној што дојде прв победи."
+          ],
+          "translatedExamples": [
+            "History and tradition are important elements that enrich the natural and artistic beauties that are an essential element for the tourist offer of a country.",
+            "of Cultural and Artistic Manifestations The City of Skopje is making a series of new initiatives in field 0.",
+            "The man who came is my friend.",
+            "The woman who works here is a teacher.",
+            "The child playing is small.",
+            "The book I am reading is interesting.",
+            "The city where I live is big.",
+            "The day he came was beautiful.",
+            "The way he talks is strange.",
+            "Whoever came first won."
+          ]
+        },
+        {
+          "title": "Предлози",
+          "content": "B1 prepositions include complex spatial and temporal relationships: покрај (beside/despite), помеѓу (between), против (against), според (according to), околу (around/about), без (without), заради (for the sake of). They govern noun phrases and create nuanced meaning.",
+          "examples": [
+            "Историјата и традицијата се важни елементи кои ги збогатуваат природните и уметничките убавини што се битен елемент за туристичката понуда на една земја.",
+            "на Културно-уметнички м анифестации Градот Скопје прави еден сплет од нови иницијативи на полето 0.",
+            "Седам покрај прозорецот.",
+            "Помеѓу градовите има патот.",
+            "Тој е против предлогот.",
+            "Според мене, тоа е точно.",
+            "Ќе се видиме околу пет часот.",
+            "Без тебе не можам.",
+            "Заради тебе дојдов.",
+            "Покрај проблемите, успеавме."
+          ],
+          "translatedExamples": [
+            "History and tradition are important elements that enrich the natural and artistic beauties that are an essential element for the tourist offer of a country.",
+            "of Cultural and Artistic Manifestations The City of Skopje is making a series of new initiatives in field 0.",
+            "I'm sitting by the window.",
+            "There is a road between the cities.",
+            "He is against the proposal.",
+            "In my opinion, that is correct.",
+            "I'll see you around five o'clock.",
+            "I can't do without you.",
+            "I came for you.",
+            "Despite the problems, we succeeded."
+          ]
+        },
+        {
+          "title": "Условен начин (Conditional)",
+          "content": "The conditional mood in Macedonian uses the particle \"би\" + L-form to express hypothetical situations, polite requests, and wishes. Three types: real (possible), unreal (contrary to fact), and possible (unlikely but theoretically possible). Used for politeness, imagination, and expressing conditions.",
+          "examples": [
+            "Дали парите, семејството, генетиката, или можеби доблеста?",
+            "Би сакал да дојдам, но не можам.",
+            "Би ли можеле да ми помогнете?",
+            "Таа би студирала медицина, но не положи.",
+            "Кога би имал пари, би патувал по светот.",
+            "Би било убаво да се видиме.",
+            "Што би правел на мое место?",
+            "Би ја препорачал оваа книга.",
+            "Би сакале да научите повеќе?",
+            "Ако би знаел, би ти кажал."
+          ],
+          "translatedExamples": [
+            "Is it money, family, genetics, or maybe virtue?",
+            "I would like to come, but I can't.",
+            "Could you help me?",
+            "She would have studied medicine, but she didn't pass.",
+            "If I had money, I would travel the world.",
+            "It would be nice to see you.",
+            "What would you do in my place?",
+            "I would recommend this book.",
+            "Would you like to learn more?",
+            "If I knew, I would tell you."
+          ]
+        }
+      ],
+      "intro": "Urban jungle - navigate city life with advanced vocabulary. From public transport to urban challenges, learn to discuss modern city living, infrastructure, and metropolitan culture."
+    }
+  ],
+  "metadata": {
+    "totalLessons": 8,
+    "totalPages": 148,
+    "extractedAt": "2026-01-07T20:00:59.747Z",
+    "parsedAt": "2026-01-08T14:20:02.297Z"
+  }
+}
