@@ -1,0 +1,1187 @@
+{
+  "auditDate": "2026-01-11T18:27:05.518Z",
+  "summary": {
+    "totalLessons": 40,
+    "completeCount": 24,
+    "incompleteCount": 16,
+    "gapsFound": 21,
+    "lowVocabLessons": 1,
+    "lowGrammarLessons": 4,
+    "avgCompletenessScore": 87
+  },
+  "byLevel": {
+    "a1": {
+      "totalLessons": 24,
+      "completeCount": 9,
+      "avgVocab": 48,
+      "avgGrammar": 3,
+      "avgScore": 81
+    },
+    "a2": {
+      "totalLessons": 8,
+      "completeCount": 8,
+      "avgVocab": 50,
+      "avgGrammar": 6,
+      "avgScore": 100
+    },
+    "b1": {
+      "totalLessons": 8,
+      "completeCount": 7,
+      "avgVocab": 50,
+      "avgGrammar": 3,
+      "avgScore": 94
+    }
+  },
+  "lessons": [
+    {
+      "level": "A1",
+      "lesson": 1,
+      "title": "Lesson 1: Јас и ти",
+      "intro": "Welcome to your first Macedonian lesson! You'll learn essential greetings like 'Здраво' (Hello) and 'Како си?' (How are you?), introduce yourself, and ask where someone is from. We'll cover the verb 'сум' (to be) and possessive pronouns.",
+      "promisedTopics": [
+        {
+          "topic": "verb сум (to be)",
+          "category": "grammar"
+        },
+        {
+          "topic": "possessive pronouns",
+          "category": "grammar"
+        },
+        {
+          "topic": "greetings",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Глаголот \"сум\"",
+        "Присвојни заменки (Possessive pronouns)",
+        "Предлози (Prepositions)"
+      ],
+      "vocabCount": 47,
+      "grammarCount": 3,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "A1",
+      "lesson": 2,
+      "title": "Lesson 2: Семејство",
+      "intro": "In this lesson, you'll learn to talk about your family in Macedonian. Discover words for family members, practice numbers to discuss ages, and use possessive pronouns to say 'my mother' or 'his brother'. Perfect for sharing about the people closest to you.",
+      "promisedTopics": [
+        {
+          "topic": "possessive pronouns",
+          "category": "grammar"
+        },
+        {
+          "topic": "family members",
+          "category": "vocabulary"
+        },
+        {
+          "topic": "numbers",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Еднина и множина",
+        "Броеви",
+        "Глаголот \"сум\"",
+        "Глаголот \"има\"",
+        "Присвојни заменки (Possessive pronouns)",
+        "Предлози (Prepositions)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 6,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "A1",
+      "lesson": 3,
+      "title": "Lesson 3: Прашуваме",
+      "intro": "Learn the art of polite conversation! This lesson teaches you how to ask questions, get someone's attention with 'Извини' (Excuse me), and handle everyday situations like asking 'Is this seat free?' Great for navigating social interactions.",
+      "promisedTopics": [
+        {
+          "topic": "questions",
+          "category": "grammar"
+        }
+      ],
+      "grammarCovers": [
+        "Броеви",
+        "Глаголот \"сум\""
+      ],
+      "vocabCount": 50,
+      "grammarCount": 2,
+      "gaps": [
+        {
+          "topic": "questions",
+          "category": "grammar",
+          "reason": "Intro promises \"questions\" but no matching grammar note found"
+        }
+      ],
+      "warnings": [],
+      "isComplete": false,
+      "completenessScore": 67
+    },
+    {
+      "level": "A1",
+      "lesson": 4,
+      "title": "Lesson 4: Околу нас",
+      "intro": "Explore the world around you with colors, objects, and locations. Learn to describe birthday gifts, identify everyday items, and ask 'Where is...?' This lesson builds your vocabulary for describing your surroundings.",
+      "promisedTopics": [
+        {
+          "topic": "colors",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Глаголот сум",
+        "Предлози (Prepositions)",
+        "Броеви",
+        "Присвојни заменки (Possessive pronouns)",
+        "Показни заменки (Demonstrative pronouns)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 5,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "A1",
+      "lesson": 5,
+      "title": "Lesson 5: Има...",
+      "intro": "Discover how to talk about places and locations. You'll learn to describe favorite spots, find differences between scenes, and use prepositions to say where things are. Essential vocabulary for describing spaces and giving directions.",
+      "promisedTopics": [
+        {
+          "topic": "prepositions",
+          "category": "grammar"
+        },
+        {
+          "topic": "directions",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Присвојни заменки (Possessive pronouns)",
+        "Предлози (Prepositions)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 2,
+      "gaps": [
+        {
+          "topic": "directions",
+          "category": "vocabulary",
+          "reason": "Intro mentions \"directions\" but vocabulary doesn't clearly cover this theme"
+        }
+      ],
+      "warnings": [],
+      "isComplete": false,
+      "completenessScore": 83
+    },
+    {
+      "level": "A1",
+      "lesson": 6,
+      "title": "Lesson 6: Твојот дом",
+      "intro": "Make yourself at home with vocabulary for rooms, furniture, and addresses. Learn to describe your living space room by room, talk about what's in each room, and share your address. Perfect for housing and home life conversations.",
+      "promisedTopics": [
+        {
+          "topic": "home/furniture",
+          "category": "vocabulary"
+        },
+        {
+          "topic": "addresses",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Придавки",
+        "Еднина и множина (Singular and Plural)",
+        "Броеви",
+        "Присвојни заменки (Possessive pronouns)",
+        "Предлози (Prepositions)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 5,
+      "gaps": [
+        {
+          "topic": "addresses",
+          "category": "vocabulary",
+          "reason": "Intro mentions \"addresses\" but vocabulary doesn't clearly cover this theme"
+        }
+      ],
+      "warnings": [],
+      "isComplete": false,
+      "completenessScore": 83
+    },
+    {
+      "level": "A1",
+      "lesson": 7,
+      "title": "Lesson 7: Што прават луѓето?",
+      "intro": "What do people do in their free time? Learn verbs for daily activities, talk about hobbies with friends, and practice present tense conjugations. You'll be ready to discuss leisure activities and routines.",
+      "promisedTopics": [
+        {
+          "topic": "present tense",
+          "category": "grammar"
+        },
+        {
+          "topic": "verb conjugation",
+          "category": "grammar"
+        },
+        {
+          "topic": "daily activities",
+          "category": "vocabulary"
+        },
+        {
+          "topic": "hobbies/leisure",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Еднина и множина",
+        "Глаголот \"зборув\"",
+        "Предлози (Prepositions)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 3,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "A1",
+      "lesson": 8,
+      "title": "Lesson 8: Јадење и пиење",
+      "intro": "Time to eat and drink! Master food and beverage vocabulary, learn to order at restaurants with 'Келнер!' (Waiter!), and discuss your favorite dishes. Essential for dining out and talking about meals.",
+      "promisedTopics": [
+        {
+          "topic": "food vocabulary",
+          "category": "vocabulary"
+        },
+        {
+          "topic": "restaurant/dining",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Глаголот јаде",
+        "Именки",
+        "Броеви (Numbers)",
+        "Предлози (Prepositions)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 4,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "A1",
+      "lesson": 9,
+      "title": "Lesson 9: Дали...?",
+      "intro": "Learn to ask yes/no questions with 'Дали...?' (Do you...?). This lesson covers professions, daily life questions, and how to have simple conversations about what people do. Great for getting to know others.",
+      "promisedTopics": [
+        {
+          "topic": "questions",
+          "category": "grammar"
+        },
+        {
+          "topic": "professions",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Броеви (Numbers)",
+        "Предлози (Prepositions)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 2,
+      "gaps": [
+        {
+          "topic": "questions",
+          "category": "grammar",
+          "reason": "Intro promises \"questions\" but no matching grammar note found"
+        },
+        {
+          "topic": "professions",
+          "category": "vocabulary",
+          "reason": "Intro mentions \"professions\" but vocabulary doesn't clearly cover this theme"
+        }
+      ],
+      "warnings": [],
+      "isComplete": false,
+      "completenessScore": 67
+    },
+    {
+      "level": "A1",
+      "lesson": 10,
+      "title": "Lesson 10: Што купуваат луѓето?",
+      "intro": "Go shopping in Macedonian! Learn vocabulary for markets, stores, and asking for directions to nearby places. You'll practice describing products, asking prices, and finding what you need around town.",
+      "promisedTopics": [
+        {
+          "topic": "directions",
+          "category": "vocabulary"
+        },
+        {
+          "topic": "shopping",
+          "category": "vocabulary"
+        },
+        {
+          "topic": "prices/shopping",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Глаголот \"сум\"",
+        "Показни заменки (Demonstrative pronouns)",
+        "Броеви (Numbers)",
+        "Предлози (Prepositions)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 4,
+      "gaps": [
+        {
+          "topic": "directions",
+          "category": "vocabulary",
+          "reason": "Intro mentions \"directions\" but vocabulary doesn't clearly cover this theme"
+        },
+        {
+          "topic": "prices/shopping",
+          "category": "vocabulary",
+          "reason": "Intro mentions \"prices/shopping\" but vocabulary doesn't clearly cover this theme"
+        }
+      ],
+      "warnings": [],
+      "isComplete": false,
+      "completenessScore": 78
+    },
+    {
+      "level": "A1",
+      "lesson": 11,
+      "title": "Lesson 11: Што се случува?",
+      "intro": "What's happening? Learn to describe current events and situations, check your progress, and ask questions about what's going on. This lesson focuses on present tense actions and situational vocabulary.",
+      "promisedTopics": [
+        {
+          "topic": "present tense",
+          "category": "grammar"
+        },
+        {
+          "topic": "questions",
+          "category": "grammar"
+        }
+      ],
+      "grammarCovers": [
+        "Именки (Nouns - Advanced)",
+        "Предлози (Prepositions)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 2,
+      "gaps": [
+        {
+          "topic": "present tense",
+          "category": "grammar",
+          "reason": "Intro promises \"present tense\" but no matching grammar note found"
+        },
+        {
+          "topic": "questions",
+          "category": "grammar",
+          "reason": "Intro promises \"questions\" but no matching grammar note found"
+        }
+      ],
+      "warnings": [],
+      "isComplete": false,
+      "completenessScore": 67
+    },
+    {
+      "level": "A1",
+      "lesson": 12,
+      "title": "Lesson 12: Опишување луѓе",
+      "intro": "Learn to describe people - their clothes, jobs, and appearance. From professional titles to physical descriptions, you'll gain the vocabulary to talk about the people you meet and see.",
+      "promisedTopics": [
+        {
+          "topic": "clothing",
+          "category": "vocabulary"
+        },
+        {
+          "topic": "professions",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Придавки (Adjectives)",
+        "Заменки (Pronouns)",
+        "Предлози",
+        "Глаголот \"сум\"",
+        "Броеви (Numbers)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 5,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "A1",
+      "lesson": 13,
+      "title": "Lesson 13: Колку чини?",
+      "intro": "How much does it cost? Master shopping vocabulary, create shopping lists, and learn to ask about prices. This practical lesson prepares you for real-world transactions and shopping conversations.",
+      "promisedTopics": [
+        {
+          "topic": "shopping",
+          "category": "vocabulary"
+        },
+        {
+          "topic": "prices/shopping",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Именки",
+        "Показни заменки (Demonstrative pronouns)",
+        "Предлози (Prepositions)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 3,
+      "gaps": [
+        {
+          "topic": "prices/shopping",
+          "category": "vocabulary",
+          "reason": "Intro mentions \"prices/shopping\" but vocabulary doesn't clearly cover this theme"
+        }
+      ],
+      "warnings": [],
+      "isComplete": false,
+      "completenessScore": 83
+    },
+    {
+      "level": "A1",
+      "lesson": 14,
+      "title": "Lesson 14: Преку годината",
+      "intro": "Journey through the year! Learn seasons, months, and festival vocabulary. From 'пролет' (spring) to 'зима' (winter), you'll be ready to discuss weather, holidays, and annual events.",
+      "promisedTopics": [
+        {
+          "topic": "weather",
+          "category": "vocabulary"
+        },
+        {
+          "topic": "seasons",
+          "category": "vocabulary"
+        },
+        {
+          "topic": "months",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Именки",
+        "Предлози (Prepositions)",
+        "Броеви"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 3,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "A1",
+      "lesson": 15,
+      "title": "Lesson 15: Во минатото 1",
+      "intro": "Step into the past with your first lesson on past tense. Learn to use 'беше' (was) to tell bedtime stories and describe yesterday's events. Your gateway to narrating past experiences.",
+      "promisedTopics": [
+        {
+          "topic": "past tense",
+          "category": "grammar"
+        }
+      ],
+      "grammarCovers": [
+        "Глаголот сум",
+        "Предлози (Prepositions)",
+        "Броеви"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 3,
+      "gaps": [
+        {
+          "topic": "past tense",
+          "category": "grammar",
+          "reason": "Intro promises \"past tense\" but no matching grammar note found"
+        }
+      ],
+      "warnings": [],
+      "isComplete": false,
+      "completenessScore": 67
+    },
+    {
+      "level": "A1",
+      "lesson": 16,
+      "title": "Lesson 16: Околу светот",
+      "intro": "Travel around the world through language! Learn country names, nationalities, and map vocabulary. Discover how to talk about different places and the adjectives that describe them.",
+      "promisedTopics": [
+        {
+          "topic": "countries/nationalities",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Придавки",
+        "Предлози (Prepositions)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 2,
+      "gaps": [
+        {
+          "topic": "countries/nationalities",
+          "category": "vocabulary",
+          "reason": "Intro mentions \"countries/nationalities\" but vocabulary doesn't clearly cover this theme"
+        }
+      ],
+      "warnings": [],
+      "isComplete": false,
+      "completenessScore": 67
+    },
+    {
+      "level": "A1",
+      "lesson": 17,
+      "title": "Lesson 17: Во минатото 2",
+      "intro": "Continue your past tense journey with commands and descriptions. Learn to give simple instructions like 'Give me the book!' and describe people and situations from the past.",
+      "promisedTopics": [
+        {
+          "topic": "past tense",
+          "category": "grammar"
+        }
+      ],
+      "grammarCovers": [
+        "Предлози (Prepositions)"
+      ],
+      "vocabCount": 39,
+      "grammarCount": 1,
+      "gaps": [
+        {
+          "topic": "past tense",
+          "category": "grammar",
+          "reason": "Intro promises \"past tense\" but no matching grammar note found"
+        }
+      ],
+      "warnings": [
+        "Low grammar: 1 notes (target: 2+)"
+      ],
+      "isComplete": false,
+      "completenessScore": 50
+    },
+    {
+      "level": "A1",
+      "lesson": 18,
+      "title": "Lesson 18: Како да стигнеш таму?",
+      "intro": "Find your way! Learn directions, transportation vocabulary, and how to ask 'How do I get there?' From walking to work to navigating the city, this lesson gets you moving.",
+      "promisedTopics": [
+        {
+          "topic": "directions",
+          "category": "vocabulary"
+        },
+        {
+          "topic": "transportation",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Придавки",
+        "Глаголот \"сум\"",
+        "Броеви (Numbers)",
+        "Предлози (Prepositions)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 4,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "A1",
+      "lesson": 19,
+      "title": "Lesson 19: Не смееш да го правиш тоа!",
+      "intro": "Learn the rules with 'must' and 'must not'. Discuss weather, climate, and obligations. From traffic signs to social rules, understand how to express what's required or forbidden.",
+      "promisedTopics": [
+        {
+          "topic": "modal verbs (must/must not)",
+          "category": "grammar"
+        },
+        {
+          "topic": "weather",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Предлози (Prepositions)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 1,
+      "gaps": [
+        {
+          "topic": "modal verbs (must/must not)",
+          "category": "grammar",
+          "reason": "Intro promises \"modal verbs (must/must not)\" but no matching grammar note found"
+        },
+        {
+          "topic": "weather",
+          "category": "vocabulary",
+          "reason": "Intro mentions \"weather\" but vocabulary doesn't clearly cover this theme"
+        }
+      ],
+      "warnings": [
+        "Low grammar: 1 notes (target: 2+)"
+      ],
+      "isComplete": false,
+      "completenessScore": 50
+    },
+    {
+      "level": "A1",
+      "lesson": 20,
+      "title": "Lesson 20: Тело",
+      "intro": "Explore body vocabulary and health expressions. Learn body parts, discuss physical activities, and understand signs about what you must or must not do. Essential for health-related conversations.",
+      "promisedTopics": [
+        {
+          "topic": "modal verbs (must/must not)",
+          "category": "grammar"
+        },
+        {
+          "topic": "body parts",
+          "category": "vocabulary"
+        },
+        {
+          "topic": "health expressions",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Придавки",
+        "Броеви (Numbers)",
+        "Предлози (Prepositions)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 3,
+      "gaps": [
+        {
+          "topic": "modal verbs (must/must not)",
+          "category": "grammar",
+          "reason": "Intro promises \"modal verbs (must/must not)\" but no matching grammar note found"
+        },
+        {
+          "topic": "health expressions",
+          "category": "vocabulary",
+          "reason": "Intro mentions \"health expressions\" but vocabulary doesn't clearly cover this theme"
+        }
+      ],
+      "warnings": [],
+      "isComplete": false,
+      "completenessScore": 78
+    },
+    {
+      "level": "A1",
+      "lesson": 21,
+      "title": "Lesson 21: Добро, подобро, најдобро",
+      "intro": "Good, better, best! Master comparative and superlative adjectives. Learn to compare things, express preferences, and describe the best places to live. Level up your descriptive abilities.",
+      "promisedTopics": [
+        {
+          "topic": "comparative adjectives",
+          "category": "grammar"
+        },
+        {
+          "topic": "superlative adjectives",
+          "category": "grammar"
+        }
+      ],
+      "grammarCovers": [
+        "Придавки",
+        "Предлози"
+      ],
+      "vocabCount": 15,
+      "grammarCount": 2,
+      "gaps": [
+        {
+          "topic": "comparative adjectives",
+          "category": "grammar",
+          "reason": "Intro promises \"comparative adjectives\" but no matching grammar note found"
+        },
+        {
+          "topic": "superlative adjectives",
+          "category": "grammar",
+          "reason": "Intro promises \"superlative adjectives\" but no matching grammar note found"
+        }
+      ],
+      "warnings": [
+        "Low vocabulary: 15 items (target: 30+)"
+      ],
+      "isComplete": false,
+      "completenessScore": 50
+    },
+    {
+      "level": "A1",
+      "lesson": 22,
+      "title": "Lesson 22: Слободно време",
+      "intro": "Dive deeper into free time activities. Compare different hobbies, discuss what's important to you, and use adjectives to express opinions about leisure activities and relationships.",
+      "promisedTopics": [
+        {
+          "topic": "hobbies/leisure",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Придавки (Adjectives)",
+        "Броеви",
+        "Предлози (Prepositions)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 3,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "A1",
+      "lesson": 23,
+      "title": "Lesson 23: Идни планови",
+      "intro": "Plan for the future! Learn to discuss upcoming plans, express intentions with future tense, and share your travel dreams. From Rome to your next adventure, start planning in Macedonian.",
+      "promisedTopics": [
+        {
+          "topic": "future tense",
+          "category": "grammar"
+        }
+      ],
+      "grammarCovers": [
+        "Броеви (Numbers)",
+        "Предлози (Prepositions)"
+      ],
+      "vocabCount": 42,
+      "grammarCount": 2,
+      "gaps": [
+        {
+          "topic": "future tense",
+          "category": "grammar",
+          "reason": "Intro promises \"future tense\" but no matching grammar note found"
+        }
+      ],
+      "warnings": [],
+      "isComplete": false,
+      "completenessScore": 67
+    },
+    {
+      "level": "A1",
+      "lesson": 24,
+      "title": "Lesson 24: Чувства",
+      "intro": "Express your emotions! Learn vocabulary for feelings - from 'гладен' (hungry) to complex emotions. Discuss how situations make you feel and understand others' emotional expressions.",
+      "promisedTopics": [
+        {
+          "topic": "feelings/emotions",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Предлози (Prepositions)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 1,
+      "gaps": [],
+      "warnings": [
+        "Low grammar: 1 notes (target: 2+)"
+      ],
+      "isComplete": false,
+      "completenessScore": 83
+    },
+    {
+      "level": "A2",
+      "lesson": 1,
+      "title": "Lesson 1: Кои сме – што сме",
+      "intro": "Who are we and what do we do? This intermediate lesson dives into identity and nationality. Master present tense verbs, learn how Macedonian articles work (the unique post-positioned definite article), and form adjectives from place names.",
+      "promisedTopics": [
+        {
+          "topic": "present tense",
+          "category": "grammar"
+        },
+        {
+          "topic": "definite articles",
+          "category": "grammar"
+        }
+      ],
+      "grammarCovers": [
+        "Сегашно време (презент)",
+        "Членување (Definite Article)",
+        "Придавки од географски имиња (Geographic Adjectives)",
+        "Прашални реченици",
+        "Глаголот \"сум\""
+      ],
+      "vocabCount": 50,
+      "grammarCount": 5,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "A2",
+      "lesson": 2,
+      "title": "Lesson 2: Градот на мојата душа и душата на мојот град",
+      "intro": "Explore cities and places close to your heart. Learn the 'да-construction' for expressing desires and intentions, ordinal numbers, and both direct and indirect object pronouns. Perfect for describing your favorite urban landscapes.",
+      "promisedTopics": [
+        {
+          "topic": "numbers",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Да-конструкција (Da-construction)",
+        "Бројни придавки со редно значење",
+        "Кратки заменски форми (Clitic Pronouns)",
+        "Идно време (Future Tense)",
+        "Прилози (адверби)",
+        "Предлози (препозиции)",
+        "Именки"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 7,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "A2",
+      "lesson": 3,
+      "title": "Lesson 3: Нејзиното височество – храната",
+      "intro": "Her Majesty - Food! Advance your culinary vocabulary with imperative commands for recipes, past participles, and the conditional mood. From cooking instructions to restaurant recommendations, become fluent in food talk.",
+      "promisedTopics": [
+        {
+          "topic": "food vocabulary",
+          "category": "vocabulary"
+        },
+        {
+          "topic": "restaurant/dining",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Заповеден начин (императив)",
+        "Глаголска л-форма",
+        "Можен начин / Потенцијал (Conditional)",
+        "Модални зборови и изрази",
+        "Броеви"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 5,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "A2",
+      "lesson": 4,
+      "title": "Lesson 4: Во светот на купувањето",
+      "intro": "Enter the world of shopping with advanced past tenses. Master the imperfect for ongoing past actions, aorist for completed events, and verbal adjectives. Essential grammar for storytelling about shopping experiences.",
+      "promisedTopics": [
+        {
+          "topic": "shopping",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Минато определено несвршено време (имперфект)",
+        "Минато определено свршено време (аорист)",
+        "Глаголска придавка",
+        "Глаголска сум-конструкција (Sum-construction)",
+        "Глаголска именка (Verbal Noun)",
+        "Индиректен предмет (Indirect Object)",
+        "Реален услов",
+        "Глаголот што",
+        "Именки",
+        "Придавки",
+        "Броеви"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 11,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "A2",
+      "lesson": 5,
+      "title": "Lesson 5: Професијата – сон или реалност",
+      "intro": "Dream job or reality? Discuss professions and career paths using the perfect tense, adverbs, and particles. Learn to narrate your professional journey and talk about work experiences.",
+      "promisedTopics": [
+        {
+          "topic": "professions",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Минато неопределено време / Перфект (Perfect Tense)",
+        "Прилози (адверби)",
+        "Честички (партикули)",
+        "Именки"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 4,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "A2",
+      "lesson": 6,
+      "title": "Lesson 6: Светот на дланка",
+      "intro": "The world at your fingertips! Learn the past-future tense for reported speech, unreal conditionals for hypotheticals, and the 'има-construction'. Perfect for discussing travel, technology, and global topics.",
+      "promisedTopics": [
+        {
+          "topic": "future tense",
+          "category": "grammar"
+        }
+      ],
+      "grammarCovers": [
+        "Минато-идно време",
+        "Нереален услов",
+        "Глаголска има-конструкција",
+        "Извици (интерјекции)",
+        "Броеви"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 5,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "A2",
+      "lesson": 7,
+      "title": "Lesson 7: Празнуваме, одбележуваме, честитаме, подаруваме...",
+      "intro": "Celebrate, commemorate, congratulate, and gift! Master conditional sentences, verbal adverbs, and passive constructions. Learn the language of holidays, traditions, and special occasions in Macedonia.",
+      "promisedTopics": [],
+      "grammarCovers": [
+        "Можен услов",
+        "Глаголски прилог",
+        "Пасивни реченици (Passive Voice)",
+        "Предлози",
+        "Броеви"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 5,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "A2",
+      "lesson": 8,
+      "title": "Lesson 8: Најди време!",
+      "intro": "Find time for advanced grammar! Tackle the pluperfect tense for events before other past events, conjunctions for complex sentences, and reported speech. The capstone lesson for A2 proficiency.",
+      "promisedTopics": [],
+      "grammarCovers": [
+        "Предминато време (плусквамперфект)",
+        "Сврзници (конјункции)",
+        "Пресказ",
+        "Броеви (Numbers)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 4,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "B1",
+      "lesson": 1,
+      "title": "Lesson 1: Дали се разбираме?",
+      "intro": "Do we understand each other? This B1 lesson focuses on communication and comprehension. Learn the negative verb 'нема' (there isn't/don't have), expand your noun vocabulary, and refine your adjective usage for nuanced expression.",
+      "promisedTopics": [],
+      "grammarCovers": [
+        "Глаголот нема",
+        "Именки",
+        "Придавки",
+        "Броеви (Numbers)",
+        "Условен начин (Conditional)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 5,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "B1",
+      "lesson": 2,
+      "title": "Lesson 2: Има ли надеж?",
+      "intro": "Is there hope? Explore deeper topics of optimism, future outlook, and abstract concepts. Build advanced noun and pronoun skills for discussing complex ideas and emotional states.",
+      "promisedTopics": [],
+      "grammarCovers": [
+        "Именки",
+        "Заменки"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 2,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "B1",
+      "lesson": 3,
+      "title": "Lesson 3: Моето здравје",
+      "intro": "My health matters! Dive into comprehensive health vocabulary - symptoms, treatments, and wellness. Learn congratulatory expressions and medical terminology for healthcare conversations.",
+      "promisedTopics": [
+        {
+          "topic": "health expressions",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Глаголот честита"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 1,
+      "gaps": [
+        {
+          "topic": "health expressions",
+          "category": "vocabulary",
+          "reason": "Intro mentions \"health expressions\" but vocabulary doesn't clearly cover this theme"
+        }
+      ],
+      "warnings": [
+        "Low grammar: 1 notes (target: 2+)"
+      ],
+      "isComplete": false,
+      "completenessScore": 50
+    },
+    {
+      "level": "B1",
+      "lesson": 4,
+      "title": "Lesson 4: Што (ќе) јадеме (денес)?",
+      "intro": "What will we eat today? Advanced food discussions covering meal planning, dietary preferences, and culinary traditions. Master nouns, pronouns, and numbers in gastronomic contexts.",
+      "promisedTopics": [
+        {
+          "topic": "numbers",
+          "category": "vocabulary"
+        },
+        {
+          "topic": "food vocabulary",
+          "category": "vocabulary"
+        }
+      ],
+      "grammarCovers": [
+        "Именки",
+        "Заменки (Pronouns)",
+        "Броеви"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 3,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "B1",
+      "lesson": 5,
+      "title": "Lesson 5: Дајте музика!",
+      "intro": "Let there be music! Express your passion for arts and entertainment. Learn conditional constructions with 'ако' (if), and vocabulary for discussing concerts, genres, and cultural events.",
+      "promisedTopics": [],
+      "grammarCovers": [
+        "Глаголот ако",
+        "Именки (Nouns - Advanced)",
+        "Придавки",
+        "Глаголот \"сум\""
+      ],
+      "vocabCount": 50,
+      "grammarCount": 4,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "B1",
+      "lesson": 6,
+      "title": "Lesson 6: Патуваме, сонуваме!",
+      "intro": "We travel, we dream! Plan adventures and share travel stories. Master travel verbs, destination vocabulary, and descriptive language for recounting journeys and future trip plans.",
+      "promisedTopics": [],
+      "grammarCovers": [
+        "Глаголот патува",
+        "Именки",
+        "Придавки",
+        "Условен начин (Conditional)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 4,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "B1",
+      "lesson": 7,
+      "title": "Lesson 7: Луѓето се луѓе",
+      "intro": "People are people - explore human nature and relationships. Deepen your use of the verb 'сум' in philosophical and social contexts. Discuss personality, behavior, and social dynamics.",
+      "promisedTopics": [
+        {
+          "topic": "verb сум (to be)",
+          "category": "grammar"
+        }
+      ],
+      "grammarCovers": [
+        "Глаголот сум",
+        "Именки",
+        "Придавки (Adjectives)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 3,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    },
+    {
+      "level": "B1",
+      "lesson": 8,
+      "title": "Lesson 8: Градска џунгла",
+      "intro": "Urban jungle - navigate city life with advanced vocabulary. From public transport to urban challenges, learn to discuss modern city living, infrastructure, and metropolitan culture.",
+      "promisedTopics": [],
+      "grammarCovers": [
+        "Именки",
+        "Придавки",
+        "Заменки",
+        "Предлози",
+        "Условен начин (Conditional)"
+      ],
+      "vocabCount": 50,
+      "grammarCount": 5,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
+    }
+  ],
+  "recommendations": [
+    "Add vocabulary to 1 lesson(s) below 30 words",
+    "Add grammar notes to 4 lesson(s) below 2 notes",
+    "Review 21 topic gap(s) where intro promises don't match content",
+    "Lessons needing vocabulary: A1 L21 (15 words)",
+    "Lessons needing grammar: A1 L17 (1 notes), A1 L19 (1 notes), A1 L24 (1 notes), B1 L3 (1 notes)"
+  ]
+}
