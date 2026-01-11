@@ -4,7 +4,7 @@ compatibility_date = "2024-10-01"
 account_id = "978d7d55e507bea1f6bea724ffdf1f21"
 
 [vars]
-# ALLOWED_ORIGIN = "https://mklanguage.com"
+ALLOWED_ORIGIN = "https://mklanguage.com"
 NEWS_CACHE_TTL = "180"
 IMAGE_CACHE_TTL = "86400"
 NEWS_FETCH_TIMEOUT_MS = "15000"
