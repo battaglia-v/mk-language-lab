@@ -26,6 +26,22 @@
 
 ---
 
+### 1.5 **Cloudflare Workers** (News Feed + Image Proxy) - FREE ✅ (optional)
+**Why:** Offload the news aggregator and image proxy from Vercel to avoid "Fluid active CPU" overages.
+
+**What you get:**
+- Global edge caching for RSS aggregation and images
+- No Vercel function runtime for news requests
+- Generous free tier for early-stage traffic
+
+**Limits:**
+- Worker request limits apply (free tier is generous for MVP)
+- Configure CORS to your domain if needed
+
+**Cost:** $0/month for early-stage usage
+
+---
+
 ### 2. **Neon** (PostgreSQL Database) - FREE ✅
 **What you get:**
 - 512MB storage
@@ -200,6 +216,30 @@ vercel env add GOOGLE_APPLICATION_CREDENTIALS_JSON
 
 # Deploy to production
 vercel --prod
+```
+
+---
+
+### Optional: Offload News Feed to Cloudflare (10 minutes)
+
+This reduces Vercel compute by moving the news aggregator + image proxy to a Worker.
+
+```bash
+cd /Users/vbattaglia/mk-language-lab/workers/news-edge
+npx wrangler login
+npx wrangler deploy
+```
+
+Then set these in Vercel (Production + Preview):
+```
+NEWS_API_URL=https://<worker-domain>
+NEXT_PUBLIC_NEWS_API_URL=https://<worker-domain>
+NEXT_PUBLIC_NEWS_IMAGE_PROXY_URL=https://<worker-domain>/api/news/image
+```
+
+Optional (only if using the Next.js API route directly):
+```
+NEWS_IMAGE_PROXY_URL=https://<worker-domain>/api/news/image
 ```
 
 ---
