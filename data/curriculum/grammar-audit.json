@@ -1,0 +1,2240 @@
+{
+  "timestamp": "2026-01-11T18:09:56.227Z",
+  "summary": {
+    "totalGrammarNotes": 146,
+    "byLevel": {
+      "a1": 73,
+      "a2": 46,
+      "b1": 27
+    },
+    "notesWithPdfArtifacts": 49,
+    "notesNeedingRewrite": 50,
+    "qualityScoreOverall": 84
+  },
+  "levels": {
+    "a1": {
+      "totalNotes": 73,
+      "lessonCount": 24,
+      "avgNotesPerLesson": 3,
+      "minNotesPerLesson": 1,
+      "maxNotesPerLesson": 6,
+      "lessons": [
+        {
+          "lessonNumber": 1,
+          "title": "Lesson 1: Јас и ти",
+          "noteCount": 3,
+          "noteTitles": [
+            "Глаголот \"сум\"",
+            "Присвојни заменки (Possessive pronouns)",
+            "Предлози (Prepositions)"
+          ],
+          "avgContentLength": 98,
+          "hasExamples": 3,
+          "hasTranslatedExamples": 3,
+          "issues": [
+            {
+              "lessonNumber": 1,
+              "noteIndex": 1,
+              "noteTitle": "Присвојни заменки (Possessive pronouns)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Macedonian possessive pronouns agree with noun gender..."
+            },
+            {
+              "lessonNumber": 1,
+              "noteIndex": 2,
+              "noteTitle": "Предлози (Prepositions)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 2,
+          "title": "Lesson 2: Семејство",
+          "noteCount": 6,
+          "noteTitles": [
+            "Еднина и множина",
+            "Броеви",
+            "Глаголот \"сум\"",
+            "Глаголот \"има\"",
+            "Присвојни заменки (Possessive pronouns)",
+            "Предлози (Prepositions)"
+          ],
+          "avgContentLength": 118,
+          "hasExamples": 6,
+          "hasTranslatedExamples": 6,
+          "issues": [
+            {
+              "lessonNumber": 2,
+              "noteIndex": 4,
+              "noteTitle": "Присвојни заменки (Possessive pronouns)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Macedonian possessive pronouns agree with noun gender..."
+            },
+            {
+              "lessonNumber": 2,
+              "noteIndex": 5,
+              "noteTitle": "Предлози (Prepositions)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 3,
+          "title": "Lesson 3: Прашуваме",
+          "noteCount": 2,
+          "noteTitles": [
+            "Броеви",
+            "Глаголот \"сум\""
+          ],
+          "avgContentLength": 139,
+          "hasExamples": 2,
+          "hasTranslatedExamples": 2,
+          "issues": []
+        },
+        {
+          "lessonNumber": 4,
+          "title": "Lesson 4: Околу нас",
+          "noteCount": 6,
+          "noteTitles": [
+            "Глаголот сум",
+            "Предлози",
+            "Броеви",
+            "Глаголот \"сум\"",
+            "Присвојни заменки (Possessive pronouns)",
+            "Показни заменки (Demonstratives)"
+          ],
+          "avgContentLength": 106,
+          "hasExamples": 6,
+          "hasTranslatedExamples": 6,
+          "issues": [
+            {
+              "lessonNumber": 4,
+              "noteIndex": 1,
+              "noteTitle": "Предлози",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "те: над, под, пред, на, до . 43 ЛЕКЦИЈА 4 Тема 4. Скапоцени камења..."
+            },
+            {
+              "lessonNumber": 4,
+              "noteIndex": 4,
+              "noteTitle": "Присвојни заменки (Possessive pronouns)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Macedonian possessive pronouns agree with noun gender..."
+            },
+            {
+              "lessonNumber": 4,
+              "noteIndex": 5,
+              "noteTitle": "Показни заменки (Demonstratives)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Macedonian demonstrative pronouns: ова (this), тоа (that), оној/онаа (that over there)..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 5,
+          "title": "Lesson 5: Има...",
+          "noteCount": 2,
+          "noteTitles": [
+            "Присвојни заменки (Possessive pronouns)",
+            "Предлози (Prepositions)"
+          ],
+          "avgContentLength": 71,
+          "hasExamples": 2,
+          "hasTranslatedExamples": 2,
+          "issues": [
+            {
+              "lessonNumber": 5,
+              "noteIndex": 0,
+              "noteTitle": "Присвојни заменки (Possessive pronouns)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Macedonian possessive pronouns agree with noun gender..."
+            },
+            {
+              "lessonNumber": 5,
+              "noteIndex": 1,
+              "noteTitle": "Предлози (Prepositions)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 6,
+          "title": "Lesson 6: Твојот дом",
+          "noteCount": 5,
+          "noteTitles": [
+            "Придавки",
+            "Еднина и множина",
+            "Броеви",
+            "Присвојни заменки (Possessive pronouns)",
+            "Предлози (Prepositions)"
+          ],
+          "avgContentLength": 141,
+          "hasExamples": 5,
+          "hasTranslatedExamples": 5,
+          "issues": [
+            {
+              "lessonNumber": 6,
+              "noteIndex": 1,
+              "noteTitle": "Еднина и множина",
+              "issues": [
+                "spaced_letters",
+                "mostly_macedonian_content"
+              ],
+              "severity": "critical",
+              "contentPreview": "a. Имам куче/кучето и мачка/мачката. Еднина Множина б. Сестра ми има 18 години. Таа е сту - дентка/с..."
+            },
+            {
+              "lessonNumber": 6,
+              "noteIndex": 3,
+              "noteTitle": "Присвојни заменки (Possessive pronouns)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Macedonian possessive pronouns agree with noun gender..."
+            },
+            {
+              "lessonNumber": 6,
+              "noteIndex": 4,
+              "noteTitle": "Предлози (Prepositions)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 7,
+          "title": "Lesson 7: Што прават луѓето?",
+          "noteCount": 3,
+          "noteTitles": [
+            "Еднина и множина",
+            "Глаголот \"зборув\"",
+            "Предлози (Prepositions)"
+          ],
+          "avgContentLength": 127,
+          "hasExamples": 3,
+          "hasTranslatedExamples": 3,
+          "issues": [
+            {
+              "lessonNumber": 7,
+              "noteIndex": 2,
+              "noteTitle": "Предлози (Prepositions)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 8,
+          "title": "Lesson 8: Јадење и пиење",
+          "noteCount": 4,
+          "noteTitles": [
+            "Глаголот јаде",
+            "Именки",
+            "Броеви (Numbers)",
+            "Предлози (Prepositions)"
+          ],
+          "avgContentLength": 132,
+          "hasExamples": 4,
+          "hasTranslatedExamples": 4,
+          "issues": [
+            {
+              "lessonNumber": 8,
+              "noteIndex": 3,
+              "noteTitle": "Предлози (Prepositions)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 9,
+          "title": "Lesson 9: Дали...?",
+          "noteCount": 2,
+          "noteTitles": [
+            "Броеви (Numbers)",
+            "Предлози (Prepositions)"
+          ],
+          "avgContentLength": 107,
+          "hasExamples": 2,
+          "hasTranslatedExamples": 2,
+          "issues": [
+            {
+              "lessonNumber": 9,
+              "noteIndex": 1,
+              "noteTitle": "Предлози (Prepositions)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 10,
+          "title": "Lesson 10: Што купуваат луѓето?",
+          "noteCount": 4,
+          "noteTitles": [
+            "Глаголот \"сум\"",
+            "Показни заменки (Demonstratives)",
+            "Броеви (Numbers)",
+            "Предлози (Prepositions)"
+          ],
+          "avgContentLength": 113,
+          "hasExamples": 4,
+          "hasTranslatedExamples": 4,
+          "issues": [
+            {
+              "lessonNumber": 10,
+              "noteIndex": 1,
+              "noteTitle": "Показни заменки (Demonstratives)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Macedonian demonstrative pronouns: ова (this), тоа (that), оној/онаа (that over there)..."
+            },
+            {
+              "lessonNumber": 10,
+              "noteIndex": 3,
+              "noteTitle": "Предлози (Prepositions)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 11,
+          "title": "Lesson 11: Што се случува?",
+          "noteCount": 2,
+          "noteTitles": [
+            "Именки",
+            "Предлози (Prepositions)"
+          ],
+          "avgContentLength": 106,
+          "hasExamples": 2,
+          "hasTranslatedExamples": 2,
+          "issues": [
+            {
+              "lessonNumber": 11,
+              "noteIndex": 0,
+              "noteTitle": "Именки",
+              "issues": [
+                "incomplete_sentence",
+                "mostly_macedonian_content",
+                "incomplete_content"
+              ],
+              "severity": "critical",
+              "contentPreview": "пие пиење слуша слушање игра играње чита читање мие миење гледа гледање бања бањање прави правење су..."
+            },
+            {
+              "lessonNumber": 11,
+              "noteIndex": 1,
+              "noteTitle": "Предлози (Prepositions)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 12,
+          "title": "Lesson 12: Опишување луѓе",
+          "noteCount": 5,
+          "noteTitles": [
+            "Придавки",
+            "Заменки",
+            "Предлози",
+            "Глаголот \"сум\"",
+            "Броеви (Numbers)"
+          ],
+          "avgContentLength": 131,
+          "hasExamples": 5,
+          "hasTranslatedExamples": 5,
+          "issues": [
+            {
+              "lessonNumber": 12,
+              "noteIndex": 0,
+              "noteTitle": "Придавки",
+              "issues": [
+                "spaced_letters",
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "critical",
+              "contentPreview": "јас, ти, тој, таа, ние, вие , тие, мој, твоја, негова, нејзин, наша, ваш, нивно н т н ј в т в..."
+            },
+            {
+              "lessonNumber": 12,
+              "noteIndex": 1,
+              "noteTitle": "Заменки",
+              "issues": [
+                "spaced_letters",
+                "incomplete_sentence",
+                "mostly_macedonian_content",
+                "incomplete_content"
+              ],
+              "severity": "critical",
+              "contentPreview": "и заменски придавки: јас, ти, тој, таа, ние, вие , тие, мој, твоја, негова, нејзин, наша, ваш, нивно..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 13,
+          "title": "Lesson 13: Колку чини?",
+          "noteCount": 3,
+          "noteTitles": [
+            "Именки",
+            "Показни заменки (Demonstratives)",
+            "Предлози (Prepositions)"
+          ],
+          "avgContentLength": 119,
+          "hasExamples": 3,
+          "hasTranslatedExamples": 3,
+          "issues": [
+            {
+              "lessonNumber": 13,
+              "noteIndex": 1,
+              "noteTitle": "Показни заменки (Demonstratives)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Macedonian demonstrative pronouns: ова (this), тоа (that), оној/онаа (that over there)..."
+            },
+            {
+              "lessonNumber": 13,
+              "noteIndex": 2,
+              "noteTitle": "Предлози (Prepositions)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 14,
+          "title": "Lesson 14: Преку годината",
+          "noteCount": 3,
+          "noteTitles": [
+            "Именки",
+            "Предлози",
+            "Броеви"
+          ],
+          "avgContentLength": 120,
+          "hasExamples": 3,
+          "hasTranslatedExamples": 3,
+          "issues": [
+            {
+              "lessonNumber": 14,
+              "noteIndex": 1,
+              "noteTitle": "Предлози",
+              "issues": [
+                "spaced_letters"
+              ],
+              "severity": "critical",
+              "contentPreview": "те: до, пред, по, како и изразите лево од, десно од ...."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 15,
+          "title": "Lesson 15: Во минатото 1",
+          "noteCount": 4,
+          "noteTitles": [
+            "Глаголот сум",
+            "Предлози",
+            "Броеви",
+            "Глаголот \"сум\""
+          ],
+          "avgContentLength": 145,
+          "hasExamples": 4,
+          "hasTranslatedExamples": 4,
+          "issues": [
+            {
+              "lessonNumber": 15,
+              "noteIndex": 1,
+              "noteTitle": "Предлози",
+              "issues": [
+                "mostly_macedonian_content"
+              ],
+              "severity": "critical",
+              "contentPreview": "те во горните реченици. Што обично доаѓа по предлогот во? Како се употребува предлогот за? Што означ..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 16,
+          "title": "Lesson 16: Околу светот",
+          "noteCount": 2,
+          "noteTitles": [
+            "Придавки",
+            "Предлози (Prepositions)"
+          ],
+          "avgContentLength": 123,
+          "hasExamples": 2,
+          "hasTranslatedExamples": 2,
+          "issues": [
+            {
+              "lessonNumber": 16,
+              "noteIndex": 1,
+              "noteTitle": "Предлози (Prepositions)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 17,
+          "title": "Lesson 17: Во минатото 2",
+          "noteCount": 1,
+          "noteTitles": [
+            "Предлози (Prepositions)"
+          ],
+          "avgContentLength": 89,
+          "hasExamples": 1,
+          "hasTranslatedExamples": 1,
+          "issues": [
+            {
+              "lessonNumber": 17,
+              "noteIndex": 0,
+              "noteTitle": "Предлози (Prepositions)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 18,
+          "title": "Lesson 18: Како да стигнеш таму?",
+          "noteCount": 4,
+          "noteTitles": [
+            "Придавки",
+            "Глаголот \"сум\"",
+            "Броеви (Numbers)",
+            "Предлози (Prepositions)"
+          ],
+          "avgContentLength": 131,
+          "hasExamples": 4,
+          "hasTranslatedExamples": 4,
+          "issues": [
+            {
+              "lessonNumber": 18,
+              "noteIndex": 3,
+              "noteTitle": "Предлози (Prepositions)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 19,
+          "title": "Lesson 19: Не смееш да го правиш тоа!",
+          "noteCount": 1,
+          "noteTitles": [
+            "Предлози (Prepositions)"
+          ],
+          "avgContentLength": 89,
+          "hasExamples": 1,
+          "hasTranslatedExamples": 1,
+          "issues": [
+            {
+              "lessonNumber": 19,
+              "noteIndex": 0,
+              "noteTitle": "Предлози (Prepositions)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 20,
+          "title": "Lesson 20: Тело",
+          "noteCount": 3,
+          "noteTitles": [
+            "Придавки",
+            "Броеви (Numbers)",
+            "Предлози (Prepositions)"
+          ],
+          "avgContentLength": 123,
+          "hasExamples": 3,
+          "hasTranslatedExamples": 3,
+          "issues": [
+            {
+              "lessonNumber": 20,
+              "noteIndex": 2,
+              "noteTitle": "Предлози (Prepositions)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 21,
+          "title": "Lesson 21: Добро, подобро, најдобро",
+          "noteCount": 2,
+          "noteTitles": [
+            "Придавки",
+            "Предлози"
+          ],
+          "avgContentLength": 164,
+          "hasExamples": 2,
+          "hasTranslatedExamples": 2,
+          "issues": []
+        },
+        {
+          "lessonNumber": 22,
+          "title": "Lesson 22: Слободно време",
+          "noteCount": 3,
+          "noteTitles": [
+            "Придавки",
+            "Броеви",
+            "Предлози (Prepositions)"
+          ],
+          "avgContentLength": 134,
+          "hasExamples": 3,
+          "hasTranslatedExamples": 3,
+          "issues": [
+            {
+              "lessonNumber": 22,
+              "noteIndex": 0,
+              "noteTitle": "Придавки",
+              "issues": [
+                "incomplete_sentence",
+                "mostly_macedonian_content",
+                "incomplete_content"
+              ],
+              "severity": "critical",
+              "contentPreview": "• од Сакам... ... самсунг ...сони Кој...? Самсунгот... Сонито... Кој...? Сонито... Самсунгот... Во р..."
+            },
+            {
+              "lessonNumber": 22,
+              "noteIndex": 2,
+              "noteTitle": "Предлози (Prepositions)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 23,
+          "title": "Lesson 23: Идни планови",
+          "noteCount": 2,
+          "noteTitles": [
+            "Броеви (Numbers)",
+            "Предлози (Prepositions)"
+          ],
+          "avgContentLength": 107,
+          "hasExamples": 2,
+          "hasTranslatedExamples": 2,
+          "issues": [
+            {
+              "lessonNumber": 23,
+              "noteIndex": 1,
+              "noteTitle": "Предлози (Prepositions)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 24,
+          "title": "Lesson 24: Чувства",
+          "noteCount": 1,
+          "noteTitles": [
+            "Предлози (Prepositions)"
+          ],
+          "avgContentLength": 89,
+          "hasExamples": 1,
+          "hasTranslatedExamples": 1,
+          "issues": [
+            {
+              "lessonNumber": 24,
+              "noteIndex": 0,
+              "noteTitle": "Предлози (Prepositions)",
+              "issues": [
+                "incomplete_sentence",
+                "incomplete_content"
+              ],
+              "severity": "warning",
+              "contentPreview": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)..."
+            }
+          ]
+        }
+      ],
+      "qualityScore": 84,
+      "cefrAlignmentScore": 67
+    },
+    "a2": {
+      "totalNotes": 46,
+      "lessonCount": 8,
+      "avgNotesPerLesson": 6,
+      "minNotesPerLesson": 4,
+      "maxNotesPerLesson": 11,
+      "lessons": [
+        {
+          "lessonNumber": 1,
+          "title": "Lesson 1: Кои сме – што сме",
+          "noteCount": 5,
+          "noteTitles": [
+            "Сегашно време (презент)",
+            "Определеностa кај именките – членување",
+            "Придавки од имиња на географски поими",
+            "Прашални реченици",
+            "Глаголот \"сум\""
+          ],
+          "avgContentLength": 309,
+          "hasExamples": 5,
+          "hasTranslatedExamples": 5,
+          "issues": [
+            {
+              "lessonNumber": 1,
+              "noteIndex": 1,
+              "noteTitle": "Определеностa кај именките – членување",
+              "issues": [
+                "spaced_letters",
+                "raw_macedonian_fragments",
+                "incomplete_sentence",
+                "mostly_macedonian_content",
+                "incomplete_content"
+              ],
+              "severity": "critical",
+              "contentPreview": "вуваат, преведуваат, се јават определеност кај именките - членување (именки и именски групи од прида..."
+            },
+            {
+              "lessonNumber": 1,
+              "noteIndex": 2,
+              "noteTitle": "Придавки од имиња на географски поими",
+              "issues": [
+                "spaced_letters",
+                "raw_macedonian_fragments",
+                "incomplete_sentence",
+                "mostly_macedonian_content",
+                "incomplete_content"
+              ],
+              "severity": "critical",
+              "contentPreview": "ријатели , природни убавини - природните убавини придавки од имиња на географски поими македонски, м..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 2,
+          "title": "Lesson 2: Градот на мојата душа и душата на мојот град",
+          "noteCount": 7,
+          "noteTitles": [
+            "Да-конструкција",
+            "Бројни придавки со редно значење",
+            "Долги и кратки заменски форми за директен и за индиректен предмет",
+            "Идно време (футур)",
+            "Прилози (адверби)",
+            "Предлози (препозиции)",
+            "Именки"
+          ],
+          "avgContentLength": 318,
+          "hasExamples": 7,
+          "hasTranslatedExamples": 7,
+          "issues": [
+            {
+              "lessonNumber": 2,
+              "noteIndex": 0,
+              "noteTitle": "Да-конструкција",
+              "issues": [
+                "spaced_letters",
+                "incomplete_sentence",
+                "grammar_header_artifact",
+                "mostly_macedonian_content",
+                "incomplete_content"
+              ],
+              "severity": "critical",
+              "contentPreview": "Г Р А М А Т И K A глагол + да- конструкција сакам да живеам, можеш да се преселиш, не мора да излегу..."
+            },
+            {
+              "lessonNumber": 2,
+              "noteIndex": 2,
+              "noteTitle": "Долги и кратки заменски форми за директен и за индиректен предмет",
+              "issues": [
+                "spaced_letters",
+                "raw_macedonian_fragments",
+                "incomplete_sentence",
+                "mostly_macedonian_content",
+                "incomplete_content"
+              ],
+              "severity": "critical",
+              "contentPreview": "ома, за неговите најблиски. Не е овде татко му за долги разговори во ноќта. Ах, што би дал за една о..."
+            },
+            {
+              "lessonNumber": 2,
+              "noteIndex": 3,
+              "noteTitle": "Идно време (футур)",
+              "issues": [
+                "spaced_letters",
+                "raw_macedonian_fragments",
+                "exercise_instructions",
+                "incomplete_sentence",
+                "mostly_macedonian_content",
+                "contains_exercise_instructions",
+                "incomplete_content"
+              ],
+              "severity": "critical",
+              "contentPreview": "опје. Во кој дел од текстот глаголската форма за идно време е употребена со значење на идност? Прочи..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 3,
+          "title": "Lesson 3: Нејзиното височество – храната",
+          "noteCount": 5,
+          "noteTitles": [
+            "Заповеден начин (императив)",
+            "Глаголска л-форма",
+            "Можен начин (потенцијал)",
+            "Модални зборови и изрази",
+            "Броеви"
+          ],
+          "avgContentLength": 240,
+          "hasExamples": 5,
+          "hasTranslatedExamples": 5,
+          "issues": [
+            {
+              "lessonNumber": 3,
+              "noteIndex": 2,
+              "noteTitle": "Можен начин (потенцијал)",
+              "issues": [
+                "spaced_letters",
+                "incomplete_sentence",
+                "mostly_macedonian_content",
+                "incomplete_content"
+              ],
+              "severity": "critical",
+              "contentPreview": "арото, туку на создавање ново. Прогресот не е возможен без промени; тие што не можат да го сменат св..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 4,
+          "title": "Lesson 4: Во светот на купувањето",
+          "noteCount": 11,
+          "noteTitles": [
+            "Минато определено несвршено време (имперфект)",
+            "Минато определено свршено време (аорист)",
+            "Глаголска придавка",
+            "Глаголска сум-конструкција",
+            "Глаголска именка",
+            "Индиректен предмет",
+            "Реален услов",
+            "Глаголот што",
+            "Именки",
+            "Придавки",
+            "Броеви"
+          ],
+          "avgContentLength": 265,
+          "hasExamples": 11,
+          "hasTranslatedExamples": 11,
+          "issues": [
+            {
+              "lessonNumber": 4,
+              "noteIndex": 3,
+              "noteTitle": "Глаголска сум-конструкција",
+              "issues": [
+                "incomplete_sentence",
+                "mostly_macedonian_content",
+                "incomplete_content"
+              ],
+              "severity": "critical",
+              "contentPreview": "авете – не ставајте, немојте да ставите/ставате; глаголска л -форма јадел, -ла, -ло, -ле; изел/изеде..."
+            },
+            {
+              "lessonNumber": 4,
+              "noteIndex": 4,
+              "noteTitle": "Глаголска именка",
+              "issues": [
+                "incomplete_sentence",
+                "mostly_macedonian_content",
+                "incomplete_content"
+              ],
+              "severity": "critical",
+              "contentPreview": "ни ќе биде поправен, -а, -о; ќе бидат поправени глаголска именка купување, пазарување, поправање, чи..."
+            },
+            {
+              "lessonNumber": 4,
+              "noteIndex": 5,
+              "noteTitle": "Индиректен предмет",
+              "issues": [
+                "incomplete_sentence",
+                "mostly_macedonian_content",
+                "incomplete_content"
+              ],
+              "severity": "critical",
+              "contentPreview": "чување, изнајмување, достава, испорака, нарачка индиректен предмет (индиректен објект) ми покажа (ме..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 5,
+          "title": "Lesson 5: Професијата – сон или реалност",
+          "noteCount": 4,
+          "noteTitles": [
+            "Минато неопределено време (перфект)",
+            "Прилози (адверби)",
+            "Честички (партикули)",
+            "Именки"
+          ],
+          "avgContentLength": 264,
+          "hasExamples": 4,
+          "hasTranslatedExamples": 4,
+          "issues": [
+            {
+              "lessonNumber": 5,
+              "noteIndex": 0,
+              "noteTitle": "Минато неопределено време (перфект)",
+              "issues": [
+                "spaced_letters",
+                "raw_macedonian_fragments",
+                "exercise_instructions",
+                "incomplete_sentence",
+                "mostly_macedonian_content",
+                "contains_exercise_instructions",
+                "incomplete_content"
+              ],
+              "severity": "critical",
+              "contentPreview": "начените примери во текстот се глаголски форми за минато неопределено време (перфект). Примерите во ..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 6,
+          "title": "Lesson 6: Светот на дланка",
+          "noteCount": 5,
+          "noteTitles": [
+            "Минато-идно време",
+            "Нереален услов",
+            "Глаголска има-конструкција",
+            "Извици (интерјекции)",
+            "Броеви"
+          ],
+          "avgContentLength": 175,
+          "hasExamples": 5,
+          "hasTranslatedExamples": 5,
+          "issues": []
+        },
+        {
+          "lessonNumber": 7,
+          "title": "Lesson 7: Празнуваме, одбележуваме, честитаме, подаруваме...",
+          "noteCount": 5,
+          "noteTitles": [
+            "Можен услов",
+            "Глаголски прилог",
+            "Пасивни реченици",
+            "Предлози",
+            "Броеви"
+          ],
+          "avgContentLength": 242,
+          "hasExamples": 5,
+          "hasTranslatedExamples": 5,
+          "issues": [
+            {
+              "lessonNumber": 7,
+              "noteIndex": 2,
+              "noteTitle": "Пасивни реченици",
+              "issues": [
+                "spaced_letters",
+                "raw_macedonian_fragments",
+                "incomplete_sentence",
+                "mixed_notation",
+                "mostly_macedonian_content",
+                "contains_exercise_instructions",
+                "incomplete_content"
+              ],
+              "severity": "critical",
+              "contentPreview": "1) до (12) и од ( i ) до ( vii ) се пасивни реченици. Различното бележење ги означува двете форми на..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 8,
+          "title": "Lesson 8: Најди време!",
+          "noteCount": 4,
+          "noteTitles": [
+            "Предминато време (плусквамперфект)",
+            "Сврзници (конјункции)",
+            "Пресказ",
+            "Броеви"
+          ],
+          "avgContentLength": 255,
+          "hasExamples": 4,
+          "hasTranslatedExamples": 4,
+          "issues": [
+            {
+              "lessonNumber": 8,
+              "noteIndex": 3,
+              "noteTitle": "Броеви",
+              "issues": [
+                "exercise_instructions",
+                "incomplete_sentence",
+                "mixed_notation",
+                "mostly_macedonian_content",
+                "contains_exercise_instructions",
+                "incomplete_content"
+              ],
+              "severity": "critical",
+              "contentPreview": "те од (1) до (10) во текстот на електронските пораки се обележани глаголските форми за идно прекажан..."
+            }
+          ]
+        }
+      ],
+      "qualityScore": 80,
+      "cefrAlignmentScore": 61
+    },
+    "b1": {
+      "totalNotes": 27,
+      "lessonCount": 8,
+      "avgNotesPerLesson": 3,
+      "minNotesPerLesson": 1,
+      "maxNotesPerLesson": 5,
+      "lessons": [
+        {
+          "lessonNumber": 1,
+          "title": "Lesson 1: Дали се разбираме?",
+          "noteCount": 5,
+          "noteTitles": [
+            "Глаголот нема",
+            "Именки",
+            "Придавки",
+            "Броеви",
+            "Условен начин (Conditional)"
+          ],
+          "avgContentLength": 267,
+          "hasExamples": 5,
+          "hasTranslatedExamples": 5,
+          "issues": [
+            {
+              "lessonNumber": 1,
+              "noteIndex": 3,
+              "noteTitle": "Броеви",
+              "issues": [
+                "incomplete_sentence",
+                "mostly_macedonian_content",
+                "incomplete_content"
+              ],
+              "severity": "critical",
+              "contentPreview": "те на тастатурата. Ми се јавува од странство!! Ме бара од нејзиниот службен!!! Застанувам втренчено ..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 2,
+          "title": "Lesson 2: Има ли надеж?",
+          "noteCount": 2,
+          "noteTitles": [
+            "Именки",
+            "Заменки"
+          ],
+          "avgContentLength": 259,
+          "hasExamples": 2,
+          "hasTranslatedExamples": 2,
+          "issues": []
+        },
+        {
+          "lessonNumber": 3,
+          "title": "Lesson 3: Моето здравје",
+          "noteCount": 1,
+          "noteTitles": [
+            "Глаголот честита"
+          ],
+          "avgContentLength": 304,
+          "hasExamples": 1,
+          "hasTranslatedExamples": 1,
+          "issues": []
+        },
+        {
+          "lessonNumber": 4,
+          "title": "Lesson 4: Што (ќе) јадеме (денес)?",
+          "noteCount": 3,
+          "noteTitles": [
+            "Именки",
+            "Заменки",
+            "Броеви"
+          ],
+          "avgContentLength": 335,
+          "hasExamples": 3,
+          "hasTranslatedExamples": 3,
+          "issues": [
+            {
+              "lessonNumber": 4,
+              "noteIndex": 1,
+              "noteTitle": "Заменки",
+              "issues": [
+                "spaced_letters",
+                "raw_macedonian_fragments",
+                "exercise_instructions",
+                "incomplete_sentence",
+                "mostly_macedonian_content",
+                "contains_exercise_instructions",
+                "incomplete_content"
+              ],
+              "severity": "critical",
+              "contentPreview": "7. Во пасусот 7 има две именки што добиваат ист тип определби како ѓ) сол и е) вино. Пронајдете ги. ..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 5,
+          "title": "Lesson 5: Дајте музика!",
+          "noteCount": 4,
+          "noteTitles": [
+            "Глаголот ако",
+            "Именки",
+            "Придавки",
+            "Глаголот \"сум\""
+          ],
+          "avgContentLength": 342,
+          "hasExamples": 4,
+          "hasTranslatedExamples": 4,
+          "issues": [
+            {
+              "lessonNumber": 5,
+              "noteIndex": 1,
+              "noteTitle": "Именки",
+              "issues": [
+                "spaced_letters",
+                "raw_macedonian_fragments",
+                "exercise_instructions",
+                "incomplete_sentence",
+                "mostly_macedonian_content",
+                "contains_exercise_instructions",
+                "incomplete_content"
+              ],
+              "severity": "critical",
+              "contentPreview": "те. Пасус 3 Најдете два збора од областа на гастрономијата и заменети ги со други. За кои „познати а..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 6,
+          "title": "Lesson 6: Патуваме, сонуваме!",
+          "noteCount": 4,
+          "noteTitles": [
+            "Глаголот патува",
+            "Именки",
+            "Придавки",
+            "Условен начин (Conditional)"
+          ],
+          "avgContentLength": 281,
+          "hasExamples": 4,
+          "hasTranslatedExamples": 4,
+          "issues": []
+        },
+        {
+          "lessonNumber": 7,
+          "title": "Lesson 7: Луѓето се луѓе",
+          "noteCount": 3,
+          "noteTitles": [
+            "Глаголот сум",
+            "Именки",
+            "Придавки"
+          ],
+          "avgContentLength": 354,
+          "hasExamples": 3,
+          "hasTranslatedExamples": 3,
+          "issues": [
+            {
+              "lessonNumber": 7,
+              "noteIndex": 2,
+              "noteTitle": "Придавки",
+              "issues": [
+                "spaced_letters",
+                "incomplete_sentence",
+                "mostly_macedonian_content",
+                "incomplete_content"
+              ],
+              "severity": "critical",
+              "contentPreview": ", имајќи предвид и други промени во речениците. ► Наведете синоним за визуелни уметници. ► Кој бил п..."
+            }
+          ]
+        },
+        {
+          "lessonNumber": 8,
+          "title": "Lesson 8: Градска џунгла",
+          "noteCount": 5,
+          "noteTitles": [
+            "Именки",
+            "Придавки",
+            "Заменки",
+            "Предлози",
+            "Условен начин (Conditional)"
+          ],
+          "avgContentLength": 269,
+          "hasExamples": 5,
+          "hasTranslatedExamples": 5,
+          "issues": []
+        }
+      ],
+      "qualityScore": 89,
+      "cefrAlignmentScore": 40
+    }
+  },
+  "duplication": {
+    "withinLevel": [
+      {
+        "title": "Глаголот \"сум\"",
+        "normalizedTitle": "глаголот сум",
+        "lessons": [
+          1,
+          2,
+          3,
+          4,
+          10,
+          12,
+          15,
+          18
+        ],
+        "level": "a1"
+      },
+      {
+        "title": "Присвојни заменки (Possessive pronouns)",
+        "normalizedTitle": "присвојни заменки (possessive pronouns)",
+        "lessons": [
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "level": "a1"
+      },
+      {
+        "title": "Предлози (Prepositions)",
+        "normalizedTitle": "предлози (prepositions)",
+        "lessons": [
+          1,
+          2,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          13,
+          16,
+          17,
+          18,
+          19,
+          20,
+          22,
+          23,
+          24
+        ],
+        "level": "a1"
+      },
+      {
+        "title": "Еднина и множина",
+        "normalizedTitle": "еднина и множина",
+        "lessons": [
+          2,
+          6,
+          7
+        ],
+        "level": "a1"
+      },
+      {
+        "title": "Броеви",
+        "normalizedTitle": "броеви",
+        "lessons": [
+          2,
+          3,
+          4,
+          6,
+          14,
+          15,
+          22
+        ],
+        "level": "a1"
+      },
+      {
+        "title": "Предлози",
+        "normalizedTitle": "предлози",
+        "lessons": [
+          4,
+          12,
+          14,
+          15,
+          21
+        ],
+        "level": "a1"
+      },
+      {
+        "title": "Показни заменки (Demonstratives)",
+        "normalizedTitle": "показни заменки (demonstratives)",
+        "lessons": [
+          4,
+          10,
+          13
+        ],
+        "level": "a1"
+      },
+      {
+        "title": "Придавки",
+        "normalizedTitle": "придавки",
+        "lessons": [
+          6,
+          12,
+          16,
+          18,
+          20,
+          21,
+          22
+        ],
+        "level": "a1"
+      },
+      {
+        "title": "Именки",
+        "normalizedTitle": "именки",
+        "lessons": [
+          8,
+          11,
+          13,
+          14
+        ],
+        "level": "a1"
+      },
+      {
+        "title": "Броеви (Numbers)",
+        "normalizedTitle": "броеви (numbers)",
+        "lessons": [
+          8,
+          9,
+          10,
+          12,
+          18,
+          20,
+          23
+        ],
+        "level": "a1"
+      },
+      {
+        "title": "Прилози (адверби)",
+        "normalizedTitle": "прилози (адверби)",
+        "lessons": [
+          2,
+          5
+        ],
+        "level": "a2"
+      },
+      {
+        "title": "Именки",
+        "normalizedTitle": "именки",
+        "lessons": [
+          2,
+          4,
+          5
+        ],
+        "level": "a2"
+      },
+      {
+        "title": "Броеви",
+        "normalizedTitle": "броеви",
+        "lessons": [
+          3,
+          4,
+          6,
+          7,
+          8
+        ],
+        "level": "a2"
+      },
+      {
+        "title": "Именки",
+        "normalizedTitle": "именки",
+        "lessons": [
+          1,
+          2,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "level": "b1"
+      },
+      {
+        "title": "Придавки",
+        "normalizedTitle": "придавки",
+        "lessons": [
+          1,
+          5,
+          6,
+          7,
+          8
+        ],
+        "level": "b1"
+      },
+      {
+        "title": "Броеви",
+        "normalizedTitle": "броеви",
+        "lessons": [
+          1,
+          4
+        ],
+        "level": "b1"
+      },
+      {
+        "title": "Условен начин (Conditional)",
+        "normalizedTitle": "условен начин (conditional)",
+        "lessons": [
+          1,
+          6,
+          8
+        ],
+        "level": "b1"
+      },
+      {
+        "title": "Заменки",
+        "normalizedTitle": "заменки",
+        "lessons": [
+          2,
+          4,
+          8
+        ],
+        "level": "b1"
+      },
+      {
+        "title": "Глаголот сум",
+        "normalizedTitle": "глаголот сум",
+        "lessons": [
+          5,
+          7
+        ],
+        "level": "b1"
+      }
+    ],
+    "crossLevel": [
+      {
+        "title": "глаголот сум",
+        "levels": [
+          "a1",
+          "a2",
+          "b1"
+        ]
+      },
+      {
+        "title": "броеви",
+        "levels": [
+          "a1",
+          "a2",
+          "b1"
+        ]
+      },
+      {
+        "title": "предлози",
+        "levels": [
+          "a1",
+          "a2",
+          "b1"
+        ]
+      },
+      {
+        "title": "придавки",
+        "levels": [
+          "a1",
+          "a2",
+          "b1"
+        ]
+      },
+      {
+        "title": "именки",
+        "levels": [
+          "a1",
+          "a2",
+          "b1"
+        ]
+      },
+      {
+        "title": "заменки",
+        "levels": [
+          "a1",
+          "b1"
+        ]
+      }
+    ]
+  },
+  "notesNeedingRewrite": [
+    {
+      "level": "a1",
+      "lessonNumber": 1,
+      "noteIndex": 1,
+      "title": "Присвојни заменки (Possessive pronouns)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 1,
+      "noteIndex": 2,
+      "title": "Предлози (Prepositions)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 2,
+      "noteIndex": 4,
+      "title": "Присвојни заменки (Possessive pronouns)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 2,
+      "noteIndex": 5,
+      "title": "Предлози (Prepositions)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 4,
+      "noteIndex": 1,
+      "title": "Предлози",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 4,
+      "noteIndex": 4,
+      "title": "Присвојни заменки (Possessive pronouns)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 4,
+      "noteIndex": 5,
+      "title": "Показни заменки (Demonstratives)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 5,
+      "noteIndex": 0,
+      "title": "Присвојни заменки (Possessive pronouns)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 5,
+      "noteIndex": 1,
+      "title": "Предлози (Prepositions)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 6,
+      "noteIndex": 1,
+      "title": "Еднина и множина",
+      "reasons": [
+        "spaced_letters",
+        "mostly_macedonian_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 6,
+      "noteIndex": 3,
+      "title": "Присвојни заменки (Possessive pronouns)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 6,
+      "noteIndex": 4,
+      "title": "Предлози (Prepositions)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 7,
+      "noteIndex": 2,
+      "title": "Предлози (Prepositions)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 8,
+      "noteIndex": 3,
+      "title": "Предлози (Prepositions)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 9,
+      "noteIndex": 1,
+      "title": "Предлози (Prepositions)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 10,
+      "noteIndex": 1,
+      "title": "Показни заменки (Demonstratives)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 10,
+      "noteIndex": 3,
+      "title": "Предлози (Prepositions)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 11,
+      "noteIndex": 0,
+      "title": "Именки",
+      "reasons": [
+        "incomplete_sentence",
+        "mostly_macedonian_content",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 11,
+      "noteIndex": 1,
+      "title": "Предлози (Prepositions)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 12,
+      "noteIndex": 0,
+      "title": "Придавки",
+      "reasons": [
+        "spaced_letters",
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 12,
+      "noteIndex": 1,
+      "title": "Заменки",
+      "reasons": [
+        "spaced_letters",
+        "incomplete_sentence",
+        "mostly_macedonian_content",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 13,
+      "noteIndex": 1,
+      "title": "Показни заменки (Demonstratives)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 13,
+      "noteIndex": 2,
+      "title": "Предлози (Prepositions)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 14,
+      "noteIndex": 1,
+      "title": "Предлози",
+      "reasons": [
+        "spaced_letters"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 15,
+      "noteIndex": 1,
+      "title": "Предлози",
+      "reasons": [
+        "mostly_macedonian_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 16,
+      "noteIndex": 1,
+      "title": "Предлози (Prepositions)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 17,
+      "noteIndex": 0,
+      "title": "Предлози (Prepositions)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 18,
+      "noteIndex": 3,
+      "title": "Предлози (Prepositions)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 19,
+      "noteIndex": 0,
+      "title": "Предлози (Prepositions)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 20,
+      "noteIndex": 2,
+      "title": "Предлози (Prepositions)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 22,
+      "noteIndex": 0,
+      "title": "Придавки",
+      "reasons": [
+        "incomplete_sentence",
+        "mostly_macedonian_content",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 22,
+      "noteIndex": 2,
+      "title": "Предлози (Prepositions)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 23,
+      "noteIndex": 1,
+      "title": "Предлози (Prepositions)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a1",
+      "lessonNumber": 24,
+      "noteIndex": 0,
+      "title": "Предлози (Prepositions)",
+      "reasons": [
+        "incomplete_sentence",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a2",
+      "lessonNumber": 1,
+      "noteIndex": 1,
+      "title": "Определеностa кај именките – членување",
+      "reasons": [
+        "spaced_letters",
+        "raw_macedonian_fragments",
+        "incomplete_sentence",
+        "mostly_macedonian_content",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a2",
+      "lessonNumber": 1,
+      "noteIndex": 2,
+      "title": "Придавки од имиња на географски поими",
+      "reasons": [
+        "spaced_letters",
+        "raw_macedonian_fragments",
+        "incomplete_sentence",
+        "mostly_macedonian_content",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a2",
+      "lessonNumber": 2,
+      "noteIndex": 0,
+      "title": "Да-конструкција",
+      "reasons": [
+        "spaced_letters",
+        "incomplete_sentence",
+        "grammar_header_artifact",
+        "mostly_macedonian_content",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a2",
+      "lessonNumber": 2,
+      "noteIndex": 2,
+      "title": "Долги и кратки заменски форми за директен и за индиректен предмет",
+      "reasons": [
+        "spaced_letters",
+        "raw_macedonian_fragments",
+        "incomplete_sentence",
+        "mostly_macedonian_content",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a2",
+      "lessonNumber": 2,
+      "noteIndex": 3,
+      "title": "Идно време (футур)",
+      "reasons": [
+        "spaced_letters",
+        "raw_macedonian_fragments",
+        "exercise_instructions",
+        "incomplete_sentence",
+        "mostly_macedonian_content",
+        "contains_exercise_instructions",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a2",
+      "lessonNumber": 3,
+      "noteIndex": 2,
+      "title": "Можен начин (потенцијал)",
+      "reasons": [
+        "spaced_letters",
+        "incomplete_sentence",
+        "mostly_macedonian_content",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a2",
+      "lessonNumber": 4,
+      "noteIndex": 3,
+      "title": "Глаголска сум-конструкција",
+      "reasons": [
+        "incomplete_sentence",
+        "mostly_macedonian_content",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a2",
+      "lessonNumber": 4,
+      "noteIndex": 4,
+      "title": "Глаголска именка",
+      "reasons": [
+        "incomplete_sentence",
+        "mostly_macedonian_content",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a2",
+      "lessonNumber": 4,
+      "noteIndex": 5,
+      "title": "Индиректен предмет",
+      "reasons": [
+        "incomplete_sentence",
+        "mostly_macedonian_content",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a2",
+      "lessonNumber": 5,
+      "noteIndex": 0,
+      "title": "Минато неопределено време (перфект)",
+      "reasons": [
+        "spaced_letters",
+        "raw_macedonian_fragments",
+        "exercise_instructions",
+        "incomplete_sentence",
+        "mostly_macedonian_content",
+        "contains_exercise_instructions",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a2",
+      "lessonNumber": 7,
+      "noteIndex": 2,
+      "title": "Пасивни реченици",
+      "reasons": [
+        "spaced_letters",
+        "raw_macedonian_fragments",
+        "incomplete_sentence",
+        "mixed_notation",
+        "mostly_macedonian_content",
+        "contains_exercise_instructions",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "a2",
+      "lessonNumber": 8,
+      "noteIndex": 3,
+      "title": "Броеви",
+      "reasons": [
+        "exercise_instructions",
+        "incomplete_sentence",
+        "mixed_notation",
+        "mostly_macedonian_content",
+        "contains_exercise_instructions",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "b1",
+      "lessonNumber": 1,
+      "noteIndex": 3,
+      "title": "Броеви",
+      "reasons": [
+        "incomplete_sentence",
+        "mostly_macedonian_content",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "b1",
+      "lessonNumber": 4,
+      "noteIndex": 1,
+      "title": "Заменки",
+      "reasons": [
+        "spaced_letters",
+        "raw_macedonian_fragments",
+        "exercise_instructions",
+        "incomplete_sentence",
+        "mostly_macedonian_content",
+        "contains_exercise_instructions",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "b1",
+      "lessonNumber": 5,
+      "noteIndex": 1,
+      "title": "Именки",
+      "reasons": [
+        "spaced_letters",
+        "raw_macedonian_fragments",
+        "exercise_instructions",
+        "incomplete_sentence",
+        "mostly_macedonian_content",
+        "contains_exercise_instructions",
+        "incomplete_content"
+      ]
+    },
+    {
+      "level": "b1",
+      "lessonNumber": 7,
+      "noteIndex": 2,
+      "title": "Придавки",
+      "reasons": [
+        "spaced_letters",
+        "incomplete_sentence",
+        "mostly_macedonian_content",
+        "incomplete_content"
+      ]
+    }
+  ],
+  "cefrAlignment": {
+    "a1": {
+      "expected": [
+        "сум",
+        "to be",
+        "present tense",
+        "pronouns",
+        "possessive",
+        "numbers",
+        "gender",
+        "adjective agreement",
+        "singular",
+        "plural",
+        "questions",
+        "negation",
+        "има",
+        "имам",
+        "basic conjugation"
+      ],
+      "found": [
+        "сум",
+        "to be",
+        "present tense",
+        "pronouns",
+        "possessive",
+        "numbers",
+        "gender",
+        "plural",
+        "има",
+        "имам"
+      ],
+      "missing": [
+        "adjective agreement",
+        "singular",
+        "questions",
+        "negation",
+        "basic conjugation"
+      ]
+    },
+    "a2": {
+      "expected": [
+        "articles",
+        "членување",
+        "definite",
+        "tripartite",
+        "да-constructions",
+        "да-конструкција",
+        "modal",
+        "past tense",
+        "aorist",
+        "imperfect",
+        "минато",
+        "future",
+        "идно",
+        "potential",
+        "можен",
+        "passive",
+        "reflexive",
+        "aspect"
+      ],
+      "found": [
+        "articles",
+        "членување",
+        "да-конструкција",
+        "modal",
+        "aorist",
+        "imperfect",
+        "минато",
+        "future",
+        "идно",
+        "можен",
+        "passive"
+      ],
+      "missing": [
+        "definite",
+        "tripartite",
+        "да-constructions",
+        "past tense",
+        "potential",
+        "reflexive",
+        "aspect"
+      ]
+    },
+    "b1": {
+      "expected": [
+        "aspect",
+        "вид",
+        "perfective",
+        "imperfective",
+        "conditionals",
+        "условни",
+        "reported speech",
+        "complex sentences",
+        "relative clauses",
+        "advanced articles",
+        "има perfect",
+        "перфект",
+        "participles",
+        "voice",
+        "mood"
+      ],
+      "found": [
+        "aspect",
+        "вид",
+        "perfective",
+        "imperfective",
+        "relative clauses",
+        "mood"
+      ],
+      "missing": [
+        "conditionals",
+        "условни",
+        "reported speech",
+        "complex sentences",
+        "advanced articles",
+        "има perfect",
+        "перфект",
+        "participles",
+        "voice"
+      ]
+    }
+  },
+  "recommendations": [
+    "Clean 49 grammar notes with PDF artifacts (spaced letters, raw text fragments)",
+    "Rewrite 50 grammar notes with critical/warning issues",
+    "Deduplicate 19 grammar titles that appear multiple times within same level",
+    "Add A1 grammar topics: adjective agreement, singular, questions...",
+    "Add A2 grammar topics: definite, tripartite, да-constructions...",
+    "Add B1 grammar topics: conditionals, условни, reported speech...",
+    "Ensure all grammar notes have: clear English explanation, 4-6 examples, translated examples"
+  ]
+}
