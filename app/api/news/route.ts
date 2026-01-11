@@ -50,6 +50,8 @@ const USER_AGENT = 'mk-language-lab/1.0 (+https://github.com/battaglia-v/mk-lang
 const CACHE_TTL_MS = 5 * 60 * 1000;
 const CONCURRENCY_LIMIT = 8; // Increased from 4 for faster image enrichment
 const ARTICLE_FETCH_TIMEOUT_MS = 6000; // 6 second timeout per article fetch
+const IMAGE_PROXY_BASE_URL =
+  process.env.NEWS_IMAGE_PROXY_URL ?? process.env.NEXT_PUBLIC_NEWS_IMAGE_PROXY_URL ?? '';
 
 const HTML_ENTITIES: Record<string, string> = {
   amp: '&',
@@ -75,14 +77,20 @@ type NewsItem = {
   imageProxy?: string | null; // Proxied URL for sources that need it
 };
 
+function buildImageProxyUrl(base: string, src: string): string {
+  const joiner = base.includes('?') ? '&' : '?';
+  return `${base}${joiner}src=${encodeURIComponent(src)}`;
+}
+
 /**
  * Get proxied image URL for ALL sources
  * Always proxy to handle CORS, hotlinking, and caching consistently
  */
-function getProxiedImageUrl(imageUrl: string | null, _source: NewsSource): string | null {
+function getProxiedImageUrl(imageUrl: string | null): string | null {
   if (!imageUrl) return null;
   // Always proxy - the proxy handles CORS, hotlinking blocks, and caching
-  return `/api/news/image?src=${encodeURIComponent(imageUrl)}`;
+  const proxyBase = IMAGE_PROXY_BASE_URL || '/api/news/image';
+  return buildImageProxyUrl(proxyBase, imageUrl);
 }
 
 type ArticlePreviewResult = {
@@ -488,7 +496,7 @@ function parseFeed(xml: string, source: NewsSource): NewsItem[] {
       categories,
       videos: Array.from(videosSet),
       image,
-      imageProxy: getProxiedImageUrl(image, source),
+      imageProxy: getProxiedImageUrl(image),
     });
   }
 
@@ -624,7 +632,7 @@ function applyPreviewResult(item: NewsItem, result: ArticlePreviewResult) {
     item.image = result.image;
     // IMPORTANT: Set imageProxy after enrichment so it's not null
     // All images should go through the proxy for CORS/hotlinking issues
-    item.imageProxy = `/api/news/image?src=${encodeURIComponent(result.image)}`;
+    item.imageProxy = getProxiedImageUrl(result.image);
   }
 }
 

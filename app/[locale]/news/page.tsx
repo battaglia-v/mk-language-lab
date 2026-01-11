@@ -41,6 +41,11 @@ function normalizeSource(value: string | undefined): SourceId {
   return SOURCE_IDS.includes(candidate as SourceId) ? (candidate as SourceId) : "all";
 }
 
+function buildNewsApiUrl(base: string, params: URLSearchParams): string {
+  const joiner = base.includes("?") ? "&" : "?";
+  return `${base}${joiner}${params.toString()}`;
+}
+
 async function resolveBaseUrl(): Promise<string> {
   const headerList = await headers();
   const host = headerList.get("x-forwarded-host") ?? headerList.get("host");
@@ -73,6 +78,12 @@ export default async function NewsPage({ params, searchParams }: NewsPageProps) 
 
   try {
     const baseUrl = await resolveBaseUrl();
+    const newsApiUrl = process.env.NEWS_API_URL ?? process.env.NEXT_PUBLIC_NEWS_API_URL;
+    const resolvedBase = newsApiUrl
+      ? newsApiUrl.startsWith("http")
+        ? newsApiUrl
+        : `${baseUrl}${newsApiUrl.startsWith("/") ? "" : "/"}${newsApiUrl}`
+      : `${baseUrl}/api/news`;
     const queryParams = new URLSearchParams({ limit: "30", source: initialSource });
     if (initialQuery.trim()) {
       queryParams.set("q", initialQuery.trim());
@@ -81,7 +92,7 @@ export default async function NewsPage({ params, searchParams }: NewsPageProps) 
       queryParams.set("videosOnly", "true");
     }
 
-    const response = await fetch(`${baseUrl}/api/news?${queryParams.toString()}`, {
+    const response = await fetch(buildNewsApiUrl(resolvedBase, queryParams), {
       next: { revalidate: 180 },
     });
 

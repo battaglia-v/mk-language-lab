@@ -102,9 +102,27 @@ export function ProxiedNewsImage({
     };
   }, []);
 
-  // Generate proxy URL
+  const proxyBaseUrl = process.env.NEXT_PUBLIC_NEWS_IMAGE_PROXY_URL ?? '/api/news/image';
+  const baseMatch = proxyBaseUrl.startsWith('http')
+    ? proxyBaseUrl
+    : proxyBaseUrl.startsWith('/')
+      ? proxyBaseUrl
+      : `/${proxyBaseUrl}`;
+  const isAlreadyProxied = Boolean(
+    imageUrl
+      && (
+        imageUrl.includes('/api/news/image?src=')
+        || (proxyBaseUrl && imageUrl.startsWith(proxyBaseUrl))
+        || (baseMatch && imageUrl.includes(baseMatch))
+      )
+  );
+  const appendRetryParam = (url: string) => (
+    retryCount > 0 ? `${url}${url.includes('?') ? '&' : '?'}retry=${retryCount}` : url
+  );
   const proxyUrl = imageUrl
-    ? `/api/news/image?src=${encodeURIComponent(imageUrl)}${retryCount > 0 ? `&retry=${retryCount}` : ''}`
+    ? isAlreadyProxied
+      ? appendRetryParam(imageUrl)
+      : appendRetryParam(`${proxyBaseUrl}${proxyBaseUrl.includes('?') ? '&' : '?'}src=${encodeURIComponent(imageUrl)}`)
     : null;
 
   const handleError = useCallback(() => {
