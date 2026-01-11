@@ -1,12 +1,18 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { ReaderV2Layout } from '@/components/reader/ReaderV2Layout';
 import { TappableTextV2 } from '@/components/reader/TappableTextV2';
 import { BottomSheet } from '@/components/ui/BottomSheet';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { BookOpen, Lightbulb, CheckCircle } from 'lucide-react';
+import {
+  readProgress,
+  saveProgress,
+  markCompleted as markProgressCompleted,
+  migrateLegacyCompletionKeys,
+} from '@/lib/reading-progress';
 
 interface ReaderSample {
   title_en: string;
@@ -59,9 +65,16 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [grammarOpen, setGrammarOpen] = useState(false);
   const [vocabOpen, setVocabOpen] = useState(false);
-  const [readProgress, setReadProgress] = useState(0);
+  const [scrollPercent, setScrollPercent] = useState(0);
   const [fontSize, setFontSize] = useState<'sm' | 'base' | 'lg' | 'xl'>('base');
   const [isComplete, setIsComplete] = useState(false);
+
+  // Refs for time tracking and debouncing
+  const sessionStartRef = useRef<number>(Date.now());
+  const previousTimeSpentRef = useRef<number>(0);
+  const saveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const initialScrollRestoredRef = useRef(false);
 
   const title = locale === 'mk' ? sample.title_mk : sample.title_en;
   const backUrl = `/${locale}/reader`;
@@ -82,42 +95,140 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
     theme: locale === 'mk' ? 'Тема' : 'Theme',
   };
 
+  // Calculate current time spent
+  const getCurrentTimeSpent = useCallback(() => {
+    const sessionTime = Math.floor((Date.now() - sessionStartRef.current) / 1000);
+    return previousTimeSpentRef.current + sessionTime;
+  }, []);
+
+  // Debounced save function
+  const debouncedSave = useCallback(
+    (newScrollPercent: number) => {
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+      saveTimeoutRef.current = setTimeout(() => {
+        saveProgress(sampleId, {
+          scrollPercent: newScrollPercent,
+          timeSpentSeconds: getCurrentTimeSpent(),
+        });
+      }, 2000);
+    },
+    [sampleId, getCurrentTimeSpent]
+  );
+
+  // Load existing progress and migrate legacy keys on mount
   useEffect(() => {
-    try {
-      setIsComplete(localStorage.getItem(completionKey) === 'true');
-    } catch {}
-  }, [completionKey]);
+    // Migrate any legacy completion keys first
+    migrateLegacyCompletionKeys();
+
+    // Load progress from new system
+    const existingProgress = readProgress(sampleId);
+    if (existingProgress) {
+      setIsComplete(existingProgress.isCompleted);
+      setScrollPercent(existingProgress.scrollPercent);
+      previousTimeSpentRef.current = existingProgress.timeSpentSeconds;
+    } else {
+      // Check legacy key for backward compatibility
+      try {
+        const legacyComplete = localStorage.getItem(completionKey) === 'true';
+        if (legacyComplete) {
+          setIsComplete(true);
+          setScrollPercent(100);
+        }
+      } catch {
+        // Ignore localStorage errors
+      }
+    }
+  }, [sampleId, completionKey]);
+
+  // Restore scroll position after content renders
+  useEffect(() => {
+    if (initialScrollRestoredRef.current) return;
+
+    const container = scrollContainerRef.current;
+    const existingProgress = readProgress(sampleId);
+
+    if (container && existingProgress && existingProgress.scrollPercent > 0) {
+      // Wait for content to render
+      requestAnimationFrame(() => {
+        const maxScroll = container.scrollHeight - container.clientHeight;
+        const targetScroll = (existingProgress.scrollPercent / 100) * maxScroll;
+        container.scrollTop = targetScroll;
+        initialScrollRestoredRef.current = true;
+      });
+    } else {
+      initialScrollRestoredRef.current = true;
+    }
+  }, [sampleId]);
+
+  // Save progress on unmount
+  useEffect(() => {
+    return () => {
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+      // Save final progress on unmount (if not completed)
+      if (!isComplete) {
+        saveProgress(sampleId, {
+          scrollPercent,
+          timeSpentSeconds:
+            previousTimeSpentRef.current +
+            Math.floor((Date.now() - sessionStartRef.current) / 1000),
+        });
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sampleId]);
 
   const handleMarkComplete = () => {
     if (isComplete) return;
     setIsComplete(true);
+
+    // Update new progress system
+    markProgressCompleted(sampleId);
+
+    // Also update legacy key for backward compatibility
     try {
       localStorage.setItem(completionKey, 'true');
-    } catch {}
+    } catch {
+      // Ignore localStorage errors
+    }
   };
 
-  // Handle scroll progress
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLDivElement;
-    const scrolled = target.scrollTop;
-    const height = target.scrollHeight - target.clientHeight;
-    const progress = height > 0 ? Math.round((scrolled / height) * 100) : 0;
-    setReadProgress(Math.min(progress, 100));
-  };
+  // Handle scroll progress on the scroll container
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const scrolled = container.scrollTop;
+      const height = container.scrollHeight - container.clientHeight;
+      const progress = height > 0 ? Math.round((scrolled / height) * 100) : 0;
+      const clampedProgress = Math.min(progress, 100);
+
+      setScrollPercent(clampedProgress);
+      debouncedSave(clampedProgress);
+    };
+
+    container.addEventListener('scroll', handleScroll);
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, [debouncedSave]);
 
   return (
     <ReaderV2Layout
       title={title}
       backUrl={backUrl}
-      progress={readProgress}
+      progress={scrollPercent}
       estimatedMinutes={sample.estimatedMinutes}
       difficulty={sample.difficulty}
       fontSize={fontSize}
       locale={locale}
       onSettingsClick={() => setSettingsOpen(true)}
+      scrollContainerRef={scrollContainerRef}
     >
       {/* Reading content */}
-      <div onScroll={handleScroll} className="space-y-6">
+      <div className="space-y-6">
         {/* Text blocks */}
         {sample.text_blocks_mk.map((block, idx) => {
           if (block.type === 'p') {
