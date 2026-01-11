@@ -116,6 +116,9 @@ export interface AnalyzedTextData {
 
 export type ReaderCategory = 'challenge' | 'conversation' | 'story';
 
+/** Topics for graded readers, mapped from category in graded-readers.json */
+export type ReaderTopic = 'Family' | 'Daily Life' | 'Food' | 'Travel' | 'Culture';
+
 export interface ReaderSample {
   id: string;
   locale: string;
@@ -125,6 +128,8 @@ export interface ReaderSample {
   estimatedMinutes: number;
   tags: string[];
   category: ReaderCategory;
+  /** Topic for graded readers (optional, only for story category) */
+  topic?: ReaderTopic;
   text_blocks_mk: Array<{
     type: 'p' | 'h1' | 'h2' | 'h3' | 'note';
     value: string;
@@ -140,6 +145,15 @@ export interface ReaderSample {
 // Helper to add category to imported JSON
 function withCategory<T>(data: T, category: ReaderCategory): T & { category: ReaderCategory } {
   return { ...data, category };
+}
+
+// Helper to add category and topic to graded reader JSON
+function withCategoryAndTopic<T>(
+  data: T,
+  category: ReaderCategory,
+  topic: ReaderTopic
+): T & { category: ReaderCategory; topic: ReaderTopic } {
+  return { ...data, category, topic };
 }
 
 // Reader samples - add new samples here
@@ -175,22 +189,22 @@ const samples: Record<string, ReaderSample> = {
   'day28-maliot-princ': withCategory(day28, 'challenge') as ReaderSample,
   'day29-maliot-princ': withCategory(day29, 'challenge') as ReaderSample,
   'day30-maliot-princ': withCategory(day30, 'challenge') as ReaderSample,
-  'day-in-skopje': withCategory(dayInSkopje, 'story') as ReaderSample,
+  'day-in-skopje': withCategoryAndTopic(dayInSkopje, 'story', 'Travel') as ReaderSample,
   // Graded Readers - A1
-  'a1-anas-family': withCategory(a1AnasFamily, 'story') as ReaderSample,
-  'a1-my-morning': withCategory(a1MyMorning, 'story') as ReaderSample,
-  'a1-at-the-store': withCategory(a1AtTheStore, 'story') as ReaderSample,
-  'a1-my-best-friend': withCategory(a1MyBestFriend, 'story') as ReaderSample,
+  'a1-anas-family': withCategoryAndTopic(a1AnasFamily, 'story', 'Family') as ReaderSample,
+  'a1-my-morning': withCategoryAndTopic(a1MyMorning, 'story', 'Daily Life') as ReaderSample,
+  'a1-at-the-store': withCategoryAndTopic(a1AtTheStore, 'story', 'Food') as ReaderSample,
+  'a1-my-best-friend': withCategoryAndTopic(a1MyBestFriend, 'story', 'Family') as ReaderSample,
   // Graded Readers - A2
-  'a2-day-in-ohrid': withCategory(a2DayInOhrid, 'story') as ReaderSample,
-  'a2-my-job': withCategory(a2MyJob, 'story') as ReaderSample,
-  'a2-hobbies': withCategory(a2Hobbies, 'story') as ReaderSample,
-  'a2-the-holiday': withCategory(a2TheHoliday, 'story') as ReaderSample,
+  'a2-day-in-ohrid': withCategoryAndTopic(a2DayInOhrid, 'story', 'Travel') as ReaderSample,
+  'a2-my-job': withCategoryAndTopic(a2MyJob, 'story', 'Daily Life') as ReaderSample,
+  'a2-hobbies': withCategoryAndTopic(a2Hobbies, 'story', 'Culture') as ReaderSample,
+  'a2-the-holiday': withCategoryAndTopic(a2TheHoliday, 'story', 'Culture') as ReaderSample,
   // Graded Readers - B1
-  'b1-easter-traditions': withCategory(b1EasterTraditions, 'story') as ReaderSample,
-  'b1-macedonian-cuisine': withCategory(b1MacedonianCuisine, 'story') as ReaderSample,
-  'b1-city-vs-village': withCategory(b1CityVsVillage, 'story') as ReaderSample,
-  'b1-macedonian-legends': withCategory(b1MacedonianLegends, 'story') as ReaderSample,
+  'b1-easter-traditions': withCategoryAndTopic(b1EasterTraditions, 'story', 'Culture') as ReaderSample,
+  'b1-macedonian-cuisine': withCategoryAndTopic(b1MacedonianCuisine, 'story', 'Food') as ReaderSample,
+  'b1-city-vs-village': withCategoryAndTopic(b1CityVsVillage, 'story', 'Culture') as ReaderSample,
+  'b1-macedonian-legends': withCategoryAndTopic(b1MacedonianLegends, 'story', 'Culture') as ReaderSample,
 };
 
 export function getReaderSample(id: string): ReaderSample | null {
@@ -207,6 +221,20 @@ export function getReaderSamplesByLocale(locale: string): ReaderSample[] {
 
 export function getReaderSamplesByCategory(category: ReaderCategory): ReaderSample[] {
   return Object.values(samples).filter((sample) => sample.category === category);
+}
+
+/**
+ * Get all unique topics from story samples (graded readers).
+ * Returns topics in a consistent order for UI display.
+ */
+export function getAvailableTopics(): ReaderTopic[] {
+  const topicOrder: ReaderTopic[] = ['Family', 'Daily Life', 'Food', 'Travel', 'Culture'];
+  const existingTopics = new Set(
+    Object.values(samples)
+      .map((sample) => sample.topic)
+      .filter((topic): topic is ReaderTopic => topic !== undefined)
+  );
+  return topicOrder.filter((topic) => existingTopics.has(topic));
 }
 
 export function getDifficultyColor(difficulty: string): string {

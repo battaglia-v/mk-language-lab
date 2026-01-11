@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ReadingSampleCard } from '@/components/reader/ReadingSampleCard';
-import { getAllReaderSamples, getReaderSamplesByCategory, type ReaderSample } from '@/lib/reader-samples';
+import { getAllReaderSamples, getReaderSamplesByCategory, getAvailableTopics, type ReaderSample, type ReaderTopic } from '@/lib/reader-samples';
 import { readFavorites } from '@/lib/favorites';
 import { readAllProgress, type ReadingProgress } from '@/lib/reading-progress';
 import { cn } from '@/lib/utils';
@@ -82,14 +82,23 @@ export default function ReaderPage() {
   // Search and filter state
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] = useState<DifficultyLevel | null>(null);
+  const [selectedTopic, setSelectedTopic] = useState<ReaderTopic | null>(null);
 
-  // Filter samples based on search and difficulty
+  // Available topics from story samples
+  const availableTopics = useMemo(() => getAvailableTopics(), []);
+
+  // Filter samples based on search, difficulty, and topic
   const filteredSamples = useMemo(() => {
     let result = allSamples;
 
     // Filter by difficulty
     if (selectedDifficulty) {
       result = result.filter(sample => sample.difficulty === selectedDifficulty);
+    }
+
+    // Filter by topic
+    if (selectedTopic) {
+      result = result.filter(sample => sample.topic === selectedTopic);
     }
 
     // Filter by search query (title and tags)
@@ -104,7 +113,7 @@ export default function ReaderPage() {
     }
 
     return result;
-  }, [allSamples, searchQuery, selectedDifficulty]);
+  }, [allSamples, searchQuery, selectedDifficulty, selectedTopic]);
 
   // Get unique difficulties from available samples
   const availableDifficulties = useMemo(() => {
@@ -115,9 +124,10 @@ export default function ReaderPage() {
   const clearFilters = () => {
     setSearchQuery('');
     setSelectedDifficulty(null);
+    setSelectedTopic(null);
   };
 
-  const hasActiveFilters = searchQuery.trim() || selectedDifficulty;
+  const hasActiveFilters = searchQuery.trim() || selectedDifficulty || selectedTopic;
   const paywallEnabled = config.paywallEnabled;
   const isPro = entitlement.isPro;
 
@@ -245,6 +255,30 @@ export default function ReaderPage() {
                       Clear all
                     </Button>
                   )}
+                </div>
+              )}
+
+              {/* Topic Filter Chips */}
+              {availableTopics.length > 1 && (
+                <div className="flex flex-wrap gap-2">
+                  {availableTopics.map((topic) => (
+                    <Button
+                      key={topic}
+                      variant="outline"
+                      onClick={() => setSelectedTopic(selectedTopic === topic ? null : topic)}
+                      aria-pressed={selectedTopic === topic}
+                      data-active={selectedTopic === topic ? 'true' : 'false'}
+                      className={cn(
+                        'rounded-full min-h-[44px] px-4 text-sm font-medium transition-all',
+                        selectedTopic === topic
+                          ? 'bg-slate-700 text-white border-slate-700 hover:bg-slate-800'
+                          : 'bg-transparent hover:border-slate-400'
+                      )}
+                      data-testid={`reader-filter-topic-${topic.toLowerCase().replace(' ', '-')}`}
+                    >
+                      {topic}
+                    </Button>
+                  ))}
                 </div>
               )}
             </div>
