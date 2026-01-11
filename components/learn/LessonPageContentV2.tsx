@@ -567,18 +567,19 @@ export default function LessonPageContentV2({
                   </h4>
                   <div className="grid gap-3 sm:grid-cols-2">
                     {items.map((item, index) => (
-                      <EnhancedVocabularyCard
-                        key={item.id}
-                        item={item}
-                        mode="compact"
-                        showTranslation={true}
-                        showTransliteration={true}
-                        animationDelay={Math.min(index * 30, 300)}
-                        onAddToReview={() =>
-                          handleSaveWord({ mk: item.macedonianText, en: item.englishText })
-                        }
-                        isInReviewDeck={isWordInReviewDeck(item.macedonianText)}
-                      />
+                      <div key={item.id} data-testid="lesson-vocabulary-card">
+                        <EnhancedVocabularyCard
+                          item={item}
+                          mode="compact"
+                          showTranslation={true}
+                          showTransliteration={true}
+                          animationDelay={Math.min(index * 30, 300)}
+                          onAddToReview={() =>
+                            handleSaveWord({ mk: item.macedonianText, en: item.englishText })
+                          }
+                          isInReviewDeck={isWordInReviewDeck(item.macedonianText)}
+                        />
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -596,18 +597,19 @@ export default function LessonPageContentV2({
                 )}
                 <div className="grid gap-3 sm:grid-cols-2">
                   {groupedVocabulary.uncategorized.map((item, index) => (
-                    <EnhancedVocabularyCard
-                      key={item.id}
-                      item={item}
-                      mode="compact"
-                      showTranslation={true}
-                      showTransliteration={true}
-                      animationDelay={Math.min(index * 30, 300)}
-                      onAddToReview={() =>
-                        handleSaveWord({ mk: item.macedonianText, en: item.englishText })
-                      }
-                      isInReviewDeck={isWordInReviewDeck(item.macedonianText)}
-                    />
+                    <div key={item.id} data-testid="lesson-vocabulary-card">
+                      <EnhancedVocabularyCard
+                        item={item}
+                        mode="compact"
+                        showTranslation={true}
+                        showTransliteration={true}
+                        animationDelay={Math.min(index * 30, 300)}
+                        onAddToReview={() =>
+                          handleSaveWord({ mk: item.macedonianText, en: item.englishText })
+                        }
+                        isInReviewDeck={isWordInReviewDeck(item.macedonianText)}
+                      />
+                    </div>
                   ))}
                 </div>
               </div>
@@ -716,7 +718,7 @@ export default function LessonPageContentV2({
   // Completion screen
   if (isComplete && completedSections.has(sections[sections.length - 1]?.id)) {
     return (
-      <div className="max-w-2xl mx-auto p-4 md:p-6">
+      <div className="max-w-2xl mx-auto p-4 md:p-6" data-testid="lesson-completion-screen">
         <Card className="p-8 sm:p-12 bg-gradient-to-br from-green-500/10 to-emerald-500/10 border-green-500/20 text-center">
           <div className="flex flex-col items-center gap-6">
             <div className="h-24 w-24 rounded-full bg-green-500/20 flex items-center justify-center animate-bounce">
@@ -827,7 +829,7 @@ export default function LessonPageContentV2({
 
           {/* Progress bar */}
           <div className="space-y-2">
-            <Progress value={progress} className="h-2" />
+            <Progress value={progress} className="h-2" data-testid="lesson-progress-indicator" />
             <div className="flex items-center justify-between text-xs text-muted-foreground">
               <span>
                 Step {currentSectionIndex + 1} of {sections.length}
@@ -837,7 +839,7 @@ export default function LessonPageContentV2({
           </div>
 
           {/* Section stepper (mobile only - desktop has tabs) */}
-          <div className="flex items-center justify-center gap-2 mt-3 lg:hidden">
+          <div className="flex items-center justify-center gap-2 mt-3 lg:hidden" data-testid="lesson-section-stepper">
             {sections.map((section, index) => {
               const isCompleted = completedSections.has(section.id);
               const isCurrent = index === currentSectionIndex;
@@ -854,6 +856,7 @@ export default function LessonPageContentV2({
                       }
                     }}
                     disabled={!canNavigate}
+                    data-testid={`lesson-section-tab-${section.id}`}
                     className={cn(
                       'flex items-center justify-center rounded-full transition-all duration-200',
                       // Size: current is larger
@@ -888,7 +891,7 @@ export default function LessonPageContentV2({
           </div>
 
           {/* Section tabs (desktop) */}
-          <div className="hidden lg:flex items-center gap-1 mt-4 overflow-x-auto">
+          <div className="hidden lg:flex items-center gap-1 mt-4 overflow-x-auto" data-testid="lesson-section-stepper-desktop">
             {sections.map((section, index) => {
               const isCompleted = completedSections.has(section.id);
               const isCurrent = index === currentSectionIndex;
@@ -904,6 +907,7 @@ export default function LessonPageContentV2({
                     }
                   }}
                   disabled={!canNavigate}
+                  data-testid={`lesson-section-tab-${section.id}-desktop`}
                   className={cn(
                     'flex items-center gap-2 px-3 py-2 rounded-lg text-sm whitespace-nowrap transition-colors',
                     isCurrent && 'bg-primary text-primary-foreground',
@@ -931,6 +935,7 @@ export default function LessonPageContentV2({
           'p-4 md:p-6 transition-opacity duration-150',
           isTransitioning && 'opacity-50'
         )}
+        data-testid="lesson-section-content"
       >
         {renderSectionContent()}
       </div>
@@ -958,6 +963,7 @@ export default function LessonPageContentV2({
                 onClick={isLastSection ? handleCompleteLesson : handleContinue}
                 size="lg"
                 className="flex-1 h-14 text-base font-semibold shadow-xl gap-2"
+                data-testid="lesson-continue-btn"
               >
                 {isLastSection ? (
                   <>
@@ -991,6 +997,7 @@ export default function LessonPageContentV2({
         <Button
           onClick={isLastSection ? handleCompleteLesson : handleContinue}
           className="gap-2"
+          data-testid="lesson-continue-btn-desktop"
         >
           {isLastSection ? (
             <>
