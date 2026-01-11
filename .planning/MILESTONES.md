@@ -1,5 +1,33 @@
 # Project Milestones: MKLanguage Learning System
 
+## v1.6 Reader Overhaul (Shipped: 2026-01-11)
+
+**Delivered:** Mobile-first reading experience with tap-to-translate word lookup, unified vocabulary saving, reading progress tracking, and discovery/navigation improvements for 12 graded reader stories.
+
+**Phases completed:** 36-41 (7 plans total)
+
+**Key accomplishments:**
+
+- 12 graded reader stories wired (4 A1, 4 A2, 4 B1) with pre-analyzed vocabulary data (1,123 words)
+- Tap-to-translate with instant word lookups, shadow depth visual feedback
+- Unified vocabulary save — reader words integrate with favorites system
+- Reading progress tracking — scroll position, time spent, completion status with resume
+- Discovery & navigation — topic filtering, sort options, Continue Reading card
+- 56 E2E tests validating all reader features across 4 viewports
+
+**Stats:**
+
+- 76 files modified
+- +29,620 / -1,197 lines changed
+- 6 phases, 7 plans, 29 commits
+- 2 days (2026-01-10 → 2026-01-11)
+
+**Git range:** `docs(36-01)` → `fix: saved words practice`
+
+**What's next:** TBD (user to decide next focus)
+
+---
+
 ## v1.5 Audio Cleanup & Final Polish (Shipped: 2026-01-10)
 
 **Delivered:** Complete audio/listening feature removal (-4,064 lines), About page credits, quiz retake button, section stepper navigation for completed lessons, curriculum source explanation, and Practice Hub improvements with lesson progress indicator.
