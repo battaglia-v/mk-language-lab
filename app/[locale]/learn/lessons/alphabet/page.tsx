@@ -183,16 +183,16 @@ export default function AlphabetLessonPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="learn" className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="learn" className="gap-1.5" data-testid="alphabet-tab-learn">
+        <TabsList className="grid h-11 w-full grid-cols-3 gap-1 rounded-2xl bg-muted/70 p-1">
+          <TabsTrigger value="learn" className="w-full justify-center gap-2 text-center" data-testid="alphabet-tab-learn">
             <BookOpen className="h-4 w-4" />
             {t('learn', { default: 'Learn' })}
           </TabsTrigger>
-          <TabsTrigger value="special" className="gap-1.5" data-testid="alphabet-tab-special">
+          <TabsTrigger value="special" className="w-full justify-center gap-2 text-center" data-testid="alphabet-tab-special">
             <Sparkles className="h-4 w-4" />
             {t('special', { default: 'Special' })}
           </TabsTrigger>
-          <TabsTrigger value="practice" className="gap-1.5" data-testid="alphabet-tab-practice">
+          <TabsTrigger value="practice" className="w-full justify-center gap-2 text-center" data-testid="alphabet-tab-practice">
             <Mic className="h-4 w-4" />
             {t('practice', { default: 'Practice' })}
           </TabsTrigger>
