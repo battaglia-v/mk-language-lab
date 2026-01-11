@@ -21,7 +21,9 @@ interface GoogleOneTapProviderProps {
 export function GoogleOneTapProvider({ children }: GoogleOneTapProviderProps) {
   // Google One Tap disabled until properly configured in Google Cloud Console
   const enableOneTap = process.env.NEXT_PUBLIC_ENABLE_GOOGLE_ONE_TAP === 'true';
-  const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+  const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
+    ?.replace(/^NEXT_PUBLIC_GOOGLE_CLIENT_ID=/, '')
+    .trim();
 
   return (
     <>

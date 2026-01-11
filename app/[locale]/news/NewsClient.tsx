@@ -405,7 +405,7 @@ export default function NewsClient({
                 >
                   <div className="relative aspect-video w-full overflow-hidden">
                     <ProxiedNewsImage
-                      imageUrl={item.imageProxy ?? item.image}
+                      imageUrl={item.image}
                       alt={item.title}
                       sourceId={item.sourceId}
                       sourceName={item.sourceName}
