@@ -12,7 +12,6 @@ import {
   Trash2,
   ArrowLeftRight,
   ClipboardPaste,
-  Volume2,
   MoreHorizontal,
   X,
 } from 'lucide-react';
@@ -27,7 +26,6 @@ import {
 } from '@/components/translate/useTranslatorWorkspace';
 import { useSavedPhrases } from '@/components/translate/useSavedPhrases';
 import { useToast } from '@/components/ui/toast';
-import { cn } from '@/lib/utils';
 import { PageContainer } from '@/components/layout';
 
 const MAX_CHARACTERS = 1800;
@@ -41,7 +39,6 @@ export default function TranslatePage() {
   const [historyOpen, setHistoryOpen] = useState(false);
   const [savedOpen, setSavedOpen] = useState(false);
   const [lastTranslatedInput, setLastTranslatedInput] = useState('');
-  const [isSpeaking, setIsSpeaking] = useState(false);
 
   const directionOptions: TranslationDirectionOption[] = useMemo(
     () => [
@@ -132,17 +129,6 @@ export default function TranslatePage() {
       savePhrase(currentPayload);
       addToast({ type: 'success', description: t('phraseSaved') });
     }
-  };
-
-  const handleListen = () => {
-    if (!translatedText || !window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(translatedText);
-    u.lang = directionId === 'en-mk' ? 'mk-MK' : 'en-US';
-    u.rate = 0.85;
-    u.onstart = () => setIsSpeaking(true);
-    u.onend = () => setIsSpeaking(false);
-    window.speechSynthesis.speak(u);
   };
 
   const handlePaste = async () => {
@@ -298,16 +284,6 @@ export default function TranslatePage() {
             >
               {isCurrentSaved ? <BookmarkCheck className="h-4 w-4 text-primary" /> : <BookmarkPlus className="h-4 w-4" />}
               <span className="text-sm">{isCurrentSaved ? t('saved') : t('saveButton')}</span>
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleListen}
-              className="gap-2 h-10 rounded-full"
-              data-testid="translate-listen"
-            >
-              <Volume2 className={cn('h-4 w-4', isSpeaking && 'text-primary animate-pulse')} />
-              <span className="text-sm">{t('listen', { default: 'Listen' })}</span>
             </Button>
           </div>
         </div>
