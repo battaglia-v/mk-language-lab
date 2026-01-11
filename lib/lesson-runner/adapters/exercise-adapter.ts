@@ -129,7 +129,8 @@ export function prismaExerciseToStep(exercise: {
 }): Step {
   switch (exercise.type) {
     case 'multiple_choice': {
-      const options: string[] = JSON.parse(exercise.options);
+      // Options are stored as pipe-separated strings in the database
+      const options: string[] = (exercise.options ?? '').split('|').map(opt => opt.trim()).filter(Boolean);
       const correctIndex = options.indexOf(exercise.correctAnswer);
 
       const step: MultipleChoiceStep = {

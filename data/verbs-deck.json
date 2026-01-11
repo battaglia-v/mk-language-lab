@@ -15,7 +15,7 @@
       "id": "verb-001",
       "infinitive": {
         "mk": "сум",
-        "en": "to be"
+        "en": "I am"
       },
       "type": "irregular",
       "aspect": "imperfective",
@@ -45,7 +45,7 @@
       "id": "verb-002",
       "infinitive": {
         "mk": "имам",
-        "en": "to have"
+        "en": "I have"
       },
       "type": "regular-a",
       "aspect": "imperfective",
@@ -75,7 +75,7 @@
       "id": "verb-003",
       "infinitive": {
         "mk": "сакам",
-        "en": "to want / to love"
+        "en": "I want / I love"
       },
       "type": "regular-a",
       "aspect": "imperfective",
@@ -105,7 +105,7 @@
       "id": "verb-004",
       "infinitive": {
         "mk": "можам",
-        "en": "to be able to / can"
+        "en": "I can / I am able to"
       },
       "type": "regular-a",
       "aspect": "imperfective",
@@ -135,7 +135,7 @@
       "id": "verb-005",
       "infinitive": {
         "mk": "одам",
-        "en": "to go"
+        "en": "I go"
       },
       "type": "regular-a",
       "aspect": "imperfective",
@@ -165,7 +165,7 @@
       "id": "verb-006",
       "infinitive": {
         "mk": "правам",
-        "en": "to do / to make"
+        "en": "I do / I make"
       },
       "type": "regular-a",
       "aspect": "imperfective",
@@ -195,7 +195,7 @@
       "id": "verb-007",
       "infinitive": {
         "mk": "знам",
-        "en": "to know (fact)"
+        "en": "I know (a fact)"
       },
       "type": "regular-a",
       "aspect": "imperfective",
@@ -225,7 +225,7 @@
       "id": "verb-008",
       "infinitive": {
         "mk": "гледам",
-        "en": "to see / to watch"
+        "en": "I see / I watch"
       },
       "type": "regular-a",
       "aspect": "imperfective",
@@ -255,7 +255,7 @@
       "id": "verb-009",
       "infinitive": {
         "mk": "зборувам",
-        "en": "to speak / to talk"
+        "en": "I speak / I talk"
       },
       "type": "regular-uva",
       "aspect": "imperfective",
@@ -285,7 +285,7 @@
       "id": "verb-010",
       "infinitive": {
         "mk": "јадам",
-        "en": "to eat"
+        "en": "I eat"
       },
       "type": "regular-a",
       "aspect": "imperfective",
@@ -315,7 +315,7 @@
       "id": "verb-011",
       "infinitive": {
         "mk": "пијам",
-        "en": "to drink"
+        "en": "I drink"
       },
       "type": "regular-a",
       "aspect": "imperfective",
@@ -345,7 +345,7 @@
       "id": "verb-012",
       "infinitive": {
         "mk": "работам",
-        "en": "to work"
+        "en": "I work"
       },
       "type": "regular-a",
       "aspect": "imperfective",
@@ -375,7 +375,7 @@
       "id": "verb-013",
       "infinitive": {
         "mk": "живеам",
-        "en": "to live"
+        "en": "I live"
       },
       "type": "regular-a",
       "aspect": "imperfective",
@@ -405,7 +405,7 @@
       "id": "verb-014",
       "infinitive": {
         "mk": "учам",
-        "en": "to learn / to study"
+        "en": "I learn / I study"
       },
       "type": "regular-a",
       "aspect": "imperfective",
@@ -435,7 +435,7 @@
       "id": "verb-015",
       "infinitive": {
         "mk": "читам",
-        "en": "to read"
+        "en": "I read"
       },
       "type": "regular-a",
       "aspect": "imperfective",
@@ -465,7 +465,7 @@
       "id": "verb-016",
       "infinitive": {
         "mk": "пишувам",
-        "en": "to write"
+        "en": "I write"
       },
       "type": "regular-uva",
       "aspect": "imperfective",
@@ -495,7 +495,7 @@
       "id": "verb-017",
       "infinitive": {
         "mk": "слушам",
-        "en": "to listen / to hear"
+        "en": "I listen / I hear"
       },
       "type": "regular-a",
       "aspect": "imperfective",
@@ -525,7 +525,7 @@
       "id": "verb-018",
       "infinitive": {
         "mk": "доаѓам",
-        "en": "to come"
+        "en": "I come"
       },
       "type": "regular-a",
       "aspect": "imperfective",
@@ -555,7 +555,7 @@
       "id": "verb-019",
       "infinitive": {
         "mk": "мислам",
-        "en": "to think"
+        "en": "I think"
       },
       "type": "regular-a",
       "aspect": "imperfective",
@@ -585,7 +585,7 @@
       "id": "verb-020",
       "infinitive": {
         "mk": "разбирам",
-        "en": "to understand"
+        "en": "I understand"
       },
       "type": "regular-a",
       "aspect": "imperfective",
@@ -615,7 +615,7 @@
       "id": "verb-021",
       "infinitive": {
         "mk": "сакам",
-        "en": "to love"
+        "en": "I love"
       },
       "type": "regular-a",
       "aspect": "imperfective",
@@ -645,7 +645,7 @@
       "id": "verb-022",
       "infinitive": {
         "mk": "земам",
-        "en": "to take"
+        "en": "I take"
       },
       "type": "regular-a",
       "aspect": "imperfective",
@@ -675,7 +675,7 @@
       "id": "verb-023",
       "infinitive": {
         "mk": "давам",
-        "en": "to give"
+        "en": "I give"
       },
       "type": "regular-a",
       "aspect": "imperfective",
@@ -705,7 +705,7 @@
       "id": "verb-024",
       "infinitive": {
         "mk": "стојам",
-        "en": "to stand / to stay"
+        "en": "I stand / I stay"
       },
       "type": "regular-a",
       "aspect": "imperfective",
@@ -735,7 +735,7 @@
       "id": "verb-025",
       "infinitive": {
         "mk": "седам",
-        "en": "to sit"
+        "en": "I sit"
       },
       "type": "regular-a",
       "aspect": "imperfective",
