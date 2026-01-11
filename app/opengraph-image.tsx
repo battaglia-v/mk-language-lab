@@ -181,7 +181,7 @@ export default async function Image() {
                 maxWidth: 900,
               }}
             >
-              Learn Macedonian with AI-powered tutoring, translation, and interactive lessons
+              Learn Macedonian with lessons, practice, translation, and real stories
             </p>
           </div>
         </div>

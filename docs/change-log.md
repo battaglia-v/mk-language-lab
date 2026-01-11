@@ -1,8 +1,11 @@
 # Documentation Change Log
 
-> **Last Updated**: 2025-11-03  > **Owner**: Vincent Battaglia  > **Review Cycle**: Monthly
+> **Last Updated**: 2026-01-10  > **Owner**: Vincent Battaglia  > **Review Cycle**: Monthly
 
 Log notable documentation updates here. Append entries in reverse chronological order with the merge date and a short description.
+
+## 2026-01-10
+- Aligned Google Play listing copy, metadata, and package identity to MK Language Lab, removed unsupported AI/offline claims, and added Play Store runbook + screenshot/content audit + launch blocker checklists.
 
 ## 2025-11-03
 - Documented the real-time minute aggregates powering `HeroProgressSummary`, updated localisation copy for the new labels, and captured the `logSession({ durationMinutes })` workflow in the journeys feature guide.

@@ -1,6 +1,6 @@
 # Google Play Store Readiness Checklist
 
-**Last Updated:** December 12, 2024
+**Last Updated:** January 10, 2026
 **Target Launch:** Q1 2025
 **Status:** IN PROGRESS
 
@@ -126,15 +126,15 @@ MK Language Lab is a Progressive Web App (PWA) for Macedonian language learning.
 ### Suggested App Store Copy
 
 **Short Description:**
-Learn Macedonian with AI-powered translations, vocabulary practice, and interactive lessons.
+Learn Macedonian with lessons, practice, translation, and real stories.
 
 **Full Description (Draft):**
 MK Language Lab (Македонски) is your modern companion for learning the Macedonian language. Whether you're a complete beginner or looking to improve your fluency, our app provides:
 
-🎯 **Smart Translation**
+🎯 **Translation**
 - English ↔ Macedonian translation
 - Word-by-word breakdown for understanding
-- Context-aware translations
+- Translation history for review
 
 📚 **Interactive Practice**
 - 380+ vocabulary words with contextual sentences

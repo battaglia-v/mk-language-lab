@@ -43,7 +43,7 @@ After building, Bubblewrap will display your app's SHA-256 fingerprint. You'll n
   "relation": ["delegate_permission/common.handle_all_urls"],
   "target": {
     "namespace": "android_app",
-    "package_name": "com.mklanguage.app",
+    "package_name": "com.mklanguage.twa",
     "sha256_cert_fingerprints": ["YOUR_SHA256_FINGERPRINT_HERE"]
   }
 }]

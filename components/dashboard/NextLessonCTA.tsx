@@ -52,17 +52,17 @@ export function NextLessonCTA({
 
   return (
     <Card className={cn(
-      "border-2 border-primary/30 bg-gradient-to-br from-primary/10 via-background to-secondary/10",
-      "shadow-[0_12px_40px_rgba(0,0,0,0.3)]",
+      "border border-border/60 bg-card shadow-sm",
+      "transition-shadow hover:shadow-md",
       className
     )}>
-      <CardHeader className="pb-3">
-        <div className="flex items-start justify-between">
-          <div>
-            <CardTitle className="text-2xl">
+      <CardHeader className="pb-2">
+        <div className="flex items-start justify-between gap-3">
+          <div className="space-y-1">
+            <CardTitle className="text-xl">
               {hasStartedLearning ? t.continueLearning : t.startLearning}
             </CardTitle>
-            <CardDescription className="mt-1">
+            <CardDescription className="text-sm">
               {hasStartedLearning ? t.pickUpWhereLeft : t.startFirstLesson}
             </CardDescription>
           </div>
@@ -74,7 +74,7 @@ export function NextLessonCTA({
         </div>
       </CardHeader>
 
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-3">
         {/* Current Lesson Info */}
         {currentLesson && (
           <div className="rounded-xl border border-border/40 bg-white/5 p-3">
@@ -97,13 +97,13 @@ export function NextLessonCTA({
         {/* Primary CTA */}
         <Button
           asChild
-          size="lg"
-          className="w-full rounded-2xl bg-gradient-to-r from-primary to-secondary text-[#0a0a0a] text-lg font-bold shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]"
+          size="sm"
+          className="rounded-full px-4"
         >
           <Link href={`/${locale}/practice`}>
-            <BookOpen className="mr-2 h-5 w-5" />
+            <BookOpen className="h-4 w-4" />
             {hasStartedLearning ? t.continueLearning : t.startLearning}
-            <ArrowRight className="ml-2 h-5 w-5" />
+            <ArrowRight className="h-4 w-4" />
           </Link>
         </Button>
 

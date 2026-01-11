@@ -1,19 +1,18 @@
 # Google Play Store Listing Copy
 
-## App Name
-**Македонски – Learn Macedonian**
+> **Last Updated:** 2026-01-10  > **Owner**: Vincent Battaglia
 
-Alternative (if first is too long):
-**Македонски Language Lab**
+## App Name
+**MK Language Lab**
 
 ---
 
 ## Short Description
 *80 characters max*
 
-Learn Macedonian with interactive lessons, grammar practice, and real news.
+Learn Macedonian with lessons, practice, translation, and real stories.
 
-*(79 characters)*
+*(71 characters)*
 
 ---
 
@@ -22,7 +21,7 @@ Learn Macedonian with interactive lessons, grammar practice, and real news.
 
 **Learn Macedonian naturally with interactive lessons, practice drills, and immersive content.**
 
-Macedонски (Macedonian Language Lab) helps you master Macedonian through a combination of structured lessons, adaptive practice, and real-world content. Whether you're a complete beginner or looking to improve your fluency, our app provides the tools you need to succeed.
+MK Language Lab (Македонски) helps you master Macedonian through a combination of structured lessons, practice, and real-world content. Whether you're a complete beginner or looking to improve your fluency, our app provides the tools you need to succeed.
 
 ### 🎯 Core Features
 
@@ -91,9 +90,9 @@ Learn from real Macedonian news and articles. Our reader section provides authen
 Clean, modern interface with:
 • Dark mode support
 • Smooth animations
-• Keyboard shortcuts for power users
 • Mobile-optimized for practice on the go
-• Progress syncing across sessions
+• Accessible touch targets
+• Progress tracking across sessions
 
 ### 🔒 Privacy First
 
@@ -128,17 +127,17 @@ macedonian, language learning, македонски јазик, vocabulary, gram
 ---
 
 ## Privacy Policy URL
-*(To be provided)*
+https://mklanguage.com/en/privacy
 
 ---
 
 ## Support Email
-*(To be provided - e.g., support@mklanguagelab.com)*
+contact@mklanguage.com
 
 ---
 
 ## Website
-*(To be provided - e.g., https://mklanguagelab.com)*
+https://mklanguage.com
 
 ---
 
@@ -232,4 +231,4 @@ Unlike apps that focus only on phrases or rely on user-generated content, we pro
 
 ---
 
-*Last Updated: 2025-12-15*
+*Last Updated: 2026-01-10*

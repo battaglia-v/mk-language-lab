@@ -230,24 +230,40 @@ export function LearnPageClient({
           <Link
             href={ctaHref}
             data-testid="cta-start-here"
+            aria-label={ctaLabel}
             className={cn(
-              'group flex flex-col items-center gap-1 rounded-2xl p-5',
-              'bg-gradient-to-r from-primary to-amber-500',
-              'text-black shadow-lg shadow-primary/25',
-              'transition-all duration-200 hover:shadow-xl hover:scale-[1.01]',
+              'group rounded-2xl border border-border/60 bg-card p-4 shadow-sm',
+              'transition-all duration-200 hover:border-primary/30 hover:shadow-md',
               'active:scale-[0.99]'
             )}
           >
-            <div className="flex items-center gap-2">
-              <Play className="h-5 w-5" fill="currentColor" />
-              <span className="text-sm font-medium uppercase tracking-wide opacity-80">{ctaLabel}</span>
+            <div className="flex items-center gap-4">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                <Play className="h-5 w-5" fill="currentColor" />
+              </div>
+              <div className="min-w-0 flex-1 space-y-1">
+                <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  {ctaLabel}
+                </div>
+                <div className="text-base font-semibold text-foreground line-clamp-2">
+                  {ctaTitle}
+                </div>
+                {ctaDescription && (
+                  <div className="text-xs text-muted-foreground line-clamp-2">
+                    {ctaDescription}
+                  </div>
+                )}
+              </div>
+              <div
+                className={cn(
+                  'flex h-10 w-10 items-center justify-center rounded-full',
+                  'bg-primary text-primary-foreground shadow-sm',
+                  'transition-colors group-hover:bg-primary/90'
+                )}
+              >
+                <ChevronRight className="h-4 w-4" />
+              </div>
             </div>
-            <span className="text-xl font-bold text-center">{ctaTitle}</span>
-            {ctaDescription && (
-              <span className="text-xs font-medium text-black/70 text-center line-clamp-2">
-                {ctaDescription}
-              </span>
-            )}
           </Link>
 
 
