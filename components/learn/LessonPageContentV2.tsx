@@ -243,16 +243,6 @@ export default function LessonPageContentV2({
   const sections = useMemo<Section[]>(() => {
     const sectionList: Section[] = [];
 
-    // Introduction (always present if there's a summary)
-    if (lesson.summary) {
-      sectionList.push({
-        id: 'intro',
-        title: 'Introduction',
-        icon: <BookOpen className="h-4 w-4" />,
-        hasContent: true,
-      });
-    }
-
     // Dialogues (new section type)
     if (lesson.dialogues && lesson.dialogues.length > 0) {
       sectionList.push({
@@ -494,90 +484,6 @@ export default function LessonPageContentV2({
     if (!currentSection) return null;
 
     switch (currentSection.id) {
-      case 'intro':
-        // Extract short title from summary (before any punctuation or dash)
-        const shortTheme = lesson.summary
-          ? lesson.summary.split(/[.!?\-–—]/)[0].trim()
-          : lesson.title;
-        const hasLongDescription = lesson.summary && lesson.summary.length > 60;
-        
-        return (
-          <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
-            {/* Lesson theme - always short */}
-            <Card className="p-5 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
-              <p className="text-lg sm:text-xl font-semibold text-primary">
-                {shortTheme.length > 50 ? lesson.title : shortTheme}
-              </p>
-              {hasLongDescription && (
-                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                  {lesson.summary}
-                </p>
-              )}
-            </Card>
-
-            {/* Learning objectives */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">What you&apos;ll learn:</h3>
-              <div className="grid gap-3">
-                {lesson.dialogues && lesson.dialogues.length > 0 && (
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50">
-                    <MessageSquare className="h-5 w-5 text-primary mt-0.5" />
-                    <div>
-                      <p className="font-medium">Dialogue Practice</p>
-                      <p className="text-sm text-muted-foreground">
-                        Real conversations to understand context
-                      </p>
-                    </div>
-                  </div>
-                )}
-                {lesson.vocabularyItems.length > 0 && (
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50">
-                    <BookOpen className="h-5 w-5 text-primary mt-0.5" />
-                    <div>
-                      <p className="font-medium">
-                        {(groupedVocabulary.coreCount || groupedVocabulary.totalCount)} Vocabulary Words
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        Essential words for this topic
-                      </p>
-                    </div>
-                  </div>
-                )}
-                {lesson.grammarNotes.length > 0 && (
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50">
-                    <GraduationCap className="h-5 w-5 text-primary mt-0.5" />
-                    <div>
-                      <p className="font-medium">{lesson.grammarNotes.length} Grammar Point{lesson.grammarNotes.length > 1 ? 's' : ''}</p>
-                      <p className="text-sm text-muted-foreground">
-                        Rules and patterns to master
-                      </p>
-                    </div>
-                  </div>
-                )}
-                {lesson.exercises.length > 0 && (
-                  <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50">
-                    <Target className="h-5 w-5 text-primary mt-0.5" />
-                    <div>
-                      <p className="font-medium">Practice Exercises</p>
-                      <p className="text-sm text-muted-foreground">
-                        Test your understanding
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Tips */}
-            <Card className="p-4 bg-amber-500/5 border-amber-500/20">
-              <p className="text-sm text-amber-700 dark:text-amber-400">
-                <strong>Tip:</strong> Take your time with each section. 
-                You can always come back to review later!
-              </p>
-            </Card>
-          </div>
-        );
-
       case 'dialogue':
         return (
           <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
@@ -937,7 +843,7 @@ export default function LessonPageContentV2({
               const isCurrent = index === currentSectionIndex;
               const isPast = index < currentSectionIndex;
               // Allow navigation if: lesson was previously completed, or navigating to past/current section, or section is completed
-              const canNavigate = wasPreviouslyCompleted || index <= currentSectionIndex || isCompleted;
+              const canNavigate = true;
 
               return (
                 <div key={section.id} className="flex items-center gap-2">
@@ -987,7 +893,7 @@ export default function LessonPageContentV2({
               const isCompleted = completedSections.has(section.id);
               const isCurrent = index === currentSectionIndex;
               // Allow navigation if: lesson was previously completed, or navigating to past/current section, or section is completed
-              const canNavigate = wasPreviouslyCompleted || index <= currentSectionIndex || isCompleted;
+              const canNavigate = true;
 
               return (
                 <button
