@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Clock, BookOpen, Lock } from 'lucide-react';
+import { Clock, BookOpen, Lock, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { getDifficultyColor, type ReaderSample } from '@/lib/reader-samples';
@@ -13,6 +13,10 @@ interface ReadingSampleCardProps {
   isLocked?: boolean;
   ctaHref?: string;
   ctaLabel?: string;
+  /** Whether the story has been marked complete */
+  isCompleted?: boolean;
+  /** Reading progress percentage (0-100), for in-progress stories */
+  progressPercent?: number;
 }
 
 export function ReadingSampleCard({
@@ -22,13 +26,27 @@ export function ReadingSampleCard({
   isLocked = false,
   ctaHref,
   ctaLabel,
+  isCompleted = false,
+  progressPercent,
 }: ReadingSampleCardProps) {
   const title = locale === 'mk' ? sample.title_mk : sample.title_en;
   const href = ctaHref || `/${locale}/reader/samples/${sample.id}`;
-  const defaultCtaLabel = isLocked
-    ? (locale === 'mk' ? 'Отклучи Pro' : 'Unlock Pro')
-    : (locale === 'mk' ? 'Почни да читаш' : 'Start Reading');
-  const buttonLabel = ctaLabel || defaultCtaLabel;
+
+  // Determine CTA label based on progress state
+  const getDefaultCtaLabel = () => {
+    if (isLocked) {
+      return locale === 'mk' ? 'Отклучи Pro' : 'Unlock Pro';
+    }
+    if (isCompleted) {
+      return locale === 'mk' ? 'Прочитај повторно' : 'Read again';
+    }
+    if (progressPercent !== undefined && progressPercent > 0) {
+      return locale === 'mk' ? 'Продолжи со читање' : 'Continue Reading';
+    }
+    return locale === 'mk' ? 'Почни да читаш' : 'Start Reading';
+  };
+
+  const buttonLabel = ctaLabel || getDefaultCtaLabel();
 
   return (
     <Card
@@ -37,12 +55,21 @@ export function ReadingSampleCard({
         isLocked && "border-primary/30 bg-primary/5"
       )}
     >
-      {isPremium && (
-        <div className="absolute right-3 top-3 z-10 inline-flex items-center gap-1 rounded-full bg-primary/20 px-2 py-1 text-[11px] font-semibold text-primary">
-          <Lock className="h-3 w-3" aria-hidden="true" />
-          PRO
-        </div>
-      )}
+      {/* Status badges */}
+      <div className="absolute right-3 top-3 z-10 flex flex-col gap-1.5 items-end">
+        {isCompleted && (
+          <div className="inline-flex items-center gap-1 rounded-full bg-emerald-500/20 px-2 py-1 text-[11px] font-semibold text-emerald-400">
+            <CheckCircle className="h-3 w-3" aria-hidden="true" />
+            {locale === 'mk' ? 'Завршено' : 'Completed'}
+          </div>
+        )}
+        {isPremium && (
+          <div className="inline-flex items-center gap-1 rounded-full bg-primary/20 px-2 py-1 text-[11px] font-semibold text-primary">
+            <Lock className="h-3 w-3" aria-hidden="true" />
+            PRO
+          </div>
+        )}
+      </div>
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 space-y-1.5">

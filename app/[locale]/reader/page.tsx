@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ReadingSampleCard } from '@/components/reader/ReadingSampleCard';
 import { getAllReaderSamples, getReaderSamplesByCategory, type ReaderSample } from '@/lib/reader-samples';
 import { readFavorites } from '@/lib/favorites';
+import { readAllProgress, type ReadingProgress } from '@/lib/reading-progress';
 import { cn } from '@/lib/utils';
 import { useEntitlement } from '@/hooks/use-entitlement';
 import { useAppConfig } from '@/hooks/use-app-config';
@@ -41,6 +42,19 @@ export default function ReaderPage() {
     if (typeof window === 'undefined') return 0;
     return readFavorites().length;
   });
+
+  // Reading progress state - indexed by storyId
+  const [progressMap, setProgressMap] = useState<Record<string, ReadingProgress>>({});
+
+  // Load reading progress on mount
+  useEffect(() => {
+    const allProgress = readAllProgress();
+    const map: Record<string, ReadingProgress> = {};
+    for (const p of allProgress) {
+      map[p.storyId] = p;
+    }
+    setProgressMap(map);
+  }, []);
 
   // Tab state - read from URL query parameter
   const tabParam = searchParams.get('tab');
@@ -114,6 +128,15 @@ export default function ReaderPage() {
       Number.isFinite(dayNumber) &&
       dayNumber >= 6
     );
+  };
+
+  // Helper to get progress data for a sample
+  const getProgressForSample = (sampleId: string) => {
+    const progress = progressMap[sampleId];
+    return {
+      isCompleted: progress?.isCompleted ?? false,
+      progressPercent: progress?.scrollPercent,
+    };
   };
 
   return (
@@ -241,6 +264,7 @@ export default function ReaderPage() {
                     {filteredSamples.map((sample) => {
                       const isPremium = isPremiumSample(sample);
                       const isLocked = paywallEnabled && isPremium && !isPro;
+                      const { isCompleted, progressPercent } = getProgressForSample(sample.id);
 
                       return (
                         <ReadingSampleCard
@@ -249,6 +273,8 @@ export default function ReaderPage() {
                           locale={locale}
                           isPremium={isPremium}
                           isLocked={isLocked}
+                          isCompleted={isCompleted}
+                          progressPercent={progressPercent}
                           ctaHref={
                             isLocked ? `/${locale}/upgrade?from=${encodeURIComponent(`/${locale}/reader`)}` : undefined
                           }
@@ -314,6 +340,7 @@ export default function ReaderPage() {
                     {challengeSamples.slice(0, 4).map((sample) => {
                       const isPremium = isPremiumSample(sample);
                       const isLocked = paywallEnabled && isPremium && !isPro;
+                      const { isCompleted, progressPercent } = getProgressForSample(sample.id);
 
                       return (
                         <ReadingSampleCard
@@ -322,6 +349,8 @@ export default function ReaderPage() {
                           locale={locale}
                           isPremium={isPremium}
                           isLocked={isLocked}
+                          isCompleted={isCompleted}
+                          progressPercent={progressPercent}
                           ctaHref={
                             isLocked ? `/${locale}/upgrade?from=${encodeURIComponent(`/${locale}/reader`)}` : undefined
                           }
@@ -336,15 +365,20 @@ export default function ReaderPage() {
                   <h2 className="text-lg font-semibold">Conversations</h2>
                   {conversationSamples.length > 0 ? (
                     <div className="grid gap-4 sm:grid-cols-2">
-                      {conversationSamples.map((sample) => (
-                        <ReadingSampleCard
-                          key={sample.id}
-                          sample={sample}
-                          locale={locale}
-                          isPremium={false}
-                          isLocked={false}
-                        />
-                      ))}
+                      {conversationSamples.map((sample) => {
+                        const { isCompleted, progressPercent } = getProgressForSample(sample.id);
+                        return (
+                          <ReadingSampleCard
+                            key={sample.id}
+                            sample={sample}
+                            locale={locale}
+                            isPremium={false}
+                            isLocked={false}
+                            isCompleted={isCompleted}
+                            progressPercent={progressPercent}
+                          />
+                        );
+                      })}
                     </div>
                   ) : (
                     <p className="text-sm text-muted-foreground py-4">More conversations coming soon</p>
@@ -356,15 +390,20 @@ export default function ReaderPage() {
                   <h2 className="text-lg font-semibold">Stories</h2>
                   {storySamples.length > 0 ? (
                     <div className="grid gap-4 sm:grid-cols-2">
-                      {storySamples.map((sample) => (
-                        <ReadingSampleCard
-                          key={sample.id}
-                          sample={sample}
-                          locale={locale}
-                          isPremium={false}
-                          isLocked={false}
-                        />
-                      ))}
+                      {storySamples.map((sample) => {
+                        const { isCompleted, progressPercent } = getProgressForSample(sample.id);
+                        return (
+                          <ReadingSampleCard
+                            key={sample.id}
+                            sample={sample}
+                            locale={locale}
+                            isPremium={false}
+                            isLocked={false}
+                            isCompleted={isCompleted}
+                            progressPercent={progressPercent}
+                          />
+                        );
+                      })}
                     </div>
                   ) : (
                     <p className="text-sm text-muted-foreground py-4">More stories coming soon</p>
