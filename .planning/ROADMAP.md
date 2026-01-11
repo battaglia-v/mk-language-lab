@@ -181,15 +181,15 @@ Plans:
 - [x] 37-01: Pre-analyze graded readers — completed 2026-01-11
 - [x] 37-02: Polish tap visual feedback — completed 2026-01-11
 
-#### Phase 38: Reader Vocabulary Save
+#### Phase 38: Reader Vocabulary Save — COMPLETE
 
 **Goal**: Enable saving words directly to glossary while reading stories
 **Depends on**: Phase 37
 **Research**: Unlikely (extends existing save-to-glossary patterns from v1.4)
-**Plans**: TBD
+**Plans**: 1
 
 Plans:
-- [ ] 38-01: TBD
+- [x] 38-01: Unify reader glossary with favorites system — completed 2026-01-11
 
 #### Phase 39: Reading Progress
 
@@ -227,7 +227,7 @@ Plans:
 |-------|-----------|-------|--------|-----------|
 | 36. A2 Reader Wiring | v1.6 | 1/1 | Complete | 2026-01-10 |
 | 37. Tap-to-Translate | v1.6 | 2/2 | Complete | 2026-01-11 |
-| 38. Reader Vocabulary Save | v1.6 | 0/? | Not started | - |
+| 38. Reader Vocabulary Save | v1.6 | 1/1 | Complete | 2026-01-11 |
 | 39. Reading Progress | v1.6 | 0/? | Not started | - |
 | 40. Discovery & Navigation | v1.6 | 0/? | Not started | - |
 | 41. Content & Validation | v1.6 | 0/? | Not started | - |
