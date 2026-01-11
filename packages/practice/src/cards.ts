@@ -44,6 +44,8 @@ type CreateCardOptions = {
   variant?: PracticeCardKind;
   clozeToken?: string;
   fallbackAudioUrl?: string;
+  /** Other items in the deck for generating distractors in multiple choice */
+  allItems?: PracticeItem[];
 };
 
 const buildCardId = (item: PracticeItem, direction: PracticeDirection) => {
@@ -79,7 +81,7 @@ function buildClozeCard(
 
 export function createPracticeCard(
   item: PracticeItem,
-  { variant = 'typing', direction, clozeToken = CLOZE_TOKEN, fallbackAudioUrl }: CreateCardOptions
+  { variant = 'typing', direction, clozeToken = CLOZE_TOKEN, fallbackAudioUrl, allItems = [] }: CreateCardOptions
 ): PracticeCardContent {
   const prompt = direction === 'mkToEn' ? item.macedonian ?? '' : item.english ?? '';
   const answer = getExpectedAnswer(item, direction);
@@ -105,6 +107,8 @@ export function createPracticeCard(
     case 'multipleChoice': {
       const choiceSet = new Set<string>();
       choiceSet.add(answer);
+
+      // First try item's own alternates
       const alternates =
         direction === 'mkToEn'
           ? item.englishAlternates ?? item.macedonianAlternates ?? []
@@ -114,6 +118,23 @@ export function createPracticeCard(
           choiceSet.add(alt);
         }
       });
+
+      // If we don't have 4 choices, generate distractors from other items
+      if (choiceSet.size < 4 && allItems.length > 0) {
+        // Get answers from other items as potential distractors
+        const otherItems = allItems.filter((other) => other.id !== item.id);
+        const shuffledOthers = shuffleArray(otherItems);
+
+        for (const other of shuffledOthers) {
+          if (choiceSet.size >= 4) break;
+          const distractor = getExpectedAnswer(other, direction);
+          // Only add non-empty, unique distractors
+          if (distractor && distractor.trim() && !choiceSet.has(distractor)) {
+            choiceSet.add(distractor);
+          }
+        }
+      }
+
       const choices = shuffleArray(Array.from(choiceSet)).slice(0, 4);
       return {
         ...base,
@@ -138,7 +159,7 @@ export function buildPracticeDeck(
   { direction, variant = 'typing', fallbackAudioUrl, clozeToken }: DeckOptions
 ): PracticeCardContent[] {
   return items.map((item) =>
-    createPracticeCard(item, { direction, variant, fallbackAudioUrl, clozeToken })
+    createPracticeCard(item, { direction, variant, fallbackAudioUrl, clozeToken, allItems: items })
   );
 }
 
