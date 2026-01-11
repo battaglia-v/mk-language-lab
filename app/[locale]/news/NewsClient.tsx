@@ -131,6 +131,7 @@ export default function NewsClient({
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  const [mounted, setMounted] = useState(false);
   const [source, setSource] = useState<SourceId>(initialSource);
   const [query, setQuery] = useState(initialQuery);
   const [debouncedQuery, setDebouncedQuery] = useState(initialQuery);
@@ -140,6 +141,10 @@ export default function NewsClient({
   const [isLoading, setIsLoading] = useState(initialMeta ? false : true);
   const [error, setError] = useState<string | null>(null);
   const skipInitialFetchRef = useRef(Boolean(initialMeta));
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Sync state from URL (supports browser back/forward).
   useEffect(() => {
@@ -281,7 +286,7 @@ export default function NewsClient({
     trackEvent(AnalyticsEvents.NEWS_FILTER_CHANGED, { filterType: 'reset', value: 'all' });
   };
 
-  const lastUpdatedLabel = meta?.fetchedAt
+  const lastUpdatedLabel = mounted && meta?.fetchedAt
     ? t('lastUpdated', {
         time: new Date(meta.fetchedAt).toLocaleTimeString(locale, {
           hour: '2-digit',
@@ -478,7 +483,7 @@ export default function NewsClient({
                 <Card className="glass-card relative flex h-full flex-col overflow-hidden border border-border/60 bg-background/40 shadow-[0_24px_60px_rgba(0,0,0,0.25)] transition-all hover:border-primary/40">
                   <div className="relative">
                     <ProxiedNewsImage
-                      imageUrl={leadItem.imageProxy ?? leadItem.image}
+                      imageUrl={leadItem.image}
                       alt={leadItem.title}
                       sourceId={leadItem.sourceId}
                       sourceName={leadItem.sourceName}
@@ -526,7 +531,7 @@ export default function NewsClient({
                         )}
                       </div>
                       <div className="flex items-center justify-between text-xs text-white/70">
-                        {leadItem.publishedAt && (
+                        {mounted && leadItem.publishedAt && (
                           <span suppressHydrationWarning className="inline-flex items-center gap-1.5">
                             <Clock3 className="h-3.5 w-3.5" />
                             {formatRelativeTime(leadItem.publishedAt)}
@@ -544,7 +549,7 @@ export default function NewsClient({
               {secondaryItems.length > 0 && (
                 <div className="grid gap-4">
                   {secondaryItems.map((item) => {
-                    const publishedLabel = item.publishedAt ? formatRelativeTime(item.publishedAt) : '';
+                    const publishedLabel = mounted && item.publishedAt ? formatRelativeTime(item.publishedAt) : '';
                     const hasVideos = item.videos.length > 0;
                     const ctaLabel = hasVideos ? t('watchVideo') : t('viewArticle');
                     return (
@@ -565,7 +570,7 @@ export default function NewsClient({
                         <Card className="glass-card flex h-full flex-col overflow-hidden border border-border/60 bg-background/40 transition-all hover:border-primary/40 hover:shadow-xl sm:flex-row">
                           <div className="relative aspect-[16/9] w-full overflow-hidden sm:aspect-[4/3] sm:w-48">
                             <ProxiedNewsImage
-                              imageUrl={item.imageProxy ?? item.image}
+                              imageUrl={item.image}
                               alt={item.title}
                               sourceId={item.sourceId}
                               sourceName={item.sourceName}
@@ -624,7 +629,7 @@ export default function NewsClient({
               )}
               <div className="card-grid three" data-testid="news-grid">
                 {gridItems.map((item) => {
-                  const publishedLabel = item.publishedAt ? formatRelativeTime(item.publishedAt) : '';
+                  const publishedLabel = mounted && item.publishedAt ? formatRelativeTime(item.publishedAt) : '';
                   const hasVideos = item.videos.length > 0;
                   const ctaLabel = hasVideos ? t('watchVideo') : t('viewArticle');
                   const visibleCategories = item.categories.slice(0, 3);
@@ -651,7 +656,7 @@ export default function NewsClient({
                       >
                         <div className="relative aspect-[16/10] w-full overflow-hidden">
                           <ProxiedNewsImage
-                            imageUrl={item.imageProxy ?? item.image}
+                            imageUrl={item.image}
                             alt={item.title}
                             sourceId={item.sourceId}
                             sourceName={item.sourceName}

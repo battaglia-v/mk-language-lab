@@ -58,7 +58,7 @@ test.describe('Mobile UI - No i18n Keys', () => {
     await page.waitForLoadState('networkidle');
 
     // Get page content
-    const body = await page.textContent('body');
+    const body = await page.locator('body').innerText();
 
     // Check for dot notation keys (e.g., "nav.home", "practiceHub.title")
     // Allow single dots in URLs and common patterns
@@ -74,7 +74,7 @@ test.describe('Mobile UI - No i18n Keys', () => {
     await page.goto('/en/learn');
     await page.waitForLoadState('networkidle');
 
-    const body = await page.textContent('body');
+    const body = await page.locator('body').innerText();
     const i18nKeyPattern = /(?:^|\s)([a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+)/;
     const matches = body?.match(i18nKeyPattern);
 
@@ -87,7 +87,7 @@ test.describe('Mobile UI - No i18n Keys', () => {
     await page.goto('/en/translate');
     await page.waitForLoadState('networkidle');
 
-    const body = await page.textContent('body');
+    const body = await page.locator('body').innerText();
     const i18nKeyPattern = /(?:^|\s)([a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+)/;
     const matches = body?.match(i18nKeyPattern);
 
