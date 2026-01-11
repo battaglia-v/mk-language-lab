@@ -326,11 +326,12 @@ export default function NewsClient({
 
       <section className="glass-card rounded-2xl p-5 sm:rounded-3xl sm:p-7 md:p-8" data-testid="news-filters">
         <div className="space-y-4 sm:space-y-5">
-          <div className="flex flex-wrap gap-2 sm:gap-2.5">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
             {sourceFilters.map((filter) => (
               <FilterChip
                 key={filter.id}
                 active={source === filter.id}
+                className="min-h-[34px]"
                 data-testid={`news-filter-source-${filter.id}`}
                 onClick={() => {
                   setSource(filter.id);
@@ -342,6 +343,7 @@ export default function NewsClient({
             ))}
             <FilterChip
               active={videosOnly}
+              className="min-h-[34px]"
               data-testid="news-filter-videos-only"
               onClick={() => {
                 setVideosOnly((prev) => {
@@ -366,7 +368,7 @@ export default function NewsClient({
                 data-testid="news-search-input"
               />
             </div>
-            <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground sm:gap-3 sm:text-sm">
+            <div className="flex flex-col items-start gap-2 text-xs text-muted-foreground sm:flex-row sm:items-center sm:gap-3 sm:text-sm">
               {isLoading ? (
                 <span className="inline-flex items-center gap-1.5">
                   <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -385,7 +387,7 @@ export default function NewsClient({
                 size="sm"
                 onClick={handleRefresh}
                 data-testid="news-refresh"
-                className="min-h-[44px] gap-1.5 rounded-full border border-border/60 px-4 text-foreground"
+                className="min-h-[44px] w-full gap-1.5 rounded-full border border-border/60 px-4 text-foreground sm:w-auto"
               >
                 <RefreshCcw className="h-3.5 w-3.5" />
                 {t('refresh')}
@@ -393,7 +395,7 @@ export default function NewsClient({
             </div>
           </div>
           {resultsLabel && (
-            <div className="text-xs text-muted-foreground">
+            <div className="text-xs text-muted-foreground break-words">
               {resultsLabel}
             </div>
           )}
@@ -500,7 +502,8 @@ export default function NewsClient({
                           <Badge
                             key={`${leadItem.id}-${category}`}
                             variant="secondary"
-                            className="bg-white/10 text-[11px] text-white"
+                            className="max-w-[140px] truncate bg-white/10 text-[11px] text-white sm:max-w-none"
+                            title={category}
                           >
                             {category}
                           </Badge>
@@ -684,7 +687,8 @@ export default function NewsClient({
                               <Badge
                                 key={`${item.id}-${category}`}
                                 variant="outline"
-                                className="rounded-full border-border/60 px-2 text-[11px] text-foreground"
+                                className="max-w-[140px] truncate rounded-full border-border/60 px-2 text-[11px] text-foreground sm:max-w-none"
+                                title={category}
                               >
                                 {category}
                               </Badge>
