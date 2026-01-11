@@ -387,6 +387,9 @@ export default function LessonPageContentV2({
   const groupedVocabulary = useMemo(() => {
     // Filter out proper nouns (names, countries) before grouping
     const filteredItems = filterVocabularyForDisplay(lesson.vocabularyItems);
+    const coreItems = filteredItems.filter(item => item.isCore !== false);
+    const MIN_CORE_ITEMS = 12;
+    const displayItems = coreItems.length >= MIN_CORE_ITEMS ? coreItems : filteredItems;
 
     // Limit vocabulary display for better UX
     const MAX_UNCATEGORIZED = 20;
@@ -395,7 +398,7 @@ export default function LessonPageContentV2({
     // Alphabetical sorting mode
     if (vocabSortMode === 'alphabetical') {
       const alphabetGroups: Record<string, VocabularyItem[]> = {};
-      filteredItems.forEach(item => {
+      displayItems.forEach(item => {
         const firstLetter = item.macedonianText.charAt(0).toUpperCase();
         if (!alphabetGroups[firstLetter]) {
           alphabetGroups[firstLetter] = [];
@@ -408,6 +411,7 @@ export default function LessonPageContentV2({
         groups: alphabetGroups,
         uncategorized: [],
         totalCount: filteredItems.length,
+        coreCount: coreItems.length,
         sortMode: 'alphabetical' as const,
       };
     }
@@ -416,7 +420,7 @@ export default function LessonPageContentV2({
     if (vocabSortMode === 'partOfSpeech') {
       const posGroups: Record<string, VocabularyItem[]> = {};
       const noPos: VocabularyItem[] = [];
-      filteredItems.forEach(item => {
+      displayItems.forEach(item => {
         if (item.partOfSpeech) {
           const pos = item.partOfSpeech.toLowerCase();
           if (!posGroups[pos]) posGroups[pos] = [];
@@ -433,6 +437,7 @@ export default function LessonPageContentV2({
         groups: posGroups,
         uncategorized: noPos,
         totalCount: filteredItems.length,
+        coreCount: coreItems.length,
         sortMode: 'partOfSpeech' as const,
       };
     }
@@ -441,7 +446,7 @@ export default function LessonPageContentV2({
     const groups: Record<string, VocabularyItem[]> = {};
     const uncategorized: VocabularyItem[] = [];
 
-    filteredItems.forEach(item => {
+    displayItems.forEach(item => {
       if (item.category) {
         if (!groups[item.category]) {
           groups[item.category] = [];
@@ -459,7 +464,7 @@ export default function LessonPageContentV2({
     // If no categories, fall back to alphabetical grouping
     if (Object.keys(groups).length === 0 && uncategorized.length > 0) {
       const alphabetGroups: Record<string, VocabularyItem[]> = {};
-      filteredItems.slice(0, 30).forEach(item => {
+      displayItems.slice(0, 30).forEach(item => {
         const firstLetter = item.macedonianText.charAt(0).toUpperCase();
         if (!alphabetGroups[firstLetter]) {
           alphabetGroups[firstLetter] = [];
@@ -470,6 +475,7 @@ export default function LessonPageContentV2({
         groups: alphabetGroups,
         uncategorized: [],
         totalCount: filteredItems.length,
+        coreCount: coreItems.length,
         sortMode: 'alphabetical' as const,
       };
     }
@@ -478,6 +484,7 @@ export default function LessonPageContentV2({
       groups,
       uncategorized,
       totalCount: filteredItems.length,
+      coreCount: coreItems.length,
       sortMode: 'category' as const,
     };
   }, [lesson.vocabularyItems, vocabSortMode]);
@@ -527,7 +534,9 @@ export default function LessonPageContentV2({
                   <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50">
                     <BookOpen className="h-5 w-5 text-primary mt-0.5" />
                     <div>
-                      <p className="font-medium">{lesson.vocabularyItems.length} Vocabulary Words</p>
+                      <p className="font-medium">
+                        {(groupedVocabulary.coreCount || groupedVocabulary.totalCount)} Vocabulary Words
+                      </p>
                       <p className="text-sm text-muted-foreground">
                         Essential words for this topic
                       </p>
@@ -601,7 +610,7 @@ export default function LessonPageContentV2({
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-semibold">Vocabulary</h3>
                 <span className="text-sm text-muted-foreground">
-                  {groupedVocabulary.totalCount} words
+                    {(groupedVocabulary.coreCount || groupedVocabulary.totalCount)} words
                 </span>
               </div>
               {/* Sort toggle */}
@@ -1093,4 +1102,3 @@ export default function LessonPageContentV2({
     </div>
   );
 }
-

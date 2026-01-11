@@ -1,5 +1,5 @@
 {
-  "validationDate": "2026-01-09T23:47:43.246Z",
+  "validationDate": "2026-01-11T03:48:49.054Z",
   "summary": {
     "totalLevels": 3,
     "totalVocabulary": 25560,
@@ -18,7 +18,7 @@
       "grammarWithExplanations": 73,
       "grammarWithExamples": 73,
       "grammarWith3PlusExamples": 73,
-      "grammarWithTranslatedExamples": 73,
+      "grammarWithTranslatedExamples": 52,
       "avgVocabPerLesson": 216,
       "minVocabPerLesson": 74,
       "maxVocabPerLesson": 343,
@@ -34,7 +34,7 @@
       "grammarWithExplanations": 46,
       "grammarWithExamples": 46,
       "grammarWith3PlusExamples": 46,
-      "grammarWithTranslatedExamples": 46,
+      "grammarWithTranslatedExamples": 26,
       "avgVocabPerLesson": 1047,
       "minVocabPerLesson": 819,
       "maxVocabPerLesson": 1197,
@@ -50,7 +50,7 @@
       "grammarWithExplanations": 27,
       "grammarWithExamples": 27,
       "grammarWith3PlusExamples": 27,
-      "grammarWithTranslatedExamples": 27,
+      "grammarWithTranslatedExamples": 14,
       "avgVocabPerLesson": 1500,
       "minVocabPerLesson": 1198,
       "maxVocabPerLesson": 2000,

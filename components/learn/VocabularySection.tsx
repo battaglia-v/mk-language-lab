@@ -15,6 +15,7 @@ interface VocabularyItem {
   exampleSentenceMk: string | null;
   exampleSentenceEn: string | null;
   audioUrl: string | null;
+  isCore?: boolean;
 }
 
 interface VocabularySectionProps {
@@ -103,13 +104,16 @@ function filterVocabulary(items: VocabularyItem[]): VocabularyItem[] {
 
 // Maximum vocabulary items to display per lesson
 const MAX_VOCAB_DISPLAY = 20;
+const MIN_CORE_ITEMS = 12;
 
 export default function VocabularySection({ items }: VocabularySectionProps) {
   const t = useTranslations('learn.vocabulary');
   // Filter and limit vocabulary
   const filteredItems = useMemo(() => {
     const filtered = filterVocabulary(items);
-    return filtered.slice(0, MAX_VOCAB_DISPLAY);
+    const coreFiltered = filtered.filter(item => item.isCore !== false);
+    const displayItems = coreFiltered.length >= MIN_CORE_ITEMS ? coreFiltered : filtered;
+    return displayItems.slice(0, MAX_VOCAB_DISPLAY);
   }, [items]);
   const [revealedCards, setRevealedCards] = useState<Set<string>>(new Set());
   const [showAll, setShowAll] = useState(false);
