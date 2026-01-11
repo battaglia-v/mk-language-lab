@@ -778,6 +778,9 @@
   "news": {
     "title": "News Feed",
     "subtitle": "Follow Macedonian headlines and find video clips to support your listening practice.",
+    "latestTitle": "Latest headlines",
+    "latestSubtitle": "Fresh stories from Macedonian sources.",
+    "resultsLabel": "Showing {count} of {total} headlines",
     "sourceLabel": "Sources",
     "sourceAll": "All",
     "sourceTime": "Time.mk",
@@ -790,6 +793,9 @@
     "viewArticle": "View article",
     "watchVideo": "Watch video",
     "noResults": "No articles found. Try another filter or search.",
+    "emptyTitle": "No matching headlines",
+    "emptyBody": "Try clearing filters or searching a different topic.",
+    "clearFilters": "Clear filters",
     "error": "Unable to load the news feed right now.",
     "retry": "Try again"
   },
