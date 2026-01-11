@@ -52,6 +52,7 @@ export function ProxiedNewsImage({
   maxRetries = 1, // Reduced from 2 - fail fast, show branded fallback
   ...imgProps
 }: ProxiedNewsImageProps) {
+  const [mounted, setMounted] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
@@ -59,10 +60,14 @@ export function ProxiedNewsImage({
   const { resolvedTheme } = useTheme();
 
   // Get theme-aware branding for fallback
-  const themeMode: ThemeMode = resolvedTheme === 'light' ? 'light' : 'dark';
+  const themeMode: ThemeMode = mounted && resolvedTheme === 'dark' ? 'dark' : 'light';
   const colors = getSourceColors(sourceId, themeMode);
   const fallbackImage = getSourceFallbackImage(sourceId, themeMode);
   const displayName = sourceName || sourceId.replace('-', '.');
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Reset state when imageUrl changes
   useEffect(() => {

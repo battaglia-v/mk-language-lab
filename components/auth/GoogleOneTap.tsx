@@ -75,6 +75,7 @@ export function GoogleOneTap({
   autoPrompt = true,
   context = 'signin',
 }: GoogleOneTapProps) {
+  const scriptId = 'google-one-tap-script';
   const { status } = useSession();
   const pathname = usePathname();
   const initializedRef = useRef(false);
@@ -104,11 +105,13 @@ export function GoogleOneTap({
     if (initializedRef.current) return;
 
     const initializeGoogleOneTap = () => {
+      if (initializedRef.current) return;
       if (!window.google?.accounts?.id) {
         console.warn('[GoogleOneTap] Google Identity Services not loaded');
         return;
       }
 
+      initializedRef.current = true;
       window.google.accounts.id.initialize({
         client_id: clientId,
         callback: handleCredentialResponse,
@@ -142,11 +145,21 @@ export function GoogleOneTap({
         });
       }
 
-      initializedRef.current = true;
     };
+
+    const existingScript = document.getElementById(scriptId) as HTMLScriptElement | null;
+    if (existingScript) {
+      if (window.google?.accounts?.id) {
+        initializeGoogleOneTap();
+      } else {
+        existingScript.addEventListener('load', initializeGoogleOneTap, { once: true });
+      }
+      return;
+    }
 
     // Load Google Identity Services script
     const script = document.createElement('script');
+    script.id = scriptId;
     script.src = 'https://accounts.google.com/gsi/client';
     script.async = true;
     script.defer = true;
