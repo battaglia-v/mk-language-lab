@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useState, createContext, useContext, useCallback, useEffect } from 'react';
+import { ReactNode, useState, createContext, useContext, useCallback, useEffect, RefObject } from 'react';
 import { ArrowLeft, Settings, BookOpen, MessageSquare, Library, Bookmark } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
@@ -65,6 +65,8 @@ interface ReaderV2LayoutProps {
   children: ReactNode;
   /** On settings click */
   onSettingsClick?: () => void;
+  /** Ref for scroll container (for scroll position restoration) */
+  scrollContainerRef?: RefObject<HTMLDivElement | null>;
 }
 
 /**
@@ -86,6 +88,7 @@ export function ReaderV2Layout({
   locale,
   children,
   onSettingsClick,
+  scrollContainerRef,
 }: ReaderV2LayoutProps) {
   // Reader state
   const [tapTranslateEnabled, setTapTranslateEnabled] = useState(true);
@@ -241,7 +244,7 @@ export function ReaderV2Layout({
         </header>
 
         {/* Scrollable Reading Pane */}
-        <main className="flex-1 overflow-y-auto overscroll-contain">
+        <main ref={scrollContainerRef} className="flex-1 overflow-y-auto overscroll-contain">
           <div className="px-4 py-6 sm:px-6 md:px-8">
             {/* Reading content with optimal typography */}
             <article
