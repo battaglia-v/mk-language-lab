@@ -5,57 +5,1115 @@
   "title_en": "At the Store",
   "difficulty": "A1",
   "estimatedMinutes": 3,
-  "tags": ["graded-reader", "A1", "food"],
+  "tags": [
+    "graded-reader",
+    "A1",
+    "food"
+  ],
   "text_blocks_mk": [
-    { "type": "p", "value": "Денес одам во продавница. Треба ми леб, млеко и јајца. Влегувам во продавницата." },
-    { "type": "p", "value": "— Добар ден! Колку чини лебот? — Лебот чини триесет денари. — А млекото? — Млекото е шеесет денари." },
-    { "type": "p", "value": "Земам и овошје — јаболка и портокали. — Колку чини сè заедно? — Двесте денари." },
-    { "type": "p", "value": "Плаќам со пари. Повелете! — Благодарам! Пријатно!" }
+    {
+      "type": "p",
+      "value": "Денес одам во продавница. Треба ми леб, млеко и јајца. Влегувам во продавницата."
+    },
+    {
+      "type": "p",
+      "value": "— Добар ден! Колку чини лебот? — Лебот чини триесет денари. — А млекото? — Млекото е шеесет денари."
+    },
+    {
+      "type": "p",
+      "value": "Земам и овошје — јаболка и портокали. — Колку чини сè заедно? — Двесте денари."
+    },
+    {
+      "type": "p",
+      "value": "Плаќам со пари. Повелете! — Благодарам! Пријатно!"
+    }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Прашување за цени и броеви со именки",
       "title_en": "Asking prices and numbers with nouns",
       "examples": [
-        { "mk": "колку чини?", "en": "how much does it cost?" },
-        { "mk": "сакам", "en": "I want" },
-        { "mk": "треба ми", "en": "I need" }
+        {
+          "mk": "колку чини?",
+          "en": "how much does it cost?"
+        },
+        {
+          "mk": "сакам",
+          "en": "I want"
+        },
+        {
+          "mk": "треба ми",
+          "en": "I need"
+        }
       ]
     }
   ],
   "vocabulary": [
-    { "mk": "денес", "en": "today", "pos": "adverb" },
-    { "mk": "продавница", "en": "store/shop", "pos": "noun" },
-    { "mk": "треба ми", "en": "I need", "pos": "verb phrase" },
-    { "mk": "млеко", "en": "milk", "pos": "noun" },
-    { "mk": "јајца", "en": "eggs", "pos": "noun" },
-    { "mk": "влегувам", "en": "I enter", "pos": "verb" },
-    { "mk": "продавницата", "en": "the store", "pos": "noun" },
-    { "mk": "колку чини", "en": "how much does it cost", "pos": "phrase" },
-    { "mk": "лебот", "en": "the bread", "pos": "noun" },
-    { "mk": "триесет", "en": "thirty", "pos": "number" },
-    { "mk": "денари", "en": "denars (currency)", "pos": "noun" },
-    { "mk": "млекото", "en": "the milk", "pos": "noun" },
-    { "mk": "шеесет", "en": "sixty", "pos": "number" },
-    { "mk": "овошје", "en": "fruit", "pos": "noun" },
-    { "mk": "јаболка", "en": "apples", "pos": "noun" },
-    { "mk": "портокали", "en": "oranges", "pos": "noun" },
-    { "mk": "сè", "en": "everything", "pos": "pronoun" },
-    { "mk": "заедно", "en": "together", "pos": "adverb" },
-    { "mk": "двесте", "en": "two hundred", "pos": "number" },
-    { "mk": "плаќам", "en": "I pay", "pos": "verb" },
-    { "mk": "пари", "en": "money/cash", "pos": "noun" },
-    { "mk": "повелете", "en": "here you go/please", "pos": "interjection" },
-    { "mk": "благодарам", "en": "thank you", "pos": "verb" },
-    { "mk": "пријатно", "en": "pleasant/have a nice day", "pos": "adverb" }
+    {
+      "mk": "денес",
+      "en": "today",
+      "pos": "adverb"
+    },
+    {
+      "mk": "продавница",
+      "en": "store/shop",
+      "pos": "noun"
+    },
+    {
+      "mk": "треба ми",
+      "en": "I need",
+      "pos": "verb phrase"
+    },
+    {
+      "mk": "млеко",
+      "en": "milk",
+      "pos": "noun"
+    },
+    {
+      "mk": "јајца",
+      "en": "eggs",
+      "pos": "noun"
+    },
+    {
+      "mk": "влегувам",
+      "en": "I enter",
+      "pos": "verb"
+    },
+    {
+      "mk": "продавницата",
+      "en": "the store",
+      "pos": "noun"
+    },
+    {
+      "mk": "колку чини",
+      "en": "how much does it cost",
+      "pos": "phrase"
+    },
+    {
+      "mk": "лебот",
+      "en": "the bread",
+      "pos": "noun"
+    },
+    {
+      "mk": "триесет",
+      "en": "thirty",
+      "pos": "number"
+    },
+    {
+      "mk": "денари",
+      "en": "denars (currency)",
+      "pos": "noun"
+    },
+    {
+      "mk": "млекото",
+      "en": "the milk",
+      "pos": "noun"
+    },
+    {
+      "mk": "шеесет",
+      "en": "sixty",
+      "pos": "number"
+    },
+    {
+      "mk": "овошје",
+      "en": "fruit",
+      "pos": "noun"
+    },
+    {
+      "mk": "јаболка",
+      "en": "apples",
+      "pos": "noun"
+    },
+    {
+      "mk": "портокали",
+      "en": "oranges",
+      "pos": "noun"
+    },
+    {
+      "mk": "сè",
+      "en": "everything",
+      "pos": "pronoun"
+    },
+    {
+      "mk": "заедно",
+      "en": "together",
+      "pos": "adverb"
+    },
+    {
+      "mk": "двесте",
+      "en": "two hundred",
+      "pos": "number"
+    },
+    {
+      "mk": "плаќам",
+      "en": "I pay",
+      "pos": "verb"
+    },
+    {
+      "mk": "пари",
+      "en": "money/cash",
+      "pos": "noun"
+    },
+    {
+      "mk": "повелете",
+      "en": "here you go/please",
+      "pos": "interjection"
+    },
+    {
+      "mk": "благодарам",
+      "en": "thank you",
+      "pos": "verb"
+    },
+    {
+      "mk": "пријатно",
+      "en": "pleasant/have a nice day",
+      "pos": "adverb"
+    }
   ],
   "expressions": [
-    { "mk": "Колку чини?", "en": "How much does it cost?", "usage": "Asking price" },
-    { "mk": "Повелете!", "en": "Here you go!", "usage": "Offering something" }
+    {
+      "mk": "Колку чини?",
+      "en": "How much does it cost?",
+      "usage": "Asking price"
+    },
+    {
+      "mk": "Повелете!",
+      "en": "Here you go!",
+      "usage": "Offering something"
+    }
   ],
   "attribution": {
     "handle": "@mklanguagelab",
     "series": "Graded Readers",
     "day": "food"
+  },
+  "analyzedData": {
+    "words": [
+      {
+        "id": "word-0",
+        "original": "Денес",
+        "translation": "Today",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 0
+      },
+      {
+        "id": "word-2",
+        "original": "одам",
+        "translation": "I'm going",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 2
+      },
+      {
+        "id": "word-4",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 4,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-6",
+        "original": "продавница",
+        "translation": "shop",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 6
+      },
+      {
+        "id": "word-8",
+        "original": "Треба",
+        "translation": "must",
+        "contextualMeaning": "must",
+        "alternativeTranslations": [
+          "should",
+          "need to",
+          "have to",
+          "needs"
+        ],
+        "contextHint": "Expresses necessity or obligation",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 8,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-10",
+        "original": "ми",
+        "translation": "mi",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 10
+      },
+      {
+        "id": "word-12",
+        "original": "леб",
+        "translation": "bread",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 12
+      },
+      {
+        "id": "word-14",
+        "original": "млеко",
+        "translation": "milk",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 14
+      },
+      {
+        "id": "word-16",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 16,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-18",
+        "original": "јајца",
+        "translation": "eggs",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 18
+      },
+      {
+        "id": "word-20",
+        "original": "Влегувам",
+        "translation": "I'm entering",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 20
+      },
+      {
+        "id": "word-22",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 22,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-24",
+        "original": "продавницата",
+        "translation": "the shop",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 24
+      },
+      {
+        "id": "word-26",
+        "original": "Добар",
+        "translation": "Good",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 26
+      },
+      {
+        "id": "word-28",
+        "original": "ден",
+        "translation": "day",
+        "contextualMeaning": "day",
+        "alternativeTranslations": [
+          "daytime"
+        ],
+        "pos": "adjective",
+        "difficulty": "basic",
+        "index": 28,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-30",
+        "original": "Колку",
+        "translation": "how much",
+        "contextualMeaning": "how much",
+        "alternativeTranslations": [
+          "how many",
+          "as much as"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 30,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-32",
+        "original": "чини",
+        "translation": "cost",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 32
+      },
+      {
+        "id": "word-34",
+        "original": "лебот",
+        "translation": "the bread",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 34
+      },
+      {
+        "id": "word-36",
+        "original": "Лебот",
+        "translation": "The bread",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 36
+      },
+      {
+        "id": "word-38",
+        "original": "чини",
+        "translation": "cost",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 38
+      },
+      {
+        "id": "word-40",
+        "original": "триесет",
+        "translation": "thirty",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 40
+      },
+      {
+        "id": "word-42",
+        "original": "денари",
+        "translation": "denars",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 42
+      },
+      {
+        "id": "word-44",
+        "original": "А",
+        "translation": "A",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 44
+      },
+      {
+        "id": "word-46",
+        "original": "млекото",
+        "translation": "the milk",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 46
+      },
+      {
+        "id": "word-48",
+        "original": "Млекото",
+        "translation": "The milk",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 48
+      },
+      {
+        "id": "word-50",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 50,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-52",
+        "original": "шеесет",
+        "translation": "sixty",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 52
+      },
+      {
+        "id": "word-54",
+        "original": "денари",
+        "translation": "denars",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 54
+      },
+      {
+        "id": "word-56",
+        "original": "Земам",
+        "translation": "I take",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 56
+      },
+      {
+        "id": "word-58",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 58,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-60",
+        "original": "овошје",
+        "translation": "fruit",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 60
+      },
+      {
+        "id": "word-62",
+        "original": "јаболка",
+        "translation": "apples",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 62
+      },
+      {
+        "id": "word-64",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 64,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-66",
+        "original": "портокали",
+        "translation": "oranges",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 66
+      },
+      {
+        "id": "word-68",
+        "original": "Колку",
+        "translation": "how much",
+        "contextualMeaning": "how much",
+        "alternativeTranslations": [
+          "how many",
+          "as much as"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 68,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-70",
+        "original": "чини",
+        "translation": "cost",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 70
+      },
+      {
+        "id": "word-72",
+        "original": "сè",
+        "translation": "everything",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 72
+      },
+      {
+        "id": "word-74",
+        "original": "заедно",
+        "translation": "together",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 74
+      },
+      {
+        "id": "word-76",
+        "original": "Двесте",
+        "translation": "Two hundred",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 76
+      },
+      {
+        "id": "word-78",
+        "original": "денари",
+        "translation": "denars",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 78
+      },
+      {
+        "id": "word-80",
+        "original": "Плаќам",
+        "translation": "I pay",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 80
+      },
+      {
+        "id": "word-82",
+        "original": "со",
+        "translation": "with",
+        "contextualMeaning": "with",
+        "alternativeTranslations": [
+          "by",
+          "using"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 82,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-84",
+        "original": "пари",
+        "translation": "money",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 84
+      },
+      {
+        "id": "word-86",
+        "original": "Повелете",
+        "translation": "Go ahead",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 86
+      },
+      {
+        "id": "word-88",
+        "original": "Благодарам",
+        "translation": "Thank you",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 88
+      },
+      {
+        "id": "word-90",
+        "original": "Пријатно",
+        "translation": "Pleasant",
+        "pos": "adjective",
+        "difficulty": "advanced",
+        "index": 90
+      }
+    ],
+    "tokens": [
+      {
+        "token": "Денес",
+        "isWord": true,
+        "index": 0
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 1
+      },
+      {
+        "token": "одам",
+        "isWord": true,
+        "index": 2
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 3
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 4
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 5
+      },
+      {
+        "token": "продавница",
+        "isWord": true,
+        "index": 6
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 7
+      },
+      {
+        "token": "Треба",
+        "isWord": true,
+        "index": 8
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 9
+      },
+      {
+        "token": "ми",
+        "isWord": true,
+        "index": 10
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 11
+      },
+      {
+        "token": "леб",
+        "isWord": true,
+        "index": 12
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 13
+      },
+      {
+        "token": "млеко",
+        "isWord": true,
+        "index": 14
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 15
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 16
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 17
+      },
+      {
+        "token": "јајца",
+        "isWord": true,
+        "index": 18
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 19
+      },
+      {
+        "token": "Влегувам",
+        "isWord": true,
+        "index": 20
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 21
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 22
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 23
+      },
+      {
+        "token": "продавницата",
+        "isWord": true,
+        "index": 24
+      },
+      {
+        "token": ".\n\n— ",
+        "isWord": false,
+        "index": 25
+      },
+      {
+        "token": "Добар",
+        "isWord": true,
+        "index": 26
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 27
+      },
+      {
+        "token": "ден",
+        "isWord": true,
+        "index": 28
+      },
+      {
+        "token": "! ",
+        "isWord": false,
+        "index": 29
+      },
+      {
+        "token": "Колку",
+        "isWord": true,
+        "index": 30
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 31
+      },
+      {
+        "token": "чини",
+        "isWord": true,
+        "index": 32
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 33
+      },
+      {
+        "token": "лебот",
+        "isWord": true,
+        "index": 34
+      },
+      {
+        "token": "? — ",
+        "isWord": false,
+        "index": 35
+      },
+      {
+        "token": "Лебот",
+        "isWord": true,
+        "index": 36
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 37
+      },
+      {
+        "token": "чини",
+        "isWord": true,
+        "index": 38
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 39
+      },
+      {
+        "token": "триесет",
+        "isWord": true,
+        "index": 40
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 41
+      },
+      {
+        "token": "денари",
+        "isWord": true,
+        "index": 42
+      },
+      {
+        "token": ". — ",
+        "isWord": false,
+        "index": 43
+      },
+      {
+        "token": "А",
+        "isWord": true,
+        "index": 44
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 45
+      },
+      {
+        "token": "млекото",
+        "isWord": true,
+        "index": 46
+      },
+      {
+        "token": "? — ",
+        "isWord": false,
+        "index": 47
+      },
+      {
+        "token": "Млекото",
+        "isWord": true,
+        "index": 48
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 49
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 50
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 51
+      },
+      {
+        "token": "шеесет",
+        "isWord": true,
+        "index": 52
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 53
+      },
+      {
+        "token": "денари",
+        "isWord": true,
+        "index": 54
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 55
+      },
+      {
+        "token": "Земам",
+        "isWord": true,
+        "index": 56
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 57
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 58
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 59
+      },
+      {
+        "token": "овошје",
+        "isWord": true,
+        "index": 60
+      },
+      {
+        "token": " — ",
+        "isWord": false,
+        "index": 61
+      },
+      {
+        "token": "јаболка",
+        "isWord": true,
+        "index": 62
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 63
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 64
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 65
+      },
+      {
+        "token": "портокали",
+        "isWord": true,
+        "index": 66
+      },
+      {
+        "token": ". — ",
+        "isWord": false,
+        "index": 67
+      },
+      {
+        "token": "Колку",
+        "isWord": true,
+        "index": 68
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 69
+      },
+      {
+        "token": "чини",
+        "isWord": true,
+        "index": 70
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 71
+      },
+      {
+        "token": "сè",
+        "isWord": true,
+        "index": 72
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 73
+      },
+      {
+        "token": "заедно",
+        "isWord": true,
+        "index": 74
+      },
+      {
+        "token": "? — ",
+        "isWord": false,
+        "index": 75
+      },
+      {
+        "token": "Двесте",
+        "isWord": true,
+        "index": 76
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 77
+      },
+      {
+        "token": "денари",
+        "isWord": true,
+        "index": 78
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 79
+      },
+      {
+        "token": "Плаќам",
+        "isWord": true,
+        "index": 80
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 81
+      },
+      {
+        "token": "со",
+        "isWord": true,
+        "index": 82
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 83
+      },
+      {
+        "token": "пари",
+        "isWord": true,
+        "index": 84
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 85
+      },
+      {
+        "token": "Повелете",
+        "isWord": true,
+        "index": 86
+      },
+      {
+        "token": "! — ",
+        "isWord": false,
+        "index": 87
+      },
+      {
+        "token": "Благодарам",
+        "isWord": true,
+        "index": 88
+      },
+      {
+        "token": "! ",
+        "isWord": false,
+        "index": 89
+      },
+      {
+        "token": "Пријатно",
+        "isWord": true,
+        "index": 90
+      },
+      {
+        "token": "!",
+        "isWord": false,
+        "index": 91
+      }
+    ],
+    "fullTranslation": "I'm going to the store today. I need bread, milk and eggs. I enter the store.\n\n— Good day! How much does the bread cost? — Bread costs thirty denars. — And the milk? — Milk is sixty denars.\n\nI also take fruit — apples and oranges. — How much does everything cost together? — Two hundred denars.\n\nI pay with money. Go ahead! — Thank you! Pleasant!",
+    "difficulty": {
+      "level": "intermediate",
+      "score": 57.608695652173914,
+      "factors": {
+        "avgWordLength": 5.043478260869565,
+        "longWords": 7,
+        "totalWords": 46
+      }
+    },
+    "metadata": {
+      "wordCount": 46,
+      "sentenceCount": 15,
+      "characterCount": 312
+    }
   }
 }

@@ -5,12 +5,28 @@
   "title_en": "Macedonian Easter Traditions",
   "difficulty": "B1",
   "estimatedMinutes": 7,
-  "tags": ["graded-reader", "B1", "culture"],
+  "tags": [
+    "graded-reader",
+    "B1",
+    "culture"
+  ],
   "text_blocks_mk": [
-    { "type": "p", "value": "Велигден е еден од најважните празници во Македонија. Се слави според православниот календар, обично во април или мај. Подготовките почнуваат со Великиот Пост, четириесет дена пред Велигден." },
-    { "type": "p", "value": "За време на постот, верниците не јадат месо, млечни производи и јајца. Во Велика Сабота, семејствата се собираат за да бојадисуваат јајца. Првото јајце секогаш се бојадисува во црвена боја." },
-    { "type": "p", "value": "Ова јајце се чува во куќата цела година како заштита. На Велигден, по полноќната литургија, луѓето се поздравуваат со зборовите \"Христос воскресе!\" Одговорот е \"Навистина воскресе!\"" },
-    { "type": "p", "value": "Потоа следува празнична трпеза со традиционална храна. Најпопуларните јадења се печено јагне и велигденски колач. Децата ги кршат јајцата едно со друго — победникот е оној чие јајце останува цело. Овие традиции ги поврзуваат генерациите и ја чуваат македонската култура жива." }
+    {
+      "type": "p",
+      "value": "Велигден е еден од најважните празници во Македонија. Се слави според православниот календар, обично во април или мај. Подготовките почнуваат со Великиот Пост, четириесет дена пред Велигден."
+    },
+    {
+      "type": "p",
+      "value": "За време на постот, верниците не јадат месо, млечни производи и јајца. Во Велика Сабота, семејствата се собираат за да бојадисуваат јајца. Првото јајце секогаш се бојадисува во црвена боја."
+    },
+    {
+      "type": "p",
+      "value": "Ова јајце се чува во куќата цела година како заштита. На Велигден, по полноќната литургија, луѓето се поздравуваат со зборовите \"Христос воскресе!\" Одговорот е \"Навистина воскресе!\""
+    },
+    {
+      "type": "p",
+      "value": "Потоа следува празнична трпеза со традиционална храна. Најпопуларните јадења се печено јагне и велигденски колач. Децата ги кршат јајцата едно со друго — победникот е оној чие јајце останува цело. Овие традиции ги поврзуваат генерациите и ја чуваат македонската култура жива."
+    }
   ],
   "grammar_highlights": [
     {
@@ -18,52 +34,2761 @@
       "title_en": "Superlatives",
       "description_en": "нај- + adjective + definite ending",
       "examples": [
-        { "mk": "најважните", "en": "the most important" },
-        { "mk": "најпопуларните", "en": "the most popular" }
+        {
+          "mk": "најважните",
+          "en": "the most important"
+        },
+        {
+          "mk": "најпопуларните",
+          "en": "the most popular"
+        }
       ]
     }
   ],
   "vocabulary": [
-    { "mk": "најважните", "en": "the most important", "pos": "superlative adj" },
-    { "mk": "празници", "en": "holidays", "pos": "noun" },
-    { "mk": "се слави", "en": "is celebrated", "pos": "passive verb" },
-    { "mk": "според", "en": "according to", "pos": "preposition" },
-    { "mk": "православниот", "en": "the Orthodox", "pos": "adjective (def)" },
-    { "mk": "подготовките", "en": "the preparations", "pos": "noun (def)" },
-    { "mk": "почнуваат", "en": "begin", "pos": "verb" },
-    { "mk": "пост", "en": "fast/Lent", "pos": "noun" },
-    { "mk": "верниците", "en": "the believers", "pos": "noun (def)" },
-    { "mk": "млечни производи", "en": "dairy products", "pos": "noun phrase" },
-    { "mk": "се собираат", "en": "gather", "pos": "reflexive verb" },
-    { "mk": "бојадисуваат", "en": "dye/paint", "pos": "verb" },
-    { "mk": "првото", "en": "the first (neut)", "pos": "ordinal (def)" },
-    { "mk": "боја", "en": "color", "pos": "noun" },
-    { "mk": "се чува", "en": "is kept", "pos": "passive verb" },
-    { "mk": "заштита", "en": "protection", "pos": "noun" },
-    { "mk": "полноќната", "en": "the midnight", "pos": "adjective (def)" },
-    { "mk": "литургија", "en": "liturgy", "pos": "noun" },
-    { "mk": "се поздравуваат", "en": "greet each other", "pos": "reciprocal verb" },
-    { "mk": "одговорот", "en": "the response", "pos": "noun (def)" },
-    { "mk": "навистина", "en": "truly", "pos": "adverb" },
-    { "mk": "празнична", "en": "festive", "pos": "adjective" },
-    { "mk": "трпеза", "en": "table/feast", "pos": "noun" },
-    { "mk": "најпопуларните", "en": "the most popular", "pos": "superlative adj (def)" },
-    { "mk": "јагне", "en": "lamb", "pos": "noun" },
-    { "mk": "колач", "en": "bread/cake", "pos": "noun" },
-    { "mk": "кршат", "en": "crack/break", "pos": "verb" },
-    { "mk": "победникот", "en": "the winner", "pos": "noun (def)" },
-    { "mk": "цело", "en": "whole", "pos": "adjective" },
-    { "mk": "поврзуваат", "en": "connect", "pos": "verb" },
-    { "mk": "генерациите", "en": "the generations", "pos": "noun (def)" },
-    { "mk": "жива", "en": "alive", "pos": "adjective" }
+    {
+      "mk": "најважните",
+      "en": "the most important",
+      "pos": "superlative adj"
+    },
+    {
+      "mk": "празници",
+      "en": "holidays",
+      "pos": "noun"
+    },
+    {
+      "mk": "се слави",
+      "en": "is celebrated",
+      "pos": "passive verb"
+    },
+    {
+      "mk": "според",
+      "en": "according to",
+      "pos": "preposition"
+    },
+    {
+      "mk": "православниот",
+      "en": "the Orthodox",
+      "pos": "adjective (def)"
+    },
+    {
+      "mk": "подготовките",
+      "en": "the preparations",
+      "pos": "noun (def)"
+    },
+    {
+      "mk": "почнуваат",
+      "en": "begin",
+      "pos": "verb"
+    },
+    {
+      "mk": "пост",
+      "en": "fast/Lent",
+      "pos": "noun"
+    },
+    {
+      "mk": "верниците",
+      "en": "the believers",
+      "pos": "noun (def)"
+    },
+    {
+      "mk": "млечни производи",
+      "en": "dairy products",
+      "pos": "noun phrase"
+    },
+    {
+      "mk": "се собираат",
+      "en": "gather",
+      "pos": "reflexive verb"
+    },
+    {
+      "mk": "бојадисуваат",
+      "en": "dye/paint",
+      "pos": "verb"
+    },
+    {
+      "mk": "првото",
+      "en": "the first (neut)",
+      "pos": "ordinal (def)"
+    },
+    {
+      "mk": "боја",
+      "en": "color",
+      "pos": "noun"
+    },
+    {
+      "mk": "се чува",
+      "en": "is kept",
+      "pos": "passive verb"
+    },
+    {
+      "mk": "заштита",
+      "en": "protection",
+      "pos": "noun"
+    },
+    {
+      "mk": "полноќната",
+      "en": "the midnight",
+      "pos": "adjective (def)"
+    },
+    {
+      "mk": "литургија",
+      "en": "liturgy",
+      "pos": "noun"
+    },
+    {
+      "mk": "се поздравуваат",
+      "en": "greet each other",
+      "pos": "reciprocal verb"
+    },
+    {
+      "mk": "одговорот",
+      "en": "the response",
+      "pos": "noun (def)"
+    },
+    {
+      "mk": "навистина",
+      "en": "truly",
+      "pos": "adverb"
+    },
+    {
+      "mk": "празнична",
+      "en": "festive",
+      "pos": "adjective"
+    },
+    {
+      "mk": "трпеза",
+      "en": "table/feast",
+      "pos": "noun"
+    },
+    {
+      "mk": "најпопуларните",
+      "en": "the most popular",
+      "pos": "superlative adj (def)"
+    },
+    {
+      "mk": "јагне",
+      "en": "lamb",
+      "pos": "noun"
+    },
+    {
+      "mk": "колач",
+      "en": "bread/cake",
+      "pos": "noun"
+    },
+    {
+      "mk": "кршат",
+      "en": "crack/break",
+      "pos": "verb"
+    },
+    {
+      "mk": "победникот",
+      "en": "the winner",
+      "pos": "noun (def)"
+    },
+    {
+      "mk": "цело",
+      "en": "whole",
+      "pos": "adjective"
+    },
+    {
+      "mk": "поврзуваат",
+      "en": "connect",
+      "pos": "verb"
+    },
+    {
+      "mk": "генерациите",
+      "en": "the generations",
+      "pos": "noun (def)"
+    },
+    {
+      "mk": "жива",
+      "en": "alive",
+      "pos": "adjective"
+    }
   ],
   "expressions": [
-    { "mk": "Христос воскресе!", "en": "Christ is risen!", "usage": "Easter greeting" },
-    { "mk": "Навистина воскресе!", "en": "Truly He is risen!", "usage": "Response to Easter greeting" }
+    {
+      "mk": "Христос воскресе!",
+      "en": "Christ is risen!",
+      "usage": "Easter greeting"
+    },
+    {
+      "mk": "Навистина воскресе!",
+      "en": "Truly He is risen!",
+      "usage": "Response to Easter greeting"
+    }
   ],
   "attribution": {
     "handle": "@mklanguagelab",
     "series": "Graded Readers",
     "day": "culture"
+  },
+  "analyzedData": {
+    "words": [
+      {
+        "id": "word-0",
+        "original": "Велигден",
+        "translation": "Easter",
+        "pos": "adjective",
+        "difficulty": "advanced",
+        "index": 0
+      },
+      {
+        "id": "word-2",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 2,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-4",
+        "original": "еден",
+        "translation": "one",
+        "contextualMeaning": "one",
+        "alternativeTranslations": [
+          "a",
+          "an",
+          "some"
+        ],
+        "pos": "adjective",
+        "difficulty": "basic",
+        "index": 4,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-6",
+        "original": "од",
+        "translation": "of",
+        "contextualMeaning": "of",
+        "alternativeTranslations": [
+          "from",
+          "off",
+          "than",
+          "by"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 6,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-8",
+        "original": "најважните",
+        "translation": "the most important",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 8
+      },
+      {
+        "id": "word-10",
+        "original": "празници",
+        "translation": "holidays",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 10
+      },
+      {
+        "id": "word-12",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 12,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-14",
+        "original": "Македонија",
+        "translation": "Macedonia",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 14
+      },
+      {
+        "id": "word-16",
+        "original": "Се",
+        "translation": "each other",
+        "contextualMeaning": "each other",
+        "alternativeTranslations": [
+          "oneself",
+          "is",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 16,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-18",
+        "original": "слави",
+        "translation": "celebrate",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 18
+      },
+      {
+        "id": "word-20",
+        "original": "според",
+        "translation": "according to",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 20
+      },
+      {
+        "id": "word-22",
+        "original": "православниот",
+        "translation": "the orthodox",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 22
+      },
+      {
+        "id": "word-24",
+        "original": "календар",
+        "translation": "calendar",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 24
+      },
+      {
+        "id": "word-26",
+        "original": "обично",
+        "translation": "usually",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 26
+      },
+      {
+        "id": "word-28",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 28,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-30",
+        "original": "април",
+        "translation": "April",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 30
+      },
+      {
+        "id": "word-32",
+        "original": "или",
+        "translation": "or",
+        "contextualMeaning": "or",
+        "alternativeTranslations": [
+          "either"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 32,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-34",
+        "original": "мај",
+        "translation": "May",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 34
+      },
+      {
+        "id": "word-36",
+        "original": "Подготовките",
+        "translation": "The preparations",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 36
+      },
+      {
+        "id": "word-38",
+        "original": "почнуваат",
+        "translation": "they begin",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 38
+      },
+      {
+        "id": "word-40",
+        "original": "со",
+        "translation": "with",
+        "contextualMeaning": "with",
+        "alternativeTranslations": [
+          "by",
+          "using"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 40,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-42",
+        "original": "Великиот",
+        "translation": "The great",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 42
+      },
+      {
+        "id": "word-44",
+        "original": "Пост",
+        "translation": "Post",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 44
+      },
+      {
+        "id": "word-46",
+        "original": "четириесет",
+        "translation": "forty",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 46
+      },
+      {
+        "id": "word-48",
+        "original": "дена",
+        "translation": "days",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 48
+      },
+      {
+        "id": "word-50",
+        "original": "пред",
+        "translation": "before",
+        "contextualMeaning": "before",
+        "alternativeTranslations": [
+          "in front of",
+          "ago"
+        ],
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 50,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-52",
+        "original": "Велигден",
+        "translation": "Easter",
+        "pos": "adjective",
+        "difficulty": "advanced",
+        "index": 52
+      },
+      {
+        "id": "word-54",
+        "original": "За",
+        "translation": "for",
+        "contextualMeaning": "for",
+        "alternativeTranslations": [
+          "about",
+          "to",
+          "in order to"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 54,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-56",
+        "original": "време",
+        "translation": "time",
+        "contextualMeaning": "time",
+        "alternativeTranslations": [
+          "weather",
+          "period"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 56,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-58",
+        "original": "на",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 58,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-60",
+        "original": "постот",
+        "translation": "the post",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 60
+      },
+      {
+        "id": "word-62",
+        "original": "верниците",
+        "translation": "the believers",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 62
+      },
+      {
+        "id": "word-64",
+        "original": "не",
+        "translation": "no",
+        "contextualMeaning": "no",
+        "alternativeTranslations": [
+          "not",
+          "don't",
+          "doesn't"
+        ],
+        "contextHint": "\"Не\" before verbs means \"not\"; alone means \"no\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 64,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-66",
+        "original": "јадат",
+        "translation": "they eat",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 66
+      },
+      {
+        "id": "word-68",
+        "original": "месо",
+        "translation": "meat",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 68
+      },
+      {
+        "id": "word-70",
+        "original": "млечни",
+        "translation": "dairy",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 70
+      },
+      {
+        "id": "word-72",
+        "original": "производи",
+        "translation": "products",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 72
+      },
+      {
+        "id": "word-74",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 74,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-76",
+        "original": "јајца",
+        "translation": "eggs",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 76
+      },
+      {
+        "id": "word-78",
+        "original": "Во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 78,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-80",
+        "original": "Велика",
+        "translation": "Great",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 80
+      },
+      {
+        "id": "word-82",
+        "original": "Сабота",
+        "translation": "Saturday",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 82
+      },
+      {
+        "id": "word-84",
+        "original": "семејствата",
+        "translation": "the families",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 84
+      },
+      {
+        "id": "word-86",
+        "original": "се",
+        "translation": "each other",
+        "contextualMeaning": "each other",
+        "alternativeTranslations": [
+          "oneself",
+          "is",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 86,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-88",
+        "original": "собираат",
+        "translation": "collect",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 88
+      },
+      {
+        "id": "word-90",
+        "original": "за",
+        "translation": "for",
+        "contextualMeaning": "for",
+        "alternativeTranslations": [
+          "about",
+          "to",
+          "in order to"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 90,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-92",
+        "original": "да",
+        "translation": "to",
+        "contextualMeaning": "to",
+        "alternativeTranslations": [
+          "yes",
+          "that",
+          "so that",
+          "let"
+        ],
+        "contextHint": "\"Да\" before verbs means \"to\"; alone means \"yes\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 92,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-94",
+        "original": "бојадисуваат",
+        "translation": "paint",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 94
+      },
+      {
+        "id": "word-96",
+        "original": "јајца",
+        "translation": "eggs",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 96
+      },
+      {
+        "id": "word-98",
+        "original": "Првото",
+        "translation": "The first",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 98
+      },
+      {
+        "id": "word-100",
+        "original": "јајце",
+        "translation": "an egg",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 100
+      },
+      {
+        "id": "word-102",
+        "original": "секогаш",
+        "translation": "always",
+        "contextualMeaning": "always",
+        "alternativeTranslations": [
+          "every time"
+        ],
+        "pos": "adverb",
+        "difficulty": "intermediate",
+        "index": 102,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-104",
+        "original": "се",
+        "translation": "each other",
+        "contextualMeaning": "each other",
+        "alternativeTranslations": [
+          "oneself",
+          "is",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 104,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-106",
+        "original": "бојадисува",
+        "translation": "paints",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 106
+      },
+      {
+        "id": "word-108",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 108,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-110",
+        "original": "црвена",
+        "translation": "red",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 110
+      },
+      {
+        "id": "word-112",
+        "original": "боја",
+        "translation": "color",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 112
+      },
+      {
+        "id": "word-114",
+        "original": "Ова",
+        "translation": "this",
+        "contextualMeaning": "this",
+        "alternativeTranslations": [
+          "this one (neut.)"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 114,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-116",
+        "original": "јајце",
+        "translation": "an egg",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 116
+      },
+      {
+        "id": "word-118",
+        "original": "се",
+        "translation": "each other",
+        "contextualMeaning": "each other",
+        "alternativeTranslations": [
+          "oneself",
+          "is",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 118,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-120",
+        "original": "чува",
+        "translation": "keeps",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 120
+      },
+      {
+        "id": "word-122",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 122,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-124",
+        "original": "куќата",
+        "translation": "the house",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 124
+      },
+      {
+        "id": "word-126",
+        "original": "цела",
+        "translation": "whole",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 126
+      },
+      {
+        "id": "word-128",
+        "original": "година",
+        "translation": "year",
+        "contextualMeaning": "year",
+        "alternativeTranslations": [
+          "age"
+        ],
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 128,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-130",
+        "original": "како",
+        "translation": "as",
+        "contextualMeaning": "as",
+        "alternativeTranslations": [
+          "how",
+          "like",
+          "what"
+        ],
+        "pos": "adverb",
+        "difficulty": "basic",
+        "index": 130,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-132",
+        "original": "заштита",
+        "translation": "protection",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 132
+      },
+      {
+        "id": "word-134",
+        "original": "На",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 134,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-136",
+        "original": "Велигден",
+        "translation": "Easter",
+        "pos": "adjective",
+        "difficulty": "advanced",
+        "index": 136
+      },
+      {
+        "id": "word-138",
+        "original": "по",
+        "translation": "after",
+        "contextualMeaning": "after",
+        "alternativeTranslations": [
+          "by",
+          "along",
+          "per",
+          "more"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 138,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-140",
+        "original": "полноќната",
+        "translation": "midnight",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 140
+      },
+      {
+        "id": "word-142",
+        "original": "литургија",
+        "translation": "liturgy",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 142
+      },
+      {
+        "id": "word-144",
+        "original": "луѓето",
+        "translation": "the people",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 144
+      },
+      {
+        "id": "word-146",
+        "original": "се",
+        "translation": "each other",
+        "contextualMeaning": "each other",
+        "alternativeTranslations": [
+          "oneself",
+          "is",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 146,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-148",
+        "original": "поздравуваат",
+        "translation": "they greet",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 148
+      },
+      {
+        "id": "word-150",
+        "original": "со",
+        "translation": "with",
+        "contextualMeaning": "with",
+        "alternativeTranslations": [
+          "by",
+          "using"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 150,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-152",
+        "original": "зборовите",
+        "translation": "the words",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 152
+      },
+      {
+        "id": "word-154",
+        "original": "Христос",
+        "translation": "Christ",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 154
+      },
+      {
+        "id": "word-156",
+        "original": "воскресе",
+        "translation": "resurrected",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 156
+      },
+      {
+        "id": "word-158",
+        "original": "Одговорот",
+        "translation": "The answer",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 158
+      },
+      {
+        "id": "word-160",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 160,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-162",
+        "original": "Навистина",
+        "translation": "indeed",
+        "contextualMeaning": "indeed",
+        "alternativeTranslations": [
+          "really",
+          "truly"
+        ],
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 162,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-164",
+        "original": "воскресе",
+        "translation": "resurrected",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 164
+      },
+      {
+        "id": "word-166",
+        "original": "Потоа",
+        "translation": "then",
+        "contextualMeaning": "then",
+        "alternativeTranslations": [
+          "after that",
+          "afterwards"
+        ],
+        "pos": "adverb",
+        "difficulty": "intermediate",
+        "index": 166,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-168",
+        "original": "следува",
+        "translation": "follows",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 168
+      },
+      {
+        "id": "word-170",
+        "original": "празнична",
+        "translation": "festive",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 170
+      },
+      {
+        "id": "word-172",
+        "original": "трпеза",
+        "translation": "table",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 172
+      },
+      {
+        "id": "word-174",
+        "original": "со",
+        "translation": "with",
+        "contextualMeaning": "with",
+        "alternativeTranslations": [
+          "by",
+          "using"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 174,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-176",
+        "original": "традиционална",
+        "translation": "traditional",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 176
+      },
+      {
+        "id": "word-178",
+        "original": "храна",
+        "translation": "food",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 178
+      },
+      {
+        "id": "word-180",
+        "original": "Најпопуларните",
+        "translation": "The most popular",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 180
+      },
+      {
+        "id": "word-182",
+        "original": "јадења",
+        "translation": "dishes",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 182
+      },
+      {
+        "id": "word-184",
+        "original": "се",
+        "translation": "each other",
+        "contextualMeaning": "each other",
+        "alternativeTranslations": [
+          "oneself",
+          "is",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 184,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-186",
+        "original": "печено",
+        "translation": "baked",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 186
+      },
+      {
+        "id": "word-188",
+        "original": "јагне",
+        "translation": "lamb",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 188
+      },
+      {
+        "id": "word-190",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 190,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-192",
+        "original": "велигденски",
+        "translation": "Easter",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 192
+      },
+      {
+        "id": "word-194",
+        "original": "колач",
+        "translation": "a cake",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 194
+      },
+      {
+        "id": "word-196",
+        "original": "Децата",
+        "translation": "The children",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 196
+      },
+      {
+        "id": "word-198",
+        "original": "ги",
+        "translation": "them",
+        "contextualMeaning": "them",
+        "alternativeTranslations": [
+          "the (plural)"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 198,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-200",
+        "original": "кршат",
+        "translation": "break",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 200
+      },
+      {
+        "id": "word-202",
+        "original": "јајцата",
+        "translation": "the eggs",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 202
+      },
+      {
+        "id": "word-204",
+        "original": "едно",
+        "translation": "a",
+        "contextualMeaning": "a",
+        "alternativeTranslations": [
+          "one (neut.)",
+          "an"
+        ],
+        "pos": "adjective",
+        "difficulty": "basic",
+        "index": 204,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-206",
+        "original": "со",
+        "translation": "with",
+        "contextualMeaning": "with",
+        "alternativeTranslations": [
+          "by",
+          "using"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 206,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-208",
+        "original": "друго",
+        "translation": "other (neut.)",
+        "contextualMeaning": "other (neut.)",
+        "alternativeTranslations": [
+          "something else"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 208,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-210",
+        "original": "победникот",
+        "translation": "the winner",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 210
+      },
+      {
+        "id": "word-212",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 212,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-214",
+        "original": "оној",
+        "translation": "that (far)",
+        "contextualMeaning": "that (far)",
+        "alternativeTranslations": [
+          "that one over there"
+        ],
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 214,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-216",
+        "original": "чие",
+        "translation": "whose (neut.)",
+        "contextualMeaning": "whose (neut.)",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 216,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-218",
+        "original": "јајце",
+        "translation": "an egg",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 218
+      },
+      {
+        "id": "word-220",
+        "original": "останува",
+        "translation": "remains",
+        "contextualMeaning": "remains",
+        "alternativeTranslations": [
+          "stays",
+          "is left"
+        ],
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 220,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-222",
+        "original": "цело",
+        "translation": "whole",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 222
+      },
+      {
+        "id": "word-224",
+        "original": "Овие",
+        "translation": "these",
+        "contextualMeaning": "these",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 224,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-226",
+        "original": "традиции",
+        "translation": "traditions",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 226
+      },
+      {
+        "id": "word-228",
+        "original": "ги",
+        "translation": "them",
+        "contextualMeaning": "them",
+        "alternativeTranslations": [
+          "the (plural)"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 228,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-230",
+        "original": "поврзуваат",
+        "translation": "connect",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 230
+      },
+      {
+        "id": "word-232",
+        "original": "генерациите",
+        "translation": "the generations",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 232
+      },
+      {
+        "id": "word-234",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 234,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-236",
+        "original": "ја",
+        "translation": "her",
+        "contextualMeaning": "her",
+        "alternativeTranslations": [
+          "it (fem.)",
+          "the"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 236,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-238",
+        "original": "чуваат",
+        "translation": "they keep",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 238
+      },
+      {
+        "id": "word-240",
+        "original": "македонската",
+        "translation": "Macedonian",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 240
+      },
+      {
+        "id": "word-242",
+        "original": "култура",
+        "translation": "culture",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 242
+      },
+      {
+        "id": "word-244",
+        "original": "жива",
+        "translation": "alive",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 244
+      }
+    ],
+    "tokens": [
+      {
+        "token": "Велигден",
+        "isWord": true,
+        "index": 0
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 1
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 2
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 3
+      },
+      {
+        "token": "еден",
+        "isWord": true,
+        "index": 4
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 5
+      },
+      {
+        "token": "од",
+        "isWord": true,
+        "index": 6
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 7
+      },
+      {
+        "token": "најважните",
+        "isWord": true,
+        "index": 8
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 9
+      },
+      {
+        "token": "празници",
+        "isWord": true,
+        "index": 10
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 11
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 12
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 13
+      },
+      {
+        "token": "Македонија",
+        "isWord": true,
+        "index": 14
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 15
+      },
+      {
+        "token": "Се",
+        "isWord": true,
+        "index": 16
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 17
+      },
+      {
+        "token": "слави",
+        "isWord": true,
+        "index": 18
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 19
+      },
+      {
+        "token": "според",
+        "isWord": true,
+        "index": 20
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 21
+      },
+      {
+        "token": "православниот",
+        "isWord": true,
+        "index": 22
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 23
+      },
+      {
+        "token": "календар",
+        "isWord": true,
+        "index": 24
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 25
+      },
+      {
+        "token": "обично",
+        "isWord": true,
+        "index": 26
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 27
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 28
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 29
+      },
+      {
+        "token": "април",
+        "isWord": true,
+        "index": 30
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 31
+      },
+      {
+        "token": "или",
+        "isWord": true,
+        "index": 32
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 33
+      },
+      {
+        "token": "мај",
+        "isWord": true,
+        "index": 34
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 35
+      },
+      {
+        "token": "Подготовките",
+        "isWord": true,
+        "index": 36
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 37
+      },
+      {
+        "token": "почнуваат",
+        "isWord": true,
+        "index": 38
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 39
+      },
+      {
+        "token": "со",
+        "isWord": true,
+        "index": 40
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 41
+      },
+      {
+        "token": "Великиот",
+        "isWord": true,
+        "index": 42
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 43
+      },
+      {
+        "token": "Пост",
+        "isWord": true,
+        "index": 44
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 45
+      },
+      {
+        "token": "четириесет",
+        "isWord": true,
+        "index": 46
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 47
+      },
+      {
+        "token": "дена",
+        "isWord": true,
+        "index": 48
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 49
+      },
+      {
+        "token": "пред",
+        "isWord": true,
+        "index": 50
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 51
+      },
+      {
+        "token": "Велигден",
+        "isWord": true,
+        "index": 52
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 53
+      },
+      {
+        "token": "За",
+        "isWord": true,
+        "index": 54
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 55
+      },
+      {
+        "token": "време",
+        "isWord": true,
+        "index": 56
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 57
+      },
+      {
+        "token": "на",
+        "isWord": true,
+        "index": 58
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 59
+      },
+      {
+        "token": "постот",
+        "isWord": true,
+        "index": 60
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 61
+      },
+      {
+        "token": "верниците",
+        "isWord": true,
+        "index": 62
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 63
+      },
+      {
+        "token": "не",
+        "isWord": true,
+        "index": 64
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 65
+      },
+      {
+        "token": "јадат",
+        "isWord": true,
+        "index": 66
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 67
+      },
+      {
+        "token": "месо",
+        "isWord": true,
+        "index": 68
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 69
+      },
+      {
+        "token": "млечни",
+        "isWord": true,
+        "index": 70
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 71
+      },
+      {
+        "token": "производи",
+        "isWord": true,
+        "index": 72
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 73
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 74
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 75
+      },
+      {
+        "token": "јајца",
+        "isWord": true,
+        "index": 76
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 77
+      },
+      {
+        "token": "Во",
+        "isWord": true,
+        "index": 78
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 79
+      },
+      {
+        "token": "Велика",
+        "isWord": true,
+        "index": 80
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 81
+      },
+      {
+        "token": "Сабота",
+        "isWord": true,
+        "index": 82
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 83
+      },
+      {
+        "token": "семејствата",
+        "isWord": true,
+        "index": 84
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 85
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 86
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 87
+      },
+      {
+        "token": "собираат",
+        "isWord": true,
+        "index": 88
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 89
+      },
+      {
+        "token": "за",
+        "isWord": true,
+        "index": 90
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 91
+      },
+      {
+        "token": "да",
+        "isWord": true,
+        "index": 92
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 93
+      },
+      {
+        "token": "бојадисуваат",
+        "isWord": true,
+        "index": 94
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 95
+      },
+      {
+        "token": "јајца",
+        "isWord": true,
+        "index": 96
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 97
+      },
+      {
+        "token": "Првото",
+        "isWord": true,
+        "index": 98
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 99
+      },
+      {
+        "token": "јајце",
+        "isWord": true,
+        "index": 100
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 101
+      },
+      {
+        "token": "секогаш",
+        "isWord": true,
+        "index": 102
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 103
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 104
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 105
+      },
+      {
+        "token": "бојадисува",
+        "isWord": true,
+        "index": 106
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 107
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 108
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 109
+      },
+      {
+        "token": "црвена",
+        "isWord": true,
+        "index": 110
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 111
+      },
+      {
+        "token": "боја",
+        "isWord": true,
+        "index": 112
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 113
+      },
+      {
+        "token": "Ова",
+        "isWord": true,
+        "index": 114
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 115
+      },
+      {
+        "token": "јајце",
+        "isWord": true,
+        "index": 116
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 117
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 118
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 119
+      },
+      {
+        "token": "чува",
+        "isWord": true,
+        "index": 120
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 121
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 122
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 123
+      },
+      {
+        "token": "куќата",
+        "isWord": true,
+        "index": 124
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 125
+      },
+      {
+        "token": "цела",
+        "isWord": true,
+        "index": 126
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 127
+      },
+      {
+        "token": "година",
+        "isWord": true,
+        "index": 128
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 129
+      },
+      {
+        "token": "како",
+        "isWord": true,
+        "index": 130
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 131
+      },
+      {
+        "token": "заштита",
+        "isWord": true,
+        "index": 132
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 133
+      },
+      {
+        "token": "На",
+        "isWord": true,
+        "index": 134
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 135
+      },
+      {
+        "token": "Велигден",
+        "isWord": true,
+        "index": 136
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 137
+      },
+      {
+        "token": "по",
+        "isWord": true,
+        "index": 138
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 139
+      },
+      {
+        "token": "полноќната",
+        "isWord": true,
+        "index": 140
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 141
+      },
+      {
+        "token": "литургија",
+        "isWord": true,
+        "index": 142
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 143
+      },
+      {
+        "token": "луѓето",
+        "isWord": true,
+        "index": 144
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 145
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 146
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 147
+      },
+      {
+        "token": "поздравуваат",
+        "isWord": true,
+        "index": 148
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 149
+      },
+      {
+        "token": "со",
+        "isWord": true,
+        "index": 150
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 151
+      },
+      {
+        "token": "зборовите",
+        "isWord": true,
+        "index": 152
+      },
+      {
+        "token": " \"",
+        "isWord": false,
+        "index": 153
+      },
+      {
+        "token": "Христос",
+        "isWord": true,
+        "index": 154
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 155
+      },
+      {
+        "token": "воскресе",
+        "isWord": true,
+        "index": 156
+      },
+      {
+        "token": "!\" ",
+        "isWord": false,
+        "index": 157
+      },
+      {
+        "token": "Одговорот",
+        "isWord": true,
+        "index": 158
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 159
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 160
+      },
+      {
+        "token": " \"",
+        "isWord": false,
+        "index": 161
+      },
+      {
+        "token": "Навистина",
+        "isWord": true,
+        "index": 162
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 163
+      },
+      {
+        "token": "воскресе",
+        "isWord": true,
+        "index": 164
+      },
+      {
+        "token": "!\"\n\n",
+        "isWord": false,
+        "index": 165
+      },
+      {
+        "token": "Потоа",
+        "isWord": true,
+        "index": 166
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 167
+      },
+      {
+        "token": "следува",
+        "isWord": true,
+        "index": 168
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 169
+      },
+      {
+        "token": "празнична",
+        "isWord": true,
+        "index": 170
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 171
+      },
+      {
+        "token": "трпеза",
+        "isWord": true,
+        "index": 172
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 173
+      },
+      {
+        "token": "со",
+        "isWord": true,
+        "index": 174
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 175
+      },
+      {
+        "token": "традиционална",
+        "isWord": true,
+        "index": 176
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 177
+      },
+      {
+        "token": "храна",
+        "isWord": true,
+        "index": 178
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 179
+      },
+      {
+        "token": "Најпопуларните",
+        "isWord": true,
+        "index": 180
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 181
+      },
+      {
+        "token": "јадења",
+        "isWord": true,
+        "index": 182
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 183
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 184
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 185
+      },
+      {
+        "token": "печено",
+        "isWord": true,
+        "index": 186
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 187
+      },
+      {
+        "token": "јагне",
+        "isWord": true,
+        "index": 188
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 189
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 190
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 191
+      },
+      {
+        "token": "велигденски",
+        "isWord": true,
+        "index": 192
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 193
+      },
+      {
+        "token": "колач",
+        "isWord": true,
+        "index": 194
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 195
+      },
+      {
+        "token": "Децата",
+        "isWord": true,
+        "index": 196
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 197
+      },
+      {
+        "token": "ги",
+        "isWord": true,
+        "index": 198
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 199
+      },
+      {
+        "token": "кршат",
+        "isWord": true,
+        "index": 200
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 201
+      },
+      {
+        "token": "јајцата",
+        "isWord": true,
+        "index": 202
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 203
+      },
+      {
+        "token": "едно",
+        "isWord": true,
+        "index": 204
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 205
+      },
+      {
+        "token": "со",
+        "isWord": true,
+        "index": 206
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 207
+      },
+      {
+        "token": "друго",
+        "isWord": true,
+        "index": 208
+      },
+      {
+        "token": " — ",
+        "isWord": false,
+        "index": 209
+      },
+      {
+        "token": "победникот",
+        "isWord": true,
+        "index": 210
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 211
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 212
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 213
+      },
+      {
+        "token": "оној",
+        "isWord": true,
+        "index": 214
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 215
+      },
+      {
+        "token": "чие",
+        "isWord": true,
+        "index": 216
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 217
+      },
+      {
+        "token": "јајце",
+        "isWord": true,
+        "index": 218
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 219
+      },
+      {
+        "token": "останува",
+        "isWord": true,
+        "index": 220
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 221
+      },
+      {
+        "token": "цело",
+        "isWord": true,
+        "index": 222
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 223
+      },
+      {
+        "token": "Овие",
+        "isWord": true,
+        "index": 224
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 225
+      },
+      {
+        "token": "традиции",
+        "isWord": true,
+        "index": 226
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 227
+      },
+      {
+        "token": "ги",
+        "isWord": true,
+        "index": 228
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 229
+      },
+      {
+        "token": "поврзуваат",
+        "isWord": true,
+        "index": 230
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 231
+      },
+      {
+        "token": "генерациите",
+        "isWord": true,
+        "index": 232
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 233
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 234
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 235
+      },
+      {
+        "token": "ја",
+        "isWord": true,
+        "index": 236
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 237
+      },
+      {
+        "token": "чуваат",
+        "isWord": true,
+        "index": 238
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 239
+      },
+      {
+        "token": "македонската",
+        "isWord": true,
+        "index": 240
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 241
+      },
+      {
+        "token": "култура",
+        "isWord": true,
+        "index": 242
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 243
+      },
+      {
+        "token": "жива",
+        "isWord": true,
+        "index": 244
+      },
+      {
+        "token": ".",
+        "isWord": false,
+        "index": 245
+      }
+    ],
+    "fullTranslation": "Easter is one of the most important holidays in Macedonia. It is celebrated according to the Orthodox calendar, usually in April or May. Preparations begin with Great Lent, forty days before Easter.\n\nDuring fasting, believers do not eat meat, dairy products and eggs. On Holy Saturday, families gather to paint eggs. The first egg is always painted red.\n\nThis egg is kept in the house all year round as protection. On Easter, after the midnight liturgy, people greet each other with the words \"Christ is risen!\" The answer is \"He is risen indeed!\"\n\nThen follows a festive table with traditional food. The most popular dishes are roast lamb and Easter cake. Children break the eggs with each other — the winner is the one whose egg remains whole. These traditions connect generations and keep Macedonian culture alive.",
+    "difficulty": {
+      "level": "advanced",
+      "score": 64.6341463414634,
+      "factors": {
+        "avgWordLength": 5.609756097560975,
+        "longWords": 36,
+        "totalWords": 123
+      }
+    },
+    "metadata": {
+      "wordCount": 123,
+      "sentenceCount": 13,
+      "characterCount": 841
+    }
   }
 }

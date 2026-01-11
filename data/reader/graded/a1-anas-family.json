@@ -5,38 +5,1268 @@
   "title_en": "Ana's Family",
   "difficulty": "A1",
   "estimatedMinutes": 3,
-  "tags": ["graded-reader", "A1", "family"],
+  "tags": [
+    "graded-reader",
+    "A1",
+    "family"
+  ],
   "text_blocks_mk": [
-    { "type": "p", "value": "Јас се викам Ана. Имам дваесет години. Живеам во Скопје со моето семејство." },
-    { "type": "p", "value": "Моите родители се Марко и Лена. Татко ми е доктор. Мајка ми е учителка." },
-    { "type": "p", "value": "Имам еден брат и една сестра. Мојот брат се вика Петар. Тој има осумнаесет години." },
-    { "type": "p", "value": "Мојата сестра се вика Марија. Таа има петнаесет години. Ние сме среќно семејство." }
+    {
+      "type": "p",
+      "value": "Јас се викам Ана. Имам дваесет години. Живеам во Скопје со моето семејство."
+    },
+    {
+      "type": "p",
+      "value": "Моите родители се Марко и Лена. Татко ми е доктор. Мајка ми е учителка."
+    },
+    {
+      "type": "p",
+      "value": "Имам еден брат и една сестра. Мојот брат се вика Петар. Тој има осумнаесет години."
+    },
+    {
+      "type": "p",
+      "value": "Мојата сестра се вика Марија. Таа има петнаесет години. Ние сме среќно семејство."
+    }
   ],
   "grammar_highlights": [],
   "vocabulary": [
-    { "mk": "се викам", "en": "my name is", "pos": "verb phrase" },
-    { "mk": "дваесет", "en": "twenty", "pos": "number" },
-    { "mk": "години", "en": "years", "pos": "noun" },
-    { "mk": "живеам", "en": "I live", "pos": "verb" },
-    { "mk": "семејство", "en": "family", "pos": "noun" },
-    { "mk": "родители", "en": "parents", "pos": "noun" },
-    { "mk": "моите", "en": "my (plural)", "pos": "possessive" },
-    { "mk": "татко", "en": "father", "pos": "noun" },
-    { "mk": "доктор", "en": "doctor", "pos": "noun" },
-    { "mk": "мајка", "en": "mother", "pos": "noun" },
-    { "mk": "учителка", "en": "teacher (f)", "pos": "noun" },
-    { "mk": "брат", "en": "brother", "pos": "noun" },
-    { "mk": "сестра", "en": "sister", "pos": "noun" },
-    { "mk": "мојот", "en": "my (masc.)", "pos": "possessive" },
-    { "mk": "осумнаесет", "en": "eighteen", "pos": "number" },
-    { "mk": "мојата", "en": "my (fem.)", "pos": "possessive" },
-    { "mk": "петнаесет", "en": "fifteen", "pos": "number" },
-    { "mk": "среќно", "en": "happy", "pos": "adjective" }
+    {
+      "mk": "се викам",
+      "en": "my name is",
+      "pos": "verb phrase"
+    },
+    {
+      "mk": "дваесет",
+      "en": "twenty",
+      "pos": "number"
+    },
+    {
+      "mk": "години",
+      "en": "years",
+      "pos": "noun"
+    },
+    {
+      "mk": "живеам",
+      "en": "I live",
+      "pos": "verb"
+    },
+    {
+      "mk": "семејство",
+      "en": "family",
+      "pos": "noun"
+    },
+    {
+      "mk": "родители",
+      "en": "parents",
+      "pos": "noun"
+    },
+    {
+      "mk": "моите",
+      "en": "my (plural)",
+      "pos": "possessive"
+    },
+    {
+      "mk": "татко",
+      "en": "father",
+      "pos": "noun"
+    },
+    {
+      "mk": "доктор",
+      "en": "doctor",
+      "pos": "noun"
+    },
+    {
+      "mk": "мајка",
+      "en": "mother",
+      "pos": "noun"
+    },
+    {
+      "mk": "учителка",
+      "en": "teacher (f)",
+      "pos": "noun"
+    },
+    {
+      "mk": "брат",
+      "en": "brother",
+      "pos": "noun"
+    },
+    {
+      "mk": "сестра",
+      "en": "sister",
+      "pos": "noun"
+    },
+    {
+      "mk": "мојот",
+      "en": "my (masc.)",
+      "pos": "possessive"
+    },
+    {
+      "mk": "осумнаесет",
+      "en": "eighteen",
+      "pos": "number"
+    },
+    {
+      "mk": "мојата",
+      "en": "my (fem.)",
+      "pos": "possessive"
+    },
+    {
+      "mk": "петнаесет",
+      "en": "fifteen",
+      "pos": "number"
+    },
+    {
+      "mk": "среќно",
+      "en": "happy",
+      "pos": "adjective"
+    }
   ],
   "expressions": [],
   "attribution": {
     "handle": "@mklanguagelab",
     "series": "Graded Readers",
     "day": "family"
+  },
+  "analyzedData": {
+    "words": [
+      {
+        "id": "word-0",
+        "original": "Јас",
+        "translation": "Me",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 0
+      },
+      {
+        "id": "word-2",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 2,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-4",
+        "original": "викам",
+        "translation": "I shout",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 4
+      },
+      {
+        "id": "word-6",
+        "original": "Ана",
+        "translation": "Anna",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 6
+      },
+      {
+        "id": "word-8",
+        "original": "Имам",
+        "translation": "I have",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 8
+      },
+      {
+        "id": "word-10",
+        "original": "дваесет",
+        "translation": "twenty",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 10
+      },
+      {
+        "id": "word-12",
+        "original": "години",
+        "translation": "years",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 12
+      },
+      {
+        "id": "word-14",
+        "original": "Живеам",
+        "translation": "I live",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 14
+      },
+      {
+        "id": "word-16",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 16,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-18",
+        "original": "Скопје",
+        "translation": "Skopje",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 18
+      },
+      {
+        "id": "word-20",
+        "original": "со",
+        "translation": "with",
+        "contextualMeaning": "with",
+        "alternativeTranslations": [
+          "by",
+          "using"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 20,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-22",
+        "original": "моето",
+        "translation": "mine",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 22
+      },
+      {
+        "id": "word-24",
+        "original": "семејство",
+        "translation": "family",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 24
+      },
+      {
+        "id": "word-26",
+        "original": "Моите",
+        "translation": "Mine",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 26
+      },
+      {
+        "id": "word-28",
+        "original": "родители",
+        "translation": "parents",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 28
+      },
+      {
+        "id": "word-30",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 30,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-32",
+        "original": "Марко",
+        "translation": "Marco",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 32
+      },
+      {
+        "id": "word-34",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 34,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-36",
+        "original": "Лена",
+        "translation": "Lena",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 36
+      },
+      {
+        "id": "word-38",
+        "original": "Татко",
+        "translation": "Father",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 38
+      },
+      {
+        "id": "word-40",
+        "original": "ми",
+        "translation": "mi",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 40
+      },
+      {
+        "id": "word-42",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 42,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-44",
+        "original": "доктор",
+        "translation": "doctor",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 44
+      },
+      {
+        "id": "word-46",
+        "original": "Мајка",
+        "translation": "Mother",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 46
+      },
+      {
+        "id": "word-48",
+        "original": "ми",
+        "translation": "mi",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 48
+      },
+      {
+        "id": "word-50",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 50,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-52",
+        "original": "учителка",
+        "translation": "a teacher",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 52
+      },
+      {
+        "id": "word-54",
+        "original": "Имам",
+        "translation": "I have",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 54
+      },
+      {
+        "id": "word-56",
+        "original": "еден",
+        "translation": "one",
+        "contextualMeaning": "one",
+        "alternativeTranslations": [
+          "a",
+          "an",
+          "some"
+        ],
+        "pos": "adjective",
+        "difficulty": "basic",
+        "index": 56,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-58",
+        "original": "брат",
+        "translation": "brother",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 58
+      },
+      {
+        "id": "word-60",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 60,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-62",
+        "original": "една",
+        "translation": "a",
+        "contextualMeaning": "a",
+        "alternativeTranslations": [
+          "one (fem.)",
+          "an"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 62,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-64",
+        "original": "сестра",
+        "translation": "sister",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 64
+      },
+      {
+        "id": "word-66",
+        "original": "Мојот",
+        "translation": "My",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 66
+      },
+      {
+        "id": "word-68",
+        "original": "брат",
+        "translation": "brother",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 68
+      },
+      {
+        "id": "word-70",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 70,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-72",
+        "original": "вика",
+        "translation": "he shouts",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 72
+      },
+      {
+        "id": "word-74",
+        "original": "Петар",
+        "translation": "Peter",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 74
+      },
+      {
+        "id": "word-76",
+        "original": "Тој",
+        "translation": "he",
+        "contextualMeaning": "he",
+        "alternativeTranslations": [
+          "that",
+          "that one (masc.)"
+        ],
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 76,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-78",
+        "original": "има",
+        "translation": "have",
+        "contextualMeaning": "have",
+        "alternativeTranslations": [
+          "has",
+          "there is",
+          "there are"
+        ],
+        "contextHint": "\"Има\" can mean possession (has) or existence (there is)",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 78,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-80",
+        "original": "осумнаесет",
+        "translation": "eighteen",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 80
+      },
+      {
+        "id": "word-82",
+        "original": "години",
+        "translation": "years",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 82
+      },
+      {
+        "id": "word-84",
+        "original": "Мојата",
+        "translation": "Mine",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 84
+      },
+      {
+        "id": "word-86",
+        "original": "сестра",
+        "translation": "sister",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 86
+      },
+      {
+        "id": "word-88",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 88,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-90",
+        "original": "вика",
+        "translation": "he shouts",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 90
+      },
+      {
+        "id": "word-92",
+        "original": "Марија",
+        "translation": "Maria",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 92
+      },
+      {
+        "id": "word-94",
+        "original": "Таа",
+        "translation": "she",
+        "contextualMeaning": "she",
+        "alternativeTranslations": [
+          "that",
+          "that one (fem.)"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 94,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-96",
+        "original": "има",
+        "translation": "have",
+        "contextualMeaning": "have",
+        "alternativeTranslations": [
+          "has",
+          "there is",
+          "there are"
+        ],
+        "contextHint": "\"Има\" can mean possession (has) or existence (there is)",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 96,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-98",
+        "original": "петнаесет",
+        "translation": "fifteen",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 98
+      },
+      {
+        "id": "word-100",
+        "original": "години",
+        "translation": "years",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 100
+      },
+      {
+        "id": "word-102",
+        "original": "Ние",
+        "translation": "We",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 102
+      },
+      {
+        "id": "word-104",
+        "original": "сме",
+        "translation": "are",
+        "contextualMeaning": "are",
+        "alternativeTranslations": [
+          "we are"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 104,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-106",
+        "original": "среќно",
+        "translation": "happily",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 106
+      },
+      {
+        "id": "word-108",
+        "original": "семејство",
+        "translation": "family",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 108
+      }
+    ],
+    "tokens": [
+      {
+        "token": "Јас",
+        "isWord": true,
+        "index": 0
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 1
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 2
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 3
+      },
+      {
+        "token": "викам",
+        "isWord": true,
+        "index": 4
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 5
+      },
+      {
+        "token": "Ана",
+        "isWord": true,
+        "index": 6
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 7
+      },
+      {
+        "token": "Имам",
+        "isWord": true,
+        "index": 8
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 9
+      },
+      {
+        "token": "дваесет",
+        "isWord": true,
+        "index": 10
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 11
+      },
+      {
+        "token": "години",
+        "isWord": true,
+        "index": 12
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 13
+      },
+      {
+        "token": "Живеам",
+        "isWord": true,
+        "index": 14
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 15
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 16
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 17
+      },
+      {
+        "token": "Скопје",
+        "isWord": true,
+        "index": 18
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 19
+      },
+      {
+        "token": "со",
+        "isWord": true,
+        "index": 20
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 21
+      },
+      {
+        "token": "моето",
+        "isWord": true,
+        "index": 22
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 23
+      },
+      {
+        "token": "семејство",
+        "isWord": true,
+        "index": 24
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 25
+      },
+      {
+        "token": "Моите",
+        "isWord": true,
+        "index": 26
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 27
+      },
+      {
+        "token": "родители",
+        "isWord": true,
+        "index": 28
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 29
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 30
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 31
+      },
+      {
+        "token": "Марко",
+        "isWord": true,
+        "index": 32
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 33
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 34
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 35
+      },
+      {
+        "token": "Лена",
+        "isWord": true,
+        "index": 36
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 37
+      },
+      {
+        "token": "Татко",
+        "isWord": true,
+        "index": 38
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 39
+      },
+      {
+        "token": "ми",
+        "isWord": true,
+        "index": 40
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 41
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 42
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 43
+      },
+      {
+        "token": "доктор",
+        "isWord": true,
+        "index": 44
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 45
+      },
+      {
+        "token": "Мајка",
+        "isWord": true,
+        "index": 46
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 47
+      },
+      {
+        "token": "ми",
+        "isWord": true,
+        "index": 48
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 49
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 50
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 51
+      },
+      {
+        "token": "учителка",
+        "isWord": true,
+        "index": 52
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 53
+      },
+      {
+        "token": "Имам",
+        "isWord": true,
+        "index": 54
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 55
+      },
+      {
+        "token": "еден",
+        "isWord": true,
+        "index": 56
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 57
+      },
+      {
+        "token": "брат",
+        "isWord": true,
+        "index": 58
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 59
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 60
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 61
+      },
+      {
+        "token": "една",
+        "isWord": true,
+        "index": 62
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 63
+      },
+      {
+        "token": "сестра",
+        "isWord": true,
+        "index": 64
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 65
+      },
+      {
+        "token": "Мојот",
+        "isWord": true,
+        "index": 66
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 67
+      },
+      {
+        "token": "брат",
+        "isWord": true,
+        "index": 68
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 69
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 70
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 71
+      },
+      {
+        "token": "вика",
+        "isWord": true,
+        "index": 72
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 73
+      },
+      {
+        "token": "Петар",
+        "isWord": true,
+        "index": 74
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 75
+      },
+      {
+        "token": "Тој",
+        "isWord": true,
+        "index": 76
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 77
+      },
+      {
+        "token": "има",
+        "isWord": true,
+        "index": 78
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 79
+      },
+      {
+        "token": "осумнаесет",
+        "isWord": true,
+        "index": 80
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 81
+      },
+      {
+        "token": "години",
+        "isWord": true,
+        "index": 82
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 83
+      },
+      {
+        "token": "Мојата",
+        "isWord": true,
+        "index": 84
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 85
+      },
+      {
+        "token": "сестра",
+        "isWord": true,
+        "index": 86
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 87
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 88
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 89
+      },
+      {
+        "token": "вика",
+        "isWord": true,
+        "index": 90
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 91
+      },
+      {
+        "token": "Марија",
+        "isWord": true,
+        "index": 92
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 93
+      },
+      {
+        "token": "Таа",
+        "isWord": true,
+        "index": 94
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 95
+      },
+      {
+        "token": "има",
+        "isWord": true,
+        "index": 96
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 97
+      },
+      {
+        "token": "петнаесет",
+        "isWord": true,
+        "index": 98
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 99
+      },
+      {
+        "token": "години",
+        "isWord": true,
+        "index": 100
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 101
+      },
+      {
+        "token": "Ние",
+        "isWord": true,
+        "index": 102
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 103
+      },
+      {
+        "token": "сме",
+        "isWord": true,
+        "index": 104
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 105
+      },
+      {
+        "token": "среќно",
+        "isWord": true,
+        "index": 106
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 107
+      },
+      {
+        "token": "семејство",
+        "isWord": true,
+        "index": 108
+      },
+      {
+        "token": ".",
+        "isWord": false,
+        "index": 109
+      }
+    ],
+    "fullTranslation": "My name is Anna. I am twenty years old. I live in Skopje with my family.\n\nMy parents are Marko and Lena. My father is a doctor. My mother is a teacher.\n\nI have one brother and one sister. My brother's name is Peter. He is eighteen years old.\n\nMy sister's name is Maria. She is fifteen years old. We are a happy family.",
+    "difficulty": {
+      "level": "intermediate",
+      "score": 50.18181818181818,
+      "factors": {
+        "avgWordLength": 4.472727272727273,
+        "longWords": 6,
+        "totalWords": 55
+      }
+    },
+    "metadata": {
+      "wordCount": 55,
+      "sentenceCount": 12,
+      "characterCount": 315
+    }
   }
 }

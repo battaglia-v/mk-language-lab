@@ -5,83 +5,3347 @@
   "title_en": "City Life vs Village Life",
   "difficulty": "B1",
   "estimatedMinutes": 7,
-  "tags": ["graded-reader", "B1", "culture"],
+  "tags": [
+    "graded-reader",
+    "B1",
+    "culture"
+  ],
   "text_blocks_mk": [
-    { "type": "p", "value": "Македонија е земја каде што повеќето луѓе живеат или во големите градови или во малите села. Секој начин на живот има свои предности и недостатоци. Во градот, наспроти селото, има повеќе можности за работа и забава." },
-    { "type": "p", "value": "Скопје, на пример, има универзитети, театри и модерни продавници. Додека градот нуди динамичен живот, селото е помирно и поздраво. Луѓето во селата јадат свежа храна од своите градини." },
-    { "type": "p", "value": "Споредено со градскиот живот, селскиот живот е поевтин. Меѓутоа, многу млади луѓе се селат од селата во градовите. Ако живееш во село, мораш да имаш автомобил за секојдневни потреби. Ако живееше во Скопје, ќе имаше пристап до јавен превоз." },
-    { "type": "p", "value": "Некои луѓе мислат дека селото е здодевно, но други го сакаат мирот. Градот, пак, може да биде стресен и загаден. Според мене, најдобро е да живееш во мал град, како Битола или Прилеп. Така имаш предности од двата света — и можности и мир." }
+    {
+      "type": "p",
+      "value": "Македонија е земја каде што повеќето луѓе живеат или во големите градови или во малите села. Секој начин на живот има свои предности и недостатоци. Во градот, наспроти селото, има повеќе можности за работа и забава."
+    },
+    {
+      "type": "p",
+      "value": "Скопје, на пример, има универзитети, театри и модерни продавници. Додека градот нуди динамичен живот, селото е помирно и поздраво. Луѓето во селата јадат свежа храна од своите градини."
+    },
+    {
+      "type": "p",
+      "value": "Споредено со градскиот живот, селскиот живот е поевтин. Меѓутоа, многу млади луѓе се селат од селата во градовите. Ако живееш во село, мораш да имаш автомобил за секојдневни потреби. Ако живееше во Скопје, ќе имаше пристап до јавен превоз."
+    },
+    {
+      "type": "p",
+      "value": "Некои луѓе мислат дека селото е здодевно, но други го сакаат мирот. Градот, пак, може да биде стресен и загаден. Според мене, најдобро е да живееш во мал град, како Битола или Прилеп. Така имаш предности од двата света — и можности и мир."
+    }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Изразување контраст",
       "title_en": "Expressing contrast",
       "examples": [
-        { "mk": "наспроти", "en": "as opposed to/in contrast to" },
-        { "mk": "додека", "en": "while/whereas" },
-        { "mk": "споредено со", "en": "compared to" },
-        { "mk": "меѓутоа", "en": "however" }
+        {
+          "mk": "наспроти",
+          "en": "as opposed to/in contrast to"
+        },
+        {
+          "mk": "додека",
+          "en": "while/whereas"
+        },
+        {
+          "mk": "споредено со",
+          "en": "compared to"
+        },
+        {
+          "mk": "меѓутоа",
+          "en": "however"
+        }
       ]
     },
     {
       "title_mk": "Условни реченици",
       "title_en": "Conditional sentences",
       "examples": [
-        { "mk": "ако живееш", "en": "if you live (real condition)" },
-        { "mk": "ако живееше", "en": "if you lived (unreal condition)" }
+        {
+          "mk": "ако живееш",
+          "en": "if you live (real condition)"
+        },
+        {
+          "mk": "ако живееше",
+          "en": "if you lived (unreal condition)"
+        }
       ]
     }
   ],
   "vocabulary": [
-    { "mk": "земја", "en": "country", "pos": "noun" },
-    { "mk": "повеќето", "en": "most", "pos": "pronoun" },
-    { "mk": "или...или", "en": "either...or", "pos": "conjunction" },
-    { "mk": "начин на живот", "en": "way of life", "pos": "noun phrase" },
-    { "mk": "предности", "en": "advantages", "pos": "noun" },
-    { "mk": "недостатоци", "en": "disadvantages", "pos": "noun" },
-    { "mk": "наспроти", "en": "as opposed to/in contrast to", "pos": "preposition" },
-    { "mk": "можности", "en": "opportunities", "pos": "noun" },
-    { "mk": "забава", "en": "entertainment", "pos": "noun" },
-    { "mk": "на пример", "en": "for example", "pos": "phrase" },
-    { "mk": "универзитети", "en": "universities", "pos": "noun" },
-    { "mk": "театри", "en": "theaters", "pos": "noun" },
-    { "mk": "додека", "en": "while/whereas", "pos": "conjunction" },
-    { "mk": "нуди", "en": "offers", "pos": "verb" },
-    { "mk": "помирно", "en": "calmer", "pos": "comparative adj" },
-    { "mk": "поздраво", "en": "healthier", "pos": "comparative adj" },
-    { "mk": "свежа", "en": "fresh", "pos": "adjective" },
-    { "mk": "градини", "en": "gardens", "pos": "noun" },
-    { "mk": "споредено со", "en": "compared to", "pos": "phrase" },
-    { "mk": "градскиот", "en": "city/urban (adj)", "pos": "adjective" },
-    { "mk": "поевтин", "en": "cheaper", "pos": "comparative adj" },
-    { "mk": "меѓутоа", "en": "however", "pos": "conjunction" },
-    { "mk": "се селат", "en": "move/relocate", "pos": "reflexive verb" },
-    { "mk": "ако", "en": "if", "pos": "conjunction" },
-    { "mk": "живееш", "en": "you live", "pos": "verb" },
-    { "mk": "мораш", "en": "you must", "pos": "verb" },
-    { "mk": "потреби", "en": "needs", "pos": "noun" },
-    { "mk": "живееше", "en": "you lived (conditional)", "pos": "verb" },
-    { "mk": "ќе имаше", "en": "you would have", "pos": "conditional" },
-    { "mk": "пристап", "en": "access", "pos": "noun" },
-    { "mk": "јавен превоз", "en": "public transport", "pos": "noun phrase" },
-    { "mk": "мислат", "en": "think", "pos": "verb" },
-    { "mk": "здодевно", "en": "boring", "pos": "adjective" },
-    { "mk": "мирот", "en": "the peace", "pos": "noun (def)" },
-    { "mk": "пак", "en": "on the other hand", "pos": "particle" },
-    { "mk": "стресен", "en": "stressful", "pos": "adjective" },
-    { "mk": "загаден", "en": "polluted", "pos": "adjective" },
-    { "mk": "според мене", "en": "in my opinion", "pos": "phrase" },
-    { "mk": "најдобро", "en": "best", "pos": "superlative adv" },
-    { "mk": "така", "en": "that way/thus", "pos": "adverb" },
-    { "mk": "двата света", "en": "both worlds", "pos": "noun phrase" },
-    { "mk": "и...и", "en": "both...and", "pos": "conjunction" }
+    {
+      "mk": "земја",
+      "en": "country",
+      "pos": "noun"
+    },
+    {
+      "mk": "повеќето",
+      "en": "most",
+      "pos": "pronoun"
+    },
+    {
+      "mk": "или...или",
+      "en": "either...or",
+      "pos": "conjunction"
+    },
+    {
+      "mk": "начин на живот",
+      "en": "way of life",
+      "pos": "noun phrase"
+    },
+    {
+      "mk": "предности",
+      "en": "advantages",
+      "pos": "noun"
+    },
+    {
+      "mk": "недостатоци",
+      "en": "disadvantages",
+      "pos": "noun"
+    },
+    {
+      "mk": "наспроти",
+      "en": "as opposed to/in contrast to",
+      "pos": "preposition"
+    },
+    {
+      "mk": "можности",
+      "en": "opportunities",
+      "pos": "noun"
+    },
+    {
+      "mk": "забава",
+      "en": "entertainment",
+      "pos": "noun"
+    },
+    {
+      "mk": "на пример",
+      "en": "for example",
+      "pos": "phrase"
+    },
+    {
+      "mk": "универзитети",
+      "en": "universities",
+      "pos": "noun"
+    },
+    {
+      "mk": "театри",
+      "en": "theaters",
+      "pos": "noun"
+    },
+    {
+      "mk": "додека",
+      "en": "while/whereas",
+      "pos": "conjunction"
+    },
+    {
+      "mk": "нуди",
+      "en": "offers",
+      "pos": "verb"
+    },
+    {
+      "mk": "помирно",
+      "en": "calmer",
+      "pos": "comparative adj"
+    },
+    {
+      "mk": "поздраво",
+      "en": "healthier",
+      "pos": "comparative adj"
+    },
+    {
+      "mk": "свежа",
+      "en": "fresh",
+      "pos": "adjective"
+    },
+    {
+      "mk": "градини",
+      "en": "gardens",
+      "pos": "noun"
+    },
+    {
+      "mk": "споредено со",
+      "en": "compared to",
+      "pos": "phrase"
+    },
+    {
+      "mk": "градскиот",
+      "en": "city/urban (adj)",
+      "pos": "adjective"
+    },
+    {
+      "mk": "поевтин",
+      "en": "cheaper",
+      "pos": "comparative adj"
+    },
+    {
+      "mk": "меѓутоа",
+      "en": "however",
+      "pos": "conjunction"
+    },
+    {
+      "mk": "се селат",
+      "en": "move/relocate",
+      "pos": "reflexive verb"
+    },
+    {
+      "mk": "ако",
+      "en": "if",
+      "pos": "conjunction"
+    },
+    {
+      "mk": "живееш",
+      "en": "you live",
+      "pos": "verb"
+    },
+    {
+      "mk": "мораш",
+      "en": "you must",
+      "pos": "verb"
+    },
+    {
+      "mk": "потреби",
+      "en": "needs",
+      "pos": "noun"
+    },
+    {
+      "mk": "живееше",
+      "en": "you lived (conditional)",
+      "pos": "verb"
+    },
+    {
+      "mk": "ќе имаше",
+      "en": "you would have",
+      "pos": "conditional"
+    },
+    {
+      "mk": "пристап",
+      "en": "access",
+      "pos": "noun"
+    },
+    {
+      "mk": "јавен превоз",
+      "en": "public transport",
+      "pos": "noun phrase"
+    },
+    {
+      "mk": "мислат",
+      "en": "think",
+      "pos": "verb"
+    },
+    {
+      "mk": "здодевно",
+      "en": "boring",
+      "pos": "adjective"
+    },
+    {
+      "mk": "мирот",
+      "en": "the peace",
+      "pos": "noun (def)"
+    },
+    {
+      "mk": "пак",
+      "en": "on the other hand",
+      "pos": "particle"
+    },
+    {
+      "mk": "стресен",
+      "en": "stressful",
+      "pos": "adjective"
+    },
+    {
+      "mk": "загаден",
+      "en": "polluted",
+      "pos": "adjective"
+    },
+    {
+      "mk": "според мене",
+      "en": "in my opinion",
+      "pos": "phrase"
+    },
+    {
+      "mk": "најдобро",
+      "en": "best",
+      "pos": "superlative adv"
+    },
+    {
+      "mk": "така",
+      "en": "that way/thus",
+      "pos": "adverb"
+    },
+    {
+      "mk": "двата света",
+      "en": "both worlds",
+      "pos": "noun phrase"
+    },
+    {
+      "mk": "и...и",
+      "en": "both...and",
+      "pos": "conjunction"
+    }
   ],
   "expressions": [
-    { "mk": "Според мене", "en": "In my opinion", "usage": "Expressing personal view" }
+    {
+      "mk": "Според мене",
+      "en": "In my opinion",
+      "usage": "Expressing personal view"
+    }
   ],
   "attribution": {
     "handle": "@mklanguagelab",
     "series": "Graded Readers",
     "day": "culture"
+  },
+  "analyzedData": {
+    "words": [
+      {
+        "id": "word-0",
+        "original": "Македонија",
+        "translation": "Macedonia",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 0
+      },
+      {
+        "id": "word-2",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 2,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-4",
+        "original": "земја",
+        "translation": "country",
+        "contextualMeaning": "country",
+        "alternativeTranslations": [
+          "land",
+          "earth",
+          "ground"
+        ],
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 4,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-6",
+        "original": "каде",
+        "translation": "where",
+        "contextualMeaning": "where",
+        "alternativeTranslations": [
+          "wherever"
+        ],
+        "pos": "adverb",
+        "difficulty": "basic",
+        "index": 6,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-8",
+        "original": "што",
+        "translation": "what",
+        "contextualMeaning": "what",
+        "alternativeTranslations": [
+          "that",
+          "which",
+          "why"
+        ],
+        "contextHint": "Interrogative or relative pronoun",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 8,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-10",
+        "original": "повеќето",
+        "translation": "most",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 10
+      },
+      {
+        "id": "word-12",
+        "original": "луѓе",
+        "translation": "people",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 12
+      },
+      {
+        "id": "word-14",
+        "original": "живеат",
+        "translation": "they live",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 14
+      },
+      {
+        "id": "word-16",
+        "original": "или",
+        "translation": "or",
+        "contextualMeaning": "or",
+        "alternativeTranslations": [
+          "either"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 16,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-18",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 18,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-20",
+        "original": "големите",
+        "translation": "the big ones",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 20
+      },
+      {
+        "id": "word-22",
+        "original": "градови",
+        "translation": "cities",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 22
+      },
+      {
+        "id": "word-24",
+        "original": "или",
+        "translation": "or",
+        "contextualMeaning": "or",
+        "alternativeTranslations": [
+          "either"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 24,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-26",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 26,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-28",
+        "original": "малите",
+        "translation": "the little ones",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 28
+      },
+      {
+        "id": "word-30",
+        "original": "села",
+        "translation": "villages",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 30
+      },
+      {
+        "id": "word-32",
+        "original": "Секој",
+        "translation": "every",
+        "contextualMeaning": "every",
+        "alternativeTranslations": [
+          "each",
+          "everyone"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 32,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-34",
+        "original": "начин",
+        "translation": "way",
+        "contextualMeaning": "way",
+        "alternativeTranslations": [
+          "manner",
+          "method"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 34,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-36",
+        "original": "на",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 36,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-38",
+        "original": "живот",
+        "translation": "life",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 38
+      },
+      {
+        "id": "word-40",
+        "original": "има",
+        "translation": "has",
+        "contextualMeaning": "has",
+        "alternativeTranslations": [
+          "there is",
+          "there are",
+          "have"
+        ],
+        "contextHint": "\"Има\" can mean possession (has) or existence (there is)",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 40,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-42",
+        "original": "свои",
+        "translation": "own",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 42
+      },
+      {
+        "id": "word-44",
+        "original": "предности",
+        "translation": "advantages",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 44
+      },
+      {
+        "id": "word-46",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 46,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-48",
+        "original": "недостатоци",
+        "translation": "shortcomings",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 48
+      },
+      {
+        "id": "word-50",
+        "original": "Во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 50,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-52",
+        "original": "градот",
+        "translation": "the city",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 52
+      },
+      {
+        "id": "word-54",
+        "original": "наспроти",
+        "translation": "vs",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 54
+      },
+      {
+        "id": "word-56",
+        "original": "селото",
+        "translation": "the village",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 56
+      },
+      {
+        "id": "word-58",
+        "original": "има",
+        "translation": "has",
+        "contextualMeaning": "has",
+        "alternativeTranslations": [
+          "there is",
+          "there are",
+          "have"
+        ],
+        "contextHint": "\"Има\" can mean possession (has) or existence (there is)",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 58,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-60",
+        "original": "повеќе",
+        "translation": "more",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 60
+      },
+      {
+        "id": "word-62",
+        "original": "можности",
+        "translation": "opportunities",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 62
+      },
+      {
+        "id": "word-64",
+        "original": "за",
+        "translation": "for",
+        "contextualMeaning": "for",
+        "alternativeTranslations": [
+          "about",
+          "to",
+          "in order to"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 64,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-66",
+        "original": "работа",
+        "translation": "work",
+        "contextualMeaning": "work",
+        "alternativeTranslations": [
+          "job",
+          "thing",
+          "matter"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 66,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-68",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 68,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-70",
+        "original": "забава",
+        "translation": "entertainment",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 70
+      },
+      {
+        "id": "word-72",
+        "original": "Скопје",
+        "translation": "Skopje",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 72
+      },
+      {
+        "id": "word-74",
+        "original": "на",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 74,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-76",
+        "original": "пример",
+        "translation": "example",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 76
+      },
+      {
+        "id": "word-78",
+        "original": "има",
+        "translation": "has",
+        "contextualMeaning": "has",
+        "alternativeTranslations": [
+          "there is",
+          "there are",
+          "have"
+        ],
+        "contextHint": "\"Има\" can mean possession (has) or existence (there is)",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 78,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-80",
+        "original": "универзитети",
+        "translation": "universities",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 80
+      },
+      {
+        "id": "word-82",
+        "original": "театри",
+        "translation": "theaters",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 82
+      },
+      {
+        "id": "word-84",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 84,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-86",
+        "original": "модерни",
+        "translation": "modern",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 86
+      },
+      {
+        "id": "word-88",
+        "original": "продавници",
+        "translation": "shops",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 88
+      },
+      {
+        "id": "word-90",
+        "original": "Додека",
+        "translation": "while",
+        "contextualMeaning": "while",
+        "alternativeTranslations": [
+          "until",
+          "as long as"
+        ],
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 90,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-92",
+        "original": "градот",
+        "translation": "the city",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 92
+      },
+      {
+        "id": "word-94",
+        "original": "нуди",
+        "translation": "offers",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 94
+      },
+      {
+        "id": "word-96",
+        "original": "динамичен",
+        "translation": "dynamic",
+        "pos": "adjective",
+        "difficulty": "advanced",
+        "index": 96
+      },
+      {
+        "id": "word-98",
+        "original": "живот",
+        "translation": "life",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 98
+      },
+      {
+        "id": "word-100",
+        "original": "селото",
+        "translation": "the village",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 100
+      },
+      {
+        "id": "word-102",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 102,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-104",
+        "original": "помирно",
+        "translation": "calmer",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 104
+      },
+      {
+        "id": "word-106",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 106,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-108",
+        "original": "поздраво",
+        "translation": "greetings",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 108
+      },
+      {
+        "id": "word-110",
+        "original": "Луѓето",
+        "translation": "The people",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 110
+      },
+      {
+        "id": "word-112",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 112,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-114",
+        "original": "селата",
+        "translation": "the villages",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 114
+      },
+      {
+        "id": "word-116",
+        "original": "јадат",
+        "translation": "they eat",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 116
+      },
+      {
+        "id": "word-118",
+        "original": "свежа",
+        "translation": "fresh",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 118
+      },
+      {
+        "id": "word-120",
+        "original": "храна",
+        "translation": "food",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 120
+      },
+      {
+        "id": "word-122",
+        "original": "од",
+        "translation": "from",
+        "contextualMeaning": "from",
+        "alternativeTranslations": [
+          "of",
+          "off",
+          "than",
+          "by"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 122,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-124",
+        "original": "своите",
+        "translation": "their own",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 124
+      },
+      {
+        "id": "word-126",
+        "original": "градини",
+        "translation": "gardens",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 126
+      },
+      {
+        "id": "word-128",
+        "original": "Споредено",
+        "translation": "Compared",
+        "pos": "adjective",
+        "difficulty": "advanced",
+        "index": 128
+      },
+      {
+        "id": "word-130",
+        "original": "со",
+        "translation": "with",
+        "contextualMeaning": "with",
+        "alternativeTranslations": [
+          "by",
+          "using"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 130,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-132",
+        "original": "градскиот",
+        "translation": "the city",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 132
+      },
+      {
+        "id": "word-134",
+        "original": "живот",
+        "translation": "life",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 134
+      },
+      {
+        "id": "word-136",
+        "original": "селскиот",
+        "translation": "the villager",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 136
+      },
+      {
+        "id": "word-138",
+        "original": "живот",
+        "translation": "life",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 138
+      },
+      {
+        "id": "word-140",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 140,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-142",
+        "original": "поевтин",
+        "translation": "cheaper",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 142
+      },
+      {
+        "id": "word-144",
+        "original": "Меѓутоа",
+        "translation": "However",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 144
+      },
+      {
+        "id": "word-146",
+        "original": "многу",
+        "translation": "very",
+        "contextualMeaning": "very",
+        "alternativeTranslations": [
+          "much",
+          "a lot",
+          "many"
+        ],
+        "pos": "adverb",
+        "difficulty": "intermediate",
+        "index": 146,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-148",
+        "original": "млади",
+        "translation": "young people",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 148
+      },
+      {
+        "id": "word-150",
+        "original": "луѓе",
+        "translation": "people",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 150
+      },
+      {
+        "id": "word-152",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 152,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-154",
+        "original": "селат",
+        "translation": "village",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 154
+      },
+      {
+        "id": "word-156",
+        "original": "од",
+        "translation": "from",
+        "contextualMeaning": "from",
+        "alternativeTranslations": [
+          "of",
+          "off",
+          "than",
+          "by"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 156,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-158",
+        "original": "селата",
+        "translation": "the villages",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 158
+      },
+      {
+        "id": "word-160",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 160,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-162",
+        "original": "градовите",
+        "translation": "the cities",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 162
+      },
+      {
+        "id": "word-164",
+        "original": "Ако",
+        "translation": "if",
+        "contextualMeaning": "if",
+        "alternativeTranslations": [
+          "whether"
+        ],
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 164,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-166",
+        "original": "живееш",
+        "translation": "you live",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 166
+      },
+      {
+        "id": "word-168",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 168,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-170",
+        "original": "село",
+        "translation": "a village",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 170
+      },
+      {
+        "id": "word-172",
+        "original": "мораш",
+        "translation": "you have to",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 172
+      },
+      {
+        "id": "word-174",
+        "original": "да",
+        "translation": "to",
+        "contextualMeaning": "to",
+        "alternativeTranslations": [
+          "yes",
+          "that",
+          "so that",
+          "let"
+        ],
+        "contextHint": "\"Да\" before verbs means \"to\"; alone means \"yes\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 174,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-176",
+        "original": "имаш",
+        "translation": "you have",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 176
+      },
+      {
+        "id": "word-178",
+        "original": "автомобил",
+        "translation": "a car",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 178
+      },
+      {
+        "id": "word-180",
+        "original": "за",
+        "translation": "for",
+        "contextualMeaning": "for",
+        "alternativeTranslations": [
+          "about",
+          "to",
+          "in order to"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 180,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-182",
+        "original": "секојдневни",
+        "translation": "everyday",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 182
+      },
+      {
+        "id": "word-184",
+        "original": "потреби",
+        "translation": "needs",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 184
+      },
+      {
+        "id": "word-186",
+        "original": "Ако",
+        "translation": "if",
+        "contextualMeaning": "if",
+        "alternativeTranslations": [
+          "whether"
+        ],
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 186,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-188",
+        "original": "живееше",
+        "translation": "lived",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 188
+      },
+      {
+        "id": "word-190",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 190,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-192",
+        "original": "Скопје",
+        "translation": "Skopje",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 192
+      },
+      {
+        "id": "word-194",
+        "original": "ќе",
+        "translation": "will",
+        "contextualMeaning": "will",
+        "alternativeTranslations": [
+          "shall",
+          "going to"
+        ],
+        "contextHint": "Future tense marker - always before the verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 194,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-196",
+        "original": "имаше",
+        "translation": "there was",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 196
+      },
+      {
+        "id": "word-198",
+        "original": "пристап",
+        "translation": "approach",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 198
+      },
+      {
+        "id": "word-200",
+        "original": "до",
+        "translation": "to",
+        "contextualMeaning": "to",
+        "alternativeTranslations": [
+          "until",
+          "by",
+          "next to",
+          "up to"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 200,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-202",
+        "original": "јавен",
+        "translation": "public",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 202
+      },
+      {
+        "id": "word-204",
+        "original": "превоз",
+        "translation": "transportation",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 204
+      },
+      {
+        "id": "word-206",
+        "original": "Некои",
+        "translation": "Some",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 206
+      },
+      {
+        "id": "word-208",
+        "original": "луѓе",
+        "translation": "people",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 208
+      },
+      {
+        "id": "word-210",
+        "original": "мислат",
+        "translation": "they think",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 210
+      },
+      {
+        "id": "word-212",
+        "original": "дека",
+        "translation": "that",
+        "contextualMeaning": "that",
+        "alternativeTranslations": [
+          "because"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 212,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-214",
+        "original": "селото",
+        "translation": "the village",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 214
+      },
+      {
+        "id": "word-216",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 216,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-218",
+        "original": "здодевно",
+        "translation": "boring",
+        "pos": "adjective",
+        "difficulty": "advanced",
+        "index": 218
+      },
+      {
+        "id": "word-220",
+        "original": "но",
+        "translation": "but",
+        "pos": "adjective",
+        "difficulty": "basic",
+        "index": 220
+      },
+      {
+        "id": "word-222",
+        "original": "други",
+        "translation": "others",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 222
+      },
+      {
+        "id": "word-224",
+        "original": "го",
+        "translation": "the",
+        "contextualMeaning": "the",
+        "alternativeTranslations": [
+          "him",
+          "it (masc.)"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 224,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-226",
+        "original": "сакаат",
+        "translation": "they want",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 226
+      },
+      {
+        "id": "word-228",
+        "original": "мирот",
+        "translation": "the peace",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 228
+      },
+      {
+        "id": "word-230",
+        "original": "Градот",
+        "translation": "The city",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 230
+      },
+      {
+        "id": "word-232",
+        "original": "пак",
+        "translation": "but",
+        "contextualMeaning": "but",
+        "alternativeTranslations": [
+          "again",
+          "however",
+          "on the other hand"
+        ],
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 232,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-234",
+        "original": "може",
+        "translation": "can",
+        "contextualMeaning": "can",
+        "alternativeTranslations": [
+          "may",
+          "is possible",
+          "could"
+        ],
+        "contextHint": "Expresses ability or permission",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 234,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-236",
+        "original": "да",
+        "translation": "to",
+        "contextualMeaning": "to",
+        "alternativeTranslations": [
+          "yes",
+          "that",
+          "so that",
+          "let"
+        ],
+        "contextHint": "\"Да\" before verbs means \"to\"; alone means \"yes\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 236,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-238",
+        "original": "биде",
+        "translation": "be",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 238
+      },
+      {
+        "id": "word-240",
+        "original": "стресен",
+        "translation": "stressed",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 240
+      },
+      {
+        "id": "word-242",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 242,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-244",
+        "original": "загаден",
+        "translation": "polluted",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 244
+      },
+      {
+        "id": "word-246",
+        "original": "Според",
+        "translation": "According to",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 246
+      },
+      {
+        "id": "word-248",
+        "original": "мене",
+        "translation": "me",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 248
+      },
+      {
+        "id": "word-250",
+        "original": "најдобро",
+        "translation": "the best",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 250
+      },
+      {
+        "id": "word-252",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 252,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-254",
+        "original": "да",
+        "translation": "to",
+        "contextualMeaning": "to",
+        "alternativeTranslations": [
+          "yes",
+          "that",
+          "so that",
+          "let"
+        ],
+        "contextHint": "\"Да\" before verbs means \"to\"; alone means \"yes\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 254,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-256",
+        "original": "живееш",
+        "translation": "you live",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 256
+      },
+      {
+        "id": "word-258",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 258,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-260",
+        "original": "мал",
+        "translation": "small",
+        "pos": "adjective",
+        "difficulty": "basic",
+        "index": 260
+      },
+      {
+        "id": "word-262",
+        "original": "град",
+        "translation": "town",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 262
+      },
+      {
+        "id": "word-264",
+        "original": "како",
+        "translation": "how",
+        "contextualMeaning": "how",
+        "alternativeTranslations": [
+          "like",
+          "as",
+          "what"
+        ],
+        "pos": "adverb",
+        "difficulty": "basic",
+        "index": 264,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-266",
+        "original": "Битола",
+        "translation": "Bitola",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 266
+      },
+      {
+        "id": "word-268",
+        "original": "или",
+        "translation": "or",
+        "contextualMeaning": "or",
+        "alternativeTranslations": [
+          "either"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 268,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-270",
+        "original": "Прилеп",
+        "translation": "Adhere",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 270
+      },
+      {
+        "id": "word-272",
+        "original": "Така",
+        "translation": "so",
+        "contextualMeaning": "so",
+        "alternativeTranslations": [
+          "thus",
+          "like that",
+          "in that way"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 272,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-274",
+        "original": "имаш",
+        "translation": "you have",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 274
+      },
+      {
+        "id": "word-276",
+        "original": "предности",
+        "translation": "advantages",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 276
+      },
+      {
+        "id": "word-278",
+        "original": "од",
+        "translation": "from",
+        "contextualMeaning": "from",
+        "alternativeTranslations": [
+          "of",
+          "off",
+          "than",
+          "by"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 278,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-280",
+        "original": "двата",
+        "translation": "both",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 280
+      },
+      {
+        "id": "word-282",
+        "original": "света",
+        "translation": "world",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 282
+      },
+      {
+        "id": "word-284",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 284,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-286",
+        "original": "можности",
+        "translation": "opportunities",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 286
+      },
+      {
+        "id": "word-288",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 288,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-290",
+        "original": "мир",
+        "translation": "peace",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 290
+      }
+    ],
+    "tokens": [
+      {
+        "token": "Македонија",
+        "isWord": true,
+        "index": 0
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 1
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 2
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 3
+      },
+      {
+        "token": "земја",
+        "isWord": true,
+        "index": 4
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 5
+      },
+      {
+        "token": "каде",
+        "isWord": true,
+        "index": 6
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 7
+      },
+      {
+        "token": "што",
+        "isWord": true,
+        "index": 8
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 9
+      },
+      {
+        "token": "повеќето",
+        "isWord": true,
+        "index": 10
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 11
+      },
+      {
+        "token": "луѓе",
+        "isWord": true,
+        "index": 12
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 13
+      },
+      {
+        "token": "живеат",
+        "isWord": true,
+        "index": 14
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 15
+      },
+      {
+        "token": "или",
+        "isWord": true,
+        "index": 16
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 17
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 18
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 19
+      },
+      {
+        "token": "големите",
+        "isWord": true,
+        "index": 20
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 21
+      },
+      {
+        "token": "градови",
+        "isWord": true,
+        "index": 22
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 23
+      },
+      {
+        "token": "или",
+        "isWord": true,
+        "index": 24
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 25
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 26
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 27
+      },
+      {
+        "token": "малите",
+        "isWord": true,
+        "index": 28
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 29
+      },
+      {
+        "token": "села",
+        "isWord": true,
+        "index": 30
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 31
+      },
+      {
+        "token": "Секој",
+        "isWord": true,
+        "index": 32
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 33
+      },
+      {
+        "token": "начин",
+        "isWord": true,
+        "index": 34
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 35
+      },
+      {
+        "token": "на",
+        "isWord": true,
+        "index": 36
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 37
+      },
+      {
+        "token": "живот",
+        "isWord": true,
+        "index": 38
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 39
+      },
+      {
+        "token": "има",
+        "isWord": true,
+        "index": 40
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 41
+      },
+      {
+        "token": "свои",
+        "isWord": true,
+        "index": 42
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 43
+      },
+      {
+        "token": "предности",
+        "isWord": true,
+        "index": 44
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 45
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 46
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 47
+      },
+      {
+        "token": "недостатоци",
+        "isWord": true,
+        "index": 48
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 49
+      },
+      {
+        "token": "Во",
+        "isWord": true,
+        "index": 50
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 51
+      },
+      {
+        "token": "градот",
+        "isWord": true,
+        "index": 52
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 53
+      },
+      {
+        "token": "наспроти",
+        "isWord": true,
+        "index": 54
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 55
+      },
+      {
+        "token": "селото",
+        "isWord": true,
+        "index": 56
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 57
+      },
+      {
+        "token": "има",
+        "isWord": true,
+        "index": 58
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 59
+      },
+      {
+        "token": "повеќе",
+        "isWord": true,
+        "index": 60
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 61
+      },
+      {
+        "token": "можности",
+        "isWord": true,
+        "index": 62
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 63
+      },
+      {
+        "token": "за",
+        "isWord": true,
+        "index": 64
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 65
+      },
+      {
+        "token": "работа",
+        "isWord": true,
+        "index": 66
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 67
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 68
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 69
+      },
+      {
+        "token": "забава",
+        "isWord": true,
+        "index": 70
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 71
+      },
+      {
+        "token": "Скопје",
+        "isWord": true,
+        "index": 72
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 73
+      },
+      {
+        "token": "на",
+        "isWord": true,
+        "index": 74
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 75
+      },
+      {
+        "token": "пример",
+        "isWord": true,
+        "index": 76
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 77
+      },
+      {
+        "token": "има",
+        "isWord": true,
+        "index": 78
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 79
+      },
+      {
+        "token": "универзитети",
+        "isWord": true,
+        "index": 80
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 81
+      },
+      {
+        "token": "театри",
+        "isWord": true,
+        "index": 82
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 83
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 84
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 85
+      },
+      {
+        "token": "модерни",
+        "isWord": true,
+        "index": 86
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 87
+      },
+      {
+        "token": "продавници",
+        "isWord": true,
+        "index": 88
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 89
+      },
+      {
+        "token": "Додека",
+        "isWord": true,
+        "index": 90
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 91
+      },
+      {
+        "token": "градот",
+        "isWord": true,
+        "index": 92
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 93
+      },
+      {
+        "token": "нуди",
+        "isWord": true,
+        "index": 94
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 95
+      },
+      {
+        "token": "динамичен",
+        "isWord": true,
+        "index": 96
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 97
+      },
+      {
+        "token": "живот",
+        "isWord": true,
+        "index": 98
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 99
+      },
+      {
+        "token": "селото",
+        "isWord": true,
+        "index": 100
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 101
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 102
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 103
+      },
+      {
+        "token": "помирно",
+        "isWord": true,
+        "index": 104
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 105
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 106
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 107
+      },
+      {
+        "token": "поздраво",
+        "isWord": true,
+        "index": 108
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 109
+      },
+      {
+        "token": "Луѓето",
+        "isWord": true,
+        "index": 110
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 111
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 112
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 113
+      },
+      {
+        "token": "селата",
+        "isWord": true,
+        "index": 114
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 115
+      },
+      {
+        "token": "јадат",
+        "isWord": true,
+        "index": 116
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 117
+      },
+      {
+        "token": "свежа",
+        "isWord": true,
+        "index": 118
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 119
+      },
+      {
+        "token": "храна",
+        "isWord": true,
+        "index": 120
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 121
+      },
+      {
+        "token": "од",
+        "isWord": true,
+        "index": 122
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 123
+      },
+      {
+        "token": "своите",
+        "isWord": true,
+        "index": 124
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 125
+      },
+      {
+        "token": "градини",
+        "isWord": true,
+        "index": 126
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 127
+      },
+      {
+        "token": "Споредено",
+        "isWord": true,
+        "index": 128
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 129
+      },
+      {
+        "token": "со",
+        "isWord": true,
+        "index": 130
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 131
+      },
+      {
+        "token": "градскиот",
+        "isWord": true,
+        "index": 132
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 133
+      },
+      {
+        "token": "живот",
+        "isWord": true,
+        "index": 134
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 135
+      },
+      {
+        "token": "селскиот",
+        "isWord": true,
+        "index": 136
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 137
+      },
+      {
+        "token": "живот",
+        "isWord": true,
+        "index": 138
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 139
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 140
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 141
+      },
+      {
+        "token": "поевтин",
+        "isWord": true,
+        "index": 142
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 143
+      },
+      {
+        "token": "Меѓутоа",
+        "isWord": true,
+        "index": 144
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 145
+      },
+      {
+        "token": "многу",
+        "isWord": true,
+        "index": 146
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 147
+      },
+      {
+        "token": "млади",
+        "isWord": true,
+        "index": 148
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 149
+      },
+      {
+        "token": "луѓе",
+        "isWord": true,
+        "index": 150
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 151
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 152
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 153
+      },
+      {
+        "token": "селат",
+        "isWord": true,
+        "index": 154
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 155
+      },
+      {
+        "token": "од",
+        "isWord": true,
+        "index": 156
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 157
+      },
+      {
+        "token": "селата",
+        "isWord": true,
+        "index": 158
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 159
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 160
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 161
+      },
+      {
+        "token": "градовите",
+        "isWord": true,
+        "index": 162
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 163
+      },
+      {
+        "token": "Ако",
+        "isWord": true,
+        "index": 164
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 165
+      },
+      {
+        "token": "живееш",
+        "isWord": true,
+        "index": 166
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 167
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 168
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 169
+      },
+      {
+        "token": "село",
+        "isWord": true,
+        "index": 170
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 171
+      },
+      {
+        "token": "мораш",
+        "isWord": true,
+        "index": 172
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 173
+      },
+      {
+        "token": "да",
+        "isWord": true,
+        "index": 174
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 175
+      },
+      {
+        "token": "имаш",
+        "isWord": true,
+        "index": 176
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 177
+      },
+      {
+        "token": "автомобил",
+        "isWord": true,
+        "index": 178
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 179
+      },
+      {
+        "token": "за",
+        "isWord": true,
+        "index": 180
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 181
+      },
+      {
+        "token": "секојдневни",
+        "isWord": true,
+        "index": 182
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 183
+      },
+      {
+        "token": "потреби",
+        "isWord": true,
+        "index": 184
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 185
+      },
+      {
+        "token": "Ако",
+        "isWord": true,
+        "index": 186
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 187
+      },
+      {
+        "token": "живееше",
+        "isWord": true,
+        "index": 188
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 189
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 190
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 191
+      },
+      {
+        "token": "Скопје",
+        "isWord": true,
+        "index": 192
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 193
+      },
+      {
+        "token": "ќе",
+        "isWord": true,
+        "index": 194
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 195
+      },
+      {
+        "token": "имаше",
+        "isWord": true,
+        "index": 196
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 197
+      },
+      {
+        "token": "пристап",
+        "isWord": true,
+        "index": 198
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 199
+      },
+      {
+        "token": "до",
+        "isWord": true,
+        "index": 200
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 201
+      },
+      {
+        "token": "јавен",
+        "isWord": true,
+        "index": 202
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 203
+      },
+      {
+        "token": "превоз",
+        "isWord": true,
+        "index": 204
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 205
+      },
+      {
+        "token": "Некои",
+        "isWord": true,
+        "index": 206
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 207
+      },
+      {
+        "token": "луѓе",
+        "isWord": true,
+        "index": 208
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 209
+      },
+      {
+        "token": "мислат",
+        "isWord": true,
+        "index": 210
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 211
+      },
+      {
+        "token": "дека",
+        "isWord": true,
+        "index": 212
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 213
+      },
+      {
+        "token": "селото",
+        "isWord": true,
+        "index": 214
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 215
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 216
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 217
+      },
+      {
+        "token": "здодевно",
+        "isWord": true,
+        "index": 218
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 219
+      },
+      {
+        "token": "но",
+        "isWord": true,
+        "index": 220
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 221
+      },
+      {
+        "token": "други",
+        "isWord": true,
+        "index": 222
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 223
+      },
+      {
+        "token": "го",
+        "isWord": true,
+        "index": 224
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 225
+      },
+      {
+        "token": "сакаат",
+        "isWord": true,
+        "index": 226
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 227
+      },
+      {
+        "token": "мирот",
+        "isWord": true,
+        "index": 228
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 229
+      },
+      {
+        "token": "Градот",
+        "isWord": true,
+        "index": 230
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 231
+      },
+      {
+        "token": "пак",
+        "isWord": true,
+        "index": 232
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 233
+      },
+      {
+        "token": "може",
+        "isWord": true,
+        "index": 234
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 235
+      },
+      {
+        "token": "да",
+        "isWord": true,
+        "index": 236
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 237
+      },
+      {
+        "token": "биде",
+        "isWord": true,
+        "index": 238
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 239
+      },
+      {
+        "token": "стресен",
+        "isWord": true,
+        "index": 240
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 241
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 242
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 243
+      },
+      {
+        "token": "загаден",
+        "isWord": true,
+        "index": 244
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 245
+      },
+      {
+        "token": "Според",
+        "isWord": true,
+        "index": 246
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 247
+      },
+      {
+        "token": "мене",
+        "isWord": true,
+        "index": 248
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 249
+      },
+      {
+        "token": "најдобро",
+        "isWord": true,
+        "index": 250
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 251
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 252
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 253
+      },
+      {
+        "token": "да",
+        "isWord": true,
+        "index": 254
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 255
+      },
+      {
+        "token": "живееш",
+        "isWord": true,
+        "index": 256
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 257
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 258
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 259
+      },
+      {
+        "token": "мал",
+        "isWord": true,
+        "index": 260
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 261
+      },
+      {
+        "token": "град",
+        "isWord": true,
+        "index": 262
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 263
+      },
+      {
+        "token": "како",
+        "isWord": true,
+        "index": 264
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 265
+      },
+      {
+        "token": "Битола",
+        "isWord": true,
+        "index": 266
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 267
+      },
+      {
+        "token": "или",
+        "isWord": true,
+        "index": 268
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 269
+      },
+      {
+        "token": "Прилеп",
+        "isWord": true,
+        "index": 270
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 271
+      },
+      {
+        "token": "Така",
+        "isWord": true,
+        "index": 272
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 273
+      },
+      {
+        "token": "имаш",
+        "isWord": true,
+        "index": 274
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 275
+      },
+      {
+        "token": "предности",
+        "isWord": true,
+        "index": 276
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 277
+      },
+      {
+        "token": "од",
+        "isWord": true,
+        "index": 278
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 279
+      },
+      {
+        "token": "двата",
+        "isWord": true,
+        "index": 280
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 281
+      },
+      {
+        "token": "света",
+        "isWord": true,
+        "index": 282
+      },
+      {
+        "token": " — ",
+        "isWord": false,
+        "index": 283
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 284
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 285
+      },
+      {
+        "token": "можности",
+        "isWord": true,
+        "index": 286
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 287
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 288
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 289
+      },
+      {
+        "token": "мир",
+        "isWord": true,
+        "index": 290
+      },
+      {
+        "token": ".",
+        "isWord": false,
+        "index": 291
+      }
+    ],
+    "fullTranslation": "Macedonia is a country where most people live either in big cities or in small villages. Each lifestyle has its advantages and disadvantages. In the city, as opposed to the village, there are more opportunities for work and entertainment.\n\nSkopje, for example, has universities, theaters and modern shops. While the city offers a dynamic life, the village is calmer and healthier. People in villages eat fresh food from their gardens.\n\nCompared to city life, country life is cheaper. However, many young people are moving from the countryside to the cities. If you live in the countryside, you must have a car for everyday needs. If he lived in Skopje, he would have access to public transport.\n\nSome people think the village is boring, but others like the peace. The city, on the other hand, can be stressful and polluted. In my opinion, it is best to live in a small town, like Bitola or Prilep. So you have the best of both worlds—both opportunity and peace.",
+    "difficulty": {
+      "level": "intermediate",
+      "score": 55.342465753424655,
+      "factors": {
+        "avgWordLength": 4.815068493150685,
+        "longWords": 21,
+        "totalWords": 146
+      }
+    },
+    "metadata": {
+      "wordCount": 146,
+      "sentenceCount": 14,
+      "characterCount": 882
+    }
   }
 }

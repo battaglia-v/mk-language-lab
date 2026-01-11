@@ -5,67 +5,2034 @@
   "title_en": "Hobbies",
   "difficulty": "A2",
   "estimatedMinutes": 5,
-  "tags": ["graded-reader", "A2", "culture"],
+  "tags": [
+    "graded-reader",
+    "A2",
+    "culture"
+  ],
   "text_blocks_mk": [
-    { "type": "p", "value": "Сите луѓе имаат хобија. Мојата пријателка Марија обожава да чита книги. Таа секогаш носи книга со себе." },
-    { "type": "p", "value": "Јас, пак, повеќе сакам да цртам. Почнав да цртам кога бев дете. Ми се допаѓа да цртам пејзажи и портрети." },
-    { "type": "p", "value": "Мојот брат често свири гитара. Тој никогаш не пропушта да вежба. Летото сакаме да пливаме во езерото." },
-    { "type": "p", "value": "Ретко готвам, но кога готвам, правам традиционална храна. На моето семејство многу му се допаѓа кога готвам. Хобијата ни помагаат да се релаксираме. Секој треба да има барем едно хоби." }
+    {
+      "type": "p",
+      "value": "Сите луѓе имаат хобија. Мојата пријателка Марија обожава да чита книги. Таа секогаш носи книга со себе."
+    },
+    {
+      "type": "p",
+      "value": "Јас, пак, повеќе сакам да цртам. Почнав да цртам кога бев дете. Ми се допаѓа да цртам пејзажи и портрети."
+    },
+    {
+      "type": "p",
+      "value": "Мојот брат често свири гитара. Тој никогаш не пропушта да вежба. Летото сакаме да пливаме во езерото."
+    },
+    {
+      "type": "p",
+      "value": "Ретко готвам, но кога готвам, правам традиционална храна. На моето семејство многу му се допаѓа кога готвам. Хобијата ни помагаат да се релаксираме. Секој треба да има барем едно хоби."
+    }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Изразување преференции и честота",
       "title_en": "Expressing preferences and frequency",
       "examples": [
-        { "mk": "сакам", "en": "I want/like" },
-        { "mk": "ми се допаѓа", "en": "I like (it pleases me)" },
-        { "mk": "секогаш", "en": "always" },
-        { "mk": "никогаш", "en": "never" }
+        {
+          "mk": "сакам",
+          "en": "I want/like"
+        },
+        {
+          "mk": "ми се допаѓа",
+          "en": "I like (it pleases me)"
+        },
+        {
+          "mk": "секогаш",
+          "en": "always"
+        },
+        {
+          "mk": "никогаш",
+          "en": "never"
+        }
       ]
     }
   ],
   "vocabulary": [
-    { "mk": "сите", "en": "all", "pos": "pronoun" },
-    { "mk": "луѓе", "en": "people", "pos": "noun" },
-    { "mk": "хобија", "en": "hobbies", "pos": "noun" },
-    { "mk": "обожава", "en": "loves/adores", "pos": "verb" },
-    { "mk": "чита", "en": "to read", "pos": "verb" },
-    { "mk": "книги", "en": "books", "pos": "noun" },
-    { "mk": "секогаш", "en": "always", "pos": "adverb" },
-    { "mk": "носи", "en": "carries", "pos": "verb" },
-    { "mk": "со себе", "en": "with her(self)", "pos": "phrase" },
-    { "mk": "пак", "en": "on the other hand/however", "pos": "particle" },
-    { "mk": "повеќе", "en": "more/prefer", "pos": "adverb" },
-    { "mk": "цртам", "en": "to draw", "pos": "verb" },
-    { "mk": "почнав", "en": "I started", "pos": "verb (past)" },
-    { "mk": "бев", "en": "I was", "pos": "verb (past)" },
-    { "mk": "дете", "en": "child", "pos": "noun" },
-    { "mk": "ми се допаѓа", "en": "I like (it pleases me)", "pos": "verb phrase" },
-    { "mk": "пејзажи", "en": "landscapes", "pos": "noun" },
-    { "mk": "портрети", "en": "portraits", "pos": "noun" },
-    { "mk": "често", "en": "often", "pos": "adverb" },
-    { "mk": "свири", "en": "plays (instrument)", "pos": "verb" },
-    { "mk": "гитара", "en": "guitar", "pos": "noun" },
-    { "mk": "никогаш", "en": "never", "pos": "adverb" },
-    { "mk": "пропушта", "en": "misses/skips", "pos": "verb" },
-    { "mk": "вежба", "en": "to practice", "pos": "verb" },
-    { "mk": "летото", "en": "in summer", "pos": "noun (def)" },
-    { "mk": "пливаме", "en": "we swim", "pos": "verb" },
-    { "mk": "езерото", "en": "the lake", "pos": "noun (def)" },
-    { "mk": "ретко", "en": "rarely", "pos": "adverb" },
-    { "mk": "готвам", "en": "I cook", "pos": "verb" },
-    { "mk": "традиционална", "en": "traditional", "pos": "adjective" },
-    { "mk": "многу", "en": "very much/really", "pos": "adverb" },
-    { "mk": "помагаат", "en": "help", "pos": "verb" },
-    { "mk": "се релаксираме", "en": "to relax", "pos": "reflexive verb" },
-    { "mk": "секој", "en": "everyone", "pos": "pronoun" },
-    { "mk": "треба", "en": "should/must", "pos": "verb" },
-    { "mk": "барем", "en": "at least", "pos": "adverb" }
+    {
+      "mk": "сите",
+      "en": "all",
+      "pos": "pronoun"
+    },
+    {
+      "mk": "луѓе",
+      "en": "people",
+      "pos": "noun"
+    },
+    {
+      "mk": "хобија",
+      "en": "hobbies",
+      "pos": "noun"
+    },
+    {
+      "mk": "обожава",
+      "en": "loves/adores",
+      "pos": "verb"
+    },
+    {
+      "mk": "чита",
+      "en": "to read",
+      "pos": "verb"
+    },
+    {
+      "mk": "книги",
+      "en": "books",
+      "pos": "noun"
+    },
+    {
+      "mk": "секогаш",
+      "en": "always",
+      "pos": "adverb"
+    },
+    {
+      "mk": "носи",
+      "en": "carries",
+      "pos": "verb"
+    },
+    {
+      "mk": "со себе",
+      "en": "with her(self)",
+      "pos": "phrase"
+    },
+    {
+      "mk": "пак",
+      "en": "on the other hand/however",
+      "pos": "particle"
+    },
+    {
+      "mk": "повеќе",
+      "en": "more/prefer",
+      "pos": "adverb"
+    },
+    {
+      "mk": "цртам",
+      "en": "to draw",
+      "pos": "verb"
+    },
+    {
+      "mk": "почнав",
+      "en": "I started",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "бев",
+      "en": "I was",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "дете",
+      "en": "child",
+      "pos": "noun"
+    },
+    {
+      "mk": "ми се допаѓа",
+      "en": "I like (it pleases me)",
+      "pos": "verb phrase"
+    },
+    {
+      "mk": "пејзажи",
+      "en": "landscapes",
+      "pos": "noun"
+    },
+    {
+      "mk": "портрети",
+      "en": "portraits",
+      "pos": "noun"
+    },
+    {
+      "mk": "често",
+      "en": "often",
+      "pos": "adverb"
+    },
+    {
+      "mk": "свири",
+      "en": "plays (instrument)",
+      "pos": "verb"
+    },
+    {
+      "mk": "гитара",
+      "en": "guitar",
+      "pos": "noun"
+    },
+    {
+      "mk": "никогаш",
+      "en": "never",
+      "pos": "adverb"
+    },
+    {
+      "mk": "пропушта",
+      "en": "misses/skips",
+      "pos": "verb"
+    },
+    {
+      "mk": "вежба",
+      "en": "to practice",
+      "pos": "verb"
+    },
+    {
+      "mk": "летото",
+      "en": "in summer",
+      "pos": "noun (def)"
+    },
+    {
+      "mk": "пливаме",
+      "en": "we swim",
+      "pos": "verb"
+    },
+    {
+      "mk": "езерото",
+      "en": "the lake",
+      "pos": "noun (def)"
+    },
+    {
+      "mk": "ретко",
+      "en": "rarely",
+      "pos": "adverb"
+    },
+    {
+      "mk": "готвам",
+      "en": "I cook",
+      "pos": "verb"
+    },
+    {
+      "mk": "традиционална",
+      "en": "traditional",
+      "pos": "adjective"
+    },
+    {
+      "mk": "многу",
+      "en": "very much/really",
+      "pos": "adverb"
+    },
+    {
+      "mk": "помагаат",
+      "en": "help",
+      "pos": "verb"
+    },
+    {
+      "mk": "се релаксираме",
+      "en": "to relax",
+      "pos": "reflexive verb"
+    },
+    {
+      "mk": "секој",
+      "en": "everyone",
+      "pos": "pronoun"
+    },
+    {
+      "mk": "треба",
+      "en": "should/must",
+      "pos": "verb"
+    },
+    {
+      "mk": "барем",
+      "en": "at least",
+      "pos": "adverb"
+    }
   ],
   "expressions": [],
   "attribution": {
     "handle": "@mklanguagelab",
     "series": "Graded Readers",
     "day": "culture"
+  },
+  "analyzedData": {
+    "words": [
+      {
+        "id": "word-0",
+        "original": "Сите",
+        "translation": "all",
+        "contextualMeaning": "all",
+        "alternativeTranslations": [
+          "everyone",
+          "everything"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 0,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-2",
+        "original": "луѓе",
+        "translation": "people",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 2
+      },
+      {
+        "id": "word-4",
+        "original": "имаат",
+        "translation": "they have",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 4
+      },
+      {
+        "id": "word-6",
+        "original": "хобија",
+        "translation": "a hobby",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 6
+      },
+      {
+        "id": "word-8",
+        "original": "Мојата",
+        "translation": "Mine",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 8
+      },
+      {
+        "id": "word-10",
+        "original": "пријателка",
+        "translation": "a friend",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 10
+      },
+      {
+        "id": "word-12",
+        "original": "Марија",
+        "translation": "Maria",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 12
+      },
+      {
+        "id": "word-14",
+        "original": "обожава",
+        "translation": "he adores",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 14
+      },
+      {
+        "id": "word-16",
+        "original": "да",
+        "translation": "to",
+        "contextualMeaning": "to",
+        "alternativeTranslations": [
+          "yes",
+          "that",
+          "so that",
+          "let"
+        ],
+        "contextHint": "\"Да\" before verbs means \"to\"; alone means \"yes\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 16,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-18",
+        "original": "чита",
+        "translation": "reads",
+        "contextualMeaning": "reads",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 18,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-20",
+        "original": "книги",
+        "translation": "books",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 20
+      },
+      {
+        "id": "word-22",
+        "original": "Таа",
+        "translation": "she",
+        "contextualMeaning": "she",
+        "alternativeTranslations": [
+          "that",
+          "that one (fem.)"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 22,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-24",
+        "original": "секогаш",
+        "translation": "always",
+        "contextualMeaning": "always",
+        "alternativeTranslations": [
+          "every time"
+        ],
+        "pos": "adverb",
+        "difficulty": "intermediate",
+        "index": 24,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-26",
+        "original": "носи",
+        "translation": "carries",
+        "contextualMeaning": "carries",
+        "alternativeTranslations": [
+          "brings",
+          "wears"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 26,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-28",
+        "original": "книга",
+        "translation": "a book",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 28
+      },
+      {
+        "id": "word-30",
+        "original": "со",
+        "translation": "with",
+        "contextualMeaning": "with",
+        "alternativeTranslations": [
+          "by",
+          "using"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 30,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-32",
+        "original": "себе",
+        "translation": "yourself",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 32
+      },
+      {
+        "id": "word-34",
+        "original": "Јас",
+        "translation": "Me",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 34
+      },
+      {
+        "id": "word-36",
+        "original": "пак",
+        "translation": "but",
+        "contextualMeaning": "but",
+        "alternativeTranslations": [
+          "again",
+          "however",
+          "on the other hand"
+        ],
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 36,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-38",
+        "original": "повеќе",
+        "translation": "more",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 38
+      },
+      {
+        "id": "word-40",
+        "original": "сакам",
+        "translation": "i love",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 40
+      },
+      {
+        "id": "word-42",
+        "original": "да",
+        "translation": "to",
+        "contextualMeaning": "to",
+        "alternativeTranslations": [
+          "yes",
+          "that",
+          "so that",
+          "let"
+        ],
+        "contextHint": "\"Да\" before verbs means \"to\"; alone means \"yes\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 42,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-44",
+        "original": "цртам",
+        "translation": "I draw",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 44
+      },
+      {
+        "id": "word-46",
+        "original": "Почнав",
+        "translation": "I started",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 46
+      },
+      {
+        "id": "word-48",
+        "original": "да",
+        "translation": "to",
+        "contextualMeaning": "to",
+        "alternativeTranslations": [
+          "yes",
+          "that",
+          "so that",
+          "let"
+        ],
+        "contextHint": "\"Да\" before verbs means \"to\"; alone means \"yes\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 48,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-50",
+        "original": "цртам",
+        "translation": "I draw",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 50
+      },
+      {
+        "id": "word-52",
+        "original": "кога",
+        "translation": "when",
+        "contextualMeaning": "when",
+        "alternativeTranslations": [
+          "whenever"
+        ],
+        "pos": "adverb",
+        "difficulty": "basic",
+        "index": 52,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-54",
+        "original": "бев",
+        "translation": "I was",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 54
+      },
+      {
+        "id": "word-56",
+        "original": "дете",
+        "translation": "a child",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 56
+      },
+      {
+        "id": "word-58",
+        "original": "Ми",
+        "translation": "Mi",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 58
+      },
+      {
+        "id": "word-60",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 60,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-62",
+        "original": "допаѓа",
+        "translation": "like it",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 62
+      },
+      {
+        "id": "word-64",
+        "original": "да",
+        "translation": "to",
+        "contextualMeaning": "to",
+        "alternativeTranslations": [
+          "yes",
+          "that",
+          "so that",
+          "let"
+        ],
+        "contextHint": "\"Да\" before verbs means \"to\"; alone means \"yes\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 64,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-66",
+        "original": "цртам",
+        "translation": "I draw",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 66
+      },
+      {
+        "id": "word-68",
+        "original": "пејзажи",
+        "translation": "landscapes",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 68
+      },
+      {
+        "id": "word-70",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 70,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-72",
+        "original": "портрети",
+        "translation": "portraits",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 72
+      },
+      {
+        "id": "word-74",
+        "original": "Мојот",
+        "translation": "My",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 74
+      },
+      {
+        "id": "word-76",
+        "original": "брат",
+        "translation": "brother",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 76
+      },
+      {
+        "id": "word-78",
+        "original": "често",
+        "translation": "often",
+        "contextualMeaning": "often",
+        "alternativeTranslations": [
+          "frequently"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 78,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-80",
+        "original": "свири",
+        "translation": "plays",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 80
+      },
+      {
+        "id": "word-82",
+        "original": "гитара",
+        "translation": "guitar",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 82
+      },
+      {
+        "id": "word-84",
+        "original": "Тој",
+        "translation": "he",
+        "contextualMeaning": "he",
+        "alternativeTranslations": [
+          "that",
+          "that one (masc.)"
+        ],
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 84,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-86",
+        "original": "никогаш",
+        "translation": "never",
+        "contextualMeaning": "never",
+        "alternativeTranslations": [
+          "not ever"
+        ],
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 86,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-88",
+        "original": "не",
+        "translation": "no",
+        "contextualMeaning": "no",
+        "alternativeTranslations": [
+          "not",
+          "don't",
+          "doesn't"
+        ],
+        "contextHint": "\"Не\" before verbs means \"not\"; alone means \"no\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 88,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-90",
+        "original": "пропушта",
+        "translation": "it misses",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 90
+      },
+      {
+        "id": "word-92",
+        "original": "да",
+        "translation": "to",
+        "contextualMeaning": "to",
+        "alternativeTranslations": [
+          "yes",
+          "that",
+          "so that",
+          "let"
+        ],
+        "contextHint": "\"Да\" before verbs means \"to\"; alone means \"yes\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 92,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-94",
+        "original": "вежба",
+        "translation": "exercise",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 94
+      },
+      {
+        "id": "word-96",
+        "original": "Летото",
+        "translation": "The summer",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 96
+      },
+      {
+        "id": "word-98",
+        "original": "сакаме",
+        "translation": "we love",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 98
+      },
+      {
+        "id": "word-100",
+        "original": "да",
+        "translation": "to",
+        "contextualMeaning": "to",
+        "alternativeTranslations": [
+          "yes",
+          "that",
+          "so that",
+          "let"
+        ],
+        "contextHint": "\"Да\" before verbs means \"to\"; alone means \"yes\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 100,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-102",
+        "original": "пливаме",
+        "translation": "we swim",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 102
+      },
+      {
+        "id": "word-104",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 104,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-106",
+        "original": "езерото",
+        "translation": "the lake",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 106
+      },
+      {
+        "id": "word-108",
+        "original": "Ретко",
+        "translation": "rarely",
+        "contextualMeaning": "rarely",
+        "alternativeTranslations": [
+          "seldom"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 108,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-110",
+        "original": "готвам",
+        "translation": "I cook",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 110
+      },
+      {
+        "id": "word-112",
+        "original": "но",
+        "translation": "but",
+        "pos": "adjective",
+        "difficulty": "basic",
+        "index": 112
+      },
+      {
+        "id": "word-114",
+        "original": "кога",
+        "translation": "when",
+        "contextualMeaning": "when",
+        "alternativeTranslations": [
+          "whenever"
+        ],
+        "pos": "adverb",
+        "difficulty": "basic",
+        "index": 114,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-116",
+        "original": "готвам",
+        "translation": "I cook",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 116
+      },
+      {
+        "id": "word-118",
+        "original": "правам",
+        "translation": "I do",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 118
+      },
+      {
+        "id": "word-120",
+        "original": "традиционална",
+        "translation": "traditional",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 120
+      },
+      {
+        "id": "word-122",
+        "original": "храна",
+        "translation": "food",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 122
+      },
+      {
+        "id": "word-124",
+        "original": "На",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 124,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-126",
+        "original": "моето",
+        "translation": "mine",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 126
+      },
+      {
+        "id": "word-128",
+        "original": "семејство",
+        "translation": "family",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 128
+      },
+      {
+        "id": "word-130",
+        "original": "многу",
+        "translation": "very",
+        "contextualMeaning": "very",
+        "alternativeTranslations": [
+          "much",
+          "a lot",
+          "many"
+        ],
+        "pos": "adverb",
+        "difficulty": "intermediate",
+        "index": 130,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-132",
+        "original": "му",
+        "translation": "to him",
+        "contextualMeaning": "to him",
+        "alternativeTranslations": [
+          "him",
+          "his"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 132,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-134",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 134,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-136",
+        "original": "допаѓа",
+        "translation": "like it",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 136
+      },
+      {
+        "id": "word-138",
+        "original": "кога",
+        "translation": "when",
+        "contextualMeaning": "when",
+        "alternativeTranslations": [
+          "whenever"
+        ],
+        "pos": "adverb",
+        "difficulty": "basic",
+        "index": 138,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-140",
+        "original": "готвам",
+        "translation": "I cook",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 140
+      },
+      {
+        "id": "word-142",
+        "original": "Хобијата",
+        "translation": "The hobby",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 142
+      },
+      {
+        "id": "word-144",
+        "original": "ни",
+        "translation": "us",
+        "contextualMeaning": "us",
+        "alternativeTranslations": [
+          "our",
+          "to us"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 144,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-146",
+        "original": "помагаат",
+        "translation": "they help",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 146
+      },
+      {
+        "id": "word-148",
+        "original": "да",
+        "translation": "to",
+        "contextualMeaning": "to",
+        "alternativeTranslations": [
+          "yes",
+          "that",
+          "so that",
+          "let"
+        ],
+        "contextHint": "\"Да\" before verbs means \"to\"; alone means \"yes\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 148,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-150",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 150,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-152",
+        "original": "релаксираме",
+        "translation": "we relax",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 152
+      },
+      {
+        "id": "word-154",
+        "original": "Секој",
+        "translation": "every",
+        "contextualMeaning": "every",
+        "alternativeTranslations": [
+          "each",
+          "everyone"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 154,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-156",
+        "original": "треба",
+        "translation": "should",
+        "contextualMeaning": "should",
+        "alternativeTranslations": [
+          "must",
+          "need to",
+          "have to",
+          "needs"
+        ],
+        "contextHint": "Expresses necessity or obligation",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 156,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-158",
+        "original": "да",
+        "translation": "to",
+        "contextualMeaning": "to",
+        "alternativeTranslations": [
+          "yes",
+          "that",
+          "so that",
+          "let"
+        ],
+        "contextHint": "\"Да\" before verbs means \"to\"; alone means \"yes\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 158,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-160",
+        "original": "има",
+        "translation": "have",
+        "contextualMeaning": "have",
+        "alternativeTranslations": [
+          "has",
+          "there is",
+          "there are"
+        ],
+        "contextHint": "\"Има\" can mean possession (has) or existence (there is)",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 160,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-162",
+        "original": "барем",
+        "translation": "at least",
+        "contextualMeaning": "at least",
+        "alternativeTranslations": [
+          "even"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 162,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-164",
+        "original": "едно",
+        "translation": "a",
+        "contextualMeaning": "a",
+        "alternativeTranslations": [
+          "one (neut.)",
+          "an"
+        ],
+        "pos": "adjective",
+        "difficulty": "basic",
+        "index": 164,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-166",
+        "original": "хоби",
+        "translation": "hobby",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 166
+      }
+    ],
+    "tokens": [
+      {
+        "token": "Сите",
+        "isWord": true,
+        "index": 0
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 1
+      },
+      {
+        "token": "луѓе",
+        "isWord": true,
+        "index": 2
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 3
+      },
+      {
+        "token": "имаат",
+        "isWord": true,
+        "index": 4
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 5
+      },
+      {
+        "token": "хобија",
+        "isWord": true,
+        "index": 6
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 7
+      },
+      {
+        "token": "Мојата",
+        "isWord": true,
+        "index": 8
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 9
+      },
+      {
+        "token": "пријателка",
+        "isWord": true,
+        "index": 10
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 11
+      },
+      {
+        "token": "Марија",
+        "isWord": true,
+        "index": 12
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 13
+      },
+      {
+        "token": "обожава",
+        "isWord": true,
+        "index": 14
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 15
+      },
+      {
+        "token": "да",
+        "isWord": true,
+        "index": 16
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 17
+      },
+      {
+        "token": "чита",
+        "isWord": true,
+        "index": 18
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 19
+      },
+      {
+        "token": "книги",
+        "isWord": true,
+        "index": 20
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 21
+      },
+      {
+        "token": "Таа",
+        "isWord": true,
+        "index": 22
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 23
+      },
+      {
+        "token": "секогаш",
+        "isWord": true,
+        "index": 24
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 25
+      },
+      {
+        "token": "носи",
+        "isWord": true,
+        "index": 26
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 27
+      },
+      {
+        "token": "книга",
+        "isWord": true,
+        "index": 28
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 29
+      },
+      {
+        "token": "со",
+        "isWord": true,
+        "index": 30
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 31
+      },
+      {
+        "token": "себе",
+        "isWord": true,
+        "index": 32
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 33
+      },
+      {
+        "token": "Јас",
+        "isWord": true,
+        "index": 34
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 35
+      },
+      {
+        "token": "пак",
+        "isWord": true,
+        "index": 36
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 37
+      },
+      {
+        "token": "повеќе",
+        "isWord": true,
+        "index": 38
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 39
+      },
+      {
+        "token": "сакам",
+        "isWord": true,
+        "index": 40
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 41
+      },
+      {
+        "token": "да",
+        "isWord": true,
+        "index": 42
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 43
+      },
+      {
+        "token": "цртам",
+        "isWord": true,
+        "index": 44
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 45
+      },
+      {
+        "token": "Почнав",
+        "isWord": true,
+        "index": 46
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 47
+      },
+      {
+        "token": "да",
+        "isWord": true,
+        "index": 48
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 49
+      },
+      {
+        "token": "цртам",
+        "isWord": true,
+        "index": 50
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 51
+      },
+      {
+        "token": "кога",
+        "isWord": true,
+        "index": 52
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 53
+      },
+      {
+        "token": "бев",
+        "isWord": true,
+        "index": 54
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 55
+      },
+      {
+        "token": "дете",
+        "isWord": true,
+        "index": 56
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 57
+      },
+      {
+        "token": "Ми",
+        "isWord": true,
+        "index": 58
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 59
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 60
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 61
+      },
+      {
+        "token": "допаѓа",
+        "isWord": true,
+        "index": 62
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 63
+      },
+      {
+        "token": "да",
+        "isWord": true,
+        "index": 64
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 65
+      },
+      {
+        "token": "цртам",
+        "isWord": true,
+        "index": 66
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 67
+      },
+      {
+        "token": "пејзажи",
+        "isWord": true,
+        "index": 68
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 69
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 70
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 71
+      },
+      {
+        "token": "портрети",
+        "isWord": true,
+        "index": 72
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 73
+      },
+      {
+        "token": "Мојот",
+        "isWord": true,
+        "index": 74
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 75
+      },
+      {
+        "token": "брат",
+        "isWord": true,
+        "index": 76
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 77
+      },
+      {
+        "token": "често",
+        "isWord": true,
+        "index": 78
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 79
+      },
+      {
+        "token": "свири",
+        "isWord": true,
+        "index": 80
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 81
+      },
+      {
+        "token": "гитара",
+        "isWord": true,
+        "index": 82
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 83
+      },
+      {
+        "token": "Тој",
+        "isWord": true,
+        "index": 84
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 85
+      },
+      {
+        "token": "никогаш",
+        "isWord": true,
+        "index": 86
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 87
+      },
+      {
+        "token": "не",
+        "isWord": true,
+        "index": 88
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 89
+      },
+      {
+        "token": "пропушта",
+        "isWord": true,
+        "index": 90
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 91
+      },
+      {
+        "token": "да",
+        "isWord": true,
+        "index": 92
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 93
+      },
+      {
+        "token": "вежба",
+        "isWord": true,
+        "index": 94
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 95
+      },
+      {
+        "token": "Летото",
+        "isWord": true,
+        "index": 96
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 97
+      },
+      {
+        "token": "сакаме",
+        "isWord": true,
+        "index": 98
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 99
+      },
+      {
+        "token": "да",
+        "isWord": true,
+        "index": 100
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 101
+      },
+      {
+        "token": "пливаме",
+        "isWord": true,
+        "index": 102
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 103
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 104
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 105
+      },
+      {
+        "token": "езерото",
+        "isWord": true,
+        "index": 106
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 107
+      },
+      {
+        "token": "Ретко",
+        "isWord": true,
+        "index": 108
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 109
+      },
+      {
+        "token": "готвам",
+        "isWord": true,
+        "index": 110
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 111
+      },
+      {
+        "token": "но",
+        "isWord": true,
+        "index": 112
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 113
+      },
+      {
+        "token": "кога",
+        "isWord": true,
+        "index": 114
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 115
+      },
+      {
+        "token": "готвам",
+        "isWord": true,
+        "index": 116
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 117
+      },
+      {
+        "token": "правам",
+        "isWord": true,
+        "index": 118
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 119
+      },
+      {
+        "token": "традиционална",
+        "isWord": true,
+        "index": 120
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 121
+      },
+      {
+        "token": "храна",
+        "isWord": true,
+        "index": 122
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 123
+      },
+      {
+        "token": "На",
+        "isWord": true,
+        "index": 124
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 125
+      },
+      {
+        "token": "моето",
+        "isWord": true,
+        "index": 126
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 127
+      },
+      {
+        "token": "семејство",
+        "isWord": true,
+        "index": 128
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 129
+      },
+      {
+        "token": "многу",
+        "isWord": true,
+        "index": 130
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 131
+      },
+      {
+        "token": "му",
+        "isWord": true,
+        "index": 132
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 133
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 134
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 135
+      },
+      {
+        "token": "допаѓа",
+        "isWord": true,
+        "index": 136
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 137
+      },
+      {
+        "token": "кога",
+        "isWord": true,
+        "index": 138
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 139
+      },
+      {
+        "token": "готвам",
+        "isWord": true,
+        "index": 140
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 141
+      },
+      {
+        "token": "Хобијата",
+        "isWord": true,
+        "index": 142
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 143
+      },
+      {
+        "token": "ни",
+        "isWord": true,
+        "index": 144
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 145
+      },
+      {
+        "token": "помагаат",
+        "isWord": true,
+        "index": 146
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 147
+      },
+      {
+        "token": "да",
+        "isWord": true,
+        "index": 148
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 149
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 150
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 151
+      },
+      {
+        "token": "релаксираме",
+        "isWord": true,
+        "index": 152
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 153
+      },
+      {
+        "token": "Секој",
+        "isWord": true,
+        "index": 154
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 155
+      },
+      {
+        "token": "треба",
+        "isWord": true,
+        "index": 156
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 157
+      },
+      {
+        "token": "да",
+        "isWord": true,
+        "index": 158
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 159
+      },
+      {
+        "token": "има",
+        "isWord": true,
+        "index": 160
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 161
+      },
+      {
+        "token": "барем",
+        "isWord": true,
+        "index": 162
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 163
+      },
+      {
+        "token": "едно",
+        "isWord": true,
+        "index": 164
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 165
+      },
+      {
+        "token": "хоби",
+        "isWord": true,
+        "index": 166
+      },
+      {
+        "token": ".",
+        "isWord": false,
+        "index": 167
+      }
+    ],
+    "fullTranslation": "All people have hobbies. My friend Maria loves to read books. She always carries a book with her.\n\nI, on the other hand, prefer to draw. I started drawing when I was a child. I like to draw landscapes and portraits.\n\nMy brother often plays the guitar. He never misses to exercise. In the summer we like to swim in the lake.\n\nI rarely cook, but when I do, I make traditional food. My family really likes it when I cook. Hobbies help us relax. Everyone should have at least one hobby.",
+    "difficulty": {
+      "level": "intermediate",
+      "score": 51.904761904761905,
+      "factors": {
+        "avgWordLength": 4.714285714285714,
+        "longWords": 8,
+        "totalWords": 84
+      }
+    },
+    "metadata": {
+      "wordCount": 84,
+      "sentenceCount": 13,
+      "characterCount": 499
+    }
   }
 }

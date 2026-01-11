@@ -5,59 +5,1642 @@
   "title_en": "My Best Friend",
   "difficulty": "A1",
   "estimatedMinutes": 3,
-  "tags": ["graded-reader", "A1", "family"],
+  "tags": [
+    "graded-reader",
+    "A1",
+    "family"
+  ],
   "text_blocks_mk": [
-    { "type": "p", "value": "Мојот најдобар пријател се вика Марко. Тој има дваесет и една година. Тој е висок и има кафеава коса." },
-    { "type": "p", "value": "Неговите очи се сини. Марко е многу добар човек. Тој е смешен и секогаш ме насмевнува." },
-    { "type": "p", "value": "Ние заедно учиме на факултет. Секој ден одиме во библиотека. Викендот играме фудбал во паркот." },
-    { "type": "p", "value": "Понекогаш гледаме филмови заедно. Неговото семејство е многу мило. Јас сум среќен што го имам како пријател." }
+    {
+      "type": "p",
+      "value": "Мојот најдобар пријател се вика Марко. Тој има дваесет и една година. Тој е висок и има кафеава коса."
+    },
+    {
+      "type": "p",
+      "value": "Неговите очи се сини. Марко е многу добар човек. Тој е смешен и секогаш ме насмевнува."
+    },
+    {
+      "type": "p",
+      "value": "Ние заедно учиме на факултет. Секој ден одиме во библиотека. Викендот играме фудбал во паркот."
+    },
+    {
+      "type": "p",
+      "value": "Понекогаш гледаме филмови заедно. Неговото семејство е многу мило. Јас сум среќен што го имам како пријател."
+    }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Присвојни заменки",
       "title_en": "Possessive pronouns",
       "examples": [
-        { "mk": "мојот", "en": "my (masc. def.)" },
-        { "mk": "неговата", "en": "his (fem. def.)" },
-        { "mk": "нејзините", "en": "her (plural def.)" }
+        {
+          "mk": "мојот",
+          "en": "my (masc. def.)"
+        },
+        {
+          "mk": "неговата",
+          "en": "his (fem. def.)"
+        },
+        {
+          "mk": "нејзините",
+          "en": "her (plural def.)"
+        }
       ]
     }
   ],
   "vocabulary": [
-    { "mk": "мојот", "en": "my (masc. def.)", "pos": "possessive" },
-    { "mk": "најдобар", "en": "best", "pos": "adjective" },
-    { "mk": "пријател", "en": "friend", "pos": "noun" },
-    { "mk": "дваесет и една", "en": "twenty-one", "pos": "number" },
-    { "mk": "висок", "en": "tall", "pos": "adjective" },
-    { "mk": "кафеава", "en": "brown", "pos": "adjective" },
-    { "mk": "коса", "en": "hair", "pos": "noun" },
-    { "mk": "неговите", "en": "his (plural def.)", "pos": "possessive" },
-    { "mk": "очи", "en": "eyes", "pos": "noun" },
-    { "mk": "сини", "en": "blue", "pos": "adjective" },
-    { "mk": "добар", "en": "good", "pos": "adjective" },
-    { "mk": "човек", "en": "person", "pos": "noun" },
-    { "mk": "смешен", "en": "funny", "pos": "adjective" },
-    { "mk": "секогаш", "en": "always", "pos": "adverb" },
-    { "mk": "насмевнува", "en": "makes laugh", "pos": "verb" },
-    { "mk": "учиме", "en": "we study", "pos": "verb" },
-    { "mk": "факултет", "en": "university/faculty", "pos": "noun" },
-    { "mk": "секој ден", "en": "every day", "pos": "phrase" },
-    { "mk": "библиотека", "en": "library", "pos": "noun" },
-    { "mk": "викендот", "en": "the weekend", "pos": "noun" },
-    { "mk": "играме", "en": "we play", "pos": "verb" },
-    { "mk": "фудбал", "en": "football", "pos": "noun" },
-    { "mk": "понекогаш", "en": "sometimes", "pos": "adverb" },
-    { "mk": "гледаме", "en": "we watch", "pos": "verb" },
-    { "mk": "филмови", "en": "movies", "pos": "noun" },
-    { "mk": "неговото", "en": "his (neut. def.)", "pos": "possessive" },
-    { "mk": "мило", "en": "kind/nice", "pos": "adjective" },
-    { "mk": "среќен", "en": "happy", "pos": "adjective" },
-    { "mk": "го имам", "en": "I have him", "pos": "verb phrase" }
+    {
+      "mk": "мојот",
+      "en": "my (masc. def.)",
+      "pos": "possessive"
+    },
+    {
+      "mk": "најдобар",
+      "en": "best",
+      "pos": "adjective"
+    },
+    {
+      "mk": "пријател",
+      "en": "friend",
+      "pos": "noun"
+    },
+    {
+      "mk": "дваесет и една",
+      "en": "twenty-one",
+      "pos": "number"
+    },
+    {
+      "mk": "висок",
+      "en": "tall",
+      "pos": "adjective"
+    },
+    {
+      "mk": "кафеава",
+      "en": "brown",
+      "pos": "adjective"
+    },
+    {
+      "mk": "коса",
+      "en": "hair",
+      "pos": "noun"
+    },
+    {
+      "mk": "неговите",
+      "en": "his (plural def.)",
+      "pos": "possessive"
+    },
+    {
+      "mk": "очи",
+      "en": "eyes",
+      "pos": "noun"
+    },
+    {
+      "mk": "сини",
+      "en": "blue",
+      "pos": "adjective"
+    },
+    {
+      "mk": "добар",
+      "en": "good",
+      "pos": "adjective"
+    },
+    {
+      "mk": "човек",
+      "en": "person",
+      "pos": "noun"
+    },
+    {
+      "mk": "смешен",
+      "en": "funny",
+      "pos": "adjective"
+    },
+    {
+      "mk": "секогаш",
+      "en": "always",
+      "pos": "adverb"
+    },
+    {
+      "mk": "насмевнува",
+      "en": "makes laugh",
+      "pos": "verb"
+    },
+    {
+      "mk": "учиме",
+      "en": "we study",
+      "pos": "verb"
+    },
+    {
+      "mk": "факултет",
+      "en": "university/faculty",
+      "pos": "noun"
+    },
+    {
+      "mk": "секој ден",
+      "en": "every day",
+      "pos": "phrase"
+    },
+    {
+      "mk": "библиотека",
+      "en": "library",
+      "pos": "noun"
+    },
+    {
+      "mk": "викендот",
+      "en": "the weekend",
+      "pos": "noun"
+    },
+    {
+      "mk": "играме",
+      "en": "we play",
+      "pos": "verb"
+    },
+    {
+      "mk": "фудбал",
+      "en": "football",
+      "pos": "noun"
+    },
+    {
+      "mk": "понекогаш",
+      "en": "sometimes",
+      "pos": "adverb"
+    },
+    {
+      "mk": "гледаме",
+      "en": "we watch",
+      "pos": "verb"
+    },
+    {
+      "mk": "филмови",
+      "en": "movies",
+      "pos": "noun"
+    },
+    {
+      "mk": "неговото",
+      "en": "his (neut. def.)",
+      "pos": "possessive"
+    },
+    {
+      "mk": "мило",
+      "en": "kind/nice",
+      "pos": "adjective"
+    },
+    {
+      "mk": "среќен",
+      "en": "happy",
+      "pos": "adjective"
+    },
+    {
+      "mk": "го имам",
+      "en": "I have him",
+      "pos": "verb phrase"
+    }
   ],
   "expressions": [],
   "attribution": {
     "handle": "@mklanguagelab",
     "series": "Graded Readers",
     "day": "family"
+  },
+  "analyzedData": {
+    "words": [
+      {
+        "id": "word-0",
+        "original": "Мојот",
+        "translation": "My",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 0
+      },
+      {
+        "id": "word-2",
+        "original": "најдобар",
+        "translation": "the best",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 2
+      },
+      {
+        "id": "word-4",
+        "original": "пријател",
+        "translation": "a friend",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 4
+      },
+      {
+        "id": "word-6",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 6,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-8",
+        "original": "вика",
+        "translation": "he shouts",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 8
+      },
+      {
+        "id": "word-10",
+        "original": "Марко",
+        "translation": "Marco",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 10
+      },
+      {
+        "id": "word-12",
+        "original": "Тој",
+        "translation": "he",
+        "contextualMeaning": "he",
+        "alternativeTranslations": [
+          "that",
+          "that one (masc.)"
+        ],
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 12,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-14",
+        "original": "има",
+        "translation": "has",
+        "contextualMeaning": "has",
+        "alternativeTranslations": [
+          "there is",
+          "there are",
+          "have"
+        ],
+        "contextHint": "\"Има\" can mean possession (has) or existence (there is)",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 14,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-16",
+        "original": "дваесет",
+        "translation": "twenty",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 16
+      },
+      {
+        "id": "word-18",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 18,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-20",
+        "original": "една",
+        "translation": "a",
+        "contextualMeaning": "a",
+        "alternativeTranslations": [
+          "one (fem.)",
+          "an"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 20,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-22",
+        "original": "година",
+        "translation": "year",
+        "contextualMeaning": "year",
+        "alternativeTranslations": [
+          "age"
+        ],
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 22,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-24",
+        "original": "Тој",
+        "translation": "he",
+        "contextualMeaning": "he",
+        "alternativeTranslations": [
+          "that",
+          "that one (masc.)"
+        ],
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 24,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-26",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 26,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-28",
+        "original": "висок",
+        "translation": "tall",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 28
+      },
+      {
+        "id": "word-30",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 30,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-32",
+        "original": "има",
+        "translation": "has",
+        "contextualMeaning": "has",
+        "alternativeTranslations": [
+          "there is",
+          "there are",
+          "have"
+        ],
+        "contextHint": "\"Има\" can mean possession (has) or existence (there is)",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 32,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-34",
+        "original": "кафеава",
+        "translation": "brown",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 34
+      },
+      {
+        "id": "word-36",
+        "original": "коса",
+        "translation": "hair",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 36
+      },
+      {
+        "id": "word-38",
+        "original": "Неговите",
+        "translation": "His",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 38
+      },
+      {
+        "id": "word-40",
+        "original": "очи",
+        "translation": "eyes",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 40
+      },
+      {
+        "id": "word-42",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 42,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-44",
+        "original": "сини",
+        "translation": "blue",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 44
+      },
+      {
+        "id": "word-46",
+        "original": "Марко",
+        "translation": "Marco",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 46
+      },
+      {
+        "id": "word-48",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 48,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-50",
+        "original": "многу",
+        "translation": "very",
+        "contextualMeaning": "very",
+        "alternativeTranslations": [
+          "much",
+          "a lot",
+          "many"
+        ],
+        "pos": "adverb",
+        "difficulty": "intermediate",
+        "index": 50,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-52",
+        "original": "добар",
+        "translation": "good",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 52
+      },
+      {
+        "id": "word-54",
+        "original": "човек",
+        "translation": "man",
+        "contextualMeaning": "man",
+        "alternativeTranslations": [
+          "person",
+          "human"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 54,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-56",
+        "original": "Тој",
+        "translation": "he",
+        "contextualMeaning": "he",
+        "alternativeTranslations": [
+          "that",
+          "that one (masc.)"
+        ],
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 56,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-58",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 58,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-60",
+        "original": "смешен",
+        "translation": "funny",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 60
+      },
+      {
+        "id": "word-62",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 62,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-64",
+        "original": "секогаш",
+        "translation": "always",
+        "contextualMeaning": "always",
+        "alternativeTranslations": [
+          "every time"
+        ],
+        "pos": "adverb",
+        "difficulty": "intermediate",
+        "index": 64,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-66",
+        "original": "ме",
+        "translation": "me",
+        "contextualMeaning": "me",
+        "alternativeTranslations": [
+          "myself"
+        ],
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 66,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-68",
+        "original": "насмевнува",
+        "translation": "smiles",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 68
+      },
+      {
+        "id": "word-70",
+        "original": "Ние",
+        "translation": "We",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 70
+      },
+      {
+        "id": "word-72",
+        "original": "заедно",
+        "translation": "together",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 72
+      },
+      {
+        "id": "word-74",
+        "original": "учиме",
+        "translation": "we study",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 74
+      },
+      {
+        "id": "word-76",
+        "original": "на",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 76,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-78",
+        "original": "факултет",
+        "translation": "faculty",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 78
+      },
+      {
+        "id": "word-80",
+        "original": "Секој",
+        "translation": "every",
+        "contextualMeaning": "every",
+        "alternativeTranslations": [
+          "each",
+          "everyone"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 80,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-82",
+        "original": "ден",
+        "translation": "day",
+        "contextualMeaning": "day",
+        "alternativeTranslations": [
+          "daytime"
+        ],
+        "pos": "adjective",
+        "difficulty": "basic",
+        "index": 82,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-84",
+        "original": "одиме",
+        "translation": "we are going",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 84
+      },
+      {
+        "id": "word-86",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 86,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-88",
+        "original": "библиотека",
+        "translation": "library",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 88
+      },
+      {
+        "id": "word-90",
+        "original": "Викендот",
+        "translation": "The weekend",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 90
+      },
+      {
+        "id": "word-92",
+        "original": "играме",
+        "translation": "we play",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 92
+      },
+      {
+        "id": "word-94",
+        "original": "фудбал",
+        "translation": "football",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 94
+      },
+      {
+        "id": "word-96",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 96,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-98",
+        "original": "паркот",
+        "translation": "the park",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 98
+      },
+      {
+        "id": "word-100",
+        "original": "Понекогаш",
+        "translation": "sometimes",
+        "contextualMeaning": "sometimes",
+        "alternativeTranslations": [
+          "occasionally"
+        ],
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 100,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-102",
+        "original": "гледаме",
+        "translation": "we see",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 102
+      },
+      {
+        "id": "word-104",
+        "original": "филмови",
+        "translation": "movies",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 104
+      },
+      {
+        "id": "word-106",
+        "original": "заедно",
+        "translation": "together",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 106
+      },
+      {
+        "id": "word-108",
+        "original": "Неговото",
+        "translation": "His",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 108
+      },
+      {
+        "id": "word-110",
+        "original": "семејство",
+        "translation": "family",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 110
+      },
+      {
+        "id": "word-112",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 112,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-114",
+        "original": "многу",
+        "translation": "very",
+        "contextualMeaning": "very",
+        "alternativeTranslations": [
+          "much",
+          "a lot",
+          "many"
+        ],
+        "pos": "adverb",
+        "difficulty": "intermediate",
+        "index": 114,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-116",
+        "original": "мило",
+        "translation": "dear",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 116
+      },
+      {
+        "id": "word-118",
+        "original": "Јас",
+        "translation": "Me",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 118
+      },
+      {
+        "id": "word-120",
+        "original": "сум",
+        "translation": "am",
+        "contextualMeaning": "am",
+        "alternativeTranslations": [
+          "I am"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 120,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-122",
+        "original": "среќен",
+        "translation": "happy",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 122
+      },
+      {
+        "id": "word-124",
+        "original": "што",
+        "translation": "what",
+        "contextualMeaning": "what",
+        "alternativeTranslations": [
+          "that",
+          "which",
+          "why"
+        ],
+        "contextHint": "Interrogative or relative pronoun",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 124,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-126",
+        "original": "го",
+        "translation": "him",
+        "contextualMeaning": "him",
+        "alternativeTranslations": [
+          "it (masc.)",
+          "the"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 126,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-128",
+        "original": "имам",
+        "translation": "I have",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 128
+      },
+      {
+        "id": "word-130",
+        "original": "како",
+        "translation": "as",
+        "contextualMeaning": "as",
+        "alternativeTranslations": [
+          "how",
+          "like",
+          "what"
+        ],
+        "pos": "adverb",
+        "difficulty": "basic",
+        "index": 130,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-132",
+        "original": "пријател",
+        "translation": "a friend",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 132
+      }
+    ],
+    "tokens": [
+      {
+        "token": "Мојот",
+        "isWord": true,
+        "index": 0
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 1
+      },
+      {
+        "token": "најдобар",
+        "isWord": true,
+        "index": 2
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 3
+      },
+      {
+        "token": "пријател",
+        "isWord": true,
+        "index": 4
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 5
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 6
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 7
+      },
+      {
+        "token": "вика",
+        "isWord": true,
+        "index": 8
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 9
+      },
+      {
+        "token": "Марко",
+        "isWord": true,
+        "index": 10
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 11
+      },
+      {
+        "token": "Тој",
+        "isWord": true,
+        "index": 12
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 13
+      },
+      {
+        "token": "има",
+        "isWord": true,
+        "index": 14
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 15
+      },
+      {
+        "token": "дваесет",
+        "isWord": true,
+        "index": 16
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 17
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 18
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 19
+      },
+      {
+        "token": "една",
+        "isWord": true,
+        "index": 20
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 21
+      },
+      {
+        "token": "година",
+        "isWord": true,
+        "index": 22
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 23
+      },
+      {
+        "token": "Тој",
+        "isWord": true,
+        "index": 24
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 25
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 26
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 27
+      },
+      {
+        "token": "висок",
+        "isWord": true,
+        "index": 28
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 29
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 30
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 31
+      },
+      {
+        "token": "има",
+        "isWord": true,
+        "index": 32
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 33
+      },
+      {
+        "token": "кафеава",
+        "isWord": true,
+        "index": 34
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 35
+      },
+      {
+        "token": "коса",
+        "isWord": true,
+        "index": 36
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 37
+      },
+      {
+        "token": "Неговите",
+        "isWord": true,
+        "index": 38
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 39
+      },
+      {
+        "token": "очи",
+        "isWord": true,
+        "index": 40
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 41
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 42
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 43
+      },
+      {
+        "token": "сини",
+        "isWord": true,
+        "index": 44
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 45
+      },
+      {
+        "token": "Марко",
+        "isWord": true,
+        "index": 46
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 47
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 48
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 49
+      },
+      {
+        "token": "многу",
+        "isWord": true,
+        "index": 50
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 51
+      },
+      {
+        "token": "добар",
+        "isWord": true,
+        "index": 52
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 53
+      },
+      {
+        "token": "човек",
+        "isWord": true,
+        "index": 54
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 55
+      },
+      {
+        "token": "Тој",
+        "isWord": true,
+        "index": 56
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 57
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 58
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 59
+      },
+      {
+        "token": "смешен",
+        "isWord": true,
+        "index": 60
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 61
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 62
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 63
+      },
+      {
+        "token": "секогаш",
+        "isWord": true,
+        "index": 64
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 65
+      },
+      {
+        "token": "ме",
+        "isWord": true,
+        "index": 66
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 67
+      },
+      {
+        "token": "насмевнува",
+        "isWord": true,
+        "index": 68
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 69
+      },
+      {
+        "token": "Ние",
+        "isWord": true,
+        "index": 70
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 71
+      },
+      {
+        "token": "заедно",
+        "isWord": true,
+        "index": 72
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 73
+      },
+      {
+        "token": "учиме",
+        "isWord": true,
+        "index": 74
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 75
+      },
+      {
+        "token": "на",
+        "isWord": true,
+        "index": 76
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 77
+      },
+      {
+        "token": "факултет",
+        "isWord": true,
+        "index": 78
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 79
+      },
+      {
+        "token": "Секој",
+        "isWord": true,
+        "index": 80
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 81
+      },
+      {
+        "token": "ден",
+        "isWord": true,
+        "index": 82
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 83
+      },
+      {
+        "token": "одиме",
+        "isWord": true,
+        "index": 84
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 85
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 86
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 87
+      },
+      {
+        "token": "библиотека",
+        "isWord": true,
+        "index": 88
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 89
+      },
+      {
+        "token": "Викендот",
+        "isWord": true,
+        "index": 90
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 91
+      },
+      {
+        "token": "играме",
+        "isWord": true,
+        "index": 92
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 93
+      },
+      {
+        "token": "фудбал",
+        "isWord": true,
+        "index": 94
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 95
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 96
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 97
+      },
+      {
+        "token": "паркот",
+        "isWord": true,
+        "index": 98
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 99
+      },
+      {
+        "token": "Понекогаш",
+        "isWord": true,
+        "index": 100
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 101
+      },
+      {
+        "token": "гледаме",
+        "isWord": true,
+        "index": 102
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 103
+      },
+      {
+        "token": "филмови",
+        "isWord": true,
+        "index": 104
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 105
+      },
+      {
+        "token": "заедно",
+        "isWord": true,
+        "index": 106
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 107
+      },
+      {
+        "token": "Неговото",
+        "isWord": true,
+        "index": 108
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 109
+      },
+      {
+        "token": "семејство",
+        "isWord": true,
+        "index": 110
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 111
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 112
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 113
+      },
+      {
+        "token": "многу",
+        "isWord": true,
+        "index": 114
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 115
+      },
+      {
+        "token": "мило",
+        "isWord": true,
+        "index": 116
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 117
+      },
+      {
+        "token": "Јас",
+        "isWord": true,
+        "index": 118
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 119
+      },
+      {
+        "token": "сум",
+        "isWord": true,
+        "index": 120
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 121
+      },
+      {
+        "token": "среќен",
+        "isWord": true,
+        "index": 122
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 123
+      },
+      {
+        "token": "што",
+        "isWord": true,
+        "index": 124
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 125
+      },
+      {
+        "token": "го",
+        "isWord": true,
+        "index": 126
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 127
+      },
+      {
+        "token": "имам",
+        "isWord": true,
+        "index": 128
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 129
+      },
+      {
+        "token": "како",
+        "isWord": true,
+        "index": 130
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 131
+      },
+      {
+        "token": "пријател",
+        "isWord": true,
+        "index": 132
+      },
+      {
+        "token": ".",
+        "isWord": false,
+        "index": 133
+      }
+    ],
+    "fullTranslation": "My best friend's name is Marko. He is twenty one years old. He is tall and has brown hair.\n\nHis eyes are blue. Marko is a very good man. He is funny and always makes me smile.\n\nWe study together at university. We go to the library every day. At the weekend we play football in the park.\n\nSometimes we watch movies together. His family is very nice. I am happy to have him as a friend.",
+    "difficulty": {
+      "level": "intermediate",
+      "score": 55.07462686567163,
+      "factors": {
+        "avgWordLength": 4.686567164179104,
+        "longWords": 11,
+        "totalWords": 67
+      }
+    },
+    "metadata": {
+      "wordCount": 67,
+      "sentenceCount": 12,
+      "characterCount": 395
+    }
   }
 }

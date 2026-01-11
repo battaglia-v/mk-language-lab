@@ -5,72 +5,2243 @@
   "title_en": "The Holiday",
   "difficulty": "A2",
   "estimatedMinutes": 5,
-  "tags": ["graded-reader", "A2", "culture"],
+  "tags": [
+    "graded-reader",
+    "A2",
+    "culture"
+  ],
   "text_blocks_mk": [
-    { "type": "p", "value": "Минатата недела беше роденденот на мојата баба. Таа наполни седумдесет години. Целото семејство дојде да го прослави." },
-    { "type": "p", "value": "Гостите почнаа да доаѓаат во пет часот. Секој донесе подарок за баба. Јас и купив убав шал и цвеќе. Таа беше многу среќна и возбудена." },
-    { "type": "p", "value": "Мајка ми направи голема торта со седумдесет свеќи. Кога баба ги дувна свеќите, сите извикаа: \"Среќен роденден!\" Баба рече: \"Ви благодарам на сите. Ова е најубавиот ден!\"" },
-    { "type": "p", "value": "Потоа јадевме многу вкусна храна и разговаравме. Децата играа во дворот, а возрасните седеа на терасата. Тоа беше прекрасен семеен празник што нема да го заборавиме." }
+    {
+      "type": "p",
+      "value": "Минатата недела беше роденденот на мојата баба. Таа наполни седумдесет години. Целото семејство дојде да го прослави."
+    },
+    {
+      "type": "p",
+      "value": "Гостите почнаа да доаѓаат во пет часот. Секој донесе подарок за баба. Јас и купив убав шал и цвеќе. Таа беше многу среќна и возбудена."
+    },
+    {
+      "type": "p",
+      "value": "Мајка ми направи голема торта со седумдесет свеќи. Кога баба ги дувна свеќите, сите извикаа: \"Среќен роденден!\" Баба рече: \"Ви благодарам на сите. Ова е најубавиот ден!\""
+    },
+    {
+      "type": "p",
+      "value": "Потоа јадевме многу вкусна храна и разговаравме. Децата играа во дворот, а возрасните седеа на терасата. Тоа беше прекрасен семеен празник што нема да го заборавиме."
+    }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Минато време во раскажување и директен говор",
       "title_en": "Past tense narrative and direct speech",
       "examples": [
-        { "mk": "беше", "en": "was" },
-        { "mk": "дојдоа", "en": "they came" },
-        { "mk": "рече", "en": "said" },
-        { "mk": "честитаа", "en": "they congratulated" }
+        {
+          "mk": "беше",
+          "en": "was"
+        },
+        {
+          "mk": "дојдоа",
+          "en": "they came"
+        },
+        {
+          "mk": "рече",
+          "en": "said"
+        },
+        {
+          "mk": "честитаа",
+          "en": "they congratulated"
+        }
       ]
     }
   ],
   "vocabulary": [
-    { "mk": "минатата недела", "en": "last week", "pos": "phrase" },
-    { "mk": "роденденот", "en": "the birthday", "pos": "noun (def)" },
-    { "mk": "баба", "en": "grandmother", "pos": "noun" },
-    { "mk": "наполни", "en": "turned (age)", "pos": "verb (past)" },
-    { "mk": "седумдесет", "en": "seventy", "pos": "number" },
-    { "mk": "целото", "en": "the whole", "pos": "adjective (def)" },
-    { "mk": "дојде", "en": "came", "pos": "verb (past)" },
-    { "mk": "прослави", "en": "celebrate", "pos": "verb" },
-    { "mk": "гостите", "en": "the guests", "pos": "noun (def)" },
-    { "mk": "почнаа", "en": "started", "pos": "verb (past)" },
-    { "mk": "доаѓаат", "en": "to arrive", "pos": "verb" },
-    { "mk": "секој", "en": "everyone", "pos": "pronoun" },
-    { "mk": "донесе", "en": "brought", "pos": "verb (past)" },
-    { "mk": "подарок", "en": "gift", "pos": "noun" },
-    { "mk": "и купив", "en": "I bought her", "pos": "verb phrase (past)" },
-    { "mk": "шал", "en": "scarf", "pos": "noun" },
-    { "mk": "цвеќе", "en": "flowers", "pos": "noun" },
-    { "mk": "среќна", "en": "happy", "pos": "adjective" },
-    { "mk": "возбудена", "en": "excited", "pos": "adjective" },
-    { "mk": "направи", "en": "made", "pos": "verb (past)" },
-    { "mk": "торта", "en": "cake", "pos": "noun" },
-    { "mk": "свеќи", "en": "candles", "pos": "noun" },
-    { "mk": "дувна", "en": "blew", "pos": "verb (past)" },
-    { "mk": "извикаа", "en": "shouted", "pos": "verb (past)" },
-    { "mk": "среќен", "en": "happy", "pos": "adjective" },
-    { "mk": "рече", "en": "said", "pos": "verb (past)" },
-    { "mk": "ви благодарам", "en": "thank you (formal/plural)", "pos": "phrase" },
-    { "mk": "најубавиот", "en": "the most beautiful", "pos": "superlative (def)" },
-    { "mk": "јадевме", "en": "we ate", "pos": "verb (past)" },
-    { "mk": "вкусна", "en": "delicious", "pos": "adjective" },
-    { "mk": "разговаравме", "en": "we talked", "pos": "verb (past)" },
-    { "mk": "децата", "en": "the children", "pos": "noun (def)" },
-    { "mk": "играа", "en": "played", "pos": "verb (past)" },
-    { "mk": "возрасните", "en": "the adults", "pos": "noun (def)" },
-    { "mk": "седеа", "en": "sat", "pos": "verb (past)" },
-    { "mk": "прекрасен", "en": "wonderful", "pos": "adjective" },
-    { "mk": "семеен", "en": "family (adj)", "pos": "adjective" },
-    { "mk": "заборавиме", "en": "forget", "pos": "verb" }
+    {
+      "mk": "минатата недела",
+      "en": "last week",
+      "pos": "phrase"
+    },
+    {
+      "mk": "роденденот",
+      "en": "the birthday",
+      "pos": "noun (def)"
+    },
+    {
+      "mk": "баба",
+      "en": "grandmother",
+      "pos": "noun"
+    },
+    {
+      "mk": "наполни",
+      "en": "turned (age)",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "седумдесет",
+      "en": "seventy",
+      "pos": "number"
+    },
+    {
+      "mk": "целото",
+      "en": "the whole",
+      "pos": "adjective (def)"
+    },
+    {
+      "mk": "дојде",
+      "en": "came",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "прослави",
+      "en": "celebrate",
+      "pos": "verb"
+    },
+    {
+      "mk": "гостите",
+      "en": "the guests",
+      "pos": "noun (def)"
+    },
+    {
+      "mk": "почнаа",
+      "en": "started",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "доаѓаат",
+      "en": "to arrive",
+      "pos": "verb"
+    },
+    {
+      "mk": "секој",
+      "en": "everyone",
+      "pos": "pronoun"
+    },
+    {
+      "mk": "донесе",
+      "en": "brought",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "подарок",
+      "en": "gift",
+      "pos": "noun"
+    },
+    {
+      "mk": "и купив",
+      "en": "I bought her",
+      "pos": "verb phrase (past)"
+    },
+    {
+      "mk": "шал",
+      "en": "scarf",
+      "pos": "noun"
+    },
+    {
+      "mk": "цвеќе",
+      "en": "flowers",
+      "pos": "noun"
+    },
+    {
+      "mk": "среќна",
+      "en": "happy",
+      "pos": "adjective"
+    },
+    {
+      "mk": "возбудена",
+      "en": "excited",
+      "pos": "adjective"
+    },
+    {
+      "mk": "направи",
+      "en": "made",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "торта",
+      "en": "cake",
+      "pos": "noun"
+    },
+    {
+      "mk": "свеќи",
+      "en": "candles",
+      "pos": "noun"
+    },
+    {
+      "mk": "дувна",
+      "en": "blew",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "извикаа",
+      "en": "shouted",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "среќен",
+      "en": "happy",
+      "pos": "adjective"
+    },
+    {
+      "mk": "рече",
+      "en": "said",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "ви благодарам",
+      "en": "thank you (formal/plural)",
+      "pos": "phrase"
+    },
+    {
+      "mk": "најубавиот",
+      "en": "the most beautiful",
+      "pos": "superlative (def)"
+    },
+    {
+      "mk": "јадевме",
+      "en": "we ate",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "вкусна",
+      "en": "delicious",
+      "pos": "adjective"
+    },
+    {
+      "mk": "разговаравме",
+      "en": "we talked",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "децата",
+      "en": "the children",
+      "pos": "noun (def)"
+    },
+    {
+      "mk": "играа",
+      "en": "played",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "возрасните",
+      "en": "the adults",
+      "pos": "noun (def)"
+    },
+    {
+      "mk": "седеа",
+      "en": "sat",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "прекрасен",
+      "en": "wonderful",
+      "pos": "adjective"
+    },
+    {
+      "mk": "семеен",
+      "en": "family (adj)",
+      "pos": "adjective"
+    },
+    {
+      "mk": "заборавиме",
+      "en": "forget",
+      "pos": "verb"
+    }
   ],
   "expressions": [
-    { "mk": "Среќен роденден!", "en": "Happy birthday!", "usage": "Birthday greeting" },
-    { "mk": "Ви благодарам на сите", "en": "Thank you all", "usage": "Formal/plural thanks" }
+    {
+      "mk": "Среќен роденден!",
+      "en": "Happy birthday!",
+      "usage": "Birthday greeting"
+    },
+    {
+      "mk": "Ви благодарам на сите",
+      "en": "Thank you all",
+      "usage": "Formal/plural thanks"
+    }
   ],
   "attribution": {
     "handle": "@mklanguagelab",
     "series": "Graded Readers",
     "day": "culture"
+  },
+  "analyzedData": {
+    "words": [
+      {
+        "id": "word-0",
+        "original": "Минатата",
+        "translation": "The past",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 0
+      },
+      {
+        "id": "word-2",
+        "original": "недела",
+        "translation": "Sunday",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 2
+      },
+      {
+        "id": "word-4",
+        "original": "беше",
+        "translation": "was",
+        "contextualMeaning": "was",
+        "alternativeTranslations": [
+          "were",
+          "used to be"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 4,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-6",
+        "original": "роденденот",
+        "translation": "the birthday",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 6
+      },
+      {
+        "id": "word-8",
+        "original": "на",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 8,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-10",
+        "original": "мојата",
+        "translation": "mine",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 10
+      },
+      {
+        "id": "word-12",
+        "original": "баба",
+        "translation": "grandmother",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 12
+      },
+      {
+        "id": "word-14",
+        "original": "Таа",
+        "translation": "that",
+        "contextualMeaning": "that",
+        "alternativeTranslations": [
+          "she",
+          "that one (fem.)"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 14,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-16",
+        "original": "наполни",
+        "translation": "fill up",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 16
+      },
+      {
+        "id": "word-18",
+        "original": "седумдесет",
+        "translation": "seventy",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 18
+      },
+      {
+        "id": "word-20",
+        "original": "години",
+        "translation": "years",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 20
+      },
+      {
+        "id": "word-22",
+        "original": "Целото",
+        "translation": "The whole thing",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 22
+      },
+      {
+        "id": "word-24",
+        "original": "семејство",
+        "translation": "family",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 24
+      },
+      {
+        "id": "word-26",
+        "original": "дојде",
+        "translation": "came",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 26
+      },
+      {
+        "id": "word-28",
+        "original": "да",
+        "translation": "to",
+        "contextualMeaning": "to",
+        "alternativeTranslations": [
+          "yes",
+          "that",
+          "so that",
+          "let"
+        ],
+        "contextHint": "\"Да\" before verbs means \"to\"; alone means \"yes\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 28,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-30",
+        "original": "го",
+        "translation": "the",
+        "contextualMeaning": "the",
+        "alternativeTranslations": [
+          "him",
+          "it (masc.)"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 30,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-32",
+        "original": "прослави",
+        "translation": "celebrate",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 32
+      },
+      {
+        "id": "word-34",
+        "original": "Гостите",
+        "translation": "The guests",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 34
+      },
+      {
+        "id": "word-36",
+        "original": "почнаа",
+        "translation": "they started",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 36
+      },
+      {
+        "id": "word-38",
+        "original": "да",
+        "translation": "to",
+        "contextualMeaning": "to",
+        "alternativeTranslations": [
+          "yes",
+          "that",
+          "so that",
+          "let"
+        ],
+        "contextHint": "\"Да\" before verbs means \"to\"; alone means \"yes\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 38,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-40",
+        "original": "доаѓаат",
+        "translation": "they are coming",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 40
+      },
+      {
+        "id": "word-42",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 42,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-44",
+        "original": "пет",
+        "translation": "five",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 44
+      },
+      {
+        "id": "word-46",
+        "original": "часот",
+        "translation": "the hour",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 46
+      },
+      {
+        "id": "word-48",
+        "original": "Секој",
+        "translation": "every",
+        "contextualMeaning": "every",
+        "alternativeTranslations": [
+          "each",
+          "everyone"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 48,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-50",
+        "original": "донесе",
+        "translation": "brought",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 50
+      },
+      {
+        "id": "word-52",
+        "original": "подарок",
+        "translation": "a gift",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 52
+      },
+      {
+        "id": "word-54",
+        "original": "за",
+        "translation": "for",
+        "contextualMeaning": "for",
+        "alternativeTranslations": [
+          "about",
+          "to",
+          "in order to"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 54,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-56",
+        "original": "баба",
+        "translation": "grandmother",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 56
+      },
+      {
+        "id": "word-58",
+        "original": "Јас",
+        "translation": "Me",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 58
+      },
+      {
+        "id": "word-60",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 60,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-62",
+        "original": "купив",
+        "translation": "I bought",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 62
+      },
+      {
+        "id": "word-64",
+        "original": "убав",
+        "translation": "handsome",
+        "pos": "adjective",
+        "difficulty": "basic",
+        "index": 64
+      },
+      {
+        "id": "word-66",
+        "original": "шал",
+        "translation": "scarf",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 66
+      },
+      {
+        "id": "word-68",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 68,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-70",
+        "original": "цвеќе",
+        "translation": "flowers",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 70
+      },
+      {
+        "id": "word-72",
+        "original": "Таа",
+        "translation": "that",
+        "contextualMeaning": "that",
+        "alternativeTranslations": [
+          "she",
+          "that one (fem.)"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 72,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-74",
+        "original": "беше",
+        "translation": "was",
+        "contextualMeaning": "was",
+        "alternativeTranslations": [
+          "were",
+          "used to be"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 74,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-76",
+        "original": "многу",
+        "translation": "very",
+        "contextualMeaning": "very",
+        "alternativeTranslations": [
+          "much",
+          "a lot",
+          "many"
+        ],
+        "pos": "adverb",
+        "difficulty": "intermediate",
+        "index": 76,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-78",
+        "original": "среќна",
+        "translation": "happy",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 78
+      },
+      {
+        "id": "word-80",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 80,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-82",
+        "original": "возбудена",
+        "translation": "excited",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 82
+      },
+      {
+        "id": "word-84",
+        "original": "Мајка",
+        "translation": "Mother",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 84
+      },
+      {
+        "id": "word-86",
+        "original": "ми",
+        "translation": "mi",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 86
+      },
+      {
+        "id": "word-88",
+        "original": "направи",
+        "translation": "do",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 88
+      },
+      {
+        "id": "word-90",
+        "original": "голема",
+        "translation": "big",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 90
+      },
+      {
+        "id": "word-92",
+        "original": "торта",
+        "translation": "a cake",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 92
+      },
+      {
+        "id": "word-94",
+        "original": "со",
+        "translation": "with",
+        "contextualMeaning": "with",
+        "alternativeTranslations": [
+          "by",
+          "using"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 94,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-96",
+        "original": "седумдесет",
+        "translation": "seventy",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 96
+      },
+      {
+        "id": "word-98",
+        "original": "свеќи",
+        "translation": "candles",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 98
+      },
+      {
+        "id": "word-100",
+        "original": "Кога",
+        "translation": "when",
+        "contextualMeaning": "when",
+        "alternativeTranslations": [
+          "whenever"
+        ],
+        "pos": "adverb",
+        "difficulty": "basic",
+        "index": 100,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-102",
+        "original": "баба",
+        "translation": "grandmother",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 102
+      },
+      {
+        "id": "word-104",
+        "original": "ги",
+        "translation": "them",
+        "contextualMeaning": "them",
+        "alternativeTranslations": [
+          "the (plural)"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 104,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-106",
+        "original": "дувна",
+        "translation": "blew",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 106
+      },
+      {
+        "id": "word-108",
+        "original": "свеќите",
+        "translation": "the candles",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 108
+      },
+      {
+        "id": "word-110",
+        "original": "сите",
+        "translation": "all",
+        "contextualMeaning": "all",
+        "alternativeTranslations": [
+          "everyone",
+          "everything"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 110,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-112",
+        "original": "извикаа",
+        "translation": "they shouted",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 112
+      },
+      {
+        "id": "word-114",
+        "original": "Среќен",
+        "translation": "Happy",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 114
+      },
+      {
+        "id": "word-116",
+        "original": "роденден",
+        "translation": "birthday",
+        "pos": "adjective",
+        "difficulty": "advanced",
+        "index": 116
+      },
+      {
+        "id": "word-118",
+        "original": "Баба",
+        "translation": "Grandma",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 118
+      },
+      {
+        "id": "word-120",
+        "original": "рече",
+        "translation": "he said",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 120
+      },
+      {
+        "id": "word-122",
+        "original": "Ви",
+        "translation": "you (pl.)",
+        "contextualMeaning": "you (pl.)",
+        "alternativeTranslations": [
+          "your",
+          "to you"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 122,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-124",
+        "original": "благодарам",
+        "translation": "thank you",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 124
+      },
+      {
+        "id": "word-126",
+        "original": "на",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 126,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-128",
+        "original": "сите",
+        "translation": "all",
+        "contextualMeaning": "all",
+        "alternativeTranslations": [
+          "everyone",
+          "everything"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 128,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-130",
+        "original": "Ова",
+        "translation": "this",
+        "contextualMeaning": "this",
+        "alternativeTranslations": [
+          "this one (neut.)"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 130,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-132",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 132,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-134",
+        "original": "најубавиот",
+        "translation": "the most beautiful",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 134
+      },
+      {
+        "id": "word-136",
+        "original": "ден",
+        "translation": "day",
+        "contextualMeaning": "day",
+        "alternativeTranslations": [
+          "daytime"
+        ],
+        "pos": "adjective",
+        "difficulty": "basic",
+        "index": 136,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-138",
+        "original": "Потоа",
+        "translation": "then",
+        "contextualMeaning": "then",
+        "alternativeTranslations": [
+          "after that",
+          "afterwards"
+        ],
+        "pos": "adverb",
+        "difficulty": "intermediate",
+        "index": 138,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-140",
+        "original": "јадевме",
+        "translation": "we ate",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 140
+      },
+      {
+        "id": "word-142",
+        "original": "многу",
+        "translation": "very",
+        "contextualMeaning": "very",
+        "alternativeTranslations": [
+          "much",
+          "a lot",
+          "many"
+        ],
+        "pos": "adverb",
+        "difficulty": "intermediate",
+        "index": 142,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-144",
+        "original": "вкусна",
+        "translation": "delicious",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 144
+      },
+      {
+        "id": "word-146",
+        "original": "храна",
+        "translation": "food",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 146
+      },
+      {
+        "id": "word-148",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 148,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-150",
+        "original": "разговаравме",
+        "translation": "we talked",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 150
+      },
+      {
+        "id": "word-152",
+        "original": "Децата",
+        "translation": "The children",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 152
+      },
+      {
+        "id": "word-154",
+        "original": "играа",
+        "translation": "they played",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 154
+      },
+      {
+        "id": "word-156",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 156,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-158",
+        "original": "дворот",
+        "translation": "the yard",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 158
+      },
+      {
+        "id": "word-160",
+        "original": "а",
+        "translation": "a",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 160
+      },
+      {
+        "id": "word-162",
+        "original": "возрасните",
+        "translation": "the adults",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 162
+      },
+      {
+        "id": "word-164",
+        "original": "седеа",
+        "translation": "they were sitting",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 164
+      },
+      {
+        "id": "word-166",
+        "original": "на",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 166,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-168",
+        "original": "терасата",
+        "translation": "the terrace",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 168
+      },
+      {
+        "id": "word-170",
+        "original": "Тоа",
+        "translation": "that",
+        "contextualMeaning": "that",
+        "alternativeTranslations": [
+          "it",
+          "that one (neut.)"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 170,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-172",
+        "original": "беше",
+        "translation": "was",
+        "contextualMeaning": "was",
+        "alternativeTranslations": [
+          "were",
+          "used to be"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 172,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-174",
+        "original": "прекрасен",
+        "translation": "wonderful",
+        "pos": "adjective",
+        "difficulty": "advanced",
+        "index": 174
+      },
+      {
+        "id": "word-176",
+        "original": "семеен",
+        "translation": "family",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 176
+      },
+      {
+        "id": "word-178",
+        "original": "празник",
+        "translation": "holiday",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 178
+      },
+      {
+        "id": "word-180",
+        "original": "што",
+        "translation": "that",
+        "contextualMeaning": "that",
+        "alternativeTranslations": [
+          "what",
+          "which",
+          "why"
+        ],
+        "contextHint": "Interrogative or relative pronoun",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 180,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-182",
+        "original": "нема",
+        "translation": "has not",
+        "contextualMeaning": "has not",
+        "alternativeTranslations": [
+          "there is no",
+          "doesn't have",
+          "lacks"
+        ],
+        "contextHint": "Negative of има - no possession or non-existence",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 182,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-184",
+        "original": "да",
+        "translation": "to",
+        "contextualMeaning": "to",
+        "alternativeTranslations": [
+          "yes",
+          "that",
+          "so that",
+          "let"
+        ],
+        "contextHint": "\"Да\" before verbs means \"to\"; alone means \"yes\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 184,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-186",
+        "original": "го",
+        "translation": "the",
+        "contextualMeaning": "the",
+        "alternativeTranslations": [
+          "him",
+          "it (masc.)"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 186,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-188",
+        "original": "заборавиме",
+        "translation": "let's forget",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 188
+      }
+    ],
+    "tokens": [
+      {
+        "token": "Минатата",
+        "isWord": true,
+        "index": 0
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 1
+      },
+      {
+        "token": "недела",
+        "isWord": true,
+        "index": 2
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 3
+      },
+      {
+        "token": "беше",
+        "isWord": true,
+        "index": 4
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 5
+      },
+      {
+        "token": "роденденот",
+        "isWord": true,
+        "index": 6
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 7
+      },
+      {
+        "token": "на",
+        "isWord": true,
+        "index": 8
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 9
+      },
+      {
+        "token": "мојата",
+        "isWord": true,
+        "index": 10
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 11
+      },
+      {
+        "token": "баба",
+        "isWord": true,
+        "index": 12
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 13
+      },
+      {
+        "token": "Таа",
+        "isWord": true,
+        "index": 14
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 15
+      },
+      {
+        "token": "наполни",
+        "isWord": true,
+        "index": 16
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 17
+      },
+      {
+        "token": "седумдесет",
+        "isWord": true,
+        "index": 18
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 19
+      },
+      {
+        "token": "години",
+        "isWord": true,
+        "index": 20
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 21
+      },
+      {
+        "token": "Целото",
+        "isWord": true,
+        "index": 22
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 23
+      },
+      {
+        "token": "семејство",
+        "isWord": true,
+        "index": 24
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 25
+      },
+      {
+        "token": "дојде",
+        "isWord": true,
+        "index": 26
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 27
+      },
+      {
+        "token": "да",
+        "isWord": true,
+        "index": 28
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 29
+      },
+      {
+        "token": "го",
+        "isWord": true,
+        "index": 30
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 31
+      },
+      {
+        "token": "прослави",
+        "isWord": true,
+        "index": 32
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 33
+      },
+      {
+        "token": "Гостите",
+        "isWord": true,
+        "index": 34
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 35
+      },
+      {
+        "token": "почнаа",
+        "isWord": true,
+        "index": 36
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 37
+      },
+      {
+        "token": "да",
+        "isWord": true,
+        "index": 38
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 39
+      },
+      {
+        "token": "доаѓаат",
+        "isWord": true,
+        "index": 40
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 41
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 42
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 43
+      },
+      {
+        "token": "пет",
+        "isWord": true,
+        "index": 44
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 45
+      },
+      {
+        "token": "часот",
+        "isWord": true,
+        "index": 46
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 47
+      },
+      {
+        "token": "Секој",
+        "isWord": true,
+        "index": 48
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 49
+      },
+      {
+        "token": "донесе",
+        "isWord": true,
+        "index": 50
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 51
+      },
+      {
+        "token": "подарок",
+        "isWord": true,
+        "index": 52
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 53
+      },
+      {
+        "token": "за",
+        "isWord": true,
+        "index": 54
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 55
+      },
+      {
+        "token": "баба",
+        "isWord": true,
+        "index": 56
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 57
+      },
+      {
+        "token": "Јас",
+        "isWord": true,
+        "index": 58
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 59
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 60
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 61
+      },
+      {
+        "token": "купив",
+        "isWord": true,
+        "index": 62
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 63
+      },
+      {
+        "token": "убав",
+        "isWord": true,
+        "index": 64
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 65
+      },
+      {
+        "token": "шал",
+        "isWord": true,
+        "index": 66
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 67
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 68
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 69
+      },
+      {
+        "token": "цвеќе",
+        "isWord": true,
+        "index": 70
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 71
+      },
+      {
+        "token": "Таа",
+        "isWord": true,
+        "index": 72
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 73
+      },
+      {
+        "token": "беше",
+        "isWord": true,
+        "index": 74
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 75
+      },
+      {
+        "token": "многу",
+        "isWord": true,
+        "index": 76
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 77
+      },
+      {
+        "token": "среќна",
+        "isWord": true,
+        "index": 78
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 79
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 80
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 81
+      },
+      {
+        "token": "возбудена",
+        "isWord": true,
+        "index": 82
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 83
+      },
+      {
+        "token": "Мајка",
+        "isWord": true,
+        "index": 84
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 85
+      },
+      {
+        "token": "ми",
+        "isWord": true,
+        "index": 86
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 87
+      },
+      {
+        "token": "направи",
+        "isWord": true,
+        "index": 88
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 89
+      },
+      {
+        "token": "голема",
+        "isWord": true,
+        "index": 90
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 91
+      },
+      {
+        "token": "торта",
+        "isWord": true,
+        "index": 92
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 93
+      },
+      {
+        "token": "со",
+        "isWord": true,
+        "index": 94
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 95
+      },
+      {
+        "token": "седумдесет",
+        "isWord": true,
+        "index": 96
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 97
+      },
+      {
+        "token": "свеќи",
+        "isWord": true,
+        "index": 98
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 99
+      },
+      {
+        "token": "Кога",
+        "isWord": true,
+        "index": 100
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 101
+      },
+      {
+        "token": "баба",
+        "isWord": true,
+        "index": 102
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 103
+      },
+      {
+        "token": "ги",
+        "isWord": true,
+        "index": 104
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 105
+      },
+      {
+        "token": "дувна",
+        "isWord": true,
+        "index": 106
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 107
+      },
+      {
+        "token": "свеќите",
+        "isWord": true,
+        "index": 108
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 109
+      },
+      {
+        "token": "сите",
+        "isWord": true,
+        "index": 110
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 111
+      },
+      {
+        "token": "извикаа",
+        "isWord": true,
+        "index": 112
+      },
+      {
+        "token": ": \"",
+        "isWord": false,
+        "index": 113
+      },
+      {
+        "token": "Среќен",
+        "isWord": true,
+        "index": 114
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 115
+      },
+      {
+        "token": "роденден",
+        "isWord": true,
+        "index": 116
+      },
+      {
+        "token": "!\" ",
+        "isWord": false,
+        "index": 117
+      },
+      {
+        "token": "Баба",
+        "isWord": true,
+        "index": 118
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 119
+      },
+      {
+        "token": "рече",
+        "isWord": true,
+        "index": 120
+      },
+      {
+        "token": ": \"",
+        "isWord": false,
+        "index": 121
+      },
+      {
+        "token": "Ви",
+        "isWord": true,
+        "index": 122
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 123
+      },
+      {
+        "token": "благодарам",
+        "isWord": true,
+        "index": 124
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 125
+      },
+      {
+        "token": "на",
+        "isWord": true,
+        "index": 126
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 127
+      },
+      {
+        "token": "сите",
+        "isWord": true,
+        "index": 128
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 129
+      },
+      {
+        "token": "Ова",
+        "isWord": true,
+        "index": 130
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 131
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 132
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 133
+      },
+      {
+        "token": "најубавиот",
+        "isWord": true,
+        "index": 134
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 135
+      },
+      {
+        "token": "ден",
+        "isWord": true,
+        "index": 136
+      },
+      {
+        "token": "!\"\n\n",
+        "isWord": false,
+        "index": 137
+      },
+      {
+        "token": "Потоа",
+        "isWord": true,
+        "index": 138
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 139
+      },
+      {
+        "token": "јадевме",
+        "isWord": true,
+        "index": 140
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 141
+      },
+      {
+        "token": "многу",
+        "isWord": true,
+        "index": 142
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 143
+      },
+      {
+        "token": "вкусна",
+        "isWord": true,
+        "index": 144
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 145
+      },
+      {
+        "token": "храна",
+        "isWord": true,
+        "index": 146
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 147
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 148
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 149
+      },
+      {
+        "token": "разговаравме",
+        "isWord": true,
+        "index": 150
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 151
+      },
+      {
+        "token": "Децата",
+        "isWord": true,
+        "index": 152
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 153
+      },
+      {
+        "token": "играа",
+        "isWord": true,
+        "index": 154
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 155
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 156
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 157
+      },
+      {
+        "token": "дворот",
+        "isWord": true,
+        "index": 158
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 159
+      },
+      {
+        "token": "а",
+        "isWord": true,
+        "index": 160
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 161
+      },
+      {
+        "token": "возрасните",
+        "isWord": true,
+        "index": 162
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 163
+      },
+      {
+        "token": "седеа",
+        "isWord": true,
+        "index": 164
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 165
+      },
+      {
+        "token": "на",
+        "isWord": true,
+        "index": 166
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 167
+      },
+      {
+        "token": "терасата",
+        "isWord": true,
+        "index": 168
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 169
+      },
+      {
+        "token": "Тоа",
+        "isWord": true,
+        "index": 170
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 171
+      },
+      {
+        "token": "беше",
+        "isWord": true,
+        "index": 172
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 173
+      },
+      {
+        "token": "прекрасен",
+        "isWord": true,
+        "index": 174
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 175
+      },
+      {
+        "token": "семеен",
+        "isWord": true,
+        "index": 176
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 177
+      },
+      {
+        "token": "празник",
+        "isWord": true,
+        "index": 178
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 179
+      },
+      {
+        "token": "што",
+        "isWord": true,
+        "index": 180
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 181
+      },
+      {
+        "token": "нема",
+        "isWord": true,
+        "index": 182
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 183
+      },
+      {
+        "token": "да",
+        "isWord": true,
+        "index": 184
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 185
+      },
+      {
+        "token": "го",
+        "isWord": true,
+        "index": 186
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 187
+      },
+      {
+        "token": "заборавиме",
+        "isWord": true,
+        "index": 188
+      },
+      {
+        "token": ".",
+        "isWord": false,
+        "index": 189
+      }
+    ],
+    "fullTranslation": "Last week was my grandmother's birthday. She turned seventy years old. The whole family came to celebrate.\n\nThe guests started arriving at five o'clock. Everyone brought a gift for grandma. I bought her a beautiful scarf and flowers. She was very happy and excited.\n\nMy mother made a big cake with seventy candles. When Grandma blew out the candles, everyone shouted, \"Happy birthday!\" Grandma said, \"Thank you all. This is the most beautiful day!\"\n\nThen we ate lots of delicious food and talked. The children were playing in the yard and the adults were sitting on the terrace. It was a wonderful family holiday that we will not forget.",
+    "difficulty": {
+      "level": "intermediate",
+      "score": 57.578947368421055,
+      "factors": {
+        "avgWordLength": 4.968421052631579,
+        "longWords": 15,
+        "totalWords": 95
+      }
+    },
+    "metadata": {
+      "wordCount": 95,
+      "sentenceCount": 14,
+      "characterCount": 591
+    }
   }
 }

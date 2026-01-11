@@ -5,71 +5,3153 @@
   "title_en": "Macedonian Cuisine",
   "difficulty": "B1",
   "estimatedMinutes": 7,
-  "tags": ["graded-reader", "B1", "food"],
+  "tags": [
+    "graded-reader",
+    "B1",
+    "food"
+  ],
   "text_blocks_mk": [
-    { "type": "p", "value": "Македонската кујна е позната по своето богатство на вкусови и традиции. Многу јадења се подготвуваат со состојки што се одгледуваат локално. Едно од најпопуларните јадења е тавче гравче." },
-    { "type": "p", "value": "Ова јадење се пече во глинен сад и се послужува топло. Ајварот е уште еден симбол на македонската кујна. Се прави од црвени пиперки кои се печат и се мелат." },
-    { "type": "p", "value": "Пастрмајлијата е поповкусна од многу брзи јадења. Кога гостин дојде дома, домаќинот мора да понуди мезе и ракија. Ова е дел од македонското гостопримство што се пренесува од генерација на генерација." },
-    { "type": "p", "value": "Секој регион има свои специјалитети. Во Охрид се јаде најдобрата пастрмка, а во Струмица најубавите домати. Домашната храна секогаш ќе биде повкусна од ресторанската. Затоа, ако ја посетите Македонија, обидете се да пробате домашно готвена храна. Таа е најавтентичниот начин да ја почувствувате македонската култура." }
+    {
+      "type": "p",
+      "value": "Македонската кујна е позната по своето богатство на вкусови и традиции. Многу јадења се подготвуваат со состојки што се одгледуваат локално. Едно од најпопуларните јадења е тавче гравче."
+    },
+    {
+      "type": "p",
+      "value": "Ова јадење се пече во глинен сад и се послужува топло. Ајварот е уште еден симбол на македонската кујна. Се прави од црвени пиперки кои се печат и се мелат."
+    },
+    {
+      "type": "p",
+      "value": "Пастрмајлијата е поповкусна од многу брзи јадења. Кога гостин дојде дома, домаќинот мора да понуди мезе и ракија. Ова е дел од македонското гостопримство што се пренесува од генерација на генерација."
+    },
+    {
+      "type": "p",
+      "value": "Секој регион има свои специјалитети. Во Охрид се јаде најдобрата пастрмка, а во Струмица најубавите домати. Домашната храна секогаш ќе биде повкусна од ресторанската. Затоа, ако ја посетите Македонија, обидете се да пробате домашно готвена храна. Таа е најавтентичниот начин да ја почувствувате македонската култура."
+    }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Пасивни конструкции со 'се'",
       "title_en": "Passive constructions with 'се'",
       "examples": [
-        { "mk": "се подготвуваат", "en": "are prepared" },
-        { "mk": "се одгледуваат", "en": "are grown" },
-        { "mk": "се пече", "en": "is baked" },
-        { "mk": "се послужува", "en": "is served" }
+        {
+          "mk": "се подготвуваат",
+          "en": "are prepared"
+        },
+        {
+          "mk": "се одгледуваат",
+          "en": "are grown"
+        },
+        {
+          "mk": "се пече",
+          "en": "is baked"
+        },
+        {
+          "mk": "се послужува",
+          "en": "is served"
+        }
       ]
     }
   ],
   "vocabulary": [
-    { "mk": "кујна", "en": "cuisine/kitchen", "pos": "noun" },
-    { "mk": "богатство", "en": "richness", "pos": "noun" },
-    { "mk": "вкусови", "en": "flavors", "pos": "noun" },
-    { "mk": "се подготвуваат", "en": "are prepared", "pos": "passive verb" },
-    { "mk": "состојки", "en": "ingredients", "pos": "noun" },
-    { "mk": "одгледуваат", "en": "are grown", "pos": "passive verb" },
-    { "mk": "најпопуларните", "en": "the most popular", "pos": "superlative adj" },
-    { "mk": "тавче гравче", "en": "baked beans (traditional dish)", "pos": "noun phrase" },
-    { "mk": "се пече", "en": "is baked", "pos": "passive verb" },
-    { "mk": "глинен сад", "en": "clay pot", "pos": "noun phrase" },
-    { "mk": "се послужува", "en": "is served", "pos": "passive verb" },
-    { "mk": "ајвар", "en": "ajvar (pepper relish)", "pos": "noun" },
-    { "mk": "симбол", "en": "symbol", "pos": "noun" },
-    { "mk": "се прави", "en": "is made", "pos": "passive verb" },
-    { "mk": "пиперки", "en": "peppers", "pos": "noun" },
-    { "mk": "се печат", "en": "are roasted", "pos": "passive verb" },
-    { "mk": "се мелат", "en": "are ground", "pos": "passive verb" },
-    { "mk": "пастрмајлија", "en": "pastrmajlija (meat pie)", "pos": "noun" },
-    { "mk": "поповкусна од", "en": "more delicious than", "pos": "comparative" },
-    { "mk": "гостин", "en": "guest", "pos": "noun" },
-    { "mk": "домаќин", "en": "host", "pos": "noun" },
-    { "mk": "мезе", "en": "appetizers/small dishes", "pos": "noun" },
-    { "mk": "ракија", "en": "rakija (fruit brandy)", "pos": "noun" },
-    { "mk": "гостопримство", "en": "hospitality", "pos": "noun" },
-    { "mk": "се пренесува", "en": "is passed/transmitted", "pos": "passive verb" },
-    { "mk": "генерација", "en": "generation", "pos": "noun" },
-    { "mk": "регион", "en": "region", "pos": "noun" },
-    { "mk": "специјалитети", "en": "specialties", "pos": "noun" },
-    { "mk": "најдобрата", "en": "the best (fem)", "pos": "superlative adj" },
-    { "mk": "пастрмка", "en": "trout", "pos": "noun" },
-    { "mk": "најубавите", "en": "the best/most beautiful", "pos": "superlative adj" },
-    { "mk": "домашната", "en": "homemade", "pos": "adjective" },
-    { "mk": "повкусна од", "en": "more delicious than", "pos": "comparative" },
-    { "mk": "ресторанската", "en": "restaurant (adj)", "pos": "adjective" },
-    { "mk": "ако", "en": "if", "pos": "conjunction" },
-    { "mk": "посетите", "en": "you visit (formal)", "pos": "verb" },
-    { "mk": "обидете се", "en": "try (imperative)", "pos": "verb" },
-    { "mk": "пробате", "en": "taste", "pos": "verb" },
-    { "mk": "најавтентичниот", "en": "the most authentic", "pos": "superlative adj" },
-    { "mk": "почувствувате", "en": "to experience/feel", "pos": "verb" }
+    {
+      "mk": "кујна",
+      "en": "cuisine/kitchen",
+      "pos": "noun"
+    },
+    {
+      "mk": "богатство",
+      "en": "richness",
+      "pos": "noun"
+    },
+    {
+      "mk": "вкусови",
+      "en": "flavors",
+      "pos": "noun"
+    },
+    {
+      "mk": "се подготвуваат",
+      "en": "are prepared",
+      "pos": "passive verb"
+    },
+    {
+      "mk": "состојки",
+      "en": "ingredients",
+      "pos": "noun"
+    },
+    {
+      "mk": "одгледуваат",
+      "en": "are grown",
+      "pos": "passive verb"
+    },
+    {
+      "mk": "најпопуларните",
+      "en": "the most popular",
+      "pos": "superlative adj"
+    },
+    {
+      "mk": "тавче гравче",
+      "en": "baked beans (traditional dish)",
+      "pos": "noun phrase"
+    },
+    {
+      "mk": "се пече",
+      "en": "is baked",
+      "pos": "passive verb"
+    },
+    {
+      "mk": "глинен сад",
+      "en": "clay pot",
+      "pos": "noun phrase"
+    },
+    {
+      "mk": "се послужува",
+      "en": "is served",
+      "pos": "passive verb"
+    },
+    {
+      "mk": "ајвар",
+      "en": "ajvar (pepper relish)",
+      "pos": "noun"
+    },
+    {
+      "mk": "симбол",
+      "en": "symbol",
+      "pos": "noun"
+    },
+    {
+      "mk": "се прави",
+      "en": "is made",
+      "pos": "passive verb"
+    },
+    {
+      "mk": "пиперки",
+      "en": "peppers",
+      "pos": "noun"
+    },
+    {
+      "mk": "се печат",
+      "en": "are roasted",
+      "pos": "passive verb"
+    },
+    {
+      "mk": "се мелат",
+      "en": "are ground",
+      "pos": "passive verb"
+    },
+    {
+      "mk": "пастрмајлија",
+      "en": "pastrmajlija (meat pie)",
+      "pos": "noun"
+    },
+    {
+      "mk": "поповкусна од",
+      "en": "more delicious than",
+      "pos": "comparative"
+    },
+    {
+      "mk": "гостин",
+      "en": "guest",
+      "pos": "noun"
+    },
+    {
+      "mk": "домаќин",
+      "en": "host",
+      "pos": "noun"
+    },
+    {
+      "mk": "мезе",
+      "en": "appetizers/small dishes",
+      "pos": "noun"
+    },
+    {
+      "mk": "ракија",
+      "en": "rakija (fruit brandy)",
+      "pos": "noun"
+    },
+    {
+      "mk": "гостопримство",
+      "en": "hospitality",
+      "pos": "noun"
+    },
+    {
+      "mk": "се пренесува",
+      "en": "is passed/transmitted",
+      "pos": "passive verb"
+    },
+    {
+      "mk": "генерација",
+      "en": "generation",
+      "pos": "noun"
+    },
+    {
+      "mk": "регион",
+      "en": "region",
+      "pos": "noun"
+    },
+    {
+      "mk": "специјалитети",
+      "en": "specialties",
+      "pos": "noun"
+    },
+    {
+      "mk": "најдобрата",
+      "en": "the best (fem)",
+      "pos": "superlative adj"
+    },
+    {
+      "mk": "пастрмка",
+      "en": "trout",
+      "pos": "noun"
+    },
+    {
+      "mk": "најубавите",
+      "en": "the best/most beautiful",
+      "pos": "superlative adj"
+    },
+    {
+      "mk": "домашната",
+      "en": "homemade",
+      "pos": "adjective"
+    },
+    {
+      "mk": "повкусна од",
+      "en": "more delicious than",
+      "pos": "comparative"
+    },
+    {
+      "mk": "ресторанската",
+      "en": "restaurant (adj)",
+      "pos": "adjective"
+    },
+    {
+      "mk": "ако",
+      "en": "if",
+      "pos": "conjunction"
+    },
+    {
+      "mk": "посетите",
+      "en": "you visit (formal)",
+      "pos": "verb"
+    },
+    {
+      "mk": "обидете се",
+      "en": "try (imperative)",
+      "pos": "verb"
+    },
+    {
+      "mk": "пробате",
+      "en": "taste",
+      "pos": "verb"
+    },
+    {
+      "mk": "најавтентичниот",
+      "en": "the most authentic",
+      "pos": "superlative adj"
+    },
+    {
+      "mk": "почувствувате",
+      "en": "to experience/feel",
+      "pos": "verb"
+    }
   ],
   "expressions": [],
   "attribution": {
     "handle": "@mklanguagelab",
     "series": "Graded Readers",
     "day": "food"
+  },
+  "analyzedData": {
+    "words": [
+      {
+        "id": "word-0",
+        "original": "Македонската",
+        "translation": "Macedonian",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 0
+      },
+      {
+        "id": "word-2",
+        "original": "кујна",
+        "translation": "kitchen",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 2
+      },
+      {
+        "id": "word-4",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 4,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-6",
+        "original": "позната",
+        "translation": "known",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 6
+      },
+      {
+        "id": "word-8",
+        "original": "по",
+        "translation": "per",
+        "contextualMeaning": "per",
+        "alternativeTranslations": [
+          "after",
+          "by",
+          "along",
+          "more"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 8,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-10",
+        "original": "своето",
+        "translation": "his own",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 10
+      },
+      {
+        "id": "word-12",
+        "original": "богатство",
+        "translation": "wealth",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 12
+      },
+      {
+        "id": "word-14",
+        "original": "на",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 14,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-16",
+        "original": "вкусови",
+        "translation": "flavors",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 16
+      },
+      {
+        "id": "word-18",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 18,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-20",
+        "original": "традиции",
+        "translation": "traditions",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 20
+      },
+      {
+        "id": "word-22",
+        "original": "Многу",
+        "translation": "many",
+        "contextualMeaning": "many",
+        "alternativeTranslations": [
+          "very",
+          "much",
+          "a lot"
+        ],
+        "pos": "adverb",
+        "difficulty": "intermediate",
+        "index": 22,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-24",
+        "original": "јадења",
+        "translation": "dishes",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 24
+      },
+      {
+        "id": "word-26",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 26,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-28",
+        "original": "подготвуваат",
+        "translation": "are preparing",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 28
+      },
+      {
+        "id": "word-30",
+        "original": "со",
+        "translation": "with",
+        "contextualMeaning": "with",
+        "alternativeTranslations": [
+          "by",
+          "using"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 30,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-32",
+        "original": "состојки",
+        "translation": "ingredients",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 32
+      },
+      {
+        "id": "word-34",
+        "original": "што",
+        "translation": "that",
+        "contextualMeaning": "that",
+        "alternativeTranslations": [
+          "what",
+          "which",
+          "why"
+        ],
+        "contextHint": "Interrogative or relative pronoun",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 34,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-36",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 36,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-38",
+        "original": "одгледуваат",
+        "translation": "grow",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 38
+      },
+      {
+        "id": "word-40",
+        "original": "локално",
+        "translation": "locally",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 40
+      },
+      {
+        "id": "word-42",
+        "original": "Едно",
+        "translation": "a",
+        "contextualMeaning": "a",
+        "alternativeTranslations": [
+          "one (neut.)",
+          "an"
+        ],
+        "pos": "adjective",
+        "difficulty": "basic",
+        "index": 42,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-44",
+        "original": "од",
+        "translation": "from",
+        "contextualMeaning": "from",
+        "alternativeTranslations": [
+          "of",
+          "off",
+          "than",
+          "by"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 44,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-46",
+        "original": "најпопуларните",
+        "translation": "the most popular",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 46
+      },
+      {
+        "id": "word-48",
+        "original": "јадења",
+        "translation": "dishes",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 48
+      },
+      {
+        "id": "word-50",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 50,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-52",
+        "original": "тавче",
+        "translation": "pan",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 52
+      },
+      {
+        "id": "word-54",
+        "original": "гравче",
+        "translation": "bean",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 54
+      },
+      {
+        "id": "word-56",
+        "original": "Ова",
+        "translation": "this",
+        "contextualMeaning": "this",
+        "alternativeTranslations": [
+          "this one (neut.)"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 56,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-58",
+        "original": "јадење",
+        "translation": "eating",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 58
+      },
+      {
+        "id": "word-60",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 60,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-62",
+        "original": "пече",
+        "translation": "bake",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 62
+      },
+      {
+        "id": "word-64",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 64,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-66",
+        "original": "глинен",
+        "translation": "clay",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 66
+      },
+      {
+        "id": "word-68",
+        "original": "сад",
+        "translation": "vessel",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 68
+      },
+      {
+        "id": "word-70",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 70,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-72",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 72,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-74",
+        "original": "послужува",
+        "translation": "serves",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 74
+      },
+      {
+        "id": "word-76",
+        "original": "топло",
+        "translation": "warm",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 76
+      },
+      {
+        "id": "word-78",
+        "original": "Ајварот",
+        "translation": "The Ajvar",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 78
+      },
+      {
+        "id": "word-80",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 80,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-82",
+        "original": "уште",
+        "translation": "another",
+        "contextualMeaning": "another",
+        "alternativeTranslations": [
+          "still",
+          "yet",
+          "more"
+        ],
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 82,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-84",
+        "original": "еден",
+        "translation": "one",
+        "contextualMeaning": "one",
+        "alternativeTranslations": [
+          "a",
+          "an",
+          "some"
+        ],
+        "pos": "adjective",
+        "difficulty": "basic",
+        "index": 84,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-86",
+        "original": "симбол",
+        "translation": "symbol",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 86
+      },
+      {
+        "id": "word-88",
+        "original": "на",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 88,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-90",
+        "original": "македонската",
+        "translation": "Macedonian",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 90
+      },
+      {
+        "id": "word-92",
+        "original": "кујна",
+        "translation": "kitchen",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 92
+      },
+      {
+        "id": "word-94",
+        "original": "Се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 94,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-96",
+        "original": "прави",
+        "translation": "does",
+        "contextualMeaning": "does",
+        "alternativeTranslations": [
+          "makes",
+          "creates"
+        ],
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 96,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-98",
+        "original": "од",
+        "translation": "from",
+        "contextualMeaning": "from",
+        "alternativeTranslations": [
+          "of",
+          "off",
+          "than",
+          "by"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 98,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-100",
+        "original": "црвени",
+        "translation": "red",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 100
+      },
+      {
+        "id": "word-102",
+        "original": "пиперки",
+        "translation": "peppers",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 102
+      },
+      {
+        "id": "word-104",
+        "original": "кои",
+        "translation": "that",
+        "contextualMeaning": "that",
+        "alternativeTranslations": [
+          "who (pl.)",
+          "which (pl.)"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 104,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-106",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 106,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-108",
+        "original": "печат",
+        "translation": "press",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 108
+      },
+      {
+        "id": "word-110",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 110,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-112",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 112,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-114",
+        "original": "мелат",
+        "translation": "grind",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 114
+      },
+      {
+        "id": "word-116",
+        "original": "Пастрмајлијата",
+        "translation": "The pastrami",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 116
+      },
+      {
+        "id": "word-118",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 118,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-120",
+        "original": "поповкусна",
+        "translation": "tastier",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 120
+      },
+      {
+        "id": "word-122",
+        "original": "од",
+        "translation": "from",
+        "contextualMeaning": "from",
+        "alternativeTranslations": [
+          "of",
+          "off",
+          "than",
+          "by"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 122,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-124",
+        "original": "многу",
+        "translation": "many",
+        "contextualMeaning": "many",
+        "alternativeTranslations": [
+          "very",
+          "much",
+          "a lot"
+        ],
+        "pos": "adverb",
+        "difficulty": "intermediate",
+        "index": 124,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-126",
+        "original": "брзи",
+        "translation": "fast",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 126
+      },
+      {
+        "id": "word-128",
+        "original": "јадења",
+        "translation": "dishes",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 128
+      },
+      {
+        "id": "word-130",
+        "original": "Кога",
+        "translation": "when",
+        "contextualMeaning": "when",
+        "alternativeTranslations": [
+          "whenever"
+        ],
+        "pos": "adverb",
+        "difficulty": "basic",
+        "index": 130,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-132",
+        "original": "гостин",
+        "translation": "guest",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 132
+      },
+      {
+        "id": "word-134",
+        "original": "дојде",
+        "translation": "came",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 134
+      },
+      {
+        "id": "word-136",
+        "original": "дома",
+        "translation": "at home",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 136
+      },
+      {
+        "id": "word-138",
+        "original": "домаќинот",
+        "translation": "the host",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 138
+      },
+      {
+        "id": "word-140",
+        "original": "мора",
+        "translation": "must",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 140
+      },
+      {
+        "id": "word-142",
+        "original": "да",
+        "translation": "to",
+        "contextualMeaning": "to",
+        "alternativeTranslations": [
+          "yes",
+          "that",
+          "so that",
+          "let"
+        ],
+        "contextHint": "\"Да\" before verbs means \"to\"; alone means \"yes\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 142,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-144",
+        "original": "понуди",
+        "translation": "offers",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 144
+      },
+      {
+        "id": "word-146",
+        "original": "мезе",
+        "translation": "appetizer",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 146
+      },
+      {
+        "id": "word-148",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 148,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-150",
+        "original": "ракија",
+        "translation": "brandy",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 150
+      },
+      {
+        "id": "word-152",
+        "original": "Ова",
+        "translation": "this",
+        "contextualMeaning": "this",
+        "alternativeTranslations": [
+          "this one (neut.)"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 152,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-154",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 154,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-156",
+        "original": "дел",
+        "translation": "part",
+        "contextualMeaning": "part",
+        "alternativeTranslations": [
+          "piece",
+          "portion"
+        ],
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 156,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-158",
+        "original": "од",
+        "translation": "from",
+        "contextualMeaning": "from",
+        "alternativeTranslations": [
+          "of",
+          "off",
+          "than",
+          "by"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 158,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-160",
+        "original": "македонското",
+        "translation": "Macedonian",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 160
+      },
+      {
+        "id": "word-162",
+        "original": "гостопримство",
+        "translation": "hospitality",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 162
+      },
+      {
+        "id": "word-164",
+        "original": "што",
+        "translation": "that",
+        "contextualMeaning": "that",
+        "alternativeTranslations": [
+          "what",
+          "which",
+          "why"
+        ],
+        "contextHint": "Interrogative or relative pronoun",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 164,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-166",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 166,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-168",
+        "original": "пренесува",
+        "translation": "transmits",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 168
+      },
+      {
+        "id": "word-170",
+        "original": "од",
+        "translation": "from",
+        "contextualMeaning": "from",
+        "alternativeTranslations": [
+          "of",
+          "off",
+          "than",
+          "by"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 170,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-172",
+        "original": "генерација",
+        "translation": "generation",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 172
+      },
+      {
+        "id": "word-174",
+        "original": "на",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 174,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-176",
+        "original": "генерација",
+        "translation": "generation",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 176
+      },
+      {
+        "id": "word-178",
+        "original": "Секој",
+        "translation": "each",
+        "contextualMeaning": "each",
+        "alternativeTranslations": [
+          "every",
+          "everyone"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 178,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-180",
+        "original": "регион",
+        "translation": "region",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 180
+      },
+      {
+        "id": "word-182",
+        "original": "има",
+        "translation": "has",
+        "contextualMeaning": "has",
+        "alternativeTranslations": [
+          "there is",
+          "there are",
+          "have"
+        ],
+        "contextHint": "\"Има\" can mean possession (has) or existence (there is)",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 182,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-184",
+        "original": "свои",
+        "translation": "own",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 184
+      },
+      {
+        "id": "word-186",
+        "original": "специјалитети",
+        "translation": "specialties",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 186
+      },
+      {
+        "id": "word-188",
+        "original": "Во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 188,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-190",
+        "original": "Охрид",
+        "translation": "Ohrid",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 190
+      },
+      {
+        "id": "word-192",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 192,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-194",
+        "original": "јаде",
+        "translation": "eats",
+        "contextualMeaning": "eats",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 194,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-196",
+        "original": "најдобрата",
+        "translation": "the best",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 196
+      },
+      {
+        "id": "word-198",
+        "original": "пастрмка",
+        "translation": "trout",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 198
+      },
+      {
+        "id": "word-200",
+        "original": "а",
+        "translation": "a",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 200
+      },
+      {
+        "id": "word-202",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 202,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-204",
+        "original": "Струмица",
+        "translation": "Strumica",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 204
+      },
+      {
+        "id": "word-206",
+        "original": "најубавите",
+        "translation": "the most beautiful",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 206
+      },
+      {
+        "id": "word-208",
+        "original": "домати",
+        "translation": "tomatoes",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 208
+      },
+      {
+        "id": "word-210",
+        "original": "Домашната",
+        "translation": "The home",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 210
+      },
+      {
+        "id": "word-212",
+        "original": "храна",
+        "translation": "food",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 212
+      },
+      {
+        "id": "word-214",
+        "original": "секогаш",
+        "translation": "always",
+        "contextualMeaning": "always",
+        "alternativeTranslations": [
+          "every time"
+        ],
+        "pos": "adverb",
+        "difficulty": "intermediate",
+        "index": 214,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-216",
+        "original": "ќе",
+        "translation": "will",
+        "contextualMeaning": "will",
+        "alternativeTranslations": [
+          "shall",
+          "going to"
+        ],
+        "contextHint": "Future tense marker - always before the verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 216,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-218",
+        "original": "биде",
+        "translation": "be",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 218
+      },
+      {
+        "id": "word-220",
+        "original": "повкусна",
+        "translation": "tastier",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 220
+      },
+      {
+        "id": "word-222",
+        "original": "од",
+        "translation": "from",
+        "contextualMeaning": "from",
+        "alternativeTranslations": [
+          "of",
+          "off",
+          "than",
+          "by"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 222,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-224",
+        "original": "ресторанската",
+        "translation": "the restaurant",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 224
+      },
+      {
+        "id": "word-226",
+        "original": "Затоа",
+        "translation": "therefore",
+        "contextualMeaning": "therefore",
+        "alternativeTranslations": [
+          "because of that",
+          "so"
+        ],
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 226,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-228",
+        "original": "ако",
+        "translation": "if",
+        "contextualMeaning": "if",
+        "alternativeTranslations": [
+          "whether"
+        ],
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 228,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-230",
+        "original": "ја",
+        "translation": "her",
+        "contextualMeaning": "her",
+        "alternativeTranslations": [
+          "it (fem.)",
+          "the"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 230,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-232",
+        "original": "посетите",
+        "translation": "the visits",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 232
+      },
+      {
+        "id": "word-234",
+        "original": "Македонија",
+        "translation": "Macedonia",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 234
+      },
+      {
+        "id": "word-236",
+        "original": "обидете",
+        "translation": "try",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 236
+      },
+      {
+        "id": "word-238",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 238,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-240",
+        "original": "да",
+        "translation": "to",
+        "contextualMeaning": "to",
+        "alternativeTranslations": [
+          "yes",
+          "that",
+          "so that",
+          "let"
+        ],
+        "contextHint": "\"Да\" before verbs means \"to\"; alone means \"yes\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 240,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-242",
+        "original": "пробате",
+        "translation": "try it",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 242
+      },
+      {
+        "id": "word-244",
+        "original": "домашно",
+        "translation": "homemade",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 244
+      },
+      {
+        "id": "word-246",
+        "original": "готвена",
+        "translation": "cooked",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 246
+      },
+      {
+        "id": "word-248",
+        "original": "храна",
+        "translation": "food",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 248
+      },
+      {
+        "id": "word-250",
+        "original": "Таа",
+        "translation": "that",
+        "contextualMeaning": "that",
+        "alternativeTranslations": [
+          "she",
+          "that one (fem.)"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 250,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-252",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 252,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-254",
+        "original": "најавтентичниот",
+        "translation": "the most authentic",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 254
+      },
+      {
+        "id": "word-256",
+        "original": "начин",
+        "translation": "way",
+        "contextualMeaning": "way",
+        "alternativeTranslations": [
+          "manner",
+          "method"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 256,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-258",
+        "original": "да",
+        "translation": "to",
+        "contextualMeaning": "to",
+        "alternativeTranslations": [
+          "yes",
+          "that",
+          "so that",
+          "let"
+        ],
+        "contextHint": "\"Да\" before verbs means \"to\"; alone means \"yes\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 258,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-260",
+        "original": "ја",
+        "translation": "her",
+        "contextualMeaning": "her",
+        "alternativeTranslations": [
+          "it (fem.)",
+          "the"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 260,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-262",
+        "original": "почувствувате",
+        "translation": "feel it",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 262
+      },
+      {
+        "id": "word-264",
+        "original": "македонската",
+        "translation": "Macedonian",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 264
+      },
+      {
+        "id": "word-266",
+        "original": "култура",
+        "translation": "culture",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 266
+      }
+    ],
+    "tokens": [
+      {
+        "token": "Македонската",
+        "isWord": true,
+        "index": 0
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 1
+      },
+      {
+        "token": "кујна",
+        "isWord": true,
+        "index": 2
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 3
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 4
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 5
+      },
+      {
+        "token": "позната",
+        "isWord": true,
+        "index": 6
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 7
+      },
+      {
+        "token": "по",
+        "isWord": true,
+        "index": 8
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 9
+      },
+      {
+        "token": "своето",
+        "isWord": true,
+        "index": 10
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 11
+      },
+      {
+        "token": "богатство",
+        "isWord": true,
+        "index": 12
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 13
+      },
+      {
+        "token": "на",
+        "isWord": true,
+        "index": 14
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 15
+      },
+      {
+        "token": "вкусови",
+        "isWord": true,
+        "index": 16
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 17
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 18
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 19
+      },
+      {
+        "token": "традиции",
+        "isWord": true,
+        "index": 20
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 21
+      },
+      {
+        "token": "Многу",
+        "isWord": true,
+        "index": 22
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 23
+      },
+      {
+        "token": "јадења",
+        "isWord": true,
+        "index": 24
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 25
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 26
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 27
+      },
+      {
+        "token": "подготвуваат",
+        "isWord": true,
+        "index": 28
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 29
+      },
+      {
+        "token": "со",
+        "isWord": true,
+        "index": 30
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 31
+      },
+      {
+        "token": "состојки",
+        "isWord": true,
+        "index": 32
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 33
+      },
+      {
+        "token": "што",
+        "isWord": true,
+        "index": 34
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 35
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 36
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 37
+      },
+      {
+        "token": "одгледуваат",
+        "isWord": true,
+        "index": 38
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 39
+      },
+      {
+        "token": "локално",
+        "isWord": true,
+        "index": 40
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 41
+      },
+      {
+        "token": "Едно",
+        "isWord": true,
+        "index": 42
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 43
+      },
+      {
+        "token": "од",
+        "isWord": true,
+        "index": 44
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 45
+      },
+      {
+        "token": "најпопуларните",
+        "isWord": true,
+        "index": 46
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 47
+      },
+      {
+        "token": "јадења",
+        "isWord": true,
+        "index": 48
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 49
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 50
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 51
+      },
+      {
+        "token": "тавче",
+        "isWord": true,
+        "index": 52
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 53
+      },
+      {
+        "token": "гравче",
+        "isWord": true,
+        "index": 54
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 55
+      },
+      {
+        "token": "Ова",
+        "isWord": true,
+        "index": 56
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 57
+      },
+      {
+        "token": "јадење",
+        "isWord": true,
+        "index": 58
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 59
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 60
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 61
+      },
+      {
+        "token": "пече",
+        "isWord": true,
+        "index": 62
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 63
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 64
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 65
+      },
+      {
+        "token": "глинен",
+        "isWord": true,
+        "index": 66
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 67
+      },
+      {
+        "token": "сад",
+        "isWord": true,
+        "index": 68
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 69
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 70
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 71
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 72
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 73
+      },
+      {
+        "token": "послужува",
+        "isWord": true,
+        "index": 74
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 75
+      },
+      {
+        "token": "топло",
+        "isWord": true,
+        "index": 76
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 77
+      },
+      {
+        "token": "Ајварот",
+        "isWord": true,
+        "index": 78
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 79
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 80
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 81
+      },
+      {
+        "token": "уште",
+        "isWord": true,
+        "index": 82
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 83
+      },
+      {
+        "token": "еден",
+        "isWord": true,
+        "index": 84
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 85
+      },
+      {
+        "token": "симбол",
+        "isWord": true,
+        "index": 86
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 87
+      },
+      {
+        "token": "на",
+        "isWord": true,
+        "index": 88
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 89
+      },
+      {
+        "token": "македонската",
+        "isWord": true,
+        "index": 90
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 91
+      },
+      {
+        "token": "кујна",
+        "isWord": true,
+        "index": 92
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 93
+      },
+      {
+        "token": "Се",
+        "isWord": true,
+        "index": 94
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 95
+      },
+      {
+        "token": "прави",
+        "isWord": true,
+        "index": 96
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 97
+      },
+      {
+        "token": "од",
+        "isWord": true,
+        "index": 98
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 99
+      },
+      {
+        "token": "црвени",
+        "isWord": true,
+        "index": 100
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 101
+      },
+      {
+        "token": "пиперки",
+        "isWord": true,
+        "index": 102
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 103
+      },
+      {
+        "token": "кои",
+        "isWord": true,
+        "index": 104
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 105
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 106
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 107
+      },
+      {
+        "token": "печат",
+        "isWord": true,
+        "index": 108
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 109
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 110
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 111
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 112
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 113
+      },
+      {
+        "token": "мелат",
+        "isWord": true,
+        "index": 114
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 115
+      },
+      {
+        "token": "Пастрмајлијата",
+        "isWord": true,
+        "index": 116
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 117
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 118
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 119
+      },
+      {
+        "token": "поповкусна",
+        "isWord": true,
+        "index": 120
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 121
+      },
+      {
+        "token": "од",
+        "isWord": true,
+        "index": 122
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 123
+      },
+      {
+        "token": "многу",
+        "isWord": true,
+        "index": 124
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 125
+      },
+      {
+        "token": "брзи",
+        "isWord": true,
+        "index": 126
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 127
+      },
+      {
+        "token": "јадења",
+        "isWord": true,
+        "index": 128
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 129
+      },
+      {
+        "token": "Кога",
+        "isWord": true,
+        "index": 130
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 131
+      },
+      {
+        "token": "гостин",
+        "isWord": true,
+        "index": 132
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 133
+      },
+      {
+        "token": "дојде",
+        "isWord": true,
+        "index": 134
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 135
+      },
+      {
+        "token": "дома",
+        "isWord": true,
+        "index": 136
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 137
+      },
+      {
+        "token": "домаќинот",
+        "isWord": true,
+        "index": 138
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 139
+      },
+      {
+        "token": "мора",
+        "isWord": true,
+        "index": 140
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 141
+      },
+      {
+        "token": "да",
+        "isWord": true,
+        "index": 142
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 143
+      },
+      {
+        "token": "понуди",
+        "isWord": true,
+        "index": 144
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 145
+      },
+      {
+        "token": "мезе",
+        "isWord": true,
+        "index": 146
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 147
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 148
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 149
+      },
+      {
+        "token": "ракија",
+        "isWord": true,
+        "index": 150
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 151
+      },
+      {
+        "token": "Ова",
+        "isWord": true,
+        "index": 152
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 153
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 154
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 155
+      },
+      {
+        "token": "дел",
+        "isWord": true,
+        "index": 156
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 157
+      },
+      {
+        "token": "од",
+        "isWord": true,
+        "index": 158
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 159
+      },
+      {
+        "token": "македонското",
+        "isWord": true,
+        "index": 160
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 161
+      },
+      {
+        "token": "гостопримство",
+        "isWord": true,
+        "index": 162
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 163
+      },
+      {
+        "token": "што",
+        "isWord": true,
+        "index": 164
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 165
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 166
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 167
+      },
+      {
+        "token": "пренесува",
+        "isWord": true,
+        "index": 168
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 169
+      },
+      {
+        "token": "од",
+        "isWord": true,
+        "index": 170
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 171
+      },
+      {
+        "token": "генерација",
+        "isWord": true,
+        "index": 172
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 173
+      },
+      {
+        "token": "на",
+        "isWord": true,
+        "index": 174
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 175
+      },
+      {
+        "token": "генерација",
+        "isWord": true,
+        "index": 176
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 177
+      },
+      {
+        "token": "Секој",
+        "isWord": true,
+        "index": 178
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 179
+      },
+      {
+        "token": "регион",
+        "isWord": true,
+        "index": 180
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 181
+      },
+      {
+        "token": "има",
+        "isWord": true,
+        "index": 182
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 183
+      },
+      {
+        "token": "свои",
+        "isWord": true,
+        "index": 184
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 185
+      },
+      {
+        "token": "специјалитети",
+        "isWord": true,
+        "index": 186
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 187
+      },
+      {
+        "token": "Во",
+        "isWord": true,
+        "index": 188
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 189
+      },
+      {
+        "token": "Охрид",
+        "isWord": true,
+        "index": 190
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 191
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 192
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 193
+      },
+      {
+        "token": "јаде",
+        "isWord": true,
+        "index": 194
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 195
+      },
+      {
+        "token": "најдобрата",
+        "isWord": true,
+        "index": 196
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 197
+      },
+      {
+        "token": "пастрмка",
+        "isWord": true,
+        "index": 198
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 199
+      },
+      {
+        "token": "а",
+        "isWord": true,
+        "index": 200
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 201
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 202
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 203
+      },
+      {
+        "token": "Струмица",
+        "isWord": true,
+        "index": 204
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 205
+      },
+      {
+        "token": "најубавите",
+        "isWord": true,
+        "index": 206
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 207
+      },
+      {
+        "token": "домати",
+        "isWord": true,
+        "index": 208
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 209
+      },
+      {
+        "token": "Домашната",
+        "isWord": true,
+        "index": 210
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 211
+      },
+      {
+        "token": "храна",
+        "isWord": true,
+        "index": 212
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 213
+      },
+      {
+        "token": "секогаш",
+        "isWord": true,
+        "index": 214
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 215
+      },
+      {
+        "token": "ќе",
+        "isWord": true,
+        "index": 216
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 217
+      },
+      {
+        "token": "биде",
+        "isWord": true,
+        "index": 218
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 219
+      },
+      {
+        "token": "повкусна",
+        "isWord": true,
+        "index": 220
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 221
+      },
+      {
+        "token": "од",
+        "isWord": true,
+        "index": 222
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 223
+      },
+      {
+        "token": "ресторанската",
+        "isWord": true,
+        "index": 224
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 225
+      },
+      {
+        "token": "Затоа",
+        "isWord": true,
+        "index": 226
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 227
+      },
+      {
+        "token": "ако",
+        "isWord": true,
+        "index": 228
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 229
+      },
+      {
+        "token": "ја",
+        "isWord": true,
+        "index": 230
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 231
+      },
+      {
+        "token": "посетите",
+        "isWord": true,
+        "index": 232
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 233
+      },
+      {
+        "token": "Македонија",
+        "isWord": true,
+        "index": 234
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 235
+      },
+      {
+        "token": "обидете",
+        "isWord": true,
+        "index": 236
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 237
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 238
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 239
+      },
+      {
+        "token": "да",
+        "isWord": true,
+        "index": 240
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 241
+      },
+      {
+        "token": "пробате",
+        "isWord": true,
+        "index": 242
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 243
+      },
+      {
+        "token": "домашно",
+        "isWord": true,
+        "index": 244
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 245
+      },
+      {
+        "token": "готвена",
+        "isWord": true,
+        "index": 246
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 247
+      },
+      {
+        "token": "храна",
+        "isWord": true,
+        "index": 248
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 249
+      },
+      {
+        "token": "Таа",
+        "isWord": true,
+        "index": 250
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 251
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 252
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 253
+      },
+      {
+        "token": "најавтентичниот",
+        "isWord": true,
+        "index": 254
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 255
+      },
+      {
+        "token": "начин",
+        "isWord": true,
+        "index": 256
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 257
+      },
+      {
+        "token": "да",
+        "isWord": true,
+        "index": 258
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 259
+      },
+      {
+        "token": "ја",
+        "isWord": true,
+        "index": 260
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 261
+      },
+      {
+        "token": "почувствувате",
+        "isWord": true,
+        "index": 262
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 263
+      },
+      {
+        "token": "македонската",
+        "isWord": true,
+        "index": 264
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 265
+      },
+      {
+        "token": "култура",
+        "isWord": true,
+        "index": 266
+      },
+      {
+        "token": ".",
+        "isWord": false,
+        "index": 267
+      }
+    ],
+    "fullTranslation": "Macedonian cuisine is known for its wealth of flavors and traditions. Many dishes are prepared with locally grown ingredients. One of the most popular dishes is baked beans.\n\nThis dish is baked in a clay pot and served hot. Ajvar is another symbol of Macedonian cuisine. It is made from red peppers that are roasted and ground.\n\nPastrami is tastier than many fast foods. When a guest comes home, the host must offer appetizers and brandy. This is part of Macedonian hospitality that is passed down from generation to generation.\n\nEach region has its own specialties. The best trout is eaten in Ohrid, and the most beautiful tomatoes in Strumica. Homemade food will always be tastier than restaurant food. Therefore, if you visit Macedonia, try to try home-cooked food. It is the most authentic way to experience the Macedonian culture.",
+    "difficulty": {
+      "level": "advanced",
+      "score": 61.19402985074627,
+      "factors": {
+        "avgWordLength": 5.291044776119403,
+        "longWords": 30,
+        "totalWords": 134
+      }
+    },
+    "metadata": {
+      "wordCount": 134,
+      "sentenceCount": 14,
+      "characterCount": 863
+    }
   }
 }
