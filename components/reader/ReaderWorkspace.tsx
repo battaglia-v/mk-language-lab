@@ -11,7 +11,6 @@ import {
   Focus,
   Bookmark,
   BookmarkCheck,
-  Volume2,
   Copy as CopyIcon,
   Clock3,
   History,
@@ -296,78 +295,6 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
       setTimeout(() => setCopiedSentenceId(null), 2000);
     } catch (error) {
       console.error('Failed to copy sentence', error);
-    }
-  };
-
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  const handleListen = async (text: string, lang?: 'mk' | 'en') => {
-    // Determine language from context or parameter
-    const language = lang ?? (selectedDirection?.sourceLang === 'mk' ? 'mk' : 'en');
-
-    // Stop any currently playing audio
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current = null;
-    }
-
-    setIsPlaying(true);
-
-    try {
-      const response = await fetch('/api/tts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text, language }),
-      });
-
-      if (!response.ok) {
-        // Fallback to browser TTS if API fails
-        console.warn('TTS API failed, falling back to browser speech');
-        if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-          const utterance = new SpeechSynthesisUtterance(text);
-          utterance.lang = language === 'mk' ? 'mk-MK' : 'en-US';
-          utterance.onend = () => setIsPlaying(false);
-          utterance.onerror = () => setIsPlaying(false);
-          window.speechSynthesis.cancel();
-          window.speechSynthesis.speak(utterance);
-        }
-        return;
-      }
-
-      const audioBlob = await response.blob();
-      const audioUrl = URL.createObjectURL(audioBlob);
-      const audio = new Audio(audioUrl);
-      audioRef.current = audio;
-
-      audio.onended = () => {
-        setIsPlaying(false);
-        URL.revokeObjectURL(audioUrl);
-        audioRef.current = null;
-      };
-
-      audio.onerror = () => {
-        setIsPlaying(false);
-        URL.revokeObjectURL(audioUrl);
-        audioRef.current = null;
-        // Fallback to browser TTS
-        if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-          const utterance = new SpeechSynthesisUtterance(text);
-          utterance.lang = language === 'mk' ? 'mk-MK' : 'en-US';
-          window.speechSynthesis.speak(utterance);
-        }
-      };
-
-      await audio.play();
-    } catch (error) {
-      console.error('TTS error:', error);
-      setIsPlaying(false);
-      // Fallback to browser TTS
-      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = language === 'mk' ? 'mk-MK' : 'en-US';
-        window.speechSynthesis.speak(utterance);
-      }
     }
   };
 
@@ -728,37 +655,19 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                 <Languages className="h-4 w-4 text-primary" aria-hidden="true" />
                 <p className="text-sm font-semibold text-primary">{t('readerFullTranslation')}</p>
               </div>
-              <div className="flex items-center gap-2">
-                <Button
-                  type="button"
-                  size="icon-sm"
-                  variant="ghost"
-                  onClick={() => handleListen(analyzedData.fullTranslation)}
-                  disabled={isPlaying}
-                  className="rounded-full"
-                  aria-label={t('readerListen', { default: 'Listen' })}
-                  data-testid="reader-workspace-full-translation-listen"
-                >
-                  {isPlaying ? (
-                    <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-                  ) : (
-                    <Volume2 className="h-4 w-4" aria-hidden="true" />
-                  )}
-                </Button>
-                <Button
-                  type="button"
-                  size="icon-sm"
-                  variant="ghost"
-                  onClick={() => {
-                    void navigator.clipboard.writeText(analyzedData.fullTranslation);
-                  }}
-                  className="rounded-full"
-                  aria-label={t('readerCopy', { default: 'Copy' })}
-                  data-testid="reader-workspace-full-translation-copy"
-                >
-                  <CopyIcon className="h-4 w-4" aria-hidden="true" />
-                </Button>
-              </div>
+              <Button
+                type="button"
+                size="icon-sm"
+                variant="ghost"
+                onClick={() => {
+                  void navigator.clipboard.writeText(analyzedData.fullTranslation);
+                }}
+                className="rounded-full"
+                aria-label={t('readerCopy', { default: 'Copy' })}
+                data-testid="reader-workspace-full-translation-copy"
+              >
+                <CopyIcon className="h-4 w-4" aria-hidden="true" />
+              </Button>
             </div>
             <p className="text-base sm:text-lg leading-relaxed text-foreground">{analyzedData.fullTranslation}</p>
           </div>
@@ -773,7 +682,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                   </p>
                 </div>
                 <span className="text-xs text-muted-foreground">
-                  {t('readerDrill', { default: 'Save, listen, or copy to review later.' })}
+                  {t('readerDrill', { default: 'Save or copy to review later.' })}
                 </span>
               </div>
 
@@ -821,22 +730,6 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                               ? t('copied', { default: 'Copied' })
                               : t('readerCopy', { default: 'Copy' })}
                           </span>
-                        </Button>
-                        <Button
-                          type="button"
-                          size="sm"
-                          variant="ghost"
-                          onClick={() => handleListen(sentence.text)}
-                          disabled={isPlaying}
-                          className="rounded-full min-h-[44px] px-4"
-                          data-testid={`reader-sentence-listen-${sentence.id}`}
-                        >
-                          {isPlaying ? (
-                            <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-                          ) : (
-                            <Volume2 className="h-4 w-4" aria-hidden="true" />
-                          )}
-                          <span className="ml-2">{t('readerListen', { default: 'Listen' })}</span>
                         </Button>
                       </div>
                     </div>
