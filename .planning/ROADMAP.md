@@ -174,15 +174,15 @@ Plans:
 
 **Milestone Goal:** Improve the Learn section UX with simpler lesson flow and free navigation, plus content quality improvements across vocabulary, grammar, and completeness audits.
 
-#### Phase 42: Lesson Flow Simplification
+#### Phase 42: Lesson Flow Simplification — COMPLETE
 
 **Goal**: Combine sections, reduce steps from 5 to 3-4, remove intro section, allow free navigation
 **Depends on**: v1.6 complete
 **Research**: Unlikely (internal component patterns)
-**Plans**: TBD
+**Plans**: 1/1
 
 Plans:
-- [ ] 42-01: TBD (run /gsd:plan-phase 42 to break down)
+- [x] 42-01: Remove intro section and enable free navigation — completed 2026-01-11
 
 #### Phase 43: Vocabulary Audit & Improvements
 
@@ -228,7 +228,7 @@ Plans:
 
 | Phase | Milestone | Plans | Status | Completed |
 |-------|-----------|-------|--------|-----------|
-| 42. Lesson Flow Simplification | v1.7 | 0/? | Not started | - |
+| 42. Lesson Flow Simplification | v1.7 | 1/1 | Complete | 2026-01-11 |
 | 43. Vocabulary Audit | v1.7 | 0/? | Not started | - |
 | 44. Grammar Audit | v1.7 | 0/? | Not started | - |
 | 45. Content Completeness | v1.7 | 0/? | Not started | - |
