@@ -4,11 +4,12 @@ import { useMemo, useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { BookOpen, Wrench, BookmarkPlus, Zap, ChevronRight, Library, FileText, Search, X, Dumbbell } from 'lucide-react';
+import { BookOpen, Wrench, BookmarkPlus, Zap, ChevronRight, Library, FileText, Search, X, Dumbbell, ArrowUpDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { PageContainer } from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ReadingSampleCard } from '@/components/reader/ReadingSampleCard';
 import { getAllReaderSamples, getReaderSamplesByCategory, getAvailableTopics, type ReaderSample, type ReaderTopic } from '@/lib/reader-samples';
@@ -20,6 +21,9 @@ import { useAppConfig } from '@/hooks/use-app-config';
 
 const DIFFICULTY_LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
 type DifficultyLevel = typeof DIFFICULTY_LEVELS[number];
+
+const SORT_OPTIONS = ['default', 'difficulty', 'duration', 'progress'] as const;
+type SortOption = typeof SORT_OPTIONS[number];
 
 /**
  * Reader - Library | Workspace tabs
@@ -83,11 +87,12 @@ export default function ReaderPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] = useState<DifficultyLevel | null>(null);
   const [selectedTopic, setSelectedTopic] = useState<ReaderTopic | null>(null);
+  const [sortBy, setSortBy] = useState<SortOption>('default');
 
   // Available topics from story samples
   const availableTopics = useMemo(() => getAvailableTopics(), []);
 
-  // Filter samples based on search, difficulty, and topic
+  // Filter and sort samples based on search, difficulty, topic, and sort option
   const filteredSamples = useMemo(() => {
     let result = allSamples;
 
@@ -112,8 +117,39 @@ export default function ReaderPage() {
       });
     }
 
+    // Apply sorting
+    if (sortBy !== 'default') {
+      result = [...result].sort((a, b) => {
+        switch (sortBy) {
+          case 'difficulty': {
+            // A1 first, then A2, B1, B2
+            const difficultyOrder = { 'A1': 0, 'A2': 1, 'B1': 2, 'B2': 3 };
+            return difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty];
+          }
+          case 'duration': {
+            // Shortest first
+            return a.estimatedMinutes - b.estimatedMinutes;
+          }
+          case 'progress': {
+            // In-progress first, then unread, then completed
+            const progressA = progressMap[a.id];
+            const progressB = progressMap[b.id];
+            const getProgressScore = (p: ReadingProgress | undefined) => {
+              if (!p) return 1; // Unread
+              if (p.isCompleted) return 2; // Completed
+              if (p.scrollPercent > 0) return 0; // In-progress
+              return 1; // Unread
+            };
+            return getProgressScore(progressA) - getProgressScore(progressB);
+          }
+          default:
+            return 0;
+        }
+      });
+    }
+
     return result;
-  }, [allSamples, searchQuery, selectedDifficulty, selectedTopic]);
+  }, [allSamples, searchQuery, selectedDifficulty, selectedTopic, sortBy, progressMap]);
 
   // Get unique difficulties from available samples
   const availableDifficulties = useMemo(() => {
@@ -258,29 +294,47 @@ export default function ReaderPage() {
                 </div>
               )}
 
-              {/* Topic Filter Chips */}
-              {availableTopics.length > 1 && (
-                <div className="flex flex-wrap gap-2">
-                  {availableTopics.map((topic) => (
-                    <Button
-                      key={topic}
-                      variant="outline"
-                      onClick={() => setSelectedTopic(selectedTopic === topic ? null : topic)}
-                      aria-pressed={selectedTopic === topic}
-                      data-active={selectedTopic === topic ? 'true' : 'false'}
-                      className={cn(
-                        'rounded-full min-h-[44px] px-4 text-sm font-medium transition-all',
-                        selectedTopic === topic
-                          ? 'bg-slate-700 text-white border-slate-700 hover:bg-slate-800'
-                          : 'bg-transparent hover:border-slate-400'
-                      )}
-                      data-testid={`reader-filter-topic-${topic.toLowerCase().replace(' ', '-')}`}
+              {/* Topic Filter Chips and Sort Dropdown */}
+              <div className="flex flex-wrap items-center gap-2">
+                {/* Topic Chips */}
+                {availableTopics.length > 1 && availableTopics.map((topic) => (
+                  <Button
+                    key={topic}
+                    variant="outline"
+                    onClick={() => setSelectedTopic(selectedTopic === topic ? null : topic)}
+                    aria-pressed={selectedTopic === topic}
+                    data-active={selectedTopic === topic ? 'true' : 'false'}
+                    className={cn(
+                      'rounded-full min-h-[44px] px-4 text-sm font-medium transition-all',
+                      selectedTopic === topic
+                        ? 'bg-slate-700 text-white border-slate-700 hover:bg-slate-800'
+                        : 'bg-transparent hover:border-slate-400'
+                    )}
+                    data-testid={`reader-filter-topic-${topic.toLowerCase().replace(' ', '-')}`}
+                  >
+                    {topic}
+                  </Button>
+                ))}
+
+                {/* Sort Dropdown */}
+                <div className="ml-auto flex items-center gap-2">
+                  <Select value={sortBy} onValueChange={(value) => setSortBy(value as SortOption)}>
+                    <SelectTrigger
+                      className="min-h-[44px] min-w-[160px] rounded-full"
+                      data-testid="reader-sort-trigger"
                     >
-                      {topic}
-                    </Button>
-                  ))}
+                      <ArrowUpDown className="h-4 w-4 mr-2" />
+                      <SelectValue placeholder="Sort by" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="default" data-testid="reader-sort-default">Default</SelectItem>
+                      <SelectItem value="difficulty" data-testid="reader-sort-difficulty">Difficulty</SelectItem>
+                      <SelectItem value="duration" data-testid="reader-sort-duration">Reading Time</SelectItem>
+                      <SelectItem value="progress" data-testid="reader-sort-progress">My Progress</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
-              )}
+              </div>
             </div>
 
             {/* Search Results (when filters active) */}

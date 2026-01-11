@@ -3,7 +3,7 @@
   "name": "MK Language Lab",
   "short_name": "MK Language",
   "description": "Learn Macedonian with lessons, practice, translation, and real stories",
-  "version": "1.0.0",
+  "version": "2",
   "start_url": "/en",
   "scope": "/",
   "display": "standalone",
