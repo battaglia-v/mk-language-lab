@@ -6,7 +6,8 @@ import { TappableTextV2 } from '@/components/reader/TappableTextV2';
 import { BottomSheet } from '@/components/ui/BottomSheet';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { BookOpen, Lightbulb, CheckCircle } from 'lucide-react';
+import { BookOpen, Lightbulb, CheckCircle, Eye, EyeOff, ChevronDown, ChevronUp } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import {
   readProgress,
   saveProgress,
@@ -65,6 +66,11 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [grammarOpen, setGrammarOpen] = useState(false);
   const [vocabOpen, setVocabOpen] = useState(false);
+  // Vocabulary reveal state (matching lesson VocabularySection pattern)
+  const [revealedVocab, setRevealedVocab] = useState<Set<number>>(new Set());
+  const [showAllVocab, setShowAllVocab] = useState(false);
+  // Grammar expand state (matching lesson GrammarSection pattern)
+  const [expandedGrammar, setExpandedGrammar] = useState<Record<number, boolean>>({});
   const [scrollPercent, setScrollPercent] = useState(0);
   const [fontSize, setFontSize] = useState<'sm' | 'base' | 'lg' | 'xl'>('base');
   const [isComplete, setIsComplete] = useState(false);
@@ -93,6 +99,32 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
     settings: locale === 'mk' ? 'Поставки' : 'Settings',
     fontSize: locale === 'mk' ? 'Големина на текст' : 'Font Size',
     theme: locale === 'mk' ? 'Тема' : 'Theme',
+    tapToReveal: locale === 'mk' ? 'Допри за превод' : 'Tap to reveal',
+    showAll: locale === 'mk' ? 'Покажи сите' : 'Show All',
+    hideAll: locale === 'mk' ? 'Сокриј сите' : 'Hide All',
+    showMore: locale === 'mk' ? 'Покажи повеќе' : 'Show more',
+    showLess: locale === 'mk' ? 'Покажи помалку' : 'Show less',
+  };
+
+  // Vocabulary reveal helpers
+  const toggleVocabReveal = (idx: number) => {
+    if (showAllVocab) return;
+    setRevealedVocab(prev => {
+      const next = new Set(prev);
+      if (next.has(idx)) {
+        next.delete(idx);
+      } else {
+        next.add(idx);
+      }
+      return next;
+    });
+  };
+
+  const isVocabRevealed = (idx: number) => showAllVocab || revealedVocab.has(idx);
+
+  // Grammar expand helper
+  const toggleGrammarExpand = (idx: number) => {
+    setExpandedGrammar(prev => ({ ...prev, [idx]: !prev[idx] }));
   };
 
   // Calculate current time spent
@@ -356,7 +388,7 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
         </div>
       </BottomSheet>
 
-      {/* Grammar Sheet */}
+      {/* Grammar Sheet - styled like lesson GrammarSection */}
       <BottomSheet
         open={grammarOpen}
         onClose={() => setGrammarOpen(false)}
@@ -364,48 +396,88 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
         height="auto"
         testId="reader-v2-grammar-sheet"
       >
-        <div className="space-y-4 max-h-[60vh] overflow-y-auto">
-          {sample.grammar_highlights.map((highlight, idx) => (
-            <div key={idx} className="space-y-3 rounded-xl border border-border bg-card p-4">
-              <h3 className="font-semibold text-foreground">
-                {locale === 'mk' ? highlight.title_mk : highlight.title_en}
-              </h3>
-              {(highlight.description_mk || highlight.description_en) && (
-                <p className="text-sm text-muted-foreground">
-                  {locale === 'mk' ? highlight.description_mk : highlight.description_en}
-                </p>
-              )}
-              {highlight.bullets && highlight.bullets.length > 0 && (
-                <ul className="list-disc space-y-1 pl-5 text-sm text-foreground/80">
-                  {highlight.bullets.map((bullet, bidx) => (
-                    <li key={bidx}>{bullet}</li>
-                  ))}
-                </ul>
-              )}
-              {highlight.examples && highlight.examples.length > 0 && (
-                <div className="space-y-2 mt-3">
-                  <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                    {t.examples}
+        <div className="space-y-6 max-h-[60vh] overflow-y-auto">
+          {sample.grammar_highlights.map((highlight, idx) => {
+            const isExpanded = expandedGrammar[idx];
+            const examples = highlight.examples || [];
+            const visibleExamples = isExpanded ? examples : examples.slice(0, 3);
+
+            return (
+              <div
+                key={idx}
+                className="p-4 rounded-lg bg-secondary/5 border border-secondary/20"
+              >
+                {/* Title - secondary color like lesson GrammarSection */}
+                <h3 className="text-lg font-semibold text-secondary mb-2">
+                  {locale === 'mk' ? highlight.title_mk : highlight.title_en}
+                </h3>
+
+                {/* Description */}
+                {(highlight.description_mk || highlight.description_en) && (
+                  <p className="text-base text-muted-foreground leading-relaxed mb-3">
+                    {locale === 'mk' ? highlight.description_mk : highlight.description_en}
                   </p>
-                  {highlight.examples.map((ex, eidx) => (
-                    <div key={eidx} className="rounded-lg bg-muted/30 p-2 text-sm">
-                      <p className="font-medium text-foreground">{ex.mk}</p>
-                      <p className="text-muted-foreground">{ex.en}</p>
-                      {ex.note && (
-                        <p className="text-xs text-muted-foreground/70 italic mt-1">
-                          {ex.note}
-                        </p>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
+                )}
+
+                {/* Bullets */}
+                {highlight.bullets && highlight.bullets.length > 0 && (
+                  <ul className="list-disc space-y-1 pl-5 text-sm text-foreground/80 mb-3">
+                    {highlight.bullets.map((bullet, bidx) => (
+                      <li key={bidx}>{bullet}</li>
+                    ))}
+                  </ul>
+                )}
+
+                {/* Examples - numbered list like lesson GrammarSection */}
+                {examples.length > 0 && (
+                  <div className="mt-4 pt-4 border-t border-secondary/10">
+                    <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3">
+                      {t.examples}
+                    </p>
+                    <ol className="space-y-3 list-none">
+                      {visibleExamples.map((ex, eidx) => (
+                        <li key={eidx} className="flex gap-3">
+                          <span className="flex-shrink-0 w-6 h-6 rounded-full bg-secondary/10 text-secondary text-xs font-medium flex items-center justify-center">
+                            {eidx + 1}
+                          </span>
+                          <div className="flex-1 min-w-0 space-y-1">
+                            <p className="text-base font-medium leading-relaxed">{ex.mk}</p>
+                            <p className="text-sm text-muted-foreground italic">{ex.en}</p>
+                            {ex.note && (
+                              <p className="text-xs text-muted-foreground/70 italic">{ex.note}</p>
+                            )}
+                          </div>
+                        </li>
+                      ))}
+                    </ol>
+                    {examples.length > 3 && (
+                      <button
+                        type="button"
+                        onClick={() => toggleGrammarExpand(idx)}
+                        className="mt-3 min-h-[44px] text-sm text-secondary hover:text-secondary/80 flex items-center gap-1"
+                      >
+                        {isExpanded ? (
+                          <>
+                            <ChevronUp className="h-4 w-4" />
+                            {t.showLess}
+                          </>
+                        ) : (
+                          <>
+                            <ChevronDown className="h-4 w-4" />
+                            {t.showMore} ({examples.length - 3})
+                          </>
+                        )}
+                      </button>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </BottomSheet>
 
-      {/* Vocabulary Sheet */}
+      {/* Vocabulary Sheet - styled like lesson VocabularySection */}
       <BottomSheet
         open={vocabOpen}
         onClose={() => setVocabOpen(false)}
@@ -414,51 +486,99 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
         testId="reader-v2-vocab-sheet"
       >
         <div className="space-y-4 max-h-[60vh] overflow-y-auto">
-          {/* Key vocabulary */}
-          <div className="space-y-2">
-            <h4 className="text-sm font-medium text-muted-foreground">
+          {/* Show All / Hide All toggle */}
+          <div className="flex items-center justify-between gap-4 pb-2 border-b border-border">
+            <p className="text-sm text-muted-foreground">
               {t.keyWords}
-            </h4>
-            {sample.vocabulary.map((vocab, idx) => (
-              <div
-                key={idx}
-                className="flex items-start justify-between gap-3 rounded-lg border border-border bg-card p-3"
-              >
-                <div className="flex-1 min-w-0">
-                  <p className="font-medium text-foreground">{vocab.mk}</p>
-                  <p className="text-sm text-muted-foreground">{vocab.en}</p>
-                  {vocab.note && (
-                    <p className="text-xs text-muted-foreground/70 italic mt-1">
-                      {vocab.note}
-                    </p>
+            </p>
+            <Button
+              variant={showAllVocab ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => setShowAllVocab(!showAllVocab)}
+              className="gap-2"
+            >
+              {showAllVocab ? (
+                <>
+                  <EyeOff className="h-4 w-4" />
+                  <span>{t.hideAll}</span>
+                </>
+              ) : (
+                <>
+                  <Eye className="h-4 w-4" />
+                  <span>{t.showAll}</span>
+                </>
+              )}
+            </Button>
+          </div>
+
+          {/* Vocabulary cards - tap to reveal like lesson */}
+          <div className="space-y-3">
+            {sample.vocabulary.map((vocab, idx) => {
+              const revealed = isVocabRevealed(idx);
+              return (
+                <div
+                  key={idx}
+                  onClick={() => toggleVocabReveal(idx)}
+                  className={cn(
+                    'p-4 rounded-xl cursor-pointer transition-all duration-200 select-none',
+                    'hover:shadow-md hover:scale-[1.01]',
+                    revealed
+                      ? 'bg-card border border-primary/30'
+                      : 'bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/20'
                   )}
+                >
+                  <div className="space-y-2">
+                    {/* Macedonian word - always visible */}
+                    <div className="flex items-baseline justify-between gap-2">
+                      <span className="text-xl font-bold text-primary">{vocab.mk}</span>
+                      {vocab.pos && (
+                        <Badge variant="outline" className="shrink-0 text-xs">
+                          {vocab.pos}
+                        </Badge>
+                      )}
+                    </div>
+
+                    {/* English translation - revealed on tap */}
+                    <div
+                      className={cn(
+                        'transition-all duration-300 overflow-hidden',
+                        revealed ? 'opacity-100 max-h-40' : 'opacity-0 max-h-0'
+                      )}
+                    >
+                      <p className="text-lg font-medium">{vocab.en}</p>
+                      {vocab.note && (
+                        <p className="text-sm text-muted-foreground italic mt-1">{vocab.note}</p>
+                      )}
+                    </div>
+
+                    {/* Tap hint - shown when hidden */}
+                    {!revealed && (
+                      <p className="text-sm text-muted-foreground flex items-center gap-1">
+                        <Eye className="h-3 w-3" />
+                        {t.tapToReveal}
+                      </p>
+                    )}
+                  </div>
                 </div>
-                {vocab.pos && (
-                  <Badge variant="outline" className="shrink-0 text-xs">
-                    {vocab.pos}
-                  </Badge>
-                )}
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Expressions */}
           {sample.expressions && sample.expressions.length > 0 && (
-            <div className="space-y-2 pt-4 border-t border-border">
+            <div className="space-y-3 pt-4 border-t border-border">
               <h4 className="text-sm font-medium text-muted-foreground">
                 {t.expressions}
               </h4>
               {sample.expressions.map((expr, idx) => (
                 <div
                   key={idx}
-                  className="rounded-lg border border-border bg-card p-3 space-y-1"
+                  className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-4 space-y-1"
                 >
-                  <p className="font-medium text-foreground">{expr.mk}</p>
+                  <p className="font-semibold text-amber-600 dark:text-amber-400">{expr.mk}</p>
                   <p className="text-sm text-muted-foreground">{expr.en}</p>
                   {expr.usage && (
-                    <p className="text-xs text-muted-foreground/70">
-                      {expr.usage}
-                    </p>
+                    <p className="text-xs text-muted-foreground/70 italic">{expr.usage}</p>
                   )}
                 </div>
               ))}

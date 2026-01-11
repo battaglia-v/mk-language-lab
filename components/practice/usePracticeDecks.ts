@@ -307,7 +307,8 @@ export function usePracticeDecks() {
       case 'custom':
         return customDeckCards;
       case 'saved':
-        return savedDeck;
+        // Combine translator phrases + reader favorites for unified "My Saved Words" practice
+        return [...savedDeck, ...favoritesDeck];
       case 'history':
         return historyDeck;
       case 'mistakes':
@@ -379,7 +380,7 @@ export function usePracticeDecks() {
 
     // Counts for UI
     deckCounts: {
-      saved: savedDeck.length,
+      saved: savedDeck.length + favoritesDeck.length,
       history: historyDeck.length,
       curated: curatedDeck.length,
       custom: customDeckCards.length,
