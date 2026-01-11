@@ -51,7 +51,7 @@ export function SidebarNav() {
                     prefetch={true}
                     data-testid={`sidebar-nav-${item.id}`}
                     className={cn(
-                      "group icon-gap flex items-center rounded-2xl px-3 py-3.5 text-sm font-semibold transition justify-center 2xl:justify-start min-h-[44px]",
+                      "group icon-gap flex items-center rounded-2xl px-3 py-3.5 text-sm font-semibold transition justify-center 2xl:justify-start min-h-[48px]",
                       active
                         ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-lg"
                         : "bg-transparent text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",

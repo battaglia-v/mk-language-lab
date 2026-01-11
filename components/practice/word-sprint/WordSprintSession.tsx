@@ -220,7 +220,7 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
           <Button
             variant="ghost"
             size="sm"
-            className="h-11 rounded-full px-3 gap-2 text-muted-foreground hover:text-foreground"
+            className="h-12 rounded-full px-3 gap-2 text-muted-foreground hover:text-foreground"
             onClick={() => setShowPicker(true)}
             data-testid="session-exit"
           >
@@ -280,7 +280,7 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
         <Button
           variant="ghost"
           size="sm"
-          className="h-11 rounded-full px-3 gap-2 text-muted-foreground hover:text-foreground"
+          className="h-12 rounded-full px-3 gap-2 text-muted-foreground hover:text-foreground"
           onClick={endSession}
           data-testid="session-exit"
         >
@@ -318,7 +318,7 @@ export function WordSprintSession({ initialCount = 10, initialDifficulty }: Prop
               variant="ghost"
               size="sm"
               onClick={speak}
-              className={cn('h-11 rounded-full px-4', isSpeaking && 'text-primary')}
+              className={cn('h-12 rounded-full px-4', isSpeaking && 'text-primary')}
               data-testid="word-sprint-listen"
             >
               <Volume2 className="h-4 w-4 mr-2" />Listen

@@ -50,7 +50,7 @@ export function MobileTabNav() {
               className={cn(
                 "flex flex-col items-center justify-center gap-1",
                 "w-16 h-full transition-colors relative",
-                "min-h-[44px]",
+                "min-h-[48px]",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                 "active:scale-95 transition-transform duration-100",
                 isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"

@@ -243,14 +243,14 @@ export function ReviewPrompt({
                   <Button
                     variant="outline"
                     onClick={handleNotYet}
-                    className="flex-1 h-11"
+                    className="flex-1 h-12"
                   >
                     <MessageSquare className="mr-2 h-4 w-4" />
                     {translations.notYetButton}
                   </Button>
                   <Button
                     onClick={handleYes}
-                    className="flex-1 h-11 bg-gradient-to-r from-primary to-secondary text-[#0a0a0a] font-semibold"
+                    className="flex-1 h-12 bg-gradient-to-r from-primary to-secondary text-[#0a0a0a] font-semibold"
                   >
                     {translations.yesButton}
                   </Button>

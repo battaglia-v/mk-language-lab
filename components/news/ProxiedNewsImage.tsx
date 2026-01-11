@@ -168,6 +168,8 @@ export function ProxiedNewsImage({
             src={fallbackImage}
             alt=""
             aria-hidden="true"
+            loading="lazy"
+            decoding="async"
             className="absolute inset-0 h-full w-full object-cover"
           />
           <div className="absolute bottom-3 left-3">

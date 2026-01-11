@@ -211,13 +211,13 @@ export function LessonRunner({
         className="relative"
         testId="lesson-runner"
       >
-      {/* Exit Button (top right) - 44px for WCAG touch target */}
+      {/* Exit Button (top right) - 48px for WCAG touch target */}
       {onExit && (
         <Button
           variant="ghost"
           size="icon"
           onClick={onExit}
-          className="absolute right-4 top-4 z-10 rounded-full h-11 w-11 touch-manipulation"
+          className="absolute right-4 top-4 z-10 rounded-full h-12 w-12 touch-manipulation"
           aria-label="Exit lesson"
           data-testid="lesson-runner-exit"
         >

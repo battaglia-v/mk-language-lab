@@ -409,7 +409,7 @@ The homepage has been updated to use the new Container system. See `/app/[locale
    - Keyboard navigation (Tab, Shift+Tab, Escape)
    - Screen reader compatibility
    - Color contrast ratios
-   - Touch target sizes (minimum 44px)
+   - Touch target sizes (minimum 48px)
 
 3. **Visual Regression Testing**
    - Compare screenshots across breakpoints

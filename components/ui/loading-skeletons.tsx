@@ -157,7 +157,7 @@ export function PracticeCardSkeleton({ className }: { className?: string }) {
         <Skeleton className="h-4 w-48" />
         
         {/* Button */}
-        <Skeleton className="h-11 w-full rounded-[var(--radius-control)]" />
+        <Skeleton className="h-12 w-full rounded-[var(--radius-control)]" />
       </div>
     </div>
   );

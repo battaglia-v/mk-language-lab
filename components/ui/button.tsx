@@ -34,13 +34,13 @@ const buttonVariants = cva(
       size: {
         // Default = 48px (standard)
         default: "h-12 px-6 rounded-[var(--radius)] text-base",
-        // Small = 44px (compact, meets tap target)
-        sm: "h-11 px-4 rounded-[var(--radius-sm)] text-sm",
+        // Small = 48px (compact, meets tap target)
+        sm: "h-12 px-4 rounded-[var(--radius-sm)] text-sm",
         // Large = 56px (hero CTA)
         lg: "h-14 px-8 rounded-[var(--radius)] text-lg",
         // Icon buttons
         icon: "size-12 rounded-[var(--radius-sm)]",
-        "icon-sm": "size-11 rounded-[var(--radius-sm)]",
+        "icon-sm": "size-12 rounded-[var(--radius-sm)]",
       },
       fullWidth: {
         true: "w-full",

@@ -280,7 +280,7 @@ export function LearnPageClient({
                 aria-current={activeLevel === 'beginner' ? 'page' : undefined}
                 aria-pressed={activeLevel === 'beginner'}
                 className={cn(
-                  'flex flex-col gap-0.5 rounded-lg px-3 py-2.5 text-left transition-all min-h-[44px]',
+                  'flex flex-col gap-0.5 rounded-lg px-3 py-2.5 text-left transition-all min-h-[48px]',
                   activeLevel === 'beginner'
                     ? 'bg-background text-foreground shadow-sm'
                     : 'text-muted-foreground hover:text-foreground'
@@ -304,7 +304,7 @@ export function LearnPageClient({
                 aria-current={activeLevel === 'intermediate' ? 'page' : undefined}
                 aria-pressed={activeLevel === 'intermediate'}
                 className={cn(
-                  'flex flex-col gap-0.5 rounded-lg px-3 py-2.5 text-left transition-all min-h-[44px]',
+                  'flex flex-col gap-0.5 rounded-lg px-3 py-2.5 text-left transition-all min-h-[48px]',
                   activeLevel === 'intermediate'
                     ? 'bg-background text-foreground shadow-sm'
                     : 'text-muted-foreground hover:text-foreground'
@@ -328,7 +328,7 @@ export function LearnPageClient({
                 aria-current={activeLevel === 'advanced' ? 'page' : undefined}
                 aria-pressed={activeLevel === 'advanced'}
                 className={cn(
-                  'flex flex-col gap-0.5 rounded-lg px-3 py-2.5 text-left transition-all min-h-[44px]',
+                  'flex flex-col gap-0.5 rounded-lg px-3 py-2.5 text-left transition-all min-h-[48px]',
                   activeLevel === 'advanced'
                     ? 'bg-background text-foreground shadow-sm'
                     : 'text-muted-foreground hover:text-foreground'
@@ -352,7 +352,7 @@ export function LearnPageClient({
                 aria-current={activeLevel === 'challenge' ? 'page' : undefined}
                 aria-pressed={activeLevel === 'challenge'}
                 className={cn(
-                  'flex flex-col gap-0.5 rounded-lg px-3 py-2.5 text-left transition-all min-h-[44px]',
+                  'flex flex-col gap-0.5 rounded-lg px-3 py-2.5 text-left transition-all min-h-[48px]',
                   activeLevel === 'challenge'
                     ? 'bg-gradient-to-br from-amber-500/20 to-orange-500/20 text-foreground shadow-sm border border-amber-500/30'
                     : 'text-muted-foreground hover:text-foreground'

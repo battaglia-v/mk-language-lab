@@ -386,7 +386,7 @@ export default function AlphabetLessonPage() {
                     <p className="text-sm text-muted-foreground mb-4">
                       {t('completedDesc', { default: 'You\'ve viewed all 31 letters. Great job!' })}
                     </p>
-                    <Button asChild className="min-h-[44px]" data-testid="alphabet-continue-to-learn">
+                    <Button asChild className="min-h-[48px]" data-testid="alphabet-continue-to-learn">
                       <Link href={`/${locale}/learn?level=beginner`}>
                         {t('continue', { default: 'Continue to Next Lesson' })}
                       </Link>

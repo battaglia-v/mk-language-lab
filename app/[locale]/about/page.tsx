@@ -52,22 +52,26 @@ export default function AboutPage() {
           <Card className="glass-card rounded-3xl p-6 text-center mx-auto max-w-md">
             <CardHeader className="flex flex-col items-center space-y-4">
               <div className="relative h-24 w-24 rounded-full overflow-hidden ring-4 ring-primary/30 shadow-xl bg-primary/20">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/images/vinny-profile.png"
-                  alt="Vincent Battaglia"
-                  width={96}
-                  height={96}
-                  className="h-full w-full object-cover"
-                  onError={(e) => {
-                    // Fallback to initials if image fails to load
-                    e.currentTarget.style.display = 'none';
-                    const parent = e.currentTarget.parentElement;
-                    if (parent) {
-                      parent.innerHTML = '<span class="flex items-center justify-center h-full w-full text-2xl font-bold text-primary">VB</span>';
-                    }
-                  }}
-                />
+                <picture>
+                  <source srcSet="/images/vinny-profile.webp" type="image/webp" />
+                  <img
+                    src="/images/vinny-profile.png"
+                    alt="Vincent Battaglia"
+                    width={96}
+                    height={96}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover"
+                    onError={(e) => {
+                      // Fallback to initials if image fails to load
+                      e.currentTarget.style.display = 'none';
+                      const parent = e.currentTarget.parentElement;
+                      if (parent) {
+                        parent.innerHTML = '<span class="flex items-center justify-center h-full w-full text-2xl font-bold text-primary">VB</span>';
+                      }
+                    }}
+                  />
+                </picture>
               </div>
               <div>
                 <CardTitle className="text-2xl text-foreground">Vincent (&quot;Vinny&quot;) Battaglia</CardTitle>

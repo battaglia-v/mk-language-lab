@@ -141,7 +141,7 @@ export function AdminDiscoverEditor() {
             {[0, 1, 2].map((row) => (
               <Skeleton
                 key={row}
-                className="h-11 rounded-[var(--radius-control)] bg-muted/30"
+                className="h-12 rounded-[var(--radius-control)] bg-muted/30"
               />
             ))}
           </div>

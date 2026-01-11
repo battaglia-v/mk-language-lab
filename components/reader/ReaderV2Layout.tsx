@@ -191,7 +191,7 @@ export function ReaderV2Layout({
             {/* Back button */}
             <Link
               href={backUrl}
-              className="flex h-11 w-11 items-center justify-center rounded-full hover:bg-muted transition-colors"
+              className="flex h-12 w-12 items-center justify-center rounded-full hover:bg-muted transition-colors"
               aria-label={labels.back}
               data-testid="reader-v2-back"
             >
@@ -226,7 +226,7 @@ export function ReaderV2Layout({
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-11 w-11 rounded-full"
+                className="h-12 w-12 rounded-full"
                 onClick={onSettingsClick}
                 aria-label="Settings"
                 data-testid="reader-v2-settings"
