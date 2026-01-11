@@ -169,16 +169,17 @@ Plans:
 Plans:
 - [x] 36-01: Graded reader wiring (12 stories A1/A2/B1) — completed 2026-01-10
 
-#### Phase 37: Tap-to-Translate
+#### Phase 37: Tap-to-Translate — IN PROGRESS
 
 **Goal**: Implement tap-to-translate word lookup system for reader content
 **Depends on**: Phase 36
 **Research**: Likely (dictionary integration, word tokenization)
 **Research topics**: Dictionary API options, Cyrillic word tokenization, mobile touch handling
-**Plans**: TBD
+**Plans**: 2
 
 Plans:
-- [ ] 37-01: TBD
+- [x] 37-01: Pre-analyze graded readers — completed 2026-01-11
+- [ ] 37-02: Enhance reader text for tap-to-translate
 
 #### Phase 38: Reader Vocabulary Save
 
@@ -225,7 +226,7 @@ Plans:
 | Phase | Milestone | Plans | Status | Completed |
 |-------|-----------|-------|--------|-----------|
 | 36. A2 Reader Wiring | v1.6 | 1/1 | Complete | 2026-01-10 |
-| 37. Tap-to-Translate | v1.6 | 0/? | Not started | - |
+| 37. Tap-to-Translate | v1.6 | 1/2 | In progress | - |
 | 38. Reader Vocabulary Save | v1.6 | 0/? | Not started | - |
 | 39. Reading Progress | v1.6 | 0/? | Not started | - |
 | 40. Discovery & Navigation | v1.6 | 0/? | Not started | - |
