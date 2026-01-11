@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useState, createContext, useContext, useCallback } from 'react';
+import { ReactNode, useState, createContext, useContext, useCallback, useEffect } from 'react';
 import { ArrowLeft, Settings, BookOpen, MessageSquare, Library, Bookmark } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import { GlossaryDrawer } from './GlossaryDrawer';
+import { readFavorites, addFavorite, removeFavorite, type FavoriteItem } from '@/lib/favorites';
 
 interface ReaderV2ContextValue {
   /** Whether tap-translate is enabled */
@@ -90,37 +91,59 @@ export function ReaderV2Layout({
   const [tapTranslateEnabled, setTapTranslateEnabled] = useState(true);
   const [sentenceModeEnabled, setSentenceModeEnabled] = useState(false);
   const [glossaryOpen, setGlossaryOpen] = useState(false);
-  const [savedWords, setSavedWords] = useState<SavedWord[]>(() => {
-    // Load from localStorage on mount
-    if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem('reader-glossary');
-      if (stored) {
-        try {
-          return JSON.parse(stored);
-        } catch {
-          return [];
-        }
+  const [savedWords, setSavedWords] = useState<SavedWord[]>([]);
+
+  // Helper to convert FavoriteItem to SavedWord
+  const favoriteToSavedWord = useCallback((fav: FavoriteItem): SavedWord => ({
+    id: fav.id,
+    original: fav.macedonian,
+    translation: fav.english,
+    savedAt: new Date(fav.favoritedAt),
+  }), []);
+
+  // Load saved words from favorites system (category='reader')
+  useEffect(() => {
+    const loadFromFavorites = () => {
+      const favorites = readFavorites();
+      const readerWords = favorites
+        .filter((fav) => fav.category === 'reader')
+        .map(favoriteToSavedWord);
+      setSavedWords(readerWords);
+    };
+
+    loadFromFavorites();
+
+    // Listen for storage events to sync across tabs
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === 'mkll:favorites') {
+        loadFromFavorites();
       }
-    }
-    return [];
-  });
+    };
+    window.addEventListener('storage', handleStorage);
+    return () => window.removeEventListener('storage', handleStorage);
+  }, [favoriteToSavedWord]);
 
   const addToGlossary = useCallback((word: SavedWord) => {
+    // Add to favorites system with category='reader'
+    addFavorite({
+      id: word.id,
+      macedonian: word.original,
+      english: word.translation,
+      category: 'reader',
+    });
+    // Update local state
     setSavedWords((prev) => {
       const exists = prev.some((w) => w.id === word.id);
       if (exists) return prev;
-      const updated = [...prev, word];
-      localStorage.setItem('reader-glossary', JSON.stringify(updated));
-      return updated;
+      return [...prev, word];
     });
   }, []);
 
   const removeFromGlossary = useCallback((wordId: string) => {
-    setSavedWords((prev) => {
-      const updated = prev.filter((w) => w.id !== wordId);
-      localStorage.setItem('reader-glossary', JSON.stringify(updated));
-      return updated;
-    });
+    // Remove from favorites system
+    removeFavorite(wordId);
+    // Update local state
+    setSavedWords((prev) => prev.filter((w) => w.id !== wordId));
   }, []);
 
   const contextValue: ReaderV2ContextValue = {
