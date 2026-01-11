@@ -299,21 +299,31 @@
       "сте",
       "се"
     ],
-    "grammar_notes": "The verb \"сум\" conjugates by person: јас сум, ти си, тој/таа/тоа е, ние сме, вие сте, тие се.",
+    "grammar_notes": "The verb \"сум\" conjugates by person: јас сум, ти си, тој/таа/тоа е, ние сме, вие сте, тие се. Pronouns are often omitted because the verb form shows the subject. Third-person singular uses \"е\" for all genders; negation uses не + form (не сум, не си, не е, не сме, не сте, не се).",
     "grammarNote": {
       "titleMk": "Глаголот 'сум'",
       "titleEn": "The verb 'сум' (to be)",
-      "contentMk": "Глаголот 'сум' се менува според лицето: јас сум, ти си, тој/таа/тоа е, ние сме, вие сте, тие се.",
-      "contentEn": "The verb 'сум' conjugates by person: јас сум (I am), ти си (you are), тој/таа/тоа е (he/she/it is), ние сме (we are), вие сте (you are), тие се (they are).",
+      "contentMk": "Глаголот 'сум' се менува според лицето: јас сум, ти си, тој/таа/тоа е, ние сме, вие сте, тие се. Заменките често се изоставуваат бидејќи формата веќе го покажува лицето; ги користиме за нагласување. За негација се додава 'не' пред глаголот: не сум, не си, не е, не сме, не сте, не се.",
+      "contentEn": "The verb 'сум' conjugates by person: јас сум (I am), ти си (you are), тој/таа/тоа е (he/she/it is), ние сме (we are), вие сте (you are), тие се (they are). Pronouns can be dropped because the verb form signals the subject; use them for emphasis. Negation adds 'не' before the verb: не сум, не си, не е, не сме, не сте, не се.",
       "examplesMk": [
-        "Јас сум студент. (I am a student.)",
-        "Ти си добар. (You are good.)",
-        "Тој е тука. (He is here.)"
+        "Јас сум студент.",
+        "Ти си уморен.",
+        "Тој е доктор.",
+        "Таа е тука.",
+        "Тоа е ново.",
+        "Ние сме подготвени.",
+        "Вие сте од Скопје.",
+        "Тие се пријатели."
       ],
       "examplesEn": [
-        "Јас сум студент. (I am a student.)",
-        "Ти си добар. (You are good.)",
-        "Тој е тука. (He is here.)"
+        "I am a student.",
+        "You are tired.",
+        "He is a doctor.",
+        "She is here.",
+        "It is new.",
+        "We are ready.",
+        "You are from Skopje.",
+        "They are friends."
       ]
     },
     "exercises": [
@@ -1487,23 +1497,34 @@
       "мој/моја/мое",
       "твој/твоја/твое",
       "негов/негова/негово",
-      "нејзин/нејзина/нејзино"
+      "нејзин/нејзина/нејзино",
+      "наш/наша/наше",
+      "ваш/ваша/ваше",
+      "нивен/нивна/нивно"
     ],
-    "grammar_notes": "Possessive pronouns agree with the gender and number of the noun: мој/моја/мое, твој/твоја/твое, негов/негова/негово, нејзин/нејзина/нејзино, наш/наша/наше, ваш/ваша/ваше, нивен/нивна/нивно.",
+    "grammar_notes": "Possessive pronouns agree with the gender and number of the noun: мој/моја/мое, твој/твоја/твое, негов/негова/негово, нејзин/нејзина/нејзино, наш/наша/наше, ваш/ваша/ваше, нивен/нивна/нивно. Plural forms add -и/-те (моите, твоите, неговите, нејзините, нашите, вашите, нивните); definite singular adds -от/-та/-то (мојата куќа, моето дете).",
     "grammarNote": {
       "titleMk": "Присвојни заменки",
       "titleEn": "Possessive Pronouns",
-      "contentMk": "Присвојните заменки се менуваат по род: мој/моја/мое, твој/твоја/твое, негов/негова/негово, нејзин/нејзина/нејзино, наш/наша/наше, ваш/ваша/ваше, нивен/нивна/нивно.",
-      "contentEn": "Possessive pronouns change by gender: мој/моја/мое (my), твој/твоја/твое (your), негов/негова/негово (his), нејзин/нејзина/нејзино (her), наш/наша/наше (our), ваш/ваша/ваше (your), нивен/нивна/нивно (their).",
+      "contentMk": "Присвојните заменки стојат пред именката и се менуваат по род и број: мој/моја/мое, твој/твоја/твое, негов/негова/негово, нејзин/нејзина/нејзино, наш/наша/наше, ваш/ваша/ваше, нивен/нивна/нивно. За множина се користат форми со -и/-те (моите книги, твоите пријатели). За определеност се додава наставка: мојата куќа, твоето дете, неговиот автомобил.",
+      "contentEn": "Possessive pronouns come before the noun and agree in gender and number: мој/моја/мое (my), твој/твоја/твое (your), негов/негова/негово (his), нејзин/нејзина/нејзино (her), наш/наша/наше (our), ваш/ваша/ваше (your), нивен/нивна/нивно (their). Plurals take -и/-те (моите книги, твоите пријатели). Definite forms add a suffix: мојата куќа, твоето дете, неговиот автомобил.",
       "examplesMk": [
-        "Ова е мој брат",
-        "Тоа е нејзина книга",
-        "Нашата куќа е голема"
+        "Ова е мој брат.",
+        "Тоа е твоја сестра.",
+        "Неговиот телефон е нов.",
+        "Нејзината книга е тука.",
+        "Нашата куќа е голема.",
+        "Вашиот план е добар.",
+        "Нивниот автомобил е црвен."
       ],
       "examplesEn": [
-        "This is my brother",
-        "That is her book",
-        "Our house is big"
+        "This is my brother.",
+        "That is your sister.",
+        "His phone is new.",
+        "Her book is here.",
+        "Our house is big.",
+        "Your plan is good.",
+        "Their car is red."
       ]
     },
     "exercises": [
@@ -1681,21 +1702,31 @@
       "дојде",
       "пишав"
     ],
-    "grammar_notes": "The aorist is used for completed past actions. Common endings: -в (јадов, работив), -а/-е (дојде, виде).",
+    "grammar_notes": "The aorist is used for completed past actions and one-time events. A common pattern is: јас отидов, ти отиде, тој/таа/тоа отиде, ние отидовме, вие отидовте, тие отидоа. Typical endings include -в/-ов (јадов, работив) and -е/-а in third person (дојде, виде).",
     "grammarNote": {
       "titleMk": "Аорист (завршено минато)",
       "titleEn": "Aorist (completed past)",
-      "contentMk": "Аорист се користи за завршено дејство: јас јадов, ти јаде, тој јаде, ние јадовме, вие јадовте, тие јадоа. Чести форми: работив, пишав, отидов, дојде.",
-      "contentEn": "Aorist is used for completed actions in the past: јас јадов, ти јаде, тој јаде, ние јадовме, вие јадовте, тие јадоа. Common forms: работив, пишав, отидов, дојде.",
+      "contentMk": "Аорист се користи за завршено дејство во минатото, често еднократно. Пример со \"оди\": јас отидов, ти отиде, тој/таа/тоа отиде, ние отидовме, вие отидовте, тие отидоа. Во трето лице еднина формата е иста за машки/женски/среден род. Чести форми: работив, пишав, отидов, дојде.",
+      "contentEn": "Aorist is used for completed actions in the past, often one-time events. Example with \"оди\": јас отидов, ти отиде, тој/таа/тоа отиде, ние отидовме, вие отидовте, тие отидоа. Third-person singular is the same for he/she/it. Common forms: работив, пишав, отидов, дојде.",
       "examplesMk": [
-        "Вчера јадов во ресторан.",
-        "Тој дојде рано.",
-        "Ние отидовме во Охрид."
+        "Јас отидов дома.",
+        "Ти отиде рано.",
+        "Тој отиде во Скопје.",
+        "Таа отиде во Охрид.",
+        "Тоа отиде таму.",
+        "Ние отидовме на пат.",
+        "Вие отидовте порано.",
+        "Тие отидоа дома."
       ],
       "examplesEn": [
-        "Yesterday I ate at a restaurant.",
-        "He came early.",
-        "We went to Ohrid."
+        "I went home.",
+        "You went early.",
+        "He went to Skopje.",
+        "She went to Ohrid.",
+        "It went there.",
+        "We went on a trip.",
+        "You went earlier.",
+        "They went home."
       ]
     },
     "exercises": [
@@ -2191,21 +2222,31 @@
       "ќе работам",
       "нема да одам"
     ],
-    "grammar_notes": "Future tense uses the particle \"ќе\" + present tense. Negation uses \"нема да\" + present tense.",
+    "grammar_notes": "Future tense uses the particle \"ќе\" + present tense, and \"ќе\" does not change by person. Example: јас ќе одам, ти ќе одиш, тој/таа/тоа ќе оди, ние ќе одиме, вие ќе одите, тие ќе одат. Negation uses \"нема да\" + present tense (нема да одам/одиш/оди/одиме/одите/одат).",
     "grammarNote": {
       "titleMk": "Идно време",
       "titleEn": "Future Tense",
-      "contentMk": "Идното време се формира со честичката 'ќе' + сегашно време на глаголот. Негација: 'нема да' + глагол.",
-      "contentEn": "The future tense is formed with the particle 'ќе' + present tense. Negation uses 'нема да' + verb.",
+      "contentMk": "Идното време се формира со честичката 'ќе' + сегашно време на глаголот, а 'ќе' не се менува по лице. Пример со \"оди\": јас ќе одам, ти ќе одиш, тој/таа/тоа ќе оди, ние ќе одиме, вие ќе одите, тие ќе одат. Негација: 'нема да' + сегашно време.",
+      "contentEn": "The future tense is formed with the particle 'ќе' + present tense, and 'ќе' stays the same for all persons. Example with \"оди\": јас ќе одам, ти ќе одиш, тој/таа/тоа ќе оди, ние ќе одиме, вие ќе одите, тие ќе одат. Negation uses 'нема да' + present tense.",
       "examplesMk": [
-        "Јас ќе одам дома",
-        "Утре ќе учам",
-        "Нема да одам денес"
+        "Јас ќе одам дома.",
+        "Ти ќе одиш утре.",
+        "Тој ќе оди на работа.",
+        "Таа ќе оди во Скопје.",
+        "Тоа ќе биде важно.",
+        "Ние ќе одиме во Охрид.",
+        "Вие ќе одите рано.",
+        "Тие нема да одат денес."
       ],
       "examplesEn": [
-        "I will go home",
-        "Tomorrow I will study",
-        "I will not go today"
+        "I will go home.",
+        "You will go tomorrow.",
+        "He will go to work.",
+        "She will go to Skopje.",
+        "It will be important.",
+        "We will go to Ohrid.",
+        "You will go early.",
+        "They will not go today."
       ]
     },
     "exercises": [
@@ -2314,21 +2355,31 @@
       "не може",
       "не мора"
     ],
-    "grammar_notes": "Use \"може да\" for ability/permission and \"мора да\" for obligation. \"Не мора\" means 'don't have to'.",
+    "grammar_notes": "Use \"може да\" for ability/permission and \"мора да\" for obligation, followed by \"да\" + present tense. Conjugations: јас можам, ти можеш, тој/таа/тоа може, ние можеме, вие можете, тие можат; јас морам, ти мораш, тој/таа/тоа мора, ние мораме, вие морате, тие мораат. Negation: не може (cannot), не мора (don't have to).",
     "grammarNote": {
       "titleMk": "Модални глаголи",
       "titleEn": "Modal Verbs",
-      "contentMk": "\"може\" означува дозвола или можност: \"Може ли да влезам?\". \"мора\" означува обврска: \"Морам да одам.\".",
-      "contentEn": "\"може\" expresses permission or possibility: \"Може ли да влезам?\". \"мора\" expresses obligation: \"Морам да одам.\".",
+      "contentMk": "\"може\" означува дозвола или можност и се користи со \"да\" + сегашно време. Конјугација: јас можам, ти можеш, тој/таа/тоа може, ние можеме, вие можете, тие можат. \"мора\" означува обврска: јас морам, ти мораш, тој/таа/тоа мора, ние мораме, вие морате, тие мораат. Негација: не може (нема дозвола/не е можно), не мора (нема обврска).",
+      "contentEn": "\"може\" expresses permission or possibility and is used with \"да\" + present tense. Conjugation: јас можам, ти можеш, тој/таа/тоа може, ние можеме, вие можете, тие можат. \"мора\" expresses obligation: јас морам, ти мораш, тој/таа/тоа мора, ние мораме, вие морате, тие мораат. Negation: не може (cannot) and не мора (don't have to).",
       "examplesMk": [
-        "Може ли да седнам?",
-        "Морам да учам.",
-        "Не мораш да брзаш."
+        "Јас можам да помогнам.",
+        "Ти можеш да седнеш.",
+        "Тој може да дојде.",
+        "Таа мора да учи.",
+        "Тоа може да биде проблем.",
+        "Ние мораме да работиме.",
+        "Вие можете да одморите.",
+        "Тие мораат да одат."
       ],
       "examplesEn": [
-        "May I sit?",
-        "I must study.",
-        "You don't have to hurry."
+        "I can help.",
+        "You can sit.",
+        "He can come.",
+        "She must study.",
+        "It can be a problem.",
+        "We must work.",
+        "You can rest.",
+        "They must go."
       ]
     },
     "exercises": [

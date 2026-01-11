@@ -36,9 +36,14 @@
           "vocabulary_list": [
             "јас сум — I am",
             "ти си — you are",
-            "тој/таа/тоа е — he/she/it is"
+            "тој е — he is",
+            "таа е — she is",
+            "тоа е — it is",
+            "ние сме — we are",
+            "вие сте — you are (plural/formal)",
+            "тие се — they are"
           ],
-          "grammar_notes": "Present tense of 'сум' across all persons and short identity/origin sentences."
+          "grammar_notes": "Present tense of 'сум' across all persons, with pronouns often omitted in speech for brevity."
         },
         {
           "id": "a1-gender-nouns",
@@ -95,20 +100,29 @@
           "title": "Past Aorist Tense",
           "difficulty_level": "A2",
           "vocabulary_list": [
-            "јас јадов — I ate",
-            "тие дојдоа — they came"
+            "јас отидов — I went",
+            "ти отиде — you went",
+            "тој/таа/тоа отиде — he/she/it went",
+            "ние отидовме — we went",
+            "вие отидовте — you went (plural/formal)",
+            "тие отидоа — they went"
           ],
-          "grammar_notes": "Aorist forms for completed past actions and common endings."
+          "grammar_notes": "Aorist forms for completed past actions with a full person set and common endings (-в/-ов, -е/-а)."
         },
         {
           "id": "a2-possessives",
           "title": "Possessives (мой, твой)",
           "difficulty_level": "A2",
           "vocabulary_list": [
-            "мој, моја, мое — my",
-            "твој, твоја, твое — your"
+            "мој/моја/мое — my",
+            "твој/твоја/твое — your",
+            "негов/негова/негово — his",
+            "нејзин/нејзина/нејзино — her",
+            "наш/наша/наше — our",
+            "ваш/ваша/ваше — your (plural/formal)",
+            "нивен/нивна/нивно — their"
           ],
-          "grammar_notes": "Full possessive paradigm with gender/number agreement."
+          "grammar_notes": "Full possessive paradigm with gender/number agreement plus plural/definite forms."
         },
         {
           "id": "a2-food-drink",
@@ -132,20 +146,27 @@
           "title": "Future Tense (ќе)",
           "difficulty_level": "B1",
           "vocabulary_list": [
-            "ќе одам — I will go",
+            "јас ќе одам — I will go",
+            "ти ќе одиш — you will go",
+            "тој/таа/тоа ќе оди — he/she/it will go",
+            "ние ќе одиме — we will go",
+            "вие ќе одите — you will go (plural/formal)",
+            "тие ќе одат — they will go",
             "нема да одам — I will not go"
           ],
-          "grammar_notes": "Future tense with 'ќе' and negative 'нема да', plus time markers."
+          "grammar_notes": "Future tense with 'ќе' across all persons and negative 'нема да', plus time markers."
         },
         {
           "id": "b1-modals",
           "title": "Modals (може/мора)",
           "difficulty_level": "B1",
           "vocabulary_list": [
-            "може — can/may",
-            "мора — must"
+            "можам/можеш/може — can/may",
+            "можеме/можете/можат — can/may (plural)",
+            "морам/мораш/мора — must",
+            "мораме/морате/мораат — must (plural)"
           ],
-          "grammar_notes": "може/мора for permission, ability, and obligation; 'не мора' for no obligation."
+          "grammar_notes": "може/мора with full conjugations for permission, ability, and obligation; 'не мора' for no obligation."
         },
         {
           "id": "b1-aspect",
