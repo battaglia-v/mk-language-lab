@@ -87,6 +87,13 @@ If the app nails progression, users will forgive incomplete content; if it doesn
 - Sort options dropdown (Default, Difficulty, Reading Time, My Progress) — v1.6
 - Continue Reading card for in-progress stories — v1.6
 - 56 E2E tests validating all reader features across 4 viewports — v1.6
+- Simplified lesson flow (5→4 sections, intro removed, free navigation enabled) — v1.7
+- Curated vocabulary (25,560→1,943 items, 30-50 words/lesson target) — v1.7
+- Clean grammar notes (100% quality score, PDF artifacts removed) — v1.7
+- Content completeness (all 40 lessons meet 30+ vocab / 2+ grammar minimums) — v1.7
+- 15 E2E tests for Learn Experience (flow, content, mobile, cross-locale) — v1.7
+- WCAG-compliant 48px touch targets across UI components — v1.7
+- WebP images with lazy loading for performance — v1.7
 
 ### Active
 
@@ -109,19 +116,21 @@ If the app nails progression, users will forgive incomplete content; if it doesn
 
 ## Context
 
-### Current State (v1.6)
+### Current State (v1.7)
 
 - **Codebase:** ~26,650 lines of TypeScript
 - **Tech stack:** Next.js 16 App Router, Prisma/PostgreSQL, NextAuth, Vercel
-- **Curriculum:** 40 lessons (24 A1 + 8 A2 + 8 B1), 41 grammar notes, 25,568 vocabulary items
+- **Curriculum:** 40 lessons (24 A1 + 8 A2 + 8 B1), 149 grammar notes, 1,943 curated vocabulary items
 - **Graded Readers:** 12 stories (4 A1, 4 A2, 4 B1) with pre-analyzed vocabulary (1,123 unique words)
 - **Reader Features:** Tap-to-translate, vocabulary save, progress tracking, topic/sort filtering
+- **Learn Experience:** Simplified 4-section lesson flow with free navigation
 - **Database:** UKIM curriculum seeded with 100% validated translations
 - **CI Pipeline:** 7 workflows with Next.js and Playwright caching optimized
 - **Dark mode:** ~98% compliance across all components
-- **E2E Tests:** 128 tests (72 user journey + 56 reader) across 4 viewports
+- **E2E Tests:** 143 tests (72 user journey + 56 reader + 15 learn experience) across 4 viewports
 - **Navigation:** Resources page (replaced More), unified Tools (Translate + Analyzer)
 - **Practice:** Session persistence, resume prompt, save-to-glossary, lesson progress indicator
+- **Accessibility:** WCAG-compliant 48px touch targets, WebP images with lazy loading
 - **Audio:** Fully removed (was unused, now -4,064 lines cleaner)
 
 ### The Problem (Solved)
@@ -179,4 +188,4 @@ Advanced and returning users didn't know where they were, what they'd completed,
 - [ ] 2-3 named beta users say: "This finally makes sense — I always know what to do next"
 
 ---
-*Last updated: 2026-01-11 after v1.6 Reader Overhaul milestone*
+*Last updated: 2026-01-11 after v1.7 Learn Experience Overhaul milestone*

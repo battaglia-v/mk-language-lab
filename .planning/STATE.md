@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-11)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** v1.7 Learn Experience Overhaul
+**Current focus:** Planning next milestone
 
 ## Current Position
 
-Phase: 46 of 46 (Final Validation)
-Plan: 1 of 1 in current phase
-Status: Milestone complete
-Last activity: 2026-01-11 — Completed 46-01-PLAN.md
+Phase: 46 of 46 (All phases complete)
+Plan: N/A — ready for next milestone
+Status: v1.7 shipped, awaiting next milestone planning
+Last activity: 2026-01-11 — v1.7 milestone complete
 
-Progress: ██████████ 100%
+Progress: ██████████ 100% (8 milestones shipped)
 
 ## Milestone Summary
 
@@ -63,14 +63,22 @@ Progress: ██████████ 100%
 - Topic filtering, sort options, Continue Reading card
 - 56 E2E tests for reader features
 
+**v1.7 Learn Experience Overhaul shipped 2026-01-11**
+- 5 phases (42-46), 6 plans, 32 commits
+- 93 files modified (+110,719 / -216,203 lines)
+- Simplified lesson flow (5→4 sections, free navigation)
+- Vocabulary curation (25,560→1,943, 92% reduction)
+- Grammar cleanup (100% quality score)
+- 15 E2E tests for Learn Experience
+
 See `.planning/MILESTONES.md` for full details.
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 82
+- Total plans completed: 88
 - Average duration: ~9 min
-- Total execution time: ~12 hours
+- Total execution time: ~13 hours
 
 **By Milestone:**
 
@@ -83,6 +91,7 @@ See `.planning/MILESTONES.md` for full details.
 | v1.4 Power User | 6 | 13 | 67 | 1 day |
 | v1.5 Audio Cleanup | 3 | 6 | 27 | Same day |
 | v1.6 Reader Overhaul | 6 | 7 | 29 | 2 days |
+| v1.7 Learn Experience | 5 | 6 | 32 | Same day |
 
 ## Accumulated Context
 
@@ -107,10 +116,10 @@ None.
 - Milestone v1.4 shipped: Power user feedback (Phases 27-32)
 - Milestone v1.5 shipped: Audio cleanup & final polish (Phases 33-35)
 - Milestone v1.6 shipped: Reader overhaul (Phases 36-41)
-- Milestone v1.7 created: Learn experience overhaul (Phases 42-46)
+- Milestone v1.7 shipped: Learn experience overhaul (Phases 42-46)
 
 ## Session Continuity
 
 Last session: 2026-01-11
-Stopped at: Completed 46-01-PLAN.md (v1.7 milestone complete)
-Resume file: None
+Stopped at: v1.7 milestone archived and tagged
+Resume file: None — ready for /gsd:discuss-milestone or /gsd:new-milestone

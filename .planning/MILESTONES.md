@@ -1,5 +1,33 @@
 # Project Milestones: MKLanguage Learning System
 
+## v1.7 Learn Experience Overhaul (Shipped: 2026-01-11)
+
+**Delivered:** Simplified lesson flow (5→4 sections, free navigation), vocabulary curation (92% reduction to 30-50 words/lesson), grammar cleanup (100% quality score), content completeness audit, and comprehensive E2E validation with UI polish.
+
+**Phases completed:** 42-46 (6 plans total)
+
+**Key accomplishments:**
+
+- Simplified lesson flow from 5 sections to 4 (removed intro, enabled free navigation to any section)
+- Reduced vocabulary from 25,560 to 1,943 items (92% reduction, 30-50 words/lesson target)
+- Cleaned 50 grammar notes with PDF artifacts, achieving 100% quality score (up from 84%)
+- Filled content gaps in 5 lessons ensuring minimum 30 vocab / 2 grammar per lesson
+- Created 15 E2E tests validating Learn Experience (lesson flow, content quality, mobile, cross-locale)
+- Committed 46 UI polish files with WCAG-compliant 48px touch targets and WebP images
+
+**Stats:**
+
+- 93 files modified
+- +110,719 / -216,203 lines changed
+- 5 phases, 6 plans, 32 commits
+- Same day (2026-01-11)
+
+**Git range:** `docs(42-01)` → `docs(46-01)`
+
+**What's next:** TBD (user to decide next focus)
+
+---
+
 ## v1.6 Reader Overhaul (Shipped: 2026-01-11)
 
 **Delivered:** Mobile-first reading experience with tap-to-translate word lookup, unified vocabulary saving, reading progress tracking, and discovery/navigation improvements for 12 graded reader stories.

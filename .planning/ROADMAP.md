@@ -13,7 +13,7 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 - ✅ [v1.4 Power User Feedback](milestones/v1.4-ROADMAP.md) (Phases 27-32) — SHIPPED 2026-01-10
 - ✅ [v1.5 Audio Cleanup & Final Polish](milestones/v1.5-ROADMAP.md) (Phases 33-35) — SHIPPED 2026-01-10
 - ✅ [v1.6 Reader Overhaul](milestones/v1.6-ROADMAP.md) (Phases 36-41) — SHIPPED 2026-01-11
-- 🚧 **v1.7 Learn Experience Overhaul** — Phases 42-46 (in progress)
+- ✅ [v1.7 Learn Experience Overhaul](milestones/v1.7-ROADMAP.md) (Phases 42-46) — SHIPPED 2026-01-11
 
 ## Completed Milestones
 
@@ -170,70 +170,24 @@ Plans:
 
 </details>
 
-### 🚧 v1.7 Learn Experience Overhaul (In Progress)
+<details>
+<summary>✅ v1.7 Learn Experience Overhaul (Phases 42-46) — SHIPPED 2026-01-11</summary>
 
-**Milestone Goal:** Improve the Learn section UX with simpler lesson flow and free navigation, plus content quality improvements across vocabulary, grammar, and completeness audits.
+- [x] Phase 42: Lesson Flow Simplification (1/1 plans) — completed 2026-01-11
+- [x] Phase 43: Vocabulary & Grammar Audit (2/2 plans) — completed 2026-01-11
+- [x] Phase 44: Content Completeness (1/1 plans) — completed 2026-01-11
+- [x] Phase 45: Validation & Polish (1/1 plans) — completed 2026-01-11
+- [x] Phase 46: Final Validation (1/1 plans) — completed 2026-01-11
 
-#### Phase 42: Lesson Flow Simplification — COMPLETE
+[Full details](milestones/v1.7-ROADMAP.md)
 
-**Goal**: Combine sections, reduce steps from 5 to 3-4, remove intro section, allow free navigation
-**Depends on**: v1.6 complete
-**Research**: Unlikely (internal component patterns)
-**Plans**: 1/1
-
-Plans:
-- [x] 42-01: Remove intro section and enable free navigation — completed 2026-01-11
-
-#### Phase 43: Vocabulary & Grammar Audit — COMPLETE
-
-**Goal**: Curate vocabulary to 30-50 theme-relevant words per lesson, clean grammar notes to remove PDF artifacts and ensure pedagogical clarity. Merges original Phases 43 (Vocabulary) and 44 (Grammar) since Macedonian vocabulary and grammar are deeply intertwined.
-**Depends on**: Phase 42
-**Research**: Unlikely (content editing, existing structures)
-**Plans**: 2/2
-
-Plans:
-- [x] 43-01: Vocabulary audit and curation (audit, curate, reseed) — completed 2026-01-11
-- [x] 43-02: Grammar audit and cleanup (audit, clean PDF artifacts, standardize) — completed 2026-01-11
-
-#### Phase 44: Content Completeness Audit — COMPLETE
-
-**Goal**: Ensure lessons deliver what they promise in intro/summary, fill content gaps
-**Depends on**: Phase 43
-**Research**: Unlikely (content audit, existing formats)
-**Plans**: 1/1
-
-Plans:
-- [x] 44-01: Content completeness audit and gap filling — completed 2026-01-11
-
-#### Phase 45: Validation & Polish — COMPLETE
-
-**Goal**: E2E tests for new lesson flow, user journey validation
-**Depends on**: Phase 44
-**Research**: Unlikely (internal E2E patterns)
-**Plans**: 1/1
-
-Plans:
-- [x] 45-01: Learn Experience E2E Validation — completed 2026-01-11
-
-#### Phase 46: Final Validation — COMPLETE
-
-**Goal**: Commit UI polish changes, run full validation suite, prepare for milestone completion
-**Depends on**: Phase 45
-**Research**: Unlikely (internal validation patterns)
-**Plans**: 1/1
-
-Plans:
-- [x] 46-01: Final validation and milestone preparation — completed 2026-01-11
+</details>
 
 ## Progress
 
 | Phase | Milestone | Plans | Status | Completed |
 |-------|-----------|-------|--------|-----------|
-| 42. Lesson Flow Simplification | v1.7 | 1/1 | Complete | 2026-01-11 |
-| 43. Vocabulary & Grammar Audit | v1.7 | 2/2 | Complete | 2026-01-11 |
-| 44. Content Completeness | v1.7 | 1/1 | Complete | 2026-01-11 |
-| 45. Validation & Polish | v1.7 | 1/1 | Complete | 2026-01-11 |
-| 46. Final Validation | v1.7 | 1/1 | Complete | 2026-01-11 |
+| (No active phases) | — | — | — | — |
 
 **Completed Milestones:**
 - [v1.0 Beta](milestones/v1.0-ROADMAP.md) — 7 phases, 21 plans (shipped 2026-01-07)
@@ -243,6 +197,7 @@ Plans:
 - [v1.4 Power User Feedback](milestones/v1.4-ROADMAP.md) — 6 phases, 13 plans (shipped 2026-01-10)
 - [v1.5 Audio Cleanup & Final Polish](milestones/v1.5-ROADMAP.md) — 3 phases, 6 plans (shipped 2026-01-10)
 - [v1.6 Reader Overhaul](milestones/v1.6-ROADMAP.md) — 6 phases, 7 plans (shipped 2026-01-11)
+- [v1.7 Learn Experience Overhaul](milestones/v1.7-ROADMAP.md) — 5 phases, 6 plans (shipped 2026-01-11)
 
 ## Domain Expertise
 
