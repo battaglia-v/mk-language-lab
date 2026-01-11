@@ -1,6 +1,6 @@
 # Google Play Store Launch Plan
 
-**Last Updated:** January 2, 2026  
+**Last Updated:** January 10, 2026  
 **Status:** Packaging-ready; monetization + QA pending
 
 > For a full production readiness + paywall plan, see `docs/production-audit-2026-01-02.md:1`.
@@ -25,7 +25,7 @@
     "namespace": "android_app",
     "package_name": "com.mklanguage.twa",
     "sha256_cert_fingerprints": [
-      "F1:F1:A2:E7:8E:EB:C2:C7:24:DC:0A:18:75:70:F8:FF:6B:0B:29:56:E3:8D:7D:1F:4C:81:5E:3E:C0:1B:5A:93"
+      "4C:6D:EA:CF:77:55:3A:40:09:D8:94:5E:97:D1:9A:FC:8C:7D:B8:28:03:1F:A8:EC:6B:9F:73:FC:44:F7:D2:02"
     ]
   }
 }
@@ -34,11 +34,11 @@
 ## App Configuration
 
 - **Package Name:** `com.mklanguage.twa`
-- **App Name:** MK Language
+- **App Name:** MK Language Lab
 - **Domain:** mklanguage.com
 - **Keystore Alias:** mklanguage
-- **Min SDK:** 23 (Android 6.0)
-- **Target SDK:** 35 (Android 15)
+- **Min SDK:** 21 (Android 5.0)
+- **Target SDK:** Verify in Bubblewrap build (match Play Console requirements)
 
 ---
 
@@ -46,34 +46,37 @@
 
 ### Short Description (80 chars max)
 ```
-Learn Macedonian with AI conversations, practice, translation & news
+Learn Macedonian with lessons, practice, translation, and real stories
 ```
 
 ### Full Description (4000 chars max)
 ```
-MK Language Lab (Македонски) – Your Gateway to Learning Macedonian
+MK Language Lab (Македонски) - Your Gateway to Learning Macedonian
 
-Master the Macedonian language with an immersive, modern learning experience. Whether you're a heritage speaker reconnecting with your roots, a traveler preparing for your next adventure, or simply passionate about learning a new language, MK Language Lab provides everything you need.
+Master the Macedonian language with a modern, mobile-first learning experience. Whether you're a heritage speaker reconnecting with your roots, a traveler preparing for your next adventure, or simply passionate about learning a new language, MK Language Lab provides everything you need.
 
 🎯 KEY FEATURES
 
-📖 AI-Powered Conversations
-Practice speaking and writing with our intelligent AI tutor. Get instant feedback and corrections on your Macedonian in natural, flowing conversations.
+📚 Structured Learning Paths
+Build a foundation with A1-B1 lessons and guided progress.
 
-🎮 Interactive Practice Modules
-• Vocabulary Builder – Learn new words with audio pronunciation
-• Fill-in-the-blank exercises – Test your grammar understanding
-• Progress tracking – Monitor your improvement over time
+🎮 Interactive Practice
+Vocabulary drills, Word Sprint sessions, and grammar exercises with instant feedback.
 
-🌐 Smart Translation
-Instantly translate between English and Macedonian. Perfect for understanding text or practicing sentence construction.
+🌐 Macedonian ↔ English Translation
+Translate text in both directions and revisit your history anytime.
 
-📰 Macedonian News Feed
-Read real Macedonian news articles curated from local sources. Improve your reading comprehension while staying informed about current events.
+📖 Reader Mode + Real News
+Read graded stories and real Macedonian news to build comprehension in context.
+
+🏆 Motivation & Progress
+Track XP, streaks, and daily goals to stay consistent.
+
+🔊 Pronunciation Support
+Text-to-speech audio on supported items helps you hear how words sound.
 
 📱 DESIGNED FOR MOBILE
-• Clean, modern interface – Focus on what matters
-• Bilingual support – Switch between English and Macedonian UI
+Clean, touch-friendly UI with English + Macedonian language support.
 
 🇲🇰 WHY MACEDONIAN?
 Macedonian is a beautiful South Slavic language spoken by approximately 2 million people. It's the official language of North Macedonia and features a unique Cyrillic alphabet. Learning Macedonian opens doors to Balkan culture, history, and authentic travel experiences.
@@ -107,7 +110,7 @@ Suitable for all ages (PEGI 3 / Everyone)
 
 ### Recommended Screenshots (2-8 required)
 1. Dashboard/Home screen
-2. AI Tutor conversation
+2. Practice session (Word Sprint or grammar)
 3. Practice exercise
 4. Translation tool
 5. News feed
@@ -177,4 +180,4 @@ bubblewrap build
 
 3. **Version Updates:** When releasing updates, increment `versionCode` and `versionName` in `twa-manifest.json` before rebuilding.
 
-4. **Privacy Policy:** You'll need a privacy policy URL for Play Store submission. Host one at `mklanguage.com/privacy` or similar.
+4. **Privacy Policy:** You'll need a privacy policy URL for Play Store submission. Use `https://mklanguage.com/en/privacy`.

@@ -17,7 +17,7 @@ export const APP_META = {
    * Canonical app name for stores (Google Play, App Store)
    * Must be: No emojis, ≤30 characters, professional
    */
-  storeName: 'Macedonian Language Lab',
+  storeName: 'MK Language Lab',
 
   /**
    * Short name for app icons, home screen (≤12 chars ideal)
@@ -27,12 +27,12 @@ export const APP_META = {
   /**
    * Internal ID / package identifier
    */
-  packageId: 'com.mklanguage.app',
+  packageId: 'com.mklanguage.twa',
 
   /**
    * Description for stores
    */
-  description: 'Learn Macedonian with AI-powered tutoring, translation, and interactive lessons',
+  description: 'Learn Macedonian with lessons, practice, translation, and real stories',
 
   /**
    * URL
@@ -84,7 +84,7 @@ export const BRAND_COLORS = {
  * Fallback for cases where i18n isn't available
  */
 export function getAppDisplayName(locale: 'en' | 'mk' = 'en'): string {
-  return locale === 'mk' ? 'Македонски јазик' : 'Macedonian Language Lab';
+  return locale === 'mk' ? 'Македонски' : 'MK Language Lab';
 }
 
 /**

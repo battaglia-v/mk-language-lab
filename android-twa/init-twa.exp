@@ -4,7 +4,7 @@ set timeout 300
 
 cd "/Users/vbattaglia/mk-language-lab/android-twa"
 
-spawn bubblewrap init --manifest https://mk-language-lab.vercel.app/manifest.json
+spawn bubblewrap init --manifest https://mklanguage.com/manifest.json
 
 # Domain - accept default (mk-language-lab.vercel.app)
 expect "Domain:" { send "\r" }
@@ -43,13 +43,13 @@ expect "Location Delegation" { send "n\r" }
 expect "Play Billing" { send "n\r" }
 
 # Android package details
-expect "Package ID:" { send "com.mklanguagelab.app\r" }
+expect "Package ID:" { send "com.mklanguage.twa\r" }
 
 # Version name
-expect "App version name:" { send "2.0.1\r" }
+expect "App version name:" { send "1.0.0\r" }
 
 # Version code
-expect "App version code:" { send "3\r" }
+expect "App version code:" { send "1\r" }
 
 # Signing key
 expect "Signing key" { 
@@ -57,10 +57,10 @@ expect "Signing key" {
 }
 
 # Key file path
-expect "Key file path:" { send "./mk-language-lab.keystore\r" }
+expect "Key file path:" { send "./mklanguage.keystore\r" }
 
 # Key alias
-expect "Key alias:" { send "mk-language-lab\r" }
+expect "Key alias:" { send "mklanguage\r" }
 
 # First and last names
 expect "First and last names" { send "Vincent Battaglia\r" }

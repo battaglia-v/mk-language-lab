@@ -26,12 +26,12 @@ export const metadata: Metadata = {
     default: brandCombined,
     template: `%s • ${brandCombined}`,
   },
-  description: "Learn Macedonian with AI-powered tutoring, translation, and interactive lessons. Free and open-source language learning app.",
+  description: "Learn Macedonian with lessons, practice, translation, and real stories. Free and open-source language learning app.",
   applicationName: brandCombined,
   keywords: [
     "Macedonian",
     "language learning",
-    "AI tutor",
+    "practice",
     "translation",
     "Macedonian lessons",
     "learn Macedonian",
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: brandCombined,
     title: `${brandCombined} - Learn Macedonian`,
-    description: "Learn Macedonian with AI-powered tutoring, translation, and interactive lessons. Free and open-source language learning app.",
+    description: "Learn Macedonian with lessons, practice, translation, and real stories. Free and open-source language learning app.",
     images: [
       {
         url: "/opengraph-image",
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: `${brandCombined} - Learn Macedonian`,
-    description: "Learn Macedonian with AI-powered tutoring, translation, and interactive lessons.",
+    description: "Learn Macedonian with lessons, practice, translation, and real stories.",
     images: ["/opengraph-image"],
     creator: "@mk_language_lab",
   },

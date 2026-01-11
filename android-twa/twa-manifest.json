@@ -1,7 +1,7 @@
 {
   "packageId": "com.mklanguage.twa",
   "host": "mklanguage.com",
-  "name": "Macedonian Language Lab",
+  "name": "MK Language Lab",
   "launcherName": "MK Language",
   "display": "standalone",
   "themeColor": "#FF5A2C",
@@ -12,7 +12,7 @@
   "navigationDividerColorDark": "#000000",
   "backgroundColor": "#080B12",
   "enableNotifications": true,
-  "startUrl": "/mk?v=2.0.1",
+  "startUrl": "/en?v=1.0.0",
   "iconUrl": "https://mklanguage.com/icon-512.png",
   "maskableIconUrl": "https://mklanguage.com/icon-512-maskable.png",
   "splashScreenFadeOutDuration": 300,

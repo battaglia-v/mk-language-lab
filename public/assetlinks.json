@@ -4,9 +4,9 @@
     "target": {
       "namespace": "android_app",
       "package_name": "com.mklanguage.twa",
-      "sha256_cert_fingerprints": [
-        "F1:F1:A2:E7:8E:EB:C2:C7:24:DC:0A:18:75:70:F8:FF:6B:0B:29:56:E3:8D:7D:1F:4C:81:5E:3E:C0:1B:5A:93"
-      ]
+    "sha256_cert_fingerprints": [
+      "4C:6D:EA:CF:77:55:3A:40:09:D8:94:5E:97:D1:9A:FC:8C:7D:B8:28:03:1F:A8:EC:6B:9F:73:FC:44:F7:D2:02"
+    ]
     }
   }
 ]

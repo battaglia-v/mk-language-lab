@@ -1,7 +1,9 @@
 # Google Play Store Final Submission Package
-## Македонски • MK Language Lab
+## MK Language Lab
 
-> **Ready to Submit**: January 2025
+> **Last Updated:** 2026-01-10  > **Owner**: Vincent Battaglia
+
+> **Ready to Submit**: January 2026
 > **Package**: `com.mklanguage.twa`
 > **Version**: 1.0.0
 
@@ -11,7 +13,7 @@
 
 **App Name** (30 chars max):
 ```
-Македонски • MK Language Lab
+MK Language Lab
 ```
 
 **Developer Name**:
@@ -24,9 +26,9 @@ MK Language Lab
 ## Short Description (80 chars max)
 
 ```
-Learn Macedonian: AI lessons, daily practice, translation & news. Free!
+Learn Macedonian with lessons, practice, translation & real stories.
 ```
-_(76 characters)_
+_(68 characters)_
 
 ---
 
@@ -35,7 +37,7 @@ _(76 characters)_
 ```
 🇲🇰 THE ONLY APP DEDICATED TO LEARNING MACEDONIAN
 
-Finally — a beautiful, modern language app built specifically for Macedonian learners. Whether you're connecting with family roots, planning a trip to North Macedonia, or exploring Slavic languages, Македонски makes learning engaging and effective.
+Finally — a beautiful, modern language app built specifically for Macedonian learners. Whether you're connecting with family roots, planning a trip to North Macedonia, or exploring Slavic languages, MK Language Lab makes learning engaging and effective.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -51,7 +53,7 @@ Start from zero or jump to your level:
 • Cyrillic Alphabet Mastery — Learn to read & write in days
 • A1 Starter Path — Essential vocabulary and phrases
 • 30-Day Reading Challenge — Daily stories with grammar focus
-• Speaking Practice — Real conversation patterns
+• Practice Sessions — Vocabulary, grammar, and typing drills
 
 Each lesson takes just 5-10 minutes. Perfect for busy schedules.
 
@@ -61,8 +63,7 @@ Each lesson takes just 5-10 minutes. Perfect for busy schedules.
 
 Science-backed spaced repetition keeps words in your long-term memory:
 • Vocabulary drills with instant feedback
-• Listening comprehension exercises
-• Fill-in-the-blank challenges
+• Multiple-choice and cloze challenges
 • Typing practice for Cyrillic
 
 Track your progress with XP, streaks, and daily goals.
@@ -75,7 +76,7 @@ Break through any language barrier:
 • Macedonian ↔ English translation
 • Auto-detects which language you're typing
 • Save translations to review later
-• Works offline with cached results
+• Translation history for quick review
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -157,8 +158,8 @@ build your streak! 🔥
 Practice That Sticks
 ━━━━━━━━━━━━
 Quick 5-minute drills.
-Vocabulary, listening,
-grammar & more.
+Vocabulary, grammar,
+typing & more.
 Earn XP as you learn! ⭐
 ```
 
@@ -170,7 +171,7 @@ Instant Translation
 Macedonian ↔ English
 Auto-detects language.
 Save your favorites.
-Works offline too! 🔄
+Built for quick sessions on the go. 🔄
 ```
 
 ### Screenshot 4: Reader (`04-reader.png`)
@@ -233,9 +234,9 @@ No ads, ever! 🔒
 ## Feature Graphic Text
 
 The feature graphic (`public/feature-graphic.png`) includes:
-- App name: Македонски
+- App name: MK Language Lab
 - Subtitle: MK Language Lab
-- Tagline: Learn Macedonian with AI-powered lessons
+- Tagline: Learn Macedonian with lessons, practice, and real stories
 - Feature badges: Practice • Translate • Read • Learn
 - Footer: Free • No Ads • Privacy-Focused
 
@@ -278,7 +279,7 @@ Answer "No" to all questions:
 ## Release Notes (What's New)
 
 ```
-🎉 Welcome to Македонски • MK Language Lab!
+🎉 Welcome to MK Language Lab!
 
 The only app dedicated to learning Macedonian. This initial release includes:
 
