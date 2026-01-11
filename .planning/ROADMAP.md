@@ -13,6 +13,7 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 - ✅ [v1.4 Power User Feedback](milestones/v1.4-ROADMAP.md) (Phases 27-32) — SHIPPED 2026-01-10
 - ✅ [v1.5 Audio Cleanup & Final Polish](milestones/v1.5-ROADMAP.md) (Phases 33-35) — SHIPPED 2026-01-10
 - ✅ [v1.6 Reader Overhaul](milestones/v1.6-ROADMAP.md) (Phases 36-41) — SHIPPED 2026-01-11
+- 🚧 **v1.7 Learn Experience Overhaul** — Phases 42-46 (in progress)
 
 ## Completed Milestones
 
@@ -169,9 +170,69 @@ Plans:
 
 </details>
 
+### 🚧 v1.7 Learn Experience Overhaul (In Progress)
+
+**Milestone Goal:** Improve the Learn section UX with simpler lesson flow and free navigation, plus content quality improvements across vocabulary, grammar, and completeness audits.
+
+#### Phase 42: Lesson Flow Simplification
+
+**Goal**: Combine sections, reduce steps from 5 to 3-4, remove intro section, allow free navigation
+**Depends on**: v1.6 complete
+**Research**: Unlikely (internal component patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 42-01: TBD (run /gsd:plan-phase 42 to break down)
+
+#### Phase 43: Vocabulary Audit & Improvements
+
+**Goal**: Curate words relevant to lesson themes, fix translations, align difficulty per lesson
+**Depends on**: Phase 42
+**Research**: Unlikely (content editing, existing structures)
+**Plans**: TBD
+
+Plans:
+- [ ] 43-01: TBD
+
+#### Phase 44: Grammar Audit & Improvements
+
+**Goal**: Rewrite unclear explanations, add context to examples, ensure patterns are clear
+**Depends on**: Phase 43
+**Research**: Unlikely (content editing, existing structures)
+**Plans**: TBD
+
+Plans:
+- [ ] 44-01: TBD
+
+#### Phase 45: Content Completeness Audit
+
+**Goal**: Ensure lessons deliver what they promise in intro/summary, fill content gaps
+**Depends on**: Phase 44
+**Research**: Unlikely (content audit, existing formats)
+**Plans**: TBD
+
+Plans:
+- [ ] 45-01: TBD
+
+#### Phase 46: Validation & Polish
+
+**Goal**: E2E tests for new lesson flow, user journey validation
+**Depends on**: Phase 45
+**Research**: Unlikely (internal E2E patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 46-01: TBD
+
 ## Progress
 
-All phases complete. Ready for next milestone planning.
+| Phase | Milestone | Plans | Status | Completed |
+|-------|-----------|-------|--------|-----------|
+| 42. Lesson Flow Simplification | v1.7 | 0/? | Not started | - |
+| 43. Vocabulary Audit | v1.7 | 0/? | Not started | - |
+| 44. Grammar Audit | v1.7 | 0/? | Not started | - |
+| 45. Content Completeness | v1.7 | 0/? | Not started | - |
+| 46. Validation & Polish | v1.7 | 0/? | Not started | - |
 
 **Completed Milestones:**
 - [v1.0 Beta](milestones/v1.0-ROADMAP.md) — 7 phases, 21 plans (shipped 2026-01-07)
