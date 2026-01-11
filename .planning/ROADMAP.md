@@ -192,7 +192,7 @@ Plans:
 **Plans**: 2
 
 Plans:
-- [ ] 43-01: Vocabulary audit and curation (audit, curate, reseed)
+- [x] 43-01: Vocabulary audit and curation (audit, curate, reseed) — completed 2026-01-11
 - [ ] 43-02: Grammar audit and cleanup (audit, clean PDF artifacts, standardize)
 
 #### Phase 44: Content Completeness Audit
@@ -220,7 +220,7 @@ Plans:
 | Phase | Milestone | Plans | Status | Completed |
 |-------|-----------|-------|--------|-----------|
 | 42. Lesson Flow Simplification | v1.7 | 1/1 | Complete | 2026-01-11 |
-| 43. Vocabulary & Grammar Audit | v1.7 | 0/2 | Not started | - |
+| 43. Vocabulary & Grammar Audit | v1.7 | 1/2 | In progress | - |
 | 44. Content Completeness | v1.7 | 0/? | Not started | - |
 | 45. Validation & Polish | v1.7 | 0/? | Not started | - |
 
