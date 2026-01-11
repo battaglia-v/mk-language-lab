@@ -8,7 +8,7 @@ Dimensions verified for `public/screenshots/play-store-v2/*.png` (1080x1920). UI
 
 1. **Home - Daily Goals**
    - Target: `public/screenshots/play-store-v2/01-learn-home.png`
-   - Notes: show daily goal ring + Continue CTA
+   - Notes: show daily goal ring + compact Continue CTA
    - Status: dimensions verified; UI review pending
 2. **Learning Path**
    - Target: `public/screenshots/play-store-v2/02-a1-path.png`

@@ -2,7 +2,7 @@
 set timeout 300
 spawn bubblewrap build --skipPwaValidation
 expect {
-  -re "There are changes in twa-manifest.json" {
+  -re "\\(Y/n\\)" {
     send "y\r"
     exp_continue
   }

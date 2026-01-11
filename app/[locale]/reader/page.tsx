@@ -185,6 +185,32 @@ export default function ReaderPage() {
     };
   };
 
+  // Find the most recently read in-progress story for "Continue Reading" card
+  const continueReadingStory = useMemo(() => {
+    const inProgressEntries = Object.values(progressMap)
+      .filter((p) => !p.isCompleted && p.scrollPercent > 0)
+      .sort((a, b) => new Date(b.lastReadAt).getTime() - new Date(a.lastReadAt).getTime());
+
+    if (inProgressEntries.length === 0) return null;
+
+    const mostRecent = inProgressEntries[0];
+    const sample = allSamples.find((s) => s.id === mostRecent.storyId);
+    if (!sample) return null;
+
+    return { sample, progress: mostRecent };
+  }, [progressMap, allSamples]);
+
+  // Reading stats for users with history
+  const readingStats = useMemo(() => {
+    const allProgress = Object.values(progressMap);
+    if (allProgress.length === 0) return null;
+
+    const completed = allProgress.filter((p) => p.isCompleted).length;
+    const inProgress = allProgress.filter((p) => !p.isCompleted && p.scrollPercent > 0).length;
+
+    return { completed, inProgress };
+  }, [progressMap]);
+
   return (
     <div className="min-h-screen pb-24 sm:pb-6">
       {/* Header */}
@@ -229,6 +255,57 @@ export default function ReaderPage() {
                 </div>
                 <ChevronRight className="h-5 w-5 text-muted-foreground" />
               </Link>
+            )}
+
+            {/* Continue Reading Card */}
+            {continueReadingStory && (
+              <Link
+                href={`/${locale}/reader/samples/${continueReadingStory.sample.id}`}
+                data-testid="reader-continue-reading-cta"
+                className={cn(
+                  'flex items-center gap-4 rounded-2xl p-4',
+                  'bg-gradient-to-r from-primary/20 to-emerald-500/20',
+                  'border border-primary/30 hover:border-primary/50',
+                  'transition-all hover:shadow-lg'
+                )}
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/20">
+                  <BookOpen className="h-6 w-6 text-primary" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-semibold truncate">
+                    {locale === 'mk'
+                      ? continueReadingStory.sample.title_mk
+                      : continueReadingStory.sample.title_en}
+                  </p>
+                  <div className="flex items-center gap-2 mt-1">
+                    <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden max-w-[120px]">
+                      <div
+                        className="h-full bg-primary rounded-full transition-all"
+                        style={{ width: `${Math.min(continueReadingStory.progress.scrollPercent, 100)}%` }}
+                      />
+                    </div>
+                    <span className="text-xs text-muted-foreground">
+                      {Math.round(continueReadingStory.progress.scrollPercent)}%
+                    </span>
+                  </div>
+                </div>
+                <Button size="sm" className="rounded-full shrink-0" data-testid="reader-continue-reading-btn">
+                  Continue
+                </Button>
+              </Link>
+            )}
+
+            {/* Reading Stats Summary */}
+            {readingStats && (readingStats.completed > 0 || readingStats.inProgress > 0) && (
+              <div className="flex items-center gap-4 text-sm text-muted-foreground px-1">
+                {readingStats.completed > 0 && (
+                  <span>{readingStats.completed} {readingStats.completed === 1 ? 'story' : 'stories'} read</span>
+                )}
+                {readingStats.inProgress > 0 && (
+                  <span>{readingStats.inProgress} in progress</span>
+                )}
+              </div>
             )}
 
             {/* Search and Filter */}
@@ -373,15 +450,60 @@ export default function ReaderPage() {
                 ) : (
                   <div className="text-center py-12 text-muted-foreground">
                     <Search className="h-12 w-12 mx-auto mb-4 opacity-30" />
-                    <p>No readings match your filters.</p>
-                    <Button
-                      variant="link"
-                      onClick={clearFilters}
-                      className="mt-2"
-                      data-testid="reader-filter-clear-empty"
-                    >
-                      Clear filters
-                    </Button>
+                    <p className="mb-2">No readings match your filters.</p>
+
+                    {/* Contextual suggestions */}
+                    {selectedTopic && selectedDifficulty && (
+                      <p className="text-sm mb-4">
+                        Try a different topic or difficulty level.
+                      </p>
+                    )}
+                    {selectedTopic && !selectedDifficulty && (
+                      <p className="text-sm mb-4">
+                        Try a different topic or clear filters to see all stories.
+                      </p>
+                    )}
+                    {selectedDifficulty && !selectedTopic && (
+                      <p className="text-sm mb-4">
+                        {selectedDifficulty === 'A1' && 'Try A2 level for slightly more challenge.'}
+                        {selectedDifficulty === 'A2' && 'Try A1 for easier or B1 for more challenge.'}
+                        {selectedDifficulty === 'B1' && 'Try A2 for easier content.'}
+                        {selectedDifficulty === 'B2' && 'Try B1 for slightly easier content.'}
+                      </p>
+                    )}
+
+                    {/* Quick action buttons */}
+                    <div className="flex flex-wrap justify-center gap-2 mt-4">
+                      {selectedTopic && (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => setSelectedTopic(null)}
+                          className="rounded-full"
+                          data-testid="reader-clear-topic-filter"
+                        >
+                          Clear topic
+                        </Button>
+                      )}
+                      {selectedDifficulty && (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => setSelectedDifficulty(null)}
+                          className="rounded-full"
+                          data-testid="reader-clear-difficulty-filter"
+                        >
+                          Clear difficulty
+                        </Button>
+                      )}
+                      <Button
+                        variant="link"
+                        onClick={clearFilters}
+                        data-testid="reader-filter-clear-empty"
+                      >
+                        Clear all filters
+                      </Button>
+                    </div>
                   </div>
                 )}
               </section>
