@@ -504,36 +504,42 @@
         },
         {
           "title": "Присвојни заменки (Possessive pronouns)",
-          "content": "Macedonian possessive pronouns agree with noun gender",
+          "content": "Macedonian possessive pronouns agree with the noun they modify in gender and number. They have short and long forms - long forms are used for emphasis. Possessives come before the noun they modify and must match the noun's gender (masculine, feminine, or neuter).",
           "examples": [
-            "мој (m)",
-            "моја (f)",
-            "мое (n)"
+            "мој брат - my brother (masculine)",
+            "моја сестра - my sister (feminine)",
+            "мое дете - my child (neuter)",
+            "твој татко - your father",
+            "негова мајка - his mother",
+            "нејзин маж - her husband"
           ],
           "translatedExamples": [
-            "my",
-            "mine",
-            "mine (n)"
+            "my brother (masculine)",
+            "my sister (feminine)",
+            "my child (neuter)",
+            "your father",
+            "his mother",
+            "her husband"
           ]
         },
         {
           "title": "Предлози (Prepositions)",
-          "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
+          "content": "Macedonian prepositions indicate relationships between words, expressing location, direction, time, and other relationships. Common prepositions include: во (in), на (on), со (with), од (from), за (for), до (to/until). Unlike many Slavic languages, Macedonian nouns do not change form after prepositions.",
           "examples": [
-            "Јас живеам во Скопје.",
-            "Книгата е на масата.",
-            "Одам со пријател.",
-            "Доаѓам од Охрид.",
-            "Ова е за тебе.",
-            "Одам до училиште."
+            "Јас сум во куќа. - I am in a house.",
+            "Книгата е на масата. - The book is on the table.",
+            "Одам со пријател. - I am going with a friend.",
+            "Тој е од Скопје. - He is from Skopje.",
+            "Ова е за тебе. - This is for you.",
+            "Одам до продавница. - I am going to the store."
           ],
           "translatedExamples": [
-            "I live in Skopje.",
+            "I am in a house.",
             "The book is on the table.",
-            "I'm going with a friend.",
-            "I come from Ohrid.",
+            "I am going with a friend.",
+            "He is from Skopje.",
             "This is for you.",
-            "I'm going to school."
+            "I am going to the store."
           ]
         }
       ],
@@ -1181,36 +1187,42 @@
         },
         {
           "title": "Присвојни заменки (Possessive pronouns)",
-          "content": "Macedonian possessive pronouns agree with noun gender",
+          "content": "Macedonian possessive pronouns agree with the noun they modify in gender and number. They have short and long forms - long forms are used for emphasis. Possessives come before the noun they modify and must match the noun's gender (masculine, feminine, or neuter).",
           "examples": [
-            "мој (m)",
-            "моја (f)",
-            "мое (n)"
+            "мој брат - my brother (masculine)",
+            "моја сестра - my sister (feminine)",
+            "мое дете - my child (neuter)",
+            "твој татко - your father",
+            "негова мајка - his mother",
+            "нејзин маж - her husband"
           ],
           "translatedExamples": [
-            "my",
-            "mine",
-            "mine (n)"
+            "my brother (masculine)",
+            "my sister (feminine)",
+            "my child (neuter)",
+            "your father",
+            "his mother",
+            "her husband"
           ]
         },
         {
           "title": "Предлози (Prepositions)",
-          "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
+          "content": "Macedonian prepositions indicate relationships between words, expressing location, direction, time, and other relationships. Common prepositions include: во (in), на (on), со (with), од (from), за (for), до (to/until). Unlike many Slavic languages, Macedonian nouns do not change form after prepositions.",
           "examples": [
-            "Јас живеам во Скопје.",
-            "Книгата е на масата.",
-            "Одам со пријател.",
-            "Доаѓам од Охрид.",
-            "Ова е за тебе.",
-            "Одам до училиште."
+            "Јас сум во куќа. - I am in a house.",
+            "Книгата е на масата. - The book is on the table.",
+            "Одам со пријател. - I am going with a friend.",
+            "Тој е од Скопје. - He is from Skopje.",
+            "Ова е за тебе. - This is for you.",
+            "Одам до продавница. - I am going to the store."
           ],
           "translatedExamples": [
-            "I live in Skopje.",
+            "I am in a house.",
             "The book is on the table.",
-            "I'm going with a friend.",
-            "I come from Ohrid.",
+            "I am going with a friend.",
+            "He is from Skopje.",
             "This is for you.",
-            "I'm going to school."
+            "I am going to the store."
           ]
         }
       ],
@@ -2272,21 +2284,23 @@
           ]
         },
         {
-          "title": "Предлози",
-          "content": "те: над, под, пред, на, до . 43 ЛЕКЦИЈА 4 Тема 4. Скапоцени камења",
+          "title": "Предлози (Prepositions)",
+          "content": "Macedonian prepositions indicate relationships between words, expressing location, direction, time, and other relationships. Common prepositions include: во (in), на (on), со (with), од (from), за (for), до (to/until). Unlike many Slavic languages, Macedonian nouns do not change form after prepositions.",
           "examples": [
-            "Јас живеам во Скопје.",
-            "Книгата е на масата.",
-            "Одам со пријател.",
-            "Доаѓам од Охрид.",
-            "Ова е за тебе."
+            "Јас сум во куќа. - I am in a house.",
+            "Книгата е на масата. - The book is on the table.",
+            "Одам со пријател. - I am going with a friend.",
+            "Тој е од Скопје. - He is from Skopje.",
+            "Ова е за тебе. - This is for you.",
+            "Одам до продавница. - I am going to the store."
           ],
           "translatedExamples": [
-            "I live in Skopje.",
+            "I am in a house.",
             "The book is on the table.",
-            "I'm going with a friend.",
-            "I come from Ohrid.",
-            "This is for you."
+            "I am going with a friend.",
+            "He is from Skopje.",
+            "This is for you.",
+            "I am going to the store."
           ]
         },
         {
@@ -2310,53 +2324,43 @@
           ]
         },
         {
-          "title": "Глаголот \"сум\"",
-          "content": "Present tense conjugation of \"to be\" (сум). The verb changes form based on the subject pronoun. Used to express identity, origin, profession, and states.",
-          "examples": [
-            "Јас сум",
-            "Тој е",
-            "Таа е",
-            "Тоа е",
-            "Тие се"
-          ],
-          "translatedExamples": [
-            "I am",
-            "He is",
-            "She is",
-            "It is",
-            "They are"
-          ]
-        },
-        {
           "title": "Присвојни заменки (Possessive pronouns)",
-          "content": "Macedonian possessive pronouns agree with noun gender",
+          "content": "Macedonian possessive pronouns agree with the noun they modify in gender and number. They have short and long forms - long forms are used for emphasis. Possessives come before the noun they modify and must match the noun's gender (masculine, feminine, or neuter).",
           "examples": [
-            "мој (m)",
-            "моја (f)",
-            "мое (n)"
+            "мој брат - my brother (masculine)",
+            "моја сестра - my sister (feminine)",
+            "мое дете - my child (neuter)",
+            "твој татко - your father",
+            "негова мајка - his mother",
+            "нејзин маж - her husband"
           ],
           "translatedExamples": [
-            "my",
-            "mine",
-            "mine (n)"
+            "my brother (masculine)",
+            "my sister (feminine)",
+            "my child (neuter)",
+            "your father",
+            "his mother",
+            "her husband"
           ]
         },
         {
-          "title": "Показни заменки (Demonstratives)",
-          "content": "Macedonian demonstrative pronouns: ова (this), тоа (that), оној/онаа (that over there)",
+          "title": "Показни заменки (Demonstrative pronouns)",
+          "content": "Macedonian has a three-way demonstrative system based on proximity: -в/-ва/-во (this, near speaker), -т/-та/-то (that, near listener), and -н/-на/-но (that over there, distant). They agree in gender and number with the noun they modify. This tripartite system reflects the unique Macedonian way of indicating spatial relationships.",
           "examples": [
-            "Слушање: Нови зборови (слушање вежби 3 ) Зборовите на оваа слика се нови.",
-            "Ова е мојата книга.",
-            "Овој човек е мој пријател.",
-            "Оваа жена е учителка.",
-            "Тоа е интересно."
+            "овој човек - this man (near me)",
+            "оваа жена - this woman (near me)",
+            "ова дете - this child (near me)",
+            "тој човек - that man (near you)",
+            "оној човек - that man (over there)",
+            "онаа куќа - that house (over there)"
           ],
           "translatedExamples": [
-            "Listening: New words (listening exercises 3) The words in this picture are new.",
-            "This is my book.",
-            "This man is my friend.",
-            "This woman is a teacher.",
-            "That's interesting."
+            "this man (near me)",
+            "this woman (near me)",
+            "this child (near me)",
+            "that man (near you)",
+            "that man (over there)",
+            "that house (over there)"
           ]
         }
       ],
@@ -2850,36 +2854,42 @@
       "grammarNotes": [
         {
           "title": "Присвојни заменки (Possessive pronouns)",
-          "content": "Macedonian possessive pronouns agree with noun gender",
+          "content": "Macedonian possessive pronouns agree with the noun they modify in gender and number. They have short and long forms - long forms are used for emphasis. Possessives come before the noun they modify and must match the noun's gender (masculine, feminine, or neuter).",
           "examples": [
-            "мој (m)",
-            "моја (f)",
-            "мое (n)"
+            "мој брат - my brother (masculine)",
+            "моја сестра - my sister (feminine)",
+            "мое дете - my child (neuter)",
+            "твој татко - your father",
+            "негова мајка - his mother",
+            "нејзин маж - her husband"
           ],
           "translatedExamples": [
-            "my",
-            "mine",
-            "mine (n)"
+            "my brother (masculine)",
+            "my sister (feminine)",
+            "my child (neuter)",
+            "your father",
+            "his mother",
+            "her husband"
           ]
         },
         {
           "title": "Предлози (Prepositions)",
-          "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
+          "content": "Macedonian prepositions indicate relationships between words, expressing location, direction, time, and other relationships. Common prepositions include: во (in), на (on), со (with), од (from), за (for), до (to/until). Unlike many Slavic languages, Macedonian nouns do not change form after prepositions.",
           "examples": [
-            "Јас живеам во Скопје.",
-            "Книгата е на масата.",
-            "Одам со пријател.",
-            "Доаѓам од Охрид.",
-            "Ова е за тебе.",
-            "Одам до училиште."
+            "Јас сум во куќа. - I am in a house.",
+            "Книгата е на масата. - The book is on the table.",
+            "Одам со пријател. - I am going with a friend.",
+            "Тој е од Скопје. - He is from Skopje.",
+            "Ова е за тебе. - This is for you.",
+            "Одам до продавница. - I am going to the store."
           ],
           "translatedExamples": [
-            "I live in Skopje.",
+            "I am in a house.",
             "The book is on the table.",
-            "I'm going with a friend.",
-            "I come from Ohrid.",
+            "I am going with a friend.",
+            "He is from Skopje.",
             "This is for you.",
-            "I'm going to school."
+            "I am going to the store."
           ]
         }
       ],
@@ -3433,21 +3443,23 @@
           ]
         },
         {
-          "title": "Еднина и множина",
-          "content": "a. Имам куче/кучето и мачка/мачката. Еднина Множина б. Сестра ми има 18 години. Таа е сту - дентка/студентката. турист туристи в. Има шише вода/водата во фрижидер/ фрижидерот. девојка девојки г. Да одиме. Време/времето е. бебе бебиња д. Каде ти е брашното? Во втора/втората фиока.",
+          "title": "Еднина и множина (Singular and Plural)",
+          "content": "Macedonian nouns form plurals based on gender. Masculine nouns typically add -и (маж → мажи), feminine nouns ending in -а change to -и (жена → жени), and neuter nouns ending in -о or -е change to -а (село → села). Some nouns have irregular plurals that must be memorized (човек → луѓе, дете → деца).",
           "examples": [
-            "Еднина Множина б.",
-            "Таа е сту - дентка/студентката.",
-            "Има шише вода/водата во фрижидер/ фрижидерот.",
-            "Да одиме.",
-            "бебе бебиња д."
+            "маж → мажи - man → men",
+            "жена → жени - woman → women",
+            "село → села - village → villages",
+            "дете → деца - child → children",
+            "човек → луѓе - person → people",
+            "книга → книги - book → books"
           ],
           "translatedExamples": [
-            "Singular Plural b.",
-            "She is a student.",
-            "There is a bottle of water/ the water in the fridge/ the fridge.",
-            "Let's go.",
-            "baby babies e."
+            "man → men",
+            "woman → women",
+            "village → villages",
+            "child → children",
+            "person → people",
+            "book → books"
           ]
         },
         {
@@ -3470,34 +3482,42 @@
         },
         {
           "title": "Присвојни заменки (Possessive pronouns)",
-          "content": "Macedonian possessive pronouns agree with noun gender",
+          "content": "Macedonian possessive pronouns agree with the noun they modify in gender and number. They have short and long forms - long forms are used for emphasis. Possessives come before the noun they modify and must match the noun's gender (masculine, feminine, or neuter).",
           "examples": [
-            "мој (m)",
-            "моја (f)",
-            "мое (n)"
+            "мој брат - my brother (masculine)",
+            "моја сестра - my sister (feminine)",
+            "мое дете - my child (neuter)",
+            "твој татко - your father",
+            "негова мајка - his mother",
+            "нејзин маж - her husband"
           ],
           "translatedExamples": [
-            "my",
-            "mine",
-            "mine (n)"
+            "my brother (masculine)",
+            "my sister (feminine)",
+            "my child (neuter)",
+            "your father",
+            "his mother",
+            "her husband"
           ]
         },
         {
           "title": "Предлози (Prepositions)",
-          "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
+          "content": "Macedonian prepositions indicate relationships between words, expressing location, direction, time, and other relationships. Common prepositions include: во (in), на (on), со (with), од (from), за (for), до (to/until). Unlike many Slavic languages, Macedonian nouns do not change form after prepositions.",
           "examples": [
-            "Летната школа се одржува во Универзитетскиот центар.",
-            "Часовите се одржуваат на приземје и на прв спрат.",
-            "Исто така, има мала библиотека со околу двесте книги.",
-            "Најди ги и запиши ги работите што се разликуваат во двата текста.",
-            "Има ли ресторан во близина?"
+            "Јас сум во куќа. - I am in a house.",
+            "Книгата е на масата. - The book is on the table.",
+            "Одам со пријател. - I am going with a friend.",
+            "Тој е од Скопје. - He is from Skopje.",
+            "Ова е за тебе. - This is for you.",
+            "Одам до продавница. - I am going to the store."
           ],
           "translatedExamples": [
-            "The summer school is held in the University Center.",
-            "Classes are held on the ground floor and first floor.",
-            "It also has a small library with about two hundred books.",
-            "Find and write down the things that are different in the two texts.",
-            "Is there a restaurant nearby?"
+            "I am in a house.",
+            "The book is on the table.",
+            "I am going with a friend.",
+            "He is from Skopje.",
+            "This is for you.",
+            "I am going to the store."
           ]
         }
       ],
@@ -4003,22 +4023,22 @@
         },
         {
           "title": "Предлози (Prepositions)",
-          "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
+          "content": "Macedonian prepositions indicate relationships between words, expressing location, direction, time, and other relationships. Common prepositions include: во (in), на (on), со (with), од (from), за (for), до (to/until). Unlike many Slavic languages, Macedonian nouns do not change form after prepositions.",
           "examples": [
-            "Јас живеам во Скопје.",
-            "Книгата е на масата.",
-            "Одам со пријател.",
-            "Доаѓам од Охрид.",
-            "Ова е за тебе.",
-            "Одам до училиште."
+            "Јас сум во куќа. - I am in a house.",
+            "Книгата е на масата. - The book is on the table.",
+            "Одам со пријател. - I am going with a friend.",
+            "Тој е од Скопје. - He is from Skopje.",
+            "Ова е за тебе. - This is for you.",
+            "Одам до продавница. - I am going to the store."
           ],
           "translatedExamples": [
-            "I live in Skopje.",
+            "I am in a house.",
             "The book is on the table.",
-            "I'm going with a friend.",
-            "I come from Ohrid.",
+            "I am going with a friend.",
+            "He is from Skopje.",
             "This is for you.",
-            "I'm going to school."
+            "I am going to the store."
           ]
         }
       ],
@@ -4627,22 +4647,22 @@
         },
         {
           "title": "Предлози (Prepositions)",
-          "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
+          "content": "Macedonian prepositions indicate relationships between words, expressing location, direction, time, and other relationships. Common prepositions include: во (in), на (on), со (with), од (from), за (for), до (to/until). Unlike many Slavic languages, Macedonian nouns do not change form after prepositions.",
           "examples": [
-            "Јас живеам во Скопје.",
-            "Книгата е на масата.",
-            "Одам со пријател.",
-            "Доаѓам од Охрид.",
-            "Ова е за тебе.",
-            "Одам до училиште."
+            "Јас сум во куќа. - I am in a house.",
+            "Книгата е на масата. - The book is on the table.",
+            "Одам со пријател. - I am going with a friend.",
+            "Тој е од Скопје. - He is from Skopje.",
+            "Ова е за тебе. - This is for you.",
+            "Одам до продавница. - I am going to the store."
           ],
           "translatedExamples": [
-            "I live in Skopje.",
+            "I am in a house.",
             "The book is on the table.",
-            "I'm going with a friend.",
-            "I come from Ohrid.",
+            "I am going with a friend.",
+            "He is from Skopje.",
             "This is for you.",
-            "I'm going to school."
+            "I am going to the store."
           ]
         }
       ],
@@ -5156,22 +5176,22 @@
         },
         {
           "title": "Предлози (Prepositions)",
-          "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
+          "content": "Macedonian prepositions indicate relationships between words, expressing location, direction, time, and other relationships. Common prepositions include: во (in), на (on), со (with), од (from), за (for), до (to/until). Unlike many Slavic languages, Macedonian nouns do not change form after prepositions.",
           "examples": [
-            "Јас живеам во Скопје.",
-            "Книгата е на масата.",
-            "Одам со пријател.",
-            "Доаѓам од Охрид.",
-            "Ова е за тебе.",
-            "Одам до училиште."
+            "Јас сум во куќа. - I am in a house.",
+            "Книгата е на масата. - The book is on the table.",
+            "Одам со пријател. - I am going with a friend.",
+            "Тој е од Скопје. - He is from Skopje.",
+            "Ова е за тебе. - This is for you.",
+            "Одам до продавница. - I am going to the store."
           ],
           "translatedExamples": [
-            "I live in Skopje.",
+            "I am in a house.",
             "The book is on the table.",
-            "I'm going with a friend.",
-            "I come from Ohrid.",
+            "I am going with a friend.",
+            "He is from Skopje.",
             "This is for you.",
-            "I'm going to school."
+            "I am going to the store."
           ]
         }
       ],
@@ -5730,21 +5750,23 @@
           ]
         },
         {
-          "title": "Показни заменки (Demonstratives)",
-          "content": "Macedonian demonstrative pronouns: ова (this), тоа (that), оној/онаа (that over there)",
+          "title": "Показни заменки (Demonstrative pronouns)",
+          "content": "Macedonian has a three-way demonstrative system based on proximity: -в/-ва/-во (this, near speaker), -т/-та/-то (that, near listener), and -н/-на/-но (that over there, distant). They agree in gender and number with the noun they modify. This tripartite system reflects the unique Macedonian way of indicating spatial relationships.",
           "examples": [
-            "Прочитај што кажува, потоа напиши ги прашањата што недостасуваат.",
-            "Потоа гледа телевизија или чита книга.",
-            "Ова е мојата книга.",
-            "Овој човек е мој пријател.",
-            "Оваа жена е учителка."
+            "овој човек - this man (near me)",
+            "оваа жена - this woman (near me)",
+            "ова дете - this child (near me)",
+            "тој човек - that man (near you)",
+            "оној човек - that man (over there)",
+            "онаа куќа - that house (over there)"
           ],
           "translatedExamples": [
-            "Read what it says, then write the missing questions.",
-            "Then he watches TV or reads a book.",
-            "This is my book.",
-            "This man is my friend.",
-            "This woman is a teacher."
+            "this man (near me)",
+            "this woman (near me)",
+            "this child (near me)",
+            "that man (near you)",
+            "that man (over there)",
+            "that house (over there)"
           ]
         },
         {
@@ -5767,20 +5789,22 @@
         },
         {
           "title": "Предлози (Prepositions)",
-          "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
+          "content": "Macedonian prepositions indicate relationships between words, expressing location, direction, time, and other relationships. Common prepositions include: во (in), на (on), со (with), од (from), за (for), до (to/until). Unlike many Slavic languages, Macedonian nouns do not change form after prepositions.",
           "examples": [
-            "Нејзините родители живеат во Краков, а таа живее и студира во Варшава.",
-            "Брат ѝ живее со нивните родители во Краков.",
-            "Мажот работи во радиостаница.",
-            "Жената работи во супермаркет.",
-            "Појадува и оди на работа."
+            "Јас сум во куќа. - I am in a house.",
+            "Книгата е на масата. - The book is on the table.",
+            "Одам со пријател. - I am going with a friend.",
+            "Тој е од Скопје. - He is from Skopje.",
+            "Ова е за тебе. - This is for you.",
+            "Одам до продавница. - I am going to the store."
           ],
           "translatedExamples": [
-            "Her parents live in Krakow, and she lives and studies in Warsaw.",
-            "Her brother lives with their parents in Krakow.",
-            "The man works in a radio station.",
-            "The woman works in a supermarket.",
-            "He has breakfast and goes to work."
+            "I am in a house.",
+            "The book is on the table.",
+            "I am going with a friend.",
+            "He is from Skopje.",
+            "This is for you.",
+            "I am going to the store."
           ]
         }
       ],
@@ -6266,41 +6290,43 @@
       ],
       "grammarNotes": [
         {
-          "title": "Именки",
-          "content": "пие пиење слуша слушање игра играње чита читање мие миење гледа гледање бања бањање прави правење суши сушење готви готвење",
+          "title": "Именки (Nouns - Advanced)",
+          "content": "At B1 level, noun usage includes the vocative case for direct address (Татко! Марија!), collective nouns (браќа, децата), and irregular plural patterns. Macedonian nouns do not decline for case (except vocative), but show gender through articles and adjective agreement. Some plurals are irregular and must be memorized.",
           "examples": [
-            "маж, брат, студент (masculine)",
-            "жена, сестра, книга (feminine)",
-            "дете, село, јајце (neuter)",
-            "Тој е маж. (m)",
-            "Таа е жена. (f)"
+            "Татко, дојди! - Father, come! (vocative)",
+            "Марија, каде си? - Maria, where are you?",
+            "човек → луѓе - person → people",
+            "дете → деца - child → children",
+            "брат → браќа - brother → brothers",
+            "книгите се тука - the books are here"
           ],
           "translatedExamples": [
-            "man, brother, student (masculine)",
-            "woman, sister, book (feminine)",
-            "child, village, egg (neuter)",
-            "He is a man. (m)",
-            "She is a woman. (f)"
+            "Father, come! (vocative)",
+            "Maria, where are you?",
+            "person → people",
+            "child → children",
+            "brother → brothers",
+            "the books are here"
           ]
         },
         {
           "title": "Предлози (Prepositions)",
-          "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
+          "content": "Macedonian prepositions indicate relationships between words, expressing location, direction, time, and other relationships. Common prepositions include: во (in), на (on), со (with), од (from), за (for), до (to/until). Unlike many Slavic languages, Macedonian nouns do not change form after prepositions.",
           "examples": [
-            "Јас живеам во Скопје.",
-            "Книгата е на масата.",
-            "Одам со пријател.",
-            "Доаѓам од Охрид.",
-            "Ова е за тебе.",
-            "Одам до училиште."
+            "Јас сум во куќа. - I am in a house.",
+            "Книгата е на масата. - The book is on the table.",
+            "Одам со пријател. - I am going with a friend.",
+            "Тој е од Скопје. - He is from Skopje.",
+            "Ова е за тебе. - This is for you.",
+            "Одам до продавница. - I am going to the store."
           ],
           "translatedExamples": [
-            "I live in Skopje.",
+            "I am in a house.",
             "The book is on the table.",
-            "I'm going with a friend.",
-            "I come from Ohrid.",
+            "I am going with a friend.",
+            "He is from Skopje.",
             "This is for you.",
-            "I'm going to school."
+            "I am going to the store."
           ]
         }
       ],
@@ -6825,39 +6851,43 @@
       ],
       "grammarNotes": [
         {
-          "title": "Придавки",
-          "content": "јас, ти, тој, таа, ние, вие , тие, мој, твоја, негова, нејзин, наша, ваш, нивно н т н ј в т в",
+          "title": "Придавки (Adjectives)",
+          "content": "Macedonian adjectives agree with nouns in gender and number. Masculine adjectives typically end in a consonant (добар), feminine in -а (добра), and neuter in -о (добро). In plural, all genders use -и (добри). Adjectives usually come before the noun they modify.",
           "examples": [
-            "голем маж / голема жена / големо дете",
-            "убав ден / убава ноќ / убаво време",
-            "нов дом / нова книга / ново село",
-            "млад студент / млада студентка",
-            "Куќата е голема."
+            "добар човек - good person (masculine)",
+            "добра жена - good woman (feminine)",
+            "добро дете - good child (neuter)",
+            "добри луѓе - good people (plural)",
+            "голем град - big city",
+            "мала куќа - small house"
           ],
           "translatedExamples": [
-            "big man / big woman / big child",
-            "nice day / nice night / nice weather",
-            "new home / new book / new village",
-            "young student / young student",
-            "The house is big."
+            "good person (masculine)",
+            "good woman (feminine)",
+            "good child (neuter)",
+            "good people (plural)",
+            "big city",
+            "small house"
           ]
         },
         {
-          "title": "Заменки",
-          "content": "и заменски придавки: јас, ти, тој, таа, ние, вие , тие, мој, твоја, негова, нејзин, наша, ваш, нивно н т н ј в т в",
+          "title": "Заменки (Pronouns)",
+          "content": "Macedonian personal pronouns distinguish person, number, and gender. Subject pronouns (јас, ти, тој/таа/тоа, ние, вие, тие) are often omitted since verb conjugation shows the subject. Macedonian has long and short forms for object pronouns - short forms are clitics that attach to verbs.",
           "examples": [
-            "Ова е мојот брат. (m)",
-            "Ова е мојата сестра. (f)",
-            "Ова е моето куче. (n)",
-            "Твојот дом е голем.",
-            "Нејзината книга е нова."
+            "Јас читам. - I read.",
+            "Ти пишуваш. - You write.",
+            "Тој/Таа работи. - He/She works.",
+            "Ние учиме. - We study.",
+            "Вие одите. - You (formal) go.",
+            "Тие играат. - They play."
           ],
           "translatedExamples": [
-            "This is my brother. (m)",
-            "This is my sister. (f)",
-            "This is my dog. (n)",
-            "Your home is big.",
-            "Her book is new."
+            "I read.",
+            "You write.",
+            "He/She works.",
+            "We study.",
+            "You (formal) go.",
+            "They play."
           ]
         },
         {
@@ -7413,39 +7443,43 @@
           ]
         },
         {
-          "title": "Показни заменки (Demonstratives)",
-          "content": "Macedonian demonstrative pronouns: ова (this), тоа (that), оној/онаа (that over there)",
+          "title": "Показни заменки (Demonstrative pronouns)",
+          "content": "Macedonian has a three-way demonstrative system based on proximity: -в/-ва/-во (this, near speaker), -т/-та/-то (that, near listener), and -н/-на/-но (that over there, distant). They agree in gender and number with the noun they modify. This tripartite system reflects the unique Macedonian way of indicating spatial relationships.",
           "examples": [
-            "Потоа прочитај го пасусот.",
-            "Прво напиши белешки, потоа напиши пасус.",
-            "Ова е мојата книга.",
-            "Овој човек е мој пријател.",
-            "Оваа жена е учителка."
+            "овој човек - this man (near me)",
+            "оваа жена - this woman (near me)",
+            "ова дете - this child (near me)",
+            "тој човек - that man (near you)",
+            "оној човек - that man (over there)",
+            "онаа куќа - that house (over there)"
           ],
           "translatedExamples": [
-            "Then read the passage.",
-            "Write notes first, then write a paragraph.",
-            "This is my book.",
-            "This man is my friend.",
-            "This woman is a teacher."
+            "this man (near me)",
+            "this woman (near me)",
+            "this child (near me)",
+            "that man (near you)",
+            "that man (over there)",
+            "that house (over there)"
           ]
         },
         {
           "title": "Предлози (Prepositions)",
-          "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
+          "content": "Macedonian prepositions indicate relationships between words, expressing location, direction, time, and other relationships. Common prepositions include: во (in), на (on), со (with), од (from), за (for), до (to/until). Unlike many Slavic languages, Macedonian nouns do not change form after prepositions.",
           "examples": [
-            "Избери од рамката.",
-            "Тие гледаат низ прозорец во излог.",
-            "Јас живеам во Скопје.",
-            "Книгата е на масата.",
-            "Одам со пријател."
+            "Јас сум во куќа. - I am in a house.",
+            "Книгата е на масата. - The book is on the table.",
+            "Одам со пријател. - I am going with a friend.",
+            "Тој е од Скопје. - He is from Skopje.",
+            "Ова е за тебе. - This is for you.",
+            "Одам до продавница. - I am going to the store."
           ],
           "translatedExamples": [
-            "Choose from the frame.",
-            "They are looking through a window into a shop window.",
-            "I live in Skopje.",
+            "I am in a house.",
             "The book is on the table.",
-            "I'm going with a friend."
+            "I am going with a friend.",
+            "He is from Skopje.",
+            "This is for you.",
+            "I am going to the store."
           ]
         }
       ],
@@ -7988,21 +8022,23 @@
           ]
         },
         {
-          "title": "Предлози",
-          "content": "те: до, пред, по, како и изразите лево од, десно од .",
+          "title": "Предлози (Prepositions)",
+          "content": "Macedonian prepositions indicate relationships between words, expressing location, direction, time, and other relationships. Common prepositions include: во (in), на (on), со (with), од (from), за (for), до (to/until). Unlike many Slavic languages, Macedonian nouns do not change form after prepositions.",
           "examples": [
-            "Јас живеам во Скопје.",
-            "Книгата е на масата.",
-            "Одам со пријател.",
-            "Доаѓам од Охрид.",
-            "Ова е за тебе."
+            "Јас сум во куќа. - I am in a house.",
+            "Книгата е на масата. - The book is on the table.",
+            "Одам со пријател. - I am going with a friend.",
+            "Тој е од Скопје. - He is from Skopje.",
+            "Ова е за тебе. - This is for you.",
+            "Одам до продавница. - I am going to the store."
           ],
           "translatedExamples": [
-            "I live in Skopje.",
+            "I am in a house.",
             "The book is on the table.",
-            "I'm going with a friend.",
-            "I come from Ohrid.",
-            "This is for you."
+            "I am going with a friend.",
+            "He is from Skopje.",
+            "This is for you.",
+            "I am going to the store."
           ]
         },
         {
@@ -8521,21 +8557,23 @@
           ]
         },
         {
-          "title": "Предлози",
-          "content": "те во горните реченици. Што обично доаѓа по предлогот во? Како се употребува предлогот за? Што означува предлогот на? Продолжи ги следниве реченици.",
+          "title": "Предлози (Prepositions)",
+          "content": "Macedonian prepositions indicate relationships between words, expressing location, direction, time, and other relationships. Common prepositions include: во (in), на (on), со (with), од (from), за (for), до (to/until). Unlike many Slavic languages, Macedonian nouns do not change form after prepositions.",
           "examples": [
-            "Што обично доаѓа по предлогот во?",
-            "Јас живеам во Скопје.",
-            "Книгата е на масата.",
-            "Одам со пријател.",
-            "Доаѓам од Охрид."
+            "Јас сум во куќа. - I am in a house.",
+            "Книгата е на масата. - The book is on the table.",
+            "Одам со пријател. - I am going with a friend.",
+            "Тој е од Скопје. - He is from Skopje.",
+            "Ова е за тебе. - This is for you.",
+            "Одам до продавница. - I am going to the store."
           ],
           "translatedExamples": [
-            "What usually comes after the preposition in?",
-            "I live in Skopje.",
+            "I am in a house.",
             "The book is on the table.",
-            "I'm going with a friend.",
-            "I come from Ohrid."
+            "I am going with a friend.",
+            "He is from Skopje.",
+            "This is for you.",
+            "I am going to the store."
           ]
         },
         {
@@ -8554,20 +8592,6 @@
             "three books",
             "four tables",
             "five students"
-          ]
-        },
-        {
-          "title": "Глаголот \"сум\"",
-          "content": "Present tense conjugation of \"to be\" (сум). The verb changes form based on the subject pronoun. Used to express identity, origin, profession, and states.",
-          "examples": [
-            "Јас сум",
-            "Тој е",
-            "Таа е"
-          ],
-          "translatedExamples": [
-            "I am",
-            "He is",
-            "She is"
           ]
         }
       ],
@@ -9129,22 +9153,22 @@
         },
         {
           "title": "Предлози (Prepositions)",
-          "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
+          "content": "Macedonian prepositions indicate relationships between words, expressing location, direction, time, and other relationships. Common prepositions include: во (in), на (on), со (with), од (from), за (for), до (to/until). Unlike many Slavic languages, Macedonian nouns do not change form after prepositions.",
           "examples": [
-            "Јас живеам во Скопје.",
-            "Книгата е на масата.",
-            "Одам со пријател.",
-            "Доаѓам од Охрид.",
-            "Ова е за тебе.",
-            "Одам до училиште."
+            "Јас сум во куќа. - I am in a house.",
+            "Книгата е на масата. - The book is on the table.",
+            "Одам со пријател. - I am going with a friend.",
+            "Тој е од Скопје. - He is from Skopje.",
+            "Ова е за тебе. - This is for you.",
+            "Одам до продавница. - I am going to the store."
           ],
           "translatedExamples": [
-            "I live in Skopje.",
+            "I am in a house.",
             "The book is on the table.",
-            "I'm going with a friend.",
-            "I come from Ohrid.",
+            "I am going with a friend.",
+            "He is from Skopje.",
             "This is for you.",
-            "I'm going to school."
+            "I am going to the store."
           ]
         }
       ],
@@ -9533,22 +9557,22 @@
       "grammarNotes": [
         {
           "title": "Предлози (Prepositions)",
-          "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
+          "content": "Macedonian prepositions indicate relationships between words, expressing location, direction, time, and other relationships. Common prepositions include: во (in), на (on), со (with), од (from), за (for), до (to/until). Unlike many Slavic languages, Macedonian nouns do not change form after prepositions.",
           "examples": [
-            "Јас живеам во Скопје.",
-            "Книгата е на масата.",
-            "Одам со пријател.",
-            "Доаѓам од Охрид.",
-            "Ова е за тебе.",
-            "Одам до училиште."
+            "Јас сум во куќа. - I am in a house.",
+            "Книгата е на масата. - The book is on the table.",
+            "Одам со пријател. - I am going with a friend.",
+            "Тој е од Скопје. - He is from Skopje.",
+            "Ова е за тебе. - This is for you.",
+            "Одам до продавница. - I am going to the store."
           ],
           "translatedExamples": [
-            "I live in Skopje.",
+            "I am in a house.",
             "The book is on the table.",
-            "I'm going with a friend.",
-            "I come from Ohrid.",
+            "I am going with a friend.",
+            "He is from Skopje.",
             "This is for you.",
-            "I'm going to school."
+            "I am going to the store."
           ]
         }
       ],
@@ -10111,18 +10135,22 @@
         },
         {
           "title": "Предлози (Prepositions)",
-          "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
+          "content": "Macedonian prepositions indicate relationships between words, expressing location, direction, time, and other relationships. Common prepositions include: во (in), на (on), со (with), од (from), за (for), до (to/until). Unlike many Slavic languages, Macedonian nouns do not change form after prepositions.",
           "examples": [
-            "Прашај ги соучениците за тоа.",
-            "Слушај и бодувај ги со бодови од 0 до 6.",
-            "Кои се прашањата за четвртиот и за петтиот дел?",
-            "Додели му бодови од 0 до 30."
+            "Јас сум во куќа. - I am in a house.",
+            "Книгата е на масата. - The book is on the table.",
+            "Одам со пријател. - I am going with a friend.",
+            "Тој е од Скопје. - He is from Skopje.",
+            "Ова е за тебе. - This is for you.",
+            "Одам до продавница. - I am going to the store."
           ],
           "translatedExamples": [
-            "Ask your classmates about it.",
-            "Listen and rate them with points from 0 to 6.",
-            "What are the questions for part four and part five?",
-            "Score it from 0 to 30."
+            "I am in a house.",
+            "The book is on the table.",
+            "I am going with a friend.",
+            "He is from Skopje.",
+            "This is for you.",
+            "I am going to the store."
           ]
         }
       ],
@@ -10637,22 +10665,22 @@
       "grammarNotes": [
         {
           "title": "Предлози (Prepositions)",
-          "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
+          "content": "Macedonian prepositions indicate relationships between words, expressing location, direction, time, and other relationships. Common prepositions include: во (in), на (on), со (with), од (from), за (for), до (to/until). Unlike many Slavic languages, Macedonian nouns do not change form after prepositions.",
           "examples": [
-            "Јас живеам во Скопје.",
-            "Книгата е на масата.",
-            "Одам со пријател.",
-            "Доаѓам од Охрид.",
-            "Ова е за тебе.",
-            "Одам до училиште."
+            "Јас сум во куќа. - I am in a house.",
+            "Книгата е на масата. - The book is on the table.",
+            "Одам со пријател. - I am going with a friend.",
+            "Тој е од Скопје. - He is from Skopje.",
+            "Ова е за тебе. - This is for you.",
+            "Одам до продавница. - I am going to the store."
           ],
           "translatedExamples": [
-            "I live in Skopje.",
+            "I am in a house.",
             "The book is on the table.",
-            "I'm going with a friend.",
-            "I come from Ohrid.",
+            "I am going with a friend.",
+            "He is from Skopje.",
             "This is for you.",
-            "I'm going to school."
+            "I am going to the store."
           ]
         }
       ],
@@ -11226,20 +11254,22 @@
         },
         {
           "title": "Предлози (Prepositions)",
-          "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
+          "content": "Macedonian prepositions indicate relationships between words, expressing location, direction, time, and other relationships. Common prepositions include: во (in), на (on), со (with), од (from), за (for), до (to/until). Unlike many Slavic languages, Macedonian nouns do not change form after prepositions.",
           "examples": [
-            "Дали се следниве реченици вистинити или лажни во твојата земја?",
-            "Можеш да купиш храна на бензинска пумпа .",
-            "Можеш да пушиш во автобус или во воз.",
-            "Можеш да пушиш во ресторан.",
-            "Можеш да носиш пиштол во јавност."
+            "Јас сум во куќа. - I am in a house.",
+            "Книгата е на масата. - The book is on the table.",
+            "Одам со пријател. - I am going with a friend.",
+            "Тој е од Скопје. - He is from Skopje.",
+            "Ова е за тебе. - This is for you.",
+            "Одам до продавница. - I am going to the store."
           ],
           "translatedExamples": [
-            "Are the following sentences true or false in your country?",
-            "You can buy food at a gas station.",
-            "You can smoke on the bus or train.",
-            "You can smoke in a restaurant.",
-            "You can carry a gun in public."
+            "I am in a house.",
+            "The book is on the table.",
+            "I am going with a friend.",
+            "He is from Skopje.",
+            "This is for you.",
+            "I am going to the store."
           ]
         }
       ],
@@ -11977,21 +12007,23 @@
       ],
       "grammarNotes": [
         {
-          "title": "Придавки",
-          "content": "• од Сакам... ... самсунг ...сони Кој...? Самсунгот... Сонито... Кој...? Сонито... Самсунгот... Во ред, ... суперлативи висок повисок највисок голем убав познат добар успешен 193 ЛЕКЦИЈА 21",
+          "title": "Придавки (Adjectives)",
+          "content": "Macedonian adjectives agree with nouns in gender and number. Masculine adjectives typically end in a consonant (добар), feminine in -а (добра), and neuter in -о (добро). In plural, all genders use -и (добри). Adjectives usually come before the noun they modify.",
           "examples": [
-            "голем маж / голема жена / големо дете",
-            "убав ден / убава ноќ / убаво време",
-            "нов дом / нова книга / ново село",
-            "млад студент / млада студентка",
-            "Куќата е голема."
+            "добар човек - good person (masculine)",
+            "добра жена - good woman (feminine)",
+            "добро дете - good child (neuter)",
+            "добри луѓе - good people (plural)",
+            "голем град - big city",
+            "мала куќа - small house"
           ],
           "translatedExamples": [
-            "big man / big woman / big child",
-            "nice day / nice night / nice weather",
-            "new home / new book / new village",
-            "young student / young student",
-            "The house is big."
+            "good person (masculine)",
+            "good woman (feminine)",
+            "good child (neuter)",
+            "good people (plural)",
+            "big city",
+            "small house"
           ]
         },
         {
@@ -12016,22 +12048,22 @@
         },
         {
           "title": "Предлози (Prepositions)",
-          "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
+          "content": "Macedonian prepositions indicate relationships between words, expressing location, direction, time, and other relationships. Common prepositions include: во (in), на (on), со (with), од (from), за (for), до (to/until). Unlike many Slavic languages, Macedonian nouns do not change form after prepositions.",
           "examples": [
-            "Јас живеам во Скопје.",
-            "Книгата е на масата.",
-            "Одам со пријател.",
-            "Доаѓам од Охрид.",
-            "Ова е за тебе.",
-            "Одам до училиште."
+            "Јас сум во куќа. - I am in a house.",
+            "Книгата е на масата. - The book is on the table.",
+            "Одам со пријател. - I am going with a friend.",
+            "Тој е од Скопје. - He is from Skopje.",
+            "Ова е за тебе. - This is for you.",
+            "Одам до продавница. - I am going to the store."
           ],
           "translatedExamples": [
-            "I live in Skopje.",
+            "I am in a house.",
             "The book is on the table.",
-            "I'm going with a friend.",
-            "I come from Ohrid.",
+            "I am going with a friend.",
+            "He is from Skopje.",
             "This is for you.",
-            "I'm going to school."
+            "I am going to the store."
           ]
         }
       ],
@@ -12478,20 +12510,22 @@
         },
         {
           "title": "Предлози (Prepositions)",
-          "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
+          "content": "Macedonian prepositions indicate relationships between words, expressing location, direction, time, and other relationships. Common prepositions include: во (in), на (on), со (with), од (from), за (for), до (to/until). Unlike many Slavic languages, Macedonian nouns do not change form after prepositions.",
           "examples": [
-            "на концерт во продавница оди оди на училиште во кревет Дополни ги празните место според она што го гледаш на сликите.",
-            "Има радио во мојата соба, но .",
-            "Имаше многу машки на забавата, ама .",
-            "Знам да свирам на гитара, но .",
-            "Морам да носам јакна на работа, но ."
+            "Јас сум во куќа. - I am in a house.",
+            "Книгата е на масата. - The book is on the table.",
+            "Одам со пријател. - I am going with a friend.",
+            "Тој е од Скопје. - He is from Skopje.",
+            "Ова е за тебе. - This is for you.",
+            "Одам до продавница. - I am going to the store."
           ],
           "translatedExamples": [
-            "to a concert to a store go to school to bed Fill in the blanks according to what you see in the pictures.",
-            "There is a radio in my room, but .",
-            "There were many men at the party, but .",
-            "I know how to play the guitar, but .",
-            "I have to wear a jacket to work, but ."
+            "I am in a house.",
+            "The book is on the table.",
+            "I am going with a friend.",
+            "He is from Skopje.",
+            "This is for you.",
+            "I am going to the store."
           ]
         }
       ],
@@ -12987,20 +13021,22 @@
       "grammarNotes": [
         {
           "title": "Предлози (Prepositions)",
-          "content": "Common Macedonian prepositions: во (in), на (on), со (with), од (from), за (for), до (to)",
+          "content": "Macedonian prepositions indicate relationships between words, expressing location, direction, time, and other relationships. Common prepositions include: во (in), на (on), со (with), од (from), за (for), до (to/until). Unlike many Slavic languages, Macedonian nouns do not change form after prepositions.",
           "examples": [
-            "Студент Б, поставувај му прашања на студент А.",
-            "Затоа ние на почетокот на јуни одиме во Охрид.",
-            "Оваа зима јас одам на скијање.",
-            "Тој ме качува на брдото, од каде се спуштам надолу.",
-            "Само што стигнувам на плажа."
+            "Јас сум во куќа. - I am in a house.",
+            "Книгата е на масата. - The book is on the table.",
+            "Одам со пријател. - I am going with a friend.",
+            "Тој е од Скопје. - He is from Skopje.",
+            "Ова е за тебе. - This is for you.",
+            "Одам до продавница. - I am going to the store."
           ],
           "translatedExamples": [
-            "Student B, ask Student A questions.",
-            "That is why we are going to Ohrid at the beginning of June.",
-            "This winter I am going skiing.",
-            "He takes me up the hill, from where I descend.",
-            "I'm just getting to the beach."
+            "I am in a house.",
+            "The book is on the table.",
+            "I am going with a friend.",
+            "He is from Skopje.",
+            "This is for you.",
+            "I am going to the store."
           ]
         }
       ],
