@@ -2633,6 +2633,8 @@
       "recommendedIntermediate": "If you know some basics",
       "learningPaths": "Learning Paths",
       "learningPathsDesc": "A1 and A2 guided paths",
+      "learningPathsHelper": "Pick a path to start learning.",
+      "browsePaths": "Browse all paths",
       "startStreak": "Start a streak",
       "dayCount": "1 day",
       "daysCount": "{count} days",
@@ -2785,6 +2787,13 @@
     "hint": "These tools help you understand, translate, and speak Macedonian. Use them alongside your lessons for faster progress."
   },
   "reader": {
+    "sections": {
+      "readingChallenges": "Reading Challenges",
+      "viewAllChapters": "View all {count} chapters →",
+      "startDay1": "Start Day 1",
+      "allReadings": "All Readings",
+      "allReadingsCount": "{count} texts"
+    },
     "workspace": {
       "practiceReady": "Ready to practice?",
       "savedWordsCount": "{count} saved words",

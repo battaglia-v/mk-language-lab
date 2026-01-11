@@ -1,7 +1,7 @@
-import { Home, Wrench, Sparkles, BookOpen, FolderOpen } from "lucide-react";
+import { Home, Languages, Sparkles, BookOpen, FolderOpen } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
-type NavItemId = "learn" | "tools" | "practice" | "reader" | "resources";
+type NavItemId = "learn" | "translate" | "practice" | "reader" | "resources";
 
 export type ShellNavItem = {
   id: NavItemId;
@@ -9,10 +9,10 @@ export type ShellNavItem = {
   icon: LucideIcon;
 };
 
-// Primary tabs: Home, Tools, Practice (center), Reader, Resources
+// Primary tabs: Home, Translate, Practice (center), Reader, Resources
 export const shellNavItems: ShellNavItem[] = [
   { id: "learn", path: "/learn", icon: Home },
-  { id: "tools", path: "/tools", icon: Wrench },
+  { id: "translate", path: "/translate", icon: Languages },
   { id: "practice", path: "/practice", icon: Sparkles },
   { id: "reader", path: "/reader", icon: BookOpen },
   { id: "resources", path: "/resources", icon: FolderOpen },

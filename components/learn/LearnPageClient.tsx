@@ -375,7 +375,9 @@ export function LearnPageClient({
               <div className="flex items-start justify-between gap-3">
                 <div className="space-y-1">
                   <div className="flex flex-wrap items-center gap-2">
-                    <h2 className="text-lg font-bold">{currentPath.title}</h2>
+                    <h2 className="text-lg font-bold" data-testid="learn-path-title">
+                      {currentPath.title}
+                    </h2>
                     <span className="inline-flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 text-xs font-semibold text-muted-foreground">
                       <span className="text-[10px] font-bold text-foreground">{levelBadge}</span>
                       {levelLabel}
@@ -385,6 +387,13 @@ export function LearnPageClient({
                     <p className="text-sm text-muted-foreground">{currentPath.description}</p>
                   )}
                 </div>
+                <Link
+                  href={`/${locale}/learn/paths`}
+                  data-testid="cta-browse-paths"
+                  className="shrink-0 text-sm font-semibold text-primary hover:underline"
+                >
+                  {t('browsePaths', { default: 'Browse all paths' })}
+                </Link>
               </div>
               <div className="flex items-center justify-between text-sm text-muted-foreground">
                 <span>
