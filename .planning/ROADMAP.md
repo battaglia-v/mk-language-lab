@@ -184,16 +184,16 @@ Plans:
 Plans:
 - [x] 42-01: Remove intro section and enable free navigation — completed 2026-01-11
 
-#### Phase 43: Vocabulary & Grammar Audit
+#### Phase 43: Vocabulary & Grammar Audit — COMPLETE
 
 **Goal**: Curate vocabulary to 30-50 theme-relevant words per lesson, clean grammar notes to remove PDF artifacts and ensure pedagogical clarity. Merges original Phases 43 (Vocabulary) and 44 (Grammar) since Macedonian vocabulary and grammar are deeply intertwined.
 **Depends on**: Phase 42
 **Research**: Unlikely (content editing, existing structures)
-**Plans**: 2
+**Plans**: 2/2
 
 Plans:
 - [x] 43-01: Vocabulary audit and curation (audit, curate, reseed) — completed 2026-01-11
-- [ ] 43-02: Grammar audit and cleanup (audit, clean PDF artifacts, standardize)
+- [x] 43-02: Grammar audit and cleanup (audit, clean PDF artifacts, standardize) — completed 2026-01-11
 
 #### Phase 44: Content Completeness Audit
 
@@ -220,7 +220,7 @@ Plans:
 | Phase | Milestone | Plans | Status | Completed |
 |-------|-----------|-------|--------|-----------|
 | 42. Lesson Flow Simplification | v1.7 | 1/1 | Complete | 2026-01-11 |
-| 43. Vocabulary & Grammar Audit | v1.7 | 1/2 | In progress | - |
+| 43. Vocabulary & Grammar Audit | v1.7 | 2/2 | Complete | 2026-01-11 |
 | 44. Content Completeness | v1.7 | 0/? | Not started | - |
 | 45. Validation & Polish | v1.7 | 0/? | Not started | - |
 
