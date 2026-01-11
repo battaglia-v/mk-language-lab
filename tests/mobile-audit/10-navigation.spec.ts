@@ -72,7 +72,7 @@ test.describe('Back Navigation', () => {
       await page.goto(path, { waitUntil: 'domcontentloaded' });
 
       const backLink = path.includes('/alphabet')
-        ? page.getByTestId('alphabet-back-to-learn')
+        ? page.getByTestId('alphabet-back-to-a1')
         : page.getByTestId('reader-back');
 
       await expect(backLink).toBeVisible();

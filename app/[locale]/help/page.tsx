@@ -46,7 +46,7 @@ export default function HelpPage() {
   return (
     <PageContainer size="md" className="pb-24 sm:pb-6">
       <div className="space-y-6">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3" data-testid="help-hero">
           <Button
             asChild
             variant="ghost"

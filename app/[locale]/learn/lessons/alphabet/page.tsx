@@ -151,7 +151,7 @@ export default function AlphabetLessonPage() {
     <PageContainer size="lg" className="flex flex-col gap-5 pb-24 sm:gap-6 sm:pb-10">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <Button asChild variant="ghost" size="sm" className="gap-2" data-testid="alphabet-back-to-learn">
+        <Button asChild variant="ghost" size="sm" className="gap-2" data-testid="alphabet-back-to-a1">
           <Link href={`/${locale}/learn?level=beginner`}>
             <ArrowLeft className="h-4 w-4" />
             {t('backToLearn', { default: 'Back to Learn' })}

@@ -24,8 +24,8 @@ export function QuickAnalyzeButton({ sample, locale }: { sample: ReaderSample; l
       sessionStorage.setItem('mkll:reader-quick-analyze', fullText);
     }
     
-    // Navigate to reader analyze page (where ReaderWorkspace handles the sessionStorage text)
-    router.push(`/${locale}/reader/analyze?analyze=true`);
+    // Navigate to reader analyze page (ReaderWorkspace loads sessionStorage text)
+    router.push(`/${locale}/reader/analyze`);
   };
 
   return (

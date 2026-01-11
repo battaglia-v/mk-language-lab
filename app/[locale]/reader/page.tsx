@@ -166,6 +166,14 @@ export default function ReaderPage() {
   const hasActiveFilters = searchQuery.trim() || selectedDifficulty || selectedTopic;
   const paywallEnabled = config.paywallEnabled;
   const isPro = entitlement.isPro;
+  const allReadingsCountLabel = t('sections.allReadingsCount', {
+    count: allSamples.length,
+    default: `${allSamples.length} texts`,
+  });
+  const viewAllChaptersLabel = t('sections.viewAllChapters', {
+    count: challengeSamples.length,
+    default: `View all ${challengeSamples.length} chapters →`,
+  });
 
   const isPremiumSample = (sample: ReaderSample) => {
     const dayNumber = Number.parseInt(sample.attribution.day ?? '', 10);
@@ -515,18 +523,23 @@ export default function ReaderPage() {
                 {/* Reading Challenges Section */}
                 <section className="space-y-4" data-testid="reader-challenges-section">
                   <div className="flex items-center justify-between">
-                    <h2 className="text-lg font-semibold">Reading Challenges</h2>
+                    <h2 className="text-lg font-semibold">
+                      {t('sections.readingChallenges', { default: 'Reading Challenges' })}
+                    </h2>
                     <Link
                       href={`/${locale}/learn?level=challenge`}
                       className="text-sm text-primary hover:underline"
                       data-testid="reader-challenges-view-all"
                     >
-                      View all {challengeSamples.length} chapters →
+                      {viewAllChaptersLabel}
                     </Link>
                   </div>
 
                   {/* 30-Day Challenge Featured */}
-                  <div className="rounded-xl border bg-gradient-to-br from-primary/5 to-primary/10 p-4 space-y-3">
+                  <div
+                    className="rounded-xl border bg-gradient-to-br from-primary/5 to-primary/10 p-4 space-y-3"
+                    data-testid="reader-30day-section"
+                  >
                     <div className="flex items-center gap-2">
                       <span className="font-semibold">30-Day Reading Challenge</span>
                       <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">NEW</span>
@@ -540,7 +553,7 @@ export default function ReaderPage() {
                       data-testid="reader-30day-start"
                     >
                       <Link href={`/${locale}/reader/samples/day01-maliot-princ`}>
-                        Start Day 1
+                        {t('sections.startDay1', { default: 'Start Day 1' })}
                       </Link>
                     </Button>
                   </div>
@@ -567,6 +580,16 @@ export default function ReaderPage() {
                         />
                       );
                     })}
+                  </div>
+                </section>
+
+                {/* All Readings */}
+                <section className="space-y-2" data-testid="reader-all-readings">
+                  <div className="flex items-center justify-between">
+                    <h2 className="text-lg font-semibold">
+                      {t('sections.allReadings', { default: 'All Readings' })}
+                    </h2>
+                    <span className="text-sm text-muted-foreground">{allReadingsCountLabel}</span>
                   </div>
                 </section>
 

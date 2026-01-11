@@ -2633,6 +2633,8 @@
       "recommendedIntermediate": "Ако знаеш основи",
       "learningPaths": "Патеки за учење",
       "learningPathsDesc": "Водени патеки за А1 и А2",
+      "learningPathsHelper": "Одбери патека за да започнеш со учење.",
+      "browsePaths": "Прегледај ги сите патеки",
       "startStreak": "Започни серија",
       "dayCount": "1 ден",
       "daysCount": "{count} дена",
@@ -2785,6 +2787,13 @@
     "hint": "Овие алатки ти помагаат да разбереш, преведуваш и зборуваш македонски. Користи ги заедно со лекциите за побрз напредок."
   },
   "reader": {
+    "sections": {
+      "readingChallenges": "Предизвици за читање",
+      "viewAllChapters": "Види ги сите {count} поглавја →",
+      "startDay1": "Започни Ден 1",
+      "allReadings": "Сите читања",
+      "allReadingsCount": "{count} текстови"
+    },
     "workspace": {
       "practiceReady": "Подготвен за вежбање?",
       "savedWordsCount": "{count} зачувани зборови",
