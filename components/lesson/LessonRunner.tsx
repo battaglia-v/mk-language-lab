@@ -16,6 +16,7 @@ import type { LessonRunnerProps, Step, SummaryStep, LessonResults, StepAnswer } 
 import { MultipleChoice } from './steps/MultipleChoice';
 import { FillBlank } from './steps/FillBlank';
 import { TapWords } from './steps/TapWords';
+import { Info } from './steps/Info';
 import { Summary } from './steps/Summary';
 
 /**
@@ -87,13 +88,16 @@ export function LessonRunner({
         },
       ];
 
+  const scoredSteps = steps.filter(
+    (step) => step.type !== 'SUMMARY' && step.type !== 'INFO'
+  ).length;
+
   const {
     currentStep,
     currentFeedback,
     showFeedback,
     isEvaluating,
     correctCount,
-    totalSteps,
     progress,
     submitAnswer,
     continueToNext,
@@ -111,14 +115,14 @@ export function LessonRunner({
   if (currentStep?.type === 'SUMMARY') {
     const summaryStep = currentStep as SummaryStep;
     const xpData = calculateLessonXP({
-      totalSteps: totalSteps - 1, // Exclude summary step
+      totalSteps: scoredSteps,
       correctAnswers: correctCount,
       streak: userStreak,
     });
 
     summaryStep.xpEarned = xpData.totalXP;
     summaryStep.correctAnswers = correctCount;
-    summaryStep.totalSteps = totalSteps - 1;
+    summaryStep.totalSteps = scoredSteps;
   }
 
   // Render current step component
@@ -165,6 +169,8 @@ export function LessonRunner({
     };
 
     switch (currentStep.type) {
+      case 'INFO':
+        return <Info step={currentStep} {...baseProps} />;
       case 'MULTIPLE_CHOICE':
         return <MultipleChoice step={currentStep} {...baseProps} />;
       case 'FILL_BLANK':
@@ -186,7 +192,7 @@ export function LessonRunner({
 
   // Handle primary button click
   const handleSubmit = () => {
-    if (showFeedback) {
+    if (showFeedback || currentStep?.type === 'INFO') {
       continueToNext();
     }
     // If not showing feedback, the step component handles submission via onAnswer
@@ -230,7 +236,7 @@ export function LessonRunner({
         {renderStep()}
 
         {/* Feedback Banner */}
-        {showFeedback && currentFeedback && currentStep?.type !== 'SUMMARY' && (
+        {showFeedback && currentFeedback && currentStep?.type !== 'SUMMARY' && currentStep?.type !== 'INFO' && (
           <FeedbackBanner
             isCorrect={currentFeedback.correct}
             correctAnswer={currentFeedback.correctAnswer}

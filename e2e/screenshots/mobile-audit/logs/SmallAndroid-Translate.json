@@ -1,7 +1,8 @@
 {
   "route": "/en/translate",
   "viewport": "SmallAndroid",
-  "timestamp": "2026-01-02T01:52:59.527Z",
+  "timestamp": "2026-01-11T19:13:51.990Z",
+  "interstitialBypassed": false,
   "overflow": {
     "hasOverflow": false,
     "elements": []

@@ -101,6 +101,42 @@ export const topicPackNodes: LessonNode[] = [
     href: '/practice/session?deck=celebrations-v1&difficulty=all',
     contentId: 'celebrations-v1',
   },
+  // Pack 9: Shopping
+  {
+    id: 'topic-shopping',
+    type: 'lesson',
+    title: 'Shopping',
+    titleMk: 'Купување',
+    description: '25 phrases for prices, sizes, and payments',
+    status: 'available',
+    xpReward: 20,
+    href: '/practice/session?deck=shopping-v1&difficulty=all',
+    contentId: 'shopping-v1',
+  },
+  // Pack 10: Food & Drink
+  {
+    id: 'topic-food',
+    type: 'lesson',
+    title: 'Food & Drink',
+    titleMk: 'Храна и пијалаци',
+    description: '25 phrases for ordering and dining',
+    status: 'available',
+    xpReward: 20,
+    href: '/practice/session?deck=food-drink-v1&difficulty=all',
+    contentId: 'food-drink-v1',
+  },
+  // Pack 11: Directions
+  {
+    id: 'topic-directions',
+    type: 'lesson',
+    title: 'Directions',
+    titleMk: 'Насоки',
+    description: '20 phrases for asking and giving directions',
+    status: 'available',
+    xpReward: 20,
+    href: '/practice/session?deck=directions-v1&difficulty=all',
+    contentId: 'directions-v1',
+  },
 ];
 
 export function createTopicPacksPath(completedNodeIds: string[] = []): LessonPath {

@@ -1,0 +1,174 @@
+{
+  "tiers": [
+    {
+      "tier": "A1",
+      "label": "Beginner",
+      "lessons": [
+        {
+          "id": "a1-alphabet",
+          "title": "The Alphabet",
+          "difficulty_level": "A1",
+          "vocabulary_list": [
+            "А а — a",
+            "Б б — b",
+            "В в — v",
+            "Г г — g",
+            "Д д — d"
+          ],
+          "grammar_notes": "Cyrillic basics, special letters (Ѓ/Ќ/Љ/Њ/Џ/Ѕ), and core letter-to-sound patterns."
+        },
+        {
+          "id": "a1-greetings",
+          "title": "Greetings",
+          "difficulty_level": "A1",
+          "vocabulary_list": [
+            "Здраво — hello",
+            "Добар ден — good day",
+            "Добро утро — good morning",
+            "Благодарам — thank you"
+          ],
+          "grammar_notes": "Formal vs informal greetings; introduce yourself with 'Се викам' and 'Јас сум'."
+        },
+        {
+          "id": "a1-to-be-sum",
+          "title": "Verb \"To Be\" (сум)",
+          "difficulty_level": "A1",
+          "vocabulary_list": [
+            "јас сум — I am",
+            "ти си — you are",
+            "тој/таа/тоа е — he/she/it is"
+          ],
+          "grammar_notes": "Present tense of 'сум' across all persons and short identity/origin sentences."
+        },
+        {
+          "id": "a1-gender-nouns",
+          "title": "Gender Nouns",
+          "difficulty_level": "A1",
+          "vocabulary_list": [
+            "стол — chair (m)",
+            "маса — table (f)",
+            "село — village (n)"
+          ],
+          "grammar_notes": "Identify noun gender by endings and align adjectives/pronouns accordingly."
+        },
+        {
+          "id": "a1-numbers-1-100",
+          "title": "Numbers 1-100",
+          "difficulty_level": "A1",
+          "vocabulary_list": [
+            "еден, два, три, четири, пет",
+            "десет, дваесет, триесет",
+            "сто"
+          ],
+          "grammar_notes": "Numbers 1–100, -наесет forms, tens, and gender agreement for 'еден/една/едно'."
+        }
+      ]
+    },
+    {
+      "tier": "A2",
+      "label": "Elementary",
+      "lessons": [
+        {
+          "id": "a2-shopping",
+          "title": "Shopping",
+          "difficulty_level": "A2",
+          "vocabulary_list": [
+            "Колку чини? — How much does it cost?",
+            "сметка — bill",
+            "продавница — shop"
+          ],
+          "grammar_notes": "Price questions, quantities, polite requests, and payment vocabulary."
+        },
+        {
+          "id": "a2-directions",
+          "title": "Directions",
+          "difficulty_level": "A2",
+          "vocabulary_list": [
+            "лево — left",
+            "десно — right",
+            "право — straight"
+          ],
+          "grammar_notes": "Left/right/straight plus key location phrases for navigation."
+        },
+        {
+          "id": "a2-past-aorist",
+          "title": "Past Aorist Tense",
+          "difficulty_level": "A2",
+          "vocabulary_list": [
+            "јас јадов — I ate",
+            "тие дојдоа — they came"
+          ],
+          "grammar_notes": "Aorist forms for completed past actions and common endings."
+        },
+        {
+          "id": "a2-possessives",
+          "title": "Possessives (мой, твой)",
+          "difficulty_level": "A2",
+          "vocabulary_list": [
+            "мој, моја, мое — my",
+            "твој, твоја, твое — your"
+          ],
+          "grammar_notes": "Full possessive paradigm with gender/number agreement."
+        },
+        {
+          "id": "a2-food-drink",
+          "title": "Food & Drink",
+          "difficulty_level": "A2",
+          "vocabulary_list": [
+            "вода — water",
+            "леб — bread",
+            "чај — tea"
+          ],
+          "grammar_notes": "Ordering food/drinks, asking for the bill, and common menu phrases."
+        }
+      ]
+    },
+    {
+      "tier": "B1",
+      "label": "Intermediate",
+      "lessons": [
+        {
+          "id": "b1-future-tense",
+          "title": "Future Tense (ќе)",
+          "difficulty_level": "B1",
+          "vocabulary_list": [
+            "ќе одам — I will go",
+            "нема да одам — I will not go"
+          ],
+          "grammar_notes": "Future tense with 'ќе' and negative 'нема да', plus time markers."
+        },
+        {
+          "id": "b1-modals",
+          "title": "Modals (може/мора)",
+          "difficulty_level": "B1",
+          "vocabulary_list": [
+            "може — can/may",
+            "мора — must"
+          ],
+          "grammar_notes": "може/мора for permission, ability, and obligation; 'не мора' for no obligation."
+        },
+        {
+          "id": "b1-aspect",
+          "title": "Imperfective vs Perfective Aspect",
+          "difficulty_level": "B1",
+          "vocabulary_list": [
+            "чита (impf) — read (process)",
+            "прочита (pf) — read (completed)"
+          ],
+          "grammar_notes": "Imperfective vs perfective verb pairs and usage in context."
+        },
+        {
+          "id": "b1-complex-sentences",
+          "title": "Complex Sentences",
+          "difficulty_level": "B1",
+          "vocabulary_list": [
+            "ако — if",
+            "дека — that",
+            "затоа што — because"
+          ],
+          "grammar_notes": "Clause linking with ако, бидејќи, затоа што, дека, иако, кога."
+        }
+      ]
+    }
+  ]
+}

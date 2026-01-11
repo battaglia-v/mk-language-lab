@@ -1,7 +1,8 @@
 {
   "route": "/en/translate",
   "viewport": "iPhone5SE",
-  "timestamp": "2026-01-02T02:10:34.081Z",
+  "timestamp": "2026-01-11T19:13:19.162Z",
+  "interstitialBypassed": false,
   "overflow": {
     "hasOverflow": false,
     "elements": []

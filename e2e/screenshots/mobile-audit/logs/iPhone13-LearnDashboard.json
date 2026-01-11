@@ -1,13 +1,17 @@
 {
   "route": "/en/learn",
   "viewport": "iPhone13",
-  "timestamp": "2026-01-02T01:53:26.093Z",
+  "timestamp": "2026-01-11T19:14:18.068Z",
+  "interstitialBypassed": false,
   "overflow": {
     "hasOverflow": false,
     "elements": []
   },
   "i18nKeys": [],
-  "consoleErrors": [],
+  "consoleErrors": [
+    "Error: An error occurred in the Server Components render. The specific message is omitted in production builds to avoid leaking sensitive details. A digest property is included on this error instance ",
+    "[Global Error Boundary] Error: An error occurred in the Server Components render. The specific message is omitted in production builds to avoid leaking sensitive details. A digest property is included"
+  ],
   "networkErrors": [],
   "brokenImages": [],
   "screenshot": "iPhone13-LearnDashboard.png"

@@ -1,7 +1,8 @@
 {
   "route": "/en/practice",
   "viewport": "iPhone5SE",
-  "timestamp": "2026-01-02T14:26:19.151Z",
+  "timestamp": "2026-01-11T19:13:14.527Z",
+  "interstitialBypassed": false,
   "overflow": {
     "hasOverflow": false,
     "elements": []

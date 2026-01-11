@@ -5,8 +5,80 @@
  * Enables gradual migration of existing lessons to the new LessonRunner system.
  */
 
-import type { Step, MultipleChoiceStep, FillBlankStep } from '../types';
+import type { Step, InfoStep, MultipleChoiceStep, FillBlankStep } from '../types';
 import type { GrammarExercise, GrammarLesson, SentenceBuilderExercise, ErrorCorrectionExercise } from '@/lib/grammar-engine';
+
+function parseVocabularyEntry(entry: string): { base: string; gender?: string } {
+  const genderMatch = entry.match(/\((m|f|n|masculine|feminine|neuter)\)/i);
+  const gender = genderMatch ? genderMatch[1].toLowerCase() : undefined;
+  const base = entry.replace(/\([^)]*\)/g, '').replace(/\s+/g, ' ').trim();
+  return { base, gender };
+}
+
+function buildExamples(lesson: GrammarLesson): Array<{ mk: string; en?: string }> {
+  const examples: Array<{ mk: string; en?: string }> = [];
+  const note = lesson.grammarNote;
+  if (!note) return examples;
+
+  const mkExamples = note.examplesMk || [];
+  const enExamples = note.examplesEn || [];
+  const maxLength = Math.max(mkExamples.length, enExamples.length);
+
+  for (let i = 0; i < maxLength; i += 1) {
+    const mk = mkExamples[i] || '';
+    const en = enExamples[i];
+    if (!mk && !en) continue;
+    examples.push({
+      mk: mk || en || '',
+      en: mk ? en : undefined,
+    });
+  }
+
+  return examples;
+}
+
+function buildInfoSteps(lesson: GrammarLesson, locale: 'en' | 'mk'): InfoStep[] {
+  const steps: InfoStep[] = [];
+  const note = lesson.grammarNote;
+  const noteTitle = locale === 'mk' ? note?.titleMk : note?.titleEn;
+  const lessonTitle = locale === 'mk' ? lesson.titleMk : lesson.titleEn;
+  const title = noteTitle || lessonTitle || 'Grammar Focus';
+  const body = (locale === 'mk' ? note?.contentMk : note?.contentEn) || lesson.grammar_notes;
+  const examples = buildExamples(lesson);
+
+  if (body || examples.length) {
+    steps.push({
+      id: `${lesson.id}-info`,
+      type: 'INFO',
+      title,
+      subtitle: noteTitle && lessonTitle && noteTitle !== lessonTitle ? lessonTitle : undefined,
+      body,
+      examples: examples.length ? examples : undefined,
+    });
+  }
+
+  if (lesson.vocabulary_list && lesson.vocabulary_list.length > 0) {
+    const vocabulary = lesson.vocabulary_list
+      .map((entry) => {
+        const { base, gender } = parseVocabularyEntry(entry);
+        if (!base) return null;
+        return gender ? { mk: base, gender } : { mk: base };
+      })
+      .filter((entry): entry is { mk: string; gender?: string } => entry !== null);
+
+    if (vocabulary.length > 0) {
+      steps.push({
+        id: `${lesson.id}-vocab`,
+        type: 'INFO',
+        title: 'Vocabulary',
+        subtitle: 'Key words for this lesson.',
+        vocabulary,
+      });
+    }
+  }
+
+  return steps;
+}
 
 /**
  * Convert a single grammar exercise to a LessonRunner step
@@ -24,20 +96,23 @@ export function exerciseToStep(exercise: GrammarExercise, locale: 'en' | 'mk' = 
         choices: exercise.options,
         correctIndex: exercise.correctIndex,
         explanation,
+        translationHint: exercise.questionEn || exercise.instructionEn,
       };
       return step;
     }
 
     case 'fill-blank': {
+      const translationHint = exercise.translationEn ? ` (${exercise.translationEn})` : '';
       const step: FillBlankStep = {
         id: exercise.id,
         type: 'FILL_BLANK',
-        prompt: exercise.sentenceMk,
+        prompt: `${exercise.sentenceMk}${translationHint}`,
         correctAnswer: exercise.correctAnswers[0],
         acceptableAnswers: exercise.correctAnswers.slice(1),
         explanation,
         caseSensitive: false,
         placeholder: 'Type your answer...',
+        wordBank: exercise.wordBank,
       };
       return step;
     }
@@ -87,7 +162,10 @@ export function lessonToSteps(
   lesson: GrammarLesson,
   locale: 'en' | 'mk' = 'en'
 ): Step[] {
-  return lesson.exercises.map((exercise) => exerciseToStep(exercise, locale));
+  return [
+    ...buildInfoSteps(lesson, locale),
+    ...lesson.exercises.map((exercise) => exerciseToStep(exercise, locale)),
+  ];
 }
 
 /**

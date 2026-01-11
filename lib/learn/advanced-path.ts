@@ -9,6 +9,51 @@ import { LessonPath, LessonNode } from './lesson-path-types';
  * - Understand colloquial expressions and idioms
  */
 export const advancedPathNodes: LessonNode[] = [
+  // B1 Grammar Foundations
+  {
+    id: 'b1-1',
+    type: 'lesson',
+    title: 'Future Tense (ќе)',
+    titleMk: 'Идно време (ќе)',
+    description: 'Build confident future statements and negation',
+    status: 'available',
+    xpReward: 20,
+    href: '/practice/grammar',
+    contentId: 'future-tense-basics',
+  },
+  {
+    id: 'b1-2',
+    type: 'lesson',
+    title: 'Modals (може/мора)',
+    titleMk: 'Модални глаголи',
+    description: 'Permission, ability, and obligation',
+    status: 'locked',
+    xpReward: 20,
+    href: '/practice/grammar',
+    contentId: 'modals-mozhe-mora',
+  },
+  {
+    id: 'b1-3',
+    type: 'lesson',
+    title: 'Verb Aspect',
+    titleMk: 'Глаголски вид',
+    description: 'Imperfective vs perfective in context',
+    status: 'locked',
+    xpReward: 25,
+    href: '/practice/grammar',
+    contentId: 'aspect-verb-pairs',
+  },
+  {
+    id: 'b1-4',
+    type: 'lesson',
+    title: 'Complex Sentences',
+    titleMk: 'Сложени реченици',
+    description: 'Link clauses with ако/бидејќи/дека',
+    status: 'locked',
+    xpReward: 25,
+    href: '/practice/grammar',
+    contentId: 'complex-sentences',
+  },
   // Unit 1: Opinions & Arguments
   {
     id: 'adv-1',

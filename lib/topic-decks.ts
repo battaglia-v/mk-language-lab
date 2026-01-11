@@ -10,6 +10,9 @@ import clothingAppearanceDeck from '@/data/decks/clothing-appearance-deck.json';
 import technologyDeck from '@/data/decks/technology-deck.json';
 import numbersTimeDeck from '@/data/decks/numbers-time-deck.json';
 import celebrationsDeck from '@/data/decks/celebrations-deck.json';
+import shoppingDeck from '@/data/decks/shopping-deck.json';
+import foodDrinkDeck from '@/data/decks/food-drink-deck.json';
+import directionsDeck from '@/data/decks/directions-deck.json';
 import alphabetDeck from '@/data/alphabet-deck.json';
 
 export interface TopicDeckItem {
@@ -67,6 +70,9 @@ const topicDecks: Record<string, TopicDeck> = {
   'technology-v1': technologyDeck as TopicDeck,
   'numbers-time-v1': numbersTimeDeck as TopicDeck,
   'celebrations-v1': celebrationsDeck as TopicDeck,
+  'shopping-v1': shoppingDeck as TopicDeck,
+  'food-drink-v1': foodDrinkDeck as TopicDeck,
+  'directions-v1': directionsDeck as TopicDeck,
   'cyrillic-alphabet-v1': alphabetDeckConverted,
 };
 

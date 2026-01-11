@@ -1,0 +1,135 @@
+{
+  "meta": {
+    "id": "directions-v1",
+    "title": "Directions",
+    "titleMk": "Насоки",
+    "description": "20 phrases for asking and giving directions",
+    "descriptionMk": "20 фрази за барање и давање насоки",
+    "level": "A2",
+    "category": "directions",
+    "version": "1.0.0",
+    "lastUpdated": "2025-01-01"
+  },
+  "items": [
+    {
+      "id": "dir-001",
+      "mk": "Каде е автобуската станица?",
+      "en": "Where is the bus station?",
+      "category": "asking"
+    },
+    {
+      "id": "dir-002",
+      "mk": "Свртете лево на следната улица.",
+      "en": "Turn left at the next street.",
+      "category": "giving"
+    },
+    {
+      "id": "dir-003",
+      "mk": "Одете право два блока.",
+      "en": "Go straight for two blocks.",
+      "category": "giving"
+    },
+    {
+      "id": "dir-004",
+      "mk": "Банката е до поштата.",
+      "en": "The bank is next to the post office.",
+      "category": "location"
+    },
+    {
+      "id": "dir-005",
+      "mk": "Колку е далеку центарот?",
+      "en": "How far is the center?",
+      "category": "asking"
+    },
+    {
+      "id": "dir-006",
+      "mk": "Паркот е спроти музејот.",
+      "en": "The park is opposite the museum.",
+      "category": "location"
+    },
+    {
+      "id": "dir-007",
+      "mk": "Автобусот број 5 оди до центарот.",
+      "en": "Bus number 5 goes to the center.",
+      "category": "transport"
+    },
+    {
+      "id": "dir-008",
+      "mk": "Кога тргнува автобусот?",
+      "en": "When does the bus leave?",
+      "category": "transport"
+    },
+    {
+      "id": "dir-009",
+      "mk": "Следете ја оваа улица.",
+      "en": "Follow this street.",
+      "category": "giving"
+    },
+    {
+      "id": "dir-010",
+      "mk": "Свртете десно кај семафорот.",
+      "en": "Turn right at the traffic light.",
+      "category": "giving"
+    },
+    {
+      "id": "dir-011",
+      "mk": "Станицата е покрај банката.",
+      "en": "The station is beside the bank.",
+      "category": "location"
+    },
+    {
+      "id": "dir-012",
+      "mk": "Може ли да ми покажете на мапа?",
+      "en": "Can you show me on the map?",
+      "category": "asking"
+    },
+    {
+      "id": "dir-013",
+      "mk": "Каде можам да фатам такси?",
+      "en": "Where can I get a taxi?",
+      "category": "transport"
+    },
+    {
+      "id": "dir-014",
+      "mk": "Стигнете пеш за десет минути.",
+      "en": "You can walk there in ten minutes.",
+      "category": "giving"
+    },
+    {
+      "id": "dir-015",
+      "mk": "Ова е еднонасочна улица.",
+      "en": "This is a one-way street.",
+      "category": "location"
+    },
+    {
+      "id": "dir-016",
+      "mk": "Метро станицата е под земја.",
+      "en": "The metro station is underground.",
+      "category": "location"
+    },
+    {
+      "id": "dir-017",
+      "mk": "Тргнете назад и свртете лево.",
+      "en": "Go back and turn left.",
+      "category": "giving"
+    },
+    {
+      "id": "dir-018",
+      "mk": "Извинете, каде е аптеката?",
+      "en": "Excuse me, where is the pharmacy?",
+      "category": "asking"
+    },
+    {
+      "id": "dir-019",
+      "mk": "Свртете кај мостот.",
+      "en": "Turn by the bridge.",
+      "category": "giving"
+    },
+    {
+      "id": "dir-020",
+      "mk": "Градската библиотека е блиску.",
+      "en": "The city library is nearby.",
+      "category": "location"
+    }
+  ]
+}

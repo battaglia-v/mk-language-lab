@@ -105,6 +105,14 @@ export interface GrammarLesson {
   descriptionEn: string;
   /** Difficulty level */
   difficulty: 'beginner' | 'intermediate' | 'advanced';
+  /** CEFR-aligned tier */
+  difficulty_level?: 'A1' | 'A2' | 'B1';
+  /** Generic title (mirrors titleEn in CEFR summaries) */
+  title?: string;
+  /** Vocabulary list for the lesson */
+  vocabulary_list?: string[];
+  /** Short grammar summary in Markdown */
+  grammar_notes?: string;
   /** Grammar topic tags */
   tags: string[];
   /** Total XP for completing all exercises */

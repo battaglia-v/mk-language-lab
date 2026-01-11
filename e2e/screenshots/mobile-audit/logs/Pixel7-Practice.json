@@ -1,7 +1,8 @@
 {
   "route": "/en/practice",
   "viewport": "Pixel7",
-  "timestamp": "2026-01-02T01:54:03.186Z",
+  "timestamp": "2026-01-11T19:14:53.254Z",
+  "interstitialBypassed": false,
   "overflow": {
     "hasOverflow": false,
     "elements": []

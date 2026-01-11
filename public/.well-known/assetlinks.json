@@ -3,7 +3,7 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "com.mklanguage.twa",
+      "package_name": "com.mklanguage.app",
       "sha256_cert_fingerprints": [
         "4C:6D:EA:CF:77:55:3A:40:09:D8:94:5E:97:D1:9A:FC:8C:7D:B8:28:03:1F:A8:EC:6B:9F:73:FC:44:F7:D2:02"
       ]

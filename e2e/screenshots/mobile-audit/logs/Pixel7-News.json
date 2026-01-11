@@ -1,7 +1,8 @@
 {
   "route": "/en/news",
   "viewport": "Pixel7",
-  "timestamp": "2026-01-02T01:54:16.756Z",
+  "timestamp": "2026-01-11T19:15:05.408Z",
+  "interstitialBypassed": false,
   "overflow": {
     "hasOverflow": false,
     "elements": []

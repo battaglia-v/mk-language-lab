@@ -1750,6 +1750,20 @@
             "You are",
             "They are"
           ]
+        },
+        {
+          "title": "Прашања (Questions)",
+          "content": "Yes/no questions often use “дали” at the beginning or rising intonation. Wh-questions use кој (who), што (what), каде (where), кога (when).",
+          "examples": [
+            "Дали си дома?",
+            "Каде е автобуската станица?",
+            "Што правиш?"
+          ],
+          "translatedExamples": [
+            "Are you at home?",
+            "Where is the bus station?",
+            "What are you doing?"
+          ]
         }
       ],
       "intro": "Learn the art of polite conversation! This lesson teaches you how to ask questions, get someone's attention with 'Извини' (Excuse me), and handle everyday situations like asking 'Is this seat free?' Great for navigating social interactions."
@@ -2849,6 +2863,39 @@
           "translation": "windows",
           "transliteration": "prozorci",
           "isCore": false
+        },
+        {
+          "word": "лево",
+          "partOfSpeech": "adverb",
+          "context": "thematic vocabulary",
+          "translation": "left",
+          "transliteration": "levo",
+          "isCore": true
+        },
+        {
+          "word": "десно",
+          "partOfSpeech": "adverb",
+          "context": "thematic vocabulary",
+          "translation": "right",
+          "transliteration": "desno",
+          "isCore": true
+        },
+        {
+          "word": "право",
+          "partOfSpeech": "adverb",
+          "context": "thematic vocabulary",
+          "translation": "straight",
+          "transliteration": "pravo",
+          "isCore": true
+        },
+        {
+          "word": "насока",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "direction",
+          "gender": "feminine",
+          "transliteration": "nasoka",
+          "isCore": true
         }
       ],
       "grammarNotes": [
@@ -3421,6 +3468,51 @@
           "gender": "feminine",
           "transliteration": "spalnata",
           "isCore": true
+        },
+        {
+          "word": "адреса",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "address",
+          "gender": "feminine",
+          "transliteration": "adresa",
+          "isCore": true
+        },
+        {
+          "word": "улица",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "street",
+          "gender": "feminine",
+          "transliteration": "ulica",
+          "isCore": true
+        },
+        {
+          "word": "број",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "number",
+          "gender": "masculine",
+          "transliteration": "broj",
+          "isCore": true
+        },
+        {
+          "word": "стан",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "apartment",
+          "gender": "masculine",
+          "transliteration": "stan",
+          "isCore": true
+        },
+        {
+          "word": "поштенски код",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "postal code",
+          "gender": "masculine",
+          "transliteration": "poshtenski kod",
+          "isCore": false
         }
       ],
       "grammarNotes": [
@@ -5153,6 +5245,51 @@
           "gender": "feminine",
           "transliteration": "ekonomija",
           "isCore": false
+        },
+        {
+          "word": "лекар",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "doctor",
+          "gender": "masculine",
+          "transliteration": "lekar",
+          "isCore": true
+        },
+        {
+          "word": "учител",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "teacher",
+          "gender": "masculine",
+          "transliteration": "uchitel",
+          "isCore": true
+        },
+        {
+          "word": "инженер",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "engineer",
+          "gender": "masculine",
+          "transliteration": "inzhener",
+          "isCore": true
+        },
+        {
+          "word": "полицаец",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "police officer",
+          "gender": "masculine",
+          "transliteration": "policaec",
+          "isCore": true
+        },
+        {
+          "word": "продавач",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "seller",
+          "gender": "masculine",
+          "transliteration": "prodavach",
+          "isCore": false
         }
       ],
       "grammarNotes": [
@@ -5192,6 +5329,20 @@
             "He is from Skopje.",
             "This is for you.",
             "I am going to the store."
+          ]
+        },
+        {
+          "title": "Да/не прашања (Yes/No Questions)",
+          "content": "Use “дали” to form yes/no questions, or place “ли” after the verb. Intonation can also mark questions in speech.",
+          "examples": [
+            "Дали работиш денес?",
+            "Сакаш ли кафе?",
+            "Си студент?"
+          ],
+          "translatedExamples": [
+            "Do you work today?",
+            "Do you want coffee?",
+            "Are you a student?"
           ]
         }
       ],
@@ -5732,6 +5883,72 @@
           "gender": "masculine",
           "transliteration": "sinot",
           "isCore": true
+        },
+        {
+          "word": "лево",
+          "partOfSpeech": "adverb",
+          "context": "thematic vocabulary",
+          "translation": "left",
+          "transliteration": "levo",
+          "isCore": true
+        },
+        {
+          "word": "десно",
+          "partOfSpeech": "adverb",
+          "context": "thematic vocabulary",
+          "translation": "right",
+          "transliteration": "desno",
+          "isCore": true
+        },
+        {
+          "word": "право",
+          "partOfSpeech": "adverb",
+          "context": "thematic vocabulary",
+          "translation": "straight",
+          "transliteration": "pravo",
+          "isCore": true
+        },
+        {
+          "word": "цена",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "price",
+          "gender": "feminine",
+          "transliteration": "cena",
+          "isCore": true
+        },
+        {
+          "word": "чини",
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "costs",
+          "transliteration": "chini",
+          "isCore": true
+        },
+        {
+          "word": "денар",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "denar",
+          "gender": "masculine",
+          "transliteration": "denar",
+          "isCore": true
+        },
+        {
+          "word": "евтин",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "cheap",
+          "transliteration": "evtin",
+          "isCore": false
+        },
+        {
+          "word": "скап",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "expensive",
+          "transliteration": "skap",
+          "isCore": false
         }
       ],
       "grammarNotes": [
@@ -6327,6 +6544,34 @@
             "He is from Skopje.",
             "This is for you.",
             "I am going to the store."
+          ]
+        },
+        {
+          "title": "Сегашно време (Present Tense)",
+          "content": "Regular present tense verbs use personal endings: јас -ам, ти -аш, тој/таа -а; ние -аме, вие -ате, тие -аат (гледам, гледаш, гледа).",
+          "examples": [
+            "Јас работам во банка.",
+            "Ти учиш македонски.",
+            "Тие читаат книги."
+          ],
+          "translatedExamples": [
+            "I work in a bank.",
+            "You study Macedonian.",
+            "They read books."
+          ]
+        },
+        {
+          "title": "Прашања со што/каде (Wh-Questions)",
+          "content": "Question words help ask for specific information: што (what), каде (where), кога (when), кој (who).",
+          "examples": [
+            "Што правиш денес?",
+            "Каде живееш?",
+            "Кога почнува часот?"
+          ],
+          "translatedExamples": [
+            "What are you doing today?",
+            "Where do you live?",
+            "When does the class start?"
           ]
         }
       ],
@@ -7420,6 +7665,41 @@
           "translation": "balls",
           "gender": "feminine",
           "transliteration": "topchinja",
+          "isCore": false
+        },
+        {
+          "word": "цена",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "price",
+          "gender": "feminine",
+          "transliteration": "cena",
+          "isCore": true
+        },
+        {
+          "word": "чини",
+          "partOfSpeech": "verb",
+          "context": "thematic vocabulary",
+          "translation": "costs",
+          "transliteration": "chini",
+          "isCore": true
+        },
+        {
+          "word": "денар",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "denar",
+          "gender": "masculine",
+          "transliteration": "denar",
+          "isCore": true
+        },
+        {
+          "word": "попуст",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "discount",
+          "gender": "masculine",
+          "transliteration": "popust",
           "isCore": false
         }
       ],
@@ -8593,6 +8873,20 @@
             "four tables",
             "five students"
           ]
+        },
+        {
+          "title": "Минато време со „беше“ (Past Tense)",
+          "content": "The past tense of “сум” uses бев, беше, беше, бевме, бевте, беа. Use it to describe past states or situations.",
+          "examples": [
+            "Вчера бев уморен.",
+            "Таа беше дома цел ден.",
+            "Ние бевме на работа."
+          ],
+          "translatedExamples": [
+            "Yesterday I was tired.",
+            "She was at home all day.",
+            "We were at work."
+          ]
         }
       ],
       "intro": "Step into the past with your first lesson on past tense. Learn to use 'беше' (was) to tell bedtime stories and describe yesterday's events. Your gateway to narrating past experiences."
@@ -9130,6 +9424,74 @@
           "gender": "masculine",
           "transliteration": "niot",
           "isCore": true
+        },
+        {
+          "word": "Македонија",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "Macedonia",
+          "gender": "feminine",
+          "transliteration": "Makedonija",
+          "isCore": true
+        },
+        {
+          "word": "македонски",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "Macedonian",
+          "transliteration": "makedonski",
+          "isCore": true
+        },
+        {
+          "word": "Грција",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "Greece",
+          "gender": "feminine",
+          "transliteration": "Grcija",
+          "isCore": true
+        },
+        {
+          "word": "грчки",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "Greek",
+          "transliteration": "grchki",
+          "isCore": true
+        },
+        {
+          "word": "Италија",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "Italy",
+          "gender": "feminine",
+          "transliteration": "Italija",
+          "isCore": true
+        },
+        {
+          "word": "италијански",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "Italian",
+          "transliteration": "italijanski",
+          "isCore": true
+        },
+        {
+          "word": "Турција",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "Turkey",
+          "gender": "feminine",
+          "transliteration": "Turcija",
+          "isCore": false
+        },
+        {
+          "word": "турски",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "Turkish",
+          "transliteration": "turski",
+          "isCore": false
         }
       ],
       "grammarNotes": [
@@ -10680,6 +11042,74 @@
           "gender": "feminine",
           "transliteration": "Rabotata",
           "isCore": true
+        },
+        {
+          "word": "време",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "weather",
+          "gender": "neuter",
+          "transliteration": "vreme",
+          "isCore": true
+        },
+        {
+          "word": "сончево",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "sunny",
+          "transliteration": "sonchevo",
+          "isCore": true
+        },
+        {
+          "word": "облачно",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "cloudy",
+          "transliteration": "oblachno",
+          "isCore": true
+        },
+        {
+          "word": "дожд",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "rain",
+          "gender": "masculine",
+          "transliteration": "dozhd",
+          "isCore": true
+        },
+        {
+          "word": "снег",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "snow",
+          "gender": "masculine",
+          "transliteration": "sneg",
+          "isCore": true
+        },
+        {
+          "word": "ветер",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "wind",
+          "gender": "masculine",
+          "transliteration": "veter",
+          "isCore": true
+        },
+        {
+          "word": "ладно",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "cold",
+          "transliteration": "ladno",
+          "isCore": false
+        },
+        {
+          "word": "жешко",
+          "partOfSpeech": "adjective",
+          "context": "thematic vocabulary",
+          "translation": "hot",
+          "transliteration": "zheshko",
+          "isCore": false
         }
       ],
       "grammarNotes": [
@@ -11253,6 +11683,60 @@
           "gender": "neuter",
           "transliteration": "Shvajcarskite",
           "isCore": true
+        },
+        {
+          "word": "болка",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "pain",
+          "gender": "feminine",
+          "transliteration": "bolka",
+          "isCore": true
+        },
+        {
+          "word": "температура",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "fever",
+          "gender": "feminine",
+          "transliteration": "temperatura",
+          "isCore": true
+        },
+        {
+          "word": "кашлица",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "cough",
+          "gender": "feminine",
+          "transliteration": "kashlica",
+          "isCore": true
+        },
+        {
+          "word": "лекар",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "doctor",
+          "gender": "masculine",
+          "transliteration": "lekar",
+          "isCore": true
+        },
+        {
+          "word": "аптека",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "pharmacy",
+          "gender": "feminine",
+          "transliteration": "apteka",
+          "isCore": false
+        },
+        {
+          "word": "главоболка",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "headache",
+          "gender": "feminine",
+          "transliteration": "glavobolka",
+          "isCore": false
         }
       ],
       "grammarNotes": [
@@ -11310,6 +11794,20 @@
             "He is from Skopje.",
             "This is for you.",
             "I am going to the store."
+          ]
+        },
+        {
+          "title": "Мора / не смее (Must / Must Not)",
+          "content": "“Мора” expresses obligation. “Не смее” means something is forbidden. Use them for rules and warnings.",
+          "examples": [
+            "Мора да одмориш.",
+            "Не смееш да пушиш тука.",
+            "Мораме да пиеме вода."
+          ],
+          "translatedExamples": [
+            "You must rest.",
+            "You must not smoke here.",
+            "We must drink water."
           ]
         }
       ],
@@ -12826,6 +13324,20 @@
             "He is from Skopje.",
             "This is for you.",
             "I am going to the store."
+          ]
+        },
+        {
+          "title": "Идно време (Future Tense)",
+          "content": "Future tense uses the particle “ќе” + present tense. Negation uses “нема да”.",
+          "examples": [
+            "Утре ќе одам во Рим.",
+            "Ќе видиме што ќе се случи.",
+            "Нема да патувам оваа недела."
+          ],
+          "translatedExamples": [
+            "Tomorrow I will go to Rome.",
+            "We will see what happens.",
+            "I will not travel this week."
           ]
         }
       ],

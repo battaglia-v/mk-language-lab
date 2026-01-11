@@ -1,7 +1,8 @@
 {
   "route": "/en/practice/grammar",
   "viewport": "iPhone5SE",
-  "timestamp": "2026-01-02T01:52:22.961Z",
+  "timestamp": "2026-01-11T19:13:16.863Z",
+  "interstitialBypassed": false,
   "overflow": {
     "hasOverflow": false,
     "elements": []

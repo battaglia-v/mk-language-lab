@@ -1483,6 +1483,69 @@
           "gender": "feminine",
           "transliteration": "prirodata",
           "isCore": true
+        },
+        {
+          "word": "симптом",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "symptom",
+          "gender": "masculine",
+          "transliteration": "simptom",
+          "isCore": true
+        },
+        {
+          "word": "преглед",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "checkup",
+          "gender": "masculine",
+          "transliteration": "pregled",
+          "isCore": true
+        },
+        {
+          "word": "терапија",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "therapy",
+          "gender": "feminine",
+          "transliteration": "terapija",
+          "isCore": true
+        },
+        {
+          "word": "рецепт",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "prescription",
+          "gender": "masculine",
+          "transliteration": "recept",
+          "isCore": true
+        },
+        {
+          "word": "болница",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "hospital",
+          "gender": "feminine",
+          "transliteration": "bolnica",
+          "isCore": true
+        },
+        {
+          "word": "лекување",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "treatment",
+          "gender": "neuter",
+          "transliteration": "lekuvanje",
+          "isCore": false
+        },
+        {
+          "word": "аптека",
+          "partOfSpeech": "noun",
+          "context": "thematic vocabulary",
+          "translation": "pharmacy",
+          "gender": "feminine",
+          "transliteration": "apteka",
+          "isCore": false
         }
       ],
       "grammarNotes": [

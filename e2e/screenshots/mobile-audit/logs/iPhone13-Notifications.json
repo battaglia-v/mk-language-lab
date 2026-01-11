@@ -1,7 +1,8 @@
 {
   "route": "/en/notifications",
   "viewport": "iPhone13",
-  "timestamp": "2026-01-02T01:53:53.835Z",
+  "timestamp": "2026-01-11T19:14:43.965Z",
+  "interstitialBypassed": false,
   "overflow": {
     "hasOverflow": false,
     "elements": []

@@ -1,7 +1,8 @@
 {
   "route": "/en/notifications",
   "viewport": "SmallAndroid",
-  "timestamp": "2026-01-02T01:53:19.116Z",
+  "timestamp": "2026-01-11T19:14:11.097Z",
+  "interstitialBypassed": false,
   "overflow": {
     "hasOverflow": false,
     "elements": []

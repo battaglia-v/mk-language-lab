@@ -1,13 +1,17 @@
 {
   "route": "/en/learn",
   "viewport": "Pixel7",
-  "timestamp": "2026-01-02T01:54:00.826Z",
+  "timestamp": "2026-01-11T19:14:50.923Z",
+  "interstitialBypassed": false,
   "overflow": {
     "hasOverflow": false,
     "elements": []
   },
   "i18nKeys": [],
-  "consoleErrors": [],
+  "consoleErrors": [
+    "Error: An error occurred in the Server Components render. The specific message is omitted in production builds to avoid leaking sensitive details. A digest property is included on this error instance ",
+    "[Global Error Boundary] Error: An error occurred in the Server Components render. The specific message is omitted in production builds to avoid leaking sensitive details. A digest property is included"
+  ],
   "networkErrors": [],
   "brokenImages": [],
   "screenshot": "Pixel7-LearnDashboard.png"

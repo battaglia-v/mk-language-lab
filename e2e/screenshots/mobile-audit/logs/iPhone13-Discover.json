@@ -1,7 +1,8 @@
 {
   "route": "/en/discover",
   "viewport": "iPhone13",
-  "timestamp": "2026-01-02T01:53:46.855Z",
+  "timestamp": "2026-01-11T19:14:37.123Z",
+  "interstitialBypassed": false,
   "overflow": {
     "hasOverflow": false,
     "elements": []

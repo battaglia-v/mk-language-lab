@@ -1,7 +1,8 @@
 {
   "route": "/en/practice/grammar",
   "viewport": "SmallAndroid",
-  "timestamp": "2026-01-02T01:52:57.218Z",
+  "timestamp": "2026-01-11T19:13:49.683Z",
+  "interstitialBypassed": false,
   "overflow": {
     "hasOverflow": false,
     "elements": []

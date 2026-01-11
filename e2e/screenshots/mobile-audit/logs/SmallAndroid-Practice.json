@@ -1,7 +1,8 @@
 {
   "route": "/en/practice",
   "viewport": "SmallAndroid",
-  "timestamp": "2026-01-02T01:52:52.479Z",
+  "timestamp": "2026-01-11T19:13:47.310Z",
+  "interstitialBypassed": false,
   "overflow": {
     "hasOverflow": false,
     "elements": []

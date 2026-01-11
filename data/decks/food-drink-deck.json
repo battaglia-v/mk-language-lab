@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "id": "food-drink-v1",
+    "title": "Food & Drink",
+    "titleMk": "Храна и пијалаци",
+    "description": "25 phrases for ordering food and drinks",
+    "descriptionMk": "25 фрази за нарачување храна и пијалаци",
+    "level": "A2",
+    "category": "food",
+    "version": "1.0.0",
+    "lastUpdated": "2025-01-01"
+  },
+  "items": [
+    {
+      "id": "food-001",
+      "mk": "Би сакал салата, молам.",
+      "en": "I would like a salad, please.",
+      "category": "ordering"
+    },
+    {
+      "id": "food-002",
+      "mk": "Би сакала супа.",
+      "en": "I would like soup.",
+      "category": "ordering"
+    },
+    {
+      "id": "food-003",
+      "mk": "Може ли сметката?",
+      "en": "Can I have the bill?",
+      "category": "payment"
+    },
+    {
+      "id": "food-004",
+      "mk": "Без шеќер, ве молам.",
+      "en": "Without sugar, please.",
+      "category": "preferences"
+    },
+    {
+      "id": "food-005",
+      "mk": "Јас не јадам месо.",
+      "en": "I don't eat meat.",
+      "category": "preferences"
+    },
+    {
+      "id": "food-006",
+      "mk": "Што препорачувате?",
+      "en": "What do you recommend?",
+      "category": "ordering"
+    },
+    {
+      "id": "food-007",
+      "mk": "Имате ли вегетаријанска опција?",
+      "en": "Do you have a vegetarian option?",
+      "category": "ordering"
+    },
+    {
+      "id": "food-008",
+      "mk": "Едно кафе, молам.",
+      "en": "One coffee, please.",
+      "category": "drinks"
+    },
+    {
+      "id": "food-009",
+      "mk": "Една вода, молам.",
+      "en": "One water, please.",
+      "category": "drinks"
+    },
+    {
+      "id": "food-010",
+      "mk": "Сакам чај со лимон.",
+      "en": "I want tea with lemon.",
+      "category": "drinks"
+    },
+    {
+      "id": "food-011",
+      "mk": "Колку чини менито?",
+      "en": "How much is the menu?",
+      "category": "payment"
+    },
+    {
+      "id": "food-012",
+      "mk": "Може ли уште леб?",
+      "en": "Can I have more bread?",
+      "category": "ordering"
+    },
+    {
+      "id": "food-013",
+      "mk": "Салатата е многу добра.",
+      "en": "The salad is very good.",
+      "category": "feedback"
+    },
+    {
+      "id": "food-014",
+      "mk": "Пилешко или риба?",
+      "en": "Chicken or fish?",
+      "category": "menu"
+    },
+    {
+      "id": "food-015",
+      "mk": "Имам алергија на ореви.",
+      "en": "I am allergic to nuts.",
+      "category": "preferences"
+    },
+    {
+      "id": "food-016",
+      "mk": "Пијам безалкохолно.",
+      "en": "I drink non-alcoholic drinks.",
+      "category": "drinks"
+    },
+    {
+      "id": "food-017",
+      "mk": "Може ли лут сос?",
+      "en": "Can I have hot sauce?",
+      "category": "ordering"
+    },
+    {
+      "id": "food-018",
+      "mk": "Сметката е точна.",
+      "en": "The bill is correct.",
+      "category": "payment"
+    },
+    {
+      "id": "food-019",
+      "mk": "Да ја поделиме сметката.",
+      "en": "Let's split the bill.",
+      "category": "payment"
+    },
+    {
+      "id": "food-020",
+      "mk": "Ова е премногу солено.",
+      "en": "This is too salty.",
+      "category": "feedback"
+    },
+    {
+      "id": "food-021",
+      "mk": "Може ли да платам со картичка?",
+      "en": "Can I pay by card?",
+      "category": "payment"
+    },
+    {
+      "id": "food-022",
+      "mk": "Имам резервација.",
+      "en": "I have a reservation.",
+      "category": "restaurant"
+    },
+    {
+      "id": "food-023",
+      "mk": "Колку време ќе чекаме?",
+      "en": "How long will we wait?",
+      "category": "restaurant"
+    },
+    {
+      "id": "food-024",
+      "mk": "Донесете ни вода, ве молам.",
+      "en": "Bring us water, please.",
+      "category": "ordering"
+    },
+    {
+      "id": "food-025",
+      "mk": "Кафето е многу добро.",
+      "en": "The coffee is very good.",
+      "category": "feedback"
+    }
+  ]
+}
