@@ -60,6 +60,7 @@ export default function GrammarSection({ notes }: GrammarSectionProps) {
           <div
             key={note.id}
             className="p-4 sm:p-5 rounded-lg bg-secondary/5 border border-secondary/20 mx-0"
+            data-testid="lesson-grammar-note"
           >
             {/* Title - larger on mobile for better readability */}
             <h3 className="text-lg sm:text-xl font-semibold text-secondary mb-3">
@@ -81,7 +82,7 @@ export default function GrammarSection({ notes }: GrammarSectionProps) {
                 variant="ghost"
                 size="sm"
                 onClick={() => toggleNote(note.id)}
-                className="mt-2 min-h-[44px] px-3 text-sm text-secondary hover:text-secondary/80"
+                className="mt-2 min-h-[48px] px-3 text-sm text-secondary hover:text-secondary/80"
               >
                 {isExpanded ? (
                   <>
@@ -130,7 +131,7 @@ export default function GrammarSection({ notes }: GrammarSectionProps) {
                       <button
                         type="button"
                         onClick={() => toggleExamples(note.id)}
-                        className="min-h-[44px] text-sm text-primary hover:text-primary/80 pl-9 flex items-center gap-1"
+                        className="min-h-[48px] text-sm text-primary hover:text-primary/80 pl-9 flex items-center gap-1"
                       >
                         <ChevronDown className="h-3 w-3" />
                         Show {examples.length - 4} more example{examples.length - 4 === 1 ? '' : 's'}
@@ -142,7 +143,7 @@ export default function GrammarSection({ notes }: GrammarSectionProps) {
                       <button
                         type="button"
                         onClick={() => toggleExamples(note.id)}
-                        className="min-h-[44px] text-sm text-muted-foreground hover:text-foreground pl-9 flex items-center gap-1"
+                        className="min-h-[48px] text-sm text-muted-foreground hover:text-foreground pl-9 flex items-center gap-1"
                       >
                         <ChevronUp className="h-3 w-3" />
                         Show fewer
