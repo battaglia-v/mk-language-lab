@@ -42,6 +42,19 @@ const getCurriculumRefs = (grammarLessonId: string) => {
   return mapping?.curriculumRefs ?? [];
 };
 
+const getDifficultyLevel = (lesson: GrammarLesson): 'A1' | 'A2' | 'B1' => {
+  if (lesson.difficulty_level) return lesson.difficulty_level;
+
+  switch (lesson.difficulty) {
+    case 'beginner':
+      return 'A1';
+    case 'intermediate':
+      return 'A2';
+    default:
+      return 'B1';
+  }
+};
+
 export default function GrammarPracticePage() {
   const t = useTranslations('grammar');
   const locale = useLocale() as 'en' | 'mk';
@@ -63,6 +76,7 @@ export default function GrammarPracticePage() {
 
   // Cast the imported data to the correct type
   const lessons = grammarLessonsData as GrammarLesson[];
+  const lessonOrder = new Map(lessons.map((lesson, index) => [lesson.id, index]));
 
   const difficultyColors = {
     beginner: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
@@ -75,15 +89,44 @@ export default function GrammarPracticePage() {
   };
 
   // Find the first incomplete lesson (recommended next)
-  const getRecommendedLessonIndex = (): number => {
-    const firstIncomplete = lessons.findIndex(lesson => {
+  const getRecommendedLessonId = (): string | null => {
+    const firstIncomplete = lessons.find(lesson => {
       const lessonProgress = getLessonProgress(lesson.id);
       return !lessonProgress?.completed;
     });
-    return firstIncomplete === -1 ? 0 : firstIncomplete;
+    return firstIncomplete?.id ?? lessons[0]?.id ?? null;
   };
 
-  const recommendedIndex = getRecommendedLessonIndex();
+  const recommendedLessonId = getRecommendedLessonId();
+
+  const tierConfig = [
+    {
+      id: 'A1',
+      label: locale === 'mk' ? 'Ниво 1 - A1 Почетно' : 'Tier 1 - A1 Beginner',
+      description: locale === 'mk'
+        ? 'Азбука, поздрави и основни структури.'
+        : 'Alphabet, greetings, and core structures.',
+    },
+    {
+      id: 'A2',
+      label: locale === 'mk' ? 'Ниво 2 - A2 Основно' : 'Tier 2 - A2 Elementary',
+      description: locale === 'mk'
+        ? 'Пазарење, насоки и минато време.'
+        : 'Shopping, directions, and past tense.',
+    },
+    {
+      id: 'B1',
+      label: locale === 'mk' ? 'Ниво 3 - B1 Средно' : 'Tier 3 - B1 Intermediate',
+      description: locale === 'mk'
+        ? 'Идно време, модали и сложени реченици.'
+        : 'Future tense, modals, and complex clauses.',
+    },
+  ] as const;
+
+  const lessonsByTier = tierConfig.map((tier) => ({
+    ...tier,
+    lessons: lessons.filter((lesson) => getDifficultyLevel(lesson) === tier.id),
+  }));
 
   const handleStartLesson = (lesson: GrammarLesson) => {
     setActiveLesson(lesson);
@@ -98,9 +141,9 @@ export default function GrammarPracticePage() {
     setLessonResults(results);
 
     // Calculate score based on LessonRunner results
-    const correctCount = results.answers.filter(a => a.correct).length;
-    const totalCount = results.answers.length;
-    const score = Math.round((correctCount / totalCount) * 100);
+    const correctCount = results.correctAnswers;
+    const totalCount = results.totalSteps;
+    const score = totalCount > 0 ? Math.round((correctCount / totalCount) * 100) : 0;
 
     // Save progress
     const newProgress: LessonProgress = {
@@ -137,9 +180,9 @@ export default function GrammarPracticePage() {
 
   // Results view
   if (showResults && activeLesson && lessonResults) {
-    const correctCount = lessonResults.answers.filter(a => a.correct).length;
-    const totalCount = lessonResults.answers.length;
-    const score = Math.round((correctCount / totalCount) * 100);
+    const correctCount = lessonResults.correctAnswers;
+    const totalCount = lessonResults.totalSteps;
+    const score = totalCount > 0 ? Math.round((correctCount / totalCount) * 100) : 0;
     const xpEarned = lessonResults.xpEarned;
 
     return (
@@ -244,95 +287,119 @@ export default function GrammarPracticePage() {
       <div className="space-y-4">
         <h2 className="text-lg font-semibold">{t('selectLesson')}</h2>
         
-        <div className="space-y-3">
-          {lessons.map((lesson, index) => {
-            const lessonProgress = getLessonProgress(lesson.id);
-            const isCompleted = lessonProgress?.completed ?? false;
-            const isRecommended = index === recommendedIndex;
+        <div className="space-y-6">
+          {lessonsByTier.map((tier) => {
+            if (tier.lessons.length === 0) return null;
 
             return (
-              // eslint-disable-next-line react/forbid-elements -- Clickable card wrapper pattern
-              <button
-                key={lesson.id}
-                type="button"
-                onClick={() => handleStartLesson(lesson)}
-                className="w-full text-left"
-                data-testid={`grammar-lesson-${lesson.id}`}
-              >
-                <Card
-                  className={cn(
-                    'transition-all border-white/8 bg-white/5 hover:border-accent/30 hover:bg-white/8',
-                    isRecommended && !isCompleted && 'border-primary/40 bg-primary/5 ring-1 ring-primary/20'
-                  )}
-                >
-                  <CardContent className="flex items-center gap-4 py-4">
-                    {/* Lesson Number / Status */}
-                    <div
-                      className={cn(
-                        'flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold',
-                        isCompleted
-                          ? 'bg-emerald-500/20 text-emerald-400'
-                          : isRecommended
-                          ? 'bg-primary/20 text-primary'
-                          : 'bg-accent/20 text-accent'
-                      )}
-                    >
-                      {isCompleted ? (
-                        <CheckCircle2 className="h-5 w-5" />
-                      ) : isRecommended ? (
-                        <Sparkles className="h-5 w-5" />
-                      ) : (
-                        index + 1
-                      )}
-                    </div>
+              <div key={tier.id} className="space-y-3">
+                <div className="flex flex-wrap items-end justify-between gap-2">
+                  <div>
+                    <h3 className="text-base font-semibold">{tier.label}</h3>
+                    <p className="text-sm text-muted-foreground">{tier.description}</p>
+                  </div>
+                  <Badge
+                    variant="outline"
+                    className="text-xs bg-white/5 border-white/10 text-muted-foreground"
+                  >
+                    {tier.id}
+                  </Badge>
+                </div>
 
-                    {/* Lesson Info */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <h3 className="font-medium truncate">
-                          {locale === 'mk' ? lesson.titleMk : lesson.titleEn}
-                        </h3>
-                        <Badge
-                          variant="outline"
-                          className={cn('shrink-0 text-xs', difficultyColors[lesson.difficulty])}
+                <div className="space-y-3">
+                  {tier.lessons.map((lesson, index) => {
+                    const lessonProgress = getLessonProgress(lesson.id);
+                    const isCompleted = lessonProgress?.completed ?? false;
+                    const isRecommended = lesson.id === recommendedLessonId;
+                    const orderIndex = lessonOrder.get(lesson.id) ?? index;
+
+                    return (
+                      // eslint-disable-next-line react/forbid-elements -- Clickable card wrapper pattern
+                      <button
+                        key={lesson.id}
+                        type="button"
+                        onClick={() => handleStartLesson(lesson)}
+                        className="w-full text-left"
+                        data-testid={`grammar-lesson-${lesson.id}`}
+                      >
+                        <Card
+                          className={cn(
+                            'transition-all border-white/8 bg-white/5 hover:border-accent/30 hover:bg-white/8',
+                            isRecommended && !isCompleted && 'border-primary/40 bg-primary/5 ring-1 ring-primary/20'
+                          )}
                         >
-                          {lesson.difficulty}
-                        </Badge>
-                        {getCurriculumRefs(lesson.id).length > 0 && (
-                          <Badge
-                            variant="outline"
-                            className="shrink-0 text-xs bg-blue-500/10 text-blue-400 border-blue-500/30"
-                          >
-                            <BookOpen className="h-3 w-3 mr-1" />
-                            {locale === 'mk' ? 'Лекција' : 'Lesson'} {getCurriculumRefs(lesson.id)[0].lessonNumber}
-                          </Badge>
-                        )}
-                        {isRecommended && !isCompleted && (
-                          <Badge
-                            variant="outline"
-                            className="shrink-0 text-xs bg-primary/10 text-primary border-primary/30"
-                          >
-                            {t('recommended', { default: 'Recommended' })}
-                          </Badge>
-                        )}
-                      </div>
-                      <p className="text-sm text-muted-foreground truncate">
-                        {locale === 'mk' ? lesson.descriptionMk : lesson.descriptionEn}
-                      </p>
-                      <div className="mt-1 flex items-center gap-3 text-xs text-muted-foreground">
-                        <span>{lesson.exercises.length} {t('exercises')}</span>
-                        <span>~{Math.ceil(lesson.exercises.length * 2)} {t('minutes')}</span>
-                        {lessonProgress?.score !== undefined && (
-                          <span className="text-emerald-400">{lessonProgress.score}%</span>
-                        )}
-                      </div>
-                    </div>
+                          <CardContent className="flex items-center gap-4 py-4">
+                            {/* Lesson Number / Status */}
+                            <div
+                              className={cn(
+                                'flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold',
+                                isCompleted
+                                  ? 'bg-emerald-500/20 text-emerald-400'
+                                  : isRecommended
+                                  ? 'bg-primary/20 text-primary'
+                                  : 'bg-accent/20 text-accent'
+                              )}
+                            >
+                              {isCompleted ? (
+                                <CheckCircle2 className="h-5 w-5" />
+                              ) : isRecommended ? (
+                                <Sparkles className="h-5 w-5" />
+                              ) : (
+                                orderIndex + 1
+                              )}
+                            </div>
 
-                    {/* Arrow */}
-                    <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground" />
-                  </CardContent>
-                </Card>
-              </button>
+                            {/* Lesson Info */}
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2 flex-wrap">
+                                <h3 className="font-medium truncate">
+                                  {locale === 'mk' ? lesson.titleMk : lesson.titleEn}
+                                </h3>
+                                <Badge
+                                  variant="outline"
+                                  className={cn('shrink-0 text-xs', difficultyColors[lesson.difficulty])}
+                                >
+                                  {lesson.difficulty}
+                                </Badge>
+                                {getCurriculumRefs(lesson.id).length > 0 && (
+                                  <Badge
+                                    variant="outline"
+                                    className="shrink-0 text-xs bg-blue-500/10 text-blue-400 border-blue-500/30"
+                                  >
+                                    <BookOpen className="h-3 w-3 mr-1" />
+                                    {locale === 'mk' ? 'Лекција' : 'Lesson'} {getCurriculumRefs(lesson.id)[0].lessonNumber}
+                                  </Badge>
+                                )}
+                                {isRecommended && !isCompleted && (
+                                  <Badge
+                                    variant="outline"
+                                    className="shrink-0 text-xs bg-primary/10 text-primary border-primary/30"
+                                  >
+                                    {t('recommended', { default: 'Recommended' })}
+                                  </Badge>
+                                )}
+                              </div>
+                              <p className="text-sm text-muted-foreground truncate">
+                                {locale === 'mk' ? lesson.descriptionMk : lesson.descriptionEn}
+                              </p>
+                              <div className="mt-1 flex items-center gap-3 text-xs text-muted-foreground">
+                                <span>{lesson.exercises.length} {t('exercises')}</span>
+                                <span>~{Math.ceil(lesson.exercises.length * 2)} {t('minutes')}</span>
+                                {lessonProgress?.score !== undefined && (
+                                  <span className="text-emerald-400">{lessonProgress.score}%</span>
+                                )}
+                              </div>
+                            </div>
+
+                            {/* Arrow */}
+                            <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground" />
+                          </CardContent>
+                        </Card>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
             );
           })}
         </div>

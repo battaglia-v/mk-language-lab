@@ -6,7 +6,7 @@ Open your terminal and run these commands:
 
 ```bash
 cd /Users/vbattaglia/mk-language-lab/android-twa
-bubblewrap init --manifest https://mklanguage.com/manifest.json
+bubblewrap init --manifest https://www.mklanguage.com/manifest.json
 ```
 
 When prompted:
@@ -43,8 +43,8 @@ After building, Bubblewrap will display your app's SHA-256 fingerprint. You'll n
   "relation": ["delegate_permission/common.handle_all_urls"],
   "target": {
     "namespace": "android_app",
-    "package_name": "com.mklanguage.twa",
-    "sha256_cert_fingerprints": ["YOUR_SHA256_FINGERPRINT_HERE"]
+    "package_name": "com.mklanguage.app",
+    "sha256_cert_fingerprints": ["4C:6D:EA:CF:77:55:3A:40:09:D8:94:5E:97:D1:9A:FC:8C:7D:B8:28:03:1F:A8:EC:6B:9F:73:FC:44:F7:D2:02"]
   }
 }]
 ```
@@ -63,7 +63,7 @@ Or transfer the APK file to your Android device and install manually.
 
 - **Save your keystore password** - You'll need it for all future builds
 - **Backup your keystore file** - `mklanguage.keystore` - losing this means you can't update the app
-- **Production URL** - Make sure your app is deployed to `mklanguage.com` before testing
+- **Production URL** - Make sure your app is deployed to `www.mklanguage.com` before testing
 
 ## In-app subscriptions (Google Play Billing)
 

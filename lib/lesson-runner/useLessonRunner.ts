@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import type {
   Step,
   StepAnswer,
@@ -44,9 +44,24 @@ export function useLessonRunner(
   const hasAnswered = currentStep ? answers.has(currentStep.id) : false;
   const currentFeedback = currentStep ? feedback.get(currentStep.id) : undefined;
 
+  const stepById = useMemo(
+    () => new Map(steps.map((step) => [step.id, step])),
+    [steps]
+  );
+
+  const scoredStepIds = useMemo(() => {
+    const scoredSteps = steps.filter(
+      (step) => step.type !== 'SUMMARY' && step.type !== 'INFO'
+    );
+    return new Set(scoredSteps.map((step) => step.id));
+  }, [steps]);
+
+  const isInfoStep = currentStep?.type === 'INFO';
+  const scoredStepCount = scoredStepIds.size;
+
   // Calculate correct answers
-  const correctCount = Array.from(feedback.values()).filter(
-    (f) => f.correct
+  const correctCount = Array.from(feedback.entries()).filter(
+    ([stepId, f]) => f.correct && scoredStepIds.has(stepId)
   ).length;
 
   /**
@@ -55,6 +70,21 @@ export function useLessonRunner(
   const validateAnswer = useCallback(
     (step: Step, answer: StepAnswer): ValidationResult => {
       switch (step.type) {
+        case 'INFO': {
+          if (answer.type !== 'INFO') {
+            return {
+              isCorrect: false,
+              feedback: { correct: false, message: 'Invalid answer type' },
+            };
+          }
+          return {
+            isCorrect: true,
+            feedback: {
+              correct: true,
+              message: 'Continue when you are ready.',
+            },
+          };
+        }
         case 'MULTIPLE_CHOICE': {
           if (answer.type !== 'MULTIPLE_CHOICE') {
             return {
@@ -294,21 +324,23 @@ export function useLessonRunner(
 
       const results: LessonResults = {
         lessonId,
-        totalSteps: steps.length,
+        totalSteps: scoredStepCount,
         correctAnswers: correctCount,
         totalTime,
         xpEarned: 0, // Will be calculated by XP calculator
         completedAt,
-        answers: Array.from(answers.entries()).map(([stepId, answer]) => {
-          const step = steps.find((s) => s.id === stepId);
-          const stepFeedback = feedback.get(stepId);
-          return {
-            stepId,
-            stepType: step!.type,
-            answer,
-            correct: stepFeedback?.correct ?? false,
-          };
-        }),
+        answers: Array.from(answers.entries())
+          .filter(([stepId]) => scoredStepIds.has(stepId))
+          .map(([stepId, answer]) => {
+            const step = stepById.get(stepId);
+            const stepFeedback = feedback.get(stepId);
+            return {
+              stepId,
+              stepType: step?.type || 'MULTIPLE_CHOICE',
+              answer,
+              correct: stepFeedback?.correct ?? false,
+            };
+          }),
       };
 
       // Save completion to database
@@ -327,7 +359,7 @@ export function useLessonRunner(
 
       onComplete(results);
     }
-  }, [completedAt, lessonId, steps, answers, feedback, correctCount, onComplete]);
+  }, [completedAt, lessonId, answers, feedback, correctCount, scoredStepCount, scoredStepIds, stepById, onComplete]);
 
   return {
     // Current state
@@ -341,7 +373,7 @@ export function useLessonRunner(
     // Derived state
     isLastStep,
     correctCount,
-    totalSteps: steps.length,
+    totalSteps: scoredStepCount,
     progress: {
       current: currentIndex + 1,
       total: steps.length,
@@ -354,12 +386,12 @@ export function useLessonRunner(
     reset,
 
     // Button state helpers
-    submitLabel: showFeedback
+    submitLabel: showFeedback || isInfoStep
       ? isLastStep
         ? 'Finish Lesson'
         : 'Continue'
       : 'Check',
-    submitDisabled: !hasAnswered || isEvaluating,
+    submitDisabled: (isInfoStep ? false : !hasAnswered) || isEvaluating,
     showSkip: currentStep?.type === 'PRONOUNCE' || currentStep?.type === 'TAP_WORDS',
   };
 }

@@ -10,6 +10,7 @@
 // ============================================================================
 
 export type StepType =
+  | 'INFO'
   | 'MULTIPLE_CHOICE'
   | 'FILL_BLANK'
   | 'TAP_WORDS'
@@ -25,6 +26,29 @@ export interface BaseStep {
 // ============================================================================
 // Specific Step Types
 // ============================================================================
+
+/**
+ * Informational Step
+ * Presents lesson notes, vocabulary, or examples without an answer.
+ */
+export interface InfoStep extends BaseStep {
+  type: 'INFO';
+  title: string;
+  subtitle?: string;
+  body?: string;
+  bullets?: string[];
+  examples?: Array<{
+    mk: string;
+    en?: string;
+  }>;
+  vocabulary?: Array<{
+    mk: string;
+    en?: string;
+    transliteration?: string;
+    partOfSpeech?: string;
+    gender?: string;
+  }>;
+}
 
 /**
  * Multiple Choice Step
@@ -53,6 +77,7 @@ export interface FillBlankStep extends BaseStep {
   explanation?: string;
   caseSensitive?: boolean;
   placeholder?: string;
+  wordBank?: string[];
 }
 
 /**
@@ -110,6 +135,7 @@ export interface SummaryStep extends BaseStep {
  * Union type of all possible step types
  */
 export type Step =
+  | InfoStep
   | MultipleChoiceStep
   | FillBlankStep
   | TapWordsStep
@@ -134,6 +160,7 @@ export interface StepFeedback {
  * Answer submitted by user for a step
  */
 export type StepAnswer =
+  | { type: 'INFO'; acknowledged: boolean }
   | { type: 'MULTIPLE_CHOICE'; selectedIndex: number }
   | { type: 'FILL_BLANK'; answer: string }
   | { type: 'TAP_WORDS'; tappedWords: string[]; savedWords?: string[] }

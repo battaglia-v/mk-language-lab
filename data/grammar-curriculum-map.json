@@ -1,13 +1,24 @@
 {
   "mappings": [
     {
-      "grammarLessonId": "definite-article-basics",
+      "grammarLessonId": "alphabet-basics",
       "curriculumRefs": [
         {
           "journeyId": "ukim-a1",
-          "lessonNumber": 3,
-          "lessonTitle": "Работа",
-          "relevance": "Definite article forms introduced with nouns describing professions and objects"
+          "lessonNumber": 1,
+          "lessonTitle": "Азбука",
+          "relevance": "Alphabet overview and special letter sounds for A1 foundations"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "greetings-basics",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-a1",
+          "lessonNumber": 1,
+          "lessonTitle": "Јас и ти",
+          "relevance": "Greetings, introductions, and polite forms"
         }
       ]
     },
@@ -19,6 +30,39 @@
           "lessonNumber": 1,
           "lessonTitle": "Јас и ти",
           "relevance": "Core grammar: conjugation of 'сум' (to be) for introductions"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "gender-nouns",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-a1",
+          "lessonNumber": 2,
+          "lessonTitle": "Семејство",
+          "relevance": "Gender recognition for common nouns and family terms"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "numbers-1-100",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-a1",
+          "lessonNumber": 2,
+          "lessonTitle": "Семејство",
+          "relevance": "Numbers for ages, counts, and simple quantities"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "definite-article-basics",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-a1",
+          "lessonNumber": 3,
+          "lessonTitle": "Работа",
+          "relevance": "Definite article forms introduced with nouns describing professions and objects"
         }
       ]
     },
@@ -67,45 +111,6 @@
       ]
     },
     {
-      "grammarLessonId": "past-tense-intro",
-      "curriculumRefs": [
-        {
-          "journeyId": "ukim-a1",
-          "lessonNumber": 8,
-          "lessonTitle": "Патување",
-          "relevance": "Past tense for describing travel experiences and completed actions"
-        }
-      ]
-    },
-    {
-      "grammarLessonId": "future-tense-basics",
-      "curriculumRefs": [
-        {
-          "journeyId": "ukim-a1",
-          "lessonNumber": 6,
-          "lessonTitle": "Купување",
-          "relevance": "Future tense with 'ќе' for plans and intentions"
-        }
-      ]
-    },
-    {
-      "grammarLessonId": "possessive-pronouns",
-      "curriculumRefs": [
-        {
-          "journeyId": "ukim-a1",
-          "lessonNumber": 1,
-          "lessonTitle": "Јас и ти",
-          "relevance": "Possessive pronouns introduced: мој/моја/мое for describing possessions"
-        },
-        {
-          "journeyId": "ukim-a1",
-          "lessonNumber": 2,
-          "lessonTitle": "Семејство",
-          "relevance": "Extended use of possessives for family relationships"
-        }
-      ]
-    },
-    {
       "grammarLessonId": "adjective-agreement",
       "curriculumRefs": [
         {
@@ -113,6 +118,105 @@
           "lessonNumber": 3,
           "lessonTitle": "Работа",
           "relevance": "Adjective-noun agreement when describing people and professions"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "possessive-pronouns",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-a2",
+          "lessonNumber": 1,
+          "lessonTitle": "Семејство и предмети",
+          "relevance": "Possessive agreement expanded for everyday contexts"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "past-aorist-tense",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-a2",
+          "lessonNumber": 4,
+          "lessonTitle": "Минато време",
+          "relevance": "Aorist for completed past actions"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "shopping-basics",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-a2",
+          "lessonNumber": 2,
+          "lessonTitle": "Купување",
+          "relevance": "Price questions, quantities, and payment phrases"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "directions-basics",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-a2",
+          "lessonNumber": 3,
+          "lessonTitle": "Насоки",
+          "relevance": "Asking for and giving directions"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "food-drink-basics",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-a2",
+          "lessonNumber": 1,
+          "lessonTitle": "Храна и пијалаци",
+          "relevance": "Ordering food and drinks politely"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "future-tense-basics",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-b1",
+          "lessonNumber": 1,
+          "lessonTitle": "Идно време",
+          "relevance": "Future tense with 'ќе' and negative forms"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "modals-mozhe-mora",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-b1",
+          "lessonNumber": 2,
+          "lessonTitle": "Модални глаголи",
+          "relevance": "Ability, permission, and obligation"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "aspect-verb-pairs",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-b1",
+          "lessonNumber": 3,
+          "lessonTitle": "Глаголски вид",
+          "relevance": "Imperfective vs perfective verb pairs"
+        }
+      ]
+    },
+    {
+      "grammarLessonId": "complex-sentences",
+      "curriculumRefs": [
+        {
+          "journeyId": "ukim-b1",
+          "lessonNumber": 4,
+          "lessonTitle": "Сложени реченици",
+          "relevance": "Clause linking with ако/бидејќи/дека"
         }
       ]
     }

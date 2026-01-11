@@ -4,34 +4,34 @@ set timeout 300
 
 cd "/Users/vbattaglia/mk-language-lab/android-twa"
 
-spawn bubblewrap init --manifest https://mklanguage.com/manifest.json
+spawn bubblewrap init --manifest https://www.mklanguage.com/manifest.json
 
-# Domain - accept default (mk-language-lab.vercel.app)
-expect "Domain:" { send "\r" }
+# Domain
+expect "Domain:" { send "www.mklanguage.com\r" }
 
-# URL path - accept default
-expect "URL path:" { send "\r" }
+# URL path
+expect "URL path:" { send "/\r" }
 
-# Application name - accept default  
-expect "Application name:" { send "\r" }
+# Application name
+expect "Application name:" { send "MK Language Lab\r" }
 
-# Launcher name - accept default
-expect "Launcher name:" { send "\r" }
+# Launcher name
+expect "Launcher name:" { send "MK Language Lab\r" }
 
-# Theme color - accept default
-expect "Theme color:" { send "\r" }
+# Theme color
+expect "Theme color:" { send "#D32F2F\r" }
 
-# Background color - accept default  
-expect "Background color:" { send "\r" }
+# Background color
+expect "Background color:" { send "#D32F2F\r" }
 
 # Splash screen fade out - accept default
 expect "Splash screen fade out duration" { send "\r" }
 
-# Icon URL - accept default
-expect "App icon URL:" { send "\r" }
+# Icon URL
+expect "App icon URL:" { send "https://www.mklanguage.com/icon-192.png\r" }
 
-# Maskable icon URL - accept default
-expect "Maskable icon URL:" { send "\r" }
+# Maskable icon URL
+expect "Maskable icon URL:" { send "https://www.mklanguage.com/icon-512-maskable.png\r" }
 
 # Notification delegation - yes
 expect "Notification Delegation" { send "y\r" }
@@ -43,7 +43,7 @@ expect "Location Delegation" { send "n\r" }
 expect "Play Billing" { send "n\r" }
 
 # Android package details
-expect "Package ID:" { send "com.mklanguage.twa\r" }
+expect "Package ID:" { send "com.mklanguage.app\r" }
 
 # Version name
 expect "App version name:" { send "1.0.0\r" }
@@ -80,11 +80,11 @@ expect "State" { send "\r" }
 # Country code
 expect "Country Code" { send "US\r" }
 
-# Key password (using a secure random password)
-expect "Key password:" { send "MkLangLab2025!\r" }
+# Key password
+expect "Key password:" { send "MKLanguage2025!\r" }
 
 # Confirm password
-expect -re "(password|Password)" { send "MkLangLab2025!\r" }
+expect -re "(password|Password)" { send "MKLanguage2025!\r" }
 
 # Wait for completion
 expect eof

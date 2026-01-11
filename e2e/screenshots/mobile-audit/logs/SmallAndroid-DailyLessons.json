@@ -1,7 +1,8 @@
 {
   "route": "/en/daily-lessons",
   "viewport": "SmallAndroid",
-  "timestamp": "2026-01-02T01:53:14.493Z",
+  "timestamp": "2026-01-11T19:14:06.500Z",
+  "interstitialBypassed": false,
   "overflow": {
     "hasOverflow": false,
     "elements": []

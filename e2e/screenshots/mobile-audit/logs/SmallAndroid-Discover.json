@@ -1,7 +1,8 @@
 {
   "route": "/en/discover",
   "viewport": "SmallAndroid",
-  "timestamp": "2026-01-02T01:53:12.183Z",
+  "timestamp": "2026-01-11T19:14:04.165Z",
+  "interstitialBypassed": false,
   "overflow": {
     "hasOverflow": false,
     "elements": []

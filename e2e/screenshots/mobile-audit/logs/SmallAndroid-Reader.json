@@ -1,7 +1,8 @@
 {
   "route": "/en/reader",
   "viewport": "SmallAndroid",
-  "timestamp": "2026-01-02T01:53:02.419Z",
+  "timestamp": "2026-01-11T19:13:54.449Z",
+  "interstitialBypassed": false,
   "overflow": {
     "hasOverflow": false,
     "elements": []

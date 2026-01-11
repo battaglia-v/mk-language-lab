@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "id": "shopping-v1",
+    "title": "Shopping",
+    "titleMk": "Купување",
+    "description": "25 phrases for shopping, prices, and payments",
+    "descriptionMk": "25 фрази за купување, цени и плаќање",
+    "level": "A2",
+    "category": "shopping",
+    "version": "1.0.0",
+    "lastUpdated": "2025-01-01"
+  },
+  "items": [
+    {
+      "id": "shop-001",
+      "mk": "Колку чини оваа јакна?",
+      "en": "How much does this jacket cost?",
+      "category": "clothing"
+    },
+    {
+      "id": "shop-002",
+      "mk": "Имате ли поголема големина?",
+      "en": "Do you have a larger size?",
+      "category": "clothing"
+    },
+    {
+      "id": "shop-003",
+      "mk": "Овој производ е на попуст.",
+      "en": "This product is on sale.",
+      "category": "pricing"
+    },
+    {
+      "id": "shop-004",
+      "mk": "Би сакал две килограми јаболка.",
+      "en": "I would like two kilograms of apples.",
+      "category": "market"
+    },
+    {
+      "id": "shop-005",
+      "mk": "Колку е ова по килограм?",
+      "en": "How much is this per kilo?",
+      "category": "market"
+    },
+    {
+      "id": "shop-006",
+      "mk": "Плаќам со картичка.",
+      "en": "I'm paying by card.",
+      "category": "payment"
+    },
+    {
+      "id": "shop-007",
+      "mk": "Имам само готовина.",
+      "en": "I only have cash.",
+      "category": "payment"
+    },
+    {
+      "id": "shop-008",
+      "mk": "Може ли кеса?",
+      "en": "Can I have a bag?",
+      "category": "checkout"
+    },
+    {
+      "id": "shop-009",
+      "mk": "Каде е пробната кабина?",
+      "en": "Where is the fitting room?",
+      "category": "clothing"
+    },
+    {
+      "id": "shop-010",
+      "mk": "Оваа големина ми е мала.",
+      "en": "This size is small for me.",
+      "category": "clothing"
+    },
+    {
+      "id": "shop-011",
+      "mk": "Имате ли друга боја?",
+      "en": "Do you have another color?",
+      "category": "clothing"
+    },
+    {
+      "id": "shop-012",
+      "mk": "Колку денари е ова?",
+      "en": "How many denars is this?",
+      "category": "pricing"
+    },
+    {
+      "id": "shop-013",
+      "mk": "Може ли сметката?",
+      "en": "Can I have the receipt?",
+      "category": "payment"
+    },
+    {
+      "id": "shop-014",
+      "mk": "Сакам половина килограм сирење.",
+      "en": "I want half a kilo of cheese.",
+      "category": "market"
+    },
+    {
+      "id": "shop-015",
+      "mk": "Дали прифаќате евра?",
+      "en": "Do you accept euros?",
+      "category": "payment"
+    },
+    {
+      "id": "shop-016",
+      "mk": "Дали има попуст за студенти?",
+      "en": "Is there a student discount?",
+      "category": "pricing"
+    },
+    {
+      "id": "shop-017",
+      "mk": "Ова е премногу скапо.",
+      "en": "This is too expensive.",
+      "category": "pricing"
+    },
+    {
+      "id": "shop-018",
+      "mk": "Ќе го земам.",
+      "en": "I'll take it.",
+      "category": "checkout"
+    },
+    {
+      "id": "shop-019",
+      "mk": "Може ли да пробам?",
+      "en": "Can I try it on?",
+      "category": "clothing"
+    },
+    {
+      "id": "shop-020",
+      "mk": "Колку чини торбата?",
+      "en": "How much is the bag?",
+      "category": "clothing"
+    },
+    {
+      "id": "shop-021",
+      "mk": "Имаме свеж зеленчук.",
+      "en": "We have fresh vegetables.",
+      "category": "market"
+    },
+    {
+      "id": "shop-022",
+      "mk": "Дајте ми сметка, ве молам.",
+      "en": "Give me a receipt, please.",
+      "category": "payment"
+    },
+    {
+      "id": "shop-023",
+      "mk": "Колку е ова заедно?",
+      "en": "How much is this total?",
+      "category": "payment"
+    },
+    {
+      "id": "shop-024",
+      "mk": "Имам членска картичка.",
+      "en": "I have a loyalty card.",
+      "category": "payment"
+    },
+    {
+      "id": "shop-025",
+      "mk": "Отворено е до осум часот.",
+      "en": "It's open until eight o'clock.",
+      "category": "store"
+    }
+  ]
+}

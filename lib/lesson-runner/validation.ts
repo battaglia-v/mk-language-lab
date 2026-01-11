@@ -38,6 +38,19 @@ export function validateStep(step: Step): ValidationResult {
 
   // Type-specific validation
   switch (step.type) {
+    case 'INFO': {
+      const hasContent = Boolean(
+        step.title?.trim()
+          || step.body?.trim()
+          || step.bullets?.length
+          || step.examples?.length
+          || step.vocabulary?.length
+      );
+      if (!hasContent) {
+        errors.push({ stepId, field: 'content', message: 'Info step needs a title or content' });
+      }
+      break;
+    }
     case 'MULTIPLE_CHOICE':
       if (!step.prompt?.trim()) {
         errors.push({ stepId, field: 'prompt', message: 'Prompt is required for multiple choice' });
@@ -113,6 +126,8 @@ export function validateLesson(steps: Step[]): ValidationResult {
  */
 export function getFallbackPrompt(stepType: Step['type']): string {
   switch (stepType) {
+    case 'INFO':
+      return 'Review the lesson notes';
     case 'MULTIPLE_CHOICE':
       return 'Select the correct answer';
     case 'FILL_BLANK':
@@ -133,6 +148,8 @@ export function getFallbackPrompt(stepType: Step['type']): string {
  */
 export function getDefaultInstructions(stepType: Step['type']): string {
   switch (stepType) {
+    case 'INFO':
+      return 'Review the notes, then continue.';
     case 'MULTIPLE_CHOICE':
       return 'Choose the correct answer from the options below.';
     case 'FILL_BLANK':

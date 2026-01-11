@@ -1,21 +1,21 @@
 {
-  "auditDate": "2026-01-11T18:30:12.694Z",
+  "auditDate": "2026-01-11T21:03:27.866Z",
   "summary": {
     "totalLessons": 40,
-    "completeCount": 27,
-    "incompleteCount": 13,
-    "gapsFound": 17,
+    "completeCount": 40,
+    "incompleteCount": 0,
+    "gapsFound": 0,
     "lowVocabLessons": 0,
     "lowGrammarLessons": 0,
-    "avgCompletenessScore": 91
+    "avgCompletenessScore": 100
   },
   "byLevel": {
     "a1": {
       "totalLessons": 24,
-      "completeCount": 12,
-      "avgVocab": 49,
+      "completeCount": 24,
+      "avgVocab": 51,
       "avgGrammar": 3,
-      "avgScore": 87
+      "avgScore": 100
     },
     "a2": {
       "totalLessons": 8,
@@ -26,10 +26,10 @@
     },
     "b1": {
       "totalLessons": 8,
-      "completeCount": 7,
-      "avgVocab": 50,
+      "completeCount": 8,
+      "avgVocab": 51,
       "avgGrammar": 4,
-      "avgScore": 96
+      "avgScore": 100
     }
   },
   "lessons": [
@@ -111,20 +111,15 @@
       ],
       "grammarCovers": [
         "Броеви",
-        "Глаголот \"сум\""
+        "Глаголот \"сум\"",
+        "Прашања (Questions)"
       ],
       "vocabCount": 50,
-      "grammarCount": 2,
-      "gaps": [
-        {
-          "topic": "questions",
-          "category": "grammar",
-          "reason": "Intro promises \"questions\" but no matching grammar note found"
-        }
-      ],
+      "grammarCount": 3,
+      "gaps": [],
       "warnings": [],
-      "isComplete": false,
-      "completenessScore": 67
+      "isComplete": true,
+      "completenessScore": 100
     },
     {
       "level": "A1",
@@ -170,18 +165,12 @@
         "Присвојни заменки (Possessive pronouns)",
         "Предлози (Prepositions)"
       ],
-      "vocabCount": 50,
+      "vocabCount": 54,
       "grammarCount": 2,
-      "gaps": [
-        {
-          "topic": "directions",
-          "category": "vocabulary",
-          "reason": "Intro mentions \"directions\" but vocabulary doesn't clearly cover this theme"
-        }
-      ],
+      "gaps": [],
       "warnings": [],
-      "isComplete": false,
-      "completenessScore": 83
+      "isComplete": true,
+      "completenessScore": 100
     },
     {
       "level": "A1",
@@ -205,18 +194,12 @@
         "Присвојни заменки (Possessive pronouns)",
         "Предлози (Prepositions)"
       ],
-      "vocabCount": 50,
+      "vocabCount": 55,
       "grammarCount": 5,
-      "gaps": [
-        {
-          "topic": "addresses",
-          "category": "vocabulary",
-          "reason": "Intro mentions \"addresses\" but vocabulary doesn't clearly cover this theme"
-        }
-      ],
+      "gaps": [],
       "warnings": [],
-      "isComplete": false,
-      "completenessScore": 83
+      "isComplete": true,
+      "completenessScore": 100
     },
     {
       "level": "A1",
@@ -298,25 +281,15 @@
       ],
       "grammarCovers": [
         "Броеви (Numbers)",
-        "Предлози (Prepositions)"
+        "Предлози (Prepositions)",
+        "Да/не прашања (Yes/No Questions)"
       ],
-      "vocabCount": 50,
-      "grammarCount": 2,
-      "gaps": [
-        {
-          "topic": "questions",
-          "category": "grammar",
-          "reason": "Intro promises \"questions\" but no matching grammar note found"
-        },
-        {
-          "topic": "professions",
-          "category": "vocabulary",
-          "reason": "Intro mentions \"professions\" but vocabulary doesn't clearly cover this theme"
-        }
-      ],
+      "vocabCount": 55,
+      "grammarCount": 3,
+      "gaps": [],
       "warnings": [],
-      "isComplete": false,
-      "completenessScore": 67
+      "isComplete": true,
+      "completenessScore": 100
     },
     {
       "level": "A1",
@@ -343,23 +316,12 @@
         "Броеви (Numbers)",
         "Предлози (Prepositions)"
       ],
-      "vocabCount": 50,
+      "vocabCount": 58,
       "grammarCount": 4,
-      "gaps": [
-        {
-          "topic": "directions",
-          "category": "vocabulary",
-          "reason": "Intro mentions \"directions\" but vocabulary doesn't clearly cover this theme"
-        },
-        {
-          "topic": "prices/shopping",
-          "category": "vocabulary",
-          "reason": "Intro mentions \"prices/shopping\" but vocabulary doesn't clearly cover this theme"
-        }
-      ],
+      "gaps": [],
       "warnings": [],
-      "isComplete": false,
-      "completenessScore": 78
+      "isComplete": true,
+      "completenessScore": 100
     },
     {
       "level": "A1",
@@ -378,25 +340,16 @@
       ],
       "grammarCovers": [
         "Именки (Nouns - Advanced)",
-        "Предлози (Prepositions)"
+        "Предлози (Prepositions)",
+        "Сегашно време (Present Tense)",
+        "Прашања со што/каде (Wh-Questions)"
       ],
       "vocabCount": 50,
-      "grammarCount": 2,
-      "gaps": [
-        {
-          "topic": "present tense",
-          "category": "grammar",
-          "reason": "Intro promises \"present tense\" but no matching grammar note found"
-        },
-        {
-          "topic": "questions",
-          "category": "grammar",
-          "reason": "Intro promises \"questions\" but no matching grammar note found"
-        }
-      ],
+      "grammarCount": 4,
+      "gaps": [],
       "warnings": [],
-      "isComplete": false,
-      "completenessScore": 67
+      "isComplete": true,
+      "completenessScore": 100
     },
     {
       "level": "A1",
@@ -447,18 +400,12 @@
         "Показни заменки (Demonstrative pronouns)",
         "Предлози (Prepositions)"
       ],
-      "vocabCount": 50,
+      "vocabCount": 54,
       "grammarCount": 3,
-      "gaps": [
-        {
-          "topic": "prices/shopping",
-          "category": "vocabulary",
-          "reason": "Intro mentions \"prices/shopping\" but vocabulary doesn't clearly cover this theme"
-        }
-      ],
+      "gaps": [],
       "warnings": [],
-      "isComplete": false,
-      "completenessScore": 83
+      "isComplete": true,
+      "completenessScore": 100
     },
     {
       "level": "A1",
@@ -505,20 +452,15 @@
       "grammarCovers": [
         "Глаголот сум",
         "Предлози (Prepositions)",
-        "Броеви"
+        "Броеви",
+        "Минато време со „беше“ (Past Tense)"
       ],
       "vocabCount": 50,
-      "grammarCount": 3,
-      "gaps": [
-        {
-          "topic": "past tense",
-          "category": "grammar",
-          "reason": "Intro promises \"past tense\" but no matching grammar note found"
-        }
-      ],
+      "grammarCount": 4,
+      "gaps": [],
       "warnings": [],
-      "isComplete": false,
-      "completenessScore": 67
+      "isComplete": true,
+      "completenessScore": 100
     },
     {
       "level": "A1",
@@ -535,18 +477,12 @@
         "Придавки",
         "Предлози (Prepositions)"
       ],
-      "vocabCount": 50,
+      "vocabCount": 58,
       "grammarCount": 2,
-      "gaps": [
-        {
-          "topic": "countries/nationalities",
-          "category": "vocabulary",
-          "reason": "Intro mentions \"countries/nationalities\" but vocabulary doesn't clearly cover this theme"
-        }
-      ],
+      "gaps": [],
       "warnings": [],
-      "isComplete": false,
-      "completenessScore": 67
+      "isComplete": true,
+      "completenessScore": 100
     },
     {
       "level": "A1",
@@ -617,18 +553,12 @@
         "Предлози (Prepositions)",
         "Модални глаголи (Modal Verbs: смее, мора, треба)"
       ],
-      "vocabCount": 50,
+      "vocabCount": 58,
       "grammarCount": 2,
-      "gaps": [
-        {
-          "topic": "weather",
-          "category": "vocabulary",
-          "reason": "Intro mentions \"weather\" but vocabulary doesn't clearly cover this theme"
-        }
-      ],
+      "gaps": [],
       "warnings": [],
-      "isComplete": false,
-      "completenessScore": 83
+      "isComplete": true,
+      "completenessScore": 100
     },
     {
       "level": "A1",
@@ -652,25 +582,15 @@
       "grammarCovers": [
         "Придавки",
         "Броеви (Numbers)",
-        "Предлози (Prepositions)"
+        "Предлози (Prepositions)",
+        "Мора / не смее (Must / Must Not)"
       ],
-      "vocabCount": 50,
-      "grammarCount": 3,
-      "gaps": [
-        {
-          "topic": "modal verbs (must/must not)",
-          "category": "grammar",
-          "reason": "Intro promises \"modal verbs (must/must not)\" but no matching grammar note found"
-        },
-        {
-          "topic": "health expressions",
-          "category": "vocabulary",
-          "reason": "Intro mentions \"health expressions\" but vocabulary doesn't clearly cover this theme"
-        }
-      ],
+      "vocabCount": 56,
+      "grammarCount": 4,
+      "gaps": [],
       "warnings": [],
-      "isComplete": false,
-      "completenessScore": 78
+      "isComplete": true,
+      "completenessScore": 100
     },
     {
       "level": "A1",
@@ -735,20 +655,15 @@
       ],
       "grammarCovers": [
         "Броеви (Numbers)",
-        "Предлози (Prepositions)"
+        "Предлози (Prepositions)",
+        "Идно време (Future Tense)"
       ],
       "vocabCount": 42,
-      "grammarCount": 2,
-      "gaps": [
-        {
-          "topic": "future tense",
-          "category": "grammar",
-          "reason": "Intro promises \"future tense\" but no matching grammar note found"
-        }
-      ],
+      "grammarCount": 3,
+      "gaps": [],
       "warnings": [],
-      "isComplete": false,
-      "completenessScore": 67
+      "isComplete": true,
+      "completenessScore": 100
     },
     {
       "level": "A1",
@@ -1028,18 +943,12 @@
         "Глаголот честита",
         "Здравствени изрази (Health Expressions)"
       ],
-      "vocabCount": 50,
+      "vocabCount": 57,
       "grammarCount": 2,
-      "gaps": [
-        {
-          "topic": "health expressions",
-          "category": "vocabulary",
-          "reason": "Intro mentions \"health expressions\" but vocabulary doesn't clearly cover this theme"
-        }
-      ],
+      "gaps": [],
       "warnings": [],
-      "isComplete": false,
-      "completenessScore": 67
+      "isComplete": true,
+      "completenessScore": 100
     },
     {
       "level": "B1",
@@ -1150,7 +1059,5 @@
       "completenessScore": 100
     }
   ],
-  "recommendations": [
-    "Review 17 topic gap(s) where intro promises don't match content"
-  ]
+  "recommendations": []
 }

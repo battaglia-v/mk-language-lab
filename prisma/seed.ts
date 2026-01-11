@@ -4,6 +4,7 @@ import { join } from 'path';
 import { seedQuests } from './seeds/quests';
 import { seedBadges } from './seeds/badges';
 import { seedLeagues } from './seeds/leagues';
+import { seedCefrGrammarCurriculum } from './seeds/seed-cefr-grammar';
 
 const prisma = new PrismaClient();
 
@@ -98,6 +99,9 @@ async function main() {
   await seedQuests();
   await seedBadges();
   await seedLeagues();
+
+  console.log('\n--- CEFR Grammar Curriculum ---');
+  await seedCefrGrammarCurriculum();
 
   console.log('\nSeeding completed!');
 }

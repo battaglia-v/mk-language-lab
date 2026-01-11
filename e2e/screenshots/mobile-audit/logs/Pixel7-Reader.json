@@ -1,7 +1,8 @@
 {
   "route": "/en/reader",
   "viewport": "Pixel7",
-  "timestamp": "2026-01-02T01:54:13.242Z",
+  "timestamp": "2026-01-11T19:15:00.437Z",
+  "interstitialBypassed": false,
   "overflow": {
     "hasOverflow": false,
     "elements": []

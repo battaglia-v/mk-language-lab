@@ -49,6 +49,11 @@ export function FillBlank({
     }
   };
 
+  const handleWordBankSelect = (word: string) => {
+    if (disabled || feedback) return;
+    setAnswer(word);
+  };
+
   return (
     <div className="space-y-6">
       {/* Prompt Card */}
@@ -103,6 +108,29 @@ export function FillBlank({
           </p>
         )}
       </div>
+
+      {step.wordBank && step.wordBank.length > 0 && (
+        <div className="space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+            Word Bank
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {step.wordBank.map((word) => (
+              <Button
+                key={word}
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => handleWordBankSelect(word)}
+                disabled={disabled || !!feedback}
+                className="min-h-[48px]"
+              >
+                {word}
+              </Button>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
