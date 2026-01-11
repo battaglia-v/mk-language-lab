@@ -512,31 +512,23 @@
           ]
         },
         {
-          "title": "Броеви",
-          "content": "те на тастатурата. Ми се јавува од странство!! Ме бара од нејзиниот службен!!! Застанувам втренчено како вкопан на пусија, откако најпосле сепак сум ја заслушнал нагорната мелодичност на повикот – на прво борбено",
+          "title": "Броеви (Numbers)",
+          "content": "Macedonian numbers 1 and 2 have gender forms that must agree with the noun. Еден/една/едно (one) and два/две (two) change based on the gender of the noun they modify. Numbers from 3 onwards are the same for all genders. After numbers 2-4, nouns take plural form; after 5+, they also take plural.",
           "examples": [
-            "Ми се јавува од странство!",
-            "прв, прва, прво (first)",
-            "втор, втора, второ (second)",
-            "трет, трета, трето (third)",
-            "четврт, четврта, четврто (fourth)",
-            "Живеам на петтиот кат.",
-            "Ова е втората лекција.",
-            "Првиот ден беше тежок.",
-            "Третата книга е најдобра.",
-            "Дојдов на десеттото место."
+            "еден маж - one man (masculine)",
+            "една жена - one woman (feminine)",
+            "едно дете - one child (neuter)",
+            "два мажи - two men",
+            "две жени - two women",
+            "три куќи - three houses"
           ],
           "translatedExamples": [
-            "He is calling me from abroad!",
-            "first",
-            "second, second",
-            "third, third, third",
-            "fourth, fourth",
-            "I live on the fifth floor.",
-            "This is the second lesson.",
-            "The first day was tough.",
-            "The third book is the best.",
-            "I came in tenth place."
+            "one man (masculine)",
+            "one woman (feminine)",
+            "one child (neuter)",
+            "two men",
+            "two women",
+            "three houses"
           ]
         },
         {
@@ -1971,19 +1963,23 @@
           ]
         },
         {
-          "title": "Заменки",
-          "content": "7. Во пасусот 7 има две именки што добиваат ист тип определби како ѓ) сол и е) вино. Пронајдете ги. ѓ) Основната причина лежи во намаленото ниво на кислород при низок притисок. е) Луѓето што ја подготвуваат авионската храна употребуваат многу повеќе зачини. ж) Пробувањето различни вина е главен дел на експериментот. з) Авионската храна не е лошо зготвена, само е невкусна. ЗЛАТОВРВ 60 Денот не почнува без него Дали утрово испивте ваше кафе? Дали испивте ваш чај? Ништо страшно ако сè уште не сте у",
+          "title": "Заменки (Pronouns)",
+          "content": "Macedonian personal pronouns distinguish person, number, and gender. Subject pronouns (јас, ти, тој/таа/тоа, ние, вие, тие) are often omitted since verb conjugation shows the subject. Macedonian has long and short forms for object pronouns - short forms are clitics that attach to verbs.",
           "examples": [
-            "Пронајдете ги.",
-            "е) Луѓето што ја подготвуваат авионската храна употребуваат многу повеќе зачини.",
-            "з) Авионската храна не е лошо зготвена, само е невкусна.",
-            "Во пасусот 7 има две именки што добиваат ист тип определби како ѓ) сол и е) вино."
+            "Јас читам. - I read.",
+            "Ти пишуваш. - You write.",
+            "Тој/Таа работи. - He/She works.",
+            "Ние учиме. - We study.",
+            "Вие одите. - You (formal) go.",
+            "Тие играат. - They play."
           ],
           "translatedExamples": [
-            "Find them.",
-            "g) The people who prepare the airplane food use a lot more spices.",
-            "i) Airplane food is not badly cooked, just tasteless.",
-            "In paragraph 7 there are two nouns that receive the same type of determinations as f) salt and g) wine."
+            "I read.",
+            "You write.",
+            "He/She works.",
+            "We study.",
+            "You (formal) go.",
+            "They play."
           ]
         },
         {
@@ -2479,19 +2475,23 @@
           ]
         },
         {
-          "title": "Именки",
-          "content": "те. Пасус 3 Најдете два збора од областа на гастрономијата и заменети ги со други. За кои „познати адреси“ станува збор? Пасус 4 Што значи зборот резигнираност? Наведете синоним. Најдете два збора од областа на ботаниката и заменети ги со други. Пасус 5 Објаснете на кој начин хорот дејствува креативно , силно , суптилно . Објаснете ја секоја гледна точка – улицата, општеството, кабинетите. На кои кабинети се мисли? 7. Прочитајте го текстот и изработете ги вежбите дадени подолу. Македонски музичк",
+          "title": "Именки (Nouns - Advanced)",
+          "content": "At B1 level, noun usage includes the vocative case for direct address (Татко! Марија!), collective nouns (браќа, децата), and irregular plural patterns. Macedonian nouns do not decline for case (except vocative), but show gender through articles and adjective agreement. Some plurals are irregular and must be memorized.",
           "examples": [
-            "Пасус 3 Најдете два збора од областа на гастрономијата и заменети ги со други.",
-            "Најдете два збора од областа на ботаниката и заменети ги со други.",
-            "На кои кабинети се мисли?",
-            "Прочитајте го текстот и изработете ги вежбите дадени подолу."
+            "Татко, дојди! - Father, come! (vocative)",
+            "Марија, каде си? - Maria, where are you?",
+            "човек → луѓе - person → people",
+            "дете → деца - child → children",
+            "брат → браќа - brother → brothers",
+            "книгите се тука - the books are here"
           ],
           "translatedExamples": [
-            "Passage 3 Find two words from the field of gastronomy and replace them with others.",
-            "Find two words from the field of botany and replace them with others.",
-            "Which cabinets are you referring to?",
-            "Read the text and do the exercises given below."
+            "Father, come! (vocative)",
+            "Maria, where are you?",
+            "person → people",
+            "child → children",
+            "brother → brothers",
+            "the books are here"
           ]
         },
         {
@@ -3573,31 +3573,23 @@
           ]
         },
         {
-          "title": "Придавки",
-          "content": ", имајќи предвид и други промени во речениците. ► Наведете синоним за визуелни уметници. ► Кој бил подреден во колона? ► Што значи зборот мангуп ? ЗЛАТОВРВ 120 З. Пикасо, подарен, па украден, па најден Речиси никој во историјата на уметноста, за време на животниот век, не бил толку вреднуван и славен како Пабло Руиз Пикасо. Неговото исклучително долго и плодно творештво го направило актуелен и во времето на основањето на МСУ – Скопје. S. „Главата на жена“ е сликата што Пикасо ја донирал на Музеј",
+          "title": "Придавки (Adjectives)",
+          "content": "Macedonian adjectives agree with nouns in gender and number. Masculine adjectives typically end in a consonant (добар), feminine in -а (добра), and neuter in -о (добро). In plural, all genders use -и (добри). Adjectives usually come before the noun they modify.",
           "examples": [
-            "Неговото исклучително долго и плодно творештво го направило актуелен и во времето на основањето на МСУ – Скопје.",
-            "добар → подобар → најдобар",
-            "висок → повисок → највисок",
-            "убав → поубав → најубав",
-            "Оваа книга е поинтересна.",
-            "Тој е најдобриот студент.",
-            "Денес е потопло отколку вчера.",
-            "Скопје е поголемо од Охрид.",
-            "Ова е најважното прашање.",
-            "Марија е помлада од Петар."
+            "добар човек - good person (masculine)",
+            "добра жена - good woman (feminine)",
+            "добро дете - good child (neuter)",
+            "добри луѓе - good people (plural)",
+            "голем град - big city",
+            "мала куќа - small house"
           ],
           "translatedExamples": [
-            "His extremely long and fruitful work made him relevant even at the time of the founding of MSU - Skopje.",
-            "good → better → best",
-            "tall → taller → highest",
-            "beautiful → more beautiful → most beautiful",
-            "This book is more interesting.",
-            "He is the best student.",
-            "Today is warmer than yesterday.",
-            "Skopje is bigger than Ohrid.",
-            "This is the most important question.",
-            "Mary is younger than Peter."
+            "good person (masculine)",
+            "good woman (feminine)",
+            "good child (neuter)",
+            "good people (plural)",
+            "big city",
+            "small house"
           ]
         }
       ],
