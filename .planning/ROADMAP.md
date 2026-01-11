@@ -191,15 +191,15 @@ Plans:
 Plans:
 - [x] 38-01: Unify reader glossary with favorites system — completed 2026-01-11
 
-#### Phase 39: Reading Progress
+#### Phase 39: Reading Progress — COMPLETE
 
 **Goal**: Track story completion, reading time, and per-story progress
 **Depends on**: Phase 38
 **Research**: Unlikely (similar to existing lesson progress tracking)
-**Plans**: TBD
+**Plans**: 1
 
 Plans:
-- [ ] 39-01: TBD
+- [x] 39-01: Reading progress tracking and library card status — completed 2026-01-11
 
 #### Phase 40: Discovery & Navigation
 
@@ -228,7 +228,7 @@ Plans:
 | 36. A2 Reader Wiring | v1.6 | 1/1 | Complete | 2026-01-10 |
 | 37. Tap-to-Translate | v1.6 | 2/2 | Complete | 2026-01-11 |
 | 38. Reader Vocabulary Save | v1.6 | 1/1 | Complete | 2026-01-11 |
-| 39. Reading Progress | v1.6 | 0/? | Not started | - |
+| 39. Reading Progress | v1.6 | 1/1 | Complete | 2026-01-11 |
 | 40. Discovery & Navigation | v1.6 | 0/? | Not started | - |
 | 41. Content & Validation | v1.6 | 0/? | Not started | - |
 
