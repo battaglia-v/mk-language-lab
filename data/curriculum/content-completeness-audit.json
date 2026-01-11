@@ -1,21 +1,21 @@
 {
-  "auditDate": "2026-01-11T18:27:05.518Z",
+  "auditDate": "2026-01-11T18:30:12.694Z",
   "summary": {
     "totalLessons": 40,
-    "completeCount": 24,
-    "incompleteCount": 16,
-    "gapsFound": 21,
-    "lowVocabLessons": 1,
-    "lowGrammarLessons": 4,
-    "avgCompletenessScore": 87
+    "completeCount": 27,
+    "incompleteCount": 13,
+    "gapsFound": 17,
+    "lowVocabLessons": 0,
+    "lowGrammarLessons": 0,
+    "avgCompletenessScore": 91
   },
   "byLevel": {
     "a1": {
       "totalLessons": 24,
-      "completeCount": 9,
-      "avgVocab": 48,
+      "completeCount": 12,
+      "avgVocab": 49,
       "avgGrammar": 3,
-      "avgScore": 81
+      "avgScore": 87
     },
     "a2": {
       "totalLessons": 8,
@@ -28,8 +28,8 @@
       "totalLessons": 8,
       "completeCount": 7,
       "avgVocab": 50,
-      "avgGrammar": 3,
-      "avgScore": 94
+      "avgGrammar": 4,
+      "avgScore": 96
     }
   },
   "lessons": [
@@ -560,22 +560,15 @@
         }
       ],
       "grammarCovers": [
-        "Предлози (Prepositions)"
+        "Предлози (Prepositions)",
+        "Минато определено свршено време (Past Definite Tense)"
       ],
       "vocabCount": 39,
-      "grammarCount": 1,
-      "gaps": [
-        {
-          "topic": "past tense",
-          "category": "grammar",
-          "reason": "Intro promises \"past tense\" but no matching grammar note found"
-        }
-      ],
-      "warnings": [
-        "Low grammar: 1 notes (target: 2+)"
-      ],
-      "isComplete": false,
-      "completenessScore": 50
+      "grammarCount": 2,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
     },
     {
       "level": "A1",
@@ -621,27 +614,21 @@
         }
       ],
       "grammarCovers": [
-        "Предлози (Prepositions)"
+        "Предлози (Prepositions)",
+        "Модални глаголи (Modal Verbs: смее, мора, треба)"
       ],
       "vocabCount": 50,
-      "grammarCount": 1,
+      "grammarCount": 2,
       "gaps": [
-        {
-          "topic": "modal verbs (must/must not)",
-          "category": "grammar",
-          "reason": "Intro promises \"modal verbs (must/must not)\" but no matching grammar note found"
-        },
         {
           "topic": "weather",
           "category": "vocabulary",
           "reason": "Intro mentions \"weather\" but vocabulary doesn't clearly cover this theme"
         }
       ],
-      "warnings": [
-        "Low grammar: 1 notes (target: 2+)"
-      ],
+      "warnings": [],
       "isComplete": false,
-      "completenessScore": 50
+      "completenessScore": 83
     },
     {
       "level": "A1",
@@ -702,27 +689,15 @@
       ],
       "grammarCovers": [
         "Придавки",
-        "Предлози"
+        "Предлози",
+        "Компаратив и суперлатив (Comparative and Superlative)"
       ],
-      "vocabCount": 15,
-      "grammarCount": 2,
-      "gaps": [
-        {
-          "topic": "comparative adjectives",
-          "category": "grammar",
-          "reason": "Intro promises \"comparative adjectives\" but no matching grammar note found"
-        },
-        {
-          "topic": "superlative adjectives",
-          "category": "grammar",
-          "reason": "Intro promises \"superlative adjectives\" but no matching grammar note found"
-        }
-      ],
-      "warnings": [
-        "Low vocabulary: 15 items (target: 30+)"
-      ],
-      "isComplete": false,
-      "completenessScore": 50
+      "vocabCount": 45,
+      "grammarCount": 3,
+      "gaps": [],
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
     },
     {
       "level": "A1",
@@ -787,16 +762,15 @@
         }
       ],
       "grammarCovers": [
-        "Предлози (Prepositions)"
+        "Предлози (Prepositions)",
+        "Изразување чувства (Expressing Feelings)"
       ],
       "vocabCount": 50,
-      "grammarCount": 1,
+      "grammarCount": 2,
       "gaps": [],
-      "warnings": [
-        "Low grammar: 1 notes (target: 2+)"
-      ],
-      "isComplete": false,
-      "completenessScore": 83
+      "warnings": [],
+      "isComplete": true,
+      "completenessScore": 100
     },
     {
       "level": "A2",
@@ -1051,10 +1025,11 @@
         }
       ],
       "grammarCovers": [
-        "Глаголот честита"
+        "Глаголот честита",
+        "Здравствени изрази (Health Expressions)"
       ],
       "vocabCount": 50,
-      "grammarCount": 1,
+      "grammarCount": 2,
       "gaps": [
         {
           "topic": "health expressions",
@@ -1062,11 +1037,9 @@
           "reason": "Intro mentions \"health expressions\" but vocabulary doesn't clearly cover this theme"
         }
       ],
-      "warnings": [
-        "Low grammar: 1 notes (target: 2+)"
-      ],
+      "warnings": [],
       "isComplete": false,
-      "completenessScore": 50
+      "completenessScore": 67
     },
     {
       "level": "B1",
@@ -1178,10 +1151,6 @@
     }
   ],
   "recommendations": [
-    "Add vocabulary to 1 lesson(s) below 30 words",
-    "Add grammar notes to 4 lesson(s) below 2 notes",
-    "Review 21 topic gap(s) where intro promises don't match content",
-    "Lessons needing vocabulary: A1 L21 (15 words)",
-    "Lessons needing grammar: A1 L17 (1 notes), A1 L19 (1 notes), A1 L24 (1 notes), B1 L3 (1 notes)"
+    "Review 17 topic gap(s) where intro promises don't match content"
   ]
 }

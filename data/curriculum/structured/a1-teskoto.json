@@ -9574,6 +9574,26 @@
             "This is for you.",
             "I am going to the store."
           ]
+        },
+        {
+          "title": "Минато определено свршено време (Past Definite Tense)",
+          "content": "The past definite tense (аорист) in Macedonian expresses completed actions in the past. It is formed from perfective verbs and has specific endings based on conjugation class. This tense is common in narratives and storytelling.",
+          "examples": [
+            "Јас одев на работа.",
+            "Тој ми даде книга.",
+            "Ние бевме дома.",
+            "Тие дојдоа вчера.",
+            "Таа рече добро утро.",
+            "Јас напишав писмо."
+          ],
+          "translatedExamples": [
+            "I went to work.",
+            "He gave me a book.",
+            "We were at home.",
+            "They came yesterday.",
+            "She said good morning.",
+            "I wrote a letter."
+          ]
         }
       ],
       "intro": "Continue your past tense journey with commands and descriptions. Learn to give simple instructions like 'Give me the book!' and describe people and situations from the past."
@@ -10682,6 +10702,26 @@
             "This is for you.",
             "I am going to the store."
           ]
+        },
+        {
+          "title": "Модални глаголи (Modal Verbs: смее, мора, треба)",
+          "content": "Macedonian modal verbs express permission, obligation, and necessity. 'Смее' (may/can) indicates permission, 'мора' (must) indicates obligation, and 'треба' (need/should) indicates necessity. The negative 'не смее' means 'must not' or 'is not allowed'.",
+          "examples": [
+            "Не смееш да паркираш овде.",
+            "Мора да носиш маска.",
+            "Треба да учиш секој ден.",
+            "Смее ли да влезам?",
+            "Не мора да одиш.",
+            "Треба да бидеш внимателен."
+          ],
+          "translatedExamples": [
+            "You must not park here.",
+            "You must wear a mask.",
+            "You need to study every day.",
+            "May I come in?",
+            "You don't have to go.",
+            "You should be careful."
+          ]
         }
       ],
       "intro": "Learn the rules with 'must' and 'must not'. Discuss weather, climate, and obligations. From traffic signs to social rules, understand how to express what's required or forbidden."
@@ -11439,6 +11479,246 @@
           "gender": "neuter",
           "transliteration": "podobro",
           "isCore": false
+        },
+        {
+          "word": "добар",
+          "partOfSpeech": "adjective",
+          "context": "comparative/superlative base",
+          "translation": "good",
+          "transliteration": "dobar",
+          "isCore": true
+        },
+        {
+          "word": "лош",
+          "partOfSpeech": "adjective",
+          "context": "comparative/superlative base",
+          "translation": "bad",
+          "transliteration": "losh",
+          "isCore": true
+        },
+        {
+          "word": "голем",
+          "partOfSpeech": "adjective",
+          "context": "comparative/superlative base",
+          "translation": "big",
+          "transliteration": "golem",
+          "isCore": true
+        },
+        {
+          "word": "мал",
+          "partOfSpeech": "adjective",
+          "context": "comparative/superlative base",
+          "translation": "small",
+          "transliteration": "mal",
+          "isCore": true
+        },
+        {
+          "word": "висок",
+          "partOfSpeech": "adjective",
+          "context": "comparative/superlative base",
+          "translation": "tall/high",
+          "transliteration": "visok",
+          "isCore": true
+        },
+        {
+          "word": "низок",
+          "partOfSpeech": "adjective",
+          "context": "comparative/superlative base",
+          "translation": "short/low",
+          "transliteration": "nizok",
+          "isCore": true
+        },
+        {
+          "word": "поголем",
+          "partOfSpeech": "adjective",
+          "context": "comparative form",
+          "translation": "bigger",
+          "transliteration": "pogolem",
+          "isCore": true
+        },
+        {
+          "word": "помал",
+          "partOfSpeech": "adjective",
+          "context": "comparative form",
+          "translation": "smaller",
+          "transliteration": "pomal",
+          "isCore": true
+        },
+        {
+          "word": "повисок",
+          "partOfSpeech": "adjective",
+          "context": "comparative form",
+          "translation": "taller/higher",
+          "transliteration": "povisok",
+          "isCore": true
+        },
+        {
+          "word": "понизок",
+          "partOfSpeech": "adjective",
+          "context": "comparative form",
+          "translation": "shorter/lower",
+          "transliteration": "ponizok",
+          "isCore": true
+        },
+        {
+          "word": "најголем",
+          "partOfSpeech": "adjective",
+          "context": "superlative form",
+          "translation": "biggest",
+          "transliteration": "najgolem",
+          "isCore": true
+        },
+        {
+          "word": "најмал",
+          "partOfSpeech": "adjective",
+          "context": "superlative form",
+          "translation": "smallest",
+          "transliteration": "najmal",
+          "isCore": true
+        },
+        {
+          "word": "најлош",
+          "partOfSpeech": "adjective",
+          "context": "superlative form",
+          "translation": "worst",
+          "transliteration": "najlosh",
+          "isCore": true
+        },
+        {
+          "word": "полош",
+          "partOfSpeech": "adjective",
+          "context": "comparative form",
+          "translation": "worse",
+          "transliteration": "polosh",
+          "isCore": true
+        },
+        {
+          "word": "скап",
+          "partOfSpeech": "adjective",
+          "context": "comparative/superlative base",
+          "translation": "expensive",
+          "transliteration": "skap",
+          "isCore": true
+        },
+        {
+          "word": "евтин",
+          "partOfSpeech": "adjective",
+          "context": "comparative/superlative base",
+          "translation": "cheap",
+          "transliteration": "evtin",
+          "isCore": true
+        },
+        {
+          "word": "поскап",
+          "partOfSpeech": "adjective",
+          "context": "comparative form",
+          "translation": "more expensive",
+          "transliteration": "poskap",
+          "isCore": true
+        },
+        {
+          "word": "поевтин",
+          "partOfSpeech": "adjective",
+          "context": "comparative form",
+          "translation": "cheaper",
+          "transliteration": "poevtin",
+          "isCore": true
+        },
+        {
+          "word": "најскап",
+          "partOfSpeech": "adjective",
+          "context": "superlative form",
+          "translation": "most expensive",
+          "transliteration": "najskap",
+          "isCore": true
+        },
+        {
+          "word": "најевтин",
+          "partOfSpeech": "adjective",
+          "context": "superlative form",
+          "translation": "cheapest",
+          "transliteration": "najevtin",
+          "isCore": true
+        },
+        {
+          "word": "брз",
+          "partOfSpeech": "adjective",
+          "context": "comparative/superlative base",
+          "translation": "fast",
+          "transliteration": "brz",
+          "isCore": true
+        },
+        {
+          "word": "бавен",
+          "partOfSpeech": "adjective",
+          "context": "comparative/superlative base",
+          "translation": "slow",
+          "transliteration": "baven",
+          "isCore": true
+        },
+        {
+          "word": "побрз",
+          "partOfSpeech": "adjective",
+          "context": "comparative form",
+          "translation": "faster",
+          "transliteration": "pobrz",
+          "isCore": true
+        },
+        {
+          "word": "најбрз",
+          "partOfSpeech": "adjective",
+          "context": "superlative form",
+          "translation": "fastest",
+          "transliteration": "najbrz",
+          "isCore": true
+        },
+        {
+          "word": "стар",
+          "partOfSpeech": "adjective",
+          "context": "comparative/superlative base",
+          "translation": "old",
+          "transliteration": "star",
+          "isCore": true
+        },
+        {
+          "word": "постар",
+          "partOfSpeech": "adjective",
+          "context": "comparative form",
+          "translation": "older",
+          "transliteration": "postar",
+          "isCore": true
+        },
+        {
+          "word": "најстар",
+          "partOfSpeech": "adjective",
+          "context": "superlative form",
+          "translation": "oldest",
+          "transliteration": "najstar",
+          "isCore": true
+        },
+        {
+          "word": "млад",
+          "partOfSpeech": "adjective",
+          "context": "comparative/superlative base",
+          "translation": "young",
+          "transliteration": "mlad",
+          "isCore": true
+        },
+        {
+          "word": "помлад",
+          "partOfSpeech": "adjective",
+          "context": "comparative form",
+          "translation": "younger",
+          "transliteration": "pomlad",
+          "isCore": true
+        },
+        {
+          "word": "најмлад",
+          "partOfSpeech": "adjective",
+          "context": "superlative form",
+          "translation": "youngest",
+          "transliteration": "najmlad",
+          "isCore": true
         }
       ],
       "grammarNotes": [
@@ -11478,6 +11758,26 @@
             "I'm going with a friend.",
             "I come from Ohrid.",
             "This is for you."
+          ]
+        },
+        {
+          "title": "Компаратив и суперлатив (Comparative and Superlative)",
+          "content": "Macedonian forms comparatives with the prefix 'по-' and superlatives with 'нај-'. Unlike English, these prefixes attach directly to adjectives. The adjective still agrees in gender with the noun it modifies.",
+          "examples": [
+            "добар → подобар → најдобар",
+            "голем → поголем → најголем",
+            "Тој е повисок од мене.",
+            "Ова е најдоброто место.",
+            "Таа е помлада од брат ми.",
+            "Кој е најбрзиот?"
+          ],
+          "translatedExamples": [
+            "good → better → best",
+            "big → bigger → biggest",
+            "He is taller than me.",
+            "This is the best place.",
+            "She is younger than my brother.",
+            "Who is the fastest?"
           ]
         }
       ],
@@ -13037,6 +13337,26 @@
             "He is from Skopje.",
             "This is for you.",
             "I am going to the store."
+          ]
+        },
+        {
+          "title": "Изразување чувства (Expressing Feelings)",
+          "content": "In Macedonian, feelings are often expressed using adjectives that agree with the subject's gender. The verb 'сум' (to be) or 'се чувствувам' (I feel) is used. Many feeling adjectives have distinct masculine and feminine forms.",
+          "examples": [
+            "Јас сум гладен/гладна.",
+            "Тој е жеден.",
+            "Таа е уморна.",
+            "Се чувствувам среќен/среќна.",
+            "Дали си тажен?",
+            "Ние сме возбудени."
+          ],
+          "translatedExamples": [
+            "I am hungry (m/f).",
+            "He is thirsty.",
+            "She is tired.",
+            "I feel happy (m/f).",
+            "Are you sad?",
+            "We are excited."
           ]
         }
       ],
