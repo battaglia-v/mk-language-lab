@@ -14,6 +14,7 @@ import fs from 'fs/promises';
 import path from 'path';
 
 const SAMPLES_DIR = path.join(process.cwd(), 'data/reader/samples');
+const GRADED_DIR = path.join(process.cwd(), 'data/reader/graded');
 const API_URL = process.env.ANALYZE_API_URL || 'http://localhost:3000/api/translate/analyze';
 
 interface TextBlock {
@@ -137,12 +138,56 @@ async function processFile(filePath: string): Promise<boolean> {
   }
 }
 
+interface ProcessResult {
+  success: number;
+  failed: number;
+  total: number;
+}
+
+async function processDirectory(
+  dirPath: string,
+  label: string,
+  fileFilter: (f: string) => boolean
+): Promise<ProcessResult> {
+  console.log(`\n${'─'.repeat(60)}`);
+  console.log(`Processing ${label}`);
+  console.log(`Directory: ${dirPath}`);
+  console.log('─'.repeat(60));
+
+  let files: string[];
+  try {
+    files = await fs.readdir(dirPath);
+  } catch {
+    console.log(`  Directory not found, skipping...`);
+    return { success: 0, failed: 0, total: 0 };
+  }
+
+  const jsonFiles = files.filter(fileFilter);
+  console.log(`Found ${jsonFiles.length} files to process`);
+
+  let success = 0;
+  let failed = 0;
+
+  for (const file of jsonFiles) {
+    const result = await processFile(path.join(dirPath, file));
+    if (result) {
+      success++;
+    } else {
+      failed++;
+    }
+
+    // Add delay to avoid rate limiting
+    await new Promise(resolve => setTimeout(resolve, 1000));
+  }
+
+  return { success, failed, total: jsonFiles.length };
+}
+
 async function main() {
   console.log('='.repeat(60));
   console.log('Pre-analyzing Reader Samples');
   console.log('='.repeat(60));
-  console.log(`\nSamples directory: ${SAMPLES_DIR}`);
-  console.log(`API URL: ${API_URL}`);
+  console.log(`\nAPI URL: ${API_URL}`);
 
   // Check if API is available
   try {
@@ -160,35 +205,33 @@ async function main() {
     process.exit(1);
   }
 
-  // Get all JSON files
-  const files = await fs.readdir(SAMPLES_DIR);
-  const jsonFiles = files.filter(f => f.endsWith('.json') && f.startsWith('day'));
+  // Process 30-day challenge samples (day*.json)
+  const samplesResult = await processDirectory(
+    SAMPLES_DIR,
+    '30-Day Challenge Samples',
+    (f) => f.endsWith('.json') && f.startsWith('day')
+  );
 
-  console.log(`\nFound ${jsonFiles.length} sample files to process`);
+  // Process graded readers (all .json files)
+  const gradedResult = await processDirectory(
+    GRADED_DIR,
+    'Graded Readers',
+    (f) => f.endsWith('.json')
+  );
 
-  let success = 0;
-  let failed = 0;
-  const skipped = 0;
-
-  for (const file of jsonFiles) {
-    const result = await processFile(path.join(SAMPLES_DIR, file));
-    if (result) {
-      success++;
-    } else {
-      failed++;
-    }
-
-    // Add delay to avoid rate limiting
-    await new Promise(resolve => setTimeout(resolve, 1000));
-  }
+  // Combined summary
+  const totalFiles = samplesResult.total + gradedResult.total;
+  const totalSuccess = samplesResult.success + gradedResult.success;
+  const totalFailed = samplesResult.failed + gradedResult.failed;
 
   console.log('\n' + '='.repeat(60));
   console.log('Summary');
   console.log('='.repeat(60));
-  console.log(`Total files: ${jsonFiles.length}`);
-  console.log(`Successfully processed: ${success}`);
-  console.log(`Failed: ${failed}`);
-  console.log(`Skipped (already analyzed): ${skipped}`);
+  console.log(`\n30-Day Samples: ${samplesResult.success}/${samplesResult.total} processed`);
+  console.log(`Graded Readers: ${gradedResult.success}/${gradedResult.total} processed`);
+  console.log(`\nTotal files: ${totalFiles}`);
+  console.log(`Successfully processed: ${totalSuccess}`);
+  console.log(`Failed: ${totalFailed}`);
 }
 
 main().catch(console.error);
