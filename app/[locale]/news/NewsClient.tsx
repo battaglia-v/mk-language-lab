@@ -314,8 +314,8 @@ export default function NewsClient({
                 <Newspaper className="inline h-3 w-3 mr-1.5" aria-hidden="true" />
                 {t('title')}
               </p>
-              <h1 className="page-header-title">{t('title')}</h1>
-              <p className="page-header-subtitle">{t('subtitle')}</p>
+              <h1 className="page-header-title text-balance break-words">{t('title')}</h1>
+              <p className="page-header-subtitle text-balance break-words">{t('subtitle')}</p>
               <p className="text-xs text-muted-foreground">
                 {t('sourceLabel')} · {meta ? `${meta.count}/${meta.total}` : '—'}
               </p>
@@ -364,7 +364,7 @@ export default function NewsClient({
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder={t('searchPlaceholder')}
-                className="min-h-[44px] rounded-2xl border border-border/60 bg-background/80 pl-10 text-sm text-foreground placeholder:text-muted-foreground"
+                className="min-h-[48px] rounded-2xl border border-border/60 bg-background/80 pl-10 text-sm text-foreground placeholder:text-muted-foreground"
                 data-testid="news-search-input"
               />
             </div>
@@ -387,7 +387,7 @@ export default function NewsClient({
                 size="sm"
                 onClick={handleRefresh}
                 data-testid="news-refresh"
-                className="min-h-[44px] w-full gap-1.5 rounded-full border border-border/60 px-4 text-foreground sm:w-auto"
+                className="min-h-[48px] w-full gap-1.5 rounded-full border border-border/60 px-4 text-foreground sm:w-auto"
               >
                 <RefreshCcw className="h-3.5 w-3.5" />
                 {t('refresh')}
@@ -405,11 +405,11 @@ export default function NewsClient({
       {error && (
         <Alert variant="destructive" className="glass-card border border-destructive/50 text-red-100">
           <AlertTitle className="text-sm sm:text-base">{t('error')}</AlertTitle>
-          <AlertDescription className="text-xs text-red-100/90 sm:text-sm">{error}</AlertDescription>
+          <AlertDescription className="text-xs text-red-100/90 break-words sm:text-sm">{error}</AlertDescription>
           <Button
             variant="outline"
             size="sm"
-            className="mt-3 min-h-[44px] rounded-full border-border/60 px-4 text-sm text-white sm:mt-4"
+            className="mt-3 min-h-[48px] rounded-full border-border/60 px-4 text-sm text-white sm:mt-4"
             onClick={handleRefresh}
             data-testid="news-retry"
           >
@@ -421,7 +421,7 @@ export default function NewsClient({
       {!error && meta?.errors && meta.errors.length > 0 && (
         <Alert className="glass-card border border-border/60 text-foreground">
           <AlertTitle>{t('error')}</AlertTitle>
-          <AlertDescription className="text-muted-foreground">{meta.errors.join(' • ')}</AlertDescription>
+          <AlertDescription className="text-muted-foreground break-words">{meta.errors.join(' • ')}</AlertDescription>
         </Alert>
       )}
 
@@ -456,7 +456,7 @@ export default function NewsClient({
               variant="outline"
               size="sm"
               onClick={handleClearFilters}
-              className="min-h-[44px] rounded-full px-5"
+              className="min-h-[48px] rounded-full px-5"
               data-testid="news-clear-filters"
             >
               {t('clearFilters')}
@@ -493,8 +493,8 @@ export default function NewsClient({
                       className="transition-transform duration-500 group-hover:scale-[1.02]"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent" />
-                    <div className="absolute bottom-4 left-4 right-4 space-y-3">
-                      <div className="flex flex-wrap items-center gap-2">
+                    <div className="absolute bottom-4 left-4 right-4 min-w-0 space-y-3">
+                      <div className="flex flex-wrap items-center gap-2 min-w-0">
                         <Badge variant="secondary" className="bg-black/45 text-[11px] text-white backdrop-blur">
                           {leadItem.sourceName}
                         </Badge>
@@ -523,19 +523,19 @@ export default function NewsClient({
                           </Badge>
                         )}
                       </div>
-                      <div className="space-y-2">
-                        <h2 className="text-lg font-semibold leading-snug text-white line-clamp-2 sm:text-xl">
+                      <div className="space-y-2 min-w-0">
+                        <h2 className="text-lg font-semibold leading-snug text-white line-clamp-2 break-words sm:text-xl">
                           {leadItem.title}
                         </h2>
                         {leadItem.description && (
-                          <p className="text-sm text-white/80 line-clamp-2">
+                          <p className="text-sm text-white/80 line-clamp-2 break-words">
                             {leadItem.description}
                           </p>
                         )}
                       </div>
-                      <div className="flex items-center justify-between text-xs text-white/70">
+                      <div className="flex flex-col gap-2 text-xs text-white/70 sm:flex-row sm:items-center sm:justify-between">
                         {mounted && leadItem.publishedAt && (
-                          <span suppressHydrationWarning className="inline-flex items-center gap-1.5">
+                          <span suppressHydrationWarning className="inline-flex items-center gap-1.5 min-w-0">
                             <Clock3 className="h-3.5 w-3.5" />
                             {formatRelativeTime(leadItem.publishedAt)}
                           </span>
@@ -581,23 +581,23 @@ export default function NewsClient({
                               className="transition-transform duration-500 group-hover:scale-[1.03]"
                             />
                           </div>
-                          <div className="flex flex-1 flex-col gap-3 p-4">
+                          <div className="flex flex-1 flex-col gap-3 p-4 min-w-0">
                             <Badge variant="secondary" className="w-fit bg-primary/15 text-[11px] text-primary">
                               {item.sourceName}
                             </Badge>
-                            <div className="space-y-2">
-                              <h3 className="text-base font-semibold text-foreground line-clamp-2 group-hover:text-primary">
+                            <div className="space-y-2 min-w-0">
+                              <h3 className="text-base font-semibold text-foreground line-clamp-2 break-words group-hover:text-primary">
                                 {item.title}
                               </h3>
                               {item.description && (
-                                <p className="text-sm text-muted-foreground line-clamp-2">
+                                <p className="text-sm text-muted-foreground line-clamp-2 break-words">
                                   {item.description}
                                 </p>
                               )}
                             </div>
-                            <div className="mt-auto flex items-center justify-between text-xs text-muted-foreground">
+                            <div className="mt-auto flex flex-col gap-2 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
                               {publishedLabel && (
-                                <span suppressHydrationWarning className="inline-flex items-center gap-1.5">
+                                <span suppressHydrationWarning className="inline-flex items-center gap-1.5 min-w-0">
                                   <Clock3 className="h-3.5 w-3.5" />
                                   {publishedLabel}
                                 </span>
@@ -671,17 +671,17 @@ export default function NewsClient({
                             {item.sourceName}
                           </Badge>
                         </div>
-                        <CardHeader className="flex-1 space-y-3">
-                          <CardTitle className="text-base font-semibold leading-snug text-foreground line-clamp-2 group-hover:text-primary">
+                        <CardHeader className="flex-1 space-y-3 min-w-0">
+                          <CardTitle className="text-base font-semibold leading-snug text-foreground line-clamp-2 break-words group-hover:text-primary">
                             {item.title}
                           </CardTitle>
                           {item.description && (
-                            <CardDescription className="line-clamp-3 text-sm text-muted-foreground">
+                            <CardDescription className="line-clamp-3 text-sm text-muted-foreground break-words">
                               {item.description}
                             </CardDescription>
                           )}
                         </CardHeader>
-                        <CardContent className="space-y-3">
+                        <CardContent className="space-y-3 min-w-0">
                           <div className="flex flex-wrap gap-1.5">
                             {visibleCategories.map((category) => (
                               <Badge
@@ -711,9 +711,9 @@ export default function NewsClient({
                               </Badge>
                             )}
                           </div>
-                          <div className="flex items-center justify-between text-xs text-muted-foreground">
+                          <div className="flex flex-col gap-2 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
                             {publishedLabel && (
-                              <span suppressHydrationWarning className="inline-flex items-center gap-1.5">
+                              <span suppressHydrationWarning className="inline-flex items-center gap-1.5 min-w-0">
                                 <Clock3 className="h-3.5 w-3.5" />
                                 {publishedLabel}
                               </span>
