@@ -5,62 +5,2138 @@
   "title_en": "My Job",
   "difficulty": "A2",
   "estimatedMinutes": 5,
-  "tags": ["graded-reader", "A2", "daily-life"],
+  "tags": [
+    "graded-reader",
+    "A2",
+    "daily-life"
+  ],
   "text_blocks_mk": [
-    { "type": "p", "value": "Јас работам како програмер во една фирма во Скопје. Секој ден станувам во шест часот наутро. Појадувам брзо и одам на работа со автомобил." },
-    { "type": "p", "value": "Мојата канцеларија е на петтиот кат. Имам многу добри колеги и работиме заедно на проекти. Обично имаме состанок секое утро во девет часот." },
-    { "type": "p", "value": "На состанокот разговараме за нашите задачи. Понекогаш работата е стресна, но ми се допаѓа. Минатата недела завршивме еден голем проект." },
-    { "type": "p", "value": "Шефот рече: \"Одлична работа, тимот!\" За ручек одам во ресторанот близу фирмата. Завршувам со работа во пет часот попладне. Најмногу сакам кога работам од дома петоците." }
+    {
+      "type": "p",
+      "value": "Јас работам како програмер во една фирма во Скопје. Секој ден станувам во шест часот наутро. Појадувам брзо и одам на работа со автомобил."
+    },
+    {
+      "type": "p",
+      "value": "Мојата канцеларија е на петтиот кат. Имам многу добри колеги и работиме заедно на проекти. Обично имаме состанок секое утро во девет часот."
+    },
+    {
+      "type": "p",
+      "value": "На состанокот разговараме за нашите задачи. Понекогаш работата е стресна, но ми се допаѓа. Минатата недела завршивме еден голем проект."
+    },
+    {
+      "type": "p",
+      "value": "Шефот рече: \"Одлична работа, тимот!\" За ручек одам во ресторанот близу фирмата. Завршувам со работа во пет часот попладне. Најмногу сакам кога работам од дома петоците."
+    }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Сегашни вообичаени дејства и временски изрази",
       "title_en": "Present habitual actions and time expressions",
       "examples": [
-        { "mk": "секој ден", "en": "every day" },
-        { "mk": "обично", "en": "usually" },
-        { "mk": "понекогаш", "en": "sometimes" },
-        { "mk": "рано", "en": "early" }
+        {
+          "mk": "секој ден",
+          "en": "every day"
+        },
+        {
+          "mk": "обично",
+          "en": "usually"
+        },
+        {
+          "mk": "понекогаш",
+          "en": "sometimes"
+        },
+        {
+          "mk": "рано",
+          "en": "early"
+        }
       ]
     }
   ],
   "vocabulary": [
-    { "mk": "програмер", "en": "programmer", "pos": "noun" },
-    { "mk": "фирма", "en": "company/firm", "pos": "noun" },
-    { "mk": "секој ден", "en": "every day", "pos": "phrase" },
-    { "mk": "наутро", "en": "in the morning", "pos": "adverb" },
-    { "mk": "појадувам", "en": "I have breakfast", "pos": "verb" },
-    { "mk": "брзо", "en": "quickly", "pos": "adverb" },
-    { "mk": "автомобил", "en": "car", "pos": "noun" },
-    { "mk": "канцеларија", "en": "office", "pos": "noun" },
-    { "mk": "петтиот", "en": "the fifth", "pos": "ordinal (def)" },
-    { "mk": "кат", "en": "floor/storey", "pos": "noun" },
-    { "mk": "колеги", "en": "colleagues", "pos": "noun" },
-    { "mk": "проекти", "en": "projects", "pos": "noun" },
-    { "mk": "обично", "en": "usually", "pos": "adverb" },
-    { "mk": "состанок", "en": "meeting", "pos": "noun" },
-    { "mk": "разговараме", "en": "we discuss", "pos": "verb" },
-    { "mk": "задачи", "en": "tasks", "pos": "noun" },
-    { "mk": "понекогаш", "en": "sometimes", "pos": "adverb" },
-    { "mk": "стресна", "en": "stressful", "pos": "adjective" },
-    { "mk": "ми се допаѓа", "en": "I like it", "pos": "verb phrase" },
-    { "mk": "минатата недела", "en": "last week", "pos": "phrase" },
-    { "mk": "завршивме", "en": "we finished", "pos": "verb (past)" },
-    { "mk": "шефот", "en": "the boss", "pos": "noun (def)" },
-    { "mk": "рече", "en": "said", "pos": "verb (past)" },
-    { "mk": "одлична", "en": "excellent", "pos": "adjective" },
-    { "mk": "ручек", "en": "lunch", "pos": "noun" },
-    { "mk": "близу", "en": "near", "pos": "preposition" },
-    { "mk": "завршувам", "en": "I finish", "pos": "verb" },
-    { "mk": "попладне", "en": "in the afternoon", "pos": "adverb" },
-    { "mk": "најмногу", "en": "most", "pos": "adverb" },
-    { "mk": "од дома", "en": "from home", "pos": "phrase" },
-    { "mk": "петоците", "en": "on Fridays", "pos": "noun (def)" }
+    {
+      "mk": "програмер",
+      "en": "programmer",
+      "pos": "noun"
+    },
+    {
+      "mk": "фирма",
+      "en": "company/firm",
+      "pos": "noun"
+    },
+    {
+      "mk": "секој ден",
+      "en": "every day",
+      "pos": "phrase"
+    },
+    {
+      "mk": "наутро",
+      "en": "in the morning",
+      "pos": "adverb"
+    },
+    {
+      "mk": "појадувам",
+      "en": "I have breakfast",
+      "pos": "verb"
+    },
+    {
+      "mk": "брзо",
+      "en": "quickly",
+      "pos": "adverb"
+    },
+    {
+      "mk": "автомобил",
+      "en": "car",
+      "pos": "noun"
+    },
+    {
+      "mk": "канцеларија",
+      "en": "office",
+      "pos": "noun"
+    },
+    {
+      "mk": "петтиот",
+      "en": "the fifth",
+      "pos": "ordinal (def)"
+    },
+    {
+      "mk": "кат",
+      "en": "floor/storey",
+      "pos": "noun"
+    },
+    {
+      "mk": "колеги",
+      "en": "colleagues",
+      "pos": "noun"
+    },
+    {
+      "mk": "проекти",
+      "en": "projects",
+      "pos": "noun"
+    },
+    {
+      "mk": "обично",
+      "en": "usually",
+      "pos": "adverb"
+    },
+    {
+      "mk": "состанок",
+      "en": "meeting",
+      "pos": "noun"
+    },
+    {
+      "mk": "разговараме",
+      "en": "we discuss",
+      "pos": "verb"
+    },
+    {
+      "mk": "задачи",
+      "en": "tasks",
+      "pos": "noun"
+    },
+    {
+      "mk": "понекогаш",
+      "en": "sometimes",
+      "pos": "adverb"
+    },
+    {
+      "mk": "стресна",
+      "en": "stressful",
+      "pos": "adjective"
+    },
+    {
+      "mk": "ми се допаѓа",
+      "en": "I like it",
+      "pos": "verb phrase"
+    },
+    {
+      "mk": "минатата недела",
+      "en": "last week",
+      "pos": "phrase"
+    },
+    {
+      "mk": "завршивме",
+      "en": "we finished",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "шефот",
+      "en": "the boss",
+      "pos": "noun (def)"
+    },
+    {
+      "mk": "рече",
+      "en": "said",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "одлична",
+      "en": "excellent",
+      "pos": "adjective"
+    },
+    {
+      "mk": "ручек",
+      "en": "lunch",
+      "pos": "noun"
+    },
+    {
+      "mk": "близу",
+      "en": "near",
+      "pos": "preposition"
+    },
+    {
+      "mk": "завршувам",
+      "en": "I finish",
+      "pos": "verb"
+    },
+    {
+      "mk": "попладне",
+      "en": "in the afternoon",
+      "pos": "adverb"
+    },
+    {
+      "mk": "најмногу",
+      "en": "most",
+      "pos": "adverb"
+    },
+    {
+      "mk": "од дома",
+      "en": "from home",
+      "pos": "phrase"
+    },
+    {
+      "mk": "петоците",
+      "en": "on Fridays",
+      "pos": "noun (def)"
+    }
   ],
   "expressions": [],
   "attribution": {
     "handle": "@mklanguagelab",
     "series": "Graded Readers",
     "day": "daily-life"
+  },
+  "analyzedData": {
+    "words": [
+      {
+        "id": "word-0",
+        "original": "Јас",
+        "translation": "Me",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 0
+      },
+      {
+        "id": "word-2",
+        "original": "работам",
+        "translation": "I work",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 2
+      },
+      {
+        "id": "word-4",
+        "original": "како",
+        "translation": "like",
+        "contextualMeaning": "like",
+        "alternativeTranslations": [
+          "how",
+          "as",
+          "what"
+        ],
+        "pos": "adverb",
+        "difficulty": "basic",
+        "index": 4,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-6",
+        "original": "програмер",
+        "translation": "programmer",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 6
+      },
+      {
+        "id": "word-8",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 8,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-10",
+        "original": "една",
+        "translation": "a",
+        "contextualMeaning": "a",
+        "alternativeTranslations": [
+          "one (fem.)",
+          "an"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 10,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-12",
+        "original": "фирма",
+        "translation": "company",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 12
+      },
+      {
+        "id": "word-14",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 14,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-16",
+        "original": "Скопје",
+        "translation": "Skopje",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 16
+      },
+      {
+        "id": "word-18",
+        "original": "Секој",
+        "translation": "every",
+        "contextualMeaning": "every",
+        "alternativeTranslations": [
+          "each",
+          "everyone"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 18,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-20",
+        "original": "ден",
+        "translation": "day",
+        "contextualMeaning": "day",
+        "alternativeTranslations": [
+          "daytime"
+        ],
+        "pos": "adjective",
+        "difficulty": "basic",
+        "index": 20,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-22",
+        "original": "станувам",
+        "translation": "I get up",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 22
+      },
+      {
+        "id": "word-24",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 24,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-26",
+        "original": "шест",
+        "translation": "six",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 26
+      },
+      {
+        "id": "word-28",
+        "original": "часот",
+        "translation": "the hour",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 28
+      },
+      {
+        "id": "word-30",
+        "original": "наутро",
+        "translation": "in the morning",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 30
+      },
+      {
+        "id": "word-32",
+        "original": "Појадувам",
+        "translation": "I have breakfast",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 32
+      },
+      {
+        "id": "word-34",
+        "original": "брзо",
+        "translation": "fast",
+        "contextualMeaning": "fast",
+        "alternativeTranslations": [
+          "quickly",
+          "soon"
+        ],
+        "pos": "adverb",
+        "difficulty": "basic",
+        "index": 34,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-36",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 36,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-38",
+        "original": "одам",
+        "translation": "I'm going",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 38
+      },
+      {
+        "id": "word-40",
+        "original": "на",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 40,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-42",
+        "original": "работа",
+        "translation": "work",
+        "contextualMeaning": "work",
+        "alternativeTranslations": [
+          "job",
+          "thing",
+          "matter"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 42,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-44",
+        "original": "со",
+        "translation": "by",
+        "contextualMeaning": "by",
+        "alternativeTranslations": [
+          "with",
+          "using"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 44,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-46",
+        "original": "автомобил",
+        "translation": "a car",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 46
+      },
+      {
+        "id": "word-48",
+        "original": "Мојата",
+        "translation": "Mine",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 48
+      },
+      {
+        "id": "word-50",
+        "original": "канцеларија",
+        "translation": "office",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 50
+      },
+      {
+        "id": "word-52",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 52,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-54",
+        "original": "на",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 54,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-56",
+        "original": "петтиот",
+        "translation": "the fifth",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 56
+      },
+      {
+        "id": "word-58",
+        "original": "кат",
+        "translation": "floor",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 58
+      },
+      {
+        "id": "word-60",
+        "original": "Имам",
+        "translation": "I have",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 60
+      },
+      {
+        "id": "word-62",
+        "original": "многу",
+        "translation": "very",
+        "contextualMeaning": "very",
+        "alternativeTranslations": [
+          "much",
+          "a lot",
+          "many"
+        ],
+        "pos": "adverb",
+        "difficulty": "intermediate",
+        "index": 62,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-64",
+        "original": "добри",
+        "translation": "good ones",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 64
+      },
+      {
+        "id": "word-66",
+        "original": "колеги",
+        "translation": "colleagues",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 66
+      },
+      {
+        "id": "word-68",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 68,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-70",
+        "original": "работиме",
+        "translation": "we work",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 70
+      },
+      {
+        "id": "word-72",
+        "original": "заедно",
+        "translation": "together",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 72
+      },
+      {
+        "id": "word-74",
+        "original": "на",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 74,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-76",
+        "original": "проекти",
+        "translation": "projects",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 76
+      },
+      {
+        "id": "word-78",
+        "original": "Обично",
+        "translation": "Usually",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 78
+      },
+      {
+        "id": "word-80",
+        "original": "имаме",
+        "translation": "we have",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 80
+      },
+      {
+        "id": "word-82",
+        "original": "состанок",
+        "translation": "meeting",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 82
+      },
+      {
+        "id": "word-84",
+        "original": "секое",
+        "translation": "every one",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 84
+      },
+      {
+        "id": "word-86",
+        "original": "утро",
+        "translation": "morning",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 86
+      },
+      {
+        "id": "word-88",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 88,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-90",
+        "original": "девет",
+        "translation": "nine",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 90
+      },
+      {
+        "id": "word-92",
+        "original": "часот",
+        "translation": "the hour",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 92
+      },
+      {
+        "id": "word-94",
+        "original": "На",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 94,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-96",
+        "original": "состанокот",
+        "translation": "the meeting",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 96
+      },
+      {
+        "id": "word-98",
+        "original": "разговараме",
+        "translation": "we talk",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 98
+      },
+      {
+        "id": "word-100",
+        "original": "за",
+        "translation": "for",
+        "contextualMeaning": "for",
+        "alternativeTranslations": [
+          "about",
+          "to",
+          "in order to"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 100,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-102",
+        "original": "нашите",
+        "translation": "ours",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 102
+      },
+      {
+        "id": "word-104",
+        "original": "задачи",
+        "translation": "tasks",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 104
+      },
+      {
+        "id": "word-106",
+        "original": "Понекогаш",
+        "translation": "sometimes",
+        "contextualMeaning": "sometimes",
+        "alternativeTranslations": [
+          "occasionally"
+        ],
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 106,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-108",
+        "original": "работата",
+        "translation": "the job",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 108
+      },
+      {
+        "id": "word-110",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 110,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-112",
+        "original": "стресна",
+        "translation": "stressed",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 112
+      },
+      {
+        "id": "word-114",
+        "original": "но",
+        "translation": "but",
+        "pos": "adjective",
+        "difficulty": "basic",
+        "index": 114
+      },
+      {
+        "id": "word-116",
+        "original": "ми",
+        "translation": "mi",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 116
+      },
+      {
+        "id": "word-118",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 118,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-120",
+        "original": "допаѓа",
+        "translation": "like it",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 120
+      },
+      {
+        "id": "word-122",
+        "original": "Минатата",
+        "translation": "The past",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 122
+      },
+      {
+        "id": "word-124",
+        "original": "недела",
+        "translation": "Sunday",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 124
+      },
+      {
+        "id": "word-126",
+        "original": "завршивме",
+        "translation": "we are done",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 126
+      },
+      {
+        "id": "word-128",
+        "original": "еден",
+        "translation": "a",
+        "contextualMeaning": "a",
+        "alternativeTranslations": [
+          "one",
+          "an",
+          "some"
+        ],
+        "pos": "adjective",
+        "difficulty": "basic",
+        "index": 128,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-130",
+        "original": "голем",
+        "translation": "big",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 130
+      },
+      {
+        "id": "word-132",
+        "original": "проект",
+        "translation": "project",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 132
+      },
+      {
+        "id": "word-134",
+        "original": "Шефот",
+        "translation": "The boss",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 134
+      },
+      {
+        "id": "word-136",
+        "original": "рече",
+        "translation": "he said",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 136
+      },
+      {
+        "id": "word-138",
+        "original": "Одлична",
+        "translation": "Excellent",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 138
+      },
+      {
+        "id": "word-140",
+        "original": "работа",
+        "translation": "work",
+        "contextualMeaning": "work",
+        "alternativeTranslations": [
+          "job",
+          "thing",
+          "matter"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 140,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-142",
+        "original": "тимот",
+        "translation": "the team",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 142
+      },
+      {
+        "id": "word-144",
+        "original": "За",
+        "translation": "for",
+        "contextualMeaning": "for",
+        "alternativeTranslations": [
+          "about",
+          "to",
+          "in order to"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 144,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-146",
+        "original": "ручек",
+        "translation": "lunch",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 146
+      },
+      {
+        "id": "word-148",
+        "original": "одам",
+        "translation": "I'm going",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 148
+      },
+      {
+        "id": "word-150",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 150,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-152",
+        "original": "ресторанот",
+        "translation": "the restaurant",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 152
+      },
+      {
+        "id": "word-154",
+        "original": "близу",
+        "translation": "near",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 154
+      },
+      {
+        "id": "word-156",
+        "original": "фирмата",
+        "translation": "the company",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 156
+      },
+      {
+        "id": "word-158",
+        "original": "Завршувам",
+        "translation": "I'm finishing",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 158
+      },
+      {
+        "id": "word-160",
+        "original": "со",
+        "translation": "by",
+        "contextualMeaning": "by",
+        "alternativeTranslations": [
+          "with",
+          "using"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 160,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-162",
+        "original": "работа",
+        "translation": "work",
+        "contextualMeaning": "work",
+        "alternativeTranslations": [
+          "job",
+          "thing",
+          "matter"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 162,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-164",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 164,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-166",
+        "original": "пет",
+        "translation": "five",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 166
+      },
+      {
+        "id": "word-168",
+        "original": "часот",
+        "translation": "the hour",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 168
+      },
+      {
+        "id": "word-170",
+        "original": "попладне",
+        "translation": "in the afternoon",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 170
+      },
+      {
+        "id": "word-172",
+        "original": "Најмногу",
+        "translation": "The most",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 172
+      },
+      {
+        "id": "word-174",
+        "original": "сакам",
+        "translation": "i love",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 174
+      },
+      {
+        "id": "word-176",
+        "original": "кога",
+        "translation": "when",
+        "contextualMeaning": "when",
+        "alternativeTranslations": [
+          "whenever"
+        ],
+        "pos": "adverb",
+        "difficulty": "basic",
+        "index": 176,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-178",
+        "original": "работам",
+        "translation": "I work",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 178
+      },
+      {
+        "id": "word-180",
+        "original": "од",
+        "translation": "from",
+        "contextualMeaning": "from",
+        "alternativeTranslations": [
+          "of",
+          "off",
+          "than",
+          "by"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 180,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-182",
+        "original": "дома",
+        "translation": "at home",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 182
+      },
+      {
+        "id": "word-184",
+        "original": "петоците",
+        "translation": "Fridays",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 184
+      }
+    ],
+    "tokens": [
+      {
+        "token": "Јас",
+        "isWord": true,
+        "index": 0
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 1
+      },
+      {
+        "token": "работам",
+        "isWord": true,
+        "index": 2
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 3
+      },
+      {
+        "token": "како",
+        "isWord": true,
+        "index": 4
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 5
+      },
+      {
+        "token": "програмер",
+        "isWord": true,
+        "index": 6
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 7
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 8
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 9
+      },
+      {
+        "token": "една",
+        "isWord": true,
+        "index": 10
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 11
+      },
+      {
+        "token": "фирма",
+        "isWord": true,
+        "index": 12
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 13
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 14
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 15
+      },
+      {
+        "token": "Скопје",
+        "isWord": true,
+        "index": 16
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 17
+      },
+      {
+        "token": "Секој",
+        "isWord": true,
+        "index": 18
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 19
+      },
+      {
+        "token": "ден",
+        "isWord": true,
+        "index": 20
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 21
+      },
+      {
+        "token": "станувам",
+        "isWord": true,
+        "index": 22
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 23
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 24
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 25
+      },
+      {
+        "token": "шест",
+        "isWord": true,
+        "index": 26
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 27
+      },
+      {
+        "token": "часот",
+        "isWord": true,
+        "index": 28
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 29
+      },
+      {
+        "token": "наутро",
+        "isWord": true,
+        "index": 30
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 31
+      },
+      {
+        "token": "Појадувам",
+        "isWord": true,
+        "index": 32
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 33
+      },
+      {
+        "token": "брзо",
+        "isWord": true,
+        "index": 34
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 35
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 36
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 37
+      },
+      {
+        "token": "одам",
+        "isWord": true,
+        "index": 38
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 39
+      },
+      {
+        "token": "на",
+        "isWord": true,
+        "index": 40
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 41
+      },
+      {
+        "token": "работа",
+        "isWord": true,
+        "index": 42
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 43
+      },
+      {
+        "token": "со",
+        "isWord": true,
+        "index": 44
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 45
+      },
+      {
+        "token": "автомобил",
+        "isWord": true,
+        "index": 46
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 47
+      },
+      {
+        "token": "Мојата",
+        "isWord": true,
+        "index": 48
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 49
+      },
+      {
+        "token": "канцеларија",
+        "isWord": true,
+        "index": 50
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 51
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 52
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 53
+      },
+      {
+        "token": "на",
+        "isWord": true,
+        "index": 54
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 55
+      },
+      {
+        "token": "петтиот",
+        "isWord": true,
+        "index": 56
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 57
+      },
+      {
+        "token": "кат",
+        "isWord": true,
+        "index": 58
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 59
+      },
+      {
+        "token": "Имам",
+        "isWord": true,
+        "index": 60
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 61
+      },
+      {
+        "token": "многу",
+        "isWord": true,
+        "index": 62
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 63
+      },
+      {
+        "token": "добри",
+        "isWord": true,
+        "index": 64
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 65
+      },
+      {
+        "token": "колеги",
+        "isWord": true,
+        "index": 66
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 67
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 68
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 69
+      },
+      {
+        "token": "работиме",
+        "isWord": true,
+        "index": 70
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 71
+      },
+      {
+        "token": "заедно",
+        "isWord": true,
+        "index": 72
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 73
+      },
+      {
+        "token": "на",
+        "isWord": true,
+        "index": 74
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 75
+      },
+      {
+        "token": "проекти",
+        "isWord": true,
+        "index": 76
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 77
+      },
+      {
+        "token": "Обично",
+        "isWord": true,
+        "index": 78
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 79
+      },
+      {
+        "token": "имаме",
+        "isWord": true,
+        "index": 80
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 81
+      },
+      {
+        "token": "состанок",
+        "isWord": true,
+        "index": 82
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 83
+      },
+      {
+        "token": "секое",
+        "isWord": true,
+        "index": 84
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 85
+      },
+      {
+        "token": "утро",
+        "isWord": true,
+        "index": 86
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 87
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 88
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 89
+      },
+      {
+        "token": "девет",
+        "isWord": true,
+        "index": 90
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 91
+      },
+      {
+        "token": "часот",
+        "isWord": true,
+        "index": 92
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 93
+      },
+      {
+        "token": "На",
+        "isWord": true,
+        "index": 94
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 95
+      },
+      {
+        "token": "состанокот",
+        "isWord": true,
+        "index": 96
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 97
+      },
+      {
+        "token": "разговараме",
+        "isWord": true,
+        "index": 98
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 99
+      },
+      {
+        "token": "за",
+        "isWord": true,
+        "index": 100
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 101
+      },
+      {
+        "token": "нашите",
+        "isWord": true,
+        "index": 102
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 103
+      },
+      {
+        "token": "задачи",
+        "isWord": true,
+        "index": 104
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 105
+      },
+      {
+        "token": "Понекогаш",
+        "isWord": true,
+        "index": 106
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 107
+      },
+      {
+        "token": "работата",
+        "isWord": true,
+        "index": 108
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 109
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 110
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 111
+      },
+      {
+        "token": "стресна",
+        "isWord": true,
+        "index": 112
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 113
+      },
+      {
+        "token": "но",
+        "isWord": true,
+        "index": 114
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 115
+      },
+      {
+        "token": "ми",
+        "isWord": true,
+        "index": 116
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 117
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 118
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 119
+      },
+      {
+        "token": "допаѓа",
+        "isWord": true,
+        "index": 120
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 121
+      },
+      {
+        "token": "Минатата",
+        "isWord": true,
+        "index": 122
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 123
+      },
+      {
+        "token": "недела",
+        "isWord": true,
+        "index": 124
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 125
+      },
+      {
+        "token": "завршивме",
+        "isWord": true,
+        "index": 126
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 127
+      },
+      {
+        "token": "еден",
+        "isWord": true,
+        "index": 128
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 129
+      },
+      {
+        "token": "голем",
+        "isWord": true,
+        "index": 130
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 131
+      },
+      {
+        "token": "проект",
+        "isWord": true,
+        "index": 132
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 133
+      },
+      {
+        "token": "Шефот",
+        "isWord": true,
+        "index": 134
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 135
+      },
+      {
+        "token": "рече",
+        "isWord": true,
+        "index": 136
+      },
+      {
+        "token": ": \"",
+        "isWord": false,
+        "index": 137
+      },
+      {
+        "token": "Одлична",
+        "isWord": true,
+        "index": 138
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 139
+      },
+      {
+        "token": "работа",
+        "isWord": true,
+        "index": 140
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 141
+      },
+      {
+        "token": "тимот",
+        "isWord": true,
+        "index": 142
+      },
+      {
+        "token": "!\" ",
+        "isWord": false,
+        "index": 143
+      },
+      {
+        "token": "За",
+        "isWord": true,
+        "index": 144
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 145
+      },
+      {
+        "token": "ручек",
+        "isWord": true,
+        "index": 146
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 147
+      },
+      {
+        "token": "одам",
+        "isWord": true,
+        "index": 148
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 149
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 150
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 151
+      },
+      {
+        "token": "ресторанот",
+        "isWord": true,
+        "index": 152
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 153
+      },
+      {
+        "token": "близу",
+        "isWord": true,
+        "index": 154
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 155
+      },
+      {
+        "token": "фирмата",
+        "isWord": true,
+        "index": 156
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 157
+      },
+      {
+        "token": "Завршувам",
+        "isWord": true,
+        "index": 158
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 159
+      },
+      {
+        "token": "со",
+        "isWord": true,
+        "index": 160
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 161
+      },
+      {
+        "token": "работа",
+        "isWord": true,
+        "index": 162
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 163
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 164
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 165
+      },
+      {
+        "token": "пет",
+        "isWord": true,
+        "index": 166
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 167
+      },
+      {
+        "token": "часот",
+        "isWord": true,
+        "index": 168
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 169
+      },
+      {
+        "token": "попладне",
+        "isWord": true,
+        "index": 170
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 171
+      },
+      {
+        "token": "Најмногу",
+        "isWord": true,
+        "index": 172
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 173
+      },
+      {
+        "token": "сакам",
+        "isWord": true,
+        "index": 174
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 175
+      },
+      {
+        "token": "кога",
+        "isWord": true,
+        "index": 176
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 177
+      },
+      {
+        "token": "работам",
+        "isWord": true,
+        "index": 178
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 179
+      },
+      {
+        "token": "од",
+        "isWord": true,
+        "index": 180
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 181
+      },
+      {
+        "token": "дома",
+        "isWord": true,
+        "index": 182
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 183
+      },
+      {
+        "token": "петоците",
+        "isWord": true,
+        "index": 184
+      },
+      {
+        "token": ".",
+        "isWord": false,
+        "index": 185
+      }
+    ],
+    "fullTranslation": "I work as a programmer in a company in Skopje. I get up at six in the morning every day. I have a quick breakfast and go to work by car.\n\nMy office is on the fifth floor. I have very good colleagues and we work together on projects. We usually have a meeting every morning at nine o'clock.\n\nAt the meeting we discuss our tasks. Sometimes the work is stressful, but I like it. Last week we finished a big project.\n\nThe boss said, \"Great job, team!\" For lunch I go to the restaurant near the company. I finish work at five in the afternoon. I love working from home on Fridays the most.",
+    "difficulty": {
+      "level": "intermediate",
+      "score": 59.67741935483871,
+      "factors": {
+        "avgWordLength": 5.086021505376344,
+        "longWords": 18,
+        "totalWords": 93
+      }
+    },
+    "metadata": {
+      "wordCount": 93,
+      "sentenceCount": 13,
+      "characterCount": 586
+    }
   }
 }

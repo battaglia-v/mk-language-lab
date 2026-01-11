@@ -5,57 +5,1447 @@
   "title_en": "My Morning",
   "difficulty": "A1",
   "estimatedMinutes": 3,
-  "tags": ["graded-reader", "A1", "daily-life"],
+  "tags": [
+    "graded-reader",
+    "A1",
+    "daily-life"
+  ],
   "text_blocks_mk": [
-    { "type": "p", "value": "Секое утро станувам во седум часот. Јас одам во бањата и се мијам. Си ги мијам забите." },
-    { "type": "p", "value": "Потоа се облекувам. Јас одам во кујната за појадок. За појадок јадам леб со мед." },
-    { "type": "p", "value": "Пијам чај или сок. Мајка ми прави кафе секое утро. Во осум часот сум готов." },
-    { "type": "p", "value": "Ја земам мојата торба. Се поздравувам со семејството. Одам на работа со автобус." }
+    {
+      "type": "p",
+      "value": "Секое утро станувам во седум часот. Јас одам во бањата и се мијам. Си ги мијам забите."
+    },
+    {
+      "type": "p",
+      "value": "Потоа се облекувам. Јас одам во кујната за појадок. За појадок јадам леб со мед."
+    },
+    {
+      "type": "p",
+      "value": "Пијам чај или сок. Мајка ми прави кафе секое утро. Во осум часот сум готов."
+    },
+    {
+      "type": "p",
+      "value": "Ја земам мојата торба. Се поздравувам со семејството. Одам на работа со автобус."
+    }
   ],
   "grammar_highlights": [
     {
       "title_mk": "Сегашно време за секојдневни активности",
       "title_en": "Present tense verbs for daily routine",
       "examples": [
-        { "mk": "станувам", "en": "I wake up/get up" },
-        { "mk": "јадам", "en": "I eat" },
-        { "mk": "пијам", "en": "I drink" },
-        { "mk": "одам", "en": "I go" }
+        {
+          "mk": "станувам",
+          "en": "I wake up/get up"
+        },
+        {
+          "mk": "јадам",
+          "en": "I eat"
+        },
+        {
+          "mk": "пијам",
+          "en": "I drink"
+        },
+        {
+          "mk": "одам",
+          "en": "I go"
+        }
       ]
     }
   ],
   "vocabulary": [
-    { "mk": "секое", "en": "every", "pos": "adjective" },
-    { "mk": "утро", "en": "morning", "pos": "noun" },
-    { "mk": "станувам", "en": "I wake up/get up", "pos": "verb" },
-    { "mk": "бањата", "en": "the bathroom", "pos": "noun" },
-    { "mk": "се мијам", "en": "I wash myself", "pos": "reflexive verb" },
-    { "mk": "заби", "en": "teeth", "pos": "noun" },
-    { "mk": "потоа", "en": "then", "pos": "adverb" },
-    { "mk": "се облекувам", "en": "I get dressed", "pos": "reflexive verb" },
-    { "mk": "кујната", "en": "the kitchen", "pos": "noun" },
-    { "mk": "појадок", "en": "breakfast", "pos": "noun" },
-    { "mk": "јадам", "en": "I eat", "pos": "verb" },
-    { "mk": "леб", "en": "bread", "pos": "noun" },
-    { "mk": "мед", "en": "honey", "pos": "noun" },
-    { "mk": "пијам", "en": "I drink", "pos": "verb" },
-    { "mk": "чај", "en": "tea", "pos": "noun" },
-    { "mk": "сок", "en": "juice", "pos": "noun" },
-    { "mk": "прави", "en": "makes", "pos": "verb" },
-    { "mk": "кафе", "en": "coffee", "pos": "noun" },
-    { "mk": "осум", "en": "eight", "pos": "number" },
-    { "mk": "готов", "en": "ready", "pos": "adjective" },
-    { "mk": "земам", "en": "I take", "pos": "verb" },
-    { "mk": "торба", "en": "bag", "pos": "noun" },
-    { "mk": "се поздравувам", "en": "I say goodbye", "pos": "reflexive verb" },
-    { "mk": "семејството", "en": "the family", "pos": "noun" },
-    { "mk": "работа", "en": "work", "pos": "noun" },
-    { "mk": "автобус", "en": "bus", "pos": "noun" }
+    {
+      "mk": "секое",
+      "en": "every",
+      "pos": "adjective"
+    },
+    {
+      "mk": "утро",
+      "en": "morning",
+      "pos": "noun"
+    },
+    {
+      "mk": "станувам",
+      "en": "I wake up/get up",
+      "pos": "verb"
+    },
+    {
+      "mk": "бањата",
+      "en": "the bathroom",
+      "pos": "noun"
+    },
+    {
+      "mk": "се мијам",
+      "en": "I wash myself",
+      "pos": "reflexive verb"
+    },
+    {
+      "mk": "заби",
+      "en": "teeth",
+      "pos": "noun"
+    },
+    {
+      "mk": "потоа",
+      "en": "then",
+      "pos": "adverb"
+    },
+    {
+      "mk": "се облекувам",
+      "en": "I get dressed",
+      "pos": "reflexive verb"
+    },
+    {
+      "mk": "кујната",
+      "en": "the kitchen",
+      "pos": "noun"
+    },
+    {
+      "mk": "појадок",
+      "en": "breakfast",
+      "pos": "noun"
+    },
+    {
+      "mk": "јадам",
+      "en": "I eat",
+      "pos": "verb"
+    },
+    {
+      "mk": "леб",
+      "en": "bread",
+      "pos": "noun"
+    },
+    {
+      "mk": "мед",
+      "en": "honey",
+      "pos": "noun"
+    },
+    {
+      "mk": "пијам",
+      "en": "I drink",
+      "pos": "verb"
+    },
+    {
+      "mk": "чај",
+      "en": "tea",
+      "pos": "noun"
+    },
+    {
+      "mk": "сок",
+      "en": "juice",
+      "pos": "noun"
+    },
+    {
+      "mk": "прави",
+      "en": "makes",
+      "pos": "verb"
+    },
+    {
+      "mk": "кафе",
+      "en": "coffee",
+      "pos": "noun"
+    },
+    {
+      "mk": "осум",
+      "en": "eight",
+      "pos": "number"
+    },
+    {
+      "mk": "готов",
+      "en": "ready",
+      "pos": "adjective"
+    },
+    {
+      "mk": "земам",
+      "en": "I take",
+      "pos": "verb"
+    },
+    {
+      "mk": "торба",
+      "en": "bag",
+      "pos": "noun"
+    },
+    {
+      "mk": "се поздравувам",
+      "en": "I say goodbye",
+      "pos": "reflexive verb"
+    },
+    {
+      "mk": "семејството",
+      "en": "the family",
+      "pos": "noun"
+    },
+    {
+      "mk": "работа",
+      "en": "work",
+      "pos": "noun"
+    },
+    {
+      "mk": "автобус",
+      "en": "bus",
+      "pos": "noun"
+    }
   ],
   "expressions": [],
   "attribution": {
     "handle": "@mklanguagelab",
     "series": "Graded Readers",
     "day": "daily-life"
+  },
+  "analyzedData": {
+    "words": [
+      {
+        "id": "word-0",
+        "original": "Секое",
+        "translation": "Any",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 0
+      },
+      {
+        "id": "word-2",
+        "original": "утро",
+        "translation": "morning",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 2
+      },
+      {
+        "id": "word-4",
+        "original": "станувам",
+        "translation": "I get up",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 4
+      },
+      {
+        "id": "word-6",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 6,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-8",
+        "original": "седум",
+        "translation": "seven",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 8
+      },
+      {
+        "id": "word-10",
+        "original": "часот",
+        "translation": "the hour",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 10
+      },
+      {
+        "id": "word-12",
+        "original": "Јас",
+        "translation": "Me",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 12
+      },
+      {
+        "id": "word-14",
+        "original": "одам",
+        "translation": "I'm going",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 14
+      },
+      {
+        "id": "word-16",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 16,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-18",
+        "original": "бањата",
+        "translation": "the bathroom",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 18
+      },
+      {
+        "id": "word-20",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 20,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-22",
+        "original": "се",
+        "translation": "oneself",
+        "contextualMeaning": "oneself",
+        "alternativeTranslations": [
+          "each other",
+          "is",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 22,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-24",
+        "original": "мијам",
+        "translation": "I wash",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 24
+      },
+      {
+        "id": "word-26",
+        "original": "Си",
+        "translation": "yourself",
+        "contextualMeaning": "yourself",
+        "alternativeTranslations": [
+          "your own",
+          "are",
+          "home",
+          "still"
+        ],
+        "contextHint": "Dative reflexive or informal \"you are\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 26,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-28",
+        "original": "ги",
+        "translation": "them",
+        "contextualMeaning": "them",
+        "alternativeTranslations": [
+          "the (plural)"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 28,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-30",
+        "original": "мијам",
+        "translation": "I wash",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 30
+      },
+      {
+        "id": "word-32",
+        "original": "забите",
+        "translation": "the teeth",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 32
+      },
+      {
+        "id": "word-34",
+        "original": "Потоа",
+        "translation": "then",
+        "contextualMeaning": "then",
+        "alternativeTranslations": [
+          "after that",
+          "afterwards"
+        ],
+        "pos": "adverb",
+        "difficulty": "intermediate",
+        "index": 34,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-36",
+        "original": "се",
+        "translation": "oneself",
+        "contextualMeaning": "oneself",
+        "alternativeTranslations": [
+          "each other",
+          "is",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 36,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-38",
+        "original": "облекувам",
+        "translation": "I dress",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 38
+      },
+      {
+        "id": "word-40",
+        "original": "Јас",
+        "translation": "Me",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 40
+      },
+      {
+        "id": "word-42",
+        "original": "одам",
+        "translation": "I'm going",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 42
+      },
+      {
+        "id": "word-44",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 44,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-46",
+        "original": "кујната",
+        "translation": "the kitchen",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 46
+      },
+      {
+        "id": "word-48",
+        "original": "за",
+        "translation": "for",
+        "contextualMeaning": "for",
+        "alternativeTranslations": [
+          "about",
+          "to",
+          "in order to"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 48,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-50",
+        "original": "појадок",
+        "translation": "breakfast",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 50
+      },
+      {
+        "id": "word-52",
+        "original": "За",
+        "translation": "for",
+        "contextualMeaning": "for",
+        "alternativeTranslations": [
+          "about",
+          "to",
+          "in order to"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 52,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-54",
+        "original": "појадок",
+        "translation": "breakfast",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 54
+      },
+      {
+        "id": "word-56",
+        "original": "јадам",
+        "translation": "I eat",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 56
+      },
+      {
+        "id": "word-58",
+        "original": "леб",
+        "translation": "bread",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 58
+      },
+      {
+        "id": "word-60",
+        "original": "со",
+        "translation": "with",
+        "contextualMeaning": "with",
+        "alternativeTranslations": [
+          "by",
+          "using"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 60,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-62",
+        "original": "мед",
+        "translation": "honey",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 62
+      },
+      {
+        "id": "word-64",
+        "original": "Пијам",
+        "translation": "I drink",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 64
+      },
+      {
+        "id": "word-66",
+        "original": "чај",
+        "translation": "tea",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 66
+      },
+      {
+        "id": "word-68",
+        "original": "или",
+        "translation": "or",
+        "contextualMeaning": "or",
+        "alternativeTranslations": [
+          "either"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 68,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-70",
+        "original": "сок",
+        "translation": "juice",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 70
+      },
+      {
+        "id": "word-72",
+        "original": "Мајка",
+        "translation": "Mother",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 72
+      },
+      {
+        "id": "word-74",
+        "original": "ми",
+        "translation": "mi",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 74
+      },
+      {
+        "id": "word-76",
+        "original": "прави",
+        "translation": "makes",
+        "contextualMeaning": "makes",
+        "alternativeTranslations": [
+          "does",
+          "creates"
+        ],
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 76,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-78",
+        "original": "кафе",
+        "translation": "coffee",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 78
+      },
+      {
+        "id": "word-80",
+        "original": "секое",
+        "translation": "every one",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 80
+      },
+      {
+        "id": "word-82",
+        "original": "утро",
+        "translation": "morning",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 82
+      },
+      {
+        "id": "word-84",
+        "original": "Во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 84,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-86",
+        "original": "осум",
+        "translation": "eight",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 86
+      },
+      {
+        "id": "word-88",
+        "original": "часот",
+        "translation": "the hour",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 88
+      },
+      {
+        "id": "word-90",
+        "original": "сум",
+        "translation": "am",
+        "contextualMeaning": "am",
+        "alternativeTranslations": [
+          "I am"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 90,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-92",
+        "original": "готов",
+        "translation": "done",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 92
+      },
+      {
+        "id": "word-94",
+        "original": "Ја",
+        "translation": "her",
+        "contextualMeaning": "her",
+        "alternativeTranslations": [
+          "it (fem.)",
+          "the"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 94,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-96",
+        "original": "земам",
+        "translation": "I take",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 96
+      },
+      {
+        "id": "word-98",
+        "original": "мојата",
+        "translation": "mine",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 98
+      },
+      {
+        "id": "word-100",
+        "original": "торба",
+        "translation": "a bag",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 100
+      },
+      {
+        "id": "word-102",
+        "original": "Се",
+        "translation": "oneself",
+        "contextualMeaning": "oneself",
+        "alternativeTranslations": [
+          "each other",
+          "is",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 102,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-104",
+        "original": "поздравувам",
+        "translation": "I greet",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 104
+      },
+      {
+        "id": "word-106",
+        "original": "со",
+        "translation": "with",
+        "contextualMeaning": "with",
+        "alternativeTranslations": [
+          "by",
+          "using"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 106,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-108",
+        "original": "семејството",
+        "translation": "the family",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 108
+      },
+      {
+        "id": "word-110",
+        "original": "Одам",
+        "translation": "I'm going",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 110
+      },
+      {
+        "id": "word-112",
+        "original": "на",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 112,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-114",
+        "original": "работа",
+        "translation": "work",
+        "contextualMeaning": "work",
+        "alternativeTranslations": [
+          "job",
+          "thing",
+          "matter"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 114,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-116",
+        "original": "со",
+        "translation": "with",
+        "contextualMeaning": "with",
+        "alternativeTranslations": [
+          "by",
+          "using"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 116,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-118",
+        "original": "автобус",
+        "translation": "bus",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 118
+      }
+    ],
+    "tokens": [
+      {
+        "token": "Секое",
+        "isWord": true,
+        "index": 0
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 1
+      },
+      {
+        "token": "утро",
+        "isWord": true,
+        "index": 2
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 3
+      },
+      {
+        "token": "станувам",
+        "isWord": true,
+        "index": 4
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 5
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 6
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 7
+      },
+      {
+        "token": "седум",
+        "isWord": true,
+        "index": 8
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 9
+      },
+      {
+        "token": "часот",
+        "isWord": true,
+        "index": 10
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 11
+      },
+      {
+        "token": "Јас",
+        "isWord": true,
+        "index": 12
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 13
+      },
+      {
+        "token": "одам",
+        "isWord": true,
+        "index": 14
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 15
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 16
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 17
+      },
+      {
+        "token": "бањата",
+        "isWord": true,
+        "index": 18
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 19
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 20
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 21
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 22
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 23
+      },
+      {
+        "token": "мијам",
+        "isWord": true,
+        "index": 24
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 25
+      },
+      {
+        "token": "Си",
+        "isWord": true,
+        "index": 26
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 27
+      },
+      {
+        "token": "ги",
+        "isWord": true,
+        "index": 28
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 29
+      },
+      {
+        "token": "мијам",
+        "isWord": true,
+        "index": 30
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 31
+      },
+      {
+        "token": "забите",
+        "isWord": true,
+        "index": 32
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 33
+      },
+      {
+        "token": "Потоа",
+        "isWord": true,
+        "index": 34
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 35
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 36
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 37
+      },
+      {
+        "token": "облекувам",
+        "isWord": true,
+        "index": 38
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 39
+      },
+      {
+        "token": "Јас",
+        "isWord": true,
+        "index": 40
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 41
+      },
+      {
+        "token": "одам",
+        "isWord": true,
+        "index": 42
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 43
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 44
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 45
+      },
+      {
+        "token": "кујната",
+        "isWord": true,
+        "index": 46
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 47
+      },
+      {
+        "token": "за",
+        "isWord": true,
+        "index": 48
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 49
+      },
+      {
+        "token": "појадок",
+        "isWord": true,
+        "index": 50
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 51
+      },
+      {
+        "token": "За",
+        "isWord": true,
+        "index": 52
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 53
+      },
+      {
+        "token": "појадок",
+        "isWord": true,
+        "index": 54
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 55
+      },
+      {
+        "token": "јадам",
+        "isWord": true,
+        "index": 56
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 57
+      },
+      {
+        "token": "леб",
+        "isWord": true,
+        "index": 58
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 59
+      },
+      {
+        "token": "со",
+        "isWord": true,
+        "index": 60
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 61
+      },
+      {
+        "token": "мед",
+        "isWord": true,
+        "index": 62
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 63
+      },
+      {
+        "token": "Пијам",
+        "isWord": true,
+        "index": 64
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 65
+      },
+      {
+        "token": "чај",
+        "isWord": true,
+        "index": 66
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 67
+      },
+      {
+        "token": "или",
+        "isWord": true,
+        "index": 68
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 69
+      },
+      {
+        "token": "сок",
+        "isWord": true,
+        "index": 70
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 71
+      },
+      {
+        "token": "Мајка",
+        "isWord": true,
+        "index": 72
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 73
+      },
+      {
+        "token": "ми",
+        "isWord": true,
+        "index": 74
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 75
+      },
+      {
+        "token": "прави",
+        "isWord": true,
+        "index": 76
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 77
+      },
+      {
+        "token": "кафе",
+        "isWord": true,
+        "index": 78
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 79
+      },
+      {
+        "token": "секое",
+        "isWord": true,
+        "index": 80
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 81
+      },
+      {
+        "token": "утро",
+        "isWord": true,
+        "index": 82
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 83
+      },
+      {
+        "token": "Во",
+        "isWord": true,
+        "index": 84
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 85
+      },
+      {
+        "token": "осум",
+        "isWord": true,
+        "index": 86
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 87
+      },
+      {
+        "token": "часот",
+        "isWord": true,
+        "index": 88
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 89
+      },
+      {
+        "token": "сум",
+        "isWord": true,
+        "index": 90
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 91
+      },
+      {
+        "token": "готов",
+        "isWord": true,
+        "index": 92
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 93
+      },
+      {
+        "token": "Ја",
+        "isWord": true,
+        "index": 94
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 95
+      },
+      {
+        "token": "земам",
+        "isWord": true,
+        "index": 96
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 97
+      },
+      {
+        "token": "мојата",
+        "isWord": true,
+        "index": 98
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 99
+      },
+      {
+        "token": "торба",
+        "isWord": true,
+        "index": 100
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 101
+      },
+      {
+        "token": "Се",
+        "isWord": true,
+        "index": 102
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 103
+      },
+      {
+        "token": "поздравувам",
+        "isWord": true,
+        "index": 104
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 105
+      },
+      {
+        "token": "со",
+        "isWord": true,
+        "index": 106
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 107
+      },
+      {
+        "token": "семејството",
+        "isWord": true,
+        "index": 108
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 109
+      },
+      {
+        "token": "Одам",
+        "isWord": true,
+        "index": 110
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 111
+      },
+      {
+        "token": "на",
+        "isWord": true,
+        "index": 112
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 113
+      },
+      {
+        "token": "работа",
+        "isWord": true,
+        "index": 114
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 115
+      },
+      {
+        "token": "со",
+        "isWord": true,
+        "index": 116
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 117
+      },
+      {
+        "token": "автобус",
+        "isWord": true,
+        "index": 118
+      },
+      {
+        "token": ".",
+        "isWord": false,
+        "index": 119
+      }
+    ],
+    "fullTranslation": "I get up at seven o'clock every morning. I go to the bathroom and wash myself. I brush my teeth.\n\nThen I get dressed. I go to the kitchen for breakfast. I eat bread with honey for breakfast.\n\nI drink tea or juice. My mother makes coffee every morning. At eight o'clock I am ready.\n\nI take my bag. I say goodbye to the family. I go to work by bus.",
+    "difficulty": {
+      "level": "intermediate",
+      "score": 45.50000000000001,
+      "factors": {
+        "avgWordLength": 4.216666666666667,
+        "longWords": 4,
+        "totalWords": 60
+      }
+    },
+    "metadata": {
+      "wordCount": 60,
+      "sentenceCount": 12,
+      "characterCount": 327
+    }
   }
 }

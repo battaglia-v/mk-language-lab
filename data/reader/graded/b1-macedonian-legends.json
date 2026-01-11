@@ -5,12 +5,28 @@
   "title_en": "Macedonian Legends",
   "difficulty": "B1",
   "estimatedMinutes": 8,
-  "tags": ["graded-reader", "B1", "culture"],
+  "tags": [
+    "graded-reader",
+    "B1",
+    "culture"
+  ],
   "text_blocks_mk": [
-    { "type": "p", "value": "Во Македонија постојат многу легенди што се пренесуваат од генерација на генерација. Една од најпознатите е легендата за Охридското Езеро. Се раскажува дека некогаш, на местото на езерото, имало големо село." },
-    { "type": "p", "value": "Во тоа село, жителите биле среќни и богати. Еден ден, во селото дошла стара жена која барала вода и леб. Никој не сакал да ѝ помогне. Само едно младо момиче, чие име било Охрида, ѝ дало вода и леб." },
-    { "type": "p", "value": "Старата жена рекла: \"Оваа ноќ, бегај од селото. Утре ќе биде доцна.\" Момичето послушало и избегало од селото истата ноќ. На утрото, целото село било потопено под вода." },
-    { "type": "p", "value": "На тоа место се создало прекрасно езеро. Езерото го добило името по момичето — Охрид. Луѓето велат дека на дното на езерото сè уште може да се видат остатоци од селото. Оваа легенда нè учи дека добрината секогаш се наградува. Легендите како оваа ја чуваат душата на македонскиот народ." }
+    {
+      "type": "p",
+      "value": "Во Македонија постојат многу легенди што се пренесуваат од генерација на генерација. Една од најпознатите е легендата за Охридското Езеро. Се раскажува дека некогаш, на местото на езерото, имало големо село."
+    },
+    {
+      "type": "p",
+      "value": "Во тоа село, жителите биле среќни и богати. Еден ден, во селото дошла стара жена која барала вода и леб. Никој не сакал да ѝ помогне. Само едно младо момиче, чие име било Охрида, ѝ дало вода и леб."
+    },
+    {
+      "type": "p",
+      "value": "Старата жена рекла: \"Оваа ноќ, бегај од селото. Утре ќе биде доцна.\" Момичето послушало и избегало од селото истата ноќ. На утрото, целото село било потопено под вода."
+    },
+    {
+      "type": "p",
+      "value": "На тоа место се создало прекрасно езеро. Езерото го добило името по момичето — Охрид. Луѓето велат дека на дното на езерото сè уште може да се видат остатоци од селото. Оваа легенда нè учи дека добрината секогаш се наградува. Легендите како оваа ја чуваат душата на македонскиот народ."
+    }
   ],
   "grammar_highlights": [
     {
@@ -18,71 +34,3375 @@
       "title_en": "Past narrative tense",
       "description_en": "Used for storytelling",
       "examples": [
-        { "mk": "се раскажува дека", "en": "it is told that" },
-        { "mk": "имало", "en": "there was (past)" },
-        { "mk": "биле", "en": "were (past)" },
-        { "mk": "дошла", "en": "came (fem. past)" }
+        {
+          "mk": "се раскажува дека",
+          "en": "it is told that"
+        },
+        {
+          "mk": "имало",
+          "en": "there was (past)"
+        },
+        {
+          "mk": "биле",
+          "en": "were (past)"
+        },
+        {
+          "mk": "дошла",
+          "en": "came (fem. past)"
+        }
       ]
     },
     {
       "title_mk": "Релативни заменки",
       "title_en": "Relative pronouns",
       "examples": [
-        { "mk": "чие име", "en": "whose name" },
-        { "mk": "која барала", "en": "who was asking" }
+        {
+          "mk": "чие име",
+          "en": "whose name"
+        },
+        {
+          "mk": "која барала",
+          "en": "who was asking"
+        }
       ]
     }
   ],
   "vocabulary": [
-    { "mk": "легенди", "en": "legends", "pos": "noun" },
-    { "mk": "постојат", "en": "exist", "pos": "verb" },
-    { "mk": "се пренесуваат", "en": "are passed/transmitted", "pos": "passive verb" },
-    { "mk": "најпознатите", "en": "the most famous", "pos": "superlative adj" },
-    { "mk": "легендата", "en": "the legend", "pos": "noun (def)" },
-    { "mk": "се раскажува", "en": "it is told/narrated", "pos": "passive verb" },
-    { "mk": "некогаш", "en": "once upon a time/long ago", "pos": "adverb" },
-    { "mk": "имало", "en": "there was (past)", "pos": "verb (past)" },
-    { "mk": "жителите", "en": "the inhabitants", "pos": "noun (def)" },
-    { "mk": "биле", "en": "were (past)", "pos": "verb (past)" },
-    { "mk": "богати", "en": "rich", "pos": "adjective" },
-    { "mk": "дошла", "en": "came (fem)", "pos": "verb (past)" },
-    { "mk": "барала", "en": "was asking for", "pos": "verb (past)" },
-    { "mk": "леб", "en": "bread", "pos": "noun" },
-    { "mk": "никој", "en": "no one", "pos": "pronoun" },
-    { "mk": "сакал", "en": "wanted (past)", "pos": "verb (past)" },
-    { "mk": "ѝ помогне", "en": "to help her", "pos": "verb phrase" },
-    { "mk": "момиче", "en": "girl", "pos": "noun" },
-    { "mk": "чие", "en": "whose", "pos": "relative pronoun" },
-    { "mk": "дало", "en": "gave (neut)", "pos": "verb (past)" },
-    { "mk": "рекла", "en": "said (fem)", "pos": "verb (past)" },
-    { "mk": "бегај", "en": "flee (imperative)", "pos": "verb" },
-    { "mk": "доцна", "en": "late", "pos": "adverb" },
-    { "mk": "послушало", "en": "obeyed (neut)", "pos": "verb (past)" },
-    { "mk": "избегало", "en": "fled (neut)", "pos": "verb (past)" },
-    { "mk": "истата", "en": "the same", "pos": "adjective (def)" },
-    { "mk": "на утрото", "en": "in the morning", "pos": "phrase" },
-    { "mk": "потопено", "en": "submerged", "pos": "past participle" },
-    { "mk": "под вода", "en": "under water", "pos": "phrase" },
-    { "mk": "се создало", "en": "was created", "pos": "passive verb" },
-    { "mk": "прекрасно", "en": "beautiful", "pos": "adjective" },
-    { "mk": "добило", "en": "received (neut)", "pos": "verb (past)" },
-    { "mk": "името", "en": "the name", "pos": "noun (def)" },
-    { "mk": "по", "en": "after/according to", "pos": "preposition" },
-    { "mk": "велат", "en": "say/tell", "pos": "verb" },
-    { "mk": "дното", "en": "the bottom", "pos": "noun (def)" },
-    { "mk": "остатоци", "en": "remains", "pos": "noun" },
-    { "mk": "сè уште", "en": "still", "pos": "adverb" },
-    { "mk": "нè учи", "en": "teaches us", "pos": "verb phrase" },
-    { "mk": "добрината", "en": "kindness/goodness", "pos": "noun (def)" },
-    { "mk": "се наградува", "en": "is rewarded", "pos": "passive verb" },
-    { "mk": "ја чуваат", "en": "preserve/keep", "pos": "verb phrase" },
-    { "mk": "душата", "en": "the soul", "pos": "noun (def)" },
-    { "mk": "народ", "en": "people/nation", "pos": "noun" }
+    {
+      "mk": "легенди",
+      "en": "legends",
+      "pos": "noun"
+    },
+    {
+      "mk": "постојат",
+      "en": "exist",
+      "pos": "verb"
+    },
+    {
+      "mk": "се пренесуваат",
+      "en": "are passed/transmitted",
+      "pos": "passive verb"
+    },
+    {
+      "mk": "најпознатите",
+      "en": "the most famous",
+      "pos": "superlative adj"
+    },
+    {
+      "mk": "легендата",
+      "en": "the legend",
+      "pos": "noun (def)"
+    },
+    {
+      "mk": "се раскажува",
+      "en": "it is told/narrated",
+      "pos": "passive verb"
+    },
+    {
+      "mk": "некогаш",
+      "en": "once upon a time/long ago",
+      "pos": "adverb"
+    },
+    {
+      "mk": "имало",
+      "en": "there was (past)",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "жителите",
+      "en": "the inhabitants",
+      "pos": "noun (def)"
+    },
+    {
+      "mk": "биле",
+      "en": "were (past)",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "богати",
+      "en": "rich",
+      "pos": "adjective"
+    },
+    {
+      "mk": "дошла",
+      "en": "came (fem)",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "барала",
+      "en": "was asking for",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "леб",
+      "en": "bread",
+      "pos": "noun"
+    },
+    {
+      "mk": "никој",
+      "en": "no one",
+      "pos": "pronoun"
+    },
+    {
+      "mk": "сакал",
+      "en": "wanted (past)",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "ѝ помогне",
+      "en": "to help her",
+      "pos": "verb phrase"
+    },
+    {
+      "mk": "момиче",
+      "en": "girl",
+      "pos": "noun"
+    },
+    {
+      "mk": "чие",
+      "en": "whose",
+      "pos": "relative pronoun"
+    },
+    {
+      "mk": "дало",
+      "en": "gave (neut)",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "рекла",
+      "en": "said (fem)",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "бегај",
+      "en": "flee (imperative)",
+      "pos": "verb"
+    },
+    {
+      "mk": "доцна",
+      "en": "late",
+      "pos": "adverb"
+    },
+    {
+      "mk": "послушало",
+      "en": "obeyed (neut)",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "избегало",
+      "en": "fled (neut)",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "истата",
+      "en": "the same",
+      "pos": "adjective (def)"
+    },
+    {
+      "mk": "на утрото",
+      "en": "in the morning",
+      "pos": "phrase"
+    },
+    {
+      "mk": "потопено",
+      "en": "submerged",
+      "pos": "past participle"
+    },
+    {
+      "mk": "под вода",
+      "en": "under water",
+      "pos": "phrase"
+    },
+    {
+      "mk": "се создало",
+      "en": "was created",
+      "pos": "passive verb"
+    },
+    {
+      "mk": "прекрасно",
+      "en": "beautiful",
+      "pos": "adjective"
+    },
+    {
+      "mk": "добило",
+      "en": "received (neut)",
+      "pos": "verb (past)"
+    },
+    {
+      "mk": "името",
+      "en": "the name",
+      "pos": "noun (def)"
+    },
+    {
+      "mk": "по",
+      "en": "after/according to",
+      "pos": "preposition"
+    },
+    {
+      "mk": "велат",
+      "en": "say/tell",
+      "pos": "verb"
+    },
+    {
+      "mk": "дното",
+      "en": "the bottom",
+      "pos": "noun (def)"
+    },
+    {
+      "mk": "остатоци",
+      "en": "remains",
+      "pos": "noun"
+    },
+    {
+      "mk": "сè уште",
+      "en": "still",
+      "pos": "adverb"
+    },
+    {
+      "mk": "нè учи",
+      "en": "teaches us",
+      "pos": "verb phrase"
+    },
+    {
+      "mk": "добрината",
+      "en": "kindness/goodness",
+      "pos": "noun (def)"
+    },
+    {
+      "mk": "се наградува",
+      "en": "is rewarded",
+      "pos": "passive verb"
+    },
+    {
+      "mk": "ја чуваат",
+      "en": "preserve/keep",
+      "pos": "verb phrase"
+    },
+    {
+      "mk": "душата",
+      "en": "the soul",
+      "pos": "noun (def)"
+    },
+    {
+      "mk": "народ",
+      "en": "people/nation",
+      "pos": "noun"
+    }
   ],
   "expressions": [],
   "attribution": {
     "handle": "@mklanguagelab",
     "series": "Graded Readers",
     "day": "culture"
+  },
+  "analyzedData": {
+    "words": [
+      {
+        "id": "word-0",
+        "original": "Во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 0,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-2",
+        "original": "Македонија",
+        "translation": "Macedonia",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 2
+      },
+      {
+        "id": "word-4",
+        "original": "постојат",
+        "translation": "they exist",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 4
+      },
+      {
+        "id": "word-6",
+        "original": "многу",
+        "translation": "many",
+        "contextualMeaning": "many",
+        "alternativeTranslations": [
+          "very",
+          "much",
+          "a lot"
+        ],
+        "pos": "adverb",
+        "difficulty": "intermediate",
+        "index": 6,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-8",
+        "original": "легенди",
+        "translation": "legends",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 8
+      },
+      {
+        "id": "word-10",
+        "original": "што",
+        "translation": "that",
+        "contextualMeaning": "that",
+        "alternativeTranslations": [
+          "what",
+          "which",
+          "why"
+        ],
+        "contextHint": "Interrogative or relative pronoun",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 10,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-12",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 12,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-14",
+        "original": "пренесуваат",
+        "translation": "transmit",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 14
+      },
+      {
+        "id": "word-16",
+        "original": "од",
+        "translation": "from",
+        "contextualMeaning": "from",
+        "alternativeTranslations": [
+          "of",
+          "off",
+          "than",
+          "by"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 16,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-18",
+        "original": "генерација",
+        "translation": "generation",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 18
+      },
+      {
+        "id": "word-20",
+        "original": "на",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 20,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-22",
+        "original": "генерација",
+        "translation": "generation",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 22
+      },
+      {
+        "id": "word-24",
+        "original": "Една",
+        "translation": "a",
+        "contextualMeaning": "a",
+        "alternativeTranslations": [
+          "one (fem.)",
+          "an"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 24,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-26",
+        "original": "од",
+        "translation": "from",
+        "contextualMeaning": "from",
+        "alternativeTranslations": [
+          "of",
+          "off",
+          "than",
+          "by"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 26,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-28",
+        "original": "најпознатите",
+        "translation": "the most famous",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 28
+      },
+      {
+        "id": "word-30",
+        "original": "е",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "it is",
+          "he/she is"
+        ],
+        "contextHint": "Third person singular of \"to be\"",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 30,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-32",
+        "original": "легендата",
+        "translation": "the legend",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 32
+      },
+      {
+        "id": "word-34",
+        "original": "за",
+        "translation": "for",
+        "contextualMeaning": "for",
+        "alternativeTranslations": [
+          "about",
+          "to",
+          "in order to"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 34,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-36",
+        "original": "Охридското",
+        "translation": "Ohrid",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 36
+      },
+      {
+        "id": "word-38",
+        "original": "Езеро",
+        "translation": "A lake",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 38
+      },
+      {
+        "id": "word-40",
+        "original": "Се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 40,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-42",
+        "original": "раскажува",
+        "translation": "tells",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 42
+      },
+      {
+        "id": "word-44",
+        "original": "дека",
+        "translation": "that",
+        "contextualMeaning": "that",
+        "alternativeTranslations": [
+          "because"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 44,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-46",
+        "original": "некогаш",
+        "translation": "sometime",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 46
+      },
+      {
+        "id": "word-48",
+        "original": "на",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 48,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-50",
+        "original": "местото",
+        "translation": "the place",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 50
+      },
+      {
+        "id": "word-52",
+        "original": "на",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 52,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-54",
+        "original": "езерото",
+        "translation": "the lake",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 54
+      },
+      {
+        "id": "word-56",
+        "original": "имало",
+        "translation": "there was",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 56
+      },
+      {
+        "id": "word-58",
+        "original": "големо",
+        "translation": "big",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 58
+      },
+      {
+        "id": "word-60",
+        "original": "село",
+        "translation": "a village",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 60
+      },
+      {
+        "id": "word-62",
+        "original": "Во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 62,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-64",
+        "original": "тоа",
+        "translation": "that",
+        "contextualMeaning": "that",
+        "alternativeTranslations": [
+          "it",
+          "that one (neut.)"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 64,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-66",
+        "original": "село",
+        "translation": "a village",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 66
+      },
+      {
+        "id": "word-68",
+        "original": "жителите",
+        "translation": "the inhabitants",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 68
+      },
+      {
+        "id": "word-70",
+        "original": "биле",
+        "translation": "were",
+        "contextualMeaning": "were",
+        "alternativeTranslations": [
+          "have been",
+          "apparently were"
+        ],
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 70,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-72",
+        "original": "среќни",
+        "translation": "happy",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 72
+      },
+      {
+        "id": "word-74",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 74,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-76",
+        "original": "богати",
+        "translation": "rich",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 76
+      },
+      {
+        "id": "word-78",
+        "original": "Еден",
+        "translation": "one",
+        "contextualMeaning": "one",
+        "alternativeTranslations": [
+          "a",
+          "an",
+          "some"
+        ],
+        "pos": "adjective",
+        "difficulty": "basic",
+        "index": 78,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-80",
+        "original": "ден",
+        "translation": "day",
+        "contextualMeaning": "day",
+        "alternativeTranslations": [
+          "daytime"
+        ],
+        "pos": "adjective",
+        "difficulty": "basic",
+        "index": 80,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-82",
+        "original": "во",
+        "translation": "in",
+        "contextualMeaning": "in",
+        "alternativeTranslations": [
+          "into",
+          "at",
+          "inside"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 82,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-84",
+        "original": "селото",
+        "translation": "the village",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 84
+      },
+      {
+        "id": "word-86",
+        "original": "дошла",
+        "translation": "she came",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 86
+      },
+      {
+        "id": "word-88",
+        "original": "стара",
+        "translation": "old",
+        "pos": "adjective",
+        "difficulty": "intermediate",
+        "index": 88
+      },
+      {
+        "id": "word-90",
+        "original": "жена",
+        "translation": "a woman",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 90
+      },
+      {
+        "id": "word-92",
+        "original": "која",
+        "translation": "that",
+        "contextualMeaning": "that",
+        "alternativeTranslations": [
+          "who (fem.)",
+          "which (fem.)"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 92,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-94",
+        "original": "барала",
+        "translation": "she asked",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 94
+      },
+      {
+        "id": "word-96",
+        "original": "вода",
+        "translation": "water",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 96
+      },
+      {
+        "id": "word-98",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 98,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-100",
+        "original": "леб",
+        "translation": "bread",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 100
+      },
+      {
+        "id": "word-102",
+        "original": "Никој",
+        "translation": "no one",
+        "contextualMeaning": "no one",
+        "alternativeTranslations": [
+          "nobody",
+          "none"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 102,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-104",
+        "original": "не",
+        "translation": "no",
+        "contextualMeaning": "no",
+        "alternativeTranslations": [
+          "not",
+          "don't",
+          "doesn't"
+        ],
+        "contextHint": "\"Не\" before verbs means \"not\"; alone means \"no\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 104,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-106",
+        "original": "сакал",
+        "translation": "loved",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 106
+      },
+      {
+        "id": "word-108",
+        "original": "да",
+        "translation": "to",
+        "contextualMeaning": "to",
+        "alternativeTranslations": [
+          "yes",
+          "that",
+          "so that",
+          "let"
+        ],
+        "contextHint": "\"Да\" before verbs means \"to\"; alone means \"yes\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 108,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-110",
+        "original": "ѝ",
+        "translation": "her",
+        "contextualMeaning": "her",
+        "alternativeTranslations": [
+          "to her",
+          "hers"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 110,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-112",
+        "original": "помогне",
+        "translation": "help",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 112
+      },
+      {
+        "id": "word-114",
+        "original": "Само",
+        "translation": "only",
+        "contextualMeaning": "only",
+        "alternativeTranslations": [
+          "just",
+          "merely"
+        ],
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 114,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-116",
+        "original": "едно",
+        "translation": "a",
+        "contextualMeaning": "a",
+        "alternativeTranslations": [
+          "one (neut.)",
+          "an"
+        ],
+        "pos": "adjective",
+        "difficulty": "basic",
+        "index": 116,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-118",
+        "original": "младо",
+        "translation": "young",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 118
+      },
+      {
+        "id": "word-120",
+        "original": "момиче",
+        "translation": "girl",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 120
+      },
+      {
+        "id": "word-122",
+        "original": "чие",
+        "translation": "whose (neut.)",
+        "contextualMeaning": "whose (neut.)",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 122,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-124",
+        "original": "име",
+        "translation": "name",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 124
+      },
+      {
+        "id": "word-126",
+        "original": "било",
+        "translation": "either",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 126
+      },
+      {
+        "id": "word-128",
+        "original": "Охрида",
+        "translation": "Ohrida",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 128
+      },
+      {
+        "id": "word-130",
+        "original": "ѝ",
+        "translation": "her",
+        "contextualMeaning": "her",
+        "alternativeTranslations": [
+          "to her",
+          "hers"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 130,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-132",
+        "original": "дало",
+        "translation": "given",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 132
+      },
+      {
+        "id": "word-134",
+        "original": "вода",
+        "translation": "water",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 134
+      },
+      {
+        "id": "word-136",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 136,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-138",
+        "original": "леб",
+        "translation": "bread",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 138
+      },
+      {
+        "id": "word-140",
+        "original": "Старата",
+        "translation": "The old one",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 140
+      },
+      {
+        "id": "word-142",
+        "original": "жена",
+        "translation": "a woman",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 142
+      },
+      {
+        "id": "word-144",
+        "original": "рекла",
+        "translation": "she said",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 144
+      },
+      {
+        "id": "word-146",
+        "original": "Оваа",
+        "translation": "this",
+        "contextualMeaning": "this",
+        "alternativeTranslations": [
+          "this one (fem.)"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 146,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-148",
+        "original": "ноќ",
+        "translation": "night",
+        "contextualMeaning": "night",
+        "alternativeTranslations": [
+          "nighttime"
+        ],
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 148,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-150",
+        "original": "бегај",
+        "translation": "run away",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 150
+      },
+      {
+        "id": "word-152",
+        "original": "од",
+        "translation": "from",
+        "contextualMeaning": "from",
+        "alternativeTranslations": [
+          "of",
+          "off",
+          "than",
+          "by"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 152,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-154",
+        "original": "селото",
+        "translation": "the village",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 154
+      },
+      {
+        "id": "word-156",
+        "original": "Утре",
+        "translation": "Tomorrow",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 156
+      },
+      {
+        "id": "word-158",
+        "original": "ќе",
+        "translation": "will",
+        "contextualMeaning": "will",
+        "alternativeTranslations": [
+          "shall",
+          "going to"
+        ],
+        "contextHint": "Future tense marker - always before the verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 158,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-160",
+        "original": "биде",
+        "translation": "be",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 160
+      },
+      {
+        "id": "word-162",
+        "original": "доцна",
+        "translation": "late",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 162
+      },
+      {
+        "id": "word-164",
+        "original": "Момичето",
+        "translation": "The girl",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 164
+      },
+      {
+        "id": "word-166",
+        "original": "послушало",
+        "translation": "obeyed",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 166
+      },
+      {
+        "id": "word-168",
+        "original": "и",
+        "translation": "and",
+        "contextualMeaning": "and",
+        "alternativeTranslations": [
+          "to her",
+          "also",
+          "too",
+          "her (dat.)"
+        ],
+        "contextHint": "Most commonly \"and\"; \"to her\" when before verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 168,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-170",
+        "original": "избегало",
+        "translation": "escaped",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 170
+      },
+      {
+        "id": "word-172",
+        "original": "од",
+        "translation": "from",
+        "contextualMeaning": "from",
+        "alternativeTranslations": [
+          "of",
+          "off",
+          "than",
+          "by"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 172,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-174",
+        "original": "селото",
+        "translation": "the village",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 174
+      },
+      {
+        "id": "word-176",
+        "original": "истата",
+        "translation": "the same",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 176
+      },
+      {
+        "id": "word-178",
+        "original": "ноќ",
+        "translation": "night",
+        "contextualMeaning": "night",
+        "alternativeTranslations": [
+          "nighttime"
+        ],
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 178,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-180",
+        "original": "На",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 180,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-182",
+        "original": "утрото",
+        "translation": "the morning",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 182
+      },
+      {
+        "id": "word-184",
+        "original": "целото",
+        "translation": "the whole",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 184
+      },
+      {
+        "id": "word-186",
+        "original": "село",
+        "translation": "a village",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 186
+      },
+      {
+        "id": "word-188",
+        "original": "било",
+        "translation": "either",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 188
+      },
+      {
+        "id": "word-190",
+        "original": "потопено",
+        "translation": "submerged",
+        "pos": "adjective",
+        "difficulty": "advanced",
+        "index": 190
+      },
+      {
+        "id": "word-192",
+        "original": "под",
+        "translation": "under",
+        "contextualMeaning": "under",
+        "alternativeTranslations": [
+          "below",
+          "beneath"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 192,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-194",
+        "original": "вода",
+        "translation": "water",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 194
+      },
+      {
+        "id": "word-196",
+        "original": "На",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 196,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-198",
+        "original": "тоа",
+        "translation": "that",
+        "contextualMeaning": "that",
+        "alternativeTranslations": [
+          "it",
+          "that one (neut.)"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 198,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-200",
+        "original": "место",
+        "translation": "place",
+        "contextualMeaning": "place",
+        "alternativeTranslations": [
+          "spot",
+          "position",
+          "instead"
+        ],
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 200,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-202",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 202,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-204",
+        "original": "создало",
+        "translation": "created",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 204
+      },
+      {
+        "id": "word-206",
+        "original": "прекрасно",
+        "translation": "wonderful",
+        "pos": "adjective",
+        "difficulty": "advanced",
+        "index": 206
+      },
+      {
+        "id": "word-208",
+        "original": "езеро",
+        "translation": "a lake",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 208
+      },
+      {
+        "id": "word-210",
+        "original": "Езерото",
+        "translation": "The lake",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 210
+      },
+      {
+        "id": "word-212",
+        "original": "го",
+        "translation": "the",
+        "contextualMeaning": "the",
+        "alternativeTranslations": [
+          "him",
+          "it (masc.)"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 212,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-214",
+        "original": "добило",
+        "translation": "received",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 214
+      },
+      {
+        "id": "word-216",
+        "original": "името",
+        "translation": "the name",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 216
+      },
+      {
+        "id": "word-218",
+        "original": "по",
+        "translation": "after",
+        "contextualMeaning": "after",
+        "alternativeTranslations": [
+          "by",
+          "along",
+          "per",
+          "more"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 218,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-220",
+        "original": "момичето",
+        "translation": "the girl",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 220
+      },
+      {
+        "id": "word-222",
+        "original": "Охрид",
+        "translation": "Ohrid",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 222
+      },
+      {
+        "id": "word-224",
+        "original": "Луѓето",
+        "translation": "The people",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 224
+      },
+      {
+        "id": "word-226",
+        "original": "велат",
+        "translation": "they say",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 226
+      },
+      {
+        "id": "word-228",
+        "original": "дека",
+        "translation": "that",
+        "contextualMeaning": "that",
+        "alternativeTranslations": [
+          "because"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 228,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-230",
+        "original": "на",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 230,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-232",
+        "original": "дното",
+        "translation": "the bottom",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 232
+      },
+      {
+        "id": "word-234",
+        "original": "на",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 234,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-236",
+        "original": "езерото",
+        "translation": "the lake",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 236
+      },
+      {
+        "id": "word-238",
+        "original": "сè",
+        "translation": "everything",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 238
+      },
+      {
+        "id": "word-240",
+        "original": "уште",
+        "translation": "still",
+        "contextualMeaning": "still",
+        "alternativeTranslations": [
+          "yet",
+          "more",
+          "another"
+        ],
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 240,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-242",
+        "original": "може",
+        "translation": "can",
+        "contextualMeaning": "can",
+        "alternativeTranslations": [
+          "may",
+          "is possible",
+          "could"
+        ],
+        "contextHint": "Expresses ability or permission",
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 242,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-244",
+        "original": "да",
+        "translation": "to",
+        "contextualMeaning": "to",
+        "alternativeTranslations": [
+          "yes",
+          "that",
+          "so that",
+          "let"
+        ],
+        "contextHint": "\"Да\" before verbs means \"to\"; alone means \"yes\"",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 244,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-246",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 246,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-248",
+        "original": "видат",
+        "translation": "see",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 248
+      },
+      {
+        "id": "word-250",
+        "original": "остатоци",
+        "translation": "remains",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 250
+      },
+      {
+        "id": "word-252",
+        "original": "од",
+        "translation": "from",
+        "contextualMeaning": "from",
+        "alternativeTranslations": [
+          "of",
+          "off",
+          "than",
+          "by"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 252,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-254",
+        "original": "селото",
+        "translation": "the village",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 254
+      },
+      {
+        "id": "word-256",
+        "original": "Оваа",
+        "translation": "this",
+        "contextualMeaning": "this",
+        "alternativeTranslations": [
+          "this one (fem.)"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 256,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-258",
+        "original": "легенда",
+        "translation": "a legend",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 258
+      },
+      {
+        "id": "word-260",
+        "original": "нè",
+        "translation": "us",
+        "pos": "noun",
+        "difficulty": "basic",
+        "index": 260
+      },
+      {
+        "id": "word-262",
+        "original": "учи",
+        "translation": "teaches",
+        "contextualMeaning": "teaches",
+        "alternativeTranslations": [
+          "learns",
+          "studies"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 262,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-264",
+        "original": "дека",
+        "translation": "that",
+        "contextualMeaning": "that",
+        "alternativeTranslations": [
+          "because"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 264,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-266",
+        "original": "добрината",
+        "translation": "the goodness",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 266
+      },
+      {
+        "id": "word-268",
+        "original": "секогаш",
+        "translation": "always",
+        "contextualMeaning": "always",
+        "alternativeTranslations": [
+          "every time"
+        ],
+        "pos": "adverb",
+        "difficulty": "intermediate",
+        "index": 268,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-270",
+        "original": "се",
+        "translation": "is",
+        "contextualMeaning": "is",
+        "alternativeTranslations": [
+          "oneself",
+          "each other",
+          "are",
+          "-self",
+          "all"
+        ],
+        "contextHint": "Reflexive pronoun or part of reflexive verb",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 270,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-272",
+        "original": "наградува",
+        "translation": "rewards",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 272
+      },
+      {
+        "id": "word-274",
+        "original": "Легендите",
+        "translation": "The legends",
+        "pos": "verb",
+        "difficulty": "advanced",
+        "index": 274
+      },
+      {
+        "id": "word-276",
+        "original": "како",
+        "translation": "like",
+        "contextualMeaning": "like",
+        "alternativeTranslations": [
+          "how",
+          "as",
+          "what"
+        ],
+        "pos": "adverb",
+        "difficulty": "basic",
+        "index": 276,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-278",
+        "original": "оваа",
+        "translation": "this",
+        "contextualMeaning": "this",
+        "alternativeTranslations": [
+          "this one (fem.)"
+        ],
+        "pos": "verb",
+        "difficulty": "basic",
+        "index": 278,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-280",
+        "original": "ја",
+        "translation": "her",
+        "contextualMeaning": "her",
+        "alternativeTranslations": [
+          "it (fem.)",
+          "the"
+        ],
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 280,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-282",
+        "original": "чуваат",
+        "translation": "they keep",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 282
+      },
+      {
+        "id": "word-284",
+        "original": "душата",
+        "translation": "the soul",
+        "pos": "verb",
+        "difficulty": "intermediate",
+        "index": 284
+      },
+      {
+        "id": "word-286",
+        "original": "на",
+        "translation": "on",
+        "contextualMeaning": "on",
+        "alternativeTranslations": [
+          "to",
+          "of",
+          "at",
+          "for"
+        ],
+        "contextHint": "Preposition with multiple uses depending on case",
+        "pos": "other",
+        "difficulty": "basic",
+        "index": 286,
+        "hasMultipleMeanings": true
+      },
+      {
+        "id": "word-288",
+        "original": "македонскиот",
+        "translation": "Macedonian",
+        "pos": "noun",
+        "difficulty": "advanced",
+        "index": 288
+      },
+      {
+        "id": "word-290",
+        "original": "народ",
+        "translation": "people",
+        "pos": "noun",
+        "difficulty": "intermediate",
+        "index": 290
+      }
+    ],
+    "tokens": [
+      {
+        "token": "Во",
+        "isWord": true,
+        "index": 0
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 1
+      },
+      {
+        "token": "Македонија",
+        "isWord": true,
+        "index": 2
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 3
+      },
+      {
+        "token": "постојат",
+        "isWord": true,
+        "index": 4
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 5
+      },
+      {
+        "token": "многу",
+        "isWord": true,
+        "index": 6
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 7
+      },
+      {
+        "token": "легенди",
+        "isWord": true,
+        "index": 8
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 9
+      },
+      {
+        "token": "што",
+        "isWord": true,
+        "index": 10
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 11
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 12
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 13
+      },
+      {
+        "token": "пренесуваат",
+        "isWord": true,
+        "index": 14
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 15
+      },
+      {
+        "token": "од",
+        "isWord": true,
+        "index": 16
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 17
+      },
+      {
+        "token": "генерација",
+        "isWord": true,
+        "index": 18
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 19
+      },
+      {
+        "token": "на",
+        "isWord": true,
+        "index": 20
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 21
+      },
+      {
+        "token": "генерација",
+        "isWord": true,
+        "index": 22
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 23
+      },
+      {
+        "token": "Една",
+        "isWord": true,
+        "index": 24
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 25
+      },
+      {
+        "token": "од",
+        "isWord": true,
+        "index": 26
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 27
+      },
+      {
+        "token": "најпознатите",
+        "isWord": true,
+        "index": 28
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 29
+      },
+      {
+        "token": "е",
+        "isWord": true,
+        "index": 30
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 31
+      },
+      {
+        "token": "легендата",
+        "isWord": true,
+        "index": 32
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 33
+      },
+      {
+        "token": "за",
+        "isWord": true,
+        "index": 34
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 35
+      },
+      {
+        "token": "Охридското",
+        "isWord": true,
+        "index": 36
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 37
+      },
+      {
+        "token": "Езеро",
+        "isWord": true,
+        "index": 38
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 39
+      },
+      {
+        "token": "Се",
+        "isWord": true,
+        "index": 40
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 41
+      },
+      {
+        "token": "раскажува",
+        "isWord": true,
+        "index": 42
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 43
+      },
+      {
+        "token": "дека",
+        "isWord": true,
+        "index": 44
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 45
+      },
+      {
+        "token": "некогаш",
+        "isWord": true,
+        "index": 46
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 47
+      },
+      {
+        "token": "на",
+        "isWord": true,
+        "index": 48
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 49
+      },
+      {
+        "token": "местото",
+        "isWord": true,
+        "index": 50
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 51
+      },
+      {
+        "token": "на",
+        "isWord": true,
+        "index": 52
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 53
+      },
+      {
+        "token": "езерото",
+        "isWord": true,
+        "index": 54
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 55
+      },
+      {
+        "token": "имало",
+        "isWord": true,
+        "index": 56
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 57
+      },
+      {
+        "token": "големо",
+        "isWord": true,
+        "index": 58
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 59
+      },
+      {
+        "token": "село",
+        "isWord": true,
+        "index": 60
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 61
+      },
+      {
+        "token": "Во",
+        "isWord": true,
+        "index": 62
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 63
+      },
+      {
+        "token": "тоа",
+        "isWord": true,
+        "index": 64
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 65
+      },
+      {
+        "token": "село",
+        "isWord": true,
+        "index": 66
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 67
+      },
+      {
+        "token": "жителите",
+        "isWord": true,
+        "index": 68
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 69
+      },
+      {
+        "token": "биле",
+        "isWord": true,
+        "index": 70
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 71
+      },
+      {
+        "token": "среќни",
+        "isWord": true,
+        "index": 72
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 73
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 74
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 75
+      },
+      {
+        "token": "богати",
+        "isWord": true,
+        "index": 76
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 77
+      },
+      {
+        "token": "Еден",
+        "isWord": true,
+        "index": 78
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 79
+      },
+      {
+        "token": "ден",
+        "isWord": true,
+        "index": 80
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 81
+      },
+      {
+        "token": "во",
+        "isWord": true,
+        "index": 82
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 83
+      },
+      {
+        "token": "селото",
+        "isWord": true,
+        "index": 84
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 85
+      },
+      {
+        "token": "дошла",
+        "isWord": true,
+        "index": 86
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 87
+      },
+      {
+        "token": "стара",
+        "isWord": true,
+        "index": 88
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 89
+      },
+      {
+        "token": "жена",
+        "isWord": true,
+        "index": 90
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 91
+      },
+      {
+        "token": "која",
+        "isWord": true,
+        "index": 92
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 93
+      },
+      {
+        "token": "барала",
+        "isWord": true,
+        "index": 94
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 95
+      },
+      {
+        "token": "вода",
+        "isWord": true,
+        "index": 96
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 97
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 98
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 99
+      },
+      {
+        "token": "леб",
+        "isWord": true,
+        "index": 100
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 101
+      },
+      {
+        "token": "Никој",
+        "isWord": true,
+        "index": 102
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 103
+      },
+      {
+        "token": "не",
+        "isWord": true,
+        "index": 104
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 105
+      },
+      {
+        "token": "сакал",
+        "isWord": true,
+        "index": 106
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 107
+      },
+      {
+        "token": "да",
+        "isWord": true,
+        "index": 108
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 109
+      },
+      {
+        "token": "ѝ",
+        "isWord": true,
+        "index": 110
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 111
+      },
+      {
+        "token": "помогне",
+        "isWord": true,
+        "index": 112
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 113
+      },
+      {
+        "token": "Само",
+        "isWord": true,
+        "index": 114
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 115
+      },
+      {
+        "token": "едно",
+        "isWord": true,
+        "index": 116
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 117
+      },
+      {
+        "token": "младо",
+        "isWord": true,
+        "index": 118
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 119
+      },
+      {
+        "token": "момиче",
+        "isWord": true,
+        "index": 120
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 121
+      },
+      {
+        "token": "чие",
+        "isWord": true,
+        "index": 122
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 123
+      },
+      {
+        "token": "име",
+        "isWord": true,
+        "index": 124
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 125
+      },
+      {
+        "token": "било",
+        "isWord": true,
+        "index": 126
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 127
+      },
+      {
+        "token": "Охрида",
+        "isWord": true,
+        "index": 128
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 129
+      },
+      {
+        "token": "ѝ",
+        "isWord": true,
+        "index": 130
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 131
+      },
+      {
+        "token": "дало",
+        "isWord": true,
+        "index": 132
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 133
+      },
+      {
+        "token": "вода",
+        "isWord": true,
+        "index": 134
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 135
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 136
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 137
+      },
+      {
+        "token": "леб",
+        "isWord": true,
+        "index": 138
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 139
+      },
+      {
+        "token": "Старата",
+        "isWord": true,
+        "index": 140
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 141
+      },
+      {
+        "token": "жена",
+        "isWord": true,
+        "index": 142
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 143
+      },
+      {
+        "token": "рекла",
+        "isWord": true,
+        "index": 144
+      },
+      {
+        "token": ": \"",
+        "isWord": false,
+        "index": 145
+      },
+      {
+        "token": "Оваа",
+        "isWord": true,
+        "index": 146
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 147
+      },
+      {
+        "token": "ноќ",
+        "isWord": true,
+        "index": 148
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 149
+      },
+      {
+        "token": "бегај",
+        "isWord": true,
+        "index": 150
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 151
+      },
+      {
+        "token": "од",
+        "isWord": true,
+        "index": 152
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 153
+      },
+      {
+        "token": "селото",
+        "isWord": true,
+        "index": 154
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 155
+      },
+      {
+        "token": "Утре",
+        "isWord": true,
+        "index": 156
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 157
+      },
+      {
+        "token": "ќе",
+        "isWord": true,
+        "index": 158
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 159
+      },
+      {
+        "token": "биде",
+        "isWord": true,
+        "index": 160
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 161
+      },
+      {
+        "token": "доцна",
+        "isWord": true,
+        "index": 162
+      },
+      {
+        "token": ".\" ",
+        "isWord": false,
+        "index": 163
+      },
+      {
+        "token": "Момичето",
+        "isWord": true,
+        "index": 164
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 165
+      },
+      {
+        "token": "послушало",
+        "isWord": true,
+        "index": 166
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 167
+      },
+      {
+        "token": "и",
+        "isWord": true,
+        "index": 168
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 169
+      },
+      {
+        "token": "избегало",
+        "isWord": true,
+        "index": 170
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 171
+      },
+      {
+        "token": "од",
+        "isWord": true,
+        "index": 172
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 173
+      },
+      {
+        "token": "селото",
+        "isWord": true,
+        "index": 174
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 175
+      },
+      {
+        "token": "истата",
+        "isWord": true,
+        "index": 176
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 177
+      },
+      {
+        "token": "ноќ",
+        "isWord": true,
+        "index": 178
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 179
+      },
+      {
+        "token": "На",
+        "isWord": true,
+        "index": 180
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 181
+      },
+      {
+        "token": "утрото",
+        "isWord": true,
+        "index": 182
+      },
+      {
+        "token": ", ",
+        "isWord": false,
+        "index": 183
+      },
+      {
+        "token": "целото",
+        "isWord": true,
+        "index": 184
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 185
+      },
+      {
+        "token": "село",
+        "isWord": true,
+        "index": 186
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 187
+      },
+      {
+        "token": "било",
+        "isWord": true,
+        "index": 188
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 189
+      },
+      {
+        "token": "потопено",
+        "isWord": true,
+        "index": 190
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 191
+      },
+      {
+        "token": "под",
+        "isWord": true,
+        "index": 192
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 193
+      },
+      {
+        "token": "вода",
+        "isWord": true,
+        "index": 194
+      },
+      {
+        "token": ".\n\n",
+        "isWord": false,
+        "index": 195
+      },
+      {
+        "token": "На",
+        "isWord": true,
+        "index": 196
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 197
+      },
+      {
+        "token": "тоа",
+        "isWord": true,
+        "index": 198
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 199
+      },
+      {
+        "token": "место",
+        "isWord": true,
+        "index": 200
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 201
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 202
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 203
+      },
+      {
+        "token": "создало",
+        "isWord": true,
+        "index": 204
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 205
+      },
+      {
+        "token": "прекрасно",
+        "isWord": true,
+        "index": 206
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 207
+      },
+      {
+        "token": "езеро",
+        "isWord": true,
+        "index": 208
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 209
+      },
+      {
+        "token": "Езерото",
+        "isWord": true,
+        "index": 210
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 211
+      },
+      {
+        "token": "го",
+        "isWord": true,
+        "index": 212
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 213
+      },
+      {
+        "token": "добило",
+        "isWord": true,
+        "index": 214
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 215
+      },
+      {
+        "token": "името",
+        "isWord": true,
+        "index": 216
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 217
+      },
+      {
+        "token": "по",
+        "isWord": true,
+        "index": 218
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 219
+      },
+      {
+        "token": "момичето",
+        "isWord": true,
+        "index": 220
+      },
+      {
+        "token": " — ",
+        "isWord": false,
+        "index": 221
+      },
+      {
+        "token": "Охрид",
+        "isWord": true,
+        "index": 222
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 223
+      },
+      {
+        "token": "Луѓето",
+        "isWord": true,
+        "index": 224
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 225
+      },
+      {
+        "token": "велат",
+        "isWord": true,
+        "index": 226
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 227
+      },
+      {
+        "token": "дека",
+        "isWord": true,
+        "index": 228
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 229
+      },
+      {
+        "token": "на",
+        "isWord": true,
+        "index": 230
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 231
+      },
+      {
+        "token": "дното",
+        "isWord": true,
+        "index": 232
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 233
+      },
+      {
+        "token": "на",
+        "isWord": true,
+        "index": 234
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 235
+      },
+      {
+        "token": "езерото",
+        "isWord": true,
+        "index": 236
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 237
+      },
+      {
+        "token": "сè",
+        "isWord": true,
+        "index": 238
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 239
+      },
+      {
+        "token": "уште",
+        "isWord": true,
+        "index": 240
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 241
+      },
+      {
+        "token": "може",
+        "isWord": true,
+        "index": 242
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 243
+      },
+      {
+        "token": "да",
+        "isWord": true,
+        "index": 244
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 245
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 246
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 247
+      },
+      {
+        "token": "видат",
+        "isWord": true,
+        "index": 248
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 249
+      },
+      {
+        "token": "остатоци",
+        "isWord": true,
+        "index": 250
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 251
+      },
+      {
+        "token": "од",
+        "isWord": true,
+        "index": 252
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 253
+      },
+      {
+        "token": "селото",
+        "isWord": true,
+        "index": 254
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 255
+      },
+      {
+        "token": "Оваа",
+        "isWord": true,
+        "index": 256
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 257
+      },
+      {
+        "token": "легенда",
+        "isWord": true,
+        "index": 258
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 259
+      },
+      {
+        "token": "нè",
+        "isWord": true,
+        "index": 260
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 261
+      },
+      {
+        "token": "учи",
+        "isWord": true,
+        "index": 262
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 263
+      },
+      {
+        "token": "дека",
+        "isWord": true,
+        "index": 264
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 265
+      },
+      {
+        "token": "добрината",
+        "isWord": true,
+        "index": 266
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 267
+      },
+      {
+        "token": "секогаш",
+        "isWord": true,
+        "index": 268
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 269
+      },
+      {
+        "token": "се",
+        "isWord": true,
+        "index": 270
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 271
+      },
+      {
+        "token": "наградува",
+        "isWord": true,
+        "index": 272
+      },
+      {
+        "token": ". ",
+        "isWord": false,
+        "index": 273
+      },
+      {
+        "token": "Легендите",
+        "isWord": true,
+        "index": 274
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 275
+      },
+      {
+        "token": "како",
+        "isWord": true,
+        "index": 276
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 277
+      },
+      {
+        "token": "оваа",
+        "isWord": true,
+        "index": 278
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 279
+      },
+      {
+        "token": "ја",
+        "isWord": true,
+        "index": 280
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 281
+      },
+      {
+        "token": "чуваат",
+        "isWord": true,
+        "index": 282
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 283
+      },
+      {
+        "token": "душата",
+        "isWord": true,
+        "index": 284
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 285
+      },
+      {
+        "token": "на",
+        "isWord": true,
+        "index": 286
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 287
+      },
+      {
+        "token": "македонскиот",
+        "isWord": true,
+        "index": 288
+      },
+      {
+        "token": " ",
+        "isWord": false,
+        "index": 289
+      },
+      {
+        "token": "народ",
+        "isWord": true,
+        "index": 290
+      },
+      {
+        "token": ".",
+        "isWord": false,
+        "index": 291
+      }
+    ],
+    "fullTranslation": "In Macedonia there are many legends that are passed down from generation to generation. One of the most famous is the legend of Lake Ohrid. It is said that once, at the place of the lake, there was a large village.\n\nIn that village, the inhabitants were happy and rich. One day, an old woman came to the village asking for water and bread. No one wanted to help her. Only one young girl, whose name was Ohrida, gave her water and bread.\n\nThe old woman said, \"Tonight, run away from the village. Tomorrow will be late.\" The girl obeyed and ran away from the village that night. In the morning, the entire village was submerged under water.\n\nA beautiful lake was created in that place. The lake was named after the girl - Ohrid. People say that the remains of the village can still be seen at the bottom of the lake. This legend teaches us that kindness is always rewarded. Legends like this keep the soul of the Macedonian people.",
+    "difficulty": {
+      "level": "intermediate",
+      "score": 54.109589041095894,
+      "factors": {
+        "avgWordLength": 4.691780821917808,
+        "longWords": 21,
+        "totalWords": 146
+      }
+    },
+    "metadata": {
+      "wordCount": 146,
+      "sentenceCount": 16,
+      "characterCount": 862
+    }
   }
 }
