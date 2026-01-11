@@ -71,37 +71,6 @@ function NewsSkeletonCard() {
   );
 }
 
-function NewsFeaturedSkeleton() {
-  return (
-    <Card className="glass-card overflow-hidden border border-border/60">
-      <Skeleton className="aspect-[16/9] w-full rounded-none" />
-      <div className="space-y-3 p-4">
-        <Skeleton className="h-4 w-24 rounded-full" />
-        <Skeleton className="h-6 w-4/5" />
-        <Skeleton className="h-4 w-11/12" />
-        <Skeleton className="h-4 w-2/3" />
-      </div>
-    </Card>
-  );
-}
-
-function NewsCompactSkeleton() {
-  return (
-    <Card className="glass-card overflow-hidden border border-border/60 sm:flex">
-      <Skeleton className="aspect-[16/9] w-full rounded-none sm:aspect-[4/3] sm:w-48" />
-      <div className="flex flex-1 flex-col gap-3 p-4">
-        <Skeleton className="h-4 w-20 rounded-full" />
-        <Skeleton className="h-5 w-5/6" />
-        <Skeleton className="h-4 w-4/5" />
-        <div className="mt-auto flex items-center justify-between">
-          <Skeleton className="h-3 w-20" />
-          <Skeleton className="h-3 w-16" />
-        </div>
-      </div>
-    </Card>
-  );
-}
-
 function buildNewsApiUrl(base: string, params: URLSearchParams): string {
   const joiner = base.includes('?') ? '&' : '?';
   return `${base}${joiner}${params.toString()}`;
@@ -298,10 +267,7 @@ export default function NewsClient({
   const hasResults = items.length > 0;
   const showSkeleton = isLoading && items.length === 0;
   const showEmpty = !hasResults && !isLoading && !error;
-  const useEditorialLayout = items.length >= 4;
-  const leadItem = useEditorialLayout ? items[0] : undefined;
-  const secondaryItems = useEditorialLayout ? items.slice(1, 3) : [];
-  const gridItems = useEditorialLayout ? items.slice(3) : items;
+  const gridItems = items;
   const resultsLabel = meta ? t('resultsLabel', { count: meta.count, total: meta.total }) : '';
 
   return (
@@ -426,19 +392,10 @@ export default function NewsClient({
       )}
 
       {showSkeleton && (
-        <div className="space-y-6">
-          <section className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
-            <NewsFeaturedSkeleton />
-            <div className="grid gap-4">
-              <NewsCompactSkeleton />
-              <NewsCompactSkeleton />
-            </div>
-          </section>
-          <div className="card-grid three" data-testid="news-grid">
-            {SKELETON_PLACEHOLDERS.map((index) => (
-              <NewsSkeletonCard key={`news-skeleton-${index}`} />
-            ))}
-          </div>
+        <div className="card-grid three" data-testid="news-grid">
+          {SKELETON_PLACEHOLDERS.map((index) => (
+            <NewsSkeletonCard key={`news-skeleton-${index}`} />
+          ))}
         </div>
       )}
 
@@ -466,271 +423,107 @@ export default function NewsClient({
       )}
 
       {hasResults && !showSkeleton && (
-        <div className="space-y-6">
-          {leadItem && (
-            <section className={secondaryItems.length > 0 ? "grid gap-4 lg:grid-cols-[1.4fr_1fr]" : "grid gap-4"}>
+        <div className="card-grid three" data-testid="news-grid">
+          {gridItems.map((item) => {
+            const publishedLabel = mounted && item.publishedAt ? formatRelativeTime(item.publishedAt) : '';
+            const hasVideos = item.videos.length > 0;
+            const ctaLabel = hasVideos ? t('watchVideo') : t('viewArticle');
+            const visibleCategories = item.categories.slice(0, 3);
+            const extraCategoryCount = item.categories.length - visibleCategories.length;
+
+            return (
               <a
-                href={leadItem.link}
+                key={item.id}
+                href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                data-testid={`news-article-${leadItem.id}`}
+                data-testid={`news-article-${item.id}`}
                 onClick={() => {
                   trackEvent(AnalyticsEvents.NEWS_ARTICLE_CLICKED, {
-                    source: leadItem.sourceId,
-                    hasCategories: leadItem.categories.length > 0,
+                    source: item.sourceId,
+                    hasCategories: item.categories.length > 0,
                   });
                 }}
                 className="group h-full"
               >
-                <Card className="glass-card relative flex h-full flex-col overflow-hidden border border-border/60 bg-background/40 shadow-[0_24px_60px_rgba(0,0,0,0.25)] transition-all hover:border-primary/40">
-                  <div className="relative">
+                <Card
+                  className="glass-card flex h-full flex-col overflow-hidden border border-border/60 bg-background/40 transition-shadow hover:border-primary/40 hover:shadow-2xl"
+                  data-testid="news-card"
+                >
+                  <div className="relative aspect-[16/10] w-full overflow-hidden">
                     <ProxiedNewsImage
-                      imageUrl={leadItem.image}
-                      alt={leadItem.title}
-                      sourceId={leadItem.sourceId}
-                      sourceName={leadItem.sourceName}
-                      containerClassName="aspect-[16/9]"
-                      className="transition-transform duration-500 group-hover:scale-[1.02]"
+                      imageUrl={item.image}
+                      alt={item.title}
+                      sourceId={item.sourceId}
+                      sourceName={item.sourceName}
+                      containerClassName="aspect-[16/10]"
+                      className="transition-transform duration-500 group-hover:scale-[1.03]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent" />
-                    <div className="absolute bottom-4 left-4 right-4 min-w-0 space-y-3">
-                      <div className="flex flex-wrap items-center gap-2 min-w-0">
-                        <Badge variant="secondary" className="bg-black/45 text-[11px] text-white backdrop-blur">
-                          {leadItem.sourceName}
-                        </Badge>
-                        {leadItem.categories.slice(0, 2).map((category) => (
-                          <Badge
-                            key={`${leadItem.id}-${category}`}
-                            variant="secondary"
-                            className="max-w-[140px] truncate bg-white/10 text-[11px] text-white sm:max-w-none"
-                            title={category}
-                          >
-                            {category}
-                          </Badge>
-                        ))}
-                        {leadItem.categories.length > 2 && (
-                          <Badge variant="secondary" className="bg-white/10 text-[11px] text-white">
-                            +{leadItem.categories.length - 2}
-                          </Badge>
-                        )}
-                        {leadItem.videos.length > 0 && (
-                          <Badge
-                            variant="secondary"
-                            className="inline-flex items-center gap-1 bg-primary/25 text-[11px] text-white"
-                          >
-                            <PlayCircle className="h-3 w-3" />
-                            {leadItem.videos.length}
-                          </Badge>
-                        )}
-                      </div>
-                      <div className="space-y-2 min-w-0">
-                        <h2 className="text-lg font-semibold leading-snug text-white line-clamp-2 break-words sm:text-xl">
-                          {leadItem.title}
-                        </h2>
-                        {leadItem.description && (
-                          <p className="text-sm text-white/80 line-clamp-2 break-words">
-                            {leadItem.description}
-                          </p>
-                        )}
-                      </div>
-                      <div className="flex flex-col gap-2 text-xs text-white/70 sm:flex-row sm:items-center sm:justify-between">
-                        {mounted && leadItem.publishedAt && (
-                          <span suppressHydrationWarning className="inline-flex items-center gap-1.5 min-w-0">
-                            <Clock3 className="h-3.5 w-3.5" />
-                            {formatRelativeTime(leadItem.publishedAt)}
-                          </span>
-                        )}
-                        <span className="inline-flex items-center gap-1 text-sm font-semibold text-white">
-                          {leadItem.videos.length > 0 ? t('watchVideo') : t('viewArticle')}
-                          <ExternalLink className="h-3.5 w-3.5" />
-                        </span>
-                      </div>
-                    </div>
+                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent" />
+                    <Badge
+                      variant="secondary"
+                      className="absolute left-4 bottom-3 hidden text-[11px] bg-black/50 text-white backdrop-blur sm:inline-flex"
+                    >
+                      {item.sourceName}
+                    </Badge>
                   </div>
+                  <CardHeader className="flex-1 space-y-3 min-w-0">
+                    <CardTitle className="text-base font-semibold leading-snug text-foreground line-clamp-2 break-words group-hover:text-primary">
+                      {item.title}
+                    </CardTitle>
+                    {item.description && (
+                      <CardDescription className="line-clamp-3 text-sm text-muted-foreground break-words">
+                        {item.description}
+                      </CardDescription>
+                    )}
+                  </CardHeader>
+                  <CardContent className="space-y-2 sm:space-y-3 min-w-0">
+                    <div className="hidden flex-wrap gap-1.5 sm:flex">
+                      {visibleCategories.map((category) => (
+                        <Badge
+                          key={`${item.id}-${category}`}
+                          variant="outline"
+                          className="max-w-[140px] truncate rounded-full border-border/60 px-2 text-[11px] text-foreground sm:max-w-none"
+                          title={category}
+                        >
+                          {category}
+                        </Badge>
+                      ))}
+                      {extraCategoryCount > 0 && (
+                        <Badge
+                          variant="outline"
+                          className="rounded-full border-border/60 px-2 text-[11px] text-foreground"
+                        >
+                          +{extraCategoryCount}
+                        </Badge>
+                      )}
+                      {hasVideos && (
+                        <Badge
+                          variant="secondary"
+                          className="inline-flex items-center gap-1 rounded-full bg-primary/20 px-2 text-[11px] text-white"
+                        >
+                          <PlayCircle className="h-3 w-3" />
+                          {item.videos.length}
+                        </Badge>
+                      )}
+                    </div>
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
+                      {publishedLabel && (
+                        <span suppressHydrationWarning className="inline-flex items-center gap-1.5">
+                          <Clock3 className="h-3.5 w-3.5" />
+                          {publishedLabel}
+                        </span>
+                      )}
+                      <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                        {ctaLabel}
+                        <ExternalLink className="h-3.5 w-3.5" />
+                      </span>
+                    </div>
+                  </CardContent>
                 </Card>
               </a>
-              {secondaryItems.length > 0 && (
-                <div className="grid gap-4">
-                  {secondaryItems.map((item) => {
-                    const publishedLabel = mounted && item.publishedAt ? formatRelativeTime(item.publishedAt) : '';
-                    const hasVideos = item.videos.length > 0;
-                    const ctaLabel = hasVideos ? t('watchVideo') : t('viewArticle');
-                    return (
-                      <a
-                        key={item.id}
-                        href={item.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        data-testid={`news-article-${item.id}`}
-                        onClick={() => {
-                          trackEvent(AnalyticsEvents.NEWS_ARTICLE_CLICKED, {
-                            source: item.sourceId,
-                            hasCategories: item.categories.length > 0,
-                          });
-                        }}
-                        className="group h-full"
-                      >
-                        <Card className="glass-card flex h-full flex-col overflow-hidden border border-border/60 bg-background/40 transition-all hover:border-primary/40 hover:shadow-xl sm:flex-row">
-                          <div className="relative aspect-[16/9] w-full overflow-hidden sm:aspect-[4/3] sm:w-48">
-                            <ProxiedNewsImage
-                              imageUrl={item.image}
-                              alt={item.title}
-                              sourceId={item.sourceId}
-                              sourceName={item.sourceName}
-                              containerClassName="aspect-[16/9] sm:aspect-[4/3]"
-                              className="transition-transform duration-500 group-hover:scale-[1.03]"
-                            />
-                          </div>
-                          <div className="flex flex-1 flex-col gap-3 p-4 min-w-0">
-                            <Badge variant="secondary" className="w-fit bg-primary/15 text-[11px] text-primary">
-                              {item.sourceName}
-                            </Badge>
-                            <div className="space-y-2 min-w-0">
-                              <h3 className="text-base font-semibold text-foreground line-clamp-2 break-words group-hover:text-primary">
-                                {item.title}
-                              </h3>
-                              {item.description && (
-                                <p className="text-sm text-muted-foreground line-clamp-2 break-words">
-                                  {item.description}
-                                </p>
-                              )}
-                            </div>
-                            <div className="mt-auto flex flex-col gap-2 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-                              {publishedLabel && (
-                                <span suppressHydrationWarning className="inline-flex items-center gap-1.5 min-w-0">
-                                  <Clock3 className="h-3.5 w-3.5" />
-                                  {publishedLabel}
-                                </span>
-                              )}
-                              <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary">
-                                {ctaLabel}
-                                <ExternalLink className="h-3.5 w-3.5" />
-                              </span>
-                            </div>
-                          </div>
-                        </Card>
-                      </a>
-                    );
-                  })}
-                </div>
-              )}
-            </section>
-          )}
-
-          {gridItems.length > 0 && (
-            <section className="space-y-4">
-              {useEditorialLayout && (
-                <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">{t('latestTitle')}</p>
-                    <p className="text-sm text-muted-foreground">{t('latestSubtitle')}</p>
-                  </div>
-                  {resultsLabel && (
-                    <span className="text-xs text-muted-foreground">{resultsLabel}</span>
-                  )}
-                </div>
-              )}
-              <div className="card-grid three" data-testid="news-grid">
-                {gridItems.map((item) => {
-                  const publishedLabel = mounted && item.publishedAt ? formatRelativeTime(item.publishedAt) : '';
-                  const hasVideos = item.videos.length > 0;
-                  const ctaLabel = hasVideos ? t('watchVideo') : t('viewArticle');
-                  const visibleCategories = item.categories.slice(0, 3);
-                  const extraCategoryCount = item.categories.length - visibleCategories.length;
-
-                  return (
-                    <a
-                      key={item.id}
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      data-testid={`news-article-${item.id}`}
-                      onClick={() => {
-                        trackEvent(AnalyticsEvents.NEWS_ARTICLE_CLICKED, {
-                          source: item.sourceId,
-                          hasCategories: item.categories.length > 0,
-                        });
-                      }}
-                      className="group h-full"
-                    >
-                      <Card
-                        className="glass-card flex h-full flex-col overflow-hidden border border-border/60 bg-background/40 transition-shadow hover:border-primary/40 hover:shadow-2xl"
-                        data-testid="news-card"
-                      >
-                        <div className="relative aspect-[16/10] w-full overflow-hidden">
-                          <ProxiedNewsImage
-                            imageUrl={item.image}
-                            alt={item.title}
-                            sourceId={item.sourceId}
-                            sourceName={item.sourceName}
-                            containerClassName="aspect-[16/10]"
-                            className="transition-transform duration-500 group-hover:scale-[1.03]"
-                          />
-                          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent" />
-                          <Badge variant="secondary" className="absolute left-4 bottom-3 text-[11px] bg-black/50 text-white backdrop-blur">
-                            {item.sourceName}
-                          </Badge>
-                        </div>
-                        <CardHeader className="flex-1 space-y-3 min-w-0">
-                          <CardTitle className="text-base font-semibold leading-snug text-foreground line-clamp-2 break-words group-hover:text-primary">
-                            {item.title}
-                          </CardTitle>
-                          {item.description && (
-                            <CardDescription className="line-clamp-3 text-sm text-muted-foreground break-words">
-                              {item.description}
-                            </CardDescription>
-                          )}
-                        </CardHeader>
-                        <CardContent className="space-y-3 min-w-0">
-                          <div className="flex flex-wrap gap-1.5">
-                            {visibleCategories.map((category) => (
-                              <Badge
-                                key={`${item.id}-${category}`}
-                                variant="outline"
-                                className="max-w-[140px] truncate rounded-full border-border/60 px-2 text-[11px] text-foreground sm:max-w-none"
-                                title={category}
-                              >
-                                {category}
-                              </Badge>
-                            ))}
-                            {extraCategoryCount > 0 && (
-                              <Badge
-                                variant="outline"
-                                className="rounded-full border-border/60 px-2 text-[11px] text-foreground"
-                              >
-                                +{extraCategoryCount}
-                              </Badge>
-                            )}
-                            {hasVideos && (
-                              <Badge
-                                variant="secondary"
-                                className="inline-flex items-center gap-1 rounded-full bg-primary/20 px-2 text-[11px] text-white"
-                              >
-                                <PlayCircle className="h-3 w-3" />
-                                {item.videos.length}
-                              </Badge>
-                            )}
-                          </div>
-                          <div className="flex flex-col gap-2 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-                            {publishedLabel && (
-                              <span suppressHydrationWarning className="inline-flex items-center gap-1.5 min-w-0">
-                                <Clock3 className="h-3.5 w-3.5" />
-                                {publishedLabel}
-                              </span>
-                            )}
-                            <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary">
-                              {ctaLabel}
-                              <ExternalLink className="h-3.5 w-3.5" />
-                            </span>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </a>
-                  );
-                })}
-              </div>
-            </section>
-          )}
+            );
+          })}
         </div>
       )}
     </div>
