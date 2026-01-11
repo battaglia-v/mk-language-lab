@@ -69,7 +69,10 @@ interface LevelReport {
   avgVocabPerLesson: number;
   minVocabPerLesson: number;
   maxVocabPerLesson: number;
-  lessonsBelow20Vocab: number;
+  avgGrammarPerLesson: number;
+  minGrammarPerLesson: number;
+  lessonsBelow30Vocab: number;
+  lessonsBelow2Grammar: number;
   issues: QualityIssue[];
 }
 
@@ -155,11 +158,14 @@ function analyzeLevel(filePath: string, levelName: string): LevelReport | null {
   let grammarWithExamples = 0;
   let grammarWith3PlusExamples = 0;
   let grammarWithTranslatedExamples = 0;
-  let lessonsBelow20Vocab = 0;
+  let lessonsBelow30Vocab = 0;
+  let lessonsBelow2Grammar = 0;
   let minVocab = Infinity;
   let maxVocab = 0;
+  let minGrammar = Infinity;
 
   const vocabPerLesson: number[] = [];
+  const grammarPerLesson: number[] = [];
 
   for (const chapter of data.chapters) {
     const lessonNum = chapter.lessonNumber || chapter.chapterNumber || 0;
@@ -167,13 +173,17 @@ function analyzeLevel(filePath: string, levelName: string): LevelReport | null {
     const grammarNotes = chapter.grammarNotes || [];
 
     const lessonVocabCount = vocabItems.length;
+    const lessonGrammarCount = grammarNotes.length;
     vocabPerLesson.push(lessonVocabCount);
+    grammarPerLesson.push(lessonGrammarCount);
     totalVocab += lessonVocabCount;
-    totalGrammar += grammarNotes.length;
+    totalGrammar += lessonGrammarCount;
 
     if (lessonVocabCount < minVocab) minVocab = lessonVocabCount;
     if (lessonVocabCount > maxVocab) maxVocab = lessonVocabCount;
-    if (lessonVocabCount < 20) lessonsBelow20Vocab++;
+    if (lessonGrammarCount < minGrammar) minGrammar = lessonGrammarCount;
+    if (lessonVocabCount < 30) lessonsBelow30Vocab++;
+    if (lessonGrammarCount < 2) lessonsBelow2Grammar++;
 
     // Check vocabulary items
     for (const vocab of vocabItems) {
@@ -255,6 +265,9 @@ function analyzeLevel(filePath: string, levelName: string): LevelReport | null {
   const avgVocab = data.chapters.length > 0
     ? Math.round(totalVocab / data.chapters.length)
     : 0;
+  const avgGrammar = data.chapters.length > 0
+    ? Math.round(totalGrammar / data.chapters.length)
+    : 0;
 
   return {
     level: levelName,
@@ -269,74 +282,54 @@ function analyzeLevel(filePath: string, levelName: string): LevelReport | null {
     avgVocabPerLesson: avgVocab,
     minVocabPerLesson: minVocab === Infinity ? 0 : minVocab,
     maxVocabPerLesson: maxVocab,
-    lessonsBelow20Vocab,
+    avgGrammarPerLesson: avgGrammar,
+    minGrammarPerLesson: minGrammar === Infinity ? 0 : minGrammar,
+    lessonsBelow30Vocab,
+    lessonsBelow2Grammar,
     issues,
   };
 }
 
 /**
  * Run all validation checks
+ * Updated for Phase 43 curation strategy: 30-50 vocab/lesson, 2+ grammar/lesson
  */
 function runChecks(levels: LevelReport[]): { name: string; passed: boolean; details: string }[] {
   const checks: { name: string; passed: boolean; details: string }[] = [];
 
-  // Check 1: A1 has 20+ vocab per lesson
-  const a1 = levels.find(l => l.level === 'A1');
-  if (a1) {
-    const passed = a1.lessonsBelow20Vocab === 0;
+  // Check 1: All levels have 30+ vocab per lesson (curated target)
+  for (const level of levels) {
+    const passed = level.lessonsBelow30Vocab === 0;
     checks.push({
-      name: 'A1 vocabulary coverage (20+ per lesson)',
+      name: `${level.level} vocabulary coverage (30+ per lesson)`,
       passed,
       details: passed
-        ? `✅ All ${a1.totalLessons} lessons have 20+ vocab items (min: ${a1.minVocabPerLesson}, avg: ${a1.avgVocabPerLesson})`
-        : `❌ ${a1.lessonsBelow20Vocab}/${a1.totalLessons} lessons below target (min: ${a1.minVocabPerLesson})`,
+        ? `✅ All ${level.totalLessons} lessons have 30+ vocab items (min: ${level.minVocabPerLesson}, avg: ${level.avgVocabPerLesson})`
+        : `❌ ${level.lessonsBelow30Vocab}/${level.totalLessons} lessons below target (min: ${level.minVocabPerLesson})`,
     });
   }
 
-  // Check 2: A1 grammar has explanations and 3+ examples
-  if (a1) {
-    const grammarPassed = a1.grammarWithExplanations === a1.totalGrammar && a1.grammarWith3PlusExamples === a1.totalGrammar;
+  // Check 2: All levels have 2+ grammar notes per lesson
+  for (const level of levels) {
+    const passed = level.lessonsBelow2Grammar === 0;
     checks.push({
-      name: 'A1 grammar quality (explanations + 3+ examples)',
+      name: `${level.level} grammar coverage (2+ per lesson)`,
+      passed,
+      details: passed
+        ? `✅ All ${level.totalLessons} lessons have 2+ grammar notes (min: ${level.minGrammarPerLesson}, avg: ${level.avgGrammarPerLesson})`
+        : `❌ ${level.lessonsBelow2Grammar}/${level.totalLessons} lessons below target (min: ${level.minGrammarPerLesson})`,
+    });
+  }
+
+  // Check 3: Grammar quality (explanations + 3+ examples)
+  for (const level of levels) {
+    const grammarPassed = level.grammarWithExplanations === level.totalGrammar && level.grammarWith3PlusExamples === level.totalGrammar;
+    checks.push({
+      name: `${level.level} grammar quality (explanations + 3+ examples)`,
       passed: grammarPassed,
       details: grammarPassed
-        ? `✅ All ${a1.totalGrammar} grammar notes have explanations and 3+ examples`
-        : `❌ ${a1.grammarWithExplanations}/${a1.totalGrammar} have explanations, ${a1.grammarWith3PlusExamples}/${a1.totalGrammar} have 3+ examples`,
-    });
-  }
-
-  // Check 3: A2 has vocabulary and grammar populated
-  const a2 = levels.find(l => l.level === 'A2');
-  if (a2) {
-    const a2VocabPassed = a2.totalVocabulary > 5000;
-    checks.push({
-      name: 'A2 vocabulary populated (5000+ items)',
-      passed: a2VocabPassed,
-      details: a2VocabPassed
-        ? `✅ A2 has ${a2.totalVocabulary} vocabulary items`
-        : `❌ A2 only has ${a2.totalVocabulary} vocabulary items (target: 5000+)`,
-    });
-
-    const a2GrammarPassed = a2.totalGrammar > 40;
-    checks.push({
-      name: 'A2 grammar populated (40+ notes)',
-      passed: a2GrammarPassed,
-      details: a2GrammarPassed
-        ? `✅ A2 has ${a2.totalGrammar} grammar notes`
-        : `❌ A2 only has ${a2.totalGrammar} grammar notes (target: 40+)`,
-    });
-  }
-
-  // Check 4: B1 has skeleton vocabulary
-  const b1 = levels.find(l => l.level === 'B1');
-  if (b1) {
-    const b1Passed = b1.totalVocabulary > 10000;
-    checks.push({
-      name: 'B1 vocabulary skeleton (10000+ items)',
-      passed: b1Passed,
-      details: b1Passed
-        ? `✅ B1 has ${b1.totalVocabulary} vocabulary items`
-        : `❌ B1 only has ${b1.totalVocabulary} vocabulary items (target: 10000+)`,
+        ? `✅ All ${level.totalGrammar} grammar notes have explanations and 3+ examples`
+        : `❌ ${level.grammarWithExplanations}/${level.totalGrammar} have explanations, ${level.grammarWith3PlusExamples}/${level.totalGrammar} have 3+ examples`,
     });
   }
 
