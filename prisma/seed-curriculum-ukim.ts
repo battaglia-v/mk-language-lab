@@ -9,6 +9,7 @@
 import { PrismaClient } from '@prisma/client';
 import * as fs from 'fs';
 import * as path from 'path';
+import { cyrillicToLatin } from '../lib/transliterate';
 
 const prisma = new PrismaClient();
 
@@ -17,6 +18,10 @@ interface StructuredVocabulary {
   macedonian: string;
   english: string;
   context?: string;
+  category?: string;
+  gender?: string;
+  transliteration?: string;
+  isCore?: boolean;
 }
 
 interface StructuredGrammar {
@@ -57,6 +62,20 @@ interface B1Skeleton {
   level: string;
   note: string;
   chapters: B1Chapter[];
+}
+
+function hasCyrillic(text: string): boolean {
+  return /[\u0400-\u04FF]/.test(text);
+}
+
+function inferGender(word: string | null, partOfSpeech: string | null): string | null {
+  if (!word) return null;
+  const pos = partOfSpeech?.toLowerCase();
+  if (pos !== 'noun') return null;
+  const lower = word.toLowerCase();
+  if (lower.endsWith('а') || lower.endsWith('ка') || lower.endsWith('ица')) return 'feminine';
+  if (lower.endsWith('е') || lower.endsWith('о')) return 'neuter';
+  return 'masculine';
 }
 
 /**
@@ -141,6 +160,14 @@ async function seedFullCurriculum(textbook: StructuredTextbook) {
           macedonianText: (vocab as any).word || (vocab as any).macedonian || '',
           englishText: (vocab as any).translation || (vocab as any).english || '',
           partOfSpeech: (vocab as any).partOfSpeech || null,
+          category: (vocab as any).category || null,
+          gender: (vocab as any).gender || inferGender((vocab as any).word || (vocab as any).macedonian || null, (vocab as any).partOfSpeech || null),
+          transliteration:
+            (vocab as any).transliteration ||
+            (hasCyrillic((vocab as any).word || (vocab as any).macedonian || '')
+              ? cyrillicToLatin((vocab as any).word || (vocab as any).macedonian || '')
+              : null),
+          isCore: typeof (vocab as any).isCore === 'boolean' ? (vocab as any).isCore : true,
           // Note: 'context' is grammatical context (singular/plural), not an example sentence
           // Example sentences should be in exampleSentenceMk/exampleSentenceEn fields
           exampleSentenceMk: null,
@@ -359,7 +386,7 @@ async function main() {
     // Load JSON files
     const a1 = loadJSON<StructuredTextbook>('data/curriculum/structured/a1-teskoto.json');
     const a2 = loadJSON<StructuredTextbook>('data/curriculum/structured/a2-lozje.json');
-    const b1 = loadJSON<B1Skeleton>('data/curriculum/structured/b1-zlatovrv.json');
+    const b1 = loadJSON<StructuredTextbook>('data/curriculum/structured/b1-zlatovrv.json');
 
     if (isDryRun) {
       // Dry run - validate without database writes
@@ -398,7 +425,7 @@ async function main() {
       // Actual seeding
       await seedFullCurriculum(a1);
       await seedFullCurriculum(a2);
-      await seedB1Skeleton(b1);
+      await seedFullCurriculum(b1);
 
       console.log('\n' + '='.repeat(60));
       console.log('🎉 UKIM curriculum seeding complete!');
@@ -408,7 +435,7 @@ async function main() {
       console.log(`- ${a1.chapters.length + a2.chapters.length + b1.chapters.length} Lessons total`);
       console.log('- Vocabulary items from A1 and A2');
       console.log('- Grammar notes from A1 and A2');
-      console.log('- B1 skeleton structure (content pending)');
+      console.log('- B1 curriculum vocabulary + grammar');
       console.log();
     }
   } catch (error) {
