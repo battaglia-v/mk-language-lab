@@ -201,25 +201,25 @@ Plans:
 Plans:
 - [x] 39-01: Reading progress tracking and library card status — completed 2026-01-11
 
-#### Phase 40: Discovery & Navigation
+#### Phase 40: Discovery & Navigation — COMPLETE
 
 **Goal**: Better filtering by level/topic, improved story browsing experience
 **Depends on**: Phase 39
 **Research**: Unlikely (internal UI patterns)
-**Plans**: TBD
+**Plans**: 1
 
 Plans:
-- [ ] 40-01: TBD
+- [x] 40-01: Topic filtering, sort options, Continue Reading card — completed 2026-01-11
 
-#### Phase 41: Content & Validation
+#### Phase 41: Content & Validation — COMPLETE
 
-**Goal**: Fill gaps in level coverage, add topic variety, validate reader experience
+**Goal**: Validate v1.6 Reader features with comprehensive E2E tests
 **Depends on**: Phase 40
-**Research**: Unlikely (following existing curriculum structure)
-**Plans**: TBD
+**Research**: None
+**Plans**: 1
 
 Plans:
-- [ ] 41-01: TBD
+- [x] 41-01: Reader E2E test suite — completed 2026-01-11
 
 ## Progress
 
@@ -229,8 +229,8 @@ Plans:
 | 37. Tap-to-Translate | v1.6 | 2/2 | Complete | 2026-01-11 |
 | 38. Reader Vocabulary Save | v1.6 | 1/1 | Complete | 2026-01-11 |
 | 39. Reading Progress | v1.6 | 1/1 | Complete | 2026-01-11 |
-| 40. Discovery & Navigation | v1.6 | 0/? | Not started | - |
-| 41. Content & Validation | v1.6 | 0/? | Not started | - |
+| 40. Discovery & Navigation | v1.6 | 1/1 | Complete | 2026-01-11 |
+| 41. Content & Validation | v1.6 | 1/1 | Complete | 2026-01-11 |
 
 **Completed Milestones:**
 - [v1.0 Beta](milestones/v1.0-ROADMAP.md) — 7 phases, 21 plans (shipped 2026-01-07)
