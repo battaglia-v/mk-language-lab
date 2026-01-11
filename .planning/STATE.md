@@ -2,19 +2,19 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-01-10)
+See: .planning/PROJECT.md (updated 2026-01-11)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** v1.6 Reader Overhaul — mobile-first reading experience with interactive vocabulary
+**Current focus:** Planning next milestone
 
 ## Current Position
 
-Phase: 41 of 41 (Content & Validation)
-Plan: 1 of 1 in current phase
-Status: Milestone complete — v1.6 ready to ship
-Last activity: 2026-01-11 — Completed 41-01-PLAN.md (E2E validation)
+Phase: All phases complete (41 total)
+Plan: N/A
+Status: Ready for next milestone planning
+Last activity: 2026-01-11 — v1.6 Reader Overhaul shipped
 
-Progress: ██████████ 100%
+Progress: All milestones complete through v1.6
 
 ## Milestone Summary
 
@@ -55,14 +55,22 @@ Progress: ██████████ 100%
 - About page credits, quiz retake, section stepper navigation
 - Practice Hub improvements with lesson progress indicator
 
+**v1.6 Reader Overhaul shipped 2026-01-11**
+- 6 phases (36-41), 7 plans, 29 commits
+- 76 files modified (+29,620 / -1,197 lines)
+- 12 graded readers with tap-to-translate (1,123 words)
+- Reading progress tracking with resume
+- Topic filtering, sort options, Continue Reading card
+- 56 E2E tests for reader features
+
 See `.planning/MILESTONES.md` for full details.
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 75 (69 + 6 from v1.5)
+- Total plans completed: 81 (75 + 6 from v1.5 + 7 from v1.6 - counted correctly: 21+18+7+9+13+6+7 = 81)
 - Average duration: ~9 min
-- Total execution time: ~11.5 hours
+- Total execution time: ~12 hours
 
 **By Milestone:**
 
@@ -74,6 +82,7 @@ See `.planning/MILESTONES.md` for full details.
 | v1.3 User Journey | 6 | 9 | ~30 | 1 day |
 | v1.4 Power User | 6 | 13 | 67 | 1 day |
 | v1.5 Audio Cleanup | 3 | 6 | 27 | Same day |
+| v1.6 Reader Overhaul | 6 | 7 | 29 | 2 days |
 
 ## Accumulated Context
 
@@ -97,10 +106,10 @@ None.
 - Milestone v1.3 shipped: Content quality & user journey (Phases 21-26)
 - Milestone v1.4 shipped: Power user feedback (Phases 27-32)
 - Milestone v1.5 shipped: Audio cleanup & final polish (Phases 33-35)
-- Milestone v1.6 created: Reader overhaul, 6 phases (Phase 36-41)
+- Milestone v1.6 shipped: Reader overhaul (Phases 36-41)
 
 ## Session Continuity
 
 Last session: 2026-01-11
-Stopped at: v1.6 milestone complete — ready for /gsd:complete-milestone
+Stopped at: v1.6 milestone complete — ready for next milestone planning
 Resume file: None

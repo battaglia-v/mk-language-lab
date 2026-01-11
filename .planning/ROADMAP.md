@@ -12,7 +12,7 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 - ✅ **v1.3 Content Quality & User Journey** — Phases 21-26 (shipped 2026-01-10)
 - ✅ [v1.4 Power User Feedback](milestones/v1.4-ROADMAP.md) (Phases 27-32) — SHIPPED 2026-01-10
 - ✅ [v1.5 Audio Cleanup & Final Polish](milestones/v1.5-ROADMAP.md) (Phases 33-35) — SHIPPED 2026-01-10
-- 🚧 **v1.6 Reader Overhaul** — Phases 36-41 (in progress)
+- ✅ [v1.6 Reader Overhaul](milestones/v1.6-ROADMAP.md) (Phases 36-41) — SHIPPED 2026-01-11
 
 ## Completed Milestones
 
@@ -155,89 +155,32 @@ Plans:
 
 </details>
 
-### 🚧 v1.6 Reader Overhaul (In Progress)
+<details>
+<summary>✅ v1.6 Reader Overhaul (Phases 36-41) — SHIPPED 2026-01-11</summary>
 
-**Milestone Goal:** Transform the Reader section into a comprehensive, mobile-first reading experience with interactive vocabulary features and better content discovery.
+- [x] Phase 36: A2 Reader Wiring (1/1 plans) — completed 2026-01-10
+- [x] Phase 37: Tap-to-Translate (2/2 plans) — completed 2026-01-11
+- [x] Phase 38: Reader Vocabulary Save (1/1 plans) — completed 2026-01-11
+- [x] Phase 39: Reading Progress (1/1 plans) — completed 2026-01-11
+- [x] Phase 40: Discovery & Navigation (1/1 plans) — completed 2026-01-11
+- [x] Phase 41: Content & Validation (1/1 plans) — completed 2026-01-11
 
-#### Phase 36: A2 Reader Wiring — COMPLETE
+[Full details](milestones/v1.6-ROADMAP.md)
 
-**Goal**: Wire existing A2 graded reader content to the reader UI and audit all reader content
-**Depends on**: v1.5 complete
-**Research**: Unlikely (internal patterns, existing content)
-**Plans**: 1
-
-Plans:
-- [x] 36-01: Graded reader wiring (12 stories A1/A2/B1) — completed 2026-01-10
-
-#### Phase 37: Tap-to-Translate — COMPLETE
-
-**Goal**: Implement tap-to-translate word lookup system for reader content
-**Depends on**: Phase 36
-**Research**: Likely (dictionary integration, word tokenization)
-**Research topics**: Dictionary API options, Cyrillic word tokenization, mobile touch handling
-**Plans**: 2
-
-Plans:
-- [x] 37-01: Pre-analyze graded readers — completed 2026-01-11
-- [x] 37-02: Polish tap visual feedback — completed 2026-01-11
-
-#### Phase 38: Reader Vocabulary Save — COMPLETE
-
-**Goal**: Enable saving words directly to glossary while reading stories
-**Depends on**: Phase 37
-**Research**: Unlikely (extends existing save-to-glossary patterns from v1.4)
-**Plans**: 1
-
-Plans:
-- [x] 38-01: Unify reader glossary with favorites system — completed 2026-01-11
-
-#### Phase 39: Reading Progress — COMPLETE
-
-**Goal**: Track story completion, reading time, and per-story progress
-**Depends on**: Phase 38
-**Research**: Unlikely (similar to existing lesson progress tracking)
-**Plans**: 1
-
-Plans:
-- [x] 39-01: Reading progress tracking and library card status — completed 2026-01-11
-
-#### Phase 40: Discovery & Navigation — COMPLETE
-
-**Goal**: Better filtering by level/topic, improved story browsing experience
-**Depends on**: Phase 39
-**Research**: Unlikely (internal UI patterns)
-**Plans**: 1
-
-Plans:
-- [x] 40-01: Topic filtering, sort options, Continue Reading card — completed 2026-01-11
-
-#### Phase 41: Content & Validation — COMPLETE
-
-**Goal**: Validate v1.6 Reader features with comprehensive E2E tests
-**Depends on**: Phase 40
-**Research**: None
-**Plans**: 1
-
-Plans:
-- [x] 41-01: Reader E2E test suite — completed 2026-01-11
+</details>
 
 ## Progress
 
-| Phase | Milestone | Plans | Status | Completed |
-|-------|-----------|-------|--------|-----------|
-| 36. A2 Reader Wiring | v1.6 | 1/1 | Complete | 2026-01-10 |
-| 37. Tap-to-Translate | v1.6 | 2/2 | Complete | 2026-01-11 |
-| 38. Reader Vocabulary Save | v1.6 | 1/1 | Complete | 2026-01-11 |
-| 39. Reading Progress | v1.6 | 1/1 | Complete | 2026-01-11 |
-| 40. Discovery & Navigation | v1.6 | 1/1 | Complete | 2026-01-11 |
-| 41. Content & Validation | v1.6 | 1/1 | Complete | 2026-01-11 |
+All phases complete. Ready for next milestone planning.
 
 **Completed Milestones:**
 - [v1.0 Beta](milestones/v1.0-ROADMAP.md) — 7 phases, 21 plans (shipped 2026-01-07)
+- **v1.1 Curriculum Quality Fix** — 9 phases, 18 plans (shipped 2026-01-09)
 - [v1.2 Infrastructure & CI](milestones/v1.2-ROADMAP.md) — 4 phases, 7 plans (shipped 2026-01-09)
-- **v1.3 Content Quality & User Journey** — 6 phases, 8 plans (shipped 2026-01-10)
+- **v1.3 Content Quality & User Journey** — 6 phases, 9 plans (shipped 2026-01-10)
 - [v1.4 Power User Feedback](milestones/v1.4-ROADMAP.md) — 6 phases, 13 plans (shipped 2026-01-10)
 - [v1.5 Audio Cleanup & Final Polish](milestones/v1.5-ROADMAP.md) — 3 phases, 6 plans (shipped 2026-01-10)
+- [v1.6 Reader Overhaul](milestones/v1.6-ROADMAP.md) — 6 phases, 7 plans (shipped 2026-01-11)
 
 ## Domain Expertise
 

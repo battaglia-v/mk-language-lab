@@ -78,6 +78,15 @@ If the app nails progression, users will forgive incomplete content; if it doesn
 - Curriculum source explanation (UKIM textbooks) — v1.5
 - Practice Hub lesson progress indicator — v1.5
 - Actionable Lesson Review empty state — v1.5
+- 12 graded reader stories wired with pre-analyzed vocabulary (4 A1, 4 A2, 4 B1) — v1.6
+- Tap-to-translate word lookup with instant translations (1,123 unique words) — v1.6
+- Unified vocabulary save — reader words integrate with favorites system — v1.6
+- Reading progress tracking (scroll position, time spent, completion status) — v1.6
+- Resume reading where you left off with scroll restoration — v1.6
+- Topic filtering for graded readers (Family, Daily Life, Food, Travel, Culture) — v1.6
+- Sort options dropdown (Default, Difficulty, Reading Time, My Progress) — v1.6
+- Continue Reading card for in-progress stories — v1.6
+- 56 E2E tests validating all reader features across 4 viewports — v1.6
 
 ### Active
 
@@ -100,16 +109,17 @@ If the app nails progression, users will forgive incomplete content; if it doesn
 
 ## Context
 
-### Current State (v1.5)
+### Current State (v1.6)
 
-- **Codebase:** ~26,000 lines of TypeScript (reduced from ~30,000 after audio removal)
+- **Codebase:** ~26,650 lines of TypeScript
 - **Tech stack:** Next.js 16 App Router, Prisma/PostgreSQL, NextAuth, Vercel
 - **Curriculum:** 40 lessons (24 A1 + 8 A2 + 8 B1), 41 grammar notes, 25,568 vocabulary items
-- **Graded Readers:** 12 stories (4 A1, 4 A2, 4 B1) in data/graded-readers.json
+- **Graded Readers:** 12 stories (4 A1, 4 A2, 4 B1) with pre-analyzed vocabulary (1,123 unique words)
+- **Reader Features:** Tap-to-translate, vocabulary save, progress tracking, topic/sort filtering
 - **Database:** UKIM curriculum seeded with 100% validated translations
 - **CI Pipeline:** 7 workflows with Next.js and Playwright caching optimized
 - **Dark mode:** ~98% compliance across all components
-- **E2E Tests:** 72 user journey tests across 4 viewports
+- **E2E Tests:** 128 tests (72 user journey + 56 reader) across 4 viewports
 - **Navigation:** Resources page (replaced More), unified Tools (Translate + Analyzer)
 - **Practice:** Session persistence, resume prompt, save-to-glossary, lesson progress indicator
 - **Audio:** Fully removed (was unused, now -4,064 lines cleaner)
@@ -169,4 +179,4 @@ Advanced and returning users didn't know where they were, what they'd completed,
 - [ ] 2-3 named beta users say: "This finally makes sense — I always know what to do next"
 
 ---
-*Last updated: 2026-01-10 after v1.5 Audio Cleanup & Final Polish milestone*
+*Last updated: 2026-01-11 after v1.6 Reader Overhaul milestone*
