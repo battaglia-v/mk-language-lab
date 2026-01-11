@@ -29,7 +29,7 @@ interface ChoiceButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement
 /**
  * ChoiceButton - Multiple choice answer button for practice sessions
  *
- * Always 44px+ height for touch targets. Shows visual feedback
+ * Always 48px+ height for touch targets. Shows visual feedback
  * for correct/incorrect states with color and icon indicators.
  *
  * @example
@@ -98,14 +98,14 @@ export const ChoiceButton = forwardRef<HTMLButtonElement, ChoiceButtonProps>(
         disabled={disabled || showFeedback}
         onClick={handleClick}
         className={cn(
-          // Base styles - minimum 44px touch target
+          // Base styles - minimum 48px touch target
           'relative flex items-center justify-between gap-3 rounded-xl border-2',
           'font-medium transition-all duration-200',
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50',
           'active:scale-[0.98]',
 
           // Size
-          compact ? 'min-h-[44px] p-3 text-base' : 'min-h-[52px] p-4 text-lg',
+          compact ? 'min-h-[48px] p-3 text-base' : 'min-h-[52px] p-4 text-lg',
 
           // Default state (selectable)
           !showFeedback && [

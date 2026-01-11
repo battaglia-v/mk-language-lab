@@ -72,7 +72,7 @@ function ModeTileCard({ tile }: { tile: ModeTile }) {
       className={cn(
         'group relative flex flex-col gap-2 rounded-2xl p-4 transition-all duration-200',
         'min-h-[120px] sm:min-h-[140px]',
-        // Touch target ensures 44px minimum
+        // Touch target ensures 48px minimum
         'active:scale-[0.98]',
         // Variants
         tile.variant === 'primary'

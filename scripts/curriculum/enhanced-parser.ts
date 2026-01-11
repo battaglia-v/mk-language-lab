@@ -455,7 +455,7 @@ export function parseLesson(
 // Exports for CLI usage
 // ============================================================================
 
-export default {
+const enhancedParser = {
   parseLesson,
   parseDialogues,
   parseConjugationTable,
@@ -465,3 +465,4 @@ export default {
   inferGender,
 };
 
+export default enhancedParser;

@@ -23,17 +23,17 @@
   --content-narrow: 480px;
 
   /* Button sizing */
-  --button-height-sm: 2.75rem;    /* 44px - tap target minimum */
+  --button-height-sm: 3rem;       /* 48px - tap target minimum */
   --button-height-md: 3rem;       /* 48px - standard */
   --button-height-lg: 3.5rem;     /* 56px - hero CTA */
   --button-pad-x-sm: 1rem;
   --button-pad-x-md: 1.5rem;
   --button-pad-x-lg: 2rem;
-  --touch-target-min: 44px;
+  --touch-target-min: 48px;
 
   /* Input sizing */
   --input-height: 3rem;           /* 48px */
-  --input-height-sm: 2.75rem;     /* 44px */
+  --input-height-sm: 3rem;        /* 48px */
 
   /* Radii - Simplified to 2 main values */
   --radius: 16px;                 /* Primary: buttons, cards */

@@ -128,7 +128,7 @@ export function PracticeHub() {
         <Button
           variant="ghost"
           size="sm"
-          className="h-11 min-h-[44px] gap-1.5 rounded-full px-3 text-muted-foreground"
+          className="h-12 min-h-[48px] gap-1.5 rounded-full px-3 text-muted-foreground"
           onClick={() => setSettingsOpen(true)}
           data-testid="practice-settings-open"
         >
@@ -373,7 +373,7 @@ export function PracticeHub() {
             <div className="flex gap-2">
               <Button
                 variant={mode === 'typing' ? 'secondary' : 'outline'}
-                className="flex-1 min-h-[44px]"
+                className="flex-1 min-h-[48px]"
                 onClick={() => setMode('typing')}
                 data-testid="practice-settings-mode-typing"
               >
@@ -381,7 +381,7 @@ export function PracticeHub() {
               </Button>
               <Button
                 variant={mode === 'multiple-choice' ? 'secondary' : 'outline'}
-                className="flex-1 min-h-[44px]"
+                className="flex-1 min-h-[48px]"
                 onClick={() => setMode('multiple-choice')}
                 data-testid="practice-settings-mode-multiple-choice"
               >
@@ -402,7 +402,7 @@ export function PracticeHub() {
                   variant={difficulty === d ? 'secondary' : 'outline'}
                   onClick={() => setDifficulty(d)}
                   data-testid={`practice-settings-difficulty-${d}`}
-                  className="min-h-[44px] px-4"
+                  className="min-h-[48px] px-4"
                 >
                   {d === 'all'
                     ? t('drills.allLevels', { default: 'All' })
@@ -458,7 +458,7 @@ export function PracticeHub() {
           {deckType === 'mistakes' && mistakesDeck.length > 0 && (
             <Button
               variant="destructive"
-              className="w-full min-h-[44px]"
+              className="w-full min-h-[48px]"
               onClick={() => {
                 clearMistakes();
                 handleDeckSelect('curated');

@@ -64,7 +64,7 @@ function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel
               onClick={() => onChange(option.id)}
               data-testid={`reader-workspace-direction-${option.id}`}
               className={cn(
-                'min-h-[44px] rounded-lg px-3.5 py-2 text-xs font-semibold transition-all sm:text-sm',
+                'min-h-[48px] rounded-lg px-3.5 py-2 text-xs font-semibold transition-all sm:text-sm',
                 isActive
                   ? `${bgClass} text-white shadow-md`
                   : 'text-muted-foreground hover:text-foreground'
@@ -81,7 +81,7 @@ function DirectionToggle({ options, activeId, onChange, onSwap, label, swapLabel
         variant="ghost"
         size="sm"
         onClick={onSwap}
-        className="min-h-[44px] rounded-full border border-border/60 px-3.5"
+        className="min-h-[48px] rounded-full border border-border/60 px-3.5"
         aria-label={swapLabel}
         data-testid="reader-workspace-swap-directions"
       >
@@ -330,7 +330,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
             variant={revealMode === 'hidden' ? 'default' : 'outline'}
             size="sm"
             onClick={handleToggleReveal}
-            className="h-11 min-w-[120px] flex-1 sm:flex-none rounded-lg text-xs sm:text-sm gap-1.5"
+            className="h-12 min-w-[120px] flex-1 sm:flex-none rounded-lg text-xs sm:text-sm gap-1.5"
             data-testid="reader-workspace-reveal-toggle"
           >
             {revealMode === 'hidden' ? (
@@ -352,7 +352,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
             variant={focusMode ? 'default' : 'secondary'}
             size="sm"
             onClick={() => setFocusMode((prev) => !prev)}
-            className="h-11 min-w-[110px] flex-1 sm:flex-none rounded-lg text-xs sm:text-sm gap-1.5"
+            className="h-12 min-w-[110px] flex-1 sm:flex-none rounded-lg text-xs sm:text-sm gap-1.5"
             title={t('readerFocusTooltip', { default: 'Focus mode highlights one word at a time for easier learning' })}
             data-testid="reader-workspace-focus-toggle"
           >
@@ -369,7 +369,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
             size="sm"
             disabled={!analyzedData}
             onClick={() => void handleCopyTranslation()}
-            className="h-11 min-w-[100px] flex-1 sm:flex-none rounded-lg text-xs sm:text-sm gap-1.5"
+            className="h-12 min-w-[100px] flex-1 sm:flex-none rounded-lg text-xs sm:text-sm gap-1.5"
             data-testid="reader-workspace-copy-translation"
           >
             <CopyIcon className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
@@ -461,7 +461,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                   size="sm"
                   onClick={handleClear}
                   disabled={!inputText && !analyzedData}
-                  className="rounded-full border border-border/60 min-h-[44px] px-3 text-xs"
+                  className="rounded-full border border-border/60 min-h-[48px] px-3 text-xs"
                   data-testid="reader-workspace-clear"
                 >
                   {t('clearButton')}
@@ -476,7 +476,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                 type="submit"
                 size="lg"
                 disabled={!inputText.trim() || isAnalyzing}
-                className="w-full sm:w-auto rounded-xl px-5 font-semibold min-h-[44px] bg-gradient-to-r from-amber-500 to-primary text-slate-900 hover:from-amber-600 hover:to-primary/90 shadow-lg"
+                className="w-full sm:w-auto rounded-xl px-5 font-semibold min-h-[48px] bg-gradient-to-r from-amber-500 to-primary text-slate-900 hover:from-amber-600 hover:to-primary/90 shadow-lg"
                 data-testid="reader-workspace-analyze"
               >
                 {isAnalyzing ? (
@@ -502,7 +502,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                 size="sm"
                 variant="ghost"
                 onClick={() => void handleAnalyze()}
-                className="ml-2 min-h-[44px]"
+                className="ml-2 min-h-[48px]"
                 data-testid="reader-workspace-retry"
               >
                 {t('retryButton')}
@@ -702,7 +702,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                           size="sm"
                           variant={saved ? 'secondary' : 'outline'}
                           onClick={() => toggleSaveSentence(sentence)}
-                          className="rounded-full min-h-[44px] px-4"
+                          className="rounded-full min-h-[48px] px-4"
                           data-testid={`reader-sentence-save-${sentence.id}`}
                         >
                           {saved ? (
@@ -721,7 +721,7 @@ export function ReaderWorkspace({ directionOptions, defaultDirectionId }: Reader
                           size="sm"
                           variant="ghost"
                           onClick={() => void handleCopySentence(sentence)}
-                          className="rounded-full min-h-[44px] px-4"
+                          className="rounded-full min-h-[48px] px-4"
                           data-testid={`reader-sentence-copy-${sentence.id}`}
                         >
                           <CopyIcon className="h-4 w-4" aria-hidden="true" />

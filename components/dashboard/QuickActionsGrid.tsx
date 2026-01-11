@@ -45,7 +45,7 @@ interface QuickActionsGridProps {
  * Design requirements:
  * - Fixed min-height for consistent card sizes
  * - Clear visual hierarchy: Icon > Label > Arrow
- * - Touch-friendly targets (min 44px)
+ * - Touch-friendly targets (min 48px)
  * - Consistent spacing (8/16/24 scale)
  */
 export function QuickActionsGrid({

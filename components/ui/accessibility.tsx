@@ -47,7 +47,7 @@ export function SkipLink({
         // Animation
         'focus:animate-in focus:fade-in-0 focus:slide-in-from-top-2',
         // Minimum touch target
-        'focus:min-h-[44px] focus:flex focus:items-center',
+        'focus:min-h-[48px] focus:flex focus:items-center',
         className
       )}
     >
@@ -102,7 +102,7 @@ export function SkipLinks({ links, className }: SkipLinksProps) {
             // Animation
             'focus:animate-in focus:fade-in-0 focus:slide-in-from-top-2',
             // Minimum touch target
-            'focus:min-h-[44px] focus:flex focus:items-center'
+            'focus:min-h-[48px] focus:flex focus:items-center'
           )}
         >
           {link.label}

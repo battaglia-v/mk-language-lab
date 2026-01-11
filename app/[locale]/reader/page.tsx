@@ -230,11 +230,11 @@ export default function ReaderPage() {
       <PageContainer size="lg">
         <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-6 min-h-[48px]">
-            <TabsTrigger value="library" className="gap-2 min-h-[44px]" data-testid="reader-tab-library">
+            <TabsTrigger value="library" className="gap-2 min-h-[48px]" data-testid="reader-tab-library">
               <Library className="h-4 w-4" />
               Library
             </TabsTrigger>
-            <TabsTrigger value="workspace" className="gap-2 min-h-[44px]" data-testid="reader-tab-workspace">
+            <TabsTrigger value="workspace" className="gap-2 min-h-[48px]" data-testid="reader-tab-workspace">
               <FileText className="h-4 w-4" />
               Workspace
             </TabsTrigger>
@@ -334,7 +334,7 @@ export default function ReaderPage() {
                     variant="ghost"
                     size="icon"
                     onClick={() => setSearchQuery('')}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 h-11 w-11 text-muted-foreground hover:text-foreground"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 h-12 w-12 text-muted-foreground hover:text-foreground"
                     data-testid="reader-search-clear"
                   >
                     <X className="h-4 w-4" />
@@ -353,7 +353,7 @@ export default function ReaderPage() {
                       aria-pressed={selectedDifficulty === level}
                       data-active={selectedDifficulty === level ? 'true' : 'false'}
                       className={cn(
-                        'rounded-full min-h-[44px] px-4 text-sm font-semibold transition-all',
+                        'rounded-full min-h-[48px] px-4 text-sm font-semibold transition-all',
                         selectedDifficulty === level
                           ? level === 'A1' ? 'bg-emerald-500 text-white border-emerald-500 hover:bg-emerald-600'
                           : level === 'A2' ? 'bg-blue-500 text-white border-blue-500 hover:bg-blue-600'
@@ -370,7 +370,7 @@ export default function ReaderPage() {
                     <Button
                       variant="ghost"
                       onClick={clearFilters}
-                      className="rounded-full min-h-[44px] px-4 text-sm font-medium text-muted-foreground"
+                      className="rounded-full min-h-[48px] px-4 text-sm font-medium text-muted-foreground"
                       data-testid="reader-filter-clear-all"
                     >
                       Clear all
@@ -390,7 +390,7 @@ export default function ReaderPage() {
                     aria-pressed={selectedTopic === topic}
                     data-active={selectedTopic === topic ? 'true' : 'false'}
                     className={cn(
-                      'rounded-full min-h-[44px] px-4 text-sm font-medium transition-all',
+                      'rounded-full min-h-[48px] px-4 text-sm font-medium transition-all',
                       selectedTopic === topic
                         ? 'bg-slate-700 text-white border-slate-700 hover:bg-slate-800'
                         : 'bg-transparent hover:border-slate-400'
@@ -405,7 +405,7 @@ export default function ReaderPage() {
                 <div className="ml-auto flex items-center gap-2">
                   <Select value={sortBy} onValueChange={(value) => setSortBy(value as SortOption)}>
                     <SelectTrigger
-                      className="min-h-[44px] min-w-[160px] rounded-full"
+                      className="min-h-[48px] min-w-[160px] rounded-full"
                       data-testid="reader-sort-trigger"
                     >
                       <ArrowUpDown className="h-4 w-4 mr-2" />
@@ -549,7 +549,7 @@ export default function ReaderPage() {
                     </p>
                     <Button
                       asChild
-                      className="min-h-[44px] rounded-full px-4 text-black"
+                      className="min-h-[48px] rounded-full px-4 text-black"
                       data-testid="reader-30day-start"
                     >
                       <Link href={`/${locale}/reader/samples/day01-maliot-princ`}>

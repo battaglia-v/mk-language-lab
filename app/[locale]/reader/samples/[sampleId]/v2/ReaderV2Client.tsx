@@ -196,6 +196,7 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
 
   // Save progress on unmount
   useEffect(() => {
+    const sessionStart = sessionStartRef.current;
     return () => {
       if (saveTimeoutRef.current) {
         clearTimeout(saveTimeoutRef.current);
@@ -206,7 +207,7 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
           scrollPercent,
           timeSpentSeconds:
             previousTimeSpentRef.current +
-            Math.floor((Date.now() - sessionStartRef.current) / 1000),
+            Math.floor((Date.now() - sessionStart) / 1000),
         });
       }
     };
@@ -451,10 +452,12 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
                       ))}
                     </ol>
                     {examples.length > 3 && (
-                      <button
+                      <Button
                         type="button"
+                        variant="ghost"
+                        size="sm"
                         onClick={() => toggleGrammarExpand(idx)}
-                        className="mt-3 min-h-[44px] text-sm text-secondary hover:text-secondary/80 flex items-center gap-1"
+                        className="mt-3 text-secondary hover:text-secondary/80 gap-1"
                       >
                         {isExpanded ? (
                           <>
@@ -467,7 +470,7 @@ export function ReaderV2Client({ sample, locale, sampleId }: ReaderV2ClientProps
                             {t.showMore} ({examples.length - 3})
                           </>
                         )}
-                      </button>
+                      </Button>
                     )}
                   </div>
                 )}

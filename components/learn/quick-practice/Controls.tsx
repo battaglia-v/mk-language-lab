@@ -173,7 +173,7 @@ export function QuickPracticeControls({
 
             <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
               <DialogTrigger asChild>
-                <Button type="button" variant="outline" size="icon" className="h-11 w-11 flex-shrink-0 rounded-xl" aria-label="Open practice settings">
+                <Button type="button" variant="outline" size="icon" className="h-12 w-12 flex-shrink-0 rounded-xl" aria-label="Open practice settings">
                   <Settings className="h-4 w-4" aria-hidden="true" />
                 </Button>
               </DialogTrigger>

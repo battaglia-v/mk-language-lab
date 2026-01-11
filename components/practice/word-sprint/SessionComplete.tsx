@@ -37,7 +37,7 @@ export function SessionComplete({
         <Button
           variant="ghost"
           size="sm"
-          className="h-11 rounded-full px-3 gap-2 text-muted-foreground hover:text-foreground"
+          className="h-12 rounded-full px-3 gap-2 text-muted-foreground hover:text-foreground"
           onClick={onFinish}
           data-testid="word-sprint-complete-close"
         >

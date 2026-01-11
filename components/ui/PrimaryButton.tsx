@@ -10,7 +10,7 @@ interface PrimaryButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   loading?: boolean;
   /** Visual variant */
   variant?: 'default' | 'success' | 'outline';
-  /** Size variant - all maintain 44px+ touch target */
+  /** Size variant - all maintain 48px+ touch target */
   size?: 'default' | 'lg';
   /** Full width */
   fullWidth?: boolean;
@@ -21,7 +21,7 @@ interface PrimaryButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 /**
  * PrimaryButton - Main action button for sessions and CTAs
  *
- * Always 44px+ height for touch targets (WCAG 2.1 AA).
+ * Always 48px+ height for touch targets (WCAG 2.1 AA).
  * Includes optional haptic feedback on tap.
  *
  * @example
@@ -65,7 +65,7 @@ export const PrimaryButton = forwardRef<HTMLButtonElement, PrimaryButtonProps>(
           'disabled:opacity-50 disabled:pointer-events-none',
           'active:scale-[0.98]',
 
-          // Size variants (minimum 44px height)
+          // Size variants (minimum 48px height)
           size === 'default' && 'h-12 px-6 text-base',
           size === 'lg' && 'h-14 px-8 text-lg',
 

@@ -829,7 +829,7 @@ async function handleNewsRequest(request: Request, env: Env, ctx: WorkerExecutio
   }
 }
 
-export default {
+const newsEdgeWorker = {
   async fetch(request: Request, env: Env, ctx: WorkerExecutionContext): Promise<Response> {
     const { pathname } = new URL(request.url);
 
@@ -865,3 +865,5 @@ export default {
     return handleNewsRequest(request, env, ctx);
   },
 };
+
+export default newsEdgeWorker;

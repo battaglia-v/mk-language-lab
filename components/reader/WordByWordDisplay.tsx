@@ -78,8 +78,8 @@ function WordToken({ word, revealMode, isRevealed, onToggleReveal, isFocused = f
           className={cn(
             'relative inline-flex cursor-pointer select-none flex-col items-start text-left',
             'rounded-xl border-2 border-border bg-card shadow-md',
-            // Improved touch targets - minimum 44px height for accessibility
-            'px-3 py-2.5 min-w-[64px] max-w-[140px] min-h-[44px] sm:px-3.5 sm:py-2.5 sm:min-w-[80px] sm:max-w-[180px]',
+            // Improved touch targets - minimum 48px height for accessibility
+            'px-3 py-2.5 min-w-[64px] max-w-[140px] min-h-[48px] sm:px-3.5 sm:py-2.5 sm:min-w-[80px] sm:max-w-[180px]',
             'transition-all duration-200 hover:border-primary/60 hover:bg-accent hover:shadow-lg active:scale-[0.98]',
             showTranslation && 'ring-2 ring-primary/50 border-primary/40 bg-primary/5',
             // Focus mode styling

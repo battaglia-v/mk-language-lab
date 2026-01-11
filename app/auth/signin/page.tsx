@@ -181,7 +181,7 @@ function SignInContent() {
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   disabled={isLoading}
                   required
-                  className="h-11 rounded-xl"
+                  className="h-12 rounded-xl"
                   aria-invalid={Boolean(fieldErrors.email)}
                   aria-describedby={fieldErrors.email ? 'email-error' : undefined}
                   data-testid="auth-signin-email"
@@ -203,7 +203,7 @@ function SignInContent() {
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                   disabled={isLoading}
                   required
-                  className="h-11 rounded-xl"
+                  className="h-12 rounded-xl"
                   aria-invalid={Boolean(fieldErrors.password)}
                   aria-describedby={fieldErrors.password ? 'password-error' : undefined}
                   data-testid="auth-signin-password"
@@ -217,7 +217,7 @@ function SignInContent() {
 
               <Button
                 type="submit"
-                className="w-full h-11 rounded-xl text-black font-medium mt-2 gap-2"
+                className="w-full h-12 rounded-xl text-black font-medium mt-2 gap-2"
                 disabled={isLoading}
                 aria-label="Sign in with email and password"
                 data-testid="auth-signin-submit"

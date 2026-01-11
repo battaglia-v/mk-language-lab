@@ -154,7 +154,7 @@ function MissionSummaryBanner({ mission, state, error, onRefresh, t, buildHref }
           type="button"
           onClick={onRefresh}
           data-testid="topnav-mission-retry"
-          className="min-h-[44px] touch-target rounded-full border border-red-400/60 px-3 py-1 text-xs font-semibold text-red-100 transition-all hover:bg-red-500/20"
+          className="min-h-[48px] touch-target rounded-full border border-red-400/60 px-3 py-1 text-xs font-semibold text-red-100 transition-all hover:bg-red-500/20"
         >
           {t('retry')}
         </button>
@@ -174,7 +174,7 @@ function MissionSummaryBanner({ mission, state, error, onRefresh, t, buildHref }
     <div className="flex flex-col gap-3 rounded-xl border border-white/5 bg-[#0f162e]/80 p-3 sm:rounded-2xl md:flex-row md:items-center md:gap-4">
       <div className="flex flex-1 flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
         <div className="flex items-center gap-2.5 sm:gap-3">
-          <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[var(--brand-red)]/10 text-[var(--brand-red)] sm:h-11 sm:w-11 sm:rounded-2xl">
+          <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[var(--brand-red)]/10 text-[var(--brand-red)] sm:h-12 sm:w-12 sm:rounded-2xl">
             <Flame className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
           </span>
           <div>
@@ -203,7 +203,7 @@ function MissionSummaryBanner({ mission, state, error, onRefresh, t, buildHref }
         </div>
 
         <div className="flex items-center gap-2.5 sm:gap-3">
-          <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[var(--brand-gold)]/20 text-[var(--brand-gold-dark)] sm:h-11 sm:w-11 sm:rounded-2xl">
+          <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[var(--brand-gold)]/20 text-[var(--brand-gold-dark)] sm:h-12 sm:w-12 sm:rounded-2xl">
             <Heart className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
           </span>
           <div>

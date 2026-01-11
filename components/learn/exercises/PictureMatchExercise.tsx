@@ -86,10 +86,16 @@ export function PictureMatchExercise({
   const progress = (correctMatches / totalItems) * 100;
 
   // Check if a sentence is matched
-  const isSentenceMatched = (sentenceId: string) => sentenceId in matches;
+  const isSentenceMatched = useCallback(
+    (sentenceId: string) => sentenceId in matches,
+    [matches]
+  );
 
   // Check if a picture is matched
-  const isPictureMatched = (pictureId: string) => Object.values(matches).includes(pictureId);
+  const isPictureMatched = useCallback(
+    (pictureId: string) => Object.values(matches).includes(pictureId),
+    [matches]
+  );
 
   // Get which sentence matches a picture
   const getSentenceForPicture = (pictureId: string) => {
@@ -101,7 +107,7 @@ export function PictureMatchExercise({
   const handleSentenceClick = useCallback((sentenceId: string) => {
     if (isSentenceMatched(sentenceId) || isComplete) return;
     setSelectedSentence(sentenceId === selectedSentence ? null : sentenceId);
-  }, [selectedSentence, isComplete]);
+  }, [isSentenceMatched, isComplete, selectedSentence]);
 
   // Handle picture click
   const handlePictureClick = useCallback((pictureId: string) => {
@@ -133,7 +139,7 @@ export function PictureMatchExercise({
         });
       }, 600);
     }
-  }, [selectedSentence, matches, totalItems, isComplete, onComplete]);
+  }, [isPictureMatched, selectedSentence, matches, totalItems, isComplete, onComplete]);
 
   // Reset exercise
   const handleReset = useCallback(() => {
@@ -318,4 +324,3 @@ export function PictureMatchExercise({
 }
 
 export default PictureMatchExercise;
-

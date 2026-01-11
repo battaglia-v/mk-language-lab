@@ -51,7 +51,7 @@
   --text-xs-mobile: clamp(0.9375rem, 0.5vw + 0.9rem, 1rem);      /* 15-16px - increased for readability */
   --mobile-nav-height: 68px;
   --mobile-nav-height-tablet: 72px;
-  --touch-target-size: 44px;
+  --touch-target-size: 48px;
   --safe-area-top: env(safe-area-inset-top, 0px);
   --safe-area-bottom: env(safe-area-inset-bottom, 0px);
 
@@ -65,7 +65,7 @@
   /* Accessibility tokens */
   --focus-ring-width: 3px;
   --focus-ring-offset: 2px;
-  --min-touch-target: 44px;            /* WCAG AA minimum */
+  --min-touch-target: 48px;            /* WCAG AA minimum */
 }
 
 /* Apply light theme by default */
@@ -193,6 +193,7 @@ a:active,
     justify-content: center;
     gap: var(--icon-gap);
     min-height: var(--touch-target-size);
+    min-width: var(--touch-target-size);
     vertical-align: middle;
     text-align: center;
   }

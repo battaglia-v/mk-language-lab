@@ -750,7 +750,7 @@ export default function ExerciseSection({ exercises }: ExerciseSectionProps) {
             <Button
               onClick={handleRetakeAll}
               variant="outline"
-              className="min-h-[44px]"
+              className="min-h-[48px]"
             >
               <RotateCcw className="h-4 w-4 mr-2" />
               {t('retakeQuiz')}

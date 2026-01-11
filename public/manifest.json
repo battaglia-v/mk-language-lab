@@ -4,7 +4,7 @@
   "short_name": "MK Language",
   "description": "Learn Macedonian with lessons, practice, translation, and real stories",
   "version": "2",
-  "start_url": "/en",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#080b12",
