@@ -63,7 +63,7 @@ test.describe('Alphabet Lesson', () => {
 
     const backLink = page.getByTestId('alphabet-back-to-a1');
     await backLink.click();
-    await expect(page).toHaveURL(/\/learn\/paths|\/learn$/);
+    await expect(page).toHaveURL(/\/learn(?:\/paths|\?level=beginner)/);
   });
 
   test('progress bar visible', async ({ page }) => {
