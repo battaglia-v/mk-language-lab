@@ -109,7 +109,7 @@ const SCREENSHOTS = [
     description: 'User profile with stats',
     waitFor: 'text=XP',
     caption: { title: 'Track Progress', subtitle: 'XP, streaks & achievements' },
-    requiresAuth: true,
+    requiresAuth: false,
   },
   {
     name: '07-news',
