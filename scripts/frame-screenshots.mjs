@@ -6,13 +6,18 @@
 
 import sharp from 'sharp';
 import { existsSync, mkdirSync, readdirSync } from 'fs';
-import { join, dirname } from 'path';
+import { join, dirname, isAbsolute } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
-const INPUT_DIR = join(ROOT, 'public', 'screenshots', 'store');
-const OUTPUT_DIR = join(ROOT, 'public', 'screenshots', 'store-framed');
+const resolvePath = (maybePath, fallbackParts) => {
+  if (!maybePath) return join(ROOT, ...fallbackParts);
+  return isAbsolute(maybePath) ? maybePath : join(ROOT, maybePath);
+};
+
+const INPUT_DIR = resolvePath(process.env.SCREENSHOT_FRAME_INPUT, ['public', 'screenshots', 'store']);
+const OUTPUT_DIR = resolvePath(process.env.SCREENSHOT_FRAME_OUTPUT, ['public', 'screenshots', 'store-framed']);
 
 // Final dimensions for Play Store (portrait phone)
 const FINAL_WIDTH = 1080;
@@ -31,6 +36,38 @@ const COLORS = {
 
 // Screenshot captions (title + subtitle)
 const CAPTIONS = {
+  '01-learn-paths': {
+    title: 'Structured Learning',
+    subtitle: 'Paths from alphabet to fluency',
+  },
+  '02-lesson-alphabet': {
+    title: 'Alphabet & Sounds',
+    subtitle: 'Build your Cyrillic foundation',
+  },
+  '03-practice-session': {
+    title: 'Practice Daily',
+    subtitle: 'Quick exercises that build fluency',
+  },
+  '04-translator': {
+    title: 'Instant Translation',
+    subtitle: 'Macedonian to English in a tap',
+  },
+  '05-reader-tap': {
+    title: 'Tap to Translate',
+    subtitle: 'Read real Macedonian stories',
+  },
+  '06-news': {
+    title: 'Real News',
+    subtitle: 'Practice reading current events',
+  },
+  '07-profile': {
+    title: 'Track Progress',
+    subtitle: 'XP, streaks & achievements',
+  },
+  '08-macedonian-locale': {
+    title: 'Bilingual Interface',
+    subtitle: 'English + Macedonian UI',
+  },
   '01-learn-home': {
     title: 'Start Your Journey',
     subtitle: 'Structured paths from alphabet to fluency',
@@ -65,8 +102,16 @@ const CAPTIONS = {
   },
 };
 
+const escapeXml = (value) =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+
 async function createFramedScreenshot(inputPath, outputPath, caption) {
   console.log(`  Creating framed: ${caption.title}`);
+  const safeTitle = escapeXml(caption.title);
+  const safeSubtitle = escapeXml(caption.subtitle);
 
   // Read and resize original screenshot to fit the space below header
   const screenshot = await sharp(inputPath)
@@ -101,7 +146,7 @@ async function createFramedScreenshot(inputPath, outputPath, caption) {
             font-weight="700"
             fill="${COLORS.text}"
             text-anchor="middle">
-        ${caption.title}
+        ${safeTitle}
       </text>
 
       <!-- Subtitle -->
@@ -111,7 +156,7 @@ async function createFramedScreenshot(inputPath, outputPath, caption) {
             font-weight="400"
             fill="${COLORS.subtext}"
             text-anchor="middle">
-        ${caption.subtitle}
+        ${safeSubtitle}
       </text>
 
       <!-- Accent line -->
@@ -145,6 +190,8 @@ async function createFramedScreenshot(inputPath, outputPath, caption) {
 
 async function main() {
   console.log('📸 Creating framed screenshots with captions...\n');
+  console.log(`Input: ${INPUT_DIR}`);
+  console.log(`Output: ${OUTPUT_DIR}\n`);
 
   // Ensure output directory exists
   if (!existsSync(OUTPUT_DIR)) {
