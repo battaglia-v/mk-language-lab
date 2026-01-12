@@ -26,7 +26,7 @@ export function SegmentedControl<T extends string>({
 }: Props<T>) {
   return (
     <div className={cn(
-      'inline-flex w-full min-w-0 rounded-xl border border-border/60 bg-muted/20 p-1',
+      'inline-flex w-full min-w-0 rounded-xl border border-border/80 bg-muted/40 p-1 dark:border-border/60 dark:bg-muted/20',
       className
     )} role="group" aria-label={ariaLabel} data-testid={testId}>
       {options.map((opt) => (
@@ -42,7 +42,7 @@ export function SegmentedControl<T extends string>({
             size === 'sm' ? 'px-3 py-1.5 text-xs' : 'px-3 py-2 text-xs sm:px-4 sm:py-2 sm:text-sm',
             value === opt.value
               ? 'bg-background text-foreground shadow-sm'
-              : 'text-muted-foreground hover:text-foreground',
+              : 'text-foreground/70 hover:text-foreground dark:text-muted-foreground',
             opt.disabled && 'opacity-40 cursor-not-allowed'
           )}
         >
