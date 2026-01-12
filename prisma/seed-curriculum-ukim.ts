@@ -1,6 +1,6 @@
 #!/usr/bin/env tsx
 /**
- * Seed UKIM curriculum (A1, A2, B1) from structured JSON files
+ * Seed structured curriculum (A1, A2, B1) from JSON files
  * Maps to Prisma models: Module, CurriculumLesson, VocabularyItem, GrammarNote
  *
  * This script is idempotent - can be run multiple times safely
@@ -107,12 +107,12 @@ async function seedFullCurriculum(textbook: StructuredTextbook) {
     },
     update: {
       title: textbook.title,
-      description: `${textbook.level} Macedonian curriculum from UKIM`,
+      description: `${textbook.level} Macedonian curriculum`,
     },
     create: {
       journeyId: textbook.journeyId,
       title: textbook.title,
-      description: `${textbook.level} Macedonian curriculum from UKIM`,
+      description: `${textbook.level} Macedonian curriculum`,
       orderIndex: 1,
     },
   });
@@ -125,6 +125,7 @@ async function seedFullCurriculum(textbook: StructuredTextbook) {
   // Seed each lesson
   for (const chapter of textbook.chapters) {
     // Create/update lesson
+    const lessonContent = (chapter as any).intro || chapter.title || chapter.titleMk;
     const lesson = await prisma.curriculumLesson.upsert({
       where: {
         moduleId_orderIndex: {
@@ -135,13 +136,13 @@ async function seedFullCurriculum(textbook: StructuredTextbook) {
       update: {
         title: chapter.title,
         summary: (chapter as any).intro || chapter.titleMk,
-        content: `Lesson ${chapter.lessonNumber} from ${textbook.title}`,
+        content: lessonContent,
       },
       create: {
         moduleId: curriculumModule.id,
         title: chapter.title,
         summary: (chapter as any).intro || chapter.titleMk,
-        content: `Lesson ${chapter.lessonNumber} from ${textbook.title}`,
+        content: lessonContent,
         orderIndex: chapter.lessonNumber,
         estimatedMinutes: 30, // Default estimate
         difficultyLevel: textbook.level.toLowerCase() as 'beginner' | 'intermediate' | 'advanced',
@@ -228,12 +229,12 @@ async function seedB1Skeleton(skeleton: B1Skeleton) {
     },
     update: {
       title: skeleton.title,
-      description: `${skeleton.level} Macedonian curriculum from UKIM (skeleton only)`,
+      description: `${skeleton.level} Macedonian curriculum`,
     },
     create: {
       journeyId: skeleton.journeyId,
       title: skeleton.title,
-      description: `${skeleton.level} Macedonian curriculum from UKIM (skeleton only)`,
+      description: `${skeleton.level} Macedonian curriculum`,
       orderIndex: 1,
     },
   });
@@ -247,6 +248,7 @@ async function seedB1Skeleton(skeleton: B1Skeleton) {
   for (const chapter of skeleton.chapters) {
     const lessonNum = (chapter as any).lessonNumber || (chapter as any).chapterNumber || 1;
 
+    const lessonContent = (chapter as any).note || (chapter as any).intro || chapter.title || chapter.titleMk;
     const lesson = await prisma.curriculumLesson.upsert({
       where: {
         moduleId_orderIndex: {
@@ -257,13 +259,13 @@ async function seedB1Skeleton(skeleton: B1Skeleton) {
       update: {
         title: chapter.title,
         summary: (chapter as any).intro || chapter.titleMk,
-        content: (chapter as any).note || `Lesson ${lessonNum} from ${skeleton.title}`,
+        content: lessonContent,
       },
       create: {
         moduleId: curriculumModule.id,
         title: chapter.title,
         summary: (chapter as any).intro || chapter.titleMk,
-        content: (chapter as any).note || `Lesson ${lessonNum} from ${skeleton.title}`,
+        content: lessonContent,
         orderIndex: lessonNum,
         estimatedMinutes: 45,
         difficultyLevel: 'intermediate',
@@ -379,7 +381,7 @@ async function main() {
   const isDryRun = process.argv.includes('--dry-run');
 
   console.log('='.repeat(60));
-  console.log(isDryRun ? '🔍 Validating UKIM Curriculum (Dry Run)' : '🌱 Seeding UKIM Curriculum (A1, A2, B1)');
+  console.log(isDryRun ? '🔍 Validating curriculum (Dry Run)' : '🌱 Seeding curriculum (A1, A2, B1)');
   console.log('='.repeat(60));
 
   try {
@@ -428,7 +430,7 @@ async function main() {
       await seedFullCurriculum(b1);
 
       console.log('\n' + '='.repeat(60));
-      console.log('🎉 UKIM curriculum seeding complete!');
+      console.log('🎉 Curriculum seeding complete!');
       console.log('='.repeat(60));
       console.log('\nCreated/Updated:');
       console.log('- 3 Modules (ukim-a1, ukim-a2, ukim-b1)');
