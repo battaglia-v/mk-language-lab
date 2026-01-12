@@ -19,13 +19,18 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
-const OUTPUT_DIR = join(ROOT, 'public', 'screenshots', 'store-v2');
+const OUTPUT_DIR = process.env.SCREENSHOT_OUTPUT_DIR || join(ROOT, 'public', 'screenshots', 'store-v2');
 
-// Mobile viewport (Pixel 7 dimensions for Play Store)
-const VIEWPORT = { width: 412, height: 915 };
-const DEVICE_SCALE_FACTOR = 2.625;
+const THEME = process.env.SCREENSHOT_THEME || 'light';
 
-const BASE_URL = process.env.SCREENSHOT_URL || 'https://mklanguage.com';
+// Mobile viewport (target 1080x1920 by default)
+const VIEWPORT = {
+  width: Number(process.env.SCREENSHOT_WIDTH || 360),
+  height: Number(process.env.SCREENSHOT_HEIGHT || 640),
+};
+const DEVICE_SCALE_FACTOR = Number(process.env.SCREENSHOT_SCALE || 3);
+
+const BASE_URL = process.env.SCREENSHOT_URL || 'https://www.mklanguage.com';
 
 // Test user credentials
 const TEST_USER = {
@@ -37,51 +42,60 @@ const TEST_USER = {
 const SCREENSHOTS = [
   {
     name: '01-learn-paths',
-    path: '/en/learn',
-    locale: 'en',
-    description: 'Learn page with lesson paths',
-    waitFor: '[data-testid="cta-start-here"]',
-    caption: { title: 'Structured Learning', subtitle: 'Paths from alphabet to fluency' },
-  },
-  {
-    name: '02-lesson-tree',
     path: '/en/learn?level=beginner',
     locale: 'en',
     description: 'Lesson path tree showing unlock progression',
     waitFor: '[data-testid="learn-level-beginner"], [data-testid="learn-node-node-1"]',
-    caption: { title: 'Unlock Your Path', subtitle: 'Complete lessons to progress' },
+    caption: { title: 'Structured Learning', subtitle: 'Paths from alphabet to fluency' },
   },
   {
-    name: '03-practice-exercise',
-    path: '/en/practice/vocabulary',
+    name: '02-lesson-alphabet',
+    path: '/en/learn/lessons/alphabet',
     locale: 'en',
-    description: 'Practice exercise - will try to show correct answer',
-    waitFor: 'button',
+    description: 'Alphabet lesson with clear explanation',
+    waitFor: '[data-testid="alphabet-tab-learn"]',
+    caption: { title: 'Alphabet & Sounds', subtitle: 'Build your Cyrillic foundation' },
+  },
+  {
+    name: '03-practice-session',
+    path: '/en/practice/session?deck=curated&mode=multiple-choice',
+    locale: 'en',
+    description: 'Practice session with multiple choice answers',
+    waitFor: '[data-testid="practice-session-choice-0"]',
     caption: { title: 'Practice Daily', subtitle: 'Quick exercises that build fluency' },
     interaction: async (page) => {
-      // Try to answer a question correctly
-      await page.waitForTimeout(2000);
-      // Click the first option and see if we can capture success state
+      await page.waitForTimeout(1500);
+      const choice = page.locator('[data-testid="practice-session-choice-0"]');
+      if (await choice.isVisible()) {
+        await choice.click();
+        await page.waitForTimeout(1000);
+      }
     },
   },
   {
     name: '04-translator',
     path: '/en/translate',
     locale: 'en',
-    description: 'Translator with sample translation',
-    waitFor: 'textarea',
+    description: 'Translator with sample translation result',
+    waitFor: '[data-testid="translate-input"]',
     caption: { title: 'Instant Translation', subtitle: 'Macedonian ↔ English in a tap' },
     interaction: async (page) => {
-      // Type a sample phrase
-      const textarea = page.locator('textarea').first();
+      const textarea = page.locator('[data-testid="translate-input"]').first();
       await textarea.fill('Добро утро! Како си?');
-      await page.waitForTimeout(1500);
-      // Click translate if button exists
-      const translateBtn = page.locator('button:has-text("Translate")');
-      if (await translateBtn.isVisible()) {
-        await translateBtn.click();
-        await page.waitForTimeout(2000);
+      await page.waitForTimeout(800);
+      const translateButtons = [
+        page.locator('[data-testid="translate-submit-mobile"]'),
+        page.locator('[data-testid="translate-submit-sticky"]'),
+        page.locator('[data-testid="translate-submit-desktop"]'),
+      ];
+      for (const button of translateButtons) {
+        if (await button.isVisible()) {
+          await button.click();
+          break;
+        }
       }
+      await page.waitForSelector('[data-testid="translate-copy"]', { timeout: 15000 }).catch(() => null);
+      await page.waitForTimeout(800);
     },
   },
   {
@@ -89,48 +103,45 @@ const SCREENSHOTS = [
     path: '/en/reader/samples/day01-maliot-princ',
     locale: 'en',
     description: 'Reader with tap-to-translate feature',
-    waitFor: 'text=Reading',
+    waitFor: '[data-word]',
     caption: { title: 'Tap to Translate', subtitle: 'Read real Macedonian stories' },
+    hideOverlays: false,
     interaction: async (page) => {
-      // Wait for text to load, then try to tap a word
       await page.waitForTimeout(2000);
-      // Try clicking on a Macedonian word to show popup
       const word = page.locator('[data-word]').first();
       if (await word.isVisible()) {
         await word.click();
-        await page.waitForTimeout(1000);
+        await page.waitForTimeout(1200);
       }
     },
   },
   {
-    name: '06-profile',
+    name: '06-news',
+    path: '/en/news',
+    locale: 'en',
+    description: 'News with article images',
+    waitFor: '[data-testid="news-card"]',
+    caption: { title: 'Real News', subtitle: 'Practice reading current events' },
+    interaction: async (page) => {
+      await page.waitForSelector('[data-testid="news-card"]', { timeout: 15000 }).catch(() => null);
+      await page.waitForTimeout(4000);
+    },
+  },
+  {
+    name: '07-profile',
     path: '/en/profile',
     locale: 'en',
     description: 'User profile with stats',
     waitFor: 'text=XP',
     caption: { title: 'Track Progress', subtitle: 'XP, streaks & achievements' },
-    requiresAuth: false,
-  },
-  {
-    name: '07-news',
-    path: '/en/news',
-    locale: 'en',
-    description: 'News with article images',
-    waitFor: '[data-testid="news-grid"], [data-testid="news-card"]',
-    caption: { title: 'Real News', subtitle: 'Practice reading current events' },
-    interaction: async (page) => {
-      // Wait for news cards to render (client-side fetch may occur)
-      await page.waitForSelector('[data-testid="news-card"]', { timeout: 15000 }).catch(() => null);
-      // Wait for images to load
-      await page.waitForTimeout(4000);
-    },
+    requiresAuth: true,
   },
   {
     name: '08-macedonian-locale',
-    path: '/mk/learn',
+    path: '/mk/learn?level=beginner',
     locale: 'mk',
     description: 'Macedonian locale to show bilingual support',
-    waitFor: '[data-testid="cta-start-here"]',
+    waitFor: '[data-testid="learn-level-beginner"], [data-testid="learn-node-node-1"]',
     caption: { title: 'Двојазична Апликација', subtitle: 'Bilingual: English & Macedonian UI' },
   },
 ];
@@ -204,22 +215,17 @@ async function captureScreenshot(page, screen, isAuthenticated) {
     // Wait for animations/loading
     await page.waitForTimeout(1500);
 
-    // Hide cookie banners, modals, tooltips
-    await page.evaluate(() => {
-      const selectors = [
-        '[data-testid="cookie-banner"]',
-        '.cookie-consent',
-        '[role="dialog"]',
-        '.modal-backdrop',
-        '[class*="tooltip"]',
-        '[class*="Tooltip"]',
-      ];
-      selectors.forEach(sel => {
-        document.querySelectorAll(sel).forEach(el => {
+    // Hide cookie banners and optional overlays
+    await page.evaluate((hideOverlays) => {
+      const cookieSelectors = ['[data-testid="cookie-banner"]', '.cookie-consent'];
+      const overlaySelectors = ['[role="dialog"]', '.modal-backdrop', '[class*="tooltip"]', '[class*="Tooltip"]'];
+      const selectors = hideOverlays ? cookieSelectors.concat(overlaySelectors) : cookieSelectors;
+      selectors.forEach((sel) => {
+        document.querySelectorAll(sel).forEach((el) => {
           if (el instanceof HTMLElement) el.style.display = 'none';
         });
       });
-    });
+    }, screen.hideOverlays !== false);
 
     // Capture screenshot
     await page.screenshot({
@@ -252,15 +258,16 @@ async function main() {
     isMobile: true,
     hasTouch: true,
     locale: 'en-US',
-    colorScheme: 'dark',
+    colorScheme: THEME === 'dark' ? 'dark' : 'light',
   });
 
   const page = await context.newPage();
 
-  // Set dark theme preference
-  await page.addInitScript(() => {
-    localStorage.setItem('theme', 'dark');
-  });
+  // Set theme preference before app scripts run
+  await page.addInitScript((theme) => {
+    localStorage.setItem('mk-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, THEME);
 
   // Attempt to sign in
   const isAuthenticated = await signIn(page);
