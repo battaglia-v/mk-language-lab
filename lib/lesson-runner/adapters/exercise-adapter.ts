@@ -8,11 +8,28 @@
 import type { Step, InfoStep, MultipleChoiceStep, FillBlankStep } from '../types';
 import type { GrammarExercise, GrammarLesson, SentenceBuilderExercise, ErrorCorrectionExercise } from '@/lib/grammar-engine';
 
-function parseVocabularyEntry(entry: string): { base: string; gender?: string } {
-  const genderMatch = entry.match(/\((m|f|n|masculine|feminine|neuter)\)/i);
+function parseVocabularyEntry(entry: string): { base: string; gender?: string; en?: string } {
+  const separators = [' - ', ' — ', ' – ', ' : '];
+  let mkPart = entry;
+  let enPart: string | undefined;
+
+  for (const separator of separators) {
+    const index = entry.indexOf(separator);
+    if (index !== -1) {
+      mkPart = entry.slice(0, index).trim();
+      enPart = entry.slice(index + separator.length).trim();
+      break;
+    }
+  }
+
+  const genderMatch = mkPart.match(/\((m|f|n|masculine|feminine|neuter)\)/i);
   const gender = genderMatch ? genderMatch[1].toLowerCase() : undefined;
-  const base = entry.replace(/\([^)]*\)/g, '').replace(/\s+/g, ' ').trim();
-  return { base, gender };
+  const base = mkPart
+    .replace(/\((m|f|n|masculine|feminine|neuter)\)/gi, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  return { base, gender, en: enPart };
 }
 
 function buildExamples(lesson: GrammarLesson): Array<{ mk: string; en?: string }> {
@@ -58,13 +75,11 @@ function buildInfoSteps(lesson: GrammarLesson, locale: 'en' | 'mk'): InfoStep[] 
   }
 
   if (lesson.vocabulary_list && lesson.vocabulary_list.length > 0) {
-    const vocabulary = lesson.vocabulary_list
-      .map((entry) => {
-        const { base, gender } = parseVocabularyEntry(entry);
-        if (!base) return null;
-        return gender ? { mk: base, gender } : { mk: base };
-      })
-      .filter((entry): entry is { mk: string; gender?: string } => entry !== null);
+    const vocabulary = lesson.vocabulary_list.flatMap((entry) => {
+      const { base, gender, en } = parseVocabularyEntry(entry);
+      if (!base) return [];
+      return [{ mk: base, gender, en }];
+    });
 
     if (vocabulary.length > 0) {
       steps.push({
