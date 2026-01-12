@@ -13,7 +13,7 @@ export function ShellHeader() {
   const buildHref = (path: string) => buildLocalizedHref(locale, path);
 
   return (
-    <header className="mx-auto mb-6 w-full shell-surface nav-toolbar px-3 sm:px-4 md:px-6 text-white">
+    <header className="mx-auto mb-6 w-full shell-surface nav-toolbar px-3 sm:px-4 md:px-6 text-foreground">
       <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3">
         <div className="flex items-center gap-2 sm:gap-3">
           <Link
