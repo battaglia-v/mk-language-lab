@@ -385,10 +385,10 @@
     },
     "curriculumSource": {
       "title": "About Our Curriculum",
-      "description": "Our lessons follow official Macedonian language textbooks from UKIM (University of Ss. Cyril and Methodius).",
-      "a1": "A1: Based on Тешкото (Teshkoto)",
-      "a2": "A2: Based on Лозје (Lozje)",
-      "b1": "B1: Based on Златоврв (Zlatovrv)"
+      "description": "Our lessons follow a CEFR-aligned A1-B1 progression built for real-world communication.",
+      "a1": "A1: Beginner foundations",
+      "a2": "A2: Everyday communication",
+      "b1": "B1: Independent use"
     }
   },
   "grammarExercise": {

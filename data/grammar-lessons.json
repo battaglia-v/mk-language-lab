@@ -25,19 +25,21 @@
       "Џ џ - Dzh/dzh",
       "Ѕ ѕ - Dz/dz"
     ],
-    "grammar_notes": "Macedonian uses a 31-letter Cyrillic alphabet. Key letters with unique sounds are Ѓ/ѓ, Ќ/ќ, Љ/љ, Њ/њ, Џ/џ, and Ѕ/ѕ. Practice confusing pairs: ѓ/г, ќ/к, љ/л, њ/н.",
+    "grammar_notes": "Macedonian uses a 31-letter Cyrillic alphabet and is mostly phonetic: one letter equals one sound. Special letters are Ѓ/ѓ (soft g), Ќ/ќ (soft k), Љ/љ (ly), Њ/њ (ny), Џ/џ (j as in jam), and Ѕ/ѕ (dz). The letter Ј sounds like English 'y'. Practice minimal pairs (ѓ/г, ќ/к, љ/л, њ/н) to hear the soft sounds clearly.",
     "grammarNote": {
       "titleMk": "Азбука и изговор",
       "titleEn": "Alphabet & Pronunciation",
-      "contentMk": "Македонскиот има 31 буква. Посебни се: Ѓ, Ќ, Љ, Њ, Џ, Ѕ. Вежбај парови што лесно се мешаат (ѓ/г, ќ/к, љ/л, њ/н) и слушај ги „меките“ звуци Љ и Њ.",
-      "contentEn": "Macedonian has 31 letters. Special ones are Ѓ, Ќ, Љ, Њ, Џ, and Ѕ. Practice easy-to-confuse pairs (ѓ/г, ќ/к, љ/л, њ/н) and listen for the soft sounds Љ and Њ.",
+      "contentMk": "Македонскиот користи 31-буквена кирилица и е речиси фонетски: една буква = еден звук. Посебни се Ѓ/ѓ (меко г), Ќ/ќ (меко к), Љ/љ (љ), Њ/њ (њ), Џ/џ (џ) и Ѕ/ѕ (ѕ). Буквата Ј звучи како англиското 'y'. Вежбај парови што лесно се мешаат (ѓ/г, ќ/к, љ/л, њ/н) и слушај ги меките согласки. Нагласокот често е на третиот слог од крајот, но на А1 фокусот е на чист изговор.",
+      "contentEn": "Macedonian uses a 31-letter Cyrillic alphabet and is mostly phonetic: one letter equals one sound. The special letters are Ѓ/ѓ (soft g), Ќ/ќ (soft k), Љ/љ (ly), Њ/њ (ny), Џ/џ (j as in jam), and Ѕ/ѕ (dz). The letter Ј sounds like English 'y'. Practice easy-to-confuse pairs (ѓ/г, ќ/к, љ/л, њ/н) and listen for the soft consonants. Stress is often on the third-from-last syllable, but at A1 focus on clear pronunciation.",
       "examplesMk": [
         "ѓердан",
         "ќерка",
         "љубов",
         "њушка",
         "џем",
-        "ѕвезда"
+        "ѕвезда",
+        "јазик",
+        "чаша"
       ],
       "examplesEn": [
         "necklace",
@@ -45,7 +47,9 @@
         "love",
         "nose",
         "jam",
-        "star"
+        "star",
+        "language",
+        "glass"
       ]
     },
     "exercises": [
@@ -54,8 +58,8 @@
         "type": "multiple-choice",
         "instructionMk": "Избери ја точната кирилична буква за звукот /ѓ/.",
         "instructionEn": "Choose the correct Cyrillic letter for the /gj/ sound.",
-        "questionMk": "Избери ја точната буква",
-        "questionEn": "Choose the correct letter",
+        "questionMk": "Која буква го дава звукот /ѓ/?",
+        "questionEn": "Which letter represents the /gj/ sound?",
         "options": [
           "г",
           "ѓ",
@@ -70,8 +74,8 @@
         "type": "multiple-choice",
         "instructionMk": "Избери ја точната кирилична буква за звукот /ќ/.",
         "instructionEn": "Choose the correct Cyrillic letter for the /kj/ sound.",
-        "questionMk": "Избери ја точната буква",
-        "questionEn": "Choose the correct letter",
+        "questionMk": "Која буква го дава звукот /ќ/?",
+        "questionEn": "Which letter represents the /kj/ sound?",
         "options": [
           "к",
           "ќ",
@@ -86,8 +90,8 @@
         "type": "multiple-choice",
         "instructionMk": "Избери ја точната латинична транскрипција за 'Љ'.",
         "instructionEn": "Choose the correct Latin transliteration for 'Љ'.",
-        "questionMk": "Избери го точниот одговор",
-        "questionEn": "Choose the correct answer",
+        "questionMk": "Која е латиничната транскрипција за „Љ“?",
+        "questionEn": "What is the Latin transliteration for \"Љ\"?",
         "options": [
           "lj",
           "nj",
@@ -167,29 +171,31 @@
       "Мило ми е - Nice to meet you",
       "Благодарам - Thank you"
     ],
-    "grammar_notes": "Use Здраво/Чао for informal greetings and Добро утро/Добар ден/Добра вечер for polite greetings by time of day. Use Како си? (informal) vs Како сте? (formal). Common response: Добро сум, благодарам.",
+    "grammar_notes": "Use Здраво/Чао informally. Добро утро is used before noon, Добар ден during the day, and Добра вечер in the evening. Formal speech uses Вие and polite phrases like Ве молам, Благодарам, and Извинете. Introduce yourself with Јас сум... or Се викам..., and say nice to meet you with Мило/Драго ми е.",
     "grammarNote": {
       "titleMk": "Поздрави и учтивост",
       "titleEn": "Greetings and Politeness",
-      "contentMk": "Здраво/Чао се неформални поздрави. Добро утро е до пладне, Добар ден во текот на денот, Добра вечер по зајдисонце. \"Како си?\" е за блиски, \"Како сте?\" е учтиво. За претставување: \"Се викам...\" или \"Јас сум...\".",
-      "contentEn": "Здраво/Чао are informal greetings. Добро утро is used before noon, Добар ден during the day, and Добра вечер after sunset. \"Како си?\" is informal, while \"Како сте?\" is polite. Introduce yourself with \"Се викам...\" or \"Јас сум...\".",
+      "contentMk": "Здраво/Чао се неформални поздрави. Добро утро се користи до пладне, Добар ден во текот на денот, а Добра вечер по залез. Во формален говор се користи 'вие' и учтиви фрази како Ве молам, Благодарам и Извинете. За претставување кажи Јас сум... или Се викам..., а за запознавање: Мило/Драго ми е. За збогување: Довидување.",
+      "contentEn": "Use Здраво/Чао with friends and peers. Добро утро is used before noon, Добар ден during the day, and Добра вечер in the evening. Formal speech uses 'Вие' and polite phrases like Ве молам, Благодарам, and Извинете. Introduce yourself with Јас сум... or Се викам..., and say nice to meet you with Мило/Драго ми е. For goodbye, say Довидување.",
       "examplesMk": [
         "Здраво! Јас сум Ана.",
         "Добро утро.",
         "Добар ден.",
-        "Како сте?",
+        "Добра вечер.",
+        "Како сте? (формално)",
         "Добро сум, благодарам.",
-        "Мило ми е.",
-        "Довидување!"
+        "Драго ми е.",
+        "Довидување."
       ],
       "examplesEn": [
         "Hi! I am Ana.",
         "Good morning.",
         "Good afternoon.",
+        "Good evening.",
         "How are you? (formal)",
         "I'm fine, thank you.",
         "Nice to meet you.",
-        "Goodbye!"
+        "Goodbye."
       ]
     },
     "exercises": [
@@ -303,19 +309,19 @@
     ],
     "totalXp": 60,
     "vocabulary_list": [
-      "сум - am",
-      "си - are (you, sg)",
-      "е - is",
-      "сме - are (we)",
-      "сте - are (you, pl/formal)",
-      "се - are (they)"
+      "јас сум - I am",
+      "ти си - you are (sg)",
+      "тој/таа/тоа е - he/she/it is",
+      "ние сме - we are",
+      "вие сте - you are (pl/formal)",
+      "тие се - they are"
     ],
-    "grammar_notes": "The verb \"сум\" conjugates by person: јас сум, ти си, тој/таа/тоа е, ние сме, вие сте, тие се. Pronouns are often omitted because the verb form shows the subject. Third-person singular uses \"е\" for all genders; negation uses не + form (не сум, не си, не е, не сме, не сте, не се).",
+    "grammar_notes": "The verb \"сум\" is required in the present tense when you describe identity, profession, or state: Тој е лекар. It conjugates by person: јас сум, ти си, тој/таа/тоа е, ние сме, вие сте, тие се. Pronouns can be dropped because the verb form shows the subject; use them for emphasis. Negation adds не before the verb: не сум, не си, не е, не сме, не сте, не се.",
     "grammarNote": {
       "titleMk": "Глаголот 'сум'",
       "titleEn": "The verb 'сум' (to be)",
-      "contentMk": "Глаголот 'сум' се менува според лицето: јас сум, ти си, тој/таа/тоа е, ние сме, вие сте, тие се. Заменките често се изоставуваат бидејќи формата веќе го покажува лицето; ги користиме за нагласување. За негација се додава 'не' пред глаголот: не сум, не си, не е, не сме, не сте, не се.",
-      "contentEn": "The verb 'сум' conjugates by person: јас сум (I am), ти си (you are), тој/таа/тоа е (he/she/it is), ние сме (we are), вие сте (you are), тие се (they are). Pronouns can be dropped because the verb form signals the subject; use them for emphasis. Negation adds 'не' before the verb: не сум, не си, не е, не сме, не сте, не се.",
+      "contentMk": "Глаголот 'сум' се користи во сегашно време кога кажуваме што/кој сме или како се чувствуваме: Тој е лекар. Се менува по лице: јас сум, ти си, тој/таа/тоа е, ние сме, вие сте, тие се. Заменките често се изоставуваат бидејќи формата го покажува лицето; ги користиме за нагласување. За негација се додава 'не' пред глаголот: не сум, не си, не е, не сме, не сте, не се.",
+      "contentEn": "The verb 'сум' is required in the present tense when you describe identity, profession, or state: Тој е лекар. It conjugates by person: јас сум, ти си, тој/таа/тоа е, ние сме, вие сте, тие се. Pronouns can be dropped because the verb form signals the subject; use them for emphasis. Negation adds 'не' before the verb: не сум, не си, не е, не сме, не сте, не се.",
       "examplesMk": [
         "Јас сум студент.",
         "Ти си уморен.",
@@ -452,19 +458,21 @@
       "село (n) - village",
       "дете (n) - child"
     ],
-    "grammar_notes": "Masculine nouns usually end in a consonant, feminine in -a, and neuter in -o/-e. Some masculine nouns end in -a/-o (татко, чичко). Gender controls adjective and pronoun agreement.",
+    "grammar_notes": "Masculine nouns usually end in a consonant, feminine in -a, and neuter in -o or -e. There are exceptions like татко and дедо (masculine) or време (neuter). Use adjectives and articles to check gender: убав/убава/убаво, човекот/жената/детето.",
     "grammarNote": {
       "titleMk": "Род на именки",
       "titleEn": "Noun Gender",
-      "contentMk": "Машки род: најчесто завршува на согласка. Женски род: на -а. Среден род: на -о или -е. Има исклучоци како татко, чичко (машки, иако завршуваат на -о/-а). Родот влијае на придавките и заменките.",
-      "contentEn": "Masculine nouns usually end in a consonant, feminine in -a, and neuter in -o or -e. There are exceptions like татко and чичко (masculine even with -o/-a). Gender affects adjective and pronoun agreement.",
+      "contentMk": "Машки род најчесто завршува на согласка, женски на -а, а среден на -о/-е. Има исклучоци како татко, дедо (машки) и време (среден). За проверка користи придавки и член: убав/убава/убаво, човекот/жената/детето.",
+      "contentEn": "Masculine nouns usually end in a consonant, feminine in -a, and neuter in -o or -e. There are exceptions like татко, дедо (masculine) and време (neuter). Use adjectives and articles to test gender: убав/убава/убаво, човекот/жената/детето.",
       "examplesMk": [
-        "стол (m)",
-        "маса (f)",
-        "село (n)",
+        "стол (машки)",
+        "маса (женски)",
+        "село (среден)",
         "стар стол",
         "стара маса",
-        "старо село"
+        "старо село",
+        "татко (машки)",
+        "време (среден)"
       ],
       "examplesEn": [
         "chair (masculine)",
@@ -472,7 +480,9 @@
         "village (neuter)",
         "old chair",
         "old table",
-        "old village"
+        "old village",
+        "father (masculine)",
+        "time (neuter)"
       ]
     },
     "exercises": [
@@ -595,27 +605,31 @@
       "сто - one hundred",
       "денар - denar (MKD)"
     ],
-    "grammar_notes": "11-19 form with -наесет (единаесет, дванаесет). Tens are дваесет, триесет, четириесет, педесет, and combine with \"и\" (дваесет и пет). One and two change for gender: еден/една/едно, два (m)/две (f/n).",
+    "grammar_notes": "Numbers 11-19 end in -наесет. Tens are дваесет, триесет, четириесет, педесет, etc. Use 'и' between tens and ones (дваесет и пет). 1 and 2 change by gender: еден/една/едно and два/две.",
     "grammarNote": {
       "titleMk": "Броеви",
       "titleEn": "Numbers",
-      "contentMk": "Броевите 11-19 се со -наесет. Десетките се: дваесет, триесет, четириесет, педесет. Меѓу десетките и единиците се користи \"и\" (дваесет и пет). Еден и два се менуваат по род: еден/една/едно, два/две.",
-      "contentEn": "Numbers 11-19 use -naeset. Tens are дваесет, триесет, четириесет, педесет. Use \"и\" between tens and ones (дваесет и пет). One and two agree with gender: еден/една/едно, два/две.",
+      "contentMk": "Броевите 11-19 завршуваат на -наесет. Десетките се дваесет, триесет, четириесет, педесет итн. Меѓу десетки и единици се користи 'и' (дваесет и пет). Броевите 1 и 2 се менуваат по род: еден/една/едно и два/две.",
+      "contentEn": "Numbers 11-19 end in -наесет. Tens are дваесет, триесет, четириесет, педесет, etc. Use 'и' between tens and ones (дваесет и пет). 1 and 2 change by gender: еден/една/едно and два/две.",
       "examplesMk": [
         "еден ден",
         "една книга",
         "едно дете",
         "две сестри",
+        "два дена",
         "дваесет и пет",
-        "сто денари"
+        "сто денари",
+        "триесет и еден"
       ],
       "examplesEn": [
         "one day",
         "one book",
         "one child",
         "two sisters",
+        "two days",
         "twenty-five",
-        "one hundred denars"
+        "one hundred denars",
+        "thirty-one"
       ]
     },
     "exercises": [
@@ -732,27 +746,31 @@
       "стол - chair",
       "село - village"
     ],
-    "grammar_notes": "The definite article is a suffix. Unmarked: -от/-та/-то, proximal: -ов/-ва/-во (near), distal: -он/-на/-но (far).",
+    "grammar_notes": "The definite article is added to the end of the noun. There are three forms: unmarked (-от/-та/-то), proximal (-ов/-ва/-во) for near the speaker, and distal (-он/-на/-но) for far. With adjectives, the article attaches to the adjective: добриот човек.",
     "grammarNote": {
       "titleMk": "Определениот член",
       "titleEn": "The Definite Article",
-      "contentMk": "Во македонскиот јазик, определениот член се додава на крајот од именката. Има три форми: неутрална (-от/-та/-то), блиска (-ов/-ва/-во) и далечна (-он/-на/-но). Формата зависи од тоа дали предметот е блиску или далеку.",
-      "contentEn": "In Macedonian, the definite article is added to the end of the noun. There are three forms: unmarked (-от/-та/-то), proximal (-ов/-ва/-во), and distal (-он/-на/-но). The form depends on how near or far the item is.",
+      "contentMk": "Определениот член се додава на крајот на именката. Има три форми: неопределена/неутрална (-от/-та/-то), блиска (-ов/-ва/-во) и далечна (-он/-на/-но). Кога има придавка, членот се додава на придавката: добриот човек.",
+      "contentEn": "The definite article is added to the end of the noun. There are three forms: unmarked (-от/-та/-то), proximal (-ов/-ва/-во) for near the speaker, and distal (-он/-на/-но) for far. With adjectives, the article attaches to the adjective: добриот човек.",
       "examplesMk": [
         "човекот",
         "човеков",
         "човекон",
         "жената",
-        "женава",
-        "детето"
+        "книгава",
+        "детето",
+        "добриот човек",
+        "старата куќа"
       ],
       "examplesEn": [
         "the man",
         "this man here",
-        "that man over there",
+        "that man there",
         "the woman",
-        "this woman here",
-        "the child"
+        "this book here",
+        "the child",
+        "the good man",
+        "the old house"
       ]
     },
     "exercises": [
@@ -884,12 +902,12 @@
       "не сте - are not (you, pl/formal)",
       "не се - are not (they)"
     ],
-    "grammar_notes": "Negation uses 'не' before the verb. With 'сум': јас не сум, ти не си, тој/таа/тоа не е, ние не сме, вие не сте, тие не се. For other verbs, place 'не' before the conjugated form.",
+    "grammar_notes": "Negation uses 'не' before the verb: не читам, не одам. With 'сум' the forms are: не сум, не си, не е, не сме, не сте, не се. Use нема for 'there is/are not' and нема да for negative future. Double negatives are normal in Macedonian.",
     "grammarNote": {
       "titleMk": "Негација во македонскиот",
       "titleEn": "Negation in Macedonian",
-      "contentMk": "За негација се користи 'не' пред глаголот: не читам, не одам. Кај 'сум' формите се: јас не сум, ти не си, тој/таа/тоа не е, ние не сме, вие не сте, тие не се. Заменките можат да се изостават ако е јасно кој е субјектот.",
-      "contentEn": "Negation uses 'не' before the verb: не читам, не одам. With 'сум' the forms are: јас не сум, ти не си, тој/таа/тоа не е, ние не сме, вие не сте, тие не се. Pronouns can be omitted if the subject is clear.",
+      "contentMk": "Негацијата се прави со 'не' пред глаголот: не читам, не одам. Со 'сум' формите се: не сум, не си, не е, не сме, не сте, не се. За 'не постои/нема' се користи нема, а за идно негирање: нема да. Двојната негација е нормална во македонскиот.",
+      "contentEn": "Negation uses 'не' before the verb: не читам, не одам. With 'сум' the forms are: не сум, не си, не е, не сме, не сте, не се. Use нема for 'there is/are not' and нема да for negative future. Double negatives are normal in Macedonian.",
       "examplesMk": [
         "Јас не сум гладен.",
         "Ти не си подготвен.",
@@ -898,7 +916,9 @@
         "Тоа не е тешко.",
         "Ние не сме уморни.",
         "Вие не сте од Скопје.",
-        "Тие не се пријатели."
+        "Тие не се пријатели.",
+        "Нема кафе.",
+        "Не сакам шеќер."
       ],
       "examplesEn": [
         "I am not hungry.",
@@ -908,7 +928,9 @@
         "It is not difficult.",
         "We are not tired.",
         "You are not from Skopje.",
-        "They are not friends."
+        "They are not friends.",
+        "There is no coffee.",
+        "I don't want sugar."
       ]
     },
     "exercises": [
@@ -1006,19 +1028,21 @@
       "дете → деца - child → children",
       "село → села - village → villages"
     ],
-    "grammar_notes": "Plural endings vary by gender: masculine -и/-ови, feminine -и, neuter -а/-иња. Some plurals are irregular (човек → луѓе, брат → браќа). After numbers, use plural without the definite article.",
+    "grammar_notes": "Plural endings vary by gender: masculine -и/-ови, feminine -и, neuter -а/-иња. Some plurals are irregular (човек → луѓе, брат → браќа, ден → денови). After numbers, use plural without the definite article.",
     "grammarNote": {
       "titleMk": "Множина во македонскиот",
       "titleEn": "Plural in Macedonian",
-      "contentMk": "Машки род: -и или -ови (стол → столови). Женски род: -и (жена → жени). Среден род: -а или -иња (дете → деца, село → села). Има неправилни форми: човек → луѓе, брат → браќа. По бројки се користи множина без член: три деца.",
-      "contentEn": "Masculine: -и or -ови (стол → столови). Feminine: -и (жена → жени). Neuter: -а or -иња (дете → деца, село → села). Some plurals are irregular: човек → луѓе, брат → браќа. After numbers, use plural without the article: три деца.",
+      "contentMk": "Машки род: -и или -ови (стол → столови). Женски род: -и (жена → жени). Среден род: -а или -иња (дете → деца, село → села). Има неправилни форми: човек → луѓе, брат → браќа, ден → денови. По бројки се користи множина без член: три деца.",
+      "contentEn": "Masculine: -и or -ови (стол → столови). Feminine: -и (жена → жени). Neuter: -а or -иња (дете → деца, село → села). Some plurals are irregular: човек → луѓе, брат → браќа, ден → денови. After numbers, use plural without the article: три деца.",
       "examplesMk": [
         "стол → столови",
         "човек → луѓе",
         "брат → браќа",
         "жена → жени",
         "дете → деца",
-        "село → села"
+        "село → села",
+        "ден → денови",
+        "книга → книги"
       ],
       "examplesEn": [
         "chair → chairs",
@@ -1026,7 +1050,9 @@
         "brother → brothers",
         "woman → women",
         "child → children",
-        "village → villages"
+        "village → villages",
+        "day → days",
+        "book → books"
       ]
     },
     "exercises": [
@@ -1144,23 +1170,31 @@
       "пред - in front of",
       "зад - behind"
     ],
-    "grammar_notes": "Prepositions show relationships. Use во for inside/cities, на for surfaces and common places (на работа), and под/над/пред/зад/до for position.",
+    "grammar_notes": "Prepositions show location and relationships. 'Во' is for inside/cities/countries (во Скопје). 'На' is for surfaces and events (на масата, на концерт). Use 'од' for from, 'до' for to/near, and 'кај' for at someone's place.",
     "grammarNote": {
       "titleMk": "Предлози",
       "titleEn": "Prepositions",
-      "contentMk": "Предлозите покажуваат место и однос. \"Во\" се користи за внатре и за градови/држави (во Скопје). \"На\" се користи за површини и некои места (на маса, на работа). Под, над, пред, зад и до покажуваат позиција.",
-      "contentEn": "Prepositions show location and relationships. \"Во\" is for inside/cities/countries (во Скопје). \"На\" is for surfaces and common places (на маса, на работа). Под, над, пред, зад, and до show position.",
+      "contentMk": "Предлозите покажуваат место и однос. 'Во' е за внатре/градови/земји (во Скопје). 'На' е за површини и настани (на масата, на концерт). 'Од' значи од, 'до' е до/кај, а 'кај' е кај некого (кај лекарот).",
+      "contentEn": "Prepositions show location and relationships. 'Во' is for inside/cities/countries (во Скопје). 'На' is for surfaces and events (на масата, на концерт). Use 'од' for from, 'до' for to/near, and 'кај' for at someone's place.",
       "examplesMk": [
         "Живеам во Скопје.",
         "Книгата е на масата.",
         "Седам под дрвото.",
-        "Автобуската станица е пред хотелот."
+        "Автобуската станица е пред хотелот.",
+        "Одим до продавница.",
+        "Станот е до паркот.",
+        "Јас сум кај лекар.",
+        "Доаѓам од работа."
       ],
       "examplesEn": [
         "I live in Skopje.",
         "The book is on the table.",
         "I sit under the tree.",
-        "The bus station is in front of the hotel."
+        "The bus station is in front of the hotel.",
+        "I am going to the shop.",
+        "The apartment is next to the park.",
+        "I'm at the doctor's.",
+        "I am coming from work."
       ]
     },
     "exercises": [
@@ -1280,23 +1314,31 @@
       "Како - How",
       "Колку - How much/many"
     ],
-    "grammar_notes": "Use question words to ask about people (Кој/Која/Кое), things (Што), place (Каде), time (Кога), reason (Зошто), manner (Како), and quantity/price (Колку).",
+    "grammar_notes": "Question words come at the start of the question. Кој/Која/Кое change by gender, and Колку is used for price or quantity. For yes/no questions, use дали at the beginning or ли after the verb.",
     "grammarNote": {
       "titleMk": "Прашални зборови",
       "titleEn": "Question Words",
-      "contentMk": "Прашалните зборови помагаат да поставиш прашања. Кој/Која/Кое се менува по род. Колку е за цена или количина. Како прашува за начин или состојба.",
-      "contentEn": "Question words help form questions. Кој/Која/Кое changes by gender. Колку is for price or quantity. Како asks about manner or condition.",
+      "contentMk": "Прашањата најчесто почнуваат со прашална заменка: Кој/Која/Кое (по род), Што, Каде, Кога, Како, Колку. За да/не прашања користи дали на почетокот или ли по глаголот.",
+      "contentEn": "Question words usually come at the start of the question: Кој/Која/Кое (by gender), Што, Каде, Кога, Како, Колку. For yes/no questions, use дали at the beginning or ли after the verb.",
       "examplesMk": [
         "Кој е тоа?",
         "Која е книгата?",
         "Каде живееш?",
-        "Колку чини ова?"
+        "Колку чини ова?",
+        "Кога доаѓаш?",
+        "Како си?",
+        "Зошто не дојде?",
+        "Дали зборуваш македонски?"
       ],
       "examplesEn": [
         "Who is that?",
         "Which is the book?",
         "Where do you live?",
-        "How much does this cost?"
+        "How much does this cost?",
+        "When are you coming?",
+        "How are you?",
+        "Why didn't you come?",
+        "Do you speak Macedonian?"
       ]
     },
     "exercises": [
@@ -1417,19 +1459,21 @@
       "убав/убава/убаво/убави - beautiful (m/f/n/pl)",
       "добар/добра/добро/добри - good (m/f/n/pl)"
     ],
-    "grammar_notes": "Adjectives agree with gender and number: masculine -∅, feminine -а, neuter -о, plural -и. Adjectives usually come before the noun.",
+    "grammar_notes": "Adjectives agree with the noun in gender and number. Masculine: убав, Feminine: убава, Neuter: убаво, Plural: убави. Adjectives usually come before the noun, and in definite phrases the article attaches to the adjective: убавата куќа.",
     "grammarNote": {
       "titleMk": "Согласување на придавки",
       "titleEn": "Adjective Agreement",
-      "contentMk": "Придавките се менуваат по род и број. Машки: -∅ (убав), Женски: -а (убава), Среден: -о (убаво), Множина: -и (убави). Најчесто стојат пред именката.",
-      "contentEn": "Adjectives change by gender and number. Masculine: -∅ (убав), Feminine: -а (убава), Neuter: -о (убаво), Plural: -и (убави). They usually come before the noun.",
+      "contentMk": "Придавките се согласуваат со именката по род и број. Машки: убав, женски: убава, среден: убаво, множина: убави. Придавката најчесто стои пред именката. Во определени изрази членот се додава на придавката: убавата куќа.",
+      "contentEn": "Adjectives agree with the noun in gender and number. Masculine: убав, feminine: убава, neuter: убаво, plural: убави. Adjectives usually come before the noun, and in definite phrases the article attaches to the adjective: убавата куќа.",
       "examplesMk": [
         "убав човек",
         "убава жена",
         "убаво дете",
         "убави луѓе",
         "голем град",
-        "големи градови"
+        "големи градови",
+        "убавата куќа",
+        "старото кино"
       ],
       "examplesEn": [
         "handsome man",
@@ -1437,7 +1481,9 @@
         "beautiful child",
         "beautiful people",
         "big city",
-        "big cities"
+        "big cities",
+        "the beautiful house",
+        "the old cinema"
       ]
     },
     "exercises": [
@@ -1556,12 +1602,12 @@
       "ваш/ваша/ваше - your (pl/formal)",
       "нивен/нивна/нивно - their"
     ],
-    "grammar_notes": "Possessive pronouns agree with the gender and number of the noun: мој/моја/мое, твој/твоја/твое, негов/негова/негово, нејзин/нејзина/нејзино, наш/наша/наше, ваш/ваша/ваше, нивен/нивна/нивно. Plural forms add -и/-те (моите, твоите, неговите, нејзините, нашите, вашите, нивните); definite singular adds -от/-та/-то (мојата куќа, моето дете).",
+    "grammar_notes": "Possessive pronouns come before the noun and agree in gender and number: мој/моја/мое, твој/твоја/твое, негов/негова/негово, нејзин/нејзина/нејзино, наш/наша/наше, ваш/ваша/ваше, нивен/нивна/нивно. In definite phrases the article attaches to the possessive: мојата книга.",
     "grammarNote": {
       "titleMk": "Присвојни заменки",
       "titleEn": "Possessive Pronouns",
-      "contentMk": "Присвојните заменки стојат пред именката и се менуваат по род и број: мој/моја/мое, твој/твоја/твое, негов/негова/негово, нејзин/нејзина/нејзино, наш/наша/наше, ваш/ваша/ваше, нивен/нивна/нивно. За множина се користат форми со -и/-те (моите книги, твоите пријатели). За определеност се додава наставка: мојата куќа, твоето дете, неговиот автомобил.",
-      "contentEn": "Possessive pronouns come before the noun and agree in gender and number: мој/моја/мое (my), твој/твоја/твое (your), негов/негова/негово (his), нејзин/нејзина/нејзино (her), наш/наша/наше (our), ваш/ваша/ваше (your), нивен/нивна/нивно (their). Plurals take -и/-те (моите книги, твоите пријатели). Definite forms add a suffix: мојата куќа, твоето дете, неговиот автомобил.",
+      "contentMk": "Присвојните заменки стојат пред именката и се согласуваат по род и број: мој/моја/мое, твој/твоја/твое, негов/негова/негово, нејзин/нејзина/нејзино, наш/наша/наше, ваш/ваша/ваше, нивен/нивна/нивно. Во определен израз членот се додава на заменката: мојата книга.",
+      "contentEn": "Possessive pronouns come before the noun and agree in gender and number: мој/моја/мое, твој/твоја/твое, негов/негова/негово, нејзин/нејзина/нејзино, наш/наша/наше, ваш/ваша/ваше, нивен/нивна/нивно. In definite phrases the article attaches to the possessive: мојата книга.",
       "examplesMk": [
         "Ова е мој брат.",
         "Тоа е твоја сестра.",
@@ -1569,7 +1615,8 @@
         "Нејзината книга е тука.",
         "Нашата куќа е голема.",
         "Вашиот план е добар.",
-        "Нивниот автомобил е црвен."
+        "Нивниот автомобил е црвен.",
+        "Моите пријатели се тука."
       ],
       "examplesEn": [
         "This is my brother.",
@@ -1578,7 +1625,8 @@
         "Her book is here.",
         "Our house is big.",
         "Your plan is good.",
-        "Their car is red."
+        "Their car is red.",
+        "My friends are here."
       ]
     },
     "exercises": [
@@ -1750,18 +1798,23 @@
     ],
     "totalXp": 70,
     "vocabulary_list": [
+      "јас отидов - I went",
+      "ти отиде - you went",
+      "тој/таа/тоа отиде - he/she/it went",
+      "ние отидовме - we went",
+      "вие отидовте - you went (pl/formal)",
+      "тие отидоа - they went",
       "јадов - I ate",
       "работив - I worked",
-      "отидов - I went",
-      "дојде - (he/she) came",
-      "пишав - I wrote"
+      "пишав - I wrote",
+      "дојде - (he/she) came"
     ],
-    "grammar_notes": "The aorist is used for completed past actions and one-time events. A common pattern is: јас отидов, ти отиде, тој/таа/тоа отиде, ние отидовме, вие отидовте, тие отидоа. Typical endings include -в/-ов (јадов, работив) and -е/-а in third person (дојде, виде).",
+    "grammar_notes": "The aorist is used for completed past actions and one-time events. Example with \"оди\": јас отидов, ти отиде, тој/таа/тоа отиде, ние отидовме, вие отидовте, тие отидоа. Typical endings include -в/-ов (јадов, работив) and -е/-а in third person (дојде, виде). Use imperfect for ongoing or habitual past actions.",
     "grammarNote": {
       "titleMk": "Аорист (завршено минато)",
       "titleEn": "Aorist (completed past)",
-      "contentMk": "Аорист се користи за завршено дејство во минатото, често еднократно. Пример со \"оди\": јас отидов, ти отиде, тој/таа/тоа отиде, ние отидовме, вие отидовте, тие отидоа. Во трето лице еднина формата е иста за машки/женски/среден род. Чести форми: работив, пишав, отидов, дојде.",
-      "contentEn": "Aorist is used for completed actions in the past, often one-time events. Example with \"оди\": јас отидов, ти отиде, тој/таа/тоа отиде, ние отидовме, вие отидовте, тие отидоа. Third-person singular is the same for he/she/it. Common forms: работив, пишав, отидов, дојде.",
+      "contentMk": "Аорист се користи за завршено дејство во минатото, често еднократно. Пример со \"оди\": јас отидов, ти отиде, тој/таа/тоа отиде, ние отидовме, вие отидовте, тие отидоа. Во трето лице еднина формата е иста за машки/женски/среден род. Чести форми: работив, пишав, отидов, дојде. За трајни или навикнати дејства се користи имперфект.",
+      "contentEn": "Aorist is used for completed actions in the past, often one-time events. Example with \"оди\": јас отидов, ти отиде, тој/таа/тоа отиде, ние отидовме, вие отидовте, тие отидоа. Third-person singular is the same for he/she/it. Common forms: работив, пишав, отидов, дојде. Use the imperfect for ongoing or habitual past actions.",
       "examplesMk": [
         "Јас отидов дома.",
         "Ти отиде рано.",
@@ -1895,24 +1948,30 @@
       "картичка - card",
       "големина - size"
     ],
-    "grammar_notes": "Use \"Колку чини?\" for singular and \"Колку чинат?\" for plural. Polite requests use би сакал/би сакала and \"Имате ли...?\" for availability. Payment: со готовина or со картичка.",
+    "grammar_notes": "For price use 'Колку чини?' (singular) and 'Колку чинат?' (plural). Polite requests use 'Би сакал/а...' and questions like 'Имате ли...?' Currency is денар/денари, and common sizes are S/M/L or броеви for shoes.",
     "grammarNote": {
       "titleMk": "Купување и цени",
       "titleEn": "Shopping and Prices",
-      "contentMk": "За цена: \"Колку чини?\" (еднина) и \"Колку чинат?\" (множина). За љубезно барање користи \"Би сакал/а...\". Кога прашуваш за достапност: \"Имате ли...?\".",
-      "contentEn": "For price use \"Колку чини?\" (singular) and \"Колку чинат?\" (plural). Polite requests use \"Би сакал/а...\". Ask availability with \"Имате ли...?\".",
+      "contentMk": "За цена користи 'Колку чини?' (еднина) и 'Колку чинат?' (множина). Учтиво барање е со 'Би сакал/а...' и прашања како 'Имате ли...?' Валутата е денар/денари. За облека често се користат S/M/L, а за обувки броеви (37, 38, 39...).",
+      "contentEn": "For price use 'Колку чини?' (singular) and 'Колку чинат?' (plural). Polite requests use 'Би сакал/а...' and questions like 'Имате ли...?' The currency is денар/денари. Clothing often uses S/M/L, and shoes use numbers (37, 38, 39...).",
       "examplesMk": [
-        "Колку чинат овие обувки?",
+        "Колку чини ова?",
+        "Колку чинат овие чевли?",
         "Имате ли помала големина?",
-        "Би сакала големина М.",
-        "Ќе платам со готовина.",
+        "Би сакал број 38.",
+        "Би сакала две килограми јаболка.",
+        "Ќе платам со картичка.",
+        "Имате ли попуст?",
         "Може ли фискална сметка?"
       ],
       "examplesEn": [
+        "How much does this cost?",
         "How much do these shoes cost?",
         "Do you have a smaller size?",
-        "I would like size M.",
-        "I will pay in cash.",
+        "I would like size 38.",
+        "I would like two kilos of apples.",
+        "I'll pay by card.",
+        "Do you have a discount?",
         "Can I get a receipt?"
       ]
     },
@@ -2027,23 +2086,31 @@
       "покрај - beside/past",
       "кај - by/near"
     ],
-    "grammar_notes": "Use лево/десно/право for directions. Formal commands use Одете/Свртете; informal uses Оди/Сврти. Ask location with \"Каде е...?\" and use кај (near/at) or покрај (along/past).",
+    "grammar_notes": "Use лево/десно/право for directions. Formal imperatives: Одете право. Свртете лево. Informal: Оди право. Сврти лево. To ask for location use 'Каде е...?' and for nearby use 'Каде е ... близу/до...'.",
     "grammarNote": {
       "titleMk": "Насоки",
       "titleEn": "Directions",
-      "contentMk": "За насоки користиме: лево, десно, право. Формално: \"Одете право.\", \"Свртете лево.\" Неформално: \"Оди право.\", \"Сврти лево.\" За локација прашуваме: \"Каде е...?\" и користиме кај (до/кај) и покрај (покрај/минете покрај).",
-      "contentEn": "For directions use left/right/straight. Formal: \"Одете право.\" \"Свртете лево.\" Informal: \"Оди право.\" \"Сврти лево.\" Ask location with \"Каде е...?\" and use кај (near/at) or покрај (along/past).",
+      "contentMk": "За насоки користи лево/десно/право. Формални заповеди: Одете право. Свртете лево. Неформално: Оди право. Сврти лево. За локација прашувај со 'Каде е...?' или 'Каде е ... до/крај ...?'.",
+      "contentEn": "Use лево/десно/право for directions. Formal imperatives: Одете право. Свртете лево. Informal: Оди право. Сврти лево. To ask for location use 'Каде е...?' or 'Каде е ... до/крај ...?'.",
       "examplesMk": [
         "Каде е аптеката?",
         "Одете право, па свртете лево.",
-        "Станицата е кај паркот.",
-        "Помини покрај банката."
+        "Станицата е близу паркот.",
+        "Оди право до мостот.",
+        "Свртете десно кај банката.",
+        "Аптеката е до поштата.",
+        "Каде е автобусот?",
+        "Врати се назад."
       ],
       "examplesEn": [
         "Where is the pharmacy?",
         "Go straight, then turn left.",
         "The station is near the park.",
-        "Go past the bank."
+        "Go straight to the bridge.",
+        "Turn right by the bank.",
+        "The pharmacy is next to the post office.",
+        "Where is the bus?",
+        "Turn back."
       ]
     },
     "exercises": [
@@ -2162,23 +2229,31 @@
       "со млеко - with milk",
       "сметка - bill/receipt"
     ],
-    "grammar_notes": "Order politely with \"Би сакал/а\" + noun and add \"ве молам\" if needed. Use со/без to state preferences, and \"Може ли сметката?\" to ask for the bill.",
+    "grammar_notes": "Polite ordering uses 'Би сакал/а...' and 'ве молам'. Use со/без for preferences (со млеко, без шеќер). Ask for the bill with 'Може ли сметката?'.",
     "grammarNote": {
       "titleMk": "Нарачување",
       "titleEn": "Ordering",
-      "contentMk": "Љубезно нарачување: \"Би сакал/а кафе, ве молам.\" За додатоци користи со/без: со млеко, без шеќер. За сметка: \"Може ли сметката?\".",
-      "contentEn": "Polite ordering: \"Би сакал/а кафе, ве молам.\" Use со/без for preferences: со млеко, без шеќер. Ask for the bill with \"Може ли сметката?\".",
+      "contentMk": "Учтиво нарачување е со 'Би сакал/а...' и 'ве молам'. Користи со/без за желби (со млеко, без шеќер). За сметка прашај: 'Може ли сметката?'.",
+      "contentEn": "Polite ordering uses 'Би сакал/а...' and 'ве молам'. Use со/без for preferences (со млеко, без шеќер). Ask for the bill with 'Може ли сметката?'.",
       "examplesMk": [
-        "Една вода, ве молам.",
-        "Би сакал супа.",
-        "Без шеќер, молам.",
-        "Може ли сметката?"
+        "Би сакал вода, ве молам.",
+        "Би сакала супа.",
+        "Без шеќер, ве молам.",
+        "Може ли сметката, молам.",
+        "Сакам салата.",
+        "Едно кафе со млеко.",
+        "Не јадам месо.",
+        "Имаш ли леб?"
       ],
       "examplesEn": [
-        "A water, please.",
+        "I would like water, please.",
         "I would like soup.",
         "Without sugar, please.",
-        "Could I have the bill?"
+        "Could I have the bill, please?",
+        "I want a salad.",
+        "One coffee with milk.",
+        "I don't eat meat.",
+        "Do you have bread?"
       ]
     },
     "exercises": [
@@ -2286,17 +2361,21 @@
     ],
     "totalXp": 70,
     "vocabulary_list": [
-      "ќе одам - I will go",
-      "ќе читам - I will read",
-      "ќе работам - I will work",
-      "нема да одам - I will not go"
+      "јас ќе одам - I will go",
+      "ти ќе одиш - you will go",
+      "тој/таа/тоа ќе оди - he/she/it will go",
+      "ние ќе одиме - we will go",
+      "вие ќе одите - you will go (pl/formal)",
+      "тие ќе одат - they will go",
+      "нема да одам - I will not go",
+      "нема да одат - they will not go"
     ],
-    "grammar_notes": "Future tense uses the particle \"ќе\" + present tense, and \"ќе\" does not change by person. Example: јас ќе одам, ти ќе одиш, тој/таа/тоа ќе оди, ние ќе одиме, вие ќе одите, тие ќе одат. Negation uses \"нема да\" + present tense (нема да одам/одиш/оди/одиме/одите/одат).",
+    "grammar_notes": "Future tense uses the particle 'ќе' + present tense, and 'ќе' does not change by person. Example: јас ќе одам, ти ќе одиш, тој/таа/тоа ќе оди, ние ќе одиме, вие ќе одите, тие ќе одат. Negation uses 'нема да' + present tense. Word order is usually: (pronoun) + ќе + verb.",
     "grammarNote": {
       "titleMk": "Идно време",
       "titleEn": "Future Tense",
-      "contentMk": "Идното време се формира со честичката 'ќе' + сегашно време на глаголот, а 'ќе' не се менува по лице. Пример со \"оди\": јас ќе одам, ти ќе одиш, тој/таа/тоа ќе оди, ние ќе одиме, вие ќе одите, тие ќе одат. Негација: 'нема да' + сегашно време.",
-      "contentEn": "The future tense is formed with the particle 'ќе' + present tense, and 'ќе' stays the same for all persons. Example with \"оди\": јас ќе одам, ти ќе одиш, тој/таа/тоа ќе оди, ние ќе одиме, вие ќе одите, тие ќе одат. Negation uses 'нема да' + present tense.",
+      "contentMk": "Идното време се формира со честичката 'ќе' + сегашно време на глаголот, а 'ќе' не се менува по лице. Пример со \"оди\": јас ќе одам, ти ќе одиш, тој/таа/тоа ќе оди, ние ќе одиме, вие ќе одите, тие ќе одат. Негација: 'нема да' + сегашно време. Редоследот обично е (заменка) + ќе + глагол.",
+      "contentEn": "The future tense is formed with the particle 'ќе' + present tense, and 'ќе' stays the same for all persons. Example with \"оди\": јас ќе одам, ти ќе одиш, тој/таа/тоа ќе оди, ние ќе одиме, вие ќе одите, тие ќе одат. Negation uses 'нема да' + present tense. Word order is usually (pronoun) + ќе + verb.",
       "examplesMk": [
         "Јас ќе одам дома.",
         "Ти ќе одиш утре.",
@@ -2419,17 +2498,27 @@
     ],
     "totalXp": 70,
     "vocabulary_list": [
-      "може - can/may",
-      "мора - must",
+      "јас можам - I can",
+      "ти можеш - you can",
+      "тој/таа/тоа може - he/she/it can",
+      "ние можеме - we can",
+      "вие можете - you can (pl/formal)",
+      "тие можат - they can",
+      "јас морам - I must",
+      "ти мораш - you must",
+      "тој/таа/тоа мора - he/she/it must",
+      "ние мораме - we must",
+      "вие морате - you must (pl/formal)",
+      "тие мораат - they must",
       "не може - cannot",
-      "не мора - doesn't have to"
+      "не мора - does not have to"
     ],
-    "grammar_notes": "Use \"може да\" for ability/permission and \"мора да\" for obligation, followed by \"да\" + present tense. Conjugations: јас можам, ти можеш, тој/таа/тоа може, ние можеме, вие можете, тие можат; јас морам, ти мораш, тој/таа/тоа мора, ние мораме, вие морате, тие мораат. Negation: не може (cannot), не мора (don't have to).",
+    "grammar_notes": "Use 'може да' for ability/permission and 'мора да' for obligation. Conjugations: јас можам, ти можеш, тој/таа/тоа може, ние можеме, вие можете, тие можат; јас морам, ти мораш, тој/таа/тоа мора, ние мораме, вие морате, тие мораат. Negation: не може (cannot) vs не мора (don't have to).",
     "grammarNote": {
       "titleMk": "Модални глаголи",
       "titleEn": "Modal Verbs",
-      "contentMk": "\"може\" означува дозвола или можност и се користи со \"да\" + сегашно време. Конјугација: јас можам, ти можеш, тој/таа/тоа може, ние можеме, вие можете, тие можат. \"мора\" означува обврска: јас морам, ти мораш, тој/таа/тоа мора, ние мораме, вие морате, тие мораат. Негација: не може (нема дозвола/не е можно), не мора (нема обврска).",
-      "contentEn": "\"може\" expresses permission or possibility and is used with \"да\" + present tense. Conjugation: јас можам, ти можеш, тој/таа/тоа може, ние можеме, вие можете, тие можат. \"мора\" expresses obligation: јас морам, ти мораш, тој/таа/тоа мора, ние мораме, вие морате, тие мораат. Negation: не може (cannot) and не мора (don't have to).",
+      "contentMk": "'може' означува дозвола или можност и се користи со 'да' + сегашно време. Конјугација: јас можам, ти можеш, тој/таа/тоа може, ние можеме, вие можете, тие можат. 'мора' означува обврска: јас морам, ти мораш, тој/таа/тоа мора, ние мораме, вие морате, тие мораат. Негација: не може (нема дозвола/не е можно) и не мора (нема обврска).",
+      "contentEn": "'може' expresses permission or possibility and is used with 'да' + present tense. Conjugation: јас можам, ти можеш, тој/таа/тоа може, ние можеме, вие можете, тие можат. 'мора' expresses obligation: јас морам, ти мораш, тој/таа/тоа мора, ние мораме, вие морате, тие мораат. Negation: не може (cannot/not allowed) vs не мора (don't have to).",
       "examplesMk": [
         "Јас можам да помогнам.",
         "Ти можеш да седнеш.",
@@ -2560,23 +2649,31 @@
       "пише/напише - write (ongoing) / write (completed)",
       "гледа/погледне - watch/look (ongoing) / take a look (completed)"
     ],
-    "grammar_notes": "Imperfective describes ongoing or habitual actions (чита), perfective describes completed actions (прочита). Use perfective for one completed event and imperfective for process or habit.",
+    "grammar_notes": "Imperfective describes a process or habit (чита, пишува). Perfective describes a completed action (прочита, напише). Perfective is often used for a single finished result, while imperfective is used for ongoing or repeated actions. Many verbs come in aspect pairs.",
     "grammarNote": {
       "titleMk": "Несвршен и свршен вид",
       "titleEn": "Imperfective vs Perfective",
-      "contentMk": "Несвршениот вид опишува процес или навика (чита, пишува). Свршениот вид означува завршено дејство (прочита, напише). Свршениот вид често се користи со конкретно време: вчера, одеднаш.",
-      "contentEn": "Imperfective describes a process or habit (чита, пишува). Perfective describes a completed action (прочита, напише). Perfective is often used with specific time references like yesterday or suddenly.",
+      "contentMk": "Несвршените глаголи опишуваат процес или навика (чита, пишува). Свршените глаголи опишуваат завршено дејство или резултат (прочита, напише). Свршениот вид се користи за еднократно/завршено дејство, а несвршениот за тековно или повторувачко дејство. Многу глаголи се појавуваат во парови.",
+      "contentEn": "Imperfective verbs describe a process or habit (чита, пишува). Perfective verbs describe a completed action or result (прочита, напише). Use perfective for a single finished action and imperfective for ongoing or repeated actions. Many verbs come in aspect pairs.",
       "examplesMk": [
-        "Секој ден читам.",
+        "Јас читам секој ден.",
         "Вчера ја прочитав книгата.",
-        "Ќе ја читам книгата вечер.",
-        "Ќе ја прочитам книгата вечер."
+        "Пишувам писмо.",
+        "Ќе напишам писмо утре.",
+        "Тој јаде сега.",
+        "Тој изеде сѐ.",
+        "Гледаме филм.",
+        "Го изгледавме филмот."
       ],
       "examplesEn": [
         "I read every day.",
         "Yesterday I finished the book.",
-        "I will be reading the book tonight.",
-        "I will finish the book tonight."
+        "I am writing a letter.",
+        "I will write a letter tomorrow.",
+        "He is eating now.",
+        "He ate everything.",
+        "We are watching a movie.",
+        "We finished the movie."
       ]
     },
     "exercises": [
@@ -2690,23 +2787,31 @@
       "иако - although",
       "кога - when"
     ],
-    "grammar_notes": "Use connectors to link clauses: ако (if) for conditions, бидејќи/затоа што (because) for reasons, дека (that) after think/say, иако (although) for contrast, кога (when) for time.",
+    "grammar_notes": "Complex sentences use connectors like ако (if), бидејќи/затоа што (because), дека (that), иако (although), кога (when). The connector introduces the dependent clause, and commas are common before затоа што/иако.",
     "grammarNote": {
       "titleMk": "Сложени реченици",
       "titleEn": "Complex Sentences",
-      "contentMk": "Сложените реченици се поврзуваат со сврзници: ако (услов), бидејќи/затоа што (причина), дека (по мислам/велам), иако (контраст), кога (време).",
-      "contentEn": "Complex sentences use connectors: ако (condition), бидејќи/затоа што (reason), дека (after think/say), иако (contrast), кога (time).",
+      "contentMk": "Сложените реченици користат сврзници: ако (услов), бидејќи/затоа што (причина), дека (по мислам/кажувам), иако (контраст), кога (време). Сврзникот ја воведува зависната реченица, а запирка често стои пред затоа што/иако.",
+      "contentEn": "Complex sentences use connectors like ако (if), бидејќи/затоа што (because), дека (that), иако (although), кога (when). The connector introduces the dependent clause, and commas are common before затоа што/иако.",
       "examplesMk": [
         "Ќе дојдам ако имам време.",
-        "Не дојдов затоа што бев болен.",
+        "Не дојдов, затоа што бев болен.",
         "Мислам дека е важно.",
-        "Иако врнеше, отидовме."
+        "Иако врнеше, излеговме.",
+        "Кога ќе завршам, ќе ти пишам.",
+        "Знаев дека си во Скопје.",
+        "Ако сакаш, ќе дојдам.",
+        "Не одев затоа што бев уморен."
       ],
       "examplesEn": [
         "I will come if I have time.",
         "I didn't come because I was sick.",
         "I think that it is important.",
-        "Although it was raining, we went."
+        "Although it was raining, we went out.",
+        "When I finish, I will write to you.",
+        "I knew that you were in Skopje.",
+        "If you want, I will come.",
+        "I did not go because I was tired."
       ]
     },
     "exercises": [

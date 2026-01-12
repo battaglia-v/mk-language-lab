@@ -136,7 +136,8 @@ export function exerciseToStep(exercise: GrammarExercise, locale: 'en' | 'mk' = 
       // TODO: Sentence builder requires custom step type
       // For now, convert to fill-blank as a fallback
       const sbExercise = exercise as SentenceBuilderExercise;
-      const wordList = sbExercise.words?.length ? `Words: ${sbExercise.words.join(' / ')}` : undefined;
+      const words = sbExercise.words?.length ? sbExercise.words : sbExercise.targetSentenceMk.split(' ');
+      const wordList = words.length ? `Words: ${words.join(' / ')}` : undefined;
       const translation = sbExercise.translationEn ? `Translation: ${sbExercise.translationEn}` : undefined;
       const promptParts = [instruction, wordList, translation].filter(Boolean);
       const sbStep: FillBlankStep = {
@@ -148,6 +149,7 @@ export function exerciseToStep(exercise: GrammarExercise, locale: 'en' | 'mk' = 
         explanation,
         caseSensitive: false,
         placeholder: 'Type the full sentence...',
+        wordBank: words.length ? words : undefined,
       };
       return sbStep;
     }

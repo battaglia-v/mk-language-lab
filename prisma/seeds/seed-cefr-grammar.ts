@@ -49,6 +49,7 @@ type GrammarExercise =
       instructionMk?: string;
       targetSentenceMk: string;
       words: string[];
+      translationEn?: string;
       explanationEn?: string;
       explanationMk?: string;
     }
@@ -132,11 +133,24 @@ function normalizeTerm(term: string): string {
     .trim();
 }
 
-function parseVocabularyEntry(entry: string): { base: string; gender?: string | null } {
-  const genderMatch = entry.match(/\((m|f|n|masculine|feminine|neuter)\)/i);
+function parseVocabularyEntry(entry: string): { base: string; gender?: string | null; en?: string } {
+  const separators = [' - ', ' — ', ' – ', ' : '];
+  let mkPart = entry;
+  let enPart: string | undefined;
+
+  for (const separator of separators) {
+    const index = entry.indexOf(separator);
+    if (index !== -1) {
+      mkPart = entry.slice(0, index).trim();
+      enPart = entry.slice(index + separator.length).trim();
+      break;
+    }
+  }
+
+  const genderMatch = mkPart.match(/\((m|f|n|masculine|feminine|neuter)\)/i);
   const gender = genderMatch ? genderMatch[1].toLowerCase() : null;
-  const base = entry.replace(/\([^)]*\)/g, '').replace(/\s+/g, ' ').trim();
-  return { base, gender };
+  const base = mkPart.replace(/\([^)]*\)/g, '').replace(/\s+/g, ' ').trim();
+  return { base, gender, en: enPart };
 }
 
 function buildLessonTitle(lesson: GrammarLessonData): string {
@@ -277,12 +291,12 @@ function buildLessonRunnerInfoSteps(
   if (lesson.vocabulary_list && lesson.vocabulary_list.length > 0) {
     const vocabulary = lesson.vocabulary_list
       .map((entry) => {
-        const { base, gender } = parseVocabularyEntry(entry);
+        const { base, gender, en } = parseVocabularyEntry(entry);
         if (!base) return null;
         const lookup = vocabLookup.get(normalizeTerm(base));
         return {
           mk: base,
-          en: lookup?.english,
+          en: lookup?.english || en,
           gender: gender ?? null,
         } as LessonRunnerVocabularyItem;
       })
@@ -337,14 +351,19 @@ function mapExerciseToLessonRunnerStep(exercise: GrammarExercise): Record<string
     }
     case 'sentence-builder': {
       const instruction = exercise.instructionEn || exercise.instructionMk || 'Arrange the words';
+      const words = exercise.words?.length ? exercise.words : exercise.targetSentenceMk.split(' ');
+      const wordList = words.length ? `Words: ${words.join(' / ')}` : undefined;
+      const translation = exercise.translationEn ? `Translation: ${exercise.translationEn}` : undefined;
+      const promptParts = [instruction, wordList, translation].filter(Boolean);
       return {
         id: exercise.id,
         type: 'FILL_BLANK',
-        prompt: instruction,
+        prompt: promptParts.join(' '),
         correctAnswer: exercise.targetSentenceMk,
         explanation,
         caseSensitive: false,
         placeholder: 'Type your answer...',
+        wordBank: words.length ? words : undefined,
       };
     }
     case 'error-correction': {
@@ -596,11 +615,11 @@ export async function seedCefrGrammarCurriculum() {
         if (grammarLesson.vocabulary_list && grammarLesson.vocabulary_list.length > 0) {
           let vocabIndex = 1;
           for (const entry of grammarLesson.vocabulary_list) {
-            const { base, gender } = parseVocabularyEntry(entry);
+            const { base, gender, en } = parseVocabularyEntry(entry);
             if (!base) continue;
 
             const lookup = vocabLookup.get(normalizeTerm(base));
-            const englishText = lookup?.english ?? '';
+            const englishText = lookup?.english || en || '';
             const category = lookup?.category ?? 'grammar';
 
             await prisma.vocabularyItem.create({
