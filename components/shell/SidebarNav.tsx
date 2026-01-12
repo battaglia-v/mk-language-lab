@@ -31,9 +31,6 @@ export function SidebarNav() {
           <p className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground">{t("label")}</p>
           <p className="text-xl font-semibold mk-gradient 2xl:text-2xl">македонски</p>
         </div>
-        <span className="hidden rounded-full border border-sidebar-border px-3 py-1 text-[11px] text-sidebar-foreground/70 2xl:inline-flex">
-          lab
-        </span>
       </div>
       <nav className="flex flex-col gap-2 px-2 py-6 2xl:px-4" aria-label={t("label")}>
         <TooltipProvider delayDuration={300}>
