@@ -121,13 +121,18 @@ export function exerciseToStep(exercise: GrammarExercise, locale: 'en' | 'mk' = 
       // TODO: Sentence builder requires custom step type
       // For now, convert to fill-blank as a fallback
       const sbExercise = exercise as SentenceBuilderExercise;
+      const wordList = sbExercise.words?.length ? `Words: ${sbExercise.words.join(' / ')}` : undefined;
+      const translation = sbExercise.translationEn ? `Translation: ${sbExercise.translationEn}` : undefined;
+      const promptParts = [instruction, wordList, translation].filter(Boolean);
       const sbStep: FillBlankStep = {
         id: exercise.id,
         type: 'FILL_BLANK',
-        prompt: instruction,
+        prompt: promptParts.join(' '),
         correctAnswer: sbExercise.targetSentenceMk,
+        acceptableAnswers: sbExercise.alternativeOrders?.map((alt) => alt.join(' ')),
         explanation,
         caseSensitive: false,
+        placeholder: 'Type the full sentence...',
       };
       return sbStep;
     }
@@ -136,13 +141,20 @@ export function exerciseToStep(exercise: GrammarExercise, locale: 'en' | 'mk' = 
       // TODO: Error correction requires custom step type
       // For now, convert to fill-blank as a fallback
       const ecExercise = exercise as ErrorCorrectionExercise;
+      const translation = ecExercise.translationEn ? `Translation: ${ecExercise.translationEn}` : undefined;
+      const promptParts = [
+        instruction,
+        `Sentence: ${ecExercise.sentenceWithErrorMk}`,
+        translation,
+      ].filter(Boolean);
       const ecStep: FillBlankStep = {
         id: exercise.id,
         type: 'FILL_BLANK',
-        prompt: instruction,
+        prompt: promptParts.join(' '),
         correctAnswer: ecExercise.correctedWord,
         explanation,
         caseSensitive: false,
+        placeholder: 'Type the corrected word...',
       };
       return ecStep;
     }
