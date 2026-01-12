@@ -25,29 +25,29 @@
       "Џ џ",
       "Ѕ ѕ"
     ],
-    "grammar_notes": "Macedonian uses a Cyrillic alphabet. Some letters represent unique sounds: Ѓ/ѓ (gje), Ќ/ќ (kje), Љ/љ (lje), Њ/њ (nje), Џ/џ (dzhe), Ѕ/ѕ (dze).",
+  "grammar_notes": "Macedonian uses a 31-letter Cyrillic alphabet. Key letters with unique sounds are Ѓ/ѓ, Ќ/ќ, Љ/љ, Њ/њ, Џ/џ, and Ѕ/ѕ. Practice confusing pairs: ѓ/г, ќ/к, љ/л, њ/н.",
     "grammarNote": {
       "titleMk": "Азбука и изговор",
       "titleEn": "Alphabet & Pronunciation",
-      "contentMk": "Македонскиот јазик користи кирилица. Посебни букви се: Ѓ, Ќ, Љ, Њ, Џ, Ѕ. Овие имаат специфични звуци и често се збунуваат со Г/К/Л/Н/Ж/З.",
-      "contentEn": "Macedonian uses the Cyrillic alphabet. Special letters include Ѓ, Ќ, Љ, Њ, Џ, and Ѕ. These represent distinct sounds and are not the same as Г/К/Л/Н/Ж/З.",
-      "examplesMk": [
-        "ѓердан (necklace)",
-        "ќерка (daughter)",
-        "љубов (love)",
-        "њушка (nose)",
-        "џем (jam)",
-        "ѕвезда (star)"
-      ],
-      "examplesEn": [
-        "ѓердан (necklace)",
-        "ќерка (daughter)",
-        "љубов (love)",
-        "њушка (nose)",
-        "џем (jam)",
-        "ѕвезда (star)"
-      ]
-    },
+    "contentMk": "Македонскиот има 31 буква. Посебни се: Ѓ, Ќ, Љ, Њ, Џ, Ѕ. Вежбај парови што лесно се мешаат (ѓ/г, ќ/к, љ/л, њ/н) и слушај ги „меките“ звуци Љ и Њ.",
+    "contentEn": "Macedonian has 31 letters. Special ones are Ѓ, Ќ, Љ, Њ, Џ, and Ѕ. Practice easy-to-confuse pairs (ѓ/г, ќ/к, љ/л, њ/н) and listen for the soft sounds Љ and Њ.",
+    "examplesMk": [
+      "ѓердан",
+      "ќерка",
+      "љубов",
+      "њушка",
+      "џем",
+      "ѕвезда"
+    ],
+    "examplesEn": [
+      "necklace",
+      "daughter",
+      "love",
+      "nose",
+      "jam",
+      "star"
+    ]
+  },
     "exercises": [
       {
         "id": "ab-1",
@@ -154,33 +154,44 @@
       "basics"
     ],
     "totalXp": 70,
-    "vocabulary_list": [
-      "Здраво",
-      "Добро утро",
-      "Добар ден",
-      "Добра вечер",
-      "Довидување",
-      "Како си?",
-      "Како сте?",
-      "Се викам"
-    ],
-    "grammar_notes": "Use Здраво for informal greeting, and Добар ден/Добро утро/Добра вечер for polite greetings. Use Како си? (informal) vs Како сте? (formal).",
+  "vocabulary_list": [
+    "Здраво",
+    "Чао",
+    "Добро утро",
+    "Добар ден",
+    "Добра вечер",
+    "Довидување",
+    "Како си?",
+    "Како сте?",
+    "Се викам",
+    "Мило ми е",
+    "Благодарам"
+  ],
+  "grammar_notes": "Use Здраво/Чао for informal greetings and Добро утро/Добар ден/Добра вечер for polite greetings by time of day. Use Како си? (informal) vs Како сте? (formal). Common response: Добро сум, благодарам.",
     "grammarNote": {
       "titleMk": "Поздрави и учтивост",
       "titleEn": "Greetings and Politeness",
-      "contentMk": "За блиски луѓе користиме \"ти\", а за формален однос \"вие\". \"Како си?\" е неформално, а \"Како сте?\" е формално.",
-      "contentEn": "Use \"ти\" for informal and \"вие\" for formal situations. \"Како си?\" is informal; \"Како сте?\" is formal.",
-      "examplesMk": [
-        "Здраво! Јас сум Ана.",
-        "Добро утро.",
-        "Како сте?"
-      ],
-      "examplesEn": [
-        "Hi! I am Ana.",
-        "Good morning.",
-        "How are you? (formal)"
-      ]
-    },
+    "contentMk": "Здраво/Чао се неформални поздрави. Добро утро е до пладне, Добар ден во текот на денот, Добра вечер по зајдисонце. \"Како си?\" е за блиски, \"Како сте?\" е учтиво. За претставување: \"Се викам...\" или \"Јас сум...\".",
+    "contentEn": "Здраво/Чао are informal greetings. Добро утро is used before noon, Добар ден during the day, and Добра вечер after sunset. \"Како си?\" is informal, while \"Како сте?\" is polite. Introduce yourself with \"Се викам...\" or \"Јас сум...\".",
+    "examplesMk": [
+      "Здраво! Јас сум Ана.",
+      "Добро утро.",
+      "Добар ден.",
+      "Како сте?",
+      "Добро сум, благодарам.",
+      "Мило ми е.",
+      "Довидување!"
+    ],
+    "examplesEn": [
+      "Hi! I am Ana.",
+      "Good morning.",
+      "Good afternoon.",
+      "How are you? (formal)",
+      "I'm fine, thank you.",
+      "Nice to meet you.",
+      "Goodbye!"
+    ]
+  },
     "exercises": [
       {
         "id": "gr-1",
@@ -562,38 +573,45 @@
       "basics"
     ],
     "totalXp": 65,
-    "vocabulary_list": [
-      "еден",
-      "два",
-      "три",
-      "четири",
-      "пет",
-      "десет",
-      "дваесет",
-      "триесет",
-      "четириесет",
-      "педесет",
-      "сто"
-    ],
-    "grammar_notes": "11-19 form with -наесет (единаесет, дванаесет). Tens are дваесет, триесет, четириесет, педесет. Use еден/една/едно for gender agreement.",
+  "vocabulary_list": [
+    "еден/една/едно",
+    "два/две",
+    "три",
+    "четири",
+    "пет",
+    "десет",
+    "единаесет",
+    "деветнаесет",
+    "дваесет",
+    "триесет",
+    "четириесет",
+    "педесет",
+    "сто",
+    "денар"
+  ],
+  "grammar_notes": "11-19 form with -наесет (единаесет, дванаесет). Tens are дваесет, триесет, четириесет, педесет, and combine with \"и\" (дваесет и пет). One and two change for gender: еден/една/едно, два (m)/две (f/n).",
     "grammarNote": {
       "titleMk": "Броеви",
       "titleEn": "Numbers",
-      "contentMk": "Броевите 11-19 се со -наесет. Десетките: дваесет, триесет, четириесет, педесет. За 'еден' се менува по род: еден/една/едно.",
-      "contentEn": "Numbers 11-19 use -naeset. Tens are дваесет, триесет, четириесет, педесет. The number one agrees with gender: еден/една/едно.",
-      "examplesMk": [
-        "една книга",
-        "еден ден",
-        "едно дете",
-        "дваесет и пет"
-      ],
-      "examplesEn": [
-        "one book",
-        "one day",
-        "one child",
-        "twenty-five"
-      ]
-    },
+    "contentMk": "Броевите 11-19 се со -наесет. Десетките се: дваесет, триесет, четириесет, педесет. Меѓу десетките и единиците се користи \"и\" (дваесет и пет). Еден и два се менуваат по род: еден/една/едно, два/две.",
+    "contentEn": "Numbers 11-19 use -naeset. Tens are дваесет, триесет, четириесет, педесет. Use \"и\" between tens and ones (дваесет и пет). One and two agree with gender: еден/една/едно, два/две.",
+    "examplesMk": [
+      "еден ден",
+      "една книга",
+      "едно дете",
+      "две сестри",
+      "дваесет и пет",
+      "сто денари"
+    ],
+    "examplesEn": [
+      "one day",
+      "one book",
+      "one child",
+      "two sisters",
+      "twenty-five",
+      "one hundred denars"
+    ]
+  },
     "exercises": [
       {
         "id": "num-1",
@@ -1851,23 +1869,27 @@
       "картичка",
       "големина"
     ],
-    "grammar_notes": "Use \"Колку чини?\" to ask for price. Use polite requests with \"би сакал/а\".",
+  "grammar_notes": "Use \"Колку чини?\" for singular and \"Колку чинат?\" for plural. Polite requests use би сакал/би сакала and \"Имате ли...?\" for availability. Payment: со готовина or со картичка.",
     "grammarNote": {
       "titleMk": "Купување и цени",
       "titleEn": "Shopping and Prices",
-      "contentMk": "Прашај за цена со \"Колку чини?\". За љубезно барање користи \"Би сакал/а...\".",
-      "contentEn": "Ask for price with \"Колку чини?\". Use \"Би сакал/а...\" for polite requests.",
-      "examplesMk": [
-        "Колку чини ова?",
-        "Би сакал големина М.",
-        "Може ли да платам со картичка?"
-      ],
-      "examplesEn": [
-        "How much is this?",
-        "I would like size M.",
-        "Can I pay by card?"
-      ]
-    },
+    "contentMk": "За цена: \"Колку чини?\" (еднина) и \"Колку чинат?\" (множина). За љубезно барање користи \"Би сакал/а...\". Кога прашуваш за достапност: \"Имате ли...?\".",
+    "contentEn": "For price use \"Колку чини?\" (singular) and \"Колку чинат?\" (plural). Polite requests use \"Би сакал/а...\". Ask availability with \"Имате ли...?\".",
+    "examplesMk": [
+      "Колку чинат овие обувки?",
+      "Имате ли помала големина?",
+      "Би сакала големина М.",
+      "Ќе платам со готовина.",
+      "Може ли фискална сметка?"
+    ],
+    "examplesEn": [
+      "How much do these shoes cost?",
+      "Do you have a smaller size?",
+      "I would like size M.",
+      "I will pay in cash.",
+      "Can I get a receipt?"
+    ]
+  },
     "exercises": [
       {
         "id": "sh-1",
@@ -1979,21 +2001,25 @@
       "покрај",
       "кај"
     ],
-    "grammar_notes": "Use \"лево/десно/право\" for turns. Common patterns: \"Свртете лево\", \"Одете право\".",
+  "grammar_notes": "Use лево/десно/право for directions. Formal commands use Одете/Свртете; informal uses Оди/Сврти. Ask location with \"Каде е...?\" and use кај (near/at) or покрај (along/past).",
     "grammarNote": {
       "titleMk": "Насоки",
       "titleEn": "Directions",
-      "contentMk": "За насоки користиме: лево, десно, право. Чести фрази: \"Свртете лево.\", \"Одете право.\".",
-      "contentEn": "For directions use: left, right, straight. Common phrases: \"Turn left.\", \"Go straight.\".",
-      "examplesMk": [
-        "Свртете десно на следната улица.",
-        "Станицата е до банката."
-      ],
-      "examplesEn": [
-        "Turn right at the next street.",
-        "The station is next to the bank."
-      ]
-    },
+    "contentMk": "За насоки користиме: лево, десно, право. Формално: \"Одете право.\", \"Свртете лево.\" Неформално: \"Оди право.\", \"Сврти лево.\" За локација прашуваме: \"Каде е...?\" и користиме кај (до/кај) и покрај (покрај/минете покрај).",
+    "contentEn": "For directions use left/right/straight. Formal: \"Одете право.\" \"Свртете лево.\" Informal: \"Оди право.\" \"Сврти лево.\" Ask location with \"Каде е...?\" and use кај (near/at) or покрај (along/past).",
+    "examplesMk": [
+      "Каде е аптеката?",
+      "Одете право, па свртете лево.",
+      "Станицата е кај паркот.",
+      "Помини покрај банката."
+    ],
+    "examplesEn": [
+      "Where is the pharmacy?",
+      "Go straight, then turn left.",
+      "The station is near the park.",
+      "Go past the bank."
+    ]
+  },
     "exercises": [
       {
         "id": "dir-1",
@@ -2098,30 +2124,37 @@
       "everyday"
     ],
     "totalXp": 70,
-    "vocabulary_list": [
-      "кафе",
-      "вода",
-      "чај",
-      "леб",
-      "супа",
-      "салата",
-      "без шеќер"
-    ],
-    "grammar_notes": "Use polite ordering with \"Би сакал/а\" + noun. Use \"Може ли\" to request the bill.",
+  "vocabulary_list": [
+    "кафе",
+    "вода",
+    "чај",
+    "леб",
+    "супа",
+    "салата",
+    "месо",
+    "без шеќер",
+    "со млеко",
+    "сметка"
+  ],
+  "grammar_notes": "Order politely with \"Би сакал/а\" + noun and add \"ве молам\" if needed. Use со/без to state preferences, and \"Може ли сметката?\" to ask for the bill.",
     "grammarNote": {
       "titleMk": "Нарачување",
       "titleEn": "Ordering",
-      "contentMk": "Љубезно нарачување: \"Би сакал/а кафе.\" За сметка: \"Може ли сметката?\".",
-      "contentEn": "Polite ordering: \"Би сакал/а кафе.\" To ask for the bill: \"Може ли сметката?\".",
-      "examplesMk": [
-        "Би сакала салата.",
-        "Може ли сметката, молам?"
-      ],
-      "examplesEn": [
-        "I would like a salad.",
-        "Could I have the bill, please?"
-      ]
-    },
+    "contentMk": "Љубезно нарачување: \"Би сакал/а кафе, ве молам.\" За додатоци користи со/без: со млеко, без шеќер. За сметка: \"Може ли сметката?\".",
+    "contentEn": "Polite ordering: \"Би сакал/а кафе, ве молам.\" Use со/без for preferences: со млеко, без шеќер. Ask for the bill with \"Може ли сметката?\".",
+    "examplesMk": [
+      "Една вода, ве молам.",
+      "Би сакал супа.",
+      "Без шеќер, молам.",
+      "Може ли сметката?"
+    ],
+    "examplesEn": [
+      "A water, please.",
+      "I would like soup.",
+      "Without sugar, please.",
+      "Could I have the bill?"
+    ]
+  },
     "exercises": [
       {
         "id": "fd-1",
