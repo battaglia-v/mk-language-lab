@@ -52,8 +52,8 @@
       {
         "id": "ab-1",
         "type": "multiple-choice",
-        "instructionMk": "Која буква се чита како /ѓ/?",
-        "instructionEn": "Which letter is read as /gj/?",
+        "instructionMk": "Избери ја точната кирилична буква за звукот /ѓ/.",
+        "instructionEn": "Choose the correct Cyrillic letter for the /gj/ sound.",
         "questionMk": "Избери ја точната буква",
         "questionEn": "Choose the correct letter",
         "options": [
@@ -68,8 +68,8 @@
       {
         "id": "ab-2",
         "type": "multiple-choice",
-        "instructionMk": "Која буква се чита како /ќ/?",
-        "instructionEn": "Which letter is read as /kj/?",
+        "instructionMk": "Избери ја точната кирилична буква за звукот /ќ/.",
+        "instructionEn": "Choose the correct Cyrillic letter for the /kj/ sound.",
         "questionMk": "Избери ја точната буква",
         "questionEn": "Choose the correct letter",
         "options": [
@@ -84,8 +84,8 @@
       {
         "id": "ab-3",
         "type": "multiple-choice",
-        "instructionMk": "Кој е точниот латиничен еквивалент за 'Љ'?",
-        "instructionEn": "What is the Latin equivalent for 'Љ'?",
+        "instructionMk": "Избери ја точната латинична транскрипција за 'Љ'.",
+        "instructionEn": "Choose the correct Latin transliteration for 'Љ'.",
         "questionMk": "Избери го точниот одговор",
         "questionEn": "Choose the correct answer",
         "options": [
@@ -100,8 +100,8 @@
       {
         "id": "ab-4",
         "type": "fill-blank",
-        "instructionMk": "Пополни ја буквата",
-        "instructionEn": "Fill in the letter",
+        "instructionMk": "Впиши ја кириличната буква што недостасува.",
+        "instructionEn": "Type the missing Cyrillic letter.",
         "sentenceMk": "Во зборот „џем“ се користи буквата ___.",
         "translationEn": "The word \"џем\" uses the letter ___.",
         "correctAnswers": [
@@ -112,8 +112,8 @@
       {
         "id": "ab-5",
         "type": "fill-blank",
-        "instructionMk": "Пополни ја буквата",
-        "instructionEn": "Fill in the letter",
+        "instructionMk": "Впиши ја кириличната буква што недостасува.",
+        "instructionEn": "Type the missing Cyrillic letter.",
         "sentenceMk": "___ е првата буква во зборот „Охрид“.",
         "translationEn": "___ is the first letter in the word \"Ohrid\".",
         "correctAnswers": [
@@ -452,23 +452,29 @@
       "село (n)",
       "дете (n)"
     ],
-    "grammar_notes": "Masculine nouns typically end in a consonant, feminine in -a, and neuter in -o/-e. Use gender to choose correct adjective and pronoun forms.",
+  "grammar_notes": "Masculine nouns usually end in a consonant, feminine in -a, and neuter in -o/-e. Some masculine nouns end in -a/-o (татко, чичко). Gender controls adjective and pronoun agreement.",
     "grammarNote": {
       "titleMk": "Род на именки",
       "titleEn": "Noun Gender",
-      "contentMk": "Машки род: најчесто завршува на согласка. Женски род: на -а. Среден род: на -о или -е.",
-      "contentEn": "Masculine nouns usually end in a consonant. Feminine nouns end in -a. Neuter nouns end in -o or -e.",
-      "examplesMk": [
-        "стол (m)",
-        "маса (f)",
-        "село (n)"
-      ],
-      "examplesEn": [
-        "стол (chair) - masculine",
-        "маса (table) - feminine",
-        "село (village) - neuter"
-      ]
-    },
+    "contentMk": "Машки род: најчесто завршува на согласка. Женски род: на -а. Среден род: на -о или -е. Има исклучоци како татко, чичко (машки, иако завршуваат на -о/-а). Родот влијае на придавките и заменките.",
+    "contentEn": "Masculine nouns usually end in a consonant, feminine in -a, and neuter in -o or -e. There are exceptions like татко and чичко (masculine even with -o/-a). Gender affects adjective and pronoun agreement.",
+    "examplesMk": [
+      "стол (m)",
+      "маса (f)",
+      "село (n)",
+      "стар стол",
+      "стара маса",
+      "старо село"
+    ],
+    "examplesEn": [
+      "chair (masculine)",
+      "table (feminine)",
+      "village (neuter)",
+      "old chair",
+      "old table",
+      "old village"
+    ]
+  },
     "exercises": [
       {
         "id": "gn-1",
@@ -726,23 +732,29 @@
       "стол",
       "село"
     ],
-    "grammar_notes": "The definite article is a suffix: -от/-ов/-он (masc), -та/-ва/-на (fem), -то/-во/-но (neut).",
+  "grammar_notes": "The definite article is a suffix. Unmarked: -от/-та/-то, proximal: -ов/-ва/-во (near), distal: -он/-на/-но (far).",
     "grammarNote": {
       "titleMk": "Определениот член",
       "titleEn": "The Definite Article",
-      "contentMk": "Во македонскиот јазик, определениот член се додава на крајот од именката. За машки род се користат -от, -ов, -он. За женски род: -та, -ва, -на. За среден род: -то, -во, -но.",
-      "contentEn": "In Macedonian, the definite article is added to the end of the noun. For masculine nouns: -от, -ов, -он. For feminine: -та, -ва, -на. For neuter: -то, -во, -но.",
-      "examplesMk": [
-        "човек → човекот (the man)",
-        "жена → жената (the woman)",
-        "дете → детето (the child)"
-      ],
-      "examplesEn": [
-        "човек → човекот (the man)",
-        "жена → жената (the woman)",
-        "дете → детето (the child)"
-      ]
-    },
+    "contentMk": "Во македонскиот јазик, определениот член се додава на крајот од именката. Има три форми: неутрална (-от/-та/-то), блиска (-ов/-ва/-во) и далечна (-он/-на/-но). Формата зависи од тоа дали предметот е блиску или далеку.",
+    "contentEn": "In Macedonian, the definite article is added to the end of the noun. There are three forms: unmarked (-от/-та/-то), proximal (-ов/-ва/-во), and distal (-он/-на/-но). The form depends on how near or far the item is.",
+    "examplesMk": [
+      "човекот",
+      "човеков",
+      "човекон",
+      "жената",
+      "женава",
+      "детето"
+    ],
+    "examplesEn": [
+      "the man",
+      "this man here",
+      "that man over there",
+      "the woman",
+      "this woman here",
+      "the child"
+    ]
+  },
     "exercises": [
       {
         "id": "da-1",
@@ -994,23 +1006,29 @@
       "дете → деца",
       "село → села"
     ],
-    "grammar_notes": "Plural endings vary by gender: masculine -и/-ови, feminine -и, neuter -а/-иња. Some nouns are irregular (човек → луѓе).",
+  "grammar_notes": "Plural endings vary by gender: masculine -и/-ови, feminine -и, neuter -а/-иња. Some plurals are irregular (човек → луѓе, брат → браќа). After numbers, use plural without the definite article.",
     "grammarNote": {
       "titleMk": "Множина во македонскиот",
       "titleEn": "Plural in Macedonian",
-      "contentMk": "Машки род: -и или -ови (човек → луѓе, стол → столови). Женски род: -и (жена → жени). Среден род: -а или -иња (дете → деца, село → села).",
-      "contentEn": "Masculine: -и or -ови (човек → луѓе, стол → столови). Feminine: -и (жена → жени). Neuter: -а or -иња (дете → деца, село → села).",
-      "examplesMk": [
-        "книга → книги (books)",
-        "маж → мажи (men)",
-        "дете → деца (children)"
-      ],
-      "examplesEn": [
-        "книга → книги (books)",
-        "маж → мажи (men)",
-        "дете → деца (children)"
-      ]
-    },
+    "contentMk": "Машки род: -и или -ови (стол → столови). Женски род: -и (жена → жени). Среден род: -а или -иња (дете → деца, село → села). Има неправилни форми: човек → луѓе, брат → браќа. По бројки се користи множина без член: три деца.",
+    "contentEn": "Masculine: -и or -ови (стол → столови). Feminine: -и (жена → жени). Neuter: -а or -иња (дете → деца, село → села). Some plurals are irregular: човек → луѓе, брат → браќа. After numbers, use plural without the article: три деца.",
+    "examplesMk": [
+      "стол → столови",
+      "човек → луѓе",
+      "брат → браќа",
+      "жена → жени",
+      "дете → деца",
+      "село → села"
+    ],
+    "examplesEn": [
+      "chair → chairs",
+      "person → people",
+      "brother → brothers",
+      "woman → women",
+      "child → children",
+      "village → villages"
+    ]
+  },
     "exercises": [
       {
         "id": "pl-1",
@@ -1126,23 +1144,25 @@
       "пред",
       "зад"
     ],
-    "grammar_notes": "Prepositions show relationships between words: во (in), на (on), под (under), над (above), до (next to), пред (in front of), зад (behind).",
+  "grammar_notes": "Prepositions show relationships. Use во for inside/cities, на for surfaces and common places (на работа), and под/над/пред/зад/до for position.",
     "grammarNote": {
       "titleMk": "Предлози",
       "titleEn": "Prepositions",
-      "contentMk": "Предлозите покажуваат односи меѓу зборовите. Најчести предлози за место: на (on), во (in), под (under), над (above), до (next to), пред (in front of), зад (behind).",
-      "contentEn": "Prepositions show relationships between words. Common prepositions for location: на (on), во (in), под (under), над (above), до (next to), пред (in front of), зад (behind).",
-      "examplesMk": [
-        "Книгата е на масата (The book is on the table)",
-        "Мачката е под столот (The cat is under the chair)",
-        "Паркот е до училиштето (The park is next to the school)"
-      ],
-      "examplesEn": [
-        "Книгата е на масата (The book is on the table)",
-        "Мачката е под столот (The cat is under the chair)",
-        "Паркот е до училиштето (The park is next to the school)"
-      ]
-    },
+    "contentMk": "Предлозите покажуваат место и однос. \"Во\" се користи за внатре и за градови/држави (во Скопје). \"На\" се користи за површини и некои места (на маса, на работа). Под, над, пред, зад и до покажуваат позиција.",
+    "contentEn": "Prepositions show location and relationships. \"Во\" is for inside/cities/countries (во Скопје). \"На\" is for surfaces and common places (на маса, на работа). Под, над, пред, зад, and до show position.",
+    "examplesMk": [
+      "Живеам во Скопје.",
+      "Книгата е на масата.",
+      "Седам под дрвото.",
+      "Автобуската станица е пред хотелот."
+    ],
+    "examplesEn": [
+      "I live in Skopje.",
+      "The book is on the table.",
+      "I sit under the tree.",
+      "The bus station is in front of the hotel."
+    ]
+  },
     "exercises": [
       {
         "id": "prep-1",
@@ -1260,23 +1280,25 @@
       "Како",
       "Колку"
     ],
-    "grammar_notes": "Use question words to ask about people (Кој), things (Што), place (Каде), time (Кога), reason (Зошто), manner (Како), and quantity (Колку).",
+  "grammar_notes": "Use question words to ask about people (Кој/Која/Кое), things (Што), place (Каде), time (Кога), reason (Зошто), manner (Како), and quantity/price (Колку).",
     "grammarNote": {
       "titleMk": "Прашални зборови",
       "titleEn": "Question Words",
-      "contentMk": "Прашалните зборови помагаат да поставиш прашања: Кој? (who), Што? (what), Каде? (where), Кога? (when), Зошто? (why), Како? (how), Колку? (how much/many).",
-      "contentEn": "Question words help form questions: Кој (who), Што (what), Каде (where), Кога (when), Зошто (why), Како (how), Колку (how much/many).",
-      "examplesMk": [
-        "Каде е библиотеката?",
-        "Кога доаѓаш?",
-        "Како се викаш?"
-      ],
-      "examplesEn": [
-        "Where is the library?",
-        "When are you coming?",
-        "What is your name?"
-      ]
-    },
+    "contentMk": "Прашалните зборови помагаат да поставиш прашања. Кој/Која/Кое се менува по род. Колку е за цена или количина. Како прашува за начин или состојба.",
+    "contentEn": "Question words help form questions. Кој/Која/Кое changes by gender. Колку is for price or quantity. Како asks about manner or condition.",
+    "examplesMk": [
+      "Кој е тоа?",
+      "Која е книгата?",
+      "Каде живееш?",
+      "Колку чини ова?"
+    ],
+    "examplesEn": [
+      "Who is that?",
+      "Which is the book?",
+      "Where do you live?",
+      "How much does this cost?"
+    ]
+  },
     "exercises": [
       {
         "id": "qw-1",
@@ -1395,25 +1417,29 @@
       "убав/убава/убаво/убави",
       "добар/добра/добро/добри"
     ],
-    "grammar_notes": "Adjectives agree with gender and number: masculine -∅, feminine -а, neuter -о, plural -и.",
+  "grammar_notes": "Adjectives agree with gender and number: masculine -∅, feminine -а, neuter -о, plural -и. Adjectives usually come before the noun.",
     "grammarNote": {
       "titleMk": "Согласување на придавки",
       "titleEn": "Adjective Agreement",
-      "contentMk": "Придавките се менуваат по род и број. Машки: -∅ (убав), Женски: -а (убава), Среден: -о (убаво), Множина: -и (убави).",
-      "contentEn": "Adjectives change by gender and number. Masculine: -∅ (убав), Feminine: -а (убава), Neuter: -о (убаво), Plural: -и (убави).",
-      "examplesMk": [
-        "убав човек",
-        "убава жена",
-        "убаво дете",
-        "убави луѓе"
-      ],
-      "examplesEn": [
-        "handsome man",
-        "beautiful woman",
-        "beautiful child",
-        "beautiful people"
-      ]
-    },
+    "contentMk": "Придавките се менуваат по род и број. Машки: -∅ (убав), Женски: -а (убава), Среден: -о (убаво), Множина: -и (убави). Најчесто стојат пред именката.",
+    "contentEn": "Adjectives change by gender and number. Masculine: -∅ (убав), Feminine: -а (убава), Neuter: -о (убаво), Plural: -и (убави). They usually come before the noun.",
+    "examplesMk": [
+      "убав човек",
+      "убава жена",
+      "убаво дете",
+      "убави луѓе",
+      "голем град",
+      "големи градови"
+    ],
+    "examplesEn": [
+      "handsome man",
+      "beautiful woman",
+      "beautiful child",
+      "beautiful people",
+      "big city",
+      "big cities"
+    ]
+  },
     "exercises": [
       {
         "id": "aa-1",
@@ -2534,21 +2560,25 @@
       "пише/напише",
       "гледа/погледне"
     ],
-    "grammar_notes": "Imperfective describes ongoing or habitual actions (чита), perfective describes completed actions (прочита).",
+  "grammar_notes": "Imperfective describes ongoing or habitual actions (чита), perfective describes completed actions (прочита). Use perfective for one completed event and imperfective for process or habit.",
     "grammarNote": {
       "titleMk": "Несвршен и свршен вид",
       "titleEn": "Imperfective vs Perfective",
-      "contentMk": "Несвршениот вид опишува процес или навика (чита, пишува). Свршениот вид означува завршено дејство (прочита, напише).",
-      "contentEn": "Imperfective describes a process or habit (чита, пишува). Perfective describes a completed action (прочита, напише).",
-      "examplesMk": [
-        "Секој ден читам.",
-        "Вчера ја прочитав книгата."
-      ],
-      "examplesEn": [
-        "I read every day.",
-        "Yesterday I finished the book."
-      ]
-    },
+    "contentMk": "Несвршениот вид опишува процес или навика (чита, пишува). Свршениот вид означува завршено дејство (прочита, напише). Свршениот вид често се користи со конкретно време: вчера, одеднаш.",
+    "contentEn": "Imperfective describes a process or habit (чита, пишува). Perfective describes a completed action (прочита, напише). Perfective is often used with specific time references like yesterday or suddenly.",
+    "examplesMk": [
+      "Секој ден читам.",
+      "Вчера ја прочитав книгата.",
+      "Ќе ја читам книгата вечер.",
+      "Ќе ја прочитам книгата вечер."
+    ],
+    "examplesEn": [
+      "I read every day.",
+      "Yesterday I finished the book.",
+      "I will be reading the book tonight.",
+      "I will finish the book tonight."
+    ]
+  },
     "exercises": [
       {
         "id": "asp-1",
@@ -2660,23 +2690,25 @@
       "иако",
       "кога"
     ],
-    "grammar_notes": "Use connectors to link clauses: ако (if), бидејќи/затоа што (because), дека (that), иако (although), кога (when).",
+  "grammar_notes": "Use connectors to link clauses: ако (if) for conditions, бидејќи/затоа што (because) for reasons, дека (that) after think/say, иако (although) for contrast, кога (when) for time.",
     "grammarNote": {
       "titleMk": "Сложени реченици",
       "titleEn": "Complex Sentences",
-      "contentMk": "Сложените реченици се поврзуваат со сврзници: ако, бидејќи, затоа што, дека, иако, кога.",
-      "contentEn": "Complex sentences use connectors: ако (if), бидејќи/затоа што (because), дека (that), иако (although), кога (when).",
-      "examplesMk": [
-        "Ќе дојдам ако имам време.",
-        "Не дојдов бидејќи бев болен.",
-        "Мислам дека е важно."
-      ],
-      "examplesEn": [
-        "I will come if I have time.",
-        "I didn't come because I was sick.",
-        "I think that it is important."
-      ]
-    },
+    "contentMk": "Сложените реченици се поврзуваат со сврзници: ако (услов), бидејќи/затоа што (причина), дека (по мислам/велам), иако (контраст), кога (време).",
+    "contentEn": "Complex sentences use connectors: ако (condition), бидејќи/затоа што (reason), дека (after think/say), иако (contrast), кога (time).",
+    "examplesMk": [
+      "Ќе дојдам ако имам време.",
+      "Не дојдов затоа што бев болен.",
+      "Мислам дека е важно.",
+      "Иако врнеше, отидовме."
+    ],
+    "examplesEn": [
+      "I will come if I have time.",
+      "I didn't come because I was sick.",
+      "I think that it is important.",
+      "Although it was raining, we went."
+    ]
+  },
     "exercises": [
       {
         "id": "cs-1",

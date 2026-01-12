@@ -55,7 +55,7 @@ const alphabetDeckConverted: TopicDeck = {
   items: alphabetDeck.items.map((item: { id: string; letter: string; latinEquiv: string; exampleWord: { mk: string; en: string }; notes: string }) => ({
     id: item.id,
     mk: item.letter.split(' ')[0], // Just the uppercase letter
-    en: `${item.latinEquiv} - ${item.notes}`, // Latin equivalent with pronunciation hint
+    en: `Latin: ${item.latinEquiv} (${item.notes})`, // Latin equivalent with pronunciation hint
     category: 'alphabet',
   })),
 };
