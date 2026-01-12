@@ -4,44 +4,41 @@
 
 ## App Information
 
-**Package Name:** `com.mklanguage.twa`
+**Package Name:** `com.mklanguage.app`
 **App Title:** MK Language Lab
 **Short Description (80 chars max):**
-Learn Macedonian with lessons, practice, translation, and real stories
+Learn Macedonian A1-B1 with grammar-first lessons and offline practice.
 
 ## Full Description (4000 chars max)
 
-Master the Macedonian language with MK Language Lab (Македонски) - a modern, mobile-first learning companion with real-world content.
+Master Macedonian with MK Language Lab (Македонски) - a modern, mobile-first app built around the CEFR A1-B1 path.
 
-**STRUCTURED LESSONS & PRACTICE**
-Build a foundation with guided learning paths and reinforce it through:
-• Vocabulary drills and Word Sprint sessions  
-• Grammar lessons with clear explanations  
-• Instant feedback and progress tracking
+**A1-B1 STRUCTURE**
+Start with the alphabet, greetings, and the verb "to be" (A1). Build everyday communication with shopping, directions, and past tense (A2). Reach intermediate fluency with future tense, verb aspect, and complex sentences (B1).
 
-**INSTANT TRANSLATION**
-Break through language barriers:
-• Macedonian ↔ English translation  
-• Translation history for review  
-• Copy or save phrases for later
+**GRAMMAR-FIRST EXPLANATIONS**
+Understand how the language works:
+• Clear grammar notes with examples  
+• Conjugation patterns and full pronoun coverage  
+• Practice questions that reinforce each rule
 
-**READER MODE + REAL NEWS**
-Immerse yourself in real Macedonian:
-• Graded reader stories with tap-to-translate words  
-• Live news headlines from Macedonian sources  
-• Curated content for language learners
+**OFFLINE-FRIENDLY PRACTICE**
+Keep learning even without a connection:
+• Core lessons and drills available offline  
+• Progress syncs when you reconnect
 
-**PROGRESS & MOTIVATION**
-Stay consistent with:
+**TOOLS FOR REAL USE**
+• Macedonian ↔ English translator with history  
+• Reader mode with tap-to-translate words  
+• Pronunciation support with text-to-speech
+
+**PROGRESS THAT MOTIVATES**
 • XP, streaks, and daily goals  
-• Achievement badges and progress stats
+• Achievement badges and level tracking
 
-**PRONUNCIATION SUPPORT**
-Text-to-speech audio on supported items helps you hear how words sound.
+Whether you're traveling, reconnecting with your roots, or exploring Slavic languages, MK Language Lab gives you a clear, grammar-rich path from beginner to independent use.
 
-Whether you're planning a trip to North Macedonia, reconnecting with your roots, or exploring Slavic languages, MK Language Lab makes learning Macedonian engaging, efficient, and fun.
-
-Download now and start your learning journey today!
+Download now and start learning Macedonian today!
 
 ---
 
@@ -49,7 +46,7 @@ Download now and start your learning journey today!
 Built by language learners, for language learners. MK Language Lab combines modern mobile UX with proven practice techniques and authentic Macedonian content. Join our growing community and discover how enjoyable language learning can be.
 
 **SUPPORT**
-Questions or feedback? Contact us at contact@mklanguage.com or visit https://mklanguage.com
+Questions or feedback? Contact us at support@mklanguage.com or visit https://mklanguage.com
 
 ## Key Features (Bullet Points for Screenshots)
 
