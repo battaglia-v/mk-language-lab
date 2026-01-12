@@ -30,16 +30,16 @@ const ALPHABET_NODE: LessonNode = {
  */
 const JOURNEY_CONFIG: Record<string, { title: string; description: string }> = {
   'ukim-a1': {
-    title: 'A1 Foundations',
-    description: 'Master the basics of Macedonian with Тешкото curriculum',
+    title: 'A1 Beginner',
+    description: 'Build core basics: alphabet, greetings, the verb "to be", numbers, and gender.',
   },
   'ukim-a2': {
-    title: 'A2 Momentum',
-    description: 'Build confidence with Лозје curriculum',
+    title: 'A2 Elementary',
+    description: 'Everyday topics like shopping, directions, food and drink, and past tense basics.',
   },
   'ukim-b1': {
-    title: 'B1 Fluency',
-    description: 'Develop fluency with Златоврв curriculum',
+    title: 'B1 Intermediate',
+    description: 'Strengthen fluency with future tense, modals, aspect, and complex sentences.',
   },
 };
 

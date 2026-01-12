@@ -2,9 +2,8 @@
  * Enhanced Exercise Components
  * 
  * Interactive exercise components for the lesson overhaul.
- * Based on exercises from Macedonian language textbooks (Тешкото, Лозје, etc.)
+ * Curated to support the structured MK Language Lab curriculum.
  */
 
 export { PictureMatchExercise } from './PictureMatchExercise';
 export { CountryDragDrop } from './CountryDragDrop';
-
