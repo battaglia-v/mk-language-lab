@@ -516,6 +516,12 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
             {card?.difficulty && <Badge variant="outline">{formatDifficultyLabel(card.difficulty)}</Badge>}
           </div>
 
+          {card?.category === 'alphabet' && (
+            <p className="text-sm text-muted-foreground">
+              {t('drills.alphabetPrompt', { default: 'Choose the Latin pronunciation for this Cyrillic letter.' })}
+            </p>
+          )}
+
           <p className="text-2xl font-bold text-foreground sm:text-3xl">{card?.source}</p>
 
           <div className={cn('rounded-xl border border-primary/20 bg-primary/5 p-4 transition-all duration-300', revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2')}>
