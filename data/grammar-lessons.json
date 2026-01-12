@@ -854,23 +854,33 @@
       "не сте",
       "не се"
     ],
-    "grammar_notes": "Negation uses 'не' before the verb. For 'сум': не сум, не си, не е, не сме, не сте, не се.",
+  "grammar_notes": "Negation uses 'не' before the verb. With 'сум': јас не сум, ти не си, тој/таа/тоа не е, ние не сме, вие не сте, тие не се. For other verbs, place 'не' before the conjugated form.",
     "grammarNote": {
       "titleMk": "Негација во македонскиот",
       "titleEn": "Negation in Macedonian",
-      "contentMk": "За негација се користи 'не' пред глаголот. Негативни форми на 'сум' се: не сум, не си, не е, не сме, не сте, не се.",
-      "contentEn": "To negate, use 'не' before the verb. Negative forms of 'сум' are: не сум, не си, не е, не сме, не сте, не се.",
-      "examplesMk": [
-        "Не сум гладен. (I am not hungry.)",
-        "Тој не е дома. (He is not home.)",
-        "Не разбирам. (I don't understand.)"
-      ],
-      "examplesEn": [
-        "Не сум гладен. (I am not hungry.)",
-        "Тој не е дома. (He is not home.)",
-        "Не разбирам. (I don't understand.)"
-      ]
-    },
+    "contentMk": "За негација се користи 'не' пред глаголот: не читам, не одам. Кај 'сум' формите се: јас не сум, ти не си, тој/таа/тоа не е, ние не сме, вие не сте, тие не се. Заменките можат да се изостават ако е јасно кој е субјектот.",
+    "contentEn": "Negation uses 'не' before the verb: не читам, не одам. With 'сум' the forms are: јас не сум, ти не си, тој/таа/тоа не е, ние не сме, вие не сте, тие не се. Pronouns can be omitted if the subject is clear.",
+    "examplesMk": [
+      "Јас не сум гладен.",
+      "Ти не си подготвен.",
+      "Тој не е дома.",
+      "Таа не е тука.",
+      "Тоа не е тешко.",
+      "Ние не сме уморни.",
+      "Вие не сте од Скопје.",
+      "Тие не се пријатели."
+    ],
+    "examplesEn": [
+      "I am not hungry.",
+      "You are not ready.",
+      "He is not at home.",
+      "She is not here.",
+      "It is not difficult.",
+      "We are not tired.",
+      "You are not from Skopje.",
+      "They are not friends."
+    ]
+  },
     "exercises": [
       {
         "id": "neg-1",
