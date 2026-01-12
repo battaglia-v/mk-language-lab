@@ -4,8 +4,8 @@ This folder contains the core Play Store listing assets.
 
 - icon-512.png (512x512 PNG, app icon)
 - feature-graphic-1024x500.png (1024x500 PNG)
-- screenshots/ (phone screenshots from production)
-- screenshots-framed/ (marketing frames + captions)
+- screenshots/ (final upload set, framed)
+- screenshots-unframed/ (clean captures from production)
 - screenshots-legacy/ (previous captures archived)
 
 Notes:
