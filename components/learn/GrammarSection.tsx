@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -68,14 +68,16 @@ export default function GrammarSection({ notes }: GrammarSectionProps) {
             </h3>
 
             {/* Explanation - larger text for readability */}
-            <p
+            <div
               className={cn(
-                'text-base text-muted-foreground leading-relaxed',
-                shouldTruncate && 'line-clamp-2'
+                'transition-all duration-300 overflow-hidden',
+                shouldTruncate ? 'line-clamp-2' : ''
               )}
             >
-              {note.explanation}
-            </p>
+              <p className="text-base text-muted-foreground leading-relaxed">
+                {note.explanation}
+              </p>
+            </div>
 
             {isLong && (
               <Button
@@ -84,17 +86,13 @@ export default function GrammarSection({ notes }: GrammarSectionProps) {
                 onClick={() => toggleNote(note.id)}
                 className="mt-2 min-h-[48px] px-3 text-sm text-secondary hover:text-secondary/80"
               >
-                {isExpanded ? (
-                  <>
-                    <ChevronUp className="h-4 w-4 mr-1.5" />
-                    Show less
-                  </>
-                ) : (
-                  <>
-                    <ChevronDown className="h-4 w-4 mr-1.5" />
-                    Read more
-                  </>
-                )}
+                <ChevronDown
+                  className={cn(
+                    'h-4 w-4 mr-1.5 transition-transform duration-200',
+                    isExpanded && 'rotate-180'
+                  )}
+                />
+                {isExpanded ? 'Show less' : 'Read more'}
               </Button>
             )}
 
@@ -126,27 +124,22 @@ export default function GrammarSection({ notes }: GrammarSectionProps) {
                       </li>
                     );
                   })}
-                  {examples.length > 4 && !expandedExamples[note.id] && (
+                  {examples.length > 4 && (
                     <li>
                       <button
                         type="button"
                         onClick={() => toggleExamples(note.id)}
                         className="min-h-[48px] text-sm text-primary hover:text-primary/80 pl-9 flex items-center gap-1"
                       >
-                        <ChevronDown className="h-3 w-3" />
-                        Show {examples.length - 4} more example{examples.length - 4 === 1 ? '' : 's'}
-                      </button>
-                    </li>
-                  )}
-                  {expandedExamples[note.id] && examples.length > 4 && (
-                    <li>
-                      <button
-                        type="button"
-                        onClick={() => toggleExamples(note.id)}
-                        className="min-h-[48px] text-sm text-muted-foreground hover:text-foreground pl-9 flex items-center gap-1"
-                      >
-                        <ChevronUp className="h-3 w-3" />
-                        Show fewer
+                        <ChevronDown
+                          className={cn(
+                            'h-3 w-3 transition-transform duration-200',
+                            expandedExamples[note.id] && 'rotate-180'
+                          )}
+                        />
+                        {expandedExamples[note.id]
+                          ? 'Show fewer'
+                          : `Show ${examples.length - 4} more example${examples.length - 4 === 1 ? '' : 's'}`}
                       </button>
                     </li>
                   )}
