@@ -26,7 +26,14 @@ function TabsList({
     <TabsPrimitive.List
       data-slot="tabs-list"
       className={cn(
-        "bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]",
+        // Modern segmented control container
+        "relative inline-flex w-full items-center justify-center",
+        // Background and shape
+        "bg-muted/50 rounded-xl p-1",
+        // Touch-friendly height
+        "min-h-[48px]",
+        // Text color for inactive state
+        "text-muted-foreground",
         className
       )}
       {...props}
@@ -42,12 +49,20 @@ function TabsTrigger({
     <TabsPrimitive.Trigger
       data-slot="tabs-trigger"
       className={cn(
-        // Base styles
-        "inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-semibold whitespace-nowrap transition-all duration-200",
-        // Inactive state - clear it's clickable
-        "text-muted-foreground hover:text-foreground hover:bg-white/5 cursor-pointer",
-        // Active state - prominent
-        "data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-md data-[state=active]:border-primary/30",
+        // Base styles - keep above indicator with z-10
+        "relative z-10 inline-flex flex-1 items-center justify-center gap-2",
+        "rounded-lg px-3 py-2 text-sm font-semibold whitespace-nowrap",
+        // Touch-friendly sizing
+        "min-h-[40px]",
+        // Smooth transitions for color and transform
+        "transition-all duration-200 ease-out",
+        // Inactive state
+        "text-muted-foreground cursor-pointer",
+        "hover:text-foreground/80",
+        // Active state - pill indicator appears
+        "data-[state=active]:text-foreground",
+        "data-[state=active]:bg-background",
+        "data-[state=active]:shadow-sm",
         // Focus state
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-1",
         // Disabled
