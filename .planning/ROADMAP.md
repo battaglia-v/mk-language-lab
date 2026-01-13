@@ -193,10 +193,10 @@ Plans:
 **Goal**: Modernize toggle/tab component across 4 locations (Reader, Alphabet, TextImporter, DailyLessons)
 **Depends on**: Previous milestone complete
 **Research**: Unlikely (existing Radix/shadcn patterns)
-**Plans**: TBD
+**Plans**: 1
 
 Plans:
-- [ ] 47-01: TBD (run /gsd:plan-phase 47 to break down)
+- [ ] 47-01: Tabs redesign with sliding indicator + consumer updates
 
 #### Phase 48: Learn UX Audit & Polish
 
@@ -253,7 +253,7 @@ Plans:
 
 | Phase | Milestone | Plans | Status | Completed |
 |-------|-----------|-------|--------|-----------|
-| 47. Segmented Control Redesign | v1.8 | 0/? | Not started | - |
+| 47. Segmented Control Redesign | v1.8 | 0/1 | Planned | - |
 | 48. Learn UX Audit & Polish | v1.8 | 0/? | Not started | - |
 | 49. Practice UX Audit & Polish | v1.8 | 0/? | Not started | - |
 | 50. Reader UX Audit & Polish | v1.8 | 0/? | Not started | - |
