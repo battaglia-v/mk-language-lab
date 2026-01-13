@@ -1,11 +1,12 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import { Plus, BookOpen, Sparkles, Check } from 'lucide-react';
 import { BottomSheet } from '@/components/ui/BottomSheet';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
+import { useReducedMotion } from '@/hooks/use-reduced-motion';
 
 export interface WordInfo {
   original: string;
@@ -59,6 +60,19 @@ export function WordBottomSheet({
   locale,
 }: WordBottomSheetProps) {
   const [justSaved, setJustSaved] = useState(false);
+  const [isRevealed, setIsRevealed] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+
+  // Trigger reveal animation when sheet opens with new word
+  useEffect(() => {
+    if (open && word) {
+      // Small delay to let BottomSheet start its animation first
+      const timer = setTimeout(() => setIsRevealed(true), 50);
+      return () => clearTimeout(timer);
+    } else {
+      setIsRevealed(false);
+    }
+  }, [open, word?.original]);
 
   const t = {
     saveToGlossary: locale === 'mk' ? 'Зачувај во речник' : 'Save to Glossary',
@@ -93,8 +107,17 @@ export function WordBottomSheet({
         className="pb-[calc(env(safe-area-inset-bottom,0px)+3rem)]"
       >
       <div className="space-y-5 pb-4">
-        {/* Word header */}
-        <div className="flex items-start justify-between gap-4">
+        {/* Word header - animates first */}
+        <div
+          className={cn(
+            'flex items-start justify-between gap-4',
+            !prefersReducedMotion && 'transition-all duration-200',
+            !prefersReducedMotion && (isRevealed
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-2')
+          )}
+          style={!prefersReducedMotion ? { animationFillMode: 'backwards' } : undefined}
+        >
           <div className="space-y-1">
             {/* Original word */}
             <h3 className="text-2xl font-bold text-foreground">
@@ -124,8 +147,16 @@ export function WordBottomSheet({
           )}
         </div>
 
-        {/* Translation */}
-        <div className="space-y-2">
+        {/* Translation - animates with 50ms delay */}
+        <div
+          className={cn(
+            'space-y-2',
+            !prefersReducedMotion && 'transition-all duration-200 delay-[50ms]',
+            !prefersReducedMotion && (isRevealed
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-2')
+          )}
+        >
           <p className={cn(
             'text-xl',
             isLoading ? 'text-muted-foreground animate-pulse' : 'text-foreground'
@@ -156,9 +187,17 @@ export function WordBottomSheet({
           )}
         </div>
 
-        {/* Examples */}
+        {/* Examples - animates with 100ms delay */}
         {word.examples && word.examples.length > 0 && (
-          <div className="space-y-2 rounded-xl bg-muted/30 p-4 border border-border/50">
+          <div
+            className={cn(
+              'space-y-2 rounded-xl bg-muted/30 p-4 border border-border/50',
+              !prefersReducedMotion && 'transition-all duration-200 delay-100',
+              !prefersReducedMotion && (isRevealed
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-2')
+            )}
+          >
             <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
               {t.examples}
             </p>
@@ -172,32 +211,41 @@ export function WordBottomSheet({
           </div>
         )}
 
-        {/* Save to glossary button */}
+        {/* Save to glossary button - animates with 150ms delay */}
         {onSaveToGlossary && (
-          <Button
-            onClick={handleSave}
-            disabled={showSaved || isLoading}
+          <div
             className={cn(
-              'w-full min-h-[52px] rounded-xl text-base font-semibold transition-all',
-              showSaved
-                ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                : 'bg-primary text-primary-foreground hover:bg-primary/90'
+              !prefersReducedMotion && 'transition-all duration-200 delay-150',
+              !prefersReducedMotion && (isRevealed
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-2')
             )}
-            size="lg"
-            data-testid="reader-word-sheet-save"
           >
-            {showSaved ? (
-              <>
-                <Check className="mr-2 h-5 w-5" />
-                {justSaved ? t.saved : t.alreadySaved}
-              </>
-            ) : (
-              <>
-                <Plus className="mr-2 h-5 w-5" />
-                {t.saveToGlossary}
-              </>
-            )}
-          </Button>
+            <Button
+              onClick={handleSave}
+              disabled={showSaved || isLoading}
+              className={cn(
+                'w-full min-h-[52px] rounded-xl text-base font-semibold transition-all',
+                showSaved
+                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                  : 'bg-primary text-primary-foreground hover:bg-primary/90'
+              )}
+              size="lg"
+              data-testid="reader-word-sheet-save"
+            >
+              {showSaved ? (
+                <>
+                  <Check className="mr-2 h-5 w-5" />
+                  {justSaved ? t.saved : t.alreadySaved}
+                </>
+              ) : (
+                <>
+                  <Plus className="mr-2 h-5 w-5" />
+                  {t.saveToGlossary}
+                </>
+              )}
+            </Button>
+          </div>
         )}
       </div>
     </BottomSheet>
