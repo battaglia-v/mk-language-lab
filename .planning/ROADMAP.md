@@ -14,6 +14,7 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 - ✅ [v1.5 Audio Cleanup & Final Polish](milestones/v1.5-ROADMAP.md) (Phases 33-35) — SHIPPED 2026-01-10
 - ✅ [v1.6 Reader Overhaul](milestones/v1.6-ROADMAP.md) (Phases 36-41) — SHIPPED 2026-01-11
 - ✅ [v1.7 Learn Experience Overhaul](milestones/v1.7-ROADMAP.md) (Phases 42-46) — SHIPPED 2026-01-11
+- 🚧 **v1.8 Quality & Performance** — Phases 47-52 (in progress)
 
 ## Completed Milestones
 
@@ -183,11 +184,81 @@ Plans:
 
 </details>
 
+### 🚧 v1.8 Quality & Performance (In Progress)
+
+**Milestone Goal:** Comprehensive quality improvements across UX, content, and performance for all three core areas (Learn, Practice, Reader)
+
+#### Phase 47: Segmented Control Redesign
+
+**Goal**: Modernize toggle/tab component across 4 locations (Reader, Alphabet, TextImporter, DailyLessons)
+**Depends on**: Previous milestone complete
+**Research**: Unlikely (existing Radix/shadcn patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 47-01: TBD (run /gsd:plan-phase 47 to break down)
+
+#### Phase 48: Learn UX Audit & Polish
+
+**Goal**: Visual refinements in lesson experience — section navigation, vocabulary cards, grammar displays
+**Depends on**: Phase 47
+**Research**: Unlikely (internal patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 48-01: TBD
+
+#### Phase 49: Practice UX Audit & Polish
+
+**Goal**: Exercise feedback improvements, session flow smoothness, result screens
+**Depends on**: Phase 48
+**Research**: Unlikely (internal patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 49-01: TBD
+
+#### Phase 50: Reader UX Audit & Polish
+
+**Goal**: Reading experience refinements, vocabulary lookup interactions, progress indicators
+**Depends on**: Phase 49
+**Research**: Unlikely (internal patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 50-01: TBD
+
+#### Phase 51: Content Quality Audit
+
+**Goal**: Translation accuracy, example quality, curriculum gap identification across A1/A2/B1
+**Depends on**: Phase 50
+**Research**: Unlikely (internal content patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 51-01: TBD
+
+#### Phase 52: Performance Optimization
+
+**Goal**: Faster loading, better caching strategies, smoother page transitions and navigation
+**Depends on**: Phase 51
+**Research**: Likely (optimization patterns)
+**Research topics**: Next.js optimization, caching strategies, bundle analysis
+**Plans**: TBD
+
+Plans:
+- [ ] 52-01: TBD
+
 ## Progress
 
 | Phase | Milestone | Plans | Status | Completed |
 |-------|-----------|-------|--------|-----------|
-| (No active phases) | — | — | — | — |
+| 47. Segmented Control Redesign | v1.8 | 0/? | Not started | - |
+| 48. Learn UX Audit & Polish | v1.8 | 0/? | Not started | - |
+| 49. Practice UX Audit & Polish | v1.8 | 0/? | Not started | - |
+| 50. Reader UX Audit & Polish | v1.8 | 0/? | Not started | - |
+| 51. Content Quality Audit | v1.8 | 0/? | Not started | - |
+| 52. Performance Optimization | v1.8 | 0/? | Not started | - |
 
 **Completed Milestones:**
 - [v1.0 Beta](milestones/v1.0-ROADMAP.md) — 7 phases, 21 plans (shipped 2026-01-07)
