@@ -512,7 +512,7 @@ export default function LessonPageContentV2({
 
         return (
           <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
-            <div className="space-y-3">
+            <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-semibold">Vocabulary</h3>
                 <span className="text-sm text-muted-foreground">
