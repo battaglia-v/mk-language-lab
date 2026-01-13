@@ -214,10 +214,11 @@ Plans:
 **Goal**: Exercise feedback improvements, session flow smoothness, result screens
 **Depends on**: Phase 48
 **Research**: Unlikely (internal patterns)
-**Plans**: TBD
+**Plans**: 2
 
 Plans:
-- [ ] 49-01: TBD
+- [ ] 49-01: Exercise Feedback Animations (staggered choice buttons, bounce on correct)
+- [ ] 49-02: Results Screen Polish (animated stat reveals, consistent across modes)
 
 #### Phase 50: Reader UX Audit & Polish
 
@@ -255,8 +256,8 @@ Plans:
 | Phase | Milestone | Plans | Status | Completed |
 |-------|-----------|-------|--------|-----------|
 | 47. Segmented Control Redesign | v1.8 | 1/1 | Complete | 2026-01-12 |
-| 48. Learn UX Audit & Polish | v1.8 | 1/2 | In progress | - |
-| 49. Practice UX Audit & Polish | v1.8 | 0/? | Not started | - |
+| 48. Learn UX Audit & Polish | v1.8 | 2/2 | Complete | 2026-01-13 |
+| 49. Practice UX Audit & Polish | v1.8 | 0/2 | Planned | - |
 | 50. Reader UX Audit & Polish | v1.8 | 0/? | Not started | - |
 | 51. Content Quality Audit | v1.8 | 0/? | Not started | - |
 | 52. Performance Optimization | v1.8 | 0/? | Not started | - |
