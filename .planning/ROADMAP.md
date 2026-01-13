@@ -231,15 +231,16 @@ Plans:
 - [x] 50-01: Reader Library Animations (story cards, CTAs) — completed 2026-01-13
 - [x] 50-02: Reading Experience Polish (vocabulary animations, completion celebration) — completed 2026-01-13
 
-#### Phase 51: Content Quality Audit
+#### Phase 51: Content Quality Audit — IN PROGRESS
 
 **Goal**: Translation accuracy, example quality, curriculum gap identification across A1/A2/B1
 **Depends on**: Phase 50
 **Research**: Unlikely (internal content patterns)
-**Plans**: TBD
+**Plans**: 2
 
 Plans:
-- [ ] 51-01: TBD
+- [x] 51-01: POS validation & fix (verb-as-noun misclassifications) — completed 2026-01-13
+- [ ] 51-02: Translation quality audit (TBD)
 
 #### Phase 52: Performance Optimization
 
@@ -260,7 +261,7 @@ Plans:
 | 48. Learn UX Audit & Polish | v1.8 | 2/2 | Complete | 2026-01-13 |
 | 49. Practice UX Audit & Polish | v1.8 | 2/2 | Complete | 2026-01-13 |
 | 50. Reader UX Audit & Polish | v1.8 | 2/2 | Complete | 2026-01-13 |
-| 51. Content Quality Audit | v1.8 | 0/? | Not started | - |
+| 51. Content Quality Audit | v1.8 | 1/2 | In progress | - |
 | 52. Performance Optimization | v1.8 | 0/? | Not started | - |
 
 **Completed Milestones:**
