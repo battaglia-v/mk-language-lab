@@ -434,24 +434,30 @@ export default function ReaderPage() {
 
                 {filteredSamples.length > 0 ? (
                   <div className="grid gap-4 sm:grid-cols-2">
-                    {filteredSamples.map((sample) => {
+                    {filteredSamples.map((sample, index) => {
                       const isPremium = isPremiumSample(sample);
                       const isLocked = paywallEnabled && isPremium && !isPro;
                       const { isCompleted, progressPercent } = getProgressForSample(sample.id);
+                      const animationDelay = Math.min(100 + index * 50, 500);
 
                       return (
-                        <ReadingSampleCard
+                        <div
                           key={sample.id}
-                          sample={sample}
-                          locale={locale}
-                          isPremium={isPremium}
-                          isLocked={isLocked}
-                          isCompleted={isCompleted}
-                          progressPercent={progressPercent}
-                          ctaHref={
-                            isLocked ? `/${locale}/upgrade?from=${encodeURIComponent(`/${locale}/reader`)}` : undefined
-                          }
-                        />
+                          className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200"
+                          style={{ animationDelay: `${animationDelay}ms`, animationFillMode: 'backwards' }}
+                        >
+                          <ReadingSampleCard
+                            sample={sample}
+                            locale={locale}
+                            isPremium={isPremium}
+                            isLocked={isLocked}
+                            isCompleted={isCompleted}
+                            progressPercent={progressPercent}
+                            ctaHref={
+                              isLocked ? `/${locale}/upgrade?from=${encodeURIComponent(`/${locale}/reader`)}` : undefined
+                            }
+                          />
+                        </div>
                       );
                     })}
                   </div>
@@ -560,24 +566,30 @@ export default function ReaderPage() {
 
                   {/* Preview of challenge content */}
                   <div className="grid gap-4 sm:grid-cols-2">
-                    {challengeSamples.slice(0, 4).map((sample) => {
+                    {challengeSamples.slice(0, 4).map((sample, index) => {
                       const isPremium = isPremiumSample(sample);
                       const isLocked = paywallEnabled && isPremium && !isPro;
                       const { isCompleted, progressPercent } = getProgressForSample(sample.id);
+                      const animationDelay = Math.min(100 + index * 50, 500);
 
                       return (
-                        <ReadingSampleCard
+                        <div
                           key={sample.id}
-                          sample={sample}
-                          locale={locale}
-                          isPremium={isPremium}
-                          isLocked={isLocked}
-                          isCompleted={isCompleted}
-                          progressPercent={progressPercent}
-                          ctaHref={
-                            isLocked ? `/${locale}/upgrade?from=${encodeURIComponent(`/${locale}/reader`)}` : undefined
-                          }
-                        />
+                          className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200"
+                          style={{ animationDelay: `${animationDelay}ms`, animationFillMode: 'backwards' }}
+                        >
+                          <ReadingSampleCard
+                            sample={sample}
+                            locale={locale}
+                            isPremium={isPremium}
+                            isLocked={isLocked}
+                            isCompleted={isCompleted}
+                            progressPercent={progressPercent}
+                            ctaHref={
+                              isLocked ? `/${locale}/upgrade?from=${encodeURIComponent(`/${locale}/reader`)}` : undefined
+                            }
+                          />
+                        </div>
                       );
                     })}
                   </div>
@@ -598,18 +610,24 @@ export default function ReaderPage() {
                   <h2 className="text-lg font-semibold">Conversations</h2>
                   {conversationSamples.length > 0 ? (
                     <div className="grid gap-4 sm:grid-cols-2">
-                      {conversationSamples.map((sample) => {
+                      {conversationSamples.map((sample, index) => {
                         const { isCompleted, progressPercent } = getProgressForSample(sample.id);
+                        const animationDelay = Math.min(100 + index * 50, 500);
                         return (
-                          <ReadingSampleCard
+                          <div
                             key={sample.id}
-                            sample={sample}
-                            locale={locale}
-                            isPremium={false}
-                            isLocked={false}
-                            isCompleted={isCompleted}
-                            progressPercent={progressPercent}
-                          />
+                            className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200"
+                            style={{ animationDelay: `${animationDelay}ms`, animationFillMode: 'backwards' }}
+                          >
+                            <ReadingSampleCard
+                              sample={sample}
+                              locale={locale}
+                              isPremium={false}
+                              isLocked={false}
+                              isCompleted={isCompleted}
+                              progressPercent={progressPercent}
+                            />
+                          </div>
                         );
                       })}
                     </div>
@@ -623,18 +641,24 @@ export default function ReaderPage() {
                   <h2 className="text-lg font-semibold">Stories</h2>
                   {storySamples.length > 0 ? (
                     <div className="grid gap-4 sm:grid-cols-2">
-                      {storySamples.map((sample) => {
+                      {storySamples.map((sample, index) => {
                         const { isCompleted, progressPercent } = getProgressForSample(sample.id);
+                        const animationDelay = Math.min(100 + index * 50, 500);
                         return (
-                          <ReadingSampleCard
+                          <div
                             key={sample.id}
-                            sample={sample}
-                            locale={locale}
-                            isPremium={false}
-                            isLocked={false}
-                            isCompleted={isCompleted}
-                            progressPercent={progressPercent}
-                          />
+                            className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200"
+                            style={{ animationDelay: `${animationDelay}ms`, animationFillMode: 'backwards' }}
+                          >
+                            <ReadingSampleCard
+                              sample={sample}
+                              locale={locale}
+                              isPremium={false}
+                              isLocked={false}
+                              isCompleted={isCompleted}
+                              progressPercent={progressPercent}
+                            />
+                          </div>
                         );
                       })}
                     </div>
