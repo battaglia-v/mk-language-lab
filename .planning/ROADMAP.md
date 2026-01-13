@@ -220,7 +220,7 @@ Plans:
 - [x] 49-01: Exercise Feedback Animations (staggered choice buttons, bounce on correct) — completed 2026-01-13
 - [x] 49-02: Results Screen Polish (animated stat reveals, consistent across modes) — completed 2026-01-13
 
-#### Phase 50: Reader UX Audit & Polish — IN PROGRESS
+#### Phase 50: Reader UX Audit & Polish — COMPLETE
 
 **Goal**: Reading experience refinements, vocabulary lookup interactions, progress indicators
 **Depends on**: Phase 49
@@ -229,7 +229,7 @@ Plans:
 
 Plans:
 - [x] 50-01: Reader Library Animations (story cards, CTAs) — completed 2026-01-13
-- [ ] 50-02: Reading Experience Polish
+- [x] 50-02: Reading Experience Polish (vocabulary animations, completion celebration) — completed 2026-01-13
 
 #### Phase 51: Content Quality Audit
 
@@ -259,7 +259,7 @@ Plans:
 | 47. Segmented Control Redesign | v1.8 | 1/1 | Complete | 2026-01-12 |
 | 48. Learn UX Audit & Polish | v1.8 | 2/2 | Complete | 2026-01-13 |
 | 49. Practice UX Audit & Polish | v1.8 | 2/2 | Complete | 2026-01-13 |
-| 50. Reader UX Audit & Polish | v1.8 | 1/2 | In progress | - |
+| 50. Reader UX Audit & Polish | v1.8 | 2/2 | Complete | 2026-01-13 |
 | 51. Content Quality Audit | v1.8 | 0/? | Not started | - |
 | 52. Performance Optimization | v1.8 | 0/? | Not started | - |
 
