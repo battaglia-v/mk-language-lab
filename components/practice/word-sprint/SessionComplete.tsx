@@ -49,24 +49,36 @@ export function SessionComplete({
       <div className="flex-1 flex flex-col items-center justify-center px-4 py-8">
         <div className="text-center space-y-8 max-w-sm w-full">
           {/* XP Display */}
-          <div>
+          <div
+            className="animate-in fade-in-0 zoom-in-95 duration-300"
+            style={{ animationDelay: '100ms', animationFillMode: 'backwards' }}
+          >
             <div className="text-6xl font-bold text-primary mb-2">+{totalXP} XP</div>
             <div className="text-sm text-muted-foreground">Total earned this session</div>
           </div>
 
           {/* Stats Grid */}
           <div className="grid grid-cols-3 gap-4 pt-4">
-            <div className="flex flex-col items-center gap-2 p-4 rounded-xl bg-muted/40">
+            <div
+              className="flex flex-col items-center gap-2 p-4 rounded-xl bg-muted/40 animate-in fade-in-0 slide-in-from-bottom-2 duration-200"
+              style={{ animationDelay: '200ms', animationFillMode: 'backwards' }}
+            >
               <Target className="h-5 w-5 text-primary" />
               <div className="text-2xl font-bold">{accuracy}%</div>
               <div className="text-xs text-muted-foreground">Accuracy</div>
             </div>
-            <div className="flex flex-col items-center gap-2 p-4 rounded-xl bg-muted/40">
+            <div
+              className="flex flex-col items-center gap-2 p-4 rounded-xl bg-muted/40 animate-in fade-in-0 slide-in-from-bottom-2 duration-200"
+              style={{ animationDelay: '300ms', animationFillMode: 'backwards' }}
+            >
               <Trophy className="h-5 w-5 text-amber-500" />
               <div className="text-2xl font-bold">{bestCombo}</div>
               <div className="text-xs text-muted-foreground">Best Streak</div>
             </div>
-            <div className="flex flex-col items-center gap-2 p-4 rounded-xl bg-muted/40">
+            <div
+              className="flex flex-col items-center gap-2 p-4 rounded-xl bg-muted/40 animate-in fade-in-0 slide-in-from-bottom-2 duration-200"
+              style={{ animationDelay: '400ms', animationFillMode: 'backwards' }}
+            >
               <Zap className="h-5 w-5 text-emerald-500" />
               <div className="text-2xl font-bold">{correctCount}</div>
               <div className="text-xs text-muted-foreground">Correct</div>
@@ -78,7 +90,10 @@ export function SessionComplete({
           </p>
 
           {/* Action Buttons */}
-          <div className="flex flex-col gap-3 pt-2">
+          <div
+            className="flex flex-col gap-3 pt-2 animate-in fade-in-0 duration-300"
+            style={{ animationDelay: '500ms', animationFillMode: 'backwards' }}
+          >
             <Button onClick={onPlayAgain} size="lg" className="min-h-[52px] rounded-xl" data-testid="word-sprint-complete-play-again">
               <RotateCcw className="h-5 w-5 mr-2" />
               Play Again
