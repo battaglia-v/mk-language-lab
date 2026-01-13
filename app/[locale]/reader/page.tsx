@@ -251,8 +251,10 @@ export default function ReaderPage() {
                   'flex items-center gap-4 rounded-2xl p-4',
                   'bg-gradient-to-r from-amber-500/20 to-orange-500/20',
                   'border border-amber-500/30 hover:border-amber-500/50',
-                  'transition-all hover:shadow-lg'
+                  'transition-all hover:shadow-lg',
+                  'animate-in fade-in-0 slide-in-from-bottom-2 duration-200'
                 )}
+                style={{ animationDelay: '400ms', animationFillMode: 'backwards' }}
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/20">
                   <Zap className="h-6 w-6 text-amber-500" />
@@ -274,8 +276,10 @@ export default function ReaderPage() {
                   'flex items-center gap-4 rounded-2xl p-4',
                   'bg-gradient-to-r from-primary/20 to-emerald-500/20',
                   'border border-primary/30 hover:border-primary/50',
-                  'transition-all hover:shadow-lg'
+                  'transition-all hover:shadow-lg',
+                  'animate-in fade-in-0 zoom-in-95 duration-300'
                 )}
+                style={{ animationDelay: '100ms', animationFillMode: 'backwards' }}
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/20">
                   <BookOpen className="h-6 w-6 text-primary" />
@@ -308,10 +312,20 @@ export default function ReaderPage() {
             {readingStats && (readingStats.completed > 0 || readingStats.inProgress > 0) && (
               <div className="flex items-center gap-4 text-sm text-muted-foreground px-1">
                 {readingStats.completed > 0 && (
-                  <span>{readingStats.completed} {readingStats.completed === 1 ? 'story' : 'stories'} read</span>
+                  <span
+                    className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200"
+                    style={{ animationDelay: '200ms', animationFillMode: 'backwards' }}
+                  >
+                    {readingStats.completed} {readingStats.completed === 1 ? 'story' : 'stories'} read
+                  </span>
                 )}
                 {readingStats.inProgress > 0 && (
-                  <span>{readingStats.inProgress} in progress</span>
+                  <span
+                    className="animate-in fade-in-0 slide-in-from-bottom-2 duration-200"
+                    style={{ animationDelay: '300ms', animationFillMode: 'backwards' }}
+                  >
+                    {readingStats.inProgress} in progress
+                  </span>
                 )}
               </div>
             )}
@@ -725,8 +739,10 @@ export default function ReaderPage() {
                   'flex items-center gap-4 rounded-2xl p-4',
                   'bg-gradient-to-r from-primary/10 to-emerald-500/10',
                   'border border-primary/30 hover:border-primary/50',
-                  'transition-all hover:shadow-lg'
+                  'transition-all hover:shadow-lg',
+                  'animate-in fade-in-0 slide-in-from-bottom-2 duration-200'
                 )}
+                style={{ animationDelay: '400ms', animationFillMode: 'backwards' }}
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/20">
                   <Dumbbell className="h-6 w-6 text-primary" />
@@ -750,8 +766,10 @@ export default function ReaderPage() {
                   'flex items-center gap-4 rounded-2xl p-4',
                   'bg-gradient-to-r from-amber-500/20 to-orange-500/20',
                   'border border-amber-500/30 hover:border-amber-500/50',
-                  'transition-all hover:shadow-lg'
+                  'transition-all hover:shadow-lg',
+                  'animate-in fade-in-0 slide-in-from-bottom-2 duration-200'
                 )}
+                style={{ animationDelay: '500ms', animationFillMode: 'backwards' }}
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/20">
                   <BookmarkPlus className="h-5 w-5 text-amber-500" />
