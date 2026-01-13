@@ -80,19 +80,17 @@
         },
         {
           "word": "смееш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you laugh",
-          "gender": "masculine",
           "transliteration": "smeesh",
           "isCore": true
         },
         {
           "word": "правиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you do",
-          "gender": "masculine",
           "transliteration": "pravish",
           "isCore": true
         },
@@ -169,10 +167,9 @@
         },
         {
           "word": "запомниш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you remember",
-          "gender": "masculine",
           "transliteration": "zapomnish",
           "isCore": true
         },
@@ -250,10 +247,9 @@
         },
         {
           "word": "викаш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you shout",
-          "gender": "masculine",
           "transliteration": "vikash",
           "isCore": true
         },
@@ -1366,10 +1362,9 @@
         },
         {
           "word": "одговориш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you answer",
-          "gender": "masculine",
           "transliteration": "odgovorish",
           "isCore": true
         },
@@ -2497,10 +2492,9 @@
         },
         {
           "word": "пронајдеш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you find",
-          "gender": "masculine",
           "transliteration": "pronajdesh",
           "isCore": true
         },
@@ -2523,10 +2517,9 @@
         },
         {
           "word": "претпоставиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you guess",
-          "gender": "masculine",
           "transliteration": "pretpostavish",
           "isCore": true
         },
@@ -2567,10 +2560,9 @@
         },
         {
           "word": "наоѓаш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you find",
-          "gender": "masculine",
           "transliteration": "naogjash",
           "isCore": true
         },
@@ -2686,10 +2678,9 @@
         },
         {
           "word": "поврзеш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
-          "translation": "connect",
-          "gender": "masculine",
+          "translation": "you connect",
           "transliteration": "povrzesh",
           "isCore": false
         },
@@ -3039,10 +3030,9 @@
         },
         {
           "word": "поставиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you set",
-          "gender": "masculine",
           "transliteration": "postavish",
           "isCore": true
         },
@@ -3820,10 +3810,9 @@
         },
         {
           "word": "разликуваш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you distinguish",
-          "gender": "masculine",
           "transliteration": "razlikuvash",
           "isCore": true
         },
@@ -3838,10 +3827,9 @@
         },
         {
           "word": "седиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you are sitting",
-          "gender": "masculine",
           "transliteration": "sedish",
           "isCore": true
         },
@@ -4262,10 +4250,9 @@
         },
         {
           "word": "мислиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you think",
-          "gender": "masculine",
           "transliteration": "mislish",
           "isCore": true
         },
@@ -4494,19 +4481,17 @@
         },
         {
           "word": "сеќаваш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you remember",
-          "gender": "masculine",
           "transliteration": "sekjavash",
           "isCore": true
         },
         {
           "word": "користиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you use",
-          "gender": "masculine",
           "transliteration": "koristish",
           "isCore": true
         },
@@ -4993,28 +4978,25 @@
         },
         {
           "word": "одиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you go",
-          "gender": "masculine",
           "transliteration": "odish",
           "isCore": true
         },
         {
           "word": "планираш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you plan",
-          "gender": "masculine",
           "transliteration": "planirash",
           "isCore": true
         },
         {
           "word": "вратиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you return",
-          "gender": "masculine",
           "transliteration": "vratish",
           "isCore": true
         },
@@ -5037,19 +5019,17 @@
         },
         {
           "word": "купиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you buy",
-          "gender": "masculine",
           "transliteration": "kupish",
           "isCore": true
         },
         {
           "word": "добиеш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you get",
-          "gender": "masculine",
           "transliteration": "dobiesh",
           "isCore": true
         },
@@ -5064,10 +5044,9 @@
         },
         {
           "word": "пиеш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you drink",
-          "gender": "masculine",
           "transliteration": "piesh",
           "isCore": true
         },
@@ -5564,10 +5543,9 @@
         },
         {
           "word": "работиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you work",
-          "gender": "masculine",
           "transliteration": "rabotish",
           "isCore": true
         },
@@ -5600,10 +5578,9 @@
         },
         {
           "word": "купуваш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you buy",
-          "gender": "masculine",
           "transliteration": "kupuvash",
           "isCore": true
         },
@@ -5652,10 +5629,9 @@
         },
         {
           "word": "дознаеш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you find out",
-          "gender": "masculine",
           "transliteration": "doznaesh",
           "isCore": true
         },
@@ -6178,10 +6154,9 @@
         },
         {
           "word": "познаваш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you know",
-          "gender": "masculine",
           "transliteration": "poznavash",
           "isCore": true
         },
@@ -6971,10 +6946,9 @@
         },
         {
           "word": "составиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you compose",
-          "gender": "masculine",
           "transliteration": "sostavish",
           "isCore": true
         },
@@ -7069,10 +7043,9 @@
         },
         {
           "word": "Бараш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you ask",
-          "gender": "masculine",
           "transliteration": "Barash",
           "isCore": true
         },
@@ -7274,10 +7247,9 @@
         },
         {
           "word": "знаеш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "singular",
           "translation": "you know",
-          "gender": "masculine",
           "transliteration": "znaesh",
           "isCore": true
         },
@@ -7310,10 +7282,9 @@
         },
         {
           "word": "затвораш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you close",
-          "gender": "masculine",
           "transliteration": "zatvorash",
           "isCore": true
         },
@@ -7328,19 +7299,17 @@
         },
         {
           "word": "отвораш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you open",
-          "gender": "masculine",
           "transliteration": "otvorash",
           "isCore": true
         },
         {
           "word": "свириш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you play",
-          "gender": "masculine",
           "transliteration": "svirish",
           "isCore": true
         },
@@ -7521,10 +7490,9 @@
         },
         {
           "word": "направиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you do",
-          "gender": "masculine",
           "transliteration": "napravish",
           "isCore": true
         },
@@ -7860,10 +7828,9 @@
         },
         {
           "word": "пополниш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you fill",
-          "gender": "masculine",
           "transliteration": "popolnish",
           "isCore": true
         },
@@ -7981,10 +7948,9 @@
         },
         {
           "word": "дадеш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you give",
-          "gender": "masculine",
           "transliteration": "dadesh",
           "isCore": true
         },
@@ -7999,19 +7965,17 @@
         },
         {
           "word": "почнуваш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you start",
-          "gender": "masculine",
           "transliteration": "pochnuvash",
           "isCore": true
         },
         {
           "word": "носиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you wear",
-          "gender": "masculine",
           "transliteration": "nosish",
           "isCore": true
         },
@@ -8034,10 +7998,9 @@
         },
         {
           "word": "откриеш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you discover",
-          "gender": "masculine",
           "transliteration": "otkriesh",
           "isCore": true
         },
@@ -8746,19 +8709,17 @@
         },
         {
           "word": "раскажеш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you tell",
-          "gender": "masculine",
           "transliteration": "raskazhesh",
           "isCore": true
         },
         {
           "word": "потсетиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you remind",
-          "gender": "masculine",
           "transliteration": "potsetish",
           "isCore": true
         },
@@ -9116,19 +9077,17 @@
         },
         {
           "word": "поделиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you share",
-          "gender": "masculine",
           "transliteration": "podelish",
           "isCore": true
         },
         {
           "word": "напишеш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you write",
-          "gender": "masculine",
           "transliteration": "napishesh",
           "isCore": true
         },
@@ -9269,10 +9228,9 @@
         },
         {
           "word": "додадеш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you add",
-          "gender": "masculine",
           "transliteration": "dodadesh",
           "isCore": true
         },
@@ -9287,10 +9245,9 @@
         },
         {
           "word": "решиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you decide",
-          "gender": "masculine",
           "transliteration": "reshish",
           "isCore": true
         },
@@ -9637,10 +9594,9 @@
         },
         {
           "word": "позајмиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you borrow",
-          "gender": "masculine",
           "transliteration": "pozajmish",
           "isCore": true
         },
@@ -9655,10 +9611,9 @@
         },
         {
           "word": "покажеш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you show",
-          "gender": "masculine",
           "transliteration": "pokazhesh",
           "isCore": true
         },
@@ -9682,10 +9637,9 @@
         },
         {
           "word": "смислиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you come up with",
-          "gender": "masculine",
           "transliteration": "smislish",
           "isCore": true
         },
@@ -10275,10 +10229,9 @@
         },
         {
           "word": "наредиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you order",
-          "gender": "masculine",
           "transliteration": "naredish",
           "isCore": true
         },
@@ -10310,10 +10263,9 @@
         },
         {
           "word": "доаѓаш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you are coming",
-          "gender": "masculine",
           "transliteration": "doagjash",
           "isCore": true
         },
@@ -10337,10 +10289,9 @@
         },
         {
           "word": "среќаваш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you meet",
-          "gender": "masculine",
           "transliteration": "srekjavash",
           "isCore": true
         },
@@ -10742,10 +10693,9 @@
         },
         {
           "word": "останеш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you stay",
-          "gender": "masculine",
           "transliteration": "ostanesh",
           "isCore": true
         },
@@ -10760,10 +10710,9 @@
         },
         {
           "word": "престојуваш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you are staying",
-          "gender": "masculine",
           "transliteration": "prestojuvash",
           "isCore": true
         },
@@ -10840,10 +10789,9 @@
         },
         {
           "word": "понесеш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you take",
-          "gender": "masculine",
           "transliteration": "ponesesh",
           "isCore": true
         },
@@ -10858,37 +10806,33 @@
         },
         {
           "word": "престанеш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you stop",
-          "gender": "masculine",
           "transliteration": "prestanesh",
           "isCore": true
         },
         {
           "word": "возиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you drive",
-          "gender": "masculine",
           "transliteration": "vozish",
           "isCore": true
         },
         {
           "word": "храниш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you feed",
-          "gender": "masculine",
           "transliteration": "hranish",
           "isCore": true
         },
         {
           "word": "донесеш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you bring",
-          "gender": "masculine",
           "transliteration": "donesesh",
           "isCore": true
         },
@@ -10948,10 +10892,9 @@
         },
         {
           "word": "играш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you play",
-          "gender": "masculine",
           "transliteration": "igrash",
           "isCore": true
         },
@@ -11247,10 +11190,9 @@
       "vocabularyItems": [
         {
           "word": "пушиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you smoke",
-          "gender": "masculine",
           "transliteration": "pushish",
           "isCore": true
         },
@@ -11274,10 +11216,9 @@
         },
         {
           "word": "свртиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you turn",
-          "gender": "masculine",
           "transliteration": "svrtish",
           "isCore": true
         },
@@ -11328,19 +11269,17 @@
         },
         {
           "word": "истушираш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you take a shower",
-          "gender": "masculine",
           "transliteration": "istushirash",
           "isCore": true
         },
         {
           "word": "излезеш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you go out",
-          "gender": "masculine",
           "transliteration": "izlezesh",
           "isCore": true
         },
@@ -11581,10 +11520,9 @@
         },
         {
           "word": "фатиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you catch",
-          "gender": "masculine",
           "transliteration": "fatish",
           "isCore": true
         },
@@ -12502,10 +12440,9 @@
         },
         {
           "word": "прашуваш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you ask",
-          "gender": "masculine",
           "transliteration": "prashuvash",
           "isCore": true
         },
@@ -12691,10 +12628,9 @@
         },
         {
           "word": "пливаш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you swim",
-          "gender": "masculine",
           "transliteration": "plivash",
           "isCore": true
         },
@@ -12717,10 +12653,9 @@
         },
         {
           "word": "скијаш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you ski",
-          "gender": "masculine",
           "transliteration": "skijash",
           "isCore": true
         },
@@ -12760,19 +12695,17 @@
         },
         {
           "word": "почнеш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you start",
-          "gender": "masculine",
           "transliteration": "pochnesh",
           "isCore": true
         },
         {
           "word": "читаш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you read",
-          "gender": "masculine",
           "transliteration": "chitash",
           "isCore": true
         },
@@ -13021,10 +12954,9 @@
         },
         {
           "word": "посетиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you visit",
-          "gender": "masculine",
           "transliteration": "posetish",
           "isCore": true
         },
@@ -13584,28 +13516,25 @@
         },
         {
           "word": "Освојуваш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you win",
-          "gender": "masculine",
           "transliteration": "Osvojuvash",
           "isCore": true
         },
         {
           "word": "Лежиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you lie down",
-          "gender": "masculine",
           "transliteration": "Lezhish",
           "isCore": true
         },
         {
           "word": "запознаеш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you meet",
-          "gender": "masculine",
           "transliteration": "zapoznaesh",
           "isCore": true
         },

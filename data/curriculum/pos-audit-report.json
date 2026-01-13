@@ -1,0 +1,3952 @@
+{
+  "timestamp": "2026-01-13T23:15:37.138Z",
+  "summary": {
+    "totalItemsChecked": 2028,
+    "totalIssuesFound": 196,
+    "highConfidenceIssues": 0,
+    "mediumConfidenceIssues": 1,
+    "lowConfidenceIssues": 195,
+    "byLevel": {
+      "A1": {
+        "checked": 1221,
+        "issues": 104
+      },
+      "A2": {
+        "checked": 400,
+        "issues": 42
+      },
+      "B1": {
+        "checked": 407,
+        "issues": 50
+      }
+    }
+  },
+  "issues": [
+    {
+      "level": "A1",
+      "lesson": 1,
+      "word": "празните",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the empty ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 1,
+      "word": "Запознај",
+      "currentPOS": "noun",
+      "suggestedPOS": "verb",
+      "reason": "imperative verb form",
+      "translation": "get to know",
+      "confidence": "medium"
+    },
+    {
+      "level": "A1",
+      "lesson": 1,
+      "word": "горните",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the upper ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 1,
+      "word": "Ставете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "put",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 1,
+      "word": "колешките",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "colleagues",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 1,
+      "word": "колегите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "colleagues",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 2,
+      "word": "своите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "their own",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 3,
+      "word": "Менувајте",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "change",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 3,
+      "word": "градските",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the city ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 3,
+      "word": "црвени",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "red",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 3,
+      "word": "оцени",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "evaluate",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 3,
+      "word": "одите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "you go",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 3,
+      "word": "Зборовни",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "verbal",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 3,
+      "word": "кафеави",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "brown",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 4,
+      "word": "нови",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "new ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 4,
+      "word": "Постави",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "set up",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 4,
+      "word": "користете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "use",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 4,
+      "word": "светлосини",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "light blue",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 4,
+      "word": "светлорозови",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "light pink",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 5,
+      "word": "пешачки",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "on foot",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 5,
+      "word": "премини",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "pass",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 5,
+      "word": "куќни",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "household",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 5,
+      "word": "омилени",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "favorites",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 5,
+      "word": "прекрасни",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "wonderful",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 5,
+      "word": "листови",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "leaves",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 6,
+      "word": "убави",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "beautiful",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 6,
+      "word": "двесте",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "two hundred",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 6,
+      "word": "касетофони",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "tape recorders",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 6,
+      "word": "Претпостави",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "guess",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 7,
+      "word": "знаете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "you know",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 7,
+      "word": "зборувате",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "you speak",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 7,
+      "word": "филмови",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "movies",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 8,
+      "word": "јадете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "eat",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 8,
+      "word": "Ќофте",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "meatballs",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 8,
+      "word": "Помислете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "think",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 8,
+      "word": "гледате",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "you see",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 9,
+      "word": "Поставувајте",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "set up",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 9,
+      "word": "дневните",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "daily",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 9,
+      "word": "прашувајте",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "ask",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 10,
+      "word": "Нејзините",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "hers",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 10,
+      "word": "потребните",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the necessary ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 10,
+      "word": "станови",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "apartments",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 10,
+      "word": "големите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the big ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 10,
+      "word": "дежурни",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "on duty",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 11,
+      "word": "отидете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "go away",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 11,
+      "word": "денови",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "days",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 11,
+      "word": "роднини",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "relatives",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 11,
+      "word": "јави",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "call",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 12,
+      "word": "престојувате",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "you are staying",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 12,
+      "word": "Музичките",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the musical ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 12,
+      "word": "Помогни",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "help me",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 12,
+      "word": "физички",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "physically",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 13,
+      "word": "виолетови",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "purple ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 13,
+      "word": "повеќекратни",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "multiple",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 13,
+      "word": "хартиени",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "paper ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 13,
+      "word": "конзерви",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "cans",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 13,
+      "word": "истите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the same ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 13,
+      "word": "погорните",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the upper ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 13,
+      "word": "еднински",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "singular",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 13,
+      "word": "садови",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "vessels",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 13,
+      "word": "Избројливи",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "countable",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 14,
+      "word": "старите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the old ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 14,
+      "word": "прикажани",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "shown",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 14,
+      "word": "купите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "buy it",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 14,
+      "word": "фрлате",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "you throw",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 14,
+      "word": "отворајте",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "open",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 15,
+      "word": "сребрените",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the silver ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 15,
+      "word": "Обрни",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "turn over",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 15,
+      "word": "Преобразете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "transform",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 16,
+      "word": "читавте",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "you read",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 16,
+      "word": "прочитавте",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "you read",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 17,
+      "word": "донесете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "bring",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 18,
+      "word": "прашални",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "interrogative",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 18,
+      "word": "странските",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the foreign ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 18,
+      "word": "летните",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the summer ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 18,
+      "word": "Градиште",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "construction site",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 19,
+      "word": "напишаните",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the written ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 19,
+      "word": "измешаните",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the mixed ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 19,
+      "word": "пронајдете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "find",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 19,
+      "word": "возите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "you drive",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 19,
+      "word": "видите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "you see",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 19,
+      "word": "останете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "stay",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 19,
+      "word": "добрите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the good ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 19,
+      "word": "лошите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the bad ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 20,
+      "word": "Малолетните",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "minors",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 20,
+      "word": "саботите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "on Saturdays",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 20,
+      "word": "вонземјани",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "aliens",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 20,
+      "word": "расположени",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "moody",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 20,
+      "word": "човековите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the human ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 20,
+      "word": "единствени",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "unique",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 20,
+      "word": "Швајцарските",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the swiss ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 21,
+      "word": "црвените",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the red ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 22,
+      "word": "согласите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "agree",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 22,
+      "word": "прашате",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "you ask",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 22,
+      "word": "добиете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "get",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 22,
+      "word": "согласувате",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "you agree",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 22,
+      "word": "Пријателите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "friends",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 22,
+      "word": "најважни",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "most important",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 22,
+      "word": "најомилени",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "most loved",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 22,
+      "word": "релаксирачки",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "relaxing",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 22,
+      "word": "уметнички",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "artistically",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 22,
+      "word": "познавате",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "you know",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 23,
+      "word": "купени",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "purchased",
+      "confidence": "low"
+    },
+    {
+      "level": "A1",
+      "lesson": 23,
+      "word": "сместени",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "placed",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 1,
+      "word": "граматички",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "grammatically",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 1,
+      "word": "видови",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "types/kinds",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 1,
+      "word": "превозни",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "transportation",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 1,
+      "word": "вообичаени",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "usual",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 1,
+      "word": "современи",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "contemporary",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 1,
+      "word": "услови",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "conditions",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 2,
+      "word": "именските",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "nouns",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 2,
+      "word": "Образувајте",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "educate",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 2,
+      "word": "географските",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the geographical ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 2,
+      "word": "Рангирајте",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "rank",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 2,
+      "word": "постапете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "take action",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 2,
+      "word": "купите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "buy it",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 2,
+      "word": "движите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "move",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 2,
+      "word": "оставите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "leave it",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 3,
+      "word": "високите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the tall ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 3,
+      "word": "станови",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "apartments",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 3,
+      "word": "оставете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "leave",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 3,
+      "word": "Земете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "take it",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 3,
+      "word": "чекајте",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "wait",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 3,
+      "word": "добиете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "get",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 4,
+      "word": "собирате",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "you collect",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 4,
+      "word": "кафеани",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "bars",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 4,
+      "word": "базени",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "swimming pools",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 4,
+      "word": "комбинирате",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "combine",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 4,
+      "word": "трговските",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "commercial ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 4,
+      "word": "теретани",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "gyms",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 4,
+      "word": "социјални",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "social",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 5,
+      "word": "Започнете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "get started",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 5,
+      "word": "Расте",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "is growing",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 5,
+      "word": "принудени",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "forced",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 5,
+      "word": "Најзагрозени",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "most endangered",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 6,
+      "word": "слободни",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "free",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 6,
+      "word": "кажавте",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "you said",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 6,
+      "word": "стравови",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "fears",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 6,
+      "word": "едните",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 6,
+      "word": "сакани",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "loved ones",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 8,
+      "word": "сфатите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "understand",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 8,
+      "word": "проверите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "check",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 8,
+      "word": "оценете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "rate",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 8,
+      "word": "Размислувате",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "you think",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 8,
+      "word": "Завршувате",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "you finish",
+      "confidence": "low"
+    },
+    {
+      "level": "A2",
+      "lesson": 8,
+      "word": "специјалните",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the special ones",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 1,
+      "word": "рамниште",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "plain",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 1,
+      "word": "основните",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the basic ones",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 1,
+      "word": "јазични",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "linguistic",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 1,
+      "word": "преосмислени",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "rethought",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 1,
+      "word": "преземени",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "taken over",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 1,
+      "word": "текстови",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "texts",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 1,
+      "word": "странските",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the foreign ones",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 1,
+      "word": "македонските",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the Macedonian ones",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 1,
+      "word": "сите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "everyone",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 2,
+      "word": "обоените",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the colored ones",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 2,
+      "word": "измазни",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "smooth out",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 2,
+      "word": "соодветените",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the appropriate ones",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 2,
+      "word": "знаете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "you know",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 3,
+      "word": "изјави",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "he declared",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 3,
+      "word": "пластичните",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the plastic ones",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 3,
+      "word": "секојдневни",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "everyday",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 3,
+      "word": "услови",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "conditions",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 3,
+      "word": "идните",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "future ones",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 3,
+      "word": "подолготрајни",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "longer lasting",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 4,
+      "word": "сообраќајни",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "traffic",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 4,
+      "word": "полуксузни",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "more luxurious",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 4,
+      "word": "зачувани",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "saved",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 4,
+      "word": "Последни",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "last ones",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 4,
+      "word": "испечени",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "baked",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 4,
+      "word": "индиви",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "individuals",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 4,
+      "word": "француски",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "french",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 4,
+      "word": "Допусните",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "allow",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 4,
+      "word": "можните",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the possible ones",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 5,
+      "word": "Разговарајте",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "have a chat",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 5,
+      "word": "изматени",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "whipped up",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 5,
+      "word": "пржете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "fry",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 5,
+      "word": "сомелете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "grind",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 5,
+      "word": "похувани",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "fried",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 5,
+      "word": "распоредете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "deploy",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 5,
+      "word": "преостанатите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the remaining ones",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 5,
+      "word": "сувите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the dry ones",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 5,
+      "word": "доживувате",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "you experience",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 5,
+      "word": "слушате",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "you listen",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 5,
+      "word": "мрачните",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the dark ones",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 5,
+      "word": "исполитизирани",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "politicized",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 6,
+      "word": "чудесните",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the wonderful ones",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 6,
+      "word": "современи",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "contemporary",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 6,
+      "word": "редовните",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the regular ones",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 7,
+      "word": "ветените",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the promised ones",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 7,
+      "word": "измислите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "invent",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 7,
+      "word": "човекови",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "human",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 7,
+      "word": "поделите",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "share",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 8,
+      "word": "објективните",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "the objective ones",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 8,
+      "word": "речете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "say",
+      "confidence": "low"
+    },
+    {
+      "level": "B1",
+      "lesson": 8,
+      "word": "живеете",
+      "currentPOS": "noun",
+      "suggestedPOS": "adjective",
+      "reason": "plural/definite adjective ending",
+      "translation": "you live",
+      "confidence": "low"
+    }
+  ],
+  "issuesByType": {
+    "noun → adjective": [
+      {
+        "level": "A1",
+        "lesson": 1,
+        "word": "празните",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the empty ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 1,
+        "word": "горните",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the upper ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 1,
+        "word": "Ставете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "put",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 1,
+        "word": "колешките",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "colleagues",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 1,
+        "word": "колегите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "colleagues",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 2,
+        "word": "своите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "their own",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 3,
+        "word": "Менувајте",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "change",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 3,
+        "word": "градските",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the city ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 3,
+        "word": "црвени",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "red",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 3,
+        "word": "оцени",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "evaluate",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 3,
+        "word": "одите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "you go",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 3,
+        "word": "Зборовни",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "verbal",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 3,
+        "word": "кафеави",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "brown",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 4,
+        "word": "нови",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "new ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 4,
+        "word": "Постави",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "set up",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 4,
+        "word": "користете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "use",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 4,
+        "word": "светлосини",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "light blue",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 4,
+        "word": "светлорозови",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "light pink",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 5,
+        "word": "пешачки",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "on foot",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 5,
+        "word": "премини",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "pass",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 5,
+        "word": "куќни",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "household",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 5,
+        "word": "омилени",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "favorites",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 5,
+        "word": "прекрасни",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "wonderful",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 5,
+        "word": "листови",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "leaves",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 6,
+        "word": "убави",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "beautiful",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 6,
+        "word": "двесте",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "two hundred",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 6,
+        "word": "касетофони",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "tape recorders",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 6,
+        "word": "Претпостави",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "guess",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 7,
+        "word": "знаете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "you know",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 7,
+        "word": "зборувате",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "you speak",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 7,
+        "word": "филмови",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "movies",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 8,
+        "word": "јадете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "eat",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 8,
+        "word": "Ќофте",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "meatballs",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 8,
+        "word": "Помислете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "think",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 8,
+        "word": "гледате",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "you see",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 9,
+        "word": "Поставувајте",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "set up",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 9,
+        "word": "дневните",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "daily",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 9,
+        "word": "прашувајте",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "ask",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 10,
+        "word": "Нејзините",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "hers",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 10,
+        "word": "потребните",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the necessary ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 10,
+        "word": "станови",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "apartments",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 10,
+        "word": "големите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the big ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 10,
+        "word": "дежурни",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "on duty",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 11,
+        "word": "отидете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "go away",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 11,
+        "word": "денови",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "days",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 11,
+        "word": "роднини",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "relatives",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 11,
+        "word": "јави",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "call",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 12,
+        "word": "престојувате",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "you are staying",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 12,
+        "word": "Музичките",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the musical ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 12,
+        "word": "Помогни",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "help me",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 12,
+        "word": "физички",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "physically",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 13,
+        "word": "виолетови",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "purple ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 13,
+        "word": "повеќекратни",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "multiple",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 13,
+        "word": "хартиени",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "paper ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 13,
+        "word": "конзерви",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "cans",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 13,
+        "word": "истите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the same ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 13,
+        "word": "погорните",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the upper ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 13,
+        "word": "еднински",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "singular",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 13,
+        "word": "садови",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "vessels",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 13,
+        "word": "Избројливи",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "countable",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 14,
+        "word": "старите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the old ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 14,
+        "word": "прикажани",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "shown",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 14,
+        "word": "купите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "buy it",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 14,
+        "word": "фрлате",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "you throw",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 14,
+        "word": "отворајте",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "open",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 15,
+        "word": "сребрените",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the silver ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 15,
+        "word": "Обрни",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "turn over",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 15,
+        "word": "Преобразете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "transform",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 16,
+        "word": "читавте",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "you read",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 16,
+        "word": "прочитавте",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "you read",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 17,
+        "word": "донесете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "bring",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 18,
+        "word": "прашални",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "interrogative",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 18,
+        "word": "странските",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the foreign ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 18,
+        "word": "летните",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the summer ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 18,
+        "word": "Градиште",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "construction site",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 19,
+        "word": "напишаните",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the written ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 19,
+        "word": "измешаните",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the mixed ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 19,
+        "word": "пронајдете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "find",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 19,
+        "word": "возите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "you drive",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 19,
+        "word": "видите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "you see",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 19,
+        "word": "останете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "stay",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 19,
+        "word": "добрите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the good ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 19,
+        "word": "лошите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the bad ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 20,
+        "word": "Малолетните",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "minors",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 20,
+        "word": "саботите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "on Saturdays",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 20,
+        "word": "вонземјани",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "aliens",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 20,
+        "word": "расположени",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "moody",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 20,
+        "word": "човековите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the human ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 20,
+        "word": "единствени",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "unique",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 20,
+        "word": "Швајцарските",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the swiss ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 21,
+        "word": "црвените",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the red ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 22,
+        "word": "согласите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "agree",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 22,
+        "word": "прашате",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "you ask",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 22,
+        "word": "добиете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "get",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 22,
+        "word": "согласувате",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "you agree",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 22,
+        "word": "Пријателите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "friends",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 22,
+        "word": "најважни",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "most important",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 22,
+        "word": "најомилени",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "most loved",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 22,
+        "word": "релаксирачки",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "relaxing",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 22,
+        "word": "уметнички",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "artistically",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 22,
+        "word": "познавате",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "you know",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 23,
+        "word": "купени",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "purchased",
+        "confidence": "low"
+      },
+      {
+        "level": "A1",
+        "lesson": 23,
+        "word": "сместени",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "placed",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 1,
+        "word": "граматички",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "grammatically",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 1,
+        "word": "видови",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "types/kinds",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 1,
+        "word": "превозни",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "transportation",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 1,
+        "word": "вообичаени",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "usual",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 1,
+        "word": "современи",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "contemporary",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 1,
+        "word": "услови",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "conditions",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 2,
+        "word": "именските",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "nouns",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 2,
+        "word": "Образувајте",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "educate",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 2,
+        "word": "географските",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the geographical ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 2,
+        "word": "Рангирајте",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "rank",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 2,
+        "word": "постапете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "take action",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 2,
+        "word": "купите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "buy it",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 2,
+        "word": "движите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "move",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 2,
+        "word": "оставите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "leave it",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 3,
+        "word": "високите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the tall ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 3,
+        "word": "станови",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "apartments",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 3,
+        "word": "оставете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "leave",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 3,
+        "word": "Земете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "take it",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 3,
+        "word": "чекајте",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "wait",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 3,
+        "word": "добиете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "get",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 4,
+        "word": "собирате",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "you collect",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 4,
+        "word": "кафеани",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "bars",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 4,
+        "word": "базени",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "swimming pools",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 4,
+        "word": "комбинирате",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "combine",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 4,
+        "word": "трговските",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "commercial ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 4,
+        "word": "теретани",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "gyms",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 4,
+        "word": "социјални",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "social",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 5,
+        "word": "Започнете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "get started",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 5,
+        "word": "Расте",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "is growing",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 5,
+        "word": "принудени",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "forced",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 5,
+        "word": "Најзагрозени",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "most endangered",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 6,
+        "word": "слободни",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "free",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 6,
+        "word": "кажавте",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "you said",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 6,
+        "word": "стравови",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "fears",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 6,
+        "word": "едните",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 6,
+        "word": "сакани",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "loved ones",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 8,
+        "word": "сфатите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "understand",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 8,
+        "word": "проверите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "check",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 8,
+        "word": "оценете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "rate",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 8,
+        "word": "Размислувате",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "you think",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 8,
+        "word": "Завршувате",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "you finish",
+        "confidence": "low"
+      },
+      {
+        "level": "A2",
+        "lesson": 8,
+        "word": "специјалните",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the special ones",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 1,
+        "word": "рамниште",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "plain",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 1,
+        "word": "основните",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the basic ones",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 1,
+        "word": "јазични",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "linguistic",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 1,
+        "word": "преосмислени",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "rethought",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 1,
+        "word": "преземени",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "taken over",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 1,
+        "word": "текстови",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "texts",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 1,
+        "word": "странските",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the foreign ones",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 1,
+        "word": "македонските",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the Macedonian ones",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 1,
+        "word": "сите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "everyone",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 2,
+        "word": "обоените",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the colored ones",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 2,
+        "word": "измазни",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "smooth out",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 2,
+        "word": "соодветените",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the appropriate ones",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 2,
+        "word": "знаете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "you know",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 3,
+        "word": "изјави",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "he declared",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 3,
+        "word": "пластичните",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the plastic ones",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 3,
+        "word": "секојдневни",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "everyday",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 3,
+        "word": "услови",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "conditions",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 3,
+        "word": "идните",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "future ones",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 3,
+        "word": "подолготрајни",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "longer lasting",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 4,
+        "word": "сообраќајни",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "traffic",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 4,
+        "word": "полуксузни",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "more luxurious",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 4,
+        "word": "зачувани",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "saved",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 4,
+        "word": "Последни",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "last ones",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 4,
+        "word": "испечени",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "baked",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 4,
+        "word": "индиви",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "individuals",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 4,
+        "word": "француски",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "french",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 4,
+        "word": "Допусните",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "allow",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 4,
+        "word": "можните",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the possible ones",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 5,
+        "word": "Разговарајте",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "have a chat",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 5,
+        "word": "изматени",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "whipped up",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 5,
+        "word": "пржете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "fry",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 5,
+        "word": "сомелете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "grind",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 5,
+        "word": "похувани",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "fried",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 5,
+        "word": "распоредете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "deploy",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 5,
+        "word": "преостанатите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the remaining ones",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 5,
+        "word": "сувите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the dry ones",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 5,
+        "word": "доживувате",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "you experience",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 5,
+        "word": "слушате",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "you listen",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 5,
+        "word": "мрачните",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the dark ones",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 5,
+        "word": "исполитизирани",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "politicized",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 6,
+        "word": "чудесните",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the wonderful ones",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 6,
+        "word": "современи",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "contemporary",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 6,
+        "word": "редовните",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the regular ones",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 7,
+        "word": "ветените",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the promised ones",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 7,
+        "word": "измислите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "invent",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 7,
+        "word": "човекови",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "human",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 7,
+        "word": "поделите",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "share",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 8,
+        "word": "објективните",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "the objective ones",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 8,
+        "word": "речете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "say",
+        "confidence": "low"
+      },
+      {
+        "level": "B1",
+        "lesson": 8,
+        "word": "живеете",
+        "currentPOS": "noun",
+        "suggestedPOS": "adjective",
+        "reason": "plural/definite adjective ending",
+        "translation": "you live",
+        "confidence": "low"
+      }
+    ],
+    "noun → verb": [
+      {
+        "level": "A1",
+        "lesson": 1,
+        "word": "Запознај",
+        "currentPOS": "noun",
+        "suggestedPOS": "verb",
+        "reason": "imperative verb form",
+        "translation": "get to know",
+        "confidence": "medium"
+      }
+    ]
+  }
+}

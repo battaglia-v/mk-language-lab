@@ -819,10 +819,9 @@
         },
         {
           "word": "доживееш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you experience",
-          "gender": "masculine",
           "transliteration": "dozhiveesh",
           "isCore": true
         },
@@ -1455,19 +1454,17 @@
         },
         {
           "word": "видиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you see",
-          "gender": "masculine",
           "transliteration": "vidish",
           "isCore": true
         },
         {
           "word": "кажеш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you say",
-          "gender": "masculine",
           "transliteration": "kazhesh",
           "isCore": true
         },
@@ -1562,10 +1559,9 @@
         },
         {
           "word": "расправаш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you argue",
-          "gender": "masculine",
           "transliteration": "raspravash",
           "isCore": true
         },
@@ -1785,10 +1781,9 @@
         },
         {
           "word": "чудиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you are amazing",
-          "gender": "masculine",
           "transliteration": "chudish",
           "isCore": true
         },
@@ -2361,10 +2356,9 @@
       "vocabularyItems": [
         {
           "word": "купуваш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you buy",
-          "gender": "masculine",
           "transliteration": "kupuvash",
           "isCore": true
         },
@@ -3152,10 +3146,9 @@
         },
         {
           "word": "споделиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you share",
-          "gender": "masculine",
           "transliteration": "spodelish",
           "isCore": true
         },

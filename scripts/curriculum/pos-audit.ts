@@ -29,6 +29,14 @@ const LEVEL_FILES: Record<string, string> = {
  * Verb endings in Macedonian (conjugated forms)
  * High-confidence: If a word ends with these AND is tagged as noun, it's likely wrong
  */
+// Known false positives - words ending in -ш that are NOT verbs
+const FALSE_POSITIVES = new Set([
+  'помош', // "help" - noun
+  'веднаш', // "immediately" - adverb
+  'душ', // "shower" - noun
+  'грош', // "penny" - noun
+]);
+
 const VERB_ENDINGS = {
   // 2nd person singular present (-ш is very distinctive)
   secondPersonSingular: /[аеио]ш$/,
@@ -134,6 +142,11 @@ interface POSAuditReport {
  */
 function looksLikeVerb(word: string, translation: string): { isVerb: boolean; reason: string } {
   const wordLower = word.toLowerCase();
+
+  // Skip known false positives
+  if (FALSE_POSITIVES.has(wordLower)) {
+    return { isVerb: false, reason: '' };
+  }
 
   // Check 2nd person singular (-ш ending) - VERY high confidence
   if (VERB_ENDINGS.secondPersonSingular.test(wordLower)) {

@@ -932,10 +932,9 @@
         },
         {
           "word": "видиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you see",
-          "gender": "masculine",
           "transliteration": "vidish",
           "isCore": true
         },
@@ -3251,19 +3250,17 @@
         },
         {
           "word": "зборуваш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you speak",
-          "gender": "masculine",
           "transliteration": "zboruvash",
           "isCore": true
         },
         {
           "word": "паметиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you remember",
-          "gender": "masculine",
           "transliteration": "pametish",
           "isCore": true
         },
@@ -3287,19 +3284,17 @@
         },
         {
           "word": "бркаш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you chase",
-          "gender": "masculine",
           "transliteration": "brkash",
           "isCore": true
         },
         {
           "word": "фатиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you catch",
-          "gender": "masculine",
           "transliteration": "fatish",
           "isCore": true
         },
@@ -3314,10 +3309,9 @@
         },
         {
           "word": "свртиш",
-          "partOfSpeech": "noun",
+          "partOfSpeech": "verb",
           "context": "thematic vocabulary",
           "translation": "you turn",
-          "gender": "masculine",
           "transliteration": "svrtish",
           "isCore": true
         },
