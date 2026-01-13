@@ -198,7 +198,7 @@ Plans:
 Plans:
 - [x] 47-01: Tabs redesign with sliding indicator + consumer updates — completed 2026-01-12
 
-#### Phase 48: Learn UX Audit & Polish
+#### Phase 48: Learn UX Audit & Polish — IN PROGRESS
 
 **Goal**: Visual refinements in lesson experience — section navigation, vocabulary cards, grammar displays
 **Depends on**: Phase 47
@@ -206,7 +206,7 @@ Plans:
 **Plans**: 2
 
 Plans:
-- [ ] 48-01: Section Navigation & Layout Polish (touch targets, spacing)
+- [x] 48-01: Section Navigation & Layout Polish (touch targets, spacing) — completed 2026-01-13
 - [ ] 48-02: Vocabulary & Grammar Visual Polish (responsive grid, animations)
 
 #### Phase 49: Practice UX Audit & Polish
@@ -255,7 +255,7 @@ Plans:
 | Phase | Milestone | Plans | Status | Completed |
 |-------|-----------|-------|--------|-----------|
 | 47. Segmented Control Redesign | v1.8 | 1/1 | Complete | 2026-01-12 |
-| 48. Learn UX Audit & Polish | v1.8 | 0/2 | Planned | - |
+| 48. Learn UX Audit & Polish | v1.8 | 1/2 | In progress | - |
 | 49. Practice UX Audit & Polish | v1.8 | 0/? | Not started | - |
 | 50. Reader UX Audit & Polish | v1.8 | 0/? | Not started | - |
 | 51. Content Quality Audit | v1.8 | 0/? | Not started | - |
