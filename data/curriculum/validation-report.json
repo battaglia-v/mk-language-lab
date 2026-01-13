@@ -1,9 +1,9 @@
 {
-  "validationDate": "2026-01-11T18:32:04.706Z",
+  "validationDate": "2026-01-13T23:27:22.142Z",
   "summary": {
     "totalLevels": 3,
-    "totalVocabulary": 1973,
-    "totalGrammar": 149,
+    "totalVocabulary": 2028,
+    "totalGrammar": 156,
     "totalIssues": 0,
     "passedAllChecks": true,
     "criticalIssues": 0
@@ -12,16 +12,16 @@
     {
       "level": "A1",
       "totalLessons": 24,
-      "totalVocabulary": 1173,
-      "totalGrammar": 75,
-      "vocabWithTranslations": 1173,
-      "grammarWithExplanations": 75,
-      "grammarWithExamples": 75,
-      "grammarWith3PlusExamples": 75,
-      "grammarWithTranslatedExamples": 75,
-      "avgVocabPerLesson": 49,
+      "totalVocabulary": 1221,
+      "totalGrammar": 82,
+      "vocabWithTranslations": 1221,
+      "grammarWithExplanations": 82,
+      "grammarWithExamples": 82,
+      "grammarWith3PlusExamples": 82,
+      "grammarWithTranslatedExamples": 82,
+      "avgVocabPerLesson": 51,
       "minVocabPerLesson": 39,
-      "maxVocabPerLesson": 50,
+      "maxVocabPerLesson": 58,
       "avgGrammarPerLesson": 3,
       "minGrammarPerLesson": 2,
       "lessonsBelow30Vocab": 0,
@@ -50,16 +50,16 @@
     {
       "level": "B1",
       "totalLessons": 8,
-      "totalVocabulary": 400,
+      "totalVocabulary": 407,
       "totalGrammar": 28,
-      "vocabWithTranslations": 400,
+      "vocabWithTranslations": 407,
       "grammarWithExplanations": 28,
       "grammarWithExamples": 28,
       "grammarWith3PlusExamples": 28,
       "grammarWithTranslatedExamples": 28,
-      "avgVocabPerLesson": 50,
+      "avgVocabPerLesson": 51,
       "minVocabPerLesson": 50,
-      "maxVocabPerLesson": 50,
+      "maxVocabPerLesson": 57,
       "avgGrammarPerLesson": 4,
       "minGrammarPerLesson": 2,
       "lessonsBelow30Vocab": 0,
@@ -71,7 +71,7 @@
     {
       "name": "A1 vocabulary coverage (30+ per lesson)",
       "passed": true,
-      "details": "✅ All 24 lessons have 30+ vocab items (min: 39, avg: 49)"
+      "details": "✅ All 24 lessons have 30+ vocab items (min: 39, avg: 51)"
     },
     {
       "name": "A2 vocabulary coverage (30+ per lesson)",
@@ -81,7 +81,7 @@
     {
       "name": "B1 vocabulary coverage (30+ per lesson)",
       "passed": true,
-      "details": "✅ All 8 lessons have 30+ vocab items (min: 50, avg: 50)"
+      "details": "✅ All 8 lessons have 30+ vocab items (min: 50, avg: 51)"
     },
     {
       "name": "A1 grammar coverage (2+ per lesson)",
@@ -101,7 +101,7 @@
     {
       "name": "A1 grammar quality (explanations + 3+ examples)",
       "passed": true,
-      "details": "✅ All 75 grammar notes have explanations and 3+ examples"
+      "details": "✅ All 82 grammar notes have explanations and 3+ examples"
     },
     {
       "name": "A2 grammar quality (explanations + 3+ examples)",
@@ -121,7 +121,17 @@
     {
       "name": "Vocabulary has translations (95%+ coverage)",
       "passed": true,
-      "details": "✅ 100.0% of vocabulary has translations (1973/1973)"
+      "details": "✅ 100.0% of vocabulary has translations (2028/2028)"
+    },
+    {
+      "name": "Translation quality (0 critical issues)",
+      "passed": true,
+      "details": "✅ No critical translation issues found"
+    },
+    {
+      "name": "Part-of-speech validation (0 high-confidence issues)",
+      "passed": true,
+      "details": "✅ No high-confidence POS issues found"
     }
   ]
 }

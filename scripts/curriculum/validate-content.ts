@@ -9,6 +9,8 @@ import * as path from 'path';
 
 // Input paths
 const STRUCTURED_DIR = 'data/curriculum/structured';
+const TRANSLATION_AUDIT_REPORT = 'data/curriculum/translation-audit-report.json';
+const POS_AUDIT_REPORT = 'data/curriculum/pos-audit-report.json';
 
 // Macedonian Cyrillic characters (for validation)
 const CYRILLIC_RANGE = /[\u0400-\u04FF]/; // Cyrillic Unicode block
@@ -356,6 +358,64 @@ function runChecks(levels: LevelReport[]): { name: string; passed: boolean; deta
       ? `✅ ${translationRate}% of vocabulary has translations (${totalWithTranslations}/${totalVocab})`
       : `❌ Only ${translationRate}% of vocabulary has translations (${totalWithTranslations}/${totalVocab})`,
   });
+
+  // Check 7: Translation quality audit (no critical issues)
+  const translationAuditPath = path.resolve(TRANSLATION_AUDIT_REPORT);
+  if (fs.existsSync(translationAuditPath)) {
+    try {
+      const translationAudit = JSON.parse(fs.readFileSync(translationAuditPath, 'utf-8'));
+      const criticalTranslationIssues = translationAudit.summary?.criticalIssues || 0;
+      const translationQualityPassed = criticalTranslationIssues === 0;
+      checks.push({
+        name: 'Translation quality (0 critical issues)',
+        passed: translationQualityPassed,
+        details: translationQualityPassed
+          ? `✅ No critical translation issues found`
+          : `❌ ${criticalTranslationIssues} critical translation issues found`,
+      });
+    } catch {
+      checks.push({
+        name: 'Translation quality (0 critical issues)',
+        passed: false,
+        details: '❌ Failed to read translation audit report',
+      });
+    }
+  } else {
+    checks.push({
+      name: 'Translation quality (0 critical issues)',
+      passed: false,
+      details: '⚠️  Translation audit report not found - run translation-audit.ts first',
+    });
+  }
+
+  // Check 8: POS validation (0 high-confidence issues)
+  const posAuditPath = path.resolve(POS_AUDIT_REPORT);
+  if (fs.existsSync(posAuditPath)) {
+    try {
+      const posAudit = JSON.parse(fs.readFileSync(posAuditPath, 'utf-8'));
+      const highConfidencePosIssues = posAudit.summary?.highConfidenceIssues || 0;
+      const posValidationPassed = highConfidencePosIssues === 0;
+      checks.push({
+        name: 'Part-of-speech validation (0 high-confidence issues)',
+        passed: posValidationPassed,
+        details: posValidationPassed
+          ? `✅ No high-confidence POS issues found`
+          : `❌ ${highConfidencePosIssues} high-confidence POS issues found`,
+      });
+    } catch {
+      checks.push({
+        name: 'Part-of-speech validation (0 high-confidence issues)',
+        passed: false,
+        details: '❌ Failed to read POS audit report',
+      });
+    }
+  } else {
+    checks.push({
+      name: 'Part-of-speech validation (0 high-confidence issues)',
+      passed: false,
+      details: '⚠️  POS audit report not found - run pos-audit.ts first',
+    });
+  }
 
   return checks;
 }
