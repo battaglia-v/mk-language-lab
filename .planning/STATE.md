@@ -2,19 +2,19 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-01-11)
+See: .planning/PROJECT.md (updated 2026-01-13)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** v1.8 Quality & Performance milestone
+**Current focus:** Planning next milestone
 
 ## Current Position
 
-Phase: 52 of 52 (Performance Optimization)
-Plan: 1 of 1 in current phase
-Status: Phase complete — Milestone complete!
-Last activity: 2026-01-13 — Completed 52-01-PLAN.md
+Phase: 52 of 52 (all phases complete)
+Plan: All complete
+Status: v1.8 SHIPPED - Ready for next milestone
+Last activity: 2026-01-13 — v1.8 milestone complete
 
-Progress: ██████████ 100%
+Progress: ██████████ 100% (8 milestones shipped)
 
 ## Milestone Summary
 
@@ -71,14 +71,22 @@ Progress: ██████████ 100%
 - Grammar cleanup (100% quality score)
 - 15 E2E tests for Learn Experience
 
+**v1.8 Quality & Performance shipped 2026-01-13**
+- 6 phases (47-52), 10 plans, 38 commits
+- 54 files modified (+9,334 / -459 lines)
+- Modern iOS-style segmented control Tabs component
+- Staggered animations across Learn, Practice, Reader
+- Content quality validation (84 POS fixes, 0 critical issues)
+- Performance: caching (1hr), CDN headers, prefetching
+
 See `.planning/MILESTONES.md` for full details.
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 88
+- Total plans completed: 98
 - Average duration: ~9 min
-- Total execution time: ~13 hours
+- Total execution time: ~14 hours
 
 **By Milestone:**
 
@@ -92,6 +100,7 @@ See `.planning/MILESTONES.md` for full details.
 | v1.5 Audio Cleanup | 3 | 6 | 27 | Same day |
 | v1.6 Reader Overhaul | 6 | 7 | 29 | 2 days |
 | v1.7 Learn Experience | 5 | 6 | 32 | Same day |
+| v1.8 Quality & Performance | 6 | 10 | 38 | 2 days |
 
 ## Accumulated Context
 
@@ -117,10 +126,10 @@ None.
 - Milestone v1.5 shipped: Audio cleanup & final polish (Phases 33-35)
 - Milestone v1.6 shipped: Reader overhaul (Phases 36-41)
 - Milestone v1.7 shipped: Learn experience overhaul (Phases 42-46)
-- Milestone v1.8 created: Quality & performance (Phases 47-52)
+- Milestone v1.8 shipped: Quality & performance (Phases 47-52)
 
 ## Session Continuity
 
 Last session: 2026-01-13
-Stopped at: Completed 52-01-PLAN.md (Performance Optimization) — Milestone v1.8 complete!
+Stopped at: v1.8 milestone archived and tagged
 Resume file: None

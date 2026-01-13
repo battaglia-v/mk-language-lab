@@ -1,5 +1,33 @@
 # Project Milestones: MKLanguage Learning System
 
+## v1.8 Quality & Performance (Shipped: 2026-01-13)
+
+**Delivered:** Comprehensive quality improvements across UX, content, and performance — modern iOS-style segmented control Tabs, staggered animations throughout Learn/Practice/Reader, content quality validation (84 POS fixes), and performance optimizations (caching, CDN headers, prefetching).
+
+**Phases completed:** 47-52 (10 plans total)
+
+**Key accomplishments:**
+
+- Modern iOS-style segmented control Tabs component with CSS-only transitions across 4 consumer locations
+- WCAG-compliant 48px touch targets on mobile section stepper and navigation components
+- Staggered fade-in animations across Learn (vocabulary cards), Practice (choice buttons, results), and Reader (story cards, CTAs)
+- Content quality validation: fixed 84 POS misclassifications, verified 2,590 translations with 0 critical issues
+- Performance optimizations: curriculum caching (1hr TTL), CDN Cache-Control headers on APIs, navigation prefetching on touch/hover
+- UX polish: smooth chevron rotations, bounce feedback on correct answers, progress bar transitions, celebration animations
+
+**Stats:**
+
+- 54 files modified
+- +9,334 / -459 lines changed
+- 6 phases, 10 plans, 38 commits
+- 2 days (2026-01-12 -> 2026-01-13)
+
+**Git range:** `docs(47)` -> `docs(52-01)`
+
+**What's next:** TBD (user to decide next focus)
+
+---
+
 ## v1.7 Learn Experience Overhaul (Shipped: 2026-01-11)
 
 **Delivered:** Simplified lesson flow (5→4 sections, free navigation), vocabulary curation (92% reduction to 30-50 words/lesson), grammar cleanup (100% quality score), content completeness audit, and comprehensive E2E validation with UI polish.

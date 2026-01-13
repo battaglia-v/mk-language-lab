@@ -14,7 +14,7 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 - ✅ [v1.5 Audio Cleanup & Final Polish](milestones/v1.5-ROADMAP.md) (Phases 33-35) — SHIPPED 2026-01-10
 - ✅ [v1.6 Reader Overhaul](milestones/v1.6-ROADMAP.md) (Phases 36-41) — SHIPPED 2026-01-11
 - ✅ [v1.7 Learn Experience Overhaul](milestones/v1.7-ROADMAP.md) (Phases 42-46) — SHIPPED 2026-01-11
-- 🚧 **v1.8 Quality & Performance** — Phases 47-52 (in progress)
+- ✅ [v1.8 Quality & Performance](milestones/v1.8-ROADMAP.md) (Phases 47-52) — SHIPPED 2026-01-13
 
 ## Completed Milestones
 
@@ -184,85 +184,19 @@ Plans:
 
 </details>
 
-### 🚧 v1.8 Quality & Performance (In Progress)
+<details>
+<summary>v1.8 Quality & Performance (Phases 47-52) — SHIPPED 2026-01-13</summary>
 
-**Milestone Goal:** Comprehensive quality improvements across UX, content, and performance for all three core areas (Learn, Practice, Reader)
+- [x] Phase 47: Segmented Control Redesign (1/1 plans) — completed 2026-01-12
+- [x] Phase 48: Learn UX Audit & Polish (2/2 plans) — completed 2026-01-13
+- [x] Phase 49: Practice UX Audit & Polish (2/2 plans) — completed 2026-01-13
+- [x] Phase 50: Reader UX Audit & Polish (2/2 plans) — completed 2026-01-13
+- [x] Phase 51: Content Quality Audit (2/2 plans) — completed 2026-01-13
+- [x] Phase 52: Performance Optimization (1/1 plans) — completed 2026-01-13
 
-#### Phase 47: Segmented Control Redesign — COMPLETE
+[Full details](milestones/v1.8-ROADMAP.md)
 
-**Goal**: Modernize toggle/tab component across 4 locations (Reader, Alphabet, TextImporter, DailyLessons)
-**Depends on**: Previous milestone complete
-**Research**: Unlikely (existing Radix/shadcn patterns)
-**Plans**: 1
-
-Plans:
-- [x] 47-01: Tabs redesign with sliding indicator + consumer updates — completed 2026-01-12
-
-#### Phase 48: Learn UX Audit & Polish — COMPLETE
-
-**Goal**: Visual refinements in lesson experience — section navigation, vocabulary cards, grammar displays
-**Depends on**: Phase 47
-**Research**: Unlikely (internal patterns)
-**Plans**: 2
-
-Plans:
-- [x] 48-01: Section Navigation & Layout Polish (touch targets, spacing) — completed 2026-01-13
-- [x] 48-02: Vocabulary & Grammar Visual Polish (responsive grid, animations) — completed 2026-01-13
-
-#### Phase 49: Practice UX Audit & Polish — COMPLETE
-
-**Goal**: Exercise feedback improvements, session flow smoothness, result screens
-**Depends on**: Phase 48
-**Research**: Unlikely (internal patterns)
-**Plans**: 2
-
-Plans:
-- [x] 49-01: Exercise Feedback Animations (staggered choice buttons, bounce on correct) — completed 2026-01-13
-- [x] 49-02: Results Screen Polish (animated stat reveals, consistent across modes) — completed 2026-01-13
-
-#### Phase 50: Reader UX Audit & Polish — COMPLETE
-
-**Goal**: Reading experience refinements, vocabulary lookup interactions, progress indicators
-**Depends on**: Phase 49
-**Research**: Unlikely (internal patterns)
-**Plans**: 2
-
-Plans:
-- [x] 50-01: Reader Library Animations (story cards, CTAs) — completed 2026-01-13
-- [x] 50-02: Reading Experience Polish (vocabulary animations, completion celebration) — completed 2026-01-13
-
-#### Phase 51: Content Quality Audit — COMPLETE
-
-**Goal**: Translation accuracy, example quality, curriculum gap identification across A1/A2/B1
-**Depends on**: Phase 50
-**Research**: Unlikely (internal content patterns)
-**Plans**: 2
-
-Plans:
-- [x] 51-01: POS validation & fix (verb-as-noun misclassifications) — completed 2026-01-13
-- [x] 51-02: Translation quality audit (0 critical issues found) — completed 2026-01-13
-
-#### Phase 52: Performance Optimization — COMPLETE
-
-**Goal**: Faster loading, better caching strategies, smoother page transitions and navigation
-**Depends on**: Phase 51
-**Research**: Likely (optimization patterns)
-**Research topics**: Next.js optimization, caching strategies, bundle analysis
-**Plans**: 1
-
-Plans:
-- [x] 52-01: Caching and prefetching optimizations — completed 2026-01-13
-
-## Progress
-
-| Phase | Milestone | Plans | Status | Completed |
-|-------|-----------|-------|--------|-----------|
-| 47. Segmented Control Redesign | v1.8 | 1/1 | Complete | 2026-01-12 |
-| 48. Learn UX Audit & Polish | v1.8 | 2/2 | Complete | 2026-01-13 |
-| 49. Practice UX Audit & Polish | v1.8 | 2/2 | Complete | 2026-01-13 |
-| 50. Reader UX Audit & Polish | v1.8 | 2/2 | Complete | 2026-01-13 |
-| 51. Content Quality Audit | v1.8 | 2/2 | Complete | 2026-01-13 |
-| 52. Performance Optimization | v1.8 | 1/1 | Complete | 2026-01-13 |
+</details>
 
 **Completed Milestones:**
 - [v1.0 Beta](milestones/v1.0-ROADMAP.md) — 7 phases, 21 plans (shipped 2026-01-07)
@@ -273,6 +207,7 @@ Plans:
 - [v1.5 Audio Cleanup & Final Polish](milestones/v1.5-ROADMAP.md) — 3 phases, 6 plans (shipped 2026-01-10)
 - [v1.6 Reader Overhaul](milestones/v1.6-ROADMAP.md) — 6 phases, 7 plans (shipped 2026-01-11)
 - [v1.7 Learn Experience Overhaul](milestones/v1.7-ROADMAP.md) — 5 phases, 6 plans (shipped 2026-01-11)
+- [v1.8 Quality & Performance](milestones/v1.8-ROADMAP.md) — 6 phases, 10 plans (shipped 2026-01-13)
 
 ## Domain Expertise
 

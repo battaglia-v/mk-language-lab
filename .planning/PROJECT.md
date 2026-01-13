@@ -94,6 +94,12 @@ If the app nails progression, users will forgive incomplete content; if it doesn
 - 15 E2E tests for Learn Experience (flow, content, mobile, cross-locale) — v1.7
 - WCAG-compliant 48px touch targets across UI components — v1.7
 - WebP images with lazy loading for performance — v1.7
+- Modern iOS-style segmented control Tabs component — v1.8
+- Staggered fade-in animations across Learn, Practice, Reader — v1.8
+- Content quality validation (84 POS fixes, 0 critical translation issues) — v1.8
+- Curriculum data caching (1hr TTL) with unstable_cache — v1.8
+- CDN Cache-Control headers on vocabulary APIs — v1.8
+- Navigation prefetching on touch/hover for core user journey — v1.8
 
 ### Active
 
@@ -116,12 +122,13 @@ If the app nails progression, users will forgive incomplete content; if it doesn
 
 ## Context
 
-### Current State (v1.7)
+### Current State (v1.8)
 
-- **Codebase:** ~26,650 lines of TypeScript
+- **Codebase:** ~30,771 lines of TypeScript
 - **Tech stack:** Next.js 16 App Router, Prisma/PostgreSQL, NextAuth, Vercel
 - **Curriculum:** 40 lessons (24 A1 + 8 A2 + 8 B1), 149 grammar notes, 1,943 curated vocabulary items
 - **Graded Readers:** 12 stories (4 A1, 4 A2, 4 B1) with pre-analyzed vocabulary (1,123 unique words)
+- **Content Quality:** 100% POS validation (84 fixes applied), 0 critical translation issues across 2,590 items
 - **Reader Features:** Tap-to-translate, vocabulary save, progress tracking, topic/sort filtering
 - **Learn Experience:** Simplified 4-section lesson flow with free navigation
 - **Database:** UKIM curriculum seeded with 100% validated translations
@@ -131,6 +138,8 @@ If the app nails progression, users will forgive incomplete content; if it doesn
 - **Navigation:** Resources page (replaced More), unified Tools (Translate + Analyzer)
 - **Practice:** Session persistence, resume prompt, save-to-glossary, lesson progress indicator
 - **Accessibility:** WCAG-compliant 48px touch targets, WebP images with lazy loading
+- **Performance:** Curriculum caching (1hr), CDN headers on APIs, navigation prefetching
+- **UX Polish:** Staggered animations across all sections, modern segmented control Tabs
 - **Audio:** Fully removed (was unused, now -4,064 lines cleaner)
 
 ### The Problem (Solved)
@@ -188,4 +197,4 @@ Advanced and returning users didn't know where they were, what they'd completed,
 - [ ] 2-3 named beta users say: "This finally makes sense — I always know what to do next"
 
 ---
-*Last updated: 2026-01-11 after v1.7 Learn Experience Overhaul milestone*
+*Last updated: 2026-01-13 after v1.8 Quality & Performance milestone*
