@@ -38,9 +38,11 @@ export function MultipleChoiceInput({
             onClick={() => onSelect(opt)}
             disabled={disabled || !!feedback}
             data-testid={`word-sprint-choice-${i}`}
+            style={{ animationDelay: `${i * 50}ms`, animationFillMode: 'backwards' }}
             className={cn(
               'min-h-[60px] justify-start rounded-xl text-left active:scale-[0.98] text-base',
-              isSelected && feedback === 'correct' && 'border-emerald-400 bg-emerald-500/20',
+              'animate-in fade-in-0 slide-in-from-bottom-2 duration-200',
+              isSelected && feedback === 'correct' && 'border-emerald-400 bg-emerald-500/20 animate-bounce-correct',
               isSelected && feedback === 'incorrect' && 'border-amber-400 bg-amber-500/20 animate-shake',
               feedback && isCorrectAnswer && 'border-emerald-400 bg-emerald-500/15'
             )}

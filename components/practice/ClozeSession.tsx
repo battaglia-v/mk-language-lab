@@ -190,9 +190,11 @@ export function ClozeSession({ initialCount = 10 }: Props) {
                 variant="outline"
                 onClick={() => selectChoice(i)}
                 disabled={!!feedback}
+                style={{ animationDelay: `${i * 50}ms`, animationFillMode: 'backwards' }}
                 className={cn(
                   'min-h-[52px] justify-start rounded-xl text-left transition-all duration-200 active:scale-[0.98]',
-                  selectedChoice === i && feedback === 'correct' && 'border-emerald-400 bg-emerald-500/20 scale-[1.02]',
+                  'animate-in fade-in-0 slide-in-from-bottom-2 duration-200',
+                  selectedChoice === i && feedback === 'correct' && 'border-emerald-400 bg-emerald-500/20 scale-[1.02] animate-bounce-correct',
                   selectedChoice === i && feedback === 'incorrect' && 'border-amber-400 bg-amber-500/20 animate-shake',
                   feedback && i === card?.answerIndex && 'border-emerald-400 bg-emerald-500/15'
                 )}

@@ -598,8 +598,11 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
                     onClick={() => selectChoice(c)}
                     disabled={!!feedback}
                     data-testid={`practice-session-choice-${i}`}
-                    className={cn('min-h-[52px] justify-start rounded-xl text-left transition-all duration-200 active:scale-[0.98]',
-                      selectedChoice === c && feedback === 'correct' && 'border-emerald-400 bg-emerald-500/20 scale-[1.02]',
+                    style={{ animationDelay: `${i * 50}ms`, animationFillMode: 'backwards' }}
+                    className={cn(
+                      'min-h-[52px] justify-start rounded-xl text-left transition-all duration-200 active:scale-[0.98]',
+                      'animate-in fade-in-0 slide-in-from-bottom-2 duration-200',
+                      selectedChoice === c && feedback === 'correct' && 'border-emerald-400 bg-emerald-500/20 scale-[1.02] animate-bounce-correct',
                       selectedChoice === c && feedback === 'incorrect' && 'border-amber-400 bg-amber-500/20 animate-shake',
                       feedback && c === card?.target && 'border-emerald-400 bg-emerald-500/15'
                     )}>
