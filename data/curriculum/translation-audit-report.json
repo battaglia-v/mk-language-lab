@@ -1,0 +1,1007 @@
+{
+  "timestamp": "2026-01-13T23:26:07.726Z",
+  "summary": {
+    "totalItemsChecked": 2590,
+    "curriculumVocabChecked": 2028,
+    "grammarNotesChecked": 156,
+    "readerVocabChecked": 394,
+    "readerGrammarChecked": 12,
+    "totalIssues": 41,
+    "criticalIssues": 0,
+    "warningIssues": 0,
+    "infoIssues": 41,
+    "byType": {
+      "inconsistent": 41
+    }
+  },
+  "issues": [
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "мојот",
+      "en": "my (masculine definite) / my (masculine definite) / my (masc.) / my (masc. def.)",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "4 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "факултет",
+      "en": "university/college / university/faculty",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "стар",
+      "en": "old (masculine) / old",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "секое",
+      "en": "every one / every",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "пријател",
+      "en": "friend (male) / friend (male) / friend",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "3 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "доаѓаат",
+      "en": "they are coming / to arrive",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "неговите",
+      "en": "his (plural definite) / his (plural def.)",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "работа",
+      "en": "work/job / work/job / work",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "3 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "чита",
+      "en": "reads / to read",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "одговорот",
+      "en": "the answer / the response",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "почнуваат",
+      "en": "they begin / begin",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "продавница",
+      "en": "shop / store/shop",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "торта",
+      "en": "a cake / cake",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "велат",
+      "en": "they say / they say / say/tell",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "3 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "летото",
+      "en": "the summer / in summer",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "голем",
+      "en": "big (masculine) / big",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "езеро",
+      "en": "a lake / a lake / lake",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "3 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "најмногу",
+      "en": "the most / most",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "торба",
+      "en": "a bag / bag",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "рече",
+      "en": "he said / said / said",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "3 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "неговото",
+      "en": "his / his (neut. def.)",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "подарок",
+      "en": "a gift / a gift / gift",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "3 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "мал",
+      "en": "small (masculine) / small / small (masculine)",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "3 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "посетите",
+      "en": "the visits / you visit (formal)",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "млад",
+      "en": "young (masculine) / young / young (masculine)",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "3 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "висок",
+      "en": "tall/high / tall",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "најголем",
+      "en": "biggest / the biggest",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "најдобар",
+      "en": "the best / best",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "навистина",
+      "en": "indeed / truly",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "станувам",
+      "en": "I get up / I wake up/get up",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "мојата",
+      "en": "my (feminine definite) / my (fem.)",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "стариот",
+      "en": "the old one / the old",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "имало",
+      "en": "there was / there was (past)",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "играа",
+      "en": "they played / played",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "сите",
+      "en": "everyone / all",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "домашната",
+      "en": "the home one / homemade",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "насмевнува",
+      "en": "smiles / makes laugh",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "потоа",
+      "en": "then / then/after",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "прекрасно",
+      "en": "wonderful / beautiful",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "пак",
+      "en": "on the other hand/however / on the other hand",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    },
+    {
+      "source": "curriculum",
+      "level": "all",
+      "location": "cross-content",
+      "mk": "ми се допаѓа",
+      "en": "I like (it pleases me) / I like it",
+      "issueType": "inconsistent",
+      "severity": "info",
+      "details": "2 different translations found"
+    }
+  ],
+  "inconsistencies": [
+    {
+      "word": "мојот",
+      "translations": [
+        {
+          "source": "curriculum-A1-L1",
+          "translation": "my (masculine definite)"
+        },
+        {
+          "source": "curriculum-A2-L2",
+          "translation": "my (masculine definite)"
+        },
+        {
+          "source": "reader-a1-anas-family",
+          "translation": "my (masc.)"
+        },
+        {
+          "source": "reader-a1-my-best-friend",
+          "translation": "my (masc. def.)"
+        }
+      ]
+    },
+    {
+      "word": "факултет",
+      "translations": [
+        {
+          "source": "curriculum-A1-L1",
+          "translation": "university/college"
+        },
+        {
+          "source": "reader-a1-my-best-friend",
+          "translation": "university/faculty"
+        }
+      ]
+    },
+    {
+      "word": "стар",
+      "translations": [
+        {
+          "source": "curriculum-A1-L2",
+          "translation": "old (masculine)"
+        },
+        {
+          "source": "curriculum-A1-L21",
+          "translation": "old"
+        }
+      ]
+    },
+    {
+      "word": "секое",
+      "translations": [
+        {
+          "source": "curriculum-A1-L3",
+          "translation": "every one"
+        },
+        {
+          "source": "reader-a1-my-morning",
+          "translation": "every"
+        }
+      ]
+    },
+    {
+      "word": "пријател",
+      "translations": [
+        {
+          "source": "curriculum-A1-L3",
+          "translation": "friend (male)"
+        },
+        {
+          "source": "curriculum-A2-L2",
+          "translation": "friend (male)"
+        },
+        {
+          "source": "reader-a1-my-best-friend",
+          "translation": "friend"
+        }
+      ]
+    },
+    {
+      "word": "доаѓаат",
+      "translations": [
+        {
+          "source": "curriculum-A1-L4",
+          "translation": "they are coming"
+        },
+        {
+          "source": "reader-a2-the-holiday",
+          "translation": "to arrive"
+        }
+      ]
+    },
+    {
+      "word": "неговите",
+      "translations": [
+        {
+          "source": "curriculum-A1-L7",
+          "translation": "his (plural definite)"
+        },
+        {
+          "source": "reader-a1-my-best-friend",
+          "translation": "his (plural def.)"
+        }
+      ]
+    },
+    {
+      "word": "работа",
+      "translations": [
+        {
+          "source": "curriculum-A1-L7",
+          "translation": "work/job"
+        },
+        {
+          "source": "curriculum-A2-L1",
+          "translation": "work/job"
+        },
+        {
+          "source": "reader-a1-my-morning",
+          "translation": "work"
+        }
+      ]
+    },
+    {
+      "word": "чита",
+      "translations": [
+        {
+          "source": "curriculum-A1-L7",
+          "translation": "reads"
+        },
+        {
+          "source": "reader-a2-hobbies",
+          "translation": "to read"
+        }
+      ]
+    },
+    {
+      "word": "одговорот",
+      "translations": [
+        {
+          "source": "curriculum-A1-L8",
+          "translation": "the answer"
+        },
+        {
+          "source": "reader-b1-easter-traditions",
+          "translation": "the response"
+        }
+      ]
+    },
+    {
+      "word": "почнуваат",
+      "translations": [
+        {
+          "source": "curriculum-A1-L8",
+          "translation": "they begin"
+        },
+        {
+          "source": "reader-b1-easter-traditions",
+          "translation": "begin"
+        }
+      ]
+    },
+    {
+      "word": "продавница",
+      "translations": [
+        {
+          "source": "curriculum-A1-L10",
+          "translation": "shop"
+        },
+        {
+          "source": "reader-a1-at-the-store",
+          "translation": "store/shop"
+        }
+      ]
+    },
+    {
+      "word": "торта",
+      "translations": [
+        {
+          "source": "curriculum-A1-L10",
+          "translation": "a cake"
+        },
+        {
+          "source": "reader-a2-the-holiday",
+          "translation": "cake"
+        }
+      ]
+    },
+    {
+      "word": "велат",
+      "translations": [
+        {
+          "source": "curriculum-A1-L12",
+          "translation": "they say"
+        },
+        {
+          "source": "curriculum-B1-L4",
+          "translation": "they say"
+        },
+        {
+          "source": "reader-b1-macedonian-legends",
+          "translation": "say/tell"
+        }
+      ]
+    },
+    {
+      "word": "летото",
+      "translations": [
+        {
+          "source": "curriculum-A1-L12",
+          "translation": "the summer"
+        },
+        {
+          "source": "reader-a2-hobbies",
+          "translation": "in summer"
+        }
+      ]
+    },
+    {
+      "word": "голем",
+      "translations": [
+        {
+          "source": "curriculum-A1-L12",
+          "translation": "big (masculine)"
+        },
+        {
+          "source": "curriculum-A1-L21",
+          "translation": "big"
+        }
+      ]
+    },
+    {
+      "word": "езеро",
+      "translations": [
+        {
+          "source": "curriculum-A1-L13",
+          "translation": "a lake"
+        },
+        {
+          "source": "curriculum-A2-L2",
+          "translation": "a lake"
+        },
+        {
+          "source": "reader-a2-day-in-ohrid",
+          "translation": "lake"
+        }
+      ]
+    },
+    {
+      "word": "најмногу",
+      "translations": [
+        {
+          "source": "curriculum-A1-L14",
+          "translation": "the most"
+        },
+        {
+          "source": "reader-a2-my-job",
+          "translation": "most"
+        }
+      ]
+    },
+    {
+      "word": "торба",
+      "translations": [
+        {
+          "source": "curriculum-A1-L15",
+          "translation": "a bag"
+        },
+        {
+          "source": "reader-a1-my-morning",
+          "translation": "bag"
+        }
+      ]
+    },
+    {
+      "word": "рече",
+      "translations": [
+        {
+          "source": "curriculum-A1-L15",
+          "translation": "he said"
+        },
+        {
+          "source": "reader-a2-my-job",
+          "translation": "said"
+        },
+        {
+          "source": "reader-a2-the-holiday",
+          "translation": "said"
+        }
+      ]
+    },
+    {
+      "word": "неговото",
+      "translations": [
+        {
+          "source": "curriculum-A1-L15",
+          "translation": "his"
+        },
+        {
+          "source": "reader-a1-my-best-friend",
+          "translation": "his (neut. def.)"
+        }
+      ]
+    },
+    {
+      "word": "подарок",
+      "translations": [
+        {
+          "source": "curriculum-A1-L17",
+          "translation": "a gift"
+        },
+        {
+          "source": "curriculum-A2-L2",
+          "translation": "a gift"
+        },
+        {
+          "source": "reader-a2-the-holiday",
+          "translation": "gift"
+        }
+      ]
+    },
+    {
+      "word": "мал",
+      "translations": [
+        {
+          "source": "curriculum-A1-L18",
+          "translation": "small (masculine)"
+        },
+        {
+          "source": "curriculum-A1-L21",
+          "translation": "small"
+        },
+        {
+          "source": "curriculum-A2-L1",
+          "translation": "small (masculine)"
+        }
+      ]
+    },
+    {
+      "word": "посетите",
+      "translations": [
+        {
+          "source": "curriculum-A1-L19",
+          "translation": "the visits"
+        },
+        {
+          "source": "reader-b1-macedonian-cuisine",
+          "translation": "you visit (formal)"
+        }
+      ]
+    },
+    {
+      "word": "млад",
+      "translations": [
+        {
+          "source": "curriculum-A1-L20",
+          "translation": "young (masculine)"
+        },
+        {
+          "source": "curriculum-A1-L21",
+          "translation": "young"
+        },
+        {
+          "source": "curriculum-A2-L5",
+          "translation": "young (masculine)"
+        }
+      ]
+    },
+    {
+      "word": "висок",
+      "translations": [
+        {
+          "source": "curriculum-A1-L21",
+          "translation": "tall/high"
+        },
+        {
+          "source": "reader-a1-my-best-friend",
+          "translation": "tall"
+        }
+      ]
+    },
+    {
+      "word": "најголем",
+      "translations": [
+        {
+          "source": "curriculum-A1-L21",
+          "translation": "biggest"
+        },
+        {
+          "source": "curriculum-A2-L1",
+          "translation": "the biggest"
+        }
+      ]
+    },
+    {
+      "word": "најдобар",
+      "translations": [
+        {
+          "source": "curriculum-A1-L22",
+          "translation": "the best"
+        },
+        {
+          "source": "reader-a1-my-best-friend",
+          "translation": "best"
+        }
+      ]
+    },
+    {
+      "word": "навистина",
+      "translations": [
+        {
+          "source": "curriculum-A1-L22",
+          "translation": "indeed"
+        },
+        {
+          "source": "reader-b1-easter-traditions",
+          "translation": "truly"
+        }
+      ]
+    },
+    {
+      "word": "станувам",
+      "translations": [
+        {
+          "source": "curriculum-A1-L24",
+          "translation": "I get up"
+        },
+        {
+          "source": "reader-a1-my-morning",
+          "translation": "I wake up/get up"
+        }
+      ]
+    },
+    {
+      "word": "мојата",
+      "translations": [
+        {
+          "source": "curriculum-A2-L2",
+          "translation": "my (feminine definite)"
+        },
+        {
+          "source": "reader-a1-anas-family",
+          "translation": "my (fem.)"
+        }
+      ]
+    },
+    {
+      "word": "стариот",
+      "translations": [
+        {
+          "source": "curriculum-A2-L3",
+          "translation": "the old one"
+        },
+        {
+          "source": "reader-a2-day-in-ohrid",
+          "translation": "the old"
+        }
+      ]
+    },
+    {
+      "word": "имало",
+      "translations": [
+        {
+          "source": "curriculum-A2-L4",
+          "translation": "there was"
+        },
+        {
+          "source": "reader-b1-macedonian-legends",
+          "translation": "there was (past)"
+        }
+      ]
+    },
+    {
+      "word": "играа",
+      "translations": [
+        {
+          "source": "curriculum-A2-L8",
+          "translation": "they played"
+        },
+        {
+          "source": "reader-a2-the-holiday",
+          "translation": "played"
+        }
+      ]
+    },
+    {
+      "word": "сите",
+      "translations": [
+        {
+          "source": "curriculum-B1-L1",
+          "translation": "everyone"
+        },
+        {
+          "source": "reader-a2-hobbies",
+          "translation": "all"
+        }
+      ]
+    },
+    {
+      "word": "домашната",
+      "translations": [
+        {
+          "source": "curriculum-B1-L6",
+          "translation": "the home one"
+        },
+        {
+          "source": "reader-b1-macedonian-cuisine",
+          "translation": "homemade"
+        }
+      ]
+    },
+    {
+      "word": "насмевнува",
+      "translations": [
+        {
+          "source": "curriculum-B1-L7",
+          "translation": "smiles"
+        },
+        {
+          "source": "reader-a1-my-best-friend",
+          "translation": "makes laugh"
+        }
+      ]
+    },
+    {
+      "word": "потоа",
+      "translations": [
+        {
+          "source": "reader-a1-my-morning",
+          "translation": "then"
+        },
+        {
+          "source": "reader-a2-day-in-ohrid",
+          "translation": "then/after"
+        }
+      ]
+    },
+    {
+      "word": "прекрасно",
+      "translations": [
+        {
+          "source": "reader-a2-day-in-ohrid",
+          "translation": "wonderful"
+        },
+        {
+          "source": "reader-b1-macedonian-legends",
+          "translation": "beautiful"
+        }
+      ]
+    },
+    {
+      "word": "пак",
+      "translations": [
+        {
+          "source": "reader-a2-hobbies",
+          "translation": "on the other hand/however"
+        },
+        {
+          "source": "reader-b1-city-vs-village",
+          "translation": "on the other hand"
+        }
+      ]
+    },
+    {
+      "word": "ми се допаѓа",
+      "translations": [
+        {
+          "source": "reader-a2-hobbies",
+          "translation": "I like (it pleases me)"
+        },
+        {
+          "source": "reader-a2-my-job",
+          "translation": "I like it"
+        }
+      ]
+    }
+  ],
+  "recommendations": [
+    "Review 41 words with inconsistent translations - prefer curriculum as source of truth"
+  ]
+}
