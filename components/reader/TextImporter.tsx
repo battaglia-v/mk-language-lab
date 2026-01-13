@@ -73,13 +73,13 @@ export function TextImporter({ onImportURL, onImportFile, isImporting }: TextImp
         </DialogHeader>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-3">
-          <TabsList className="grid w-full grid-cols-2 min-h-[48px]">
-            <TabsTrigger value="url" className="min-h-[48px] text-xs sm:text-sm" data-testid="reader-import-tab-url">
-              <LinkIcon className="h-3.5 w-3.5 mr-1.5" />
+          <TabsList className="grid grid-cols-2">
+            <TabsTrigger value="url" className="text-xs sm:text-sm" data-testid="reader-import-tab-url">
+              <LinkIcon className="h-3.5 w-3.5" />
               {t('readerImportFromURL')}
             </TabsTrigger>
-            <TabsTrigger value="file" className="min-h-[48px] text-xs sm:text-sm" data-testid="reader-import-tab-file">
-              <FileText className="h-3.5 w-3.5 mr-1.5" />
+            <TabsTrigger value="file" className="text-xs sm:text-sm" data-testid="reader-import-tab-file">
+              <FileText className="h-3.5 w-3.5" />
               {t('readerImportFromFile')}
             </TabsTrigger>
           </TabsList>

@@ -229,12 +229,12 @@ export default function ReaderPage() {
 
       <PageContainer size="lg">
         <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-6 min-h-[48px]">
-            <TabsTrigger value="library" className="gap-2 min-h-[48px]" data-testid="reader-tab-library">
+          <TabsList className="grid grid-cols-2 mb-6">
+            <TabsTrigger value="library" data-testid="reader-tab-library">
               <Library className="h-4 w-4" />
               Library
             </TabsTrigger>
-            <TabsTrigger value="workspace" className="gap-2 min-h-[48px]" data-testid="reader-tab-workspace">
+            <TabsTrigger value="workspace" data-testid="reader-tab-workspace">
               <FileText className="h-4 w-4" />
               Workspace
             </TabsTrigger>

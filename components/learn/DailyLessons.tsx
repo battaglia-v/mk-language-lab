@@ -481,12 +481,12 @@ export function DailyLessons({ limit = 9, showViewAll = false, className, dataTe
         )}
 
         <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-6">
-            <TabsTrigger value="all" className="flex items-center gap-2" data-testid="daily-lessons-tab-all">
+          <TabsList className="grid grid-cols-2 mb-6">
+            <TabsTrigger value="all" data-testid="daily-lessons-tab-all">
               <Instagram className="h-4 w-4" />
               {t('tabs.all')}
             </TabsTrigger>
-            <TabsTrigger value="saved" className="flex items-center gap-2" data-testid="daily-lessons-tab-saved">
+            <TabsTrigger value="saved" data-testid="daily-lessons-tab-saved">
               <BookmarkCheck className="h-4 w-4" />
               {t('tabs.saved')}
             </TabsTrigger>
