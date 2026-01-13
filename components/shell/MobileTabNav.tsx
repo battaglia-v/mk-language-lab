@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { buildLocalizedHref, isNavItemActive, shellNavItems } from "./navItems";
 import { triggerHaptic } from "@/lib/haptics";
@@ -11,11 +11,17 @@ export function MobileTabNav() {
   const locale = useLocale();
   const t = useTranslations("nav");
   const pathname = usePathname();
+  const router = useRouter();
 
   const buildHref = (path: string) => buildLocalizedHref(locale, path, pathname);
 
   const handleNavClick = () => {
     triggerHaptic("light");
+  };
+
+  // Prefetch route on touch start (faster than hover on mobile)
+  const handleTouchStart = (href: string) => {
+    router.prefetch(href);
   };
 
   return (
@@ -44,6 +50,7 @@ export function MobileTabNav() {
               href={href}
               prefetch={true}
               onClick={handleNavClick}
+              onTouchStart={() => handleTouchStart(href)}
               data-testid={`nav-${item.id}`}
               aria-current={isActive ? "page" : undefined}
               aria-label={itemLabel}

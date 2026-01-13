@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { buildLocalizedHref, isNavItemActive, shellNavItems } from "./navItems";
 import {
@@ -16,8 +16,14 @@ export function SidebarNav() {
   const locale = useLocale();
   const t = useTranslations("nav");
   const pathname = usePathname();
+  const router = useRouter();
 
   const buildHref = (path: string) => buildLocalizedHref(locale, path, pathname);
+
+  // Prefetch route on hover for faster navigation
+  const handleMouseEnter = (href: string) => {
+    router.prefetch(href);
+  };
 
   return (
     /* Desktop sidebar - only visible at lg+ breakpoint */
@@ -46,6 +52,7 @@ export function SidebarNav() {
                   <Link
                     href={href}
                     prefetch={true}
+                    onMouseEnter={() => handleMouseEnter(href)}
                     data-testid={`sidebar-nav-${item.id}`}
                     className={cn(
                       "group icon-gap flex items-center rounded-2xl px-3 py-3.5 text-sm font-semibold transition justify-center 2xl:justify-start min-h-[48px]",

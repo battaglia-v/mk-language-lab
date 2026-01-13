@@ -210,6 +210,13 @@ export default function LessonPageContentV2({
   // Vocabulary hook for save-to-glossary functionality
   const { vocabulary, saveWord } = useVocabulary();
 
+  // Prefetch next lesson for faster navigation when user completes this one
+  useEffect(() => {
+    if (nextLesson?.id) {
+      router.prefetch(`/${locale}/lesson/${nextLesson.id}`);
+    }
+  }, [nextLesson?.id, locale, router]);
+
   // Handler to save a word to the user's review deck
   const handleSaveWord = useCallback(
     async (word: { mk: string; en: string }) => {
