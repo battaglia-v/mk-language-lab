@@ -839,7 +839,7 @@ export default function LessonPageContentV2({
           </div>
 
           {/* Section stepper (mobile only - desktop has tabs) */}
-          <div className="flex items-center justify-center gap-2 mt-3 lg:hidden" data-testid="lesson-section-stepper">
+          <div className="flex items-center justify-center gap-1 mt-3 lg:hidden" data-testid="lesson-section-stepper">
             {sections.map((section, index) => {
               const isCompleted = completedSections.has(section.id);
               const isCurrent = index === currentSectionIndex;
@@ -848,7 +848,8 @@ export default function LessonPageContentV2({
               const canNavigate = true;
 
               return (
-                <div key={section.id} className="flex items-center gap-2">
+                <div key={section.id} className="flex items-center">
+                  {/* Touch target wrapper - 48px minimum for accessibility */}
                   <button
                     onClick={() => {
                       if (canNavigate) {
@@ -858,30 +859,38 @@ export default function LessonPageContentV2({
                     disabled={!canNavigate}
                     data-testid={`lesson-section-tab-${section.id}`}
                     className={cn(
-                      'flex items-center justify-center rounded-full transition-all duration-200',
-                      // Size: current is larger
-                      isCurrent ? 'h-8 w-8' : 'h-6 w-6',
-                      // Colors
-                      isCompleted && 'bg-green-500 text-white',
-                      isCurrent && !isCompleted && 'bg-primary text-primary-foreground ring-2 ring-primary/30',
-                      isPast && !isCompleted && 'bg-muted text-muted-foreground',
-                      !isCurrent && !isCompleted && !isPast && 'bg-muted/50 text-muted-foreground/50',
-                      // Interactive - enabled when can navigate
-                      canNavigate && 'hover:scale-110 cursor-pointer',
+                      'min-h-[48px] min-w-[48px] flex items-center justify-center',
+                      canNavigate && 'cursor-pointer',
                       !canNavigate && 'cursor-not-allowed'
                     )}
                     aria-label={`${section.title} - ${isCompleted ? 'completed' : isCurrent ? 'current' : 'upcoming'}`}
                   >
-                    {isCompleted ? (
-                      <CheckCircle className="h-4 w-4" />
-                    ) : (
-                      <span className="text-xs font-medium">{index + 1}</span>
-                    )}
+                    {/* Visual dot - smaller than touch target */}
+                    <span
+                      className={cn(
+                        'flex items-center justify-center rounded-full transition-all duration-200',
+                        // Size: current is larger (40px), others are 32px
+                        isCurrent ? 'h-10 w-10' : 'h-8 w-8',
+                        // Colors
+                        isCompleted && 'bg-green-500 text-white',
+                        isCurrent && !isCompleted && 'bg-primary text-primary-foreground ring-2 ring-primary/30',
+                        isPast && !isCompleted && 'bg-muted text-muted-foreground',
+                        !isCurrent && !isCompleted && !isPast && 'bg-muted/50 text-muted-foreground/50',
+                        // Interactive hover effect
+                        canNavigate && 'group-hover:scale-110'
+                      )}
+                    >
+                      {isCompleted ? (
+                        <CheckCircle className="h-4 w-4" />
+                      ) : (
+                        <span className="text-xs font-medium">{index + 1}</span>
+                      )}
+                    </span>
                   </button>
-                  {/* Connector line */}
+                  {/* Connector line - wider for visual balance */}
                   {index < sections.length - 1 && (
                     <div className={cn(
-                      'h-0.5 w-4 rounded-full transition-colors',
+                      'h-0.5 w-6 rounded-full transition-colors -mx-1',
                       isCompleted || isPast ? 'bg-green-500/50' : 'bg-muted'
                     )} />
                   )}
