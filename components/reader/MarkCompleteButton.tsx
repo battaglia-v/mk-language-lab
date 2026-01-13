@@ -1,10 +1,12 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Check, Loader2, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/toast';
+import { cn } from '@/lib/utils';
+import { useReducedMotion } from '@/hooks/use-reduced-motion';
 
 interface MarkCompleteButtonProps {
   sampleId: string;
@@ -16,8 +18,18 @@ interface MarkCompleteButtonProps {
 export function MarkCompleteButton({ sampleId, locale: _locale, dayNumber: _dayNumber }: MarkCompleteButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [isJustCompleted, setIsJustCompleted] = useState(false);
   const router = useRouter();
   const { addToast } = useToast();
+  const prefersReducedMotion = useReducedMotion();
+
+  // Auto-reset celebration animation after 500ms
+  useEffect(() => {
+    if (isJustCompleted) {
+      const timer = setTimeout(() => setIsJustCompleted(false), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [isJustCompleted]);
 
   const handleComplete = useCallback(async () => {
     setIsLoading(true);
@@ -41,6 +53,7 @@ export function MarkCompleteButton({ sampleId, locale: _locale, dayNumber: _dayN
       const data = await response.json();
 
       setIsComplete(true);
+      setIsJustCompleted(true); // Trigger celebration animation
       addToast({
         title: 'Lesson Complete!',
         description: `+${data.xpEarned} XP earned. Next lesson unlocked!`,
@@ -65,11 +78,19 @@ export function MarkCompleteButton({ sampleId, locale: _locale, dayNumber: _dayN
     return (
       <Button
         size="lg"
-        className="w-full gap-2 bg-emerald-600 hover:bg-emerald-600 text-white"
+        className={cn(
+          'w-full gap-2 bg-emerald-600 hover:bg-emerald-600 text-white transition-transform',
+          !prefersReducedMotion && isJustCompleted && 'animate-bounce-correct'
+        )}
         disabled
         data-testid="reader-mark-complete"
       >
-        <CheckCircle className="h-5 w-5" />
+        <CheckCircle
+          className={cn(
+            'h-5 w-5',
+            !prefersReducedMotion && isJustCompleted && 'animate-in zoom-in-75 duration-200'
+          )}
+        />
         Completed!
       </Button>
     );
