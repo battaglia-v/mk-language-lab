@@ -76,6 +76,7 @@ export async function GET(request: NextRequest) {
       prisma.vocabularyWord.count({ where: { userId } }),
     ]);
 
+    // Private user data with short client-side cache
     return NextResponse.json({
       words,
       counts: {
@@ -84,6 +85,10 @@ export async function GET(request: NextRequest) {
         mastered: masteredCount,
         due: dueCount,
         total: totalCount,
+      },
+    }, {
+      headers: {
+        'Cache-Control': 'private, max-age=30, stale-while-revalidate=60',
       },
     });
   } catch (error) {

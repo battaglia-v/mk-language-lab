@@ -5,6 +5,9 @@ import { createScopedLogger } from '@/lib/logger';
 
 const log = createScopedLogger('api.practice.lesson-vocab');
 
+// Curriculum data is fairly static - 5 minute revalidation
+export const revalidate = 300;
+
 /**
  * GET /api/practice/lesson-vocab
  *
@@ -74,7 +77,12 @@ export async function GET(request: NextRequest) {
         vocabCount: vocab.length,
       });
 
-      return NextResponse.json(vocab);
+      // Curriculum data is public and cacheable by CDN
+      return NextResponse.json(vocab, {
+        headers: {
+          'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+        },
+      });
     }
 
     // For lesson-review deck (all completed lessons), auth is required
