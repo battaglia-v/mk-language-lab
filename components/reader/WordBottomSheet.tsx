@@ -64,6 +64,8 @@ export function WordBottomSheet({
   const prefersReducedMotion = useReducedMotion();
 
   // Trigger reveal animation when sheet opens with new word
+  // Using word?.original as key to re-trigger animation when word changes
+  const wordKey = word?.original;
   useEffect(() => {
     if (open && word) {
       // Small delay to let BottomSheet start its animation first
@@ -72,7 +74,7 @@ export function WordBottomSheet({
     } else {
       setIsRevealed(false);
     }
-  }, [open, word?.original]);
+  }, [open, word, wordKey]);
 
   const t = {
     saveToGlossary: locale === 'mk' ? 'Зачувај во речник' : 'Save to Glossary',

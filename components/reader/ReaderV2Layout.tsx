@@ -236,10 +236,11 @@ export function ReaderV2Layout({
             )}
           </div>
 
-          {/* Progress bar */}
+          {/* Progress bar with smooth transitions */}
           <Progress
             value={progress}
             className="h-1 rounded-none"
+            indicatorClassName="duration-500 ease-out shadow-sm shadow-primary/30"
           />
         </header>
 
