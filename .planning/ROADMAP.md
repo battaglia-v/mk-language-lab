@@ -188,7 +188,7 @@ Plans:
 
 **Milestone Goal:** Comprehensive quality improvements across UX, content, and performance for all three core areas (Learn, Practice, Reader)
 
-#### Phase 47: Segmented Control Redesign
+#### Phase 47: Segmented Control Redesign — COMPLETE
 
 **Goal**: Modernize toggle/tab component across 4 locations (Reader, Alphabet, TextImporter, DailyLessons)
 **Depends on**: Previous milestone complete
@@ -196,7 +196,7 @@ Plans:
 **Plans**: 1
 
 Plans:
-- [ ] 47-01: Tabs redesign with sliding indicator + consumer updates
+- [x] 47-01: Tabs redesign with sliding indicator + consumer updates — completed 2026-01-12
 
 #### Phase 48: Learn UX Audit & Polish
 
@@ -253,7 +253,7 @@ Plans:
 
 | Phase | Milestone | Plans | Status | Completed |
 |-------|-----------|-------|--------|-----------|
-| 47. Segmented Control Redesign | v1.8 | 0/1 | Planned | - |
+| 47. Segmented Control Redesign | v1.8 | 1/1 | Complete | 2026-01-12 |
 | 48. Learn UX Audit & Polish | v1.8 | 0/? | Not started | - |
 | 49. Practice UX Audit & Polish | v1.8 | 0/? | Not started | - |
 | 50. Reader UX Audit & Polish | v1.8 | 0/? | Not started | - |
