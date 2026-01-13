@@ -26,7 +26,7 @@ export default function ResultsPage() {
   return (
     <PageContainer size="sm" className="flex flex-col items-center justify-center min-h-[70vh] gap-6 py-8">
       {/* Celebration Header */}
-      <div className="text-center space-y-2">
+      <div className="text-center space-y-2 animate-in fade-in-0 zoom-in-95 duration-300">
         <div className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-amber-500/20 mb-4">
           <Trophy className="h-10 w-10 text-primary" />
         </div>
@@ -40,7 +40,10 @@ export default function ResultsPage() {
 
       {/* XP Earned */}
       {xp > 0 && (
-        <div className="glass-card rounded-2xl p-6 text-center w-full max-w-xs">
+        <div
+          className="glass-card rounded-2xl p-6 text-center w-full max-w-xs animate-in fade-in-0 slide-in-from-bottom-3 duration-300"
+          style={{ animationDelay: '100ms', animationFillMode: 'backwards' }}
+        >
           <p className="text-5xl font-bold text-primary">+{xp}</p>
           <p className="text-sm text-muted-foreground mt-1">XP {t('drills.earned', { default: 'Earned' })}</p>
         </div>
@@ -48,14 +51,17 @@ export default function ResultsPage() {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-2 gap-3 w-full max-w-sm">
-        <StatCard icon={Target} value={`${accuracy}%`} label={t('drills.accuracyLabel', { default: 'Accuracy' })} color="emerald" />
-        <StatCard icon={Trophy} value={reviewed.toString()} label={t('drills.cardsReviewed', { default: 'Cards' })} color="primary" />
-        <StatCard icon={Flame} value={streak.toString()} label={t('drills.bestStreak', { default: 'Best Streak' })} color="amber" />
-        <StatCard icon={Clock} value={`${minutes}:${String(seconds).padStart(2, '0')}`} label={t('drills.timeSpent', { default: 'Time' })} color="blue" />
+        <StatCard icon={Target} value={`${accuracy}%`} label={t('drills.accuracyLabel', { default: 'Accuracy' })} color="emerald" animationDelay={200} />
+        <StatCard icon={Trophy} value={reviewed.toString()} label={t('drills.cardsReviewed', { default: 'Cards' })} color="primary" animationDelay={300} />
+        <StatCard icon={Flame} value={streak.toString()} label={t('drills.bestStreak', { default: 'Best Streak' })} color="amber" animationDelay={400} />
+        <StatCard icon={Clock} value={`${minutes}:${String(seconds).padStart(2, '0')}`} label={t('drills.timeSpent', { default: 'Time' })} color="blue" animationDelay={500} />
       </div>
 
       {/* Actions */}
-      <div className="flex flex-col gap-3 w-full max-w-sm mt-4">
+      <div
+        className="flex flex-col gap-3 w-full max-w-sm mt-4 animate-in fade-in-0 duration-300"
+        style={{ animationDelay: '600ms', animationFillMode: 'backwards' }}
+      >
         <Button asChild size="lg" className="w-full min-h-[52px] rounded-xl" data-testid="practice-results-practice-again">
           <Link href={`/${locale}/practice/session?deck=${deckType}`}>
             <RotateCcw className="h-5 w-5 mr-2" />
@@ -84,7 +90,19 @@ export default function ResultsPage() {
   );
 }
 
-function StatCard({ icon: Icon, value, label, color }: { icon: typeof Trophy; value: string; label: string; color: string }) {
+function StatCard({
+  icon: Icon,
+  value,
+  label,
+  color,
+  animationDelay,
+}: {
+  icon: typeof Trophy;
+  value: string;
+  label: string;
+  color: string;
+  animationDelay?: number;
+}) {
   const colorClasses: Record<string, string> = {
     primary: 'text-primary bg-primary/10',
     emerald: 'text-emerald-400 bg-emerald-500/10',
@@ -92,7 +110,10 @@ function StatCard({ icon: Icon, value, label, color }: { icon: typeof Trophy; va
     blue: 'text-blue-400 bg-blue-500/10',
   };
   return (
-    <div className="glass-card rounded-xl p-4 text-center">
+    <div
+      className="glass-card rounded-xl p-4 text-center animate-in fade-in-0 slide-in-from-bottom-2 duration-200"
+      style={animationDelay ? { animationDelay: `${animationDelay}ms`, animationFillMode: 'backwards' } : undefined}
+    >
       <div className={`inline-flex h-10 w-10 items-center justify-center rounded-full ${colorClasses[color]} mb-2`}>
         <Icon className="h-5 w-5" />
       </div>
