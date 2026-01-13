@@ -180,8 +180,8 @@ export default function VocabularySection({ items }: VocabularySectionProps) {
       </div>
 
       {/* Vocabulary Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {filteredItems.map((item) => {
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {filteredItems.map((item, index) => {
           const revealed = isRevealed(item.id);
 
           return (
@@ -191,10 +191,12 @@ export default function VocabularySection({ items }: VocabularySectionProps) {
               className={cn(
                 'p-4 cursor-pointer transition-all duration-200 select-none',
                 'hover:shadow-md hover:scale-[1.02]',
+                'animate-in fade-in slide-in-from-bottom-2',
                 revealed
                   ? 'bg-card border-primary/30'
                   : 'bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20'
               )}
+              style={{ animationDelay: `${index * 50}ms`, animationFillMode: 'backwards' }}
             >
               <div className="space-y-3">
                 {/* Macedonian word - always visible */}
