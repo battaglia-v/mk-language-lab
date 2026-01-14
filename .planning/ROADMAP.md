@@ -26,7 +26,7 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 - [x] Phase 57: Answer Evaluation (1/1 plans) — completed 2026-01-14
 - [~] Phase 58: Audio Language — DEFERRED to v2.0 (plan preserved)
 - [x] Phase 59: Polish & Branding (1/1 plans) — completed 2026-01-14
-- [x] Phase 60: QA Validation (1/1 plans) — completed 2026-01-14
+- [x] Phase 60: QA Validation (2/2 plans) — completed 2026-01-14
 
 ## Completed Milestones
 
@@ -220,7 +220,7 @@ Plans:
 - [v1.6 Reader Overhaul](milestones/v1.6-ROADMAP.md) — 6 phases, 7 plans (shipped 2026-01-11)
 - [v1.7 Learn Experience Overhaul](milestones/v1.7-ROADMAP.md) — 5 phases, 6 plans (shipped 2026-01-11)
 - [v1.8 Quality & Performance](milestones/v1.8-ROADMAP.md) — 6 phases, 10 plans (shipped 2026-01-13)
-- **v1.9 Quality & Stability** — 8 phases, 11 plans (shipped 2026-01-14)
+- **v1.9 Quality & Stability** — 8 phases, 12 plans (shipped 2026-01-14)
 
 ## Domain Expertise
 

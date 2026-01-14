@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-13)
 ## Current Position
 
 Phase: 60 of 60 (QA Validation)
-Plan: 60-01 COMPLETE
+Plan: 60-02 COMPLETE
 Status: v1.9 milestone complete
-Last activity: 2026-01-14 — Completed 60-01 (QA Validation)
+Last activity: 2026-01-14 — Completed 60-02 (QA Validation - User Feedback Fixes)
 
-Progress: ██████████ 100% (v1.9 - 8/8 phases, 1 deferred)
+Progress: ██████████ 100% (v1.9 - 8/8 phases, 12 plans, 1 deferred)
 
 ## Milestone Summary
 
@@ -80,22 +80,23 @@ Progress: ██████████ 100% (v1.9 - 8/8 phases, 1 deferred)
 - Performance: caching (1hr), CDN headers, prefetching
 
 **v1.9 Quality & Stability shipped 2026-01-14**
-- 8 phases (53-60), 11 plans
+- 8 phases (53-60), 12 plans
 - Security audit and repo hygiene
-- Exercise state machine architecture
+- Exercise state machine architecture with explicit Check button
 - Unified answer evaluation with Macedonian grammar support
 - Play Store compliance (Android 15+, large screens)
 - TWA verification fixed (no more browser wrapper)
 - QA validation: all tests pass, production build succeeds
+- User feedback fixes: 12 issues (P0/P1/P2) resolved
 
 See `.planning/MILESTONES.md` for full details.
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 98
+- Total plans completed: 99
 - Average duration: ~9 min
-- Total execution time: ~14 hours
+- Total execution time: ~14.5 hours
 
 **By Milestone:**
 
@@ -110,7 +111,7 @@ See `.planning/MILESTONES.md` for full details.
 | v1.6 Reader Overhaul | 6 | 7 | 29 | 2 days |
 | v1.7 Learn Experience | 5 | 6 | 32 | Same day |
 | v1.8 Quality & Performance | 6 | 10 | 38 | 2 days |
-| v1.9 Quality & Stability | 8 | 11 | ~25 | 1 day |
+| v1.9 Quality & Stability | 8 | 12 | ~36 | 1 day |
 
 ## Accumulated Context
 
@@ -143,6 +144,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-14
-Stopped at: Completed Phase 60 (QA Validation) - v1.9 SHIPPED
+Stopped at: Completed 60-02 (QA Validation - User Feedback Fixes) - v1.9 SHIPPED
 Next action: Plan next milestone (v2.0)
 Resume file: N/A - milestone complete
