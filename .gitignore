@@ -58,15 +58,29 @@ ios/
 out/
 
 # Android TWA (Bubblewrap) - contains keystore and build artifacts
+# Keystores (signing keys - NEVER commit)
 android-twa/*.keystore
+android-twa/*.keystore.*
 android-twa/*.jks
+android-twa/*.jks.*
+
+# APK signatures and build artifacts
+android-twa/*.apk
+android-twa/*.apk.*
+android-twa/*.aab
+android-twa/*-signed.*
+
+# Build directories
 android-twa/app/
 android-twa/gradle/
-android-twa/*.apk
-android-twa/*.aab
 android-twa/.gradle/
 android-twa/build/
 android-twa/local.properties
+
+# Global keystore patterns (safety net)
+*.keystore
+*.keystore.*
+!*.keystore.example
 
 # Test files with potential secrets
 test-*.mjs
