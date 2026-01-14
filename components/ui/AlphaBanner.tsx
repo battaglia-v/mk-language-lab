@@ -32,7 +32,7 @@ export function AlphaBanner() {
         <span className="font-medium">Alpha Preview</span>
         <span className="text-white/90">— Feedback welcome!</span>
         <a
-          href="mailto:feedback@mklearn.app?subject=MK%20Language%20Lab%20Feedback"
+          href="mailto:contact@mklanguage.com?subject=Alpha%20Feedback%20-%20MK%20Language%20Lab"
           className="ml-2 underline underline-offset-2 hover:no-underline"
         >
           Send feedback

@@ -24,7 +24,7 @@ export default function Footer() {
     { label: t('about'), href: `/${locale}/about`, external: false },
     { label: t('privacy'), href: `/${locale}/privacy`, external: false },
     { label: t('terms'), href: `/${locale}/terms`, external: false },
-    { label: t('contact'), href: 'mailto:macedonianlanguagelab@gmail.com?subject=Macedonian%20Language%20Lab', external: true },
+    { label: t('contact'), href: 'mailto:contact@mklanguage.com?subject=Macedonian%20Language%20Lab', external: true },
   ];
 
   const socialLinks = [
