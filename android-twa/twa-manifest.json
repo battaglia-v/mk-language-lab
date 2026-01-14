@@ -1,6 +1,6 @@
 {
   "packageId": "com.mklanguage.app",
-  "host": "www.mklanguage.com",
+  "host": "mklanguage.com",
   "name": "MK Language Lab",
   "launcherName": "MK Language Lab",
   "display": "standalone",
@@ -13,18 +13,18 @@
   "backgroundColor": "#080B12",
   "enableNotifications": true,
   "startUrl": "/",
-  "iconUrl": "https://www.mklanguage.com/icon-512.png",
-  "maskableIconUrl": "https://www.mklanguage.com/icon-512-maskable.png",
+  "iconUrl": "https://mklanguage.com/icon-512.png",
+  "maskableIconUrl": "https://mklanguage.com/icon-512-maskable.png",
   "splashScreenFadeOutDuration": 300,
   "signingKey": {
     "path": "./mklanguage.keystore",
     "alias": "mklanguage"
   },
-  "appVersionName": "8",
-  "appVersionCode": 8,
+  "appVersionName": "y",
+  "appVersionCode": 10,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
-  "webManifestUrl": "https://www.mklanguage.com/manifest.json",
+  "webManifestUrl": "https://mklanguage.com/manifest.json",
   "fallbackType": "customtabs",
   "features": {
     "locationDelegation": {
@@ -37,7 +37,7 @@
   "enableSiteSettingsShortcut": true,
   "isChromeOSOnly": false,
   "isMetaQuest": false,
-  "fullScopeUrl": "https://www.mklanguage.com/",
+  "fullScopeUrl": "https://mklanguage.com/",
   "minSdkVersion": 21,
   "orientation": "default",
   "fingerprints": [
@@ -50,5 +50,5 @@
   "fileHandlers": [],
   "launchHandlerClientMode": "",
   "displayOverride": [],
-  "appVersion": "8"
+  "appVersion": "y"
 }
