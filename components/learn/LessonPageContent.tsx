@@ -5,6 +5,7 @@ import { useLocale } from 'next-intl';
 import { CurriculumLessonWrapper } from './CurriculumLessonWrapper';
 import LessonContent from './LessonContent';
 import LessonPageContentV2 from './LessonPageContentV2';
+import { useToast } from '@/components/ui/use-toast';
 import type { LessonResults, Step } from '@/lib/lesson-runner/types';
 
 interface LessonPageContentProps {
@@ -40,6 +41,7 @@ export function LessonPageContent({
 }: LessonPageContentProps) {
   const router = useRouter();
   const locale = useLocale();
+  const { addToast } = useToast();
 
   // If using new guided lesson flow (V2)
   if (useNewLessonFlow && !useLessonRunner) {
@@ -72,19 +74,24 @@ export function LessonPageContent({
     }
 
     const handleComplete = async (results: LessonResults) => {
-      if (!userId) {
-        // Navigate without saving
+      // Navigate helper - always navigate regardless of save success
+      const navigateNext = () => {
         if (nextLesson) {
           router.push(`/${locale}/lesson/${nextLesson.id}`);
         } else {
           router.push(`/${locale}/learn`);
         }
+      };
+
+      if (!userId) {
+        // Navigate without saving (guest user)
+        navigateNext();
         return;
       }
 
-      // Save lesson progress
+      // Save lesson progress (fire and forget - don't block navigation)
       try {
-        await fetch('/api/lessons/progress', {
+        const response = await fetch('/api/lessons/progress', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -95,15 +102,22 @@ export function LessonPageContent({
           }),
         });
 
-        // Navigate to next lesson or home
-        if (nextLesson) {
-          router.push(`/${locale}/lesson/${nextLesson.id}`);
-        } else {
-          router.push(`/${locale}/learn`);
+        if (!response.ok) {
+          throw new Error('Save failed');
         }
       } catch (error) {
         console.error('Failed to save progress:', error);
+        // Show subtle toast - don't block the user
+        addToast({
+          title: 'Progress not saved',
+          description: 'Your progress may not have been saved. Please check your connection.',
+          type: 'warning',
+          duration: 4000,
+        });
       }
+
+      // Always navigate - graceful degradation
+      navigateNext();
     };
 
     const handleExit = () => {

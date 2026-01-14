@@ -311,12 +311,12 @@ export default function LessonPageContentV2({
     }
   }, [userProgress, sections]);
 
-  // Save progress to API
+  // Save progress to API (graceful degradation - show toast on failure, don't block)
   const saveProgress = useCallback(async (newProgress: number, status: string) => {
     if (!userId) return;
 
     try {
-      await fetch('/api/lessons/progress', {
+      const response = await fetch('/api/lessons/progress', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -326,10 +326,20 @@ export default function LessonPageContentV2({
           timeSpent: Math.floor((Date.now() - startTime) / 60000),
         }),
       });
+      if (!response.ok) {
+        throw new Error('Save failed');
+      }
     } catch (error) {
       console.error('Failed to save progress:', error);
+      // Show subtle toast - don't block the user
+      addToast({
+        title: 'Progress not saved',
+        description: 'Your progress may not have been saved. Please check your connection.',
+        type: 'warning',
+        duration: 4000,
+      });
     }
-  }, [userId, lesson.id, startTime]);
+  }, [userId, lesson.id, startTime, addToast]);
 
   // Handle continuing to next section
   const handleContinue = useCallback(async () => {
