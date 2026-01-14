@@ -16,6 +16,7 @@ import type { LessonRunnerProps, Step, SummaryStep, LessonResults, StepAnswer } 
 import { MultipleChoice } from './steps/MultipleChoice';
 import { FillBlank } from './steps/FillBlank';
 import { TapWords } from './steps/TapWords';
+import { SentenceBuilder } from './steps/SentenceBuilder';
 import { Info } from './steps/Info';
 import { Summary } from './steps/Summary';
 
@@ -177,6 +178,8 @@ export function LessonRunner({
         return <FillBlank step={currentStep} {...baseProps} />;
       case 'TAP_WORDS':
         return <TapWords step={currentStep} {...baseProps} />;
+      case 'SENTENCE_BUILDER':
+        return <SentenceBuilder step={currentStep} {...baseProps} />;
       case 'SUMMARY':
         return <Summary step={currentStep} {...baseProps} />;
       default:

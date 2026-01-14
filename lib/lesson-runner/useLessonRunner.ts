@@ -141,6 +141,36 @@ export function useLessonRunner(
           };
         }
 
+        case 'SENTENCE_BUILDER': {
+          if (answer.type !== 'SENTENCE_BUILDER') {
+            return {
+              isCorrect: false,
+              feedback: { correct: false, message: 'Invalid answer type' },
+            };
+          }
+
+          // Compare selected words to correct order (exact match)
+          const selectedJoined = answer.selectedWords.join(' ');
+          const correctJoined = step.correctOrder.join(' ');
+          let isCorrect = selectedJoined === correctJoined;
+
+          // Check alternative orders if primary doesn't match
+          if (!isCorrect && step.alternativeOrders?.length) {
+            isCorrect = step.alternativeOrders.some(
+              (alt) => alt.join(' ') === selectedJoined
+            );
+          }
+
+          return {
+            isCorrect,
+            feedback: {
+              correct: isCorrect,
+              message: isCorrect ? 'Correct!' : 'Not quite',
+              correctAnswer: isCorrect ? undefined : step.correctOrder.join(' '),
+            },
+          };
+        }
+
         case 'TAP_WORDS': {
           if (answer.type !== 'TAP_WORDS') {
             return {

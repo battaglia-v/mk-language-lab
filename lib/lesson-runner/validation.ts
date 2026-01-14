@@ -88,6 +88,18 @@ export function validateStep(step: Step): ValidationResult {
       // audioUrl is optional - TTS fallback is available when missing
       break;
 
+    case 'SENTENCE_BUILDER':
+      if (!step.words?.length) {
+        errors.push({ stepId, field: 'words', message: 'Words array is required for sentence builder' });
+      }
+      if (!step.correctOrder?.length) {
+        errors.push({ stepId, field: 'correctOrder', message: 'Correct order is required for sentence builder' });
+      }
+      if (step.words?.length && step.correctOrder?.length && step.words.length !== step.correctOrder.length) {
+        errors.push({ stepId, field: 'words', message: 'Words and correct order must have the same length' });
+      }
+      break;
+
     case 'SUMMARY':
       // Summary steps have minimal requirements - mostly computed fields
       break;
@@ -136,6 +148,8 @@ export function getFallbackPrompt(stepType: Step['type']): string {
       return 'Tap words to see translations';
     case 'PRONOUNCE':
       return 'Practice your pronunciation';
+    case 'SENTENCE_BUILDER':
+      return 'Arrange words into a sentence';
     case 'SUMMARY':
       return 'Lesson complete!';
     default:
@@ -158,6 +172,8 @@ export function getDefaultInstructions(stepType: Step['type']): string {
       return 'Tap on words to see their translations.';
     case 'PRONOUNCE':
       return 'Listen to the pronunciation, then record yourself saying it.';
+    case 'SENTENCE_BUILDER':
+      return 'Tap words in the correct order to build the sentence.';
     case 'SUMMARY':
       return 'Great work! Review your results.';
     default:
