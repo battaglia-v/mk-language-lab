@@ -103,6 +103,12 @@ export function LessonPathNode({ node, locale, index, isContinueNode, totalNodes
         )}>
           {node.title}
         </p>
+        {/* Coming Soon badge for locked content */}
+        {isLocked && (
+          <span className="mt-1 inline-block rounded-full bg-muted/80 px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
+            {t('comingSoon')}
+          </span>
+        )}
       </div>
     </div>
   );
