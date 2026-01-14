@@ -194,6 +194,29 @@ export function useLessonRunner(
           };
         }
 
+        case 'ERROR_CORRECTION': {
+          if (answer.type !== 'ERROR_CORRECTION') {
+            return {
+              isCorrect: false,
+              feedback: { correct: false, message: 'Invalid answer type' },
+            };
+          }
+
+          // Check if user selected the correct error word
+          const isCorrect = answer.selectedIndex === step.errorIndex;
+
+          return {
+            isCorrect,
+            feedback: {
+              correct: isCorrect,
+              message: isCorrect ? 'Correct!' : 'Not quite',
+              correctAnswer: isCorrect
+                ? undefined
+                : `${step.words[step.errorIndex]} → ${step.correctWord}`,
+            },
+          };
+        }
+
         case 'PRONOUNCE': {
           if (answer.type !== 'PRONOUNCE') {
             return {

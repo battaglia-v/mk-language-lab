@@ -100,6 +100,21 @@ export function validateStep(step: Step): ValidationResult {
       }
       break;
 
+    case 'ERROR_CORRECTION':
+      if (!step.words?.length) {
+        errors.push({ stepId, field: 'words', message: 'Words array is required for error correction' });
+      }
+      if (step.errorIndex === undefined || step.errorIndex < 0) {
+        errors.push({ stepId, field: 'errorIndex', message: 'Error index is required and must be non-negative' });
+      }
+      if (step.words?.length && step.errorIndex >= step.words.length) {
+        errors.push({ stepId, field: 'errorIndex', message: 'Error index must be within words array bounds' });
+      }
+      if (!step.correctWord?.trim()) {
+        errors.push({ stepId, field: 'correctWord', message: 'Correct word is required' });
+      }
+      break;
+
     case 'SUMMARY':
       // Summary steps have minimal requirements - mostly computed fields
       break;
@@ -150,6 +165,8 @@ export function getFallbackPrompt(stepType: Step['type']): string {
       return 'Practice your pronunciation';
     case 'SENTENCE_BUILDER':
       return 'Arrange words into a sentence';
+    case 'ERROR_CORRECTION':
+      return 'Find and fix the error';
     case 'SUMMARY':
       return 'Lesson complete!';
     default:
@@ -174,6 +191,8 @@ export function getDefaultInstructions(stepType: Step['type']): string {
       return 'Listen to the pronunciation, then record yourself saying it.';
     case 'SENTENCE_BUILDER':
       return 'Tap words in the correct order to build the sentence.';
+    case 'ERROR_CORRECTION':
+      return 'Tap the word that contains an error.';
     case 'SUMMARY':
       return 'Great work! Review your results.';
     default:
