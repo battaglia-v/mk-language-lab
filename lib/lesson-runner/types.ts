@@ -15,6 +15,7 @@ export type StepType =
   | 'FILL_BLANK'
   | 'TAP_WORDS'
   | 'PRONOUNCE'
+  | 'SENTENCE_BUILDER'
   | 'SUMMARY';
 
 // Base step interface that all step types extend
@@ -117,6 +118,19 @@ export interface PronounceStep extends BaseStep {
 }
 
 /**
+ * Sentence Builder Step
+ * User arranges shuffled words into correct sentence order
+ */
+export interface SentenceBuilderStep extends BaseStep {
+  type: 'SENTENCE_BUILDER';
+  words: string[]; // Shuffled words to arrange
+  correctOrder: string[]; // Correct arrangement
+  alternativeOrders?: string[][]; // Acceptable alternative word orders
+  translationHint?: string; // English translation for context
+  instructions?: string; // Optional custom instructions
+}
+
+/**
  * Summary/Completion Step
  * Shows lesson results, XP earned, and completion message
  */
@@ -140,6 +154,7 @@ export type Step =
   | FillBlankStep
   | TapWordsStep
   | PronounceStep
+  | SentenceBuilderStep
   | SummaryStep;
 
 // ============================================================================
@@ -165,6 +180,7 @@ export type StepAnswer =
   | { type: 'FILL_BLANK'; answer: string }
   | { type: 'TAP_WORDS'; tappedWords: string[]; savedWords?: string[] }
   | { type: 'PRONOUNCE'; recordingBlob?: Blob; skipped: boolean }
+  | { type: 'SENTENCE_BUILDER'; selectedWords: string[] }
   | { type: 'SUMMARY'; acknowledged: boolean };
 
 /**
