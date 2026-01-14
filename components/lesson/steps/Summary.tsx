@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Trophy, Star, Flame, TrendingUp } from 'lucide-react';
+import Link from 'next/link';
+import { useLocale } from 'next-intl';
+import { Trophy, Star, Flame, TrendingUp, ArrowLeft } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import type { SummaryStep, StepComponentProps } from '@/lib/lesson-runner/types';
 import { cn } from '@/lib/utils';
@@ -20,6 +22,7 @@ export function Summary({
   onAnswer,
   feedback,
 }: StepComponentProps<SummaryStep>) {
+  const locale = useLocale();
   const accuracy = step.totalSteps > 0
     ? Math.round((step.correctAnswers / step.totalSteps) * 100)
     : 0;
@@ -180,6 +183,17 @@ export function Summary({
             Keep practicing! You&apos;re making progress.
           </p>
         )}
+      </div>
+
+      {/* Back to lessons link - always available */}
+      <div className="text-center pt-2">
+        <Link
+          href={`/${locale}/learn`}
+          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to lessons
+        </Link>
       </div>
     </div>
   );

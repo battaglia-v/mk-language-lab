@@ -574,9 +574,7 @@ export function useLessonRunner(
 
     // Button state helpers
     submitLabel: showFeedback || isInfoStep
-      ? isLastStep
-        ? 'Finish Lesson'
-        : 'Continue'
+      ? 'Continue'
       : 'Check',
     // Enable Check button when user has a pending answer (not yet validated)
     submitDisabled: isInfoStep ? false : (showFeedback ? false : !hasPendingAnswer) || isEvaluating,
