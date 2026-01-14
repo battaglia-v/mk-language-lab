@@ -2822,5 +2822,18 @@
     "title": "Tools",
     "translateTab": "Translate",
     "analyzeTab": "Analyze"
+  },
+  "validation": {
+    "correct": "Correct!",
+    "incorrect": "Not quite",
+    "hints": {
+      "diacritics": "Almost! Check your diacritics and accents.",
+      "case": "Watch your capitalization!",
+      "punctuation": "Check your punctuation.",
+      "spelling": "Check your spelling carefully.",
+      "article": "Check the definite article! Remember: -от (m), -та (f), -то (n)",
+      "gender": "Check gender agreement! Feminine nouns often end in -а",
+      "conjugation": "Check your verb conjugation! Match the ending to the subject."
+    }
   }
 }
