@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { lessonId, status, progress, timeSpent } = body;
+    const { lessonId, status, progress, timeSpent, currentStepIndex, stepAnswers } = body;
 
     if (!lessonId) {
       return NextResponse.json({ error: 'Lesson ID is required' }, { status: 400 });
@@ -42,6 +42,9 @@ export async function POST(request: NextRequest) {
         timeSpent: timeSpent || 0,
         lastViewedAt: new Date(),
         ...(status === 'completed' && { completedAt: new Date() }),
+        // Step-level progress for resume capability
+        ...(currentStepIndex !== undefined && { currentStepIndex }),
+        ...(stepAnswers !== undefined && { stepAnswers }),
       },
       create: {
         userId: session.user.id,
@@ -51,6 +54,9 @@ export async function POST(request: NextRequest) {
         timeSpent: timeSpent || 0,
         lastViewedAt: new Date(),
         ...(status === 'completed' && { completedAt: new Date() }),
+        // Step-level progress for resume capability
+        ...(currentStepIndex !== undefined && { currentStepIndex }),
+        ...(stepAnswers !== undefined && { stepAnswers }),
       },
     });
 

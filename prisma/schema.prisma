@@ -278,6 +278,10 @@ model UserLessonProgress {
   lastViewedAt DateTime?
   completedAt  DateTime?
 
+  // Step-level progress for resume capability
+  currentStepIndex Int   @default(0) // which step user was on
+  stepAnswers      Json? // serialized Map of stepId → StepAnswer
+
   user   User             @relation(fields: [userId], references: [id], onDelete: Cascade)
   lesson CurriculumLesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
 
