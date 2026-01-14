@@ -5,7 +5,8 @@
       "namespace": "android_app",
       "package_name": "com.mklanguage.app",
       "sha256_cert_fingerprints": [
-        "4C:6D:EA:CF:77:55:3A:40:09:D8:94:5E:97:D1:9A:FC:8C:7D:B8:28:03:1F:A8:EC:6B:9F:73:FC:44:F7:D2:02"
+        "4C:6D:EA:CF:77:55:3A:40:09:D8:94:5E:97:D1:9A:FC:8C:7D:B8:28:03:1F:A8:EC:6B:9F:73:FC:44:F7:D2:02",
+        "4F:BB:96:B7:2A:3A:56:8D:5D:71:6F:07:2F:B4:21:91:3A:44:80:05:8B:D8:8E:33:41:83:F5:75:1D:F4:61:58"
       ]
     }
   }
