@@ -4,8 +4,8 @@
   "name": "MK Language Lab",
   "launcherName": "MK Language Lab",
   "display": "standalone",
-  "themeColor": "#D32F2F",
-  "themeColorDark": "#D32F2F",
+  "themeColor": "#080B12",
+  "themeColorDark": "#080B12",
   "navigationColor": "#000000",
   "navigationColorDark": "#000000",
   "navigationDividerColor": "#000000",
@@ -20,8 +20,8 @@
     "path": "./mklanguage.keystore",
     "alias": "mklanguage"
   },
-  "appVersionName": "5",
-  "appVersionCode": 5,
+  "appVersionName": "6",
+  "appVersionCode": 6,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
   "webManifestUrl": "https://www.mklanguage.com/manifest.json",
@@ -39,13 +39,16 @@
   "isMetaQuest": false,
   "fullScopeUrl": "https://www.mklanguage.com/",
   "minSdkVersion": 21,
-  "orientation": "portrait-primary",
-  "fingerprints": [],
+  "orientation": "default",
+  "fingerprints": [
+    "4C:6D:EA:CF:77:55:3A:40:09:D8:94:5E:97:D1:9A:FC:8C:7D:B8:28:03:1F:A8:EC:6B:9F:73:FC:44:F7:D2:02",
+    "4F:BB:96:B7:2A:3A:56:8D:5D:71:6F:07:2F:B4:21:91:3A:44:80:05:8B:D8:8E:33:41:83:F5:75:1D:F4:61:58"
+  ],
   "additionalTrustedOrigins": [],
   "retainedBundles": [],
   "protocolHandlers": [],
   "fileHandlers": [],
   "launchHandlerClientMode": "",
   "displayOverride": [],
-  "appVersion": "5"
+  "appVersion": "6"
 }
