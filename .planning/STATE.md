@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-13)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** Planning next milestone
+**Current focus:** Ready for next milestone planning
 
 ## Current Position
 
 Phase: 60 of 60 (QA Validation)
-Plan: Ready to plan
-Status: Phase 59 complete, ready to plan Phase 60
-Last activity: 2026-01-14 — Completed 59-01 (Play Store fixes)
+Plan: 60-01 COMPLETE
+Status: v1.9 milestone complete
+Last activity: 2026-01-14 — Completed 60-01 (QA Validation)
 
-Progress: ████████░░ 88% (v1.9 - 7/8 phases, 1 deferred)
+Progress: ██████████ 100% (v1.9 - 8/8 phases, 1 deferred)
 
 ## Milestone Summary
 
@@ -79,6 +79,15 @@ Progress: ████████░░ 88% (v1.9 - 7/8 phases, 1 deferred)
 - Content quality validation (84 POS fixes, 0 critical issues)
 - Performance: caching (1hr), CDN headers, prefetching
 
+**v1.9 Quality & Stability shipped 2026-01-14**
+- 8 phases (53-60), 11 plans
+- Security audit and repo hygiene
+- Exercise state machine architecture
+- Unified answer evaluation with Macedonian grammar support
+- Play Store compliance (Android 15+, large screens)
+- TWA verification fixed (no more browser wrapper)
+- QA validation: all tests pass, production build succeeds
+
 See `.planning/MILESTONES.md` for full details.
 
 ## Performance Metrics
@@ -101,6 +110,7 @@ See `.planning/MILESTONES.md` for full details.
 | v1.6 Reader Overhaul | 6 | 7 | 29 | 2 days |
 | v1.7 Learn Experience | 5 | 6 | 32 | Same day |
 | v1.8 Quality & Performance | 6 | 10 | 38 | 2 days |
+| v1.9 Quality & Stability | 8 | 11 | ~25 | 1 day |
 
 ## Accumulated Context
 
@@ -128,11 +138,11 @@ None.
 - Milestone v1.6 shipped: Reader overhaul (Phases 36-41)
 - Milestone v1.7 shipped: Learn experience overhaul (Phases 42-46)
 - Milestone v1.8 shipped: Quality & performance (Phases 47-52)
-- Milestone v1.9 in progress: Quality & stability (Phases 53-60)
+- Milestone v1.9 shipped: Quality & stability (Phases 53-60)
 
 ## Session Continuity
 
 Last session: 2026-01-14
-Stopped at: Completed Phase 59 (Play Store fixes, AAB signed)
-Next action: Plan Phase 60 (QA Validation)
-Resume file: N/A - ready to plan
+Stopped at: Completed Phase 60 (QA Validation) - v1.9 SHIPPED
+Next action: Plan next milestone (v2.0)
+Resume file: N/A - milestone complete

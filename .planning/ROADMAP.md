@@ -15,9 +15,9 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 - ✅ [v1.6 Reader Overhaul](milestones/v1.6-ROADMAP.md) (Phases 36-41) — SHIPPED 2026-01-11
 - ✅ [v1.7 Learn Experience Overhaul](milestones/v1.7-ROADMAP.md) (Phases 42-46) — SHIPPED 2026-01-11
 - ✅ [v1.8 Quality & Performance](milestones/v1.8-ROADMAP.md) (Phases 47-52) — SHIPPED 2026-01-13
-- 🔄 **v1.9 Quality & Stability** (Phases 53-60) — In Progress
+- ✅ **v1.9 Quality & Stability** (Phases 53-60) — SHIPPED 2026-01-14
 
-## v1.9 Quality & Stability (In Progress)
+## v1.9 Quality & Stability — SHIPPED 2026-01-14
 
 - [x] Phase 53: Security & Repo Hygiene (3/3 plans) — completed 2026-01-14
 - [x] Phase 54: Exercise Architecture Research (1/1 plans) — completed 2026-01-14
@@ -26,7 +26,7 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 - [x] Phase 57: Answer Evaluation (1/1 plans) — completed 2026-01-14
 - [~] Phase 58: Audio Language — DEFERRED to v2.0 (plan preserved)
 - [x] Phase 59: Polish & Branding (1/1 plans) — completed 2026-01-14
-- [ ] Phase 60: QA Validation
+- [x] Phase 60: QA Validation (1/1 plans) — completed 2026-01-14
 
 ## Completed Milestones
 
@@ -220,6 +220,7 @@ Plans:
 - [v1.6 Reader Overhaul](milestones/v1.6-ROADMAP.md) — 6 phases, 7 plans (shipped 2026-01-11)
 - [v1.7 Learn Experience Overhaul](milestones/v1.7-ROADMAP.md) — 5 phases, 6 plans (shipped 2026-01-11)
 - [v1.8 Quality & Performance](milestones/v1.8-ROADMAP.md) — 6 phases, 10 plans (shipped 2026-01-13)
+- **v1.9 Quality & Stability** — 8 phases, 11 plans (shipped 2026-01-14)
 
 ## Domain Expertise
 
