@@ -12,6 +12,7 @@ import { LocaleSyncProvider } from '@/components/providers/LocaleSyncProvider';
 import { OfflineStatusToast } from '@/components/providers/OfflineStatusToast';
 import { AppShell } from '@/components/shell/AppShell';
 import { SkipLink } from '@/components/ui/accessibility';
+import { AlphaBanner } from '@/components/ui/AlphaBanner';
 
 type LayoutProps = {
   children: ReactNode;
@@ -40,6 +41,9 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
               <OfflineStatusToast />
               <XPNotificationProvider>
                 <GoogleOneTapProvider>
+                  {/* Alpha preview banner */}
+                  <AlphaBanner />
+
                   {/* Skip to main content link for keyboard navigation */}
                   <SkipLink />
 
