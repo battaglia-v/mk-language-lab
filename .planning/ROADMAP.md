@@ -20,7 +20,7 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 ## v1.9 Quality & Stability (In Progress)
 
 - [x] Phase 53: Security & Repo Hygiene (3/3 plans) — completed 2026-01-14
-- [ ] Phase 54: Exercise Architecture Research
+- [x] Phase 54: Exercise Architecture Research (1/1 plans) — completed 2026-01-14
 - [ ] Phase 55: Exercise State Machine
 - [ ] Phase 56: Lesson Flow Progress
 - [ ] Phase 57: Answer Evaluation
