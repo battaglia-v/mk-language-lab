@@ -15,6 +15,18 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 - ✅ [v1.6 Reader Overhaul](milestones/v1.6-ROADMAP.md) (Phases 36-41) — SHIPPED 2026-01-11
 - ✅ [v1.7 Learn Experience Overhaul](milestones/v1.7-ROADMAP.md) (Phases 42-46) — SHIPPED 2026-01-11
 - ✅ [v1.8 Quality & Performance](milestones/v1.8-ROADMAP.md) (Phases 47-52) — SHIPPED 2026-01-13
+- 🔄 **v1.9 Quality & Stability** (Phases 53-60) — In Progress
+
+## v1.9 Quality & Stability (In Progress)
+
+- [x] Phase 53: Security & Repo Hygiene (3/3 plans) — completed 2026-01-14
+- [ ] Phase 54: Exercise Architecture Research
+- [ ] Phase 55: Exercise State Machine
+- [ ] Phase 56: Lesson Flow Progress
+- [ ] Phase 57: Answer Evaluation
+- [ ] Phase 58: Audio Language
+- [ ] Phase 59: Polish & Branding
+- [ ] Phase 60: QA Validation
 
 ## Completed Milestones
 
