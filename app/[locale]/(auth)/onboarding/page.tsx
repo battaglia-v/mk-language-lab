@@ -22,10 +22,12 @@ import { PageContainer } from '@/components/layout';
 
 type Goal = 'conversation' | 'travel' | 'culture' | 'reading' | 'professional';
 type Level = 'beginner' | 'intermediate' | 'advanced';
+type TranslationLanguage = 'en' | 'sr' | 'bg' | 'ru' | 'de';
 
 type WizardData = {
   goal: Goal | null;
   level: Level | null;
+  translationLanguage: TranslationLanguage;
   dailyGoalMinutes: number;
   reminderWindows: string[];
 };
@@ -69,6 +71,14 @@ const LEVELS: { id: Level; label: string }[] = [
   { id: 'advanced', label: 'Fluent' },
 ];
 
+const TRANSLATION_LANGUAGES: { id: TranslationLanguage; label: string; native: string }[] = [
+  { id: 'en', label: 'English', native: 'English' },
+  { id: 'sr', label: 'Serbian', native: 'Српски' },
+  { id: 'bg', label: 'Bulgarian', native: 'Български' },
+  { id: 'ru', label: 'Russian', native: 'Русский' },
+  { id: 'de', label: 'German', native: 'Deutsch' },
+];
+
 // Simplified daily goals - just 3 options for quick selection
 const DAILY_GOALS: { minutes: number; label: string; description: string }[] = [
   { minutes: 5, label: 'Casual', description: '5 min/day' },
@@ -84,6 +94,7 @@ export default function OnboardingPage() {
   const [data, setData] = useState<WizardData>({
     goal: null,
     level: null,
+    translationLanguage: 'en',
     dailyGoalMinutes: 10,
     reminderWindows: [],
   });
@@ -114,9 +125,14 @@ export default function OnboardingPage() {
     trackEvent(AnalyticsEvents.ONBOARDING_DAILY_GOAL_SELECTED, { minutes });
   };
 
+  const handleTranslationLanguageSelect = (lang: TranslationLanguage) => {
+    setData({ ...data, translationLanguage: lang });
+    trackEvent(AnalyticsEvents.ONBOARDING_STEP_COMPLETED, { step: 2, translationLanguage: lang });
+  };
+
   const handleNext = () => {
     if (step === 1 && (!data.goal || !data.level)) return;
-    if (step < 2) {
+    if (step < 3) {
       trackEvent(AnalyticsEvents.ONBOARDING_STEP_COMPLETED, { step });
       setStep(step + 1);
     } else {
@@ -151,11 +167,18 @@ export default function OnboardingPage() {
         throw new Error('Failed to setup mission');
       }
 
+      // Save translation language preference to localStorage
+      // (Will be migrated to database in future update)
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('mk-translation-language', data.translationLanguage);
+      }
+
       // Track completion
       trackEvent(AnalyticsEvents.ONBOARDING_COMPLETED, {
         goal: data.goal,
         level: data.level,
         dailyGoalMinutes: data.dailyGoalMinutes,
+        translationLanguage: data.translationLanguage,
       });
 
       // Redirect to home page (dashboard) - goal is reflected there
@@ -171,7 +194,8 @@ export default function OnboardingPage() {
 
   const canProceed =
     (step === 1 && data.goal && data.level) ||
-    step === 2;
+    step === 2 ||
+    step === 3;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[var(--brand-red,#e63946)]/5 via-white to-[var(--brand-plum,#7a4988)]/5">
@@ -183,19 +207,21 @@ export default function OnboardingPage() {
             <span className="text-sm font-semibold uppercase tracking-[0.3em]">Welcome</span>
           </div>
           <h1 className="text-3xl font-semibold text-foreground sm:text-4xl md:text-5xl">
-            {step === 1 ? "What's your goal?" : "Set your pace"}
+            {step === 1 ? "What's your goal?" : step === 2 ? "Your language" : "Set your pace"}
           </h1>
           <p className="mt-3 text-base text-muted-foreground sm:text-lg">
-            {step === 1 
+            {step === 1
               ? "Pick a goal and your experience level"
-              : "How much time can you commit each day?"
+              : step === 2
+                ? "Which language do you want translations in?"
+                : "How much time can you commit each day?"
             }
           </p>
         </div>
 
-        {/* Progress indicator - 2 steps now */}
+        {/* Progress indicator - 3 steps now */}
         <div className="mb-6 flex items-center justify-center gap-3">
-          {[1, 2].map((num) => (
+          {[1, 2, 3].map((num) => (
             <div
               key={num}
               className={`h-2 w-24 rounded-full transition-colors ${
@@ -273,8 +299,45 @@ export default function OnboardingPage() {
             </div>
           )}
 
-          {/* Step 2: Daily Goal + Start CTA */}
+          {/* Step 2: Translation Language */}
           {step === 2 && (
+            <div className="space-y-4">
+              <p className="text-center text-sm text-muted-foreground mb-4">
+                Translations will appear in this language when learning Macedonian
+              </p>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {TRANSLATION_LANGUAGES.map((lang) => {
+                  const isSelected = data.translationLanguage === lang.id;
+                  return (
+                    <button
+                      key={lang.id}
+                      type="button"
+                      onClick={() => handleTranslationLanguageSelect(lang.id)}
+                      className={`relative flex items-center gap-3 rounded-2xl border-2 p-4 text-left transition-all ${
+                        isSelected
+                          ? 'border-[var(--brand-red,#e63946)] bg-[var(--brand-red,#e63946)]/5'
+                          : 'border-border/40 hover:border-[var(--brand-red,#e63946)]/50'
+                      }`}
+                      data-testid={`onboarding-translation-${lang.id}`}
+                    >
+                      {isSelected && (
+                        <div className="absolute right-3 top-3 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--brand-red,#e63946)] text-white">
+                          <Check className="h-3 w-3" />
+                        </div>
+                      )}
+                      <div>
+                        <h3 className="text-base font-semibold text-foreground">{lang.label}</h3>
+                        <p className="text-sm text-muted-foreground">{lang.native}</p>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Step 3: Daily Goal + Start CTA */}
+          {step === 3 && (
             <div className="space-y-6">
               {/* Daily goal options */}
               <div className="grid grid-cols-3 gap-3">
@@ -345,7 +408,7 @@ export default function OnboardingPage() {
           )}
         </WebCard>
 
-        {/* Navigation - simplified for 2 steps */}
+        {/* Navigation - 3 steps */}
         <div className="mt-4 flex items-center justify-between gap-4">
           <WebButton
             variant="ghost"
@@ -357,7 +420,7 @@ export default function OnboardingPage() {
             Back
           </WebButton>
 
-          {step === 1 && (
+          {(step === 1 || step === 2) && (
             <WebButton
               onClick={handleNext}
               disabled={!canProceed || isSubmitting}
