@@ -5,7 +5,7 @@
  * Enables gradual migration of existing lessons to the new LessonRunner system.
  */
 
-import type { Step, InfoStep, MultipleChoiceStep, FillBlankStep, SentenceBuilderStep } from '../types';
+import type { Step, InfoStep, MultipleChoiceStep, FillBlankStep, SentenceBuilderStep, ErrorCorrectionStep } from '../types';
 import type { GrammarExercise, GrammarLesson, SentenceBuilderExercise, ErrorCorrectionExercise } from '@/lib/grammar-engine';
 
 /**
@@ -167,23 +167,20 @@ export function exerciseToStep(exercise: GrammarExercise, locale: 'en' | 'mk' = 
     }
 
     case 'error-correction': {
-      // TODO: Error correction requires custom step type
-      // For now, convert to fill-blank as a fallback
       const ecExercise = exercise as ErrorCorrectionExercise;
-      const translation = ecExercise.translationEn ? `Translation: ${ecExercise.translationEn}` : undefined;
-      const promptParts = [
-        instruction,
-        `Sentence: ${ecExercise.sentenceWithErrorMk}`,
-        translation,
-      ].filter(Boolean);
-      const ecStep: FillBlankStep = {
+
+      // Split sentence into words for tap-to-identify UI
+      const words = ecExercise.sentenceWithErrorMk.split(' ');
+
+      const ecStep: ErrorCorrectionStep = {
         id: exercise.id,
-        type: 'FILL_BLANK',
-        prompt: promptParts.join(' '),
-        correctAnswer: ecExercise.correctedWord,
-        explanation,
-        caseSensitive: false,
-        placeholder: 'Type the corrected word...',
+        type: 'ERROR_CORRECTION',
+        sentence: ecExercise.sentenceWithErrorMk,
+        words,
+        errorIndex: ecExercise.errorPosition,
+        correctWord: ecExercise.correctedWord,
+        translationHint: ecExercise.translationEn,
+        instructions: instruction,
       };
       return ecStep;
     }
