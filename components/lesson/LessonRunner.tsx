@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { X, AlertTriangle } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { X, AlertTriangle, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   ExerciseLayout,
@@ -43,6 +44,11 @@ export function LessonRunner({
   onExit,
   autoSave = false,
 }: LessonRunnerProps) {
+  const t = useTranslations('learn');
+
+  // Resume prompt state
+  const [showResumePrompt, setShowResumePrompt] = useState(false);
+
   // Fetch user's current streak
   const [userStreak, setUserStreak] = useState(0);
 
@@ -107,10 +113,24 @@ export function LessonRunner({
     submitLabel,
     submitDisabled,
     showSkip,
+    savedProgress,
+    isLoadingProgress,
+    restoreProgress,
+    resetAndStartFresh,
   } = useLessonRunner(steps, {
     lessonId,
     onComplete: handleRawComplete,
     autoSave,
+    onProgressLoaded: (progressData) => {
+      // Show resume prompt if there's in-progress lesson with step data
+      if (
+        progressData &&
+        progressData.status === 'in_progress' &&
+        progressData.currentStepIndex > 0
+      ) {
+        setShowResumePrompt(true);
+      }
+    },
   });
 
   // Update Summary step with actual values
@@ -204,13 +224,70 @@ export function LessonRunner({
     // If not showing feedback, the step component handles submission via onAnswer
   };
 
+  // Resume prompt handlers
+  const handleResume = () => {
+    if (savedProgress) {
+      restoreProgress(savedProgress);
+    }
+    setShowResumePrompt(false);
+  };
+
+  const handleStartFresh = () => {
+    resetAndStartFresh();
+    setShowResumePrompt(false);
+  };
+
   // Chips for header
   const chips = [
     ...(difficulty ? [{ label: difficulty, variant: 'muted' as const }] : []),
     ...(lessonTitle ? [{ label: lessonTitle }] : []),
   ];
 
+  // Show loading spinner while fetching progress
+  if (isLoadingProgress) {
+    return (
+      <div className="flex h-[60vh] items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+      </div>
+    );
+  }
+
   return (
+    <>
+      {/* Resume Session Prompt */}
+      {showResumePrompt && savedProgress && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+          <div className="glass-card w-full max-w-sm rounded-2xl border border-border/40 bg-card p-6 shadow-xl animate-in fade-in zoom-in-95 duration-200">
+            <h2 className="text-xl font-semibold text-foreground mb-2">
+              {t('resumeTitle')}
+            </h2>
+            <p className="text-sm text-muted-foreground mb-6">
+              {t('resumeDescription', {
+                current: savedProgress.currentStepIndex + 1,
+                total: steps.length,
+              })}
+            </p>
+            <div className="flex flex-col gap-2">
+              <Button
+                onClick={handleResume}
+                className="w-full rounded-xl"
+                data-testid="lesson-resume"
+              >
+                {t('resumeButton')}
+              </Button>
+              <Button
+                variant="outline"
+                onClick={handleStartFresh}
+                className="w-full rounded-xl"
+                data-testid="lesson-start-fresh"
+              >
+                {t('startFreshButton')}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <ExerciseLayout
         progress={progress}
         chips={chips.length > 0 ? chips : undefined}
@@ -251,5 +328,6 @@ export function LessonRunner({
         )}
       </div>
     </ExerciseLayout>
+    </>
   );
 }
