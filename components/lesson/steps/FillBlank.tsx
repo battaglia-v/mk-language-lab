@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Volume2, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -10,6 +10,7 @@ import type { FillBlankStep, StepComponentProps } from '@/lib/lesson-runner/type
  * FillBlank Step Component
  *
  * Renders a fill-in-the-blank question with a text input.
+ * User types answer, then presses Check button (in parent) to validate.
  * Supports audio playback for prompts and placeholder hints.
  */
 export function FillBlank({
@@ -20,18 +21,38 @@ export function FillBlank({
 }: StepComponentProps<FillBlankStep>) {
   const [answer, setAnswer] = useState('');
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+  const [isComposing, setIsComposing] = useState(false);
 
-  // Reset answer when step changes to prevent answer flash on next question
+  // Reset answer when step changes
   useEffect(() => {
     setAnswer('');
   }, [step.id]);
 
-  // Submit answer when user types
-  useEffect(() => {
-    if (answer.trim() && !feedback) {
-      onAnswer({ type: 'FILL_BLANK', answer: answer.trim() });
+  // Update pending answer when user types (only if not during IME composition)
+  // This does NOT trigger validation - just tracks the answer for Check button
+  const updatePendingAnswer = useCallback((value: string) => {
+    if (!feedback && !isComposing) {
+      const trimmed = value.trim();
+      if (trimmed) {
+        onAnswer({ type: 'FILL_BLANK', answer: trimmed });
+      }
     }
-  }, [answer, feedback, onAnswer]);
+  }, [feedback, isComposing, onAnswer]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setAnswer(value);
+    updatePendingAnswer(value);
+  };
+
+  // Handle IME composition (for Cyrillic input on Android)
+  const handleCompositionStart = () => setIsComposing(true);
+  const handleCompositionEnd = (e: React.CompositionEvent<HTMLInputElement>) => {
+    setIsComposing(false);
+    // Update pending answer after composition ends
+    const value = e.currentTarget.value;
+    updatePendingAnswer(value);
+  };
 
   const playAudio = async () => {
     if (!step.promptAudio || isPlayingAudio) return;
@@ -92,7 +113,9 @@ export function FillBlank({
         <Input
           type="text"
           value={answer}
-          onChange={(e) => setAnswer(e.target.value)}
+          onChange={handleChange}
+          onCompositionStart={handleCompositionStart}
+          onCompositionEnd={handleCompositionEnd}
           placeholder={step.placeholder || 'Type your answer...'}
           disabled={disabled || !!feedback}
           className="h-14 text-base sm:text-lg"

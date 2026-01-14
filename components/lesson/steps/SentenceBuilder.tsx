@@ -52,12 +52,12 @@ export function SentenceBuilder({
   const availableWords = wordsWithState.filter((w) => w.isAvailable);
   const allWordsSelected = selectedWords.length === step.words.length;
 
-  // Submit answer when all words are selected
+  // Update pending answer when selection changes (doesn't validate, just tracks for Check button)
   useEffect(() => {
-    if (allWordsSelected && !feedback) {
+    if (!feedback && selectedWords.length > 0) {
       onAnswer({ type: 'SENTENCE_BUILDER', selectedWords });
     }
-  }, [allWordsSelected, selectedWords, feedback, onAnswer]);
+  }, [selectedWords, feedback, onAnswer]);
 
   // Add word to selection
   const handleSelectWord = (word: string, index: number) => {
@@ -68,7 +68,10 @@ export function SentenceBuilder({
   // Remove word from selection (tap to deselect)
   const handleDeselectWord = (indexInSelection: number) => {
     if (disabled || feedback) return;
-    setSelectedWords((prev) => prev.filter((_, i) => i !== indexInSelection));
+    setSelectedWords((prev) => {
+      const newSelection = prev.filter((_, i) => i !== indexInSelection);
+      return newSelection;
+    });
   };
 
   // Check if a word at position is correct (for feedback display)

@@ -9,7 +9,7 @@ import type { ErrorCorrectionStep, StepComponentProps } from '@/lib/lesson-runne
  * ErrorCorrection Step Component
  *
  * Interactive error identification exercise where users tap the word
- * that contains an error. MVP uses identification-only mode.
+ * that contains an error. User selects word, then presses Check to validate.
  */
 export function ErrorCorrection({
   step,
@@ -24,13 +24,18 @@ export function ErrorCorrection({
     setSelectedIndex(null);
   }, [step.id]);
 
-  // Handle word tap
+  // Handle word tap - select/deselect without validating
   const handleWordTap = (index: number) => {
-    if (disabled || feedback || selectedIndex !== null) return;
+    if (disabled || feedback) return;
 
-    setSelectedIndex(index);
-    // Auto-submit in identification-only mode
-    onAnswer({ type: 'ERROR_CORRECTION', selectedIndex: index });
+    // Allow changing selection before Check is pressed
+    const newIndex = index === selectedIndex ? null : index;
+    setSelectedIndex(newIndex);
+
+    // Set pending answer if a word is selected (validation happens on Check)
+    if (newIndex !== null) {
+      onAnswer({ type: 'ERROR_CORRECTION', selectedIndex: newIndex });
+    }
   };
 
   // Determine word styling based on selection and feedback state
@@ -92,7 +97,7 @@ export function ErrorCorrection({
                   variant="outline"
                   size="sm"
                   onClick={() => handleWordTap(index)}
-                  disabled={disabled || !!feedback || selectedIndex !== null}
+                  disabled={disabled || !!feedback}
                   className={cn(
                     'min-h-[48px] px-4 transition-all text-base',
                     wordStyles[state]

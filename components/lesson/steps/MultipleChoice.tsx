@@ -13,6 +13,7 @@ const CHOICE_LABELS = ['A', 'B', 'C', 'D', 'E', 'F'];
  * MultipleChoice Step Component
  *
  * Renders a multiple-choice question with letter-labeled answer buttons.
+ * User selects an option, then presses Check button (in parent) to validate.
  * Supports audio playback for prompts and provides visual feedback.
  */
 export function MultipleChoice({
@@ -24,14 +25,16 @@ export function MultipleChoice({
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
 
-  // Reset selection when step changes to prevent answer flash on next question
+  // Reset selection when step changes
   useEffect(() => {
     setSelectedIndex(null);
   }, [step.id]);
 
+  // Handle option selection - sets pending answer but doesn't validate
   const handleSelect = (index: number) => {
-    if (disabled || feedback) return; // Can't change after answered/feedback shown
+    if (disabled || feedback) return; // Can't change after feedback shown
     setSelectedIndex(index);
+    // Set pending answer - validation happens when Check button is pressed
     onAnswer({ type: 'MULTIPLE_CHOICE', selectedIndex: index });
   };
 

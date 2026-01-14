@@ -108,6 +108,7 @@ export function LessonRunner({
     correctCount,
     progress,
     submitAnswer,
+    setPendingAnswer,
     continueToNext,
     skipStep,
     submitLabel,
@@ -185,7 +186,8 @@ export function LessonRunner({
     }
 
     const baseProps = {
-      onAnswer: submitAnswer as (answer: StepAnswer) => void,
+      // Use setPendingAnswer instead of submitAnswer - validation happens when Check is pressed
+      onAnswer: setPendingAnswer as (answer: StepAnswer) => void,
       feedback: currentFeedback,
       disabled: isEvaluating,
     };
@@ -216,12 +218,15 @@ export function LessonRunner({
     }
   };
 
-  // Handle primary button click
+  // Handle primary button click (Check / Continue)
   const handleSubmit = () => {
     if (showFeedback || currentStep?.type === 'INFO') {
+      // After feedback shown or for INFO steps, continue to next
       continueToNext();
+    } else {
+      // Before feedback - user pressed Check, validate the pending answer
+      submitAnswer();
     }
-    // If not showing feedback, the step component handles submission via onAnswer
   };
 
   // Resume prompt handlers

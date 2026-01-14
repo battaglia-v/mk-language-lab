@@ -38,6 +38,9 @@ export function useLessonRunner(
   const [showFeedback, setShowFeedback] = useState(false);
   const [isEvaluating, setIsEvaluating] = useState(false);
 
+  // Pending answer state - tracks user input before Check is pressed
+  const [pendingAnswer, setPendingAnswerState] = useState<StepAnswer | null>(null);
+
   // Resume state
   const [savedProgress, setSavedProgress] = useState<SavedLessonProgress | null>(null);
   const [isLoadingProgress, setIsLoadingProgress] = useState(!!lessonId);
@@ -67,6 +70,20 @@ export function useLessonRunner(
 
   const isInfoStep = currentStep?.type === 'INFO';
   const scoredStepCount = scoredStepIds.size;
+  const hasPendingAnswer = pendingAnswer !== null;
+
+  // Clear pending answer when step changes
+  useEffect(() => {
+    setPendingAnswerState(null);
+  }, [currentIndex]);
+
+  /**
+   * Set pending answer (user input before Check is pressed)
+   * This does NOT trigger validation - just records the answer for the Check button
+   */
+  const setPendingAnswer = useCallback((answer: StepAnswer) => {
+    setPendingAnswerState(answer);
+  }, []);
 
   // Calculate correct answers
   const correctCount = Array.from(feedback.entries()).filter(
@@ -361,10 +378,12 @@ export function useLessonRunner(
 
   /**
    * Submit an answer for the current step
+   * If no answer is provided, uses the pending answer (set by setPendingAnswer)
    */
   const submitAnswer = useCallback(
-    async (answer: StepAnswer) => {
-      if (!currentStep) return;
+    async (answerArg?: StepAnswer) => {
+      const answer = answerArg ?? pendingAnswer;
+      if (!currentStep || !answer) return;
 
       setIsEvaluating(true);
 
@@ -418,7 +437,7 @@ export function useLessonRunner(
         setIsEvaluating(false);
       }
     },
-    [currentStep, currentIndex, steps.length, validateAnswer, autoSave, lessonId, answers]
+    [currentStep, currentIndex, steps.length, validateAnswer, autoSave, lessonId, answers, pendingAnswer]
   );
 
   /**
@@ -528,6 +547,8 @@ export function useLessonRunner(
     showFeedback,
     isEvaluating,
     hasAnswered,
+    hasPendingAnswer,
+    pendingAnswer,
 
     // Derived state
     isLastStep,
@@ -544,6 +565,7 @@ export function useLessonRunner(
 
     // Actions
     submitAnswer,
+    setPendingAnswer,
     continueToNext,
     skipStep,
     reset,
@@ -556,7 +578,8 @@ export function useLessonRunner(
         ? 'Finish Lesson'
         : 'Continue'
       : 'Check',
-    submitDisabled: (isInfoStep ? false : !hasAnswered) || isEvaluating,
+    // Enable Check button when user has a pending answer (not yet validated)
+    submitDisabled: isInfoStep ? false : (showFeedback ? false : !hasPendingAnswer) || isEvaluating,
     showSkip: currentStep?.type === 'PRONOUNCE' || currentStep?.type === 'TAP_WORDS',
   };
 }
