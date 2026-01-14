@@ -28,7 +28,11 @@ export function UserMenu() {
   }
 
   if (!session?.user) {
-    return <SignInButton variant="outline" size="sm" />;
+    return (
+      <div className="flex items-center gap-2">
+        <SignInButton variant="outline" size="sm" />
+      </div>
+    );
   }
 
   const initials = session.user.name

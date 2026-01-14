@@ -22,7 +22,7 @@ export function ShellHeader() {
             aria-label={appT("displayName")}
             data-testid="shell-brand-link"
           >
-            <span className="title-gradient text-xl sm:text-2xl lowercase whitespace-nowrap">македонски</span>
+            <span className="title-gradient text-xl sm:text-2xl lowercase whitespace-nowrap">🇲🇰 македонски</span>
             <span className="hidden text-[11px] uppercase tracking-[0.35em] text-foreground/60 whitespace-nowrap md:inline">
               {appT("shortName").toUpperCase()}
             </span>

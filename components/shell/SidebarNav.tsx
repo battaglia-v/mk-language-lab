@@ -35,7 +35,7 @@ export function SidebarNav() {
       <div className="flex items-center justify-center gap-3 border-b border-sidebar-border px-6 py-5 2xl:justify-between">
         <div className="hidden flex-col 2xl:flex">
           <p className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground">{t("label")}</p>
-          <p className="text-xl font-semibold mk-gradient 2xl:text-2xl">македонски</p>
+          <p className="text-xl font-semibold mk-gradient 2xl:text-2xl">🇲🇰 македонски</p>
         </div>
       </div>
       <nav className="flex flex-col gap-2 px-2 py-6 2xl:px-4" aria-label={t("label")}>
