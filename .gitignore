@@ -105,3 +105,6 @@ playwright-report/
 
 # Curriculum PDFs (large files, copyrighted)
 data/curriculum/raw/*.pdf
+
+# Android TWA signing
+android-twa/signing.properties
