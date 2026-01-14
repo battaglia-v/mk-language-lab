@@ -298,6 +298,23 @@ export interface LessonProgress {
 }
 
 /**
+ * Saved lesson progress from API response
+ * Used for resume capability
+ */
+export interface SavedLessonProgress {
+  id: string;
+  userId: string;
+  lessonId: string;
+  status: 'not_started' | 'in_progress' | 'completed';
+  progress: number; // 0-100
+  timeSpent: number; // minutes
+  currentStepIndex: number;
+  stepAnswers: Record<string, StepAnswer> | null;
+  lastViewedAt: string | null;
+  completedAt: string | null;
+}
+
+/**
  * Options for saving progress
  */
 export interface SaveProgressOptions {

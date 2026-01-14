@@ -7,6 +7,7 @@ import type {
   StepFeedback,
   LessonResults,
   ValidationResult,
+  SavedLessonProgress,
 } from './types';
 
 /**
@@ -21,10 +22,12 @@ export function useLessonRunner(
     lessonId,
     onComplete,
     autoSave = false,
+    onProgressLoaded,
   }: {
     lessonId?: string;
     onComplete: (results: LessonResults) => void;
     autoSave?: boolean;
+    onProgressLoaded?: (progress: SavedLessonProgress | null) => void;
   }
 ) {
   // Core state
@@ -33,6 +36,11 @@ export function useLessonRunner(
   const [feedback, setFeedback] = useState(new Map<string, StepFeedback>());
   const [showFeedback, setShowFeedback] = useState(false);
   const [isEvaluating, setIsEvaluating] = useState(false);
+
+  // Resume state
+  const [savedProgress, setSavedProgress] = useState<SavedLessonProgress | null>(null);
+  const [isLoadingProgress, setIsLoadingProgress] = useState(!!lessonId);
+  const previousTimeSpentRef = useRef(0); // Track time from previous sessions
 
   // Timing
   const startTimeRef = useRef(Date.now());
@@ -63,6 +71,96 @@ export function useLessonRunner(
   const correctCount = Array.from(feedback.entries()).filter(
     ([stepId, f]) => f.correct && scoredStepIds.has(stepId)
   ).length;
+
+  // Fetch saved progress on mount
+  useEffect(() => {
+    if (!lessonId) {
+      setIsLoadingProgress(false);
+      return;
+    }
+
+    const fetchProgress = async () => {
+      try {
+        const response = await fetch(`/api/lessons/progress?lessonId=${lessonId}`);
+        if (!response.ok) throw new Error('Failed to fetch progress');
+        const data = await response.json();
+        const progress = data.progress as SavedLessonProgress | null;
+        setSavedProgress(progress);
+        onProgressLoaded?.(progress);
+      } catch (error) {
+        console.error('Error fetching lesson progress:', error);
+        onProgressLoaded?.(null);
+      } finally {
+        setIsLoadingProgress(false);
+      }
+    };
+
+    fetchProgress();
+  }, [lessonId, onProgressLoaded]);
+
+  /**
+   * Restore progress from saved state
+   */
+  const restoreProgress = useCallback(
+    (progress: SavedLessonProgress) => {
+      // Cap currentStepIndex to valid range (in case lesson was modified)
+      const safeIndex = Math.min(progress.currentStepIndex, Math.max(0, steps.length - 1));
+      setCurrentIndex(safeIndex);
+
+      // Restore answers from saved stepAnswers
+      if (progress.stepAnswers) {
+        const restoredAnswers = new Map<string, StepAnswer>(
+          Object.entries(progress.stepAnswers)
+        );
+        setAnswers(restoredAnswers);
+      }
+
+      // Track previous time spent for total calculation
+      previousTimeSpentRef.current = progress.timeSpent;
+
+      // Reset feedback and UI state
+      setFeedback(new Map());
+      setShowFeedback(false);
+      startTimeRef.current = Date.now();
+    },
+    [steps.length]
+  );
+
+  /**
+   * Reset and start fresh (clears saved progress)
+   */
+  const resetAndStartFresh = useCallback(async () => {
+    // Clear local state
+    setCurrentIndex(0);
+    setAnswers(new Map());
+    setFeedback(new Map());
+    setShowFeedback(false);
+    setIsEvaluating(false);
+    setCompletedAt(undefined);
+    setSavedProgress(null);
+    previousTimeSpentRef.current = 0;
+    startTimeRef.current = Date.now();
+
+    // Reset saved progress on server if lessonId exists
+    if (lessonId) {
+      try {
+        await fetch('/api/lessons/progress', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            lessonId,
+            status: 'in_progress',
+            progress: 0,
+            timeSpent: 0,
+            currentStepIndex: 0,
+            stepAnswers: null,
+          }),
+        });
+      } catch (error) {
+        console.error('Failed to reset progress:', error);
+      }
+    }
+  }, [lessonId]);
 
   /**
    * Validate an answer for a given step
@@ -285,9 +383,13 @@ export function useLessonRunner(
         );
         setShowFeedback(true);
 
-        // Auto-save progress if enabled
+        // Auto-save progress if enabled (with step-level data for resume)
         if (autoSave && lessonId) {
           try {
+            // Create updated answers map for serialization
+            const updatedAnswers = new Map(answers).set(currentStep.id, answer);
+            const stepAnswersObj = Object.fromEntries(updatedAnswers);
+
             await fetch('/api/lessons/progress', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -295,6 +397,8 @@ export function useLessonRunner(
                 lessonId,
                 status: 'in_progress',
                 progress: Math.round(((currentIndex + 1) / steps.length) * 100),
+                currentStepIndex: currentIndex,
+                stepAnswers: stepAnswersObj,
               }),
             });
           } catch (saveError) {
@@ -315,7 +419,7 @@ export function useLessonRunner(
         setIsEvaluating(false);
       }
     },
-    [currentStep, currentIndex, steps.length, validateAnswer, autoSave, lessonId]
+    [currentStep, currentIndex, steps.length, validateAnswer, autoSave, lessonId, answers]
   );
 
   /**
@@ -372,7 +476,8 @@ export function useLessonRunner(
   // Handle lesson completion
   useEffect(() => {
     if (completedAt) {
-      const totalTime = completedAt - startTimeRef.current;
+      const sessionTime = completedAt - startTimeRef.current;
+      const totalTime = sessionTime + (previousTimeSpentRef.current * 60000); // Add previous time
       const timeSpentMinutes = Math.ceil(totalTime / 60000);
 
       const results: LessonResults = {
@@ -396,7 +501,7 @@ export function useLessonRunner(
           }),
       };
 
-      // Save completion to database
+      // Save completion to database (clear step-level progress on completion)
       if (lessonId) {
         fetch('/api/lessons/progress', {
           method: 'POST',
@@ -406,6 +511,8 @@ export function useLessonRunner(
             status: 'completed',
             progress: 100,
             timeSpent: timeSpentMinutes,
+            currentStepIndex: 0,
+            stepAnswers: null, // Clear step-level progress on completion
           }),
         }).catch((err) => console.error('Failed to save lesson completion:', err));
       }
@@ -432,11 +539,17 @@ export function useLessonRunner(
       total: steps.length,
     },
 
+    // Resume state
+    savedProgress,
+    isLoadingProgress,
+
     // Actions
     submitAnswer,
     continueToNext,
     skipStep,
     reset,
+    restoreProgress,
+    resetAndStartFresh,
 
     // Button state helpers
     submitLabel: showFeedback || isInfoStep
