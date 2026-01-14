@@ -5,6 +5,13 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import type { SentenceBuilderStep, StepComponentProps } from '@/lib/lesson-runner/types';
 
+// Strip duplicate "Translation:" or "Hint:" prefix from hint text
+function cleanHint(hint: string | undefined): string | undefined {
+  if (!hint) return undefined;
+  // Remove leading "Translation:", "Hint:", "Превод:" (MK), or similar
+  return hint.replace(/^(Translation|Hint|Превод)\s*:\s*/i, '').trim();
+}
+
 /**
  * SentenceBuilder Step Component
  *
@@ -90,7 +97,7 @@ export function SentenceBuilder({
           </p>
           {step.translationHint && (
             <p className="text-sm text-muted-foreground italic">
-              Translation: {step.translationHint}
+              Translation: {cleanHint(step.translationHint)}
             </p>
           )}
         </div>
