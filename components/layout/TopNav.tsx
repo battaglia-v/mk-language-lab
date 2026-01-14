@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
+import { useSession } from 'next-auth/react';
 import { Flame, Heart, Loader2, AlertCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AjvarLogo } from '@/components/AjvarLogo';
@@ -61,6 +62,8 @@ export function TopNav({
   const common = useTranslations('common');
   const brand = useTranslations('brand');
   const brandLabel = brand('short');
+  const { status: sessionStatus } = useSession();
+  const isAuthenticated = sessionStatus === 'authenticated';
   const {
     mission,
     state: missionState,
@@ -107,16 +110,19 @@ export function TopNav({
           </div>
         </div>
 
-        <div className="nav-toolbar-helper section-container section-container-wide pb-3 hidden sm:block">
-          <MissionSummaryBanner
-            mission={mission}
-            state={missionState}
-            error={missionError}
-            onRefresh={refreshMission}
-            t={t}
-            buildHref={buildHref}
-          />
-        </div>
+        {/* Mission summary banner - only shown to authenticated users */}
+        {isAuthenticated && (
+          <div className="nav-toolbar-helper section-container section-container-wide pb-3 hidden sm:block">
+            <MissionSummaryBanner
+              mission={mission}
+              state={missionState}
+              error={missionError}
+              onRefresh={refreshMission}
+              t={t}
+              buildHref={buildHref}
+            />
+          </div>
+        )}
       </nav>
     </>
   );
