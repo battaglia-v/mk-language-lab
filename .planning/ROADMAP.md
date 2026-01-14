@@ -21,7 +21,7 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 
 - [x] Phase 53: Security & Repo Hygiene (3/3 plans) — completed 2026-01-14
 - [x] Phase 54: Exercise Architecture Research (1/1 plans) — completed 2026-01-14
-- [ ] Phase 55: Exercise State Machine
+- [ ] Phase 55: Exercise State Machine (1/2 plans)
 - [ ] Phase 56: Lesson Flow Progress
 - [ ] Phase 57: Answer Evaluation
 - [ ] Phase 58: Audio Language
