@@ -9,6 +9,7 @@ import type {
   ValidationResult,
   SavedLessonProgress,
 } from './types';
+import { validateWithAlternatives } from '../validation/unified-validator';
 
 /**
  * useLessonRunner Hook
@@ -212,28 +213,26 @@ export function useLessonRunner(
             };
           }
 
-          const userAnswer = step.caseSensitive
-            ? answer.answer.trim()
-            : answer.answer.trim().toLowerCase();
+          // Use unified validator for rich Macedonian-specific feedback
+          const validation = validateWithAlternatives(
+            answer.answer,
+            step.correctAnswer,
+            step.acceptableAnswers || [],
+            { caseSensitive: step.caseSensitive ?? false, strict: false }
+          );
 
-          const correctAnswer = step.caseSensitive
-            ? step.correctAnswer.trim()
-            : step.correctAnswer.trim().toLowerCase();
-
-          const acceptableAnswers = step.acceptableAnswers?.map((a) =>
-            step.caseSensitive ? a.trim() : a.trim().toLowerCase()
-          ) || [];
-
-          const isCorrect =
-            userAnswer === correctAnswer ||
-            acceptableAnswers.includes(userAnswer);
+          // Generate feedback message based on analysis
+          let message = validation.isCorrect ? 'Correct!' : 'Not quite';
+          if (!validation.isCorrect && validation.analysis?.mistakeType) {
+            message = validation.feedbackHint || message;
+          }
 
           return {
-            isCorrect,
+            isCorrect: validation.isCorrect,
             feedback: {
-              correct: isCorrect,
-              message: isCorrect ? 'Correct!' : 'Not quite',
-              correctAnswer: isCorrect ? undefined : step.correctAnswer,
+              correct: validation.isCorrect,
+              message,
+              correctAnswer: validation.isCorrect ? undefined : step.correctAnswer,
               explanation: step.explanation,
             },
           };
