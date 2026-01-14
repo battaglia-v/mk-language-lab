@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-13)
 
 ## Current Position
 
-Phase: 52 of 52 (all phases complete)
-Plan: All complete
-Status: v1.8 SHIPPED - Ready for next milestone
-Last activity: 2026-01-13 — v1.8 milestone complete
+Phase: 53 of 60 (Security & Repo Hygiene)
+Plan: 2 of 3 in current phase
+Status: In progress
+Last activity: 2026-01-14 — Completed 53-02-PLAN.md (git history cleanup)
 
-Progress: ██████████ 100% (8 milestones shipped)
+Progress: █░░░░░░░░░ 12.5% (v1.9 - 1/8 phases)
 
 ## Milestone Summary
 
@@ -127,9 +127,10 @@ None.
 - Milestone v1.6 shipped: Reader overhaul (Phases 36-41)
 - Milestone v1.7 shipped: Learn experience overhaul (Phases 42-46)
 - Milestone v1.8 shipped: Quality & performance (Phases 47-52)
+- Milestone v1.9 in progress: Quality & stability (Phases 53-60)
 
 ## Session Continuity
 
-Last session: 2026-01-13
-Stopped at: v1.8 milestone archived and tagged
+Last session: 2026-01-14
+Stopped at: Completed 53-02-PLAN.md (git history cleanup)
 Resume file: None
