@@ -119,34 +119,46 @@ export function ErrorCorrection({
       </div>
 
       {/* Show correction on feedback */}
-      {feedback && (
-        <div className={cn(
-          'rounded-lg p-4 space-y-2',
-          feedback.correct ? 'bg-green-50 dark:bg-green-900/20' : 'bg-muted/50'
-        )}>
-          {feedback.correct ? (
-            <>
-              <p className="text-sm font-medium text-green-700 dark:text-green-400">
-                Correct! You found the error.
-              </p>
-              <p className="text-base text-foreground">
-                <span className="line-through text-muted-foreground">{step.words[step.errorIndex]}</span>
-                {' → '}
-                <span className="font-medium text-green-700 dark:text-green-400">{step.correctWord}</span>
-              </p>
-            </>
-          ) : (
-            <>
-              <p className="text-sm font-medium text-muted-foreground">The correct answer:</p>
-              <p className="text-base text-foreground">
-                The error is in &ldquo;<span className="font-medium text-amber-600 dark:text-amber-400">{step.words[step.errorIndex]}</span>&rdquo;
-                {' → '}
-                <span className="font-medium text-green-700 dark:text-green-400">{step.correctWord}</span>
-              </p>
-            </>
-          )}
-        </div>
-      )}
+      {feedback && (() => {
+        // Build full corrected sentence
+        const correctedSentence = step.words.map((word, idx) =>
+          idx === step.errorIndex ? step.correctWord : word
+        ).join(' ');
+
+        return (
+          <div className={cn(
+            'rounded-lg p-4 space-y-3',
+            feedback.correct ? 'bg-green-50 dark:bg-green-900/20' : 'bg-muted/50'
+          )}>
+            {feedback.correct ? (
+              <>
+                <p className="text-sm font-medium text-green-700 dark:text-green-400">
+                  Correct! You found the error.
+                </p>
+                <p className="text-base text-foreground">
+                  <span className="line-through text-muted-foreground">{step.words[step.errorIndex]}</span>
+                  {' → '}
+                  <span className="font-medium text-green-700 dark:text-green-400">{step.correctWord}</span>
+                </p>
+              </>
+            ) : (
+              <>
+                <p className="text-sm font-medium text-muted-foreground">The correct answer:</p>
+                <p className="text-base text-foreground">
+                  The error is in &ldquo;<span className="font-medium text-amber-600 dark:text-amber-400">{step.words[step.errorIndex]}</span>&rdquo;
+                  {' → '}
+                  <span className="font-medium text-green-700 dark:text-green-400">{step.correctWord}</span>
+                </p>
+              </>
+            )}
+            {/* Full corrected sentence */}
+            <div className="border-t border-border/30 pt-3 mt-2">
+              <p className="text-xs font-medium text-muted-foreground mb-1">Full sentence:</p>
+              <p className="text-base text-foreground">{correctedSentence}</p>
+            </div>
+          </div>
+        );
+      })()}
     </div>
   );
 }
