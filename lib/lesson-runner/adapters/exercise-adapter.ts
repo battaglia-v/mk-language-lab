@@ -5,8 +5,20 @@
  * Enables gradual migration of existing lessons to the new LessonRunner system.
  */
 
-import type { Step, InfoStep, MultipleChoiceStep, FillBlankStep } from '../types';
+import type { Step, InfoStep, MultipleChoiceStep, FillBlankStep, SentenceBuilderStep } from '../types';
 import type { GrammarExercise, GrammarLesson, SentenceBuilderExercise, ErrorCorrectionExercise } from '@/lib/grammar-engine';
+
+/**
+ * Fisher-Yates shuffle for randomizing word order
+ */
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
 
 function parseVocabularyEntry(entry: string): { base: string; gender?: string; en?: string } {
   const separators = [' - ', ' — ', ' – ', ' : '];
@@ -133,23 +145,23 @@ export function exerciseToStep(exercise: GrammarExercise, locale: 'en' | 'mk' = 
     }
 
     case 'sentence-builder': {
-      // TODO: Sentence builder requires custom step type
-      // For now, convert to fill-blank as a fallback
       const sbExercise = exercise as SentenceBuilderExercise;
-      const words = sbExercise.words?.length ? sbExercise.words : sbExercise.targetSentenceMk.split(' ');
-      const wordList = words.length ? `Words: ${words.join(' / ')}` : undefined;
-      const translation = sbExercise.translationEn ? `Translation: ${sbExercise.translationEn}` : undefined;
-      const promptParts = [instruction, wordList, translation].filter(Boolean);
-      const sbStep: FillBlankStep = {
+
+      // Get words from exercise or split from target sentence
+      const correctOrder = sbExercise.targetSentenceMk.split(' ');
+      const sourceWords = sbExercise.words?.length ? [...sbExercise.words] : correctOrder;
+
+      // Shuffle words for the challenge
+      const shuffledWords = shuffleArray(sourceWords);
+
+      const sbStep: SentenceBuilderStep = {
         id: exercise.id,
-        type: 'FILL_BLANK',
-        prompt: promptParts.join(' '),
-        correctAnswer: sbExercise.targetSentenceMk,
-        acceptableAnswers: sbExercise.alternativeOrders?.map((alt) => alt.join(' ')),
-        explanation,
-        caseSensitive: false,
-        placeholder: 'Type the full sentence...',
-        wordBank: words.length ? words : undefined,
+        type: 'SENTENCE_BUILDER',
+        words: shuffledWords,
+        correctOrder,
+        alternativeOrders: sbExercise.alternativeOrders,
+        translationHint: sbExercise.translationEn,
+        instructions: instruction,
       };
       return sbStep;
     }
