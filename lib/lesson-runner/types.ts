@@ -16,6 +16,7 @@ export type StepType =
   | 'TAP_WORDS'
   | 'PRONOUNCE'
   | 'SENTENCE_BUILDER'
+  | 'ERROR_CORRECTION'
   | 'SUMMARY';
 
 // Base step interface that all step types extend
@@ -131,6 +132,20 @@ export interface SentenceBuilderStep extends BaseStep {
 }
 
 /**
+ * Error Correction Step
+ * User identifies the incorrect word in a sentence by tapping it
+ */
+export interface ErrorCorrectionStep extends BaseStep {
+  type: 'ERROR_CORRECTION';
+  sentence: string; // Full sentence containing the error
+  words: string[]; // Sentence split into tappable words
+  errorIndex: number; // Index of the word with the error
+  correctWord: string; // What the error should be replaced with
+  translationHint?: string; // English translation for context
+  instructions?: string; // Optional custom instructions
+}
+
+/**
  * Summary/Completion Step
  * Shows lesson results, XP earned, and completion message
  */
@@ -155,6 +170,7 @@ export type Step =
   | TapWordsStep
   | PronounceStep
   | SentenceBuilderStep
+  | ErrorCorrectionStep
   | SummaryStep;
 
 // ============================================================================
@@ -181,6 +197,7 @@ export type StepAnswer =
   | { type: 'TAP_WORDS'; tappedWords: string[]; savedWords?: string[] }
   | { type: 'PRONOUNCE'; recordingBlob?: Blob; skipped: boolean }
   | { type: 'SENTENCE_BUILDER'; selectedWords: string[] }
+  | { type: 'ERROR_CORRECTION'; selectedIndex: number }
   | { type: 'SUMMARY'; acknowledged: boolean };
 
 /**
