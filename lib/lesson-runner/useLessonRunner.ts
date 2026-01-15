@@ -10,6 +10,7 @@ import type {
   SavedLessonProgress,
 } from './types';
 import { validateWithAlternatives } from '../validation/unified-validator';
+import { debugExercise, debugValidation, debugSave, setDebugState } from '../debug';
 
 /**
  * useLessonRunner Hook
@@ -68,7 +69,8 @@ export function useLessonRunner(
     return new Set(scoredSteps.map((step) => step.id));
   }, [steps]);
 
-  const isInfoStep = currentStep?.type === 'INFO';
+  // INFO and SUMMARY steps don't need validation - user just clicks Continue
+  const isInfoStep = currentStep?.type === 'INFO' || currentStep?.type === 'SUMMARY';
   const scoredStepCount = scoredStepIds.size;
   const hasPendingAnswer = pendingAnswer !== null;
 
@@ -83,7 +85,17 @@ export function useLessonRunner(
    */
   const setPendingAnswer = useCallback((answer: StepAnswer) => {
     setPendingAnswerState(answer);
-  }, []);
+    // Debug logging
+    if (currentStep) {
+      debugExercise(currentStep.id, currentStep.type, 'pending_answer_set', { answerType: answer.type });
+      setDebugState({
+        exerciseId: currentStep.id,
+        exerciseType: currentStep.type,
+        state: 'answering',
+        pendingAnswer: true,
+      });
+    }
+  }, [currentStep]);
 
   // Calculate correct answers
   const correctCount = Array.from(feedback.entries()).filter(
@@ -387,12 +399,23 @@ export function useLessonRunner(
 
       setIsEvaluating(true);
 
+      // Debug: Log validation trigger
+      debugExercise(currentStep.id, currentStep.type, 'validation_triggered', { trigger: 'check_button' });
+      setDebugState({ state: 'submitted', lastValidationReason: 'check_button' });
+
       try {
         // Simulate slight delay for UX (feels more natural)
         await new Promise((resolve) => setTimeout(resolve, 300));
 
         // Validate the answer
         const validation = validateAnswer(currentStep, answer);
+
+        // Debug: Log validation result
+        debugValidation(currentStep.id, 'check_button', {
+          isCorrect: validation.isCorrect,
+          answer,
+        });
+        setDebugState({ state: 'feedback' });
 
         // Update state
         setAnswers((prev) => new Map(prev).set(currentStep.id, answer));
@@ -408,6 +431,7 @@ export function useLessonRunner(
             const updatedAnswers = new Map(answers).set(currentStep.id, answer);
             const stepAnswersObj = Object.fromEntries(updatedAnswers);
 
+            debugSave(lessonId, 'pending');
             await fetch('/api/lessons/progress', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -419,12 +443,17 @@ export function useLessonRunner(
                 stepAnswers: stepAnswersObj,
               }),
             });
+            debugSave(lessonId, 'success');
+            setDebugState({ lastSaveStatus: 'ok' });
           } catch (saveError) {
             console.error('Failed to auto-save progress:', saveError);
+            debugSave(lessonId, 'failed', { error: String(saveError) });
+            setDebugState({ lastSaveStatus: 'failed' });
           }
         }
       } catch (error) {
         console.error('Error validating answer:', error);
+        debugExercise(currentStep.id, currentStep.type, 'validation_error', { error: String(error) });
         setFeedback(
           (prev) =>
             new Map(prev).set(currentStep.id, {

@@ -15,6 +15,77 @@ import { cn } from '@/lib/utils';
 import alphabetData from '@/data/alphabet-deck.json';
 
 const STORAGE_KEY = 'mkll:alphabet-progress';
+const PENDING_SAVE_KEY = 'mkll:alphabet-pending-save';
+
+/**
+ * Retry fetch with exponential backoff
+ */
+async function fetchWithRetry(
+  url: string,
+  options: RequestInit,
+  maxRetries = 3
+): Promise<Response> {
+  let lastError: Error | null = null;
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      const response = await fetch(url, options);
+      if (response.ok) return response;
+      // If server error, retry; if client error, don't retry
+      if (response.status >= 500) {
+        lastError = new Error(`Server error: ${response.status}`);
+      } else {
+        throw new Error(`Request failed: ${response.status}`);
+      }
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error(String(error));
+    }
+    // Wait before retry with exponential backoff: 1s, 2s, 4s
+    if (attempt < maxRetries - 1) {
+      await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt) * 1000));
+    }
+  }
+  throw lastError || new Error('Request failed after retries');
+}
+
+/**
+ * Queue a save for later when offline
+ */
+function queuePendingSave(data: object) {
+  try {
+    localStorage.setItem(PENDING_SAVE_KEY, JSON.stringify({
+      ...data,
+      queuedAt: Date.now(),
+    }));
+  } catch (e) {
+    console.warn('[Alphabet] Failed to queue pending save:', e);
+  }
+}
+
+/**
+ * Process any pending saves from previous sessions
+ */
+async function processPendingSaves(): Promise<boolean> {
+  try {
+    const pending = localStorage.getItem(PENDING_SAVE_KEY);
+    if (!pending) return false;
+
+    const data = JSON.parse(pending);
+    const response = await fetch('/api/practice/record', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      localStorage.removeItem(PENDING_SAVE_KEY);
+      return true;
+    }
+    return false;
+  } catch (e) {
+    console.warn('[Alphabet] Failed to process pending save:', e);
+    return false;
+  }
+}
 
 interface AlphabetLetter {
   id: string;
@@ -93,24 +164,33 @@ export default function AlphabetLessonPage() {
     }
   }, [viewedLetters]);
 
+  // Process any pending saves from previous sessions on mount
+  useEffect(() => {
+    processPendingSaves().then(success => {
+      if (success) {
+        console.log('[Alphabet] Processed pending save from previous session');
+      }
+    });
+  }, []);
+
   // Mark lesson complete when all letters viewed
   const markLessonComplete = useCallback(async () => {
     if (hasCalledCompletion.current || isCompleted) return;
     hasCalledCompletion.current = true;
     setIsCompleting(true);
 
+    const saveData = {
+      correctCount: alphabet.items.length,
+      totalCount: alphabet.items.length,
+      type: 'alphabet',
+    };
+
     try {
-      const response = await fetch('/api/practice/record', {
+      const response = await fetchWithRetry('/api/practice/record', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          correctCount: alphabet.items.length,
-          totalCount: alphabet.items.length,
-          type: 'alphabet',
-        }),
+        body: JSON.stringify(saveData),
       });
-
-      if (!response.ok) throw new Error('Failed to record completion');
 
       const data = await response.json();
       setIsCompleted(true);
@@ -120,12 +200,15 @@ export default function AlphabetLessonPage() {
         type: 'success',
       });
     } catch (error) {
-      console.error('[Alphabet] Failed to mark complete:', error);
-      hasCalledCompletion.current = false;
+      console.error('[Alphabet] Failed to mark complete after retries:', error);
+      // Queue for later sync and mark as locally complete
+      queuePendingSave(saveData);
+      setIsCompleted(true);
+      // Show non-blocking toast - progress saved locally, will sync later
       addToast({
-        title: 'Error',
-        description: 'Failed to save progress. Please try again.',
-        type: 'error',
+        title: t('completedTitle', { default: 'Lesson Complete!' }),
+        description: t('savedLocally', { default: 'Progress saved. Will sync when online.' }),
+        type: 'info',
       });
     } finally {
       setIsCompleting(false);

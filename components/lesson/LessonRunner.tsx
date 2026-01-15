@@ -220,8 +220,8 @@ export function LessonRunner({
 
   // Handle primary button click (Check / Continue)
   const handleSubmit = () => {
-    if (showFeedback || currentStep?.type === 'INFO') {
-      // After feedback shown or for INFO steps, continue to next
+    if (showFeedback || currentStep?.type === 'INFO' || currentStep?.type === 'SUMMARY') {
+      // After feedback shown, or for INFO/SUMMARY steps, continue to next
       continueToNext();
     } else {
       // Before feedback - user pressed Check, validate the pending answer
@@ -301,7 +301,7 @@ export function LessonRunner({
         submitLabel={submitLabel}
         submitDisabled={submitDisabled && !showFeedback}
         submitLoading={isEvaluating}
-        bottomNavOffset={true}
+        bottomNavOffset={false}
         className="relative"
         testId="lesson-runner"
       >

@@ -150,8 +150,10 @@ export function ExerciseLayout({
       {/* Bottom: Sticky action bar */}
       <footer
         className={cn(
-          'sticky bottom-0 z-10 border-t border-border/30 bg-background/95 px-4 py-4 backdrop-blur-sm',
-          bottomNavOffset && 'pb-[calc(5rem+env(safe-area-inset-bottom))]'
+          'sticky bottom-0 z-30 border-t border-border/30 bg-background/95 px-4 py-4 backdrop-blur-sm',
+          bottomNavOffset
+            ? 'pb-[calc(5rem+env(safe-area-inset-bottom))]'
+            : 'pb-[calc(1rem+env(safe-area-inset-bottom))]'
         )}
       >
         <div className="mx-auto max-w-2xl space-y-3">

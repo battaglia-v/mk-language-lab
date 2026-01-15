@@ -7,11 +7,33 @@ import { cn } from "@/lib/utils";
 import { buildLocalizedHref, isNavItemActive, shellNavItems } from "./navItems";
 import { triggerHaptic } from "@/lib/haptics";
 
+/**
+ * Routes where the mobile bottom nav should be hidden
+ * These are immersive experiences (lessons, practice sessions, etc.)
+ */
+const HIDDEN_NAV_PATTERNS = [
+  /\/lesson\/[^/]+$/, // /en/lesson/xyz or /mk/lesson/xyz
+  /\/demo\/lesson-runner/, // Demo lesson runner
+  /\/demo\/grammar-lesson/, // Demo grammar lesson
+  /\/practice\/session/, // Practice sessions
+  /\/practice\/grammar$/, // Grammar practice
+  /\/practice\/fill-blanks$/, // Fill blanks practice
+];
+
+function shouldHideNav(pathname: string): boolean {
+  return HIDDEN_NAV_PATTERNS.some(pattern => pattern.test(pathname));
+}
+
 export function MobileTabNav() {
   const locale = useLocale();
   const t = useTranslations("nav");
   const pathname = usePathname();
   const router = useRouter();
+
+  // Hide nav during immersive lesson/practice flows
+  if (shouldHideNav(pathname)) {
+    return null;
+  }
 
   const buildHref = (path: string) => buildLocalizedHref(locale, path, pathname);
 

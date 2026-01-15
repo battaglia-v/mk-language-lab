@@ -1,404 +1,8 @@
 [
   {
     "route": "/en",
-    "viewport": "iPhone5SE",
-    "timestamp": "2026-01-11T19:13:09.914Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "iPhone5SE-Home.png"
-  },
-  {
-    "route": "/en/learn",
-    "viewport": "iPhone5SE",
-    "timestamp": "2026-01-11T19:13:12.190Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [
-      "Error: An error occurred in the Server Components render. The specific message is omitted in production builds to avoid leaking sensitive details. A digest property is included on this error instance ",
-      "[Global Error Boundary] Error: An error occurred in the Server Components render. The specific message is omitted in production builds to avoid leaking sensitive details. A digest property is included"
-    ],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "iPhone5SE-LearnDashboard.png"
-  },
-  {
-    "route": "/en/practice",
-    "viewport": "iPhone5SE",
-    "timestamp": "2026-01-11T19:13:14.527Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "iPhone5SE-Practice.png"
-  },
-  {
-    "route": "/en/practice/grammar",
-    "viewport": "iPhone5SE",
-    "timestamp": "2026-01-11T19:13:16.863Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "iPhone5SE-Grammar.png"
-  },
-  {
-    "route": "/en/translate",
-    "viewport": "iPhone5SE",
-    "timestamp": "2026-01-11T19:13:19.162Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "iPhone5SE-Translate.png"
-  },
-  {
-    "route": "/en/reader",
-    "viewport": "iPhone5SE",
-    "timestamp": "2026-01-11T19:13:21.604Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "iPhone5SE-Reader.png"
-  },
-  {
-    "route": "/en/news",
-    "viewport": "iPhone5SE",
-    "timestamp": "2026-01-11T19:13:26.419Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "iPhone5SE-News.png"
-  },
-  {
-    "route": "/en/resources",
-    "viewport": "iPhone5SE",
-    "timestamp": "2026-01-11T19:13:28.732Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "iPhone5SE-Resources.png"
-  },
-  {
-    "route": "/en/discover",
-    "viewport": "iPhone5SE",
-    "timestamp": "2026-01-11T19:13:31.126Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "iPhone5SE-Discover.png"
-  },
-  {
-    "route": "/en/daily-lessons",
-    "viewport": "iPhone5SE",
-    "timestamp": "2026-01-11T19:13:33.423Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "iPhone5SE-DailyLessons.png"
-  },
-  {
-    "route": "/en/profile",
-    "viewport": "iPhone5SE",
-    "timestamp": "2026-01-11T19:13:35.716Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "iPhone5SE-Profile.png"
-  },
-  {
-    "route": "/en/notifications",
-    "viewport": "iPhone5SE",
-    "timestamp": "2026-01-11T19:13:38.056Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "iPhone5SE-Notifications.png"
-  },
-  {
-    "route": "/en/about",
-    "viewport": "iPhone5SE",
-    "timestamp": "2026-01-11T19:13:40.377Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "iPhone5SE-About.png"
-  },
-  {
-    "route": "/en",
-    "viewport": "SmallAndroid",
-    "timestamp": "2026-01-11T19:13:42.699Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "SmallAndroid-Home.png"
-  },
-  {
-    "route": "/en/learn",
-    "viewport": "SmallAndroid",
-    "timestamp": "2026-01-11T19:13:44.956Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [
-      "Error: An error occurred in the Server Components render. The specific message is omitted in production builds to avoid leaking sensitive details. A digest property is included on this error instance ",
-      "[Global Error Boundary] Error: An error occurred in the Server Components render. The specific message is omitted in production builds to avoid leaking sensitive details. A digest property is included"
-    ],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "SmallAndroid-LearnDashboard.png"
-  },
-  {
-    "route": "/en/practice",
-    "viewport": "SmallAndroid",
-    "timestamp": "2026-01-11T19:13:47.310Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "SmallAndroid-Practice.png"
-  },
-  {
-    "route": "/en/practice/grammar",
-    "viewport": "SmallAndroid",
-    "timestamp": "2026-01-11T19:13:49.683Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "SmallAndroid-Grammar.png"
-  },
-  {
-    "route": "/en/translate",
-    "viewport": "SmallAndroid",
-    "timestamp": "2026-01-11T19:13:51.990Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "SmallAndroid-Translate.png"
-  },
-  {
-    "route": "/en/reader",
-    "viewport": "SmallAndroid",
-    "timestamp": "2026-01-11T19:13:54.449Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "SmallAndroid-Reader.png"
-  },
-  {
-    "route": "/en/news",
-    "viewport": "SmallAndroid",
-    "timestamp": "2026-01-11T19:13:59.490Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "SmallAndroid-News.png"
-  },
-  {
-    "route": "/en/resources",
-    "viewport": "SmallAndroid",
-    "timestamp": "2026-01-11T19:14:01.784Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "SmallAndroid-Resources.png"
-  },
-  {
-    "route": "/en/discover",
-    "viewport": "SmallAndroid",
-    "timestamp": "2026-01-11T19:14:04.165Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "SmallAndroid-Discover.png"
-  },
-  {
-    "route": "/en/daily-lessons",
-    "viewport": "SmallAndroid",
-    "timestamp": "2026-01-11T19:14:06.500Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "SmallAndroid-DailyLessons.png"
-  },
-  {
-    "route": "/en/profile",
-    "viewport": "SmallAndroid",
-    "timestamp": "2026-01-11T19:14:08.816Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "SmallAndroid-Profile.png"
-  },
-  {
-    "route": "/en/notifications",
-    "viewport": "SmallAndroid",
-    "timestamp": "2026-01-11T19:14:11.097Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "SmallAndroid-Notifications.png"
-  },
-  {
-    "route": "/en/about",
-    "viewport": "SmallAndroid",
-    "timestamp": "2026-01-11T19:14:13.437Z",
-    "interstitialBypassed": false,
-    "overflow": {
-      "hasOverflow": false,
-      "elements": []
-    },
-    "i18nKeys": [],
-    "consoleErrors": [],
-    "networkErrors": [],
-    "brokenImages": [],
-    "screenshot": "SmallAndroid-About.png"
-  },
-  {
-    "route": "/en",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-11T19:14:15.790Z",
+    "timestamp": "2026-01-15T17:17:45.871Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -413,7 +17,7 @@
   {
     "route": "/en/learn",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-11T19:14:18.068Z",
+    "timestamp": "2026-01-15T17:17:48.214Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -431,7 +35,7 @@
   {
     "route": "/en/practice",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-11T19:14:20.402Z",
+    "timestamp": "2026-01-15T17:17:50.677Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -446,7 +50,7 @@
   {
     "route": "/en/practice/grammar",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-11T19:14:22.736Z",
+    "timestamp": "2026-01-15T17:17:53.293Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -461,7 +65,7 @@
   {
     "route": "/en/translate",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-11T19:14:25.007Z",
+    "timestamp": "2026-01-15T17:17:55.782Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -476,7 +80,7 @@
   {
     "route": "/en/reader",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-11T19:14:27.461Z",
+    "timestamp": "2026-01-15T17:17:58.457Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -491,7 +95,7 @@
   {
     "route": "/en/news",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-11T19:14:32.463Z",
+    "timestamp": "2026-01-15T17:18:01.444Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -506,7 +110,7 @@
   {
     "route": "/en/resources",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-11T19:14:34.752Z",
+    "timestamp": "2026-01-15T17:18:04.081Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -521,7 +125,7 @@
   {
     "route": "/en/discover",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-11T19:14:37.123Z",
+    "timestamp": "2026-01-15T17:18:06.752Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -536,7 +140,7 @@
   {
     "route": "/en/daily-lessons",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-11T19:14:39.407Z",
+    "timestamp": "2026-01-15T17:18:09.604Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -551,7 +155,7 @@
   {
     "route": "/en/profile",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-11T19:14:41.683Z",
+    "timestamp": "2026-01-15T17:18:12.369Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -566,7 +170,7 @@
   {
     "route": "/en/notifications",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-11T19:14:43.965Z",
+    "timestamp": "2026-01-15T17:18:15.309Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -581,7 +185,7 @@
   {
     "route": "/en/about",
     "viewport": "iPhone13",
-    "timestamp": "2026-01-11T19:14:46.289Z",
+    "timestamp": "2026-01-15T17:18:18.095Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -596,7 +200,7 @@
   {
     "route": "/en",
     "viewport": "Pixel7",
-    "timestamp": "2026-01-11T19:14:48.643Z",
+    "timestamp": "2026-01-15T17:18:20.639Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -611,7 +215,7 @@
   {
     "route": "/en/learn",
     "viewport": "Pixel7",
-    "timestamp": "2026-01-11T19:14:50.923Z",
+    "timestamp": "2026-01-15T17:18:23.129Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -629,7 +233,7 @@
   {
     "route": "/en/practice",
     "viewport": "Pixel7",
-    "timestamp": "2026-01-11T19:14:53.254Z",
+    "timestamp": "2026-01-15T17:18:25.666Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -644,7 +248,7 @@
   {
     "route": "/en/practice/grammar",
     "viewport": "Pixel7",
-    "timestamp": "2026-01-11T19:14:55.587Z",
+    "timestamp": "2026-01-15T17:18:28.293Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -659,7 +263,7 @@
   {
     "route": "/en/translate",
     "viewport": "Pixel7",
-    "timestamp": "2026-01-11T19:14:57.908Z",
+    "timestamp": "2026-01-15T17:18:30.877Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -674,7 +278,7 @@
   {
     "route": "/en/reader",
     "viewport": "Pixel7",
-    "timestamp": "2026-01-11T19:15:00.437Z",
+    "timestamp": "2026-01-15T17:18:33.645Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -689,7 +293,7 @@
   {
     "route": "/en/news",
     "viewport": "Pixel7",
-    "timestamp": "2026-01-11T19:15:05.408Z",
+    "timestamp": "2026-01-15T17:18:36.775Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -704,7 +308,7 @@
   {
     "route": "/en/resources",
     "viewport": "Pixel7",
-    "timestamp": "2026-01-11T19:15:07.712Z",
+    "timestamp": "2026-01-15T17:18:39.308Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -719,7 +323,7 @@
   {
     "route": "/en/discover",
     "viewport": "Pixel7",
-    "timestamp": "2026-01-11T19:15:10.094Z",
+    "timestamp": "2026-01-15T17:18:42.218Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -734,7 +338,7 @@
   {
     "route": "/en/daily-lessons",
     "viewport": "Pixel7",
-    "timestamp": "2026-01-11T19:15:12.367Z",
+    "timestamp": "2026-01-15T17:18:44.877Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -749,7 +353,7 @@
   {
     "route": "/en/profile",
     "viewport": "Pixel7",
-    "timestamp": "2026-01-11T19:15:14.693Z",
+    "timestamp": "2026-01-15T17:18:47.456Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -764,7 +368,7 @@
   {
     "route": "/en/notifications",
     "viewport": "Pixel7",
-    "timestamp": "2026-01-11T19:15:16.991Z",
+    "timestamp": "2026-01-15T17:18:50.152Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,
@@ -779,7 +383,7 @@
   {
     "route": "/en/about",
     "viewport": "Pixel7",
-    "timestamp": "2026-01-11T19:15:19.304Z",
+    "timestamp": "2026-01-15T17:18:52.771Z",
     "interstitialBypassed": false,
     "overflow": {
       "hasOverflow": false,

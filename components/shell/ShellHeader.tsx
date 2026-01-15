@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { buildLocalizedHref } from "./navItems";
 import { UserMenu } from "@/components/auth/UserMenu";
+import { MKFlag } from "@/components/ui/MKFlag";
 
 export function ShellHeader() {
   const locale = useLocale();
@@ -22,7 +23,8 @@ export function ShellHeader() {
             aria-label={appT("displayName")}
             data-testid="shell-brand-link"
           >
-            <span className="title-gradient text-xl sm:text-2xl lowercase whitespace-nowrap">🇲🇰 македонски</span>
+            <MKFlag size="md" className="flex-shrink-0" />
+            <span className="title-gradient text-xl sm:text-2xl lowercase whitespace-nowrap">македонски</span>
             <span className="hidden text-[11px] uppercase tracking-[0.35em] text-foreground/60 whitespace-nowrap md:inline">
               {appT("shortName").toUpperCase()}
             </span>
