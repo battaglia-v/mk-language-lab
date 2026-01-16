@@ -1,0 +1,1 @@
+export { MultipleChoiceCard } from './MultipleChoiceCard';

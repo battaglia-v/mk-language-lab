@@ -1,0 +1,188 @@
+import { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+
+type Props = {
+  prompt: string;
+  options: string[];
+  correctAnswer: string;
+  onAnswer: (answer: string, isCorrect: boolean) => void;
+};
+
+export function MultipleChoiceCard({ prompt, options, correctAnswer, onAnswer }: Props) {
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [showResult, setShowResult] = useState(false);
+
+  const isCorrect = selectedOption === correctAnswer;
+
+  const handleCheck = () => {
+    setShowResult(true);
+  };
+
+  const handleNext = () => {
+    if (selectedOption !== null) {
+      onAnswer(selectedOption, isCorrect);
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.prompt}>{prompt}</Text>
+
+      <View style={styles.options}>
+        {options.map((option, index) => {
+          const isSelected = selectedOption === option;
+          const showCorrect = showResult && option === correctAnswer;
+          const showWrong = showResult && isSelected && !isCorrect;
+
+          return (
+            <TouchableOpacity
+              key={index}
+              style={[
+                styles.option,
+                isSelected && !showResult && styles.optionSelected,
+                showCorrect && styles.optionCorrect,
+                showWrong && styles.optionWrong,
+              ]}
+              onPress={() => !showResult && setSelectedOption(option)}
+              disabled={showResult}
+              activeOpacity={0.7}
+            >
+              <Text
+                style={[
+                  styles.optionText,
+                  showCorrect && styles.optionTextCorrect,
+                  showWrong && styles.optionTextWrong,
+                ]}
+              >
+                {option}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
+
+      <View style={styles.actions}>
+        {!showResult ? (
+          <TouchableOpacity
+            style={[styles.checkButton, !selectedOption && styles.checkButtonDisabled]}
+            onPress={handleCheck}
+            disabled={!selectedOption}
+            activeOpacity={0.7}
+          >
+            <Text style={styles.checkButtonText}>Check</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity style={styles.nextButton} onPress={handleNext} activeOpacity={0.7}>
+            <Text style={styles.nextButtonText}>Next</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+
+      {showResult && (
+        <View style={[styles.feedback, isCorrect ? styles.feedbackCorrect : styles.feedbackWrong]}>
+          <Text style={styles.feedbackText}>
+            {isCorrect ? 'Correct!' : `Incorrect. The answer is: ${correctAnswer}`}
+          </Text>
+        </View>
+      )}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 16,
+    flex: 1,
+  },
+  prompt: {
+    fontSize: 24,
+    color: '#f7f8fb',
+    textAlign: 'center',
+    marginBottom: 32,
+    fontWeight: '600',
+  },
+  options: {
+    gap: 12,
+  },
+  option: {
+    backgroundColor: '#0b0b12',
+    borderWidth: 2,
+    borderColor: '#222536',
+    borderRadius: 12,
+    padding: 16,
+    minHeight: 48,
+    justifyContent: 'center',
+  },
+  optionSelected: {
+    borderColor: '#3b82f6',
+    backgroundColor: 'rgba(59,130,246,0.1)',
+  },
+  optionCorrect: {
+    borderColor: '#22c55e',
+    backgroundColor: 'rgba(34,197,94,0.1)',
+  },
+  optionWrong: {
+    borderColor: '#ef4444',
+    backgroundColor: 'rgba(239,68,68,0.1)',
+  },
+  optionText: {
+    fontSize: 16,
+    color: '#f7f8fb',
+    textAlign: 'center',
+  },
+  optionTextCorrect: {
+    color: '#22c55e',
+    fontWeight: '600',
+  },
+  optionTextWrong: {
+    color: '#ef4444',
+  },
+  actions: {
+    marginTop: 24,
+  },
+  checkButton: {
+    backgroundColor: '#f6d83b',
+    paddingVertical: 16,
+    borderRadius: 12,
+    alignItems: 'center',
+    minHeight: 48,
+    justifyContent: 'center',
+  },
+  checkButtonDisabled: {
+    opacity: 0.5,
+  },
+  checkButtonText: {
+    color: '#000',
+    fontSize: 18,
+    fontWeight: '600',
+  },
+  nextButton: {
+    backgroundColor: '#22c55e',
+    paddingVertical: 16,
+    borderRadius: 12,
+    alignItems: 'center',
+    minHeight: 48,
+    justifyContent: 'center',
+  },
+  nextButtonText: {
+    color: '#000',
+    fontSize: 18,
+    fontWeight: '600',
+  },
+  feedback: {
+    marginTop: 16,
+    padding: 16,
+    borderRadius: 12,
+  },
+  feedbackCorrect: {
+    backgroundColor: 'rgba(34,197,94,0.2)',
+  },
+  feedbackWrong: {
+    backgroundColor: 'rgba(239,68,68,0.2)',
+  },
+  feedbackText: {
+    color: '#f7f8fb',
+    textAlign: 'center',
+    fontSize: 16,
+  },
+});
