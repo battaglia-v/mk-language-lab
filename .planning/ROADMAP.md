@@ -25,7 +25,7 @@ Ship native React Native app for Android, preserving Play Store listing.
 - [x] Phase 61: Foundation — Expo setup, auth, tab navigation — completed 2026-01-16
 - [x] Phase 62: Learn Flow (2/2 plans) — Level selector, lesson runner — completed 2026-01-16
 - [x] Phase 63: Practice Flow (4/4 plans) — Practice hub, cards, session, offline queue — completed 2026-01-16
-- [ ] Phase 64: Reader Flow — Story list, tap-to-translate, progress
+- [x] Phase 64: Reader Flow (3/3 plans) — Story list, tap-to-translate, progress — completed 2026-01-16
 - [ ] Phase 65: Translator — AI translation tool
 - [ ] Phase 66: Profile & Polish — Profile, settings, store assets
 - [ ] Phase 67: QA & Ship Android — Testing, Play Store release
