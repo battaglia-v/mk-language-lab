@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import {
   Modal,
   View,
@@ -9,6 +9,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { X, BookOpen, Plus, Check } from 'lucide-react-native';
+import { saveWord, isWordSaved } from '../../lib/glossary';
 
 export type WordInfo = {
   mk: string;
@@ -42,22 +43,52 @@ const POS_LABELS: Record<string, string> = {
  * WordPopup - Modal popup showing word translation
  *
  * Displays the Macedonian word, English translation, and part of speech.
- * Includes a placeholder save-to-glossary button for Phase 64-03.
+ * Includes save-to-glossary functionality.
  */
 export function WordPopup({ visible, word, onClose, storyId }: WordPopupProps) {
   const [isSaved, setIsSaved] = useState(false);
+  const [isCheckingSaved, setIsCheckingSaved] = useState(false);
 
-  // Reset saved state when word changes
+  // Check if word is already saved when popup opens
+  useEffect(() => {
+    const checkSaved = async () => {
+      if (visible && word && !word.isLoading) {
+        setIsCheckingSaved(true);
+        try {
+          const saved = await isWordSaved(word.mk);
+          setIsSaved(saved);
+        } catch {
+          setIsSaved(false);
+        } finally {
+          setIsCheckingSaved(false);
+        }
+      }
+    };
+    checkSaved();
+  }, [visible, word]);
+
+  // Reset saved state when popup closes
   const handleClose = useCallback(() => {
     setIsSaved(false);
+    setIsCheckingSaved(false);
     onClose();
   }, [onClose]);
 
-  // Placeholder for 64-03 save functionality
-  const handleSave = useCallback(() => {
-    // TODO: Implement save-to-glossary in 64-03
-    setIsSaved(true);
-    console.log('[WordPopup] Save to glossary:', word?.mk, 'from story:', storyId);
+  // Save word to glossary
+  const handleSave = useCallback(async () => {
+    if (!word || word.isLoading || !storyId) return;
+
+    try {
+      await saveWord({
+        mk: word.mk,
+        en: word.en,
+        pos: word.pos,
+        source: storyId,
+      });
+      setIsSaved(true);
+    } catch (err) {
+      console.error('[WordPopup] Failed to save word:', err);
+    }
   }, [word, storyId]);
 
   if (!word) return null;
@@ -101,8 +132,8 @@ export function WordPopup({ visible, word, onClose, storyId }: WordPopupProps) {
               </View>
             )}
 
-            {/* Save to glossary button (placeholder) */}
-            {!word.isLoading && (
+            {/* Save to glossary button */}
+            {!word.isLoading && !isCheckingSaved && (
               <TouchableOpacity
                 style={[
                   styles.saveButton,
