@@ -16,9 +16,9 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 - ✅ [v1.7 Learn Experience Overhaul](milestones/v1.7-ROADMAP.md) (Phases 42-46) — SHIPPED 2026-01-11
 - ✅ [v1.8 Quality & Performance](milestones/v1.8-ROADMAP.md) (Phases 47-52) — SHIPPED 2026-01-13
 - ✅ **v1.9 Quality & Stability** (Phases 53-60) — SHIPPED 2026-01-14
-- 🚧 [v2.0 Mobile App](milestones/v2.0-ROADMAP.md) (Phases 61-67) — IN PROGRESS
+- ✅ [v2.0 Mobile App](milestones/v2.0-ROADMAP.md) (Phases 61-67) — SHIPPED 2026-01-16
 
-## v2.0 Mobile App (React Native + Expo) — IN PROGRESS
+## v2.0 Mobile App (React Native + Expo) — SHIPPED 2026-01-16
 
 Ship native React Native app for Android, preserving Play Store listing.
 
@@ -28,7 +28,7 @@ Ship native React Native app for Android, preserving Play Store listing.
 - [x] Phase 64: Reader Flow (3/3 plans) — Story list, tap-to-translate, progress — completed 2026-01-16
 - [x] Phase 65: Translator (1/1 plans) — AI translation tool — completed 2026-01-16
 - [x] Phase 66: Profile & Polish (2/2 plans) — Profile, settings, store assets — completed 2026-01-16
-- [ ] Phase 67: QA & Ship Android — Testing, Play Store release
+- [x] Phase 67: QA & Ship Android (2/2 plans) — Testing, Play Store release — completed 2026-01-16
 
 [Full details](milestones/v2.0-ROADMAP.md)
 
@@ -236,6 +236,7 @@ Plans:
 - [v1.7 Learn Experience Overhaul](milestones/v1.7-ROADMAP.md) — 5 phases, 6 plans (shipped 2026-01-11)
 - [v1.8 Quality & Performance](milestones/v1.8-ROADMAP.md) — 6 phases, 10 plans (shipped 2026-01-13)
 - **v1.9 Quality & Stability** — 8 phases, 12 plans (shipped 2026-01-14)
+- [v2.0 Mobile App](milestones/v2.0-ROADMAP.md) — 7 phases, 13 plans (shipped 2026-01-16)
 
 ## Domain Expertise
 

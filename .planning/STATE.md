@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-13)
 ## Current Position
 
 Phase: 67 of 67 (QA & Ship Android)
-Plan: 1 of 2 complete
-Status: v2.0 milestone in progress — 67-01 done, 67-02 pending
-Last activity: 2026-01-16 — Completed 67-01-PLAN.md
+Plan: 2 of 2 complete
+Status: v2.0 milestone COMPLETE — ready for Play Store release
+Last activity: 2026-01-16 — Completed 67-02-PLAN.md
 
-Progress: █████████░ 93% (v2.0 - 7/7 phases in progress)
+Progress: ██████████ 100% (v2.0 - 7/7 phases complete)
 
 ## Milestone Summary
 
@@ -89,14 +89,23 @@ Progress: █████████░ 93% (v2.0 - 7/7 phases in progress)
 - QA validation: all tests pass, production build succeeds
 - User feedback fixes: 12 issues (P0/P1/P2) resolved
 
+**v2.0 Mobile App shipped 2026-01-16**
+- 7 phases (61-67), 13 plans
+- React Native + Expo managed workflow
+- Full app rebuild: Auth, Learn, Practice, Reader, Translator, Profile
+- 5 practice card types (Multiple Choice, Cloze, Typing, TapWords, Matching)
+- Tap-to-translate reader with progress tracking
+- AI translator with history (EN↔MK)
+- EAS build configuration for Play Store release
+
 See `.planning/MILESTONES.md` for full details.
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 99
+- Total plans completed: 112
 - Average duration: ~9 min
-- Total execution time: ~14.5 hours
+- Total execution time: ~16.5 hours
 
 **By Milestone:**
 
@@ -112,6 +121,7 @@ See `.planning/MILESTONES.md` for full details.
 | v1.7 Learn Experience | 5 | 6 | 32 | Same day |
 | v1.8 Quality & Performance | 6 | 10 | 38 | 2 days |
 | v1.9 Quality & Stability | 8 | 12 | ~36 | 1 day |
+| v2.0 Mobile App | 7 | 13 | ~30 | 1 day |
 
 ## Accumulated Context
 
@@ -140,10 +150,11 @@ None.
 - Milestone v1.7 shipped: Learn experience overhaul (Phases 42-46)
 - Milestone v1.8 shipped: Quality & performance (Phases 47-52)
 - Milestone v1.9 shipped: Quality & stability (Phases 53-60)
+- Milestone v2.0 shipped: Mobile App (Phases 61-67)
 
 ## Session Continuity
 
 Last session: 2026-01-16
-Stopped at: Completed 67-01 (QA Validation) - 1 of 2 plans done
-Next action: Execute 67-02-PLAN.md (Play Store Release)
-Resume file: N/A - ready to execute next plan
+Stopped at: Completed 67-02 (Play Store Release) - v2.0 milestone complete
+Next action: User to complete manual QA testing and submit to Play Store
+Resume file: N/A - milestone complete
