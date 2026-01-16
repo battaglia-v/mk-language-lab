@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useRef } from 'react';
+import { useEffect, useState, useCallback, useRef, useMemo } from 'react';
 import {
   View,
   Text,
@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   NativeSyntheticEvent,
   NativeScrollEvent,
+  LayoutChangeEvent,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, router } from 'expo-router';
@@ -15,10 +16,14 @@ import { ArrowLeft, CheckCircle2 } from 'lucide-react-native';
 import {
   fetchStoryDetail,
   ReaderStoryDetail,
-  VocabularyItem,
   lookupVocabulary,
   translateWord,
 } from '../../lib/reader';
+import {
+  loadProgress,
+  markComplete,
+  createDebouncedProgressSave,
+} from '../../lib/reading-progress';
 import { TappableText } from '../../components/reader/TappableText';
 import { WordPopup } from '../../components/reader/WordPopup';
 
@@ -43,17 +48,39 @@ export default function StoryViewerScreen() {
   const [error, setError] = useState<string | null>(null);
   const [selectedWord, setSelectedWord] = useState<WordInfo | null>(null);
   const [isComplete, setIsComplete] = useState(false);
+  const [initialScrollPosition, setInitialScrollPosition] = useState<number>(0);
 
   const scrollViewRef = useRef<ScrollView>(null);
+  const contentHeightRef = useRef<number>(0);
+  const layoutHeightRef = useRef<number>(0);
 
+  // Debounced progress save
+  const progressSaver = useMemo(
+    () => createDebouncedProgressSave(1000),
+    []
+  );
+
+  // Load story and existing progress
   useEffect(() => {
-    const loadStory = async () => {
+    const loadStoryAndProgress = async () => {
       if (!id) return;
 
       try {
         setError(null);
-        const data = await fetchStoryDetail(id);
-        setStory(data);
+
+        // Load story and progress in parallel
+        const [storyData, progressData] = await Promise.all([
+          fetchStoryDetail(id),
+          loadProgress(id),
+        ]);
+
+        setStory(storyData);
+
+        // Restore saved progress
+        if (progressData) {
+          setIsComplete(progressData.completed);
+          setInitialScrollPosition(progressData.scrollPosition);
+        }
       } catch (err) {
         console.error('Failed to load story:', err);
         setError('Failed to load story. Please try again.');
@@ -62,8 +89,13 @@ export default function StoryViewerScreen() {
       }
     };
 
-    loadStory();
-  }, [id]);
+    loadStoryAndProgress();
+
+    // Flush pending progress saves on unmount
+    return () => {
+      progressSaver.flush();
+    };
+  }, [id, progressSaver]);
 
   const handleWordPress = useCallback(
     async (word: string) => {
@@ -104,20 +136,58 @@ export default function StoryViewerScreen() {
 
   const handleScroll = useCallback(
     (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-      const { contentOffset, contentSize, layoutMeasurement } = event.nativeEvent;
-      const scrollPercentage = contentOffset.y / (contentSize.height - layoutMeasurement.height);
+      if (!id) return;
 
-      // Mark complete when scrolled past 95%
+      const { contentOffset, contentSize, layoutMeasurement } = event.nativeEvent;
+      const scrollableHeight = contentSize.height - layoutMeasurement.height;
+      const scrollPercentage = scrollableHeight > 0
+        ? Math.min(1, Math.max(0, contentOffset.y / scrollableHeight))
+        : 0;
+
+      // Save scroll progress (debounced)
+      progressSaver.save({
+        storyId: id,
+        scrollPosition: scrollPercentage,
+        completed: isComplete || scrollPercentage > 0.95,
+        lastReadAt: Date.now(),
+      });
+
+      // Auto-mark complete when scrolled past 95%
       if (scrollPercentage > 0.95 && !isComplete) {
         setIsComplete(true);
+        markComplete(id);
       }
     },
-    [isComplete]
+    [id, isComplete, progressSaver]
   );
 
-  const handleMarkComplete = () => {
+  const handleMarkComplete = useCallback(() => {
+    if (!id) return;
     setIsComplete(true);
-  };
+    markComplete(id);
+  }, [id]);
+
+  // Restore scroll position when content is ready
+  const handleContentSizeChange = useCallback(
+    (width: number, height: number) => {
+      contentHeightRef.current = height;
+
+      // Restore scroll position once we have both content and layout dimensions
+      if (
+        initialScrollPosition > 0 &&
+        layoutHeightRef.current > 0 &&
+        height > layoutHeightRef.current
+      ) {
+        const scrollY = initialScrollPosition * (height - layoutHeightRef.current);
+        scrollViewRef.current?.scrollTo({ y: scrollY, animated: false });
+      }
+    },
+    [initialScrollPosition]
+  );
+
+  const handleLayout = useCallback((event: LayoutChangeEvent) => {
+    layoutHeightRef.current = event.nativeEvent.layout.height;
+  }, []);
 
   if (isLoading) {
     return (
@@ -187,6 +257,8 @@ export default function StoryViewerScreen() {
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
         onScroll={handleScroll}
+        onContentSizeChange={handleContentSizeChange}
+        onLayout={handleLayout}
         scrollEventThrottle={100}
       >
         {/* English title */}
