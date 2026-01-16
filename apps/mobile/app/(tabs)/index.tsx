@@ -1,0 +1,305 @@
+import { useEffect, useState } from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  RefreshControl,
+  StyleSheet,
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { router } from 'expo-router';
+import { useAuthStore } from '../../store/auth';
+import { fetchProgress, UserProgress } from '../../lib/progress';
+import { BookOpen, Flame, Zap } from 'lucide-react-native';
+
+export default function HomeScreen() {
+  const { user } = useAuthStore();
+  const [progress, setProgress] = useState<UserProgress | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const loadProgress = async () => {
+    try {
+      const data = await fetchProgress();
+      setProgress(data);
+    } catch (error) {
+      console.error('Failed to load progress:', error);
+      // Use mock data for development
+      setProgress({
+        currentLevel: 'A1',
+        currentLesson: 3,
+        lessonsCompleted: 2,
+        totalLessons: 10,
+        streak: 5,
+        xp: 150,
+      });
+    } finally {
+      setIsLoading(false);
+      setIsRefreshing(false);
+    }
+  };
+
+  useEffect(() => {
+    loadProgress();
+  }, []);
+
+  const onRefresh = () => {
+    setIsRefreshing(true);
+    loadProgress();
+  };
+
+  const firstName = user?.name?.split(' ')[0] || 'Learner';
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollContent}
+        refreshControl={
+          <RefreshControl
+            refreshing={isRefreshing}
+            onRefresh={onRefresh}
+            tintColor="#f6d83b"
+          />
+        }
+      >
+        {/* Header */}
+        <View style={styles.header}>
+          <Text style={styles.welcomeText}>Welcome back,</Text>
+          <Text style={styles.nameText}>{firstName}</Text>
+        </View>
+
+        {/* Stats Row */}
+        {progress && (
+          <View style={styles.statsRow}>
+            <View style={styles.statCard}>
+              <View style={styles.statHeader}>
+                <Flame size={16} color="#f6d83b" />
+                <Text style={styles.statLabel}>Streak</Text>
+              </View>
+              <Text style={styles.statValue}>{progress.streak}</Text>
+            </View>
+            <View style={styles.statCard}>
+              <View style={styles.statHeader}>
+                <Zap size={16} color="#f6d83b" />
+                <Text style={styles.statLabel}>XP</Text>
+              </View>
+              <Text style={styles.statValue}>{progress.xp}</Text>
+            </View>
+            <View style={styles.statCard}>
+              <View style={styles.statHeader}>
+                <BookOpen size={16} color="#f6d83b" />
+                <Text style={styles.statLabel}>Level</Text>
+              </View>
+              <Text style={styles.statValue}>{progress.currentLevel}</Text>
+            </View>
+          </View>
+        )}
+
+        {/* Continue Learning Card */}
+        {progress && (
+          <TouchableOpacity
+            style={styles.continueCard}
+            onPress={() => router.push('/learn')}
+          >
+            <Text style={styles.continueLabel}>Continue Learning</Text>
+            <Text style={styles.continueTitle}>
+              {progress.currentLevel} • Lesson {progress.currentLesson}
+            </Text>
+            <View style={styles.progressBar}>
+              <View
+                style={[
+                  styles.progressFill,
+                  {
+                    width: `${(progress.lessonsCompleted / progress.totalLessons) * 100}%`,
+                  },
+                ]}
+              />
+            </View>
+            <Text style={styles.progressText}>
+              {progress.lessonsCompleted} of {progress.totalLessons} lessons complete
+            </Text>
+          </TouchableOpacity>
+        )}
+
+        {/* Quick Actions */}
+        <Text style={styles.sectionTitle}>Quick Actions</Text>
+        <View style={styles.actionsContainer}>
+          <TouchableOpacity
+            style={styles.actionCard}
+            onPress={() => router.push('/practice')}
+          >
+            <View style={styles.actionIcon}>
+              <Text style={styles.actionEmoji}>💪</Text>
+            </View>
+            <View style={styles.actionContent}>
+              <Text style={styles.actionTitle}>Practice</Text>
+              <Text style={styles.actionSubtitle}>Review vocabulary & grammar</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.actionCard}
+            onPress={() => router.push('/reader')}
+          >
+            <View style={styles.actionIcon}>
+              <Text style={styles.actionEmoji}>📚</Text>
+            </View>
+            <View style={styles.actionContent}>
+              <Text style={styles.actionTitle}>Reader</Text>
+              <Text style={styles.actionSubtitle}>Read graded stories</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.actionCard}
+            onPress={() => router.push('/translator')}
+          >
+            <View style={styles.actionIcon}>
+              <Text style={styles.actionEmoji}>🔤</Text>
+            </View>
+            <View style={styles.actionContent}>
+              <Text style={styles.actionTitle}>Translator</Text>
+              <Text style={styles.actionSubtitle}>Translate any text</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#06060b',
+  },
+  scrollView: {
+    flex: 1,
+  },
+  scrollContent: {
+    padding: 24,
+  },
+  header: {
+    marginBottom: 32,
+  },
+  welcomeText: {
+    fontSize: 14,
+    color: 'rgba(247,248,251,0.72)',
+    marginBottom: 4,
+  },
+  nameText: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#f7f8fb',
+  },
+  statsRow: {
+    flexDirection: 'row',
+    gap: 12,
+    marginBottom: 32,
+  },
+  statCard: {
+    flex: 1,
+    backgroundColor: '#0b0b12',
+    borderWidth: 1,
+    borderColor: '#222536',
+    borderRadius: 16,
+    padding: 16,
+  },
+  statHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 4,
+  },
+  statLabel: {
+    fontSize: 12,
+    color: 'rgba(247,248,251,0.72)',
+  },
+  statValue: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#f7f8fb',
+  },
+  continueCard: {
+    backgroundColor: 'rgba(246,216,59,0.1)',
+    borderWidth: 1,
+    borderColor: 'rgba(246,216,59,0.3)',
+    borderRadius: 20,
+    padding: 24,
+    marginBottom: 24,
+  },
+  continueLabel: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#f6d83b',
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+    marginBottom: 8,
+  },
+  continueTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#f7f8fb',
+    marginBottom: 12,
+  },
+  progressBar: {
+    height: 8,
+    backgroundColor: 'rgba(6,6,11,0.5)',
+    borderRadius: 4,
+    overflow: 'hidden',
+  },
+  progressFill: {
+    height: '100%',
+    backgroundColor: '#f6d83b',
+    borderRadius: 4,
+  },
+  progressText: {
+    fontSize: 14,
+    color: 'rgba(247,248,251,0.72)',
+    marginTop: 8,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#f7f8fb',
+    marginBottom: 16,
+  },
+  actionsContainer: {
+    gap: 12,
+  },
+  actionCard: {
+    backgroundColor: '#0b0b12',
+    borderWidth: 1,
+    borderColor: '#222536',
+    borderRadius: 16,
+    padding: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  actionIcon: {
+    width: 40,
+    height: 40,
+    backgroundColor: 'rgba(246,216,59,0.2)',
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 16,
+  },
+  actionEmoji: {
+    fontSize: 20,
+  },
+  actionContent: {
+    flex: 1,
+  },
+  actionTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#f7f8fb',
+  },
+  actionSubtitle: {
+    fontSize: 14,
+    color: 'rgba(247,248,251,0.72)',
+  },
+});
