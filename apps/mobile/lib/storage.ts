@@ -46,3 +46,24 @@ export async function clearUser(): Promise<void> {
 export async function clearAll(): Promise<void> {
   await Promise.all([clearToken(), clearUser()]);
 }
+
+/**
+ * Clear all AsyncStorage data except auth tokens
+ * Used for "Clear Cache" in settings
+ */
+export async function clearAllExceptAuth(): Promise<void> {
+  // Import AsyncStorage dynamically to avoid circular deps
+  const AsyncStorage = (await import('@react-native-async-storage/async-storage')).default;
+
+  try {
+    const keys = await AsyncStorage.getAllKeys();
+    // Filter out auth-related keys (we use SecureStore for those, but be safe)
+    const keysToRemove = keys.filter((key) => !key.includes('auth'));
+    if (keysToRemove.length > 0) {
+      await AsyncStorage.multiRemove(keysToRemove);
+    }
+  } catch (error) {
+    console.error('[Storage] Failed to clear cache:', error);
+    throw error;
+  }
+}
