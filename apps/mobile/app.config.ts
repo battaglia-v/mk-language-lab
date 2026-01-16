@@ -24,6 +24,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 
   android: {
     package: 'com.mklanguage.app', // CRITICAL: Match TWA for Play Store continuity
+    versionCode: 200, // v2.0.0 = 200 (major*100 + minor*10 + patch)
     adaptiveIcon: {
       foregroundImage: './assets/adaptive-icon.png',
       backgroundColor: '#06060b',
@@ -31,7 +32,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     edgeToEdgeEnabled: true,
   },
 
-  plugins: ['expo-router', 'expo-secure-store'],
+  plugins: ['expo-router', 'expo-secure-store', 'expo-clipboard'],
 
   extra: {
     apiBaseUrl:
