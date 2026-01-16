@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-01-13)
 
 ## Current Position
 
-Phase: 63 of 67 (Practice Flow)
-Plan: 4 of 4 complete
-Status: v2.0 milestone in progress — Phase 63 COMPLETE
-Last activity: 2026-01-16 — Completed 63-04-PLAN.md
+Phase: 64 of 67 (Reader Flow)
+Plan: 1 of 3 complete
+Status: v2.0 milestone in progress — Phase 64 started
+Last activity: 2026-01-16 — Completed 64-01-PLAN.md
 
-Progress: ████░░░░░░ 43% (v2.0 - 3/7 phases complete)
+Progress: █████░░░░░ 50% (v2.0 - 3.5/7 phases complete)
 
 ## Milestone Summary
 
@@ -144,6 +144,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-01-16
-Stopped at: Completed 63-04-PLAN.md (Offline Queue & Session Persistence)
-Next action: Plan Phase 64 (Reader Flow)
-Resume file: N/A - ready to plan next phase
+Stopped at: Completed 64-01-PLAN.md (Reader API & Story List)
+Next action: Execute 64-02-PLAN.md (Story Viewer & Tap-to-Translate)
+Resume file: N/A - ready to execute next plan
