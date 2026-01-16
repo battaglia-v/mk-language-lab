@@ -128,3 +128,38 @@ export function buildPracticeDeck(
 ): PracticeCard[] {
   return shuffleArray(items).map((item) => createPracticeCard(item, type, items));
 }
+
+// Practice completion data for API submission
+export type PracticeCompletionData = {
+  deckType: string;
+  mode: string;
+  correct: number;
+  total: number;
+  accuracy: number;
+  xpEarned: number;
+  durationMs: number;
+};
+
+/**
+ * Submit practice completion to backend API
+ *
+ * Errors are logged but don't block the UI.
+ * Full offline queue support comes in a future phase.
+ */
+export async function submitPracticeCompletion(
+  data: PracticeCompletionData
+): Promise<void> {
+  try {
+    await apiFetch('/api/mobile/practice-completions', {
+      method: 'POST',
+      body: {
+        ...data,
+        completedAt: new Date().toISOString(),
+      },
+    });
+  } catch (err) {
+    // Log but don't block UI - completion sync is best-effort
+    // Full offline queue implementation comes in 63-04
+    console.warn('Failed to submit practice completion:', err);
+  }
+}
