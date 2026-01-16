@@ -32,7 +32,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     edgeToEdgeEnabled: true,
   },
 
-  plugins: ['expo-router', 'expo-secure-store', 'expo-clipboard'],
+  plugins: ['expo-router', 'expo-secure-store'],
 
   extra: {
     apiBaseUrl:
