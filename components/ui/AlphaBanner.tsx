@@ -6,13 +6,41 @@ import { X, MessageSquare } from 'lucide-react';
 const STORAGE_KEY = 'mk-alpha-banner-dismissed';
 
 /**
+ * Detect if running as a standalone app (PWA installed or TWA)
+ */
+function isStandaloneOrTwa(): boolean {
+  if (typeof window === 'undefined') return false;
+
+  // Check for TWA via Android bridge
+  // @ts-expect-error - Android interface may not exist
+  if (window.Android?.isTwa) return true;
+
+  // Check document referrer for TWA
+  if (document.referrer.includes('android-app://')) return true;
+
+  // Check for standalone display mode (PWA installed)
+  if (window.matchMedia('(display-mode: standalone)').matches) return true;
+
+  // iOS standalone mode
+  // @ts-expect-error - navigator.standalone is iOS-specific
+  if (window.navigator?.standalone === true) return true;
+
+  return false;
+}
+
+/**
  * Alpha banner to indicate the app is in early development
  * and encourage user feedback.
+ * Hidden when running as a standalone app (PWA/TWA) for native feel.
  */
 export function AlphaBanner() {
   const [isDismissed, setIsDismissed] = useState(true); // Start hidden to avoid flash
+  const [isStandalone, setIsStandalone] = useState(false);
 
   useEffect(() => {
+    // Check if running as standalone app
+    setIsStandalone(isStandaloneOrTwa());
+
     // Check localStorage on mount
     const dismissed = localStorage.getItem(STORAGE_KEY);
     setIsDismissed(dismissed === 'true');
@@ -23,7 +51,8 @@ export function AlphaBanner() {
     setIsDismissed(true);
   };
 
-  if (isDismissed) return null;
+  // Hide in standalone/TWA mode for native app feel, or if dismissed
+  if (isDismissed || isStandalone) return null;
 
   return (
     <div className="relative bg-gradient-to-r from-amber-500/90 to-amber-600/90 text-white px-4 py-2">

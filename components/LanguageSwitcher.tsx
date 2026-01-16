@@ -13,12 +13,13 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Languages } from 'lucide-react';
 import { useTransition } from 'react';
+import { MKFlag } from '@/components/ui/MKFlag';
 
 const supportedLocales = ['en', 'mk'] as const;
 
 const languages = [
   { code: 'en', name: 'English', flag: '🇬🇧' },
-  { code: 'mk', name: 'Македонски', flag: '🇲🇰' },
+  { code: 'mk', name: 'Македонски', flag: null }, // Use SVG component for MK flag
 ];
 
 export default function LanguageSwitcher() {
@@ -96,7 +97,9 @@ export default function LanguageSwitcher() {
           data-testid="language-switcher-trigger"
         >
           <Languages className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
-          <span className="sm:hidden flex-shrink-0">{currentLanguage.flag}</span>
+          <span className="sm:hidden flex-shrink-0">
+            {currentLanguage.flag ? currentLanguage.flag : <MKFlag size="sm" />}
+          </span>
           <span className="hidden sm:inline text-center flex-1">{currentLanguage.name}</span>
         </Button>
       </DropdownMenuTrigger>
@@ -108,8 +111,8 @@ export default function LanguageSwitcher() {
         >
           {languages.map((lang) => (
             <DropdownMenuRadioItem key={lang.code} value={lang.code} data-testid={`language-switcher-option-${lang.code}`}>
-              <span className="mr-2" aria-hidden="true">
-                {lang.flag}
+              <span className="mr-2 inline-flex items-center" aria-hidden="true">
+                {lang.flag ? lang.flag : <MKFlag size="sm" />}
               </span>
               {lang.name}
             </DropdownMenuRadioItem>

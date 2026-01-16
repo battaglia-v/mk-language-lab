@@ -34,6 +34,7 @@ export default async function LocaleHome({ params }: LocalePageProps) {
   const beginnerHref = `/${safeLocale}/learn?level=beginner`;
   const intermediateHref = `/${safeLocale}/learn?level=intermediate`;
   const signInHref = `/${safeLocale}/sign-in`;
+  const signUpHref = `/auth/signup`;
 
   return (
     <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center pt-12 pb-8">
@@ -81,17 +82,29 @@ export default async function LocaleHome({ params }: LocalePageProps) {
           <p className="text-xs text-muted-foreground">{homeT("levelHelper")}</p>
         </div>
 
-        {/* Sign in link */}
-        <p className="text-sm text-muted-foreground">
-          {homeT("guestSignIn")}{" "}
-          <Link
-            href={signInHref}
-            className="font-medium text-primary hover:underline"
-            data-testid="home-sign-in"
-          >
-            {homeT("guestSignInLink")}
-          </Link>
-        </p>
+        {/* Auth links */}
+        <div className="space-y-2 text-sm text-muted-foreground">
+          <p>
+            {homeT("guestSignUp")}{" "}
+            <Link
+              href={signUpHref}
+              className="font-medium text-primary hover:underline"
+              data-testid="home-sign-up"
+            >
+              {homeT("guestSignUpLink")}
+            </Link>
+          </p>
+          <p>
+            {homeT("guestSignIn")}{" "}
+            <Link
+              href={signInHref}
+              className="font-medium text-primary hover:underline"
+              data-testid="home-sign-in"
+            >
+              {homeT("guestSignInLink")}
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

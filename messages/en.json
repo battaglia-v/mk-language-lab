@@ -144,6 +144,8 @@
     "levelIntermediate": "Intermediate",
     "guestSignIn": "Already have an account?",
     "guestSignInLink": "Sign in",
+    "guestSignUp": "New here?",
+    "guestSignUpLink": "Create account",
     "previewDuration": "5 minutes",
     "previewXP": "+10 XP",
     "benefitOne": "Quick daily lessons that fit your schedule",

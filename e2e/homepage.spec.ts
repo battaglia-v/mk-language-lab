@@ -154,7 +154,7 @@ test.describe('Homepage - Signed-Out Guest Flow', () => {
     await context.clearCookies();
   });
 
-  test('should display guest CTA and navigate to practice session', async ({ page }) => {
+  test('should display guest CTA and navigate to learn page', async ({ page }) => {
     // Go to English homepage to test guest flow
     await page.goto('/en');
     await page.waitForLoadState('networkidle');
@@ -167,22 +167,22 @@ test.describe('Homepage - Signed-Out Guest Flow', () => {
     const subtitle = page.getByText(/5 minutes a day/i);
     await expect(subtitle).toBeVisible();
 
-    // Find and click the "Start Learning" CTA button
-    const startButton = page.getByRole('link', { name: /Start Learning|Почни да учиш/i });
-    await expect(startButton).toBeVisible();
+    // Find the "Beginner A1" CTA button (primary action for new users)
+    const beginnerButton = page.getByTestId('cta-start-here');
+    await expect(beginnerButton).toBeVisible();
 
-    // Verify the href points to practice session
-    const href = await startButton.getAttribute('href');
-    expect(href).toContain('/practice/session');
-    expect(href).toContain('deck=curated');
+    // Verify the href points to learn page with beginner level
+    const href = await beginnerButton.getAttribute('href');
+    expect(href).toContain('/learn');
+    expect(href).toContain('level=beginner');
 
     // Click and verify navigation
-    await startButton.click();
-    await page.waitForURL('**/practice/session**');
+    await beginnerButton.click();
+    await page.waitForURL('**/learn**');
 
-    // Verify practice session loads (has progress bar or card content)
-    const sessionContent = page.locator('main, [role="main"]').first();
-    await expect(sessionContent).toBeVisible();
+    // Verify learn page loads
+    const pageContent = page.locator('main, [role="main"]').first();
+    await expect(pageContent).toBeVisible();
   });
 
   test('should display sign-in link for returning users', async ({ page }) => {
@@ -193,11 +193,39 @@ test.describe('Homepage - Signed-Out Guest Flow', () => {
     const signInPrompt = page.getByText(/Already have an account/i);
     await expect(signInPrompt).toBeVisible();
 
-    const signInLink = page.getByRole('link', { name: /Sign in|Најави се/i });
+    const signInLink = page.getByTestId('home-sign-in');
     await expect(signInLink).toBeVisible();
 
     // Verify sign-in link points to auth
     const href = await signInLink.getAttribute('href');
-    expect(href).toContain('/auth/signin');
+    expect(href).toContain('sign-in');
+  });
+
+  test('should display create account link for new users', async ({ page }) => {
+    await page.goto('/en');
+    await page.waitForLoadState('networkidle');
+
+    // Check for "New here?" text and create account link
+    const signUpPrompt = page.getByText(/New here/i);
+    await expect(signUpPrompt).toBeVisible();
+
+    const signUpLink = page.getByTestId('home-sign-up');
+    await expect(signUpLink).toBeVisible();
+
+    // Verify sign-up link points to auth signup
+    const href = await signUpLink.getAttribute('href');
+    expect(href).toContain('/auth/signup');
+  });
+
+  test('should display both sign-in and create account options', async ({ page }) => {
+    await page.goto('/en');
+    await page.waitForLoadState('networkidle');
+
+    // Both auth options should be visible for guest users
+    const signInLink = page.getByTestId('home-sign-in');
+    const signUpLink = page.getByTestId('home-sign-up');
+
+    await expect(signInLink).toBeVisible();
+    await expect(signUpLink).toBeVisible();
   });
 });
