@@ -1,4 +1,5 @@
 import { apiFetch } from './api';
+import { queuePracticeCompletion } from './offline-queue';
 
 // Practice item from the API
 export type PracticeItem = {
@@ -143,8 +144,8 @@ export type PracticeCompletionData = {
 /**
  * Submit practice completion to backend API
  *
- * Errors are logged but don't block the UI.
- * Full offline queue support comes in a future phase.
+ * Tries API first; on failure, queues for later retry.
+ * Returns immediately to avoid blocking UI.
  */
 export async function submitPracticeCompletion(
   data: PracticeCompletionData
@@ -158,8 +159,8 @@ export async function submitPracticeCompletion(
       },
     });
   } catch (err) {
-    // Log but don't block UI - completion sync is best-effort
-    // Full offline queue implementation comes in 63-04
-    console.warn('Failed to submit practice completion:', err);
+    // Queue for later retry when back online
+    console.warn('[Practice] API failed, queueing for retry:', err);
+    await queuePracticeCompletion(data);
   }
 }

@@ -3,12 +3,25 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useAuthStore } from '../store/auth';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import { processQueue } from '../lib/offline-queue';
 
 export default function RootLayout() {
   const { isLoading, initialize } = useAuthStore();
 
   useEffect(() => {
     initialize();
+
+    // Process any queued practice completions on app start
+    // Silent background operation - don't block UI
+    processQueue()
+      .then(({ success, failed }) => {
+        if (success > 0 || failed > 0) {
+          console.log(`[OfflineQueue] Processed: ${success} success, ${failed} failed`);
+        }
+      })
+      .catch((err) => {
+        console.warn('[OfflineQueue] Failed to process queue:', err);
+      });
   }, [initialize]);
 
   if (isLoading) {
