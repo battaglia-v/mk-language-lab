@@ -16,6 +16,21 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 - ✅ [v1.7 Learn Experience Overhaul](milestones/v1.7-ROADMAP.md) (Phases 42-46) — SHIPPED 2026-01-11
 - ✅ [v1.8 Quality & Performance](milestones/v1.8-ROADMAP.md) (Phases 47-52) — SHIPPED 2026-01-13
 - ✅ **v1.9 Quality & Stability** (Phases 53-60) — SHIPPED 2026-01-14
+- 🚧 [v2.0 Mobile App](milestones/v2.0-ROADMAP.md) (Phases 61-67) — IN PROGRESS
+
+## v2.0 Mobile App (React Native + Expo) — IN PROGRESS
+
+Ship native React Native app for Android, preserving Play Store listing.
+
+- [ ] Phase 61: Foundation — Expo setup, auth, tab navigation
+- [ ] Phase 62: Learn Flow — Level selector, lesson runner, progress
+- [ ] Phase 63: Practice Flow — Practice hub, card stack, 5 question types
+- [ ] Phase 64: Reader Flow — Story list, tap-to-translate, progress
+- [ ] Phase 65: Translator — AI translation tool
+- [ ] Phase 66: Profile & Polish — Profile, settings, store assets
+- [ ] Phase 67: QA & Ship Android — Testing, Play Store release
+
+[Full details](milestones/v2.0-ROADMAP.md)
 
 ## v1.9 Quality & Stability — SHIPPED 2026-01-14
 
