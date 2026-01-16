@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import {
   View,
   Text,
@@ -9,19 +9,39 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  Modal,
+  FlatList,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { setStringAsync } from 'expo-clipboard';
-import { ArrowLeftRight, Copy, X, Check } from 'lucide-react-native';
+import {
+  ArrowLeftRight,
+  Copy,
+  X,
+  Check,
+  Clock,
+  Trash2,
+  FileText,
+} from 'lucide-react-native';
 import {
   translateText,
   TranslationDirection,
   getDirectionLabels,
   swapDirection,
 } from '../../lib/translate';
-import { addToHistory } from '../../lib/translation-history';
+import {
+  addToHistory,
+  getHistory,
+  clearHistory,
+  HistoryItem,
+} from '../../lib/translation-history';
 
 const MAX_CHARACTERS = 1800;
+
+function truncate(text: string, maxLength: number): string {
+  if (text.length <= maxLength) return text;
+  return text.slice(0, maxLength - 3) + '...';
+}
 
 export default function TranslateScreen() {
   const [direction, setDirection] = useState<TranslationDirection>('en-mk');
@@ -31,7 +51,31 @@ export default function TranslateScreen() {
   const [error, setError] = useState<string | null>(null);
   const [isCopied, setIsCopied] = useState(false);
 
+  // History state
+  const [showHistory, setShowHistory] = useState(false);
+  const [history, setHistory] = useState<HistoryItem[]>([]);
+  const [isLoadingHistory, setIsLoadingHistory] = useState(false);
+
   const labels = getDirectionLabels(direction);
+
+  // Load history when modal opens
+  useEffect(() => {
+    if (showHistory) {
+      loadHistory();
+    }
+  }, [showHistory]);
+
+  const loadHistory = useCallback(async () => {
+    setIsLoadingHistory(true);
+    try {
+      const items = await getHistory();
+      setHistory(items);
+    } catch (err) {
+      console.error('[Translate] Failed to load history:', err);
+    } finally {
+      setIsLoadingHistory(false);
+    }
+  }, []);
 
   const handleSwapDirection = useCallback(() => {
     const newDirection = swapDirection(direction);
@@ -82,9 +126,45 @@ export default function TranslateScreen() {
     setTimeout(() => setIsCopied(false), 2000);
   }, [translatedText]);
 
+  const handleHistoryItemPress = useCallback((item: HistoryItem) => {
+    setInputText(item.sourceText);
+    setDirection(item.direction);
+    setTranslatedText(''); // Don't auto-translate, let user review
+    setShowHistory(false);
+  }, []);
+
+  const handleClearHistory = useCallback(async () => {
+    await clearHistory();
+    setHistory([]);
+  }, []);
+
   const characterCount = inputText.length;
   const isOverLimit = characterCount > MAX_CHARACTERS;
   const canTranslate = inputText.trim().length > 0 && !isOverLimit && !isTranslating;
+
+  const renderHistoryItem = ({ item }: { item: HistoryItem }) => {
+    const dirLabel = item.direction === 'en-mk' ? 'EN→MK' : 'MK→EN';
+
+    return (
+      <TouchableOpacity
+        style={styles.historyItem}
+        onPress={() => handleHistoryItemPress(item)}
+        activeOpacity={0.7}
+      >
+        <View style={styles.historyContent}>
+          <Text style={styles.historySource} numberOfLines={1}>
+            {truncate(item.sourceText, 50)}
+          </Text>
+          <Text style={styles.historyTranslated} numberOfLines={1}>
+            {truncate(item.translatedText, 50)}
+          </Text>
+        </View>
+        <View style={styles.historyBadge}>
+          <Text style={styles.historyBadgeText}>{dirLabel}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
@@ -99,8 +179,19 @@ export default function TranslateScreen() {
         >
           {/* Header */}
           <View style={styles.header}>
-            <Text style={styles.title}>Translate</Text>
-            <Text style={styles.subtitle}>English ↔ Macedonian</Text>
+            <View style={styles.headerRow}>
+              <View>
+                <Text style={styles.title}>Translate</Text>
+                <Text style={styles.subtitle}>English ↔ Macedonian</Text>
+              </View>
+              <TouchableOpacity
+                style={styles.historyButton}
+                onPress={() => setShowHistory(true)}
+                activeOpacity={0.7}
+              >
+                <Clock size={22} color="#f6d83b" />
+              </TouchableOpacity>
+            </View>
           </View>
 
           {/* Direction Toggle */}
@@ -244,6 +335,64 @@ export default function TranslateScreen() {
           )}
         </ScrollView>
       </KeyboardAvoidingView>
+
+      {/* History Modal */}
+      <Modal
+        visible={showHistory}
+        animationType="slide"
+        transparent
+        onRequestClose={() => setShowHistory(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            {/* Modal Header */}
+            <View style={styles.modalHeader}>
+              <Text style={styles.modalTitle}>Translation History</Text>
+              <TouchableOpacity
+                onPress={() => setShowHistory(false)}
+                style={styles.modalCloseButton}
+              >
+                <X size={24} color="#f7f8fb" />
+              </TouchableOpacity>
+            </View>
+
+            {/* History List */}
+            {isLoadingHistory ? (
+              <View style={styles.loadingContainer}>
+                <ActivityIndicator size="large" color="#f6d83b" />
+              </View>
+            ) : history.length === 0 ? (
+              <View style={styles.emptyContainer}>
+                <FileText size={48} color="rgba(247,248,251,0.3)" />
+                <Text style={styles.emptyTitle}>No history yet</Text>
+                <Text style={styles.emptyText}>
+                  Your recent translations will appear here
+                </Text>
+              </View>
+            ) : (
+              <>
+                <FlatList
+                  data={history}
+                  renderItem={renderHistoryItem}
+                  keyExtractor={(item) => item.id}
+                  contentContainerStyle={styles.historyList}
+                  showsVerticalScrollIndicator={false}
+                />
+
+                {/* Clear History Button */}
+                <TouchableOpacity
+                  style={styles.clearHistoryButton}
+                  onPress={handleClearHistory}
+                  activeOpacity={0.7}
+                >
+                  <Trash2 size={18} color="#ef4444" />
+                  <Text style={styles.clearHistoryText}>Clear History</Text>
+                </TouchableOpacity>
+              </>
+            )}
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 }
@@ -266,6 +415,11 @@ const styles = StyleSheet.create({
   header: {
     marginBottom: 20,
   },
+  headerRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+  },
   title: {
     fontSize: 28,
     fontWeight: 'bold',
@@ -275,6 +429,14 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 14,
     color: 'rgba(247,248,251,0.6)',
+  },
+  historyButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: 'rgba(246,216,59,0.1)',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   directionContainer: {
     flexDirection: 'row',
@@ -435,5 +597,110 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#f7f8fb',
     lineHeight: 24,
+  },
+  // Modal styles
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    justifyContent: 'flex-end',
+  },
+  modalContent: {
+    backgroundColor: '#0b0b12',
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+    maxHeight: '80%',
+    paddingBottom: 32,
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#222536',
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#f7f8fb',
+  },
+  modalCloseButton: {
+    padding: 4,
+  },
+  loadingContainer: {
+    paddingVertical: 60,
+    alignItems: 'center',
+  },
+  emptyContainer: {
+    alignItems: 'center',
+    paddingVertical: 60,
+    paddingHorizontal: 32,
+  },
+  emptyTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#f7f8fb',
+    marginTop: 16,
+    marginBottom: 8,
+  },
+  emptyText: {
+    fontSize: 14,
+    color: 'rgba(247,248,251,0.5)',
+    textAlign: 'center',
+  },
+  historyList: {
+    padding: 16,
+  },
+  historyItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,
+    backgroundColor: '#06060b',
+    borderRadius: 12,
+    marginBottom: 8,
+  },
+  historyContent: {
+    flex: 1,
+    marginRight: 12,
+  },
+  historySource: {
+    fontSize: 15,
+    fontWeight: '500',
+    color: '#f7f8fb',
+    marginBottom: 4,
+  },
+  historyTranslated: {
+    fontSize: 14,
+    color: 'rgba(247,248,251,0.6)',
+  },
+  historyBadge: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 6,
+    backgroundColor: 'rgba(246,216,59,0.15)',
+    borderWidth: 1,
+    borderColor: 'rgba(246,216,59,0.3)',
+  },
+  historyBadgeText: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#f6d83b',
+  },
+  clearHistoryButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    marginHorizontal: 16,
+    paddingVertical: 14,
+    backgroundColor: 'rgba(239,68,68,0.1)',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(239,68,68,0.3)',
+  },
+  clearHistoryText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#ef4444',
   },
 });
