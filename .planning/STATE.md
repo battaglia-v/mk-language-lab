@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-13)
 
 **Core value:** The app always resumes me in the right place and makes my next step obvious.
-**Current focus:** v2.0 Mobile App - React Native + Expo migration
+**Current focus:** v2.1 Feature Parity - Full PWA feature match for mobile
 
 ## Current Position
 
-Phase: 67 of 67 (QA & Ship Android)
-Plan: 2 of 2 complete
-Status: v2.0 milestone COMPLETE — ready for Play Store release
-Last activity: 2026-01-16 — Completed 67-02-PLAN.md
+Phase: 68 of 75 (Practice Modes)
+Plan: Not started
+Status: v2.1 milestone started — Feature Parity
+Last activity: 2026-01-16 — Created v2.1 milestone
 
-Progress: ██████████ 100% (v2.0 - 7/7 phases complete)
+Progress: ░░░░░░░░░░ 0% (v2.1 - 0/8 phases complete)
 
 ## Milestone Summary
 
@@ -151,10 +151,11 @@ None.
 - Milestone v1.8 shipped: Quality & performance (Phases 47-52)
 - Milestone v1.9 shipped: Quality & stability (Phases 53-60)
 - Milestone v2.0 shipped: Mobile App (Phases 61-67)
+- Milestone v2.1 created: Feature Parity (Phases 68-75)
 
 ## Session Continuity
 
 Last session: 2026-01-16
-Stopped at: Completed 67-02 (Play Store Release) - v2.0 milestone complete
-Next action: User to complete manual QA testing and submit to Play Store
-Resume file: N/A - milestone complete
+Stopped at: Created v2.1 Feature Parity milestone
+Next action: Plan Phase 68 (Practice Modes)
+Resume file: N/A - ready to plan

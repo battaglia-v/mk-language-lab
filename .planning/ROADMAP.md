@@ -17,6 +17,102 @@ Transform MKLanguage from a quiz-centric app into a structured, CEFR-aligned lea
 - ✅ [v1.8 Quality & Performance](milestones/v1.8-ROADMAP.md) (Phases 47-52) — SHIPPED 2026-01-13
 - ✅ **v1.9 Quality & Stability** (Phases 53-60) — SHIPPED 2026-01-14
 - ✅ [v2.0 Mobile App](milestones/v2.0-ROADMAP.md) (Phases 61-67) — SHIPPED 2026-01-16
+- 🚧 **v2.1 Feature Parity** (Phases 68-75) — IN PROGRESS
+
+## v2.1 Feature Parity — IN PROGRESS
+
+Full PWA feature parity for mobile app. Match all web features 1:1.
+
+- [ ] Phase 68: Practice Modes — Grammar Practice, Word Sprint improvements
+- [ ] Phase 69: Practice Decks — Custom decks, Saved Words practice
+- [ ] Phase 70: Alphabet & Learning Paths — Alphabet lesson, learning paths UI
+- [ ] Phase 71: Reader Search & Filters — Search, topic filters, sort options
+- [ ] Phase 72: Reader Progress & Review — Progress tracking, review mode
+- [ ] Phase 73: Content Pages — About, Privacy, Terms, Help, Resources
+- [ ] Phase 74: Saved Words & Discovery — Saved words page, discover, news
+- [ ] Phase 75: Final Parity — Polish, validation, remaining gaps
+
+### Phase 68: Practice Modes
+
+**Goal**: Add Grammar Practice mode and improve Word Sprint to match PWA
+**Depends on**: v2.0 complete
+**Research**: Unlikely (port existing PWA patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 68-01: TBD
+
+### Phase 69: Practice Decks
+
+**Goal**: Custom deck creation/management and Saved Words practice mode
+**Depends on**: Phase 68
+**Research**: Unlikely (port existing PWA patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 69-01: TBD
+
+### Phase 70: Alphabet & Learning Paths
+
+**Goal**: Alphabet lesson with Cyrillic grid, learning paths selection UI
+**Depends on**: Phase 69
+**Research**: Unlikely (port existing PWA patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 70-01: TBD
+
+### Phase 71: Reader Search & Filters
+
+**Goal**: Text search, topic filters, difficulty sort, comprehensive browsing
+**Depends on**: Phase 70
+**Research**: Unlikely (port existing PWA patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 71-01: TBD
+
+### Phase 72: Reader Progress & Review
+
+**Goal**: Reading progress UI, review saved words mode, continue reading card
+**Depends on**: Phase 71
+**Research**: Unlikely (port existing PWA patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 72-01: TBD
+
+### Phase 73: Content Pages
+
+**Goal**: About, Privacy, Terms, Help, Resources, Feedback pages
+**Depends on**: Phase 72
+**Research**: Unlikely (static content pages)
+**Plans**: TBD
+
+Plans:
+- [ ] 73-01: TBD
+
+### Phase 74: Saved Words & Discovery
+
+**Goal**: Dedicated saved words library, discover page, news feed
+**Depends on**: Phase 73
+**Research**: Unlikely (port existing PWA patterns)
+**Plans**: TBD
+
+Plans:
+- [ ] 74-01: TBD
+
+### Phase 75: Final Parity
+
+**Goal**: Polish, validation, any remaining feature gaps
+**Depends on**: Phase 74
+**Research**: Unlikely (internal validation)
+**Plans**: TBD
+
+Plans:
+- [ ] 75-01: TBD
+
+---
 
 ## v2.0 Mobile App (React Native + Expo) — SHIPPED 2026-01-16
 
