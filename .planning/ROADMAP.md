@@ -40,7 +40,8 @@ Full PWA feature parity for mobile app. Match all web features 1:1.
 **Plans**: 2
 
 Plans:
-- [ ] 68-01: Grammar Practice (API, list screen, lesson runner)
+- [x] 68-01: Grammar Practice (API, list screen, lesson runner) — COMPLETE
+- [ ] 68.1: Fix React version conflicts blocking mobile testing — URGENT
 - [ ] 68-02: Word Sprint improvements (difficulty picker, combo system, input modes)
 
 ### Phase 69: Practice Decks
