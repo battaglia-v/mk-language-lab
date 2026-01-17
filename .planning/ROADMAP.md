@@ -37,10 +37,11 @@ Full PWA feature parity for mobile app. Match all web features 1:1.
 **Goal**: Add Grammar Practice mode and improve Word Sprint to match PWA
 **Depends on**: v2.0 complete
 **Research**: Unlikely (port existing PWA patterns)
-**Plans**: TBD
+**Plans**: 2
 
 Plans:
-- [ ] 68-01: TBD
+- [ ] 68-01: Grammar Practice (API, list screen, lesson runner)
+- [ ] 68-02: Word Sprint improvements (difficulty picker, combo system, input modes)
 
 ### Phase 69: Practice Decks
 
