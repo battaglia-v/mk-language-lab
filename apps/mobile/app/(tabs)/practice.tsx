@@ -10,8 +10,9 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
-import { BookOpen, Zap, Library, ChevronRight, Bookmark } from 'lucide-react-native';
+import { BookOpen, Zap, Library, ChevronRight, Bookmark, GraduationCap } from 'lucide-react-native';
 import { fetchPracticeItems, PracticeItem } from '../../lib/practice';
+import { getGrammarStats } from '../../lib/grammar';
 
 type PracticeMode = {
   id: string;
@@ -54,6 +55,7 @@ const PRACTICE_MODES: PracticeMode[] = [
 export default function PracticeScreen() {
   const [lessonReviewCount, setLessonReviewCount] = useState<number | null>(null);
   const [curatedCount, setCuratedCount] = useState<number | null>(null);
+  const [grammarStats, setGrammarStats] = useState<{ completed: number; total: number } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -70,6 +72,14 @@ export default function PracticeScreen() {
       } catch {
         // User not authenticated or no completed lessons
         setLessonReviewCount(0);
+      }
+
+      // Load grammar stats
+      try {
+        const stats = await getGrammarStats();
+        setGrammarStats({ completed: stats.completed, total: stats.total });
+      } catch {
+        setGrammarStats(null);
       }
     } catch (err) {
       console.error('Failed to load practice counts:', err);
@@ -192,6 +202,37 @@ export default function PracticeScreen() {
           </View>
         )}
 
+        {/* Grammar Practice Section */}
+        <View style={styles.grammarSection}>
+          <View style={styles.sectionHeader}>
+            <GraduationCap size={20} color="#8b5cf6" />
+            <Text style={styles.sectionTitle}>Grammar Practice</Text>
+          </View>
+          <TouchableOpacity
+            style={styles.grammarCard}
+            onPress={() => router.push('/grammar')}
+            activeOpacity={0.7}
+          >
+            <View style={styles.grammarIconContainer}>
+              <GraduationCap size={24} color="#8b5cf6" />
+            </View>
+            <View style={styles.cardContent}>
+              <Text style={styles.cardTitle}>Grammar Exercises</Text>
+              <Text style={styles.cardDescription}>
+                Practice grammar rules with structured exercises
+              </Text>
+              {grammarStats && (
+                <View style={styles.countBadge}>
+                  <Text style={styles.countText}>
+                    {grammarStats.completed}/{grammarStats.total} completed
+                  </Text>
+                </View>
+              )}
+            </View>
+            <ChevronRight size={20} color="rgba(247,248,251,0.4)" />
+          </TouchableOpacity>
+        </View>
+
         {/* My Saved Words Section (Placeholder) */}
         <View style={styles.savedSection}>
           <View style={styles.savedHeader}>
@@ -309,6 +350,39 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: 'rgba(247,248,251,0.6)',
     fontWeight: '500',
+  },
+  grammarSection: {
+    marginTop: 32,
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 12,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#f7f8fb',
+  },
+  grammarCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,
+    borderRadius: 16,
+    borderWidth: 1,
+    backgroundColor: 'rgba(139,92,246,0.08)',
+    borderColor: 'rgba(139,92,246,0.3)',
+    minHeight: 88,
+  },
+  grammarIconContainer: {
+    width: 48,
+    height: 48,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(139,92,246,0.15)',
+    marginRight: 14,
   },
   savedSection: {
     marginTop: 32,
