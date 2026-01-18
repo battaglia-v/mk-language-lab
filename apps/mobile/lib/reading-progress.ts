@@ -17,10 +17,14 @@ export type ReadingProgress = {
   storyId: string;
   /** Scroll position as percentage (0-100) */
   scrollPercent: number;
+  /** Alias for scrollPercent */
+  scrollPosition: number;
   /** Time spent reading in seconds */
   timeSpentSeconds: number;
   /** Whether the story has been marked complete */
   isCompleted: boolean;
+  /** Alias for isCompleted */
+  completed: boolean;
   /** ISO timestamp when completed (if completed) */
   completedAt?: string;
   /** ISO timestamp of last reading session */
@@ -78,11 +82,16 @@ export async function saveProgress(
   const all = await readAllProgressInternal();
   const existing = all[storyId];
 
+  const scrollPercent = update.scrollPercent ?? existing?.scrollPercent ?? 0;
+  const isCompleted = update.isCompleted ?? existing?.isCompleted ?? false;
+  
   const progress: ReadingProgress = {
     storyId,
-    scrollPercent: update.scrollPercent ?? existing?.scrollPercent ?? 0,
+    scrollPercent,
+    scrollPosition: scrollPercent, // Alias
     timeSpentSeconds: update.timeSpentSeconds ?? existing?.timeSpentSeconds ?? 0,
-    isCompleted: update.isCompleted ?? existing?.isCompleted ?? false,
+    isCompleted,
+    completed: isCompleted, // Alias
     completedAt: update.completedAt ?? existing?.completedAt,
     lastReadAt: new Date().toISOString(),
   };
@@ -203,4 +212,74 @@ export async function clearProgress(storyId: string): Promise<void> {
  */
 export async function clearAllProgress(): Promise<void> {
   await AsyncStorage.removeItem(STORAGE_KEY);
+}
+
+// =============================================================================
+// Aliases for compatibility with reader/[id].tsx
+// =============================================================================
+
+/**
+ * Alias for readProgress
+ */
+export const loadProgress = readProgress;
+
+/**
+ * Alias for markCompleted
+ */
+export const markComplete = markCompleted;
+
+type ProgressSavePayload = {
+  storyId: string;
+  scrollPosition: number;
+  completed?: boolean;
+  lastReadAt?: number;
+};
+
+type DebouncedProgressSaver = {
+  save: (payload: ProgressSavePayload) => void;
+  flush: () => void;
+};
+
+/**
+ * Create a debounced save function for scroll position updates
+ * Returns an object with save and flush methods
+ */
+export function createDebouncedProgressSave(delayMs: number = 1000): DebouncedProgressSaver {
+  let timeoutId: ReturnType<typeof setTimeout> | null = null;
+  let pendingPayload: ProgressSavePayload | null = null;
+
+  const flush = () => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+      timeoutId = null;
+    }
+    if (pendingPayload !== null) {
+      saveProgress(pendingPayload.storyId, {
+        scrollPercent: pendingPayload.scrollPosition * 100, // Convert 0-1 to 0-100
+        isCompleted: pendingPayload.completed,
+      });
+      pendingPayload = null;
+    }
+  };
+
+  const save = (payload: ProgressSavePayload) => {
+    pendingPayload = payload;
+    
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    
+    timeoutId = setTimeout(() => {
+      if (pendingPayload !== null) {
+        saveProgress(pendingPayload.storyId, {
+          scrollPercent: pendingPayload.scrollPosition * 100, // Convert 0-1 to 0-100
+          isCompleted: pendingPayload.completed,
+        });
+        pendingPayload = null;
+      }
+      timeoutId = null;
+    }, delayMs);
+  };
+
+  return { save, flush };
 }

@@ -41,11 +41,11 @@ export function useAuthGuard(options: {
     if (options.requireAuth && !isAuthenticated) {
       // Redirect to sign-in if not authenticated
       const redirectTo = options.redirectTo || '/sign-in';
-      router.replace(redirectTo);
+      router.replace(redirectTo as any);
     } else if (options.redirectIfAuth && isAuthenticated) {
       // Redirect away from auth pages if authenticated
       const redirectTo = options.redirectTo || '/(tabs)';
-      router.replace(redirectTo);
+      router.replace(redirectTo as any);
     }
   }, [isAuthenticated, isLoading, segments, navigationState?.key, options]);
 

@@ -14,13 +14,30 @@ import { AnalyticsEvents, type AnalyticsEvent } from '@mk/analytics';
 export { AnalyticsEvents };
 export type { AnalyticsEvent };
 
+// Mobile-specific events not in shared package
+export const MobileAnalyticsEvents = {
+  ...AnalyticsEvents,
+  // Onboarding
+  ONBOARDING_STARTED: 'onboarding_started',
+  ONBOARDING_GOAL_SELECTED: 'onboarding_goal_selected',
+  ONBOARDING_LEVEL_SELECTED: 'onboarding_level_selected',
+  ONBOARDING_DAILY_GOAL_SELECTED: 'onboarding_daily_goal_selected',
+  ONBOARDING_STEP_COMPLETED: 'onboarding_step_completed',
+  ONBOARDING_COMPLETED: 'onboarding_completed',
+  ONBOARDING_FAILED: 'onboarding_failed',
+  ONBOARDING_SKIPPED: 'onboarding_skipped',
+} as const;
+
+export type MobileAnalyticsEvent = AnalyticsEvent | (typeof MobileAnalyticsEvents)[keyof typeof MobileAnalyticsEvents];
+
 // Event queue for offline tracking
 let eventQueue: Array<{ event: string; properties?: Record<string, unknown>; timestamp: number }> = [];
 
 /**
  * Track an analytics event
+ * Accepts both shared and mobile-specific events
  */
-export function trackEvent(event: AnalyticsEvent, properties?: Record<string, unknown>): void {
+export function trackEvent(event: MobileAnalyticsEvent | string, properties?: Record<string, unknown>): void {
   const eventData = {
     event,
     properties: {

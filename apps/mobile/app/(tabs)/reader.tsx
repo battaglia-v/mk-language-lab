@@ -56,7 +56,7 @@ export default function ReaderScreen() {
     loadStories(selectedLevel);
   }, [selectedLevel, loadStories]);
 
-  const { refreshControlProps } = usePullToRefresh({
+  const { refreshControlProps, isRefreshing, onRefresh } = usePullToRefresh({
     onRefresh: () => loadStories(),
   });
 

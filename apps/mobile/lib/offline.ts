@@ -219,8 +219,8 @@ export function useOfflineAwareApi() {
         return apiFetch<T>(endpoint, { method, body });
       }
       
-      // Offline - queue if enabled
-      if (queueIfOffline && method !== 'GET') {
+      // Offline - queue if enabled (only for mutating methods)
+      if (queueIfOffline) {
         await queueOperation({
           endpoint,
           method: method as 'POST' | 'PUT' | 'PATCH' | 'DELETE',

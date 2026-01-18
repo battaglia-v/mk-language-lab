@@ -21,6 +21,7 @@ export type SavedPhrasePayload = {
 export type SavedPhraseRecord = SavedPhrasePayload & {
   id: string;
   createdAt: string;
+  savedAt: number; // Unix timestamp for sorting
   fingerprint: string;
 };
 
@@ -75,6 +76,8 @@ export function upsertSavedPhrase(
   const nextEntries = [...entries];
   const existingIndex = nextEntries.findIndex((entry) => entry.fingerprint === fingerprint);
 
+  const now = Date.now();
+
   if (existingIndex >= 0) {
     // Update existing entry
     nextEntries[existingIndex] = {
@@ -82,18 +85,20 @@ export function upsertSavedPhrase(
       sourceText: normalize(payload.sourceText),
       translatedText: normalize(payload.translatedText),
       createdAt: new Date().toISOString(),
+      savedAt: now,
     };
     return nextEntries;
   }
 
   // Create new entry
-  const id = `phrase-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+  const id = `phrase-${now}-${Math.random().toString(36).slice(2, 9)}`;
   nextEntries.unshift({
     ...payload,
     sourceText: normalize(payload.sourceText),
     translatedText: normalize(payload.translatedText),
     id,
     createdAt: new Date().toISOString(),
+    savedAt: now,
     fingerprint,
   });
 

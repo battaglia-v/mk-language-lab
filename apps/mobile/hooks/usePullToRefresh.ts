@@ -27,6 +27,8 @@ type UsePullToRefreshReturn = {
   isRefreshing: boolean;
   /** Handler to trigger refresh programmatically */
   handleRefresh: () => Promise<void>;
+  /** Alias for handleRefresh */
+  onRefresh: () => Promise<void>;
   /** Props to spread on RefreshControl */
   refreshControlProps: Pick<RefreshControlProps, 'refreshing' | 'onRefresh' | 'tintColor' | 'colors'>;
 };
@@ -90,6 +92,7 @@ export function usePullToRefresh({
   return {
     isRefreshing,
     handleRefresh,
+    onRefresh: handleRefresh, // Alias
     refreshControlProps: {
       refreshing: isRefreshing,
       onRefresh: handleRefresh,

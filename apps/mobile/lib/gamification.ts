@@ -231,19 +231,27 @@ export async function hasPracticedToday(): Promise<boolean> {
 }
 
 /**
- * Get gamification summary for display
+ * Gamification summary type
  */
-export async function getGamificationSummary(): Promise<{
+export type GamificationSummary = {
   totalXP: number;
   todayXP: number;
+  dailyProgress: number; // Alias for todayXP for component compatibility
   dailyGoal: number;
   goalComplete: boolean;
+  isGoalComplete: boolean; // Alias for goalComplete
   currentStreak: number;
+  streak: number; // Alias for currentStreak
   longestStreak: number;
   level: number;
   levelProgress: number;
   streakBonus: number;
-}> {
+};
+
+/**
+ * Get gamification summary for display
+ */
+export async function getGamificationSummary(): Promise<GamificationSummary> {
   const [xpData, streakData] = await Promise.all([
     getLocalXP(),
     getStreakData(),
@@ -251,16 +259,27 @@ export async function getGamificationSummary(): Promise<{
   
   const levelInfo = getLevelProgress(xpData.totalXP);
   const streakBonus = calculateStreakBonus(streakData.currentStreak);
+  const goalComplete = xpData.todayXP >= xpData.dailyGoal;
   
   return {
     totalXP: xpData.totalXP,
     todayXP: xpData.todayXP,
+    dailyProgress: xpData.todayXP, // Alias
     dailyGoal: xpData.dailyGoal,
-    goalComplete: xpData.todayXP >= xpData.dailyGoal,
+    goalComplete,
+    isGoalComplete: goalComplete, // Alias
     currentStreak: streakData.currentStreak,
+    streak: streakData.currentStreak, // Alias
     longestStreak: streakData.longestStreak,
     level: levelInfo.currentLevel,
     levelProgress: levelInfo.percentComplete,
     streakBonus,
   };
+}
+
+/**
+ * Update daily goal
+ */
+export async function updateDailyGoal(goal: number): Promise<void> {
+  await setDailyGoal(goal);
 }

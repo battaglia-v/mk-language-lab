@@ -43,7 +43,7 @@ export type Achievement = {
 };
 
 export type AchievementProgress = {
-  unlockedAchievements: Record<AchievementId, string>; // id -> ISO timestamp
+  unlockedAchievements: Partial<Record<AchievementId, string>>; // id -> ISO timestamp
   totalXPFromAchievements: number;
 };
 

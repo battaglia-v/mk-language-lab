@@ -16,7 +16,7 @@ import { View, Animated, StyleSheet, ViewStyle } from 'react-native';
 // =============================================================================
 
 type SkeletonProps = {
-  width?: number | string;
+  width?: number | `${number}%`;
   height?: number;
   borderRadius?: number;
   style?: ViewStyle;
@@ -81,10 +81,10 @@ export function Skeleton({
 
 export function TextSkeleton({ 
   lines = 1,
-  lastLineWidth = '75%',
+  lastLineWidth = '75%' as const,
 }: { 
   lines?: number;
-  lastLineWidth?: string | number;
+  lastLineWidth?: number | `${number}%`;
 }) {
   return (
     <View style={styles.textContainer}>

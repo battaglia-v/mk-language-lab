@@ -21,6 +21,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Star, Zap } from 'lucide-react-native';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 
+const { height: SCREEN_HEIGHT } = Dimensions.get('window');
+
 export type XPNotification = {
   id: string;
   amount: number;
@@ -163,12 +165,12 @@ export function XPNotificationProvider({
     setNotifications([]);
   }, []);
 
-  const getPositionStyle = () => {
+  const getPositionStyle = (): { top?: number; bottom?: number } => {
     switch (position) {
       case 'top':
         return { top: insets.top + 80 };
       case 'center':
-        return { top: '45%' };
+        return { top: Math.round(SCREEN_HEIGHT * 0.45) };
       case 'bottom':
         return { bottom: insets.bottom + 80 };
       default:
