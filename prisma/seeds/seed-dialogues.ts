@@ -79,10 +79,13 @@ async function seedDialogues(): Promise<void> {
   const dialogues: CuratedDialogue[] = JSON.parse(fs.readFileSync(dialoguesPath, 'utf-8'));
   console.log(`Found ${dialogues.length} curated dialogues to seed`);
 
-  // Get all lesson IDs as fallback
+  // Get all lesson IDs ordered by module and lesson order
   const allLessons = await prisma.curriculumLesson.findMany({
-    select: { id: true },
-    orderBy: { orderIndex: 'asc' },
+    select: { id: true, title: true },
+    orderBy: [
+      { module: { orderIndex: 'asc' } },
+      { orderIndex: 'asc' },
+    ],
   });
 
   if (allLessons.length === 0) {
@@ -90,31 +93,25 @@ async function seedDialogues(): Promise<void> {
     process.exit(1);
   }
 
+  console.log(`Found ${allLessons.length} lessons`);
+
   // Clear existing dialogues
   console.log('Clearing existing dialogues...');
   await prisma.dialogueLine.deleteMany({});
   await prisma.dialogue.deleteMany({});
 
-  // Seed dialogues
+  // Seed dialogues - distribute across first 12 lessons (one per lesson)
   console.log('Seeding dialogues...');
   
   let seededCount = 0;
-  const lessonDialogueCount: Record<string, number> = {};
   
   for (let i = 0; i < dialogues.length; i++) {
     const dialogue = dialogues[i];
     
-    // Try to find a matching lesson
-    let lessonId = await findBestLessonMatch(dialogue);
-    
-    // Fallback to cycling through lessons
-    if (!lessonId) {
-      lessonId = allLessons[i % allLessons.length].id;
-    }
-    
-    // Track how many dialogues per lesson
-    lessonDialogueCount[lessonId] = (lessonDialogueCount[lessonId] || 0) + 1;
-    const orderIndex = lessonDialogueCount[lessonId] - 1;
+    // Assign to lesson i (first 12 lessons get one dialogue each)
+    const lessonId = allLessons[i % allLessons.length].id;
+    const lessonTitle = allLessons[i % allLessons.length].title;
+    const orderIndex = 0; // First dialogue for each lesson
 
     try {
       await prisma.dialogue.create({
@@ -136,7 +133,7 @@ async function seedDialogues(): Promise<void> {
         },
       });
       seededCount++;
-      console.log(`  ✓ ${dialogue.title_en} (${dialogue.lines.length} lines)`);
+      console.log(`  ✓ ${dialogue.title_en} → "${lessonTitle}" (${dialogue.lines.length} lines)`);
     } catch (error) {
       console.error(`  ✗ Failed to seed "${dialogue.title_en}":`, error);
     }
