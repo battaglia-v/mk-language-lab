@@ -30,17 +30,23 @@ interface CuratedDialogue {
 
 // Topic to lesson title mapping for better matching
 const TOPIC_KEYWORDS: Record<string, string[]> = {
-  'greetings': ['Кои сме', 'запознавање', 'поздрав'],
-  'family': ['семејств', 'родител', 'деца'],
-  'food': ['јадење', 'храна', 'ресторан', 'кафе'],
-  'directions': ['насок', 'каде', 'град'],
-  'shopping': ['купува', 'продавница', 'пазар'],
+  'greetings': ['Кои сме', 'запознавање', 'поздрав', 'Јас и ти'],
+  'family': ['семејств', 'родител', 'деца', 'Семејство'],
+  'food': ['јадење', 'храна', 'ресторан', 'кафе', 'Јадење', 'јадеме'],
+  'directions': ['насок', 'каде', 'град', 'Градот', 'стигнеш'],
+  'shopping': ['купува', 'продавница', 'пазар', 'купување', 'чини'],
   'weather': ['време', 'сонце', 'дожд'],
-  'daily-life': ['ден', 'рутин', 'работ'],
-  'communication': ['телефон', 'разговор', 'зборува'],
-  'health': ['здравје', 'доктор', 'болница'],
-  'travel': ['патува', 'хотел', 'аеродром', 'такси'],
+  'daily-life': ['ден', 'рутин', 'работ', 'прават'],
+  'communication': ['телефон', 'разговор', 'зборува', 'разбираме'],
+  'health': ['здравје', 'доктор', 'болница', 'Моето здравје', 'Тело'],
+  'travel': ['патува', 'хотел', 'аеродром', 'такси', 'Патуваме'],
   'transport': ['транспорт', 'такси', 'автобус'],
+  'home': ['дом', 'соба', 'Околу нас', 'куќа', 'Твојот дом'],
+  'education': ['училиште', 'учиме', 'наставник'],
+  'social': ['плани', 'викенд', 'кино', 'слободно'],
+  'description': ['Опишување', 'изгледа', 'карактер'],
+  'hobbies': ['хоби', 'слободно', 'спорт', 'музика', 'Дајте музика'],
+  'city': ['град', 'живот', 'Градска', 'Скопје'],
 };
 
 async function findBestLessonMatch(dialogue: CuratedDialogue): Promise<string | null> {
@@ -100,17 +106,42 @@ async function seedDialogues(): Promise<void> {
   await prisma.dialogueLine.deleteMany({});
   await prisma.dialogue.deleteMany({});
 
-  // Seed dialogues - distribute across first 12 lessons (one per lesson)
+  // Seed dialogues - try to match by topic first
   console.log('Seeding dialogues...');
   
   let seededCount = 0;
+  const usedLessonIds = new Set<string>();
   
   for (let i = 0; i < dialogues.length; i++) {
     const dialogue = dialogues[i];
     
-    // Assign to lesson i (first 12 lessons get one dialogue each)
-    const lessonId = allLessons[i % allLessons.length].id;
-    const lessonTitle = allLessons[i % allLessons.length].title;
+    // Try to find a matching lesson by topic
+    let lessonId = await findBestLessonMatch(dialogue);
+    let lessonTitle = '';
+    
+    // If no match or already used, assign to next available lesson
+    if (!lessonId || usedLessonIds.has(lessonId)) {
+      // Find first unused lesson
+      for (const lesson of allLessons) {
+        if (!usedLessonIds.has(lesson.id)) {
+          lessonId = lesson.id;
+          lessonTitle = lesson.title;
+          break;
+        }
+      }
+    } else {
+      // Get title for matched lesson
+      const matched = allLessons.find(l => l.id === lessonId);
+      lessonTitle = matched?.title || '';
+    }
+    
+    if (!lessonId) {
+      // All lessons used, cycle from start
+      lessonId = allLessons[i % allLessons.length].id;
+      lessonTitle = allLessons[i % allLessons.length].title;
+    }
+    
+    usedLessonIds.add(lessonId);
     const orderIndex = 0; // First dialogue for each lesson
 
     try {

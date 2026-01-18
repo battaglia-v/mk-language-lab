@@ -222,5 +222,126 @@
       { "speaker": "Патник", "textMk": "Добро. Ве молам, побрзајте малку.", "textEn": "Okay. Please, hurry a bit." },
       { "speaker": "Таксист", "textMk": "Нема проблем. Ќе стигнете на време.", "textEn": "No problem. You'll arrive on time." }
     ]
+  },
+  {
+    "id": "around-us",
+    "title_mk": "Околу нас",
+    "title_en": "Around Us",
+    "difficulty": "A1",
+    "topic": "home",
+    "lines": [
+      { "speaker": "Ана", "textMk": "Каква е твојата соба?", "textEn": "What's your room like?" },
+      { "speaker": "Марко", "textMk": "Мојата соба е голема и светла.", "textEn": "My room is big and bright." },
+      { "speaker": "Ана", "textMk": "Што имаш во собата?", "textEn": "What do you have in your room?" },
+      { "speaker": "Марко", "textMk": "Имам кревет, маса, стол и компјутер.", "textEn": "I have a bed, table, chair, and computer." },
+      { "speaker": "Ана", "textMk": "Има ли прозорец?", "textEn": "Is there a window?" },
+      { "speaker": "Марко", "textMk": "Да, има голем прозорец со убав поглед.", "textEn": "Yes, there's a big window with a nice view." },
+      { "speaker": "Ана", "textMk": "А што е на ѕидот?", "textEn": "And what's on the wall?" },
+      { "speaker": "Марко", "textMk": "На ѕидот има слики и полица за книги.", "textEn": "On the wall there are pictures and a bookshelf." }
+    ]
+  },
+  {
+    "id": "at-school",
+    "title_mk": "На училиште",
+    "title_en": "At School",
+    "difficulty": "A1",
+    "topic": "education",
+    "lines": [
+      { "speaker": "Наставник", "textMk": "Добро утро, деца!", "textEn": "Good morning, children!" },
+      { "speaker": "Ученици", "textMk": "Добро утро, наставнице!", "textEn": "Good morning, teacher!" },
+      { "speaker": "Наставник", "textMk": "Денес учиме за Македонија.", "textEn": "Today we're learning about Macedonia." },
+      { "speaker": "Марија", "textMk": "Колку градови има во Македонија?", "textEn": "How many cities are there in Macedonia?" },
+      { "speaker": "Наставник", "textMk": "Има многу градови. Скопје е главен град.", "textEn": "There are many cities. Skopje is the capital." },
+      { "speaker": "Петар", "textMk": "А Охрид? Каков е Охрид?", "textEn": "And Ohrid? What is Ohrid like?" },
+      { "speaker": "Наставник", "textMk": "Охрид е убав град со езеро.", "textEn": "Ohrid is a beautiful city with a lake." },
+      { "speaker": "Марија", "textMk": "Може ли да одиме на екскурзија таму?", "textEn": "Can we go on a trip there?" },
+      { "speaker": "Наставник", "textMk": "Да, ќе одиме на пролет!", "textEn": "Yes, we'll go in the spring!" }
+    ]
+  },
+  {
+    "id": "making-plans",
+    "title_mk": "Правење планови",
+    "title_en": "Making Plans",
+    "difficulty": "A1",
+    "topic": "social",
+    "lines": [
+      { "speaker": "Лена", "textMk": "Што правиш овој викенд?", "textEn": "What are you doing this weekend?" },
+      { "speaker": "Иван", "textMk": "Немам планови. Зошто?", "textEn": "I don't have plans. Why?" },
+      { "speaker": "Лена", "textMk": "Сакаш да одиме на кино?", "textEn": "Do you want to go to the cinema?" },
+      { "speaker": "Иван", "textMk": "Да, секако! Кој филм?", "textEn": "Yes, of course! Which movie?" },
+      { "speaker": "Лена", "textMk": "Има нов македонски филм.", "textEn": "There's a new Macedonian movie." },
+      { "speaker": "Иван", "textMk": "Одлично! Во колку часот?", "textEn": "Excellent! What time?" },
+      { "speaker": "Лена", "textMk": "Филмот е во осум навечер.", "textEn": "The movie is at eight in the evening." },
+      { "speaker": "Иван", "textMk": "Добро. Ќе се најдеме пред киното.", "textEn": "Okay. We'll meet in front of the cinema." }
+    ]
+  },
+  {
+    "id": "at-market",
+    "title_mk": "На пазар",
+    "title_en": "At the Market",
+    "difficulty": "A1",
+    "topic": "shopping",
+    "lines": [
+      { "speaker": "Купувач", "textMk": "Добар ден! Колку чини килограм јаболка?", "textEn": "Good day! How much is a kilogram of apples?" },
+      { "speaker": "Продавач", "textMk": "Педесет денари килограм.", "textEn": "Fifty denars per kilogram." },
+      { "speaker": "Купувач", "textMk": "А портокали?", "textEn": "And oranges?" },
+      { "speaker": "Продавач", "textMk": "Портокалите се осумдесет денари.", "textEn": "Oranges are eighty denars." },
+      { "speaker": "Купувач", "textMk": "Добро. Два килограми јаболка, молам.", "textEn": "Okay. Two kilograms of apples, please." },
+      { "speaker": "Продавач", "textMk": "Нешто друго?", "textEn": "Anything else?" },
+      { "speaker": "Купувач", "textMk": "Да, и еден килограм портокали.", "textEn": "Yes, and one kilogram of oranges." },
+      { "speaker": "Продавач", "textMk": "Тоа е сто осумдесет денари.", "textEn": "That's one hundred and eighty denars." },
+      { "speaker": "Купувач", "textMk": "Повелете. Благодарам!", "textEn": "Here you go. Thank you!" }
+    ]
+  },
+  {
+    "id": "describing-people",
+    "title_mk": "Опишување луѓе",
+    "title_en": "Describing People",
+    "difficulty": "A1",
+    "topic": "description",
+    "lines": [
+      { "speaker": "Ана", "textMk": "Како изгледа твојот брат?", "textEn": "What does your brother look like?" },
+      { "speaker": "Марко", "textMk": "Тој е висок и има кафеави очи.", "textEn": "He's tall and has brown eyes." },
+      { "speaker": "Ана", "textMk": "Каква коса има?", "textEn": "What kind of hair does he have?" },
+      { "speaker": "Марко", "textMk": "Има кратка црна коса.", "textEn": "He has short black hair." },
+      { "speaker": "Ана", "textMk": "А каков е по карактер?", "textEn": "And what's he like personality-wise?" },
+      { "speaker": "Марко", "textMk": "Многу е смешен и пријателски.", "textEn": "He's very funny and friendly." },
+      { "speaker": "Ана", "textMk": "Колку години има?", "textEn": "How old is he?" },
+      { "speaker": "Марко", "textMk": "Има дваесет и пет години.", "textEn": "He's twenty-five years old." }
+    ]
+  },
+  {
+    "id": "hobbies",
+    "title_mk": "Хоби и слободно време",
+    "title_en": "Hobbies and Free Time",
+    "difficulty": "A1",
+    "topic": "hobbies",
+    "lines": [
+      { "speaker": "Петар", "textMk": "Какво хоби имаш?", "textEn": "What hobby do you have?" },
+      { "speaker": "Ема", "textMk": "Јас сакам да читам книги.", "textEn": "I like to read books." },
+      { "speaker": "Петар", "textMk": "Какви книги читаш?", "textEn": "What kind of books do you read?" },
+      { "speaker": "Ема", "textMk": "Романи и поезија. А ти?", "textEn": "Novels and poetry. And you?" },
+      { "speaker": "Петар", "textMk": "Јас играм фудбал.", "textEn": "I play football." },
+      { "speaker": "Ема", "textMk": "Колку често играш?", "textEn": "How often do you play?" },
+      { "speaker": "Петар", "textMk": "Два пати во неделата.", "textEn": "Twice a week." },
+      { "speaker": "Ема", "textMk": "Убаво! Спортот е здрав.", "textEn": "Nice! Sports are healthy." }
+    ]
+  },
+  {
+    "id": "city-life",
+    "title_mk": "Живот во град",
+    "title_en": "City Life",
+    "difficulty": "A1",
+    "topic": "city",
+    "lines": [
+      { "speaker": "Турист", "textMk": "Живееш ли во Скопје?", "textEn": "Do you live in Skopje?" },
+      { "speaker": "Локалец", "textMk": "Да, цел живот живеам тука.", "textEn": "Yes, I've lived here my whole life." },
+      { "speaker": "Турист", "textMk": "Како е животот во Скопје?", "textEn": "What's life like in Skopje?" },
+      { "speaker": "Локалец", "textMk": "Убаво е. Градот не е многу голем.", "textEn": "It's nice. The city isn't very big." },
+      { "speaker": "Турист", "textMk": "Што има за гледање?", "textEn": "What is there to see?" },
+      { "speaker": "Локалец", "textMk": "Има Стара Чаршија, Кале, музеи...", "textEn": "There's the Old Bazaar, Kale Fortress, museums..." },
+      { "speaker": "Турист", "textMk": "А за јадење? Што е традиционално?", "textEn": "And for eating? What's traditional?" },
+      { "speaker": "Локалец", "textMk": "Тавче гравче, ајвар, шопска салата!", "textEn": "Tavche gravche, ajvar, shopska salad!" }
+    ]
   }
 ]
