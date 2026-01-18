@@ -9,6 +9,7 @@
  */
 
 import React, { useState, useEffect, useCallback } from 'react';
+import { MKFlag } from './ui/MKFlag';
 import {
   View,
   Text,
@@ -95,7 +96,10 @@ export function WelcomeBanner({ message, onDismiss }: WelcomeBannerProps) {
         </View>
         
         <View style={styles.textContent}>
-          <Text style={styles.title}>Welcome to MK Language Lab! 🇲🇰</Text>
+          <View style={styles.titleRow}>
+            <Text style={styles.title}>Welcome to MK Language Lab!</Text>
+            <MKFlag size="md" />
+          </View>
           <Text style={styles.message}>
             {message || "Start your Macedonian learning journey. We'll help you set up your personalized study plan."}
           </Text>
@@ -176,11 +180,16 @@ const styles = StyleSheet.create({
   textContent: {
     flex: 1,
   },
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 4,
+  },
   title: {
     fontSize: 16,
     fontWeight: '700',
     color: '#f7f8fb',
-    marginBottom: 4,
   },
   message: {
     fontSize: 14,
