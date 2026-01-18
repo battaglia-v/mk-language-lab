@@ -8,6 +8,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { processQueue } from '../lib/offline-queue';
 import { initializeTheme } from '../lib/theme';
 import { ToastProvider } from '../lib/toast';
+import { initializeNotifications } from '../lib/notifications';
 import { useNetworkState } from '../lib/offline';
 import { OfflineStatusToast } from '../components/OfflineStatusToast';
 import { XPNotificationProvider } from '../components/XPNotification';
@@ -24,6 +25,11 @@ export default function RootLayout() {
 
     // Initialize theme
     initializeTheme();
+
+    // Initialize push notifications
+    initializeNotifications()
+      .then(() => console.log('[App] Notifications initialized'))
+      .catch((err) => console.warn('[App] Notification init failed:', err));
 
     // Process any queued practice completions on app start
     // Silent background operation - don't block UI
@@ -129,6 +135,34 @@ export default function RootLayout() {
               />
               <Stack.Screen
                 name="achievements"
+                options={{
+                  presentation: 'card',
+                  animation: 'slide_from_right',
+                }}
+              />
+              <Stack.Screen
+                name="news"
+                options={{
+                  presentation: 'card',
+                  animation: 'slide_from_right',
+                }}
+              />
+              <Stack.Screen
+                name="news-reader"
+                options={{
+                  presentation: 'card',
+                  animation: 'slide_from_right',
+                }}
+              />
+              <Stack.Screen
+                name="analyzer"
+                options={{
+                  presentation: 'card',
+                  animation: 'slide_from_right',
+                }}
+              />
+              <Stack.Screen
+                name="translator"
                 options={{
                   presentation: 'card',
                   animation: 'slide_from_right',

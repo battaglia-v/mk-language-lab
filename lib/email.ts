@@ -2,11 +2,23 @@ import { Resend } from 'resend';
 import { APP_META } from '@/lib/appMeta';
 
 type ResendClient = { emails: { send: (options: { from: string; to: string; subject: string; html: string }) => Promise<unknown> } };
-const resend: ResendClient | null = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+
+// Initialize Resend client lazily to ensure env vars are loaded
+function getResendClient(): ResendClient | null {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.warn('[EMAIL] RESEND_API_KEY not configured');
+    return null;
+  }
+  return new Resend(apiKey);
+}
 
 // Use Resend's default domain if custom domain not configured
 // Once domain is verified in Resend, set RESEND_FROM_EMAIL=noreply@mklanguage.com
-const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+function getFromEmail(): string {
+  return process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+}
+
 const appName = APP_META.storeName;
 const appUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000';
 
@@ -23,6 +35,7 @@ export async function sendPasswordResetEmail(
   token: string,
   name?: string | null
 ): Promise<EmailResult> {
+  const resend = getResendClient();
   if (!resend) {
     console.warn('[EMAIL] Resend not configured, skipping password reset email');
     return { success: false, error: 'Email service not configured' };
@@ -30,6 +43,7 @@ export async function sendPasswordResetEmail(
 
   const resetUrl = `${appUrl}/auth/reset-password?token=${token}`;
   const greeting = name ? `Hi ${name},` : 'Hi,';
+  const fromEmail = getFromEmail();
 
   try {
     await resend.emails.send({
@@ -82,6 +96,7 @@ export async function sendVerificationEmail(
   token: string,
   name?: string | null
 ): Promise<EmailResult> {
+  const resend = getResendClient();
   if (!resend) {
     console.warn('[EMAIL] Resend not configured, skipping verification email');
     return { success: false, error: 'Email service not configured' };
@@ -89,6 +104,7 @@ export async function sendVerificationEmail(
 
   const verifyUrl = `${appUrl}/auth/verify-email?token=${token}`;
   const greeting = name ? `Hi ${name},` : 'Hi,';
+  const fromEmail = getFromEmail();
 
   try {
     await resend.emails.send({
@@ -151,6 +167,15 @@ export async function sendFeedbackNotification(
     userName?: string | null;
   }
 ): Promise<EmailResult> {
+  const resend = getResendClient();
+  const fromEmail = getFromEmail();
+  
+  console.log('[EMAIL] Feedback notification - checking configuration:', {
+    hasApiKey: !!process.env.RESEND_API_KEY,
+    fromEmail,
+    resendInitialized: !!resend,
+  });
+
   if (!resend) {
     console.warn('[EMAIL] Resend not configured, skipping feedback notification');
     return { success: false, error: 'Email service not configured' };
@@ -163,7 +188,6 @@ export async function sendFeedbackNotification(
   console.log('[EMAIL] Attempting to send feedback notification:', {
     from: fromEmail,
     to: adminEmail,
-    resendConfigured: !!resend,
   });
 
   try {
