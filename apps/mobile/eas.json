@@ -35,6 +35,7 @@
       },
       "env": {
         "EXPO_PUBLIC_API_BASE_URL": "https://mk-language-lab.vercel.app",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "153619068911-vgikcbunfs06937met4f4iq7uoptmjeh.apps.googleusercontent.com",
         "EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID": "153619068911-k1fpk88rb9g1hdvtpijqpp0g22ug342u.apps.googleusercontent.com",
         "EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID": "153619068911-pieleio8s6b6tohrlrbol3021g8s5mi2.apps.googleusercontent.com"
       }

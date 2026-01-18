@@ -6,21 +6,19 @@ import { Platform } from 'react-native';
 WebBrowser.maybeCompleteAuthSession();
 
 // Google OAuth client IDs
-// These should be set in environment variables for production
+// IMPORTANT: For Expo, we need the WEB client ID for the OAuth flow
+// The Android/iOS client IDs are only for native SDK integration
 const GOOGLE_WEB_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID;
 const GOOGLE_ANDROID_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID;
 const GOOGLE_IOS_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID;
 
-// Check if the platform-specific credential is configured
-export const isGoogleAuthConfigured = Platform.select({
-  android: Boolean(GOOGLE_ANDROID_CLIENT_ID),
-  ios: Boolean(GOOGLE_IOS_CLIENT_ID),
-  web: Boolean(GOOGLE_WEB_CLIENT_ID),
-  default: false,
-}) ?? false;
+// For Expo auth, we need the WEB client ID regardless of platform
+// The Android/iOS client IDs are for native verification only
+export const isGoogleAuthConfigured = Boolean(GOOGLE_WEB_CLIENT_ID);
 
 if (__DEV__) {
   console.log('[GoogleAuth] Platform:', Platform.OS);
+  console.log('[GoogleAuth] Web Client ID:', GOOGLE_WEB_CLIENT_ID ? 'Set' : 'Not set');
   console.log('[GoogleAuth] Android Client ID:', GOOGLE_ANDROID_CLIENT_ID ? 'Set' : 'Not set');
   console.log('[GoogleAuth] iOS Client ID:', GOOGLE_IOS_CLIENT_ID ? 'Set' : 'Not set');
   console.log('[GoogleAuth] Configured:', isGoogleAuthConfigured);

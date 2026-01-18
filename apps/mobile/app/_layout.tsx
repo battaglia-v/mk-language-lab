@@ -9,8 +9,9 @@ import { processQueue } from '../lib/offline-queue';
 import { initializeTheme } from '../lib/theme';
 import { ToastProvider } from '../lib/toast';
 import { initializeNotifications } from '../lib/notifications';
-import { useNetworkState } from '../lib/offline';
-import { OfflineStatusToast } from '../components/OfflineStatusToast';
+// Offline toast disabled - was too intrusive
+// import { useNetworkState } from '../lib/offline';
+// import { OfflineStatusToast } from '../components/OfflineStatusToast';
 import { XPNotificationProvider } from '../components/XPNotification';
 import { ErrorBoundary } from '../components/ErrorBoundary';
 import { AchievementToastProvider } from '../components/AchievementToast';
@@ -92,7 +93,6 @@ export default function RootLayout() {
           <XPNotificationProvider>
             <AchievementToastProvider>
               <LevelUpProvider>
-            <OfflineStatusToast />
             <StatusBar style="light" />
             <Stack
               screenOptions={{
