@@ -10,10 +10,9 @@ interface MKFlagProps {
 /**
  * Macedonian Flag SVG Component
  *
- * Uses actual flag colors and design for consistent rendering
- * across all platforms (unlike emoji which varies by OS)
- *
- * Flag design: Red background with golden/yellow sun with 8 rays
+ * The flag of North Macedonia: Red field with a stylized yellow sun
+ * with eight broadening rays extending from the center to the edges.
+ * Adopted in 1995.
  */
 export function MKFlag({ className, size = 'md' }: MKFlagProps) {
   const sizeClasses = {
@@ -24,7 +23,7 @@ export function MKFlag({ className, size = 'md' }: MKFlagProps) {
 
   return (
     <svg
-      viewBox="0 0 28 14"
+      viewBox="0 0 2 1"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={cn(sizeClasses[size], className)}
@@ -32,40 +31,30 @@ export function MKFlag({ className, size = 'md' }: MKFlagProps) {
       aria-label="Macedonian flag"
     >
       {/* Red background */}
-      <rect width="28" height="14" fill="#D20000" />
+      <rect width="2" height="1" fill="#D20000" />
 
-      {/* Golden rays extending from center to corners and edges */}
+      {/* 8 broadening rays extending to flag edges */}
       {/* Top ray */}
-      <polygon points="14,0 11,7 17,7" fill="#FFD200" />
-      {/* Bottom ray */}
-      <polygon points="14,14 11,7 17,7" fill="#FFD200" />
-      {/* Left ray */}
-      <polygon points="0,7 14,4 14,10" fill="#FFD200" />
+      <polygon points="0.88,0 1,0.5 1.12,0" fill="#FFE600" />
+      {/* Top-right ray */}
+      <polygon points="2,0 1,0.5 2,0.35" fill="#FFE600" />
       {/* Right ray */}
-      <polygon points="28,7 14,4 14,10" fill="#FFD200" />
+      <polygon points="2,0.38 1,0.5 2,0.62" fill="#FFE600" />
+      {/* Bottom-right ray */}
+      <polygon points="2,0.65 1,0.5 2,1" fill="#FFE600" />
+      {/* Bottom ray */}
+      <polygon points="1.12,1 1,0.5 0.88,1" fill="#FFE600" />
+      {/* Bottom-left ray */}
+      <polygon points="0,1 1,0.5 0,0.65" fill="#FFE600" />
+      {/* Left ray */}
+      <polygon points="0,0.62 1,0.5 0,0.38" fill="#FFE600" />
+      {/* Top-left ray */}
+      <polygon points="0,0.35 1,0.5 0,0" fill="#FFE600" />
 
-      {/* Diagonal rays */}
-      {/* Top-left */}
-      <polygon points="0,0 14,7 11,4" fill="#FFD200" />
-      <polygon points="0,0 14,7 4,10" fill="#FFD200" />
-      {/* Top-right */}
-      <polygon points="28,0 14,7 17,4" fill="#FFD200" />
-      <polygon points="28,0 14,7 24,10" fill="#FFD200" />
-      {/* Bottom-left */}
-      <polygon points="0,14 14,7 11,10" fill="#FFD200" />
-      <polygon points="0,14 14,7 4,4" fill="#FFD200" />
-      {/* Bottom-right */}
-      <polygon points="28,14 14,7 17,10" fill="#FFD200" />
-      <polygon points="28,14 14,7 24,4" fill="#FFD200" />
-
-      {/* Central sun circle */}
-      <circle cx="14" cy="7" r="3" fill="#FFD200" />
-
-      {/* Red circle in center of sun */}
-      <circle cx="14" cy="7" r="2" fill="#D20000" />
-
-      {/* Golden border around red center */}
-      <circle cx="14" cy="7" r="1.5" fill="#FFD200" />
+      {/* Central sun disc with red ring */}
+      <circle cx="1" cy="0.5" r="0.2" fill="#FFE600" />
+      <circle cx="1" cy="0.5" r="0.15" fill="#D20000" />
+      <circle cx="1" cy="0.5" r="0.1" fill="#FFE600" />
     </svg>
   );
 }
