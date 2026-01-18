@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getMobileSessionFromRequest } from '@/lib/mobile-auth';
 import prisma from '@/lib/prisma';
 import { createScopedLogger } from '@/lib/logger';
+import alphabetData from '@/data/alphabet-deck.json';
 
 const log = createScopedLogger('api.mobile.lesson');
 
@@ -32,6 +33,35 @@ export async function GET(
 
   // Auth is optional - lesson content is viewable without login
   const mobileSession = await getMobileSessionFromRequest(request);
+
+  // Special case: Alphabet lesson uses static JSON data
+  if (lessonId === 'alphabet') {
+    return NextResponse.json({
+      lesson: {
+        id: 'alphabet',
+        title: alphabetData.meta.title,
+        titleMk: alphabetData.meta.titleMk,
+        summary: alphabetData.meta.description,
+        moduleTitle: 'A1 Beginner',
+        journeyId: 'ukim-a1',
+        isSpecialLesson: true,
+        sections: [
+          {
+            type: 'alphabet',
+            content: {
+              items: alphabetData.items,
+              uniqueLetters: alphabetData.uniqueLetters,
+              softLetters: alphabetData.softLetters,
+            },
+          },
+        ],
+      },
+    }, {
+      headers: {
+        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200',
+      },
+    });
+  }
 
   try {
     // Fetch lesson with all related content
