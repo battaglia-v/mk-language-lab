@@ -1,4 +1,5 @@
 import * as WebBrowser from 'expo-web-browser';
+import * as Google from 'expo-auth-session/providers/google';
 import { Platform } from 'react-native';
 
 // Complete any pending browser sessions
@@ -18,11 +19,11 @@ export const isGoogleAuthConfigured = Platform.select({
   default: false,
 }) ?? false;
 
-if (!isGoogleAuthConfigured && __DEV__) {
-  console.warn(
-    '[GoogleAuth] No OAuth credentials configured for this platform. ' +
-    'Google sign-in will be disabled.'
-  );
+if (__DEV__) {
+  console.log('[GoogleAuth] Platform:', Platform.OS);
+  console.log('[GoogleAuth] Android Client ID:', GOOGLE_ANDROID_CLIENT_ID ? 'Set' : 'Not set');
+  console.log('[GoogleAuth] iOS Client ID:', GOOGLE_IOS_CLIENT_ID ? 'Set' : 'Not set');
+  console.log('[GoogleAuth] Configured:', isGoogleAuthConfigured);
 }
 
 // Type for the Google auth response
@@ -32,30 +33,54 @@ export type GoogleAuthResponse = {
     idToken?: string;
     accessToken?: string;
   };
+  error?: Error;
 } | null;
 
-// Type for the disabled auth state
-export type GoogleAuthResult = {
-  request: null;
+// Type for the auth hook result
+export interface UseGoogleAuthResult {
+  request: Google.GoogleAuthRequestConfig | null;
   response: GoogleAuthResponse;
   promptAsync: () => Promise<void>;
-  isReady: false;
-  isConfigured: false;
-};
+  isReady: boolean;
+  isConfigured: boolean;
+}
 
 /**
- * Returns a disabled Google auth state.
- * Use this instead of useGoogleAuth when credentials are not configured.
+ * Custom hook for Google authentication.
+ * Always calls useAuthRequest (to satisfy React rules of hooks),
+ * but returns disabled state if not configured.
  */
-export function getDisabledGoogleAuth(): GoogleAuthResult {
+export function useGoogleAuth(): UseGoogleAuthResult {
+  // Always call the hook (React rules of hooks requirement)
+  const [request, response, promptAsync] = Google.useAuthRequest({
+    androidClientId: GOOGLE_ANDROID_CLIENT_ID,
+    iosClientId: GOOGLE_IOS_CLIENT_ID,
+    webClientId: GOOGLE_WEB_CLIENT_ID,
+  });
+
+  // If not configured, return disabled state
+  if (!isGoogleAuthConfigured) {
+    return {
+      request: null,
+      response: null,
+      promptAsync: async () => {
+        console.warn('[GoogleAuth] Not configured for this platform');
+      },
+      isReady: false,
+      isConfigured: false,
+    };
+  }
+
   return {
-    request: null,
-    response: null,
+    request: request as Google.GoogleAuthRequestConfig | null,
+    response: response as GoogleAuthResponse,
     promptAsync: async () => {
-      throw new Error('Google sign-in is not configured for this platform');
+      if (promptAsync) {
+        await promptAsync();
+      }
     },
-    isReady: false,
-    isConfigured: false,
+    isReady: !!request,
+    isConfigured: true,
   };
 }
 

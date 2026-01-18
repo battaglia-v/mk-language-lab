@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { Link, router } from 'expo-router';
 import { useAuthStore } from '../store/auth';
-import { isGoogleAuthConfigured, getDisabledGoogleAuth } from '../lib/google-auth';
+import { useGoogleAuth } from '../lib/google-auth';
 import { KeyboardSafeView } from '../components/ui/KeyboardSafeView';
 import { useRedirectIfAuth } from '../hooks/useAuthGuard';
 import { trackSignInInitiated, trackSignInSuccess, trackSignInFailed } from '../lib/analytics';
@@ -25,8 +25,8 @@ export default function SignInScreen() {
 
   const { signIn, signInWithGoogle, error, clearError } = useAuthStore();
   
-  // Google auth is disabled when credentials aren't configured
-  const { response, promptAsync, isReady, isConfigured } = getDisabledGoogleAuth();
+  // Use the Google auth hook (always called, handles disabled state internally)
+  const { response, promptAsync, isReady, isConfigured } = useGoogleAuth();
 
   const handleGoogleSignIn = useCallback(async (idToken: string) => {
     setIsGoogleLoading(true);
@@ -34,8 +34,10 @@ export default function SignInScreen() {
 
     try {
       await signInWithGoogle(idToken);
+      trackSignInSuccess({ method: 'google' });
       router.replace('/(tabs)');
-    } catch {
+    } catch (err) {
+      trackSignInFailed({ method: 'google', error: err instanceof Error ? err.message : 'Unknown error' });
       // Error is handled by the store
     } finally {
       setIsGoogleLoading(false);
@@ -44,20 +46,36 @@ export default function SignInScreen() {
 
   // Handle Google Sign-in response
   useEffect(() => {
-    if (response?.type === 'success' && response.authentication?.idToken) {
-      handleGoogleSignIn(response.authentication.idToken);
+    if (response?.type === 'success') {
+      const { authentication } = response;
+      if (authentication?.idToken) {
+        handleGoogleSignIn(authentication.idToken);
+      } else if (authentication?.accessToken) {
+        // Fallback to access token if no ID token
+        handleGoogleSignIn(authentication.accessToken);
+      }
     } else if (response?.type === 'error') {
       setIsGoogleLoading(false);
+      console.warn('[GoogleAuth] Error:', response.error);
     }
   }, [response, handleGoogleSignIn]);
 
   const handleGooglePress = async () => {
+    if (!promptAsync || !isConfigured) {
+      console.warn('[GoogleAuth] Not configured for this platform');
+      return;
+    }
+    
     setIsGoogleLoading(true);
     clearError();
+    trackSignInInitiated({ method: 'google' });
+    
     try {
       await promptAsync();
-    } catch {
+    } catch (err) {
+      console.warn('[GoogleAuth] Prompt failed:', err);
       setIsGoogleLoading(false);
+      trackSignInFailed({ method: 'google', error: err instanceof Error ? err.message : 'Unknown error' });
     }
   };
 
