@@ -2,6 +2,7 @@
 
 > Every proposed change must reference items in this checklist.  
 > Mark items complete only after verification on both iOS and Android.
+> **Note:** This project uses Expo Dev Client (not Expo Go) for full native module support.
 
 ---
 

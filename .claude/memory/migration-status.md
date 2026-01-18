@@ -77,8 +77,8 @@
 2. ~~Decide canonical tab structure~~ ✅ Done (matches PWA)
 3. ~~Add `packages/practice` to RN dependencies~~ ✅ Done
 4. ~~Add i18n infrastructure to RN~~ ✅ Done
-5. Run `npm install` in apps/mobile to install workspace packages
-6. Test auth flow on iOS and Android
+5. ~~Run `npm install` in apps/mobile to install workspace packages~~ ✅ Done
+6. Test auth flow on iOS and Android (Dev Client)
 7. ~~Add token refresh on 401~~ ✅ Done
 8. ~~Add theme toggle~~ ✅ Done
 9. ~~Add saved words practice deck~~ ✅ Done

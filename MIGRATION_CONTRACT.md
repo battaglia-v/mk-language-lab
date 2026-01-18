@@ -15,7 +15,7 @@
 ## Explicit constraints
 - No DOM APIs (window, document)
 - No web-only CSS assumptions
-- No Expo Go–incompatible features without Dev Client note
+- **Using Expo Dev Client** - All native modules are available (not limited to Expo Go)
 
 ## Success criteria
 - All PWA flows reproducible on iOS + Android
