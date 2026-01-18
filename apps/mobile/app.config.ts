@@ -5,7 +5,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   name: 'Macedonian Language Lab',
   slug: 'mk-language-lab',
   scheme: 'mklanguage',
-  version: '2.0.0',
+  version: '2.1.0',
   orientation: 'portrait',
   icon: './assets/icon.png',
   userInterfaceStyle: 'automatic',
@@ -24,7 +24,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 
   android: {
     package: 'com.mklanguage.app', // CRITICAL: Match TWA for Play Store continuity
-    versionCode: 200, // v2.0.0 = 200 (major*100 + minor*10 + patch)
+    versionCode: 210, // v2.1.0 = 210 (major*100 + minor*10 + patch)
     adaptiveIcon: {
       foregroundImage: './assets/adaptive-icon.png',
       backgroundColor: '#06060b',
