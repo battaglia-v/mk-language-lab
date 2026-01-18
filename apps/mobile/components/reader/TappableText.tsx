@@ -88,8 +88,7 @@ const styles = StyleSheet.create({
     color: '#f7f8fb',
   },
   wordWithVocab: {
-    textDecorationLine: 'underline',
-    textDecorationStyle: 'dotted',
-    textDecorationColor: 'rgba(246,216,59,0.5)',
+    // No underline - words are tappable but don't have visual indicator
+    // This creates a cleaner reading experience
   },
 });

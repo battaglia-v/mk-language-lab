@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, router } from 'expo-router';
-import { Check } from 'lucide-react-native';
+import { Check, AlertCircle, BookOpen } from 'lucide-react-native';
 import { LessonShell } from '../../components/shell/LessonShell';
 import { SectionTabs } from '../../components/lesson/SectionTabs';
 import { DialogueSection } from '../../components/lesson/DialogueSection';
@@ -99,9 +99,34 @@ export default function LessonScreen() {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.errorContainer}>
-          <Text style={styles.errorText}>{error || 'Lesson not found'}</Text>
-          <TouchableOpacity style={styles.backLink} onPress={() => router.back()}>
-            <Text style={styles.backLinkText}>Go back</Text>
+          <AlertCircle size={48} color="#ff7878" />
+          <Text style={styles.errorTitle}>Oops!</Text>
+          <Text style={styles.errorText}>
+            {error || 'We couldn\'t find this lesson. It may have been moved or removed.'}
+          </Text>
+          <TouchableOpacity style={styles.errorButton} onPress={() => router.back()}>
+            <Text style={styles.errorButtonText}>Go Back</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.errorLink} onPress={() => router.replace('/(tabs)/learn')}>
+            <Text style={styles.errorLinkText}>Browse all lessons</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    );
+  }
+
+  // Handle lessons with no content
+  if (lesson.sections.length === 0) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.emptyContainer}>
+          <BookOpen size={48} color="rgba(247,248,251,0.3)" />
+          <Text style={styles.emptyTitle}>Coming Soon</Text>
+          <Text style={styles.emptyText}>
+            This lesson content is still being prepared. Check back soon!
+          </Text>
+          <TouchableOpacity style={styles.errorButton} onPress={() => router.back()}>
+            <Text style={styles.errorButtonText}>Go Back</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
@@ -166,8 +191,62 @@ export default function LessonScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#06060b' },
   loadingContainer: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  errorContainer: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 },
-  errorText: { color: '#ff7878', fontSize: 16, marginBottom: 16 },
+  errorContainer: { 
+    flex: 1, 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    padding: 32,
+  },
+  errorTitle: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: '#f7f8fb',
+    marginTop: 16,
+    marginBottom: 8,
+  },
+  errorText: { 
+    color: 'rgba(247,248,251,0.6)', 
+    fontSize: 15, 
+    textAlign: 'center',
+    lineHeight: 22,
+    marginBottom: 24,
+    maxWidth: 280,
+  },
+  errorButton: {
+    backgroundColor: '#f6d83b',
+    paddingHorizontal: 24,
+    paddingVertical: 14,
+    borderRadius: 12,
+    marginBottom: 12,
+  },
+  errorButtonText: {
+    color: '#06060b',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  errorLink: { padding: 12 },
+  errorLinkText: { color: '#f6d83b', fontSize: 14 },
+  emptyContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 32,
+  },
+  emptyTitle: {
+    fontSize: 22,
+    fontWeight: '700',
+    color: '#f7f8fb',
+    marginTop: 16,
+    marginBottom: 8,
+  },
+  emptyText: {
+    color: 'rgba(247,248,251,0.6)',
+    fontSize: 15,
+    textAlign: 'center',
+    lineHeight: 22,
+    marginBottom: 24,
+    maxWidth: 280,
+  },
   backLink: { padding: 12 },
   backLinkText: { color: '#f6d83b', fontSize: 16 },
   titleContainer: {

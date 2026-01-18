@@ -130,3 +130,97 @@ export async function sendVerificationEmail(
     return { success: false, error: 'Failed to send email' };
   }
 }
+
+/**
+ * Send feedback notification email to admin
+ */
+export async function sendFeedbackNotification(
+  feedbackData: {
+    type: string;
+    message: string;
+    email?: string | null;
+    rating?: number;
+    context?: {
+      page?: string;
+      userAgent?: string;
+      locale?: string;
+    };
+    userId?: string | null;
+    userName?: string | null;
+  }
+): Promise<EmailResult> {
+  if (!resend) {
+    console.warn('[EMAIL] Resend not configured, skipping feedback notification');
+    return { success: false, error: 'Email service not configured' };
+  }
+
+  const adminEmail = process.env.FEEDBACK_EMAIL || process.env.SUPPORT_EMAIL || 'contact@mklanguage.com';
+  const typeLabel = feedbackData.type.charAt(0).toUpperCase() + feedbackData.type.slice(1);
+  const ratingStars = feedbackData.rating ? '⭐'.repeat(feedbackData.rating) : 'Not rated';
+
+  try {
+    await resend.emails.send({
+      from: fromEmail,
+      to: adminEmail,
+      subject: `[${typeLabel}] New Feedback - ${appName}`,
+      html: `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </head>
+        <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+            <h1 style="color: white; margin: 0; font-size: 24px;">📬 New ${typeLabel} Feedback</h1>
+          </div>
+          <div style="background: #ffffff; padding: 30px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 10px 10px;">
+            <table style="width: 100%; border-collapse: collapse;">
+              <tr>
+                <td style="padding: 8px 0; border-bottom: 1px solid #e5e7eb; font-weight: 600; width: 100px;">Type:</td>
+                <td style="padding: 8px 0; border-bottom: 1px solid #e5e7eb;">${typeLabel}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; border-bottom: 1px solid #e5e7eb; font-weight: 600;">Rating:</td>
+                <td style="padding: 8px 0; border-bottom: 1px solid #e5e7eb;">${ratingStars}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; border-bottom: 1px solid #e5e7eb; font-weight: 600;">Email:</td>
+                <td style="padding: 8px 0; border-bottom: 1px solid #e5e7eb;">${feedbackData.email || 'Not provided'}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; border-bottom: 1px solid #e5e7eb; font-weight: 600;">User:</td>
+                <td style="padding: 8px 0; border-bottom: 1px solid #e5e7eb;">${feedbackData.userName || feedbackData.userId || 'Anonymous'}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; border-bottom: 1px solid #e5e7eb; font-weight: 600;">Page:</td>
+                <td style="padding: 8px 0; border-bottom: 1px solid #e5e7eb;">${feedbackData.context?.page || 'Unknown'}</td>
+              </tr>
+            </table>
+            <div style="margin-top: 20px; padding: 15px; background: #f9fafb; border-radius: 8px;">
+              <p style="margin: 0 0 10px 0; font-weight: 600;">Message:</p>
+              <p style="margin: 0; white-space: pre-wrap;">${feedbackData.message}</p>
+            </div>
+            ${feedbackData.email ? `
+            <div style="margin-top: 20px; text-align: center;">
+              <a href="mailto:${feedbackData.email}?subject=Re: Your feedback on ${appName}" style="background: #f59e0b; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: 600; display: inline-block;">Reply to User</a>
+            </div>
+            ` : ''}
+            <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 25px 0;">
+            <p style="color: #9ca3af; font-size: 12px; text-align: center;">
+              Submitted at: ${new Date().toISOString()}<br>
+              User Agent: ${feedbackData.context?.userAgent || 'Unknown'}
+            </p>
+          </div>
+        </body>
+        </html>
+      `,
+    });
+
+    console.log('[EMAIL] Feedback notification sent to:', adminEmail);
+    return { success: true };
+  } catch (error) {
+    console.error('[EMAIL] Failed to send feedback notification:', error);
+    return { success: false, error: 'Failed to send email' };
+  }
+}

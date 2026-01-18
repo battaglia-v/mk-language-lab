@@ -4,11 +4,19 @@
 
 Ship a native React Native app (iOS + Android) that provides core learning functionality, preserving the Play Store listing and sharing logic packages with the web app.
 
-## Current Status (2026-01-16)
+## Current Status (2026-01-18)
 
-- v2.1 Feature Parity, Phase 68/75 (Practice Modes)
-- Phase 68.1 React conflict fix completed; manual iOS simulator validation pending
-- Grammar Practice implementation present; awaiting device verification before marking done
+- v2.2 Feature Parity Push - Mobile/PWA Content Alignment
+- Phase 68.1 React conflict fix completed
+- Grammar Practice implementation present; awaiting device verification
+
+### Recent Updates (2026-01-18):
+- ✅ Improved Macedonian TTS pronunciation (Bulgarian voice fallback + enhanced voice selection)
+- ✅ Added Text Analyzer screen to mobile app with tap-to-reveal translations
+- ✅ Fixed onboarding quiz to set user's learning path based on selected level
+- ✅ Enhanced Reader WordPopup with TTS pronunciation and gamified UI
+- ✅ 30-Day Reading Challenge (Little Prince) content confirmed complete (30 days)
+- ⚠️ Curriculum API loading needs investigation on Expo (may be network/emulator issue)
 
 ## Decisions (Locked)
 
@@ -43,9 +51,12 @@ Ship a native React Native app (iOS + Android) that provides core learning funct
 - Push notifications (defer to v1.1)
 - Deep links (defer to v1.1)
 - Apple Sign-in (add when iOS ships)
-- Audio features (deferred Phase 58)
 - Background sync (manual refresh for v1)
-- Analyzer tool (use web)
+
+### Added to Scope (v1.1):
+- ✅ Text Analyzer tool (added 2026-01-18)
+- ✅ TTS pronunciation for Macedonian (Bulgarian fallback)
+- ✅ 30-Day Reading Challenge (Little Prince)
 
 ## Milestones
 
@@ -212,4 +223,15 @@ Mobile will use the existing NextAuth API with token-based auth:
 
 - 2026-01-16: Found Expo removal commit in git history
 - 2026-01-16: Audit complete, plan revised with locked decisions
-- 2026-01-16: Verified Phase 68.1 fix and Grammar Practice implementation present; awaiting manual iOS validation
+- 2026-01-16: Verified Phase 68.1 fix and Grammar Practice implementation present
+- 2026-01-18: Feature parity audit - TTS improved with Bulgarian voice fallback
+- 2026-01-18: Text Analyzer added to mobile with tap-to-reveal UX
+- 2026-01-18: Onboarding quiz now routes users to correct level tab
+- 2026-01-18: Reader WordPopup enhanced with TTS and gamified XP feedback
+- 2026-01-18: 30-Day Challenge content verified (30 Little Prince chapters)
+- 2026-01-18: Curriculum API needs network debugging on Expo
+- 2026-01-18: Added FeedbackBanner component to mobile app (profile screen)
+- 2026-01-18: Fixed PWA AlphaBanner to link to /feedback page instead of mailto
+- 2026-01-18: Enhanced error states with friendly messages and retry options
+- 2026-01-18: Added password reset link in sign-in error messages
+- 2026-01-18: Added empty lesson content state ("Coming Soon")

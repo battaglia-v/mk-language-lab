@@ -15,6 +15,7 @@ import { useAuthStore } from '../../store/auth';
 import { fetchProfileStats, ProfileStats } from '../../lib/profile';
 import { useRequireAuth } from '../../hooks/useAuthGuard';
 import { getGamificationSummary } from '../../lib/gamification';
+import { FeedbackBanner } from '../../components/ui/FeedbackBanner';
 
 export default function ProfileScreen() {
   // Require authentication for this screen
@@ -87,6 +88,9 @@ export default function ProfileScreen() {
           <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} tintColor="#f6d83b" />
         }
       >
+        {/* Feedback Banner */}
+        <FeedbackBanner />
+
         {/* Header */}
         <View style={styles.header}>
           <Text style={styles.title}>Profile</Text>

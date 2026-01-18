@@ -278,8 +278,8 @@ export function TappableTextV2({
             'hover:bg-primary/20 active:bg-primary/30',
             'focus:bg-primary/20 focus:outline-none',
             'touch-manipulation',
-          ],
-          tapTranslateEnabled && hasAnalysis && 'underline decoration-primary/40 decoration-dotted underline-offset-4'
+          ]
+          // Underlines removed for cleaner reading experience (matching mobile)
         )}
       >
         {word}

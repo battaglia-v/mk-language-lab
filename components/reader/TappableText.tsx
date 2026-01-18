@@ -343,9 +343,8 @@ export function TappableText({ text, vocabulary, analyzedData, className, locale
                 // Show selected state with prominent highlight and subtle depth
                 isSelected
                   ? 'bg-primary/40 text-primary-foreground ring-2 ring-primary/60 scale-105 shadow-sm shadow-primary/20'
-                  : 'active:bg-primary/30 active:scale-105 active:shadow-sm',
-                // Subtle underline for words with known translations
-                !isSelected && hasAnalysis && 'underline decoration-primary/40 decoration-dotted underline-offset-4'
+                  : 'active:bg-primary/30 active:scale-105 active:shadow-sm'
+                // Underlines removed to match mobile - cleaner reading experience
               )}
             >
               {word}

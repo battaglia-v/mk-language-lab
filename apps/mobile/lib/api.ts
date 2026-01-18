@@ -1,9 +1,36 @@
 import Constants from 'expo-constants';
+import { Platform } from 'react-native';
 import { getToken, setToken, clearAll } from './storage';
 
-const API_BASE =
-  Constants.expoConfig?.extra?.apiBaseUrl ??
-  'https://mk-language-lab.vercel.app';
+/**
+ * Get the API base URL based on environment
+ * 
+ * For development:
+ * - Set EXPO_PUBLIC_API_BASE_URL in your .env.local
+ * - Or the app will use the production URL
+ * 
+ * Note: Expo Go on Android Emulator needs http://10.0.2.2:3000
+ *       Expo Go on iOS Simulator needs http://localhost:3000
+ *       Expo Go on physical device needs your computer's local IP
+ */
+function getApiBase(): string {
+  // First check for explicitly set env var
+  const envUrl = Constants.expoConfig?.extra?.apiBaseUrl;
+  if (envUrl && envUrl !== 'https://mk-language-lab.vercel.app') {
+    return envUrl;
+  }
+
+  // In development, use production API since localhost doesn't work well
+  // with Expo Go without explicit IP configuration
+  return 'https://mk-language-lab.vercel.app';
+}
+
+const API_BASE = getApiBase();
+
+// Log the API base on init for debugging
+if (__DEV__) {
+  console.log('[API] Base URL:', API_BASE);
+}
 
 export class AuthError extends Error {
   constructor(message: string) {

@@ -12,6 +12,13 @@ export type ReaderStory = {
   wordCount: number;
 };
 
+// Extended type for 30-day challenge stories
+export type ChallengeStory = ReaderStory & {
+  day?: number;
+  series?: string;
+  completed?: boolean; // Tracked locally via AsyncStorage
+};
+
 export type TextBlock = {
   type: string;
   value: string;
@@ -28,11 +35,20 @@ export type ReaderStoryDetail = ReaderStory & {
   vocabulary: VocabularyItem[];
 };
 
+// 30-Day Challenge type
+export type ReadingChallenge = {
+  title: string;
+  description: string;
+  totalDays: number;
+  stories: ChallengeStory[];
+};
+
 // API response types
 
 type ReaderListResponse = {
   stories: ReaderStory[];
-  meta: { total: number };
+  challenge?: ReadingChallenge;
+  meta: { total: number; challengeTotal?: number };
 };
 
 type ReaderDetailResponse = {
@@ -50,6 +66,37 @@ export async function fetchStories(level?: string): Promise<ReaderStory[]> {
   const params = level ? `?level=${level}` : '';
   const response = await apiFetch<ReaderListResponse>(
     `/api/mobile/reader${params}`,
+    { skipAuth: true }
+  );
+  return response.stories;
+}
+
+/**
+ * Fetch stories including the 30-day challenge
+ * @param level - Optional difficulty filter: 'A1' | 'A2' | 'B1'
+ * @returns Stories and challenge data
+ */
+export async function fetchStoriesWithChallenge(level?: string): Promise<{
+  stories: ReaderStory[];
+  challenge?: ReadingChallenge;
+}> {
+  const params = level ? `?level=${level}` : '';
+  const response = await apiFetch<ReaderListResponse>(
+    `/api/mobile/reader${params}`,
+    { skipAuth: true }
+  );
+  return {
+    stories: response.stories,
+    challenge: response.challenge,
+  };
+}
+
+/**
+ * Fetch only 30-day challenge stories
+ */
+export async function fetchChallengeStories(): Promise<ChallengeStory[]> {
+  const response = await apiFetch<{ stories: ChallengeStory[]; meta: { total: number } }>(
+    '/api/mobile/reader?type=challenge',
     { skipAuth: true }
   );
   return response.stories;

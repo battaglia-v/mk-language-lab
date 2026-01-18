@@ -41,6 +41,12 @@ type ReaderDetailResponse = {
   story: ReaderStoryDetail;
 };
 
+// Extended type for challenge stories
+type ChallengeStoryDetail = ReaderStoryDetail & {
+  day?: number;
+  series?: string;
+};
+
 // Load all graded reader stories from disk
 function loadGradedReaders(): ReaderStoryDetail[] {
   const gradedDir = join(process.cwd(), 'data/reader/graded');
@@ -87,19 +93,80 @@ function loadGradedReaders(): ReaderStoryDetail[] {
   }
 }
 
+// Load 30-day challenge stories
+function load30DayChallenge(): ChallengeStoryDetail[] {
+  const challengeDir = join(process.cwd(), 'data/reader/challenges/30-day-little-prince');
+
+  try {
+    const files = readdirSync(challengeDir).filter((f) => f.endsWith('.json'));
+    const stories: ChallengeStoryDetail[] = [];
+
+    for (const file of files) {
+      const content = readFileSync(join(challengeDir, file), 'utf-8');
+      const data = JSON.parse(content);
+
+      // Calculate word count from text_blocks_mk
+      const wordCount = data.text_blocks_mk?.reduce((acc: number, block: TextBlock) => {
+        return acc + block.value.split(/\s+/).filter(Boolean).length;
+      }, 0) ?? 0;
+
+      stories.push({
+        id: data.id,
+        title_mk: data.title_mk,
+        title_en: data.title_en,
+        difficulty: data.difficulty || 'B1',
+        estimatedMinutes: data.estimatedMinutes || 8,
+        tags: data.tags ?? ['30-day-challenge'],
+        wordCount,
+        text_blocks_mk: data.text_blocks_mk ?? [],
+        vocabulary: data.vocabulary ?? [],
+        day: data.day,
+        series: data.series || '30-Day Reading Challenge',
+      });
+    }
+
+    // Sort by day number
+    stories.sort((a, b) => (a.day ?? 0) - (b.day ?? 0));
+
+    return stories;
+  } catch (error) {
+    log.error('Failed to load 30-day challenge', { error });
+    return [];
+  }
+}
+
+// Extended response types
+type ChallengeStoryMeta = ReaderStoryMeta & {
+  day?: number;
+  series?: string;
+};
+
+type ReaderApiResponseExtended = {
+  stories: ReaderStoryMeta[];
+  challenge?: {
+    title: string;
+    description: string;
+    totalDays: number;
+    stories: ChallengeStoryMeta[];
+  };
+  meta: { total: number; challengeTotal?: number };
+};
+
 /**
  * GET /api/mobile/reader
  *
- * Returns graded reader stories for mobile app.
+ * Returns graded reader stories and 30-day challenge for mobile app.
  *
  * Query params:
  * - level: 'A1' | 'A2' | 'B1' - filter by difficulty level
  * - id: string - get single story with full content (text_blocks_mk, vocabulary)
+ * - type: 'challenge' - get only 30-day challenge stories
  *
  * Response (list mode - no id):
  * {
  *   stories: Array<{ id, title_mk, title_en, difficulty, estimatedMinutes, tags, wordCount }>,
- *   meta: { total }
+ *   challenge: { title, description, totalDays, stories },
+ *   meta: { total, challengeTotal }
  * }
  *
  * Response (detail mode - with id):
@@ -111,13 +178,21 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const level = searchParams.get('level');
   const id = searchParams.get('id');
+  const type = searchParams.get('type');
 
   try {
     const allStories = loadGradedReaders();
+    const challengeStories = load30DayChallenge();
 
     // Detail mode: return single story with full content
     if (id) {
-      const story = allStories.find((s) => s.id === id);
+      // Check graded readers first
+      let story = allStories.find((s) => s.id === id);
+      
+      // Then check challenge stories
+      if (!story) {
+        story = challengeStories.find((s) => s.id === id);
+      }
 
       if (!story) {
         return NextResponse.json({ error: 'Story not found' }, { status: 404 });
@@ -128,6 +203,32 @@ export async function GET(request: NextRequest) {
       const response: ReaderDetailResponse = { story };
 
       return NextResponse.json(response, {
+        headers: {
+          'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+        },
+      });
+    }
+
+    // Challenge only mode
+    if (type === 'challenge') {
+      const challengeMetas: ChallengeStoryMeta[] = challengeStories.map(
+        ({ id, title_mk, title_en, difficulty, estimatedMinutes, tags, wordCount, day, series }) => ({
+          id,
+          title_mk,
+          title_en,
+          difficulty,
+          estimatedMinutes,
+          tags,
+          wordCount,
+          day,
+          series,
+        })
+      );
+
+      return NextResponse.json({
+        stories: challengeMetas,
+        meta: { total: challengeStories.length },
+      }, {
         headers: {
           'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
         },
@@ -155,11 +256,39 @@ export async function GET(request: NextRequest) {
       })
     );
 
-    log.info('Returning story list', { level: level ?? 'all', count: storyMetas.length });
+    // Build challenge section
+    const challengeMetas: ChallengeStoryMeta[] = challengeStories.map(
+      ({ id, title_mk, title_en, difficulty, estimatedMinutes, tags, wordCount, day, series }) => ({
+        id,
+        title_mk,
+        title_en,
+        difficulty,
+        estimatedMinutes,
+        tags,
+        wordCount,
+        day,
+        series,
+      })
+    );
 
-    const response: ReaderApiResponse = {
+    log.info('Returning story list', { 
+      level: level ?? 'all', 
+      storiesCount: storyMetas.length,
+      challengeCount: challengeMetas.length,
+    });
+
+    const response: ReaderApiResponseExtended = {
       stories: storyMetas,
-      meta: { total: allStories.length },
+      challenge: {
+        title: '30-Day Reading Challenge',
+        description: 'Read "The Little Prince" in Macedonian, one chapter at a time.',
+        totalDays: 30,
+        stories: challengeMetas,
+      },
+      meta: { 
+        total: allStories.length,
+        challengeTotal: challengeStories.length,
+      },
     };
 
     // Static data - cache for 5 minutes

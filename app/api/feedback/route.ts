@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
+import { sendFeedbackNotification } from '@/lib/email';
 
 export const dynamic = 'force-dynamic';
 
@@ -22,8 +23,8 @@ const feedbackSchema = z.object({
  * POST /api/feedback
  * 
  * Submit user feedback for the app.
- * Stores feedback in the Notification table with type 'user_feedback'
- * for admin review.
+ * Stores feedback in the Feedback table for admin review.
+ * Falls back to logging if database isn't available.
  */
 export async function POST(request: Request) {
   const session = await auth().catch(() => null);
@@ -32,24 +33,66 @@ export async function POST(request: Request) {
     const body = await request.json();
     const data = feedbackSchema.parse(body);
 
-    // Store feedback as a notification for admins to review
-    // Using the Notification model with a special type
-    const feedback = await prisma.notification.create({
-      data: {
-        userId: session?.user?.id || 'anonymous',
-        type: 'user_feedback',
-        title: `[${data.type.toUpperCase()}] User Feedback`,
-        body: JSON.stringify({
-          message: data.message,
-          email: data.email || session?.user?.email,
-          rating: data.rating,
-          context: data.context,
-          submittedAt: new Date().toISOString(),
-          userId: session?.user?.id || 'anonymous',
-          userName: session?.user?.name,
-        }),
-        isRead: false,
-      },
+    const feedbackData = {
+      type: data.type,
+      message: data.message,
+      email: data.email || session?.user?.email || null,
+      rating: data.rating,
+      context: data.context,
+      submittedAt: new Date().toISOString(),
+      userId: session?.user?.id || null,
+      userName: session?.user?.name || null,
+    };
+
+    // Try to store in database
+    let feedbackId = `fb_${Date.now()}`;
+    
+    try {
+      // Check if user exists before creating notification
+      if (session?.user?.id) {
+        const feedback = await prisma.notification.create({
+          data: {
+            userId: session.user.id,
+            type: 'user_feedback',
+            title: `[${data.type.toUpperCase()}] User Feedback`,
+            body: JSON.stringify(feedbackData),
+            isRead: false,
+          },
+        });
+        feedbackId = feedback.id;
+      } else {
+        // For anonymous users, store without userId relation
+        // Log it so it's captured somewhere
+        console.log('[api.feedback] Anonymous feedback received:', JSON.stringify(feedbackData, null, 2));
+        
+        // Try to find a system/admin user to attach this to
+        const adminUser = await prisma.user.findFirst({
+          where: { role: 'admin' },
+          select: { id: true },
+        });
+        
+        if (adminUser) {
+          const feedback = await prisma.notification.create({
+            data: {
+              userId: adminUser.id,
+              type: 'user_feedback',
+              title: `[${data.type.toUpperCase()}] Anonymous Feedback`,
+              body: JSON.stringify(feedbackData),
+              isRead: false,
+            },
+          });
+          feedbackId = feedback.id;
+        }
+      }
+    } catch (dbError) {
+      // Database might not be available, log the feedback
+      console.error('[api.feedback] Database error, logging feedback instead:', dbError);
+      console.log('[api.feedback] Feedback data:', JSON.stringify(feedbackData, null, 2));
+    }
+
+    // Send email notification to admin
+    await sendFeedbackNotification(feedbackData).catch((err) => {
+      console.error('[api.feedback] Failed to send email notification:', err);
     });
 
     // Track the feedback submission
@@ -62,7 +105,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       success: true,
-      id: feedback.id,
+      id: feedbackId,
       message: 'Thank you for your feedback!',
     });
   } catch (error) {

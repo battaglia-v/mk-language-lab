@@ -1,7 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { X, MessageSquare } from 'lucide-react';
+import Link from 'next/link';
+import { useLocale } from 'next-intl';
+import { X, MessageSquare, ExternalLink } from 'lucide-react';
 
 const STORAGE_KEY = 'mk-alpha-banner-dismissed';
 
@@ -36,6 +38,7 @@ function isStandaloneOrTwa(): boolean {
 export function AlphaBanner() {
   const [isDismissed, setIsDismissed] = useState(true); // Start hidden to avoid flash
   const [isStandalone, setIsStandalone] = useState(false);
+  const locale = useLocale();
 
   useEffect(() => {
     // Check if running as standalone app
@@ -60,12 +63,13 @@ export function AlphaBanner() {
         <MessageSquare className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
         <span className="font-medium">Alpha Preview</span>
         <span className="text-white/90">— Feedback welcome!</span>
-        <a
-          href="mailto:contact@mklanguage.com?subject=Alpha%20Feedback%20-%20MK%20Language%20Lab"
-          className="ml-2 underline underline-offset-2 hover:no-underline"
+        <Link
+          href={`/${locale}/feedback`}
+          className="ml-2 inline-flex items-center gap-1 underline underline-offset-2 hover:no-underline"
         >
           Send feedback
-        </a>
+          <ExternalLink className="h-3 w-3" />
+        </Link>
         <button
           type="button"
           onClick={handleDismiss}

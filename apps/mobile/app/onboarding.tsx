@@ -128,6 +128,26 @@ export default function OnboardingScreen() {
     haptic.medium();
 
     try {
+      // Save preferences locally first (most important)
+      await AsyncStorage.setItem(
+        'mkll:user-preferences',
+        JSON.stringify({
+          goal: data.goal,
+          level: data.level,
+          dailyGoalMinutes: data.dailyGoalMinutes,
+        })
+      );
+
+      // Mark onboarding as complete
+      await AsyncStorage.setItem(ONBOARDING_COMPLETE_KEY, 'true');
+
+      // Try to update daily goal (ignore errors)
+      try {
+        await updateDailyGoal(data.dailyGoalMinutes * 10); // Convert minutes to XP
+      } catch (e) {
+        console.warn('[Onboarding] Failed to update daily goal:', e);
+      }
+
       // Try to sync with server (will fail if not authenticated)
       try {
         await apiFetch('/api/missions/setup', {
@@ -141,24 +161,11 @@ export default function OnboardingScreen() {
           },
         });
       } catch {
-        // Ignore server errors - save locally anyway
+        // Ignore server errors - already saved locally
       }
 
-      // Save preferences locally
-      await AsyncStorage.setItem(
-        'mkll:user-preferences',
-        JSON.stringify({
-          goal: data.goal,
-          level: data.level,
-          dailyGoalMinutes: data.dailyGoalMinutes,
-        })
-      );
-
-      // Update daily goal in gamification
-      await updateDailyGoal(data.dailyGoalMinutes * 10); // Convert minutes to XP
-
-      // Mark onboarding as complete
-      await AsyncStorage.setItem(ONBOARDING_COMPLETE_KEY, 'true');
+      // Save the user's selected level to determine starting tab
+      await AsyncStorage.setItem('mkll:user-level', data.level);
 
       trackEvent('onboarding_completed', {
         goal: data.goal,
@@ -167,11 +174,21 @@ export default function OnboardingScreen() {
       });
 
       haptic.success();
+      
+      // Navigate to learn tab - it will read the level from storage
       router.replace('/(tabs)/learn');
     } catch (error) {
       console.error('[Onboarding] Failed:', error);
       trackEvent('onboarding_failed', { error: String(error) });
-      setIsSubmitting(false);
+      
+      // Even if something failed, try to navigate anyway
+      // since the core data should be saved
+      try {
+        await AsyncStorage.setItem(ONBOARDING_COMPLETE_KEY, 'true');
+        router.replace('/(tabs)/learn');
+      } catch {
+        setIsSubmitting(false);
+      }
     }
   };
 

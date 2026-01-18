@@ -1,5 +1,5 @@
-import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
+import { Platform } from 'react-native';
 
 // Complete any pending browser sessions
 WebBrowser.maybeCompleteAuthSession();
@@ -10,56 +10,51 @@ const GOOGLE_WEB_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID;
 const GOOGLE_ANDROID_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID;
 const GOOGLE_IOS_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID;
 
-// Check if any OAuth credentials are configured
-const hasCredentials = Boolean(
-  GOOGLE_WEB_CLIENT_ID || GOOGLE_ANDROID_CLIENT_ID || GOOGLE_IOS_CLIENT_ID
-);
+// Check if the platform-specific credential is configured
+export const isGoogleAuthConfigured = Platform.select({
+  android: Boolean(GOOGLE_ANDROID_CLIENT_ID),
+  ios: Boolean(GOOGLE_IOS_CLIENT_ID),
+  web: Boolean(GOOGLE_WEB_CLIENT_ID),
+  default: false,
+}) ?? false;
 
-if (!hasCredentials && process.env.NODE_ENV !== 'production') {
+if (!isGoogleAuthConfigured && __DEV__) {
   console.warn(
-    '[GoogleAuth] No OAuth credentials configured. Set EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID, ' +
-    'EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID, or EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID.'
+    '[GoogleAuth] No OAuth credentials configured for this platform. ' +
+    'Google sign-in will be disabled.'
   );
 }
 
+// Type for the disabled auth state
+export type GoogleAuthResult = {
+  request: null;
+  response: null;
+  promptAsync: () => Promise<void>;
+  isReady: false;
+  isConfigured: false;
+};
+
 /**
- * Hook for Google OAuth authentication
- * 
- * Always calls the underlying hook to satisfy rules-of-hooks,
- * but returns disabled state if credentials aren't configured.
+ * Returns a disabled Google auth state.
+ * Use this instead of useGoogleAuth when credentials are not configured.
  */
-export function useGoogleAuth() {
-  // Always call the hook unconditionally to satisfy rules-of-hooks
-  const [request, response, promptAsync] = Google.useAuthRequest({
-    webClientId: GOOGLE_WEB_CLIENT_ID,
-    androidClientId: GOOGLE_ANDROID_CLIENT_ID,
-    iosClientId: GOOGLE_IOS_CLIENT_ID,
-  });
-
-  // If no credentials configured, return disabled state
-  if (!hasCredentials) {
-    return {
-      request: null,
-      response: null,
-      promptAsync: async () => {
-        throw new Error('Google sign-in is not configured');
-      },
-      isReady: false,
-      isConfigured: false,
-    };
-  }
-
+export function getDisabledGoogleAuth(): GoogleAuthResult {
   return {
-    request,
-    response,
-    promptAsync,
-    isReady: !!request,
-    isConfigured: true,
+    request: null,
+    response: null,
+    promptAsync: async () => {
+      throw new Error('Google sign-in is not configured for this platform');
+    },
+    isReady: false,
+    isConfigured: false,
   };
 }
 
-export type GoogleAuthResponse = typeof Google.useAuthRequest extends (
-  ...args: unknown[]
-) => [unknown, infer R, unknown]
-  ? R
-  : never;
+// Google auth response type (simplified since we're not using the hook)
+export type GoogleAuthResponse = {
+  type: 'success' | 'error' | 'cancel';
+  authentication?: {
+    idToken?: string;
+    accessToken?: string;
+  };
+} | null;

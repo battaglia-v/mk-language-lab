@@ -15,21 +15,18 @@ import {
   ScrollView,
   TouchableOpacity,
   StyleSheet,
-  Linking,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
 import {
   BookmarkPlus,
   Sparkles,
-  Languages,
-  Newspaper,
   BookOpen,
   GraduationCap,
   ChevronRight,
-  ExternalLink,
   FlaskConical,
   HelpCircle,
+  FileSearch,
 } from 'lucide-react-native';
 import { useTranslations } from '../../lib/i18n';
 
@@ -65,12 +62,22 @@ export default function ResourcesScreen() {
     {
       id: 'translator',
       title: 'Language Lab',
-      description: 'Translator, analyzer & pronunciation',
+      description: 'Translator & pronunciation',
       icon: FlaskConical,
       iconColor: '#f6d83b',
       bgColor: 'rgba(246,216,59,0.1)',
       borderColor: 'rgba(246,216,59,0.3)',
       onPress: () => router.push('/(tabs)/translate'),
+    },
+    {
+      id: 'analyzer',
+      title: 'Text Analyzer',
+      description: 'Word-by-word breakdown & analysis',
+      icon: FileSearch,
+      iconColor: '#a855f7',
+      bgColor: 'rgba(168,85,247,0.1)',
+      borderColor: 'rgba(168,85,247,0.3)',
+      onPress: () => router.push('/analyzer'),
     },
     {
       id: 'grammar',
@@ -94,30 +101,7 @@ export default function ResourcesScreen() {
     },
   ];
 
-  const externalLinks: ResourceItem[] = [
-    {
-      id: 'wikipedia',
-      title: 'Macedonian Wikipedia',
-      description: 'Practice reading real articles',
-      icon: ExternalLink,
-      iconColor: 'rgba(247,248,251,0.6)',
-      bgColor: 'rgba(247,248,251,0.05)',
-      borderColor: 'rgba(247,248,251,0.1)',
-      onPress: () => Linking.openURL('https://mk.wikipedia.org'),
-      external: true,
-    },
-    {
-      id: 'forvo',
-      title: 'Forvo Pronunciations',
-      description: 'Native speaker recordings',
-      icon: ExternalLink,
-      iconColor: 'rgba(247,248,251,0.6)',
-      bgColor: 'rgba(247,248,251,0.05)',
-      borderColor: 'rgba(247,248,251,0.1)',
-      onPress: () => Linking.openURL('https://forvo.com/languages/mk/'),
-      external: true,
-    },
-  ];
+  // External resources removed per user request
 
   const renderItem = (item: ResourceItem) => (
     <TouchableOpacity
@@ -139,8 +123,6 @@ export default function ResourcesScreen() {
       </View>
       {item.highlight ? (
         <Sparkles size={20} color={item.iconColor} />
-      ) : item.external ? (
-        <ExternalLink size={18} color="rgba(247,248,251,0.4)" />
       ) : (
         <ChevronRight size={20} color="rgba(247,248,251,0.4)" />
       )}
@@ -171,11 +153,6 @@ export default function ResourcesScreen() {
           {mainItems.map(renderItem)}
         </View>
 
-        {/* External Links */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>External Resources</Text>
-          {externalLinks.map(renderItem)}
-        </View>
 
         {/* Help Link */}
         <TouchableOpacity

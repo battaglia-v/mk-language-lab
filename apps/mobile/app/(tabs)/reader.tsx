@@ -11,11 +11,10 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
-import { BookOpen, Clock, FileText, ChevronRight, Share2 } from 'lucide-react-native';
-import { fetchStories, ReaderStory } from '../../lib/reader';
+import { BookOpen, Clock, FileText, ChevronRight, Trophy, Sparkles } from 'lucide-react-native';
+import { fetchStoriesWithChallenge, ReaderStory, ReadingChallenge, ChallengeStory } from '../../lib/reader';
 import { ReaderScreenSkeleton } from '../../components/ui/Skeleton';
 import { usePullToRefresh } from '../../hooks/usePullToRefresh';
-import { shareStory } from '../../lib/share';
 
 type DifficultyLevel = 'all' | 'A1' | 'A2' | 'B1';
 
@@ -34,6 +33,7 @@ const DIFFICULTY_COLORS: Record<string, { bg: string; text: string; border: stri
 
 export default function ReaderScreen() {
   const [stories, setStories] = useState<ReaderStory[]>([]);
+  const [challenge, setChallenge] = useState<ReadingChallenge | null>(null);
   const [selectedLevel, setSelectedLevel] = useState<DifficultyLevel>('all');
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -42,8 +42,9 @@ export default function ReaderScreen() {
     const levelToFetch = level ?? selectedLevel;
     try {
       setError(null);
-      const data = await fetchStories(levelToFetch === 'all' ? undefined : levelToFetch);
-      setStories(data);
+      const data = await fetchStoriesWithChallenge(levelToFetch === 'all' ? undefined : levelToFetch);
+      setStories(data.stories);
+      setChallenge(data.challenge || null);
     } catch (err) {
       console.error('Failed to load stories:', err);
       setError('Failed to load stories. Please try again.');
@@ -126,7 +127,53 @@ export default function ReaderScreen() {
         <Text style={styles.subtitle}>Practice reading with graded stories</Text>
       </View>
 
+      {/* 30-Day Challenge Section */}
+      {challenge && selectedLevel === 'all' && (
+        <View style={styles.challengeSection}>
+          <TouchableOpacity
+            style={styles.challengeCard}
+            onPress={() => router.push('/reader/challenge')}
+            activeOpacity={0.8}
+          >
+            <View style={styles.challengeHeader}>
+              <View style={styles.challengeIconContainer}>
+                <Trophy size={24} color="#f6d83b" />
+              </View>
+              <View style={styles.challengeTitleContainer}>
+                <View style={styles.challengeTitleRow}>
+                  <Text style={styles.challengeTitle}>{challenge.title}</Text>
+                  <View style={styles.newBadge}>
+                    <Sparkles size={10} color="#f6d83b" />
+                    <Text style={styles.newBadgeText}>NEW</Text>
+                  </View>
+                </View>
+                <Text style={styles.challengeDescription}>{challenge.description}</Text>
+              </View>
+            </View>
+            <View style={styles.challengeProgress}>
+              <Text style={styles.challengeProgressText}>
+                {challenge.totalDays} days • {challenge.stories.length} chapters
+              </Text>
+              <TouchableOpacity
+                style={styles.startButton}
+                onPress={() => {
+                  const firstDay = challenge.stories[0];
+                  if (firstDay) {
+                    router.push(`/reader/${firstDay.id}`);
+                  }
+                }}
+              >
+                <Text style={styles.startButtonText}>Start Day 1</Text>
+              </TouchableOpacity>
+            </View>
+          </TouchableOpacity>
+        </View>
+      )}
+
       {/* Level filter chips */}
+      <View style={styles.sectionHeader}>
+        <Text style={styles.sectionTitle}>Graded Stories</Text>
+      </View>
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -230,6 +277,94 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 14,
     color: 'rgba(247,248,251,0.6)',
+  },
+  // 30-Day Challenge styles
+  challengeSection: {
+    marginBottom: 24,
+  },
+  challengeCard: {
+    backgroundColor: 'rgba(246,216,59,0.08)',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(246,216,59,0.25)',
+    padding: 16,
+  },
+  challengeHeader: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: 16,
+  },
+  challengeIconContainer: {
+    width: 48,
+    height: 48,
+    borderRadius: 12,
+    backgroundColor: 'rgba(246,216,59,0.15)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 14,
+  },
+  challengeTitleContainer: {
+    flex: 1,
+  },
+  challengeTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 4,
+  },
+  challengeTitle: {
+    fontSize: 17,
+    fontWeight: '700',
+    color: '#f7f8fb',
+  },
+  newBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    backgroundColor: 'rgba(246,216,59,0.2)',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 6,
+  },
+  newBadgeText: {
+    fontSize: 10,
+    fontWeight: '700',
+    color: '#f6d83b',
+  },
+  challengeDescription: {
+    fontSize: 13,
+    color: 'rgba(247,248,251,0.6)',
+    lineHeight: 18,
+  },
+  challengeProgress: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  challengeProgressText: {
+    fontSize: 12,
+    color: 'rgba(247,248,251,0.5)',
+  },
+  startButton: {
+    backgroundColor: '#f6d83b',
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 10,
+  },
+  startButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#000',
+  },
+  sectionHeader: {
+    marginBottom: 8,
+  },
+  sectionTitle: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: 'rgba(247,248,251,0.5)',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
   filterContainer: {
     marginBottom: 20,

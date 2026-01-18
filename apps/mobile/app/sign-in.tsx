@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { Link, router } from 'expo-router';
 import { useAuthStore } from '../store/auth';
-import { useGoogleAuth } from '../lib/google-auth';
+import { isGoogleAuthConfigured, getDisabledGoogleAuth } from '../lib/google-auth';
 import { KeyboardSafeView } from '../components/ui/KeyboardSafeView';
 import { useRedirectIfAuth } from '../hooks/useAuthGuard';
 import { trackSignInInitiated, trackSignInSuccess, trackSignInFailed } from '../lib/analytics';
@@ -24,7 +24,9 @@ export default function SignInScreen() {
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
   const { signIn, signInWithGoogle, error, clearError } = useAuthStore();
-  const { request, response, promptAsync, isReady, isConfigured } = useGoogleAuth();
+  
+  // Google auth is disabled when credentials aren't configured
+  const { response, promptAsync, isReady, isConfigured } = getDisabledGoogleAuth();
 
   const handleGoogleSignIn = useCallback(async (idToken: string) => {
     setIsGoogleLoading(true);
@@ -90,6 +92,14 @@ export default function SignInScreen() {
         {error ? (
           <View style={styles.errorContainer}>
             <Text style={styles.errorText}>{error}</Text>
+            {error.toLowerCase().includes('password') || error.toLowerCase().includes('invalid') ? (
+              <TouchableOpacity
+                style={styles.resetLink}
+                onPress={() => router.push('/forgot-password')}
+              >
+                <Text style={styles.resetLinkText}>Forgot your password? Reset it here</Text>
+              </TouchableOpacity>
+            ) : null}
           </View>
         ) : null}
 
@@ -200,6 +210,15 @@ const styles = StyleSheet.create({
   errorText: {
     color: '#ff7878',
     textAlign: 'center',
+  },
+  resetLink: {
+    marginTop: 8,
+  },
+  resetLinkText: {
+    color: '#f6d83b',
+    textAlign: 'center',
+    fontSize: 13,
+    textDecorationLine: 'underline',
   },
   input: {
     backgroundColor: '#0b0b12',
