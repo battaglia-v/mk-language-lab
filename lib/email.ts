@@ -4,7 +4,9 @@ import { APP_META } from '@/lib/appMeta';
 type ResendClient = { emails: { send: (options: { from: string; to: string; subject: string; html: string }) => Promise<unknown> } };
 const resend: ResendClient | null = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
-const fromEmail = process.env.RESEND_FROM_EMAIL || 'noreply@mklanglabs.com';
+// Use Resend's default domain if custom domain not configured
+// Once domain is verified in Resend, set RESEND_FROM_EMAIL=noreply@mklanguage.com
+const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
 const appName = APP_META.storeName;
 const appUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000';
 
