@@ -27,6 +27,7 @@ import {
   FlaskConical,
   HelpCircle,
   FileSearch,
+  Newspaper,
 } from 'lucide-react-native';
 import { useTranslations } from '../../lib/i18n';
 
@@ -59,6 +60,16 @@ export default function ResourcesScreen() {
   };
 
   const mainItems: ResourceItem[] = [
+    {
+      id: 'news',
+      title: 'Macedonian News',
+      description: 'Read real news with translations',
+      icon: Newspaper,
+      iconColor: '#dc2626',
+      bgColor: 'rgba(220,38,38,0.1)',
+      borderColor: 'rgba(220,38,38,0.3)',
+      onPress: () => router.push('/news'),
+    },
     {
       id: 'translator',
       title: 'Language Lab',

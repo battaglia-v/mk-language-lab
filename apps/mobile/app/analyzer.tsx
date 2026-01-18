@@ -9,7 +9,7 @@
  * - Alternative meanings for ambiguous words
  */
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import {
   View,
   Text,
@@ -22,7 +22,7 @@ import {
   Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import {
   ArrowLeft,
   ArrowLeftRight,
@@ -56,6 +56,9 @@ const DIRECTION_OPTIONS: { id: AnalysisDirection; label: string; placeholder: st
 ];
 
 export default function AnalyzerScreen() {
+  // Get pre-filled text from navigation params (e.g., from news)
+  const params = useLocalSearchParams<{ text?: string; source?: string }>();
+  
   const [direction, setDirection] = useState<AnalysisDirection>('mk-en');
   const [inputText, setInputText] = useState('');
   const [result, setResult] = useState<AnalysisResult | null>(null);
@@ -68,6 +71,13 @@ export default function AnalyzerScreen() {
   const [showAllTranslations, setShowAllTranslations] = useState(false);
 
   const { speak, isSpeaking, stop } = useTTS({ lang: direction === 'mk-en' ? 'mk' : 'en' });
+
+  // Pre-fill text from params (e.g., when coming from news)
+  useEffect(() => {
+    if (params.text) {
+      setInputText(params.text);
+    }
+  }, [params.text]);
 
   const currentOption = DIRECTION_OPTIONS.find((opt) => opt.id === direction)!;
 
