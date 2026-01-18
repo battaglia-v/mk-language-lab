@@ -39,7 +39,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       process.env.EXPO_PUBLIC_API_BASE_URL ??
       'https://mk-language-lab.vercel.app',
     eas: {
-      projectId: process.env.EAS_PROJECT_ID,
+      projectId: '5c712af3-a6e9-462d-8243-a119b56af569',
     },
   },
 
