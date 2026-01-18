@@ -165,8 +165,10 @@ export function LearnPageClient({
 
   // Determine if we should show Continue CTA with journey progress
   const showContinueCTA = currentLesson && journeyProgress && activeLevel !== 'challenge';
-  const ctaHref = showContinueCTA
-    ? `/${locale}/learn/lessons/${currentLesson.id}`
+  // Use the href from the node which has the correct path (/lesson/{id} for DB lessons, /learn/lessons/alphabet for alphabet)
+  const currentLessonNode = currentPath.nodes.find(n => n.id === currentLesson?.id);
+  const ctaHref = showContinueCTA && currentLessonNode?.href
+    ? `/${locale}${currentLessonNode.href}`
     : startNode?.href
       ? `/${locale}${startNode.href}`
       : `/${locale}/learn`;
