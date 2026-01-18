@@ -55,14 +55,32 @@ interface DialogueViewerProps {
   className?: string;
 }
 
-// Speaker colors for visual distinction
-const SPEAKER_COLORS: Record<string, string> = {
-  default: 'bg-primary/10 text-primary',
-  'Влатко': 'bg-blue-500/10 text-blue-600 dark:text-blue-400',
-  'Ема': 'bg-pink-500/10 text-pink-600 dark:text-pink-400',
-  'Андреј': 'bg-green-500/10 text-green-600 dark:text-green-400',
-  'Весна': 'bg-purple-500/10 text-purple-600 dark:text-purple-400',
-  'Томислав': 'bg-orange-500/10 text-orange-600 dark:text-orange-400',
+// Speaker colors for visual distinction - auto-assigns based on speaker name hash
+const SPEAKER_PALETTE = [
+  'bg-blue-500/15 text-blue-600 dark:text-blue-400',
+  'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400',
+  'bg-purple-500/15 text-purple-600 dark:text-purple-400',
+  'bg-amber-500/15 text-amber-600 dark:text-amber-400',
+  'bg-rose-500/15 text-rose-600 dark:text-rose-400',
+  'bg-cyan-500/15 text-cyan-600 dark:text-cyan-400',
+  'bg-orange-500/15 text-orange-600 dark:text-orange-400',
+  'bg-violet-500/15 text-violet-600 dark:text-violet-400',
+];
+
+// Generate consistent color for speaker name
+const speakerColorCache = new Map<string, string>();
+const getSpeakerColorFromName = (name: string): string => {
+  if (speakerColorCache.has(name)) {
+    return speakerColorCache.get(name)!;
+  }
+  // Simple hash based on character codes
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = (hash << 5) - hash + name.charCodeAt(i);
+  }
+  const color = SPEAKER_PALETTE[Math.abs(hash) % SPEAKER_PALETTE.length];
+  speakerColorCache.set(name, color);
+  return color;
 };
 
 // ============================================================================
@@ -182,8 +200,8 @@ export function DialogueViewer({
 
   // Get speaker color class
   const getSpeakerColor = (speaker?: string) => {
-    if (!speaker) return SPEAKER_COLORS.default;
-    return SPEAKER_COLORS[speaker] || SPEAKER_COLORS.default;
+    if (!speaker) return SPEAKER_PALETTE[0];
+    return getSpeakerColorFromName(speaker);
   };
 
   // Render dialogue line with blanks
@@ -281,31 +299,32 @@ export function DialogueViewer({
       {/* Header Controls */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         {dialogue.title && (
-          <h3 className="text-lg font-semibold">{dialogue.title}</h3>
+          <h3 className="text-base font-medium text-foreground/90">{dialogue.title}</h3>
         )}
 
         <div className="flex items-center gap-2">
           {/* Toggle translation */}
           <Button
-            variant={showTranslation ? 'default' : 'outline'}
+            variant={showTranslation ? 'secondary' : 'ghost'}
             size="sm"
             onClick={() => setShowTranslation(!showTranslation)}
-            className="gap-2"
+            className="gap-1.5 h-8"
           >
             {showTranslation ? (
-              <EyeOff className="h-4 w-4" />
+              <EyeOff className="h-3.5 w-3.5" />
             ) : (
-              <Eye className="h-4 w-4" />
+              <Eye className="h-3.5 w-3.5" />
             )}
-            <span className="hidden sm:inline">Translation</span>
+            <span className="text-xs">Translation</span>
           </Button>
 
           {/* Toggle transliteration */}
           <Button
-            variant={showTransliteration ? 'default' : 'outline'}
+            variant={showTransliteration ? 'secondary' : 'ghost'}
             size="sm"
             onClick={() => setShowTransliteration(!showTransliteration)}
             title="Show Latin script"
+            className="h-8 px-2"
           >
             <span className="text-xs font-mono">Aa</span>
           </Button>
@@ -313,60 +332,62 @@ export function DialogueViewer({
       </div>
 
       {/* Dialogue Lines */}
-      <Card className="divide-y divide-border/50 overflow-hidden">
-        {dialogue.lines.map((line) => (
-          <div
-            key={line.id}
-            ref={(el) => {
-              if (el) lineRefs.current.set(line.id, el);
-            }}
-            className="p-4 transition-colors duration-200"
-          >
-            <div className="flex gap-3">
-              {/* Speaker badge */}
-              {line.speaker && (
-                <div
-                  className={cn(
-                    'flex-shrink-0 h-10 w-10 rounded-full flex items-center justify-center font-semibold text-sm',
-                    getSpeakerColor(line.speaker)
-                  )}
-                  title={line.speaker}
-                >
-                  {line.speaker.charAt(0)}
-                </div>
-              )}
-
-              {/* Line content */}
-              <div className="flex-1 min-w-0 space-y-1">
-                {/* Speaker name */}
+      <Card className="overflow-hidden border-border/40">
+        <div className="divide-y divide-border/30">
+          {dialogue.lines.map((line) => (
+            <div
+              key={line.id}
+              ref={(el) => {
+                if (el) lineRefs.current.set(line.id, el);
+              }}
+              className="px-4 py-3 transition-colors duration-200 hover:bg-muted/30"
+            >
+              <div className="flex gap-3 items-start">
+                {/* Speaker badge */}
                 {line.speaker && (
-                  <p className="text-sm font-medium text-muted-foreground">
-                    {line.speaker}
-                  </p>
+                  <div
+                    className={cn(
+                      'flex-shrink-0 h-9 w-9 rounded-full flex items-center justify-center font-semibold text-sm mt-0.5',
+                      getSpeakerColor(line.speaker)
+                    )}
+                    title={line.speaker}
+                  >
+                    {line.speaker.charAt(0)}
+                  </div>
                 )}
 
-                {/* Macedonian text */}
-                <div className="text-lg font-medium">
-                  {renderLineText(line)}
+                {/* Line content */}
+                <div className="flex-1 min-w-0 space-y-0.5">
+                  {/* Speaker name */}
+                  {line.speaker && (
+                    <p className="text-xs font-medium text-muted-foreground/70">
+                      {line.speaker}
+                    </p>
+                  )}
+
+                  {/* Macedonian text */}
+                  <div className="text-base font-medium leading-relaxed">
+                    {renderLineText(line)}
+                  </div>
+
+                  {/* Transliteration */}
+                  {showTransliteration && line.transliteration && (
+                    <p className="text-sm text-muted-foreground/80 italic font-mono">
+                      {line.transliteration}
+                    </p>
+                  )}
+
+                  {/* English translation */}
+                  {showTranslation && (
+                    <p className="text-sm text-muted-foreground">
+                      {line.textEn}
+                    </p>
+                  )}
                 </div>
-
-                {/* Transliteration */}
-                {showTransliteration && line.transliteration && (
-                  <p className="text-sm text-muted-foreground italic font-mono">
-                    {line.transliteration}
-                  </p>
-                )}
-
-                {/* English translation */}
-                {showTranslation && (
-                  <p className="text-sm text-muted-foreground">
-                    {line.textEn}
-                  </p>
-                )}
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </Card>
 
       {/* Fill-blanks mode controls */}

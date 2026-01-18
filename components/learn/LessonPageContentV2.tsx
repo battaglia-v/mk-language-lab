@@ -805,7 +805,7 @@ export default function LessonPageContentV2({
   }
 
   return (
-    <div className="max-w-4xl mx-auto pb-44 lg:pb-8">
+    <div className="max-w-4xl mx-auto pb-24 lg:pb-8">
       {/* Fixed Header with Progress */}
       <div className="sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
         <div className="p-4">
@@ -966,44 +966,41 @@ export default function LessonPageContentV2({
         {renderSectionContent()}
       </div>
 
-      {/* Floating Navigation (mobile) - sits above bottom nav */}
-      <div className="fixed bottom-[calc(4rem+env(safe-area-inset-bottom,0px))] left-0 right-0 lg:hidden z-30">
-        {/* Gradient background for smooth transition */}
-        <div className="bg-gradient-to-t from-background via-background to-transparent pt-8 pb-4">
-          <div className="px-4">
-            <div className="flex gap-3">
-              {currentSectionIndex > 0 && (
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  onClick={handleBack}
-                  className="h-14 px-4 shrink-0 gap-1"
-                  aria-label="Go back to previous section"
-                >
-                  <ChevronLeft className="h-5 w-5" />
-                  <span className="text-sm">{tCommon('back')}</span>
-                </Button>
-              )}
-
+      {/* Floating Navigation (mobile) - fixed at bottom */}
+      <div className="fixed bottom-0 left-0 right-0 lg:hidden z-30 pb-[env(safe-area-inset-bottom,0px)]">
+        {/* Solid background with subtle border */}
+        <div className="bg-background border-t border-border/50 px-4 py-3">
+          <div className="flex gap-3 max-w-4xl mx-auto">
+            {currentSectionIndex > 0 && (
               <Button
-                onClick={isLastSection ? handleCompleteLesson : handleContinue}
+                variant="outline"
                 size="lg"
-                className="flex-1 h-14 text-base font-semibold shadow-xl gap-2"
-                data-testid="lesson-continue-btn"
+                onClick={handleBack}
+                className="h-12 px-4 shrink-0 gap-1"
+                aria-label="Go back to previous section"
               >
-                {isLastSection ? (
-                  <>
-                    Complete Lesson
-                    <CheckCircle className="h-5 w-5" />
-                  </>
-                ) : (
-                  <>
-                    Continue
-                    <ChevronRight className="h-5 w-5" />
-                  </>
-                )}
+                <ChevronLeft className="h-5 w-5" />
               </Button>
-            </div>
+            )}
+
+            <Button
+              onClick={isLastSection ? handleCompleteLesson : handleContinue}
+              size="lg"
+              className="flex-1 h-12 text-base font-semibold gap-2"
+              data-testid="lesson-continue-btn"
+            >
+              {isLastSection ? (
+                <>
+                  Complete Lesson
+                  <CheckCircle className="h-5 w-5" />
+                </>
+              ) : (
+                <>
+                  Continue
+                  <ChevronRight className="h-5 w-5" />
+                </>
+              )}
+            </Button>
           </div>
         </div>
       </div>
