@@ -3,7 +3,7 @@ import type { ConfigContext, ExpoConfig } from 'expo/config';
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   name: 'Macedonian Language Lab',
-  slug: 'mk-language-lab',
+  slug: 'makedonski-mk-language-lab',
   scheme: 'mklanguage',
   version: '2.1.0',
   orientation: 'portrait',
