@@ -1,0 +1,42 @@
+npm warn config ignoring workspace config at /Users/vbattaglia/mk-language-lab/apps/mobile/.npmrc
+env: load .env.local
+env: export EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID
+Starting project at /Users/vbattaglia/mk-language-lab/apps/mobile
+Starting Metro Bundler
+warning: Bundler cache is empty, rebuilding (this may take a minute)
+The following packages should be updated for best compatibility with the installed expo version:
+  react-native-svg@15.15.1 - expected version: 15.12.1
+Your project may not work correctly until you install the expected versions of the packages.
+› Opening exp://127.0.0.1:8081 on iPhone 17 Pro
+Waiting on http://localhost:8081
+Logs for your project will appear below.
+iOS node_modules/expo-router/entry.js ░░░░░░░░░░░░░░░░  0.0% (0/1)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+iOS node_modules/expo-router/entry.js ░░░░░░░░░░░░░░░░  0.0% (0/1)
+| (node:51872) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:51875) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:51878) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:51876) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:51873) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:51877) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:51874) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:51879) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+iOS node_modules/expo-router/entry.js ▓▓▓▓░░░░░░░░░░░░ 27.3% (272/528)
+iOS node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓░░░░ 77.8% ( 851/2632)
+iOS node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓░░░ 87.2% (2527/2706)
+iOS Bundled 20573ms node_modules/expo-router/entry.js (2961 modules)

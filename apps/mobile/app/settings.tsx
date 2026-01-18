@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import {
   View,
   Text,
@@ -13,6 +13,7 @@ import * as WebBrowser from 'expo-web-browser';
 import Constants from 'expo-constants';
 import {
   ChevronLeft,
+  ChevronRight,
   Mail,
   Lock,
   Trash2,
@@ -20,16 +21,27 @@ import {
   Shield,
   Info,
   ExternalLink,
+  User,
+  Sun,
+  Moon,
+  Smartphone,
+  LogOut,
 } from 'lucide-react-native';
 import { useAuthStore } from '../store/auth';
 import { clearAllExceptAuth } from '../lib/storage';
+import { getTheme, setTheme, type ThemeMode } from '../lib/theme';
 
 const APP_VERSION = Constants.expoConfig?.version ?? '2.0.0';
 const WEB_BASE = Constants.expoConfig?.extra?.apiBaseUrl ?? 'https://mk-language-lab.vercel.app';
 
 export default function SettingsScreen() {
-  const { user } = useAuthStore();
+  const { user, signOut, isAuthenticated } = useAuthStore();
   const [isClearing, setIsClearing] = useState(false);
+  const [currentTheme, setCurrentTheme] = useState<ThemeMode>('system');
+
+  useEffect(() => {
+    setCurrentTheme(getTheme());
+  }, []);
 
   const handleBack = () => {
     router.back();
@@ -37,6 +49,29 @@ export default function SettingsScreen() {
 
   const handleChangePassword = async () => {
     await WebBrowser.openBrowserAsync(`${WEB_BASE}/en/forgot-password`);
+  };
+
+  const handleProfilePress = () => {
+    router.push('/(tabs)/profile');
+  };
+
+  const handleThemeChange = async (mode: ThemeMode) => {
+    setCurrentTheme(mode);
+    await setTheme(mode);
+  };
+
+  const handleSignOut = () => {
+    Alert.alert('Sign Out', 'Are you sure you want to sign out?', [
+      { text: 'Cancel', style: 'cancel' },
+      {
+        text: 'Sign Out',
+        style: 'destructive',
+        onPress: async () => {
+          await signOut();
+          router.replace('/sign-in');
+        },
+      },
+    ]);
   };
 
   const handleClearCache = useCallback(() => {
@@ -85,6 +120,22 @@ export default function SettingsScreen() {
           <View style={styles.placeholder} />
         </View>
 
+        {/* Profile Section */}
+        {isAuthenticated && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Profile</Text>
+            <View style={styles.sectionContent}>
+              <SettingsRow
+                icon={<User size={20} color="#f6d83b" />}
+                label="View Profile"
+                value={user?.name ?? 'Your profile'}
+                onPress={handleProfilePress}
+                showChevron
+              />
+            </View>
+          </View>
+        )}
+
         {/* Account Section */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Account</Text>
@@ -94,12 +145,49 @@ export default function SettingsScreen() {
               label="Email"
               value={user?.email ?? 'Not signed in'}
             />
-            <SettingsRow
-              icon={<Lock size={20} color="rgba(247,248,251,0.6)" />}
-              label="Change Password"
-              onPress={handleChangePassword}
-              showArrow
-            />
+            {isAuthenticated && (
+              <>
+                <SettingsRow
+                  icon={<Lock size={20} color="rgba(247,248,251,0.6)" />}
+                  label="Change Password"
+                  onPress={handleChangePassword}
+                  showArrow
+                />
+                <SettingsRow
+                  icon={<LogOut size={20} color="#ef4444" />}
+                  label="Sign Out"
+                  onPress={handleSignOut}
+                  destructive
+                />
+              </>
+            )}
+          </View>
+        </View>
+
+        {/* Appearance Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Appearance</Text>
+          <View style={styles.sectionContent}>
+            <View style={styles.themeSelector}>
+              <ThemeOption
+                icon={<Smartphone size={18} color={currentTheme === 'system' ? '#f6d83b' : 'rgba(247,248,251,0.5)'} />}
+                label="System"
+                isActive={currentTheme === 'system'}
+                onPress={() => handleThemeChange('system')}
+              />
+              <ThemeOption
+                icon={<Sun size={18} color={currentTheme === 'light' ? '#f6d83b' : 'rgba(247,248,251,0.5)'} />}
+                label="Light"
+                isActive={currentTheme === 'light'}
+                onPress={() => handleThemeChange('light')}
+              />
+              <ThemeOption
+                icon={<Moon size={18} color={currentTheme === 'dark' ? '#f6d83b' : 'rgba(247,248,251,0.5)'} />}
+                label="Dark"
+                isActive={currentTheme === 'dark'}
+                onPress={() => handleThemeChange('dark')}
+              />
+            </View>
           </View>
         </View>
 
@@ -151,6 +239,7 @@ function SettingsRow({
   value,
   onPress,
   showArrow,
+  showChevron,
   destructive,
   disabled,
 }: {
@@ -159,6 +248,7 @@ function SettingsRow({
   value?: string;
   onPress?: () => void;
   showArrow?: boolean;
+  showChevron?: boolean;
   destructive?: boolean;
   disabled?: boolean;
 }) {
@@ -171,6 +261,7 @@ function SettingsRow({
       <View style={styles.rowRight}>
         {value && <Text style={styles.rowValue}>{value}</Text>}
         {showArrow && <ExternalLink size={16} color="rgba(247,248,251,0.4)" />}
+        {showChevron && <ChevronRight size={16} color="rgba(247,248,251,0.4)" />}
       </View>
     </View>
   );
@@ -184,6 +275,31 @@ function SettingsRow({
   }
 
   return content;
+}
+
+function ThemeOption({
+  icon,
+  label,
+  isActive,
+  onPress,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  isActive: boolean;
+  onPress: () => void;
+}) {
+  return (
+    <TouchableOpacity
+      style={[styles.themeOption, isActive && styles.themeOptionActive]}
+      onPress={onPress}
+      activeOpacity={0.7}
+    >
+      {icon}
+      <Text style={[styles.themeOptionLabel, isActive && styles.themeOptionLabelActive]}>
+        {label}
+      </Text>
+    </TouchableOpacity>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -272,5 +388,33 @@ const styles = StyleSheet.create({
   rowValue: {
     fontSize: 15,
     color: 'rgba(247,248,251,0.5)',
+  },
+  themeSelector: {
+    flexDirection: 'row',
+    padding: 8,
+    gap: 8,
+  },
+  themeOption: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    borderRadius: 12,
+    backgroundColor: 'rgba(247,248,251,0.05)',
+    gap: 6,
+  },
+  themeOptionActive: {
+    backgroundColor: 'rgba(246,216,59,0.15)',
+    borderWidth: 1,
+    borderColor: 'rgba(246,216,59,0.3)',
+  },
+  themeOptionLabel: {
+    fontSize: 12,
+    fontWeight: '500',
+    color: 'rgba(247,248,251,0.5)',
+  },
+  themeOptionLabelActive: {
+    color: '#f6d83b',
   },
 });

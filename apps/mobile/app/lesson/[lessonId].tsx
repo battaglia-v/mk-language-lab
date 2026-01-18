@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, router } from 'expo-router';
-import { ChevronLeft, Check } from 'lucide-react-native';
+import { Check } from 'lucide-react-native';
+import { LessonShell } from '../../components/shell/LessonShell';
 import { SectionTabs } from '../../components/lesson/SectionTabs';
 import { DialogueSection } from '../../components/lesson/DialogueSection';
 import { VocabularySection } from '../../components/lesson/VocabularySection';
@@ -108,25 +109,41 @@ export default function LessonScreen() {
   }
 
   const sectionTypes = lesson.sections.map(s => s.type);
+  const currentSectionIndex = sectionTypes.indexOf(activeSection) + 1;
+  const totalSections = sectionTypes.length;
+  const progress = (currentSectionIndex / totalSections) * 100;
+
+  // Footer with complete button
+  const footer = (
+    <TouchableOpacity
+      style={[styles.completeButton, isCompleting && styles.completeButtonDisabled]}
+      onPress={handleComplete}
+      disabled={isCompleting}
+    >
+      {isCompleting ? (
+        <ActivityIndicator size="small" color="#000" />
+      ) : (
+        <>
+          <Check size={20} color="#000" />
+          <Text style={styles.completeButtonText}>Complete Lesson</Text>
+        </>
+      )}
+    </TouchableOpacity>
+  );
 
   return (
-    <SafeAreaView style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-          <ChevronLeft size={24} color="#f7f8fb" />
-        </TouchableOpacity>
-        <View style={styles.headerContent}>
-          <Text style={styles.headerTitle} numberOfLines={1}>{lesson.title}</Text>
-          <Text style={styles.headerSubtitle}>{lesson.moduleTitle}</Text>
-        </View>
-        <TouchableOpacity
-          style={[styles.completeButton, isCompleting && styles.completeButtonDisabled]}
-          onPress={handleComplete}
-          disabled={isCompleting}
-        >
-          <Check size={20} color="#000" />
-        </TouchableOpacity>
+    <LessonShell
+      progress={progress}
+      current={currentSectionIndex}
+      total={totalSections}
+      xp={10}
+      closeHref="/(tabs)/learn"
+      footer={footer}
+    >
+      {/* Lesson Title */}
+      <View style={styles.titleContainer}>
+        <Text style={styles.lessonTitle}>{lesson.title}</Text>
+        <Text style={styles.lessonSubtitle}>{lesson.moduleTitle}</Text>
       </View>
 
       {/* Section Tabs */}
@@ -142,7 +159,7 @@ export default function LessonScreen() {
       <ScrollView style={styles.content}>
         {renderSection()}
       </ScrollView>
-    </SafeAreaView>
+    </LessonShell>
   );
 }
 
@@ -153,26 +170,34 @@ const styles = StyleSheet.create({
   errorText: { color: '#ff7878', fontSize: 16, marginBottom: 16 },
   backLink: { padding: 12 },
   backLinkText: { color: '#f6d83b', fontSize: 16 },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  titleContainer: {
     paddingHorizontal: 16,
     paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#222536',
   },
-  backButton: { width: 40, height: 40, alignItems: 'center', justifyContent: 'center' },
-  headerContent: { flex: 1, marginHorizontal: 8 },
-  headerTitle: { fontSize: 16, fontWeight: '600', color: '#f7f8fb' },
-  headerSubtitle: { fontSize: 12, color: 'rgba(247,248,251,0.6)' },
+  lessonTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#f7f8fb',
+    marginBottom: 4,
+  },
+  lessonSubtitle: {
+    fontSize: 14,
+    color: 'rgba(247,248,251,0.6)',
+  },
   completeButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#f6d83b',
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    gap: 8,
+    backgroundColor: '#f6d83b',
+    paddingVertical: 14,
+    borderRadius: 12,
   },
   completeButtonDisabled: { opacity: 0.5 },
+  completeButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#000',
+  },
   content: { flex: 1 },
 });

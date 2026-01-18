@@ -10,20 +10,38 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
-import { Settings, LogOut, Flame, Zap, BookOpen, Dumbbell } from 'lucide-react-native';
+import { Settings, LogOut, Flame, Zap, BookOpen, Dumbbell, Trophy, Target, Award, ChevronRight } from 'lucide-react-native';
 import { useAuthStore } from '../../store/auth';
 import { fetchProfileStats, ProfileStats } from '../../lib/profile';
+import { useRequireAuth } from '../../hooks/useAuthGuard';
+import { getGamificationSummary } from '../../lib/gamification';
 
 export default function ProfileScreen() {
+  // Require authentication for this screen
+  const { isLoading: authLoading } = useRequireAuth();
+
   const { user, signOut } = useAuthStore();
   const [stats, setStats] = useState<ProfileStats | null>(null);
+  const [gamification, setGamification] = useState<{
+    totalXP: number;
+    todayXP: number;
+    dailyGoal: number;
+    goalComplete: boolean;
+    currentStreak: number;
+    level: number;
+    levelProgress: number;
+  } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const loadStats = useCallback(async () => {
     try {
-      const data = await fetchProfileStats();
-      setStats(data);
+      const [profileData, gamificationData] = await Promise.all([
+        fetchProfileStats(),
+        getGamificationSummary(),
+      ]);
+      setStats(profileData);
+      setGamification(gamificationData);
     } catch (error) {
       console.error('[Profile] Failed to load stats:', error);
     } finally {
@@ -130,6 +148,24 @@ export default function ProfileScreen() {
             </View>
           </View>
         )}
+
+        {/* Achievements Link */}
+        <TouchableOpacity 
+          style={styles.achievementsButton} 
+          onPress={() => router.push('/achievements')}
+          activeOpacity={0.7}
+        >
+          <View style={styles.achievementsLeft}>
+            <View style={styles.achievementsIcon}>
+              <Award size={20} color="#f6d83b" />
+            </View>
+            <View>
+              <Text style={styles.achievementsTitle}>Achievements</Text>
+              <Text style={styles.achievementsSubtitle}>View badges and progress</Text>
+            </View>
+          </View>
+          <ChevronRight size={20} color="rgba(247,248,251,0.4)" />
+        </TouchableOpacity>
 
         {/* Sign Out */}
         <TouchableOpacity style={styles.signOutButton} onPress={handleSignOut} activeOpacity={0.7}>
@@ -250,6 +286,40 @@ const styles = StyleSheet.create({
     color: 'rgba(247,248,251,0.6)',
     marginTop: 4,
     fontWeight: '500',
+  },
+  achievementsButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#0b0b12',
+    borderRadius: 16,
+    padding: 16,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: '#222536',
+  },
+  achievementsLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  achievementsIcon: {
+    width: 44,
+    height: 44,
+    borderRadius: 12,
+    backgroundColor: 'rgba(246,216,59,0.15)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  achievementsTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#f7f8fb',
+  },
+  achievementsSubtitle: {
+    fontSize: 13,
+    color: 'rgba(247,248,251,0.5)',
+    marginTop: 2,
   },
   signOutButton: {
     flexDirection: 'row',

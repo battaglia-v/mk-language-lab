@@ -1,149 +1,206 @@
+/**
+ * Reading Progress Tracking for React Native
+ * 
+ * Tracks scroll position, time spent, and completion status
+ * so users can resume reading where they left off
+ * 
+ * @see PARITY_CHECKLIST.md - Feature parity
+ * @see lib/reading-progress.ts (PWA implementation)
+ */
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const STORAGE_KEY = '@mklanguage/reading-progress';
+const STORAGE_KEY = 'mkll:reading-progress';
 
-/**
- * Reading progress for a single story
- */
 export type ReadingProgress = {
+  /** Story/sample identifier */
   storyId: string;
-  /** Scroll position as percentage (0-1) */
-  scrollPosition: number;
-  /** Whether the story has been completed */
-  completed: boolean;
-  /** Last read timestamp (epoch ms) */
-  lastReadAt: number;
+  /** Scroll position as percentage (0-100) */
+  scrollPercent: number;
+  /** Time spent reading in seconds */
+  timeSpentSeconds: number;
+  /** Whether the story has been marked complete */
+  isCompleted: boolean;
+  /** ISO timestamp when completed (if completed) */
+  completedAt?: string;
+  /** ISO timestamp of last reading session */
+  lastReadAt: string;
 };
 
-type ProgressStore = Record<string, ReadingProgress>;
-
 /**
- * Load all reading progress from storage
+ * Read all progress entries from storage
  */
-async function loadStore(): Promise<ProgressStore> {
+async function readAllProgressInternal(): Promise<Record<string, ReadingProgress>> {
   try {
     const raw = await AsyncStorage.getItem(STORAGE_KEY);
     if (!raw) return {};
-    return JSON.parse(raw) as ProgressStore;
-  } catch (err) {
-    console.warn('[ReadingProgress] Failed to load store:', err);
+    return JSON.parse(raw) as Record<string, ReadingProgress>;
+  } catch (error) {
+    console.warn('[ReadingProgress] Failed to read data:', error);
     return {};
   }
 }
 
 /**
- * Persist the progress store
+ * Write all progress entries to storage
  */
-async function persistStore(store: ProgressStore): Promise<void> {
+async function writeAllProgress(data: Record<string, ReadingProgress>): Promise<void> {
   try {
-    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(store));
-  } catch (err) {
-    console.warn('[ReadingProgress] Failed to persist store:', err);
+    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  } catch (error) {
+    console.warn('[ReadingProgress] Failed to write data:', error);
   }
 }
 
 /**
- * Save reading progress for a story
- *
- * @param progress - The progress to save
+ * Read progress for a specific story
  */
-export async function saveProgress(progress: ReadingProgress): Promise<void> {
-  const store = await loadStore();
-  store[progress.storyId] = {
-    ...progress,
-    lastReadAt: Date.now(),
+export async function readProgress(storyId: string): Promise<ReadingProgress | null> {
+  const all = await readAllProgressInternal();
+  return all[storyId] || null;
+}
+
+/**
+ * Read all progress entries as an array
+ */
+export async function readAllProgress(): Promise<ReadingProgress[]> {
+  const all = await readAllProgressInternal();
+  return Object.values(all);
+}
+
+/**
+ * Save progress for a story (updates existing or creates new)
+ */
+export async function saveProgress(
+  storyId: string,
+  update: Partial<Omit<ReadingProgress, 'storyId' | 'lastReadAt'>>
+): Promise<ReadingProgress> {
+  const all = await readAllProgressInternal();
+  const existing = all[storyId];
+
+  const progress: ReadingProgress = {
+    storyId,
+    scrollPercent: update.scrollPercent ?? existing?.scrollPercent ?? 0,
+    timeSpentSeconds: update.timeSpentSeconds ?? existing?.timeSpentSeconds ?? 0,
+    isCompleted: update.isCompleted ?? existing?.isCompleted ?? false,
+    completedAt: update.completedAt ?? existing?.completedAt,
+    lastReadAt: new Date().toISOString(),
   };
-  await persistStore(store);
-}
 
-/**
- * Load reading progress for a specific story
- *
- * @param storyId - The story ID to load progress for
- * @returns The progress or null if not found
- */
-export async function loadProgress(storyId: string): Promise<ReadingProgress | null> {
-  const store = await loadStore();
-  return store[storyId] ?? null;
-}
+  all[storyId] = progress;
+  await writeAllProgress(all);
 
-/**
- * Load all reading progress
- *
- * @returns Array of all progress entries, sorted by lastReadAt descending
- */
-export async function loadAllProgress(): Promise<ReadingProgress[]> {
-  const store = await loadStore();
-  return Object.values(store).sort((a, b) => b.lastReadAt - a.lastReadAt);
+  return progress;
 }
 
 /**
  * Mark a story as completed
- *
- * @param storyId - The story ID to mark complete
  */
-export async function markComplete(storyId: string): Promise<void> {
-  const store = await loadStore();
-  const existing = store[storyId];
-
-  store[storyId] = {
-    storyId,
-    scrollPosition: existing?.scrollPosition ?? 1,
-    completed: true,
-    lastReadAt: Date.now(),
-  };
-
-  await persistStore(store);
+export async function markCompleted(storyId: string): Promise<ReadingProgress> {
+  return saveProgress(storyId, {
+    isCompleted: true,
+    completedAt: new Date().toISOString(),
+    scrollPercent: 100,
+  });
 }
 
 /**
- * Create a debounced save function for scroll position updates
- *
- * @param delayMs - Debounce delay in ms (default 1000)
- * @returns Object with save, flush, and cancel functions
+ * Update scroll position
  */
-export function createDebouncedProgressSave(delayMs: number = 1000): {
-  save: (progress: ReadingProgress) => void;
-  flush: () => Promise<void>;
-  cancel: () => void;
-} {
-  let timeoutId: ReturnType<typeof setTimeout> | null = null;
-  let pendingProgress: ReadingProgress | null = null;
+export async function updateScrollPosition(
+  storyId: string,
+  scrollPercent: number
+): Promise<ReadingProgress> {
+  return saveProgress(storyId, { scrollPercent });
+}
 
-  const save = (progress: ReadingProgress) => {
-    pendingProgress = progress;
+/**
+ * Add time spent reading
+ */
+export async function addTimeSpent(
+  storyId: string,
+  additionalSeconds: number
+): Promise<ReadingProgress> {
+  const existing = await readProgress(storyId);
+  const currentTime = existing?.timeSpentSeconds ?? 0;
+  
+  return saveProgress(storyId, {
+    timeSpentSeconds: currentTime + additionalSeconds,
+  });
+}
 
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
+/**
+ * Check if a story is completed
+ */
+export async function isStoryCompleted(storyId: string): Promise<boolean> {
+  const progress = await readProgress(storyId);
+  return progress?.isCompleted ?? false;
+}
 
-    timeoutId = setTimeout(async () => {
-      if (pendingProgress) {
-        await saveProgress(pendingProgress);
-        pendingProgress = null;
-      }
-      timeoutId = null;
-    }, delayMs);
+/**
+ * Get completion statistics
+ */
+export async function getReadingStats(): Promise<{
+  totalStories: number;
+  completedStories: number;
+  totalTimeMinutes: number;
+  averageProgress: number;
+}> {
+  const all = await readAllProgress();
+  
+  const totalStories = all.length;
+  const completedStories = all.filter((p) => p.isCompleted).length;
+  const totalTimeMinutes = Math.round(
+    all.reduce((sum, p) => sum + p.timeSpentSeconds, 0) / 60
+  );
+  const averageProgress = totalStories > 0
+    ? Math.round(all.reduce((sum, p) => sum + p.scrollPercent, 0) / totalStories)
+    : 0;
+
+  return {
+    totalStories,
+    completedStories,
+    totalTimeMinutes,
+    averageProgress,
   };
+}
 
-  const flush = async () => {
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-      timeoutId = null;
-    }
-    if (pendingProgress) {
-      await saveProgress(pendingProgress);
-      pendingProgress = null;
-    }
-  };
+/**
+ * Get stories in progress (started but not completed)
+ */
+export async function getInProgressStories(): Promise<ReadingProgress[]> {
+  const all = await readAllProgress();
+  return all
+    .filter((p) => !p.isCompleted && p.scrollPercent > 0)
+    .sort((a, b) => new Date(b.lastReadAt).getTime() - new Date(a.lastReadAt).getTime());
+}
 
-  const cancel = () => {
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-      timeoutId = null;
-    }
-    pendingProgress = null;
-  };
+/**
+ * Get completed stories
+ */
+export async function getCompletedStories(): Promise<ReadingProgress[]> {
+  const all = await readAllProgress();
+  return all
+    .filter((p) => p.isCompleted)
+    .sort((a, b) => {
+      const aDate = a.completedAt || a.lastReadAt;
+      const bDate = b.completedAt || b.lastReadAt;
+      return new Date(bDate).getTime() - new Date(aDate).getTime();
+    });
+}
 
-  return { save, flush, cancel };
+/**
+ * Clear progress for a story
+ */
+export async function clearProgress(storyId: string): Promise<void> {
+  const all = await readAllProgressInternal();
+  delete all[storyId];
+  await writeAllProgress(all);
+}
+
+/**
+ * Clear all reading progress (for debugging/reset)
+ */
+export async function clearAllProgress(): Promise<void> {
+  await AsyncStorage.removeItem(STORAGE_KEY);
 }

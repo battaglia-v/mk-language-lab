@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, router, Stack } from 'expo-router';
-import { ArrowLeft } from 'lucide-react-native';
 import { GrammarExerciseRunner, type LessonResults } from '../../components/grammar/GrammarExerciseRunner';
+import { LessonShell } from '../../components/shell/LessonShell';
 import {
   getGrammarLesson,
   saveGrammarProgress,
@@ -49,6 +49,9 @@ export default function GrammarLessonScreen() {
     router.back();
   };
 
+  // Track exercise progress for LessonShell (must be before conditional returns)
+  const [currentExercise, setCurrentExercise] = useState(0);
+
   if (isLoading) {
     return (
       <>
@@ -79,23 +82,26 @@ export default function GrammarLessonScreen() {
     );
   }
 
+  const totalExercises = lesson.exercises.length;
+  const progress = totalExercises > 0 ? ((currentExercise + 1) / totalExercises) * 100 : 0;
+
   return (
     <>
       <Stack.Screen options={{ headerShown: false }} />
-      <SafeAreaView style={styles.container}>
-        {/* Header */}
-        <View style={styles.header}>
-          <TouchableOpacity style={styles.backButton} onPress={handleExit} activeOpacity={0.7}>
-            <ArrowLeft size={20} color="#f7f8fb" />
-          </TouchableOpacity>
-          <View style={styles.headerContent}>
-            <Text style={styles.headerTitle} numberOfLines={1}>
-              {lesson.titleEn}
-            </Text>
-            <Text style={styles.headerSubtitle}>
-              {lesson.exercises.length} exercises • {lesson.difficulty}
-            </Text>
-          </View>
+      <LessonShell
+        progress={progress}
+        current={currentExercise + 1}
+        total={totalExercises}
+        xp={10}
+        onClose={handleExit}
+        closeHref="/grammar"
+      >
+        {/* Lesson Title */}
+        <View style={styles.titleContainer}>
+          <Text style={styles.lessonTitle}>{lesson.titleEn}</Text>
+          <Text style={styles.lessonSubtitle}>
+            {lesson.exercises.length} exercises • {lesson.difficulty}
+          </Text>
         </View>
 
         {/* Exercise Runner */}
@@ -103,8 +109,9 @@ export default function GrammarLessonScreen() {
           lesson={lesson}
           onComplete={handleComplete}
           onExit={handleExit}
+          onProgressChange={setCurrentExercise}
         />
-      </SafeAreaView>
+      </LessonShell>
     </>
   );
 }
@@ -143,31 +150,18 @@ const styles = StyleSheet.create({
     color: '#f6d83b',
     fontSize: 16,
   },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  titleContainer: {
     paddingHorizontal: 16,
     paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#222536',
   },
-  backButton: {
-    width: 40,
-    height: 40,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  headerContent: {
-    flex: 1,
-    marginLeft: 4,
-  },
-  headerTitle: {
-    fontSize: 16,
-    fontWeight: '600',
+  lessonTitle: {
+    fontSize: 20,
+    fontWeight: '700',
     color: '#f7f8fb',
+    marginBottom: 4,
   },
-  headerSubtitle: {
-    fontSize: 12,
+  lessonSubtitle: {
+    fontSize: 14,
     color: 'rgba(247,248,251,0.6)',
     textTransform: 'capitalize',
   },

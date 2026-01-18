@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import { Check, X, ArrowRight, RotateCcw, Trophy } from 'lucide-react-native';
 import type { GrammarLesson, GrammarExercise } from '../../lib/grammar';
@@ -15,6 +15,8 @@ type Props = {
   lesson: GrammarLesson;
   onComplete: (results: LessonResults) => void;
   onExit: () => void;
+  /** Callback when exercise index changes (for progress tracking) */
+  onProgressChange?: (currentIndex: number) => void;
 };
 
 type ExerciseResult = {
@@ -23,7 +25,7 @@ type ExerciseResult = {
   xpEarned: number;
 };
 
-export function GrammarExerciseRunner({ lesson, onComplete, onExit }: Props) {
+export function GrammarExerciseRunner({ lesson, onComplete, onExit, onProgressChange }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [results, setResults] = useState<ExerciseResult[]>([]);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
@@ -35,6 +37,11 @@ export function GrammarExerciseRunner({ lesson, onComplete, onExit }: Props) {
   const exercises = lesson.exercises;
   const currentExercise = exercises[currentIndex];
   const progress = ((currentIndex + 1) / exercises.length) * 100;
+
+  // Notify parent of progress changes
+  useEffect(() => {
+    onProgressChange?.(currentIndex);
+  }, [currentIndex, onProgressChange]);
 
   const checkMultipleChoice = useCallback((exercise: GrammarExercise): boolean => {
     if (selectedOption === null || exercise.correctIndex === undefined) return false;

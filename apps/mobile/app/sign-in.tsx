@@ -5,22 +5,26 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
-  KeyboardAvoidingView,
-  Platform,
   StyleSheet,
 } from 'react-native';
 import { Link, router } from 'expo-router';
 import { useAuthStore } from '../store/auth';
 import { useGoogleAuth } from '../lib/google-auth';
+import { KeyboardSafeView } from '../components/ui/KeyboardSafeView';
+import { useRedirectIfAuth } from '../hooks/useAuthGuard';
+import { trackSignInInitiated, trackSignInSuccess, trackSignInFailed } from '../lib/analytics';
 
 export default function SignInScreen() {
+  // Redirect to home if already authenticated
+  useRedirectIfAuth('/(tabs)');
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
   const { signIn, signInWithGoogle, error, clearError } = useAuthStore();
-  const { request, response, promptAsync, isReady } = useGoogleAuth();
+  const { request, response, promptAsync, isReady, isConfigured } = useGoogleAuth();
 
   const handleGoogleSignIn = useCallback(async (idToken: string) => {
     setIsGoogleLoading(true);
@@ -62,11 +66,14 @@ export default function SignInScreen() {
 
     setIsLoading(true);
     clearError();
+    trackSignInInitiated({ method: 'credentials' });
 
     try {
       await signIn(email, password);
+      trackSignInSuccess({ method: 'credentials' });
       router.replace('/(tabs)');
-    } catch {
+    } catch (err) {
+      trackSignInFailed({ method: 'credentials', error: err instanceof Error ? err.message : 'Unknown error' });
       // Error is handled by the store
     } finally {
       setIsLoading(false);
@@ -74,11 +81,9 @@ export default function SignInScreen() {
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}
-    >
-      <View style={styles.content}>
+    <KeyboardSafeView>
+      <View style={styles.container}>
+        <View style={styles.content}>
         <Text style={styles.title}>MK Language Lab</Text>
         <Text style={styles.subtitle}>Learn Macedonian</Text>
 
@@ -128,14 +133,16 @@ export default function SignInScreen() {
         </View>
 
         <TouchableOpacity
-          style={[styles.googleButton, (!isReady || isGoogleLoading) && styles.buttonDisabled]}
+          style={[styles.googleButton, (!isReady || isGoogleLoading || !isConfigured) && styles.buttonDisabled]}
           onPress={handleGooglePress}
-          disabled={!isReady || isGoogleLoading}
+          disabled={!isReady || isGoogleLoading || !isConfigured}
         >
           {isGoogleLoading ? (
             <ActivityIndicator color="#f7f8fb" />
           ) : (
-            <Text style={styles.googleButtonText}>Continue with Google</Text>
+            <Text style={styles.googleButtonText}>
+              {isConfigured ? 'Continue with Google' : 'Google sign-in unavailable'}
+            </Text>
           )}
         </TouchableOpacity>
 
@@ -155,8 +162,9 @@ export default function SignInScreen() {
             </TouchableOpacity>
           </Link>
         </View>
+        </View>
       </View>
-    </KeyboardAvoidingView>
+    </KeyboardSafeView>
   );
 }
 

@@ -1,0 +1,11 @@
+npm warn config ignoring workspace config at /Users/vbattaglia/mk-language-lab/apps/mobile/.npmrc
+Starting project at /Users/vbattaglia/mk-language-lab/apps/mobile
+Starting Metro Bundler
+warning: Bundler cache is empty, rebuilding (this may take a minute)
+The following packages should be updated for best compatibility with the installed expo version:
+  react@19.2.0 - expected version: 19.1.0
+  react-native-svg@15.15.1 - expected version: 15.12.1
+Your project may not work correctly until you install the expected versions of the packages.
+› Opening exp://127.0.0.1:8081 on iPhone 16e
+Waiting on http://localhost:8081
+Logs for your project will appear below.

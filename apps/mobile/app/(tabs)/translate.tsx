@@ -22,7 +22,14 @@ import {
   Clock,
   Trash2,
   FileText,
+  Bookmark,
+  BookmarkCheck,
+  Share2,
+  Volume2,
+  VolumeX,
 } from 'lucide-react-native';
+import { shareTranslation } from '../../lib/share';
+import { useTTS } from '../../hooks/useTTS';
 import {
   translateText,
   TranslationDirection,
@@ -35,6 +42,14 @@ import {
   clearHistory,
   HistoryItem,
 } from '../../lib/translation-history';
+import {
+  readSavedPhrases,
+  writeSavedPhrases,
+  upsertSavedPhrase,
+  isPhraseAlreadySaved,
+  type SavedPhraseRecord,
+  type SavedPhraseDirection,
+} from '../../lib/saved-phrases';
 
 const MAX_CHARACTERS = 1800;
 
@@ -56,7 +71,30 @@ export default function TranslateScreen() {
   const [history, setHistory] = useState<HistoryItem[]>([]);
   const [isLoadingHistory, setIsLoadingHistory] = useState(false);
 
+  // Saved phrases state
+  const [savedPhrases, setSavedPhrases] = useState<SavedPhraseRecord[]>([]);
+  const [isSaved, setIsSaved] = useState(false);
+
   const labels = getDirectionLabels(direction);
+  
+  // TTS for listening to translations
+  const { speak, isSpeaking, stop, isSupported: ttsSupported } = useTTS({
+    lang: direction === 'en-mk' ? 'mk' : 'en',
+  });
+
+  const handleListen = useCallback(() => {
+    if (!translatedText) return;
+    if (isSpeaking) {
+      stop();
+    } else {
+      speak(translatedText, direction === 'en-mk' ? 'mk' : 'en');
+    }
+  }, [translatedText, direction, speak, stop, isSpeaking]);
+
+  // Load saved phrases on mount
+  useEffect(() => {
+    loadSavedPhrases();
+  }, []);
 
   // Load history when modal opens
   useEffect(() => {
@@ -64,6 +102,25 @@ export default function TranslateScreen() {
       loadHistory();
     }
   }, [showHistory]);
+
+  // Check if current translation is saved
+  useEffect(() => {
+    if (inputText && translatedText) {
+      const saved = isPhraseAlreadySaved(savedPhrases, {
+        sourceText: inputText,
+        translatedText,
+        directionId: direction as SavedPhraseDirection,
+      });
+      setIsSaved(saved);
+    } else {
+      setIsSaved(false);
+    }
+  }, [inputText, translatedText, direction, savedPhrases]);
+
+  const loadSavedPhrases = useCallback(async () => {
+    const phrases = await readSavedPhrases();
+    setSavedPhrases(phrases);
+  }, []);
 
   const loadHistory = useCallback(async () => {
     setIsLoadingHistory(true);
@@ -126,6 +183,15 @@ export default function TranslateScreen() {
     setTimeout(() => setIsCopied(false), 2000);
   }, [translatedText]);
 
+  const handleShare = useCallback(async () => {
+    if (!inputText || !translatedText) return;
+    await shareTranslation({
+      sourceText: inputText,
+      translatedText,
+      direction: direction === 'en-mk' ? 'en-to-mk' : 'mk-to-en',
+    });
+  }, [inputText, translatedText, direction]);
+
   const handleHistoryItemPress = useCallback((item: HistoryItem) => {
     setInputText(item.sourceText);
     setDirection(item.direction);
@@ -137,6 +203,21 @@ export default function TranslateScreen() {
     await clearHistory();
     setHistory([]);
   }, []);
+
+  // Save phrase handler
+  const handleSavePhrase = useCallback(async () => {
+    if (!inputText.trim() || !translatedText) return;
+
+    const updated = upsertSavedPhrase(savedPhrases, {
+      sourceText: inputText.trim(),
+      translatedText,
+      directionId: direction as SavedPhraseDirection,
+    });
+
+    setSavedPhrases(updated);
+    await writeSavedPhrases(updated);
+    setIsSaved(true);
+  }, [inputText, translatedText, direction, savedPhrases]);
 
   const characterCount = inputText.length;
   const isOverLimit = characterCount > MAX_CHARACTERS;
@@ -310,23 +391,74 @@ export default function TranslateScreen() {
             <View style={styles.resultCard}>
               <View style={styles.resultHeader}>
                 <Text style={styles.resultLabel}>{labels.targetLabel}</Text>
-                <TouchableOpacity
-                  onPress={handleCopy}
-                  style={styles.copyButton}
-                  activeOpacity={0.7}
-                >
-                  {isCopied ? (
-                    <>
-                      <Check size={16} color="#22c55e" />
-                      <Text style={styles.copiedText}>Copied!</Text>
-                    </>
-                  ) : (
-                    <>
-                      <Copy size={16} color="#f6d83b" />
-                      <Text style={styles.copyText}>Copy</Text>
-                    </>
+                <View style={styles.resultActions}>
+                  {/* Save Phrase Button */}
+                  <TouchableOpacity
+                    onPress={handleSavePhrase}
+                    style={styles.actionButton}
+                    activeOpacity={0.7}
+                    disabled={isSaved}
+                  >
+                    {isSaved ? (
+                      <>
+                        <BookmarkCheck size={16} color="#22c55e" />
+                        <Text style={styles.savedText}>Saved</Text>
+                      </>
+                    ) : (
+                      <>
+                        <Bookmark size={16} color="#f6d83b" />
+                        <Text style={styles.saveText}>Save</Text>
+                      </>
+                    )}
+                  </TouchableOpacity>
+                  {/* Copy Button */}
+                  <TouchableOpacity
+                    onPress={handleCopy}
+                    style={styles.actionButton}
+                    activeOpacity={0.7}
+                  >
+                    {isCopied ? (
+                      <>
+                        <Check size={16} color="#22c55e" />
+                        <Text style={styles.copiedText}>Copied!</Text>
+                      </>
+                    ) : (
+                      <>
+                        <Copy size={16} color="#f6d83b" />
+                        <Text style={styles.copyText}>Copy</Text>
+                      </>
+                    )}
+                  </TouchableOpacity>
+                  {/* Share Button */}
+                  <TouchableOpacity
+                    onPress={handleShare}
+                    style={styles.actionButton}
+                    activeOpacity={0.7}
+                  >
+                    <Share2 size={16} color="#f6d83b" />
+                    <Text style={styles.shareText}>Share</Text>
+                  </TouchableOpacity>
+                  {/* Listen Button */}
+                  {ttsSupported && (
+                    <TouchableOpacity
+                      onPress={handleListen}
+                      style={styles.actionButton}
+                      activeOpacity={0.7}
+                    >
+                      {isSpeaking ? (
+                        <>
+                          <VolumeX size={16} color="#f6d83b" />
+                          <Text style={styles.listenText}>Stop</Text>
+                        </>
+                      ) : (
+                        <>
+                          <Volume2 size={16} color="#f6d83b" />
+                          <Text style={styles.listenText}>Listen</Text>
+                        </>
+                      )}
+                    </TouchableOpacity>
                   )}
-                </TouchableOpacity>
+                </View>
               </View>
               <Text style={styles.resultText} selectable>
                 {translatedText}
@@ -576,7 +708,12 @@ const styles = StyleSheet.create({
     color: 'rgba(247,248,251,0.5)',
     letterSpacing: 1,
   },
-  copyButton: {
+  resultActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  actionButton: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
@@ -592,6 +729,26 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '500',
     color: '#22c55e',
+  },
+  saveText: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: '#f6d83b',
+  },
+  savedText: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: '#22c55e',
+  },
+  shareText: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: '#f6d83b',
+  },
+  listenText: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: '#f6d83b',
   },
   resultText: {
     fontSize: 16,

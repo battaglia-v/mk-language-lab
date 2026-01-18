@@ -11,8 +11,11 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
-import { BookOpen, Clock, FileText, ChevronRight } from 'lucide-react-native';
+import { BookOpen, Clock, FileText, ChevronRight, Share2 } from 'lucide-react-native';
 import { fetchStories, ReaderStory } from '../../lib/reader';
+import { ReaderScreenSkeleton } from '../../components/ui/Skeleton';
+import { usePullToRefresh } from '../../hooks/usePullToRefresh';
+import { shareStory } from '../../lib/share';
 
 type DifficultyLevel = 'all' | 'A1' | 'A2' | 'B1';
 
@@ -33,31 +36,29 @@ export default function ReaderScreen() {
   const [stories, setStories] = useState<ReaderStory[]>([]);
   const [selectedLevel, setSelectedLevel] = useState<DifficultyLevel>('all');
   const [isLoading, setIsLoading] = useState(true);
-  const [isRefreshing, setIsRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const loadStories = useCallback(async (level: DifficultyLevel) => {
+  const loadStories = useCallback(async (level?: DifficultyLevel) => {
+    const levelToFetch = level ?? selectedLevel;
     try {
       setError(null);
-      const data = await fetchStories(level === 'all' ? undefined : level);
+      const data = await fetchStories(levelToFetch === 'all' ? undefined : levelToFetch);
       setStories(data);
     } catch (err) {
       console.error('Failed to load stories:', err);
       setError('Failed to load stories. Please try again.');
     } finally {
       setIsLoading(false);
-      setIsRefreshing(false);
     }
-  }, []);
+  }, [selectedLevel]);
 
   useEffect(() => {
     loadStories(selectedLevel);
   }, [selectedLevel, loadStories]);
 
-  const onRefresh = () => {
-    setIsRefreshing(true);
-    loadStories(selectedLevel);
-  };
+  const { refreshControlProps } = usePullToRefresh({
+    onRefresh: () => loadStories(),
+  });
 
   const handleLevelChange = (level: DifficultyLevel) => {
     if (level !== selectedLevel) {

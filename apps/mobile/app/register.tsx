@@ -5,13 +5,12 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
-  KeyboardAvoidingView,
-  Platform,
   StyleSheet,
   Alert,
 } from 'react-native';
 import { Link, router } from 'expo-router';
 import { apiFetch } from '../lib/api';
+import { KeyboardSafeView } from '../components/ui/KeyboardSafeView';
 
 export default function RegisterScreen() {
   const [email, setEmail] = useState('');
@@ -49,11 +48,9 @@ export default function RegisterScreen() {
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}
-    >
-      <View style={styles.content}>
+    <KeyboardSafeView>
+      <View style={styles.container}>
+        <View style={styles.content}>
         <Text style={styles.title}>Create Account</Text>
         <Text style={styles.subtitle}>Start learning Macedonian today</Text>
 
@@ -113,8 +110,9 @@ export default function RegisterScreen() {
             </Text>
           </TouchableOpacity>
         </Link>
+        </View>
       </View>
-    </KeyboardAvoidingView>
+    </KeyboardSafeView>
   );
 }
 

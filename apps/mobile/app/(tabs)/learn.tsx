@@ -12,6 +12,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
 import { LessonCard } from '../../components/LessonCard';
 import { fetchCurriculum, CurriculumPaths, LessonPath } from '../../lib/curriculum';
+import { LearnScreenSkeleton } from '../../components/ui/Skeleton';
+import { usePullToRefresh } from '../../hooks/usePullToRefresh';
+import { WordOfTheDay } from '../../components/learn/WordOfTheDay';
+import { DailyGoalWidget } from '../../components/learn/DailyGoalWidget';
+import { WelcomeBanner } from '../../components/WelcomeBanner';
 
 type Level = 'a1' | 'a2' | 'b1';
 
@@ -25,7 +30,6 @@ export default function LearnScreen() {
   const [curriculum, setCurriculum] = useState<CurriculumPaths | null>(null);
   const [activeLevel, setActiveLevel] = useState<Level>('a1');
   const [isLoading, setIsLoading] = useState(true);
-  const [isRefreshing, setIsRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const loadCurriculum = useCallback(async () => {
@@ -38,7 +42,6 @@ export default function LearnScreen() {
       console.error(err);
     } finally {
       setIsLoading(false);
-      setIsRefreshing(false);
     }
   }, []);
 
@@ -46,10 +49,9 @@ export default function LearnScreen() {
     loadCurriculum();
   }, [loadCurriculum]);
 
-  const onRefresh = () => {
-    setIsRefreshing(true);
-    loadCurriculum();
-  };
+  const { refreshControlProps } = usePullToRefresh({
+    onRefresh: loadCurriculum,
+  });
 
   const handleLessonPress = (lessonId: string) => {
     router.push(`/lesson/${lessonId}`);
@@ -60,9 +62,7 @@ export default function LearnScreen() {
   if (isLoading) {
     return (
       <SafeAreaView style={styles.container}>
-        <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#f6d83b" />
-        </View>
+        <LearnScreenSkeleton />
       </SafeAreaView>
     );
   }
@@ -108,14 +108,16 @@ export default function LearnScreen() {
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
-        refreshControl={
-          <RefreshControl
-            refreshing={isRefreshing}
-            onRefresh={onRefresh}
-            tintColor="#f6d83b"
-          />
-        }
+        refreshControl={<RefreshControl {...refreshControlProps} />}
       >
+        {/* Welcome Banner (first-time users) */}
+        <WelcomeBanner />
+
+        {/* Daily Goal Progress */}
+        <DailyGoalWidget />
+
+        {/* Word of the Day */}
+        <WordOfTheDay />
         {error ? (
           <View style={styles.errorContainer}>
             <Text style={styles.errorText}>{error}</Text>

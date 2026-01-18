@@ -1,0 +1,64 @@
+npm warn config ignoring workspace config at /Users/vbattaglia/mk-language-lab/apps/mobile/.npmrc
+Starting project at /Users/vbattaglia/mk-language-lab/apps/mobile
+Starting Metro Bundler
+warning: Bundler cache is empty, rebuilding (this may take a minute)
+The following packages should be updated for best compatibility with the installed expo version:
+  react-native-svg@15.15.1 - expected version: 15.12.1
+Your project may not work correctly until you install the expected versions of the packages.
+› Opening exp://127.0.0.1:8081 on iPhone 17 Pro
+Waiting on http://localhost:8081
+Logs for your project will appear below.
+iOS node_modules/expo-router/entry.js ░░░░░░░░░░░░░░░░  0.0% (0/1)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:47237) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:47240) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:47242) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:47243) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:47238) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:47241) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:47239) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:47244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+iOS node_modules/expo-router/entry.js ▓░░░░░░░░░░░░░░░  9.0% ( 27/175)
+iOS node_modules/expo-router/entry.js ▓▓▓▓▓▓░░░░░░░░░░ 43.7% (449/679)
+iOS node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓░░░░ 77.8% ( 858/2640)
+iOS node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 96.1% (2676/2749)
+iOS Bundled 20486ms node_modules/expo-router/entry.js (2960 modules)
+ ERROR  [Error: Client Id property `iosClientId` must be defined to use Google auth on this platform.] 
+
+Code: google-auth.ts
+[0m [90m 12 |[39m
+ [90m 13 |[39m [36mexport[39m [36mfunction[39m useGoogleAuth() {
+[31m[1m>[22m[39m[90m 14 |[39m   [36mconst[39m [request[33m,[39m response[33m,[39m promptAsync] [33m=[39m [33mGoogle[39m[33m.[39museAuthRequest({
+ [90m    |[39m                                                                 [31m[1m^[22m[39m
+ [90m 15 |[39m     webClientId[33m:[39m [33mGOOGLE_WEB_CLIENT_ID[39m[33m,[39m
+ [90m 16 |[39m     androidClientId[33m:[39m [33mGOOGLE_ANDROID_CLIENT_ID[39m[33m,[39m
+ [90m 17 |[39m     iosClientId[33m:[39m [33mGOOGLE_IOS_CLIENT_ID[39m[33m,[39m[0m
+Call Stack
+  useGoogleAuth (apps/mobile/lib/google-auth.ts:14:65)
+  SignInScreen (apps/mobile/app/sign-in.tsx:23:68) 
+
+Code: _layout.tsx
+[0m [90m 36 |[39m     [33m<[39m[33m>[39m
+ [90m 37 |[39m       [33m<[39m[33mStatusBar[39m style[33m=[39m[32m"light"[39m [33m/[39m[33m>[39m
+[31m[1m>[22m[39m[90m 38 |[39m       [33m<[39m[33mStack[39m
+ [90m    |[39m       [31m[1m^[22m[39m
+ [90m 39 |[39m         screenOptions[33m=[39m{{
+ [90m 40 |[39m           headerShown[33m:[39m [36mfalse[39m[33m,[39m
+ [90m 41 |[39m           contentStyle[33m:[39m { backgroundColor[33m:[39m [32m'#06060b'[39m }[33m,[39m[0m
+Call Stack
+  RootLayout (apps/mobile/app/_layout.tsx:38:7)

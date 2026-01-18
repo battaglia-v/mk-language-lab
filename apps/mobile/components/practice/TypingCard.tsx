@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { normalizeAnswer } from '@mk/practice';
 
 type Props = {
   prompt: string;
@@ -10,19 +11,6 @@ type Props = {
 
 // Macedonian special characters for keyboard hints
 const MACEDONIAN_CHARS = ['ѓ', 'ќ', 'љ', 'њ', 'џ', 'ж', 'ш', 'ч', 'ц'];
-
-/**
- * Normalize answer for comparison
- * - Lowercase, trim whitespace
- * - Strip common articles and punctuation
- */
-function normalizeAnswer(answer: string): string {
-  return answer
-    .toLowerCase()
-    .trim()
-    .replace(/^(the|a|an)\s+/i, '') // Strip English articles
-    .replace(/[.,!?;:'"]/g, ''); // Strip punctuation
-}
 
 export function TypingCard({ prompt, correctAnswer, placeholder, onAnswer }: Props) {
   const [userInput, setUserInput] = useState('');

@@ -67,24 +67,19 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     set({ error: null });
 
     try {
+      // Use dedicated mobile auth endpoint (not NextAuth callback)
       const response = await fetch(
-        `${getApiBaseUrl()}/api/auth/callback/credentials`,
+        `${getApiBaseUrl()}/api/mobile/auth/login`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email,
-            password,
-            csrfToken: '', // Mobile doesn't use CSRF
-            callbackUrl: '/',
-            json: true,
-          }),
+          body: JSON.stringify({ email, password }),
         }
       );
 
       if (!response.ok) {
-        const text = await response.text();
-        throw new Error(text || 'Invalid email or password');
+        const data = await response.json().catch(() => ({}));
+        throw new Error(data.error || 'Invalid email or password');
       }
 
       const data = (await response.json()) as AuthResponse;

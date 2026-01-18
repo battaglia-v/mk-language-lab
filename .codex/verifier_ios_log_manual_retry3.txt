@@ -1,0 +1,67 @@
+npm warn config ignoring workspace config at /Users/vbattaglia/mk-language-lab/apps/mobile/.npmrc
+Starting project at /Users/vbattaglia/mk-language-lab/apps/mobile
+Starting Metro Bundler
+warning: Bundler cache is empty, rebuilding (this may take a minute)
+The following packages should be updated for best compatibility with the installed expo version:
+  react@19.2.0 - expected version: 19.1.0
+  react-native-svg@15.15.1 - expected version: 15.12.1
+Your project may not work correctly until you install the expected versions of the packages.
+› Opening exp://127.0.0.1:8081 on iPhone 17
+Waiting on http://localhost:8081
+Logs for your project will appear below.
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:38128) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+iOS node_modules/expo-router/entry.js ▓░░░░░░░░░░░░░░░  6.3% ( 4/16)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:38135) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:38131) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:38129) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:38134) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:38132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:38133) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:38130) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+iOS node_modules/expo-router/entry.js ▓▓▓▓▓▓▓░░░░░░░░░ 46.8% (457/668)
+iOS node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓░░░░ 76.2% ( 854/2634)
+iOS node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 93.8% (2670/2802)
+iOS Bundled 16757ms node_modules/expo-router/entry.js (2960 modules)
+ ERROR  [Error: Incompatible React versions: The "react" and "react-native-renderer" packages must have the exact same version. Instead got:
+  - react:                  19.2.0
+  - react-native-renderer:  19.1.0
+Learn more: https://react.dev/warnings/version-mismatch] 
+
+Code: _layout.tsx
+[0m [90m 36 |[39m     [33m<[39m[33m>[39m
+ [90m 37 |[39m       [33m<[39m[33mStatusBar[39m style[33m=[39m[32m"light"[39m [33m/[39m[33m>[39m
+[31m[1m>[22m[39m[90m 38 |[39m       [33m<[39m[33mStack[39m
+ [90m    |[39m       [31m[1m^[22m[39m
+ [90m 39 |[39m         screenOptions[33m=[39m{{
+ [90m 40 |[39m           headerShown[33m:[39m [36mfalse[39m[33m,[39m
+ [90m 41 |[39m           contentStyle[33m:[39m { backgroundColor[33m:[39m [32m'#06060b'[39m }[33m,[39m[0m
+Call Stack
+  RootLayout (apps/mobile/app/_layout.tsx:38:7)
+ ERROR  [TypeError: Cannot read property 'default' of undefined] 
+
+Code: _layout.tsx
+[0m [90m 36 |[39m     [33m<[39m[33m>[39m
+ [90m 37 |[39m       [33m<[39m[33mStatusBar[39m style[33m=[39m[32m"light"[39m [33m/[39m[33m>[39m
+[31m[1m>[22m[39m[90m 38 |[39m       [33m<[39m[33mStack[39m
+ [90m    |[39m       [31m[1m^[22m[39m
+ [90m 39 |[39m         screenOptions[33m=[39m{{
+ [90m 40 |[39m           headerShown[33m:[39m [36mfalse[39m[33m,[39m
+ [90m 41 |[39m           contentStyle[33m:[39m { backgroundColor[33m:[39m [32m'#06060b'[39m }[33m,[39m[0m
+Call Stack
+  RootLayout (apps/mobile/app/_layout.tsx:38:7)

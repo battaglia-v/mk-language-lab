@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { normalizeAnswer } from '@mk/practice';
 
 type Props = {
   /** Sentence with ___ blank where the word goes */
@@ -10,13 +11,6 @@ type Props = {
   translation?: string;
   onAnswer: (answer: string, isCorrect: boolean) => void;
 };
-
-/**
- * Normalize answer for comparison
- */
-function normalizeAnswer(answer: string): string {
-  return answer.toLowerCase().trim().replace(/[.,!?;:'"]/g, '');
-}
 
 export function ClozeCard({ sentence, correctAnswer, translation, onAnswer }: Props) {
   const [userInput, setUserInput] = useState('');

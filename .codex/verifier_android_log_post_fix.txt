@@ -1,0 +1,11 @@
+npm warn config ignoring workspace config at /Users/vbattaglia/mk-language-lab/apps/mobile/.npmrc
+Starting project at /Users/vbattaglia/mk-language-lab/apps/mobile
+Starting Metro Bundler
+The following packages should be updated for best compatibility with the installed expo version:
+  react@19.2.0 - expected version: 19.1.0
+  react-native-svg@15.15.1 - expected version: 15.12.1
+Your project may not work correctly until you install the expected versions of the packages.
+CommandError: No Android connected device found, and no emulators could be started automatically.
+Connect a device or create an emulator (https://docs.expo.dev/workflow/android-studio-emulator).
+Then follow the instructions here to enable USB debugging:
+https://developer.android.com/studio/run/device.html#developer-device-options. If you are using Genymotion go to Settings -> ADB, select "Use custom Android SDK tools", and point it at your Android SDK directory.

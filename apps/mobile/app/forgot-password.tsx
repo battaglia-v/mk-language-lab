@@ -5,13 +5,12 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
-  KeyboardAvoidingView,
-  Platform,
   StyleSheet,
   Alert,
 } from 'react-native';
 import { Link, router } from 'expo-router';
 import { apiFetch } from '../lib/api';
+import { KeyboardSafeView } from '../components/ui/KeyboardSafeView';
 
 export default function ForgotPasswordScreen() {
   const [email, setEmail] = useState('');
@@ -47,11 +46,9 @@ export default function ForgotPasswordScreen() {
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}
-    >
-      <View style={styles.content}>
+    <KeyboardSafeView>
+      <View style={styles.container}>
+        <View style={styles.content}>
         <Text style={styles.title}>Reset Password</Text>
         <Text style={styles.subtitle}>
           Enter your email and we&apos;ll send you a reset link
@@ -94,8 +91,9 @@ export default function ForgotPasswordScreen() {
             </Text>
           </TouchableOpacity>
         </Link>
+        </View>
       </View>
-    </KeyboardAvoidingView>
+    </KeyboardSafeView>
   );
 }
 

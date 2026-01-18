@@ -1,0 +1,4 @@
+ .claude/ralph-loop.local.md | 9 ---------
+ apps/mobile/babel.config.js | 1 +
+ plan.md                     | 7 +++++++
+ 3 files changed, 8 insertions(+), 9 deletions(-)

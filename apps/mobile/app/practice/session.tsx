@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router, useLocalSearchParams } from 'expo-router';
-import { X } from 'lucide-react-native';
+import { LessonShell } from '../../components/shell/LessonShell';
 import {
   fetchPracticeItems,
   buildPracticeDeck,
@@ -417,34 +417,21 @@ export default function PracticeSessionScreen() {
     );
   }
 
+  // Calculate XP earned so far
+  const xpEarned = session ? 10 + session.correct * 5 : 0;
+
   return (
-    <SafeAreaView style={styles.container}>
-      {/* Header with progress */}
-      <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.closeButton}
-          onPress={handleClose}
-          activeOpacity={0.7}
-        >
-          <X size={24} color="#f7f8fb" />
-        </TouchableOpacity>
-
-        {/* Progress bar */}
-        <View style={styles.progressContainer}>
-          <View style={styles.progressBar}>
-            <View style={[styles.progressFill, { width: `${progress}%` }]} />
-          </View>
-        </View>
-
-        {/* Counter */}
-        <Text style={styles.counter}>
-          {currentNum} / {totalNum}
-        </Text>
-      </View>
-
+    <LessonShell
+      progress={progress}
+      current={currentNum}
+      total={totalNum}
+      xp={xpEarned}
+      onClose={handleClose}
+      closeHref="/(tabs)/practice"
+    >
       {/* Card area */}
       <View style={styles.cardArea}>{renderCard()}</View>
-    </SafeAreaView>
+    </LessonShell>
   );
 }
 
@@ -496,42 +483,6 @@ const styles = StyleSheet.create({
   backButtonText: {
     color: 'rgba(247,248,251,0.6)',
     fontSize: 14,
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    gap: 12,
-  },
-  closeButton: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    backgroundColor: 'rgba(247,248,251,0.1)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  progressContainer: {
-    flex: 1,
-  },
-  progressBar: {
-    height: 8,
-    backgroundColor: '#222536',
-    borderRadius: 4,
-    overflow: 'hidden',
-  },
-  progressFill: {
-    height: '100%',
-    backgroundColor: '#f6d83b',
-    borderRadius: 4,
-  },
-  counter: {
-    color: 'rgba(247,248,251,0.6)',
-    fontSize: 14,
-    fontWeight: '500',
-    minWidth: 48,
-    textAlign: 'right',
   },
   cardArea: {
     flex: 1,

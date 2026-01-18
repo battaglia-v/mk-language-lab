@@ -111,6 +111,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "expo-auth-session": "^7.0.10",
+    "expo-router": "~6.0.21",
     "expo-web-browser": "^15.0.10",
     "framer-motion": "^12.23.25",
     "googleapis": "^165.0.0",
@@ -124,8 +125,8 @@
     "pdf-parse": "^2.4.5",
     "pdfjs-dist": "^5.4.530",
     "pg": "^8.16.3",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
     "resend": "^6.5.2",
     "swr": "^2.3.6",
     "tailwind-merge": "^3.3.1",
@@ -166,6 +167,7 @@
     ]
   },
   "overrides": {
+    "react-native": "0.81.5",
     "tar": "7.5.2"
   }
 }

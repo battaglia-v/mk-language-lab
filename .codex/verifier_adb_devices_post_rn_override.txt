@@ -1,0 +1,3 @@
+List of devices attached
+58160DLCQ00C1P         device usb:2-0 product:mustang model:Pixel_10_Pro_XL device:mustang transport_id:3
+

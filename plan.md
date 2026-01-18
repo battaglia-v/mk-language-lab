@@ -4,6 +4,12 @@
 
 Ship a native React Native app (iOS + Android) that provides core learning functionality, preserving the Play Store listing and sharing logic packages with the web app.
 
+## Current Status (2026-01-16)
+
+- v2.1 Feature Parity, Phase 68/75 (Practice Modes)
+- Phase 68.1 React conflict fix completed; manual iOS simulator validation pending
+- Grammar Practice implementation present; awaiting device verification before marking done
+
 ## Decisions (Locked)
 
 | Decision | Value | Rationale |
@@ -206,3 +212,4 @@ Mobile will use the existing NextAuth API with token-based auth:
 
 - 2026-01-16: Found Expo removal commit in git history
 - 2026-01-16: Audit complete, plan revised with locked decisions
+- 2026-01-16: Verified Phase 68.1 fix and Grammar Practice implementation present; awaiting manual iOS validation

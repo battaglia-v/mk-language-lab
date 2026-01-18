@@ -9,12 +9,17 @@ import {
   RefreshControl,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { router } from 'expo-router';
-import { BookOpen, Zap, Library, ChevronRight, Bookmark, GraduationCap } from 'lucide-react-native';
+import { router, useFocusEffect } from 'expo-router';
+import { BookOpen, Zap, Library, ChevronRight, Bookmark, GraduationCap, Settings2, Clock } from 'lucide-react-native';
 import { fetchPracticeItems, PracticeItem } from '../../lib/practice';
 import { getGrammarStats } from '../../lib/grammar';
+import { readSavedPhrases, mapSavedPhrasesToPracticeItems, type SavedPhraseRecord } from '../../lib/saved-phrases';
+import { getMistakesCount } from '../../lib/practice-mistakes';
+import { getSRSStats, type SRSStats } from '../../lib/srs';
+import { PracticeModeSheet, type PracticeMode, type DifficultyFilter } from '../../components/practice/PracticeModeSheet';
+import { ResumeBanner } from '../../components/practice/ResumeBanner';
 
-type PracticeMode = {
+type PracticeModeType = {
   id: string;
   title: string;
   description: string;
@@ -24,7 +29,7 @@ type PracticeMode = {
   requiresAuth?: boolean;
 };
 
-const PRACTICE_MODES: PracticeMode[] = [
+const PRACTICE_MODES: PracticeModeType[] = [
   {
     id: 'lesson-review',
     title: 'Lesson Review',
@@ -56,8 +61,13 @@ export default function PracticeScreen() {
   const [lessonReviewCount, setLessonReviewCount] = useState<number | null>(null);
   const [curatedCount, setCuratedCount] = useState<number | null>(null);
   const [grammarStats, setGrammarStats] = useState<{ completed: number; total: number } | null>(null);
+  const [savedPhrases, setSavedPhrases] = useState<SavedPhraseRecord[]>([]);
+  const [mistakesCount, setMistakesCount] = useState<number>(0);
+  const [srsStats, setSrsStats] = useState<SRSStats | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [showModeSheet, setShowModeSheet] = useState(false);
+  const [selectedDeck, setSelectedDeck] = useState<'lesson-review' | 'curated'>('curated');
 
   const loadCounts = useCallback(async () => {
     try {
@@ -81,6 +91,30 @@ export default function PracticeScreen() {
       } catch {
         setGrammarStats(null);
       }
+
+      // Load saved phrases
+      try {
+        const phrases = await readSavedPhrases();
+        setSavedPhrases(phrases);
+      } catch {
+        setSavedPhrases([]);
+      }
+
+      // Load SRS stats
+      try {
+        const stats = await getSRSStats();
+        setSrsStats(stats);
+      } catch {
+        setSrsStats(null);
+      }
+
+      // Load mistakes count
+      try {
+        const count = await getMistakesCount();
+        setMistakesCount(count);
+      } catch {
+        setMistakesCount(0);
+      }
     } catch (err) {
       console.error('Failed to load practice counts:', err);
     } finally {
@@ -88,6 +122,13 @@ export default function PracticeScreen() {
       setIsRefreshing(false);
     }
   }, []);
+
+  // Reload saved phrases when screen comes into focus
+  useFocusEffect(
+    useCallback(() => {
+      readSavedPhrases().then(setSavedPhrases).catch(() => setSavedPhrases([]));
+    }, [])
+  );
 
   useEffect(() => {
     loadCounts();
@@ -98,11 +139,22 @@ export default function PracticeScreen() {
     loadCounts();
   };
 
-  const handleModePress = (mode: PracticeMode) => {
-    router.push(`/practice/session?deck=${mode.deck}&mode=multipleChoice`);
+  const handleModePress = (mode: PracticeModeType) => {
+    // Word Sprint has its own screen
+    if (mode.id === 'word-sprint') {
+      router.push('/practice/word-sprint');
+      return;
+    }
+    
+    setSelectedDeck(mode.deck);
+    setShowModeSheet(true);
   };
 
-  const getVariantStyles = (variant: PracticeMode['variant']) => {
+  const handleStartPractice = (mode: PracticeMode, difficulty: DifficultyFilter, count: number) => {
+    router.push(`/practice/session?deck=${selectedDeck}&mode=${mode}&count=${count}`);
+  };
+
+  const getVariantStyles = (variant: PracticeModeType['variant']) => {
     switch (variant) {
       case 'primary':
         return {
@@ -125,7 +177,7 @@ export default function PracticeScreen() {
     }
   };
 
-  const getCardCount = (mode: PracticeMode): number | null => {
+  const getCardCount = (mode: PracticeModeType): number | null => {
     if (mode.deck === 'lesson-review') {
       return lessonReviewCount;
     }
@@ -147,9 +199,45 @@ export default function PracticeScreen() {
       >
         {/* Header */}
         <View style={styles.header}>
-          <Text style={styles.title}>Practice</Text>
-          <Text style={styles.subtitle}>Strengthen your vocabulary with practice sessions</Text>
+          <View style={styles.headerRow}>
+            <View>
+              <Text style={styles.title}>Practice</Text>
+              <Text style={styles.subtitle}>Strengthen your vocabulary with practice sessions</Text>
+            </View>
+            {mistakesCount > 0 && (
+              <TouchableOpacity
+                style={styles.mistakesBadge}
+                onPress={() => router.push('/practice/session?deck=mistakes&mode=multipleChoice')}
+              >
+                <Text style={styles.mistakesBadgeText}>{mistakesCount} to review</Text>
+              </TouchableOpacity>
+            )}
+          </View>
         </View>
+
+        {/* Resume Practice Session Banner */}
+        <ResumeBanner onAction={loadCounts} />
+
+        {/* SRS Due Cards Indicator */}
+        {srsStats && srsStats.dueToday > 0 && (
+          <TouchableOpacity
+            style={styles.srsBanner}
+            onPress={() => router.push('/practice/session?deck=curated&mode=multipleChoice&priority=due')}
+          >
+            <View style={styles.srsIconContainer}>
+              <Clock color="#f6d83b" size={20} />
+            </View>
+            <View style={styles.srsTextContainer}>
+              <Text style={styles.srsTitle}>
+                {srsStats.dueToday} card{srsStats.dueToday !== 1 ? 's' : ''} due for review
+              </Text>
+              <Text style={styles.srsSubtitle}>
+                {srsStats.mastered} mastered • {srsStats.learning} learning
+              </Text>
+            </View>
+            <ChevronRight color="rgba(247,248,251,0.5)" size={20} />
+          </TouchableOpacity>
+        )}
 
         {/* Mode Cards */}
         {isLoading ? (
@@ -233,19 +321,54 @@ export default function PracticeScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* My Saved Words Section (Placeholder) */}
+        {/* My Saved Words Section */}
         <View style={styles.savedSection}>
           <View style={styles.savedHeader}>
             <Bookmark size={20} color="#ec4899" />
             <Text style={styles.savedTitle}>My Saved Words</Text>
+            {savedPhrases.length > 0 && (
+              <View style={styles.savedCountBadge}>
+                <Text style={styles.savedCountText}>{savedPhrases.length}</Text>
+              </View>
+            )}
           </View>
-          <View style={styles.savedEmpty}>
-            <Text style={styles.savedEmptyText}>
-              Save words while reading or translating to practice them here
-            </Text>
-          </View>
+          
+          {savedPhrases.length === 0 ? (
+            <View style={styles.savedEmpty}>
+              <Text style={styles.savedEmptyText}>
+                Save words while reading or translating to practice them here
+              </Text>
+            </View>
+          ) : (
+            <TouchableOpacity
+              style={styles.savedCard}
+              onPress={() => router.push('/practice/session?deck=saved-phrases&mode=multipleChoice')}
+              activeOpacity={0.7}
+            >
+              <View style={styles.savedIconContainer}>
+                <Bookmark size={24} color="#ec4899" />
+              </View>
+              <View style={styles.cardContent}>
+                <Text style={styles.cardTitle}>Practice Saved Words</Text>
+                <Text style={styles.cardDescription}>
+                  Review your saved translations
+                </Text>
+                <View style={styles.countBadge}>
+                  <Text style={styles.countText}>{savedPhrases.length} phrases</Text>
+                </View>
+              </View>
+              <ChevronRight size={20} color="rgba(247,248,251,0.4)" />
+            </TouchableOpacity>
+          )}
         </View>
       </ScrollView>
+
+      {/* Practice Mode Selection Sheet */}
+      <PracticeModeSheet
+        visible={showModeSheet}
+        onClose={() => setShowModeSheet(false)}
+        onStart={handleStartPractice}
+      />
     </SafeAreaView>
   );
 }
@@ -263,6 +386,24 @@ const styles = StyleSheet.create({
   },
   header: {
     marginBottom: 24,
+  },
+  headerRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+  },
+  mistakesBadge: {
+    backgroundColor: 'rgba(239,68,68,0.15)',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(239,68,68,0.3)',
+  },
+  mistakesBadgeText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#ef4444',
   },
   title: {
     fontSize: 28,
@@ -412,5 +553,68 @@ const styles = StyleSheet.create({
     color: 'rgba(247,248,251,0.5)',
     textAlign: 'center',
     lineHeight: 20,
+  },
+  savedCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,
+    borderRadius: 16,
+    borderWidth: 1,
+    backgroundColor: 'rgba(236,72,153,0.08)',
+    borderColor: 'rgba(236,72,153,0.3)',
+    minHeight: 88,
+  },
+  savedIconContainer: {
+    width: 48,
+    height: 48,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(236,72,153,0.15)',
+    marginRight: 14,
+  },
+  savedCountBadge: {
+    marginLeft: 'auto',
+    backgroundColor: 'rgba(236,72,153,0.2)',
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 10,
+  },
+  savedCountText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#ec4899',
+  },
+  srsBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(246,216,59,0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(246,216,59,0.3)',
+    borderRadius: 12,
+    padding: 14,
+    marginBottom: 16,
+    gap: 12,
+  },
+  srsIconContainer: {
+    width: 40,
+    height: 40,
+    borderRadius: 10,
+    backgroundColor: 'rgba(246,216,59,0.15)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  srsTextContainer: {
+    flex: 1,
+  },
+  srsTitle: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#f7f8fb',
+    marginBottom: 2,
+  },
+  srsSubtitle: {
+    fontSize: 12,
+    color: 'rgba(247,248,251,0.5)',
   },
 });

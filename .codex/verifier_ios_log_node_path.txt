@@ -1,0 +1,155 @@
+npm warn config ignoring workspace config at /Users/vbattaglia/mk-language-lab/apps/mobile/.npmrc
+Starting project at /Users/vbattaglia/mk-language-lab/apps/mobile
+Starting Metro Bundler
+warning: Bundler cache is empty, rebuilding (this may take a minute)
+The following packages should be updated for best compatibility with the installed expo version:
+  react@19.2.0 - expected version: 19.1.0
+  react-native-svg@15.15.1 - expected version: 15.12.1
+Your project may not work correctly until you install the expected versions of the packages.
+› Opening exp://127.0.0.1:8081 on iPhone 16e
+Waiting on http://localhost:8081
+Logs for your project will appear below.
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:62718) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:62725) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:62722) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:62723) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:62724) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:62719) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:62721) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| expo-router/babel is deprecated in favor of babel-preset-expo in SDK 50. To fix the issue, remove "expo-router/babel" from "plugins" in your babel.config.js file.
+| (node:62726) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+iOS node_modules/expo-router/entry.js ▓░░░░░░░░░░░░░░░ 10.2% ( 22/174)
+iOS node_modules/expo-router/entry.js ▓▓▓▓░░░░░░░░░░░░ 29.2% (449/831)
+iOS node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓░░░░ 76.7% (1171/3005)
+iOS node_modules/expo-router/entry.js ▓▓▓▓▓▓▓▓▓▓▓▓▓░░░ 85.3% (2885/3123)
+iOS Bundled 21616ms node_modules/expo-router/entry.js (3519 modules)
+ ERROR  ExceptionsManager should be set up after React DevTools to avoid console.error arguments mutation 
+
+Code: construct.js
+[0m [90m 2 |[39m [36mvar[39m setPrototypeOf [33m=[39m require([32m"./setPrototypeOf.js"[39m)[33m;[39m
+ [90m 3 |[39m [36mfunction[39m _construct(t[33m,[39m e[33m,[39m r) {
+[31m[1m>[22m[39m[90m 4 |[39m   [36mif[39m (isNativeReflectConstruct()) [36mreturn[39m [33mReflect[39m[33m.[39mconstruct[33m.[39mapply([36mnull[39m[33m,[39m arguments)[33m;[39m
+ [90m   |[39m                                                                 [31m[1m^[22m[39m
+ [90m 5 |[39m   [36mvar[39m o [33m=[39m [[36mnull[39m][33m;[39m
+ [90m 6 |[39m   o[33m.[39mpush[33m.[39mapply(o[33m,[39m e)[33m;[39m
+ [90m 7 |[39m   [36mvar[39m p [33m=[39m [36mnew[39m (t[33m.[39mbind[33m.[39mapply(t[33m,[39m o))()[33m;[39m[0m
+Call Stack
+  construct (<native>)
+  apply (<native>)
+  _construct (../../node_modules/@babel/runtime/helpers/construct.js:4:65)
+  Wrapper (../../node_modules/@babel/runtime/helpers/wrapNativeSuper.js:15:23)
+  construct (<native>)
+  _callSuper (../../node_modules/@babel/runtime/helpers/callSuper.js:5:108)
+  NamelessError (node_modules/expo-router/node_modules/@expo/metro-runtime/src/metroServerLogs.native.ts:102:20)
+  captureCurrentStack (node_modules/expo-router/node_modules/@expo/metro-runtime/src/metroServerLogs.native.ts:106:27)
+  HMRClient.log (node_modules/expo-router/node_modules/@expo/metro-runtime/src/metroServerLogs.native.ts:39:79)
+  console.level (node_modules/react-native/Libraries/Core/setUpDeveloperTools.js:41:24)
+  <global> (../../node_modules/react-native/Libraries/Core/setUpReactDevTools.js:26:18)
+  setUpDefaltReactNativeEnvironment (../../node_modules/react-native/src/private/setup/setUpDefaultReactNativeEnvironment.js:28:12)
+  <global> (../../node_modules/react-native/Libraries/Core/InitializeCore.js:31:78)
+  <global> (../../node_modules/react-native/Libraries/ReactPrivate/ReactNativePrivateInitializeCore.js:11)
+  <anonymous> (../../node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:16030:12)
+  <global> (../../node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:19121:4)
+  <global> (../../node_modules/react-native/Libraries/Renderer/shims/ReactFabric.js:22:24)
+  getFabricRenderer (../../node_modules/react-native/Libraries/ReactNative/RendererImplementation.js:28:35)
+  renderElement (../../node_modules/react-native/Libraries/ReactNative/RendererImplementation.js:90:45)
+  renderApplication (../../node_modules/react-native/Libraries/ReactNative/renderApplication.js:103:25)
+  runnables.appKey (../../node_modules/react-native/Libraries/ReactNative/AppRegistryImpl.js:88:22)
+  runApplication (../../node_modules/react-native/Libraries/ReactNative/AppRegistryImpl.js:177:20)
+ ERROR  [TypeError: property is not writable] 
+
+Code: setUpFuseboxReactDevToolsDispatcher.js
+[0m [90m 106 |[39m }
+ [90m 107 |[39m
+[31m[1m>[22m[39m[90m 108 |[39m [33mObject[39m[33m.[39mdefineProperty(global[33m,[39m [32m'__FUSEBOX_REACT_DEVTOOLS_DISPATCHER__'[39m[33m,[39m {
+ [90m     |[39m                      [31m[1m^[22m[39m
+ [90m 109 |[39m   value[33m:[39m [33mFuseboxReactDevToolsDispatcher[39m[33m,[39m
+ [90m 110 |[39m   configurable[33m:[39m [36mfalse[39m[33m,[39m
+ [90m 111 |[39m   enumerable[33m:[39m [36mfalse[39m[33m,[39m[0m
+Call Stack
+  defineProperty (<native>)
+  <global> (../../node_modules/react-native/src/private/devsupport/rndevtools/setUpFuseboxReactDevToolsDispatcher.js:108:22)
+  <global> (../../node_modules/react-native/Libraries/Core/setUpReactDevTools.js:34:10)
+  setUpDefaltReactNativeEnvironment (../../node_modules/react-native/src/private/setup/setUpDefaultReactNativeEnvironment.js:28:12)
+  <global> (../../node_modules/react-native/Libraries/Core/InitializeCore.js:31:78)
+  <global> (../../node_modules/react-native/Libraries/ReactPrivate/ReactNativePrivateInitializeCore.js:11)
+  <anonymous> (../../node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:16030:12)
+  <global> (../../node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:19121:4)
+  <global> (../../node_modules/react-native/Libraries/Renderer/shims/ReactFabric.js:22:24)
+  getFabricRenderer (../../node_modules/react-native/Libraries/ReactNative/RendererImplementation.js:28:35)
+  renderElement (../../node_modules/react-native/Libraries/ReactNative/RendererImplementation.js:90:45)
+  renderApplication (../../node_modules/react-native/Libraries/ReactNative/renderApplication.js:103:25)
+  runnables.appKey (../../node_modules/react-native/Libraries/ReactNative/AppRegistryImpl.js:88:22)
+  runApplication (../../node_modules/react-native/Libraries/ReactNative/AppRegistryImpl.js:177:20)
+ ERROR  [TypeError: Cannot read property 'default' of undefined] 
+
+Code: RendererImplementation.js
+[0m [90m 26 |[39m [36mfunction[39m getFabricRenderer()[33m:[39m [33mReactFabricType[39m {
+ [90m 27 |[39m   [36mif[39m (cachedFabricRenderer [33m==[39m [36mnull[39m) {
+[31m[1m>[22m[39m[90m 28 |[39m     cachedFabricRenderer [33m=[39m require([32m'../Renderer/shims/ReactFabric'[39m)[33m.[39m[36mdefault[39m[33m;[39m
+ [90m    |[39m                                                                    [31m[1m^[22m[39m
+ [90m 29 |[39m   }
+ [90m 30 |[39m   [36mreturn[39m cachedFabricRenderer[33m;[39m
+ [90m 31 |[39m }[0m
+Call Stack
+  getFabricRenderer (../../node_modules/react-native/Libraries/ReactNative/RendererImplementation.js:28:68)
+  renderElement (../../node_modules/react-native/Libraries/ReactNative/RendererImplementation.js:90:45)
+  renderApplication (../../node_modules/react-native/Libraries/ReactNative/renderApplication.js:103:25)
+  runnables.appKey (../../node_modules/react-native/Libraries/ReactNative/AppRegistryImpl.js:88:22)
+  runApplication (../../node_modules/react-native/Libraries/ReactNative/AppRegistryImpl.js:177:20)
+ ERROR  [TypeError: property is not writable] 
+
+Code: setUpFuseboxReactDevToolsDispatcher.js
+[0m [90m 106 |[39m }
+ [90m 107 |[39m
+[31m[1m>[22m[39m[90m 108 |[39m [33mObject[39m[33m.[39mdefineProperty(global[33m,[39m [32m'__FUSEBOX_REACT_DEVTOOLS_DISPATCHER__'[39m[33m,[39m {
+ [90m     |[39m                      [31m[1m^[22m[39m
+ [90m 109 |[39m   value[33m:[39m [33mFuseboxReactDevToolsDispatcher[39m[33m,[39m
+ [90m 110 |[39m   configurable[33m:[39m [36mfalse[39m[33m,[39m
+ [90m 111 |[39m   enumerable[33m:[39m [36mfalse[39m[33m,[39m[0m
+Call Stack
+  defineProperty (<native>)
+  <global> (../../node_modules/react-native/src/private/devsupport/rndevtools/setUpFuseboxReactDevToolsDispatcher.js:108:22)
+  <global> (../../node_modules/react-native/Libraries/Core/setUpReactDevTools.js:34:10)
+  setUpDefaltReactNativeEnvironment (../../node_modules/react-native/src/private/setup/setUpDefaultReactNativeEnvironment.js:28:12)
+  <global> (../../node_modules/react-native/Libraries/Core/InitializeCore.js:31:78)
+  <global> (../../node_modules/react-native/Libraries/ReactPrivate/ReactNativePrivateInitializeCore.js:11)
+  <anonymous> (../../node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:16030:12)
+  <global> (../../node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:19121:4)
+  <global> (../../node_modules/react-native/Libraries/Renderer/shims/ReactFabric.js:22:24)
+  getFabricRenderer (../../node_modules/react-native/Libraries/ReactNative/RendererImplementation.js:28:35)
+  renderElement (../../node_modules/react-native/Libraries/ReactNative/RendererImplementation.js:90:45)
+  renderApplication (../../node_modules/react-native/Libraries/ReactNative/renderApplication.js:103:25)
+  runnables.appKey (../../node_modules/react-native/Libraries/ReactNative/AppRegistryImpl.js:88:22)
+  runApplication (../../node_modules/react-native/Libraries/ReactNative/AppRegistryImpl.js:177:20)
+ ERROR  [TypeError: Cannot read property 'default' of undefined] 
+
+Code: RendererImplementation.js
+[0m [90m 26 |[39m [36mfunction[39m getFabricRenderer()[33m:[39m [33mReactFabricType[39m {
+ [90m 27 |[39m   [36mif[39m (cachedFabricRenderer [33m==[39m [36mnull[39m) {
+[31m[1m>[22m[39m[90m 28 |[39m     cachedFabricRenderer [33m=[39m require([32m'../Renderer/shims/ReactFabric'[39m)[33m.[39m[36mdefault[39m[33m;[39m
+ [90m    |[39m                                                                    [31m[1m^[22m[39m
+ [90m 29 |[39m   }
+ [90m 30 |[39m   [36mreturn[39m cachedFabricRenderer[33m;[39m
+ [90m 31 |[39m }[0m
+Call Stack
+  getFabricRenderer (../../node_modules/react-native/Libraries/ReactNative/RendererImplementation.js:28:68)
+  renderElement (../../node_modules/react-native/Libraries/ReactNative/RendererImplementation.js:90:45)
+  renderApplication (../../node_modules/react-native/Libraries/ReactNative/renderApplication.js:103:25)
+  runnables.appKey (../../node_modules/react-native/Libraries/ReactNative/AppRegistryImpl.js:88:22)
+  runApplication (../../node_modules/react-native/Libraries/ReactNative/AppRegistryImpl.js:177:20)

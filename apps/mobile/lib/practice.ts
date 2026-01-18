@@ -1,5 +1,6 @@
 import { apiFetch } from './api';
 import { queuePracticeCompletion } from './offline-queue';
+import { normalizeAnswer } from '@mk/practice';
 
 // Practice item from the API
 export type PracticeItem = {
@@ -108,11 +109,12 @@ export function createPracticeCard(
 /**
  * Evaluate a user's answer against the expected answer
  *
- * Uses case-insensitive comparison and trims whitespace
+ * Uses @mk/practice normalizeAnswer for Unicode-aware comparison
+ * (same normalization as PWA for parity)
  */
 export function evaluateAnswer(card: PracticeCard, userAnswer: string): AnswerResult {
-  const normalizedExpected = card.answer.toLowerCase().trim();
-  const normalizedUser = userAnswer.toLowerCase().trim();
+  const normalizedExpected = normalizeAnswer(card.answer);
+  const normalizedUser = normalizeAnswer(userAnswer);
 
   return {
     isCorrect: normalizedExpected === normalizedUser,

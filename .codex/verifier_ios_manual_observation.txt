@@ -1,0 +1,8 @@
+Observation: iOS app stuck on loading screen (reported by user).
+At time of report, Metro packager was not reachable at http://localhost:8081/status (HTTP 000).
+Metro was restarted; packager status returned HTTP 200 and iOS retry log recorded.
+Update: After restarting Metro, bundling completed but runtime error surfaced:
+"Incompatible React versions" (react 19.2.0 vs react-native-renderer 19.1.0) in apps/mobile/app/_layout.tsx.
+Also saw "TypeError: Cannot read property 'default' of undefined" following the mismatch.
+Update: Metro bundling succeeded, but app failed to run due to missing EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID.
+Error: "Client Id property iosClientId must be defined to use Google auth on this platform" from apps/mobile/lib/google-auth.ts:14.

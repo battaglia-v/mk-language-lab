@@ -1,7 +1,19 @@
 import { Tabs } from 'expo-router';
-import { Home, BookOpen, Dumbbell, BookText, Languages, User } from 'lucide-react-native';
+import { Home, Languages, Sparkles, BookOpen, FolderOpen } from 'lucide-react-native';
+import { useTranslations } from '../../lib/i18n';
 
+/**
+ * Tab Layout - Matches PWA's shellNavItems order
+ * 
+ * PWA tabs: Learn (Home), Translate, Practice, Reader, Resources
+ * Profile is accessed via header/settings, not a tab
+ * 
+ * @see PARITY_CHECKLIST.md - Navigation parity
+ * @see components/shell/navItems.ts (PWA implementation)
+ */
 export default function TabLayout() {
+  const t = useTranslations('nav');
+
   return (
     <Tabs
       screenOptions={{
@@ -21,46 +33,53 @@ export default function TabLayout() {
         },
       }}
     >
+      {/* Tab order matches PWA: Learn, Translate, Practice, Reader, Resources */}
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, size }) => <Home color={color} size={size} />,
+          href: null, // Redirect handled in index.tsx
         }}
       />
       <Tabs.Screen
         name="learn"
         options={{
-          title: 'Learn',
-          tabBarIcon: ({ color, size }) => <BookOpen color={color} size={size} />,
-        }}
-      />
-      <Tabs.Screen
-        name="practice"
-        options={{
-          title: 'Practice',
-          tabBarIcon: ({ color, size }) => <Dumbbell color={color} size={size} />,
-        }}
-      />
-      <Tabs.Screen
-        name="reader"
-        options={{
-          title: 'Reader',
-          tabBarIcon: ({ color, size }) => <BookText color={color} size={size} />,
+          title: t('learn'),
+          tabBarIcon: ({ color, size }) => <Home color={color} size={size} />,
         }}
       />
       <Tabs.Screen
         name="translate"
         options={{
-          title: 'Translate',
+          title: t('translate'),
           tabBarIcon: ({ color, size }) => <Languages color={color} size={size} />,
         }}
       />
       <Tabs.Screen
+        name="practice"
+        options={{
+          title: t('practice'),
+          tabBarIcon: ({ color, size }) => <Sparkles color={color} size={size} />,
+        }}
+      />
+      <Tabs.Screen
+        name="reader"
+        options={{
+          title: t('reader'),
+          tabBarIcon: ({ color, size }) => <BookOpen color={color} size={size} />,
+        }}
+      />
+      <Tabs.Screen
+        name="resources"
+        options={{
+          title: t('resources'),
+          tabBarIcon: ({ color, size }) => <FolderOpen color={color} size={size} />,
+        }}
+      />
+      {/* Profile is now accessed via settings, not a tab - matches PWA */}
+      <Tabs.Screen
         name="profile"
         options={{
-          title: 'Profile',
-          tabBarIcon: ({ color, size }) => <User color={color} size={size} />,
+          href: null, // Hide from tab bar
         }}
       />
     </Tabs>

@@ -1,0 +1,6 @@
+ .claude/ralph-loop.local.md |   9 -
+ apps/mobile/babel.config.js |   1 +
+ package-lock.json           | 981 +++++++++++++++-----------------------------
+ package.json                |   2 +
+ plan.md                     |   7 +
+ 5 files changed, 341 insertions(+), 659 deletions(-)
