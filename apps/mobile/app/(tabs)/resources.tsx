@@ -45,12 +45,12 @@ type ResourceItem = {
 };
 
 export default function ResourcesScreen() {
-  const t = useTranslations('nav');
+  const t = useTranslations('resources');
 
   const primaryAction: ResourceItem = {
     id: 'saved-words',
-    title: 'My Saved Words',
-    description: 'Review and practice words you\'ve saved',
+    title: t('savedWords'),
+    description: t('savedWordsDesc'),
     icon: BookmarkPlus,
     iconColor: '#ec4899',
     bgColor: 'rgba(236,72,153,0.1)',
@@ -62,8 +62,8 @@ export default function ResourcesScreen() {
   const mainItems: ResourceItem[] = [
     {
       id: 'news',
-      title: 'Macedonian News',
-      description: 'Read real news with translations',
+      title: t('news'),
+      description: t('newsDesc'),
       icon: Newspaper,
       iconColor: '#dc2626',
       bgColor: 'rgba(220,38,38,0.1)',
@@ -72,8 +72,8 @@ export default function ResourcesScreen() {
     },
     {
       id: 'translator',
-      title: 'Language Lab',
-      description: 'Translator & pronunciation',
+      title: t('languageLab'),
+      description: t('languageLabDesc'),
       icon: FlaskConical,
       iconColor: '#f6d83b',
       bgColor: 'rgba(246,216,59,0.1)',
@@ -82,8 +82,8 @@ export default function ResourcesScreen() {
     },
     {
       id: 'analyzer',
-      title: 'Text Analyzer',
-      description: 'Word-by-word breakdown & analysis',
+      title: t('textAnalyzer'),
+      description: t('textAnalyzerDesc'),
       icon: FileSearch,
       iconColor: '#a855f7',
       bgColor: 'rgba(168,85,247,0.1)',
@@ -92,8 +92,8 @@ export default function ResourcesScreen() {
     },
     {
       id: 'grammar',
-      title: 'Grammar Reference',
-      description: 'Grammar lessons and exercises',
+      title: t('grammarReference'),
+      description: t('grammarReferenceDesc'),
       icon: GraduationCap,
       iconColor: '#3b82f6',
       bgColor: 'rgba(59,130,246,0.1)',
@@ -102,8 +102,8 @@ export default function ResourcesScreen() {
     },
     {
       id: 'reader',
-      title: 'Reading Library',
-      description: 'Graded stories for all levels',
+      title: t('readingLibrary'),
+      description: t('readingLibraryDesc'),
       icon: BookOpen,
       iconColor: '#22c55e',
       bgColor: 'rgba(34,197,94,0.1)',
@@ -149,8 +149,8 @@ export default function ResourcesScreen() {
       >
         {/* Header */}
         <View style={styles.header}>
-          <Text style={styles.title}>Resources</Text>
-          <Text style={styles.subtitle}>Tools and materials to boost your learning</Text>
+          <Text style={styles.title}>{t('title')}</Text>
+          <Text style={styles.subtitle}>{t('subtitle')}</Text>
         </View>
 
         {/* Primary Action - Saved Words */}
@@ -160,7 +160,7 @@ export default function ResourcesScreen() {
 
         {/* Main Resources */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Learning Tools</Text>
+          <Text style={styles.sectionTitle}>{t('learningTools')}</Text>
           {mainItems.map(renderItem)}
         </View>
 
@@ -172,7 +172,7 @@ export default function ResourcesScreen() {
           activeOpacity={0.7}
         >
           <HelpCircle size={18} color="rgba(247,248,251,0.5)" />
-          <Text style={styles.helpText}>Need help? Visit Settings</Text>
+          <Text style={styles.helpText}>{t('needHelp')}</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>

@@ -25,10 +25,19 @@ if (!isGoogleAuthConfigured && __DEV__) {
   );
 }
 
+// Type for the Google auth response
+export type GoogleAuthResponse = {
+  type: 'success' | 'error' | 'cancel';
+  authentication?: {
+    idToken?: string;
+    accessToken?: string;
+  };
+} | null;
+
 // Type for the disabled auth state
 export type GoogleAuthResult = {
   request: null;
-  response: null;
+  response: GoogleAuthResponse;
   promptAsync: () => Promise<void>;
   isReady: false;
   isConfigured: false;
@@ -50,11 +59,3 @@ export function getDisabledGoogleAuth(): GoogleAuthResult {
   };
 }
 
-// Google auth response type (simplified since we're not using the hook)
-export type GoogleAuthResponse = {
-  type: 'success' | 'error' | 'cancel';
-  authentication?: {
-    idToken?: string;
-    accessToken?: string;
-  };
-} | null;

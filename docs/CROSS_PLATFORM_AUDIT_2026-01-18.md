@@ -134,8 +134,8 @@ The MK Language Lab application demonstrates excellent cross-platform feature pa
 | ID | Platform | Issue | Steps to Reproduce | Expected vs Actual | Severity |
 |----|----------|-------|-------------------|-------------------|----------|
 | M-001 | iOS/Android | Facebook OAuth not implemented | 1. Go to Sign In, 2. Look for Facebook button | Expected: Facebook sign-in option, Actual: Not present | MINOR |
-| M-002 | All | Notifications screen requires push setup | 1. Navigate to notifications | Expected: Full notifications, Actual: Limited without Dev Client push | MINOR |
-| M-003 | PWA | Some i18n strings hardcoded | 1. Switch to MK locale, 2. Check all screens | Expected: All translated, Actual: Some English strings remain | MINOR |
+| ~~M-002~~ | ~~All~~ | ~~Notifications screen requires push setup~~ | ~~Resolved~~ | ✅ Push notification infrastructure added | ~~MINOR~~ FIXED |
+| ~~M-003~~ | ~~Mobile~~ | ~~Some i18n strings hardcoded~~ | ~~Resolved~~ | ✅ i18n strings externalized for news, resources, settings, onboarding, achievements | ~~MINOR~~ FIXED |
 
 ### Known Acceptable Differences
 

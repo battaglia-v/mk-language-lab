@@ -255,11 +255,11 @@ export async function scheduleLocalNotification(
         priority: Notifications.AndroidNotificationPriority.HIGH,
       },
       trigger: trigger.seconds 
-        ? { seconds: trigger.seconds }
+        ? { type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL, seconds: trigger.seconds }
         : { 
+            type: Notifications.SchedulableTriggerInputTypes.DAILY,
             hour: trigger.hour!, 
             minute: trigger.minute!, 
-            repeats: trigger.repeats ?? false,
           },
     });
 
@@ -442,6 +442,8 @@ export async function initializeNotifications(): Promise<void> {
         shouldShowAlert: true,
         shouldPlaySound: true,
         shouldSetBadge: true,
+        shouldShowBanner: true,
+        shouldShowList: true,
       }),
     });
 

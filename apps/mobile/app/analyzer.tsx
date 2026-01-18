@@ -45,7 +45,7 @@ import {
   getWordDifficultyColor,
 } from '../lib/text-analyzer';
 import { useTTS } from '../hooks/useTTS';
-import { upsertSavedPhrase } from '../lib/saved-phrases';
+import { upsertSavedPhrase, readSavedPhrases, writeSavedPhrases } from '../lib/saved-phrases';
 import { haptic } from '../lib/haptics';
 
 const MAX_CHARACTERS = 3000;
@@ -157,11 +157,13 @@ export default function AnalyzerScreen() {
   };
 
   const handleSaveWord = async (word: AnalyzedWord) => {
-    await upsertSavedPhrase({
-      macedonian: direction === 'mk-en' ? word.original : word.translation,
-      english: direction === 'mk-en' ? word.translation : word.original,
-      direction: direction === 'mk-en' ? 'mk-en' : 'en-mk',
+    const savedPhrases = await readSavedPhrases();
+    const updated = upsertSavedPhrase(savedPhrases, {
+      sourceText: word.original,
+      translatedText: word.translation,
+      directionId: direction,
     });
+    await writeSavedPhrases(updated);
     haptic.success();
   };
 

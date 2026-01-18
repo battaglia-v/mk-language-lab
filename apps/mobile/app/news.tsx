@@ -49,6 +49,7 @@ import {
   stripHtml,
 } from '../lib/news';
 import { haptic } from '../lib/haptics';
+import { useTranslations } from '../lib/i18n';
 
 const SOURCES: { id: NewsSource; label: string }[] = [
   { id: 'all', label: 'All' },
@@ -59,6 +60,7 @@ const SOURCES: { id: NewsSource; label: string }[] = [
 ];
 
 export default function NewsScreen() {
+  const t = useTranslations('news');
   const [items, setItems] = useState<NewsItem[]>([]);
   const [meta, setMeta] = useState<NewsMeta | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -210,7 +212,7 @@ export default function NewsScreen() {
               onPress={() => handleReadArticle(item)}
             >
               <BookOpen size={16} color="#22c55e" />
-              <Text style={[styles.actionText, { color: '#22c55e' }]}>Read</Text>
+              <Text style={[styles.actionText, { color: '#22c55e' }]}>{t('read')}</Text>
             </TouchableOpacity>
             
             <TouchableOpacity
@@ -218,7 +220,7 @@ export default function NewsScreen() {
               onPress={() => handleAnalyzeArticle(item)}
             >
               <FileSearch size={16} color="#a855f7" />
-              <Text style={[styles.actionText, { color: '#a855f7' }]}>Analyze</Text>
+              <Text style={[styles.actionText, { color: '#a855f7' }]}>{t('analyze')}</Text>
             </TouchableOpacity>
             
             <TouchableOpacity
@@ -226,7 +228,7 @@ export default function NewsScreen() {
               onPress={() => handleOpenArticle(item)}
             >
               <ExternalLink size={16} color="#3b82f6" />
-              <Text style={[styles.actionText, { color: '#3b82f6' }]}>Open</Text>
+              <Text style={[styles.actionText, { color: '#3b82f6' }]}>{t('open')}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -243,7 +245,7 @@ export default function NewsScreen() {
         </TouchableOpacity>
         <View style={styles.headerTitleContainer}>
           <Newspaper size={20} color="#f6d83b" />
-          <Text style={styles.headerTitle}>Macedonian News</Text>
+          <Text style={styles.headerTitle}>{t('title')}</Text>
         </View>
         <TouchableOpacity onPress={handleRefresh} style={styles.refreshButton}>
           <RefreshCw size={20} color="#f7f8fb" />
@@ -255,7 +257,7 @@ export default function NewsScreen() {
         <Search size={18} color="rgba(247,248,251,0.5)" />
         <TextInput
           style={styles.searchInput}
-          placeholder="Search news..."
+          placeholder={t('searchPlaceholder')}
           placeholderTextColor="rgba(247,248,251,0.4)"
           value={query}
           onChangeText={setQuery}
@@ -343,21 +345,21 @@ export default function NewsScreen() {
         {isLoading && items.length === 0 ? (
           <View style={styles.loadingContainer}>
             <ActivityIndicator size="large" color="#f6d83b" />
-            <Text style={styles.loadingText}>Loading news...</Text>
+            <Text style={styles.loadingText}>{t('loading')}</Text>
           </View>
         ) : error ? (
           <View style={styles.errorContainer}>
             <Text style={styles.errorText}>{error}</Text>
             <TouchableOpacity style={styles.retryButton} onPress={() => loadNews()}>
-              <Text style={styles.retryButtonText}>Try Again</Text>
+              <Text style={styles.retryButtonText}>{t('tryAgain')}</Text>
             </TouchableOpacity>
           </View>
         ) : items.length === 0 ? (
           <View style={styles.emptyContainer}>
             <Newspaper size={48} color="rgba(247,248,251,0.3)" />
-            <Text style={styles.emptyTitle}>No articles found</Text>
+            <Text style={styles.emptyTitle}>{t('noArticles')}</Text>
             <Text style={styles.emptyText}>
-              Try adjusting your filters or search query
+              {t('noArticlesHint')}
             </Text>
           </View>
         ) : (
