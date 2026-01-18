@@ -160,8 +160,14 @@ export async function sendFeedbackNotification(
   const typeLabel = feedbackData.type.charAt(0).toUpperCase() + feedbackData.type.slice(1);
   const ratingStars = feedbackData.rating ? '⭐'.repeat(feedbackData.rating) : 'Not rated';
 
+  console.log('[EMAIL] Attempting to send feedback notification:', {
+    from: fromEmail,
+    to: adminEmail,
+    resendConfigured: !!resend,
+  });
+
   try {
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: fromEmail,
       to: adminEmail,
       subject: `[${typeLabel}] New Feedback - ${appName}`,
@@ -219,7 +225,7 @@ export async function sendFeedbackNotification(
       `,
     });
 
-    console.log('[EMAIL] Feedback notification sent to:', adminEmail);
+    console.log('[EMAIL] Feedback notification sent to:', adminEmail, 'Result:', JSON.stringify(result));
     return { success: true };
   } catch (error) {
     console.error('[EMAIL] Failed to send feedback notification:', error);
