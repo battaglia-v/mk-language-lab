@@ -1,9 +1,9 @@
 #!/usr/bin/env npx tsx
 /**
- * Seed UKIM Dialogues to Database
+ * Seed Curated Dialogues to Database
  * 
- * This script seeds parsed dialogue data from the UKIM textbook
- * into the Dialogue and DialogueLine tables.
+ * Seeds clean, curated dialogue content with proper speaker names
+ * and both Macedonian and English text.
  */
 
 import { PrismaClient } from '@prisma/client';
@@ -12,54 +12,80 @@ import * as path from 'path';
 
 const prisma = new PrismaClient();
 
-// Types matching the parser output
-interface ParsedDialogueLine {
-  speaker?: string;
+// Types for curated dialogues
+interface CuratedDialogueLine {
+  speaker: string;
   textMk: string;
-  hasBlanks: boolean;
-  blanksCount: number;
+  textEn: string;
 }
 
-interface ParsedDialogue {
+interface CuratedDialogue {
   id: string;
-  sectionLabel?: string;
-  title?: string;
-  lines: ParsedDialogueLine[];
-  sourceTheme: number;
-  sourceChapter: number;
+  title_mk: string;
+  title_en: string;
+  difficulty: string;
+  topic: string;
+  lines: CuratedDialogueLine[];
 }
 
-// Get all lesson IDs in order
-async function getLessonIds(): Promise<string[]> {
-  const lessons = await prisma.curriculumLesson.findMany({
-    select: { id: true },
-    orderBy: [
-      { module: { orderIndex: 'asc' } },
-      { orderIndex: 'asc' },
-    ],
-  });
+// Topic to lesson title mapping for better matching
+const TOPIC_KEYWORDS: Record<string, string[]> = {
+  'greetings': ['Кои сме', 'запознавање', 'поздрав'],
+  'family': ['семејств', 'родител', 'деца'],
+  'food': ['јадење', 'храна', 'ресторан', 'кафе'],
+  'directions': ['насок', 'каде', 'град'],
+  'shopping': ['купува', 'продавница', 'пазар'],
+  'weather': ['време', 'сонце', 'дожд'],
+  'daily-life': ['ден', 'рутин', 'работ'],
+  'communication': ['телефон', 'разговор', 'зборува'],
+  'health': ['здравје', 'доктор', 'болница'],
+  'travel': ['патува', 'хотел', 'аеродром', 'такси'],
+  'transport': ['транспорт', 'такси', 'автобус'],
+};
 
-  return lessons.map(l => l.id);
+async function findBestLessonMatch(dialogue: CuratedDialogue): Promise<string | null> {
+  const keywords = TOPIC_KEYWORDS[dialogue.topic] || [];
+  
+  // Try to find a lesson that matches the topic
+  for (const keyword of keywords) {
+    const lesson = await prisma.curriculumLesson.findFirst({
+      where: {
+        OR: [
+          { title: { contains: keyword, mode: 'insensitive' } },
+          { summary: { contains: keyword, mode: 'insensitive' } },
+        ],
+      },
+      select: { id: true },
+    });
+    
+    if (lesson) {
+      return lesson.id;
+    }
+  }
+  
+  return null;
 }
 
 async function seedDialogues(): Promise<void> {
-  console.log('Loading parsed dialogues...');
+  console.log('Loading curated dialogues...');
   
-  const dialoguesPath = path.join(process.cwd(), 'data/dialogues/ukim-dialogues.json');
+  const dialoguesPath = path.join(process.cwd(), 'data/dialogues/curated-dialogues.json');
   
   if (!fs.existsSync(dialoguesPath)) {
-    console.error('Error: ukim-dialogues.json not found. Run parse-ukim-dialogues.ts first.');
+    console.error('Error: curated-dialogues.json not found.');
     process.exit(1);
   }
 
-  const dialogues: ParsedDialogue[] = JSON.parse(fs.readFileSync(dialoguesPath, 'utf-8'));
-  console.log(`Found ${dialogues.length} dialogues to seed`);
+  const dialogues: CuratedDialogue[] = JSON.parse(fs.readFileSync(dialoguesPath, 'utf-8'));
+  console.log(`Found ${dialogues.length} curated dialogues to seed`);
 
-  // Get lesson IDs in order
-  const lessonIds = await getLessonIds();
-  console.log(`Found ${lessonIds.length} lessons to link dialogues to`);
+  // Get all lesson IDs as fallback
+  const allLessons = await prisma.curriculumLesson.findMany({
+    select: { id: true },
+    orderBy: { orderIndex: 'asc' },
+  });
 
-  if (lessonIds.length === 0) {
+  if (allLessons.length === 0) {
     console.error('Error: No lessons found in database. Run seed-curriculum-ukim.ts first.');
     process.exit(1);
   }
@@ -73,51 +99,46 @@ async function seedDialogues(): Promise<void> {
   console.log('Seeding dialogues...');
   
   let seededCount = 0;
-  let skippedCount = 0;
+  const lessonDialogueCount: Record<string, number> = {};
   
   for (let i = 0; i < dialogues.length; i++) {
     const dialogue = dialogues[i];
     
-    // Skip dialogues with very few lines
-    if (dialogue.lines.length < 2) {
-      skippedCount++;
-      continue;
+    // Try to find a matching lesson
+    let lessonId = await findBestLessonMatch(dialogue);
+    
+    // Fallback to cycling through lessons
+    if (!lessonId) {
+      lessonId = allLessons[i % allLessons.length].id;
     }
-
-    // Get a lesson ID to link to (cycle through available lessons)
-    const lessonIndex = i % lessonIds.length;
-    const lessonId = lessonIds[lessonIndex];
-
-    // Create dialogue
-    const title = dialogue.sectionLabel 
-      ? `Dialogue ${dialogue.sectionLabel}` 
-      : `Dialogue ${i + 1}`;
+    
+    // Track how many dialogues per lesson
+    lessonDialogueCount[lessonId] = (lessonDialogueCount[lessonId] || 0) + 1;
+    const orderIndex = lessonDialogueCount[lessonId] - 1;
 
     try {
       await prisma.dialogue.create({
         data: {
           lessonId,
-          title,
-          orderIndex: i,
+          title: dialogue.title_en, // Use English title for display
+          orderIndex,
           lines: {
             create: dialogue.lines.map((line, lineIndex) => ({
-              speaker: line.speaker || undefined,
+              speaker: line.speaker,
               textMk: line.textMk,
-              textEn: '', // English translations not in source
-              transliteration: undefined,
-              hasBlanks: line.hasBlanks,
-              blanksData: line.hasBlanks ? JSON.stringify(
-                extractBlanksData(line.textMk)
-              ) : null,
+              textEn: line.textEn,
+              transliteration: null,
+              hasBlanks: false,
+              blanksData: null,
               orderIndex: lineIndex,
             })),
           },
         },
       });
       seededCount++;
+      console.log(`  ✓ ${dialogue.title_en} (${dialogue.lines.length} lines)`);
     } catch (error) {
-      console.error(`Failed to seed dialogue ${dialogue.id}:`, error);
-      skippedCount++;
+      console.error(`  ✗ Failed to seed "${dialogue.title_en}":`, error);
     }
   }
 
@@ -125,43 +146,23 @@ async function seedDialogues(): Promise<void> {
   console.log('DIALOGUE SEEDING SUMMARY');
   console.log('='.repeat(60));
   console.log(`Dialogues seeded: ${seededCount}`);
-  console.log(`Dialogues skipped: ${skippedCount}`);
+  
+  // Count total lines
+  const totalLines = dialogues.reduce((sum, d) => sum + d.lines.length, 0);
+  console.log(`Total dialogue lines: ${totalLines}`);
   
   // Verify
-  const dbCount = await prisma.dialogue.count();
-  const lineCount = await prisma.dialogueLine.count();
-  console.log(`\nDatabase counts:`);
-  console.log(`  Dialogues: ${dbCount}`);
-  console.log(`  DialogueLines: ${lineCount}`);
-}
-
-/**
- * Extract blanks data from text
- * Returns array of { position, answer, hint }
- */
-function extractBlanksData(text: string): Array<{ position: number; answer: string; hint: string }> {
-  const blanks: Array<{ position: number; answer: string; hint: string }> = [];
-  
-  // Find all blank markers
-  const regex = /_+/g;
-  let match;
-  let position = 0;
-  
-  while ((match = regex.exec(text)) !== null) {
-    blanks.push({
-      position: position++,
-      answer: '', // Answer not known from source
-      hint: `${match[0].length} characters`, // Hint based on blank length
-    });
-  }
-  
-  return blanks;
+  const dbDialogueCount = await prisma.dialogue.count();
+  const dbLineCount = await prisma.dialogueLine.count();
+  console.log(`\nDatabase verification:`);
+  console.log(`  Dialogues: ${dbDialogueCount}`);
+  console.log(`  DialogueLines: ${dbLineCount}`);
 }
 
 // Run seeder
 seedDialogues()
   .then(() => {
-    console.log('\nDone!');
+    console.log('\n✅ Done!');
     process.exit(0);
   })
   .catch((error) => {

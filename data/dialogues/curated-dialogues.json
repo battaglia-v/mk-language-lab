@@ -1,0 +1,226 @@
+[
+  {
+    "id": "greeting-introduction",
+    "title_mk": "Запознавање",
+    "title_en": "Meeting Someone",
+    "difficulty": "A1",
+    "topic": "greetings",
+    "lines": [
+      { "speaker": "Влатко", "textMk": "Здраво! Јас сум Влатко.", "textEn": "Hello! I'm Vlatko." },
+      { "speaker": "Ема", "textMk": "Здраво! Јас сум Ема. Мило ми е.", "textEn": "Hello! I'm Ema. Nice to meet you." },
+      { "speaker": "Влатко", "textMk": "И на мене. Од каде си?", "textEn": "Nice to meet you too. Where are you from?" },
+      { "speaker": "Ема", "textMk": "Јас сум од Лондон. А ти?", "textEn": "I'm from London. And you?" },
+      { "speaker": "Влатко", "textMk": "Јас сум од Скопје.", "textEn": "I'm from Skopje." },
+      { "speaker": "Ема", "textMk": "Одлично! Што работиш?", "textEn": "Great! What do you do?" },
+      { "speaker": "Влатко", "textMk": "Јас сум студент. А ти?", "textEn": "I'm a student. And you?" },
+      { "speaker": "Ема", "textMk": "И јас сум студентка.", "textEn": "I'm a student too." }
+    ]
+  },
+  {
+    "id": "cafe-order",
+    "title_mk": "Во кафуле",
+    "title_en": "At the Cafe",
+    "difficulty": "A1",
+    "topic": "food",
+    "lines": [
+      { "speaker": "Келнер", "textMk": "Добар ден! Што сакате?", "textEn": "Good day! What would you like?" },
+      { "speaker": "Марија", "textMk": "Добар ден! Јас сакам едно кафе, молам.", "textEn": "Good day! I'd like a coffee, please." },
+      { "speaker": "Келнер", "textMk": "Со млеко или без млеко?", "textEn": "With milk or without milk?" },
+      { "speaker": "Марија", "textMk": "Со малку млеко, молам.", "textEn": "With a little milk, please." },
+      { "speaker": "Келнер", "textMk": "Дали сакате нешто за јадење?", "textEn": "Would you like something to eat?" },
+      { "speaker": "Марија", "textMk": "Да, еден кроасан, молам.", "textEn": "Yes, a croissant, please." },
+      { "speaker": "Келнер", "textMk": "Во ред. Веднаш!", "textEn": "Okay. Right away!" },
+      { "speaker": "Келнер", "textMk": "Повелете! Кафе и кроасан.", "textEn": "Here you go! Coffee and croissant." },
+      { "speaker": "Марија", "textMk": "Благодарам многу!", "textEn": "Thank you very much!" },
+      { "speaker": "Келнер", "textMk": "Молам. Пријатно!", "textEn": "You're welcome. Enjoy!" }
+    ]
+  },
+  {
+    "id": "family-talk",
+    "title_mk": "Моето семејство",
+    "title_en": "My Family",
+    "difficulty": "A1",
+    "topic": "family",
+    "lines": [
+      { "speaker": "Ана", "textMk": "Имаш ли браќа или сестри?", "textEn": "Do you have brothers or sisters?" },
+      { "speaker": "Петар", "textMk": "Да, имам еден брат и една сестра.", "textEn": "Yes, I have one brother and one sister." },
+      { "speaker": "Ана", "textMk": "Колку години имаат?", "textEn": "How old are they?" },
+      { "speaker": "Петар", "textMk": "Мојот брат има дваесет години, а сестра ми има петнаесет.", "textEn": "My brother is twenty, and my sister is fifteen." },
+      { "speaker": "Ана", "textMk": "А твоите родители?", "textEn": "And your parents?" },
+      { "speaker": "Петар", "textMk": "Татко ми е доктор, а мајка ми е учителка.", "textEn": "My father is a doctor, and my mother is a teacher." },
+      { "speaker": "Ана", "textMk": "Каде живеете?", "textEn": "Where do you live?" },
+      { "speaker": "Петар", "textMk": "Ние живееме во Скопје, во центар.", "textEn": "We live in Skopje, in the center." }
+    ]
+  },
+  {
+    "id": "asking-directions",
+    "title_mk": "Каде е...?",
+    "title_en": "Where is...?",
+    "difficulty": "A1",
+    "topic": "directions",
+    "lines": [
+      { "speaker": "Турист", "textMk": "Извинете, каде е плоштадот?", "textEn": "Excuse me, where is the square?" },
+      { "speaker": "Минувач", "textMk": "Одете право, потоа свртете лево.", "textEn": "Go straight, then turn left." },
+      { "speaker": "Турист", "textMk": "Дали е далеку?", "textEn": "Is it far?" },
+      { "speaker": "Минувач", "textMk": "Не, пет минути пешки.", "textEn": "No, five minutes on foot." },
+      { "speaker": "Турист", "textMk": "А каде има банка?", "textEn": "And where is there a bank?" },
+      { "speaker": "Минувач", "textMk": "Банката е до плоштадот, на десната страна.", "textEn": "The bank is next to the square, on the right side." },
+      { "speaker": "Турист", "textMk": "Благодарам многу!", "textEn": "Thank you very much!" },
+      { "speaker": "Минувач", "textMk": "Нема на што. Пријатно!", "textEn": "You're welcome. Have a nice day!" }
+    ]
+  },
+  {
+    "id": "shopping-clothes",
+    "title_mk": "Во продавница",
+    "title_en": "At the Store",
+    "difficulty": "A1",
+    "topic": "shopping",
+    "lines": [
+      { "speaker": "Продавач", "textMk": "Добар ден! Може ли да ви помогнам?", "textEn": "Good day! Can I help you?" },
+      { "speaker": "Купувач", "textMk": "Да, барам кошула.", "textEn": "Yes, I'm looking for a shirt." },
+      { "speaker": "Продавач", "textMk": "Која боја сакате?", "textEn": "What color do you want?" },
+      { "speaker": "Купувач", "textMk": "Сина или бела.", "textEn": "Blue or white." },
+      { "speaker": "Продавач", "textMk": "Која големина носите?", "textEn": "What size do you wear?" },
+      { "speaker": "Купувач", "textMk": "Медиум, молам.", "textEn": "Medium, please." },
+      { "speaker": "Продавач", "textMk": "Еве, оваа е убава. Сакате да ја пробате?", "textEn": "Here, this one is nice. Would you like to try it?" },
+      { "speaker": "Купувач", "textMk": "Да, каде е соблекувалната?", "textEn": "Yes, where is the fitting room?" },
+      { "speaker": "Продавач", "textMk": "Таму, на десно.", "textEn": "Over there, on the right." },
+      { "speaker": "Купувач", "textMk": "Ми одговара. Колку чини?", "textEn": "It fits. How much is it?" },
+      { "speaker": "Продавач", "textMk": "Илјада денари.", "textEn": "One thousand denars." },
+      { "speaker": "Купувач", "textMk": "Добро, ќе ја земам.", "textEn": "Okay, I'll take it." }
+    ]
+  },
+  {
+    "id": "restaurant-order",
+    "title_mk": "Во ресторан",
+    "title_en": "At the Restaurant",
+    "difficulty": "A1",
+    "topic": "food",
+    "lines": [
+      { "speaker": "Келнер", "textMk": "Добровечер! Маса за двајца?", "textEn": "Good evening! A table for two?" },
+      { "speaker": "Гостин", "textMk": "Да, молам.", "textEn": "Yes, please." },
+      { "speaker": "Келнер", "textMk": "Повелете, седнете овде. Еве го менито.", "textEn": "Please, sit here. Here's the menu." },
+      { "speaker": "Гостин", "textMk": "Благодарам. Што препорачувате?", "textEn": "Thank you. What do you recommend?" },
+      { "speaker": "Келнер", "textMk": "Тавче гравче е многу вкусно.", "textEn": "Tavche gravche is very tasty." },
+      { "speaker": "Гостин", "textMk": "Добро, две порции тавче гравче, молам.", "textEn": "Okay, two portions of tavche gravche, please." },
+      { "speaker": "Келнер", "textMk": "Што сакате за пиење?", "textEn": "What would you like to drink?" },
+      { "speaker": "Гостин", "textMk": "Две чаши вино, молам.", "textEn": "Two glasses of wine, please." },
+      { "speaker": "Келнер", "textMk": "Црвено или бело?", "textEn": "Red or white?" },
+      { "speaker": "Гостин", "textMk": "Црвено, молам.", "textEn": "Red, please." },
+      { "speaker": "Келнер", "textMk": "Во ред. Ќе дојде наскоро.", "textEn": "Okay. It will come soon." }
+    ]
+  },
+  {
+    "id": "weather-talk",
+    "title_mk": "Какво е времето?",
+    "title_en": "What's the Weather Like?",
+    "difficulty": "A1",
+    "topic": "weather",
+    "lines": [
+      { "speaker": "Марко", "textMk": "Какво е времето денес?", "textEn": "What's the weather like today?" },
+      { "speaker": "Ана", "textMk": "Денес е сончево и топло.", "textEn": "Today it's sunny and warm." },
+      { "speaker": "Марко", "textMk": "Колку степени има?", "textEn": "How many degrees is it?" },
+      { "speaker": "Ана", "textMk": "Околу дваесет и пет степени.", "textEn": "About twenty-five degrees." },
+      { "speaker": "Марко", "textMk": "Одлично! Сакаш да одиме во парк?", "textEn": "Excellent! Do you want to go to the park?" },
+      { "speaker": "Ана", "textMk": "Да, добра идеја! Но утре ќе врне.", "textEn": "Yes, good idea! But tomorrow it will rain." },
+      { "speaker": "Марко", "textMk": "Тогаш ајде денес.", "textEn": "Then let's go today." },
+      { "speaker": "Ана", "textMk": "Добро, ќе се видиме во три часот.", "textEn": "Okay, see you at three o'clock." }
+    ]
+  },
+  {
+    "id": "daily-routine",
+    "title_mk": "Мојот ден",
+    "title_en": "My Day",
+    "difficulty": "A1",
+    "topic": "daily-life",
+    "lines": [
+      { "speaker": "Лена", "textMk": "Во колку часот се будиш?", "textEn": "What time do you wake up?" },
+      { "speaker": "Иван", "textMk": "Се будам во седум часот.", "textEn": "I wake up at seven o'clock." },
+      { "speaker": "Лена", "textMk": "А што правиш наутро?", "textEn": "And what do you do in the morning?" },
+      { "speaker": "Иван", "textMk": "Доручкувам и одам на работа.", "textEn": "I have breakfast and go to work." },
+      { "speaker": "Лена", "textMk": "Каде работиш?", "textEn": "Where do you work?" },
+      { "speaker": "Иван", "textMk": "Работам во канцеларија, во центар.", "textEn": "I work in an office, in the center." },
+      { "speaker": "Лена", "textMk": "Во колку часот завршуваш?", "textEn": "What time do you finish?" },
+      { "speaker": "Иван", "textMk": "Завршувам во пет часот.", "textEn": "I finish at five o'clock." },
+      { "speaker": "Лена", "textMk": "А навечер?", "textEn": "And in the evening?" },
+      { "speaker": "Иван", "textMk": "Навечер вечерам, гледам телевизија и спијам.", "textEn": "In the evening I have dinner, watch TV, and sleep." }
+    ]
+  },
+  {
+    "id": "phone-call",
+    "title_mk": "Телефонски разговор",
+    "title_en": "Phone Call",
+    "difficulty": "A1",
+    "topic": "communication",
+    "lines": [
+      { "speaker": "Ана", "textMk": "Ало?", "textEn": "Hello?" },
+      { "speaker": "Марко", "textMk": "Здраво, Ана! Јас сум Марко.", "textEn": "Hi, Ana! This is Marko." },
+      { "speaker": "Ана", "textMk": "Еј, Марко! Како си?", "textEn": "Hey, Marko! How are you?" },
+      { "speaker": "Марко", "textMk": "Добро сум, благодарам. А ти?", "textEn": "I'm fine, thanks. And you?" },
+      { "speaker": "Ана", "textMk": "И јас сум добро. Што има?", "textEn": "I'm good too. What's up?" },
+      { "speaker": "Марко", "textMk": "Сакаш ли да одиме на кафе утре?", "textEn": "Would you like to go for coffee tomorrow?" },
+      { "speaker": "Ана", "textMk": "Да, секако! Во колку часот?", "textEn": "Yes, of course! What time?" },
+      { "speaker": "Марко", "textMk": "Во четири часот, во центар?", "textEn": "At four o'clock, in the center?" },
+      { "speaker": "Ана", "textMk": "Добро, ќе се видиме утре!", "textEn": "Okay, see you tomorrow!" },
+      { "speaker": "Марко", "textMk": "Чао, до утре!", "textEn": "Bye, until tomorrow!" }
+    ]
+  },
+  {
+    "id": "doctor-visit",
+    "title_mk": "Кај доктор",
+    "title_en": "At the Doctor",
+    "difficulty": "A2",
+    "topic": "health",
+    "lines": [
+      { "speaker": "Доктор", "textMk": "Добар ден! Што ви е проблемот?", "textEn": "Good day! What's the problem?" },
+      { "speaker": "Пациент", "textMk": "Добар ден. Ме боли главата.", "textEn": "Good day. I have a headache." },
+      { "speaker": "Доктор", "textMk": "Од кога ве боли?", "textEn": "Since when does it hurt?" },
+      { "speaker": "Пациент", "textMk": "Од вчера наутро.", "textEn": "Since yesterday morning." },
+      { "speaker": "Доктор", "textMk": "Имате ли температура?", "textEn": "Do you have a fever?" },
+      { "speaker": "Пациент", "textMk": "Да, малку. Триесет и седум степени.", "textEn": "Yes, a little. Thirty-seven degrees." },
+      { "speaker": "Доктор", "textMk": "Ќе ви дадам лекови. Земајте три пати на ден.", "textEn": "I'll give you medicine. Take it three times a day." },
+      { "speaker": "Пациент", "textMk": "Благодарам, докторе.", "textEn": "Thank you, doctor." },
+      { "speaker": "Доктор", "textMk": "Молам. Одморете се и пијте многу вода.", "textEn": "You're welcome. Rest and drink lots of water." }
+    ]
+  },
+  {
+    "id": "hotel-checkin",
+    "title_mk": "Во хотел",
+    "title_en": "At the Hotel",
+    "difficulty": "A2",
+    "topic": "travel",
+    "lines": [
+      { "speaker": "Гостин", "textMk": "Добар ден! Имам резервација.", "textEn": "Good day! I have a reservation." },
+      { "speaker": "Рецепционер", "textMk": "Добар ден! На кое име?", "textEn": "Good day! Under what name?" },
+      { "speaker": "Гостин", "textMk": "На име Петровски.", "textEn": "Under the name Petrovski." },
+      { "speaker": "Рецепционер", "textMk": "Да, гледам. Двокреветна соба за три ноќи.", "textEn": "Yes, I see. A double room for three nights." },
+      { "speaker": "Гостин", "textMk": "Точно. Дали собата има балкон?", "textEn": "Correct. Does the room have a balcony?" },
+      { "speaker": "Рецепционер", "textMk": "Да, со поглед на морето.", "textEn": "Yes, with a sea view." },
+      { "speaker": "Гостин", "textMk": "Одлично! Во колку часот е појадокот?", "textEn": "Excellent! What time is breakfast?" },
+      { "speaker": "Рецепционер", "textMk": "Од седум до десет часот.", "textEn": "From seven to ten o'clock." },
+      { "speaker": "Гостин", "textMk": "А каде е ресторанот?", "textEn": "And where is the restaurant?" },
+      { "speaker": "Рецепционер", "textMk": "На приземје, лево од лифтот.", "textEn": "On the ground floor, left of the elevator." },
+      { "speaker": "Гостин", "textMk": "Благодарам многу!", "textEn": "Thank you very much!" },
+      { "speaker": "Рецепционер", "textMk": "Пријатен престој!", "textEn": "Have a pleasant stay!" }
+    ]
+  },
+  {
+    "id": "taxi-ride",
+    "title_mk": "Во такси",
+    "title_en": "In a Taxi",
+    "difficulty": "A1",
+    "topic": "transport",
+    "lines": [
+      { "speaker": "Патник", "textMk": "Добар ден! До аеродромот, молам.", "textEn": "Good day! To the airport, please." },
+      { "speaker": "Таксист", "textMk": "Добро. Имате багаж?", "textEn": "Okay. Do you have luggage?" },
+      { "speaker": "Патник", "textMk": "Да, еден куфер.", "textEn": "Yes, one suitcase." },
+      { "speaker": "Таксист", "textMk": "Во ред. Седнете.", "textEn": "Okay. Have a seat." },
+      { "speaker": "Патник", "textMk": "Колку чини до аеродромот?", "textEn": "How much does it cost to the airport?" },
+      { "speaker": "Таксист", "textMk": "Околу петстотини денари.", "textEn": "About five hundred denars." },
+      { "speaker": "Патник", "textMk": "Колку време треба?", "textEn": "How long does it take?" },
+      { "speaker": "Таксист", "textMk": "Дваесет минути, ако нема сообраќај.", "textEn": "Twenty minutes, if there's no traffic." },
+      { "speaker": "Патник", "textMk": "Добро. Ве молам, побрзајте малку.", "textEn": "Okay. Please, hurry a bit." },
+      { "speaker": "Таксист", "textMk": "Нема проблем. Ќе стигнете на време.", "textEn": "No problem. You'll arrive on time." }
+    ]
+  }
+]
