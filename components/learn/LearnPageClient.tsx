@@ -10,6 +10,8 @@ import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import { getLocalXP } from '@/lib/gamification/local-xp';
 import { getNextNode } from '@/lib/learn/lesson-path-types';
+import { FocusAreasCard } from '@/components/dashboard/FocusAreasCard';
+import { useAppConfig } from '@/hooks/use-app-config';
 import type { LessonPath as LessonPathData, LessonNode } from '@/lib/learn/lesson-path-types';
 
 type LevelId = 'beginner' | 'intermediate' | 'advanced' | 'challenge';
@@ -46,6 +48,7 @@ export function LearnPageClient({
   const t = useTranslations('mobile.learn');
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { config } = useAppConfig();
   // Use local XP state for real-time updates
   const [localState, setLocalState] = useState({ todayXP: initialTodayXP, streak: initialStreak });
   const [activeLevel, setActiveLevel] = useState<LevelId>('beginner');
@@ -226,6 +229,11 @@ export function LearnPageClient({
                 : t('hintBelowGoal')}
             </p>
           </div>
+
+          {/* Focus Areas - Weak Grammar Topics */}
+          {config.focusAreasEnabled && (
+            <FocusAreasCard autoFetch className="mx-0" />
+          )}
 
           {/* Primary CTA - Start or Continue */}
           <div

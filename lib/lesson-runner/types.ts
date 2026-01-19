@@ -27,6 +27,8 @@ export interface BaseStep {
   grammarTopic?: string;
   /** Difficulty level for adaptive learning */
   difficulty?: 'easy' | 'medium' | 'hard';
+  /** IDs of related exercises at different difficulties (for adaptive mode) */
+  adaptivePool?: string[];
 }
 
 // ============================================================================
@@ -94,6 +96,8 @@ export interface FillBlankStep extends BaseStep {
   }>;
   /** Grammar tip related to this question */
   grammarTip?: string;
+  /** Optional translation hint for context */
+  translationHint?: string;
   caseSensitive?: boolean;
   placeholder?: string;
   wordBank?: string[];

@@ -29,6 +29,8 @@ import { addLocalXP, getLocalXP, isGoalComplete } from '@/lib/gamification/local
 import { Skeleton } from '@/components/ui/skeleton';
 import { useEntitlement } from '@/hooks/use-entitlement';
 import { useAppConfig } from '@/hooks/use-app-config';
+import { useAdaptiveDifficulty } from '@/hooks/useAdaptiveDifficulty';
+import { DifficultyIndicator } from '@/components/practice/DifficultyIndicator';
 import type { DeckType, PracticeMode, DifficultyFilter, Flashcard } from './types';
 
 // deckType can be a standard DeckType or a topic deck ID (e.g., household-v1)
@@ -59,6 +61,21 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
   const [xpAmount, setXpAmount] = useState(0);
   const [showGoalCelebration, setShowGoalCelebration] = useState(false);
   const [goalWasCompleteAtStart, setGoalWasCompleteAtStart] = useState(false);
+
+  // Adaptive difficulty tracking
+  const {
+    currentDifficulty,
+    recordAnswer: recordAdaptiveAnswer,
+    rollingAccuracy,
+    adjustmentsMade,
+    isAdaptive,
+  } = useAdaptiveDifficulty({
+    startingDifficulty: difficulty === 'all' ? 'medium' : difficulty as 'easy' | 'medium' | 'hard',
+    enabled: config.adaptiveDifficultyEnabled !== false, // Default to enabled
+    onDifficultyChange: (from, to) => {
+      console.log(`[AdaptiveDifficulty] Changed: ${from} → ${to}`);
+    },
+  });
 
   // Session persistence state
   const [pendingRestore, setPendingRestore] = useState(false);
@@ -319,6 +336,9 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
     setRevealed(true);
     setReviewedCount((c) => c + 1);
 
+    // Record for adaptive difficulty
+    recordAdaptiveAnswer(isCorrect);
+
     // Record SRS for favorites deck
     if (deckType === 'favorites' && card?.id) {
       recordReview(card.id, isCorrect);
@@ -340,7 +360,7 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
     } else {
       setStreak(0);
     }
-  }, [maxStreak, deckType, card?.id, goalWasCompleteAtStart]);
+  }, [maxStreak, deckType, card?.id, goalWasCompleteAtStart, recordAdaptiveAnswer]);
 
   const submitTyping = useCallback((e: React.FormEvent) => {
     e.preventDefault();
@@ -511,9 +531,20 @@ export function PracticeSession({ deckType, mode, difficulty, customDeckId }: Pr
       {/* Card */}
       <div className="flex-1 overflow-auto px-4 py-6">
         <div className="mx-auto max-w-lg space-y-4">
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <span>{card?.direction === 'en-mk' ? 'EN → MK' : 'MK → EN'}</span>
-            {card?.difficulty && <Badge variant="outline">{formatDifficultyLabel(card.difficulty)}</Badge>}
+          <div className="flex items-center justify-between gap-2 text-xs text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <span>{card?.direction === 'en-mk' ? 'EN → MK' : 'MK → EN'}</span>
+              {card?.difficulty && <Badge variant="outline">{formatDifficultyLabel(card.difficulty)}</Badge>}
+            </div>
+            {isAdaptive && (
+              <DifficultyIndicator
+                difficulty={currentDifficulty}
+                accuracy={rollingAccuracy}
+                isAdaptive={isAdaptive}
+                adjustmentsMade={adjustmentsMade}
+                compact
+              />
+            )}
           </div>
 
           {card?.category === 'alphabet' && (

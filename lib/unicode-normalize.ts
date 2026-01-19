@@ -148,7 +148,7 @@ export interface AnswerAnalysis {
   /** Specific feedback about the difference */
   feedbackHint?: string;
   /** The type of mistake detected */
-  mistakeType?: 'diacritics' | 'case' | 'punctuation' | 'spelling' | 'article' | 'gender' | 'conjugation';
+  mistakeType?: 'diacritics' | 'case' | 'punctuation' | 'spelling' | 'article' | 'gender' | 'conjugation' | 'partial';
 }
 
 /**

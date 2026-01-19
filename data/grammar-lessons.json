@@ -67,7 +67,9 @@
           "ж"
         ],
         "correctIndex": 1,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "alphabet-cyrillic",
+        "difficulty": "easy"
       },
       {
         "id": "ab-2",
@@ -83,7 +85,9 @@
           "џ"
         ],
         "correctIndex": 1,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "alphabet-cyrillic",
+        "difficulty": "easy"
       },
       {
         "id": "ab-3",
@@ -99,7 +103,9 @@
           "dz"
         ],
         "correctIndex": 0,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "alphabet-cyrillic",
+        "difficulty": "easy"
       },
       {
         "id": "ab-4",
@@ -111,7 +117,9 @@
         "correctAnswers": [
           "џ"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "alphabet-cyrillic",
+        "difficulty": "easy"
       },
       {
         "id": "ab-5",
@@ -123,7 +131,9 @@
         "correctAnswers": [
           "О"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "alphabet-cyrillic",
+        "difficulty": "medium"
       },
       {
         "id": "ab-6",
@@ -139,7 +149,9 @@
         "hintMk": "Се користи посебната буква Љ.",
         "hintEn": "Use the special letter Љ.",
         "explanationMk": "Зборот \"љубов\" почнува со Љ.",
-        "explanationEn": "The word \"љубов\" starts with Љ."
+        "explanationEn": "The word \"љубов\" starts with Љ.",
+        "grammarTopic": "alphabet-cyrillic",
+        "difficulty": "hard"
       }
     ]
   },
@@ -214,7 +226,9 @@
           "Довидување",
           "Добра вечер"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "greetings-basic",
+        "difficulty": "easy"
       },
       {
         "id": "gr-2",
@@ -230,7 +244,9 @@
           "Довидување"
         ],
         "correctIndex": 1,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "greetings-basic",
+        "difficulty": "easy"
       },
       {
         "id": "gr-3",
@@ -242,7 +258,9 @@
         "correctAnswers": [
           "си"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "greetings-basic",
+        "difficulty": "easy"
       },
       {
         "id": "gr-4",
@@ -259,7 +277,9 @@
           "сум",
           "Марко"
         ],
-        "xp": 15
+        "xp": 15,
+        "grammarTopic": "greetings-basic",
+        "difficulty": "easy"
       },
       {
         "id": "gr-5",
@@ -275,7 +295,9 @@
           "Кој си?"
         ],
         "correctIndex": 1,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "greetings-basic",
+        "difficulty": "easy"
       },
       {
         "id": "gr-6",
@@ -289,7 +311,9 @@
         "errorPosition": 0,
         "xp": 15,
         "explanationMk": "Се вели \"Добро утро\".",
-        "explanationEn": "Say \"Добро утро\"."
+        "explanationEn": "Say \"Добро утро\".",
+        "grammarTopic": "greetings-basic",
+        "difficulty": "hard"
       }
     ]
   },
@@ -354,7 +378,9 @@
         "correctAnswers": [
           "сум"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "verbs-present-sum",
+        "difficulty": "easy"
       },
       {
         "id": "pt-2",
@@ -370,7 +396,9 @@
           "се"
         ],
         "correctIndex": 3,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "verbs-present-sum",
+        "difficulty": "easy"
       },
       {
         "id": "pt-3",
@@ -382,7 +410,9 @@
         "correctAnswers": [
           "сме"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "verbs-present-sum",
+        "difficulty": "easy"
       },
       {
         "id": "pt-4",
@@ -400,7 +430,9 @@
         "correctIndex": 1,
         "xp": 10,
         "hintMk": "'Ти' е второ лице еднина",
-        "hintEn": "'Ти' is second person singular"
+        "hintEn": "'Ти' is second person singular",
+        "grammarTopic": "verbs-present-sum",
+        "difficulty": "easy"
       },
       {
         "id": "pt-5",
@@ -415,7 +447,9 @@
           "моја",
           "сестра"
         ],
-        "xp": 15
+        "xp": 15,
+        "grammarTopic": "verbs-present-sum",
+        "difficulty": "medium"
       },
       {
         "id": "pt-6",
@@ -431,7 +465,9 @@
         "hintMk": "'Вие' бара друга форма на глаголот",
         "hintEn": "'Вие' requires a different verb form",
         "explanationMk": "За 'вие' се користи 'сте', не 'сме'",
-        "explanationEn": "For 'вие' use 'сте', not 'сме'"
+        "explanationEn": "For 'вие' use 'сте', not 'сме'",
+        "grammarTopic": "verbs-present-sum",
+        "difficulty": "hard"
       }
     ]
   },
@@ -499,7 +535,9 @@
           "среден"
         ],
         "correctIndex": 1,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "nouns-gender",
+        "difficulty": "easy"
       },
       {
         "id": "gn-2",
@@ -514,7 +552,9 @@
           "среден"
         ],
         "correctIndex": 2,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "nouns-gender",
+        "difficulty": "easy"
       },
       {
         "id": "gn-3",
@@ -528,7 +568,9 @@
         ],
         "xp": 10,
         "hintMk": "Маса е женски род",
-        "hintEn": "Маса is feminine"
+        "hintEn": "Маса is feminine",
+        "grammarTopic": "nouns-gender",
+        "difficulty": "easy"
       },
       {
         "id": "gn-4",
@@ -542,7 +584,9 @@
         ],
         "xp": 10,
         "hintMk": "Стол е машки род",
-        "hintEn": "Стол is masculine"
+        "hintEn": "Стол is masculine",
+        "grammarTopic": "nouns-gender",
+        "difficulty": "easy"
       },
       {
         "id": "gn-5",
@@ -557,7 +601,9 @@
           "мое",
           "дете"
         ],
-        "xp": 15
+        "xp": 15,
+        "grammarTopic": "nouns-gender",
+        "difficulty": "medium"
       },
       {
         "id": "gn-6",
@@ -571,7 +617,9 @@
         "errorPosition": 2,
         "xp": 15,
         "explanationMk": "Брат е машки род, затоа 'мој'.",
-        "explanationEn": "Брат is masculine, so use 'мој'."
+        "explanationEn": "Брат is masculine, so use 'мој'.",
+        "grammarTopic": "nouns-gender",
+        "difficulty": "hard"
       }
     ]
   },
@@ -647,7 +695,9 @@
           "девет"
         ],
         "correctIndex": 1,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "numbers-1-20",
+        "difficulty": "easy"
       },
       {
         "id": "num-2",
@@ -659,7 +709,9 @@
         "correctAnswers": [
           "две"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "numbers-1-20",
+        "difficulty": "easy"
       },
       {
         "id": "num-3",
@@ -671,7 +723,9 @@
         "correctAnswers": [
           "еден"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "numbers-1-20",
+        "difficulty": "easy"
       },
       {
         "id": "num-4",
@@ -687,7 +741,9 @@
           "десет"
         ],
         "correctIndex": 0,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "numbers-1-20",
+        "difficulty": "easy"
       },
       {
         "id": "num-5",
@@ -705,7 +761,9 @@
           "четириесет",
           "петнаесет"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "numbers-1-20",
+        "difficulty": "medium"
       },
       {
         "id": "num-6",
@@ -719,7 +777,9 @@
           "три",
           "билети"
         ],
-        "xp": 15
+        "xp": 15,
+        "grammarTopic": "numbers-1-20",
+        "difficulty": "medium"
       }
     ]
   },
@@ -791,7 +851,9 @@
         ],
         "xp": 10,
         "hintMk": "Книга е женски род - додај -та",
-        "hintEn": "Книга is feminine - add -та"
+        "hintEn": "Книга is feminine - add -та",
+        "grammarTopic": "definite-article",
+        "difficulty": "easy"
       },
       {
         "id": "da-2",
@@ -809,7 +871,9 @@
         "correctIndex": 1,
         "xp": 10,
         "hintMk": "Маса е женски род",
-        "hintEn": "Маса is feminine"
+        "hintEn": "Маса is feminine",
+        "grammarTopic": "definite-article",
+        "difficulty": "easy"
       },
       {
         "id": "da-3",
@@ -823,7 +887,9 @@
         ],
         "xp": 10,
         "hintMk": "Куќа е женски род",
-        "hintEn": "Куќа is feminine"
+        "hintEn": "Куќа is feminine",
+        "grammarTopic": "definite-article",
+        "difficulty": "easy"
       },
       {
         "id": "da-4",
@@ -841,7 +907,9 @@
         "correctIndex": 2,
         "xp": 10,
         "explanationMk": "Среден род добива -то на крајот",
-        "explanationEn": "Neuter nouns take -то at the end"
+        "explanationEn": "Neuter nouns take -то at the end",
+        "grammarTopic": "definite-article",
+        "difficulty": "easy"
       },
       {
         "id": "da-5",
@@ -858,7 +926,9 @@
         ],
         "xp": 15,
         "explanationMk": "Забележи: и 'детето' и 'паркот' имаат определен член",
-        "explanationEn": "Notice: both 'детето' and 'паркот' have the definite article"
+        "explanationEn": "Notice: both 'детето' and 'паркот' have the definite article",
+        "grammarTopic": "definite-article",
+        "difficulty": "medium"
       },
       {
         "id": "da-6",
@@ -874,7 +944,9 @@
         "hintMk": "Стол е машки род, не женски",
         "hintEn": "Стол is masculine, not feminine",
         "explanationMk": "Стол е машки род, затоа добива -от: столот",
-        "explanationEn": "Стол is masculine, so it takes -от: столот"
+        "explanationEn": "Стол is masculine, so it takes -от: столот",
+        "grammarTopic": "definite-article",
+        "difficulty": "hard"
       }
     ]
   },
@@ -944,7 +1016,9 @@
         "correctAnswers": [
           "не"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "negation",
+        "difficulty": "easy"
       },
       {
         "id": "neg-2",
@@ -960,7 +1034,9 @@
           "не се"
         ],
         "correctIndex": 3,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "negation",
+        "difficulty": "easy"
       },
       {
         "id": "neg-3",
@@ -975,7 +1051,9 @@
           "е",
           "тука"
         ],
-        "xp": 15
+        "xp": 15,
+        "grammarTopic": "negation",
+        "difficulty": "easy"
       },
       {
         "id": "neg-4",
@@ -987,7 +1065,9 @@
         "correctAnswers": [
           "не"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "negation",
+        "difficulty": "easy"
       },
       {
         "id": "neg-5",
@@ -1003,7 +1083,9 @@
         "hintMk": "'Не' оди пред глаголот",
         "hintEn": "'Не' goes before the verb",
         "explanationMk": "Правилно: 'Јас не сум тука' - 'не' пред глаголот",
-        "explanationEn": "Correct: 'Јас не сум тука' - 'не' before the verb"
+        "explanationEn": "Correct: 'Јас не сум тука' - 'не' before the verb",
+        "grammarTopic": "negation",
+        "difficulty": "hard"
       }
     ]
   },
@@ -1066,7 +1148,9 @@
         "correctAnswers": [
           "жени"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "nouns-plural",
+        "difficulty": "easy"
       },
       {
         "id": "pl-2",
@@ -1082,7 +1166,9 @@
           "масе"
         ],
         "correctIndex": 2,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "nouns-plural",
+        "difficulty": "easy"
       },
       {
         "id": "pl-3",
@@ -1096,7 +1182,9 @@
         ],
         "xp": 10,
         "hintMk": "Среден род на -о добива -а",
-        "hintEn": "Neuter nouns ending in -о take -а"
+        "hintEn": "Neuter nouns ending in -о take -а",
+        "grammarTopic": "nouns-plural",
+        "difficulty": "easy"
       },
       {
         "id": "pl-4",
@@ -1112,7 +1200,9 @@
           "дена"
         ],
         "correctIndex": 1,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "nouns-plural",
+        "difficulty": "easy"
       },
       {
         "id": "pl-5",
@@ -1126,7 +1216,9 @@
           "многу",
           "книги"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "nouns-plural",
+        "difficulty": "medium"
       },
       {
         "id": "pl-6",
@@ -1142,7 +1234,9 @@
         "hintMk": "По број не се користи определен член",
         "hintEn": "After a number, don't use the definite article",
         "explanationMk": "По број (три) се користи множина без член: 'три деца'",
-        "explanationEn": "After a number (three), use plural without article: 'три деца'"
+        "explanationEn": "After a number (three), use plural without article: 'три деца'",
+        "grammarTopic": "nouns-plural",
+        "difficulty": "hard"
       }
     ]
   },
@@ -1214,7 +1308,9 @@
           "под",
           "до"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "prepositions-basic",
+        "difficulty": "easy"
       },
       {
         "id": "prep-2",
@@ -1232,7 +1328,9 @@
         "correctIndex": 1,
         "xp": 10,
         "explanationMk": "'Во' се користи за градови и држави",
-        "explanationEn": "'Во' is used for cities and countries"
+        "explanationEn": "'Во' is used for cities and countries",
+        "grammarTopic": "prepositions-basic",
+        "difficulty": "easy"
       },
       {
         "id": "prep-3",
@@ -1244,7 +1342,9 @@
         "correctAnswers": [
           "до"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "prepositions-basic",
+        "difficulty": "easy"
       },
       {
         "id": "prep-4",
@@ -1260,7 +1360,9 @@
           "пред"
         ],
         "correctIndex": 0,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "prepositions-basic",
+        "difficulty": "easy"
       },
       {
         "id": "prep-5",
@@ -1272,7 +1374,9 @@
         "correctAnswers": [
           "под"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "prepositions-basic",
+        "difficulty": "medium"
       },
       {
         "id": "prep-6",
@@ -1287,7 +1391,9 @@
           "пред",
           "училиштето"
         ],
-        "xp": 15
+        "xp": 15,
+        "grammarTopic": "prepositions-basic",
+        "difficulty": "medium"
       }
     ]
   },
@@ -1358,7 +1464,9 @@
         "correctIndex": 1,
         "xp": 10,
         "explanationMk": "'Како' се користи за име: 'Како се викаш?'",
-        "explanationEn": "'Како' is used for names: 'Како се викаш?' = 'What is your name?'"
+        "explanationEn": "'Како' is used for names: 'Како се викаш?' = 'What is your name?'",
+        "grammarTopic": "questions-formation",
+        "difficulty": "easy"
       },
       {
         "id": "qw-2",
@@ -1376,7 +1484,9 @@
           "Каде",
           "Кога"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "questions-formation",
+        "difficulty": "easy"
       },
       {
         "id": "qw-3",
@@ -1392,7 +1502,9 @@
           "Колку?"
         ],
         "correctIndex": 1,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "questions-formation",
+        "difficulty": "easy"
       },
       {
         "id": "qw-4",
@@ -1406,7 +1518,9 @@
           "доаѓа",
           "автобусот"
         ],
-        "xp": 15
+        "xp": 15,
+        "grammarTopic": "questions-formation",
+        "difficulty": "easy"
       },
       {
         "id": "qw-5",
@@ -1418,7 +1532,9 @@
         "correctAnswers": [
           "Колку"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "questions-formation",
+        "difficulty": "medium"
       },
       {
         "id": "qw-6",
@@ -1436,7 +1552,9 @@
         "correctIndex": 2,
         "xp": 10,
         "explanationMk": "'Зошто' значи 'Why' - се користи за причина",
-        "explanationEn": "'Зошто' means 'Why' - used for reason"
+        "explanationEn": "'Зошто' means 'Why' - used for reason",
+        "grammarTopic": "questions-formation",
+        "difficulty": "easy"
       }
     ]
   },
@@ -1499,7 +1617,9 @@
         ],
         "xp": 10,
         "hintMk": "Куќа е женски род",
-        "hintEn": "Куќа is feminine"
+        "hintEn": "Куќа is feminine",
+        "grammarTopic": "adjectives-agreement",
+        "difficulty": "easy"
       },
       {
         "id": "aa-2",
@@ -1515,7 +1635,9 @@
           "мали"
         ],
         "correctIndex": 2,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "adjectives-agreement",
+        "difficulty": "easy"
       },
       {
         "id": "aa-3",
@@ -1527,7 +1649,9 @@
         "correctAnswers": [
           "нов"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "adjectives-agreement",
+        "difficulty": "easy"
       },
       {
         "id": "aa-4",
@@ -1545,7 +1669,9 @@
         "correctIndex": 3,
         "xp": 10,
         "explanationMk": "Луѓе е множина",
-        "explanationEn": "Луѓе is plural"
+        "explanationEn": "Луѓе is plural",
+        "grammarTopic": "adjectives-agreement",
+        "difficulty": "easy"
       },
       {
         "id": "aa-5",
@@ -1560,7 +1686,9 @@
           "стара",
           "зграда"
         ],
-        "xp": 15
+        "xp": 15,
+        "grammarTopic": "adjectives-agreement",
+        "difficulty": "medium"
       },
       {
         "id": "aa-6",
@@ -1574,7 +1702,9 @@
         "errorPosition": 2,
         "xp": 15,
         "explanationMk": "Жена е женски род, треба 'висока'",
-        "explanationEn": "Жена is feminine, should be 'висока'"
+        "explanationEn": "Жена is feminine, should be 'висока'",
+        "grammarTopic": "adjectives-agreement",
+        "difficulty": "hard"
       }
     ]
   },
@@ -1642,7 +1772,9 @@
         ],
         "xp": 10,
         "hintMk": "Куќа е женски род",
-        "hintEn": "Куќа is feminine"
+        "hintEn": "Куќа is feminine",
+        "grammarTopic": "nouns-gender",
+        "difficulty": "medium"
       },
       {
         "id": "pp-2",
@@ -1658,7 +1790,9 @@
           "Мои"
         ],
         "correctIndex": 0,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "nouns-gender",
+        "difficulty": "easy"
       },
       {
         "id": "pp-3",
@@ -1670,7 +1804,9 @@
         "correctAnswers": [
           "негов"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "nouns-gender",
+        "difficulty": "medium"
       },
       {
         "id": "pp-4",
@@ -1688,7 +1824,9 @@
         "correctIndex": 1,
         "xp": 10,
         "hintMk": "Дете е среден род",
-        "hintEn": "Дете is neuter"
+        "hintEn": "Дете is neuter",
+        "grammarTopic": "nouns-gender",
+        "difficulty": "easy"
       },
       {
         "id": "pp-5",
@@ -1703,7 +1841,9 @@
           "се",
           "тука"
         ],
-        "xp": 15
+        "xp": 15,
+        "grammarTopic": "nouns-gender",
+        "difficulty": "hard"
       },
       {
         "id": "pp-6",
@@ -1717,7 +1857,9 @@
         "errorPosition": 2,
         "xp": 15,
         "explanationMk": "Сестра е женски род, затоа 'моја'",
-        "explanationEn": "Сестра is feminine, so use 'моја'"
+        "explanationEn": "Сестра is feminine, so use 'моја'",
+        "grammarTopic": "nouns-gender",
+        "difficulty": "hard"
       },
       {
         "id": "pp-7",
@@ -1731,7 +1873,9 @@
         ],
         "xp": 10,
         "hintMk": "Куќа е женски род",
-        "hintEn": "Куќа is feminine"
+        "hintEn": "Куќа is feminine",
+        "grammarTopic": "nouns-gender",
+        "difficulty": "hard"
       },
       {
         "id": "pp-8",
@@ -1749,7 +1893,9 @@
         "correctIndex": 0,
         "xp": 10,
         "hintMk": "Автомобил е машки род",
-        "hintEn": "Автомобил is masculine"
+        "hintEn": "Автомобил is masculine",
+        "grammarTopic": "nouns-gender",
+        "difficulty": "medium"
       },
       {
         "id": "pp-9",
@@ -1764,7 +1910,9 @@
         ],
         "xp": 10,
         "hintMk": "Деца е множина, треба множинска форма",
-        "hintEn": "Деца is plural, needs plural form"
+        "hintEn": "Деца is plural, needs plural form",
+        "grammarTopic": "nouns-gender",
+        "difficulty": "hard"
       },
       {
         "id": "pp-10",
@@ -1778,7 +1926,9 @@
         "errorPosition": 2,
         "xp": 10,
         "explanationMk": "Дом е машки род, треба 'нивен'",
-        "explanationEn": "Дом is masculine, should be 'нивен'"
+        "explanationEn": "Дом is masculine, should be 'нивен'",
+        "grammarTopic": "nouns-gender",
+        "difficulty": "hard"
       }
     ]
   },
@@ -1851,7 +2001,9 @@
           "работеше"
         ],
         "correctIndex": 1,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "verbs-past-simple",
+        "difficulty": "easy"
       },
       {
         "id": "pa-2",
@@ -1863,7 +2015,9 @@
         "correctAnswers": [
           "јадов"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "verbs-past-simple",
+        "difficulty": "medium"
       },
       {
         "id": "pa-3",
@@ -1875,7 +2029,9 @@
         "correctAnswers": [
           "дојде"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "verbs-past-simple",
+        "difficulty": "medium"
       },
       {
         "id": "pa-4",
@@ -1891,7 +2047,9 @@
           "Работам сега."
         ],
         "correctIndex": 1,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "verbs-past-simple",
+        "difficulty": "easy"
       },
       {
         "id": "pa-5",
@@ -1906,7 +2064,9 @@
           "во",
           "Скопје"
         ],
-        "xp": 15
+        "xp": 15,
+        "grammarTopic": "verbs-past-simple",
+        "difficulty": "hard"
       },
       {
         "id": "pa-6",
@@ -1920,7 +2080,9 @@
         "errorPosition": 1,
         "xp": 15,
         "explanationMk": "За завршено минато користиме аорист: 'јадов'.",
-        "explanationEn": "For completed past actions, use the aorist: 'јадов'."
+        "explanationEn": "For completed past actions, use the aorist: 'јадов'.",
+        "grammarTopic": "verbs-past-simple",
+        "difficulty": "hard"
       }
     ]
   },
@@ -1986,7 +2148,8 @@
         "correctAnswers": [
           "чини"
         ],
-        "xp": 10
+        "xp": 10,
+        "difficulty": "medium"
       },
       {
         "id": "sh-2",
@@ -2002,7 +2165,8 @@
           "картичка"
         ],
         "correctIndex": 0,
-        "xp": 10
+        "xp": 10,
+        "difficulty": "easy"
       },
       {
         "id": "sh-3",
@@ -2017,7 +2181,8 @@
           "килограми",
           "јаболка"
         ],
-        "xp": 15
+        "xp": 15,
+        "difficulty": "medium"
       },
       {
         "id": "sh-4",
@@ -2029,7 +2194,8 @@
         "correctAnswers": [
           "картичка"
         ],
-        "xp": 10
+        "xp": 10,
+        "difficulty": "medium"
       },
       {
         "id": "sh-5",
@@ -2045,7 +2211,8 @@
           "Вода!"
         ],
         "correctIndex": 1,
-        "xp": 10
+        "xp": 10,
+        "difficulty": "medium"
       },
       {
         "id": "sh-6",
@@ -2059,7 +2226,8 @@
         "errorPosition": 1,
         "xp": 15,
         "explanationMk": "За множина се користи 'чинат'.",
-        "explanationEn": "Use 'чинат' with plural subjects."
+        "explanationEn": "Use 'чинат' with plural subjects.",
+        "difficulty": "hard"
       }
     ]
   },
@@ -2128,7 +2296,8 @@
           "назад"
         ],
         "correctIndex": 0,
-        "xp": 10
+        "xp": 10,
+        "difficulty": "easy"
       },
       {
         "id": "dir-2",
@@ -2140,7 +2309,8 @@
         "correctAnswers": [
           "право"
         ],
-        "xp": 10
+        "xp": 10,
+        "difficulty": "medium"
       },
       {
         "id": "dir-3",
@@ -2152,7 +2322,8 @@
         "correctAnswers": [
           "лево"
         ],
-        "xp": 10
+        "xp": 10,
+        "difficulty": "medium"
       },
       {
         "id": "dir-4",
@@ -2168,7 +2339,8 @@
           "до",
           "банката"
         ],
-        "xp": 15
+        "xp": 15,
+        "difficulty": "medium"
       },
       {
         "id": "dir-5",
@@ -2184,7 +2356,8 @@
           "Кој е аптеката?"
         ],
         "correctIndex": 1,
-        "xp": 10
+        "xp": 10,
+        "difficulty": "medium"
       },
       {
         "id": "dir-6",
@@ -2198,7 +2371,8 @@
         "errorPosition": 0,
         "xp": 15,
         "explanationMk": "'Право' оди со глаголот 'оди', не со 'сврти'.",
-        "explanationEn": "Use 'go straight' rather than 'turn straight'."
+        "explanationEn": "Use 'go straight' rather than 'turn straight'.",
+        "difficulty": "hard"
       }
     ]
   },
@@ -2268,7 +2442,8 @@
           "сакал",
           "сакала"
         ],
-        "xp": 10
+        "xp": 10,
+        "difficulty": "medium"
       },
       {
         "id": "fd-2",
@@ -2284,7 +2459,8 @@
           "вино"
         ],
         "correctIndex": 1,
-        "xp": 10
+        "xp": 10,
+        "difficulty": "easy"
       },
       {
         "id": "fd-3",
@@ -2299,7 +2475,8 @@
           "сметката,",
           "молам"
         ],
-        "xp": 15
+        "xp": 15,
+        "difficulty": "medium"
       },
       {
         "id": "fd-4",
@@ -2311,7 +2488,8 @@
         "correctAnswers": [
           "месо"
         ],
-        "xp": 10
+        "xp": 10,
+        "difficulty": "medium"
       },
       {
         "id": "fd-5",
@@ -2327,7 +2505,8 @@
           "со млеко"
         ],
         "correctIndex": 1,
-        "xp": 10
+        "xp": 10,
+        "difficulty": "medium"
       },
       {
         "id": "fd-6",
@@ -2341,7 +2520,8 @@
         "errorPosition": 1,
         "xp": 15,
         "explanationMk": "'Кафе' е среден род, затоа 'едно'.",
-        "explanationEn": "'Кафе' is neuter, so use 'едно'."
+        "explanationEn": "'Кафе' is neuter, so use 'едно'.",
+        "difficulty": "hard"
       }
     ]
   },
@@ -2408,7 +2588,9 @@
         "correctAnswers": [
           "ќе одам"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "verbs-future",
+        "difficulty": "hard"
       },
       {
         "id": "ft-2",
@@ -2424,7 +2606,9 @@
           "читај"
         ],
         "correctIndex": 2,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "verbs-future",
+        "difficulty": "medium"
       },
       {
         "id": "ft-3",
@@ -2436,7 +2620,9 @@
         "correctAnswers": [
           "ќе јадеме"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "verbs-future",
+        "difficulty": "hard"
       },
       {
         "id": "ft-4",
@@ -2452,7 +2638,9 @@
           "во",
           "Охрид"
         ],
-        "xp": 15
+        "xp": 15,
+        "grammarTopic": "verbs-future",
+        "difficulty": "hard"
       },
       {
         "id": "ft-5",
@@ -2464,7 +2652,9 @@
         "correctAnswers": [
           "нема да"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "verbs-future",
+        "difficulty": "hard"
       },
       {
         "id": "ft-6",
@@ -2478,7 +2668,9 @@
         "errorPosition": 1,
         "xp": 15,
         "explanationMk": "Се пишува 'ќе', не 'ке'",
-        "explanationEn": "It's written 'ќе', not 'ке'"
+        "explanationEn": "It's written 'ќе', not 'ке'",
+        "grammarTopic": "verbs-future",
+        "difficulty": "hard"
       }
     ]
   },
@@ -2551,7 +2743,9 @@
         "correctAnswers": [
           "морам"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "modal-verbs",
+        "difficulty": "hard"
       },
       {
         "id": "mod-2",
@@ -2567,7 +2761,9 @@
           "Можеш"
         ],
         "correctIndex": 0,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "modal-verbs",
+        "difficulty": "medium"
       },
       {
         "id": "mod-3",
@@ -2579,7 +2775,9 @@
         "correctAnswers": [
           "Може"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "modal-verbs",
+        "difficulty": "hard"
       },
       {
         "id": "mod-4",
@@ -2595,7 +2793,9 @@
           "работиш",
           "денес"
         ],
-        "xp": 15
+        "xp": 15,
+        "grammarTopic": "modal-verbs",
+        "difficulty": "hard"
       },
       {
         "id": "mod-5",
@@ -2611,7 +2811,9 @@
           "мисли"
         ],
         "correctIndex": 1,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "modal-verbs",
+        "difficulty": "hard"
       },
       {
         "id": "mod-6",
@@ -2625,7 +2827,9 @@
         "errorPosition": 0,
         "xp": 15,
         "explanationMk": "За 'don't have to' се користи 'не мораш'.",
-        "explanationEn": "Use 'не мораш' for 'don't have to'."
+        "explanationEn": "Use 'не мораш' for 'don't have to'.",
+        "grammarTopic": "modal-verbs",
+        "difficulty": "hard"
       }
     ]
   },
@@ -2691,7 +2895,9 @@
           "читам"
         ],
         "correctIndex": 1,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "verbs-aspect-imperfective",
+        "difficulty": "medium"
       },
       {
         "id": "asp-2",
@@ -2703,7 +2909,9 @@
         "correctAnswers": [
           "прочитав"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "verbs-aspect-imperfective",
+        "difficulty": "hard"
       },
       {
         "id": "asp-3",
@@ -2715,7 +2923,9 @@
         "correctAnswers": [
           "читам"
         ],
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "verbs-aspect-imperfective",
+        "difficulty": "hard"
       },
       {
         "id": "asp-4",
@@ -2731,7 +2941,9 @@
           "Ќе напишам писмо."
         ],
         "correctIndex": 1,
-        "xp": 10
+        "xp": 10,
+        "grammarTopic": "verbs-aspect-imperfective",
+        "difficulty": "medium"
       },
       {
         "id": "asp-5",
@@ -2746,7 +2958,9 @@
           "филмот",
           "вчера"
         ],
-        "xp": 15
+        "xp": 15,
+        "grammarTopic": "verbs-aspect-imperfective",
+        "difficulty": "hard"
       },
       {
         "id": "asp-6",
@@ -2760,7 +2974,9 @@
         "errorPosition": 2,
         "xp": 15,
         "explanationMk": "За навики се користи несвршен вид: 'читам'.",
-        "explanationEn": "Use imperfective for habits: 'читам'."
+        "explanationEn": "Use imperfective for habits: 'читам'.",
+        "grammarTopic": "verbs-aspect-imperfective",
+        "difficulty": "hard"
       }
     ]
   },
@@ -2825,7 +3041,8 @@
         "correctAnswers": [
           "ако"
         ],
-        "xp": 10
+        "xp": 10,
+        "difficulty": "hard"
       },
       {
         "id": "cs-2",
@@ -2838,7 +3055,8 @@
           "бидејќи",
           "затоа што"
         ],
-        "xp": 10
+        "xp": 10,
+        "difficulty": "hard"
       },
       {
         "id": "cs-3",
@@ -2854,7 +3072,8 @@
           "кога"
         ],
         "correctIndex": 2,
-        "xp": 10
+        "xp": 10,
+        "difficulty": "medium"
       },
       {
         "id": "cs-4",
@@ -2869,7 +3088,8 @@
           "ќе",
           "успееш"
         ],
-        "xp": 15
+        "xp": 15,
+        "difficulty": "hard"
       },
       {
         "id": "cs-5",
@@ -2885,7 +3105,8 @@
           "дека"
         ],
         "correctIndex": 0,
-        "xp": 10
+        "xp": 10,
+        "difficulty": "hard"
       },
       {
         "id": "cs-6",
@@ -2899,7 +3120,8 @@
         "errorPosition": 2,
         "xp": 15,
         "explanationMk": "За услов се користи 'ако', не 'бидејќи'.",
-        "explanationEn": "Use 'ако' for conditions, not 'бидејќи'."
+        "explanationEn": "Use 'ако' for conditions, not 'бидејќи'.",
+        "difficulty": "hard"
       }
     ]
   }

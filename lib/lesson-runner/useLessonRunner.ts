@@ -12,6 +12,8 @@ import type {
 import { validateWithAlternatives } from '../validation/unified-validator';
 import { debugExercise, debugValidation, debugSave, setDebugState } from '../debug';
 import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
+import { recordAttempt } from '@/lib/learn/grammar-performance';
+import type { GrammarTopicId } from '@/lib/learn/grammar-topics';
 
 /**
  * useLessonRunner Hook
@@ -282,7 +284,7 @@ export function useLessonRunner(
             const mistakeType = validation.analysis.mistakeType;
             if (mistakeType === 'case') {
               whyWrong = 'Check your capitalization - Macedonian has specific rules for capital letters.';
-            } else if (mistakeType === 'diacritic') {
+            } else if (mistakeType === 'diacritics') {
               whyWrong = 'Pay attention to special characters like ќ, ѓ, џ, љ, њ.';
             } else if (mistakeType === 'partial') {
               whyWrong = 'You\'re close! Check the ending of the word.';
@@ -466,6 +468,16 @@ export function useLessonRunner(
           hasGrammarTip: !!validation.feedback.grammarTip,
           exerciseType: currentStep.type,
         });
+        
+        // Record grammar performance if exercise has a grammarTopic
+        if (currentStep.grammarTopic) {
+          try {
+            recordAttempt(currentStep.grammarTopic as GrammarTopicId, validation.isCorrect);
+          } catch (err) {
+            // Don't block lesson flow for grammar tracking errors
+            console.warn('[GrammarPerformance] Failed to record:', err);
+          }
+        }
 
         // Auto-save progress if enabled (with step-level data for resume)
         if (autoSave && lessonId) {

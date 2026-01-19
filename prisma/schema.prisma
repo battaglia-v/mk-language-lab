@@ -69,6 +69,7 @@ model User {
   friendRequestsSent     Friendship[]          @relation("FriendRequestsSent")
   friendRequestsReceived Friendship[]          @relation("FriendRequestsReceived")
   subscription           Subscription?
+  grammarPerformance     GrammarPerformance[]
 }
 
 model VerificationToken {
@@ -594,6 +595,25 @@ model GameProgress {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+}
+
+// GrammarPerformance - tracks user performance on grammar topics for weak area identification
+model GrammarPerformance {
+  id              String   @id @default(cuid())
+  userId          String
+  topicId         String   // Grammar topic slug (e.g., "verbs-past-simple")
+  attempts        Json     @default("[]") // Array of { correct: boolean, timestamp: number }
+  totalAttempts   Int      @default(0)
+  correctAttempts Int      @default(0)
+  lastAttemptDate String   // ISO date string (YYYY-MM-DD)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, topicId])
+  @@index([userId])
+  @@index([topicId])
 }
 
 // Mission - stores onboarding wizard results and daily mission config
