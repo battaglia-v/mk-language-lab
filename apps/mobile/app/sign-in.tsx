@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import {
   View,
   Text,
@@ -21,63 +21,36 @@ export default function SignInScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
   const { signIn, signInWithGoogle, error, clearError } = useAuthStore();
   
-  // Use the Google auth hook (always called, handles disabled state internally)
-  const { response, promptAsync, isReady, isConfigured } = useGoogleAuth();
+  // Use native Google Sign-In
+  const { signIn: googleSignIn, isSigningIn: isGoogleLoading, isConfigured } = useGoogleAuth();
 
-  const handleGoogleSignIn = useCallback(async (idToken: string) => {
-    setIsGoogleLoading(true);
-    clearError();
-
-    try {
-      await signInWithGoogle(idToken);
-      trackSignInSuccess({ method: 'google' });
-      router.replace('/(tabs)');
-    } catch (err) {
-      trackSignInFailed({ method: 'google', error: err instanceof Error ? err.message : 'Unknown error' });
-      // Error is handled by the store
-    } finally {
-      setIsGoogleLoading(false);
-    }
-  }, [clearError, signInWithGoogle]);
-
-  // Handle Google Sign-in response
-  useEffect(() => {
-    if (response?.type === 'success') {
-      const { authentication } = response;
-      if (authentication?.idToken) {
-        handleGoogleSignIn(authentication.idToken);
-      } else if (authentication?.accessToken) {
-        // Fallback to access token if no ID token
-        handleGoogleSignIn(authentication.accessToken);
-      }
-    } else if (response?.type === 'error') {
-      setIsGoogleLoading(false);
-      console.warn('[GoogleAuth] Error:', response.error);
-    }
-  }, [response, handleGoogleSignIn]);
-
-  const handleGooglePress = async () => {
-    if (!promptAsync || !isConfigured) {
-      console.warn('[GoogleAuth] Not configured for this platform');
+  const handleGooglePress = useCallback(async () => {
+    if (!isConfigured) {
+      console.warn('[GoogleAuth] Not configured');
       return;
     }
-    
-    setIsGoogleLoading(true);
+
     clearError();
     trackSignInInitiated({ method: 'google' });
-    
-    try {
-      await promptAsync();
-    } catch (err) {
-      console.warn('[GoogleAuth] Prompt failed:', err);
-      setIsGoogleLoading(false);
-      trackSignInFailed({ method: 'google', error: err instanceof Error ? err.message : 'Unknown error' });
+
+    const result = await googleSignIn();
+
+    if (result.type === 'success' && result.idToken) {
+      try {
+        await signInWithGoogle(result.idToken);
+        trackSignInSuccess({ method: 'google' });
+        router.replace('/(tabs)');
+      } catch (err) {
+        trackSignInFailed({ method: 'google', error: err instanceof Error ? err.message : 'Unknown error' });
+      }
+    } else if (result.type === 'error') {
+      trackSignInFailed({ method: 'google', error: result.error?.message || 'Unknown error' });
     }
-  };
+    // 'cancel' type - user cancelled, do nothing
+  }, [isConfigured, googleSignIn, signInWithGoogle, clearError]);
 
   const handleSignIn = async () => {
     if (!email || !password) {
@@ -161,9 +134,9 @@ export default function SignInScreen() {
         </View>
 
         <TouchableOpacity
-          style={[styles.googleButton, (!isReady || isGoogleLoading || !isConfigured) && styles.buttonDisabled]}
+          style={[styles.googleButton, (isGoogleLoading || !isConfigured) && styles.buttonDisabled]}
           onPress={handleGooglePress}
-          disabled={!isReady || isGoogleLoading || !isConfigured}
+          disabled={isGoogleLoading || !isConfigured}
         >
           {isGoogleLoading ? (
             <ActivityIndicator color="#f7f8fb" />

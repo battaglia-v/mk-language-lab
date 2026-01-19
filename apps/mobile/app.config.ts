@@ -32,7 +32,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     edgeToEdgeEnabled: true,
   },
 
-  plugins: ['expo-router', 'expo-secure-store'],
+  plugins: [
+    'expo-router',
+    'expo-secure-store',
+    '@react-native-google-signin/google-signin',
+  ],
 
   extra: {
     apiBaseUrl:
