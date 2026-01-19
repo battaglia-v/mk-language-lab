@@ -3,7 +3,14 @@
  *
  * Stores XP progress in localStorage for immediate feedback.
  * Syncs to server when user is authenticated.
+ * 
+ * Includes streak freeze feature:
+ * - 1 free streak freeze per week
+ * - Automatically used if user misses exactly 1 day
+ * - Visual indicator when freeze was used
  */
+
+import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
 const STORAGE_KEY = 'mk-xp-progress';
 
@@ -12,6 +19,10 @@ type LocalXPState = {
   dailyGoal: number;
   streak: number;
   lastActivityDate: string; // ISO date string
+  /** Streak freeze: date when last freeze was used (ISO string) */
+  lastFreezeUsedDate?: string;
+  /** Whether streak was saved by freeze today */
+  streakSavedByFreeze?: boolean;
 };
 
 const DEFAULT_STATE: LocalXPState = {
@@ -25,6 +36,32 @@ function getToday(): string {
   return new Date().toISOString().split('T')[0];
 }
 
+function getYesterday(): string {
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  return yesterday.toISOString().split('T')[0];
+}
+
+function getDayBefore(dateStr: string): string {
+  const date = new Date(dateStr);
+  date.setDate(date.getDate() - 1);
+  return date.toISOString().split('T')[0];
+}
+
+function getDaysSince(dateStr: string): number {
+  const date = new Date(dateStr);
+  const today = new Date(getToday());
+  return Math.floor((today.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
+}
+
+/**
+ * Check if streak freeze is available (1 per week)
+ */
+export function isStreakFreezeAvailable(state: LocalXPState): boolean {
+  if (!state.lastFreezeUsedDate) return true;
+  return getDaysSince(state.lastFreezeUsedDate) >= 7;
+}
+
 export function getLocalXP(): LocalXPState {
   if (typeof window === 'undefined') return DEFAULT_STATE;
 
@@ -34,22 +71,65 @@ export function getLocalXP(): LocalXPState {
 
     const state = JSON.parse(stored) as LocalXPState;
     const today = getToday();
+    const yesterday = getYesterday();
 
-    // Reset if it's a new day
-    if (state.lastActivityDate !== today) {
-      const yesterday = new Date();
-      yesterday.setDate(yesterday.getDate() - 1);
-      const wasYesterday = state.lastActivityDate === yesterday.toISOString().split('T')[0];
+    // Reset streakSavedByFreeze flag if it's from a previous day
+    let streakSavedByFreeze = state.streakSavedByFreeze;
+    if (state.lastActivityDate !== today && state.lastActivityDate !== yesterday) {
+      streakSavedByFreeze = false;
+    }
 
+    // If already today's data, return as-is
+    if (state.lastActivityDate === today) {
+      return { ...state, streakSavedByFreeze };
+    }
+
+    // Check if user practiced yesterday (no freeze needed)
+    const wasYesterday = state.lastActivityDate === yesterday;
+    if (wasYesterday) {
       return {
         ...state,
         todayXP: 0,
         lastActivityDate: today,
-        streak: wasYesterday ? state.streak : 0, // Reset streak if missed a day
+        streakSavedByFreeze: false,
       };
     }
 
-    return state;
+    // User missed at least one day - check if we should use streak freeze
+    const daysMissed = getDaysSince(state.lastActivityDate);
+    const canUseFreeze = daysMissed === 1 || daysMissed === 2; // Only protect 1-2 day gaps
+    const freezeAvailable = isStreakFreezeAvailable(state);
+    const hasStreakToProtect = state.streak >= 2; // Only protect meaningful streaks
+
+    if (canUseFreeze && freezeAvailable && hasStreakToProtect) {
+      // Use streak freeze - protect the streak!
+      const updated: LocalXPState = {
+        ...state,
+        todayXP: 0,
+        lastActivityDate: today,
+        lastFreezeUsedDate: today,
+        streakSavedByFreeze: true,
+        // Streak is preserved!
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+      
+      // Track streak freeze usage
+      trackEvent(AnalyticsEvents.STREAK_FREEZE_USED, {
+        previousStreak: state.streak,
+        daysMissed,
+      });
+      
+      return updated;
+    }
+
+    // No freeze available or too many days missed - reset streak
+    return {
+      ...state,
+      todayXP: 0,
+      lastActivityDate: today,
+      streak: 0,
+      streakSavedByFreeze: false,
+    };
   } catch {
     return DEFAULT_STATE;
   }

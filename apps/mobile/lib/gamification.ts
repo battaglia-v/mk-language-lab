@@ -45,6 +45,10 @@ export type StreakData = {
   currentStreak: number;
   longestStreak: number;
   lastActiveDate: string; // ISO date string
+  /** Date when last streak freeze was used (ISO string) */
+  lastFreezeUsedDate?: string;
+  /** Whether streak was saved by freeze today */
+  streakSavedByFreeze?: boolean;
 };
 
 /**
@@ -149,6 +153,24 @@ export async function setDailyGoal(goal: number): Promise<void> {
 }
 
 /**
+ * Get days since a date string
+ */
+function getDaysSince(dateStr: string): number {
+  if (!dateStr) return Infinity;
+  const date = new Date(dateStr);
+  const today = new Date(getTodayString());
+  return Math.floor((today.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
+}
+
+/**
+ * Check if streak freeze is available (1 per week)
+ */
+export function isStreakFreezeAvailable(data: StreakData): boolean {
+  if (!data.lastFreezeUsedDate) return true;
+  return getDaysSince(data.lastFreezeUsedDate) >= 7;
+}
+
+/**
  * Get streak data
  */
 export async function getStreakData(): Promise<StreakData> {
@@ -159,6 +181,7 @@ export async function getStreakData(): Promise<StreakData> {
         currentStreak: 0,
         longestStreak: 0,
         lastActiveDate: '',
+        streakSavedByFreeze: false,
       };
     }
     return JSON.parse(raw) as StreakData;
@@ -168,6 +191,7 @@ export async function getStreakData(): Promise<StreakData> {
       currentStreak: 0,
       longestStreak: 0,
       lastActiveDate: '',
+      streakSavedByFreeze: false,
     };
   }
 }
@@ -186,40 +210,68 @@ async function saveStreakData(data: StreakData): Promise<void> {
 /**
  * Update streak based on activity
  * Call this when user completes a practice session
+ * 
+ * Includes streak freeze logic:
+ * - 1 free streak freeze per week
+ * - Automatically used if user misses 1-2 days
+ * - Only protects meaningful streaks (2+ days)
  */
-export async function updateStreak(): Promise<StreakData> {
+export async function updateStreak(): Promise<StreakData & { extended: boolean }> {
   const data = await getStreakData();
   const today = getTodayString();
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
   const yesterdayString = yesterday.toISOString().split('T')[0];
   
-  // Already practiced today
+  // Already practiced today - return existing data
   if (data.lastActiveDate === today) {
-    return data;
+    return { ...data, extended: false };
   }
   
   let newStreak: number;
+  let streakSavedByFreeze = false;
+  let lastFreezeUsedDate = data.lastFreezeUsedDate;
+  let extended = false;
   
   if (data.lastActiveDate === yesterdayString) {
-    // Continuing streak
+    // Continuing streak - practiced yesterday
     newStreak = data.currentStreak + 1;
+    extended = true;
   } else if (data.lastActiveDate === '') {
     // First activity ever
     newStreak = 1;
+    extended = true;
   } else {
-    // Streak broken
-    newStreak = 1;
+    // User missed at least one day - check if we should use streak freeze
+    const daysMissed = getDaysSince(data.lastActiveDate);
+    const canUseFreeze = daysMissed <= 2; // Only protect 1-2 day gaps
+    const freezeAvailable = isStreakFreezeAvailable(data);
+    const hasStreakToProtect = data.currentStreak >= 2; // Only protect meaningful streaks
+    
+    if (canUseFreeze && freezeAvailable && hasStreakToProtect) {
+      // Use streak freeze - protect the streak!
+      newStreak = data.currentStreak + 1; // Continue the streak
+      streakSavedByFreeze = true;
+      lastFreezeUsedDate = today;
+      extended = true;
+      console.log('[Gamification] Streak freeze used! Streak preserved:', newStreak);
+    } else {
+      // No freeze available or too many days missed - reset streak
+      newStreak = 1;
+      extended = true;
+    }
   }
   
   const newData: StreakData = {
     currentStreak: newStreak,
     longestStreak: Math.max(data.longestStreak, newStreak),
     lastActiveDate: today,
+    lastFreezeUsedDate,
+    streakSavedByFreeze,
   };
   
   await saveStreakData(newData);
-  return newData;
+  return { ...newData, extended };
 }
 
 /**
@@ -246,6 +298,10 @@ export type GamificationSummary = {
   level: number;
   levelProgress: number;
   streakBonus: number;
+  /** Whether streak freeze is available (1 per week) */
+  streakFreezeAvailable: boolean;
+  /** Whether streak was saved by freeze today */
+  streakSavedByFreeze: boolean;
 };
 
 /**
@@ -274,6 +330,8 @@ export async function getGamificationSummary(): Promise<GamificationSummary> {
     level: levelInfo.currentLevel,
     levelProgress: levelInfo.percentComplete,
     streakBonus,
+    streakFreezeAvailable: isStreakFreezeAvailable(streakData),
+    streakSavedByFreeze: streakData.streakSavedByFreeze || false,
   };
 }
 

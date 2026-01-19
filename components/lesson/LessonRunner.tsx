@@ -323,12 +323,14 @@ export function LessonRunner({
       <div className="space-y-4 sm:space-y-6">
         {renderStep()}
 
-        {/* Feedback Banner */}
+        {/* Feedback Banner - Enhanced with "Why This Is Wrong" explanations */}
         {showFeedback && currentFeedback && currentStep?.type !== 'SUMMARY' && currentStep?.type !== 'INFO' && (
           <FeedbackBanner
             isCorrect={currentFeedback.correct}
             correctAnswer={currentFeedback.correctAnswer}
             explanation={currentFeedback.explanation}
+            whyWrong={currentFeedback.whyWrong}
+            grammarTip={currentFeedback.grammarTip}
           />
         )}
       </div>

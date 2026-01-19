@@ -11,6 +11,7 @@ import type {
 } from './types';
 import { validateWithAlternatives } from '../validation/unified-validator';
 import { debugExercise, debugValidation, debugSave, setDebugState } from '../debug';
+import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 
 /**
  * useLessonRunner Hook
@@ -221,15 +222,23 @@ export function useLessonRunner(
             };
           }
           const isCorrect = answer.selectedIndex === step.correctIndex;
+          
+          // Get "why wrong" explanation for the selected wrong choice
+          const whyWrong = !isCorrect && step.whyWrongByChoice?.[answer.selectedIndex]
+            ? step.whyWrongByChoice[answer.selectedIndex]
+            : undefined;
+          
           return {
             isCorrect,
             feedback: {
               correct: isCorrect,
-              message: isCorrect ? 'Correct!' : 'Not quite',
+              message: isCorrect ? 'Correct!' : 'Not quite right',
               correctAnswer: isCorrect
                 ? undefined
                 : step.choices[step.correctIndex],
               explanation: step.explanation,
+              whyWrong,
+              grammarTip: step.grammarTip,
             },
           };
         }
@@ -251,9 +260,33 @@ export function useLessonRunner(
           );
 
           // Generate feedback message based on analysis
-          let message = validation.isCorrect ? 'Correct!' : 'Not quite';
+          let message = validation.isCorrect ? 'Correct!' : 'Not quite right';
           if (!validation.isCorrect && validation.analysis?.mistakeType) {
             message = validation.feedbackHint || message;
+          }
+          
+          // Check for common mistakes and get specific "why wrong" explanation
+          let whyWrong: string | undefined;
+          if (!validation.isCorrect && step.commonMistakes?.length) {
+            const userAnswerLower = answer.answer.toLowerCase().trim();
+            const matchingMistake = step.commonMistakes.find(
+              m => m.mistake.toLowerCase().trim() === userAnswerLower
+            );
+            if (matchingMistake) {
+              whyWrong = matchingMistake.whyWrong;
+            }
+          }
+          
+          // If no specific mistake matched but we have validation analysis, generate a hint
+          if (!validation.isCorrect && !whyWrong && validation.analysis?.mistakeType) {
+            const mistakeType = validation.analysis.mistakeType;
+            if (mistakeType === 'case') {
+              whyWrong = 'Check your capitalization - Macedonian has specific rules for capital letters.';
+            } else if (mistakeType === 'diacritic') {
+              whyWrong = 'Pay attention to special characters like ќ, ѓ, џ, љ, њ.';
+            } else if (mistakeType === 'partial') {
+              whyWrong = 'You\'re close! Check the ending of the word.';
+            }
           }
 
           return {
@@ -263,6 +296,8 @@ export function useLessonRunner(
               message,
               correctAnswer: validation.isCorrect ? undefined : step.correctAnswer,
               explanation: step.explanation,
+              whyWrong,
+              grammarTip: step.grammarTip,
             },
           };
         }
@@ -423,6 +458,14 @@ export function useLessonRunner(
           (prev) => new Map(prev).set(currentStep.id, validation.feedback)
         );
         setShowFeedback(true);
+        
+        // Track exercise feedback for learning effectiveness measurement
+        trackEvent(AnalyticsEvents.EXERCISE_FEEDBACK_SHOWN, {
+          isCorrect: validation.isCorrect,
+          hasWhyWrong: !!validation.feedback.whyWrong,
+          hasGrammarTip: !!validation.feedback.grammarTip,
+          exerciseType: currentStep.type,
+        });
 
         // Auto-save progress if enabled (with step-level data for resume)
         if (autoSave && lessonId) {

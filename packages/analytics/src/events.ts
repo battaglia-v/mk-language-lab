@@ -22,6 +22,20 @@ export const AnalyticsEvents = {
   SIGNIN_INITIATED: 'signin_initiated',
   SIGNIN_SUCCESS: 'signin_success',
   SIGNIN_FAILED: 'signin_failed',
+  
+  // Phase 1 Learning Effectiveness Events
+  EXERCISE_FEEDBACK_SHOWN: 'exercise_feedback_shown',
+  EXERCISE_REPEAT_ATTEMPT: 'exercise_repeat_attempt',
+  STREAK_FREEZE_USED: 'streak_freeze_used',
+  STREAK_FREEZE_AVAILABLE: 'streak_freeze_available',
+  SESSION_SUMMARY_REVIEW_CLICK: 'session_summary_review_click',
+  CULTURE_TIP_VIEWED: 'culture_tip_viewed',
+  REGISTER_BADGE_INTERACTION: 'register_badge_interaction',
+  
+  // Phase 2 Grammar Performance Events
+  GRAMMAR_PERFORMANCE_UPDATED: 'grammar_performance_updated',
+  WEAK_TOPICS_VIEWED: 'weak_topics_viewed',
+  WEAK_TOPIC_PRACTICE_STARTED: 'weak_topic_practice_started',
 } as const;
 
 export type AnalyticsEvent = (typeof AnalyticsEvents)[keyof typeof AnalyticsEvents];

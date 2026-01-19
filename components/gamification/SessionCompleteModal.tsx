@@ -20,8 +20,21 @@ import { cn } from '@/lib/utils';
 import { modalBackdrop, fadeInUp } from '@/lib/animations';
 import { Button } from '@/components/ui/button';
 import { useReducedMotion } from '@/hooks/use-reduced-motion';
+import { trackEvent, AnalyticsEvents } from '@/lib/analytics';
 import { useFocusTrap } from '@/hooks/use-focus-trap';
 import { ProgressRing } from './ProgressRing';
+
+/** Word learning summary for session complete */
+export interface WordLearningSummary {
+  /** Total words practiced in this session */
+  wordsPracticed: number;
+  /** Words answered correctly (mastered this session) */
+  wordsMastered: number;
+  /** Words that need more practice */
+  wordsToReview: number;
+  /** Optional: specific words to review */
+  reviewWordsList?: Array<{ mk: string; en: string }>;
+}
 
 interface SessionCompleteModalProps {
   open: boolean;
@@ -36,22 +49,33 @@ interface SessionCompleteModalProps {
   streak: number;
   /** Whether this session extended the streak */
   streakExtended?: boolean;
+  /** Whether streak was saved by freeze today */
+  streakSavedByFreeze?: boolean;
   /** Show confetti animation */
   showConfetti?: boolean;
   /** Callback for "Keep Going" button */
   onKeepGoing: () => void;
   /** Callback for "Done for Today" button */
   onDone: () => void;
+  /** Word learning summary (optional) */
+  wordSummary?: WordLearningSummary;
+  /** Link to review weak words */
+  reviewWordsHref?: string;
   /** Translations */
   t?: {
     sessionComplete?: string;
     xpEarned?: string;
     dayStreak?: string;
     streakExtended?: string;
+    streakSaved?: string;
     dailyProgress?: string;
     goalComplete?: string;
     keepGoing?: string;
     doneForToday?: string;
+    wordsPracticed?: string;
+    wordsMastered?: string;
+    wordsToReview?: string;
+    reviewNow?: string;
   };
 }
 
@@ -161,9 +185,12 @@ export function SessionCompleteModal({
   dailyGoalXP,
   streak,
   streakExtended = false,
+  streakSavedByFreeze = false,
   showConfetti = true,
   onKeepGoing,
   onDone,
+  wordSummary,
+  reviewWordsHref,
   t = {},
 }: SessionCompleteModalProps) {
   const prefersReducedMotion = useReducedMotion();
@@ -176,10 +203,15 @@ export function SessionCompleteModal({
     xpEarned: t.xpEarned || 'XP Earned',
     dayStreak: t.dayStreak || 'Day Streak',
     streakExtended: t.streakExtended || 'Streak extended!',
+    streakSaved: t.streakSaved || '🛡️ Streak freeze used!',
     dailyProgress: t.dailyProgress || 'Daily Progress',
     goalComplete: t.goalComplete || 'Goal Complete!',
     keepGoing: t.keepGoing || 'Keep Going',
     doneForToday: t.doneForToday || 'Done for Today',
+    wordsPracticed: t.wordsPracticed || 'Words Practiced',
+    wordsMastered: t.wordsMastered || 'Mastered',
+    wordsToReview: t.wordsToReview || 'To Review',
+    reviewNow: t.reviewNow || 'Review Now',
   };
 
   // Calculate daily progress percentage
@@ -356,6 +388,16 @@ export function SessionCompleteModal({
                       {translations.streakExtended}
                     </motion.span>
                   )}
+                  {streakSavedByFreeze && !streakExtended && (
+                    <motion.span
+                      initial={prefersReducedMotion ? {} : { opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.6 }}
+                      className="mt-1 text-xs font-medium text-blue-500"
+                    >
+                      {translations.streakSaved}
+                    </motion.span>
+                  )}
                 </div>
 
                 {/* Divider */}
@@ -369,6 +411,59 @@ export function SessionCompleteModal({
                   <span className="text-xs text-muted-foreground">{translations.dailyProgress}</span>
                 </div>
               </motion.div>
+
+              {/* Word Learning Summary */}
+              {wordSummary && (
+                <motion.div
+                  initial={prefersReducedMotion ? {} : { opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.45 }}
+                  className="mb-6 w-full rounded-xl border border-border/50 bg-muted/30 p-4"
+                >
+                  <h3 className="mb-3 text-sm font-semibold text-foreground flex items-center gap-2">
+                    <span>📚</span>
+                    {translations.wordsPracticed}
+                  </h3>
+                  <div className="grid grid-cols-3 gap-3 text-center">
+                    {/* Words Practiced */}
+                    <div>
+                      <span className="block text-xl font-bold text-foreground">
+                        {wordSummary.wordsPracticed}
+                      </span>
+                      <span className="text-xs text-muted-foreground">Practiced</span>
+                    </div>
+                    {/* Words Mastered */}
+                    <div>
+                      <span className="block text-xl font-bold text-green-500">
+                        {wordSummary.wordsMastered}
+                      </span>
+                      <span className="text-xs text-muted-foreground">{translations.wordsMastered}</span>
+                    </div>
+                    {/* Words to Review */}
+                    <div>
+                      <span className="block text-xl font-bold text-amber-500">
+                        {wordSummary.wordsToReview}
+                      </span>
+                      <span className="text-xs text-muted-foreground">{translations.wordsToReview}</span>
+                    </div>
+                  </div>
+                  {/* Review link (if words need review and href provided) */}
+                  {wordSummary.wordsToReview > 0 && reviewWordsHref && (
+                    <a
+                      href={reviewWordsHref}
+                      onClick={() => {
+                        trackEvent(AnalyticsEvents.SESSION_SUMMARY_REVIEW_CLICK, {
+                          wordsToReview: wordSummary.wordsToReview,
+                        });
+                      }}
+                      className="mt-3 flex items-center justify-center gap-1 text-sm font-medium text-primary hover:underline"
+                    >
+                      {translations.reviewNow}
+                      <ArrowRight className="h-4 w-4" />
+                    </a>
+                  )}
+                </motion.div>
+              )}
 
               {/* Action Buttons */}
               <motion.div

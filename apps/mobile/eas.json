@@ -20,10 +20,12 @@
     "preview": {
       "distribution": "internal",
       "android": {
-        "buildType": "apk"
+        "buildType": "apk",
+        "credentialsSource": "local"
       },
       "env": {
-        "EXPO_PUBLIC_API_BASE_URL": "https://mk-language-lab.vercel.app"
+        "EXPO_PUBLIC_API_BASE_URL": "https://mk-language-lab.vercel.app",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "153619068911-vgikcbunfs06937met4f4iq7uoptmjeh.apps.googleusercontent.com"
       }
     },
     "production": {

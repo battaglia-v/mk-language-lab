@@ -335,9 +335,20 @@ export default function PracticeScreen() {
           
           {savedPhrases.length === 0 ? (
             <View style={styles.savedEmpty}>
+              <View style={styles.savedEmptyIconContainer}>
+                <Bookmark size={32} color="rgba(236,72,153,0.5)" />
+              </View>
+              <Text style={styles.savedEmptyTitle}>No Saved Words Yet</Text>
               <Text style={styles.savedEmptyText}>
-                Save words while reading or translating to practice them here
+                Tap any word while reading or translating to save it here for practice.
               </Text>
+              <TouchableOpacity
+                style={styles.savedEmptyAction}
+                onPress={() => router.push('/(tabs)/reader')}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.savedEmptyActionText}>Start Reading</Text>
+              </TouchableOpacity>
             </View>
           ) : (
             <TouchableOpacity
@@ -541,18 +552,44 @@ const styles = StyleSheet.create({
   },
   savedEmpty: {
     backgroundColor: '#0b0b12',
-    borderWidth: 2,
-    borderStyle: 'dashed',
-    borderColor: '#222536',
-    borderRadius: 12,
-    padding: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(236,72,153,0.2)',
+    borderRadius: 16,
+    padding: 24,
     alignItems: 'center',
+  },
+  savedEmptyIconContainer: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: 'rgba(236,72,153,0.1)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
+  },
+  savedEmptyTitle: {
+    fontSize: 17,
+    fontWeight: '600',
+    color: '#f7f8fb',
+    marginBottom: 8,
   },
   savedEmptyText: {
     fontSize: 14,
     color: 'rgba(247,248,251,0.5)',
     textAlign: 'center',
     lineHeight: 20,
+    marginBottom: 16,
+  },
+  savedEmptyAction: {
+    backgroundColor: 'rgba(236,72,153,0.15)',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 10,
+  },
+  savedEmptyActionText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#ec4899',
   },
   savedCard: {
     flexDirection: 'row',

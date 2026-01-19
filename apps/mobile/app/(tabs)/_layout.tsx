@@ -1,6 +1,7 @@
 import { Tabs } from 'expo-router';
 import { Home, Languages, Sparkles, BookOpen, FolderOpen } from 'lucide-react-native';
 import { useTranslations } from '../../lib/i18n';
+import { haptic } from '../../lib/haptics';
 
 /**
  * Tab Layout - Matches PWA's shellNavItems order
@@ -30,6 +31,12 @@ export default function TabLayout() {
         tabBarLabelStyle: {
           fontSize: 11,
           fontWeight: '600',
+        },
+      }}
+      screenListeners={{
+        tabPress: () => {
+          // Trigger haptic feedback on tab press
+          haptic.selection();
         },
       }}
     >

@@ -266,16 +266,26 @@ export function AnswerArea({
 
 /**
  * FeedbackBanner - Shows correct/incorrect feedback with animation
+ * 
+ * Enhanced with "Why This Is Wrong" explanations for better learning.
+ * Shows contextual grammar tips and keeps feedback beginner-friendly.
  */
 export function FeedbackBanner({
   isCorrect,
   correctAnswer,
   explanation,
+  whyWrong,
+  grammarTip,
   className,
 }: {
   isCorrect: boolean;
   correctAnswer?: string;
+  /** User-friendly explanation of the correct answer */
   explanation?: string;
+  /** Specific reason WHY the user's answer was wrong (shown for incorrect) */
+  whyWrong?: string;
+  /** Optional grammar tip related to this exercise */
+  grammarTip?: string;
   className?: string;
 }) {
   // Check for reduced motion preference
@@ -295,30 +305,57 @@ export function FeedbackBanner({
     <div
       {...animation}
       className={cn(
-        'mt-4 rounded-xl border-2 p-4',
+        'mt-4 rounded-xl border-2 p-4 space-y-2',
         isCorrect
           ? 'border-green-500/50 bg-green-500/10'
-          : 'border-red-500/50 bg-red-500/10',
+          : 'border-amber-500/50 bg-amber-500/10',
         className
       )}
+      role="alert"
+      aria-live="polite"
     >
+      {/* Header: Correct/Incorrect */}
       <p
         className={cn(
           'text-sm font-semibold',
-          isCorrect ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
+          isCorrect ? 'text-green-600 dark:text-green-400' : 'text-amber-600 dark:text-amber-400'
         )}
       >
-        {isCorrect ? '✓ Correct!' : '✗ Not quite'}
+        {isCorrect ? '✓ Correct!' : '✗ Not quite right'}
       </p>
 
+      {/* Show correct answer for incorrect responses */}
       {!isCorrect && correctAnswer && (
-        <p className="mt-1 text-sm text-muted-foreground">
-          Correct answer: <strong className="text-foreground">{correctAnswer}</strong>
+        <p className="text-sm text-foreground">
+          <span className="text-muted-foreground">Correct answer: </span>
+          <strong>{correctAnswer}</strong>
         </p>
       )}
 
+      {/* WHY it's wrong - most important for learning */}
+      {!isCorrect && whyWrong && (
+        <div className="pt-1 border-t border-amber-500/20">
+          <p className="text-sm text-foreground">
+            <span className="font-medium text-amber-600 dark:text-amber-400">Why? </span>
+            {whyWrong}
+          </p>
+        </div>
+      )}
+
+      {/* General explanation (for both correct and incorrect) */}
       {explanation && (
-        <p className="mt-2 text-sm text-muted-foreground">{explanation}</p>
+        <p className="text-sm text-muted-foreground">{explanation}</p>
+      )}
+
+      {/* Grammar tip - subtle educational nudge */}
+      {grammarTip && (
+        <div className={cn(
+          'mt-2 pt-2 border-t text-xs',
+          isCorrect ? 'border-green-500/20' : 'border-amber-500/20'
+        )}>
+          <span className="font-medium text-muted-foreground">💡 Tip: </span>
+          <span className="text-muted-foreground">{grammarTip}</span>
+        </div>
       )}
     </div>
   );

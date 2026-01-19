@@ -6,9 +6,22 @@ import { createScopedLogger } from '@/lib/logger';
 
 const log = createScopedLogger('api.mobile.auth.google');
 
-const GOOGLE_CLIENT_ID = process.env.AUTH_GOOGLE_ID || process.env.GOOGLE_CLIENT_ID;
+// All valid Google Client IDs that can issue tokens
+// Web client ID is used by both web app and native SDK for token exchange
+const GOOGLE_WEB_CLIENT_ID = process.env.AUTH_GOOGLE_ID || process.env.GOOGLE_CLIENT_ID;
+// Android client ID - tokens from native Android SDK
+const GOOGLE_ANDROID_CLIENT_ID = process.env.GOOGLE_ANDROID_CLIENT_ID;
+// iOS client ID - tokens from native iOS SDK
+const GOOGLE_IOS_CLIENT_ID = process.env.GOOGLE_IOS_CLIENT_ID;
 
-const client = new OAuth2Client(GOOGLE_CLIENT_ID);
+// Accept tokens from any of our client IDs
+const VALID_AUDIENCES = [
+  GOOGLE_WEB_CLIENT_ID,
+  GOOGLE_ANDROID_CLIENT_ID,
+  GOOGLE_IOS_CLIENT_ID,
+].filter(Boolean) as string[];
+
+const client = new OAuth2Client();
 
 /**
  * POST /api/mobile/auth/google
@@ -21,6 +34,8 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { idToken } = body;
 
+    log.info('Google auth request received', { hasToken: !!idToken });
+
     if (!idToken) {
       return NextResponse.json(
         { error: 'ID token is required' },
@@ -28,26 +43,29 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!GOOGLE_CLIENT_ID) {
-      log.error('Google Client ID not configured');
+    if (VALID_AUDIENCES.length === 0) {
+      log.error('No Google Client IDs configured');
       return NextResponse.json(
         { error: 'Google authentication not configured' },
         { status: 500 }
       );
     }
 
-    // Verify the ID token with Google
+    log.info('Verifying token with audiences', { audiences: VALID_AUDIENCES });
+
+    // Verify the ID token with Google - accept any of our client IDs as audience
     let payload;
     try {
       const ticket = await client.verifyIdToken({
         idToken,
-        audience: GOOGLE_CLIENT_ID,
+        audience: VALID_AUDIENCES,
       });
       payload = ticket.getPayload();
+      log.info('Token verified successfully', { email: payload?.email });
     } catch (verifyError) {
       log.error('Failed to verify Google token', { error: verifyError });
       return NextResponse.json(
-        { error: 'Invalid Google token' },
+        { error: 'Invalid Google token. Please try again.' },
         { status: 401 }
       );
     }

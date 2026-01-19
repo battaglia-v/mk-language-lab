@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, BookOpen, RotateCcw } from 'lucide-react';
+import { ArrowRight, BookOpen, RotateCcw, Sparkles, Target } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -16,6 +16,12 @@ interface NextLessonCTAProps {
     lessonNumber: number;
     lessonTitle: string;
     progress: number; // 0-100
+    /** What the user will learn in this lesson (outcome-focused) */
+    learningOutcome?: string;
+    /** Number of new vocabulary words in this lesson */
+    vocabularyCount?: number;
+    /** Main grammar topic (if any) */
+    grammarTopic?: string;
   };
   /** Number of cards due for review */
   reviewCardsDue?: number;
@@ -29,6 +35,10 @@ interface NextLessonCTAProps {
     pickUpWhereLeft: string;
     reviewDue: string;
     lessonProgress: string;
+    /** "Today You'll Learn" header */
+    todayYouWillLearn?: string;
+    /** New words label */
+    newWords?: string;
   };
   /** Additional class name */
   className?: string;
@@ -39,6 +49,9 @@ interface NextLessonCTAProps {
  * 
  * Shows either "Start Learning" for new users or "Continue Lesson"
  * with progress for returning users. Also shows review reminder.
+ * 
+ * Enhanced with "Today You'll Learn" daily focus to show specific
+ * learning outcomes (not just generic "continue learning").
  */
 export function NextLessonCTA({
   hasStartedLearning,
@@ -49,6 +62,7 @@ export function NextLessonCTA({
   className,
 }: NextLessonCTAProps) {
   const showReviewBanner = reviewCardsDue > 0;
+  const hasTodayFocus = currentLesson?.learningOutcome || currentLesson?.grammarTopic;
 
   return (
     <Card className={cn(
@@ -75,6 +89,27 @@ export function NextLessonCTA({
       </CardHeader>
 
       <CardContent className="space-y-3">
+        {/* TODAY YOU'LL LEARN - Daily Focus Section */}
+        {hasTodayFocus && (
+          <div className="rounded-xl border border-primary/30 bg-gradient-to-r from-primary/10 to-primary/5 p-3">
+            <div className="flex items-center gap-2 mb-2">
+              <Target className="h-4 w-4 text-primary" />
+              <span className="text-xs font-semibold uppercase tracking-wider text-primary">
+                {t.todayYouWillLearn || "Today You'll Learn"}
+              </span>
+            </div>
+            <p className="font-semibold text-foreground">
+              {currentLesson?.learningOutcome || currentLesson?.grammarTopic}
+            </p>
+            {currentLesson?.vocabularyCount && currentLesson.vocabularyCount > 0 && (
+              <p className="mt-1 text-sm text-muted-foreground flex items-center gap-1">
+                <Sparkles className="h-3 w-3" />
+                {currentLesson.vocabularyCount} {t.newWords || 'new words'}
+              </p>
+            )}
+          </div>
+        )}
+
         {/* Current Lesson Info */}
         {currentLesson && (
           <div className="rounded-xl border border-border/40 bg-white/5 p-3">

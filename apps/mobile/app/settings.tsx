@@ -26,6 +26,7 @@ import {
   Moon,
   Smartphone,
   LogOut,
+  HelpCircle,
 } from 'lucide-react-native';
 import { useAuthStore } from '../store/auth';
 import { clearAllExceptAuth } from '../lib/storage';
@@ -106,6 +107,10 @@ export default function SettingsScreen() {
 
   const handleTermsOfService = async () => {
     await WebBrowser.openBrowserAsync(`${WEB_BASE}/en/terms`);
+  };
+
+  const handleHelp = () => {
+    router.push('/help');
   };
 
   return (
@@ -206,6 +211,19 @@ export default function SettingsScreen() {
               onPress={handleClearCache}
               destructive
               disabled={isClearing}
+            />
+          </View>
+        </View>
+
+        {/* Support Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Support</Text>
+          <View style={styles.sectionContent}>
+            <SettingsRow
+              icon={<HelpCircle size={20} color="#f6d83b" />}
+              label="Help & FAQ"
+              onPress={handleHelp}
+              showChevron
             />
           </View>
         </View>

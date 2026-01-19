@@ -36,20 +36,30 @@ export default function SignInScreen() {
     clearError();
     trackSignInInitiated({ method: 'google' });
 
+    console.log('[SignIn] Starting Google sign-in...');
     const result = await googleSignIn();
+    console.log('[SignIn] Google result:', result.type, result.idToken ? 'has token' : 'no token');
 
     if (result.type === 'success' && result.idToken) {
       try {
+        console.log('[SignIn] Calling backend with token...');
         await signInWithGoogle(result.idToken);
+        console.log('[SignIn] Backend success, navigating...');
         trackSignInSuccess({ method: 'google' });
         router.replace('/(tabs)');
       } catch (err) {
+        console.error('[SignIn] Backend error:', err);
         trackSignInFailed({ method: 'google', error: err instanceof Error ? err.message : 'Unknown error' });
+        // Error is already set in store by signInWithGoogle
       }
     } else if (result.type === 'error') {
+      console.error('[SignIn] Google error:', result.error);
       trackSignInFailed({ method: 'google', error: result.error?.message || 'Unknown error' });
+      // Set error manually since it's from Google SDK
+      useAuthStore.setState({ error: result.error?.message || 'Google sign-in failed' });
+    } else if (result.type === 'cancel') {
+      console.log('[SignIn] User cancelled');
     }
-    // 'cancel' type - user cancelled, do nothing
   }, [isConfigured, googleSignIn, signInWithGoogle, clearError]);
 
   const handleSignIn = async () => {

@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { MessageSquare, BookOpen, GraduationCap, Dumbbell } from 'lucide-react-native';
 import type { SectionType } from '../../lib/lesson';
+import { haptic } from '../../lib/haptics';
 
 interface SectionTabsProps {
   sections: SectionType[];
@@ -16,6 +17,13 @@ const SECTION_CONFIG: Record<SectionType, { icon: typeof MessageSquare; label: s
 };
 
 export function SectionTabs({ sections, activeSection, onSectionChange }: SectionTabsProps) {
+  const handleTabPress = (section: SectionType) => {
+    if (section !== activeSection) {
+      haptic.selection();
+    }
+    onSectionChange(section);
+  };
+
   return (
     <View style={styles.container}>
       {sections.map((section) => {
@@ -27,7 +35,10 @@ export function SectionTabs({ sections, activeSection, onSectionChange }: Sectio
           <TouchableOpacity
             key={section}
             style={[styles.tab, isActive && styles.tabActive]}
-            onPress={() => onSectionChange(section)}
+            onPress={() => handleTabPress(section)}
+            accessibilityRole="tab"
+            accessibilityState={{ selected: isActive }}
+            accessibilityLabel={`${config.label} section`}
           >
             <Icon size={20} color={isActive ? '#f6d83b' : 'rgba(247,248,251,0.5)'} />
             <Text style={[styles.label, isActive && styles.labelActive]}>

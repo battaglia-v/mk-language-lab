@@ -11,7 +11,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Sparkles, BookOpen, Clock, ChevronRight } from 'lucide-react-native';
+import { Sparkles, BookOpen, Clock, ChevronRight, AlertCircle } from 'lucide-react-native';
 import { LessonCard } from '../../components/LessonCard';
 import { fetchCurriculum, CurriculumPaths, LessonPath } from '../../lib/curriculum';
 import { fetchChallengeStories, ChallengeStory } from '../../lib/reader';
@@ -20,6 +20,7 @@ import { usePullToRefresh } from '../../hooks/usePullToRefresh';
 import { WordOfTheDay } from '../../components/learn/WordOfTheDay';
 import { DailyGoalWidget } from '../../components/learn/DailyGoalWidget';
 import { WelcomeBanner } from '../../components/WelcomeBanner';
+import { haptic } from '../../lib/haptics';
 
 type Level = 'a1' | 'a2' | 'b1' | 'challenge';
 
@@ -135,7 +136,15 @@ export default function LearnScreen() {
               level === 'challenge' && styles.tabChallenge,
               level === 'challenge' && activeLevel === level && styles.tabChallengeActive,
             ]}
-            onPress={() => setActiveLevel(level)}
+            onPress={() => {
+              if (level !== activeLevel) {
+                haptic.selection();
+              }
+              setActiveLevel(level);
+            }}
+            accessibilityRole="tab"
+            accessibilityState={{ selected: activeLevel === level }}
+            accessibilityLabel={`${LEVEL_LABELS[level].title} ${LEVEL_LABELS[level].subtitle}`}
           >
             {level === 'challenge' && <Sparkles size={14} color={activeLevel === level ? '#a855f7' : 'rgba(168,85,247,0.6)'} />}
             <Text style={[
@@ -222,7 +231,19 @@ export default function LearnScreen() {
 
         {error ? (
           <View style={styles.errorContainer}>
+            <AlertCircle size={24} color="#ff7878" style={{ marginBottom: 8 }} />
             <Text style={styles.errorText}>{error}</Text>
+            <TouchableOpacity 
+              style={styles.retryButton} 
+              onPress={() => {
+                haptic.light();
+                loadData();
+              }}
+              accessibilityRole="button"
+              accessibilityLabel="Retry loading curriculum"
+            >
+              <Text style={styles.retryButtonText}>Tap to retry</Text>
+            </TouchableOpacity>
           </View>
         ) : activeLevel === 'challenge' ? (
           // Challenge Stories
@@ -372,13 +393,29 @@ const styles = StyleSheet.create({
     paddingBottom: 32,
   },
   errorContainer: {
-    backgroundColor: 'rgba(255,120,120,0.2)',
-    padding: 16,
-    borderRadius: 12,
+    backgroundColor: 'rgba(255,120,120,0.1)',
+    padding: 24,
+    borderRadius: 16,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255,120,120,0.3)',
   },
   errorText: {
     color: '#ff7878',
     textAlign: 'center',
+    fontSize: 15,
+    marginBottom: 16,
+  },
+  retryButton: {
+    backgroundColor: 'rgba(255,120,120,0.2)',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 8,
+  },
+  retryButtonText: {
+    color: '#ff7878',
+    fontWeight: '600',
+    fontSize: 14,
   },
   // Challenge styles
   challengeHeader: {

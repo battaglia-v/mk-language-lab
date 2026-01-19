@@ -23,6 +23,10 @@ export type StepType =
 export interface BaseStep {
   id: string;
   type: StepType;
+  /** Grammar topic this exercise tests (for performance tracking) */
+  grammarTopic?: string;
+  /** Difficulty level for adaptive learning */
+  difficulty?: 'easy' | 'medium' | 'hard';
 }
 
 // ============================================================================
@@ -62,7 +66,12 @@ export interface MultipleChoiceStep extends BaseStep {
   promptAudio?: string; // Optional audio URL for the prompt
   choices: string[];
   correctIndex: number;
+  /** General explanation (shown for correct/incorrect) */
   explanation?: string;
+  /** Specific explanations for WHY each wrong choice is wrong */
+  whyWrongByChoice?: string[];
+  /** Grammar tip related to this question */
+  grammarTip?: string;
   translationHint?: string; // Optional hint shown before checking
 }
 
@@ -76,7 +85,15 @@ export interface FillBlankStep extends BaseStep {
   promptAudio?: string;
   correctAnswer: string;
   acceptableAnswers?: string[]; // Alternative acceptable answers
+  /** General explanation (shown for correct/incorrect) */
   explanation?: string;
+  /** Common mistakes and why they're wrong */
+  commonMistakes?: Array<{
+    mistake: string;
+    whyWrong: string;
+  }>;
+  /** Grammar tip related to this question */
+  grammarTip?: string;
   caseSensitive?: boolean;
   placeholder?: string;
   wordBank?: string[];
@@ -179,12 +196,19 @@ export type Step =
 
 /**
  * Feedback for a submitted answer
+ * 
+ * Enhanced with "Why This Is Wrong" explanations for better learning.
  */
 export interface StepFeedback {
   correct: boolean;
   message?: string;
   correctAnswer?: string;
+  /** General explanation of the answer */
   explanation?: string;
+  /** Specific reason WHY the answer was wrong (learning-focused) */
+  whyWrong?: string;
+  /** Optional grammar tip related to this exercise */
+  grammarTip?: string;
 }
 
 /**
