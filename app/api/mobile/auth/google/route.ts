@@ -63,7 +63,13 @@ export async function POST(request: NextRequest) {
       payload = ticket.getPayload();
       log.info('Token verified successfully', { email: payload?.email });
     } catch (verifyError) {
-      log.error('Failed to verify Google token', { error: verifyError });
+      // Don't log expected validation errors to Sentry - these are user errors, not bugs
+      const errorMessage = verifyError instanceof Error ? verifyError.message : 'Unknown error';
+      log.warn('Google token verification failed (expected for invalid tokens)', { 
+        error: errorMessage,
+        // Don't log the full token for security
+        tokenPreview: idToken.substring(0, 20) + '...',
+      });
       return NextResponse.json(
         { error: 'Invalid Google token. Please try again.' },
         { status: 401 }
