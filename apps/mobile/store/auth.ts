@@ -103,8 +103,9 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     set({ error: null });
 
     try {
+      // Use dedicated mobile Google auth endpoint
       const response = await fetch(
-        `${getApiBaseUrl()}/api/auth/callback/google`,
+        `${getApiBaseUrl()}/api/mobile/auth/google`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -113,7 +114,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       );
 
       if (!response.ok) {
-        throw new Error('Google sign-in failed');
+        const data = await response.json().catch(() => ({}));
+        throw new Error(data.error || 'Google sign-in failed');
       }
 
       const data = (await response.json()) as AuthResponse;
