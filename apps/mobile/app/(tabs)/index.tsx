@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import {
   View,
   Text,
@@ -12,17 +12,72 @@ import { router } from 'expo-router';
 import { useAuthStore } from '../../store/auth';
 import { fetchProgress, UserProgress } from '../../lib/progress';
 import { BookOpen, Flame, Zap } from 'lucide-react-native';
+import { WeeklyProgressCard } from '../../components/gamification/WeeklyProgressCard';
+import { StreakRecoveryCard } from '../../components/gamification/StreakRecoveryCard';
+import { MilestoneCelebration } from '../../components/gamification/MilestoneCelebration';
+import { 
+  getGamificationSummary, 
+  isStreakFreezeAvailable,
+  type GamificationSummary,
+} from '../../lib/gamification';
+import { 
+  checkNewMilestones, 
+  getEarnedMilestones,
+  saveEarnedMilestones,
+  type Milestone,
+} from '../../lib/milestones';
 
 export default function HomeScreen() {
   const { user } = useAuthStore();
   const [progress, setProgress] = useState<UserProgress | null>(null);
+  const [gamification, setGamification] = useState<GamificationSummary | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [pendingMilestone, setPendingMilestone] = useState<Milestone | null>(null);
+  const [streakState, setStreakState] = useState<'protected' | 'lost' | 'at-risk' | 'freeze-ready' | 'healthy'>('healthy');
 
   const loadProgress = async () => {
     try {
-      const data = await fetchProgress();
-      setProgress(data);
+      const [progressData, gamificationData, earnedIds] = await Promise.all([
+        fetchProgress(),
+        getGamificationSummary(),
+        getEarnedMilestones(),
+      ]);
+      setProgress(progressData);
+      setGamification(gamificationData);
+
+      // Determine streak state
+      if (gamificationData.streakSavedByFreeze) {
+        setStreakState('protected');
+      } else if (gamificationData.isGoalComplete) {
+        setStreakState('healthy');
+      } else if (gamificationData.currentStreak > 0 && gamificationData.todayXP === 0) {
+        setStreakState('at-risk');
+      } else if (gamificationData.streakFreezeAvailable && gamificationData.currentStreak >= 2) {
+        setStreakState('freeze-ready');
+      } else {
+        setStreakState('healthy');
+      }
+
+      // Check for new milestones
+      const newMilestones = checkNewMilestones({
+        totalXP: gamificationData.totalXP,
+        currentStreak: gamificationData.currentStreak,
+        longestStreak: gamificationData.longestStreak,
+        wordsLearned: 0, // TODO: fetch from server
+        lessonsCompleted: progressData.lessonsCompleted,
+        grammarTopicsMastered: 0, // TODO: fetch from server
+        readersCompleted: 0, // TODO: fetch from server
+        perfectLessons: 0, // TODO: fetch from server
+        weeklyGoalStreak: 0, // TODO: fetch from server
+      }, earnedIds);
+
+      if (newMilestones.length > 0) {
+        const updatedIds = new Set(earnedIds);
+        newMilestones.forEach(m => updatedIds.add(m.id));
+        await saveEarnedMilestones(updatedIds);
+        setPendingMilestone(newMilestones[0]);
+      }
     } catch (error) {
       console.error('Failed to load progress:', error);
       // Use mock data for development
@@ -53,6 +108,14 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* Milestone Celebration Modal */}
+      {pendingMilestone && (
+        <MilestoneCelebration
+          milestone={pendingMilestone}
+          onClose={() => setPendingMilestone(null)}
+        />
+      )}
+
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
@@ -64,6 +127,18 @@ export default function HomeScreen() {
           />
         }
       >
+        {/* Streak Recovery Card */}
+        {streakState !== 'healthy' && gamification && (
+          <View style={styles.streakRecoveryContainer}>
+            <StreakRecoveryCard
+              state={streakState}
+              streak={gamification.currentStreak}
+              freezeAvailable={gamification.streakFreezeAvailable}
+              onStartPractice={() => router.push('/learn')}
+            />
+          </View>
+        )}
+
         {/* Header */}
         <View style={styles.header}>
           <Text style={styles.welcomeText}>Welcome back,</Text>
@@ -78,14 +153,14 @@ export default function HomeScreen() {
                 <Flame size={16} color="#f6d83b" />
                 <Text style={styles.statLabel}>Streak</Text>
               </View>
-              <Text style={styles.statValue}>{progress.streak}</Text>
+              <Text style={styles.statValue}>{gamification?.currentStreak || progress.streak}</Text>
             </View>
             <View style={styles.statCard}>
               <View style={styles.statHeader}>
                 <Zap size={16} color="#f6d83b" />
                 <Text style={styles.statLabel}>XP</Text>
               </View>
-              <Text style={styles.statValue}>{progress.xp}</Text>
+              <Text style={styles.statValue}>{gamification?.totalXP || progress.xp}</Text>
             </View>
             <View style={styles.statCard}>
               <View style={styles.statHeader}>
@@ -94,6 +169,19 @@ export default function HomeScreen() {
               </View>
               <Text style={styles.statValue}>{progress.currentLevel}</Text>
             </View>
+          </View>
+        )}
+
+        {/* Weekly Progress Card */}
+        {gamification && (
+          <View style={styles.weeklyProgressContainer}>
+            <WeeklyProgressCard
+              weeklyXP={gamification.todayXP}
+              weeklyGoal={gamification.dailyGoal * 7}
+              streak={gamification.currentStreak}
+              daysActive={gamification.isGoalComplete ? 1 : 0}
+              compact
+            />
           </View>
         )}
 
@@ -180,6 +268,12 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     padding: 24,
+  },
+  streakRecoveryContainer: {
+    marginBottom: 16,
+  },
+  weeklyProgressContainer: {
+    marginBottom: 24,
   },
   header: {
     marginBottom: 32,

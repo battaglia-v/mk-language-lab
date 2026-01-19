@@ -8,10 +8,14 @@ import { Zap, Play, BookOpen, ChevronRight, Check, GraduationCap, Sparkles } fro
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
-import { getLocalXP } from '@/lib/gamification/local-xp';
+import { getLocalXP, isStreakFreezeAvailable } from '@/lib/gamification/local-xp';
 import { getNextNode } from '@/lib/learn/lesson-path-types';
 import { FocusAreasCard } from '@/components/dashboard/FocusAreasCard';
+import { WeeklyProgressCard } from '@/components/gamification/WeeklyProgressCard';
+import { StreakRecoveryCard } from '@/components/gamification/StreakRecoveryCard';
+import { MilestoneCelebration } from '@/components/gamification/MilestoneCelebration';
 import { useAppConfig } from '@/hooks/use-app-config';
+import { useMilestones } from '@/hooks/useMilestones';
 import type { LessonPath as LessonPathData, LessonNode } from '@/lib/learn/lesson-path-types';
 
 type LevelId = 'beginner' | 'intermediate' | 'advanced' | 'challenge';
@@ -49,14 +53,39 @@ export function LearnPageClient({
   const searchParams = useSearchParams();
   const router = useRouter();
   const { config } = useAppConfig();
+  const { pendingCelebration, dismissCelebration, checkMilestones } = useMilestones();
+  
   // Use local XP state for real-time updates
-  const [localState, setLocalState] = useState({ todayXP: initialTodayXP, streak: initialStreak });
+  const [localState, setLocalState] = useState({ 
+    todayXP: initialTodayXP, 
+    streak: initialStreak,
+    streakSavedByFreeze: false,
+    freezeAvailable: false,
+  });
   const [activeLevel, setActiveLevel] = useState<LevelId>('beginner');
   const [alphabetCompleted, setAlphabetCompleted] = useState(false);
 
   useEffect(() => {
     const state = getLocalXP();
-    setLocalState({ todayXP: state.todayXP, streak: state.streak });
+    setLocalState({ 
+      todayXP: state.todayXP, 
+      streak: state.streak,
+      streakSavedByFreeze: state.streakSavedByFreeze || false,
+      freezeAvailable: isStreakFreezeAvailable(state),
+    });
+
+    // Check for milestones
+    checkMilestones({
+      totalXP: state.todayXP, // This should come from server for accurate total
+      currentStreak: state.streak,
+      longestStreak: state.streak, // Should come from server
+      wordsLearned: 0, // Should come from server
+      lessonsCompleted: journeyProgress?.completedCount || 0,
+      grammarTopicsMastered: 0, // Should come from server
+      readersCompleted: 0, // Should come from server
+      perfectLessons: 0, // Should come from server
+      weeklyGoalStreak: 0, // Should come from server
+    });
 
     // Check alphabet completion from localStorage
     try {
@@ -70,7 +99,7 @@ export function LearnPageClient({
     } catch {
       // Ignore storage errors
     }
-  }, []);
+  }, [checkMilestones, journeyProgress?.completedCount]);
 
   useEffect(() => {
     const validLevels: LevelId[] = ['beginner', 'intermediate', 'advanced', 'challenge'];
@@ -109,6 +138,17 @@ export function LearnPageClient({
   const streak = Math.max(localState.streak, initialStreak);
   const goalProgress = dailyGoalXP > 0 ? Math.min(100, Math.round((todayXP / dailyGoalXP) * 100)) : 0;
   const isGoalComplete = todayXP >= dailyGoalXP;
+  
+  // Determine streak state for StreakRecoveryCard
+  const getStreakState = (): 'protected' | 'lost' | 'at-risk' | 'freeze-ready' | 'healthy' => {
+    if (localState.streakSavedByFreeze) return 'protected';
+    if (isGoalComplete) return 'healthy';
+    if (streak === 0 && initialStreak > 0) return 'lost';
+    if (streak > 0 && todayXP === 0) return 'at-risk';
+    if (localState.freezeAvailable && streak >= 2) return 'freeze-ready';
+    return 'healthy';
+  };
+  const streakState = getStreakState();
 
   // Update A1 path with alphabet completion status from localStorage
   const a1PathWithAlphabet = useMemo((): LessonPathData => {
@@ -187,8 +227,27 @@ export function LearnPageClient({
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-4rem)]">
+      {/* Milestone Celebration Modal */}
+      {pendingCelebration && (
+        <MilestoneCelebration
+          milestone={pendingCelebration}
+          onClose={dismissCelebration}
+        />
+      )}
+
       {/* Main Content - Full width, no extra padding (AppShell handles it) */}
       <div className="flex-1 space-y-6">
+          {/* Streak Recovery Card - Show when relevant */}
+          {streakState !== 'healthy' && (
+            <StreakRecoveryCard
+              state={streakState}
+              streak={streak}
+              previousStreak={initialStreak}
+              freezeAvailable={localState.freezeAvailable}
+              onStartPractice={() => router.push(ctaHref)}
+            />
+          )}
+
           {/* Hero Section */}
           <div className="text-center space-y-2">
             <h1 className="text-2xl font-bold text-foreground">
@@ -234,6 +293,15 @@ export function LearnPageClient({
           {config.focusAreasEnabled && (
             <FocusAreasCard autoFetch className="mx-0" />
           )}
+
+          {/* Weekly Progress Card */}
+          <WeeklyProgressCard
+            weeklyXP={todayXP} // TODO: Replace with actual weekly XP from server
+            weeklyGoal={dailyGoalXP * 7}
+            streak={streak}
+            daysActive={isGoalComplete ? 1 : 0} // TODO: Replace with actual days from server
+            compact
+          />
 
           {/* Primary CTA - Start or Continue */}
           <div
