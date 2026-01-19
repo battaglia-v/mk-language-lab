@@ -47,13 +47,17 @@ export interface UseGoogleAuthResult {
  * Custom hook for Google authentication.
  * Always calls useAuthRequest (to satisfy React rules of hooks),
  * but returns disabled state if not configured.
+ * 
+ * IMPORTANT: We only use webClientId to force the web-based OAuth flow.
+ * Passing androidClientId/iosClientId would trigger native SDK flow
+ * which requires additional configuration in Google Cloud Console.
  */
 export function useGoogleAuth(): UseGoogleAuthResult {
   // Always call the hook (React rules of hooks requirement)
+  // Only use webClientId to force web-based OAuth flow via browser
   const [request, response, promptAsync] = Google.useAuthRequest({
-    androidClientId: GOOGLE_ANDROID_CLIENT_ID,
-    iosClientId: GOOGLE_IOS_CLIENT_ID,
     webClientId: GOOGLE_WEB_CLIENT_ID,
+    // Don't pass androidClientId/iosClientId - this forces web flow
   });
 
   // If not configured, return disabled state
