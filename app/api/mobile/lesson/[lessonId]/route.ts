@@ -177,11 +177,23 @@ export async function GET(
 
     // Add grammar section
     if (grammarNotes.length > 0) {
-      const grammarContent = grammarNotes.map((g) => ({
-        title: g.title,
-        explanation: g.explanation,
-        examples: g.examples || [],
-      }));
+      const grammarContent = grammarNotes.map((g) => {
+        // Parse examples from JSON string
+        let examples: string[] = [];
+        if (g.examples) {
+          try {
+            examples = JSON.parse(g.examples);
+          } catch {
+            // If parsing fails, try to use as-is or default to empty
+            examples = Array.isArray(g.examples) ? g.examples : [];
+          }
+        }
+        return {
+          title: g.title,
+          explanation: g.explanation,
+          examples,
+        };
+      });
       sections.push({ type: 'grammar', content: grammarContent });
     }
 
