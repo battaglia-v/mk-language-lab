@@ -140,7 +140,7 @@ jobs:
     steps:
       - name: Post to Slack
         if: ${{ vars.SLACK_WEBHOOK_URL }}
-        uses: slackapi/slack-github-action@v1
+        uses: slackapi/slack-github-action@v2
         with:
           payload: |
             {
