@@ -59,7 +59,6 @@ export function TopNav({
 }: TopNavProps) {
   const locale = useLocale();
   const t = useTranslations('nav');
-  const common = useTranslations('common');
   const brand = useTranslations('brand');
   const brandLabel = brand('short');
   const { status: sessionStatus } = useSession();
@@ -76,14 +75,7 @@ export function TopNav({
 
   return (
     <>
-      {/* Skip to main content link for accessibility */}
-      <a
-        href="#main-content"
-        className="skip-nav-link"
-        data-testid="skip-to-main-content"
-      >
-        {common('skipToContent')}
-      </a>
+      {/* Skip link moved to layout.tsx via SkipLink component for better DOM order */}
 
       <nav
         className={cn(

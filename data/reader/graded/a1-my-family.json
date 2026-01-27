@@ -1,0 +1,149 @@
+{
+  "id": "a1-my-family",
+  "locale": "mk",
+  "title_mk": "Моето семејство",
+  "title_en": "My Family",
+  "difficulty": "A1",
+  "estimatedMinutes": 3,
+  "tags": [
+    "graded-reader",
+    "A1",
+    "family"
+  ],
+  "text_blocks_mk": [
+    {
+      "type": "p",
+      "value": "Јас имам големо семејство. Живеам со мајка ми и татко ми. Имам еден брат и една сестра."
+    },
+    {
+      "type": "p",
+      "value": "Мојот брат се вика Марко. Тој е постар од мене. Марко има дваесет години."
+    },
+    {
+      "type": "p",
+      "value": "Мојата сестра се вика Ана. Таа е помлада од мене. Ана има петнаесет години."
+    },
+    {
+      "type": "p",
+      "value": "Живееме во голема куќа. Секој ден јадеме заедно. Сакам да бидам со моето семејство."
+    }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Присвојни заменки",
+      "title_en": "Possessive pronouns",
+      "examples": [
+        {
+          "mk": "мојот брат",
+          "en": "my brother"
+        },
+        {
+          "mk": "мојата сестра",
+          "en": "my sister"
+        },
+        {
+          "mk": "моето семејство",
+          "en": "my family"
+        }
+      ]
+    },
+    {
+      "title_mk": "Споредби",
+      "title_en": "Comparisons",
+      "examples": [
+        {
+          "mk": "постар од",
+          "en": "older than"
+        },
+        {
+          "mk": "помлад од",
+          "en": "younger than"
+        }
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "mk": "семејство",
+      "en": "family",
+      "pos": "noun"
+    },
+    {
+      "mk": "големо",
+      "en": "big",
+      "pos": "adjective"
+    },
+    {
+      "mk": "живеам",
+      "en": "I live",
+      "pos": "verb"
+    },
+    {
+      "mk": "мајка",
+      "en": "mother",
+      "pos": "noun"
+    },
+    {
+      "mk": "татко",
+      "en": "father",
+      "pos": "noun"
+    },
+    {
+      "mk": "брат",
+      "en": "brother",
+      "pos": "noun"
+    },
+    {
+      "mk": "сестра",
+      "en": "sister",
+      "pos": "noun"
+    },
+    {
+      "mk": "се вика",
+      "en": "is called",
+      "pos": "verb phrase"
+    },
+    {
+      "mk": "постар",
+      "en": "older",
+      "pos": "adjective"
+    },
+    {
+      "mk": "помлад",
+      "en": "younger",
+      "pos": "adjective"
+    },
+    {
+      "mk": "години",
+      "en": "years",
+      "pos": "noun"
+    },
+    {
+      "mk": "куќа",
+      "en": "house",
+      "pos": "noun"
+    },
+    {
+      "mk": "заедно",
+      "en": "together",
+      "pos": "adverb"
+    },
+    {
+      "mk": "сакам",
+      "en": "I love/want",
+      "pos": "verb"
+    }
+  ],
+  "expressions": [
+    {
+      "mk": "се вика",
+      "en": "is called/named",
+      "literal": "calls oneself"
+    }
+  ],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "Graded Readers",
+    "day": "family"
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "id": "professions-v1",
+    "title": "Professions",
+    "titleMk": "Професии",
+    "description": "30 common professions and workplace vocabulary",
+    "descriptionMk": "30 најчести професии и работен вокабулар",
+    "level": "A2",
+    "category": "professions",
+    "version": "1.0.0",
+    "lastUpdated": "2026-01-26"
+  },
+  "items": [
+    {
+      "id": "prof-001",
+      "mk": "лекар",
+      "en": "doctor",
+      "category": "medical"
+    },
+    {
+      "id": "prof-002",
+      "mk": "медицинска сестра",
+      "en": "nurse",
+      "category": "medical"
+    },
+    {
+      "id": "prof-003",
+      "mk": "наставник",
+      "en": "teacher",
+      "category": "education"
+    },
+    {
+      "id": "prof-004",
+      "mk": "професор",
+      "en": "professor",
+      "category": "education"
+    },
+    {
+      "id": "prof-005",
+      "mk": "инженер",
+      "en": "engineer",
+      "category": "technical"
+    },
+    {
+      "id": "prof-006",
+      "mk": "програмер",
+      "en": "programmer",
+      "category": "technical"
+    },
+    {
+      "id": "prof-007",
+      "mk": "адвокат",
+      "en": "lawyer",
+      "category": "legal"
+    },
+    {
+      "id": "prof-008",
+      "mk": "судија",
+      "en": "judge",
+      "category": "legal"
+    },
+    {
+      "id": "prof-009",
+      "mk": "полицаец",
+      "en": "police officer",
+      "category": "service"
+    },
+    {
+      "id": "prof-010",
+      "mk": "пожарникар",
+      "en": "firefighter",
+      "category": "service"
+    },
+    {
+      "id": "prof-011",
+      "mk": "келнер",
+      "en": "waiter",
+      "category": "hospitality"
+    },
+    {
+      "id": "prof-012",
+      "mk": "готвач",
+      "en": "chef/cook",
+      "category": "hospitality"
+    },
+    {
+      "id": "prof-013",
+      "mk": "продавач",
+      "en": "salesperson",
+      "category": "retail"
+    },
+    {
+      "id": "prof-014",
+      "mk": "касиер",
+      "en": "cashier",
+      "category": "retail"
+    },
+    {
+      "id": "prof-015",
+      "mk": "возач",
+      "en": "driver",
+      "category": "transport"
+    },
+    {
+      "id": "prof-016",
+      "mk": "пилот",
+      "en": "pilot",
+      "category": "transport"
+    },
+    {
+      "id": "prof-017",
+      "mk": "новинар",
+      "en": "journalist",
+      "category": "media"
+    },
+    {
+      "id": "prof-018",
+      "mk": "фотограф",
+      "en": "photographer",
+      "category": "media"
+    },
+    {
+      "id": "prof-019",
+      "mk": "сметководител",
+      "en": "accountant",
+      "category": "business"
+    },
+    {
+      "id": "prof-020",
+      "mk": "директор",
+      "en": "director/manager",
+      "category": "business"
+    },
+    {
+      "id": "prof-021",
+      "mk": "архитект",
+      "en": "architect",
+      "category": "technical"
+    },
+    {
+      "id": "prof-022",
+      "mk": "електричар",
+      "en": "electrician",
+      "category": "trades"
+    },
+    {
+      "id": "prof-023",
+      "mk": "водоинсталатер",
+      "en": "plumber",
+      "category": "trades"
+    },
+    {
+      "id": "prof-024",
+      "mk": "фризер",
+      "en": "hairdresser",
+      "category": "service"
+    },
+    {
+      "id": "prof-025",
+      "mk": "земјоделец",
+      "en": "farmer",
+      "category": "agriculture"
+    },
+    {
+      "id": "prof-026",
+      "mk": "ветеринар",
+      "en": "veterinarian",
+      "category": "medical"
+    },
+    {
+      "id": "prof-027",
+      "mk": "психолог",
+      "en": "psychologist",
+      "category": "medical"
+    },
+    {
+      "id": "prof-028",
+      "mk": "музичар",
+      "en": "musician",
+      "category": "arts"
+    },
+    {
+      "id": "prof-029",
+      "mk": "актер",
+      "en": "actor",
+      "category": "arts"
+    },
+    {
+      "id": "prof-030",
+      "mk": "научник",
+      "en": "scientist",
+      "category": "research"
+    }
+  ]
+}

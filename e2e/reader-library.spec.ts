@@ -1,11 +1,11 @@
 import { test, expect, Page } from '@playwright/test';
 
 /**
- * Reader Library E2E Tests (v1.6)
+ * Reader Library E2E Tests (v2.3)
  *
  * Tests the graded reader library functionality including:
- * - Library browsing with 12+ graded readers
- * - Difficulty filtering (A1/A2/B1)
+ * - Library browsing with 21+ graded readers (expanded in v2.3)
+ * - Difficulty filtering (A1/A2/B1) - 7 readers per level
  * - Topic filtering (Family, Daily Life, Food, Travel, Culture)
  * - Sort options (Default, Difficulty, Duration, Progress)
  * - Reading progress tracking
@@ -30,9 +30,30 @@ test.describe('Reader Library', () => {
     await expect(storiesSection).toBeVisible();
 
     // Should have multiple reading cards (links to stories)
+    // v2.3: Expanded to 21+ graded readers (7 A1 + 7 A2 + 7 B1)
     const storyLinks = page.locator('a[href*="/reader/samples/"]');
     const linkCount = await storyLinks.count();
-    expect(linkCount).toBeGreaterThan(5);
+    expect(linkCount).toBeGreaterThanOrEqual(21);
+  });
+
+  test('should display new v2.3 reader content', async ({ page }) => {
+    // Verify new graded readers added in v2.3 are accessible
+    const newReaders = [
+      'a1-my-family',
+      'a1-macedonian-food',
+      'a1-weather',
+      'a2-traveling',
+      'a2-traditions',
+      'a2-weekend',
+      'b1-macedonian-history',
+      'b1-ohrid-unesco',
+      'b1-modern-life'
+    ];
+
+    // Check that at least one new reader link exists
+    const newReaderLinks = page.locator('a[href*="a1-my-family"], a[href*="a1-macedonian-food"], a[href*="a2-traveling"]');
+    const count = await newReaderLinks.count();
+    expect(count).toBeGreaterThan(0);
   });
 
   test('should filter by difficulty level', async ({ page }) => {

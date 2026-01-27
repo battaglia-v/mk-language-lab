@@ -1,0 +1,205 @@
+{
+  "id": "a2-weekend",
+  "locale": "mk",
+  "title_mk": "Мојот викенд",
+  "title_en": "My Weekend",
+  "difficulty": "A2",
+  "estimatedMinutes": 4,
+  "tags": [
+    "graded-reader",
+    "A2",
+    "daily-life",
+    "leisure"
+  ],
+  "text_blocks_mk": [
+    {
+      "type": "p",
+      "value": "Минатиот викенд беше многу убав. Во сабота станав доцна бидејќи немав работа. Појадував со моето семејство."
+    },
+    {
+      "type": "p",
+      "value": "Попладне отидов во кафуле со пријателите. Пиевме кафе и разговаравме. Времето беше пријатно и седевме надвор."
+    },
+    {
+      "type": "p",
+      "value": "Навечер гледав филм дома. Беше комедија и многу се смеев. Потоа читав книга пред спиење."
+    },
+    {
+      "type": "p",
+      "value": "Во недела се разбудив рано. Отидов на пазар да купам свежи производи. Купив овошје, зеленчук и леб."
+    },
+    {
+      "type": "p",
+      "value": "Попладне готвев ручек за семејството. Направив тавче гравче. Сите беа среќни и задоволни."
+    }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Минато време - L-форма",
+      "title_en": "Past tense - L-form",
+      "examples": [
+        {
+          "mk": "станав",
+          "en": "I got up"
+        },
+        {
+          "mk": "гледав",
+          "en": "I watched"
+        },
+        {
+          "mk": "читав",
+          "en": "I read"
+        }
+      ]
+    },
+    {
+      "title_mk": "Причински сврзници",
+      "title_en": "Causal conjunctions",
+      "examples": [
+        {
+          "mk": "бидејќи",
+          "en": "because"
+        }
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "mk": "викенд",
+      "en": "weekend",
+      "pos": "noun"
+    },
+    {
+      "mk": "сабота",
+      "en": "Saturday",
+      "pos": "noun"
+    },
+    {
+      "mk": "доцна",
+      "en": "late",
+      "pos": "adverb"
+    },
+    {
+      "mk": "бидејќи",
+      "en": "because",
+      "pos": "conjunction"
+    },
+    {
+      "mk": "појадував",
+      "en": "I had breakfast",
+      "pos": "verb"
+    },
+    {
+      "mk": "попладне",
+      "en": "afternoon",
+      "pos": "noun"
+    },
+    {
+      "mk": "кафуле",
+      "en": "coffee shop",
+      "pos": "noun"
+    },
+    {
+      "mk": "пријатели",
+      "en": "friends",
+      "pos": "noun"
+    },
+    {
+      "mk": "разговаравме",
+      "en": "we talked",
+      "pos": "verb"
+    },
+    {
+      "mk": "пријатно",
+      "en": "pleasant",
+      "pos": "adjective"
+    },
+    {
+      "mk": "надвор",
+      "en": "outside",
+      "pos": "adverb"
+    },
+    {
+      "mk": "навечер",
+      "en": "in the evening",
+      "pos": "adverb"
+    },
+    {
+      "mk": "филм",
+      "en": "movie",
+      "pos": "noun"
+    },
+    {
+      "mk": "комедија",
+      "en": "comedy",
+      "pos": "noun"
+    },
+    {
+      "mk": "се смеев",
+      "en": "I laughed",
+      "pos": "verb"
+    },
+    {
+      "mk": "книга",
+      "en": "book",
+      "pos": "noun"
+    },
+    {
+      "mk": "спиење",
+      "en": "sleep",
+      "pos": "noun"
+    },
+    {
+      "mk": "недела",
+      "en": "Sunday",
+      "pos": "noun"
+    },
+    {
+      "mk": "пазар",
+      "en": "market",
+      "pos": "noun"
+    },
+    {
+      "mk": "производи",
+      "en": "products",
+      "pos": "noun"
+    },
+    {
+      "mk": "овошје",
+      "en": "fruit",
+      "pos": "noun"
+    },
+    {
+      "mk": "зеленчук",
+      "en": "vegetables",
+      "pos": "noun"
+    },
+    {
+      "mk": "готвев",
+      "en": "I cooked",
+      "pos": "verb"
+    },
+    {
+      "mk": "задоволни",
+      "en": "satisfied",
+      "pos": "adjective"
+    }
+  ],
+  "expressions": [
+    {
+      "mk": "пред спиење",
+      "en": "before bed",
+      "literal": "before sleeping"
+    },
+    {
+      "mk": "се разбудив рано",
+      "en": "I woke up early",
+      "literal": "I awoke early"
+    }
+  ],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "Graded Readers",
+    "day": "weekend"
+  }
+}

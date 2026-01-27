@@ -1,0 +1,200 @@
+{
+  "id": "a2-traditions",
+  "locale": "mk",
+  "title_mk": "Македонски традиции",
+  "title_en": "Macedonian Traditions",
+  "difficulty": "A2",
+  "estimatedMinutes": 4,
+  "tags": [
+    "graded-reader",
+    "A2",
+    "traditions",
+    "culture"
+  ],
+  "text_blocks_mk": [
+    {
+      "type": "p",
+      "value": "Македонија има богати традиции. Ги чуваме од нашите дедовци и баби. Традициите се важен дел од нашата култура."
+    },
+    {
+      "type": "p",
+      "value": "На Божиќ правиме погача. Во погачата криеме паричка. Кој ќе ја најде, ќе има среќа цела година."
+    },
+    {
+      "type": "p",
+      "value": "На Велигден бојадисуваме јајца. Црвените јајца се најважни. Се тропаме со јајцата и велиме 'Христос воскресе'."
+    },
+    {
+      "type": "p",
+      "value": "Свадбите се големи прослави. Гостите играат оро и пеат народни песни. Невестата носи традиционална носија."
+    },
+    {
+      "type": "p",
+      "value": "Ги сакам нашите традиции. Тие нè поврзуваат со нашите предци. Ќе ги пренесеме на нашите деца."
+    }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Условни реченици",
+      "title_en": "Conditional sentences",
+      "examples": [
+        {
+          "mk": "кој ќе најде",
+          "en": "whoever finds"
+        },
+        {
+          "mk": "ќе има среќа",
+          "en": "will have luck"
+        }
+      ]
+    },
+    {
+      "title_mk": "Множина",
+      "title_en": "Plural forms",
+      "examples": [
+        {
+          "mk": "традиции",
+          "en": "traditions"
+        },
+        {
+          "mk": "јајца",
+          "en": "eggs"
+        }
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "mk": "традиции",
+      "en": "traditions",
+      "pos": "noun"
+    },
+    {
+      "mk": "богати",
+      "en": "rich",
+      "pos": "adjective"
+    },
+    {
+      "mk": "чуваме",
+      "en": "we keep/preserve",
+      "pos": "verb"
+    },
+    {
+      "mk": "дедовци",
+      "en": "grandfathers",
+      "pos": "noun"
+    },
+    {
+      "mk": "баби",
+      "en": "grandmothers",
+      "pos": "noun"
+    },
+    {
+      "mk": "важен",
+      "en": "important",
+      "pos": "adjective"
+    },
+    {
+      "mk": "култура",
+      "en": "culture",
+      "pos": "noun"
+    },
+    {
+      "mk": "Божиќ",
+      "en": "Christmas",
+      "pos": "noun"
+    },
+    {
+      "mk": "погача",
+      "en": "pogacha (traditional bread)",
+      "pos": "noun"
+    },
+    {
+      "mk": "паричка",
+      "en": "coin",
+      "pos": "noun"
+    },
+    {
+      "mk": "среќа",
+      "en": "luck/happiness",
+      "pos": "noun"
+    },
+    {
+      "mk": "Велигден",
+      "en": "Easter",
+      "pos": "noun"
+    },
+    {
+      "mk": "бојадисуваме",
+      "en": "we dye/paint",
+      "pos": "verb"
+    },
+    {
+      "mk": "јајца",
+      "en": "eggs",
+      "pos": "noun"
+    },
+    {
+      "mk": "се тропаме",
+      "en": "we tap/knock",
+      "pos": "verb"
+    },
+    {
+      "mk": "свадби",
+      "en": "weddings",
+      "pos": "noun"
+    },
+    {
+      "mk": "прослави",
+      "en": "celebrations",
+      "pos": "noun"
+    },
+    {
+      "mk": "оро",
+      "en": "traditional dance",
+      "pos": "noun"
+    },
+    {
+      "mk": "народни",
+      "en": "folk",
+      "pos": "adjective"
+    },
+    {
+      "mk": "невеста",
+      "en": "bride",
+      "pos": "noun"
+    },
+    {
+      "mk": "носија",
+      "en": "traditional costume",
+      "pos": "noun"
+    },
+    {
+      "mk": "предци",
+      "en": "ancestors",
+      "pos": "noun"
+    },
+    {
+      "mk": "пренесеме",
+      "en": "we pass on",
+      "pos": "verb"
+    }
+  ],
+  "expressions": [
+    {
+      "mk": "Христос воскресе",
+      "en": "Christ is risen",
+      "literal": "Christ resurrected"
+    },
+    {
+      "mk": "играат оро",
+      "en": "dance oro (traditional circle dance)",
+      "literal": "dance oro"
+    }
+  ],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "Graded Readers",
+    "day": "traditions"
+  }
+}

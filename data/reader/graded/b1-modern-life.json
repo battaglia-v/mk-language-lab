@@ -1,0 +1,224 @@
+{
+  "id": "b1-modern-life",
+  "locale": "mk",
+  "title_mk": "Современ живот во Скопје",
+  "title_en": "Modern Life in Skopje",
+  "difficulty": "B1",
+  "estimatedMinutes": 5,
+  "tags": [
+    "graded-reader",
+    "B1",
+    "current-events",
+    "urban-life"
+  ],
+  "text_blocks_mk": [
+    {
+      "type": "p",
+      "value": "Скопје е главниот град на Северна Македонија. Со околу 600.000 жители, тој е најголемиот град во државата. Во последните години, градот значително се промени."
+    },
+    {
+      "type": "p",
+      "value": "Центарот на градот беше обновен со проектот 'Скопје 2014'. Изградени се нови мостови, споменици и јавни згради. Некои луѓе го критикуваат проектот, додека други го поддржуваат."
+    },
+    {
+      "type": "p",
+      "value": "Младите луѓе во Скопје имаат слични интереси како младите во другите европски градови. Користат социјални мрежи, посетуваат кафулиња и се дружат во парковите. Технологијата е важен дел од нивниот секојдневен живот."
+    },
+    {
+      "type": "p",
+      "value": "Економијата полека расте. Многу млади луѓе работат во ИТ секторот. Сепак, некои се иселуваат во странство барајќи подобри можности. Ова е голем предизвик за државата."
+    },
+    {
+      "type": "p",
+      "value": "И покрај предизвиците, Скопје останува жив и динамичен град. Ги комбинира традициите со модерноста. Иднината на градот зависи од младите генерации и нивните идеи."
+    }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Пасивен глаголски вид",
+      "title_en": "Passive voice",
+      "examples": [
+        {
+          "mk": "беше обновен",
+          "en": "was renovated"
+        },
+        {
+          "mk": "изградени се",
+          "en": "were built"
+        }
+      ]
+    },
+    {
+      "title_mk": "Концесивни сврзници",
+      "title_en": "Concessive conjunctions",
+      "examples": [
+        {
+          "mk": "додека",
+          "en": "while"
+        },
+        {
+          "mk": "и покрај",
+          "en": "despite"
+        },
+        {
+          "mk": "сепак",
+          "en": "however"
+        }
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "mk": "главен",
+      "en": "capital/main",
+      "pos": "adjective"
+    },
+    {
+      "mk": "жители",
+      "en": "inhabitants",
+      "pos": "noun"
+    },
+    {
+      "mk": "значително",
+      "en": "significantly",
+      "pos": "adverb"
+    },
+    {
+      "mk": "се промени",
+      "en": "changed",
+      "pos": "verb"
+    },
+    {
+      "mk": "обновен",
+      "en": "renovated",
+      "pos": "adjective"
+    },
+    {
+      "mk": "проект",
+      "en": "project",
+      "pos": "noun"
+    },
+    {
+      "mk": "изградени",
+      "en": "built",
+      "pos": "adjective"
+    },
+    {
+      "mk": "мостови",
+      "en": "bridges",
+      "pos": "noun"
+    },
+    {
+      "mk": "споменици",
+      "en": "monuments",
+      "pos": "noun"
+    },
+    {
+      "mk": "критикуваат",
+      "en": "criticize",
+      "pos": "verb"
+    },
+    {
+      "mk": "поддржуваат",
+      "en": "support",
+      "pos": "verb"
+    },
+    {
+      "mk": "интереси",
+      "en": "interests",
+      "pos": "noun"
+    },
+    {
+      "mk": "социјални мрежи",
+      "en": "social networks",
+      "pos": "noun"
+    },
+    {
+      "mk": "технологија",
+      "en": "technology",
+      "pos": "noun"
+    },
+    {
+      "mk": "секојдневен",
+      "en": "everyday",
+      "pos": "adjective"
+    },
+    {
+      "mk": "економија",
+      "en": "economy",
+      "pos": "noun"
+    },
+    {
+      "mk": "расте",
+      "en": "grows",
+      "pos": "verb"
+    },
+    {
+      "mk": "сектор",
+      "en": "sector",
+      "pos": "noun"
+    },
+    {
+      "mk": "се иселуваат",
+      "en": "emigrate",
+      "pos": "verb"
+    },
+    {
+      "mk": "странство",
+      "en": "abroad",
+      "pos": "noun"
+    },
+    {
+      "mk": "можности",
+      "en": "opportunities",
+      "pos": "noun"
+    },
+    {
+      "mk": "предизвик",
+      "en": "challenge",
+      "pos": "noun"
+    },
+    {
+      "mk": "динамичен",
+      "en": "dynamic",
+      "pos": "adjective"
+    },
+    {
+      "mk": "модерност",
+      "en": "modernity",
+      "pos": "noun"
+    },
+    {
+      "mk": "иднина",
+      "en": "future",
+      "pos": "noun"
+    },
+    {
+      "mk": "генерации",
+      "en": "generations",
+      "pos": "noun"
+    }
+  ],
+  "expressions": [
+    {
+      "mk": "социјални мрежи",
+      "en": "social media",
+      "literal": "social networks"
+    },
+    {
+      "mk": "се иселуваат во странство",
+      "en": "emigrate abroad",
+      "literal": "move out to foreign lands"
+    },
+    {
+      "mk": "и покрај предизвиците",
+      "en": "despite the challenges",
+      "literal": "and next to the challenges"
+    }
+  ],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "Graded Readers",
+    "day": "modern-life"
+  }
+}

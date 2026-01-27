@@ -101,6 +101,33 @@ export const AnalyticsEvents = {
   GRAMMAR_PERFORMANCE_UPDATED: 'grammar_performance_updated',
   WEAK_TOPICS_VIEWED: 'weak_topics_viewed',
   WEAK_TOPIC_PRACTICE_STARTED: 'weak_topic_practice_started',
+
+  // v2.3 SRS Events
+  SRS_REVIEW_STARTED: 'srs_review_started',
+  SRS_REVIEW_COMPLETED: 'srs_review_completed',
+  SRS_CARD_REVIEWED: 'srs_card_reviewed',
+  SRS_DIFFICULTY_CHANGED: 'srs_difficulty_changed',
+  SRS_STREAK_MAINTAINED: 'srs_streak_maintained',
+  SRS_STREAK_BROKEN: 'srs_streak_broken',
+  SRS_SETTINGS_CHANGED: 'srs_settings_changed',
+
+  // v2.3 Typing Trainer Events
+  TYPING_SESSION_STARTED: 'typing_session_started',
+  TYPING_SESSION_COMPLETED: 'typing_session_completed',
+  TYPING_EXERCISE_COMPLETED: 'typing_exercise_completed',
+  TYPING_PROBLEM_CHAR_DETECTED: 'typing_problem_char_detected',
+  TYPING_MASTERY_LEVEL_CHANGED: 'typing_mastery_level_changed',
+
+  // v2.3 Writing Exercise Events
+  WRITING_TRANSLATION_STARTED: 'writing_translation_started',
+  WRITING_TRANSLATION_COMPLETED: 'writing_translation_completed',
+  WRITING_SENTENCE_BUILDER_STARTED: 'writing_sentence_builder_started',
+  WRITING_SENTENCE_BUILDER_COMPLETED: 'writing_sentence_builder_completed',
+
+  // v2.3 Reader Events
+  READER_STORY_OPENED: 'reader_story_opened',
+  READER_STORY_COMPLETED: 'reader_story_completed',
+  READER_PROGRESS_SAVED: 'reader_progress_saved',
 } as const;
 
 export type AnalyticsEvent = typeof AnalyticsEvents[keyof typeof AnalyticsEvents];
@@ -136,4 +163,91 @@ export function trackEvent(event: AnalyticsEvent, properties?: Record<string, st
 export function trackPageView() {
   // Vercel Analytics automatically tracks page views
   // No need to manually call this function
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// v2.3 Analytics Helpers
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Track SRS review session
+ */
+export function trackSRSReview(properties: {
+  cardsReviewed: number;
+  correct: number;
+  difficulty: 'easy' | 'normal' | 'hard';
+  durationMs: number;
+}) {
+  trackEvent(AnalyticsEvents.SRS_REVIEW_COMPLETED, properties);
+}
+
+/**
+ * Track SRS streak changes
+ */
+export function trackSRSStreak(properties: {
+  currentStreak: number;
+  longestStreak: number;
+  maintained: boolean;
+}) {
+  trackEvent(
+    properties.maintained
+      ? AnalyticsEvents.SRS_STREAK_MAINTAINED
+      : AnalyticsEvents.SRS_STREAK_BROKEN,
+    properties
+  );
+}
+
+/**
+ * Track typing exercise completion
+ */
+export function trackTypingExercise(properties: {
+  type: 'letters' | 'words' | 'sentences';
+  difficulty: 'basic' | 'intermediate' | 'advanced';
+  accuracy: number;
+  wpm: number;
+  problemChars?: string[];
+}) {
+  const eventProps: Record<string, string | number | boolean> = {
+    type: properties.type,
+    difficulty: properties.difficulty,
+    accuracy: properties.accuracy,
+    wpm: properties.wpm,
+  };
+  if (properties.problemChars?.length) {
+    eventProps.problemChars = properties.problemChars.join(',');
+  }
+  trackEvent(AnalyticsEvents.TYPING_EXERCISE_COMPLETED, eventProps);
+}
+
+/**
+ * Track writing exercise completion
+ */
+export function trackWritingExercise(properties: {
+  type: 'translation' | 'sentence-builder' | 'fill-blank';
+  direction?: 'en-to-mk' | 'mk-to-en';
+  correct: boolean;
+  attempts: number;
+}) {
+  const eventType = properties.type === 'translation'
+    ? AnalyticsEvents.WRITING_TRANSLATION_COMPLETED
+    : AnalyticsEvents.WRITING_SENTENCE_BUILDER_COMPLETED;
+  trackEvent(eventType, properties);
+}
+
+/**
+ * Track reader story progress
+ */
+export function trackReaderProgress(properties: {
+  storyId: string;
+  difficulty: 'A1' | 'A2' | 'B1';
+  progress: number;
+  completed: boolean;
+  timeSpentSeconds: number;
+}) {
+  trackEvent(
+    properties.completed
+      ? AnalyticsEvents.READER_STORY_COMPLETED
+      : AnalyticsEvents.READER_PROGRESS_SAVED,
+    properties
+  );
 }

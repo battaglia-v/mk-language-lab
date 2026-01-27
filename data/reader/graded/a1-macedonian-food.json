@@ -1,0 +1,151 @@
+{
+  "id": "a1-macedonian-food",
+  "locale": "mk",
+  "title_mk": "Македонска храна",
+  "title_en": "Macedonian Food",
+  "difficulty": "A1",
+  "estimatedMinutes": 3,
+  "tags": [
+    "graded-reader",
+    "A1",
+    "food",
+    "culture"
+  ],
+  "text_blocks_mk": [
+    {
+      "type": "p",
+      "value": "Јас многу сакам македонска храна. Таа е многу вкусна. Секој ден јадам свежа храна."
+    },
+    {
+      "type": "p",
+      "value": "За појадок јадам леб со сирење. Пијам чај или јогурт. Сирењето е од овца."
+    },
+    {
+      "type": "p",
+      "value": "За ручек јадам салата и месо. Шопска салата е најпозната. Има домати, краставици и сирење."
+    },
+    {
+      "type": "p",
+      "value": "За вечера јадам тавче гравче. Тоа е традиционално јадење. Правам и бурек со месо."
+    }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Храна и оброци",
+      "title_en": "Food and meals",
+      "examples": [
+        {
+          "mk": "за појадок",
+          "en": "for breakfast"
+        },
+        {
+          "mk": "за ручек",
+          "en": "for lunch"
+        },
+        {
+          "mk": "за вечера",
+          "en": "for dinner"
+        }
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "mk": "храна",
+      "en": "food",
+      "pos": "noun"
+    },
+    {
+      "mk": "вкусна",
+      "en": "delicious",
+      "pos": "adjective"
+    },
+    {
+      "mk": "свежа",
+      "en": "fresh",
+      "pos": "adjective"
+    },
+    {
+      "mk": "сирење",
+      "en": "cheese",
+      "pos": "noun"
+    },
+    {
+      "mk": "јогурт",
+      "en": "yogurt",
+      "pos": "noun"
+    },
+    {
+      "mk": "овца",
+      "en": "sheep",
+      "pos": "noun"
+    },
+    {
+      "mk": "ручек",
+      "en": "lunch",
+      "pos": "noun"
+    },
+    {
+      "mk": "салата",
+      "en": "salad",
+      "pos": "noun"
+    },
+    {
+      "mk": "месо",
+      "en": "meat",
+      "pos": "noun"
+    },
+    {
+      "mk": "домати",
+      "en": "tomatoes",
+      "pos": "noun"
+    },
+    {
+      "mk": "краставици",
+      "en": "cucumbers",
+      "pos": "noun"
+    },
+    {
+      "mk": "вечера",
+      "en": "dinner",
+      "pos": "noun"
+    },
+    {
+      "mk": "тавче гравче",
+      "en": "baked beans",
+      "pos": "noun phrase"
+    },
+    {
+      "mk": "традиционално",
+      "en": "traditional",
+      "pos": "adjective"
+    },
+    {
+      "mk": "јадење",
+      "en": "dish/meal",
+      "pos": "noun"
+    },
+    {
+      "mk": "бурек",
+      "en": "burek (pastry)",
+      "pos": "noun"
+    }
+  ],
+  "expressions": [
+    {
+      "mk": "тавче гравче",
+      "en": "baked beans (national dish)",
+      "literal": "pot of beans"
+    },
+    {
+      "mk": "шопска салата",
+      "en": "shopska salad",
+      "literal": "Shopi-style salad"
+    }
+  ],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "Graded Readers",
+    "day": "food"
+  }
+}

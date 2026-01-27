@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "id": "nature-v1",
+    "title": "Nature & Environment",
+    "titleMk": "Природа и животна средина",
+    "description": "30 words about nature, animals, and the environment",
+    "descriptionMk": "30 зборови за природата, животните и животната средина",
+    "level": "A2",
+    "category": "nature",
+    "version": "1.0.0",
+    "lastUpdated": "2026-01-26"
+  },
+  "items": [
+    {
+      "id": "nat-001",
+      "mk": "дрво",
+      "en": "tree",
+      "category": "plants"
+    },
+    {
+      "id": "nat-002",
+      "mk": "цвет",
+      "en": "flower",
+      "category": "plants"
+    },
+    {
+      "id": "nat-003",
+      "mk": "трева",
+      "en": "grass",
+      "category": "plants"
+    },
+    {
+      "id": "nat-004",
+      "mk": "шума",
+      "en": "forest",
+      "category": "landscapes"
+    },
+    {
+      "id": "nat-005",
+      "mk": "река",
+      "en": "river",
+      "category": "water"
+    },
+    {
+      "id": "nat-006",
+      "mk": "езеро",
+      "en": "lake",
+      "category": "water"
+    },
+    {
+      "id": "nat-007",
+      "mk": "море",
+      "en": "sea",
+      "category": "water"
+    },
+    {
+      "id": "nat-008",
+      "mk": "планина",
+      "en": "mountain",
+      "category": "landscapes"
+    },
+    {
+      "id": "nat-009",
+      "mk": "долина",
+      "en": "valley",
+      "category": "landscapes"
+    },
+    {
+      "id": "nat-010",
+      "mk": "поле",
+      "en": "field",
+      "category": "landscapes"
+    },
+    {
+      "id": "nat-011",
+      "mk": "куче",
+      "en": "dog",
+      "category": "animals"
+    },
+    {
+      "id": "nat-012",
+      "mk": "мачка",
+      "en": "cat",
+      "category": "animals"
+    },
+    {
+      "id": "nat-013",
+      "mk": "птица",
+      "en": "bird",
+      "category": "animals"
+    },
+    {
+      "id": "nat-014",
+      "mk": "риба",
+      "en": "fish",
+      "category": "animals"
+    },
+    {
+      "id": "nat-015",
+      "mk": "коњ",
+      "en": "horse",
+      "category": "animals"
+    },
+    {
+      "id": "nat-016",
+      "mk": "крава",
+      "en": "cow",
+      "category": "animals"
+    },
+    {
+      "id": "nat-017",
+      "mk": "овца",
+      "en": "sheep",
+      "category": "animals"
+    },
+    {
+      "id": "nat-018",
+      "mk": "пчела",
+      "en": "bee",
+      "category": "insects"
+    },
+    {
+      "id": "nat-019",
+      "mk": "пеперутка",
+      "en": "butterfly",
+      "category": "insects"
+    },
+    {
+      "id": "nat-020",
+      "mk": "сонце",
+      "en": "sun",
+      "category": "sky"
+    },
+    {
+      "id": "nat-021",
+      "mk": "месечина",
+      "en": "moon",
+      "category": "sky"
+    },
+    {
+      "id": "nat-022",
+      "mk": "ѕвезда",
+      "en": "star",
+      "category": "sky"
+    },
+    {
+      "id": "nat-023",
+      "mk": "облак",
+      "en": "cloud",
+      "category": "sky"
+    },
+    {
+      "id": "nat-024",
+      "mk": "дожд",
+      "en": "rain",
+      "category": "weather"
+    },
+    {
+      "id": "nat-025",
+      "mk": "снег",
+      "en": "snow",
+      "category": "weather"
+    },
+    {
+      "id": "nat-026",
+      "mk": "ветер",
+      "en": "wind",
+      "category": "weather"
+    },
+    {
+      "id": "nat-027",
+      "mk": "земја",
+      "en": "earth/soil",
+      "category": "elements"
+    },
+    {
+      "id": "nat-028",
+      "mk": "камен",
+      "en": "stone",
+      "category": "elements"
+    },
+    {
+      "id": "nat-029",
+      "mk": "песок",
+      "en": "sand",
+      "category": "elements"
+    },
+    {
+      "id": "nat-030",
+      "mk": "воздух",
+      "en": "air",
+      "category": "elements"
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "id": "a1-weather",
+  "locale": "mk",
+  "title_mk": "Времето денес",
+  "title_en": "The Weather Today",
+  "difficulty": "A1",
+  "estimatedMinutes": 3,
+  "tags": [
+    "graded-reader",
+    "A1",
+    "weather",
+    "daily-life"
+  ],
+  "text_blocks_mk": [
+    {
+      "type": "p",
+      "value": "Денес е убав ден. Сонцето грее. Небото е сино и нема облаци."
+    },
+    {
+      "type": "p",
+      "value": "Лето е топло во Македонија. Температурата е триесет степени. Луѓето одат на плажа."
+    },
+    {
+      "type": "p",
+      "value": "Зима е ладно. Паѓа снег во планините. Децата играат со снег."
+    },
+    {
+      "type": "p",
+      "value": "Пролет е мојата омилена сезона. Цвеќата цветаат. Птиците пеат."
+    }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Сезони и време",
+      "title_en": "Seasons and weather",
+      "examples": [
+        {
+          "mk": "лето е топло",
+          "en": "summer is hot"
+        },
+        {
+          "mk": "зима е ладно",
+          "en": "winter is cold"
+        },
+        {
+          "mk": "паѓа снег",
+          "en": "it snows (snow falls)"
+        }
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "mk": "време",
+      "en": "weather",
+      "pos": "noun"
+    },
+    {
+      "mk": "денес",
+      "en": "today",
+      "pos": "adverb"
+    },
+    {
+      "mk": "убав",
+      "en": "nice/beautiful",
+      "pos": "adjective"
+    },
+    {
+      "mk": "сонце",
+      "en": "sun",
+      "pos": "noun"
+    },
+    {
+      "mk": "грее",
+      "en": "shines",
+      "pos": "verb"
+    },
+    {
+      "mk": "небо",
+      "en": "sky",
+      "pos": "noun"
+    },
+    {
+      "mk": "сино",
+      "en": "blue",
+      "pos": "adjective"
+    },
+    {
+      "mk": "облаци",
+      "en": "clouds",
+      "pos": "noun"
+    },
+    {
+      "mk": "лето",
+      "en": "summer",
+      "pos": "noun"
+    },
+    {
+      "mk": "топло",
+      "en": "hot/warm",
+      "pos": "adjective"
+    },
+    {
+      "mk": "температура",
+      "en": "temperature",
+      "pos": "noun"
+    },
+    {
+      "mk": "степени",
+      "en": "degrees",
+      "pos": "noun"
+    },
+    {
+      "mk": "плажа",
+      "en": "beach",
+      "pos": "noun"
+    },
+    {
+      "mk": "зима",
+      "en": "winter",
+      "pos": "noun"
+    },
+    {
+      "mk": "ладно",
+      "en": "cold",
+      "pos": "adjective"
+    },
+    {
+      "mk": "снег",
+      "en": "snow",
+      "pos": "noun"
+    },
+    {
+      "mk": "планини",
+      "en": "mountains",
+      "pos": "noun"
+    },
+    {
+      "mk": "деца",
+      "en": "children",
+      "pos": "noun"
+    },
+    {
+      "mk": "играат",
+      "en": "play",
+      "pos": "verb"
+    },
+    {
+      "mk": "пролет",
+      "en": "spring",
+      "pos": "noun"
+    },
+    {
+      "mk": "омилена",
+      "en": "favorite",
+      "pos": "adjective"
+    },
+    {
+      "mk": "сезона",
+      "en": "season",
+      "pos": "noun"
+    },
+    {
+      "mk": "цвеќа",
+      "en": "flowers",
+      "pos": "noun"
+    },
+    {
+      "mk": "цветаат",
+      "en": "bloom",
+      "pos": "verb"
+    },
+    {
+      "mk": "птици",
+      "en": "birds",
+      "pos": "noun"
+    },
+    {
+      "mk": "пеат",
+      "en": "sing",
+      "pos": "verb"
+    }
+  ],
+  "expressions": [
+    {
+      "mk": "паѓа снег",
+      "en": "it snows",
+      "literal": "snow falls"
+    },
+    {
+      "mk": "сонцето грее",
+      "en": "the sun shines",
+      "literal": "the sun warms/shines"
+    }
+  ],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "Graded Readers",
+    "day": "weather"
+  }
+}

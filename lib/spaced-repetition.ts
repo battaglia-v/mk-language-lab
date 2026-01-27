@@ -14,6 +14,8 @@
 
 const STORAGE_KEY = 'mkll:spaced-repetition';
 const WRONG_ANSWERS_KEY = 'mkll:wrong-answers-session';
+const SETTINGS_KEY = 'mkll:srs-settings';
+const STREAK_KEY = 'mkll:review-streak';
 
 // Quality ratings for SM-2 algorithm
 export type AnswerQuality = 0 | 1 | 2 | 3 | 4 | 5;
@@ -407,4 +409,307 @@ export function importSRSData(json: string): boolean {
     console.error('[SRS] Failed to import data', error);
     return false;
   }
+}
+
+// ========================================
+// SRS Settings & Configuration
+// ========================================
+
+export type DifficultyPreset = 'easy' | 'normal' | 'hard';
+
+export type SRSSettings = {
+  /** Difficulty preset affecting initial intervals */
+  difficulty: DifficultyPreset;
+  /** Max cards to review per day (0 = unlimited) */
+  dailyLimit: number;
+  /** Whether to include new cards in daily reviews */
+  includeNewCards: boolean;
+  /** Number of new cards per day */
+  newCardsPerDay: number;
+};
+
+const DEFAULT_SETTINGS: SRSSettings = {
+  difficulty: 'normal',
+  dailyLimit: 50,
+  includeNewCards: true,
+  newCardsPerDay: 10,
+};
+
+const DIFFICULTY_MULTIPLIERS: Record<DifficultyPreset, number> = {
+  easy: 1.3,    // Longer intervals
+  normal: 1.0,  // Standard SM-2
+  hard: 0.7,    // Shorter intervals
+};
+
+/**
+ * Read SRS settings from localStorage
+ */
+export function readSRSSettings(): SRSSettings {
+  if (typeof window === 'undefined') return DEFAULT_SETTINGS;
+  try {
+    const raw = window.localStorage.getItem(SETTINGS_KEY);
+    if (!raw) return DEFAULT_SETTINGS;
+    return { ...DEFAULT_SETTINGS, ...JSON.parse(raw) };
+  } catch {
+    return DEFAULT_SETTINGS;
+  }
+}
+
+/**
+ * Update SRS settings
+ */
+export function updateSRSSettings(settings: Partial<SRSSettings>): void {
+  if (typeof window === 'undefined') return;
+  const current = readSRSSettings();
+  window.localStorage.setItem(SETTINGS_KEY, JSON.stringify({ ...current, ...settings }));
+}
+
+// ========================================
+// Review Streak Tracking
+// ========================================
+
+export type StreakData = {
+  currentStreak: number;
+  longestStreak: number;
+  lastReviewDate: string | null;
+  totalReviewDays: number;
+};
+
+/**
+ * Read streak data from localStorage
+ */
+export function readStreakData(): StreakData {
+  if (typeof window === 'undefined') {
+    return { currentStreak: 0, longestStreak: 0, lastReviewDate: null, totalReviewDays: 0 };
+  }
+  try {
+    const raw = window.localStorage.getItem(STREAK_KEY);
+    if (!raw) return { currentStreak: 0, longestStreak: 0, lastReviewDate: null, totalReviewDays: 0 };
+    return JSON.parse(raw) as StreakData;
+  } catch {
+    return { currentStreak: 0, longestStreak: 0, lastReviewDate: null, totalReviewDays: 0 };
+  }
+}
+
+/**
+ * Update streak after completing reviews
+ */
+export function updateStreak(): StreakData {
+  const streak = readStreakData();
+  const today = new Date().toISOString().split('T')[0];
+
+  if (streak.lastReviewDate === today) {
+    // Already reviewed today
+    return streak;
+  }
+
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  const yesterdayStr = yesterday.toISOString().split('T')[0];
+
+  let newStreak: StreakData;
+
+  if (streak.lastReviewDate === yesterdayStr) {
+    // Continuing streak
+    newStreak = {
+      currentStreak: streak.currentStreak + 1,
+      longestStreak: Math.max(streak.longestStreak, streak.currentStreak + 1),
+      lastReviewDate: today,
+      totalReviewDays: streak.totalReviewDays + 1,
+    };
+  } else {
+    // Streak broken or first review
+    newStreak = {
+      currentStreak: 1,
+      longestStreak: Math.max(streak.longestStreak, 1),
+      lastReviewDate: today,
+      totalReviewDays: streak.totalReviewDays + 1,
+    };
+  }
+
+  if (typeof window !== 'undefined') {
+    window.localStorage.setItem(STREAK_KEY, JSON.stringify(newStreak));
+  }
+
+  return newStreak;
+}
+
+// ========================================
+// Smart Review Queue
+// ========================================
+
+export type ReviewQueueItem = SRSCardData & {
+  priority: number;
+  overdueBy: number;
+  isNew: boolean;
+};
+
+/**
+ * Get a smart review queue for today
+ *
+ * Cards are prioritized by:
+ * 1. Most overdue (negative overdueBy = future)
+ * 2. Lower ease factor (struggling cards)
+ * 3. Higher total reviews (more data)
+ */
+export function getDailyReviewQueue(): ReviewQueueItem[] {
+  const data = readSRSData();
+  const settings = readSRSSettings();
+  const now = new Date().getTime();
+  const allCards = Object.values(data);
+
+  // Calculate priority for each card
+  const cardsWithPriority: ReviewQueueItem[] = allCards.map((card) => {
+    const nextReview = new Date(card.nextReviewAt).getTime();
+    const overdueBy = (now - nextReview) / (1000 * 60 * 60 * 24); // days
+
+    // Priority formula: overdue days + (3 - easeFactor) + log(reviews)
+    const easeBonus = (3 - card.easeFactor) * 2; // Lower ease = higher priority
+    const reviewBonus = Math.log(card.totalReviews + 1) * 0.5;
+    const priority = overdueBy + easeBonus + reviewBonus;
+
+    return {
+      ...card,
+      priority,
+      overdueBy,
+      isNew: card.totalReviews === 0,
+    };
+  });
+
+  // Sort by priority (highest first)
+  cardsWithPriority.sort((a, b) => b.priority - a.priority);
+
+  // Filter to only due cards
+  const dueCards = cardsWithPriority.filter((c) => c.overdueBy >= 0);
+
+  // Apply daily limit
+  if (settings.dailyLimit > 0) {
+    return dueCards.slice(0, settings.dailyLimit);
+  }
+
+  return dueCards;
+}
+
+/**
+ * Get a summary of today's review workload
+ */
+export function getReviewSummary(): {
+  dueNow: number;
+  overdue: number;
+  dueToday: number;
+  dueTomorrow: number;
+  dueThisWeek: number;
+  newCards: number;
+  streak: StreakData;
+} {
+  const data = readSRSData();
+  const cards = Object.values(data);
+  const now = new Date();
+  const today = new Date(now.toISOString().split('T')[0]);
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const nextWeek = new Date(today);
+  nextWeek.setDate(nextWeek.getDate() + 7);
+
+  let dueNow = 0;
+  let overdue = 0;
+  let dueToday = 0;
+  let dueTomorrow = 0;
+  let dueThisWeek = 0;
+  let newCards = 0;
+
+  cards.forEach((card) => {
+    const nextReview = new Date(card.nextReviewAt);
+
+    if (card.totalReviews === 0) {
+      newCards++;
+    }
+
+    if (nextReview <= now) {
+      dueNow++;
+      const daysDiff = Math.floor((now.getTime() - nextReview.getTime()) / (1000 * 60 * 60 * 24));
+      if (daysDiff > 0) {
+        overdue++;
+      }
+    } else if (nextReview < tomorrow) {
+      dueToday++;
+    } else if (nextReview < new Date(tomorrow.getTime() + 24 * 60 * 60 * 1000)) {
+      dueTomorrow++;
+    } else if (nextReview < nextWeek) {
+      dueThisWeek++;
+    }
+  });
+
+  return {
+    dueNow,
+    overdue,
+    dueToday,
+    dueTomorrow,
+    dueThisWeek,
+    newCards,
+    streak: readStreakData(),
+  };
+}
+
+/**
+ * Calculate SM-2 with difficulty adjustment
+ */
+export function calculateSM2WithDifficulty(
+  card: Partial<SRSCardData> & { id: string; macedonian: string; english: string },
+  quality: AnswerQuality
+): SRSCardData {
+  const settings = readSRSSettings();
+  const multiplier = DIFFICULTY_MULTIPLIERS[settings.difficulty];
+
+  // First calculate standard SM-2
+  const result = calculateSM2(card, quality);
+
+  // Apply difficulty multiplier to interval
+  result.interval = Math.max(1, Math.round(result.interval * multiplier));
+
+  // Recalculate next review date
+  const nextReviewDate = new Date();
+  nextReviewDate.setDate(nextReviewDate.getDate() + result.interval);
+  result.nextReviewAt = nextReviewDate.toISOString();
+
+  return result;
+}
+
+/**
+ * Record practice result with difficulty adjustment and streak update
+ */
+export function recordPracticeResultEnhanced(
+  id: string,
+  macedonian: string,
+  english: string,
+  isCorrect: boolean,
+  responseTime?: number
+): SRSCardData {
+  const data = readSRSData();
+  const existing = data[id];
+
+  // Determine quality based on correctness and response time
+  let quality: AnswerQuality;
+  if (!isCorrect) {
+    quality = 1;
+  } else if (responseTime && responseTime < 2000) {
+    quality = 5;
+  } else if (responseTime && responseTime < 5000) {
+    quality = 4;
+  } else {
+    quality = 3;
+  }
+
+  const updated = calculateSM2WithDifficulty(
+    existing ?? { id, macedonian, english },
+    quality
+  );
+
+  data[id] = updated;
+  writeSRSData(data);
+
+  // Update streak
+  updateStreak();
+
+  return updated;
 }

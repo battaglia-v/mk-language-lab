@@ -20,8 +20,8 @@ interface SkipLinkProps {
   dataTestId?: string;
 }
 
-export function SkipLink({ 
-  href = '#main-content', 
+export function SkipLink({
+  href = '#main-content',
   label,
   className,
   dataTestId = 'skip-link'
@@ -33,21 +33,8 @@ export function SkipLink({
       href={href}
       data-testid={dataTestId}
       className={cn(
-        // Hidden by default
-        'sr-only',
-        // Visible on focus
-        'focus:not-sr-only focus:absolute',
-        // Positioning
-        'focus:left-4 focus:top-4 focus:z-[var(--z-skip-link)]',
-        // Styling
-        'focus:rounded-[var(--radius-control)] focus:bg-primary focus:px-4 focus:py-3',
-        'focus:text-primary-foreground focus:text-sm focus:font-medium',
-        // Focus ring
-        'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
-        // Animation
-        'focus:animate-in focus:fade-in-0 focus:slide-in-from-top-2',
-        // Minimum touch target
-        'focus:min-h-[48px] focus:flex focus:items-center',
+        // Use the same CSS approach as TopNav's skip link for reliability
+        'skip-nav-link',
         className
       )}
     >

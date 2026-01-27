@@ -33,7 +33,7 @@ interface BaseExercise {
   explanationEn?: string;
 }
 
-export type ExerciseType = 'fill-blank' | 'multiple-choice' | 'sentence-builder' | 'error-correction';
+export type ExerciseType = 'fill-blank' | 'multiple-choice' | 'sentence-builder' | 'error-correction' | 'translation' | 'typing';
 
 /** Fill-in-the-blank exercise */
 export interface FillBlankExercise extends BaseExercise {
@@ -88,11 +88,41 @@ export interface ErrorCorrectionExercise extends BaseExercise {
   errorPosition: number;
 }
 
-export type GrammarExercise = 
-  | FillBlankExercise 
-  | MultipleChoiceExercise 
-  | SentenceBuilderExercise 
-  | ErrorCorrectionExercise;
+/** Translation exercise - type the translation */
+export interface TranslationExercise extends BaseExercise {
+  type: 'translation';
+  /** Source sentence (in the source language) */
+  sourceSentence: string;
+  /** Source language */
+  sourceLanguage: 'mk' | 'en';
+  /** Target language */
+  targetLanguage: 'mk' | 'en';
+  /** Correct translation(s) */
+  correctTranslations: string[];
+  /** Optional word hints */
+  wordHints?: string[];
+}
+
+/** Typing exercise - type the given text */
+export interface TypingExercise extends BaseExercise {
+  type: 'typing';
+  /** Text to type */
+  targetText: string;
+  /** Translation/meaning */
+  translation?: string;
+  /** Hint about pronunciation */
+  pronunciationHint?: string;
+  /** Time limit in seconds (optional) */
+  timeLimit?: number;
+}
+
+export type GrammarExercise =
+  | FillBlankExercise
+  | MultipleChoiceExercise
+  | SentenceBuilderExercise
+  | ErrorCorrectionExercise
+  | TranslationExercise
+  | TypingExercise;
 
 /** Grammar lesson containing multiple exercises */
 export interface GrammarLesson {

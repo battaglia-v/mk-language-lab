@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "id": "writing-exercises-v1",
+    "title": "Writing Exercises",
+    "titleMk": "Вежби за пишување",
+    "description": "Translation and typing exercises for Macedonian",
+    "version": "1.0.0",
+    "lastUpdated": "2026-01-26"
+  },
+  "translation": {
+    "enToMk": [
+      {
+        "id": "tr-en-mk-001",
+        "source": "Hello, how are you?",
+        "translations": ["Здраво, како си?", "Здраво, како сте?"],
+        "difficulty": "A1",
+        "hints": ["здраво", "како", "си"]
+      },
+      {
+        "id": "tr-en-mk-002",
+        "source": "My name is...",
+        "translations": ["Јас се викам...", "Се викам..."],
+        "difficulty": "A1",
+        "hints": ["јас", "се", "викам"]
+      },
+      {
+        "id": "tr-en-mk-003",
+        "source": "I am learning Macedonian.",
+        "translations": ["Јас учам македонски.", "Учам македонски."],
+        "difficulty": "A1",
+        "hints": ["учам", "македонски"]
+      },
+      {
+        "id": "tr-en-mk-004",
+        "source": "Where is the train station?",
+        "translations": ["Каде е железничката станица?", "Каде е станицата?"],
+        "difficulty": "A2",
+        "hints": ["каде", "железничка", "станица"]
+      },
+      {
+        "id": "tr-en-mk-005",
+        "source": "I would like a coffee, please.",
+        "translations": ["Би сакал кафе, молам.", "Би сакала кафе, молам."],
+        "difficulty": "A2",
+        "hints": ["би сакал", "кафе", "молам"]
+      },
+      {
+        "id": "tr-en-mk-006",
+        "source": "The weather is beautiful today.",
+        "translations": ["Времето е убаво денес.", "Денес времето е убаво."],
+        "difficulty": "A2",
+        "hints": ["време", "убаво", "денес"]
+      },
+      {
+        "id": "tr-en-mk-007",
+        "source": "I went to Ohrid last summer.",
+        "translations": ["Одев во Охрид минатото лето.", "Минатото лето одев во Охрид."],
+        "difficulty": "B1",
+        "hints": ["одев", "минатото", "лето"]
+      },
+      {
+        "id": "tr-en-mk-008",
+        "source": "If I had time, I would travel more.",
+        "translations": ["Ако имав време, ќе патував повеќе.", "Да имав време, ќе патував повеќе."],
+        "difficulty": "B1",
+        "hints": ["ако", "имав", "патував"]
+      }
+    ],
+    "mkToEn": [
+      {
+        "id": "tr-mk-en-001",
+        "source": "Добро утро!",
+        "translations": ["Good morning!"],
+        "difficulty": "A1",
+        "hints": ["good", "morning"]
+      },
+      {
+        "id": "tr-mk-en-002",
+        "source": "Имам едно прашање.",
+        "translations": ["I have a question.", "I have one question."],
+        "difficulty": "A1",
+        "hints": ["have", "question"]
+      },
+      {
+        "id": "tr-mk-en-003",
+        "source": "Колку чини ова?",
+        "translations": ["How much does this cost?", "How much is this?"],
+        "difficulty": "A1",
+        "hints": ["how much", "cost"]
+      },
+      {
+        "id": "tr-mk-en-004",
+        "source": "Можете ли да ми помогнете?",
+        "translations": ["Can you help me?", "Could you help me?"],
+        "difficulty": "A2",
+        "hints": ["can", "help", "me"]
+      },
+      {
+        "id": "tr-mk-en-005",
+        "source": "Работам како програмер.",
+        "translations": ["I work as a programmer.", "I work as a developer."],
+        "difficulty": "A2",
+        "hints": ["work", "programmer"]
+      },
+      {
+        "id": "tr-mk-en-006",
+        "source": "Вчера гледав убав филм.",
+        "translations": ["Yesterday I watched a nice movie.", "I watched a good movie yesterday."],
+        "difficulty": "B1",
+        "hints": ["yesterday", "watched", "movie"]
+      }
+    ]
+  },
+  "sentenceConstruction": [
+    {
+      "id": "sc-001",
+      "words": ["Јас", "сакам", "да", "учам", "македонски"],
+      "correctOrder": "Јас сакам да учам македонски",
+      "alternatives": ["Сакам да учам македонски"],
+      "translation": "I want to learn Macedonian",
+      "difficulty": "A1"
+    },
+    {
+      "id": "sc-002",
+      "words": ["Таа", "е", "моја", "сестра"],
+      "correctOrder": "Таа е моја сестра",
+      "alternatives": [],
+      "translation": "She is my sister",
+      "difficulty": "A1"
+    },
+    {
+      "id": "sc-003",
+      "words": ["Денес", "времето", "е", "убаво"],
+      "correctOrder": "Денес времето е убаво",
+      "alternatives": ["Времето е убаво денес", "Времето денес е убаво"],
+      "translation": "Today the weather is beautiful",
+      "difficulty": "A1"
+    },
+    {
+      "id": "sc-004",
+      "words": ["Вчера", "отидов", "на", "пазар"],
+      "correctOrder": "Вчера отидов на пазар",
+      "alternatives": ["Отидов на пазар вчера"],
+      "translation": "Yesterday I went to the market",
+      "difficulty": "A2"
+    },
+    {
+      "id": "sc-005",
+      "words": ["Ние", "живееме", "во", "голема", "куќа"],
+      "correctOrder": "Ние живееме во голема куќа",
+      "alternatives": ["Живееме во голема куќа"],
+      "translation": "We live in a big house",
+      "difficulty": "A2"
+    },
+    {
+      "id": "sc-006",
+      "words": ["Тој", "се", "вика", "Марко"],
+      "correctOrder": "Тој се вика Марко",
+      "alternatives": [],
+      "translation": "His name is Marko",
+      "difficulty": "A1"
+    },
+    {
+      "id": "sc-007",
+      "words": ["Би", "сакал", "да", "нарачам", "кафе"],
+      "correctOrder": "Би сакал да нарачам кафе",
+      "alternatives": [],
+      "translation": "I would like to order coffee",
+      "difficulty": "A2"
+    },
+    {
+      "id": "sc-008",
+      "words": ["Ако", "имам", "време", "ќе", "дојдам"],
+      "correctOrder": "Ако имам време ќе дојдам",
+      "alternatives": ["Ќе дојдам ако имам време"],
+      "translation": "If I have time I will come",
+      "difficulty": "B1"
+    }
+  ],
+  "fillInBlank": [
+    {
+      "id": "fib-001",
+      "sentence": "Јас ___ македонски.",
+      "blank": "учам",
+      "options": ["учам", "учи", "учиш", "учат"],
+      "translation": "I learn Macedonian.",
+      "difficulty": "A1"
+    },
+    {
+      "id": "fib-002",
+      "sentence": "Тој ___ во Скопје.",
+      "blank": "живее",
+      "options": ["живее", "живеам", "живееме", "живеат"],
+      "translation": "He lives in Skopje.",
+      "difficulty": "A1"
+    },
+    {
+      "id": "fib-003",
+      "sentence": "Ние ___ на работа секој ден.",
+      "blank": "одиме",
+      "options": ["одиме", "одам", "одат", "оди"],
+      "translation": "We go to work every day.",
+      "difficulty": "A2"
+    },
+    {
+      "id": "fib-004",
+      "sentence": "Вчера ___ во ресторан.",
+      "blank": "јадовме",
+      "options": ["јадовме", "јадам", "јаде", "јадат"],
+      "translation": "Yesterday we ate at a restaurant.",
+      "difficulty": "A2"
+    },
+    {
+      "id": "fib-005",
+      "sentence": "Таа е ___ од мене.",
+      "blank": "постара",
+      "options": ["постара", "стара", "најстара", "помлада"],
+      "translation": "She is older than me.",
+      "difficulty": "A2"
+    },
+    {
+      "id": "fib-006",
+      "sentence": "Ова е ___ книга што сум ја читал.",
+      "blank": "најдобрата",
+      "options": ["најдобрата", "добра", "подобра", "добрата"],
+      "translation": "This is the best book I have read.",
+      "difficulty": "B1"
+    }
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "id": "emotions-v1",
+    "title": "Emotions & Feelings",
+    "titleMk": "Емоции и чувства",
+    "description": "30 words for expressing emotions and feelings",
+    "descriptionMk": "30 зборови за изразување емоции и чувства",
+    "level": "A2",
+    "category": "emotions",
+    "version": "1.0.0",
+    "lastUpdated": "2026-01-26"
+  },
+  "items": [
+    {
+      "id": "emo-001",
+      "mk": "среќен",
+      "en": "happy",
+      "category": "positive"
+    },
+    {
+      "id": "emo-002",
+      "mk": "тажен",
+      "en": "sad",
+      "category": "negative"
+    },
+    {
+      "id": "emo-003",
+      "mk": "лут",
+      "en": "angry",
+      "category": "negative"
+    },
+    {
+      "id": "emo-004",
+      "mk": "изненаден",
+      "en": "surprised",
+      "category": "neutral"
+    },
+    {
+      "id": "emo-005",
+      "mk": "уплашен",
+      "en": "scared",
+      "category": "negative"
+    },
+    {
+      "id": "emo-006",
+      "mk": "возбуден",
+      "en": "excited",
+      "category": "positive"
+    },
+    {
+      "id": "emo-007",
+      "mk": "уморен",
+      "en": "tired",
+      "category": "physical"
+    },
+    {
+      "id": "emo-008",
+      "mk": "задоволен",
+      "en": "satisfied",
+      "category": "positive"
+    },
+    {
+      "id": "emo-009",
+      "mk": "разочаран",
+      "en": "disappointed",
+      "category": "negative"
+    },
+    {
+      "id": "emo-010",
+      "mk": "горд",
+      "en": "proud",
+      "category": "positive"
+    },
+    {
+      "id": "emo-011",
+      "mk": "засрамен",
+      "en": "embarrassed",
+      "category": "negative"
+    },
+    {
+      "id": "emo-012",
+      "mk": "љубоморен",
+      "en": "jealous",
+      "category": "negative"
+    },
+    {
+      "id": "emo-013",
+      "mk": "загрижен",
+      "en": "worried",
+      "category": "negative"
+    },
+    {
+      "id": "emo-014",
+      "mk": "смирен",
+      "en": "calm",
+      "category": "positive"
+    },
+    {
+      "id": "emo-015",
+      "mk": "нервозен",
+      "en": "nervous",
+      "category": "negative"
+    },
+    {
+      "id": "emo-016",
+      "mk": "досаден",
+      "en": "bored",
+      "category": "negative"
+    },
+    {
+      "id": "emo-017",
+      "mk": "заинтересиран",
+      "en": "interested",
+      "category": "positive"
+    },
+    {
+      "id": "emo-018",
+      "mk": "благодарен",
+      "en": "grateful",
+      "category": "positive"
+    },
+    {
+      "id": "emo-019",
+      "mk": "вљубен",
+      "en": "in love",
+      "category": "positive"
+    },
+    {
+      "id": "emo-020",
+      "mk": "осамен",
+      "en": "lonely",
+      "category": "negative"
+    },
+    {
+      "id": "emo-021",
+      "mk": "збунет",
+      "en": "confused",
+      "category": "neutral"
+    },
+    {
+      "id": "emo-022",
+      "mk": "сигурен",
+      "en": "confident",
+      "category": "positive"
+    },
+    {
+      "id": "emo-023",
+      "mk": "несигурен",
+      "en": "uncertain",
+      "category": "negative"
+    },
+    {
+      "id": "emo-024",
+      "mk": "фрустриран",
+      "en": "frustrated",
+      "category": "negative"
+    },
+    {
+      "id": "emo-025",
+      "mk": "релаксиран",
+      "en": "relaxed",
+      "category": "positive"
+    },
+    {
+      "id": "emo-026",
+      "mk": "стресиран",
+      "en": "stressed",
+      "category": "negative"
+    },
+    {
+      "id": "emo-027",
+      "mk": "надежен",
+      "en": "hopeful",
+      "category": "positive"
+    },
+    {
+      "id": "emo-028",
+      "mk": "безнадежен",
+      "en": "hopeless",
+      "category": "negative"
+    },
+    {
+      "id": "emo-029",
+      "mk": "инспириран",
+      "en": "inspired",
+      "category": "positive"
+    },
+    {
+      "id": "emo-030",
+      "mk": "мотивиран",
+      "en": "motivated",
+      "category": "positive"
+    }
+  ]
+}

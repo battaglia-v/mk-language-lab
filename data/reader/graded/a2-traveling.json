@@ -1,0 +1,190 @@
+{
+  "id": "a2-traveling",
+  "locale": "mk",
+  "title_mk": "Патување низ Македонија",
+  "title_en": "Traveling Through Macedonia",
+  "difficulty": "A2",
+  "estimatedMinutes": 4,
+  "tags": [
+    "graded-reader",
+    "A2",
+    "travel",
+    "culture"
+  ],
+  "text_blocks_mk": [
+    {
+      "type": "p",
+      "value": "Минатото лето патував низ Македонија. Посетив многу убави места. Патувањето беше незаборавно."
+    },
+    {
+      "type": "p",
+      "value": "Прво отидов во Охрид. Охридското езеро е прекрасно. Се капев во езерото секој ден. Водата беше чиста и топла."
+    },
+    {
+      "type": "p",
+      "value": "Потоа патував до Битола. Битола е стар град со многу историја. Прошетав по Широк Сокак и видов убави згради."
+    },
+    {
+      "type": "p",
+      "value": "На крај отидов во Маврово. Планините се величествени. Јадев традиционална храна во село. Луѓето беа многу гостопримливи."
+    },
+    {
+      "type": "p",
+      "value": "Македонија има многу да понуди. Сакам повторно да патувам. Следната година ќе одам во Крушево."
+    }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Минато време",
+      "title_en": "Past tense",
+      "examples": [
+        {
+          "mk": "патував",
+          "en": "I traveled"
+        },
+        {
+          "mk": "посетив",
+          "en": "I visited"
+        },
+        {
+          "mk": "видов",
+          "en": "I saw"
+        }
+      ]
+    },
+    {
+      "title_mk": "Идно време",
+      "title_en": "Future tense",
+      "examples": [
+        {
+          "mk": "ќе одам",
+          "en": "I will go"
+        }
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "mk": "патување",
+      "en": "traveling/trip",
+      "pos": "noun"
+    },
+    {
+      "mk": "минатото",
+      "en": "last/past",
+      "pos": "adjective"
+    },
+    {
+      "mk": "посетив",
+      "en": "I visited",
+      "pos": "verb"
+    },
+    {
+      "mk": "места",
+      "en": "places",
+      "pos": "noun"
+    },
+    {
+      "mk": "незаборавно",
+      "en": "unforgettable",
+      "pos": "adjective"
+    },
+    {
+      "mk": "езеро",
+      "en": "lake",
+      "pos": "noun"
+    },
+    {
+      "mk": "прекрасно",
+      "en": "wonderful",
+      "pos": "adjective"
+    },
+    {
+      "mk": "се капев",
+      "en": "I swam/bathed",
+      "pos": "verb"
+    },
+    {
+      "mk": "вода",
+      "en": "water",
+      "pos": "noun"
+    },
+    {
+      "mk": "чиста",
+      "en": "clean",
+      "pos": "adjective"
+    },
+    {
+      "mk": "стар",
+      "en": "old",
+      "pos": "adjective"
+    },
+    {
+      "mk": "историја",
+      "en": "history",
+      "pos": "noun"
+    },
+    {
+      "mk": "прошетав",
+      "en": "I walked",
+      "pos": "verb"
+    },
+    {
+      "mk": "згради",
+      "en": "buildings",
+      "pos": "noun"
+    },
+    {
+      "mk": "планини",
+      "en": "mountains",
+      "pos": "noun"
+    },
+    {
+      "mk": "величествени",
+      "en": "majestic",
+      "pos": "adjective"
+    },
+    {
+      "mk": "село",
+      "en": "village",
+      "pos": "noun"
+    },
+    {
+      "mk": "гостопримливи",
+      "en": "hospitable",
+      "pos": "adjective"
+    },
+    {
+      "mk": "понуди",
+      "en": "to offer",
+      "pos": "verb"
+    },
+    {
+      "mk": "повторно",
+      "en": "again",
+      "pos": "adverb"
+    },
+    {
+      "mk": "следната",
+      "en": "next",
+      "pos": "adjective"
+    }
+  ],
+  "expressions": [
+    {
+      "mk": "Широк Сокак",
+      "en": "Wide Alley (famous street in Bitola)",
+      "literal": "Wide Alley"
+    },
+    {
+      "mk": "многу да понуди",
+      "en": "a lot to offer",
+      "literal": "much to offer"
+    }
+  ],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "Graded Readers",
+    "day": "travel"
+  }
+}

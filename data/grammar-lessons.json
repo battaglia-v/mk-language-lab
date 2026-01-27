@@ -3124,5 +3124,519 @@
         "difficulty": "hard"
       }
     ]
+  },
+  {
+    "id": "present-tense-conjugation",
+    "title": "Present Tense Conjugation",
+    "titleMk": "Сегашно време - спрегање",
+    "titleEn": "Present Tense Conjugation",
+    "descriptionMk": "Научи како да спрегаш глаголи во сегашно време",
+    "descriptionEn": "Learn how to conjugate verbs in the present tense",
+    "difficulty": "beginner",
+    "difficulty_level": "A1",
+    "tags": ["verbs", "present-tense", "conjugation"],
+    "totalXp": 70,
+    "vocabulary_list": [
+      "читам - I read",
+      "читаш - you read",
+      "чита - he/she reads",
+      "читаме - we read",
+      "читате - you read (pl)",
+      "читаат - they read",
+      "пишувам - I write",
+      "зборувам - I speak",
+      "одам - I go",
+      "доаѓам - I come"
+    ],
+    "grammar_notes": "Macedonian verbs in present tense follow regular patterns based on their conjugation group. Most -а verbs follow: -ам, -аш, -а, -аме, -ате, -аат. Verbs like 'пишувам' follow: -увам, -уваш, -ува, -уваме, -увате, -уваат. The verb 'одам' (to go) is slightly irregular: одам, одиш, оди, одиме, одите, одат.",
+    "grammarNote": {
+      "titleMk": "Спрегање на глаголи",
+      "titleEn": "Verb Conjugation",
+      "contentMk": "Глаголите во сегашно време се спрегаат според групата. Повеќето -а глаголи: -ам, -аш, -а, -аме, -ате, -аат. Глаголите на -увам: -увам, -уваш, -ува, -уваме, -увате, -уваат. Глаголот 'одам' е малку неправилен: одам, одиш, оди, одиме, одите, одат.",
+      "contentEn": "Verbs in present tense conjugate according to their group. Most -а verbs: -ам, -аш, -а, -аме, -ате, -аат. Verbs ending in -увам: -увам, -уваш, -ува, -уваме, -увате, -уваат. The verb 'одам' is slightly irregular: одам, одиш, оди, одиме, одите, одат.",
+      "examplesMk": [
+        "Јас читам книга.",
+        "Ти пишуваш писмо.",
+        "Тој зборува македонски.",
+        "Ние одиме дома.",
+        "Вие гледате филм.",
+        "Тие учат секој ден."
+      ],
+      "examplesEn": [
+        "I am reading a book.",
+        "You are writing a letter.",
+        "He speaks Macedonian.",
+        "We are going home.",
+        "You are watching a movie.",
+        "They study every day."
+      ]
+    },
+    "exercises": [
+      {
+        "id": "ptc-1",
+        "type": "multiple-choice",
+        "instructionMk": "Избери ја правилната форма",
+        "instructionEn": "Choose the correct form",
+        "questionMk": "Тој ___ книга. (чита)",
+        "questionEn": "He ___ a book. (reads)",
+        "options": ["читам", "читаш", "чита", "читаат"],
+        "correctIndex": 2,
+        "xp": 10,
+        "grammarTopic": "verbs-present",
+        "difficulty": "easy"
+      },
+      {
+        "id": "ptc-2",
+        "type": "fill-blank",
+        "instructionMk": "Пополни со правилната форма",
+        "instructionEn": "Fill in with the correct form",
+        "sentenceMk": "Ние ___ (зборува) македонски.",
+        "translationEn": "We speak Macedonian.",
+        "correctAnswers": ["зборуваме"],
+        "xp": 10,
+        "grammarTopic": "verbs-present",
+        "difficulty": "medium"
+      },
+      {
+        "id": "ptc-3",
+        "type": "fill-blank",
+        "instructionMk": "Пополни со правилната форма",
+        "instructionEn": "Fill in with the correct form",
+        "sentenceMk": "Тие ___ (оди) во училиште.",
+        "translationEn": "They go to school.",
+        "correctAnswers": ["одат"],
+        "xp": 10,
+        "grammarTopic": "verbs-present",
+        "difficulty": "medium"
+      },
+      {
+        "id": "ptc-4",
+        "type": "multiple-choice",
+        "instructionMk": "Избери ја правилната форма",
+        "instructionEn": "Choose the correct form",
+        "questionMk": "Јас ___ домашна задача. (пишува)",
+        "questionEn": "I ___ homework. (write)",
+        "options": ["пишувам", "пишуваш", "пишува", "пишуваат"],
+        "correctIndex": 0,
+        "xp": 10,
+        "grammarTopic": "verbs-present",
+        "difficulty": "easy"
+      },
+      {
+        "id": "ptc-5",
+        "type": "sentence-builder",
+        "instructionMk": "Подреди ги зборовите",
+        "instructionEn": "Arrange the words",
+        "targetSentenceMk": "Тие читаат весник секое утро",
+        "translationEn": "They read the newspaper every morning",
+        "words": ["Тие", "читаат", "весник", "секое", "утро"],
+        "xp": 15,
+        "grammarTopic": "verbs-present",
+        "difficulty": "hard"
+      },
+      {
+        "id": "ptc-6",
+        "type": "error-correction",
+        "instructionMk": "Поправи ја грешката",
+        "instructionEn": "Fix the mistake",
+        "sentenceWithErrorMk": "Ние одам на работа.",
+        "translationEn": "We go to work.",
+        "errorWord": "одам",
+        "correctedWord": "одиме",
+        "errorPosition": 1,
+        "xp": 15,
+        "explanationMk": "За 'ние' формата е 'одиме', не 'одам'.",
+        "explanationEn": "For 'we' the form is 'одиме', not 'одам'.",
+        "difficulty": "hard"
+      }
+    ]
+  },
+  {
+    "id": "reflexive-verbs",
+    "title": "Reflexive Verbs",
+    "titleMk": "Повратни глаголи",
+    "titleEn": "Reflexive Verbs",
+    "descriptionMk": "Научи за глаголите со 'се'",
+    "descriptionEn": "Learn about verbs with 'се'",
+    "difficulty": "intermediate",
+    "difficulty_level": "A2",
+    "tags": ["verbs", "reflexive", "grammar"],
+    "totalXp": 70,
+    "vocabulary_list": [
+      "се буди - wake up",
+      "се мие - wash oneself",
+      "се облекува - get dressed",
+      "се чешла - comb one's hair",
+      "се смее - laugh",
+      "се радува - be happy",
+      "се плаши - be afraid",
+      "се сеќава - remember",
+      "се гледа - see oneself",
+      "се слуша - listen to oneself"
+    ],
+    "grammar_notes": "Reflexive verbs use 'се' before the verb. They indicate the action is directed back at the subject. Common reflexive verbs: се будам (I wake up), се мијам (I wash), се облекувам (I get dressed). Some verbs are always reflexive: се смеам (I laugh), се радувам (I am happy). The particle 'се' usually comes right before the verb.",
+    "grammarNote": {
+      "titleMk": "Повратни глаголи",
+      "titleEn": "Reflexive Verbs",
+      "contentMk": "Повратните глаголи користат 'се' пред глаголот. Дејството се враќа кон субјектот. Чести примери: се будам, се мијам, се облекувам. Некои глаголи се секогаш повратни: се смеам, се радувам. Честичката 'се' обично е веднаш пред глаголот.",
+      "contentEn": "Reflexive verbs use 'се' before the verb. The action reflects back to the subject. Common examples: се будам (wake up), се мијам (wash myself), се облекувам (get dressed). Some verbs are always reflexive: се смеам (laugh), се радувам (rejoice). The particle 'се' usually comes right before the verb.",
+      "examplesMk": [
+        "Јас се будам рано.",
+        "Тој се мие секое утро.",
+        "Таа се облекува убаво.",
+        "Ние се смееме заедно.",
+        "Вие се сеќавате на тоа?",
+        "Тие се радуваат."
+      ],
+      "examplesEn": [
+        "I wake up early.",
+        "He washes himself every morning.",
+        "She dresses nicely.",
+        "We laugh together.",
+        "Do you remember that?",
+        "They rejoice."
+      ]
+    },
+    "exercises": [
+      {
+        "id": "rv-1",
+        "type": "multiple-choice",
+        "instructionMk": "Избери го правилниот збор",
+        "instructionEn": "Choose the correct word",
+        "questionMk": "Јас ___ будам рано.",
+        "questionEn": "I ___ wake up early.",
+        "options": ["го", "се", "ја", "ги"],
+        "correctIndex": 1,
+        "xp": 10,
+        "grammarTopic": "reflexive-verbs",
+        "difficulty": "easy"
+      },
+      {
+        "id": "rv-2",
+        "type": "fill-blank",
+        "instructionMk": "Пополни со 'се' или остави празно",
+        "instructionEn": "Fill in with 'се' or leave blank",
+        "sentenceMk": "Децата ___ смеат на шегата.",
+        "translationEn": "The children laugh at the joke.",
+        "correctAnswers": ["се"],
+        "xp": 10,
+        "grammarTopic": "reflexive-verbs",
+        "difficulty": "medium"
+      },
+      {
+        "id": "rv-3",
+        "type": "multiple-choice",
+        "instructionMk": "Која реченица е правилна?",
+        "instructionEn": "Which sentence is correct?",
+        "questionMk": "Избери ја правилната реченица:",
+        "questionEn": "Choose the correct sentence:",
+        "options": [
+          "Таа облекува се.",
+          "Таа се облекува.",
+          "Се таа облекува.",
+          "Облекува таа се."
+        ],
+        "correctIndex": 1,
+        "xp": 10,
+        "grammarTopic": "reflexive-verbs",
+        "difficulty": "medium"
+      },
+      {
+        "id": "rv-4",
+        "type": "fill-blank",
+        "instructionMk": "Пополни со правилниот повратен глагол",
+        "instructionEn": "Fill in with the correct reflexive verb",
+        "sentenceMk": "Јас ___ сеќавам на тоа.",
+        "translationEn": "I remember that.",
+        "correctAnswers": ["се"],
+        "xp": 10,
+        "grammarTopic": "reflexive-verbs",
+        "difficulty": "easy"
+      },
+      {
+        "id": "rv-5",
+        "type": "sentence-builder",
+        "instructionMk": "Подреди ги зборовите",
+        "instructionEn": "Arrange the words",
+        "targetSentenceMk": "Тој се мие секое утро",
+        "translationEn": "He washes himself every morning",
+        "words": ["Тој", "се", "мие", "секое", "утро"],
+        "xp": 15,
+        "grammarTopic": "reflexive-verbs",
+        "difficulty": "hard"
+      },
+      {
+        "id": "rv-6",
+        "type": "error-correction",
+        "instructionMk": "Поправи ја грешката",
+        "instructionEn": "Fix the mistake",
+        "sentenceWithErrorMk": "Тие радуваат се.",
+        "translationEn": "They rejoice.",
+        "errorWord": "радуваат се",
+        "correctedWord": "се радуваат",
+        "errorPosition": 1,
+        "xp": 15,
+        "explanationMk": "'Се' треба да е пред глаголот: 'се радуваат'.",
+        "explanationEn": "'Се' should come before the verb: 'се радуваат'.",
+        "difficulty": "hard"
+      }
+    ]
+  },
+  {
+    "id": "comparatives-superlatives",
+    "title": "Comparatives & Superlatives",
+    "titleMk": "Компаративи и суперлативи",
+    "titleEn": "Comparatives & Superlatives",
+    "descriptionMk": "Научи да споредуваш и да кажеш 'најмногу'",
+    "descriptionEn": "Learn to compare and say 'most'",
+    "difficulty": "intermediate",
+    "difficulty_level": "A2",
+    "tags": ["adjectives", "comparison", "grammar"],
+    "totalXp": 70,
+    "vocabulary_list": [
+      "голем - поголем - најголем",
+      "мал - помал - најмал",
+      "убав - поубав - најубав",
+      "добар - подобар - најдобар",
+      "лош - полош - најлош",
+      "висок - повисок - највисок",
+      "низок - понизок - најнизок",
+      "стар - постар - најстар",
+      "млад - помлад - најмлад",
+      "брз - побрз - најбрз"
+    ],
+    "grammar_notes": "Comparatives are formed with 'по-' prefix: убав → поубав (more beautiful). Superlatives use 'нај-': убав → најубав (most beautiful). Some adjectives have irregular forms: добар → подобар → најдобар. Use 'од' for 'than': Тој е повисок од мене (He is taller than me).",
+    "grammarNote": {
+      "titleMk": "Споредби",
+      "titleEn": "Comparisons",
+      "contentMk": "Компаративите се формираат со претставката 'по-': убав → поубав. Суперлативите користат 'нај-': убав → најубав. Некои придавки се неправилни: добар → подобар → најдобар. За споредба користи 'од': Тој е повисок од мене.",
+      "contentEn": "Comparatives are formed with the prefix 'по-': убав → поубав (prettier). Superlatives use 'нај-': убав → најубав (prettiest). Some adjectives are irregular: добар → подобар → најдобар. Use 'од' for 'than': Тој е повисок од мене (He is taller than me).",
+      "examplesMk": [
+        "Охрид е поубав од Скопје.",
+        "Марко е повисок од Петар.",
+        "Ова е најдоброто вино.",
+        "Таа е најмлада во класот.",
+        "Ова јадење е повкусно.",
+        "Тој е најбрзиот тркач."
+      ],
+      "examplesEn": [
+        "Ohrid is prettier than Skopje.",
+        "Marko is taller than Petar.",
+        "This is the best wine.",
+        "She is the youngest in the class.",
+        "This dish is tastier.",
+        "He is the fastest runner."
+      ]
+    },
+    "exercises": [
+      {
+        "id": "cs-1",
+        "type": "multiple-choice",
+        "instructionMk": "Избери го компаративот",
+        "instructionEn": "Choose the comparative",
+        "questionMk": "Кој е компаративот на 'голем'?",
+        "questionEn": "What is the comparative of 'голем'?",
+        "options": ["најголем", "големо", "поголем", "големи"],
+        "correctIndex": 2,
+        "xp": 10,
+        "grammarTopic": "comparatives",
+        "difficulty": "easy"
+      },
+      {
+        "id": "cs-2",
+        "type": "fill-blank",
+        "instructionMk": "Пополни со суперлатив",
+        "instructionEn": "Fill in with superlative",
+        "sentenceMk": "Тој е ___ (добар) ученик.",
+        "translationEn": "He is the best student.",
+        "correctAnswers": ["најдобар", "најдобриот"],
+        "xp": 10,
+        "grammarTopic": "superlatives",
+        "difficulty": "medium"
+      },
+      {
+        "id": "cs-3",
+        "type": "multiple-choice",
+        "instructionMk": "Избери ја правилната реченица",
+        "instructionEn": "Choose the correct sentence",
+        "questionMk": "Која реченица е правилна?",
+        "questionEn": "Which sentence is correct?",
+        "options": [
+          "Тој е висок од мене.",
+          "Тој е повисок од мене.",
+          "Тој е повисок за мене.",
+          "Тој е највисок од мене."
+        ],
+        "correctIndex": 1,
+        "xp": 10,
+        "grammarTopic": "comparatives",
+        "difficulty": "medium"
+      },
+      {
+        "id": "cs-4",
+        "type": "fill-blank",
+        "instructionMk": "Пополни со компаратив",
+        "instructionEn": "Fill in with comparative",
+        "sentenceMk": "Ова вино е ___ (добро) од другото.",
+        "translationEn": "This wine is better than the other.",
+        "correctAnswers": ["подобро"],
+        "xp": 10,
+        "grammarTopic": "comparatives",
+        "difficulty": "medium"
+      },
+      {
+        "id": "cs-5",
+        "type": "sentence-builder",
+        "instructionMk": "Подреди ги зборовите",
+        "instructionEn": "Arrange the words",
+        "targetSentenceMk": "Таа е најубава во градот",
+        "translationEn": "She is the most beautiful in the city",
+        "words": ["Таа", "е", "најубава", "во", "градот"],
+        "xp": 15,
+        "grammarTopic": "superlatives",
+        "difficulty": "hard"
+      },
+      {
+        "id": "cs-6",
+        "type": "error-correction",
+        "instructionMk": "Поправи ја грешката",
+        "instructionEn": "Fix the mistake",
+        "sentenceWithErrorMk": "Ова е најголем куќа.",
+        "translationEn": "This is the biggest house.",
+        "errorWord": "најголем",
+        "correctedWord": "најголема",
+        "errorPosition": 2,
+        "xp": 15,
+        "explanationMk": "'Куќа' е женски род, затоа 'најголема'.",
+        "explanationEn": "'Куќа' is feminine, so 'најголема'.",
+        "difficulty": "hard"
+      }
+    ]
+  },
+  {
+    "id": "imperative-mood",
+    "title": "Imperative (Commands)",
+    "titleMk": "Заповеден начин",
+    "titleEn": "Imperative (Commands)",
+    "descriptionMk": "Научи како да даваш наредби и молби",
+    "descriptionEn": "Learn how to give commands and requests",
+    "difficulty": "intermediate",
+    "difficulty_level": "A2",
+    "tags": ["verbs", "imperative", "commands"],
+    "totalXp": 70,
+    "vocabulary_list": [
+      "дојди! - come!",
+      "седни! - sit!",
+      "стани! - stand up!",
+      "читај! - read!",
+      "пишувај! - write!",
+      "чекај! - wait!",
+      "слушај! - listen!",
+      "гледај! - look!",
+      "јади! - eat!",
+      "пиј! - drink!"
+    ],
+    "grammar_notes": "The imperative is used for commands, requests, and instructions. Singular (ти): often ends in -и or -ј (дојди, читај). Plural/formal (вие): add -те (дојдете, читајте). Negative imperative: не + imperative (не одај, не плачи). Polite requests use 'те молам' + imperative.",
+    "grammarNote": {
+      "titleMk": "Заповеден начин",
+      "titleEn": "Imperative Mood",
+      "contentMk": "Заповедниот начин се користи за наредби и молби. Еднина (ти): обично завршува на -и или -ј (дојди, читај). Множина/формално (вие): додај -те (дојдете, читајте). Негативен императив: не + императив (не одај, не плачи). Учтиви молби: 'те молам' + императив.",
+      "contentEn": "The imperative is used for commands and requests. Singular (ти): usually ends in -и or -ј (дојди, читај). Plural/formal (вие): add -те (дојдете, читајте). Negative imperative: не + imperative (не одај, не плачи). Polite requests: 'те молам' + imperative.",
+      "examplesMk": [
+        "Дојди тука!",
+        "Седнете, ве молам.",
+        "Читај побрзо!",
+        "Не зборувај толку гласно!",
+        "Те молам, помогни ми.",
+        "Јадете и пијте!"
+      ],
+      "examplesEn": [
+        "Come here!",
+        "Please sit down.",
+        "Read faster!",
+        "Don't speak so loudly!",
+        "Please help me.",
+        "Eat and drink!"
+      ]
+    },
+    "exercises": [
+      {
+        "id": "im-1",
+        "type": "multiple-choice",
+        "instructionMk": "Избери го императивот",
+        "instructionEn": "Choose the imperative",
+        "questionMk": "Кој е императивот на 'чита' (ти)?",
+        "questionEn": "What is the imperative of 'чита' (you)?",
+        "options": ["читам", "читај", "читаш", "читаат"],
+        "correctIndex": 1,
+        "xp": 10,
+        "grammarTopic": "imperative",
+        "difficulty": "easy"
+      },
+      {
+        "id": "im-2",
+        "type": "fill-blank",
+        "instructionMk": "Пополни со императив (ти)",
+        "instructionEn": "Fill in with imperative (you sg)",
+        "sentenceMk": "___ (дојде) тука веднаш!",
+        "translationEn": "Come here immediately!",
+        "correctAnswers": ["Дојди"],
+        "xp": 10,
+        "grammarTopic": "imperative",
+        "difficulty": "medium"
+      },
+      {
+        "id": "im-3",
+        "type": "multiple-choice",
+        "instructionMk": "Избери го множинскиот императив",
+        "instructionEn": "Choose the plural imperative",
+        "questionMk": "Кој е императивот на 'седни' за вие?",
+        "questionEn": "What is the imperative of 'седни' for вие?",
+        "options": ["седнат", "седните", "седнеме", "седнете"],
+        "correctIndex": 3,
+        "xp": 10,
+        "grammarTopic": "imperative",
+        "difficulty": "medium"
+      },
+      {
+        "id": "im-4",
+        "type": "fill-blank",
+        "instructionMk": "Пополни со негативен императив",
+        "instructionEn": "Fill in with negative imperative",
+        "sentenceMk": "___ (не + оди) таму!",
+        "translationEn": "Don't go there!",
+        "correctAnswers": ["Не оди", "Не одај", "Не одете"],
+        "xp": 10,
+        "grammarTopic": "imperative",
+        "difficulty": "medium"
+      },
+      {
+        "id": "im-5",
+        "type": "sentence-builder",
+        "instructionMk": "Подреди ги зборовите",
+        "instructionEn": "Arrange the words",
+        "targetSentenceMk": "Те молам затвори ја вратата",
+        "translationEn": "Please close the door",
+        "words": ["Те", "молам", "затвори", "ја", "вратата"],
+        "xp": 15,
+        "grammarTopic": "imperative",
+        "difficulty": "hard"
+      },
+      {
+        "id": "im-6",
+        "type": "error-correction",
+        "instructionMk": "Поправи ја грешката",
+        "instructionEn": "Fix the mistake",
+        "sentenceWithErrorMk": "Седнам тука!",
+        "translationEn": "Sit here!",
+        "errorWord": "Седнам",
+        "correctedWord": "Седни",
+        "errorPosition": 0,
+        "xp": 15,
+        "explanationMk": "За наредба користи императив 'седни', не 'седнам'.",
+        "explanationEn": "For commands use imperative 'седни', not 'седнам'.",
+        "difficulty": "hard"
+      }
+    ]
   }
 ]

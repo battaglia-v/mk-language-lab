@@ -1,0 +1,199 @@
+{
+  "id": "b1-macedonian-history",
+  "locale": "mk",
+  "title_mk": "Македонска историја",
+  "title_en": "Macedonian History",
+  "difficulty": "B1",
+  "estimatedMinutes": 5,
+  "tags": [
+    "graded-reader",
+    "B1",
+    "history",
+    "culture"
+  ],
+  "text_blocks_mk": [
+    {
+      "type": "p",
+      "value": "Македонија има долга и богата историја. Нашата земја се наоѓа на Балканскиот Полуостров. Овде живееле многу различни народи низ вековите."
+    },
+    {
+      "type": "p",
+      "value": "Во деветтиот век, светите браќа Кирил и Методиј ја создале глаголицата. Нивните ученици Климент и Наум продолжиле со нивната работа во Охрид. Охрид станал важен центар на словенската писменост."
+    },
+    {
+      "type": "p",
+      "value": "Во средниот век, Самуиловото царство било моќна држава. Самуил се борел против Византиската империја. Неговата престолнина била во Охрид."
+    },
+    {
+      "type": "p",
+      "value": "По долги векови под османска власт, Македонија се ослободила во 1912 година. Подоцна станала дел од Југославија. Во 1991 година, Македонија прогласила независност."
+    },
+    {
+      "type": "p",
+      "value": "Денес, Република Северна Македонија е модерна држава. Членка е на НАТО од 2020 година. Нашата историја не учи за важноста на образованието и културата."
+    }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Минато определено време",
+      "title_en": "Past definite tense",
+      "examples": [
+        {
+          "mk": "создале",
+          "en": "created"
+        },
+        {
+          "mk": "живееле",
+          "en": "lived"
+        },
+        {
+          "mk": "се борел",
+          "en": "fought"
+        }
+      ]
+    },
+    {
+      "title_mk": "Пасивни конструкции",
+      "title_en": "Passive constructions",
+      "examples": [
+        {
+          "mk": "се ослободила",
+          "en": "freed itself"
+        },
+        {
+          "mk": "прогласила",
+          "en": "declared"
+        }
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "mk": "историја",
+      "en": "history",
+      "pos": "noun"
+    },
+    {
+      "mk": "земја",
+      "en": "country/land",
+      "pos": "noun"
+    },
+    {
+      "mk": "полуостров",
+      "en": "peninsula",
+      "pos": "noun"
+    },
+    {
+      "mk": "народи",
+      "en": "peoples/nations",
+      "pos": "noun"
+    },
+    {
+      "mk": "векови",
+      "en": "centuries",
+      "pos": "noun"
+    },
+    {
+      "mk": "браќа",
+      "en": "brothers",
+      "pos": "noun"
+    },
+    {
+      "mk": "создале",
+      "en": "created",
+      "pos": "verb"
+    },
+    {
+      "mk": "глаголица",
+      "en": "Glagolitic (alphabet)",
+      "pos": "noun"
+    },
+    {
+      "mk": "ученици",
+      "en": "students/disciples",
+      "pos": "noun"
+    },
+    {
+      "mk": "писменост",
+      "en": "literacy/writing",
+      "pos": "noun"
+    },
+    {
+      "mk": "царство",
+      "en": "empire/kingdom",
+      "pos": "noun"
+    },
+    {
+      "mk": "моќна",
+      "en": "powerful",
+      "pos": "adjective"
+    },
+    {
+      "mk": "држава",
+      "en": "state/country",
+      "pos": "noun"
+    },
+    {
+      "mk": "се борел",
+      "en": "fought",
+      "pos": "verb"
+    },
+    {
+      "mk": "империја",
+      "en": "empire",
+      "pos": "noun"
+    },
+    {
+      "mk": "престолнина",
+      "en": "capital",
+      "pos": "noun"
+    },
+    {
+      "mk": "власт",
+      "en": "rule/government",
+      "pos": "noun"
+    },
+    {
+      "mk": "се ослободила",
+      "en": "freed itself",
+      "pos": "verb"
+    },
+    {
+      "mk": "независност",
+      "en": "independence",
+      "pos": "noun"
+    },
+    {
+      "mk": "модерна",
+      "en": "modern",
+      "pos": "adjective"
+    },
+    {
+      "mk": "членка",
+      "en": "member",
+      "pos": "noun"
+    },
+    {
+      "mk": "образование",
+      "en": "education",
+      "pos": "noun"
+    }
+  ],
+  "expressions": [
+    {
+      "mk": "низ вековите",
+      "en": "through the centuries",
+      "literal": "through the ages"
+    },
+    {
+      "mk": "под османска власт",
+      "en": "under Ottoman rule",
+      "literal": "under Ottoman power"
+    }
+  ],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "Graded Readers",
+    "day": "history"
+  }
+}

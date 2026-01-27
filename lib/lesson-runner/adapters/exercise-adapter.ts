@@ -6,7 +6,7 @@
  */
 
 import type { Step, InfoStep, MultipleChoiceStep, FillBlankStep, SentenceBuilderStep, ErrorCorrectionStep } from '../types';
-import type { GrammarExercise, GrammarLesson, SentenceBuilderExercise, ErrorCorrectionExercise } from '@/lib/grammar-engine';
+import type { GrammarExercise, GrammarLesson, SentenceBuilderExercise, ErrorCorrectionExercise, TranslationExercise, TypingExercise } from '@/lib/grammar-engine';
 
 /**
  * Fisher-Yates shuffle for randomizing word order
@@ -183,6 +183,37 @@ export function exerciseToStep(exercise: GrammarExercise, locale: 'en' | 'mk' = 
         instructions: instruction,
       };
       return ecStep;
+    }
+
+    case 'translation': {
+      // Map translation exercises to fill-blank format
+      const trStep: FillBlankStep = {
+        id: exercise.id,
+        type: 'FILL_BLANK',
+        prompt: `Translate: "${exercise.sourceSentence}"`,
+        correctAnswer: exercise.correctTranslations[0],
+        acceptableAnswers: exercise.correctTranslations.slice(1),
+        explanation,
+        caseSensitive: false,
+        placeholder: exercise.targetLanguage === 'mk' ? 'Type in Macedonian...' : 'Type in English...',
+        wordBank: exercise.wordHints,
+      };
+      return trStep;
+    }
+
+    case 'typing': {
+      // Map typing exercises to fill-blank format
+      const typeStep: FillBlankStep = {
+        id: exercise.id,
+        type: 'FILL_BLANK',
+        prompt: exercise.translation ? `Type: "${exercise.targetText}" (${exercise.translation})` : `Type: "${exercise.targetText}"`,
+        correctAnswer: exercise.targetText,
+        acceptableAnswers: [],
+        explanation: exercise.pronunciationHint,
+        caseSensitive: false,
+        placeholder: 'Type the text above...',
+      };
+      return typeStep;
     }
 
     default: {

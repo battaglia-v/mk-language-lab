@@ -1,0 +1,204 @@
+{
+  "id": "b1-ohrid-unesco",
+  "locale": "mk",
+  "title_mk": "Охрид - светско наследство",
+  "title_en": "Ohrid - World Heritage",
+  "difficulty": "B1",
+  "estimatedMinutes": 5,
+  "tags": [
+    "graded-reader",
+    "B1",
+    "culture",
+    "UNESCO"
+  ],
+  "text_blocks_mk": [
+    {
+      "type": "p",
+      "value": "Охрид е еден од најстарите градови во Европа. Уште од антички времиња, луѓето живееле на бреговите на Охридското Езеро. Денес, градот и езерото се заштитени како светско наследство на УНЕСКО."
+    },
+    {
+      "type": "p",
+      "value": "Охридското Езеро е едно од најстарите и најдлабоките езера во Европа. Неговата старост се проценува на околу три милиони години. Во него живеат многу ендемични видови риби и растенија."
+    },
+    {
+      "type": "p",
+      "value": "Градот е познат по своите цркви. Некогаш имало 365 цркви - по една за секој ден од годината. Најпозната е црквата Свети Јован Канео, која се наоѓа на карпа над езерото."
+    },
+    {
+      "type": "p",
+      "value": "Охрид бил центар на словенската книжевност. Тука работеле Свети Климент и Свети Наум. Тие ја ширеле писменоста и христијанството меѓу словенските народи."
+    },
+    {
+      "type": "p",
+      "value": "Секоја година, илјадници туристи го посетуваат Охрид. Тие уживаат во убавините на природата и богатата културна историја. Охрид навистина е бисер на Македонија."
+    }
+  ],
+  "grammar_highlights": [
+    {
+      "title_mk": "Суперлативи",
+      "title_en": "Superlatives",
+      "examples": [
+        {
+          "mk": "најстар",
+          "en": "oldest"
+        },
+        {
+          "mk": "најдлабок",
+          "en": "deepest"
+        },
+        {
+          "mk": "најпозната",
+          "en": "most famous"
+        }
+      ]
+    },
+    {
+      "title_mk": "Пасивни партиципи",
+      "title_en": "Passive participles",
+      "examples": [
+        {
+          "mk": "заштитени",
+          "en": "protected"
+        },
+        {
+          "mk": "познат",
+          "en": "known"
+        }
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "mk": "наследство",
+      "en": "heritage",
+      "pos": "noun"
+    },
+    {
+      "mk": "антички",
+      "en": "ancient",
+      "pos": "adjective"
+    },
+    {
+      "mk": "брегови",
+      "en": "shores",
+      "pos": "noun"
+    },
+    {
+      "mk": "заштитени",
+      "en": "protected",
+      "pos": "adjective"
+    },
+    {
+      "mk": "длабок",
+      "en": "deep",
+      "pos": "adjective"
+    },
+    {
+      "mk": "старост",
+      "en": "age",
+      "pos": "noun"
+    },
+    {
+      "mk": "се проценува",
+      "en": "is estimated",
+      "pos": "verb"
+    },
+    {
+      "mk": "милиони",
+      "en": "millions",
+      "pos": "noun"
+    },
+    {
+      "mk": "ендемични",
+      "en": "endemic",
+      "pos": "adjective"
+    },
+    {
+      "mk": "видови",
+      "en": "species",
+      "pos": "noun"
+    },
+    {
+      "mk": "риби",
+      "en": "fish",
+      "pos": "noun"
+    },
+    {
+      "mk": "растенија",
+      "en": "plants",
+      "pos": "noun"
+    },
+    {
+      "mk": "цркви",
+      "en": "churches",
+      "pos": "noun"
+    },
+    {
+      "mk": "карпа",
+      "en": "cliff/rock",
+      "pos": "noun"
+    },
+    {
+      "mk": "книжевност",
+      "en": "literature",
+      "pos": "noun"
+    },
+    {
+      "mk": "ширеле",
+      "en": "spread",
+      "pos": "verb"
+    },
+    {
+      "mk": "писменост",
+      "en": "literacy",
+      "pos": "noun"
+    },
+    {
+      "mk": "христијанство",
+      "en": "Christianity",
+      "pos": "noun"
+    },
+    {
+      "mk": "илјадници",
+      "en": "thousands",
+      "pos": "noun"
+    },
+    {
+      "mk": "туристи",
+      "en": "tourists",
+      "pos": "noun"
+    },
+    {
+      "mk": "уживаат",
+      "en": "enjoy",
+      "pos": "verb"
+    },
+    {
+      "mk": "убавини",
+      "en": "beauties",
+      "pos": "noun"
+    },
+    {
+      "mk": "бисер",
+      "en": "pearl",
+      "pos": "noun"
+    }
+  ],
+  "expressions": [
+    {
+      "mk": "светско наследство",
+      "en": "world heritage",
+      "literal": "world inheritance"
+    },
+    {
+      "mk": "бисер на Македонија",
+      "en": "pearl of Macedonia",
+      "literal": "pearl of Macedonia"
+    }
+  ],
+  "attribution": {
+    "handle": "@mklanguagelab",
+    "series": "Graded Readers",
+    "day": "culture"
+  }
+}
